@@ -138,6 +138,24 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case DiagramNameEditPart.VISUAL_ID:
 				return new DiagramNameEditPart(view);
 
+			case DurationObservationEditPart.VISUAL_ID:
+				return new DurationObservationEditPart(view);
+
+			case DurationObservationNameEditPart.VISUAL_ID:
+				return new DurationObservationNameEditPart(view);
+
+			case DurationObservationStereotypeLabelEditPart.VISUAL_ID:
+				return new DurationObservationStereotypeLabelEditPart(view);
+
+			case TimeObservationEditPart.VISUAL_ID:
+				return new TimeObservationEditPart(view);
+
+			case TimeObservationNameEditPart.VISUAL_ID:
+				return new TimeObservationNameEditPart(view);
+
+			case TimeObservationStereotypeLabelEditPart.VISUAL_ID:
+				return new TimeObservationStereotypeLabelEditPart(view);
+
 			case PropertyEditPart.VISUAL_ID:
 				return new PropertyEditPart(view);
 
@@ -521,6 +539,12 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case ContainmentLinkEditPart.VISUAL_ID:
 				return new ContainmentLinkEditPart(view);
+
+			case ConnectorTimeObservationEditPart.VISUAL_ID:
+				return new ConnectorTimeObservationEditPart(view);
+
+			case ConnectorDurationObservationEditPart.VISUAL_ID:
+				return new ConnectorDurationObservationEditPart(view);
 
 			}
 		}

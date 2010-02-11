@@ -67,6 +67,8 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyName3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DiagramNameEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.DurationObservationNameEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.DurationObservationStereotypeLabelEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ElementImportAliasEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationLiteralEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationNameEditPart;
@@ -97,6 +99,8 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SlotEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SubstitutionName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateParameterEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.TimeObservationNameEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.TimeObservationStereotypeLabelEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.UsageNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.parsers.MessageFormatParser;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
@@ -826,6 +830,70 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser durationObservationName_5155Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDurationObservationName_5155Parser() {
+		if(durationObservationName_5155Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			durationObservationName_5155Parser = parser;
+		}
+		return durationObservationName_5155Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser durationObservationName_5156Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDurationObservationName_5156Parser() {
+		if(durationObservationName_5156Parser == null) {
+			durationObservationName_5156Parser = new AppliedStereotypeParser();
+		}
+		return durationObservationName_5156Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser timeObservationName_5153Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTimeObservationName_5153Parser() {
+		if(timeObservationName_5153Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			timeObservationName_5153Parser = parser;
+		}
+		return timeObservationName_5153Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser timeObservationName_5154Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTimeObservationName_5154Parser() {
+		if(timeObservationName_5154Parser == null) {
+			timeObservationName_5154Parser = new AppliedStereotypeParser();
+		}
+		return timeObservationName_5154Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser getElementImportAlias_6020Parser() {
 		if(elementImportAlias_6020Parser == null) {
 			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getElementImport_Alias() };
@@ -1130,6 +1198,14 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getCommentBody_5038Parser();
 		case DiagramNameEditPart.VISUAL_ID:
 			return getDiagramName_0Parser();
+		case DurationObservationNameEditPart.VISUAL_ID:
+			return getDurationObservationName_5155Parser();
+		case DurationObservationStereotypeLabelEditPart.VISUAL_ID:
+			return getDurationObservationName_5156Parser();
+		case TimeObservationNameEditPart.VISUAL_ID:
+			return getTimeObservationName_5153Parser();
+		case TimeObservationStereotypeLabelEditPart.VISUAL_ID:
+			return getTimeObservationName_5154Parser();
 		case PropertyEditPart.VISUAL_ID:
 			return getProperty_3002Parser();
 		case OperationEditPart.VISUAL_ID:

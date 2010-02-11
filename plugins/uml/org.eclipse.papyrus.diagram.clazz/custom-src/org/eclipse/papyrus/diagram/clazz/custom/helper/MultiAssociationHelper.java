@@ -454,9 +454,9 @@ public class MultiAssociationHelper extends ElementHelper {
 		}
 		// the source or the target has to be different of a dependency branch
 		if(targetEditPart instanceof AssociationBranchEditPart) {
-				return UnexecutableCommand.INSTANCE;
+			return UnexecutableCommand.INSTANCE;
 		}
-		
+
 		// if not this a transformation of simple dependency to multiDependency
 		return getAssociationToMultiAssociationCommand(createConnectionViewAndElementRequest, command);
 	}

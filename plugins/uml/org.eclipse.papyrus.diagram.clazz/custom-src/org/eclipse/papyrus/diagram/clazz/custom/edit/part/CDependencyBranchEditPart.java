@@ -21,7 +21,7 @@ import org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure;
 
 /**
  * this branch dependency can change its arrow
- *
+ * 
  */
 
 public class CDependencyBranchEditPart extends org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart {

@@ -28,6 +28,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.ComponentCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ConstraintCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.DataTypeCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.Dependency2CreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.DurationObservationCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.EnumerationCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.InstanceSpecificationCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.InterfaceCreateCommand;
@@ -36,6 +37,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.PackageCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.PrimitiveTypeCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ShortCutDiagramCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.SignalCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.TimeObservationCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 
 /**
@@ -101,6 +103,12 @@ public class ModelItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 		}
 		if(UMLElementTypes.Diagram_2016 == req.getElementType()) {
 			return getGEFWrapper(new ShortCutDiagramCreateCommand(req));
+		}
+		if(UMLElementTypes.DurationObservation_2095 == req.getElementType()) {
+			return getGEFWrapper(new DurationObservationCreateCommand(req));
+		}
+		if(UMLElementTypes.TimeObservation_2096 == req.getElementType()) {
+			return getGEFWrapper(new TimeObservationCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

@@ -43,6 +43,10 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.AssociationReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.CommentAnnotatedElementReorientCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.ConnectorDurationObservationCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.ConnectorDurationObservationReorientCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.ConnectorTimeObservationCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.commands.ConnectorTimeObservationReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ConstraintConstrainedElementReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.Dependency2ReorientCommand;
@@ -76,6 +80,8 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentAnnotatedElementEditP
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentAttributeCompartmentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentNestedClassifierCompartmentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentOperationCompartmentEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ConnectorDurationObservationEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ConnectorTimeObservationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyEditPart;
@@ -211,6 +217,18 @@ public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 			if(UMLVisualIDRegistry.getVisualID(incomingLink) == AddedLinkEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+			if(UMLVisualIDRegistry.getVisualID(incomingLink) == ConnectorTimeObservationEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+			if(UMLVisualIDRegistry.getVisualID(incomingLink) == ConnectorDurationObservationEditPart.VISUAL_ID) {
+				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 				continue;
 			}
@@ -386,6 +404,18 @@ public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
 						continue;
 					}
+					if(UMLVisualIDRegistry.getVisualID(incomingLink) == ConnectorTimeObservationEditPart.VISUAL_ID) {
+						DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+						cmd.add(new DestroyReferenceCommand(r));
+						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+						continue;
+					}
+					if(UMLVisualIDRegistry.getVisualID(incomingLink) == ConnectorDurationObservationEditPart.VISUAL_ID) {
+						DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+						cmd.add(new DestroyReferenceCommand(r));
+						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+						continue;
+					}
 				}
 				for(Iterator it = node.getSourceEdges().iterator(); it.hasNext();) {
 					Edge outgoingLink = (Edge)it.next();
@@ -533,6 +563,12 @@ public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 		if(UMLElementTypes.Dependency_4022 == req.getElementType()) {
 			return getGEFWrapper(new AddedLinkCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.TimeObservationEvent_4024 == req.getElementType()) {
+			return null;
+		}
+		if(UMLElementTypes.DurationObservationEvent_4025 == req.getElementType()) {
+			return null;
+		}
 		return null;
 	}
 
@@ -591,6 +627,12 @@ public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 		if(UMLElementTypes.Dependency_4022 == req.getElementType()) {
 			return getGEFWrapper(new AddedLinkCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.TimeObservationEvent_4024 == req.getElementType()) {
+			return getGEFWrapper(new ConnectorTimeObservationCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.DurationObservationEvent_4025 == req.getElementType()) {
+			return getGEFWrapper(new ConnectorDurationObservationCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -648,6 +690,10 @@ public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 			return getGEFWrapper(new CommentAnnotatedElementReorientCommand(req));
 		case ConstraintConstrainedElementEditPart.VISUAL_ID:
 			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(req));
+		case ConnectorTimeObservationEditPart.VISUAL_ID:
+			return getGEFWrapper(new ConnectorTimeObservationReorientCommand(req));
+		case ConnectorDurationObservationEditPart.VISUAL_ID:
+			return getGEFWrapper(new ConnectorDurationObservationReorientCommand(req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

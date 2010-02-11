@@ -41,27 +41,15 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		ModelPreferencePage.initDefaults(store);
 
-		AssociationPreferencePage.initDefaults(store);
-
 		ShortCutDiagramPreferencePage.initDefaults(store);
 
 		InstanceSpecificationPreferencePage.initDefaults(store);
-
-		ConstraintPreferencePage.initDefaults(store);
-
-		EnumerationLiteralPreferencePage.initDefaults(store);
 
 		PropertyPreferencePage.initDefaults(store);
 
 		DependencyPreferencePage.initDefaults(store);
 
-		PrimitiveTypePreferencePage.initDefaults(store);
-
 		SlotPreferencePage.initDefaults(store);
-
-		AssociationClassPreferencePage.initDefaults(store);
-
-		PackagePreferencePage.initDefaults(store);
 
 		ComponentPreferencePage.initDefaults(store);
 
@@ -71,31 +59,41 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		CommentPreferencePage.initDefaults(store);
 
-		EnumerationPreferencePage.initDefaults(store);
+		DurationObservationPreferencePage.initDefaults(store);
 
 		InterfacePreferencePage.initDefaults(store);
 
 		PortPreferencePage.initDefaults(store);
 
+		ClassPreferencePage.initDefaults(store);
+
+		TimeObservationPreferencePage.initDefaults(store);
+
+		AssociationPreferencePage.initDefaults(store);
+
+		ConstraintPreferencePage.initDefaults(store);
+
+		EnumerationLiteralPreferencePage.initDefaults(store);
+
+		PrimitiveTypePreferencePage.initDefaults(store);
+
+		AssociationClassPreferencePage.initDefaults(store);
+
+		PackagePreferencePage.initDefaults(store);
+
+		EnumerationPreferencePage.initDefaults(store);
+
 		ReceptionPreferencePage.initDefaults(store);
 
 		ClassifierTemplateParameterPreferencePage.initDefaults(store);
-
-		ClassPreferencePage.initDefaults(store);
 
 		RedefinableTemplateSignaturePreferencePage.initDefaults(store);
 
 		PackageMergePreferencePage.initDefaults(store);
 
-		AbstractionPreferencePage.initDefaults(store);
-
-		GeneralizationSetPreferencePage.initDefaults(store);
-
 		AssociationPreferencePage.initDefaults(store);
 
 		GeneralizationPreferencePage.initDefaults(store);
-
-		ElementImportPreferencePage.initDefaults(store);
 
 		DependencyPreferencePage.initDefaults(store);
 
@@ -103,15 +101,21 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		UsagePreferencePage.initDefaults(store);
 
-		InterfaceRealizationPreferencePage.initDefaults(store);
-
 		TemplateBindingPreferencePage.initDefaults(store);
 
 		PackageImportPreferencePage.initDefaults(store);
 
-		SubstitutionPreferencePage.initDefaults(store);
-
 		AssociationClassPreferencePage.initDefaults(store);
+
+		AbstractionPreferencePage.initDefaults(store);
+
+		GeneralizationSetPreferencePage.initDefaults(store);
+
+		ElementImportPreferencePage.initDefaults(store);
+
+		InterfaceRealizationPreferencePage.initDefaults(store);
+
+		SubstitutionPreferencePage.initDefaults(store);
 
 		ProfileApplicationPreferencePage.initDefaults(store);
 

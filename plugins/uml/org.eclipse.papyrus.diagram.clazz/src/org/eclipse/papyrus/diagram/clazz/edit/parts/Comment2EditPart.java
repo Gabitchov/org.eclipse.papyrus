@@ -330,6 +330,12 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
+		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
@@ -424,6 +430,12 @@ ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.Comment_2012);
+		}
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
+			types.add(UMLElementTypes.TimeObservation_2096);
 		}
 		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4013) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);

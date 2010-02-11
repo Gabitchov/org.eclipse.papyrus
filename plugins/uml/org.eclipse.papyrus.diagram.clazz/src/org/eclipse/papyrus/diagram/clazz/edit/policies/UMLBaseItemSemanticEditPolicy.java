@@ -51,6 +51,7 @@ import org.eclipse.uml2.uml.BehavioredClassifier;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Interface;
@@ -60,6 +61,7 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.TemplateableElement;
+import org.eclipse.uml2.uml.TimeObservation;
 import org.eclipse.uml2.uml.Type;
 
 /**
@@ -185,6 +187,32 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public static boolean canCreateLink_4023() {
 			return canExistLink_4023();
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateTimeObservationEvent_4024(TimeObservation source, NamedElement target) {
+			if(source != null) {
+				if(source.getEvent() != null) {
+					return false;
+				}
+			}
+
+			return canExistTimeObservationEvent_4024(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateDurationObservationEvent_4025(DurationObservation source, NamedElement target) {
+			if(source != null) {
+				if(source.getEvents().size() >= 2 || source.getEvents().contains(target)) {
+					return false;
+				}
+			}
+
+			return canExistDurationObservationEvent_4025(source, target);
 		}
 
 		/**
@@ -345,6 +373,20 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		public static boolean canExistLink_4023() {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistTimeObservationEvent_4024(TimeObservation source, NamedElement target) {
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistDurationObservationEvent_4025(DurationObservation source, NamedElement target) {
 			return true;
 		}
 

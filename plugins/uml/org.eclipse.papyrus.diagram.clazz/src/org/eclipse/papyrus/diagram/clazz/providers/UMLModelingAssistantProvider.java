@@ -44,6 +44,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
@@ -64,6 +65,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.PrimitiveTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalEditPartCN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.Messages;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
@@ -275,7 +277,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof ModelEditPart) {
-			ArrayList types = new ArrayList(16);
+			ArrayList types = new ArrayList(18);
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
 			types.add(UMLElementTypes.Association_2015);
@@ -292,6 +294,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.Comment_2012);
 			types.add(UMLElementTypes.Diagram_2016);
+			types.add(UMLElementTypes.DurationObservation_2095);
+			types.add(UMLElementTypes.TimeObservation_2096);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -346,6 +350,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof CommentEditPart) {
 			return ((CommentEditPart)sourceEditPart).getMARelTypesOnSource();
+		}
+		if(sourceEditPart instanceof DurationObservationEditPart) {
+			return ((DurationObservationEditPart)sourceEditPart).getMARelTypesOnSource();
+		}
+		if(sourceEditPart instanceof TimeObservationEditPart) {
+			return ((TimeObservationEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
 		if(sourceEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			return ((RedefinableTemplateSignatureEditPart)sourceEditPart).getMARelTypesOnSource();
@@ -441,6 +451,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(targetEditPart instanceof CommentEditPart) {
 			return ((CommentEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			return ((DurationObservationEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			return ((TimeObservationEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			return ((RedefinableTemplateSignatureEditPart)targetEditPart).getMARelTypesOnTarget();
@@ -538,6 +554,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof CommentEditPart) {
 			return ((CommentEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
+		if(sourceEditPart instanceof DurationObservationEditPart) {
+			return ((DurationObservationEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if(sourceEditPart instanceof TimeObservationEditPart) {
+			return ((TimeObservationEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		if(sourceEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			return ((RedefinableTemplateSignatureEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
@@ -633,6 +655,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof CommentEditPart) {
 			return ((CommentEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			return ((DurationObservationEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			return ((TimeObservationEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			return ((RedefinableTemplateSignatureEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
@@ -727,6 +755,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof CommentEditPart) {
 			return ((CommentEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof DurationObservationEditPart) {
+			return ((DurationObservationEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof TimeObservationEditPart) {
+			return ((TimeObservationEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		if(sourceEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			return ((RedefinableTemplateSignatureEditPart)sourceEditPart).getMATypesForTarget(relationshipType);

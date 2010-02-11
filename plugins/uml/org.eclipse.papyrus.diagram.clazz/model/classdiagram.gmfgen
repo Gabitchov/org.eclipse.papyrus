@@ -3188,6 +3188,206 @@
           </modelFacet>
         </labels>
       </topLevelNodes>
+      <topLevelNodes
+          visualID="2095"
+          editPartClassName="DurationObservationEditPart"
+          itemSemanticEditPolicyClassName="DurationObservationItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="DurationObservationCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="DurationObservationGraphicalNodeEditPolicy"
+          createCommandClassName="DurationObservationCreateCommand">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            editHelperClassName="DurationObservationEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.figure.DurationObservationNodeFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeIconlDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.ObservationLayoutEditPolicy"/>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DurationObservation"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+              <value
+                  href="../../org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfgen#/0/@expressionProviders/@providers.0/@expressions.0"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="5155"
+            editPartClassName="DurationObservationNameEditPart"
+            itemSemanticEditPolicyClassName="DurationObservationNameItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="25"
+                y="3"/>
+          </viewmap>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.1">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="5156"
+            editPartClassName="DurationObservationStereotypeLabelEditPart"
+            itemSemanticEditPolicyClassName="DurationObservationStereotypeLabelItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="25"
+                y="-10"/>
+          </viewmap>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy"/>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.3"
+              viewPattern="&lt;&lt;{0}>>"
+              editorPattern="&lt;&lt;{0}>>"
+              editPattern="&lt;&lt;{0}>>">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+      </topLevelNodes>
+      <topLevelNodes
+          visualID="2096"
+          editPartClassName="TimeObservationEditPart"
+          itemSemanticEditPolicyClassName="TimeObservationItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="TimeObservationCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="TimeObservationGraphicalNodeEditPolicy"
+          createCommandClassName="TimeObservationCreateCommand">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            editHelperClassName="TimeObservationEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.figure.TimeObservationNodeFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeIconlDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.ObservationLayoutEditPolicy"/>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TimeObservation"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+              <value
+                  href="../../org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfgen#/0/@expressionProviders/@providers.0/@expressions.0"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="5153"
+            editPartClassName="TimeObservationNameEditPart"
+            itemSemanticEditPolicyClassName="TimeObservationNameItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="25"
+                y="3"/>
+          </viewmap>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.1">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="5154"
+            editPartClassName="TimeObservationStereotypeLabelEditPart"
+            itemSemanticEditPolicyClassName="TimeObservationStereotypeLabelItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure">
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="25"
+                y="-10"/>
+          </viewmap>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy"/>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.3"
+              viewPattern="&lt;&lt;{0}>>"
+              editorPattern="&lt;&lt;{0}>>"
+              editPattern="&lt;&lt;{0}>>">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+      </topLevelNodes>
       <links
           visualID="4016"
           editPartClassName="CommentLinkDescriptorEditPart"
@@ -4676,6 +4876,46 @@
             key="org.eclipse.gef.EditPolicy.COMPONENT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.clazz.custom.policies.CustomViewComponentEditPolicy"/>
       </links>
+      <links
+          visualID="4024"
+          editPartClassName="ConnectorTimeObservationEditPart"
+          itemSemanticEditPolicyClassName="ConnectorTimeObservationItemSemanticEditPolicy"
+          createCommandClassName="ConnectorTimeObservationCreateCommand"
+          reorientCommandClassName="ConnectorTimeObservationReorientCommand">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="LinkDescriptor"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class LinkDescriptor extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public LinkDescriptor() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASH);&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLinkModelFacet">
+          <metaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TimeObservation/event"/>
+        </modelFacet>
+      </links>
+      <links
+          visualID="4025"
+          editPartClassName="ConnectorDurationObservationEditPart"
+          itemSemanticEditPolicyClassName="ConnectorDurationObservationItemSemanticEditPolicy"
+          createCommandClassName="ConnectorDurationObservationCreateCommand"
+          reorientCommandClassName="ConnectorDurationObservationReorientCommand">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="LinkDescriptor"
+            classBody="&#xD;&#xA;/**&#xD;&#xA; * @generated&#xD;&#xA; */&#xD;&#xA;public class LinkDescriptor extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;/**&#xD;&#xA;&#x9; * @generated&#xD;&#xA;&#x9; */&#xD;&#xA;&#x9;public LinkDescriptor() {&#xD;&#xA;&#x9;&#x9;this.setLineWidth(1);&#xD;&#xA;this.setLineStyle(org.eclipse.draw2d.Graphics.LINE_DASH);&#xD;&#xA;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;"/>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLinkModelFacet">
+          <metaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DurationObservation/event"/>
+        </modelFacet>
+      </links>
       <compartments
           visualID="7034"
           editPartClassName="AssociationClassAttributeCompartmentEditPart"
@@ -5595,139 +5835,8 @@
       </compartments>
       <palette>
         <groups
-            title="Packages"
-            description="Packages and Constraints"
-            largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-            smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-            id="&quot;clazz.group.packages&quot;"
-            stack="true"
-            collapse="true">
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Model"
-              description="Create a model"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
-              id="&quot;clazz.tool.model&quot;"
-              genNodes="/0/@diagram/@topLevelNodes.7 /0/@diagram/@childNodes.14"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Package"
-              description="Create new Package"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
-              id="&quot;clazz.tool.package&quot;"
-              genNodes="/0/@diagram/@childNodes.17 /0/@diagram/@topLevelNodes.9"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Constraint"
-              description="Create a constraint"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
-              id="&quot;clazz.tool.constraint&quot;"
-              genNodes="/0/@diagram/@childNodes.28 /0/@diagram/@topLevelNodes.13"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Constraint link"
-              description="Create a constraint link"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
-              id="&quot;clazz.tool.constraintLink&quot;"
-              genLinks="/0/@diagram/@links.17"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Comment"
-              description="Create a comment"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
-              createMethodName="createComment5CreationTool"
-              id="&quot;clazz.tool.comment&quot;"
-              genNodes="/0/@diagram/@childNodes.27 /0/@diagram/@topLevelNodes.14"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Comment link"
-              description="Create a comment link"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
-              id="&quot;clazz.tool.commentlink&quot;"
-              genLinks="/0/@diagram/@links.16"/>
-        </groups>
-        <groups
-            title="Classifiers"
-            description="All Classifiers"
-            largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-            smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-            id="&quot;clazz.group.classifiers&quot;"
-            stack="true"
-            collapse="true">
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Class"
-              description="Create a new Class"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
-              id="&quot;clazz.tool.class&quot;"
-              genNodes="/0/@diagram/@childNodes.2 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.22 /0/@diagram/@topLevelNodes.10"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Component"
-              description="Create a component"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Component.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Component.gif"
-              id="&quot;clazz.tool.component&quot;"
-              genNodes="/0/@diagram/@topLevelNodes.4 /0/@diagram/@childNodes.11"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="DataType"
-              description="Create a new DataType"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataType.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataType.gif"
-              id="&quot;clazz.tool.datatype&quot;"
-              genNodes="/0/@diagram/@childNodes.24 /0/@diagram/@topLevelNodes.12"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Enumeration"
-              description="Create an enumeration"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Enumeration.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Enumeration.gif"
-              id="&quot;clazz.tool.enumeration&quot;"
-              genNodes="/0/@diagram/@childNodes.15 /0/@diagram/@topLevelNodes.8"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Interface"
-              description="Create an interface"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif"
-              id="&quot;clazz.tool.interface&quot;"
-              genNodes="/0/@diagram/@topLevelNodes.6 /0/@diagram/@childNodes.13"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="PrimitiveType"
-              description="Create a Primitivetype"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PrimitiveType.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PrimitiveType.gif"
-              id="&quot;clazz.tool.primitivetype&quot;"
-              genNodes="/0/@diagram/@childNodes.23 /0/@diagram/@topLevelNodes.11"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Signal"
-              description="Create a signal"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Signal.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Signal.gif"
-              id="&quot;clazz.tool.signal&quot;"
-              genNodes="/0/@diagram/@topLevelNodes.5 /0/@diagram/@childNodes.12"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="InstanceSpecification"
-              description="Create an InstanceSpecification"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceSpecification.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceSpecification.gif"
-              id="&quot;clazz.tool.instancespecification&quot;"
-              genNodes="/0/@diagram/@topLevelNodes.3 /0/@diagram/@childNodes.10"/>
-        </groups>
-        <groups
-            title="RelationShips"
-            description="All Relationships"
+            title="Edges"
+            description="Edges"
             largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             id="&quot;clazz.group.relationships&quot;"
@@ -5767,6 +5876,14 @@
               genLinks="/0/@diagram/@links.1"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
+              title="ContainmentLink"
+              description="Create a ContainmentLink"
+              largeIconPath="icons/obj16/ContainmentConnection.gif"
+              smallIconPath="icons/obj16/ContainmentConnection.gif"
+              id="&quot;clazz.tool.containmentlink&quot;"
+              genLinks="/0/@diagram/@links.22"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
               title="Dependency"
               description="Create a dependency"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
@@ -5799,12 +5916,37 @@
               genLinks="/0/@diagram/@links.4"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
+              title="GeneralizationSet"
+              description="GeneralizationSet"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralizationSet.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralizationSet.gif"
+              id="&quot;clazz.tool.generalizationset&quot;"
+              genLinks="/0/@diagram/@links.19"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="InstanceSpecification link"
+              description="Create an InstanceSpecification link"
+              largeIconPath="icons/obj16/InstanceLink.gif"
+              smallIconPath="icons/obj16/InstanceLink.gif"
+              createMethodName="createInstanceSpecificationLinkCreationTool"
+              id="&quot;clazz.tool.instancespecificationlink&quot;"
+              genLinks="/0/@diagram/@links.20"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
               title="InterfaceRealization"
               description="Create an InterfaceRealization"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterfaceRealization.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterfaceRealization.gif"
               id="&quot;clazz.tool.interfacerealization&quot;"
               genLinks="/0/@diagram/@links.5"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Link"
+              description="Creation of a link for comment, constraint, TimeObservation, DurationObservation"
+              largeIconPath="icons/obj16/Link.gif"
+              smallIconPath="icons/obj16/Link.gif"
+              id="&quot;clazz.tool.link&quot;"
+              genLinks="/0/@diagram/@links.16 /0/@diagram/@links.23 /0/@diagram/@links.24 /0/@diagram/@links.17"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="PackageImport"
@@ -5861,55 +6003,119 @@
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateBinding.gif"
               id="&quot;clazz.tool.templatebinding&quot;"
               genLinks="/0/@diagram/@links.18"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="GeneralizationSet"
-              description="GeneralizationSet"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralizationSet.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralizationSet.gif"
-              id="&quot;clazz.tool.generalizationset&quot;"
-              genLinks="/0/@diagram/@links.19"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="InstanceSpecification"
-              description="Create an InstanceSpecification"
-              largeIconPath="icons/obj16/InstanceLink.gif"
-              smallIconPath="icons/obj16/InstanceLink.gif"
-              id="&quot;clazz.tool.instancespecificationlink&quot;"
-              genLinks="/0/@diagram/@links.20"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="ContainmentLink"
-              description="Create a ContainmentLink"
-              largeIconPath="icons/obj16/ContainmentConnection.gif"
-              smallIconPath="icons/obj16/ContainmentConnection.gif"
-              id="&quot;clazz.tool.containmentlink&quot;"
-              genLinks="/0/@diagram/@links.22"/>
         </groups>
         <groups
-            title="Features"
-            description="All Features"
+            title="Nodes"
+            description="Nodes"
             largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-            id="&quot;clazz.group.features&quot;"
+            id="&quot;clazz.group.nodes&quot;"
             stack="true"
             collapse="true">
           <entries
               xsi:type="gmfgen:ToolEntry"
-              title="Reception"
-              description="Create a reception"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Reception.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Reception.gif"
-              id="&quot;clazz.tool.reception&quot;"
-              genNodes="/0/@diagram/@childNodes.19"/>
+              title="Class"
+              description="Create a new Class"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
+              id="&quot;clazz.tool.class&quot;"
+              genNodes="/0/@diagram/@childNodes.2 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.22 /0/@diagram/@topLevelNodes.10"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
-              title="Property"
-              description="Create a new Property"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
-              id="&quot;clazz.tool.property&quot;"
-              genNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.25"/>
+              title="ClassifierTemplateParameter"
+              description="Create a ClassifiertemplateParameter"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClassifierTemplateParameter.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClassifierTemplateParameter.gif"
+              id="&quot;clazz.tool.classifiertemplateparameter&quot;"
+              genNodes="/0/@diagram/@childNodes.4"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Comment"
+              description="Create a comment"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+              createMethodName="createComment5CreationTool"
+              id="&quot;clazz.tool.comment&quot;"
+              genNodes="/0/@diagram/@childNodes.27 /0/@diagram/@topLevelNodes.14"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Component"
+              description="Create a component"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Component.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Component.gif"
+              id="&quot;clazz.tool.component&quot;"
+              genNodes="/0/@diagram/@topLevelNodes.4 /0/@diagram/@childNodes.11"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Constraint"
+              description="Create a constraint"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+              id="&quot;clazz.tool.constraint&quot;"
+              genNodes="/0/@diagram/@childNodes.28 /0/@diagram/@topLevelNodes.13"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="DataType"
+              description="Create a new DataType"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataType.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataType.gif"
+              id="&quot;clazz.tool.datatype&quot;"
+              genNodes="/0/@diagram/@childNodes.24 /0/@diagram/@topLevelNodes.12"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="DurationObservation"
+              description="Create new DurationObservation"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif"
+              genNodes="/0/@diagram/@topLevelNodes.16"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Enumeration"
+              description="Create an enumeration"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Enumeration.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Enumeration.gif"
+              id="&quot;clazz.tool.enumeration&quot;"
+              genNodes="/0/@diagram/@childNodes.15 /0/@diagram/@topLevelNodes.8"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Enumeration literal"
+              description="Create an enumeration literal"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/EnumerationLiteral.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/EnumerationLiteral.gif"
+              id="&quot;clazz.tool.enumerationliteral&quot;"
+              genNodes="/0/@diagram/@childNodes.16"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Interface"
+              description="Create an interface"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif"
+              id="&quot;clazz.tool.interface&quot;"
+              genNodes="/0/@diagram/@topLevelNodes.6 /0/@diagram/@childNodes.13"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="InstanceSpecification"
+              description="Create an InstanceSpecification"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceSpecification.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceSpecification.gif"
+              id="&quot;clazz.tool.instancespecification&quot;"
+              genNodes="/0/@diagram/@topLevelNodes.3 /0/@diagram/@childNodes.10"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="PrimitiveType"
+              description="Create a Primitivetype"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PrimitiveType.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PrimitiveType.gif"
+              id="&quot;clazz.tool.primitivetype&quot;"
+              genNodes="/0/@diagram/@childNodes.23 /0/@diagram/@topLevelNodes.11"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Model"
+              description="Create a model"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
+              id="&quot;clazz.tool.model&quot;"
+              genNodes="/0/@diagram/@topLevelNodes.7 /0/@diagram/@childNodes.14"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Operation"
@@ -5920,29 +6126,28 @@
               genNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.26"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
-              title="Slot"
-              description="Create a Slot"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Slot.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Slot.gif"
-              id="&quot;clazz.tool.slot&quot;"
-              genNodes="/0/@diagram/@childNodes.29"/>
+              title="Package"
+              description="Create new Package"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
+              id="&quot;clazz.tool.package&quot;"
+              genNodes="/0/@diagram/@childNodes.17 /0/@diagram/@topLevelNodes.9"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
-              title="Enumeration literal"
-              description="Create an enumeration literal"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/EnumerationLiteral.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/EnumerationLiteral.gif"
-              id="&quot;clazz.tool.enumerationliteral&quot;"
-              genNodes="/0/@diagram/@childNodes.16"/>
-        </groups>
-        <groups
-            title="Template"
-            description="Elements to add templates"
-            largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-            smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-            id="&quot;clazz.group.templates&quot;"
-            stack="true"
-            collapse="true">
+              title="Property"
+              description="Create a new Property"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+              id="&quot;clazz.tool.property&quot;"
+              genNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.25"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Reception"
+              description="Create a reception"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Reception.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Reception.gif"
+              id="&quot;clazz.tool.reception&quot;"
+              genNodes="/0/@diagram/@childNodes.19"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="RedefinableTemplateSignature"
@@ -5953,6 +6158,22 @@
               genNodes="/0/@diagram/@childNodes.3"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
+              title="Signal"
+              description="Create a signal"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Signal.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Signal.gif"
+              id="&quot;clazz.tool.signal&quot;"
+              genNodes="/0/@diagram/@topLevelNodes.5 /0/@diagram/@childNodes.12"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Slot"
+              description="Create a Slot"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Slot.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Slot.gif"
+              id="&quot;clazz.tool.slot&quot;"
+              genNodes="/0/@diagram/@childNodes.29"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
               title="TemplateParameter"
               description="Create a templateParameter"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateParameter.gif"
@@ -5961,12 +6182,11 @@
               genNodes="/0/@diagram/@childNodes.5"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
-              title="ClassifierTemplateParameter"
-              description="Create a ClassifiertemplateParameter"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClassifierTemplateParameter.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClassifierTemplateParameter.gif"
-              id="&quot;clazz.tool.classifiertemplateparameter&quot;"
-              genNodes="/0/@diagram/@childNodes.4"/>
+              title="TimeObservation"
+              description="Create new TimeObservation"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
+              genNodes="/0/@diagram/@topLevelNodes.17"/>
         </groups>
       </palette>
       <preferencePages
@@ -6063,14 +6283,14 @@
           uses="/0/@diagram/@links.18/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@childNodes.20/@labelModelFacet /0/@diagram/@childNodes.21/@labelModelFacet"/>
       <implementations
           xsi:type="gmfgen:PredefinedParser"
-          uses="/0/@diagram/@childNodes.0/@labelModelFacet /0/@diagram/@childNodes.1/@labelModelFacet /0/@diagram/@childNodes.2/@labelModelFacet /0/@diagram/@childNodes.6/@labelModelFacet /0/@diagram/@childNodes.7/@labelModelFacet /0/@diagram/@childNodes.8/@labelModelFacet /0/@diagram/@childNodes.9/@labelModelFacet /0/@diagram/@childNodes.16/@labelModelFacet /0/@diagram/@childNodes.19/@labelModelFacet /0/@diagram/@childNodes.22/@labelModelFacet /0/@diagram/@childNodes.25/@labelModelFacet /0/@diagram/@childNodes.26/@labelModelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.11/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@childNodes.13/@labels.0/@modelFacet /0/@diagram/@childNodes.14/@labels.0/@modelFacet /0/@diagram/@childNodes.15/@labels.0/@modelFacet /0/@diagram/@childNodes.17/@labels.0/@modelFacet /0/@diagram/@childNodes.18/@labels.0/@modelFacet /0/@diagram/@childNodes.23/@labels.0/@modelFacet /0/@diagram/@childNodes.24/@labels.0/@modelFacet /0/@diagram/@childNodes.28/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.3/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.4/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.5/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.6/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.7/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.8/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.9/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.10/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.11/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.12/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.13/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.1/@modelFacet /0/@diagram/@links.2/@labels.2/@modelFacet /0/@diagram/@links.2/@labels.3/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.7/@labels.1/@modelFacet /0/@diagram/@links.8/@labels.0/@modelFacet /0/@diagram/@links.9/@labels.0/@modelFacet /0/@diagram/@links.10/@labels.0/@modelFacet /0/@diagram/@links.12/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.15/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.1/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet"/>
+          uses="/0/@diagram/@childNodes.0/@labelModelFacet /0/@diagram/@childNodes.1/@labelModelFacet /0/@diagram/@childNodes.2/@labelModelFacet /0/@diagram/@childNodes.6/@labelModelFacet /0/@diagram/@childNodes.7/@labelModelFacet /0/@diagram/@childNodes.8/@labelModelFacet /0/@diagram/@childNodes.9/@labelModelFacet /0/@diagram/@childNodes.16/@labelModelFacet /0/@diagram/@childNodes.19/@labelModelFacet /0/@diagram/@childNodes.22/@labelModelFacet /0/@diagram/@childNodes.25/@labelModelFacet /0/@diagram/@childNodes.26/@labelModelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.11/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@childNodes.13/@labels.0/@modelFacet /0/@diagram/@childNodes.14/@labels.0/@modelFacet /0/@diagram/@childNodes.15/@labels.0/@modelFacet /0/@diagram/@childNodes.17/@labels.0/@modelFacet /0/@diagram/@childNodes.18/@labels.0/@modelFacet /0/@diagram/@childNodes.23/@labels.0/@modelFacet /0/@diagram/@childNodes.24/@labels.0/@modelFacet /0/@diagram/@childNodes.28/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.3/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.4/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.5/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.6/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.7/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.8/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.9/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.10/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.11/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.12/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.13/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.1/@modelFacet /0/@diagram/@links.2/@labels.2/@modelFacet /0/@diagram/@links.2/@labels.3/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.7/@labels.1/@modelFacet /0/@diagram/@links.8/@labels.0/@modelFacet /0/@diagram/@links.9/@labels.0/@modelFacet /0/@diagram/@links.10/@labels.0/@modelFacet /0/@diagram/@links.12/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.15/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.1/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.16/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.17/@labels.0/@modelFacet"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@links.19/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.clazz.custom.parsers.GeneralizationSetConstraintParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.7/@labels.0/@modelFacet /0/@diagram/@links.8/@labels.1/@modelFacet /0/@diagram/@links.9/@labels.1/@modelFacet /0/@diagram/@links.10/@labels.1/@modelFacet /0/@diagram/@links.12/@labels.1/@modelFacet /0/@diagram/@links.14/@labels.0/@modelFacet"
+          uses="/0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.7/@labels.0/@modelFacet /0/@diagram/@links.8/@labels.1/@modelFacet /0/@diagram/@links.9/@labels.1/@modelFacet /0/@diagram/@links.10/@labels.1/@modelFacet /0/@diagram/@links.12/@labels.1/@modelFacet /0/@diagram/@links.14/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.17/@labels.1/@modelFacet /0/@diagram/@topLevelNodes.16/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -6103,9 +6323,10 @@
   <papyrusgmfgenextension:PapyrusExtensionRootNode>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
-        comment="Label in charge to display applied stereotypes"
-        genView="/0/@diagram/@links.13/@labels.0 /0/@diagram/@links.12/@labels.1 /0/@diagram/@links.10/@labels.1 /0/@diagram/@links.9/@labels.1 /0/@diagram/@links.8/@labels.1 /0/@diagram/@links.7/@labels.0 /0/@diagram/@links.6/@labels.0 /0/@diagram/@links.5/@labels.0 /0/@diagram/@links.4/@labels.0 /0/@diagram/@links.2/@labels.0"
-        name="StereotypeApplication"/>
+        comment="Adds a superclass for DurationObservationEditPart, TimeObservationEditPart"
+        genView="/0/@diagram/@topLevelNodes.16 /0/@diagram/@topLevelNodes.17"
+        name="EP_Observation_NODE"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AbstractObservationEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="Manage the class"
@@ -6137,6 +6358,12 @@
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="Manages stereotype shown with External Label"
+        genView="/0/@diagram/@topLevelNodes.16/@labels.1 /0/@diagram/@topLevelNodes.17/@labels.1"
+        name="EP_Stereotypes_EXT_NODE"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.AbstractLabelEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="Label in charge to display applied stereotypes on links"
         genView="/0/@diagram/@links.4 /0/@diagram/@links.5 /0/@diagram/@links.6 /0/@diagram/@links.7 /0/@diagram/@links.8 /0/@diagram/@links.9 /0/@diagram/@links.10 /0/@diagram/@links.12 /0/@diagram/@links.13 /0/@diagram/@links.14 /0/@diagram/@links.15 /0/@diagram/@links.18 /0/@diagram/@links.19"
         name="ExtendedUMLLinks"
@@ -6161,12 +6388,6 @@
         superOwnedEditPart="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AbstractAssociationBranchEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
-        comment="add super class to add listner to display end of associations"
-        genView="/0/@diagram/@links.2/@labels.2 /0/@diagram/@links.2/@labels.3"
-        name="AbstractAssociationEndEditPart"
-        superOwnedEditPart="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AbstractAssociationEndEditPart"/>
-    <extensionNodes
-        xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="precise super to listen parameters"
         genView="/0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5"
         name="AbstractTemplateParameterEditPart"
@@ -6183,6 +6404,11 @@
         genView="/0/@diagram/@compartments.0 /0/@diagram/@compartments.2 /0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.11 /0/@diagram/@compartments.12 /0/@diagram/@compartments.13 /0/@diagram/@compartments.14 /0/@diagram/@compartments.15 /0/@diagram/@compartments.16 /0/@diagram/@compartments.17 /0/@diagram/@compartments.21 /0/@diagram/@compartments.22 /0/@diagram/@compartments.23 /0/@diagram/@compartments.24 /0/@diagram/@compartments.25 /0/@diagram/@compartments.28 /0/@diagram/@compartments.29 /0/@diagram/@compartments.30 /0/@diagram/@compartments.31 /0/@diagram/@compartments.32"
         name="ResizeableListCompartmentEditPart"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.ResizeableListCompartmentEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:SpecificLocatorExternalLabel"
+        comment="External node label locator"
+        classpath="org.eclipse.papyrus.diagram.common.locator.ExternalLabelPositionLocator"
+        genExternalNodeLabel="/0/@diagram/@topLevelNodes.17/@labels.1 /0/@diagram/@topLevelNodes.16/@labels.1 /0/@diagram/@topLevelNodes.16/@labels.0 /0/@diagram/@topLevelNodes.17/@labels.0"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:SpecificLocator"
         comment="Affixed Containment locator"

@@ -47,6 +47,8 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentLinkDescriptorEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentEditPartCN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ConnectorDurationObservationEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ConnectorTimeObservationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintEditPart;
@@ -57,6 +59,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ElementImportEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.EnumerationEditPartCN;
@@ -98,6 +101,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.SlotEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SubstitutionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateBindingEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateParameterEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.graphics.Image;
@@ -213,6 +217,16 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IElementType Diagram_2016 = getElementType("org.eclipse.papyrus.diagram.clazz.Diagram_2016"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType DurationObservation_2095 = getElementType("org.eclipse.papyrus.diagram.clazz.DurationObservation_2095"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType TimeObservation_2096 = getElementType("org.eclipse.papyrus.diagram.clazz.TimeObservation_2096"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -487,6 +501,16 @@ public class UMLElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public static final IElementType TimeObservationEvent_4024 = getElementType("org.eclipse.papyrus.diagram.clazz.TimeObservationEvent_4024"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType DurationObservationEvent_4025 = getElementType("org.eclipse.papyrus.diagram.clazz.DurationObservationEvent_4025"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private static ImageRegistry getImageRegistry() {
 		if(imageRegistry == null) {
 			imageRegistry = new ImageRegistry();
@@ -624,6 +648,10 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(Diagram_2016, NotationPackage.eINSTANCE.getDiagram());
 
+			elements.put(DurationObservation_2095, UMLPackage.eINSTANCE.getDurationObservation());
+
+			elements.put(TimeObservation_2096, UMLPackage.eINSTANCE.getTimeObservation());
+
 			elements.put(Property_3002, UMLPackage.eINSTANCE.getProperty());
 
 			elements.put(Operation_3003, UMLPackage.eINSTANCE.getOperation());
@@ -725,6 +753,10 @@ public class UMLElementTypes extends ElementInitializers {
 			elements.put(GeneralizationSet_4020, UMLPackage.eINSTANCE.getGeneralizationSet());
 
 			elements.put(Dependency_4022, UMLPackage.eINSTANCE.getDependency());
+
+			elements.put(TimeObservationEvent_4024, UMLPackage.eINSTANCE.getTimeObservation_Event());
+
+			elements.put(DurationObservationEvent_4025, UMLPackage.eINSTANCE.getDurationObservation_Event());
 		}
 		return (ENamedElement)elements.get(type);
 	}
@@ -759,6 +791,8 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(Constraint_2011);
 			KNOWN_ELEMENT_TYPES.add(Comment_2012);
 			KNOWN_ELEMENT_TYPES.add(Diagram_2016);
+			KNOWN_ELEMENT_TYPES.add(DurationObservation_2095);
+			KNOWN_ELEMENT_TYPES.add(TimeObservation_2096);
 			KNOWN_ELEMENT_TYPES.add(Property_3002);
 			KNOWN_ELEMENT_TYPES.add(Operation_3003);
 			KNOWN_ELEMENT_TYPES.add(Class_3004);
@@ -813,6 +847,8 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(Link_4021);
 			KNOWN_ELEMENT_TYPES.add(Dependency_4022);
 			KNOWN_ELEMENT_TYPES.add(Link_4023);
+			KNOWN_ELEMENT_TYPES.add(TimeObservationEvent_4024);
+			KNOWN_ELEMENT_TYPES.add(DurationObservationEvent_4025);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -856,6 +892,10 @@ public class UMLElementTypes extends ElementInitializers {
 			return Comment_2012;
 		case ShortCutDiagramEditPart.VISUAL_ID:
 			return Diagram_2016;
+		case DurationObservationEditPart.VISUAL_ID:
+			return DurationObservation_2095;
+		case TimeObservationEditPart.VISUAL_ID:
+			return TimeObservation_2096;
 		case PropertyEditPart.VISUAL_ID:
 			return Property_3002;
 		case OperationEditPart.VISUAL_ID:
@@ -964,6 +1004,10 @@ public class UMLElementTypes extends ElementInitializers {
 			return Dependency_4022;
 		case ContainmentLinkEditPart.VISUAL_ID:
 			return Link_4023;
+		case ConnectorTimeObservationEditPart.VISUAL_ID:
+			return TimeObservationEvent_4024;
+		case ConnectorDurationObservationEditPart.VISUAL_ID:
+			return DurationObservationEvent_4025;
 		}
 		return null;
 	}

@@ -795,6 +795,16 @@ public class UMLVisualIDRegistry {
 			) {
 				return ShortCutDiagramEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getDurationObservation().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return DurationObservationEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getTimeObservation().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return TimeObservationEditPart.VISUAL_ID;
+			}
 			break;
 		}
 		return -1;
@@ -972,6 +982,22 @@ public class UMLVisualIDRegistry {
 			break;
 		case ShortCutDiagramEditPart.VISUAL_ID:
 			if(DiagramNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case DurationObservationEditPart.VISUAL_ID:
+			if(DurationObservationNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(DurationObservationStereotypeLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case TimeObservationEditPart.VISUAL_ID:
+			if(TimeObservationNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(TimeObservationStereotypeLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1479,6 +1505,12 @@ public class UMLVisualIDRegistry {
 			if(ShortCutDiagramEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(DurationObservationEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(TimeObservationEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case AssociationClass2EditPart.VISUAL_ID:
 			if(AssociationClassRoleSourceEditPart.VISUAL_ID == nodeVisualID) {
@@ -1773,6 +1805,12 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(2016, ViewInfo.Node, "Diagram");
 		root.addNode(1000, viewInfo);
 
+		viewInfo = new BaseViewInfo(2095, ViewInfo.Node, "DurationObservation");
+		root.addNode(1000, viewInfo);
+
+		viewInfo = new BaseViewInfo(2096, ViewInfo.Node, "TimeObservation");
+		root.addNode(1000, viewInfo);
+
 		viewInfo = new BaseViewInfo(4016, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
@@ -1918,6 +1956,12 @@ public class UMLVisualIDRegistry {
 		root.addNode(1000, viewInfo);
 
 		viewInfo = new BaseViewInfo(4023, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+		viewInfo = new BaseViewInfo(4024, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+		viewInfo = new BaseViewInfo(4025, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
 		viewInfo = new BaseViewInfo(3002, ViewInfo.Node, "Property");

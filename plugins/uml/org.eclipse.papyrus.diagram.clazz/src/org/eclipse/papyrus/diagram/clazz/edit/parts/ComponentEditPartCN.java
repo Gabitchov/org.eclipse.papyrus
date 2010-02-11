@@ -690,6 +690,12 @@ ClassifierEditPart
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Realization_4005);
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.Realization_4005);
+		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
@@ -771,6 +777,12 @@ ClassifierEditPart
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Abstraction_4006);
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.Abstraction_4006);
+		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
@@ -852,6 +864,12 @@ ClassifierEditPart
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Usage_4007);
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.Usage_4007);
+		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
@@ -933,6 +951,12 @@ ClassifierEditPart
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Dependency_4008);
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.Dependency_4008);
+		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
@@ -1014,6 +1038,12 @@ ClassifierEditPart
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Dependency_4018);
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.Dependency_4018);
+		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
@@ -1093,6 +1123,12 @@ ClassifierEditPart
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.ElementImport_4009);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.ElementImport_4009);
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.ElementImport_4009);
 		}
 		if(targetEditPart instanceof InstanceSpecificationEditPartCN) {
@@ -1185,6 +1221,12 @@ ClassifierEditPart
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.TemplateBinding_4015);
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.TemplateBinding_4015);
+		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
@@ -1267,6 +1309,12 @@ ClassifierEditPart
 			types.add(UMLElementTypes.Dependency_4022);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
@@ -1605,6 +1653,12 @@ ClassifierEditPart
 			types.add(UMLElementTypes.Constraint_2011);
 		}
 		if(relationshipType == UMLElementTypes.Realization_4005) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.Realization_4005) {
+			types.add(UMLElementTypes.TimeObservation_2096);
+		}
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
 		if(relationshipType == UMLElementTypes.Realization_4005) {
@@ -1686,6 +1740,12 @@ ClassifierEditPart
 			types.add(UMLElementTypes.Constraint_2011);
 		}
 		if(relationshipType == UMLElementTypes.Abstraction_4006) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
+			types.add(UMLElementTypes.TimeObservation_2096);
+		}
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
 		if(relationshipType == UMLElementTypes.Abstraction_4006) {
@@ -1767,6 +1827,12 @@ ClassifierEditPart
 			types.add(UMLElementTypes.Constraint_2011);
 		}
 		if(relationshipType == UMLElementTypes.Usage_4007) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.Usage_4007) {
+			types.add(UMLElementTypes.TimeObservation_2096);
+		}
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
 		if(relationshipType == UMLElementTypes.Usage_4007) {
@@ -1848,6 +1914,12 @@ ClassifierEditPart
 			types.add(UMLElementTypes.Constraint_2011);
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4008) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
+			types.add(UMLElementTypes.TimeObservation_2096);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4008) {
@@ -1929,6 +2001,12 @@ ClassifierEditPart
 			types.add(UMLElementTypes.Constraint_2011);
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4018) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
+			types.add(UMLElementTypes.TimeObservation_2096);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4018) {
@@ -2008,6 +2086,12 @@ ClassifierEditPart
 		}
 		if(relationshipType == UMLElementTypes.ElementImport_4009) {
 			types.add(UMLElementTypes.Constraint_2011);
+		}
+		if(relationshipType == UMLElementTypes.ElementImport_4009) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.ElementImport_4009) {
+			types.add(UMLElementTypes.TimeObservation_2096);
 		}
 		if(relationshipType == UMLElementTypes.ElementImport_4009) {
 			types.add(UMLElementTypes.InstanceSpecification_3020);
@@ -2100,6 +2184,12 @@ ClassifierEditPart
 			types.add(UMLElementTypes.Comment_2012);
 		}
 		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
+			types.add(UMLElementTypes.TimeObservation_2096);
+		}
+		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
 		if(relationshipType == UMLElementTypes.TemplateBinding_4015) {
@@ -2184,6 +2274,12 @@ ClassifierEditPart
 			types.add(UMLElementTypes.Constraint_2011);
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.TimeObservation_2096);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4022) {
@@ -2245,6 +2341,8 @@ ClassifierEditPart
 		types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		types.add(UMLElementTypes.TemplateBinding_4015);
 		types.add(UMLElementTypes.Dependency_4022);
+		types.add(UMLElementTypes.TimeObservationEvent_4024);
+		types.add(UMLElementTypes.DurationObservationEvent_4025);
 		return types;
 	}
 
@@ -2536,6 +2634,12 @@ ClassifierEditPart
 			types.add(UMLElementTypes.Constraint_2011);
 		}
 		if(relationshipType == UMLElementTypes.Realization_4005) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.Realization_4005) {
+			types.add(UMLElementTypes.TimeObservation_2096);
+		}
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
 		if(relationshipType == UMLElementTypes.Realization_4005) {
@@ -2617,6 +2721,12 @@ ClassifierEditPart
 			types.add(UMLElementTypes.Constraint_2011);
 		}
 		if(relationshipType == UMLElementTypes.Abstraction_4006) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
+			types.add(UMLElementTypes.TimeObservation_2096);
+		}
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
 		if(relationshipType == UMLElementTypes.Abstraction_4006) {
@@ -2698,6 +2808,12 @@ ClassifierEditPart
 			types.add(UMLElementTypes.Constraint_2011);
 		}
 		if(relationshipType == UMLElementTypes.Usage_4007) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.Usage_4007) {
+			types.add(UMLElementTypes.TimeObservation_2096);
+		}
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
 		if(relationshipType == UMLElementTypes.Usage_4007) {
@@ -2779,6 +2895,12 @@ ClassifierEditPart
 			types.add(UMLElementTypes.Constraint_2011);
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4008) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
+			types.add(UMLElementTypes.TimeObservation_2096);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4008) {
@@ -2858,6 +2980,12 @@ ClassifierEditPart
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Constraint_2011);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
+			types.add(UMLElementTypes.TimeObservation_2096);
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
@@ -3073,6 +3201,12 @@ ClassifierEditPart
 			types.add(UMLElementTypes.Constraint_2011);
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.TimeObservation_2096);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4022) {
@@ -3110,6 +3244,12 @@ ClassifierEditPart
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4022) {
 			types.add(UMLElementTypes.Port_3032);
+		}
+		if(relationshipType == UMLElementTypes.TimeObservationEvent_4024) {
+			types.add(UMLElementTypes.TimeObservation_2096);
+		}
+		if(relationshipType == UMLElementTypes.DurationObservationEvent_4025) {
+			types.add(UMLElementTypes.DurationObservation_2095);
 		}
 		return types;
 	}

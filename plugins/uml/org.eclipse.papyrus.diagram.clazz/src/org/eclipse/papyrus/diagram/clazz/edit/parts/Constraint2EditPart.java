@@ -333,6 +333,12 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Realization_4005);
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.Realization_4005);
+		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
@@ -414,6 +420,12 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Abstraction_4006);
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.Abstraction_4006);
+		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
@@ -495,6 +507,12 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Usage_4007);
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.Usage_4007);
+		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
@@ -576,6 +594,12 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Dependency_4008);
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.Dependency_4008);
+		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
@@ -655,6 +679,12 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Dependency_4018);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Dependency_4018);
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
@@ -741,6 +771,12 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
+		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		}
@@ -823,6 +859,12 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof DurationObservationEditPart) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
@@ -915,6 +957,12 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 		}
 		if(relationshipType == UMLElementTypes.Realization_4005) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.Realization_4005) {
+			types.add(UMLElementTypes.TimeObservation_2096);
+		}
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
 		if(relationshipType == UMLElementTypes.Realization_4005) {
@@ -996,6 +1044,12 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 		}
 		if(relationshipType == UMLElementTypes.Abstraction_4006) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
+			types.add(UMLElementTypes.TimeObservation_2096);
+		}
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
 		if(relationshipType == UMLElementTypes.Abstraction_4006) {
@@ -1077,6 +1131,12 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 		}
 		if(relationshipType == UMLElementTypes.Usage_4007) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.Usage_4007) {
+			types.add(UMLElementTypes.TimeObservation_2096);
+		}
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
 		if(relationshipType == UMLElementTypes.Usage_4007) {
@@ -1158,6 +1218,12 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4008) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
+			types.add(UMLElementTypes.TimeObservation_2096);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4008) {
@@ -1237,6 +1303,12 @@ ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Constraint_2011);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
+			types.add(UMLElementTypes.TimeObservation_2096);
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
@@ -1323,6 +1395,12 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Comment_2012);
 		}
 		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+			types.add(UMLElementTypes.TimeObservation_2096);
+		}
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
 		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
@@ -1405,6 +1483,12 @@ ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4022) {
 			types.add(UMLElementTypes.Constraint_2011);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.TimeObservation_2096);
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4022) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
@@ -1463,6 +1547,8 @@ ShapeNodeEditPart {
 		types.add(UMLElementTypes.ConstraintConstrainedElement_4014);
 		types.add(UMLElementTypes.TemplateBinding_4015);
 		types.add(UMLElementTypes.Dependency_4022);
+		types.add(UMLElementTypes.TimeObservationEvent_4024);
+		types.add(UMLElementTypes.DurationObservationEvent_4025);
 		return types;
 	}
 
@@ -1514,6 +1600,12 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 		}
 		if(relationshipType == UMLElementTypes.Realization_4005) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.Realization_4005) {
+			types.add(UMLElementTypes.TimeObservation_2096);
+		}
+		if(relationshipType == UMLElementTypes.Realization_4005) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
 		if(relationshipType == UMLElementTypes.Realization_4005) {
@@ -1595,6 +1687,12 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 		}
 		if(relationshipType == UMLElementTypes.Abstraction_4006) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
+			types.add(UMLElementTypes.TimeObservation_2096);
+		}
+		if(relationshipType == UMLElementTypes.Abstraction_4006) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
 		if(relationshipType == UMLElementTypes.Abstraction_4006) {
@@ -1676,6 +1774,12 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 		}
 		if(relationshipType == UMLElementTypes.Usage_4007) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.Usage_4007) {
+			types.add(UMLElementTypes.TimeObservation_2096);
+		}
+		if(relationshipType == UMLElementTypes.Usage_4007) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
 		if(relationshipType == UMLElementTypes.Usage_4007) {
@@ -1757,6 +1861,12 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4008) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
+			types.add(UMLElementTypes.TimeObservation_2096);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4008) {
@@ -1836,6 +1946,12 @@ ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Constraint_2011);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4018) {
+			types.add(UMLElementTypes.TimeObservation_2096);
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
@@ -2051,6 +2167,12 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.DurationObservation_2095);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
+			types.add(UMLElementTypes.TimeObservation_2096);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4022) {
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4022) {
@@ -2088,6 +2210,12 @@ ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4022) {
 			types.add(UMLElementTypes.Port_3032);
+		}
+		if(relationshipType == UMLElementTypes.TimeObservationEvent_4024) {
+			types.add(UMLElementTypes.TimeObservation_2096);
+		}
+		if(relationshipType == UMLElementTypes.DurationObservationEvent_4025) {
+			types.add(UMLElementTypes.DurationObservation_2095);
 		}
 		return types;
 	}

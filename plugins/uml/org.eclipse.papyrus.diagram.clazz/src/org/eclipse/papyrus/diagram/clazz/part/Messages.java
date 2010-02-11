@@ -96,6 +96,188 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String ContainmentLink5CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ContainmentLink5CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Dependency6CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Dependency6CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String DependencyBranch7CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String DependencyBranch7CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String ElementImport8CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ElementImport8CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Generalization9CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Generalization9CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String GeneralizationSet10CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String GeneralizationSet10CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String InstanceSpecificationLinkCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String InstanceSpecificationLinkCreationTool_desc;
+
+
+
+	/**
+	 * @generated
+	 */
+	public static String InterfaceRealization12CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String InterfaceRealization12CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Link13CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Link13CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String PackageImport14CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String PackageImport14CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String PackageMerge15CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String PackageMerge15CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String ProfileApplication16CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ProfileApplication16CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Realization17CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Realization17CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Substitution18CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Substitution18CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Usage19CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Usage19CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String TemplateBinding20CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String TemplateBinding20CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Class1CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Class1CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String ClassifierTemplateParameter2CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ClassifierTemplateParameter2CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String AssociationClass4CreationTool_title;
 
 	/**
@@ -106,42 +288,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Class1CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Class1CreationTool_title;
-
-	/**
-	 * @generated
-	 */
 	public static String ClassAttributeCompartment2EditPart_title;
 
 	/**
 	 * @generated
 	 */
 	public static String ClassAttributeCompartmentEditPart_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Classifiers2Group_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Classifiers2Group_title;
-
-	/**
-	 * @generated
-	 */
-	public static String ClassifierTemplateParameter3CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String ClassifierTemplateParameter3CreationTool_title;
 
 	/**
 	 * @generated
@@ -176,27 +328,197 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String Component4CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Component4CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Constraint5CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Constraint5CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String DataType6CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String DataType6CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String DurationObservation7CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String DurationObservation7CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Enumeration8CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Enumeration8CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Enumerationliteral9CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Enumerationliteral9CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Interface10CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Interface10CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String InstanceSpecification11CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String InstanceSpecification11CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String PrimitiveType12CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String PrimitiveType12CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Model13CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Model13CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Operation14CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Operation14CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Package15CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Package15CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Property16CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Property16CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Reception17CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Reception17CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String RedefinableTemplateSignature18CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String RedefinableTemplateSignature18CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Signal19CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Signal19CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Slot20CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Slot20CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String TemplateParameter21CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String TemplateParameter21CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String TimeObservation22CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String TimeObservation22CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String Comment5CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Commentlink6CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Commentlink6CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Component2CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Component2CreationTool_title;
 
 	/**
 	 * @generated
@@ -231,36 +553,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Constraint3CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Constraint3CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Constraintlink4CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Constraintlink4CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String DataType3CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String DataType3CreationTool_title;
-
-	/**
-	 * @generated
-	 */
 	public static String DataTypeAttributeCompartment2EditPart_title;
 
 	/**
@@ -281,92 +573,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Dependency5CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Dependency5CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String DependencyBranch6CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String DependencyBranch6CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String ElementImport7CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String ElementImport7CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Enumeration4CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Enumeration4CreationTool_title;
-
-	/**
-	 * @generated
-	 */
 	public static String EnumerationEnumerationLiteralCompartment2EditPart_title;
 
 	/**
 	 * @generated
 	 */
 	public static String EnumerationEnumerationLiteralCompartmentEditPart_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Enumerationliteral5CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Enumerationliteral5CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Features4Group_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Features4Group_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Generalization8CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Generalization8CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String GeneralizationSet17CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String GeneralizationSet17CreationTool_title;
 
 	/**
 	 * @generated
@@ -391,52 +603,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String InstanceSpecification18CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String ContainmentLink19CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String ContainmentLink19CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String InstanceSpecification18CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String InstanceSpecification8CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String InstanceSpecification8CreationTool_title;
-
-	/**
-	 * @generated
-	 */
 	public static String InstanceSpecificationSlotCompartmentEditPart_title;
 
 	/**
 	 * @generated
 	 */
 	public static String InstanceSpecificationSlotCompartmentEditPartCN_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Interface5CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Interface5CreationTool_title;
 
 	/**
 	 * @generated
@@ -471,27 +643,7 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String InterfaceRealization9CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String InterfaceRealization9CreationTool_title;
-
-	/**
-	 * @generated
-	 */
 	public static String MessageFormatParser_InvalidInputError;
-
-	/**
-	 * @generated
-	 */
-	public static String Model1CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Model1CreationTool_title;
 
 	/**
 	 * @generated
@@ -516,46 +668,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Operation3CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Operation3CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Package2CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Package2CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String PackageImport10CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String PackageImport10CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String PackageMerge11CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String PackageMerge11CreationTool_title;
-
-	/**
-	 * @generated
-	 */
 	public static String PackagePackageableElementCompartment2EditPart_title;
 
 	/**
@@ -566,97 +678,7 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Packages1Group_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Packages1Group_title;
-
-	/**
-	 * @generated
-	 */
-	public static String PrimitiveType6CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String PrimitiveType6CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String ProfileApplication12CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String ProfileApplication12CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Property2CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Property2CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Realization13CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Realization13CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Reception1CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Reception1CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String RedefinableTemplateSignature1CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String RedefinableTemplateSignature1CreationTool_title;
-
-	/**
-	 * @generated
-	 */
 	public static String RedefinableTemplateSignatureTemplateParameterCompartmentEditPart_title;
-
-	/**
-	 * @generated
-	 */
-	public static String RelationShips3Group_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String RelationShips3Group_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Signal7CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Signal7CreationTool_title;
 
 	/**
 	 * @generated
@@ -667,56 +689,6 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String SignalAttributeCompartmentEditPart_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Slot4CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Slot4CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Substitution14CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Substitution14CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Template5Group_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Template5Group_title;
-
-	/**
-	 * @generated
-	 */
-	public static String TemplateBinding16CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String TemplateBinding16CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String TemplateParameter2CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String TemplateParameter2CreationTool_title;
 
 	/**
 	 * @generated
@@ -921,17 +893,27 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Usage15CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Usage15CreationTool_title;
-
-	/**
-	 * @generated
-	 */
 	public static String ValidateActionMessage;
+
+	/**
+	 * @generated
+	 */
+	public static String Edges1Group_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Edges1Group_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Nodes2Group_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Nodes2Group_desc;
 
 	/**
 	 * @generated
