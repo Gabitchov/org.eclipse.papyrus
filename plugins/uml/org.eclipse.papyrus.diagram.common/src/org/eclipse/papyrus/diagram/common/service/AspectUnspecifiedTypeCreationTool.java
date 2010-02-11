@@ -86,10 +86,18 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 
 					public void notifyChanged(Notification notification) {
 						Shape newValue = (Shape)notification.getNewValue();
-						EditPart editPart = (EditPart)getCurrentViewer().getEditPartRegistry().get(newValue);
+						EditPartViewer viewer = getCurrentViewer();
+						if(viewer == null) {
+							viewer = (getTargetEditPart() != null) ? getTargetEditPart().getViewer() : null;
+						}
+						if(viewer != null) {
+							EditPart editPart = (EditPart)getCurrentViewer().getEditPartRegistry().get(newValue);
 
-						for(IAspectAction action : postActions) {
-							action.run(editPart);
+							for(IAspectAction action : postActions) {
+								action.run(editPart);
+							}
+						} else {
+							Activator.log.error("Impossible to find the current viewer", null);
 						}
 					}
 				};
