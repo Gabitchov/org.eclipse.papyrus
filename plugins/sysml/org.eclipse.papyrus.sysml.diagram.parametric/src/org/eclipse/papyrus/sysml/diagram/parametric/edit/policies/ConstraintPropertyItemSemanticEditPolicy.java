@@ -66,19 +66,20 @@ public class ConstraintPropertyItemSemanticEditPolicy extends SysmlBaseItemSeman
 		if (annotation == null) {
 			// there are indirectly referenced children, need extra commands: true
 			addDestroyChildNodesCommand(cmd);
-			addDestroyShortcutsCommand(cmd, view);			
+			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
 			cmd.add(new DestroyElementCommand(req));
 			// destroy base property
 			addDestroyBasePropertyCommand(cmd);
 		} else {
 			cmd.add(new DeleteCommand(getEditingDomain(), view));
-		}		
+		}
 		return getGEFWrapper(cmd.reduce());
 	}
 
 	/**
 	 * Delete property views of the constraint property
+	 * 
 	 * @generated NOT
 	 */
 	private void addDestroyChildNodesCommand(ICompositeCommand cmd) {
@@ -93,9 +94,10 @@ public class ConstraintPropertyItemSemanticEditPolicy extends SysmlBaseItemSeman
 			}
 		}
 	}
-	
+
 	/**
 	 * Delete the base property from the constraint property
+	 * 
 	 * @generated NOT
 	 */
 	private void addDestroyBasePropertyCommand(ICompositeCommand cmd) {
@@ -105,7 +107,7 @@ public class ConstraintPropertyItemSemanticEditPolicy extends SysmlBaseItemSeman
 			Property property = ((ConstraintProperty) element).getBase_Property();
 			if (property != null) {
 				DestroyElementRequest request = new DestroyElementRequest(property, false);
-				cmd.add(new DestroyElementCommand(request));				
+				cmd.add(new DestroyElementCommand(request));
 			}
 		}
 	}

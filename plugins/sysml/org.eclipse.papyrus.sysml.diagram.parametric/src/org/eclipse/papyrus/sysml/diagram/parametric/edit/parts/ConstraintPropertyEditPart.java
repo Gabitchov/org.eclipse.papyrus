@@ -35,7 +35,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
+import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
@@ -177,7 +177,7 @@ AbstractBorderedShapeEditPart {
 
 		// Papyrus Gencode :Affixed Parameter locator
 		if (childEditPart instanceof Property2EditPart) {
-			BorderItemLocator locator = new ParameterPositionLocator(getMainFigure(), PositionConstants.NONE);
+			IBorderItemLocator locator = new ParameterPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((Property2EditPart) childEditPart).getFigure(), locator);
 			return true;
 		}

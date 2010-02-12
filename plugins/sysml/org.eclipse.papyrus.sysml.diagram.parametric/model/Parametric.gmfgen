@@ -83,6 +83,14 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="RequestConstants.REQ_DELETE"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.NoDeleteFromDiagramEditPolicy"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="RequestConstants.REQ_SEMANTIC_WRAPPER"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.NoDeleteFromModelEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
               parser="/0/@labelParsers/@implementations.2">

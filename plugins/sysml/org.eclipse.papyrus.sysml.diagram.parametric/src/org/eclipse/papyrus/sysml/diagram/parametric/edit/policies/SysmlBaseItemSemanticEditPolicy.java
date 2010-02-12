@@ -313,6 +313,7 @@ public class SysmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 		/**
 		 * Connector source and target must have the salme type
+		 * 
 		 * @generated NOT
 		 */
 		public static boolean canExistConnector_4001(StructuredClassifier container, ConnectableElement source,

@@ -325,6 +325,7 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 
 		Node label5003 = createLabel(node, SysmlVisualIDRegistry.getType(PropertyName2EditPart.VISUAL_ID));
 		label5003.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
 		Location location5003 = (Location) label5003.getLayoutConstraint();
 		location5003.setX(0);
 		location5003.setY(5);

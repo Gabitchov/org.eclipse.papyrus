@@ -64,6 +64,8 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialo
 import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.NoDeleteFromDiagramEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.NoDeleteFromModelEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.SysmlTextSelectionEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
@@ -112,7 +114,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	/** direct edition mode (default, undefined, registered editor, etc.) */
 	// disable direct edition for property of a constraint property
 	protected int directEditionMode = IDirectEdition.NO_DIRECT_EDITION;
-	
+
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
 
@@ -139,6 +141,8 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new SysmlTextSelectionEditPolicy());
+		installEditPolicy(RequestConstants.REQ_DELETE, new NoDeleteFromDiagramEditPolicy());
+		installEditPolicy(RequestConstants.REQ_SEMANTIC_WRAPPER, new NoDeleteFromModelEditPolicy());
 	}
 
 	/**
@@ -393,7 +397,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 * @generated
 	 */
 	protected void performDirectEdit(Point eventLocation) {
-		if (getManager().getClass() == TextDirectEditManager.class) {
+		if (getManager() instanceof TextDirectEditManager) {
 			((TextDirectEditManager) getManager()).show(eventLocation.getSWTPoint());
 		}
 	}
