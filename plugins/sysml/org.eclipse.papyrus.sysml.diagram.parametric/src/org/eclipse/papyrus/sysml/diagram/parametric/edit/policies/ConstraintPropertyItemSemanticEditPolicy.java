@@ -103,8 +103,10 @@ public class ConstraintPropertyItemSemanticEditPolicy extends SysmlBaseItemSeman
 		EObject element = view.getElement();
 		if (element instanceof ConstraintProperty) {
 			Property property = ((ConstraintProperty) element).getBase_Property();
-			DestroyElementRequest request = new DestroyElementRequest(property, false);
-            cmd.add(new DestroyElementCommand(request));
+			if (property != null) {
+				DestroyElementRequest request = new DestroyElementRequest(property, false);
+				cmd.add(new DestroyElementCommand(request));				
+			}
 		}
 	}
 
