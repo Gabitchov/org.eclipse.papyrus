@@ -14,16 +14,15 @@
 package org.eclipse.papyrus.sysml.diagram.parametric.locator;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.papyrus.diagram.common.locator.AdvancedBorderItemLocator;
 
+/**
+ * The Class ParameterPositionLocator that manages position of property on constraint property
+ */
 public class ParameterPositionLocator extends AdvancedBorderItemLocator {
-
-	/** The offset to add to default position. (to avoid corner of rounded rectangles) */
-	private static final int EXTRA_BORDER_DEFAULT_OFFSET = 8;
 
 	/** Constructor **/
 	public ParameterPositionLocator(IFigure parentFigure) {
@@ -55,7 +54,7 @@ public class ParameterPositionLocator extends AdvancedBorderItemLocator {
 	}
 
 	/**
-	 * Re-arrange the location of the border item, and also the contained arrow.
+	 * Re-arrange the location of the border item.
 	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator#relocate(org.eclipse.draw2d.IFigure)
 	 * 
@@ -65,80 +64,19 @@ public class ParameterPositionLocator extends AdvancedBorderItemLocator {
 	public void relocate(IFigure borderItem) {
 		// reset bounds of borderItem
 		Dimension size = getSize(borderItem);
-		Rectangle rectSuggested = getConstraint();
+		Rectangle rectSuggested = getConstraint().getCopy();
 		if (rectSuggested.getTopLeft().x == 0 && rectSuggested.getTopLeft().y == 0) {
 			rectSuggested.setLocation(getPreferredLocation(borderItem));
+		} else {
+			// recovered constraint must be translated with the parent location to be absolute
+			rectSuggested.setLocation(rectSuggested.getLocation().translate(getParentBorder().getTopLeft()));
 		}
 		rectSuggested.setSize(size);
-		setConstraint(getValidLocation(rectSuggested, borderItem));
-		borderItem.setBounds(getConstraint().getCopy());
+		Rectangle validLocation = getValidLocation(rectSuggested, borderItem);
+		// the constraint is not reset, but the item bounds are
+		borderItem.setBounds(validLocation);
 		// ensure the side property is correctly set
 		setCurrentSideOfParent(findClosestSideOfParent(borderItem.getBounds(), getParentBorder()));
-
-		// refresh the arrow depending on the Pin type and the side on which it is located
-		/*
-		 * for(Object subfigure : borderItem.getChildren()) { if(subfigure instanceof IFigure) {
-		 * for(Object child : ((IFigure)subfigure).getChildren()) {
-		 * 
-		 * if(child instanceof ParameterDescriptor) { Polyline arrow =
-		 * ((ParameterDescriptor)child).getOptionalArrowFigure(); int arrowDirection; int side =
-		 * getCurrentSideOfParent(); switch(side) { case PositionConstants.NORTH: arrowDirection =
-		 * PositionConstants.SOUTH; break; case PositionConstants.EAST: arrowDirection =
-		 * PositionConstants.WEST; break; case PositionConstants.SOUTH: arrowDirection =
-		 * PositionConstants.NORTH; break; case PositionConstants.WEST: default: arrowDirection =
-		 * PositionConstants.EAST; } ActivityFigureDrawer.redrawPinArrow(arrow,
-		 * MapModeUtil.getMapMode(borderItem), size, arrowDirection); } else if(child instanceof
-		 * org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinEditPart.PinDescriptor) {
-		 * Polyline arrow =
-		 * ((org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinEditPart.PinDescriptor
-		 * )child).getOptionalArrowFigure(); int arrowDirection; int side =
-		 * getCurrentSideOfParent(); switch(side) { case PositionConstants.SOUTH: arrowDirection =
-		 * PositionConstants.SOUTH; break; case PositionConstants.WEST: arrowDirection =
-		 * PositionConstants.WEST; break; case PositionConstants.NORTH: arrowDirection =
-		 * PositionConstants.NORTH; break; case PositionConstants.EAST: default: arrowDirection =
-		 * PositionConstants.EAST; } ActivityFigureDrawer.redrawPinArrow(arrow,
-		 * MapModeUtil.getMapMode(borderItem), size, arrowDirection); } } } }
-		 */
 	}
 
-	/**
-	 * Get an initial location based on the side. ( appropriate extremity of the side )
-	 * 
-	 * @param side
-	 *            the preferred side of the parent figure on which to place this border item as
-	 *            defined in {@link PositionConstants}
-	 * @return point
-	 */
-	protected Point getPreferredLocation(int side, IFigure borderItem) {
-		Rectangle bounds = getParentBorder();
-		int parentFigureWidth = bounds.width;
-		int parentFigureHeight = bounds.height;
-		int parentFigureX = bounds.x;
-		int parentFigureY = bounds.y;
-		int x = parentFigureX;
-		int y = parentFigureY;
-
-		Dimension borderItemSize = getSize(borderItem);
-		switch (side) {
-		case PositionConstants.NORTH:
-			x += EXTRA_BORDER_DEFAULT_OFFSET + getBorderItemOffset().width;
-			y += -borderItemSize.height + getBorderItemOffset().height;
-			break;
-		case PositionConstants.EAST:
-			// take south east extremity to allow following pins placing above
-			x += parentFigureWidth - getBorderItemOffset().width;
-			y += parentFigureHeight - borderItemSize.height - EXTRA_BORDER_DEFAULT_OFFSET
-					- getBorderItemOffset().height;
-			break;
-		case PositionConstants.SOUTH:
-			x += EXTRA_BORDER_DEFAULT_OFFSET + getBorderItemOffset().width;
-			y += parentFigureHeight - getBorderItemOffset().height;
-			break;
-		case PositionConstants.WEST:
-		default:
-			x += -borderItemSize.width + getBorderItemOffset().width;
-			y += EXTRA_BORDER_DEFAULT_OFFSET + getBorderItemOffset().height;
-		}
-		return new Point(x, y);
-	}
 }

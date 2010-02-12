@@ -439,7 +439,7 @@ AbstractBorderedShapeEditPart {
 			}
 		}
 		// ensure children parts are correctly initialized.
-		SelfCompartmentNotificationHelper.updateChildrenParts(this, UMLPackage.eINSTANCE
+		SelfCompartmentNotificationHelper.updatePropertiesParts(this, UMLPackage.eINSTANCE
 				.getStructuredClassifier_OwnedAttribute(), (IHintedType) SysmlElementTypes.Property_3002);
 	}
 
