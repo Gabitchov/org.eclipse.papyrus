@@ -58,24 +58,26 @@ import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
 
+
 /**
  * @generated
  */
 public class SysmlViewProvider extends UMLViewProvider implements IViewProvider {
 
+	//TODO: Find a way to return false if we are in a composite diagram
 	@Override
 	public boolean provides(IOperation operation) {
-		if (operation instanceof CreateDiagramViewOperation) {
-			return provides((CreateDiagramViewOperation) operation);
+		if(operation instanceof CreateDiagramViewOperation) {
+			return provides((CreateDiagramViewOperation)operation);
 		}
-		if (operation instanceof CreateNodeViewOperation) {
-			return provides((CreateNodeViewOperation) operation);
+		if(operation instanceof CreateNodeViewOperation) {
+			return provides((CreateNodeViewOperation)operation);
 		}
-		if (operation instanceof CreateEdgeViewOperation) {
-			return provides((CreateEdgeViewOperation) operation);
+		if(operation instanceof CreateEdgeViewOperation) {
+			return provides((CreateEdgeViewOperation)operation);
 		}
-		if (operation instanceof CreateViewForKindOperation) {
-			return provides((CreateViewForKindOperation) operation);
+		if(operation instanceof CreateViewForKindOperation) {
+			return provides((CreateViewForKindOperation)operation);
 		}
 		return false;
 	}
@@ -105,28 +107,28 @@ public class SysmlViewProvider extends UMLViewProvider implements IViewProvider 
 	 * @generated
 	 */
 	protected boolean provides(CreateNodeViewOperation op) {
-		if (op.getContainerView() == null) {
+		if(op.getContainerView() == null) {
 			return false;
 		}
 		IElementType elementType = getSemanticElementType(op.getSemanticAdapter());
 		EObject domainElement = getSemanticElement(op.getSemanticAdapter());
 		int visualID;
-		if (op.getSemanticHint() == null) {
+		if(op.getSemanticHint() == null) {
 			// Semantic hint is not specified. Can be a result of call from CanonicalEditPolicy.
 			// In this situation there should be NO elementType, visualID will be determined
 			// by VisualIDRegistry.getNodeVisualID() for domainElement.
-			if (elementType != null || domainElement == null) {
+			if(elementType != null || domainElement == null) {
 				return false;
 			}
 			visualID = SysmlVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement);
 		} else {
 			visualID = SysmlVisualIDRegistry.getVisualID(op.getSemanticHint());
-			if (elementType != null) {
-				if (!SysmlElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
+			if(elementType != null) {
+				if(!SysmlElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
 					return false; // foreign element type
 				}
-				String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
-				if (!op.getSemanticHint().equals(elementTypeHint)) {
+				String elementTypeHint = ((IHintedType)elementType).getSemanticHint();
+				if(!op.getSemanticHint().equals(elementTypeHint)) {
 					return false; // if semantic hint is specified it should be the same as in
 					// element type
 				}
@@ -146,10 +148,10 @@ public class SysmlViewProvider extends UMLViewProvider implements IViewProvider 
 					// type
 				}
 			} else {
-				if (!ResourceEditPart.MODEL_ID.equals(SysmlVisualIDRegistry.getModelID(op.getContainerView()))) {
+				if(!ResourceEditPart.MODEL_ID.equals(SysmlVisualIDRegistry.getModelID(op.getContainerView()))) {
 					return false; // foreign diagram
 				}
-				switch (visualID) {
+				switch(visualID) {
 				case FlowPortEditPart.VISUAL_ID:
 					if (domainElement == null
 							|| visualID != SysmlVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
@@ -229,17 +231,17 @@ public class SysmlViewProvider extends UMLViewProvider implements IViewProvider 
 	 */
 	protected boolean provides(CreateEdgeViewOperation op) {
 		IElementType elementType = getSemanticElementType(op.getSemanticAdapter());
-		if (!SysmlElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
+		if(!SysmlElementTypes.isKnownElementType(elementType) || (!(elementType instanceof IHintedType))) {
 			return false; // foreign element type
 		}
-		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
-		if (elementTypeHint == null || (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
+		String elementTypeHint = ((IHintedType)elementType).getSemanticHint();
+		if(elementTypeHint == null || (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
 			return false; // our hint is visual id and must be specified, and it should be the same
 			// as in element type
 		}
 		int visualID = SysmlVisualIDRegistry.getVisualID(elementTypeHint);
 		EObject domainElement = getSemanticElement(op.getSemanticAdapter());
-		if (domainElement != null && visualID != SysmlVisualIDRegistry.getLinkWithClassVisualID(domainElement)) {
+		if(domainElement != null && visualID != SysmlVisualIDRegistry.getLinkWithClassVisualID(domainElement)) {
 			return false; // visual id for link EClass should match visual id from element type
 		}
 		return true;
@@ -264,36 +266,38 @@ public class SysmlViewProvider extends UMLViewProvider implements IViewProvider 
 			boolean persisted, PreferencesHint preferencesHint) {
 		final EObject domainElement = getSemanticElement(semanticAdapter);
 		final int visualID;
-		if (semanticHint == null) {
+		if(semanticHint == null) {
 			visualID = SysmlVisualIDRegistry.getNodeVisualID(containerView, domainElement);
 		} else {
 			visualID = SysmlVisualIDRegistry.getVisualID(semanticHint);
 		}
-		switch (visualID) {
+		switch(visualID) {
 		case FlowPortEditPart.VISUAL_ID:
 			return createFlowPort_2001(domainElement, containerView, index, persisted, preferencesHint);
 		}
 		String oldType = containerView.getType();
 		containerView.setType(PackageEditPart.MODEL_ID);
 		Node node = super.createNode(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
-		if (node.getElement().eClass() == PortandflowsPackage.Literals.FLOW_PORT) {
-			node.setElement(((FlowPort) node.getElement()).getBase_Port());
+		if(node.getElement().eClass() == PortandflowsPackage.Literals.FLOW_PORT) {
+			node.setElement(((FlowPort)node.getElement()).getBase_Port());
 		}
 		containerView.setType(oldType);
 		return node;
 	}
 
 	/**
-	 * @generated
+	 * Add return super in case we are in a composite diagram
+	 * 
+	 * @generated NOT
 	 */
 	public Edge createEdge(IAdaptable semanticAdapter, View containerView, String semanticHint, int index,
 			boolean persisted, PreferencesHint preferencesHint) {
 		IElementType elementType = getSemanticElementType(semanticAdapter);
-		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
-		switch (SysmlVisualIDRegistry.getVisualID(elementTypeHint)) {
+		String elementTypeHint = ((IHintedType)elementType).getSemanticHint();
+		switch(SysmlVisualIDRegistry.getVisualID(elementTypeHint)) {
 		}
 		// can never happen, provided #provides(CreateEdgeViewOperation) is correct
-		return null;
+		return super.createEdge(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
 	}
 
 	/**
@@ -305,22 +309,22 @@ public class SysmlViewProvider extends UMLViewProvider implements IViewProvider 
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(SysmlVisualIDRegistry.getType(FlowPortEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
-		node.setElement(((FlowPort) domainElement).getBase_Port());
+		node.setElement(((FlowPort)domainElement).getBase_Port());
 		stampShortcut(containerView, node);
 		// initializeFromPreferences
-		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		initForegroundFromPrefs(node, prefStore, "Port");
 
 		initBackgroundFromPrefs(node, prefStore, "Port");
 
 		Node label5125 = createLabel(node, UMLVisualIDRegistry.getType(PortNameEditPart.VISUAL_ID));
 		label5125.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location5125 = (Location) label5125.getLayoutConstraint();
+		Location location5125 = (Location)label5125.getLayoutConstraint();
 		location5125.setX(0);
 		location5125.setY(5);
 		Node label6029 = createLabel(node, UMLVisualIDRegistry.getType(PortAppliedStereotypeEditPart.VISUAL_ID));
 		label6029.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6029 = (Location) label6029.getLayoutConstraint();
+		Location location6029 = (Location)label6029.getLayoutConstraint();
 		location6029.setX(0);
 		location6029.setY(5);
 		return node;
@@ -363,7 +367,7 @@ public class SysmlViewProvider extends UMLViewProvider implements IViewProvider 
 	 * @generated
 	 */
 	private void stampShortcut(View containerView, Node target) {
-		if (!ResourceEditPart.MODEL_ID.equals(SysmlVisualIDRegistry.getModelID(containerView))) {
+		if(!ResourceEditPart.MODEL_ID.equals(SysmlVisualIDRegistry.getModelID(containerView))) {
 			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
 			shortcutAnnotation.getDetails().put("modelID", ResourceEditPart.MODEL_ID); //$NON-NLS-1$
@@ -375,11 +379,11 @@ public class SysmlViewProvider extends UMLViewProvider implements IViewProvider 
 	 * @generated
 	 */
 	private EObject getSemanticElement(IAdaptable semanticAdapter) {
-		if (semanticAdapter == null) {
+		if(semanticAdapter == null) {
 			return null;
 		}
-		EObject eObject = (EObject) semanticAdapter.getAdapter(EObject.class);
-		if (eObject != null) {
+		EObject eObject = (EObject)semanticAdapter.getAdapter(EObject.class);
+		if(eObject != null) {
 			return EMFCoreUtil.resolve(TransactionUtil.getEditingDomain(eObject), eObject);
 		}
 		return null;
@@ -389,10 +393,10 @@ public class SysmlViewProvider extends UMLViewProvider implements IViewProvider 
 	 * @generated
 	 */
 	private IElementType getSemanticElementType(IAdaptable semanticAdapter) {
-		if (semanticAdapter == null) {
+		if(semanticAdapter == null) {
 			return null;
 		}
-		return (IElementType) semanticAdapter.getAdapter(IElementType.class);
+		return (IElementType)semanticAdapter.getAdapter(IElementType.class);
 	}
 
 	private void initFontStyleFromPrefs(View view, final IPreferenceStore store, String elementName) {
@@ -400,8 +404,8 @@ public class SysmlViewProvider extends UMLViewProvider implements IViewProvider 
 		String fontColorConstant = PreferenceConstantHelper.getElementConstant(elementName,
 				PreferenceConstantHelper.COLOR_FONT);
 
-		FontStyle viewFontStyle = (FontStyle) view.getStyle(NotationPackage.Literals.FONT_STYLE);
-		if (viewFontStyle != null) {
+		FontStyle viewFontStyle = (FontStyle)view.getStyle(NotationPackage.Literals.FONT_STYLE);
+		if(viewFontStyle != null) {
 			FontData fontData = PreferenceConverter.getFontData(store, fontConstant);
 			viewFontStyle.setFontName(fontData.getName());
 			viewFontStyle.setFontHeight(fontData.getHeight());
@@ -433,11 +437,11 @@ public class SysmlViewProvider extends UMLViewProvider implements IViewProvider 
 		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getFillStyle_FillColor(), FigureUtilities
 				.RGBToInteger(fillRGB));
 
-		FillStyle fillStyle = (FillStyle) view.getStyle(NotationPackage.Literals.FILL_STYLE);
+		FillStyle fillStyle = (FillStyle)view.getStyle(NotationPackage.Literals.FILL_STYLE);
 		fillStyle.setFillColor(FigureUtilities.RGBToInteger(fillRGB).intValue());
 
 		;
-		if (store.getBoolean(gradientPolicyConstant)) {
+		if(store.getBoolean(gradientPolicyConstant)) {
 			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(store
 					.getString(gradientColorConstant));
 			fillStyle.setGradient(gradientPreferenceConverter.getGradientData());
