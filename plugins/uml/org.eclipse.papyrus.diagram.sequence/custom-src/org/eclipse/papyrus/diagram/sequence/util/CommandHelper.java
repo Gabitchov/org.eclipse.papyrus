@@ -245,7 +245,7 @@ public class CommandHelper {
 
 		result.add("");
 
-		if(messageSort != null) {
+		if(messageSort == null) {
 			result.addAll(ItemPropertyDescriptor.getReachableObjectsOfType(message, UMLPackage.eINSTANCE.getOperation()));
 			result.addAll(ItemPropertyDescriptor.getReachableObjectsOfType(message, UMLPackage.eINSTANCE.getSignal()));
 		} else if(MessageSort.SYNCH_CALL_LITERAL.equals(messageSort) || MessageSort.ASYNCH_CALL_LITERAL.equals(messageSort) || MessageSort.REPLY_LITERAL.equals(messageSort)) {
