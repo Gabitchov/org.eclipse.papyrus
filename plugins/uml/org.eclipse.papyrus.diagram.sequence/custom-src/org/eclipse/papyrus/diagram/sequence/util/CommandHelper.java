@@ -549,17 +549,15 @@ public class CommandHelper {
 		if(sendMessageEnd != null) {
 			sendMessageEnd.setMessage(message);
 			ElementInitializers.init_NamedElement(sendMessageEnd, "", message.getName(), "Send"); //$NON-NLS-1$ //$NON-NLS-2$
+			// Update the message with the messages end
 			message.setSendEvent(sendMessageEnd);
 		}
 		if(receiveMessageEnd != null) {
 			receiveMessageEnd.setMessage(message);
 			ElementInitializers.init_NamedElement(receiveMessageEnd, "", message.getName(), "Recv"); //$NON-NLS-1$ //$NON-NLS-2$
+			// Update the message with the messages end
 			message.setReceiveEvent(receiveMessageEnd);
 		}
-
-		// Update the message with the messages end
-
-
 
 		return message;
 	}
