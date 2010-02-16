@@ -15,10 +15,13 @@ package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
 import java.util.Iterator;
 
+import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.Polyline;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.ConnectionEditPart;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
@@ -35,6 +38,7 @@ import org.eclipse.uml2.uml.Message;
  * A specific policy to handle the message :
  * - Message cannot be uphill.
  * - Message Occurrence Specification which are created along the message may have a different container than the message.
+ * - Message feedback on creation is always drawn in black (to avoid invisible feedback)
  * 
  */
 public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
@@ -47,7 +51,7 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	protected Command getConnectionCompleteCommand(CreateConnectionRequest request) {
 		Command command = super.getConnectionCompleteCommand(request);
 		if(command == null) {
-			return null;
+			return UnexecutableCommand.INSTANCE;
 		}
 		ICommandProxy proxy = (ICommandProxy)request.getStartCommand();
 		CompositeCommand cc = (CompositeCommand)proxy.getICommand();
@@ -58,7 +62,7 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 				SetConnectionBendpointsCommand sbbCommand = (SetConnectionBendpointsCommand)obj;
 				final PointList pointList = sbbCommand.getNewPointList();
 				if(pointList.getFirstPoint().y >= pointList.getLastPoint().y) {
-					return null;
+					return UnexecutableCommand.INSTANCE;
 				}
 				request.getExtendedData().put(SequenceRequestConstant.SOURCE_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentAt(pointList.getFirstPoint(), getHost()));
 				request.getExtendedData().put(SequenceRequestConstant.TARGET_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentAt(pointList.getLastPoint(), getHost()));
@@ -75,7 +79,7 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	@Override
 	protected Command getReconnectSourceCommand(ReconnectRequest request) {
 		if(isUphillMessage(request)) {
-			return null;
+			return UnexecutableCommand.INSTANCE;
 		}
 		return super.getReconnectSourceCommand(request);
 	}
@@ -86,7 +90,7 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 	@Override
 	protected Command getReconnectTargetCommand(ReconnectRequest request) {
 		if(isUphillMessage(request)) {
-			return null;
+			return UnexecutableCommand.INSTANCE;
 		}
 		return super.getReconnectTargetCommand(request);
 	}
@@ -110,6 +114,20 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 			}
 		}
 		return false;
+	}
+
+
+	/**
+	 * Overrides to set the color of the dummyConnection to color black.
+	 * This allow to see the feedback of the connection when it is created.
+	 * By default, the color was the foreground color of the lifeline, which is always blank leading to an invisible feedback.
+	 * 
+	 */
+	@Override
+	protected Connection createDummyConnection(Request req) {
+		Connection conn = super.createDummyConnection(req);
+		conn.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);
+		return conn;
 	}
 
 
