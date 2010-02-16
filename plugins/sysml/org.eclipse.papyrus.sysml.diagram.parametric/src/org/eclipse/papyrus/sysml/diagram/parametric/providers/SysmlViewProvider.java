@@ -58,6 +58,7 @@ import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorNameEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintLabelEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart;
@@ -269,6 +270,7 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 		initBackgroundFromPrefs(node, prefStore, "ConstraintProperty");
 
 		Node label5001 = createLabel(node, SysmlVisualIDRegistry.getType(ConstraintPropertyNameEditPart.VISUAL_ID));
+		Node label5004 = createLabel(node, SysmlVisualIDRegistry.getType(ConstraintLabelEditPart.VISUAL_ID));
 
 		// create the associated properties
 		Type type = ((ConstraintProperty) domainElement).getBase_Property().getType();
@@ -277,7 +279,6 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 				createProperty_3002(property, node, index, persisted, preferencesHint);
 			}
 		}
-		// TODO do we need to restore connection ?
 		return node;
 	}
 

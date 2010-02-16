@@ -13,19 +13,38 @@
           cornerWidth="25"
           cornerHeight="25">
         <layout
-            xsi:type="gmfgraph:CustomLayout"
-            qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
+            xsi:type="gmfgraph:GridLayout"/>
         <minimumSize
             dx="200"
             dy="120"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ConstraintPropertyFigureLabel"
-            qualifiedClassName="org.eclipse.papyrus.sysml.diagram.parametric.figures.CenteredWrappedLabel"/>
+            qualifiedClassName="org.eclipse.papyrus.sysml.diagram.parametric.figures.CenteredWrappedLabel">
+          <layoutData
+              xsi:type="gmfgraph:GridLayoutData"
+              grabExcessHorizontalSpace="true"
+              grabExcessVerticalSpace="true"
+              verticalAlignment="END"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="ConstraintLabel"
+            qualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+          <layoutData
+              xsi:type="gmfgraph:GridLayoutData"
+              grabExcessHorizontalSpace="true"
+              grabExcessVerticalSpace="true"
+              verticalAlignment="BEGINNING"
+              horizontalAlignment="END"/>
+        </children>
       </actualFigure>
       <accessors
           accessor="getConstraintPropertyFigureLabel"
           figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getConstraintLabel"
+          figure="//@figures.0/@descriptors.0/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
         name="PropertyFigure">
@@ -117,4 +136,12 @@
       name="ConnectorDiagramLabel"
       figure="ConnectorFigure"
       accessor="//@figures.0/@descriptors.4/@accessors.0"/>
+  <labels
+      name="ConstraintLabel"
+      figure="ConstraintPropertyFigureDescriptor"
+      accessor="//@figures.0/@descriptors.0/@accessors.1">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="END"/>
+  </labels>
 </gmfgraph:Canvas>

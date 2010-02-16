@@ -93,7 +93,7 @@
               editPolicyQualifiedClassName="org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.NoDeleteFromModelEditPolicy"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.2">
+              parser="/0/@labelParsers/@implementations.1">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -116,7 +116,7 @@
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
             className="ConstraintPropertyFigureDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ConstraintPropertyFigureDescriptor extends org.eclipse.draw2d.RoundedRectangle {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.papyrus.sysml.diagram.parametric.figures.CenteredWrappedLabel fConstraintPropertyFigureLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ConstraintPropertyFigureDescriptor() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.papyrus.diagram.common.draw2d.CenterLayout layoutThis = new org.eclipse.papyrus.diagram.common.draw2d.CenterLayout();&#xA;&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(8)&#xA;, getMapMode().DPtoLP(8)&#xA;));&#xA;this.setLineWidth(1);&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(200)&#xA;, getMapMode().DPtoLP(120)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fConstraintPropertyFigureLabel = new org.eclipse.papyrus.sysml.diagram.parametric.figures.CenteredWrappedLabel();&#xA;&#xA;&#xA;&#xA;this.add(fConstraintPropertyFigureLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.papyrus.sysml.diagram.parametric.figures.CenteredWrappedLabel getConstraintPropertyFigureLabel() {&#xA;&#x9;&#x9;return fConstraintPropertyFigureLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ConstraintPropertyFigureDescriptor extends org.eclipse.draw2d.RoundedRectangle {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.papyrus.sysml.diagram.parametric.figures.CenteredWrappedLabel fConstraintPropertyFigureLabel; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fConstraintLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ConstraintPropertyFigureDescriptor() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutThis.numColumns = 1;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = true;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(25)&#xA;, getMapMode().DPtoLP(25)&#xA;));&#xA;this.setLineWidth(1);&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(200)&#xA;, getMapMode().DPtoLP(120)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fConstraintPropertyFigureLabel = new org.eclipse.papyrus.sysml.diagram.parametric.figures.CenteredWrappedLabel();&#xA;&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFConstraintPropertyFigureLabel = new org.eclipse.draw2d.GridData();&#xA;constraintFConstraintPropertyFigureLabel.verticalAlignment = org.eclipse.draw2d.GridData.END;&#xA;constraintFConstraintPropertyFigureLabel.horizontalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFConstraintPropertyFigureLabel.horizontalIndent = 0;&#xA;constraintFConstraintPropertyFigureLabel.horizontalSpan = 1;&#xA;constraintFConstraintPropertyFigureLabel.verticalSpan = 1;&#xA;constraintFConstraintPropertyFigureLabel.grabExcessHorizontalSpace = true;&#xA;constraintFConstraintPropertyFigureLabel.grabExcessVerticalSpace = true;&#xA;this.add(fConstraintPropertyFigureLabel, constraintFConstraintPropertyFigureLabel);&#xA;&#xA;&#xA;&#xA;&#xA;fConstraintLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFConstraintLabel = new org.eclipse.draw2d.GridData();&#xA;constraintFConstraintLabel.verticalAlignment = org.eclipse.draw2d.GridData.BEGINNING;&#xA;constraintFConstraintLabel.horizontalAlignment = org.eclipse.draw2d.GridData.END;&#xA;constraintFConstraintLabel.horizontalIndent = 0;&#xA;constraintFConstraintLabel.horizontalSpan = 1;&#xA;constraintFConstraintLabel.verticalSpan = 1;&#xA;constraintFConstraintLabel.grabExcessHorizontalSpace = true;&#xA;constraintFConstraintLabel.grabExcessVerticalSpace = true;&#xA;this.add(fConstraintLabel, constraintFConstraintLabel);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.papyrus.sysml.diagram.parametric.figures.CenteredWrappedLabel getConstraintPropertyFigureLabel() {&#xA;&#x9;&#x9;return fConstraintPropertyFigureLabel;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getConstraintLabel() {&#xA;&#x9;&#x9;return fConstraintLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="RequestConstants.REQ_CREATE"
@@ -141,6 +141,25 @@
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getConstraintPropertyFigureLabel"
               figureQualifiedClassName="org.eclipse.papyrus.sysml.diagram.parametric.figures.CenteredWrappedLabel"/>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.3"/>
+        </labels>
+        <labels
+            visualID="5004"
+            editPartClassName="ConstraintLabelEditPart"
+            itemSemanticEditPolicyClassName="ConstraintLabelItemSemanticEditPolicy"
+            notationViewFactoryClassName="ConstraintPropertyLabelViewFactory"
+            elementIcon="true">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getConstraintLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="RequestConstants.REQ_SEMANTIC_WRAPPER"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.NoDeleteFromModelEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.4"/>
         </labels>
@@ -184,7 +203,7 @@
               figureQualifiedClassName="org.eclipse.papyrus.sysml.diagram.parametric.figures.CenteredWrappedLabel"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.2">
+              parser="/0/@labelParsers/@implementations.1">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -237,7 +256,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.3">
+              parser="/0/@labelParsers/@implementations.2">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
@@ -398,10 +417,8 @@
       <implementations
           xsi:type="gmfgen:PredefinedParser"/>
       <implementations
-          xsi:type="gmfgen:ExternalParser"/>
-      <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.0/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet"
+          uses="/0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet /0/@diagram/@childNodes.0/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.sysml.diagram.parametric.parsers.PropertyLabelParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -411,6 +428,10 @@
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.sysml.diagram.parametric.parsers.ConstraintPropertyLabelParser"/>
+      <implementations
+          xsi:type="gmfgen:CustomParser"
+          uses="/0/@diagram/@topLevelNodes.0/@labels.1/@modelFacet"
+          qualifiedName="org.eclipse.papyrus.sysml.diagram.parametric.parsers.ConstraintLabelParser"/>
     </labelParsers>
     <contextMenus
         context="/0/@diagram">

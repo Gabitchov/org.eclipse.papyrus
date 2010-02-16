@@ -51,6 +51,9 @@ public class SysmlEditPartFactory implements EditPartFactory {
 			case ConstraintPropertyNameEditPart.VISUAL_ID:
 				return new ConstraintPropertyNameEditPart(view);
 
+			case ConstraintLabelEditPart.VISUAL_ID:
+				return new ConstraintLabelEditPart(view);
+
 			case PropertyEditPart.VISUAL_ID:
 				return new PropertyEditPart(view);
 

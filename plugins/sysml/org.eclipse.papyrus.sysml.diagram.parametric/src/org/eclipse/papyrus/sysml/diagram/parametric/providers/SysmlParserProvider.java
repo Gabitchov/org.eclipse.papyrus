@@ -25,10 +25,12 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorNameEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintLabelEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyName2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.parsers.ConnectorLabelParser;
+import org.eclipse.papyrus.sysml.diagram.parametric.parsers.ConstraintLabelParser;
 import org.eclipse.papyrus.sysml.diagram.parametric.parsers.ConstraintPropertyLabelParser;
 import org.eclipse.papyrus.sysml.diagram.parametric.parsers.PropertyLabelParser;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
@@ -51,6 +53,21 @@ public class SysmlParserProvider extends AbstractProvider implements IParserProv
 			constraintPropertyLabel_5001Parser = new ConstraintPropertyLabelParser();
 		}
 		return constraintPropertyLabel_5001Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ConstraintLabelParser constraintPropertyLabel_5004Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConstraintPropertyLabel_5004Parser() {
+		if (constraintPropertyLabel_5004Parser == null) {
+			constraintPropertyLabel_5004Parser = new ConstraintLabelParser();
+		}
+		return constraintPropertyLabel_5004Parser;
 	}
 
 	/**
@@ -105,6 +122,8 @@ public class SysmlParserProvider extends AbstractProvider implements IParserProv
 		switch (visualID) {
 		case ConstraintPropertyNameEditPart.VISUAL_ID:
 			return getConstraintPropertyLabel_5001Parser();
+		case ConstraintLabelEditPart.VISUAL_ID:
+			return getConstraintPropertyLabel_5004Parser();
 		case PropertyNameEditPart.VISUAL_ID:
 			return getPropertyName_5002Parser();
 		case PropertyName2EditPart.VISUAL_ID:

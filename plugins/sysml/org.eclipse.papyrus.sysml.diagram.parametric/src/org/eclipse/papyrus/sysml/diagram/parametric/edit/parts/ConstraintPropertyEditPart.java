@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.edit.parts;
 
+import org.eclipse.draw2d.GridData;
+import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RoundedRectangle;
@@ -38,6 +40,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -45,7 +48,6 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.diagram.common.draw2d.CenterLayout;
 import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
@@ -174,6 +176,10 @@ AbstractBorderedShapeEditPart {
 					.getConstraintPropertyFigureLabel());
 			return true;
 		}
+		if (childEditPart instanceof ConstraintLabelEditPart) {
+			((ConstraintLabelEditPart) childEditPart).setLabel(getPrimaryShape().getConstraintLabel());
+			return true;
+		}
 
 		// Papyrus Gencode :Affixed Parameter locator
 		if (childEditPart instanceof Property2EditPart) {
@@ -190,6 +196,9 @@ AbstractBorderedShapeEditPart {
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof ConstraintPropertyNameEditPart) {
+			return true;
+		}
+		if (childEditPart instanceof ConstraintLabelEditPart) {
 			return true;
 		}
 		if (childEditPart instanceof Property2EditPart) {
@@ -328,10 +337,16 @@ AbstractBorderedShapeEditPart {
 		/**
 		 * @generated
 		 */
+		private WrappingLabel fConstraintLabel;
+
+		/**
+		 * @generated
+		 */
 		public ConstraintPropertyFigureDescriptor() {
 
-			CenterLayout layoutThis = new CenterLayout();
-
+			GridLayout layoutThis = new GridLayout();
+			layoutThis.numColumns = 1;
+			layoutThis.makeColumnsEqualWidth = true;
 			this.setLayoutManager(layoutThis);
 
 			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(25), getMapMode().DPtoLP(25)));
@@ -347,7 +362,27 @@ AbstractBorderedShapeEditPart {
 
 			fConstraintPropertyFigureLabel = new CenteredWrappedLabel();
 
-			this.add(fConstraintPropertyFigureLabel);
+			GridData constraintFConstraintPropertyFigureLabel = new GridData();
+			constraintFConstraintPropertyFigureLabel.verticalAlignment = GridData.END;
+			constraintFConstraintPropertyFigureLabel.horizontalAlignment = GridData.CENTER;
+			constraintFConstraintPropertyFigureLabel.horizontalIndent = 0;
+			constraintFConstraintPropertyFigureLabel.horizontalSpan = 1;
+			constraintFConstraintPropertyFigureLabel.verticalSpan = 1;
+			constraintFConstraintPropertyFigureLabel.grabExcessHorizontalSpace = true;
+			constraintFConstraintPropertyFigureLabel.grabExcessVerticalSpace = true;
+			this.add(fConstraintPropertyFigureLabel, constraintFConstraintPropertyFigureLabel);
+
+			fConstraintLabel = new WrappingLabel();
+
+			GridData constraintFConstraintLabel = new GridData();
+			constraintFConstraintLabel.verticalAlignment = GridData.BEGINNING;
+			constraintFConstraintLabel.horizontalAlignment = GridData.END;
+			constraintFConstraintLabel.horizontalIndent = 0;
+			constraintFConstraintLabel.horizontalSpan = 1;
+			constraintFConstraintLabel.verticalSpan = 1;
+			constraintFConstraintLabel.grabExcessHorizontalSpace = true;
+			constraintFConstraintLabel.grabExcessVerticalSpace = true;
+			this.add(fConstraintLabel, constraintFConstraintLabel);
 
 		}
 
@@ -375,6 +410,13 @@ AbstractBorderedShapeEditPart {
 		 */
 		public CenteredWrappedLabel getConstraintPropertyFigureLabel() {
 			return fConstraintPropertyFigureLabel;
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getConstraintLabel() {
+			return fConstraintLabel;
 		}
 
 	}

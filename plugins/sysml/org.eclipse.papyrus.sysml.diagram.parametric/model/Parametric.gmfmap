@@ -15,6 +15,10 @@
         <diagramLabel
             href="Parametric.gmfgraph#ConstraintProperty"/>
       </labelMappings>
+      <labelMappings>
+        <diagramLabel
+            href="Parametric.gmfgraph#ConstraintLabel"/>
+      </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
           href="Parametric.gmftool#//@palette/@tools.0/@tools.0"/>

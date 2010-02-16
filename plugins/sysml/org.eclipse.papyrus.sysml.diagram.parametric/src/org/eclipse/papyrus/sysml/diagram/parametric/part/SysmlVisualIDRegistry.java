@@ -24,6 +24,7 @@ import org.eclipse.papyrus.resource.Resource;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorNameEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintLabelEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart;
@@ -181,6 +182,9 @@ public class SysmlVisualIDRegistry {
 		switch (containerVisualID) {
 		case ConstraintPropertyEditPart.VISUAL_ID:
 			if (ConstraintPropertyNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (ConstraintLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if (Property2EditPart.VISUAL_ID == nodeVisualID) {
