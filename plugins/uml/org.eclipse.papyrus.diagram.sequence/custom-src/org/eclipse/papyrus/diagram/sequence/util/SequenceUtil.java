@@ -23,6 +23,8 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
@@ -50,7 +52,7 @@ public class SequenceUtil {
 
 		InteractionFragment interactionFragment = null;
 		EditPart ep = host.getRoot().getViewer().findObjectAtExcluding(location, exclusionSet);
-		while(ep instanceof LifelineEditPart) {
+		while(ep instanceof LifelineEditPart || ep instanceof BehaviorExecutionSpecificationEditPart || ep instanceof ActionExecutionSpecificationEditPart) {
 			exclusionSet.add(((GraphicalEditPart)ep).getFigure());
 			ep = host.getRoot().getViewer().findObjectAtExcluding(location, exclusionSet);
 		}
@@ -61,6 +63,7 @@ public class SequenceUtil {
 				interactionFragment = (InteractionFragment)eObject;
 			}
 		}
+
 		return interactionFragment;
 	}
 }
