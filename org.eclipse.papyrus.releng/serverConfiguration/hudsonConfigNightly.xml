@@ -14,60 +14,60 @@
     <hudson.security.AuthorizationMatrixProperty>
       <useProjectSecurity>true</useProjectSecurity>
       <permission>hudson.model.Run.Delete:cmraidha</permission>
-      <permission>hudson.model.Run.Delete:sgerard </permission>
+      <permission>hudson.model.Run.Delete:sgerard</permission>
       <permission>hudson.model.Run.Delete:rschnekenbu</permission>
       <permission>hudson.model.Run.Delete:ptessier</permission>
-      <permission>hudson.model.Run.Delete:cdumoulin  </permission>
-      <permission>hudson.model.Run.Delete:ytanguy </permission>
-      <permission>hudson.model.Run.Delete:eperico </permission>
-      <permission>hudson.model.Run.Delete:tlandre </permission>
+      <permission>hudson.model.Run.Delete:cdumoulin</permission>
+      <permission>hudson.model.Run.Delete:ytanguy</permission>
+      <permission>hudson.model.Run.Delete:eperico</permission>
+      <permission>hudson.model.Run.Delete:tlandre</permission>
       <permission>hudson.model.Run.Delete:ROLE_CALLISTO-DEV</permission>
       <permission>hudson.model.Item.Configure:cmraidha</permission>
-      <permission>hudson.model.Item.Configure:sgerard </permission>
+      <permission>hudson.model.Item.Configure:sgerard</permission>
       <permission>hudson.model.Item.Configure:rschnekenbu</permission>
       <permission>hudson.model.Item.Configure:ptessier</permission>
-      <permission>hudson.model.Item.Configure:cdumoulin  </permission>
-      <permission>hudson.model.Item.Configure:ytanguy </permission>
-      <permission>hudson.model.Item.Configure:eperico </permission>
-      <permission>hudson.model.Item.Configure:tlandre </permission>
+      <permission>hudson.model.Item.Configure:cdumoulin</permission>
+      <permission>hudson.model.Item.Configure:ytanguy</permission>
+      <permission>hudson.model.Item.Configure:eperico</permission>
+      <permission>hudson.model.Item.Configure:tlandre</permission>
       <permission>hudson.model.Item.Configure:ROLE_CALLISTO-DEV</permission>
       <permission>hudson.model.Item.Workspace:cmraidha</permission>
-      <permission>hudson.model.Item.Workspace:sgerard </permission>
+      <permission>hudson.model.Item.Workspace:sgerard</permission>
       <permission>hudson.model.Item.Workspace:rschnekenbu</permission>
       <permission>hudson.model.Item.Workspace:ptessier</permission>
-      <permission>hudson.model.Item.Workspace:cdumoulin  </permission>
-      <permission>hudson.model.Item.Workspace:ytanguy </permission>
-      <permission>hudson.model.Item.Workspace:eperico </permission>
-      <permission>hudson.model.Item.Workspace:tlandre </permission>
+      <permission>hudson.model.Item.Workspace:cdumoulin</permission>
+      <permission>hudson.model.Item.Workspace:ytanguy</permission>
+      <permission>hudson.model.Item.Workspace:eperico</permission>
+      <permission>hudson.model.Item.Workspace:tlandre</permission>
       <permission>hudson.model.Item.Workspace:anonymous</permission>
       <permission>hudson.model.Item.Workspace:ROLE_CALLISTO-DEV</permission>
       <permission>hudson.model.Item.Build:cmraidha</permission>
-      <permission>hudson.model.Item.Build:sgerard </permission>
+      <permission>hudson.model.Item.Build:sgerard</permission>
       <permission>hudson.model.Item.Build:rschnekenbu</permission>
       <permission>hudson.model.Item.Build:ptessier</permission>
-      <permission>hudson.model.Item.Build:cdumoulin  </permission>
-      <permission>hudson.model.Item.Build:ytanguy </permission>
-      <permission>hudson.model.Item.Build:eperico </permission>
-      <permission>hudson.model.Item.Build:tlandre </permission>
+      <permission>hudson.model.Item.Build:cdumoulin</permission>
+      <permission>hudson.model.Item.Build:ytanguy</permission>
+      <permission>hudson.model.Item.Build:eperico</permission>
+      <permission>hudson.model.Item.Build:tlandre</permission>
       <permission>hudson.model.Item.Build:ROLE_CALLISTO-DEV</permission>
       <permission>hudson.model.Run.Update:cmraidha</permission>
-      <permission>hudson.model.Run.Update:sgerard </permission>
+      <permission>hudson.model.Run.Update:sgerard</permission>
       <permission>hudson.model.Run.Update:rschnekenbu</permission>
       <permission>hudson.model.Run.Update:ptessier</permission>
-      <permission>hudson.model.Run.Update:cdumoulin  </permission>
-      <permission>hudson.model.Run.Update:ytanguy </permission>
-      <permission>hudson.model.Run.Update:eperico </permission>
-      <permission>hudson.model.Run.Update:tlandre </permission>
+      <permission>hudson.model.Run.Update:cdumoulin</permission>
+      <permission>hudson.model.Run.Update:ytanguy</permission>
+      <permission>hudson.model.Run.Update:eperico</permission>
+      <permission>hudson.model.Run.Update:tlandre</permission>
       <permission>hudson.model.Run.Update:ROLE_CALLISTO-DEV</permission>
       <permission>hudson.model.Item.Delete:ROLE_CALLISTO-DEV</permission>
       <permission>hudson.model.Item.Read:cmraidha</permission>
-      <permission>hudson.model.Item.Read:sgerard </permission>
+      <permission>hudson.model.Item.Read:sgerard</permission>
       <permission>hudson.model.Item.Read:rschnekenbu</permission>
       <permission>hudson.model.Item.Read:ptessier</permission>
-      <permission>hudson.model.Item.Read:cdumoulin  </permission>
-      <permission>hudson.model.Item.Read:ytanguy </permission>
-      <permission>hudson.model.Item.Read:eperico </permission>
-      <permission>hudson.model.Item.Read:tlandre </permission>
+      <permission>hudson.model.Item.Read:cdumoulin</permission>
+      <permission>hudson.model.Item.Read:ytanguy</permission>
+      <permission>hudson.model.Item.Read:eperico</permission>
+      <permission>hudson.model.Item.Read:tlandre</permission>
       <permission>hudson.model.Item.Read:anonymous</permission>
       <permission>hudson.model.Item.Read:ROLE_CALLISTO-DEV</permission>
     </hudson.security.AuthorizationMatrixProperty>
