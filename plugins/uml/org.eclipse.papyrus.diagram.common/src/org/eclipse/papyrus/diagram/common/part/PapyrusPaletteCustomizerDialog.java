@@ -31,7 +31,9 @@ import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
+import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.ICheckStateProvider;
+import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ISelection;
@@ -46,6 +48,7 @@ import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.Messages;
 import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
+import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService.LocalProviderDescriptor;
 import org.eclipse.papyrus.diagram.common.wizards.NewLocalPaletteWizard;
 import org.eclipse.papyrus.diagram.common.wizards.UpdateLocalPaletteWizard;
 import org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer;
@@ -342,7 +345,14 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 			 * {@inheritDoc}
 			 */
 			public void mouseUp(MouseEvent e) {
-				editLocalPalette();
+				if(availablePalettesTableViewer == null) {
+					return;
+				}
+
+				IStructuredSelection selection = (IStructuredSelection)availablePalettesTableViewer.getSelection();
+				if(selection == null || !(selection.getFirstElement() instanceof PapyrusPaletteService.LocalProviderDescriptor)) {
+					editLocalPalette((PapyrusPaletteService.LocalProviderDescriptor)selection.getFirstElement());
+				}
 			}
 
 			/**
@@ -429,6 +439,16 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 		providersLabelProvider = new PaletteLabelProvider(availablePalettesTableViewer);
 		availablePalettesTableViewer.setLabelProvider(providersLabelProvider);
 		availablePalettesTableViewer.setInput(PapyrusPaletteService.getInstance());
+		availablePalettesTableViewer.addDoubleClickListener(new IDoubleClickListener() {
+
+			public void doubleClick(DoubleClickEvent event) {
+				// get selection. if local palette: open the wizard to edit this local palette
+				IStructuredSelection selection = (IStructuredSelection)event.getSelection();
+				if(selection.getFirstElement() instanceof LocalProviderDescriptor) {
+					editLocalPalette((PapyrusPaletteService.LocalProviderDescriptor)selection.getFirstElement());
+				}
+			}
+		});
 
 		return composite;
 	}
@@ -462,16 +482,10 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 	/**
 	 * Edits the current selected local palette
 	 */
-	protected void editLocalPalette() {
-		IStructuredSelection selection = (IStructuredSelection)availablePalettesTableViewer.getSelection();
-		if(selection == null || !(selection.getFirstElement() instanceof PapyrusPaletteService.LocalProviderDescriptor)) {
-			MessageDialog.openError(getShell(), Messages.Dialog_Not_Local_Palette_Title, Messages.Dialog_Not_Local_Palette_Message);
-		} else {
-			PapyrusPaletteService.LocalProviderDescriptor descriptor = ((PapyrusPaletteService.LocalProviderDescriptor)selection.getFirstElement());
-			UpdateLocalPaletteWizard wizard = new UpdateLocalPaletteWizard(getActiveSashPage(), descriptor, getCustomizer());
-			WizardDialog wizardDialog = new WizardDialog(new Shell(), wizard);
-			wizardDialog.open();
-		}
+	protected void editLocalPalette(PapyrusPaletteService.LocalProviderDescriptor descriptor) {
+		UpdateLocalPaletteWizard wizard = new UpdateLocalPaletteWizard(getActiveSashPage(), descriptor, getCustomizer());
+		WizardDialog wizardDialog = new WizardDialog(new Shell(), wizard);
+		wizardDialog.open();
 	}
 
 	/**
