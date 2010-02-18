@@ -197,6 +197,13 @@ public class SemanticPostAction extends ModelPostAction {
 				compositeCommand.compose(new SetValueCommand(request));
 			}
 		}
+
+		// create the command to open the dialog to set properties on runtime
+		if(runtimeDefinedProperties.size() > 0) {
+			DynamicConfigureRequest request = new DynamicConfigureRequest(objectToEdit, runtimeDefinedProperties);
+			compositeCommand.compose(new SetDynamicValueCommand(request));
+		}
+
 		compositeCommand.reduce();
 
 		if(compositeCommand.canExecute()) {
