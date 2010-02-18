@@ -121,8 +121,12 @@ public class PaletteEntryProxyInformationComposite {
 			nameText.setText("");
 			nameText.setEnabled(false);
 			break;
-		case TOOL:
 		case DRAWER:
+			String drawerName = selectedEntryProxy.getLabel();
+			nameText.setText((drawerName != null) ? drawerName : "");
+			nameText.setEnabled(false);
+			break;
+		case TOOL:
 		case ASPECT_TOOL:
 			// the fields describing information about entry should be updated
 			String name = selectedEntryProxy.getLabel();
@@ -228,7 +232,7 @@ public class PaletteEntryProxyInformationComposite {
 		 * @{inheritDoc
 		 */
 		public void focusLost(FocusEvent e) {
-			if(selectedEntryProxy != null) {
+			if(selectedEntryProxy != null && selectedEntryProxy.getEntry() != null) {
 				selectedEntryProxy.getEntry().setLabel(nameText.getText().trim());
 			}
 		}
@@ -250,7 +254,7 @@ public class PaletteEntryProxyInformationComposite {
 		 * @{inheritDoc
 		 */
 		public void focusLost(FocusEvent e) {
-			if(selectedEntryProxy != null) {
+			if(selectedEntryProxy != null && selectedEntryProxy.getEntry() != null) {
 				selectedEntryProxy.getEntry().setDescription(descriptionText.getText().trim());
 			}
 		}
