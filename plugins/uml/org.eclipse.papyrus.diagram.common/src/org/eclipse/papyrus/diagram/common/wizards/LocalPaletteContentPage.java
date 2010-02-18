@@ -19,6 +19,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -153,6 +154,9 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	/** icon path for the remove button */
 	protected static final String REMOVE_ICON = "/icons/arrow_left.gif";
 
+	/** icon path for the delete button */
+	protected static final String DELETE_ICON = "/icons/delete.gif";
+
 	/** icon path for the create drawer button */
 	protected static final String CREATE_DRAWERS_ICON = "/icons/new_drawer.gif";
 
@@ -170,6 +174,9 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 
 	/** label for the standard tools */
 	protected static final String UML_TOOLS_LABEL = "UML tools";
+
+	/** icon path for the edit drawer button */
+	protected static final String EDIT_ICON = "/icons/obj16/file.gif";
 
 	/** instance of the filter used to show/hide drawers */
 	protected final ViewerFilter drawerFilter = new DrawerFilter();
@@ -218,6 +225,11 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 
 	/** class in charge of the aspect tool information composite */
 	protected AspectActionsInformationComposite aspectActionComposite = new AspectActionsInformationComposite();
+
+	protected ToolBar toolbar;
+
+	/** validator key for toolbar items */
+	protected final static String VALIDATOR = "validator";
 
 
 	/**
@@ -336,7 +348,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		data = new GridData(SWT.LEFT, SWT.CENTER, true, false);
 		label.setLayoutData(data);
 
-		ToolBar toolbar = new ToolBar(paletteComposite, SWT.HORIZONTAL);
+		toolbar = new ToolBar(paletteComposite, SWT.HORIZONTAL);
 		data = new GridData(SWT.RIGHT, SWT.FILL, false, false);
 		toolbar.setLayoutData(data);
 		populatePalettePreviewToolBar(toolbar);
@@ -381,6 +393,18 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			informationComposite.setSelectedEntryProxy(selectedEntryProxy);
 			aspectActionComposite.setSelectedEntryProxy(selectedEntryProxy);
 		}
+
+		// update toolbar
+		if(toolbar != null && !toolbar.isDisposed()) {
+			for(int i = 0; i < toolbar.getItemCount(); i++) {
+				ToolItem item = toolbar.getItem(i);
+				Object validator = item.getData(VALIDATOR);
+				if(validator instanceof ToolBarItemValidator) {
+					item.setEnabled(((ToolBarItemValidator)validator).isEnable());
+				}
+			}
+		}
+
 	}
 
 	/**
@@ -667,11 +691,79 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 
 	/**
 	 * populates the preview palette toolbar
+	 * 
+	 * @param toolbar
+	 *        the toolbar to populate
 	 */
 	protected void populatePalettePreviewToolBar(ToolBar toolbar) {
-		createToolBarItem(toolbar, CREATE_DRAWERS_ICON, Messages.Local_Palette_Create_Drawer_Tooltip, createNewDrawerListener());
-		createToolBarItem(toolbar, CREATE_SEPARATOR_ICON, Messages.Local_Palette_Create_Separator_Tooltip, createNewSeparatorListener());
-		createToolBarItem(toolbar, CREATE_STACK_ICON, Messages.Local_Palette_Create_Stack_Tooltip, createNewStackListener());
+		PaletteEntryProxySelectedValidator validator = new PaletteEntryProxySelectedValidator();
+		createToolBarItem(toolbar, DELETE_ICON, Messages.PapyrusPaletteCustomizerDialog_RemoveButtonTooltip, createRemoveElementListener(), validator);
+		createToolBarItem(toolbar, EDIT_ICON, Messages.PapyrusPaletteCustomizerDialog_EditButtonTooltip, createEditElementListener(), new EditElementToolBarItemValidator());
+		createToolBarItem(toolbar, CREATE_DRAWERS_ICON, Messages.Local_Palette_Create_Drawer_Tooltip, createNewDrawerListener(), null);
+		createToolBarItem(toolbar, CREATE_SEPARATOR_ICON, Messages.Local_Palette_Create_Separator_Tooltip, createNewSeparatorListener(), validator);
+		createToolBarItem(toolbar, CREATE_STACK_ICON, Messages.Local_Palette_Create_Stack_Tooltip, createNewStackListener(), validator);
+	}
+
+	/**
+	 * Edits the current selected elements. This works for drawers, should work on more elements
+	 * 
+	 * @return the listener for the edit button
+	 */
+	protected Listener createEditElementListener() {
+		return new Listener() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void handleEvent(Event event) {
+				IStructuredSelection selection = (IStructuredSelection)paletteTreeViewer.getSelection();
+				if(selection == null || selection.size() < 1) {
+					return;
+				}
+
+				Object selected = selection.getFirstElement();
+				if(selected instanceof PaletteLocalDrawerProxy) {
+					UpdateLocalDrawerWizard wizard = new UpdateLocalDrawerWizard(((PaletteLocalDrawerProxy)selected).getParent(), (PaletteLocalDrawerProxy)selected);
+					WizardDialog dialog = new WizardDialog(getShell(), wizard);
+					dialog.open();
+				}
+
+				paletteTreeViewer.refresh();
+			}
+		};
+	}
+
+	/**
+	 * Creates the listener for the remove item(s) button
+	 * 
+	 * @return the listener for the remove button
+	 */
+	protected Listener createRemoveElementListener() {
+		return new Listener() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void handleEvent(Event event) {
+				IStructuredSelection selection = (IStructuredSelection)paletteTreeViewer.getSelection();
+				if(selection == null || selection.size() < 1) {
+					return;
+				}
+
+				Iterator<Object> it = selection.iterator();
+				while(it.hasNext()) {
+					Object o = it.next();
+					if(o instanceof PaletteEntryProxy) {
+						PaletteEntryProxy proxyToDelete = (PaletteEntryProxy)o;
+						// create a new entry in the document
+						// get container of the proxy to be deleted
+						PaletteContainerProxy parentProxy = proxyToDelete.getParent();
+						parentProxy.removeChild(proxyToDelete);
+					}
+				}
+				paletteTreeViewer.refresh();
+			}
+		};
 	}
 
 	/**
@@ -802,11 +894,12 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 * @param listener
 	 *        listener for tool bar item
 	 */
-	protected void createToolBarItem(ToolBar toolbar, String itemIcon, String tooltip, Listener listener) {
+	protected void createToolBarItem(ToolBar toolbar, String itemIcon, String tooltip, Listener listener, ToolBarItemValidator validator) {
 		ToolItem item = new ToolItem(toolbar, SWT.BORDER);
 		item.setImage(Activator.getPluginIconImage(Activator.ID, itemIcon));
 		item.setToolTipText(tooltip);
 		item.addListener(SWT.Selection, listener);
+		item.setData(VALIDATOR, validator);
 	}
 
 	/**
@@ -2225,5 +2318,69 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 */
 	public Set<String> getRequiredProfiles() {
 		return requiredProfiles;
+	}
+
+	/**
+	 * Item validator
+	 */
+	protected abstract class ToolBarItemValidator {
+
+		/**
+		 * Checks if the button should be enable or not
+		 * 
+		 * @return <code>true</code> if the button should be enable
+		 */
+		public abstract boolean isEnable();
+	}
+
+	/**
+	 * validator for the edit element tool item. It does not remove
+	 */
+	protected class EditElementToolBarItemValidator extends ToolBarItemValidator {
+
+		/**
+		 * @{inheritDoc
+		 */
+		@Override
+		public boolean isEnable() {
+			// retrieve selection
+			if(paletteTreeViewer != null && !paletteTreeViewer.getControl().isDisposed()) {
+				// retrieve selection. first element should be a drawer
+				IStructuredSelection selection = (IStructuredSelection)paletteTreeViewer.getSelection();
+				if(selection == null) {
+					return false;
+				} else {
+					// look for first element. should be an instance of drawer
+					return (selection.getFirstElement() instanceof PaletteLocalDrawerProxy);
+				}
+			}
+			return false;
+		}
+	}
+
+	/**
+	 * validator for the create separator or stack tool item. Only valid when selection is a {@link PaletteEntryProxy} or a
+	 * {@link PaletteLocalDrawerProxy}
+	 */
+	protected class PaletteEntryProxySelectedValidator extends ToolBarItemValidator {
+
+		/**
+		 * @{inheritDoc
+		 */
+		@Override
+		public boolean isEnable() {
+			// retrieve selection
+			if(paletteTreeViewer != null && !paletteTreeViewer.getControl().isDisposed()) {
+				// retrieve selection. first element should be a drawer
+				IStructuredSelection selection = (IStructuredSelection)paletteTreeViewer.getSelection();
+				if(selection == null) {
+					return false;
+				} else {
+					Object object = selection.getFirstElement();
+					return (object instanceof PaletteEntryProxy);
+				}
+			}
+			return false;
+		}
 	}
 }

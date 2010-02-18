@@ -260,4 +260,7 @@ public class Messages extends NLS {
 
 	/** label for the composite displaying the lis of aspect actions */
 	public static String Aspect_Action_Information_List_Label;
+
+	/** label for the tooltip of the edit drawer icon */
+	public static String PapyrusPaletteCustomizerDialog_EditButtonTooltip;
 }
