@@ -166,11 +166,11 @@ public class PaletteEntryProxyInformationComposite {
 		switch(type) {
 		case STACK:
 		case SEPARATOR:
+		case DRAWER:
 			descriptionText.setText("");
 			descriptionText.setEnabled(false);
 			break;
 		case TOOL:
-		case DRAWER:
 		case ASPECT_TOOL:
 			// the fields describing information about entry should be updated
 			String name = selectedEntryProxy.getDescription();
@@ -193,6 +193,10 @@ public class PaletteEntryProxyInformationComposite {
 			iconText.setEnabled(false);
 			break;
 		case DRAWER:
+			String drawerIcon = selectedEntryProxy.getImagePath();
+			iconText.setText((drawerIcon != null) ? drawerIcon : "");
+			iconText.setEnabled(false);
+			break;
 		case ASPECT_TOOL:
 			String icon = selectedEntryProxy.getImagePath();
 			iconText.setText((icon != null) ? icon : "");
