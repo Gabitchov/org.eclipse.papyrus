@@ -350,7 +350,7 @@ public class PapyrusPaletteCustomizerDialog extends PaletteCustomizerDialogEx im
 				}
 
 				IStructuredSelection selection = (IStructuredSelection)availablePalettesTableViewer.getSelection();
-				if(selection == null || !(selection.getFirstElement() instanceof PapyrusPaletteService.LocalProviderDescriptor)) {
+				if(selection != null && (selection.getFirstElement() instanceof PapyrusPaletteService.LocalProviderDescriptor)) {
 					editLocalPalette((PapyrusPaletteService.LocalProviderDescriptor)selection.getFirstElement());
 				}
 			}
