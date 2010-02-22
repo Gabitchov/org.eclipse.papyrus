@@ -71,6 +71,7 @@ import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.SysmlTextSelectionEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.parametric.figures.CenteredWrappedLabel;
+import org.eclipse.papyrus.sysml.diagram.parametric.parsers.PropertyLabelParser;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlParserProvider;
@@ -256,12 +257,17 @@ public class PropertyNameEditPart extends CompartmentEditPart implements ITextAw
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected String getLabelText() {
 		String text = null;
 		EObject parserElement = getParserElement();
-		if (parserElement != null && getParser() != null) {
+		if (parserElement != null && getParser() != null && getDiagramView() != null) {
+			EObject element = getDiagramView().getElement();
+			if (getParser() instanceof PropertyLabelParser) {
+				// set the container to compute the property name depth
+				((PropertyLabelParser) getParser()).setBlock(element);
+			}
 			text = getParser().getPrintString(new EObjectAdapter(parserElement), getParserOptions().intValue());
 		}
 		if (text == null || text.length() == 0) {

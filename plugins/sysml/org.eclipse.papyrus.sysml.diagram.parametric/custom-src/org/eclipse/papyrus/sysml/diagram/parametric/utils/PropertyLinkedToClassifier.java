@@ -104,7 +104,7 @@ public class PropertyLinkedToClassifier {
 					Type attributeType = attribute.getType();
 					// stop loop
 					if (route.getProperties().contains(attribute)) {
-						// TODO Launch a warning ? an error ?
+						// Launch a warning ? an error ?
 						break;
 					}
 					if (attributeType instanceof Classifier) {

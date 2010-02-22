@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.parametric.parsers;
 
 import java.text.FieldPosition;
@@ -24,15 +24,19 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
+import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.sysml.diagram.parametric.utils.PropertyLinkedToClassifierNode;
 import org.eclipse.papyrus.umlutils.ValueSpecificationUtil;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
 
 /**
- * A specific parser for displaying an property. This parser refreshes the text
- * displayed for the Property.
+ * A specific parser for displaying an property. This parser refreshes the text displayed for the
+ * Property.
  */
 public class PropertyLabelParser extends MessageFormatParser implements ISemanticParser {
 
@@ -50,6 +54,12 @@ public class PropertyLabelParser extends MessageFormatParser implements ISemanti
 
 	/** The String format for displaying a ConstraintProperty with attribute */
 	private static final String MODIFIER_PARAMETER_FORMAT = "%s{%s}";
+
+	/** Class to compute property name depth */
+	PropertyLinkedToClassifierNode propertyLinkedToClassifier;
+
+	/** The classifier, container view of the property */
+	private Classifier classifier;
 
 	public PropertyLabelParser(EAttribute[] features, EAttribute[] editableFeatures) {
 		super(features, editableFeatures);
@@ -93,10 +103,20 @@ public class PropertyLabelParser extends MessageFormatParser implements ISemanti
 			property = (Property) adapter;
 			String name = property.isDerived() ? "/ " + property.getName() : property.getName();
 			result = String.format(UNTYPED_PARAMETER_FORMAT, name);
+			// Perform property depth to set the name
+			for (Object obj : DiagramEditPartsUtil.getEObjectViews(property)) {
+				if (obj instanceof Node && classifier != null) {
+					this.propertyLinkedToClassifier = new PropertyLinkedToClassifierNode(classifier, property,
+							(Node) obj);
+					propertyLinkedToClassifier.refresh();
+					name = propertyLinkedToClassifier.getName();
+					result = String.format(UNTYPED_PARAMETER_FORMAT, name);
+				}
+			}
 			// manage type
 			if (property.getType() != null) {
 				String type = property.getType().getName();
-				result = String.format(TYPED_PARAMETER_FORMAT, name, type);				
+				result = String.format(TYPED_PARAMETER_FORMAT, name, type);
 			}
 			// manage multiplicity
 			if (property.getLower() != 1 || property.getUpper() != 1) {
@@ -109,9 +129,10 @@ public class PropertyLabelParser extends MessageFormatParser implements ISemanti
 				ValueSpecification valueSpecification = property.getDefaultValue();
 				String specificationValue = ValueSpecificationUtil.getSpecificationValue(valueSpecification);
 				if (specificationValue != null && specificationValue.length() > 0) {
-					result = String.format(DEFAULT_VALUE_PARAMETER_FORMAT, result, ValueSpecificationUtil.getSpecificationValue(valueSpecification));				
+					result = String.format(DEFAULT_VALUE_PARAMETER_FORMAT, result, ValueSpecificationUtil
+							.getSpecificationValue(valueSpecification));
 				}
-			}			
+			}
 			// manage modifier
 			StringBuffer sb = new StringBuffer();
 			if (property.isReadOnly()) {
@@ -163,7 +184,7 @@ public class PropertyLabelParser extends MessageFormatParser implements ISemanti
 				semanticElementsBeingParsed.add(property.getLowerValue());
 			}
 			if (property.getUpperValue() != null) {
-				semanticElementsBeingParsed.add(property.getUpperValue());					
+				semanticElementsBeingParsed.add(property.getUpperValue());
 			}
 			if (property.getDefaultValue() != null) {
 				semanticElementsBeingParsed.add(property.getDefaultValue());
@@ -181,7 +202,8 @@ public class PropertyLabelParser extends MessageFormatParser implements ISemanti
 	 */
 	private boolean isValidFeature(EStructuralFeature feature) {
 		return UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature)
-				|| UMLPackage.eINSTANCE.getTypedElement_Type().equals(feature) || UMLPackage.eINSTANCE.getConnector_Type().equals(feature)
+				|| UMLPackage.eINSTANCE.getTypedElement_Type().equals(feature)
+				|| UMLPackage.eINSTANCE.getConnector_Type().equals(feature)
 				|| UMLPackage.eINSTANCE.getInstanceValue_Instance().equals(feature)
 				|| UMLPackage.eINSTANCE.getMultiplicityElement_IsOrdered().equals(feature)
 				|| UMLPackage.eINSTANCE.getMultiplicityElement_IsUnique().equals(feature)
@@ -193,7 +215,7 @@ public class PropertyLabelParser extends MessageFormatParser implements ISemanti
 				|| UMLPackage.eINSTANCE.getProperty_IsDerivedUnion().equals(feature)
 				|| UMLPackage.eINSTANCE.getProperty_RedefinedProperty().equals(feature);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -203,5 +225,16 @@ public class PropertyLabelParser extends MessageFormatParser implements ISemanti
 		return getEditorProcessor().format(getEditableValues(element), new StringBuffer(), new FieldPosition(0))
 				.toString();
 	}
-	
+
+	/**
+	 * Sets the block that is linked to the current property
+	 * 
+	 * @param element
+	 */
+	public void setBlock(EObject element) {
+		if (element instanceof Classifier) {
+			this.classifier = (Classifier) element;
+		}
+	}
+
 }
