@@ -196,6 +196,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 			int nodeVISUALID = getNodeVisualID(((IGraphicalEditPart)getHost()).getNotationView(), droppedObject);
 			int linkVISUALID = getLinkWithClassVisualID(droppedObject);
 			if(specificDrop.contains(nodeVISUALID) || specificDrop.contains(linkVISUALID)) {
+				dropRequest.setLocation(location);
 				return getSpecificDropCommand(dropRequest, (Element)droppedObject, nodeVISUALID, linkVISUALID);
 			}
 
