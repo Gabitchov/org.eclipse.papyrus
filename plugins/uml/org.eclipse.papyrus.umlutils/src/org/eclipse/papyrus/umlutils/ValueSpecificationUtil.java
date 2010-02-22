@@ -40,7 +40,7 @@ public class ValueSpecificationUtil {
 	// @unused
 	public static String getSpecificationValue(ValueSpecification specification) {
 		String value = ""; //$NON-NLS-1$
-		if (specification.eClass() != null) {
+		if (specification != null && specification.eClass() != null) {
 			switch(specification.eClass().getClassifierID()) {
 			case UMLPackage.LITERAL_STRING:
 				value = ((LiteralString)specification).getValue();

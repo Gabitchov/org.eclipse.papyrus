@@ -94,8 +94,11 @@ public class ConnectorCreateCommand extends EditElementCommand {
 		}
 		Connector newElement = UMLFactory.eINSTANCE.createConnector();
 		getContainer().getOwnedConnectors().add(newElement);
+		// Isn't it the block that owns the connector ?
+		
 		// create the connector ends
 		// TODO manage nested connector end
+		// connected property may be identified by a multi-level path of accessible properties from the block that owns the connector.
 		ConnectorEnd source = newElement.createEnd();
 		ConnectorEnd target = newElement.createEnd();
 		source.setRole(getSource());
