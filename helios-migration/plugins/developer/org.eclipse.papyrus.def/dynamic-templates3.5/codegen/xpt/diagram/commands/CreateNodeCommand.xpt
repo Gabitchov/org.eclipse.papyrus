@@ -78,7 +78,8 @@ protected org.eclipse.emf.ecore.EObject getElementToEdit() {
 	«EXPAND xpt::Common::generatedMemberComment»
 	protected org.eclipse.gmf.runtime.common.core.command.CommandResult doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor monitor, org.eclipse.core.runtime.IAdaptable info) throws org.eclipse.core.commands.ExecutionException {
 «REM» [AbstractElement] START «ENDREM»	
-«IF modelFacet.metaClass.ecoreClass.abstract.oclAsType(Boolean) <> true-»
+	
+«IF modelFacet.metaClass.ecoreClass._abstract <> true-»
 «REM» [AbstractElement] END   «ENDREM»
 «IF modelFacet.isPhantomElement()-»
 		«EXPAND phantomElementCreation(self, 'newElement') FOR modelFacet»

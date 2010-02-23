@@ -169,11 +169,11 @@ public static int «EXPAND xpt::editor::VisualIDRegistry::getDiagramVisualIDMeth
 	if (domainElement == null) {
 		«EXPAND xpt::editor::VisualIDRegistry::unrecognizedVID-»
 	}
-«IF null != domainDiagramElement-»
+«IF null <> domainDiagramElement-»
 	«EXPAND xpt::editor::VisualIDRegistry::returnVisualID-»
 «ENDIF-»
-	«IF papyrusgmfgenextension::AlternateCanvas.allInstances()->select(v:papyrusgmfgenextension::AlternateCanvas|v.diagram=self)->size()<>0»
-		«FOREACH papyrusgmfgenextension::AlternateCanvas.allInstances()->select(v:papyrusgmfgenextension::AlternateCanvas|v.diagram=self) AS referencer»
+	«IF papyrusgmfgenextension::AlternateCanvas.allInstances()->select(v:papyrusgmfgenextension::AlternateCanvas|v.diagram = self)->size()<>0»
+		«FOREACH papyrusgmfgenextension::AlternateCanvas.allInstances()->select(v:papyrusgmfgenextension::AlternateCanvas|v.diagram = self) AS referencer»
 			«EXPAND returnMutatingVisualID FOR referencer»	
 		«ENDFOREACH»
 	«ENDIF»
@@ -310,7 +310,7 @@ public static int «EXPAND getLinkWithClassVisualIDMethodName»(org.eclipse.emf.
 
 «REM» [MutatingCanvas] Modified for MutatingCanvas «ENDREM»
 «DEFINE isDiagram FOR gmfgen::GenDiagram-»
-	«IF null != domainDiagramElement-»
+	«IF null <> domainDiagramElement-»
 		«EXPAND xpt::Common::generatedMemberComment(
 			"User can change implementation of this method to handle some specific\n" +
 			"situations not covered by default logic.\n"
@@ -319,8 +319,8 @@ private static boolean «EXPAND xpt::editor::VisualIDRegistry::isDiagramMethodNa
 	return true;
 }
 	«REM»[MutatingCanvas]«ENDREM»
-	«IF papyrusgmfgenextension::AlternateCanvas.allInstances()->select(v:papyrusgmfgenextension::AlternateCanvas|v.diagram=self)->size()<>0»
-		«FOREACH papyrusgmfgenextension::AlternateCanvas.allInstances()->select(v:papyrusgmfgenextension::AlternateCanvas|v.diagram=self) AS referencer»
+	«IF papyrusgmfgenextension::AlternateCanvas.allInstances()->select(v:papyrusgmfgenextension::AlternateCanvas|v.diagram = self)->size()<>0»
+		«FOREACH papyrusgmfgenextension::AlternateCanvas.allInstances()->select(v:papyrusgmfgenextension::AlternateCanvas|v.diagram = self) AS referencer»
 			private static boolean «EXPAND xpt::editor::VisualIDRegistry::isDiagramMethodName»(«getQualifiedInterfaceName(referencer.domainDiagramElement)» element) {
 				return true;
 			}
