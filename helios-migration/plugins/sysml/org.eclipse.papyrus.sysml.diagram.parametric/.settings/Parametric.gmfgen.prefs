@@ -1,0 +1,8 @@
+#Wed Dec 09 18:32:09 CET 2009
+dynamic_figure_templates=platform\:/resource/org.eclipse.papyrus.def/dynamic-templates3.5/codegen
+eclipse.preferences.version=1
+generate_rcp=false
+ignore_gmfgen_validation=true
+ignore_mapmodel_validation=true
+use_map_mode=true
+use_runtime_figures=true

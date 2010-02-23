@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xmi:id="_yx5kcLlcEd6fI7WKgVDX2A">
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_yx5kcblcEd6fI7WKgVDX2A" name="boolean"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_yx5kcrlcEd6fI7WKgVDX2A" name="byte"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_yx5kc7lcEd6fI7WKgVDX2A" name="char"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_yx5kdLlcEd6fI7WKgVDX2A" name="double"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_yx5kdblcEd6fI7WKgVDX2A" name="float"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_yx5kdrlcEd6fI7WKgVDX2A" name="int"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_yx5kd7lcEd6fI7WKgVDX2A" name="long"/>
+  <packagedElement xmi:type="uml:PrimitiveType" xmi:id="_yx5keLlcEd6fI7WKgVDX2A" name="short"/>
+  <packagedElement xmi:type="uml:Package" xmi:id="_yx5keblcEd6fI7WKgVDX2A" name="org">
+    <packagedElement xmi:type="uml:Package" xmi:id="_yx5kerlcEd6fI7WKgVDX2A" name="eclipse">
+      <packagedElement xmi:type="uml:Package" xmi:id="_yx5ke7lcEd6fI7WKgVDX2A" name="papyrus">
+        <packagedElement xmi:type="uml:Package" xmi:id="_yx5kfLlcEd6fI7WKgVDX2A" name="core">
+          <packagedElement xmi:type="uml:Package" xmi:id="_yx5kfblcEd6fI7WKgVDX2A" name="listenerservice">
+            <packagedElement xmi:type="uml:Interface" xmi:id="_yx5kfrlcEd6fI7WKgVDX2A" name="IPapyrusListener">
+              <ownedOperation xmi:id="_yx5kf7lcEd6fI7WKgVDX2A" name="notifyChanged" visibility="public">
+                <ownedParameter xmi:id="_yx5kgLlcEd6fI7WKgVDX2A" name="notification" type="_yyDVeLlcEd6fI7WKgVDX2A"/>
+              </ownedOperation>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_yx5kgblcEd6fI7WKgVDX2A" name="ModelListenerManager">
+              <generalization xmi:id="_yx5kgrlcEd6fI7WKgVDX2A" general="_yyD8gLlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_yx5kg7lcEd6fI7WKgVDX2A" name="listenerRegistry" visibility="private" type="_yyD8gblcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_yx5khLlcEd6fI7WKgVDX2A" name="MODELLISTENERID_EXTENSION_ID" visibility="private" type="_yyD8grlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_yx5khblcEd6fI7WKgVDX2A" name="NAME_ID" visibility="private" type="_yyD8grlcEd6fI7WKgVDX2A"/>
+              <ownedAttribute xmi:id="_yx5khrlcEd6fI7WKgVDX2A" name="REALIZATION_ID" visibility="private" type="_yyD8grlcEd6fI7WKgVDX2A"/>
+              <ownedOperation xmi:id="_yx5kh7lcEd6fI7WKgVDX2A" name="initializeListenerList" visibility="private"/>
+              <ownedOperation xmi:id="_yx5kiLlcEd6fI7WKgVDX2A" name="inializeOneRule" visibility="private">
+                <ownedParameter xmi:id="_yx5kiblcEd6fI7WKgVDX2A" name="element" type="_yyD8g7lcEd6fI7WKgVDX2A"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_yyDVcLlcEd6fI7WKgVDX2A" name="createExtension" visibility="private" isStatic="true">
+                <ownedParameter xmi:id="_yyDVcblcEd6fI7WKgVDX2A" name="element" type="_yyD8g7lcEd6fI7WKgVDX2A"/>
+                <ownedParameter xmi:id="_yyDVcrlcEd6fI7WKgVDX2A" name="classAttribute" type="_yyD8grlcEd6fI7WKgVDX2A"/>
+                <ownedParameter xmi:id="_yyDVc7lcEd6fI7WKgVDX2A" name="return" type="_yyD8hLlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_yyDVdLlcEd6fI7WKgVDX2A" name="toString" visibility="public">
+                <ownedParameter xmi:id="_yyDVdblcEd6fI7WKgVDX2A" name="return" type="_yyD8grlcEd6fI7WKgVDX2A" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_yyDVdrlcEd6fI7WKgVDX2A" name="notifyChanged" visibility="public">
+                <ownedParameter xmi:id="_yyDVd7lcEd6fI7WKgVDX2A" name="notification" type="_yyDVeLlcEd6fI7WKgVDX2A"/>
+              </ownedOperation>
+            </packagedElement>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_yyDVeLlcEd6fI7WKgVDX2A" name="Notification"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_yyD8gLlcEd6fI7WKgVDX2A" name="EContentAdapter"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_yyD8gblcEd6fI7WKgVDX2A" name="Hashtable"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_yyD8grlcEd6fI7WKgVDX2A" name="String"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_yyD8g7lcEd6fI7WKgVDX2A" name="IConfigurationElement"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_yyD8hLlcEd6fI7WKgVDX2A" name="Object"/>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>

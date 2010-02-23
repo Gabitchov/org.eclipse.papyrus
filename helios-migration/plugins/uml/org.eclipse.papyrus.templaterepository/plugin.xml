@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.wizards.templates">
+      <template
+            file="resource/ModelWithBasicTypes.uml"
+            id="org.eclipse.papyrus.templaterepository.ModelWithBasicType"
+            name="A UML model with basic primitive types">
+      </template>
+      <template
+            file="resource/ProfileWithBasicTypes.profile.uml"
+            id="org.eclipse.papyrus.templaterepository.ProfileWithBasicTypes.profile.uml"
+            name="A UML profile with basic primitive types">
+      </template>
+   </extension>
+
+</plugin>

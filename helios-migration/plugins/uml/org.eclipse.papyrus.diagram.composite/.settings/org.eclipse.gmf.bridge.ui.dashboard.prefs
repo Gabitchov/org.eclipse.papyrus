@@ -1,0 +1,8 @@
+#Wed Jun 17 16:23:34 CEST 2009
+eclipse.preferences.version=1
+gmf_dashboard/domainGenerationModel=platform\:/resource/org.eclipse.uml2.uml/model/UML.genmodel
+gmf_dashboard/domainModel=platform\:/resource/org.eclipse.uml2.uml/model/UML.ecore
+gmf_dashboard/generationModel=platform\:/resource/org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfgen
+gmf_dashboard/graphicalDefinitionModel=platform\:/resource/org.eclipse.papyrus.diagram.common/model/Composite.gmfgraph
+gmf_dashboard/mappingModel=platform\:/resource/org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfmap
+gmf_dashboard/toolingDefinitionModel=platform\:/resource/org.eclipse.papyrus.diagram.composite/model/compositediagram.gmftool

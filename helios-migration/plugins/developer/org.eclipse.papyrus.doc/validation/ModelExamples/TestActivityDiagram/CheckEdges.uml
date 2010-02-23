@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_uv0QkBJoEd-5NogAXN0hfQ" name="CheckEdges">
+  <packagedElement xmi:type="uml:Activity" xmi:id="_uv0QkRJoEd-5NogAXN0hfQ" name="Activity1">
+    <ownedBehavior xmi:type="uml:Activity" xmi:id="_DBdIUBJqEd-5NogAXN0hfQ" name="Behavior1">
+      <ownedParameter xmi:id="_KcNpsBJqEd-5NogAXN0hfQ"/>
+    </ownedBehavior>
+    <ownedOperation xmi:id="_F7kwEBJqEd-5NogAXN0hfQ" name="Operation1"/>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_-vbScBJpEd-5NogAXN0hfQ" name="OpaqueAction1">
+      <outputValue xmi:id="_QYD9EBJqEd-5NogAXN0hfQ" name="OutputPin1"/>
+      <outputValue xmi:id="_cLQeUBJqEd-5NogAXN0hfQ" name="OutputPin2 with control" isControlType="true" isControl="true"/>
+    </node>
+    <node xmi:type="uml:CallBehaviorAction" xmi:id="_DB50QBJqEd-5NogAXN0hfQ" name="CallBehaviorAction1" behavior="_DBdIUBJqEd-5NogAXN0hfQ">
+      <argument xmi:id="_KvbgoBJqEd-5NogAXN0hfQ" name="pin1"/>
+    </node>
+    <node xmi:type="uml:CallOperationAction" xmi:id="_F8UW8BJqEd-5NogAXN0hfQ" name="CallOperationAction1" operation="_F7kwEBJqEd-5NogAXN0hfQ">
+      <target xmi:id="_F8UW8RJqEd-5NogAXN0hfQ" name="target" type="_uv0QkRJoEd-5NogAXN0hfQ"/>
+    </node>
+    <node xmi:type="uml:OpaqueAction" xmi:id="_YXn0oBJqEd-5NogAXN0hfQ" name="OpaqueAction2">
+      <inputValue xmi:id="_bF9qMBJqEd-5NogAXN0hfQ" name="InputPin1"/>
+      <inputValue xmi:id="_bxesYBJqEd-5NogAXN0hfQ" name="InputPin2 with control" isControlType="true" isControl="true"/>
+    </node>
+  </packagedElement>
+</uml:Model>
