@@ -183,12 +183,16 @@ public class ContentOutline extends ContentOutlinePage implements IMenuListener,
 	@Override
 	public void setActionBars(IActionBars actionBars) {
 		super.setActionBars(actionBars);
-		getActionBarContributor().shareGlobalActions(this, actionBars);
+		if(getActionBarContributor() != null) {
+			getActionBarContributor().shareGlobalActions(this, actionBars);
+		}
 	}
 
 	private EditingDomainActionBarContributor getActionBarContributor() {
-
-		return (EditingDomainActionBarContributor)editorSite.getActionBarContributor();
+		if(editorSite.getActionBarContributor() instanceof EditingDomainActionBarContributor) {
+			return (EditingDomainActionBarContributor)editorSite.getActionBarContributor();
+		}
+		return null;
 	}
 
 	/**
