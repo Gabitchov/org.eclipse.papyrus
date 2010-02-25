@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.policies;
 
-import org.eclipse.papyrus.diagram.clazz.custom.helper.AssociationEndSourceLabelHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.AssociationEndTargetLabelHelper;
 
 public class DisplayAssociationEndTargetEditPolicy extends DisplayAssociationEndEditPolicy {

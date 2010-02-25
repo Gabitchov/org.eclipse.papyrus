@@ -15,14 +15,9 @@ package org.eclipse.papyrus.diagram.clazz.custom.figure;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Ellipse;
-import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.Polygon;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.papyrus.diagram.common.draw2d.CenterLayout;
 import org.eclipse.swt.SWT;
 
 /** Use to create a containment circle figure */

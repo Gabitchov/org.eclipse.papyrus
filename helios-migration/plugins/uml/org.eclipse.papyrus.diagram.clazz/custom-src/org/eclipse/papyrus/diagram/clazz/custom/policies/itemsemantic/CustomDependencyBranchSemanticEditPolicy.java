@@ -16,12 +16,6 @@ package org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.AbstractionCreateCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.AddedLinkCreateCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.Dependency3CreateCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.DependencyCreateCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.RealizationCreateCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.UsageCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.DependencyBranchSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 
