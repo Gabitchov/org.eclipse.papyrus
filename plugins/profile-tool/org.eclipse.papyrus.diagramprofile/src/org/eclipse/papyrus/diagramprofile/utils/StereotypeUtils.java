@@ -153,5 +153,19 @@ public class StereotypeUtils {
 			element.applyProfile(profile);
 		}
 	}
+	
+	/**
+	 * Apply stereotype to element.
+	 * 
+	 * @param element the element
+	 * @param stereotypeName the stereotype qualified name
+	 */
+	public static void applyStereotypeToElement(Element element, String stereotypeName) {
+		for (Stereotype stereotype : element.getApplicableStereotypes()) {
+			if (stereotype.getQualifiedName().equals(stereotypeName)) {
+				element.applyStereotype(stereotype);
+			}
+		}
+	}
 
 }
