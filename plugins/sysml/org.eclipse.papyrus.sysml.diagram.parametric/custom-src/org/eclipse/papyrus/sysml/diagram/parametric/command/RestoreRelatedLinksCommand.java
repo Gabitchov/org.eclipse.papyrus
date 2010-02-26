@@ -39,7 +39,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.util.CommandUtil;
-import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramUpdater;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlLinkDescriptor;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
@@ -279,7 +279,7 @@ public class RestoreRelatedLinksCommand extends AbstractTransactionalCommand {
 	 * @param domain2NotationMap
 	 */
 	protected void mapModel(View view, Map<EObject, View> domain2NotationMap) {
-		if(!ResourceEditPart.MODEL_ID.equals(SysmlVisualIDRegistry.getModelID(view))) {
+		if(!ParametricEditPart.MODEL_ID.equals(SysmlVisualIDRegistry.getModelID(view))) {
 			return;
 		}
 

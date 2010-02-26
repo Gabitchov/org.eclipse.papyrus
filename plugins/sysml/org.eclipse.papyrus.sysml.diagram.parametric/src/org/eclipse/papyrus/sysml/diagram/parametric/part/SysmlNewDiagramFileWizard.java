@@ -39,7 +39,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 
@@ -75,7 +75,7 @@ public class SysmlNewDiagramFileWizard extends Wizard {
 				StructuredSelection.EMPTY);
 		myFileCreationPage.setTitle(Messages.SysmlNewDiagramFileWizard_CreationPageTitle);
 		myFileCreationPage.setDescription(NLS.bind(Messages.SysmlNewDiagramFileWizard_CreationPageDescription,
-				ResourceEditPart.MODEL_ID));
+				ParametricEditPart.MODEL_ID));
 		IPath filePath;
 		String fileName = URI.decode(domainModelURI.trimFileExtension().lastSegment());
 		if (domainModelURI.isPlatformResource()) {
@@ -124,11 +124,11 @@ public class SysmlNewDiagramFileWizard extends Wizard {
 					throws ExecutionException {
 				int diagramVID = SysmlVisualIDRegistry.getDiagramVisualID(diagramRootElementSelectionPage
 						.getModelElement());
-				if (diagramVID != ResourceEditPart.VISUAL_ID) {
+				if (diagramVID != ParametricEditPart.VISUAL_ID) {
 					return CommandResult.newErrorCommandResult(Messages.SysmlNewDiagramFileWizard_IncorrectRootError);
 				}
 				Diagram diagram = ViewService.createDiagram(diagramRootElementSelectionPage.getModelElement(),
-						ResourceEditPart.MODEL_ID, SysmlDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+						ParametricEditPart.MODEL_ID, SysmlDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				diagramResource.getContents().add(diagram);
 				return CommandResult.newOKCommandResult();
 			}
@@ -175,8 +175,8 @@ public class SysmlNewDiagramFileWizard extends Wizard {
 				return false;
 			}
 			boolean result = ViewService.getInstance().provides(
-					new CreateDiagramViewOperation(new EObjectAdapter(selectedModelElement), ResourceEditPart.MODEL_ID,
-							SysmlDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
+					new CreateDiagramViewOperation(new EObjectAdapter(selectedModelElement),
+							ParametricEditPart.MODEL_ID, SysmlDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
 			setErrorMessage(result ? null : Messages.SysmlNewDiagramFileWizard_RootSelectionPageInvalidSelectionMessage);
 			return result;
 		}

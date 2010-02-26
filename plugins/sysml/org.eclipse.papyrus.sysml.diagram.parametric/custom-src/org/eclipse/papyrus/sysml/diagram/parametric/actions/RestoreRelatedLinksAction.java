@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramCommandStack;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.actions.AbstractAction;
 import org.eclipse.papyrus.sysml.diagram.parametric.command.RestoreRelatedLinksCommand;
-import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
 
 /**
  * Restore related links to selected element
@@ -42,7 +42,7 @@ public class RestoreRelatedLinksAction extends AbstractAction {
 	 * @return
 	 */
 	protected String getDiagramNotationID() {
-		return ResourceEditPart.MODEL_ID;
+		return ParametricEditPart.MODEL_ID;
 	}
 
 	/**

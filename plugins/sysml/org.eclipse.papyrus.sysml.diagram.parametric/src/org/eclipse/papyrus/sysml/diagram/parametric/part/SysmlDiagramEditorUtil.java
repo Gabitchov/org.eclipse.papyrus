@@ -57,7 +57,7 @@ import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.papyrus.resource.ResourceFactory;
-import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
@@ -170,7 +170,7 @@ public class SysmlDiagramEditorUtil {
 				org.eclipse.papyrus.resource.Resource model = createInitialModel();
 				attachModelToResource(model, modelResource);
 
-				Diagram diagram = ViewService.createDiagram(model, ResourceEditPart.MODEL_ID,
+				Diagram diagram = ViewService.createDiagram(model, ParametricEditPart.MODEL_ID,
 						SysmlDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				if (diagram != null) {
 					diagramResource.getContents().add(diagram);
@@ -351,7 +351,7 @@ public class SysmlDiagramEditorUtil {
 						View view = (View) element;
 						if (view.getDiagram() == scope.getDiagram()) {
 							element2ViewMap.put(element, element); // take only those that part of
-																	// our diagram
+							// our diagram
 						}
 					}
 				}

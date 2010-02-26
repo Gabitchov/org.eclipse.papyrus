@@ -339,7 +339,7 @@
       <?gmfgen generated="true"?>
       <modelingAssistantProvider class="org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlModelingAssistantProvider">
          <Priority name="Lowest"/>
-         <object class="org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart" id="Resource_1000"/>
+         <object class="org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart" id="Resource_1000"/>
          <object class="org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart" id="ConstraintProperty_2003"/>
          <object class="org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyEditPart" id="Property_2005"/>
          <context elements="Resource_1000,ConstraintProperty_2003,Property_2005"/>
@@ -568,7 +568,7 @@
                <and>
                   <with variable="activePartId"><equals value="org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorID"/></with>
                   <with variable="selection"><iterate ifEmpty="false"> 
-                     <instanceof value="org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart"/>
+                     <instanceof value="org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart"/>
                   </iterate></with>
                </and>
             </visibleWhen>
@@ -672,6 +672,56 @@
       </simpleeditor>
    </DirectEditor>
 </extension>
+
+<extension point="org.eclipse.emf.validation.constraintProviders">
+      <?gmfgen generated="true"?>
+            <category id="org.eclipse.uml2.uml.util.UMLValidator.validate" mandatory="false" name="validateSysMLModel">
+         <![CDATA[Validate the SysML model]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateConnector" mandatory="false" name="validateConnector">
+         <![CDATA[validate a connector checking that its children are consistent]]>
+      </category>
+      <constraintProvider cache="true">
+         <package namespaceUri="http://www.eclipse.org/uml2/3.0.0/UML"/>
+               <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate">
+                  </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateConnector">
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateConnector_validateConnectorEnd"
+            lang="Java" class="org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlValidationProvider$Adapter1"
+            name="validateConnectorEnd"
+            mode="Live"
+            severity="WARNING" statusCode="200">
+            
+            <description><![CDATA[The NestedConnectorEnd stereotype of UML ConnectorEnd extends a UML ConnectorEnd so that the connected property]]></description>
+            <message><![CDATA[NestedConnectorEnd is used for connected property identified by a multi-level path of accessible properties from the block that owns the connector.]]></message>
+            <target class="uml.Connector"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateConnector_validateProperty"
+            lang="Java" class="org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlValidationProvider$Adapter2"
+            name="validateProperty"
+            mode="Live"
+            severity="WARNING" statusCode="200">
+            
+            <description><![CDATA[When you move a property, check that its incoming or outgoings connector get consistent connectorEnd]]></description>
+            <message><![CDATA[NestedConnectorEnd is used for connected property identified by a multi-level path of accessible properties from the block that owns the connector.]]></message>
+            <target class="uml.Property"/>
+         </constraint>
+                  </constraints>
+      </constraintProvider>
+   </extension>
+
+<extension point="org.eclipse.emf.validation.constraintBindings">
+      <?gmfgen generated="true"?>
+      <clientContext default="false" id="org.eclipse.papyrus.sysml.diagram.parametricDefaultCtx">
+         <selector class="org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlValidationProvider$DefaultCtx"/>
+      </clientContext>
+      <binding context="org.eclipse.papyrus.sysml.diagram.parametricDefaultCtx">
+                  <constraint ref="org.eclipse.papyrus.sysml.diagram.parametric.org.eclipse.uml2.uml.util.UMLValidator.validateConnector_validateConnectorEnd"/>
+                  <constraint ref="org.eclipse.papyrus.sysml.diagram.parametric.org.eclipse.uml2.uml.util.UMLValidator.validateConnector_validateProperty"/>
+               </binding>
+
+   </extension>
+
 
    <!-- optionally, specify keybindings -->
 </plugin>

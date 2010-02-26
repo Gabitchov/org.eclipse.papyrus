@@ -30,9 +30,9 @@ import org.eclipse.papyrus.resource.util.ResourceUtil;
 import org.eclipse.papyrus.sysml.constraints.ConstraintProperty;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyEditPart;
-import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.ConnectableElement;
@@ -54,7 +54,7 @@ public class SysmlDiagramUpdater {
 		switch (SysmlVisualIDRegistry.getVisualID(view)) {
 		case ConstraintPropertyEditPart.VISUAL_ID:
 			return getConstraintProperty_2003SemanticChildren(view);
-		case ResourceEditPart.VISUAL_ID:
+		case ParametricEditPart.VISUAL_ID:
 			return getResource_1000SemanticChildren(view);
 		}
 		return Collections.EMPTY_LIST;
@@ -136,7 +136,7 @@ public class SysmlDiagramUpdater {
 	 */
 	public static List getContainedLinks(View view) {
 		switch (SysmlVisualIDRegistry.getVisualID(view)) {
-		case ResourceEditPart.VISUAL_ID:
+		case ParametricEditPart.VISUAL_ID:
 			return getResource_1000ContainedLinks(view);
 		case ConstraintPropertyEditPart.VISUAL_ID:
 			return getConstraintProperty_2003ContainedLinks(view);

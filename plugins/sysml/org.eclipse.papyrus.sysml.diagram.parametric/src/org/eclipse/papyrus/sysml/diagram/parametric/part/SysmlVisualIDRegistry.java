@@ -27,11 +27,11 @@ import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorNameEdit
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintLabelEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyNameEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyName2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyNameEditPart;
-import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -52,8 +52,8 @@ public class SysmlVisualIDRegistry {
 	 */
 	public static int getVisualID(View view) {
 		if (view instanceof Diagram) {
-			if (ResourceEditPart.MODEL_ID.equals(view.getType())) {
-				return ResourceEditPart.VISUAL_ID;
+			if (ParametricEditPart.MODEL_ID.equals(view.getType())) {
+				return ParametricEditPart.VISUAL_ID;
 			} else {
 				return -1;
 			}
@@ -107,7 +107,7 @@ public class SysmlVisualIDRegistry {
 		}
 		// test if it is a class for the parametric diagram
 		if (UMLPackage.eINSTANCE.getClass_().equals(domainElement.eClass())) {
-			return ResourceEditPart.VISUAL_ID;
+			return ParametricEditPart.VISUAL_ID;
 		}
 		return -1;
 	}
@@ -121,16 +121,16 @@ public class SysmlVisualIDRegistry {
 		}
 		String containerModelID = org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry
 				.getModelID(containerView);
-		if (!ResourceEditPart.MODEL_ID.equals(containerModelID)) {
+		if (!ParametricEditPart.MODEL_ID.equals(containerModelID)) {
 			return -1;
 		}
 		int containerVisualID;
-		if (ResourceEditPart.MODEL_ID.equals(containerModelID)) {
+		if (ParametricEditPart.MODEL_ID.equals(containerModelID)) {
 			containerVisualID = org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry
 					.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
-				containerVisualID = ResourceEditPart.VISUAL_ID;
+				containerVisualID = ParametricEditPart.VISUAL_ID;
 			} else {
 				return -1;
 			}
@@ -143,7 +143,7 @@ public class SysmlVisualIDRegistry {
 				return Property2EditPart.VISUAL_ID;
 			}
 			break;
-		case ResourceEditPart.VISUAL_ID:
+		case ParametricEditPart.VISUAL_ID:
 			if (ConstraintsPackage.eINSTANCE.getConstraintProperty().isSuperTypeOf(domainElement.eClass())
 
 			) {
@@ -165,16 +165,16 @@ public class SysmlVisualIDRegistry {
 	public static boolean canCreateNode(View containerView, int nodeVisualID) {
 		String containerModelID = org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry
 				.getModelID(containerView);
-		if (!ResourceEditPart.MODEL_ID.equals(containerModelID)) {
+		if (!ParametricEditPart.MODEL_ID.equals(containerModelID)) {
 			return false;
 		}
 		int containerVisualID;
-		if (ResourceEditPart.MODEL_ID.equals(containerModelID)) {
+		if (ParametricEditPart.MODEL_ID.equals(containerModelID)) {
 			containerVisualID = org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry
 					.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
-				containerVisualID = ResourceEditPart.VISUAL_ID;
+				containerVisualID = ParametricEditPart.VISUAL_ID;
 			} else {
 				return false;
 			}
@@ -201,7 +201,7 @@ public class SysmlVisualIDRegistry {
 				return true;
 			}
 			break;
-		case ResourceEditPart.VISUAL_ID:
+		case ParametricEditPart.VISUAL_ID:
 			if (ConstraintPropertyEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}

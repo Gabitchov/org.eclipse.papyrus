@@ -24,6 +24,8 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.SysmlBaseItemSemanticEditPolicy;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
@@ -93,12 +95,10 @@ public class ConnectorCreateCommand extends EditElementCommand {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		Connector newElement = UMLFactory.eINSTANCE.createConnector();
-		getContainer().getOwnedConnectors().add(newElement);
-		// Isn't it the block that owns the connector ?
-		
+		if (getContainer() != null) {
+			getContainer().getOwnedConnectors().add(newElement);
+		}
 		// create the connector ends
-		// TODO manage nested connector end
-		// connected property may be identified by a multi-level path of accessible properties from the block that owns the connector.
 		ConnectorEnd source = newElement.createEnd();
 		ConnectorEnd target = newElement.createEnd();
 		source.setRole(getSource());
@@ -158,15 +158,16 @@ public class ConnectorCreateCommand extends EditElementCommand {
 	 * Default approach is to traverse ancestors of the source to find instance of container. Modify
 	 * with appropriate logic.
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	private static StructuredClassifier deduceContainer(EObject source, EObject target) {
-		// Find container element for the new link.
-		// Climb up by containment hierarchy starting from the source
-		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null; element = element.eContainer()) {
-			if (element instanceof StructuredClassifier) {
-				return (StructuredClassifier) element;
+		// get the structured classifier, graphical container of the
+		for (Object obj : DiagramEditPartsUtil.getEObjectViews(source)) {
+			if (obj instanceof Node && ((Node) obj).getDiagram() != null) {
+				EObject element = ((Node) obj).getDiagram().getElement();
+				if (element instanceof StructuredClassifier) {
+					return (StructuredClassifier) element;
+				}
 			}
 		}
 		return null;

@@ -31,9 +31,9 @@ import org.eclipse.papyrus.resource.ResourcePackage;
 import org.eclipse.papyrus.sysml.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyEditPart;
-import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorPlugin;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -236,7 +236,7 @@ public class SysmlElementTypes extends ElementInitializers {
 	 */
 	public static IElementType getElementType(int visualID) {
 		switch (visualID) {
-		case ResourceEditPart.VISUAL_ID:
+		case ParametricEditPart.VISUAL_ID:
 			return Resource_1000;
 		case ConstraintPropertyEditPart.VISUAL_ID:
 			return ConstraintProperty_2003;

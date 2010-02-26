@@ -57,6 +57,21 @@ public class PropertyLinkedToClassifier {
 	public boolean isLinkedToClassifier() {
 		return !routes.isEmpty();
 	}
+	
+	/**
+	 * Checks if the property is linked to classifier with a multi-level path of accessible property from the classifier
+	 * 
+	 * @return true, if is linked to classifier with a multi-level path
+	 */
+	public boolean isLinkedWithMultiLevelPath() {
+		boolean result = false;
+		if (!routes.isEmpty()) {
+			for (Route r : routes) {
+				result |= r.getRouteDepth() > 1;
+			}
+		}
+		return result;
+	}
 
 	/**
 	 * Gets the available routes.

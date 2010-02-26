@@ -32,9 +32,9 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyEditPart;
-import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.Messages;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.ui.IMemento;
@@ -141,7 +141,7 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 	 * 
 	 * @generated
 	 **/
-	private Object[] getViewChildrenForResourceEditPart(View view, Object parentElement) {
+	private Object[] getViewChildrenForParametricEditPart(View view, Object parentElement) {
 		Collection result = new ArrayList();
 		SysmlNavigatorGroup links = new SysmlNavigatorGroup(Messages.NavigatorGroupName_Resource_1000_links,
 				"icons/linksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
@@ -325,7 +325,7 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 			URI fileURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
 			Resource resource = myEditingDomain.getResourceSet().getResource(fileURI, true);
 			Collection result = new ArrayList();
-			result.addAll(createNavigatorItems(selectViewsByType(resource.getContents(), ResourceEditPart.MODEL_ID),
+			result.addAll(createNavigatorItems(selectViewsByType(resource.getContents(), ParametricEditPart.MODEL_ID),
 					file, false));
 			return result.toArray();
 		}
@@ -352,10 +352,10 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 	private Object[] getViewChildren(View view, Object parentElement) {
 		switch (SysmlVisualIDRegistry.getVisualID(view)) {
 
-		case ResourceEditPart.VISUAL_ID: {
+		case ParametricEditPart.VISUAL_ID: {
 
 			// modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForResourceEditPart(view, parentElement);
+			return getViewChildrenForParametricEditPart(view, parentElement);
 
 		}
 
@@ -487,7 +487,7 @@ public class SysmlNavigatorContentProvider implements ICommonContentProvider {
 	 * @generated
 	 */
 	private boolean isOwnView(View view) {
-		return ResourceEditPart.MODEL_ID.equals(SysmlVisualIDRegistry.getModelID(view));
+		return ParametricEditPart.MODEL_ID.equals(SysmlVisualIDRegistry.getModelID(view));
 	}
 
 	/**

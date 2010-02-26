@@ -9,11 +9,58 @@
       modelID="Parametric"
       dynamicTemplates="true"
       templateDirectory="/org.eclipse.papyrus.def/dynamic-templates3.5/codegen">
+    <audits>
+      <categories
+          id="org.eclipse.uml2.uml.util.UMLValidator.validate"
+          name="validateSysMLModel"
+          description="Validate the SysML model"
+          path="/0/@audits/@categories.0"/>
+      <categories
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateConnector"
+          name="validateConnector"
+          description="validate a connector checking that its children are consistent"
+          path="/0/@audits/@categories.0 /0/@audits/@categories.1"
+          audits="/0/@audits/@rules.0 /0/@audits/@rules.1"/>
+      <rules
+          name="validateConnectorEnd"
+          description="The NestedConnectorEnd stereotype of UML ConnectorEnd extends a UML ConnectorEnd so that the connected property"
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateConnector_validateConnectorEnd"
+          rule="/0/@expressionProviders/@providers.0/@expressions.0"
+          message="NestedConnectorEnd is used for connected property identified by a multi-level path of accessible properties from the block that owns the connector."
+          severity="WARNING"
+          useInLiveMode="true"
+          category="/0/@audits/@categories.1">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Connector"/>
+        </target>
+      </rules>
+      <rules
+          name="validateProperty"
+          description="When you move a property, check that its incoming or outgoings connector get consistent connectorEnd"
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateConnector_validateProperty"
+          rule="/0/@expressionProviders/@providers.0/@expressions.1"
+          message="NestedConnectorEnd is used for connected property identified by a multi-level path of accessible properties from the block that owns the connector."
+          severity="WARNING"
+          useInLiveMode="true"
+          category="/0/@audits/@categories.1">
+        <target
+            xsi:type="gmfgen:GenDomainElementTarget"
+            contextSelector="/0/@audits/@clientContexts.0">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Property"/>
+        </target>
+      </rules>
+      <clientContexts
+          ruleTargets="/0/@audits/@rules.0/@target /0/@audits/@rules.1/@target"/>
+    </audits>
     <diagram
         visualID="1000"
-        editPartClassName="ResourceEditPart"
-        itemSemanticEditPolicyClassName="ResourceItemSemanticEditPolicy"
-        canonicalEditPolicyClassName="ResourceCanonicalEditPolicy"
+        editPartClassName="ParametricEditPart"
+        itemSemanticEditPolicyClassName="ParametricItemSemanticEditPolicy"
+        canonicalEditPolicyClassName="ParametricCanonicalEditPolicy"
         iconProviderPriority="Low"
         validationProviderPriority="Low">
       <diagramRunTimeClass
@@ -412,6 +459,18 @@
     </propertySheet>
     <domainGenModel
         href="../../org.eclipse.papyrus.sysml/model/sysml.genmodel#/"/>
+    <expressionProviders>
+      <providers
+          xsi:type="gmfgen:GenJavaExpressionProvider"
+          injectExpressionBody="true">
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="return ModelValidationHelper.validateConnectorEnd(context, ctx);"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="return ModelValidationHelper.validateProperty(context, ctx);"/>
+      </providers>
+    </expressionProviders>
     <labelParsers
         extensibleViaService="true">
       <implementations

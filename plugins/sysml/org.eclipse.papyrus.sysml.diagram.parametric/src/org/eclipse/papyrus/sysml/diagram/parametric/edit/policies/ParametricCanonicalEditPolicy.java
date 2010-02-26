@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2010 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -40,9 +40,9 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.resource.ResourcePackage;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyEditPart;
-import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramUpdater;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlLinkDescriptor;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlNodeDescriptor;
@@ -52,7 +52,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class ResourceCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
+public class ParametricCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 
 	/**
 	 * @generated
@@ -206,12 +206,12 @@ public class ResourceCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 	 * @generated
 	 */
 	private Collection collectAllLinks(View view, Map domain2NotationMap) {
-		if (!ResourceEditPart.MODEL_ID.equals(SysmlVisualIDRegistry.getModelID(view))) {
+		if (!ParametricEditPart.MODEL_ID.equals(SysmlVisualIDRegistry.getModelID(view))) {
 			return Collections.EMPTY_LIST;
 		}
 		Collection result = new LinkedList();
 		switch (SysmlVisualIDRegistry.getVisualID(view)) {
-		case ResourceEditPart.VISUAL_ID: {
+		case ParametricEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(SysmlDiagramUpdater.getResource_1000ContainedLinks(view));
 			}
@@ -309,5 +309,4 @@ public class ResourceCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 		}
 		return null;
 	}
-
 }

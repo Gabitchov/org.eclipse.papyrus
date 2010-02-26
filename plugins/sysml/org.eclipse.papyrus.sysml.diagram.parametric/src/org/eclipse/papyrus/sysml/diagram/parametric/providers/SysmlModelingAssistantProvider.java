@@ -31,9 +31,9 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyEditPart;
-import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.Messages;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
@@ -55,7 +55,7 @@ public class SysmlModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(SysmlElementTypes.Property_3002);
 			return types;
 		}
-		if (editPart instanceof ResourceEditPart) {
+		if (editPart instanceof ParametricEditPart) {
 			ArrayList types = new ArrayList(2);
 			types.add(SysmlElementTypes.ConstraintProperty_2003);
 			types.add(SysmlElementTypes.Property_2005);

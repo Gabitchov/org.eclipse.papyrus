@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2010 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -21,13 +21,13 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.diagram.common.util.MDTUtil;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.CustomDiagramDragDropEditPolicy;
-import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.ResourceItemSemanticEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.ParametricItemSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 
 /**
  * @generated
  */
-public class ResourceEditPart extends DiagramEditPart {
+public class ParametricEditPart extends DiagramEditPart {
 
 	/**
 	 * @generated
@@ -42,7 +42,7 @@ public class ResourceEditPart extends DiagramEditPart {
 	/**
 	 * @generated
 	 */
-	public ResourceEditPart(View view) {
+	public ParametricEditPart(View view) {
 		super(view);
 	}
 
@@ -51,12 +51,12 @@ public class ResourceEditPart extends DiagramEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ResourceItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ParametricItemSemanticEditPolicy());
 
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE,
 		// new
-		// org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.ResourceCanonicalEditPolicy());
+		// org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.ParametricCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);

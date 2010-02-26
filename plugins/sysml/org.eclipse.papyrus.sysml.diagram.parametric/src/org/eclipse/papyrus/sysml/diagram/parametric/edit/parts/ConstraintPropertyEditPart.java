@@ -171,13 +171,13 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof ConstraintLabelEditPart) {
+			((ConstraintLabelEditPart) childEditPart).setLabel(getPrimaryShape().getConstraintLabel());
+			return true;
+		}
 		if (childEditPart instanceof ConstraintPropertyNameEditPart) {
 			((ConstraintPropertyNameEditPart) childEditPart).setLabel(getPrimaryShape()
 					.getConstraintPropertyFigureLabel());
-			return true;
-		}
-		if (childEditPart instanceof ConstraintLabelEditPart) {
-			((ConstraintLabelEditPart) childEditPart).setLabel(getPrimaryShape().getConstraintLabel());
 			return true;
 		}
 
@@ -195,10 +195,10 @@ AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ConstraintPropertyNameEditPart) {
+		if (childEditPart instanceof ConstraintLabelEditPart) {
 			return true;
 		}
-		if (childEditPart instanceof ConstraintLabelEditPart) {
+		if (childEditPart instanceof ConstraintPropertyNameEditPart) {
 			return true;
 		}
 		if (childEditPart instanceof Property2EditPart) {

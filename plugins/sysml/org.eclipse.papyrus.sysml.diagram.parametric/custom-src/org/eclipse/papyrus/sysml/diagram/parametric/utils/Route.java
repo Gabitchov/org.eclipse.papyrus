@@ -90,4 +90,13 @@ public class Route {
 	public LinkedList<Property> getProperties() {
 		return propertyList;
 	}
+	
+	/**
+	 * Gets the route depth.
+	 * 
+	 * @return the route depth
+	 */
+	public int getRouteDepth () {
+		return propertyList.size();
+	}
 }

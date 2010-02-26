@@ -61,11 +61,11 @@ import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorNameEdit
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintLabelEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyNameEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyName2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyNameEditPart;
-import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
@@ -113,7 +113,7 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 	 * @generated
 	 */
 	protected boolean provides(CreateDiagramViewOperation op) {
-		return ResourceEditPart.MODEL_ID.equals(op.getSemanticHint())
+		return ParametricEditPart.MODEL_ID.equals(op.getSemanticHint())
 				&& SysmlVisualIDRegistry.getDiagramVisualID(getSemanticElement(op.getSemanticAdapter())) != -1;
 	}
 
@@ -144,15 +144,15 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 				String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 				if (!op.getSemanticHint().equals(elementTypeHint)) {
 					return false; // if semantic hint is specified it should be the same as in
-									// element type
+					// element type
 				}
 				if (domainElement != null
 						&& visualID != SysmlVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 					return false; // visual id for node EClass should match visual id from element
-									// type
+					// type
 				}
 			} else {
-				if (!ResourceEditPart.MODEL_ID.equals(SysmlVisualIDRegistry.getModelID(op.getContainerView()))) {
+				if (!ParametricEditPart.MODEL_ID.equals(SysmlVisualIDRegistry.getModelID(op.getContainerView()))) {
 					return false; // foreign diagram
 				}
 				switch (visualID) {
@@ -162,7 +162,7 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 					if (domainElement == null
 							|| visualID != SysmlVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 						return false; // visual id in semantic hint should match visual id for
-										// domain element
+						// domain element
 					}
 					break;
 				default:
@@ -185,7 +185,7 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 		if (elementTypeHint == null || (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
 			return false; // our hint is visual id and must be specified, and it should be the same
-							// as in element type
+			// as in element type
 		}
 		int visualID = SysmlVisualIDRegistry.getVisualID(elementTypeHint);
 		EObject domainElement = getSemanticElement(op.getSemanticAdapter());
@@ -201,7 +201,7 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 	public Diagram createDiagram(IAdaptable semanticAdapter, String diagramKind, PreferencesHint preferencesHint) {
 		Diagram diagram = NotationFactory.eINSTANCE.createDiagram();
 		diagram.getStyles().add(NotationFactory.eINSTANCE.createDiagramStyle());
-		diagram.setType(ResourceEditPart.MODEL_ID);
+		diagram.setType(ParametricEditPart.MODEL_ID);
 		diagram.setElement(getSemanticElement(semanticAdapter));
 		diagram.setMeasurementUnit(MeasurementUnit.PIXEL_LITERAL);
 		return diagram;
@@ -372,10 +372,10 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 	 * @generated
 	 */
 	private void stampShortcut(View containerView, Node target) {
-		if (!ResourceEditPart.MODEL_ID.equals(SysmlVisualIDRegistry.getModelID(containerView))) {
+		if (!ParametricEditPart.MODEL_ID.equals(SysmlVisualIDRegistry.getModelID(containerView))) {
 			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
-			shortcutAnnotation.getDetails().put("modelID", ResourceEditPart.MODEL_ID); //$NON-NLS-1$
+			shortcutAnnotation.getDetails().put("modelID", ParametricEditPart.MODEL_ID); //$NON-NLS-1$
 			target.getEAnnotations().add(shortcutAnnotation);
 		}
 	}

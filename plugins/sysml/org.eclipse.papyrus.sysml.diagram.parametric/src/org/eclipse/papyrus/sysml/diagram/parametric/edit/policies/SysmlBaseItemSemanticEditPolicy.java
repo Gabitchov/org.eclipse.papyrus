@@ -306,6 +306,11 @@ public class SysmlBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		private static final String OPPOSITE_END_VAR = "oppositeEnd"; //$NON-NLS-1$
+
+		/**
+		 * @generated
+		 */
 		public static boolean canCreateConnector_4001(StructuredClassifier container, ConnectableElement source,
 				ConnectableElement target) {
 			return canExistConnector_4001(container, source, target);

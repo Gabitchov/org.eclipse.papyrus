@@ -30,7 +30,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagramprofile.utils.StereotypeUtils;
-import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorPlugin;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
@@ -45,7 +45,7 @@ public class CreateParametricDiagramCommand extends AbstractPapyrusGmfCreateDiag
 
 	@Override
 	protected String getDiagramNotationID() {
-		return ResourceEditPart.MODEL_ID;
+		return ParametricEditPart.MODEL_ID;
 	}
 
 	@Override

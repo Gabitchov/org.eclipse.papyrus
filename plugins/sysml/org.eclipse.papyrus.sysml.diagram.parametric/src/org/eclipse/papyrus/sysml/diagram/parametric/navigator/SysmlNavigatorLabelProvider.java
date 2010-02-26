@@ -28,11 +28,11 @@ import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorEditPart
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConnectorNameEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ConstraintPropertyNameEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.Property2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyName2EditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.PropertyNameEditPart;
-import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorPlugin;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
@@ -94,7 +94,7 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 	 */
 	public Image getImage(View view) {
 		switch (SysmlVisualIDRegistry.getVisualID(view)) {
-		case ResourceEditPart.VISUAL_ID:
+		case ParametricEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Diagram?http://www.eclipse.org/papyurs/0.7.0/Resource?Resource", SysmlElementTypes.Resource_1000); //$NON-NLS-1$
 		case ConstraintPropertyEditPart.VISUAL_ID:
@@ -159,7 +159,7 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 			return getUnresolvedDomainElementProxyText(view);
 		}
 		switch (SysmlVisualIDRegistry.getVisualID(view)) {
-		case ResourceEditPart.VISUAL_ID:
+		case ParametricEditPart.VISUAL_ID:
 			return getResource_1000Text(view);
 		case ConstraintPropertyEditPart.VISUAL_ID:
 			return getConstraintProperty_2003Text(view);
@@ -287,7 +287,7 @@ public class SysmlNavigatorLabelProvider extends LabelProvider implements ICommo
 	 * @generated
 	 */
 	private boolean isOwnView(View view) {
-		return ResourceEditPart.MODEL_ID.equals(SysmlVisualIDRegistry.getModelID(view));
+		return ParametricEditPart.MODEL_ID.equals(SysmlVisualIDRegistry.getModelID(view));
 	}
 
 }

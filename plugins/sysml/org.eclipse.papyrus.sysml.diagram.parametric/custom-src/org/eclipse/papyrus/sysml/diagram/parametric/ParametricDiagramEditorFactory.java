@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.sysml.diagram.parametric;
 
 import org.eclipse.papyrus.core.adaptor.gmf.GmfEditorFactory;
-import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ResourceEditPart;
+import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
 
 public class ParametricDiagramEditorFactory extends GmfEditorFactory {
 
@@ -22,6 +22,6 @@ public class ParametricDiagramEditorFactory extends GmfEditorFactory {
 	 * Instantiates a new use case diagram editor factory.
 	 */
 	public ParametricDiagramEditorFactory() {
-		super(ParametricDiagramForMultiEditor.class, ResourceEditPart.MODEL_ID);
+		super(ParametricDiagramForMultiEditor.class, ParametricEditPart.MODEL_ID);
 	}
 }

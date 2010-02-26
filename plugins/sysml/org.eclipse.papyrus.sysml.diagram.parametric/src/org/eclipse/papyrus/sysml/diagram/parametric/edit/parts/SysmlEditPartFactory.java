@@ -42,8 +42,8 @@ public class SysmlEditPartFactory implements EditPartFactory {
 			View view = (View) model;
 			switch (SysmlVisualIDRegistry.getVisualID(view)) {
 
-			case ResourceEditPart.VISUAL_ID:
-				return new ResourceEditPart(view);
+			case ParametricEditPart.VISUAL_ID:
+				return new ParametricEditPart(view);
 
 			case ConstraintPropertyEditPart.VISUAL_ID:
 				return new ConstraintPropertyEditPart(view);

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2010 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -27,12 +27,12 @@ import org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlElementTypes;
 /**
  * @generated
  */
-public class ResourceItemSemanticEditPolicy extends SysmlBaseItemSemanticEditPolicy {
+public class ParametricItemSemanticEditPolicy extends SysmlBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public ResourceItemSemanticEditPolicy() {
+	public ParametricItemSemanticEditPolicy() {
 		super(SysmlElementTypes.Resource_1000);
 	}
 
