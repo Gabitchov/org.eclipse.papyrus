@@ -18,6 +18,7 @@ import java.util.List;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -28,6 +29,7 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
+import org.eclipse.papyrus.diagram.common.commands.PreserveAnchorsPositionCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 
 /**
@@ -55,7 +57,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 				Command changeConstraintCommand = createChangeConstraintCommand(request, child, translateToModelConstraint(constraintFor));
 				compoundCmd.add(changeConstraintCommand);
 			}
-		}
+	}
 		return compoundCmd.unwrap();
 
 	}
@@ -88,7 +90,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 			}
 
 			// Apply SizeDelta to the children
-			newBounds.x += Math.round((float)width / ((float)2 * number));
+			newBounds.x += Math.round(width / ((float)2 * number));
 
 			// Convert to relative
 			newBounds.x -= rDotLine.x;
@@ -120,8 +122,9 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 
 		if(request.getSizeDelta().width == 0 && request.getSizeDelta().height == 0) {
 			Rectangle cons = getCurrentConstraintFor(child);
-			if(cons != null) // Bug 86473 allows for unintended use of this method
+			if(cons != null) {
 				rect.setSize(cons.width, cons.height);
+			}
 		} else { // resize
 			Dimension minSize = getMinimumSizeFor(child);
 			if(rect.width < minSize.width) {
@@ -130,14 +133,16 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 			if(rect.height < minSize.height) {
 				return null;
 			}
-		}
+	}
 		rect = (Rectangle)getConstraintFor(rect);
 
 		Rectangle cons = getCurrentConstraintFor(child);
-		if(request.getSizeDelta().width == 0)
+		if(request.getSizeDelta().width == 0) {
 			rect.width = cons.width;
-		if(request.getSizeDelta().height == 0)
+		}
+		if(request.getSizeDelta().height == 0) {
 			rect.height = cons.height;
+		}
 
 		return rect;
 	}
@@ -164,7 +169,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 	 * @return The minimun size
 	 */
 	private Dimension getMinimumSizeFor(LifelineEditPart child) {
-		LifelineEditPart lifelineEditPart = (LifelineEditPart)child;
+		LifelineEditPart lifelineEditPart = child;
 		Dimension minimunSize = lifelineEditPart.getFigure().getMinimumSize();
 		for(LifelineEditPart lifelineEP : lifelineEditPart.getInnerConnectableElementList()) {
 			minimunSize.union(getMinimumSizeFor(lifelineEP));
@@ -186,6 +191,84 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 		}
 
 		return super.getAddCommand(request);
+	}
+
+
+	/**
+	 * Overrides to change the policy of connection anchors when resizing the lifeline.
+	 * When resizing the lifeline, the connection must not move.
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy#getCommand(org.eclipse.gef.Request)
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public Command getCommand(Request request) {
+		if(request instanceof ChangeBoundsRequest) {
+			ChangeBoundsRequest cbr = (ChangeBoundsRequest)request;
+
+			CompoundCommand compoundCmd = new CompoundCommand("Resize of Interaction Compartment Elements");
+
+			for(EditPart ep : (List<EditPart>)cbr.getEditParts()) {
+				if(ep instanceof LifelineEditPart) {
+					// Lifeline EditPart
+					LifelineEditPart lifelineEP = (LifelineEditPart)ep;
+
+					int preserveY = PreserveAnchorsPositionCommand.PRESERVE_Y;
+					Dimension newSizeDelta = PreserveAnchorsPositionCommand.getSizeDeltaToFitAnchors(lifelineEP, cbr.getSizeDelta(), preserveY);
+
+					// SetBounds command modifying the sizeDelta
+					compoundCmd.add(getSetBoundsCommand(lifelineEP, cbr, newSizeDelta));
+
+					// PreserveAnchors command
+					compoundCmd.add(new ICommandProxy(new PreserveAnchorsPositionCommand(lifelineEP, newSizeDelta, preserveY, lifelineEP.getPrimaryShape().getFigureLifelineDotLineFigure())));
+				}
+			}
+
+			if(compoundCmd.size() == 0) {
+				return super.getCommand(request);
+			} else {
+				return compoundCmd;
+			}
+		}
+
+		return super.getCommand(request);
+	}
+
+	/**
+	 * It obtains an appropriate SetBoundsCommand for a LifelineEditPart. The
+	 * newSizeDelta provided should be equal o less than the one contained in
+	 * the request. The goal of this newDelta is to preserve the anchors'
+	 * positions after the resize. It is recommended to obtain this newSizeDelta
+	 * by means of calling
+	 * PreserveAnchorsPositionCommand.getSizeDeltaToFitAnchors() operation
+	 * 
+	 * @param lifelineEP
+	 *        The Lifeline that will be moved or resized
+	 * @param cbr
+	 *        The ChangeBoundsRequest for moving or resized the lifelineEP
+	 * @param newSizeDelta
+	 *        The sizeDelta to used instead of the one contained in the
+	 *        request
+	 * @return The SetBoundsCommand
+	 */
+	@SuppressWarnings("unchecked")
+	protected Command getSetBoundsCommand(LifelineEditPart lifelineEP, ChangeBoundsRequest cbr, Dimension newSizeDelta) {
+		// Modify request
+		List epList = cbr.getEditParts();
+		Dimension oldSizeDelta = cbr.getSizeDelta();
+		cbr.setEditParts(lifelineEP);
+		cbr.setSizeDelta(newSizeDelta);
+
+		// Obtain the command with the modified request
+		Command cmd = super.getCommand(cbr);
+
+		// Restore the request
+		cbr.setEditParts(epList);
+		cbr.setSizeDelta(oldSizeDelta);
+
+		// Return the SetBoundsCommand only for the Lifeline and with the
+		// sizeDelta modified in order to preserve the links' anchors positions
+		return cmd;
 	}
 
 }

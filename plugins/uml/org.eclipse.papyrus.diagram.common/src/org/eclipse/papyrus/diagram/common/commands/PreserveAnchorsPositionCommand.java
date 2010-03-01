@@ -17,6 +17,7 @@ import java.util.Map.Entry;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -52,6 +53,9 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 	private Dimension sizeDelta;
 
 	private int preserveAxis;
+	
+	// 
+	private IFigure figure;
 
 	// Command's label
 	protected final static String COMMAND_LABEL = "Modify Anchors to Preserve Position";
@@ -88,6 +92,31 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 		setShapeEP(shapeEP);
 		setSizeDelta(sizeDelta);
 		setPreserveAxis(preserveAxis);
+	}
+
+	/**
+	 * Constructor. It needs the shape being resized, it's re-size delta and the axis where the
+	 * position should be preserved. The different preserveAxis values are the following:
+	 * <ul>
+	 * <li>ModifyAnchorsToPreservePosition.PRESERVE_Y</li>
+	 * <li>ModifyAnchorsToPreservePosition.PRESERVE_X</li>
+	 * <li>ModifyAnchorsToPreservePosition.PRESERVE_XY</li>
+	 * </ul>
+	 * 
+	 * 
+	 * @param shapeEP
+	 *        the ShapeNodeEditPart that is being resized
+	 * @param sizeDelta
+	 *        the re-size delta
+	 * @param preserveAxis
+	 *        the axis where the position should be preserved. If the given value is not valid,
+	 *        then PRESERVE_Y will be taken as default
+	 * @param figure
+	 *        the figure where the anchors are (when it is not the getShapeEP().getFigure()).
+	 */
+	public PreserveAnchorsPositionCommand(ShapeNodeEditPart shapeEP, Dimension sizeDelta, int preserveAxis, IFigure figure) {
+		this(shapeEP, sizeDelta, preserveAxis);
+		this.figure = figure;
 	}
 
 	/**
@@ -137,6 +166,9 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 	 * @return The bounds
 	 */
 	public Rectangle getFigureBounds() {
+		if(figure != null) {
+			return figure.getBounds();
+		}
 		return getShapeEP().getFigure().getBounds();
 	}
 
