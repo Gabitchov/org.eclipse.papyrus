@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.sysml.diagram.parametric.helper;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.papyrus.resource.Resource;
@@ -28,12 +27,15 @@ import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * The Class ModelValidationHelper
  */
 public class ModelValidationHelper {
+
+	private static final String NESTED_CONNECTOR_END_STEREOTYPE = "SysML::Blocks::NestedConnectorEnd";
 
 	/**
 	 * Validate connector end.
@@ -42,35 +44,10 @@ public class ModelValidationHelper {
 	 * @param ctx
 	 * @return the status
 	 */
-	public static IStatus validateConnectorEnd(Connector connector, IValidationContext ctx) {
+	public static IStatus validateConnector(Connector connector, IValidationContext ctx) {
 		if ((EMFEventType.ADD.equals(ctx.getEventType()) || EMFEventType.ADD_MANY.equals(ctx.getEventType()))
 				&& UMLPackage.eINSTANCE.getConnector_End().equals(ctx.getFeature())) {
-			Element owner = connector.getOwner();
-			EList<ConnectorEnd> connectorEnds = connector.getEnds();
-			if (!connectorEnds.isEmpty() && connectorEnds.size() > 1) {
-				ConnectableElement role1 = connectorEnds.get(0).getRole();
-				ConnectableElement role2 = connectorEnds.get(1).getRole();
-				if (role1 instanceof Property && role2 instanceof Property) {
-					PropertyLinkedToClassifier link1 = new PropertyLinkedToClassifier((Classifier) owner,
-							(Property) role1);
-					if (link1.isLinkedWithMultiLevelPath()) {
-						// create a nested connector end
-						NestedConnectorEnd end = createNestedConnectorEnd(connectorEnds.get(0));
-						if (!link1.getAvailableRoutes().isEmpty()) {
-							end.getPropertyPath().addAll(link1.getAvailableRoutes().get(0).getProperties());
-						}
-					}
-					PropertyLinkedToClassifier link2 = new PropertyLinkedToClassifier((Classifier) owner,
-							(Property) role2);
-					if (link2.isLinkedWithMultiLevelPath()) {
-						// create a nested connector end
-						NestedConnectorEnd end = createNestedConnectorEnd(connectorEnds.get(1));
-						if (!link2.getAvailableRoutes().isEmpty()) {
-							end.getPropertyPath().addAll(link2.getAvailableRoutes().get(0).getProperties());
-						}
-					}
-				}
-			}
+			// do nothing
 		}
 		return ctx.createSuccessStatus();
 	}
@@ -83,7 +60,7 @@ public class ModelValidationHelper {
 	 * @return the status
 	 */
 	public static IStatus validateProperty(Property property, IValidationContext ctx) {
-		// TODO this validator will manage connectorEnd update when property is moved
+		// TODO this validator will manage connectorEnd update when source/target property is moved into and IBD
 		if ((EMFEventType.MOVE.equals(ctx.getEventType())) || (EMFEventType.SET.equals(ctx.getEventType()))) {
 			// only update if property is linked to connector end
 			for (ConnectorEnd end : property.getEnds()) {
@@ -93,14 +70,66 @@ public class ModelValidationHelper {
 						PropertyLinkedToClassifier link = new PropertyLinkedToClassifier((Classifier) owner, property);
 						if (link.isLinkedWithMultiLevelPath()) {
 							createNestedConnectorEnd(end);
-						} else if (end instanceof NestedConnectorEnd) {
-							((NestedConnectorEnd) end).setBase_ConnectorEnd(null);
-							ResourceUtil.getResource(end).getEobjects().remove(end);
+						} else {
+							Stereotype appliedStereotype = end.getAppliedStereotype(NESTED_CONNECTOR_END_STEREOTYPE);
+							if (appliedStereotype != null) {
+								end.unapplyStereotype(appliedStereotype);
+							}
 						}
 					}
 				}
 			}
 		}
+		return ctx.createSuccessStatus();
+	}
+
+	/**
+	 * Validate connector end.
+	 * 
+	 * @param connectorEnd
+	 * @param ctx
+	 * @return the status
+	 */
+	public static IStatus validateConnectorEnd(ConnectorEnd connectorEnd, IValidationContext ctx) {
+		if ((EMFEventType.SET.equals(ctx.getEventType()))
+				&& UMLPackage.eINSTANCE.getConnectorEnd_Role().equals(ctx.getFeature())) {
+			ConnectableElement connectableElement = connectorEnd.getRole();
+			Element connector = connectorEnd.getOwner();
+			if (connector != null && connector.getOwner() instanceof Classifier) {
+				Classifier owner = (Classifier) connector.getOwner();
+				PropertyLinkedToClassifier link = new PropertyLinkedToClassifier((Classifier) owner,
+						(Property) connectableElement);
+				if (link.isLinkedWithMultiLevelPath()) {
+					// create a nested connector end
+					NestedConnectorEnd end = createNestedConnectorEnd(connectorEnd);
+					if (!link.getAvailableRoutes().isEmpty()) {
+						end.getPropertyPath().addAll(link.getAvailableRoutes().get(0).getProperties());
+					}
+				} else {
+					Stereotype appliedStereotype = connectorEnd.getAppliedStereotype(NESTED_CONNECTOR_END_STEREOTYPE);
+					if (appliedStereotype != null) {
+						connectorEnd.unapplyStereotype(appliedStereotype);
+					}
+				}
+			}
+		}
+		return ctx.createSuccessStatus();
+	}
+
+	/**
+	 * Validate nested connector end.
+	 * 
+	 * @param connectorEnd
+	 * @param ctx
+	 * @return the status
+	 */
+	public static IStatus validateNestedConnectorEnd(NestedConnectorEnd connectorEnd, IValidationContext ctx) {
+		// TODO setBase_ConnectorEnd should be set to null when connector is deleted, fix problem
+		// with delete from model command
+		// there are dangling references after this command
+		// if (EMFEventType.SET.equals(ctx.getEventType())) {
+		// ResourceUtil.getResource(connectorEnd).getEobjects().remove(connectorEnd);
+		// }
 		return ctx.createSuccessStatus();
 	}
 

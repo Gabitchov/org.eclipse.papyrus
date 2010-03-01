@@ -110,18 +110,18 @@
       name="validateSysMLModel"
       description="Validate the SysML model">
     <childContainers
-        id="org.eclipse.uml2.uml.util.UMLValidator.validateConnector"
-        name="validateConnector"
+        id="org.eclipse.uml2.uml.util.UMLValidator.validateConnectorElement"
+        name="validateConnectorElement"
         description="validate a connector checking that its children are consistent">
       <audits
-          name="validateConnectorEnd"
+          name="validateConnector"
           description="The NestedConnectorEnd stereotype of UML ConnectorEnd extends a UML ConnectorEnd so that the connected property"
-          id="org.eclipse.uml2.uml.util.UMLValidator.validateConnector_validateConnectorEnd"
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateConnectorElement_validateConnector"
           severity="WARNING"
           useInLiveMode="true"
           message="NestedConnectorEnd is used for connected property identified by a multi-level path of accessible properties from the block that owns the connector.">
         <rule
-            body="return ModelValidationHelper.validateConnectorEnd(context, ctx);"
+            body="return ModelValidationHelper.validateConnector(context, ctx);"
             language="java"/>
         <target
             xsi:type="gmfmap:DomainElementTarget">
@@ -132,7 +132,7 @@
       <audits
           name="validateProperty"
           description="When you move a property, check that its incoming or outgoings connector get consistent connectorEnd"
-          id="org.eclipse.uml2.uml.util.UMLValidator.validateConnector_validateProperty"
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateConnectorElement_validateProperty"
           severity="WARNING"
           useInLiveMode="true"
           message="NestedConnectorEnd is used for connected property identified by a multi-level path of accessible properties from the block that owns the connector.">
@@ -143,6 +143,38 @@
             xsi:type="gmfmap:DomainElementTarget">
           <element
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Property"/>
+        </target>
+      </audits>
+      <audits
+          name="validateConnectorEnd"
+          description="The NestedConnectorEnd stereotype of UML ConnectorEnd extends a UML ConnectorEnd so that the connected property"
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateConnectorElement_validateConnectorEnd"
+          severity="WARNING"
+          useInLiveMode="true"
+          message="NestedConnectorEnd is used for connected property identified by a multi-level path of accessible properties from the block that owns the connector.">
+        <rule
+            body="return ModelValidationHelper.validateConnectorEnd(context, ctx);"
+            language="java"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ConnectorEnd"/>
+        </target>
+      </audits>
+      <audits
+          name="validateNestedConnectorEnd"
+          description="The NestedConnectorEnd stereotype of UML ConnectorEnd extends a UML ConnectorEnd so that the connected property"
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateConnectorElement_validateNestedConnectorEnd"
+          severity="WARNING"
+          useInLiveMode="true"
+          message="NestedConnectorEnd is used for connected property identified by a multi-level path of accessible properties from the block that owns the connector.">
+        <rule
+            body="return ModelValidationHelper.validateNestedConnectorEnd(context, ctx);"
+            language="java"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//blocks/NestedConnectorEnd"/>
         </target>
       </audits>
     </childContainers>

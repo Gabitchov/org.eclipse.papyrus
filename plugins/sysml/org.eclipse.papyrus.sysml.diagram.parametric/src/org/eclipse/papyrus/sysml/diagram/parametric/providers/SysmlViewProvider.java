@@ -144,12 +144,12 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 				String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 				if (!op.getSemanticHint().equals(elementTypeHint)) {
 					return false; // if semantic hint is specified it should be the same as in
-					// element type
+									// element type
 				}
 				if (domainElement != null
 						&& visualID != SysmlVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 					return false; // visual id for node EClass should match visual id from element
-					// type
+									// type
 				}
 			} else {
 				if (!ParametricEditPart.MODEL_ID.equals(SysmlVisualIDRegistry.getModelID(op.getContainerView()))) {
@@ -162,7 +162,7 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 					if (domainElement == null
 							|| visualID != SysmlVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 						return false; // visual id in semantic hint should match visual id for
-						// domain element
+										// domain element
 					}
 					break;
 				default:
@@ -185,7 +185,7 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 		String elementTypeHint = ((IHintedType) elementType).getSemanticHint();
 		if (elementTypeHint == null || (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
 			return false; // our hint is visual id and must be specified, and it should be the same
-			// as in element type
+							// as in element type
 		}
 		int visualID = SysmlVisualIDRegistry.getVisualID(elementTypeHint);
 		EObject domainElement = getSemanticElement(op.getSemanticAdapter());

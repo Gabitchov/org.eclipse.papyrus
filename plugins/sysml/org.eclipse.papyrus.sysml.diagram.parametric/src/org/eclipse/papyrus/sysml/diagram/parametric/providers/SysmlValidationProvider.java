@@ -21,11 +21,13 @@ import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.emf.validation.model.IClientSelector;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.helper.ModelValidationHelper;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorPlugin;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlVisualIDRegistry;
 import org.eclipse.uml2.uml.Connector;
+import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Property;
 
 /**
@@ -109,7 +111,7 @@ public class SysmlValidationProvider {
 		 */
 		public IStatus validate(IValidationContext ctx) {
 			Connector context = (Connector) ctx.getTarget();
-			return ModelValidationHelper.validateConnectorEnd(context, ctx);
+			return ModelValidationHelper.validateConnector(context, ctx);
 		}
 	}
 
@@ -124,6 +126,34 @@ public class SysmlValidationProvider {
 		public IStatus validate(IValidationContext ctx) {
 			Property context = (Property) ctx.getTarget();
 			return ModelValidationHelper.validateProperty(context, ctx);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static class Adapter3 extends AbstractModelConstraint {
+
+		/**
+		 * @generated
+		 */
+		public IStatus validate(IValidationContext ctx) {
+			ConnectorEnd context = (ConnectorEnd) ctx.getTarget();
+			return ModelValidationHelper.validateConnectorEnd(context, ctx);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static class Adapter4 extends AbstractModelConstraint {
+
+		/**
+		 * @generated
+		 */
+		public IStatus validate(IValidationContext ctx) {
+			NestedConnectorEnd context = (NestedConnectorEnd) ctx.getTarget();
+			return ModelValidationHelper.validateNestedConnectorEnd(context, ctx);
 		}
 	}
 

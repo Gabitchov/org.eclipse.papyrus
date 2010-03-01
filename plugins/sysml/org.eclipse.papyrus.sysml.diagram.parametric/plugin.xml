@@ -678,17 +678,18 @@
             <category id="org.eclipse.uml2.uml.util.UMLValidator.validate" mandatory="false" name="validateSysMLModel">
          <![CDATA[Validate the SysML model]]>
       </category>
-      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateConnector" mandatory="false" name="validateConnector">
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateConnectorElement" mandatory="false" name="validateConnectorElement">
          <![CDATA[validate a connector checking that its children are consistent]]>
       </category>
       <constraintProvider cache="true">
          <package namespaceUri="http://www.eclipse.org/uml2/3.0.0/UML"/>
+         <package namespaceUri="http://www.eclipse.org/papyrus/0.7.0/SysML/Blocks"/>
                <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate">
                   </constraints>
-         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateConnector">
-                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateConnector_validateConnectorEnd"
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateConnectorElement">
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateConnectorElement_validateConnector"
             lang="Java" class="org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlValidationProvider$Adapter1"
-            name="validateConnectorEnd"
+            name="validateConnector"
             mode="Live"
             severity="WARNING" statusCode="200">
             
@@ -696,7 +697,7 @@
             <message><![CDATA[NestedConnectorEnd is used for connected property identified by a multi-level path of accessible properties from the block that owns the connector.]]></message>
             <target class="uml.Connector"/>
          </constraint>
-                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateConnector_validateProperty"
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateConnectorElement_validateProperty"
             lang="Java" class="org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlValidationProvider$Adapter2"
             name="validateProperty"
             mode="Live"
@@ -705,6 +706,26 @@
             <description><![CDATA[When you move a property, check that its incoming or outgoings connector get consistent connectorEnd]]></description>
             <message><![CDATA[NestedConnectorEnd is used for connected property identified by a multi-level path of accessible properties from the block that owns the connector.]]></message>
             <target class="uml.Property"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateConnectorElement_validateConnectorEnd"
+            lang="Java" class="org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlValidationProvider$Adapter3"
+            name="validateConnectorEnd"
+            mode="Live"
+            severity="WARNING" statusCode="200">
+            
+            <description><![CDATA[The NestedConnectorEnd stereotype of UML ConnectorEnd extends a UML ConnectorEnd so that the connected property]]></description>
+            <message><![CDATA[NestedConnectorEnd is used for connected property identified by a multi-level path of accessible properties from the block that owns the connector.]]></message>
+            <target class="uml.ConnectorEnd"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateConnectorElement_validateNestedConnectorEnd"
+            lang="Java" class="org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlValidationProvider$Adapter4"
+            name="validateNestedConnectorEnd"
+            mode="Live"
+            severity="WARNING" statusCode="200">
+            
+            <description><![CDATA[The NestedConnectorEnd stereotype of UML ConnectorEnd extends a UML ConnectorEnd so that the connected property]]></description>
+            <message><![CDATA[NestedConnectorEnd is used for connected property identified by a multi-level path of accessible properties from the block that owns the connector.]]></message>
+            <target class="sysml.blocks.NestedConnectorEnd"/>
          </constraint>
                   </constraints>
       </constraintProvider>
@@ -716,12 +737,13 @@
          <selector class="org.eclipse.papyrus.sysml.diagram.parametric.providers.SysmlValidationProvider$DefaultCtx"/>
       </clientContext>
       <binding context="org.eclipse.papyrus.sysml.diagram.parametricDefaultCtx">
-                  <constraint ref="org.eclipse.papyrus.sysml.diagram.parametric.org.eclipse.uml2.uml.util.UMLValidator.validateConnector_validateConnectorEnd"/>
-                  <constraint ref="org.eclipse.papyrus.sysml.diagram.parametric.org.eclipse.uml2.uml.util.UMLValidator.validateConnector_validateProperty"/>
+                  <constraint ref="org.eclipse.papyrus.sysml.diagram.parametric.org.eclipse.uml2.uml.util.UMLValidator.validateConnectorElement_validateConnector"/>
+                  <constraint ref="org.eclipse.papyrus.sysml.diagram.parametric.org.eclipse.uml2.uml.util.UMLValidator.validateConnectorElement_validateProperty"/>
+                  <constraint ref="org.eclipse.papyrus.sysml.diagram.parametric.org.eclipse.uml2.uml.util.UMLValidator.validateConnectorElement_validateConnectorEnd"/>
+                  <constraint ref="org.eclipse.papyrus.sysml.diagram.parametric.org.eclipse.uml2.uml.util.UMLValidator.validateConnectorElement_validateNestedConnectorEnd"/>
                </binding>
 
    </extension>
-
 
    <!-- optionally, specify keybindings -->
 </plugin>
