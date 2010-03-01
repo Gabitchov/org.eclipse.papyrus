@@ -206,6 +206,8 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 		if(request instanceof ChangeBoundsRequest) {
 			ChangeBoundsRequest cbr = (ChangeBoundsRequest)request;
 
+			int resizeDirection = cbr.getResizeDirection();
+
 			CompoundCommand compoundCmd = new CompoundCommand("Resize of Interaction Compartment Elements");
 
 			for(EditPart ep : (List<EditPart>)cbr.getEditParts()) {
@@ -220,7 +222,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 					compoundCmd.add(getSetBoundsCommand(lifelineEP, cbr, newSizeDelta));
 
 					// PreserveAnchors command
-					compoundCmd.add(new ICommandProxy(new PreserveAnchorsPositionCommand(lifelineEP, newSizeDelta, preserveY, lifelineEP.getPrimaryShape().getFigureLifelineDotLineFigure())));
+					compoundCmd.add(new ICommandProxy(new PreserveAnchorsPositionCommand(lifelineEP, newSizeDelta, preserveY, lifelineEP.getPrimaryShape().getFigureLifelineDotLineFigure(), resizeDirection)));
 				}
 			}
 

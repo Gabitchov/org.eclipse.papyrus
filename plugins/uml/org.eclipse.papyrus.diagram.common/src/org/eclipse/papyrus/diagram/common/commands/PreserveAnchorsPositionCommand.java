@@ -18,6 +18,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -53,9 +54,12 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 	private Dimension sizeDelta;
 
 	private int preserveAxis;
-	
+
 	// 
 	private IFigure figure;
+
+	// The resize direction
+	private int resizeDirection;
 
 	// Command's label
 	protected final static String COMMAND_LABEL = "Modify Anchors to Preserve Position";
@@ -113,10 +117,23 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 	 *        then PRESERVE_Y will be taken as default
 	 * @param figure
 	 *        the figure where the anchors are (when it is not the getShapeEP().getFigure()).
+	 * @param resizeDirection
+	 *        the resize direction. Possible values are
+	 *        <ul>
+	 *        <li>{@link org.eclipse.draw2d.PositionConstants#EAST}
+	 *        <li>{@link org.eclipse.draw2d.PositionConstants#WEST}
+	 *        <li>{@link org.eclipse.draw2d.PositionConstants#NORTH}
+	 *        <li>{@link org.eclipse.draw2d.PositionConstants#SOUTH}
+	 *        <li>{@link org.eclipse.draw2d.PositionConstants#NORTH_EAST}
+	 *        <li>{@link org.eclipse.draw2d.PositionConstants#NORTH_WEST}
+	 *        <li>{@link org.eclipse.draw2d.PositionConstants#SOUTH_EAST}
+	 *        <li>{@link org.eclipse.draw2d.PositionConstants#SOUTH_WEST}
+	 *        </ul>
 	 */
-	public PreserveAnchorsPositionCommand(ShapeNodeEditPart shapeEP, Dimension sizeDelta, int preserveAxis, IFigure figure) {
+	public PreserveAnchorsPositionCommand(ShapeNodeEditPart shapeEP, Dimension sizeDelta, int preserveAxis, IFigure figure, int resizeDirection) {
 		this(shapeEP, sizeDelta, preserveAxis);
 		this.figure = figure;
+		this.resizeDirection = resizeDirection;
 	}
 
 	/**
@@ -283,6 +300,11 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 			}
 
 			pp.preciseY = (double)anchorYPos / (figureBounds.height + sizeDelta.height);
+
+			// If the resize direction is NORTH, the location of the figure move, but the anchor stay visually at the same location
+			if(PositionConstants.NORTH == resizeDirection || PositionConstants.NORTH_EAST == resizeDirection || PositionConstants.NORTH_WEST == resizeDirection) {
+				pp.preciseY = pp.preciseY + ((double)sizeDelta.height / (figureBounds.height + sizeDelta.height));
+			}
 		}
 
 		if(getPreserveAxis() == PRESERVE_X || getPreserveAxis() == PRESERVE_XY) {
@@ -293,6 +315,11 @@ public class PreserveAnchorsPositionCommand extends AbstractTransactionalCommand
 			}
 
 			pp.preciseX = (double)anchorXPos / (figureBounds.width + sizeDelta.width);
+
+			// If the resize direction is WEST, the location of the figure move, but the anchor stay visually at the same location
+			if(PositionConstants.WEST == resizeDirection || PositionConstants.NORTH_WEST == resizeDirection || PositionConstants.SOUTH_WEST == resizeDirection) {
+				pp.preciseX = pp.preciseX + ((double)sizeDelta.width / (figureBounds.width + sizeDelta.width));
+			}
 		}
 
 		String idStr = (new BaseSlidableAnchor(null, pp)).getTerminal();
