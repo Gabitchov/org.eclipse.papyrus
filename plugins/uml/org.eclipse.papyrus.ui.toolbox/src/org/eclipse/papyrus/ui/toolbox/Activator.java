@@ -13,6 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.ui.toolbox;
 
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.resource.ImageRegistry;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -61,5 +64,34 @@ public class Activator extends AbstractUIPlugin {
 	public static Activator getDefault() {
 		return plugin;
 	}
+
+	/**
+	 * This method returns an <code>org.eclipse.swt.graphics.Image</code> identified by its pluginId and iconPath.<BR>
+	 * 
+	 * By default, it returns a default image. This image is the image placed in
+	 * the directory <em>resources/icons/default.gif</em>
+	 * 
+	 * @param pluginId
+	 *        id of plugin
+	 * @param iconpPath
+	 *        the path of the icon image relative to the plugin
+	 * @return the Image
+	 */
+	public static Image getImage(String iconPath, String defaultPlugin) {
+		// see if the path is using platform:/... to get icon in the fragment, if it is in a fragment 
+		String key = defaultPlugin + iconPath;
+		ImageRegistry registry = getDefault().getImageRegistry();
+		Image image = registry.get(key);
+
+		if(image == null) {
+
+			ImageDescriptor desc = AbstractUIPlugin.imageDescriptorFromPlugin(defaultPlugin, iconPath);
+			registry.put(key, desc);
+			image = registry.get(key);
+
+		}
+		return image;
+	}
+
 
 }

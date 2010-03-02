@@ -11,21 +11,27 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.wizards;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.gef.palette.PaletteEntry;
+import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.Messages;
 import org.eclipse.papyrus.diagram.common.part.PaletteUtil;
 import org.eclipse.papyrus.diagram.common.service.AspectCreationEntry;
 import org.eclipse.papyrus.diagram.common.wizards.LocalPaletteContentPage.EntryType;
+import org.eclipse.papyrus.ui.toolbox.dialogs.BundleIconExplorerDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
@@ -55,10 +61,19 @@ public class PaletteEntryProxyInformationComposite {
 	/** list of applied profiles */
 	protected List<Profile> appliedProfiles;
 
-	public Composite createComposite(Composite parent, List<Profile> appliedProfiles) {
+	/**
+	 * Creates the content of the information composite
+	 * 
+	 * @param parent
+	 *        the composite where to add created controls
+	 * @param appliedProfiles
+	 *        the list of applied profiles
+	 * @return the newly created composite
+	 */
+	public Composite createComposite(final Composite parent, List<Profile> appliedProfiles) {
 		this.appliedProfiles = appliedProfiles;
 		Composite composite = new Composite(parent, SWT.NONE);
-		GridLayout layout = new GridLayout(2, false);
+		GridLayout layout = new GridLayout(3, false);
 		composite.setLayout(layout);
 		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
 		data.widthHint = 260;
@@ -68,7 +83,7 @@ public class PaletteEntryProxyInformationComposite {
 		Label entryInformationLabel = new Label(composite, SWT.NONE);
 		entryInformationLabel.setText(Messages.Local_Palette_Entry_Information);
 		data = new GridData(SWT.FILL, SWT.FILL, true, false);
-		data.horizontalSpan = 2;
+		data.horizontalSpan = 3;
 		entryInformationLabel.setLayoutData(data);
 
 		Label nameLabel = new Label(composite, SWT.NONE);
@@ -79,6 +94,9 @@ public class PaletteEntryProxyInformationComposite {
 		data = new GridData(SWT.FILL, SWT.FILL, true, false);
 		nameText.setLayoutData(data);
 		nameText.addFocusListener(new NameFocusListener());
+		data = new GridData(SWT.FILL, SWT.FILL, true, false);
+		data.horizontalSpan = 2;
+		nameText.setLayoutData(data);
 
 		Label referencedLabel = new Label(composite, SWT.NONE);
 		referencedLabel.setText(Messages.Local_Palette_Entry_Reference);
@@ -87,6 +105,9 @@ public class PaletteEntryProxyInformationComposite {
 		referencedText = new Text(composite, SWT.LEAD | SWT.BORDER | SWT.READ_ONLY);
 		data = new GridData(SWT.FILL, SWT.FILL, true, false);
 		referencedText.setLayoutData(data);
+		data = new GridData(SWT.FILL, SWT.FILL, true, false);
+		data.horizontalSpan = 2;
+		referencedText.setLayoutData(data);
 
 		Label descriptionLabel = new Label(composite, SWT.NONE);
 		descriptionLabel.setText(Messages.Local_Palette_Entry_Description);
@@ -94,9 +115,11 @@ public class PaletteEntryProxyInformationComposite {
 		descriptionLabel.setLayoutData(data);
 		descriptionText = new Text(composite, SWT.WRAP | SWT.BORDER);
 		data = new GridData(SWT.FILL, SWT.FILL, true, true);
+		data.horizontalSpan = 2;
 		data.widthHint = 160;
 		descriptionText.setLayoutData(data);
 		descriptionText.addFocusListener(new DescriptionFocusListener());
+
 
 		Label iconLabel = new Label(composite, SWT.NONE);
 		iconLabel.setText(Messages.Local_Palette_Entry_Icon);
@@ -106,6 +129,45 @@ public class PaletteEntryProxyInformationComposite {
 		data = new GridData(SWT.FILL, SWT.FILL, true, false);
 		iconText.setLayoutData(data);
 		iconText.addFocusListener(new IconFocusListener());
+		Button iconButton = new Button(composite, SWT.NONE);
+		iconButton.setText("Select...");
+		iconButton.addMouseListener(new MouseListener() {
+
+			/**
+			 * @{inheritDoc
+			 */
+			public void mouseUp(MouseEvent e) {
+				BundleIconExplorerDialog dialog = new BundleIconExplorerDialog(parent.getShell(), Collections.nCopies(1, iconText.getText()));
+				if(Dialog.OK == dialog.open()) {
+					Object[] values = dialog.getResult();
+					if(values.length != 1) {
+						Activator.log.error("Waiting one icon path, but found " + values.length, null);
+					} else {
+						iconText.setText(values[0].toString());
+						selectedEntryProxy.getEntry().setSmallIcon(Activator.getImageDescriptor(iconText.getText().trim()));
+						selectedEntryProxy.getEntry().setLargeIcon(Activator.getImageDescriptor(iconText.getText().trim()));
+						if(selectedEntryProxy.getEntry() instanceof AspectCreationEntry) {
+							((AspectCreationEntry)selectedEntryProxy.getEntry()).setIconPath(iconText.getText().trim());
+						}
+					}
+				}
+
+			}
+
+			/**
+			 * @{inheritDoc
+			 */
+			public void mouseDown(MouseEvent e) {
+
+			}
+
+			/**
+			 * @{inheritDoc
+			 */
+			public void mouseDoubleClick(MouseEvent e) {
+
+			}
+		});
 
 		return composite;
 	}
