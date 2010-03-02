@@ -13,9 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.edit.part;
 
-import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.custom.figure.AssociationFigure;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart;
 import org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure;
 

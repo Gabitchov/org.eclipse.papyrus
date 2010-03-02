@@ -47,10 +47,10 @@ if (visualID == «EXPAND xpt::editor::VisualIDRegistry::visualID») {
 						«IF null = childMetaFeature-»
 							{ /*FIXME no containment/child feature found in the genmodel, toolsmith need to specify Class here manually*/ childElement = /*FIXME no containment/child feature found in the genmodel, toolsmith need to specify correct one here manually*/;
 						«ELSEIF isListType(childMetaFeature)-»
-					for (java.util.Iterator it = «EXPAND xpt::Common::getFeatureValue("modelElement", getModelElementType()) FOR childMetaFeature».iterator(); it.hasNext();) {
+					for (java.util.Iterator it = «EXPAND xpt::Common::getFeatureValue('modelElement', getModelElementType()) FOR childMetaFeature».iterator(); it.hasNext();) {
 						«EXPAND MetaModel::MetaClass FOR getTypeGenClassX(childMetaFeature)» childElement = («getQualifiedInterfaceName(getTypeGenClassX(childMetaFeature))») it.next();
 						«ELSE-»
-					{ «getQualifiedInterfaceName(getTypeGenClassX(childMetaFeature))» childElement = «EXPAND xpt::Common::getFeatureValue("modelElement", getModelElementType()) FOR childMetaFeature»;
+					{ «getQualifiedInterfaceName(getTypeGenClassX(childMetaFeature))» childElement = «EXPAND xpt::Common::getFeatureValue('modelElement', getModelElementType()) FOR childMetaFeature»;
 						«ENDIF-»
 						int visualID = «EXPAND xpt::editor::VisualIDRegistry::getNodeVisualIDMethodCall FOR getDiagram()»(view, «EXPAND xpt::Common::castToEObject FOR getTypeGenClassX(childMetaFeature)»childElement);
 						«EXPAND checkChildElementVisualID(null <> childMetaFeature and isListType(childMetaFeature)) FOREACH getSemanticChildren(self, childMetaFeature)-»
@@ -78,10 +78,10 @@ if (visualID == «EXPAND xpt::editor::VisualIDRegistry::visualID») {
 						«IF null = childMetaFeature-»
 							{ /*FIXME no containment/child feature found in the genmodel, toolsmith need to specify Class here manually*/ childElement = /*FIXME no containment/child feature found in the genmodel, toolsmith need to specify correct one here manually*/;
 						«ELSEIF isListType(childMetaFeature)-»
-					for (java.util.Iterator it = «EXPAND xpt::Common::getFeatureValue("modelElement", referencer.domainDiagramElement) FOR childMetaFeature».iterator(); it.hasNext();) {
+					for (java.util.Iterator it = «EXPAND xpt::Common::getFeatureValue('modelElement', referencer.domainDiagramElement) FOR childMetaFeature».iterator(); it.hasNext();) {
 						«getQualifiedInterfaceName(getTypeGenClassX(childMetaFeature))» childElement = («getQualifiedInterfaceName(getTypeGenClassX(childMetaFeature))») it.next();
 						«ELSE-»
-					{ «getQualifiedInterfaceName(getTypeGenClassX(childMetaFeature))» childElement = «EXPAND xpt::Common::getFeatureValue("modelElement", referencer.domainDiagramElement) FOR childMetaFeature»;
+					{ «getQualifiedInterfaceName(getTypeGenClassX(childMetaFeature))» childElement = «EXPAND xpt::Common::getFeatureValue('modelElement', referencer.domainDiagramElement) FOR childMetaFeature»;
 						«ENDIF-»
 						int visualID = «EXPAND xpt::editor::VisualIDRegistry::getNodeVisualIDMethodCall FOR getDiagram()»(view, «EXPAND xpt::Common::castToEObject FOR getTypeGenClassX(childMetaFeature)»childElement);
 						«REM»«EXPAND checkChildElementVisualID(null != childMetaFeature && isListType(childMetaFeature)) FOREACH getSemanticChildren(this, childMetaFeature)-»«ENDREM»
@@ -115,7 +115,7 @@ if (visualID == «EXPAND xpt::editor::VisualIDRegistry::visualID») {
 «REM» Mutating check Visual ID «ENDREM»
 «DEFINE checkMutatingChildElementVisualID(boolean inLoop) FOR papyrusgmfgenextension::AlternateGenTopLevelNode-»
 	if (visualID == «EXPAND visualID») {
-		result.add(new «genTopLevelNode.getDiagram().editorGen.diagramUpdater.getNodeDescriptorQualifiedClassName()»(«IF null != typeModelFacet.childMetaFeature»«EXPAND xpt::Common::castToEObject FOR getTypeGenClassX(typeModelFacet.childMetaFeature)»«ENDIF»childElement, visualID));
+		result.add(new «genTopLevelNode.getDiagram().editorGen.diagramUpdater.getNodeDescriptorQualifiedClassName()»(«IF null <> typeModelFacet.childMetaFeature»«EXPAND xpt::Common::castToEObject FOR getTypeGenClassX(typeModelFacet.childMetaFeature)»«ENDIF»childElement, visualID));
 	«IF inLoop-»
 		continue;
 	«ENDIF-»
@@ -129,7 +129,7 @@ if (visualID == «EXPAND xpt::editor::VisualIDRegistry::visualID») {
 if (!view.isSetElement()) {
 	return java.util.Collections.EMPTY_LIST;
 }
-«EXPAND MetaModel::DeclareAndAssign("modelElement", "view.getElement()") FOR getModelElementType()»
+«EXPAND MetaModel::DeclareAndAssign('modelElement', 'view.getElement()') FOR getModelElementType()»
 «ENDDEFINE»
 «DEFINE getContainedLinksByTypeMethodBody(genLink : gmfgen::GenLink, sourceVarDefined : Boolean) FOR gmfgen::TypeLinkModelFacet-»
 java.util.Collection result = new java.util.LinkedList();
@@ -160,14 +160,14 @@ for (java.util.Iterator links = «EXPAND MetaModel::getFeatureValue('container',
 		«IF self.sourceMetaFeature=self.targetMetaFeature»
 			//Papyrus GenCode 
 		    «EXPAND defineLinkDestinationForSet(inLoop) FOR self-»
-			«IF null != sourceMetaFeature-»
+			«IF null <> sourceMetaFeature-»
 				«EXPAND defineLinkSource(inLoop)-»
 				«IF sourceVarDefined-»
 					«EXPAND checkLinkSource(inLoop)-»
 				«ENDIF-»
-				«EXPAND addLinkDescriptor(genLink, "src", "dst")-»
+				«EXPAND addLinkDescriptor(genLink, 'src', 'dst')-»
 			«ELSE-»
-				«EXPAND addLinkDescriptor(genLink, "container", "dst")-»
+				«EXPAND addLinkDescriptor(genLink, 'container', 'dst')-»
 			«ENDIF-»
 		«ELSE»
 		«REM»END: PapyrusGenCode«ENDREM»
@@ -216,14 +216,14 @@ if (src != source) {
 «REM»Define target and source that can manage set«ENDREM»
 «DEFINE defineLinkDestinationForSet(inLoop:Boolean) FOR gmfgen::TypeLinkModelFacet-»
 	«IF isListType(targetMetaFeature)-»
-java.util.List targets = «EXPAND MetaModel::getFeatureValue("link", metaClass) FOR targetMetaFeature»;
+java.util.List targets = «EXPAND MetaModel::getFeatureValue('link', metaClass) FOR targetMetaFeature»;
 Object theTarget = targets.size() >=2 ? targets.get(1) : null;
-if («EXPAND MetaModel::NotInstance("theTarget") FOR getTargetType()») {
+if («EXPAND MetaModel::NotInstance('theTarget') FOR getTargetType()») {
 	«EXPAND stopLinkProcessing(inLoop)-»
 }
-«EXPAND MetaModel::DeclareAndAssign("dst", "theTarget", true) FOR getTargetType()»
+«EXPAND MetaModel::DeclareAndAssign('dst', 'theTarget', true) FOR getTargetType()»
 	«ELSE-»
-«EXPAND MetaModel::DeclareAndAssign("dst", "link", metaClass, targetMetaFeature) FOR getTargetType()»
+«EXPAND MetaModel::DeclareAndAssign('dst', 'link', metaClass, targetMetaFeature) FOR getTargetType()»
 	«ENDIF-»
 «ENDDEFINE»
 «REM»END: PapyrusGenCode«ENDREM»

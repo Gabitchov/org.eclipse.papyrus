@@ -14,15 +14,8 @@
 
 package org.eclipse.papyrus.diagram.clazz.custom.locator;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.diagram.common.locator.AdvancedBorderItemLocator;
 
 /**
