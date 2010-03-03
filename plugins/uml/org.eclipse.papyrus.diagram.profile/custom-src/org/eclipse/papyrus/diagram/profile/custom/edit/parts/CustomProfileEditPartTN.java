@@ -16,12 +16,12 @@ import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.figure.node.PackageNodePlateFigure;
-import org.eclipse.papyrus.diagram.profile.edit.parts.ModelEditPartTN;
+import org.eclipse.papyrus.diagram.profile.edit.parts.ProfileEditPartTN;
 
 /**
  * this a specific editpart used to overload the method createNodePlate
  */
-public class CustomProfileEditPartTN extends ModelEditPartTN {
+public class CustomProfileEditPartTN extends ProfileEditPartTN {
 
 	public CustomProfileEditPartTN(View view) {
 		super(view);
