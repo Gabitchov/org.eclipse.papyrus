@@ -19,14 +19,22 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.gmf.runtime.diagram.ui.commands.CreateOrSelectElementCommand.LabelProvider;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorPlugin;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
 
 public class PropertyLinkedToClassifierNode extends PropertyLinkedToClassifier {
 
-	public static final String ROUTE_SELECTED = "routeSelected";
+	public static final String PROPERTY_ROUTE_URL_SOURCE = "http://www.eclipse.org/papyrus/propertyRoute";
+
+	public static final String SELECTED_ROUTE_KEY = "selectedRoute";
 
 	private Node graphNode;
 
@@ -53,17 +61,17 @@ public class PropertyLinkedToClassifierNode extends PropertyLinkedToClassifier {
 
 	private String getSelectedRoute() {
 		String result = "";
-		if ("".equals(getRootingProperty(graphNode, ROUTE_SELECTED))) {
+		if ("".equals(getRootingProperty(graphNode))) {
 			LinkedList<Route> filteredAvailableRoute = filterAvailableRoute(getAvailableRoutes());
 			if (filteredAvailableRoute.size() == 1) {
 				result = filteredAvailableRoute.getFirst().getName();
-			} else if (!filteredAvailableRoute.isEmpty()){
+			} else if (!filteredAvailableRoute.isEmpty()) {
 				// doesn't display dialog box, only get the first route
 				//result = getUserSelectionRoute(filteredAvailableRoute);
-				result = filteredAvailableRoute.getFirst().getName(); 
+				result = filteredAvailableRoute.getFirst().getName();
 			}
 		} else {
-			String oldRouteSelectedValue = getRootingProperty(graphNode, ROUTE_SELECTED);
+			String oldRouteSelectedValue = getRootingProperty(graphNode);
 			Map<String, Route> routeNameAndRoute = getRouteNameAndRoute(getAvailableRoutes());
 			if (routeNameAndRoute.containsKey(oldRouteSelectedValue)) {
 				result = oldRouteSelectedValue;
@@ -74,7 +82,6 @@ public class PropertyLinkedToClassifierNode extends PropertyLinkedToClassifier {
 		return result;
 	}
 
-	/*
 	private String getUserSelectionRoute(LinkedList<Route> filteredAvailableRoute) {
 		IWorkbench workBench = SysmlDiagramEditorPlugin.getInstance().getWorkbench();
 		Shell shell = workBench.getActiveWorkbenchWindow().getShell();
@@ -103,7 +110,6 @@ public class PropertyLinkedToClassifierNode extends PropertyLinkedToClassifier {
 		}
 		return result;
 	}
-	*/
 
 	/**
 	 * Filter the available route for accessing a property. Remove from the list the property that
@@ -117,10 +123,10 @@ public class PropertyLinkedToClassifierNode extends PropertyLinkedToClassifier {
 		Map<String, Route> routeNameAndRoute = getRouteNameAndRoute(availableRoutes);
 		for (Object view : DiagramEditPartsUtil.getEObjectViews(getProperty())) {
 			if (view instanceof Node) {
-				String routeNamedSaved = getRootingProperty((Node) view, ROUTE_SELECTED);
+				String routeNamedSaved = getRootingProperty((Node) view);
 				if (routeNameAndRoute.containsKey(routeNamedSaved)) {
 					routeNameAndRoute.remove(routeNamedSaved);
-				}				
+				}
 			}
 		}
 		return new LinkedList<Route>(routeNameAndRoute.values());
@@ -157,9 +163,9 @@ public class PropertyLinkedToClassifierNode extends PropertyLinkedToClassifier {
 			// possible
 			if (availableSpecificRoute.size() == 1) {
 				return availableSpecificRoute.get(0);
-			}
-			else {
-				// Otherwise it means there is several routes possible. We need to check the name of the
+			} else {
+				// Otherwise it means there is several routes possible. We need to check the name of
+				// the
 				// container
 			}
 		}
@@ -176,34 +182,53 @@ public class PropertyLinkedToClassifierNode extends PropertyLinkedToClassifier {
 		}
 		return "";
 	}
-	
+
 	/**
-	 * TODO Remove it if eAnnotation is not needed 
+	 * Creates the rooting property into an eAnnotation
+	 * 
+	 * @param node
+	 * @param name
+	 */
+	public void createRootingProperty(Node node, String name) {
+		if ("".equals(getRootingProperty(node))) {
+			EAnnotation annotation = EcoreFactory.eINSTANCE.createEAnnotation();
+			annotation.setSource(PROPERTY_ROUTE_URL_SOURCE);
+			node.getEAnnotations().add(annotation);
+
+			annotation.getDetails().put(SELECTED_ROUTE_KEY, name);
+		}
+	}
+
+	/**
+	 * Checks if the specified name is an existing route.
+	 * 
+	 * @param name
+	 * @return true if it is an existing route
+	 */
+	public boolean isExistingRoute(String name) {
+		boolean result = false;
+		for (Route r : getAvailableRoutes()) {
+			result |= r.getName().equals(name);
+		}
+		return result;
+	}
+
+	/**
 	 * Gets the rooting property.
 	 * 
-	 * @param node the node
-	 * @param key the key
+	 * @param node
+	 *            the node
+	 * @param key
+	 *            the key
 	 * @return the rooting property
 	 */
-	private String getRootingProperty(Node node, String key) {
+	private String getRootingProperty(Node node) {
 		String value = "";
-		// use a right format for source
-		EAnnotation eAnnotation = node.getEAnnotation(ROUTE_SELECTED);
+		EAnnotation eAnnotation = node.getEAnnotation(PROPERTY_ROUTE_URL_SOURCE);
 		if (eAnnotation != null) {
-			value = eAnnotation.getDetails().get(ROUTE_SELECTED);
+			value = eAnnotation.getDetails().get(SELECTED_ROUTE_KEY);
 		}
 		return value;
 	}
-	
-//    public void createRootingProperty(Node node, String key, String name)
-//    {
-//    	if ("".equals(getRootingProperty(node, key))) {
-//    		EAnnotation annotation = EcoreFactory.eINSTANCE.createEAnnotation();
-//    		annotation.setSource(ROUTE_SELECTED);
-//    		node.getEAnnotations().add(annotation);
-//    		
-//    		annotation.getDetails().put(ROUTE_SELECTED, key);    		
-//    	}
-//    }
 
 }

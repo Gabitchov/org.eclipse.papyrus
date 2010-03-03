@@ -256,6 +256,21 @@ public class PropertyNameEditPart extends CompartmentEditPart implements ITextAw
 
 	}
 
+//	/**
+//	 * @generated
+//	 */
+//	protected String getLabelText() {
+//		String text = null;
+//		EObject parserElement = getParserElement();
+//		if (parserElement != null && getParser() != null) {
+//			text = getParser().getPrintString(new EObjectAdapter(parserElement), getParserOptions().intValue());
+//		}
+//		if (text == null || text.length() == 0) {
+//			text = defaultText;
+//		}
+//		return text;
+//	}
+	
 	/**
 	 * @generated NOT
 	 */

@@ -303,6 +303,13 @@ public class SysmlViewProvider extends AbstractProvider implements IViewProvider
 		initBackgroundFromPrefs(node, prefStore, "Property");
 
 		Node label5002 = createLabel(node, SysmlVisualIDRegistry.getType(PropertyNameEditPart.VISUAL_ID));
+		
+//		if (containerView.getElement() instanceof Classifier) {
+//			PropertyLinkedToClassifierNode link = new PropertyLinkedToClassifierNode((Classifier) containerView.getElement(), (Property) node.getElement(), node);
+//			link.refresh();
+//			String name = link.getName();
+//			link.createRootingProperty(node, name);
+//		}
 		return node;
 	}
 

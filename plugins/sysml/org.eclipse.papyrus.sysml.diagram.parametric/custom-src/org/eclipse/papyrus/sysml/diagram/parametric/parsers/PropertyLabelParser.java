@@ -106,8 +106,7 @@ public class PropertyLabelParser extends MessageFormatParser implements ISemanti
 			// Perform property depth to set the name
 			for (Object obj : DiagramEditPartsUtil.getEObjectViews(property)) {
 				if (obj instanceof Node && classifier != null) {
-					this.propertyLinkedToClassifier = new PropertyLinkedToClassifierNode(classifier, property,
-							(Node) obj);
+					propertyLinkedToClassifier = new PropertyLinkedToClassifierNode(classifier, property, (Node) obj);
 					propertyLinkedToClassifier.refresh();
 					name = propertyLinkedToClassifier.getName();
 					result = String.format(UNTYPED_PARAMETER_FORMAT, name);
