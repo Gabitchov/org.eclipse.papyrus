@@ -168,12 +168,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	@Override
 	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID, int linkVISUALID) {
 
-		// Retrieve drop location
-		Point location = dropRequest.getLocation().getCopy();
-		((GraphicalEditPart)getHost()).getContentPane().translateToRelative(location);
-		((GraphicalEditPart)getHost()).getContentPane().translateFromParent(location);
-		location.translate(((GraphicalEditPart)getHost()).getContentPane().getClientArea().getLocation().getNegated());
-
 		// Switch test over linkVisualID
 		switch(linkVISUALID) {
 		case DependencyEditPart.VISUAL_ID:
@@ -187,114 +181,65 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			switch(nodeVISUALID) {
 			// Test TopLevelNode... Start
 			case ActivityCompositeEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case InteractionCompositeEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case ProtocolStateMachineCompositeEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case StateMachineCompositeEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case FunctionBehaviorCompositeEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case OpaqueBehaviorCompositeEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case ComponentCompositeEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case DeviceCompositeEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case ExecutionEnvironmentCompositeEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case NodeCompositeEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case ClassCompositeEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case ClassClassifierEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case CollaborationCompositeEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case InterfaceEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case PrimitiveTypeEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case EnumerationEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case DataTypeEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case ActorEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case DeploymentSpecificationEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case ArtifactEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case InformationItemEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case SignalEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case UseCaseEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case SignalEventEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case CallEventEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case AnyReceiveEventEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case SendSignalEventEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case SendOperationEventEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case ChangeEventEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case TimeEventEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case CreationEventEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case ExecutionEventEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case LiteralBooleanEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case LiteralIntegerEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case LiteralNullEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case LiteralStringEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case LiteralUnlimitedNaturalEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case StringExpressionEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case OpaqueExpressionEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case TimeExpressionEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case ExpressionEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case DurationEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case IntervalEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case InstanceValueEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case CommentEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case DurationConstraintEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case TimeConstraintEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case IntervalConstraintEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case InteractionConstraintEditPart.VISUAL_ID:
-				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			case ConstraintEditPart.VISUAL_ID:
 				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 				// Test TopLevelNode... End
 			case PortEditPart.VISUAL_ID:
-				return dropPort(dropRequest, location, (Port)semanticElement, nodeVISUALID);
+				return dropPort(dropRequest, (Port)semanticElement, nodeVISUALID);
 			case org.eclipse.papyrus.diagram.composite.edit.parts.PropertyPartEditPartCN.VISUAL_ID:
-				return dropProperty(dropRequest, location, (Property)semanticElement, nodeVISUALID);
+				return dropProperty(dropRequest, (Property)semanticElement, nodeVISUALID);
 			case TimeObservationEditPart.VISUAL_ID:
-				return dropTimeObservation(dropRequest, location, (TimeObservation)semanticElement, nodeVISUALID);
+				return dropTimeObservation(dropRequest, (TimeObservation)semanticElement, nodeVISUALID);
 			case DurationObservationEditPart.VISUAL_ID:
-				return dropDurationObservation(dropRequest, location, (DurationObservation)semanticElement, nodeVISUALID);
+				return dropDurationObservation(dropRequest, (DurationObservation)semanticElement, nodeVISUALID);
 			default:
 				return super.getSpecificDropCommand(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 			}
@@ -391,10 +336,13 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *        the visual identifier of the EditPart of the dropped element
 	 * @return the drop command
 	 */
-	protected Command dropProperty(DropObjectsRequest dropRequest, Point location, Property droppedElement, int nodeVISUALID) {
+	protected Command dropProperty(DropObjectsRequest dropRequest, Property droppedElement, int nodeVISUALID) {
 
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
+
+		// Default drop location
+		Point location = dropRequest.getLocation().getCopy();
 
 		// Port inherits from Property this case should be excluded and treated separately
 		if(!(droppedElement instanceof Port)) {
@@ -429,14 +377,14 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *        the visual identifier of the EditPart of the dropped element
 	 * @return the drop command
 	 */
-	protected Command dropPort(DropObjectsRequest dropRequest, Point location, Port droppedElement, int nodeVISUALID) {
+	protected Command dropPort(DropObjectsRequest dropRequest, Port droppedElement, int nodeVISUALID) {
 
 		// Manage Port drop in compartment
 		Boolean isCompartmentTarget = false; // True if the target is a ShapeCompartmentEditPart
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
 
 		// Default drop location
-		Point dropLocation = location.getCopy();
+		Point dropLocation = dropRequest.getLocation().getCopy();
 
 		// Detect if the drop target is a compartment
 		if(graphicalParentEditPart instanceof ShapeCompartmentEditPart) {
@@ -462,7 +410,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			delta = delta.translate(compartmentViewPortViewLocation.negate());
 
 			// Translate the requested drop location (relative to parent)
-			dropLocation = location.getTranslated(delta);
+			dropLocation = dropRequest.getLocation().getTranslated(delta);
 		}
 		// Manage Port drop in compartment
 
@@ -514,7 +462,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * @return the drop command
 	 * 
 	 */
-	protected Command dropDurationObservation(DropObjectsRequest dropRequest, Point location, DurationObservation droppedElement, int nodeVISUALID) {
+	protected Command dropDurationObservation(DropObjectsRequest dropRequest, DurationObservation droppedElement, int nodeVISUALID) {
 
 		// Test canvas element
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
@@ -542,7 +490,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * @return the drop command
 	 * 
 	 */
-	protected Command dropTimeObservation(DropObjectsRequest dropRequest, Point location, TimeObservation droppedElement, int nodeVISUALID) {
+	protected Command dropTimeObservation(DropObjectsRequest dropRequest, TimeObservation droppedElement, int nodeVISUALID) {
 
 		// Test canvas element
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
