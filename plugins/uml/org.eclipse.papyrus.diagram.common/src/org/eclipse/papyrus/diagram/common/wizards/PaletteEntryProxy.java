@@ -1,5 +1,7 @@
 package org.eclipse.papyrus.diagram.common.wizards;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.List;
 
 import org.eclipse.gef.palette.PaletteDrawer;
@@ -17,11 +19,24 @@ import org.eclipse.swt.graphics.Image;
  */
 public class PaletteEntryProxy {
 
+	/** key for the property : the icon path has changed */
+	public static final String PROPERTY_ICON_PATH = "ICON_PATH";
+
+	/** key for the property : a child has been added */
+	public static final String PROPERTY_ADD_CHILDREN = "PROPERTY_ADD_CHILDREN";
+
+	/** key for the property : a child has been removed */
+	public static final String PROPERTY_REMOVE_CHILDREN = "PROPERTY_REMOVE_CHILDREN";
+
 	/** proxy palette entry */
 	private final PaletteEntry entry;
 
 	/** parent of this proxy */
 	private PaletteContainerProxy parent;
+
+	/** PropertyChangeSupport */
+	protected PropertyChangeSupport listeners = new PropertyChangeSupport(this);
+
 
 	/** proxy type */
 	private EntryType type;
@@ -29,6 +44,27 @@ public class PaletteEntryProxy {
 	public PaletteEntryProxy(PaletteEntry entry) {
 		this.entry = entry;
 		setType(initType());
+	}
+
+	/**
+	 * A listener can only be added once. Adding it more than once will do nothing.
+	 * 
+	 * @param listener
+	 *        the PropertyChangeListener that is to be notified of changes
+	 * @see java.beans.PropertyChangeSupport#addPropertyChangeListener(java.beans.PropertyChangeListener)
+	 */
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+		listeners.removePropertyChangeListener(listener);
+		listeners.addPropertyChangeListener(listener);
+	}
+
+	/**
+	 * @param listener
+	 *        the PropertyChangeListener that is not to be notified anymore
+	 * @see java.beans.PropertyChangeSupport#removePropertyChangeListener(java.beans.PropertyChangeListener)
+	 */
+	public void removePropertyChangeListener(PropertyChangeListener listener) {
+		listeners.removePropertyChangeListener(listener);
 	}
 
 	/**
@@ -108,11 +144,11 @@ public class PaletteEntryProxy {
 	/**
 	 * Sets the parent for this proxy
 	 * 
-	 * @param parent
+	 * @param newParent
 	 *        the parent proxy
 	 */
-	public void setParent(PaletteContainerProxy parent) {
-		this.parent = parent;
+	public void setParent(PaletteContainerProxy newParent) {
+		parent = newParent;
 	}
 
 	/**
@@ -150,5 +186,103 @@ public class PaletteEntryProxy {
 	 */
 	public EntryType getType() {
 		return type;
+	}
+
+	/**
+	 * Sets the description of the palette entry proxied by this element
+	 * 
+	 * @param desc
+	 *        the new description
+	 */
+	public void setDescription(String desc) {
+		if(getEntry() == null) {
+			return;
+		}
+		String oldDesc = getEntry().getDescription();
+
+		if(oldDesc == null && desc == null) {
+			return;
+		}
+
+		if(desc == null || !desc.equals(oldDesc)) {
+			getEntry().setDescription(desc);
+			listeners.firePropertyChange(PaletteEntry.PROPERTY_DESCRIPTION, oldDesc, desc);
+		}
+	}
+
+	/**
+	 * Sets the label of the palette entry proxied by this element
+	 * 
+	 * @param label
+	 *        the new label
+	 */
+	public void setLabel(String label) {
+		if(getEntry() == null) {
+			return;
+		}
+		String oldLabel = getEntry().getLabel();
+
+		if(oldLabel == null && label == null) {
+			return;
+		}
+
+		if(label == null || !label.equals(oldLabel)) {
+			getEntry().setLabel(label);
+			listeners.firePropertyChange(PaletteEntry.PROPERTY_LABEL, oldLabel, label);
+		}
+	}
+
+	/**
+	 * Sets the label of the palette entry proxied by this element
+	 * 
+	 * @param label
+	 *        the new label
+	 */
+	public void setIcon(String path) {
+		if(!(getEntry() instanceof AspectCreationEntry)) {
+			return;
+		}
+		String oldPath = ((AspectCreationEntry)getEntry()).getIconPath();
+
+		if(oldPath == null && path == null) {
+			return;
+		}
+
+		if(path == null || !path.equals(oldPath)) {
+			((AspectCreationEntry)getEntry()).setIconPath(path);
+			listeners.firePropertyChange(PROPERTY_ICON_PATH, oldPath, path);
+		}
+	}
+
+	/**
+	 * Method to add a child proxy to this proxy
+	 * 
+	 * @param entry
+	 *        the entry to add
+	 */
+	protected void addChild(PaletteEntryProxy entry) {
+		listeners.firePropertyChange(PROPERTY_ADD_CHILDREN, null, entry);
+	}
+
+	/**
+	 * Method to add a child proxy to this proxy, before the given element
+	 * 
+	 * @param entry
+	 *        the entry to add
+	 * @param nextElement
+	 *        the element that should be just after the entry
+	 */
+	protected void addChild(PaletteEntryProxy entry, PaletteEntryProxy nextElement) {
+		listeners.firePropertyChange(PROPERTY_ADD_CHILDREN, null, entry);
+	}
+
+	/**
+	 * Remove the specified children from its parent
+	 * 
+	 * @param proxy
+	 *        the proxy to remove
+	 */
+	public void removeChild(PaletteEntryProxy proxy) {
+		listeners.firePropertyChange(PROPERTY_REMOVE_CHILDREN, proxy, null);
 	}
 }

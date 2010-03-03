@@ -1,5 +1,8 @@
 package org.eclipse.papyrus.diagram.common.wizards;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.swt.graphics.Image;
@@ -21,6 +24,10 @@ public class PaletteLocalDrawerProxy extends PaletteContainerProxy {
 	/** description of the drawer */
 	private String description;
 
+
+	/** PropertyChangeSupport */
+	protected PropertyChangeSupport listeners = new PropertyChangeSupport(this);
+
 	/**
 	 * Creates a new PaletteContainer
 	 * 
@@ -33,6 +40,27 @@ public class PaletteLocalDrawerProxy extends PaletteContainerProxy {
 		this.id = id;
 		this.setDescription(description);
 		this.imagePath = imagePath;
+	}
+
+	/**
+	 * A listener can only be added once. Adding it more than once will do nothing.
+	 * 
+	 * @param listener
+	 *        the PropertyChangeListener that is to be notified of changes
+	 * @see java.beans.PropertyChangeSupport#addPropertyChangeListener(java.beans.PropertyChangeListener)
+	 */
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+		listeners.removePropertyChangeListener(listener);
+		listeners.addPropertyChangeListener(listener);
+	}
+
+	/**
+	 * @param listener
+	 *        the PropertyChangeListener that is not to be notified anymore
+	 * @see java.beans.PropertyChangeSupport#removePropertyChangeListener(java.beans.PropertyChangeListener)
+	 */
+	public void removePropertyChangeListener(PropertyChangeListener listener) {
+		listeners.removePropertyChangeListener(listener);
 	}
 
 	/**
@@ -82,7 +110,9 @@ public class PaletteLocalDrawerProxy extends PaletteContainerProxy {
 	 *        the label to set
 	 */
 	public void setLabel(String label) {
+		String oldValue = this.label;
 		this.label = label;
+		listeners.firePropertyChange(PROPERTY_ICON_PATH, oldValue, label);
 	}
 
 	/**
@@ -102,7 +132,9 @@ public class PaletteLocalDrawerProxy extends PaletteContainerProxy {
 	 *        the imagePath to set
 	 */
 	public void setImagePath(String imagePath) {
+		String oldValue = this.imagePath;
 		this.imagePath = imagePath;
+		listeners.firePropertyChange(PROPERTY_ICON_PATH, oldValue, imagePath);
 	}
 
 	/**

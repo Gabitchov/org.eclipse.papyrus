@@ -17,7 +17,10 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.Messages;
+import org.eclipse.papyrus.ui.toolbox.dialogs.BundleIconExplorerDialog;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
@@ -247,7 +250,7 @@ public class DrawerInformationPage extends WizardPage implements Listener {
 		advancedComposite = new Composite(parent, SWT.NONE);
 		advancedComposite.setFont(parent.getFont());
 		advancedComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
-		GridLayout layout = new GridLayout(2, false);
+		GridLayout layout = new GridLayout(3, false);
 		layout.marginHeight = 0;
 		layout.marginWidth = 0;
 		advancedComposite.setLayout(layout);
@@ -266,19 +269,53 @@ public class DrawerInformationPage extends WizardPage implements Listener {
 	 * @param composite
 	 *        the parent composite
 	 */
-	protected void createIconControl(Composite composite) {
+	protected void createIconControl(final Composite composite) {
 		final Label iconLabel = new Label(composite, SWT.NONE);
 		iconLabel.setText(Messages.Wizard_Drawer_Icon);
 		iconLabel.setToolTipText(Messages.Wizard_Drawer_Icon_Tooltip);
 
-		imageText = new Text(composite, SWT.BORDER);
+		imageText = new Text(composite, SWT.BORDER | SWT.READ_ONLY);
 		imageText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		imageText.setToolTipText(Messages.Wizard_Drawer_Icon_Tooltip);
 
 		// initialize, then add the listener...
 		initialPopulateDrawerIconField();
 
-		imageText.addListener(SWT.Modify, this);
+		// imageText.addListener(SWT.Modify, this);
+
+		Button button = new Button(composite, SWT.NONE);
+		button.setText("...");
+		button.addMouseListener(new MouseListener() {
+
+			/**
+			 * @{inheritDoc
+			 */
+			public void mouseUp(MouseEvent e) {
+				BundleIconExplorerDialog dialog = new BundleIconExplorerDialog(composite.getShell(), imageText.getText());
+				if(Dialog.OK == dialog.open()) {
+					Object[] values = dialog.getResult();
+					if(values.length != 1) {
+						Activator.log.error("Waiting one icon path, but found " + values.length, null);
+					} else {
+						imageDescriptorPath = values[0].toString();
+						imageText.setText(imageDescriptorPath);
+					}
+				}
+				setPageComplete(validatePage());
+			}
+
+			/**
+			 * @{inheritDoc
+			 */
+			public void mouseDown(MouseEvent e) {
+			}
+
+			/**
+			 * @{inheritDoc
+			 */
+			public void mouseDoubleClick(MouseEvent e) {
+			}
+		});
 
 	}
 
@@ -310,7 +347,9 @@ public class DrawerInformationPage extends WizardPage implements Listener {
 		idLabel.setToolTipText(Messages.Wizard_Drawer_Id_Tooltip);
 
 		idText = new Text(control, SWT.BORDER);
-		idText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		GridData data = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		data.horizontalSpan = 2;
+		idText.setLayoutData(data);
 		idText.setToolTipText(Messages.Wizard_Drawer_Id_Tooltip);
 
 		// initialize, then add the listener...
@@ -372,8 +411,6 @@ public class DrawerInformationPage extends WizardPage implements Listener {
 			name = nameText.getText();
 		} else if(widget.equals(idText)) {
 			drawerID = idText.getText();
-		} else if(widget.equals(imageText)) {
-			imageDescriptorPath = imageText.getText();
 		}
 		setPageComplete(validatePage());
 	}

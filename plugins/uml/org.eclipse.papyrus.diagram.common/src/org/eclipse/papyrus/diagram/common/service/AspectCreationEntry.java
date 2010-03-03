@@ -120,11 +120,11 @@ public class AspectCreationEntry extends CombinedTemplateCreationEntry implement
 	}
 
 	/**
-	 * @param iconPath
+	 * @param path
 	 *        the iconPath to set
 	 */
-	public void setIconPath(String iconPath) {
-		this.iconPath = iconPath;
+	public void setIconPath(String path) {
+		iconPath = path;
 	}
 
 	/**

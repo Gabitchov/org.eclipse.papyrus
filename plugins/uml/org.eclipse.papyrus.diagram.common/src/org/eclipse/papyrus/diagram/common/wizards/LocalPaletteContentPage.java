@@ -12,6 +12,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.wizards;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -432,7 +434,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 					UpdateLocalDrawerWizard wizard = new UpdateLocalDrawerWizard(((PaletteLocalDrawerProxy)firstSelected).getParent(), (PaletteLocalDrawerProxy)firstSelected);
 					WizardDialog dialog = new WizardDialog(getShell(), wizard);
 					dialog.open();
-					paletteTreeViewer.refresh();
+					//paletteTreeViewer.refresh();
 				}
 			}
 		});
@@ -479,17 +481,19 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 						entryProxy.getParent().removeChild(entryProxy);
 					}
 					((PaletteContainerProxy)target).addChild(entryProxy);
+					paletteTreeViewer.expandToLevel(target, 1);
 				} else if(target instanceof PaletteEntryProxy) {
 					// tries to remove from its parent if possible
 					if(entryProxy.getParent() != null) {
 						entryProxy.getParent().removeChild(entryProxy);
 					}
 					((PaletteEntryProxy)target).getParent().addChild(entryProxy, ((PaletteEntryProxy)target));
+					paletteTreeViewer.expandToLevel(((PaletteEntryProxy)target).getParent(), 1);
 				} else {
 					// add to parent...
 					target.getParent().addChild(entryProxy);
+					paletteTreeViewer.expandToLevel(target.getParent(), TreeViewer.ALL_LEVELS);
 				}
-				paletteTreeViewer.refresh();
 				setPageComplete(validatePage());
 			}
 
@@ -728,7 +732,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 					dialog.open();
 				}
 
-				paletteTreeViewer.refresh();
+				// paletteTreeViewer.refresh();
 			}
 		};
 	}
@@ -761,7 +765,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 						parentProxy.removeChild(proxyToDelete);
 					}
 				}
-				paletteTreeViewer.refresh();
+				// paletteTreeViewer.refresh();
 			}
 		};
 	}
@@ -784,7 +788,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 				NewDrawerWizard wizard = new NewDrawerWizard(containerProxy);
 				WizardDialog wizardDialog = new WizardDialog(new Shell(), wizard);
 				wizardDialog.open();
-				paletteTreeViewer.refresh();
+				// paletteTreeViewer.refresh();
 				setPageComplete(validatePage());
 			}
 		};
@@ -822,7 +826,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 					parentProxy.addChild(proxy, childProxy);
 				}
 
-				paletteTreeViewer.refresh();
+				// paletteTreeViewer.refresh();
 				setPageComplete(validatePage());
 			}
 		};
@@ -876,7 +880,6 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 					parentProxy.addChild(proxy, childProxy);
 				}
 
-				paletteTreeViewer.refresh();
 				setPageComplete(validatePage());
 			}
 		};
@@ -1055,7 +1058,8 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 				// create a new entry in the document
 				PaletteEntryProxy proxy = createNodeFromEntry(entry);
 				((PaletteContainerProxy)parentNode).addChild(proxy);
-				paletteTreeViewer.refresh();
+
+				paletteTreeViewer.expandToLevel(parentNode, 1);
 			}
 
 			/**
@@ -1125,7 +1129,6 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 				// get container of the proxy to be deleted
 				PaletteContainerProxy parentProxy = proxyToDelete.getParent();
 				parentProxy.removeChild(proxyToDelete);
-				paletteTreeViewer.refresh();
 			}
 
 			/**
@@ -1681,10 +1684,18 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	public class PaletteContentProvider implements ITreeContentProvider {
 
 		/** tree viewer this provider provides content */
-		private final TreeViewer viewer;
+		protected final TreeViewer viewer;
 
 		/** the document root where to build the palette */
-		private PaletteContainerProxy rootProxy;
+		protected PaletteContainerProxy rootProxy;
+
+		/** model listener that will listens for all modifications in the entries */
+		protected PropertyChangeListener modelListener = new PropertyChangeListener() {
+
+			public void propertyChange(PropertyChangeEvent evt) {
+				handlePropertyChanged(evt);
+			}
+		};
 
 		/**
 		 * Creates a new PaletteContentProvider.
@@ -1700,7 +1711,8 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 * {@inheritDoc}
 		 */
 		public void dispose() {
-			//
+			// remove all listeners
+			traverseModel(rootProxy, false);
 		}
 
 		/**
@@ -1749,11 +1761,55 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		 * {@inheritDoc}
 		 */
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-			// if (root != null)
-			// traverseModel(root, false);
+			if(rootProxy != null) {
+				// warning.. the root has no entry, this is a virtual node
+				traverseModel(rootProxy, false);
+			}
+
 			if(newInput != null) {
-				rootProxy = (PaletteContainerProxy)newInput;
-				// traverseModel(root, true);
+				rootProxy = ((PaletteContainerProxy)newInput);
+				traverseModel(rootProxy, true);
+			}
+		}
+
+		/**
+		 * This method is invoked whenever there is any change in the model. It updates the
+		 * viewer with the changes that were made to the model. Sub-classes may override this
+		 * method to change or extend its functionality.
+		 * 
+		 * @param evt
+		 *        The {@link PropertyChangeEvent} that was fired from the model
+		 */
+		protected void handlePropertyChanged(PropertyChangeEvent evt) {
+			PaletteEntryProxy entry = ((PaletteEntryProxy)evt.getSource());
+			String property = evt.getPropertyName();
+			if(property.equals(PaletteEntry.PROPERTY_LABEL) || property.equals(PaletteEntry.PROPERTY_SMALL_ICON) || property.equals(PaletteEntryProxy.PROPERTY_ICON_PATH)) {
+				viewer.update(entry, null);
+			} else if(property.equals(PaletteContainerProxy.PROPERTY_ADD_CHILDREN)) {
+				viewer.refresh(entry.getParent());
+				// add the listeners to the child
+				traverseModel(((PaletteEntryProxy)evt.getNewValue()), true);
+			} else if(property.equals(PaletteContainerProxy.PROPERTY_REMOVE_CHILDREN)) {
+				viewer.refresh(entry.getParent());
+				// add the listeners to the child
+				traverseModel(((PaletteEntryProxy)evt.getOldValue()), false);
+			}
+
+		}
+
+		protected void traverseModel(PaletteEntryProxy entryProxy, boolean isHook) {
+			if(entryProxy != null) {
+				if(isHook) {
+					entryProxy.addPropertyChangeListener(modelListener);
+				} else {
+					entryProxy.removePropertyChangeListener(modelListener);
+				}
+			}
+
+			if(entryProxy.getChildren() != null && !entryProxy.getChildren().isEmpty()) {
+				for(PaletteEntryProxy proxy : entryProxy.getChildren()) {
+					traverseModel(proxy, isHook);
+				}
 			}
 		}
 	}

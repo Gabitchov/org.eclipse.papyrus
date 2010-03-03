@@ -7,19 +7,29 @@ import java.util.Enumeration;
 import java.util.List;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.ui.toolbox.Activator;
 import org.eclipse.papyrus.ui.toolbox.Messages;
+import org.eclipse.pde.core.plugin.IPluginModel;
+import org.eclipse.pde.core.plugin.PluginRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
@@ -54,10 +64,12 @@ public class BundleIconExplorerDialog extends SelectionStatusDialog {
 	protected String filter = null;
 
 	/** initial value */
-	protected List<String> initialValues;
+	protected String initialValue;
 
 	/** current displayed bundle name */
-	protected final static String currentBundleName = "org.eclipse.uml2.uml.edit"; //$NON-NLS-1$
+	protected String currentBundleName = "org.eclipse.uml2.uml.edit"; //$NON-NLS-1$
+
+	private Text text;
 
 	/**
 	 * Creates a new Icon Bundle Explorer Dialog
@@ -65,12 +77,14 @@ public class BundleIconExplorerDialog extends SelectionStatusDialog {
 	 * @param parentShell
 	 *        the parent shell for the dialog
 	 */
-	public BundleIconExplorerDialog(Shell parentShell, boolean allowMultiple, List<String> initialValues) {
+	public BundleIconExplorerDialog(Shell parentShell, boolean allowMultiple, String initialValue, String bundle) {
 		super(parentShell);
 		this.allowMultiple = allowMultiple;
-		this.initialValues = initialValues;
+		this.initialValue = initialValue;
+		this.currentBundleName = bundle;
 		setTitle(Messages.BundleIconExplorerDialog_Title);
 		setMessage(Messages.BundleIconExplorerDialog_Message);
+
 	}
 
 	/**
@@ -79,14 +93,29 @@ public class BundleIconExplorerDialog extends SelectionStatusDialog {
 	 * @param parentShell
 	 *        the parent shell for the dialog
 	 */
-	public BundleIconExplorerDialog(Shell parentShell, List<String> initialValues) {
-		this(parentShell, false, initialValues);
+	public BundleIconExplorerDialog(Shell parentShell, String initialValue) {
+		this(parentShell, false, initialValue, retrieveBundleId(initialValue));//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+	}
+
+	/**
+	 * Retrieves the bundle from which the
+	 * 
+	 * @param initialValue
+	 *        the initial value from which the bundle has to be retrieved
+	 * @return the bundle id
+	 */
+	protected static String retrieveBundleId(String initialValue) {
+		if(initialValue.startsWith(PLUGIN_PROTOCOL)) {
+			String tmp = initialValue.substring(PLUGIN_PROTOCOL.length());
+			int bundleIdEndIndex = tmp.indexOf("/");
+			return tmp.substring(0, bundleIdEndIndex);
+		}
+		return "org.eclipse.uml2.uml.edit";
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		Composite composite = (Composite)super.createDialogArea(parent);
@@ -94,13 +123,33 @@ public class BundleIconExplorerDialog extends SelectionStatusDialog {
 
 		// creates the message area, as defined in the super class
 		createMessageArea(composite);
+		createComboArea(composite);
 		createFilterText(composite);
 		createFilteredList(composite);
 
+		refreshList();
+
+		return composite;
+	}
+
+	/**
+	 * Refresh the content of the
+	 */
+	@SuppressWarnings("unchecked")
+	protected void refreshList() {
+		// check selection
+		currentBundleName = text.getText().trim();
 		Bundle bundle = Platform.getBundle(currentBundleName);
+		if(bundle == null) {
+			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "impossible to find bundle with id: " + currentBundleName));
+			return;
+		}
 		Enumeration<URL> e = bundle.findEntries("", "*" + GIF_EXTENSION, true); //$NON-NLS-1$ //$NON-NLS-2$
 		List<ImageProxy> selectedProxy = new ArrayList<ImageProxy>();
 		List<ImageProxy> images = new ArrayList<ImageProxy>();
+		if(e == null) {
+			return;
+		}
 		while(e.hasMoreElements()) {
 			ImageProxy proxy = new ImageProxy(e.nextElement());
 			if(proxy.isDisplayed()) {
@@ -118,7 +167,77 @@ public class BundleIconExplorerDialog extends SelectionStatusDialog {
 			filteredList.setSelection(selectedProxy.toArray());
 		}
 
-		return composite;
+	}
+
+	/**
+	 * Creates an area where users can select bundles where icons should be selected
+	 * 
+	 * @param composite
+	 *        the parent composite of the controls created in this area
+	 */
+	protected void createComboArea(Composite composite) {
+		Composite parent = new Composite(composite, SWT.NONE);
+		GridData data = new GridData();
+		data.grabExcessVerticalSpace = false;
+		data.grabExcessHorizontalSpace = true;
+		data.horizontalAlignment = GridData.FILL;
+		data.verticalAlignment = GridData.BEGINNING;
+		parent.setLayoutData(data);
+		parent.setFont(parent.getFont());
+
+		GridLayout layout = new GridLayout(3, false);
+		parent.setLayout(layout);
+
+		Label label = new Label(parent, SWT.NONE);
+		label.setText("Bundle");
+
+		text = new Text(parent, SWT.READ_ONLY | SWT.BORDER);
+		data = new GridData();
+		data.grabExcessVerticalSpace = false;
+		data.grabExcessHorizontalSpace = true;
+		data.horizontalAlignment = GridData.FILL;
+		data.verticalAlignment = GridData.BEGINNING;
+		text.setLayoutData(data);
+
+		text.setText(currentBundleName);
+
+		Button selectBundleButton = new Button(parent, SWT.NONE);
+		selectBundleButton.setText("...");
+		selectBundleButton.addMouseListener(new MouseListener() {
+
+			/**
+			 * @{inheritDoc
+			 */
+			public void mouseUp(MouseEvent e) {
+				handleManageBundlesButtonPressed();
+			}
+
+			/**
+			 * @{inheritDoc
+			 */
+			public void mouseDown(MouseEvent e) {
+
+			}
+
+			/**
+			 * @{inheritDoc
+			 */
+			public void mouseDoubleClick(MouseEvent e) {
+
+			}
+		});
+	}
+
+	/**
+	 * Handles action when user press the Manage bundle button in the combo area
+	 */
+	protected void handleManageBundlesButtonPressed() {
+		// open a dialog 
+		BundleExplorerDialog dialog = new BundleExplorerDialog(getParentShell(), false, PluginRegistry.getActiveModels(true));
+		if(Dialog.OK == dialog.open()) {
+			text.setText(((IPluginModel)dialog.getFirstResult()).getPlugin().getId());
+			refreshList();
+		}
 	}
 
 	/**
@@ -295,7 +414,7 @@ public class BundleIconExplorerDialog extends SelectionStatusDialog {
 		 * @return <code>true</code> if this is the initial value proxy
 		 */
 		public boolean isInitial() {
-			return initialValues.contains(path);
+			return initialValue.equals(path);
 		}
 
 		/**

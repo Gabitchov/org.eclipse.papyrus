@@ -49,6 +49,7 @@ public class PaletteContainerProxy extends PaletteEntryProxy {
 	public void addChild(PaletteEntryProxy entry) {
 		children.add(entry);
 		entry.setParent(this);
+		super.addChild(entry);
 	}
 
 	/**
@@ -62,6 +63,7 @@ public class PaletteContainerProxy extends PaletteEntryProxy {
 	public void addChild(PaletteEntryProxy entry, PaletteEntryProxy nextElement) {
 		children.add(children.indexOf(nextElement), entry);
 		entry.setParent(this);
+		super.addChild(entry, nextElement);
 	}
 
 	/**
@@ -73,6 +75,7 @@ public class PaletteContainerProxy extends PaletteEntryProxy {
 	public void removeChild(PaletteEntryProxy proxy) {
 		children.remove(proxy);
 		proxy.setParent(null);
+		super.removeChild(proxy);
 	}
 
 	/**

@@ -11,7 +11,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.wizards;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
@@ -21,7 +20,6 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.Messages;
 import org.eclipse.papyrus.diagram.common.part.PaletteUtil;
-import org.eclipse.papyrus.diagram.common.service.AspectCreationEntry;
 import org.eclipse.papyrus.diagram.common.wizards.LocalPaletteContentPage.EntryType;
 import org.eclipse.papyrus.ui.toolbox.dialogs.BundleIconExplorerDialog;
 import org.eclipse.swt.SWT;
@@ -60,6 +58,8 @@ public class PaletteEntryProxyInformationComposite {
 
 	/** list of applied profiles */
 	protected List<Profile> appliedProfiles;
+
+	protected Button iconButton;
 
 	/**
 	 * Creates the content of the information composite
@@ -129,7 +129,7 @@ public class PaletteEntryProxyInformationComposite {
 		data = new GridData(SWT.FILL, SWT.FILL, true, false);
 		iconText.setLayoutData(data);
 		iconText.addFocusListener(new IconFocusListener());
-		Button iconButton = new Button(composite, SWT.NONE);
+		iconButton = new Button(composite, SWT.NONE);
 		iconButton.setText("Select...");
 		iconButton.addMouseListener(new MouseListener() {
 
@@ -137,7 +137,7 @@ public class PaletteEntryProxyInformationComposite {
 			 * @{inheritDoc
 			 */
 			public void mouseUp(MouseEvent e) {
-				BundleIconExplorerDialog dialog = new BundleIconExplorerDialog(parent.getShell(), Collections.nCopies(1, iconText.getText()));
+				BundleIconExplorerDialog dialog = new BundleIconExplorerDialog(parent.getShell(), iconText.getText());
 				if(Dialog.OK == dialog.open()) {
 					Object[] values = dialog.getResult();
 					if(values.length != 1) {
@@ -146,26 +146,23 @@ public class PaletteEntryProxyInformationComposite {
 						iconText.setText(values[0].toString());
 						selectedEntryProxy.getEntry().setSmallIcon(Activator.getImageDescriptor(iconText.getText().trim()));
 						selectedEntryProxy.getEntry().setLargeIcon(Activator.getImageDescriptor(iconText.getText().trim()));
-						if(selectedEntryProxy.getEntry() instanceof AspectCreationEntry) {
-							((AspectCreationEntry)selectedEntryProxy.getEntry()).setIconPath(iconText.getText().trim());
+						if(selectedEntryProxy instanceof PaletteAspectToolEntryProxy) {
+							((PaletteAspectToolEntryProxy)selectedEntryProxy).setIcon(iconText.getText().trim());
 						}
 					}
 				}
-
 			}
 
 			/**
 			 * @{inheritDoc
 			 */
 			public void mouseDown(MouseEvent e) {
-
 			}
 
 			/**
 			 * @{inheritDoc
 			 */
 			public void mouseDoubleClick(MouseEvent e) {
-
 			}
 		});
 
@@ -253,16 +250,19 @@ public class PaletteEntryProxyInformationComposite {
 		case TOOL:
 			iconText.setText("");
 			iconText.setEnabled(false);
+			iconButton.setEnabled(false);
 			break;
 		case DRAWER:
 			String drawerIcon = selectedEntryProxy.getImagePath();
 			iconText.setText((drawerIcon != null) ? drawerIcon : "");
 			iconText.setEnabled(false);
+			iconButton.setEnabled(false);
 			break;
 		case ASPECT_TOOL:
 			String icon = selectedEntryProxy.getImagePath();
 			iconText.setText((icon != null) ? icon : "");
 			iconText.setEnabled(true);
+			iconButton.setEnabled(true);
 			break;
 		}
 	}
@@ -299,7 +299,7 @@ public class PaletteEntryProxyInformationComposite {
 		 */
 		public void focusLost(FocusEvent e) {
 			if(selectedEntryProxy != null && selectedEntryProxy.getEntry() != null) {
-				selectedEntryProxy.getEntry().setLabel(nameText.getText().trim());
+				selectedEntryProxy.setLabel(nameText.getText().trim());
 			}
 		}
 
@@ -321,7 +321,7 @@ public class PaletteEntryProxyInformationComposite {
 		 */
 		public void focusLost(FocusEvent e) {
 			if(selectedEntryProxy != null && selectedEntryProxy.getEntry() != null) {
-				selectedEntryProxy.getEntry().setDescription(descriptionText.getText().trim());
+				selectedEntryProxy.setDescription(descriptionText.getText().trim());
 			}
 		}
 	}
@@ -341,11 +341,11 @@ public class PaletteEntryProxyInformationComposite {
 		 * @{inheritDoc
 		 */
 		public void focusLost(FocusEvent e) {
-			if(selectedEntryProxy != null && iconText.getText() != null) {
+			if(selectedEntryProxy != null && iconText.getText() != null && !iconText.getText().equals("")) {
 				selectedEntryProxy.getEntry().setSmallIcon(Activator.getImageDescriptor(iconText.getText().trim()));
 				selectedEntryProxy.getEntry().setLargeIcon(Activator.getImageDescriptor(iconText.getText().trim()));
-				if(selectedEntryProxy.getEntry() instanceof AspectCreationEntry) {
-					((AspectCreationEntry)selectedEntryProxy.getEntry()).setIconPath(iconText.getText().trim());
+				if(selectedEntryProxy instanceof PaletteAspectToolEntryProxy) {
+					((PaletteAspectToolEntryProxy)selectedEntryProxy).setIcon(iconText.getText().trim());
 				}
 			}
 		}
