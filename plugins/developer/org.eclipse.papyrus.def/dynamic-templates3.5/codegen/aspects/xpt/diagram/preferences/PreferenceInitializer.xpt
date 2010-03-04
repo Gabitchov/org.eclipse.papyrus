@@ -29,13 +29,13 @@ public class «EXPAND className» extends org.eclipse.core.runtime.preferences.A
 	public void initializeDefaultPreferences() {
 		org.eclipse.jface.preference.IPreferenceStore store = getPreferenceStore();
 		«FOREACH getAllNodes().elementType.displayName->asSet() AS string -»
-			«IF "UNDEFINED" <> string.toUpper()»
+			«IF 'UNDEFINED' <> string.toUpper()»
 				«self.preferencesPackageName».«string»PreferencePage.initDefaults(store);
 			«ENDIF»
 		«ENDFOREACH»
 		
 		«FOREACH links.elementType.displayName->asSet() AS string -»
-			«IF "UNDEFINED" <> string.toUpper()»
+			«IF 'UNDEFINED' <> string.toUpper()»
 				«self.preferencesPackageName».«string»PreferencePage.initDefaults(store);
 			«ENDIF»
 		«ENDFOREACH»
