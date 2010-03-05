@@ -26,7 +26,7 @@ public class PaletteLocalDrawerProxy extends PaletteContainerProxy {
 
 
 	/** PropertyChangeSupport */
-	protected PropertyChangeSupport listeners = new PropertyChangeSupport(this);
+	protected PropertyChangeSupport drawerListener = new PropertyChangeSupport(this);
 
 	/**
 	 * Creates a new PaletteContainer
@@ -50,8 +50,9 @@ public class PaletteLocalDrawerProxy extends PaletteContainerProxy {
 	 * @see java.beans.PropertyChangeSupport#addPropertyChangeListener(java.beans.PropertyChangeListener)
 	 */
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
-		listeners.removePropertyChangeListener(listener);
-		listeners.addPropertyChangeListener(listener);
+		drawerListener.removePropertyChangeListener(listener);
+		drawerListener.addPropertyChangeListener(listener);
+		super.addPropertyChangeListener(listener);
 	}
 
 	/**
@@ -60,7 +61,8 @@ public class PaletteLocalDrawerProxy extends PaletteContainerProxy {
 	 * @see java.beans.PropertyChangeSupport#removePropertyChangeListener(java.beans.PropertyChangeListener)
 	 */
 	public void removePropertyChangeListener(PropertyChangeListener listener) {
-		listeners.removePropertyChangeListener(listener);
+		drawerListener.removePropertyChangeListener(listener);
+		super.removePropertyChangeListener(listener);
 	}
 
 	/**
@@ -112,7 +114,15 @@ public class PaletteLocalDrawerProxy extends PaletteContainerProxy {
 	public void setLabel(String label) {
 		String oldValue = this.label;
 		this.label = label;
-		listeners.firePropertyChange(PROPERTY_ICON_PATH, oldValue, label);
+		drawerListener.firePropertyChange(PROPERTY_ICON_PATH, oldValue, label);
+	}
+
+	/**
+	 * @{inheritDoc
+	 */
+	@Override
+	public void addChild(PaletteEntryProxy entry) {
+		super.addChild(entry);
 	}
 
 	/**
@@ -134,7 +144,7 @@ public class PaletteLocalDrawerProxy extends PaletteContainerProxy {
 	public void setImagePath(String imagePath) {
 		String oldValue = this.imagePath;
 		this.imagePath = imagePath;
-		listeners.firePropertyChange(PROPERTY_ICON_PATH, oldValue, imagePath);
+		drawerListener.firePropertyChange(PROPERTY_ICON_PATH, oldValue, imagePath);
 	}
 
 	/**

@@ -762,7 +762,9 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 						// create a new entry in the document
 						// get container of the proxy to be deleted
 						PaletteContainerProxy parentProxy = proxyToDelete.getParent();
-						parentProxy.removeChild(proxyToDelete);
+						if(parentProxy != null) {
+							parentProxy.removeChild(proxyToDelete);
+						}
 					}
 				}
 				// paletteTreeViewer.refresh();
