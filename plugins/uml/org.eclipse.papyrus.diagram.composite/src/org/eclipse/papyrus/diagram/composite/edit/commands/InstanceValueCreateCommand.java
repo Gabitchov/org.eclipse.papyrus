@@ -106,6 +106,7 @@ public class InstanceValueCreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		InstanceValue newElement = UMLFactory.eINSTANCE.createInstanceValue();
 
 		Package owner = (Package)getElementToEdit();

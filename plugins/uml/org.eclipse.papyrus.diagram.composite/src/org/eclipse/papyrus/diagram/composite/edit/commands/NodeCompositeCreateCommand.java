@@ -106,6 +106,7 @@ public class NodeCompositeCreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		Node newElement = UMLFactory.eINSTANCE.createNode();
 
 		Package owner = (Package)getElementToEdit();

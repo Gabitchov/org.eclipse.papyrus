@@ -106,6 +106,7 @@ public class LiteralIntegerCreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		LiteralInteger newElement = UMLFactory.eINSTANCE.createLiteralInteger();
 
 		Package owner = (Package)getElementToEdit();

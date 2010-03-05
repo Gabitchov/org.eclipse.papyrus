@@ -104,6 +104,7 @@ public class ParameterCreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		Parameter newElement = UMLFactory.eINSTANCE.createParameter();
 
 		Behavior owner = (Behavior)getElementToEdit();

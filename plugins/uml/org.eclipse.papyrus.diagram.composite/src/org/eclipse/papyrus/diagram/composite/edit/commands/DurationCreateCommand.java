@@ -106,6 +106,7 @@ public class DurationCreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		Duration newElement = UMLFactory.eINSTANCE.createDuration();
 
 		Package owner = (Package)getElementToEdit();

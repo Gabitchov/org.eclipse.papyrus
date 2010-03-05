@@ -106,6 +106,7 @@ public class PrimitiveTypeCreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		PrimitiveType newElement = UMLFactory.eINSTANCE.createPrimitiveType();
 
 		Package owner = (Package)getElementToEdit();

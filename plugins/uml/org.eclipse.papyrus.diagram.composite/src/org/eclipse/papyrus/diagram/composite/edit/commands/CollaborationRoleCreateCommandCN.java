@@ -100,6 +100,7 @@ public class CollaborationRoleCreateCommandCN extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
 		throw new UnsupportedOperationException("Unimplemented operation (abstract domain element).");
 	}
 

@@ -104,6 +104,7 @@ public class ActorCreateCommandCN extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		Actor newElement = UMLFactory.eINSTANCE.createActor();
 
 		Class owner = (Class)getElementToEdit();

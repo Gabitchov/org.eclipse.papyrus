@@ -106,6 +106,7 @@ public class TimeExpressionCreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		TimeExpression newElement = UMLFactory.eINSTANCE.createTimeExpression();
 
 		Package owner = (Package)getElementToEdit();

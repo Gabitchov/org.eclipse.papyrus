@@ -104,6 +104,7 @@ public class CollaborationUseCreateCommandCN extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		CollaborationUse newElement = UMLFactory.eINSTANCE.createCollaborationUse();
 
 		Classifier owner = (Classifier)getElementToEdit();

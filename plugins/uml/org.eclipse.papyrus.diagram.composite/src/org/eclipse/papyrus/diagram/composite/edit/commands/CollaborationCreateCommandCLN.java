@@ -104,6 +104,7 @@ public class CollaborationCreateCommandCLN extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		Collaboration newElement = UMLFactory.eINSTANCE.createCollaboration();
 
 		Class owner = (Class)getElementToEdit();

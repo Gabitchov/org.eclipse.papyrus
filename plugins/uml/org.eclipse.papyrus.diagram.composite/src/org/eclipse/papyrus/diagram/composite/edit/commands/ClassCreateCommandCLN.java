@@ -103,6 +103,7 @@ public class ClassCreateCommandCLN extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		Class newElement = UMLFactory.eINSTANCE.createClass();
 
 		Class owner = (Class)getElementToEdit();

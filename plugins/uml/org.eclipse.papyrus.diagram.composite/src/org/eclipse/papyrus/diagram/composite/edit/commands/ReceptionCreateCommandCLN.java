@@ -104,6 +104,7 @@ public class ReceptionCreateCommandCLN extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		Reception newElement = UMLFactory.eINSTANCE.createReception();
 
 		Class owner = (Class)getElementToEdit();

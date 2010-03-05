@@ -104,6 +104,7 @@ public class OperationCreateCommandCLN extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		Operation newElement = UMLFactory.eINSTANCE.createOperation();
 
 		Class owner = (Class)getElementToEdit();

@@ -104,6 +104,7 @@ public class FunctionBehaviorCompositeCreateCommandCN extends EditElementCommand
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		FunctionBehavior newElement = UMLFactory.eINSTANCE.createFunctionBehavior();
 
 		Class owner = (Class)getElementToEdit();

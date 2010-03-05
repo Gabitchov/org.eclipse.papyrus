@@ -104,6 +104,7 @@ public class InterfaceCreateCommandCLN extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		Interface newElement = UMLFactory.eINSTANCE.createInterface();
 
 		Class owner = (Class)getElementToEdit();

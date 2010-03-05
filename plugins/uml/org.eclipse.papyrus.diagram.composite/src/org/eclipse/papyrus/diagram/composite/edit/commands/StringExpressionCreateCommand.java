@@ -106,6 +106,7 @@ public class StringExpressionCreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		StringExpression newElement = UMLFactory.eINSTANCE.createStringExpression();
 
 		Package owner = (Package)getElementToEdit();

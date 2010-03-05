@@ -106,6 +106,7 @@ public class StateMachineCompositeCreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		StateMachine newElement = UMLFactory.eINSTANCE.createStateMachine();
 
 		Package owner = (Package)getElementToEdit();

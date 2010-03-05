@@ -107,6 +107,7 @@ public class DurationConstraintCreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		DurationConstraint newElement = UMLFactory.eINSTANCE.createDurationConstraint();
 
 		Namespace owner = (Namespace)getElementToEdit();

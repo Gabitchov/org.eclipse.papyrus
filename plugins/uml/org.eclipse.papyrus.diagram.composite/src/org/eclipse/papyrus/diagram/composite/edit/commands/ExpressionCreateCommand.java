@@ -106,6 +106,7 @@ public class ExpressionCreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		Expression newElement = UMLFactory.eINSTANCE.createExpression();
 
 		Package owner = (Package)getElementToEdit();

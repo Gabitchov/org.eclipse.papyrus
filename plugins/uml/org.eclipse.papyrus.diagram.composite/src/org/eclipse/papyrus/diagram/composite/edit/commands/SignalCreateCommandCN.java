@@ -104,6 +104,7 @@ public class SignalCreateCommandCN extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		Signal newElement = UMLFactory.eINSTANCE.createSignal();
 
 		Class owner = (Class)getElementToEdit();

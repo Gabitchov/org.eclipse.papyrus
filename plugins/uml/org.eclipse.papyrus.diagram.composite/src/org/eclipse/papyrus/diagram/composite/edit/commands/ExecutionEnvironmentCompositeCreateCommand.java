@@ -106,6 +106,7 @@ public class ExecutionEnvironmentCompositeCreateCommand extends EditElementComma
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		ExecutionEnvironment newElement = UMLFactory.eINSTANCE.createExecutionEnvironment();
 
 		Package owner = (Package)getElementToEdit();

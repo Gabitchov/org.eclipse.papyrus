@@ -107,6 +107,7 @@ public class IntervalConstraintCreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		IntervalConstraint newElement = UMLFactory.eINSTANCE.createIntervalConstraint();
 
 		Namespace owner = (Namespace)getElementToEdit();

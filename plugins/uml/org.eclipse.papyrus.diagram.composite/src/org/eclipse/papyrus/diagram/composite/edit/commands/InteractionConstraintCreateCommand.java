@@ -107,6 +107,7 @@ public class InteractionConstraintCreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		InteractionConstraint newElement = UMLFactory.eINSTANCE.createInteractionConstraint();
 
 		Namespace owner = (Namespace)getElementToEdit();

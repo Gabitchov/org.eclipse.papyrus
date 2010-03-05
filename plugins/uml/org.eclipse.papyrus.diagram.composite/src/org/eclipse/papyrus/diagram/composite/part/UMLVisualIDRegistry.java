@@ -6699,8 +6699,7 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
-	 * User can change implementation of this method to handle some specific
-	 * situations not covered by default logic.
+	 * "User can change implementation of this method to handle some specific\n""situations not covered by default logic.\n"
 	 * 
 	 * @generated
 	 */

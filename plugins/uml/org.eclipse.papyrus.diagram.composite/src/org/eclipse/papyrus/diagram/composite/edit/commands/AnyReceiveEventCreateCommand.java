@@ -106,6 +106,7 @@ public class AnyReceiveEventCreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		AnyReceiveEvent newElement = UMLFactory.eINSTANCE.createAnyReceiveEvent();
 
 		Package owner = (Package)getElementToEdit();
