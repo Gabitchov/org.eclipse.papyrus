@@ -104,6 +104,7 @@ public class ProfileCreateCommandTN extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		Profile newElement = UMLFactory.eINSTANCE.createProfile();
 
 		Package owner = (Package)getElementToEdit();

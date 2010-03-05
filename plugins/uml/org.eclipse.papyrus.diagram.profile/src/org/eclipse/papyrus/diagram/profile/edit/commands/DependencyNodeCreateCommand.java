@@ -103,6 +103,7 @@ public class DependencyNodeCreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		Dependency newElement = UMLFactory.eINSTANCE.createDependency();
 
 		Package owner = (Package)getElementToEdit();

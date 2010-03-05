@@ -104,6 +104,7 @@ public class StereotypeCreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		Stereotype newElement = UMLFactory.eINSTANCE.createStereotype();
 
 		Profile owner = (Profile)getElementToEdit();

@@ -104,6 +104,7 @@ public class ModelCreateCommandCN extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		Model newElement = UMLFactory.eINSTANCE.createModel();
 
 		Package owner = (Package)getElementToEdit();

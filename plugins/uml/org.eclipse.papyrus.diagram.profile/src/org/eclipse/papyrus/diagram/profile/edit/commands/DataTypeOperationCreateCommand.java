@@ -104,6 +104,7 @@ public class DataTypeOperationCreateCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 
+
 		Operation newElement = UMLFactory.eINSTANCE.createOperation();
 
 		DataType owner = (DataType)getElementToEdit();
