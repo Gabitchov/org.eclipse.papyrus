@@ -53,18 +53,17 @@ public class ParameterModifierProposal implements ICompletionProposalComputer {
 	/**
 	 * Text inserted in the editor.
 	 */
-	final static public String[] modifiersStrings = { "ordered", "unique", "nonunique", };
+	final static public String[] modifiersStrings = { "ordered", "unique", "nonunique", "exception", "stream", };
 
 	/**
 	 * Text displayed in the information window.
 	 */
-	final static public String[] modifiersStringsInfo = { "ordered collection property",
-			"No duplicates allowed in the collection", "Duplicates allowed in the collection", };
+	final static public String[] modifiersStringsInfo = { "Ordered collection property", "No duplicates allowed in the collection", "Duplicates allowed in the collection", "Exception parameter", "Stream parameter", };
 
 	/**
 	 * Text displayed in the completion area window.
 	 */
-	final static public String[] modifiersStringsName = { "ordered", "unique", "nonunique", };
+	final static public String[] modifiersStringsName = { "ordered", "unique", "nonunique", "exception", "stream", };
 
 	/*
 	 * (non-Javadoc)
@@ -91,12 +90,9 @@ public class ParameterModifierProposal implements ICompletionProposalComputer {
 		// adds all standard multiplicities (static strings...)
 		for(int i = 0; i < modifiersStrings.length; i++) {
 			// test if this modifier is valid (already used or othe contrary has alreday been used.
-			if(!modifiersUsed.get(modifiersStrings[i])) {
+			if(!getModifiersUsed().get(modifiersStrings[i])) {
 				if(modifiersStrings[i].startsWith(prefix)) {
-					proposal = new CompletionProposal(modifiersStrings[i], documentOffset - prefix.length(), prefix
-							.length()
-							+ selectionRange, modifiersStrings[i].length(), null, modifiersStringsName[i], null,
-							modifiersStringsInfo[i]);
+					proposal = new CompletionProposal(modifiersStrings[i], documentOffset - prefix.length(), prefix.length() + selectionRange, modifiersStrings[i].length(), null, modifiersStringsName[i], null, modifiersStringsInfo[i]);
 					v.add(proposal);
 				}
 			}

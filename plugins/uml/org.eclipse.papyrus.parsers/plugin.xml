@@ -33,6 +33,16 @@
                editorConfiguration="org.eclipse.papyrus.parsers.texteditor.collaborationuselabel.CollaborationUseConfigurationForUML">
          </simpleeditor>
       </DirectEditor>
+      <DirectEditor
+            contributor="CEA LIST"
+            editorConfiguration="org.eclipse.papyrus.parsers.texteditor.parameterlabel.ParameterConfigurationForUML"
+            icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Parameter.gif"
+            language="Papyrus UML"
+            objectToEdit="org.eclipse.uml2.uml.Parameter">
+         <simpleeditor
+               editorConfiguration="org.eclipse.papyrus.parsers.texteditor.parameterlabel.ParameterConfigurationForUML">
+         </simpleeditor>
+      </DirectEditor>
    </extension>
    <!--
    <extension

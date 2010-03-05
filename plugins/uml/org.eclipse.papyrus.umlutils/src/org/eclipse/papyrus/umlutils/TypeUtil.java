@@ -24,6 +24,8 @@ import org.eclipse.uml2.uml.Type;
  */
 public class TypeUtil {
 
+	public final static String UNDEFINED_TYPE_NAME = "<Undefined>";
+
 	/**
 	 * Get a string that displays the name of the type, and then its namespace.
 	 * <p>

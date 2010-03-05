@@ -152,4 +152,10 @@ public interface ICustomAppearence {
 	 */
 	// @unused
 	public final static int DEFAULT_UML_OPAQUE_ACTION = DISP_NAME;
+
+	/**
+	 * default uml Parameter in composite diagrams.
+	 */
+	// @unused
+	public final static int DEFAULT_UML_PARAMETER = DISP_PARAMETER_DIRECTION | DISP_PARAMETER_NAME | DISP_PARAMETER_TYPE;
 }

@@ -39,17 +39,17 @@ public class NamedElementUtil {
 	 * A helper method to calculate the max depth of an element
 	 * 
 	 * @param the
-	 *            named element
+	 *        named element
 	 * @return the maximum depth found in qualified name
 	 */
 	public static int getQualifiedNameMaxDepth(NamedElement namedElement) {
 		int d = 0;
 		String s = namedElement.getQualifiedName();
-		if (s == null) {
+		if(s == null) {
 			return 0;
 		}
 		int n = 0;
-		while ((n = s.indexOf(QUALIFIED_NAME_SEPARATOR, n)) != -1) {
+		while((n = s.indexOf(QUALIFIED_NAME_SEPARATOR, n)) != -1) {
 			n += 2;
 			d++;
 		}
@@ -64,7 +64,7 @@ public class NamedElementUtil {
 	 * @return
 	 */
 	public static String getDefaultNameWithIncrement(EObject newElement) {
-		if (newElement.eContainer() != null) {
+		if(newElement.eContainer() != null) {
 			return getDefaultNameWithIncrement(newElement, newElement.eContainer().eContents());
 		}
 		return null;
@@ -80,19 +80,19 @@ public class NamedElementUtil {
 	public static String getDefaultNameWithIncrement(EObject newElement, Collection<EObject> contents) {
 		StringBuffer result = new StringBuffer();
 		String eclassName = newElement.eClass().getName();
-		if (eclassName.length() > 0) {
+		if(eclassName.length() > 0) {
 			eclassName = eclassName.substring(0, 1).toLowerCase() + eclassName.substring(1, eclassName.length());
 		}
 		result.append(eclassName);
-		if (contents != null) {
+		if(contents != null) {
 			// use a pattern to do one bounded loop
 			Pattern p = Pattern.compile(eclassName + "(\\d)");
 			int max = 0;
-			for (EObject e : contents) {
-				if (e instanceof NamedElement) {
-					String name = ((NamedElement) e).getName();
+			for(EObject e : contents) {
+				if(e instanceof NamedElement) {
+					String name = ((NamedElement)e).getName();
 					String value = getGroupValue(p, name == null ? "" : name);
-					if (value != null) {
+					if(value != null) {
 						try {
 							max = Math.max(Integer.valueOf(value), max);
 						} catch (NumberFormatException ex) {
@@ -108,8 +108,8 @@ public class NamedElementUtil {
 
 	private static String getGroupValue(Pattern p, String name) {
 		Matcher matcher = p.matcher(name);
-		if (matcher.matches()) {
-			if (matcher.groupCount() > 0) {
+		if(matcher.matches()) {
+			if(matcher.groupCount() > 0) {
 				return matcher.group(1);
 			}
 		}
@@ -130,7 +130,7 @@ public class NamedElementUtil {
 	public static String getVisibilityAsSign(NamedElement element) {
 		String vKindValue = "";
 
-		switch (element.getVisibility().getValue()) {
+		switch(element.getVisibility().getValue()) {
 		case org.eclipse.uml2.uml.VisibilityKind.PUBLIC:
 			vKindValue = PUBLIC_STRING;
 			break;
@@ -151,12 +151,20 @@ public class NamedElementUtil {
 	 * Returns the name of an element, given its qualified name
 	 * 
 	 * @param qualifiedName
-	 *            the qualified name of the element
+	 *        the qualified name of the element
 	 * @return the name of the element. It shall never be <code>null</code>.
 	 */
 	public static String getNameFromQualifiedName(String qualifiedName) {
-		String name = qualifiedName.substring(qualifiedName.lastIndexOf(NamedElement.SEPARATOR)
-				+ NamedElement.SEPARATOR.length());
+		String name = qualifiedName.substring(qualifiedName.lastIndexOf(NamedElement.SEPARATOR) + NamedElement.SEPARATOR.length());
 		return (name != null) ? name : "";
+	}
+
+
+	public static String getName(NamedElement element) {
+		if(element.getName() != null) {
+			return element.getName();
+		} else {
+			return (NamedElementUtil.getDefaultNameWithIncrement(element));
+		}
 	}
 }

@@ -20,72 +20,174 @@ import org.eclipse.uml2.uml.Parameter;
  */
 public class ParameterUtil {
 
-	private static String getPropertiesAsString(Parameter parameter) {
+	/**
+	 * Returns the modifier of the property, separated by a comma, as as single line if <code>multiline</code> is <code>false</code> or as a multiline
+	 * string if <code>multiline</code> is <code>false</code>.
+	 * 
+	 * @param multiLine
+	 *        boolean that indicates if the string should have several lines when set to <code>true</code> or only one line when set to
+	 *        <code>false</code>.
+	 * 
+	 * @return a string giving all modifiers for the property
+	 */
+	public static String getModifiersAsString(Parameter parameter, boolean multiLine) {
 		StringBuffer buffer = new StringBuffer();
+		boolean needsComma = false;
+		String NL = (multiLine) ? "\n" : " ";
 
-		// default : unique and not ordered
-		if(parameter.isUnique()) {
-			if(parameter.isOrdered()) {
-				buffer.append("ordered");
-			} else {
-				buffer.append("");
-			}
-		} else {
-			if(parameter.isOrdered()) {
-				buffer.append("ordered, nonunique");
-			} else {
-				buffer.append("nonunique");
-			}
+		// Return parameter modifiers
+		if(parameter.isOrdered()) {
+			needsComma = updateModifiersString(buffer, needsComma, NL, "ordered");;
 		}
+		if(parameter.isUnique()) {
+			needsComma = updateModifiersString(buffer, needsComma, NL, "unique");
+		}
+		if(parameter.isException()) {
+			needsComma = updateModifiersString(buffer, needsComma, NL, "exception");
+		}
+		if(parameter.isStream()) {
+			needsComma = updateModifiersString(buffer, needsComma, NL, "stream");
+		}
+
+		if(!buffer.toString().equals("")) {
+			buffer.insert(0, "{");
+			buffer.append("}");
+		}
+
 		return buffer.toString();
 	}
 
 	/**
-	 * Returns the label for this parameter, customized by the given style
+	 * Update the modifiers string
 	 * 
-	 * @param style
-	 *        the style of the label
-	 * @return the customized label for this parameter
-	 * @see ICustomAppearence
+	 * @param buffer
+	 *        the existing bufferString to append
+	 * @param needsComma
+	 *        if it needs coma
+	 * @param NL
+	 *        if it is multiline
+	 * @param message
+	 *        the message top
+	 * @return true because the modifier string is no more empty
 	 */
-	public static String getCustomLabel(Parameter parameter, int style) {
-		final StringBuffer label = new StringBuffer();
+	private static boolean updateModifiersString(StringBuffer buffer, boolean needsComma, String NL, String message) {
+		if(needsComma) {
+			buffer.append(",");
+			buffer.append(NL);
+		}
+		buffer.append(message);
+		return true;
+	}
+
+	/**
+	 * return the full label of the Parameter.
+	 * 
+	 * @return the string corresponding to the label of the parameter
+	 */
+	public static String getLabel(Parameter parameter) {
+		StringBuffer buffer = new StringBuffer();
+		// visibility
+		buffer.append(" ");
+		buffer.append(NamedElementUtil.getVisibilityAsSign(parameter));
 
 		// direction
-		if(hasStyle(style, ICustomAppearence.DISP_PARAMETER_DIRECTION)) {
-			label.append(parameter.getDirection().getLiteral());
-			label.append(" ");
-		}
+		buffer.append(" ");
+		buffer.append(parameter.getDirection().getLiteral());
 
 		// name
-		if(hasStyle(style, ICustomAppearence.DISP_PARAMETER_NAME)) {
-			label.append(parameter.getName());
+		buffer.append(" ");
+		if(parameter.getName() != null) {
+			buffer.append(parameter.getName());
 		}
 
 		// type
-		if(hasStyle(style, ICustomAppearence.DISP_PARAMETER_TYPE)) {
-			if(hasStyle(style, ICustomAppearence.DISP_PARAMETER_NAME)) {
-				label.append(": ");
+		if(parameter.getType() != null) {
+			buffer.append(": " + parameter.getType().getName());
+		} else {
+			buffer.append(": " + TypeUtil.UNDEFINED_TYPE_NAME);
+		}
+
+		// multiplicity -> do not display [1]
+		String multiplicity = MultiplicityElementUtil.getMultiplicityAsString(parameter);
+		if(!multiplicity.trim().equals("[1]")) {
+			buffer.append(multiplicity);
+		}
+
+		// default value
+		if(parameter.getDefault() != null) {
+			buffer.append(" = ");
+			buffer.append(parameter.getDefault());
+		}
+
+		// property modifiers
+		buffer.append(ParameterUtil.getModifiersAsString(parameter, false));
+
+		return buffer.toString();
+	}
+
+	/**
+	 * return the custom label of the property, given UML2 specification and a custom style.
+	 * 
+	 * @param style
+	 *        the integer representing the style of the label
+	 * 
+	 * @return the string corresponding to the label of the property
+	 */
+	public static String getCustomLabel(Parameter parameter, int style) {
+		StringBuffer buffer = new StringBuffer();
+		// visibility
+		buffer.append(" ");
+		if((style & ICustomAppearence.DISP_VISIBILITY) != 0) {
+			buffer.append(NamedElementUtil.getVisibilityAsSign(parameter));
+		}
+
+		// direction property
+		if((style & ICustomAppearence.DISP_PARAMETER_DIRECTION) != 0) {
+			buffer.append(" ");
+			buffer.append(parameter.getDirection().getLiteral());
+		}
+
+		// name
+		if((style & ICustomAppearence.DISP_PARAMETER_NAME) != 0) {
+			buffer.append(" ");
+			buffer.append(parameter.getName());
+		}
+
+		if((style & ICustomAppearence.DISP_PARAMETER_TYPE) != 0) {
+			// type
+			if(parameter.getType() != null) {
+				buffer.append(": " + parameter.getType().getName());
+			} else {
+				buffer.append(": " + TypeUtil.UNDEFINED_TYPE_NAME);
 			}
-			label.append(TypedElementUtil.getTypeAsString(parameter));
 		}
 
-		// multiplicity
-		if(hasStyle(style, ICustomAppearence.DISP_PARAMETER_MULTIPLICITY)) {
-			label.append(MultiplicityElementUtil.getMultiplicityAsString(parameter));
+		if((style & ICustomAppearence.DISP_PARAMETER_MULTIPLICITY) != 0) {
+			// multiplicity -> do not display [1]
+			String multiplicity = MultiplicityElementUtil.getMultiplicityAsString(parameter);
+			buffer.append(multiplicity);
 		}
 
-		// default
-		if(hasStyle(style, ICustomAppearence.DISP_PARAMETER_DEFAULT)) {
-			label.append(ParameterUtil.getDefaultAsString(parameter, true));
+		if((style & ICustomAppearence.DISP_PARAMETER_DEFAULT) != 0) {
+			// default value
+			if(parameter.getDefault() != null) {
+				buffer.append(" = ");
+				buffer.append(parameter.getDefault());
+			}
 		}
 
-		// modifier
-		if(hasStyle(style, ICustomAppearence.DISP_PARAMETER_MODIFIERS)) {
-			label.append(ParameterUtil.getPropertiesAsString(parameter));
+		if((style & ICustomAppearence.DISP_MOFIFIERS) != 0) {
+			boolean multiLine = ((style & ICustomAppearence.DISP_MULTI_LINE) != 0);
+			// property modifiers
+			String modifiers = ParameterUtil.getModifiersAsString(parameter, multiLine);
+			if(!modifiers.equals("")) {
+				if(multiLine) {
+					buffer.append("\n");
+				}
+				buffer.append(modifiers);
+			}
 		}
-
-		return label.toString();
+		return buffer.toString();
 	}
 
 	/**
