@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009 - 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -45,6 +45,7 @@ import org.eclipse.papyrus.diagram.composite.custom.helper.ConnectorHelper;
 import org.eclipse.papyrus.diagram.composite.custom.helper.DurationObservationHelper;
 import org.eclipse.papyrus.diagram.composite.custom.helper.TimeObservationHelper;
 import org.eclipse.papyrus.diagram.composite.custom.locators.PortPositionLocator;
+import org.eclipse.papyrus.diagram.composite.custom.log.Log;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ActivityCompositeEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ActorEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.AnyReceiveEventEditPart;
@@ -86,6 +87,7 @@ import org.eclipse.papyrus.diagram.composite.edit.parts.LiteralUnlimitedNaturalE
 import org.eclipse.papyrus.diagram.composite.edit.parts.NodeCompositeEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.OpaqueBehaviorCompositeEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.OpaqueExpressionEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ParameterEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PortEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PrimitiveTypeEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ProtocolStateMachineCompositeEditPart;
@@ -103,12 +105,14 @@ import org.eclipse.papyrus.diagram.composite.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.UseCaseEditPart;
 import org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.EncapsulatedClassifier;
+import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.TimeObservation;
@@ -121,11 +125,11 @@ import org.eclipse.uml2.uml.Type;
 public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
 
 	/** List of VISUAL_ID for which a specific Drop behavior is provided */
-	public int[] secificDropNode = {
+	public int[] specificDropNode = {
 	// TopLevelNodes
 	ActivityCompositeEditPart.VISUAL_ID, InteractionCompositeEditPart.VISUAL_ID, ProtocolStateMachineCompositeEditPart.VISUAL_ID, StateMachineCompositeEditPart.VISUAL_ID, FunctionBehaviorCompositeEditPart.VISUAL_ID, OpaqueBehaviorCompositeEditPart.VISUAL_ID, ComponentCompositeEditPart.VISUAL_ID, DeviceCompositeEditPart.VISUAL_ID, ExecutionEnvironmentCompositeEditPart.VISUAL_ID, NodeCompositeEditPart.VISUAL_ID, ClassCompositeEditPart.VISUAL_ID, ClassClassifierEditPart.VISUAL_ID, CollaborationCompositeEditPart.VISUAL_ID, InterfaceEditPart.VISUAL_ID, PrimitiveTypeEditPart.VISUAL_ID, EnumerationEditPart.VISUAL_ID, DataTypeEditPart.VISUAL_ID, ActorEditPart.VISUAL_ID, DeploymentSpecificationEditPart.VISUAL_ID, ArtifactEditPart.VISUAL_ID, InformationItemEditPart.VISUAL_ID, SignalEditPart.VISUAL_ID, UseCaseEditPart.VISUAL_ID, SignalEventEditPart.VISUAL_ID, CallEventEditPart.VISUAL_ID, AnyReceiveEventEditPart.VISUAL_ID, SendSignalEventEditPart.VISUAL_ID, SendOperationEventEditPart.VISUAL_ID, ChangeEventEditPart.VISUAL_ID, TimeEventEditPart.VISUAL_ID, CreationEventEditPart.VISUAL_ID, ExecutionEventEditPart.VISUAL_ID, LiteralBooleanEditPart.VISUAL_ID, LiteralIntegerEditPart.VISUAL_ID, LiteralNullEditPart.VISUAL_ID, LiteralStringEditPart.VISUAL_ID, LiteralUnlimitedNaturalEditPart.VISUAL_ID, StringExpressionEditPart.VISUAL_ID, OpaqueExpressionEditPart.VISUAL_ID, TimeExpressionEditPart.VISUAL_ID, ExpressionEditPart.VISUAL_ID, DurationEditPart.VISUAL_ID, IntervalEditPart.VISUAL_ID, InstanceValueEditPart.VISUAL_ID, CommentEditPart.VISUAL_ID, DurationConstraintEditPart.VISUAL_ID, TimeConstraintEditPart.VISUAL_ID, IntervalConstraintEditPart.VISUAL_ID, InteractionConstraintEditPart.VISUAL_ID, ConstraintEditPart.VISUAL_ID,
 	// TopLevelNodes
-	DependencyEditPart.VISUAL_ID, RoleBindingEditPart.VISUAL_ID, ConnectorEditPart.VISUAL_ID, PortEditPart.VISUAL_ID, org.eclipse.papyrus.diagram.composite.edit.parts.PropertyPartEditPartCN.VISUAL_ID, TimeObservationEditPart.VISUAL_ID, DurationObservationEditPart.VISUAL_ID };
+	DependencyEditPart.VISUAL_ID, RoleBindingEditPart.VISUAL_ID, ConnectorEditPart.VISUAL_ID, PortEditPart.VISUAL_ID, ParameterEditPart.VISUAL_ID, org.eclipse.papyrus.diagram.composite.edit.parts.PropertyPartEditPartCN.VISUAL_ID, TimeObservationEditPart.VISUAL_ID, DurationObservationEditPart.VISUAL_ID };
 
 
 
@@ -135,7 +139,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 */
 	public CustomDiagramDragDropEditPolicy() {
 		super(CompositeLinkMappingHelper.getInstance());
-		init(secificDropNode);
+		init(specificDropNode);
 	}
 
 	/**
@@ -233,7 +237,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 				return dropTopLevelNode(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
 				// Test TopLevelNode... End
 			case PortEditPart.VISUAL_ID:
-				return dropPort(dropRequest, (Port)semanticElement, nodeVISUALID);
+				return dropAffixedNode(dropRequest, (Port)semanticElement, nodeVISUALID);
+			case ParameterEditPart.VISUAL_ID:
+				return dropAffixedNode(dropRequest, (Parameter)semanticElement, nodeVISUALID);
 			case org.eclipse.papyrus.diagram.composite.edit.parts.PropertyPartEditPartCN.VISUAL_ID:
 				return dropProperty(dropRequest, (Property)semanticElement, nodeVISUALID);
 			case TimeObservationEditPart.VISUAL_ID:
@@ -365,7 +371,8 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	}
 
 	/**
-	 * Returns the drop command for Port nodes.
+	 * Returns the drop command for Affixed nodes (Parameter, Port).
+	 * This method uses PortPositionLocator used by both Port and Parameter.
 	 * 
 	 * @param dropRequest
 	 *        the drop request
@@ -377,9 +384,15 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *        the visual identifier of the EditPart of the dropped element
 	 * @return the drop command
 	 */
-	protected Command dropPort(DropObjectsRequest dropRequest, Port droppedElement, int nodeVISUALID) {
+	protected Command dropAffixedNode(DropObjectsRequest dropRequest, Element droppedElement, int nodeVISUALID) {
 
-		// Manage Port drop in compartment
+		// The dropped element must be a Port or Parameter
+		if(!((droppedElement instanceof Port) || (droppedElement instanceof Parameter))) {
+			Log.getInstance().error(new Exception("Incorrect parameter type (droppedElement should be a Port or Parameter)"));
+			return UnexecutableCommand.INSTANCE;
+		}
+
+		// Manage Element drop in compartment
 		Boolean isCompartmentTarget = false; // True if the target is a ShapeCompartmentEditPart
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
 
@@ -412,7 +425,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			// Translate the requested drop location (relative to parent)
 			dropLocation = dropRequest.getLocation().getTranslated(delta);
 		}
-		// Manage Port drop in compartment
+		// Manage Element drop in compartment
 
 		// Create proposed creation bounds and use the locator to find the expected position
 		Point parentLoc = graphicalParentEditPart.getFigure().getBounds().getLocation().getCopy();
@@ -429,20 +442,29 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
 
 		if((graphicalParentObject instanceof EncapsulatedClassifier) && (((EncapsulatedClassifier)graphicalParentObject).getOwnedPorts().contains(droppedElement))) {
+			// Drop Port on StructuredClassifier
 			if(isCompartmentTarget) {
-				return new ICommandProxy(getDropPortInCompartmentCommand(nodeVISUALID, dropLocation, droppedElement));
+				return new ICommandProxy(getDropAffixedNodeInCompartmentCommand(nodeVISUALID, dropLocation, droppedElement));
 			}
 			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropLocation, droppedElement));
 
 		} else if(graphicalParentObject instanceof ConnectableElement) {
+			// Drop Port on Part
 			Type type = ((ConnectableElement)graphicalParentObject).getType();
 
 			if((type != null) && (type instanceof EncapsulatedClassifier) && (((EncapsulatedClassifier)type).getOwnedPorts().contains(droppedElement))) {
 				if(isCompartmentTarget) {
-					return new ICommandProxy(getDropPortInCompartmentCommand(nodeVISUALID, dropLocation, droppedElement));
+					return new ICommandProxy(getDropAffixedNodeInCompartmentCommand(nodeVISUALID, dropLocation, droppedElement));
 				}
 				return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropLocation, droppedElement));
 			}
+
+		} else if((graphicalParentObject instanceof Behavior) && (((Behavior)graphicalParentObject).getOwnedParameters().contains(droppedElement))) {
+			// Drop Parameter on Behavior
+			if(isCompartmentTarget) {
+				return new ICommandProxy(getDropAffixedNodeInCompartmentCommand(nodeVISUALID, dropLocation, droppedElement));
+			}
+			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropLocation, droppedElement));
 		}
 
 		return UnexecutableCommand.INSTANCE;
@@ -529,7 +551,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	}
 
 	/**
-	 * This method returns the drop command for Port in case the Port is dropped on a ShapeCompartmentEditPart.
+	 * This method returns the drop command for AffixedNode (Port, Parameter) in case the node is dropped on a ShapeCompartmentEditPart.
 	 * 
 	 * @param nodeVISUALID
 	 *        the node visual identifier
@@ -539,7 +561,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *        the object to drop
 	 * @return a CompositeCommand for Drop
 	 */
-	protected CompositeCommand getDropPortInCompartmentCommand(int nodeVISUALID, Point location, EObject droppedObject) {
+	protected CompositeCommand getDropAffixedNodeInCompartmentCommand(int nodeVISUALID, Point location, EObject droppedObject) {
 		CompositeCommand cc = new CompositeCommand("Drop");
 		IAdaptable elementAdapter = new EObjectAdapter(droppedObject);
 

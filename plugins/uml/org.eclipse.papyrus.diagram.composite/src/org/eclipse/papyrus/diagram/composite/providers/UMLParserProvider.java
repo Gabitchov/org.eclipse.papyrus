@@ -1178,6 +1178,38 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser parameterName_6033Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getParameterName_6033Parser() {
+		if(parameterName_6033Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parameterName_6033Parser = parser;
+		}
+		return parameterName_6033Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser parameterName_6034Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getParameterName_6034Parser() {
+		if(parameterName_6034Parser == null) {
+			parameterName_6034Parser = new AppliedStereotypeParser();
+		}
+		return parameterName_6034Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser propertyName_5126Parser;
 
 	/**
@@ -2492,6 +2524,10 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getPortName_5125Parser();
 		case PortAppliedStereotypeEditPart.VISUAL_ID:
 			return getPortName_6029Parser();
+		case ParameterNameEditPart.VISUAL_ID:
+			return getParameterName_6033Parser();
+		case ParameterAppliedStereotypeEditPart.VISUAL_ID:
+			return getParameterName_6034Parser();
 		case PropertyPartNameEditPartCN.VISUAL_ID:
 			return getPropertyName_5126Parser();
 		case CollaborationRoleNameEditPartCN.VISUAL_ID:

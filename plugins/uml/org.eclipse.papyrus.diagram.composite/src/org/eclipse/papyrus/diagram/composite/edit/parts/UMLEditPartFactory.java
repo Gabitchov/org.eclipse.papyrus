@@ -390,6 +390,15 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case PortAppliedStereotypeEditPart.VISUAL_ID:
 				return new PortAppliedStereotypeEditPart(view);
 
+			case ParameterEditPart.VISUAL_ID:
+				return new ParameterEditPart(view);
+
+			case ParameterNameEditPart.VISUAL_ID:
+				return new ParameterNameEditPart(view);
+
+			case ParameterAppliedStereotypeEditPart.VISUAL_ID:
+				return new ParameterAppliedStereotypeEditPart(view);
+
 			case PropertyPartEditPartCN.VISUAL_ID:
 				return new PropertyPartEditPartCN(view);
 

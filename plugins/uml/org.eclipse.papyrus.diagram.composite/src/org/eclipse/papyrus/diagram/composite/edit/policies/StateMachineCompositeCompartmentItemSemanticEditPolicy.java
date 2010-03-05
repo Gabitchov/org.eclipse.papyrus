@@ -34,6 +34,7 @@ import org.eclipse.papyrus.diagram.composite.edit.commands.InteractionCompositeC
 import org.eclipse.papyrus.diagram.composite.edit.commands.InterfaceCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.edit.commands.NodeCompositeCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.edit.commands.OpaqueBehaviorCompositeCreateCommandCN;
+import org.eclipse.papyrus.diagram.composite.edit.commands.ParameterCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.PortCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.PrimitiveTypeCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.edit.commands.PropertyPartCreateCommandCN;
@@ -62,6 +63,9 @@ public class StateMachineCompositeCompartmentItemSemanticEditPolicy extends UMLB
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.Port_3069 == req.getElementType()) {
 			return getGEFWrapper(new PortCreateCommand(req));
+		}
+		if(UMLElementTypes.Parameter_3088 == req.getElementType()) {
+			return getGEFWrapper(new ParameterCreateCommand(req));
 		}
 		if(UMLElementTypes.Property_3070 == req.getElementType()) {
 			return getGEFWrapper(new PropertyPartCreateCommandCN(req));

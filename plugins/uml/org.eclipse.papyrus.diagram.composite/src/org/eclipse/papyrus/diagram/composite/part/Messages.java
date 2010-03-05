@@ -388,6 +388,76 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String Parameter12CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Parameter12CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Activity13CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Activity13CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Interaction14CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Interaction14CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String ProtocolStateMachine15CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ProtocolStateMachine15CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String StateMachine16CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String StateMachine16CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String FunctionBehavior17CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String FunctionBehavior17CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String OpaqueBehavior18CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String OpaqueBehavior18CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String Link1CreationTool_title;
 
 	/**

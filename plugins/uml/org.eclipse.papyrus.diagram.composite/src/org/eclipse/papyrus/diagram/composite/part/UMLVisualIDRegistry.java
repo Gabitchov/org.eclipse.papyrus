@@ -134,12 +134,22 @@ public class UMLVisualIDRegistry {
 			) {
 				return PortEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ParameterEditPart.VISUAL_ID;
+			}
 			break;
 		case InteractionCompositeEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
 
 			) {
 				return PortEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ParameterEditPart.VISUAL_ID;
 			}
 			break;
 		case ProtocolStateMachineCompositeEditPart.VISUAL_ID:
@@ -148,12 +158,22 @@ public class UMLVisualIDRegistry {
 			) {
 				return PortEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ParameterEditPart.VISUAL_ID;
+			}
 			break;
 		case StateMachineCompositeEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
 
 			) {
 				return PortEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ParameterEditPart.VISUAL_ID;
 			}
 			break;
 		case FunctionBehaviorCompositeEditPart.VISUAL_ID:
@@ -162,12 +182,22 @@ public class UMLVisualIDRegistry {
 			) {
 				return PortEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ParameterEditPart.VISUAL_ID;
+			}
 			break;
 		case OpaqueBehaviorCompositeEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
 
 			) {
 				return PortEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ParameterEditPart.VISUAL_ID;
 			}
 			break;
 		case ComponentCompositeEditPart.VISUAL_ID:
@@ -225,12 +255,22 @@ public class UMLVisualIDRegistry {
 			) {
 				return PortEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ParameterEditPart.VISUAL_ID;
+			}
 			break;
 		case InteractionCompositeEditPartCN.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
 
 			) {
 				return PortEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ParameterEditPart.VISUAL_ID;
 			}
 			break;
 		case ProtocolStateMachineCompositeEditPartCN.VISUAL_ID:
@@ -239,12 +279,22 @@ public class UMLVisualIDRegistry {
 			) {
 				return PortEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ParameterEditPart.VISUAL_ID;
+			}
 			break;
 		case StateMachineCompositeEditPartCN.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
 
 			) {
 				return PortEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ParameterEditPart.VISUAL_ID;
 			}
 			break;
 		case FunctionBehaviorCompositeEditPartCN.VISUAL_ID:
@@ -253,12 +303,22 @@ public class UMLVisualIDRegistry {
 			) {
 				return PortEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ParameterEditPart.VISUAL_ID;
+			}
 			break;
 		case OpaqueBehaviorCompositeEditPartCN.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
 
 			) {
 				return PortEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ParameterEditPart.VISUAL_ID;
 			}
 			break;
 		case ComponentCompositeEditPartCN.VISUAL_ID:
@@ -432,6 +492,11 @@ public class UMLVisualIDRegistry {
 			) {
 				return PortEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ParameterEditPart.VISUAL_ID;
+			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
@@ -561,6 +626,11 @@ public class UMLVisualIDRegistry {
 
 			) {
 				return PortEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ParameterEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
@@ -692,6 +762,11 @@ public class UMLVisualIDRegistry {
 			) {
 				return PortEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ParameterEditPart.VISUAL_ID;
+			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
@@ -821,6 +896,11 @@ public class UMLVisualIDRegistry {
 
 			) {
 				return PortEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ParameterEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
@@ -952,6 +1032,11 @@ public class UMLVisualIDRegistry {
 			) {
 				return PortEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ParameterEditPart.VISUAL_ID;
+			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
@@ -1081,6 +1166,11 @@ public class UMLVisualIDRegistry {
 
 			) {
 				return PortEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ParameterEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
@@ -1882,6 +1972,11 @@ public class UMLVisualIDRegistry {
 			) {
 				return PortEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ParameterEditPart.VISUAL_ID;
+			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
@@ -2011,6 +2106,11 @@ public class UMLVisualIDRegistry {
 
 			) {
 				return PortEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ParameterEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
@@ -2142,6 +2242,11 @@ public class UMLVisualIDRegistry {
 			) {
 				return PortEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ParameterEditPart.VISUAL_ID;
+			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
@@ -2271,6 +2376,11 @@ public class UMLVisualIDRegistry {
 
 			) {
 				return PortEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ParameterEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
@@ -2402,6 +2512,11 @@ public class UMLVisualIDRegistry {
 			) {
 				return PortEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ParameterEditPart.VISUAL_ID;
+			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
 			}
@@ -2531,6 +2646,11 @@ public class UMLVisualIDRegistry {
 
 			) {
 				return PortEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getParameter().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ParameterEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass()) && isProperty_3070(containerView, (Property)domainElement)) {
 				return PropertyPartEditPartCN.VISUAL_ID;
@@ -3651,6 +3771,9 @@ public class UMLVisualIDRegistry {
 			if(PortEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case InteractionCompositeEditPart.VISUAL_ID:
 			if(InteractionCompositeNameEditPart.VISUAL_ID == nodeVisualID) {
@@ -3660,6 +3783,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(PortEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -3673,6 +3799,9 @@ public class UMLVisualIDRegistry {
 			if(PortEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case StateMachineCompositeEditPart.VISUAL_ID:
 			if(StateMachineCompositeNameEditPart.VISUAL_ID == nodeVisualID) {
@@ -3682,6 +3811,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(PortEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -3695,6 +3827,9 @@ public class UMLVisualIDRegistry {
 			if(PortEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case OpaqueBehaviorCompositeEditPart.VISUAL_ID:
 			if(OpaqueBehaviorCompositeNameEditPart.VISUAL_ID == nodeVisualID) {
@@ -3704,6 +3839,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(PortEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -4023,6 +4161,14 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case ParameterEditPart.VISUAL_ID:
+			if(ParameterNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ParameterAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case PropertyPartEditPartCN.VISUAL_ID:
 			if(PropertyPartNameEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -4054,6 +4200,9 @@ public class UMLVisualIDRegistry {
 			if(PortEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case InteractionCompositeEditPartCN.VISUAL_ID:
 			if(InteractionCompositeNameEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -4063,6 +4212,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(PortEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -4076,6 +4228,9 @@ public class UMLVisualIDRegistry {
 			if(PortEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case StateMachineCompositeEditPartCN.VISUAL_ID:
 			if(StateMachineCompositeNameEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -4085,6 +4240,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(PortEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -4098,6 +4256,9 @@ public class UMLVisualIDRegistry {
 			if(PortEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case OpaqueBehaviorCompositeEditPartCN.VISUAL_ID:
 			if(OpaqueBehaviorCompositeNameEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -4107,6 +4268,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(PortEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -4328,6 +4492,9 @@ public class UMLVisualIDRegistry {
 			if(PortEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			if(PropertyPartEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -4406,6 +4573,9 @@ public class UMLVisualIDRegistry {
 			break;
 		case InteractionCompositeCompartmentEditPartCN.VISUAL_ID:
 			if(PortEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(PropertyPartEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -4488,6 +4658,9 @@ public class UMLVisualIDRegistry {
 			if(PortEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			if(PropertyPartEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -4566,6 +4739,9 @@ public class UMLVisualIDRegistry {
 			break;
 		case StateMachineCompositeCompartmentEditPartCN.VISUAL_ID:
 			if(PortEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(PropertyPartEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -4648,6 +4824,9 @@ public class UMLVisualIDRegistry {
 			if(PortEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			if(PropertyPartEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -4726,6 +4905,9 @@ public class UMLVisualIDRegistry {
 			break;
 		case OpaqueBehaviorCompositeCompartmentEditPartCN.VISUAL_ID:
 			if(PortEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(PropertyPartEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -5222,6 +5404,9 @@ public class UMLVisualIDRegistry {
 			if(PortEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			if(PropertyPartEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -5300,6 +5485,9 @@ public class UMLVisualIDRegistry {
 			break;
 		case InteractionCompositeCompartmentEditPart.VISUAL_ID:
 			if(PortEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(PropertyPartEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -5382,6 +5570,9 @@ public class UMLVisualIDRegistry {
 			if(PortEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			if(PropertyPartEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -5460,6 +5651,9 @@ public class UMLVisualIDRegistry {
 			break;
 		case StateMachineCompositeCompartmentEditPart.VISUAL_ID:
 			if(PortEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(PropertyPartEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -5542,6 +5736,9 @@ public class UMLVisualIDRegistry {
 			if(PortEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			if(PropertyPartEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -5620,6 +5817,9 @@ public class UMLVisualIDRegistry {
 			break;
 		case OpaqueBehaviorCompositeCompartmentEditPart.VISUAL_ID:
 			if(PortEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(PropertyPartEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -7033,6 +7233,57 @@ public class UMLVisualIDRegistry {
 		root.addNode(7073, viewInfo);
 
 		root.addNode(7077, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3088, ViewInfo.Node, "Parameter");
+
+		root.addNode(3072, viewInfo);
+
+		root.addNode(3073, viewInfo);
+
+		root.addNode(3074, viewInfo);
+
+		root.addNode(3075, viewInfo);
+
+		root.addNode(3076, viewInfo);
+
+		root.addNode(3077, viewInfo);
+
+		root.addNode(7050, viewInfo);
+
+		root.addNode(7051, viewInfo);
+
+		root.addNode(7052, viewInfo);
+
+		root.addNode(7053, viewInfo);
+
+		root.addNode(7054, viewInfo);
+
+		root.addNode(7055, viewInfo);
+
+		root.addNode(7063, viewInfo);
+
+		root.addNode(7064, viewInfo);
+
+		root.addNode(7065, viewInfo);
+
+		root.addNode(7066, viewInfo);
+
+		root.addNode(7067, viewInfo);
+
+		root.addNode(7068, viewInfo);
+
+		root.addNode(2060, viewInfo);
+
+		root.addNode(2061, viewInfo);
+
+		root.addNode(2062, viewInfo);
+
+		root.addNode(2063, viewInfo);
+
+		root.addNode(2064, viewInfo);
+
+		root.addNode(2065, viewInfo);
 
 
 		viewInfo = new BaseViewInfo(3070, ViewInfo.Node, "Property");

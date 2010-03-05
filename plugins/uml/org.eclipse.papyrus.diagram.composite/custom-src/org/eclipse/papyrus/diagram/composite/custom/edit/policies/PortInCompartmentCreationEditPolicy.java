@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009 - 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -25,7 +25,7 @@ import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
 
 /**
  * This class provide customization of the CreationEditPolicy to support the case where
- * a Port is created in a Compartment. In such a case the Port should be added to the compartment owner.
+ * a Port or Parameter is created in a Compartment. In such a case the Port (Parameter) should be added to the compartment owner.
  * 
  */
 public class PortInCompartmentCreationEditPolicy extends CreationEditPolicy {
@@ -39,8 +39,8 @@ public class PortInCompartmentCreationEditPolicy extends CreationEditPolicy {
 			if(understandsRequest(request)) {
 				List<?> elementTypes = createUnspecifiedTypeRequest.getElementTypes();
 				// Treat the case where only one element type is listed
-				// Only take Port element type into account
-				if((elementTypes.size() == 1) && ((IElementType)(elementTypes.get(0)) == UMLElementTypes.Port_3069)) {
+				// Only take Port or Parameter element type into account
+				if((elementTypes.size() == 1) && (((IElementType)(elementTypes.get(0)) == UMLElementTypes.Port_3069) || ((IElementType)(elementTypes.get(0)) == UMLElementTypes.Parameter_3088))) {
 					// If the target is a compartment replace by its parent edit part
 					if((getHost() instanceof ShapeCompartmentEditPart)) {
 						return getHost().getParent();

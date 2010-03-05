@@ -346,6 +346,11 @@ public class UMLElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Parameter_3088 = getElementType("org.eclipse.papyrus.diagram.composite.Parameter_3088"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType Property_3070 = getElementType("org.eclipse.papyrus.diagram.composite.Property_3070"); //$NON-NLS-1$
 
 	/**
@@ -925,6 +930,9 @@ public class UMLElementTypes extends ElementInitializers {
 			elements.put(Port_3069, UMLPackage.eINSTANCE.getPort());
 
 
+			elements.put(Parameter_3088, UMLPackage.eINSTANCE.getParameter());
+
+
 			elements.put(Property_3070, UMLPackage.eINSTANCE.getProperty());
 
 
@@ -1172,6 +1180,7 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(InteractionConstraint_2113);
 			KNOWN_ELEMENT_TYPES.add(Constraint_2114);
 			KNOWN_ELEMENT_TYPES.add(Port_3069);
+			KNOWN_ELEMENT_TYPES.add(Parameter_3088);
 			KNOWN_ELEMENT_TYPES.add(Property_3070);
 			KNOWN_ELEMENT_TYPES.add(ConnectableElement_3115);
 			KNOWN_ELEMENT_TYPES.add(CollaborationUse_3071);
@@ -1356,6 +1365,8 @@ public class UMLElementTypes extends ElementInitializers {
 			return Constraint_2114;
 		case PortEditPart.VISUAL_ID:
 			return Port_3069;
+		case ParameterEditPart.VISUAL_ID:
+			return Parameter_3088;
 		case PropertyPartEditPartCN.VISUAL_ID:
 			return Property_3070;
 		case CollaborationRoleEditPartCN.VISUAL_ID:

@@ -540,6 +540,9 @@ NamedElementEditPart {
 		if(targetEditPart instanceof PortEditPart) {
 			types.add(UMLElementTypes.ComponentRealization_4004);
 		}
+		if(targetEditPart instanceof ParameterEditPart) {
+			types.add(UMLElementTypes.ComponentRealization_4004);
+		}
 		if(targetEditPart instanceof PropertyPartEditPartCN) {
 			types.add(UMLElementTypes.ComponentRealization_4004);
 		}
@@ -780,6 +783,9 @@ NamedElementEditPart {
 		if(targetEditPart instanceof PortEditPart) {
 			types.add(UMLElementTypes.InterfaceRealization_4005);
 		}
+		if(targetEditPart instanceof ParameterEditPart) {
+			types.add(UMLElementTypes.InterfaceRealization_4005);
+		}
 		if(targetEditPart instanceof PropertyPartEditPartCN) {
 			types.add(UMLElementTypes.InterfaceRealization_4005);
 		}
@@ -1020,6 +1026,9 @@ NamedElementEditPart {
 		if(targetEditPart instanceof PortEditPart) {
 			types.add(UMLElementTypes.Substitution_4011);
 		}
+		if(targetEditPart instanceof ParameterEditPart) {
+			types.add(UMLElementTypes.Substitution_4011);
+		}
 		if(targetEditPart instanceof PropertyPartEditPartCN) {
 			types.add(UMLElementTypes.Substitution_4011);
 		}
@@ -1260,6 +1269,9 @@ NamedElementEditPart {
 		if(targetEditPart instanceof PortEditPart) {
 			types.add(UMLElementTypes.Realization_4006);
 		}
+		if(targetEditPart instanceof ParameterEditPart) {
+			types.add(UMLElementTypes.Realization_4006);
+		}
 		if(targetEditPart instanceof PropertyPartEditPartCN) {
 			types.add(UMLElementTypes.Realization_4006);
 		}
@@ -1500,6 +1512,9 @@ NamedElementEditPart {
 		if(targetEditPart instanceof PortEditPart) {
 			types.add(UMLElementTypes.Manifestation_4012);
 		}
+		if(targetEditPart instanceof ParameterEditPart) {
+			types.add(UMLElementTypes.Manifestation_4012);
+		}
 		if(targetEditPart instanceof PropertyPartEditPartCN) {
 			types.add(UMLElementTypes.Manifestation_4012);
 		}
@@ -1740,6 +1755,9 @@ NamedElementEditPart {
 		if(targetEditPart instanceof PortEditPart) {
 			types.add(UMLElementTypes.Abstraction_4007);
 		}
+		if(targetEditPart instanceof ParameterEditPart) {
+			types.add(UMLElementTypes.Abstraction_4007);
+		}
 		if(targetEditPart instanceof PropertyPartEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4007);
 		}
@@ -1980,6 +1998,9 @@ NamedElementEditPart {
 		if(targetEditPart instanceof PortEditPart) {
 			types.add(UMLElementTypes.Usage_4008);
 		}
+		if(targetEditPart instanceof ParameterEditPart) {
+			types.add(UMLElementTypes.Usage_4008);
+		}
 		if(targetEditPart instanceof PropertyPartEditPartCN) {
 			types.add(UMLElementTypes.Usage_4008);
 		}
@@ -2220,6 +2241,9 @@ NamedElementEditPart {
 		if(targetEditPart instanceof PortEditPart) {
 			types.add(UMLElementTypes.Deployment_4009);
 		}
+		if(targetEditPart instanceof ParameterEditPart) {
+			types.add(UMLElementTypes.Deployment_4009);
+		}
 		if(targetEditPart instanceof PropertyPartEditPartCN) {
 			types.add(UMLElementTypes.Deployment_4009);
 		}
@@ -2460,6 +2484,9 @@ NamedElementEditPart {
 		if(targetEditPart instanceof PortEditPart) {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
+		if(targetEditPart instanceof ParameterEditPart) {
+			types.add(UMLElementTypes.Dependency_4017);
+		}
 		if(targetEditPart instanceof PropertyPartEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
@@ -2700,6 +2727,9 @@ NamedElementEditPart {
 		if(targetEditPart instanceof PortEditPart) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
+		if(targetEditPart instanceof ParameterEditPart) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
 		if(targetEditPart instanceof PropertyPartEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
@@ -3073,6 +3103,9 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InformationFlow_4021);
 		}
 		if(targetEditPart instanceof PortEditPart) {
+			types.add(UMLElementTypes.InformationFlow_4021);
+		}
+		if(targetEditPart instanceof ParameterEditPart) {
 			types.add(UMLElementTypes.InformationFlow_4021);
 		}
 		if(targetEditPart instanceof PropertyPartEditPartCN) {
@@ -3324,6 +3357,9 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Port_3069);
 		}
 		if(relationshipType == UMLElementTypes.ComponentRealization_4004) {
+			types.add(UMLElementTypes.Parameter_3088);
+		}
+		if(relationshipType == UMLElementTypes.ComponentRealization_4004) {
 			types.add(UMLElementTypes.Property_3070);
 		}
 		if(relationshipType == UMLElementTypes.ComponentRealization_4004) {
@@ -3564,6 +3600,9 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Port_3069);
 		}
 		if(relationshipType == UMLElementTypes.InterfaceRealization_4005) {
+			types.add(UMLElementTypes.Parameter_3088);
+		}
+		if(relationshipType == UMLElementTypes.InterfaceRealization_4005) {
 			types.add(UMLElementTypes.Property_3070);
 		}
 		if(relationshipType == UMLElementTypes.InterfaceRealization_4005) {
@@ -3804,6 +3843,9 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Port_3069);
 		}
 		if(relationshipType == UMLElementTypes.Substitution_4011) {
+			types.add(UMLElementTypes.Parameter_3088);
+		}
+		if(relationshipType == UMLElementTypes.Substitution_4011) {
 			types.add(UMLElementTypes.Property_3070);
 		}
 		if(relationshipType == UMLElementTypes.Substitution_4011) {
@@ -4044,6 +4086,9 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Port_3069);
 		}
 		if(relationshipType == UMLElementTypes.Realization_4006) {
+			types.add(UMLElementTypes.Parameter_3088);
+		}
+		if(relationshipType == UMLElementTypes.Realization_4006) {
 			types.add(UMLElementTypes.Property_3070);
 		}
 		if(relationshipType == UMLElementTypes.Realization_4006) {
@@ -4284,6 +4329,9 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Port_3069);
 		}
 		if(relationshipType == UMLElementTypes.Manifestation_4012) {
+			types.add(UMLElementTypes.Parameter_3088);
+		}
+		if(relationshipType == UMLElementTypes.Manifestation_4012) {
 			types.add(UMLElementTypes.Property_3070);
 		}
 		if(relationshipType == UMLElementTypes.Manifestation_4012) {
@@ -4524,6 +4572,9 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Port_3069);
 		}
 		if(relationshipType == UMLElementTypes.Abstraction_4007) {
+			types.add(UMLElementTypes.Parameter_3088);
+		}
+		if(relationshipType == UMLElementTypes.Abstraction_4007) {
 			types.add(UMLElementTypes.Property_3070);
 		}
 		if(relationshipType == UMLElementTypes.Abstraction_4007) {
@@ -4764,6 +4815,9 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Port_3069);
 		}
 		if(relationshipType == UMLElementTypes.Usage_4008) {
+			types.add(UMLElementTypes.Parameter_3088);
+		}
+		if(relationshipType == UMLElementTypes.Usage_4008) {
 			types.add(UMLElementTypes.Property_3070);
 		}
 		if(relationshipType == UMLElementTypes.Usage_4008) {
@@ -5004,6 +5058,9 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Port_3069);
 		}
 		if(relationshipType == UMLElementTypes.Deployment_4009) {
+			types.add(UMLElementTypes.Parameter_3088);
+		}
+		if(relationshipType == UMLElementTypes.Deployment_4009) {
 			types.add(UMLElementTypes.Property_3070);
 		}
 		if(relationshipType == UMLElementTypes.Deployment_4009) {
@@ -5244,6 +5301,9 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Port_3069);
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4017) {
+			types.add(UMLElementTypes.Parameter_3088);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4017) {
 			types.add(UMLElementTypes.Property_3070);
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4017) {
@@ -5484,6 +5544,9 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Port_3069);
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4010) {
+			types.add(UMLElementTypes.Parameter_3088);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4010) {
 			types.add(UMLElementTypes.Property_3070);
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4010) {
@@ -5857,6 +5920,9 @@ NamedElementEditPart {
 		}
 		if(relationshipType == UMLElementTypes.InformationFlow_4021) {
 			types.add(UMLElementTypes.Port_3069);
+		}
+		if(relationshipType == UMLElementTypes.InformationFlow_4021) {
+			types.add(UMLElementTypes.Parameter_3088);
 		}
 		if(relationshipType == UMLElementTypes.InformationFlow_4021) {
 			types.add(UMLElementTypes.Property_3070);
@@ -6153,6 +6219,9 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Port_3069);
 		}
 		if(relationshipType == UMLElementTypes.ComponentRealization_4004) {
+			types.add(UMLElementTypes.Parameter_3088);
+		}
+		if(relationshipType == UMLElementTypes.ComponentRealization_4004) {
 			types.add(UMLElementTypes.Property_3070);
 		}
 		if(relationshipType == UMLElementTypes.ComponentRealization_4004) {
@@ -6393,6 +6462,9 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Port_3069);
 		}
 		if(relationshipType == UMLElementTypes.InterfaceRealization_4005) {
+			types.add(UMLElementTypes.Parameter_3088);
+		}
+		if(relationshipType == UMLElementTypes.InterfaceRealization_4005) {
 			types.add(UMLElementTypes.Property_3070);
 		}
 		if(relationshipType == UMLElementTypes.InterfaceRealization_4005) {
@@ -6633,6 +6705,9 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Port_3069);
 		}
 		if(relationshipType == UMLElementTypes.Substitution_4011) {
+			types.add(UMLElementTypes.Parameter_3088);
+		}
+		if(relationshipType == UMLElementTypes.Substitution_4011) {
 			types.add(UMLElementTypes.Property_3070);
 		}
 		if(relationshipType == UMLElementTypes.Substitution_4011) {
@@ -6873,6 +6948,9 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Port_3069);
 		}
 		if(relationshipType == UMLElementTypes.Realization_4006) {
+			types.add(UMLElementTypes.Parameter_3088);
+		}
+		if(relationshipType == UMLElementTypes.Realization_4006) {
 			types.add(UMLElementTypes.Property_3070);
 		}
 		if(relationshipType == UMLElementTypes.Realization_4006) {
@@ -7113,6 +7191,9 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Port_3069);
 		}
 		if(relationshipType == UMLElementTypes.Manifestation_4012) {
+			types.add(UMLElementTypes.Parameter_3088);
+		}
+		if(relationshipType == UMLElementTypes.Manifestation_4012) {
 			types.add(UMLElementTypes.Property_3070);
 		}
 		if(relationshipType == UMLElementTypes.Manifestation_4012) {
@@ -7353,6 +7434,9 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Port_3069);
 		}
 		if(relationshipType == UMLElementTypes.Abstraction_4007) {
+			types.add(UMLElementTypes.Parameter_3088);
+		}
+		if(relationshipType == UMLElementTypes.Abstraction_4007) {
 			types.add(UMLElementTypes.Property_3070);
 		}
 		if(relationshipType == UMLElementTypes.Abstraction_4007) {
@@ -7593,6 +7677,9 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Port_3069);
 		}
 		if(relationshipType == UMLElementTypes.Usage_4008) {
+			types.add(UMLElementTypes.Parameter_3088);
+		}
+		if(relationshipType == UMLElementTypes.Usage_4008) {
 			types.add(UMLElementTypes.Property_3070);
 		}
 		if(relationshipType == UMLElementTypes.Usage_4008) {
@@ -7833,6 +7920,9 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Port_3069);
 		}
 		if(relationshipType == UMLElementTypes.Deployment_4009) {
+			types.add(UMLElementTypes.Parameter_3088);
+		}
+		if(relationshipType == UMLElementTypes.Deployment_4009) {
 			types.add(UMLElementTypes.Property_3070);
 		}
 		if(relationshipType == UMLElementTypes.Deployment_4009) {
@@ -8073,6 +8163,9 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.Port_3069);
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4017) {
+			types.add(UMLElementTypes.Parameter_3088);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4017) {
 			types.add(UMLElementTypes.Property_3070);
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4017) {
@@ -8311,6 +8404,9 @@ NamedElementEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4010) {
 			types.add(UMLElementTypes.Port_3069);
+		}
+		if(relationshipType == UMLElementTypes.Dependency_4010) {
+			types.add(UMLElementTypes.Parameter_3088);
 		}
 		if(relationshipType == UMLElementTypes.Dependency_4010) {
 			types.add(UMLElementTypes.Property_3070);
@@ -8698,6 +8794,9 @@ NamedElementEditPart {
 		}
 		if(relationshipType == UMLElementTypes.InformationFlow_4021) {
 			types.add(UMLElementTypes.Port_3069);
+		}
+		if(relationshipType == UMLElementTypes.InformationFlow_4021) {
+			types.add(UMLElementTypes.Parameter_3088);
 		}
 		if(relationshipType == UMLElementTypes.InformationFlow_4021) {
 			types.add(UMLElementTypes.Property_3070);

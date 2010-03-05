@@ -67,6 +67,7 @@ import org.eclipse.uml2.uml.Node;
 import org.eclipse.uml2.uml.OpaqueBehavior;
 import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.Operation;
+import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Property;
@@ -761,6 +762,18 @@ public class ElementInitializers {
 	public static void init_Port_3069(Port instance) {
 		try {
 			Object value_0 = name_Port_3069(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static void init_Parameter_3088(Parameter instance) {
+		try {
+			Object value_0 = name_Parameter_3088(instance);
 			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
@@ -1802,6 +1815,13 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private static String name_Port_3069(Port self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private static String name_Parameter_3088(Parameter self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
 

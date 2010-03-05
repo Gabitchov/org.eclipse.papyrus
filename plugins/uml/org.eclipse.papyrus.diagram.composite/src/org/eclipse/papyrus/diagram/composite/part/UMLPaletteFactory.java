@@ -90,6 +90,41 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
+	private final static String CREATEPARAMETER12CREATIONTOOL = "createParameter12CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATEACTIVITY13CREATIONTOOL = "createActivity13CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATEINTERACTION14CREATIONTOOL = "createInteraction14CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATEPROTOCOLSTATEMACHINE15CREATIONTOOL = "createProtocolStateMachine15CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATESTATEMACHINE16CREATIONTOOL = "createStateMachine16CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATEFUNCTIONBEHAVIOR17CREATIONTOOL = "createFunctionBehavior17CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATEOPAQUEBEHAVIOR18CREATIONTOOL = "createOpaqueBehavior18CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private final static String CREATELINK1CREATIONTOOL = "createLink1CreationTool"; //$NON-NLS-1$
 
 	/**
@@ -189,6 +224,27 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		}
 		if(toolId.equals(CREATEINFORMATIONITEM11CREATIONTOOL)) {
 			return createInformationItem11CreationTool();
+		}
+		if(toolId.equals(CREATEPARAMETER12CREATIONTOOL)) {
+			return createParameter12CreationTool();
+		}
+		if(toolId.equals(CREATEACTIVITY13CREATIONTOOL)) {
+			return createActivity13CreationTool();
+		}
+		if(toolId.equals(CREATEINTERACTION14CREATIONTOOL)) {
+			return createInteraction14CreationTool();
+		}
+		if(toolId.equals(CREATEPROTOCOLSTATEMACHINE15CREATIONTOOL)) {
+			return createProtocolStateMachine15CreationTool();
+		}
+		if(toolId.equals(CREATESTATEMACHINE16CREATIONTOOL)) {
+			return createStateMachine16CreationTool();
+		}
+		if(toolId.equals(CREATEFUNCTIONBEHAVIOR17CREATIONTOOL)) {
+			return createFunctionBehavior17CreationTool();
+		}
+		if(toolId.equals(CREATEOPAQUEBEHAVIOR18CREATIONTOOL)) {
+			return createOpaqueBehavior18CreationTool();
 		}
 		if(toolId.equals(CREATELINK1CREATIONTOOL)) {
 			return createLink1CreationTool();
@@ -359,6 +415,89 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.InformationItem_3094);
 		types.add(UMLElementTypes.InformationItem_2080);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createParameter12CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.Parameter_3088);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createActivity13CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(UMLElementTypes.Activity_3072);
+		types.add(UMLElementTypes.Activity_2060);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createInteraction14CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(UMLElementTypes.Interaction_3073);
+		types.add(UMLElementTypes.Interaction_2061);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createProtocolStateMachine15CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(UMLElementTypes.ProtocolStateMachine_3074);
+		types.add(UMLElementTypes.ProtocolStateMachine_2062);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createStateMachine16CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(UMLElementTypes.StateMachine_3075);
+		types.add(UMLElementTypes.StateMachine_2063);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createFunctionBehavior17CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(UMLElementTypes.FunctionBehavior_3076);
+		types.add(UMLElementTypes.FunctionBehavior_2064);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createOpaqueBehavior18CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(UMLElementTypes.OpaqueBehavior_3077);
+		types.add(UMLElementTypes.OpaqueBehavior_2065);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;

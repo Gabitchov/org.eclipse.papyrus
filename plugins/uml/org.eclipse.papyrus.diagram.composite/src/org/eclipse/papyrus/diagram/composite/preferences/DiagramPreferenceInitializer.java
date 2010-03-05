@@ -196,6 +196,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		DurationPreferencePage.initDefaults(store);
 
 
+		ParameterPreferencePage.initDefaults(store);
+
+
 		DurationIntervalPreferencePage.initDefaults(store);
 
 

@@ -87,6 +87,7 @@ import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Property;
@@ -263,6 +264,14 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 		}
+		for(Iterator it = modelElement.getOwnedParameters().iterator(); it.hasNext();) {
+			Parameter childElement = (Parameter)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ParameterEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
 		return result;
 	}
 
@@ -282,6 +291,14 @@ public class UMLDiagramUpdater {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for(Iterator it = modelElement.getOwnedParameters().iterator(); it.hasNext();) {
+			Parameter childElement = (Parameter)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ParameterEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -309,6 +326,14 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 		}
+		for(Iterator it = modelElement.getOwnedParameters().iterator(); it.hasNext();) {
+			Parameter childElement = (Parameter)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ParameterEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
 		return result;
 	}
 
@@ -328,6 +353,14 @@ public class UMLDiagramUpdater {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for(Iterator it = modelElement.getOwnedParameters().iterator(); it.hasNext();) {
+			Parameter childElement = (Parameter)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ParameterEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -355,6 +388,14 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 		}
+		for(Iterator it = modelElement.getOwnedParameters().iterator(); it.hasNext();) {
+			Parameter childElement = (Parameter)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ParameterEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
 		return result;
 	}
 
@@ -374,6 +415,14 @@ public class UMLDiagramUpdater {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for(Iterator it = modelElement.getOwnedParameters().iterator(); it.hasNext();) {
+			Parameter childElement = (Parameter)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ParameterEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -548,6 +597,14 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 		}
+		for(Iterator it = modelElement.getOwnedParameters().iterator(); it.hasNext();) {
+			Parameter childElement = (Parameter)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ParameterEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
 		return result;
 	}
 
@@ -567,6 +624,14 @@ public class UMLDiagramUpdater {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for(Iterator it = modelElement.getOwnedParameters().iterator(); it.hasNext();) {
+			Parameter childElement = (Parameter)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ParameterEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -594,6 +659,14 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 		}
+		for(Iterator it = modelElement.getOwnedParameters().iterator(); it.hasNext();) {
+			Parameter childElement = (Parameter)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ParameterEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
 		return result;
 	}
 
@@ -613,6 +686,14 @@ public class UMLDiagramUpdater {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for(Iterator it = modelElement.getOwnedParameters().iterator(); it.hasNext();) {
+			Parameter childElement = (Parameter)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ParameterEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -640,6 +721,14 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 		}
+		for(Iterator it = modelElement.getOwnedParameters().iterator(); it.hasNext();) {
+			Parameter childElement = (Parameter)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ParameterEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
 		return result;
 	}
 
@@ -659,6 +748,14 @@ public class UMLDiagramUpdater {
 			Property childElement = (Property)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if(visualID == PortEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for(Iterator it = modelElement.getOwnedParameters().iterator(); it.hasNext();) {
+			Parameter childElement = (Parameter)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ParameterEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1127,6 +1224,14 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 		}
+		for(Iterator it = modelElement.getOwnedParameters().iterator(); it.hasNext();) {
+			Parameter childElement = (Parameter)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ParameterEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
 		for(Iterator it = modelElement.getCollaborationUses().iterator(); it.hasNext();) {
 			CollaborationUse childElement = (CollaborationUse)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
@@ -1262,6 +1367,14 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for(Iterator it = modelElement.getOwnedParameters().iterator(); it.hasNext();) {
+			Parameter childElement = (Parameter)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ParameterEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1405,6 +1518,14 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 		}
+		for(Iterator it = modelElement.getOwnedParameters().iterator(); it.hasNext();) {
+			Parameter childElement = (Parameter)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ParameterEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
 		for(Iterator it = modelElement.getCollaborationUses().iterator(); it.hasNext();) {
 			CollaborationUse childElement = (CollaborationUse)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
@@ -1540,6 +1661,14 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for(Iterator it = modelElement.getOwnedParameters().iterator(); it.hasNext();) {
+			Parameter childElement = (Parameter)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ParameterEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1683,6 +1812,14 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 		}
+		for(Iterator it = modelElement.getOwnedParameters().iterator(); it.hasNext();) {
+			Parameter childElement = (Parameter)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ParameterEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
 		for(Iterator it = modelElement.getCollaborationUses().iterator(); it.hasNext();) {
 			CollaborationUse childElement = (CollaborationUse)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
@@ -1818,6 +1955,14 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for(Iterator it = modelElement.getOwnedParameters().iterator(); it.hasNext();) {
+			Parameter childElement = (Parameter)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ParameterEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -2707,6 +2852,14 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 		}
+		for(Iterator it = modelElement.getOwnedParameters().iterator(); it.hasNext();) {
+			Parameter childElement = (Parameter)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ParameterEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
 		for(Iterator it = modelElement.getCollaborationUses().iterator(); it.hasNext();) {
 			CollaborationUse childElement = (CollaborationUse)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
@@ -2842,6 +2995,14 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for(Iterator it = modelElement.getOwnedParameters().iterator(); it.hasNext();) {
+			Parameter childElement = (Parameter)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ParameterEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -2985,6 +3146,14 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 		}
+		for(Iterator it = modelElement.getOwnedParameters().iterator(); it.hasNext();) {
+			Parameter childElement = (Parameter)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ParameterEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
 		for(Iterator it = modelElement.getCollaborationUses().iterator(); it.hasNext();) {
 			CollaborationUse childElement = (CollaborationUse)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
@@ -3120,6 +3289,14 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for(Iterator it = modelElement.getOwnedParameters().iterator(); it.hasNext();) {
+			Parameter childElement = (Parameter)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ParameterEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -3263,6 +3440,14 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 		}
+		for(Iterator it = modelElement.getOwnedParameters().iterator(); it.hasNext();) {
+			Parameter childElement = (Parameter)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ParameterEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
 		for(Iterator it = modelElement.getCollaborationUses().iterator(); it.hasNext();) {
 			CollaborationUse childElement = (CollaborationUse)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
@@ -3398,6 +3583,14 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			if(visualID == PropertyPartEditPartCN.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for(Iterator it = modelElement.getOwnedParameters().iterator(); it.hasNext();) {
+			Parameter childElement = (Parameter)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ParameterEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -4635,6 +4828,8 @@ public class UMLDiagramUpdater {
 			return getConstraint_2114ContainedLinks(view);
 		case PortEditPart.VISUAL_ID:
 			return getPort_3069ContainedLinks(view);
+		case ParameterEditPart.VISUAL_ID:
+			return getParameter_3088ContainedLinks(view);
 		case PropertyPartEditPartCN.VISUAL_ID:
 			return getProperty_3070ContainedLinks(view);
 		case CollaborationRoleEditPartCN.VISUAL_ID:
@@ -4866,6 +5061,8 @@ public class UMLDiagramUpdater {
 			return getConstraint_2114IncomingLinks(view);
 		case PortEditPart.VISUAL_ID:
 			return getPort_3069IncomingLinks(view);
+		case ParameterEditPart.VISUAL_ID:
+			return getParameter_3088IncomingLinks(view);
 		case PropertyPartEditPartCN.VISUAL_ID:
 			return getProperty_3070IncomingLinks(view);
 		case CollaborationRoleEditPartCN.VISUAL_ID:
@@ -5097,6 +5294,8 @@ public class UMLDiagramUpdater {
 			return getConstraint_2114OutgoingLinks(view);
 		case PortEditPart.VISUAL_ID:
 			return getPort_3069OutgoingLinks(view);
+		case ParameterEditPart.VISUAL_ID:
+			return getParameter_3088OutgoingLinks(view);
 		case PropertyPartEditPartCN.VISUAL_ID:
 			return getProperty_3070OutgoingLinks(view);
 		case CollaborationRoleEditPartCN.VISUAL_ID:
@@ -5727,6 +5926,13 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List getPort_3069ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getParameter_3088ContainedLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
 
@@ -7654,6 +7860,31 @@ public class UMLDiagramUpdater {
 	 */
 	public static List getPort_3069IncomingLinks(View view) {
 		Port modelElement = (Port)view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ComponentRealization_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_InterfaceRealization_4005(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Substitution_4011(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Realization_4006(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Manifestation_4012(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Abstraction_4007(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Usage_4008(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Deployment_4009(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4017(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Dependency_4010(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_4018(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_4019(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_InformationFlow_4021(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getParameter_3088IncomingLinks(View view) {
+		Parameter modelElement = (Parameter)view.getElement();
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		List result = new LinkedList();
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4002(modelElement, crossReferences));
@@ -9905,6 +10136,26 @@ public class UMLDiagramUpdater {
 	 */
 	public static List getPort_3069OutgoingLinks(View view) {
 		Port modelElement = (Port)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4005(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Substitution_4011(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Realization_4006(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Manifestation_4012(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Abstraction_4007(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Usage_4008(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Deployment_4009(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4017(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Dependency_4010(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_InformationFlow_4021(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getParameter_3088OutgoingLinks(View view) {
+		Parameter modelElement = (Parameter)view.getElement();
 		List result = new LinkedList();
 		result.addAll(getOutgoingTypeModelFacetLinks_ComponentRealization_4004(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_InterfaceRealization_4005(modelElement));

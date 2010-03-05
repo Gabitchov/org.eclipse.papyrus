@@ -454,6 +454,9 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof PortEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4002);
 		}
+		if(targetEditPart instanceof ParameterEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4002);
+		}
 		if(targetEditPart instanceof PropertyPartEditPartCN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4002);
 		}
@@ -707,6 +710,9 @@ ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4002) {
 			types.add(UMLElementTypes.Port_3069);
+		}
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4002) {
+			types.add(UMLElementTypes.Parameter_3088);
 		}
 		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4002) {
 			types.add(UMLElementTypes.Property_3070);

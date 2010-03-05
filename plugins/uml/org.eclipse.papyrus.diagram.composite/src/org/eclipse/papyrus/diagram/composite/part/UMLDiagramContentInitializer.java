@@ -633,6 +633,15 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
+	private void createParameter_3088Children(View view) {
+		myDomain2NotationMap.put(view.getElement(), view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.getParameter_3088OutgoingLinks(view));
+
+	}
+
+	/**
+	 * @generated
+	 */
 	private void createProperty_3070Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
 		myLinkDescriptors.addAll(UMLDiagramUpdater.getProperty_3070OutgoingLinks(view));
@@ -1613,6 +1622,9 @@ public class UMLDiagramContentInitializer {
 			return;
 		case PortEditPart.VISUAL_ID:
 			createPort_3069Children(node);
+			return;
+		case ParameterEditPart.VISUAL_ID:
+			createParameter_3088Children(node);
 			return;
 		case PropertyPartEditPartCN.VISUAL_ID:
 			createProperty_3070Children(node);

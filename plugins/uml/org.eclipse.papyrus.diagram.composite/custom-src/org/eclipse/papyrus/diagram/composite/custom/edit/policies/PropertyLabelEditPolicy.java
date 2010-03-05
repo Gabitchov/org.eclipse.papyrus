@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009 - 2010 CEA LIST.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -43,13 +43,6 @@ import org.eclipse.uml2.uml.UMLPackage;
  * UML elements.
  */
 public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
-
-	/**
-	 * Creates a new PropertyLabelEditPolicy
-	 */
-	public PropertyLabelEditPolicy() {
-		super();
-	}
 
 	/**
 	 * {@inheritDoc}

@@ -186,6 +186,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case InteractionConstraintEditPart.VISUAL_ID:
 				case ConstraintEditPart.VISUAL_ID:
 				case PortEditPart.VISUAL_ID:
+				case ParameterEditPart.VISUAL_ID:
 				case CollaborationRoleEditPartCN.VISUAL_ID:
 				case CollaborationUseEditPartCN.VISUAL_ID:
 				case CollaborationCompositeEditPartCN.VISUAL_ID:
@@ -248,7 +249,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 			}
 		}
-		return ActivityCompositeEditPart.VISUAL_ID == visualID || InteractionCompositeEditPart.VISUAL_ID == visualID || ProtocolStateMachineCompositeEditPart.VISUAL_ID == visualID || StateMachineCompositeEditPart.VISUAL_ID == visualID || FunctionBehaviorCompositeEditPart.VISUAL_ID == visualID || OpaqueBehaviorCompositeEditPart.VISUAL_ID == visualID || ComponentCompositeEditPart.VISUAL_ID == visualID || DeviceCompositeEditPart.VISUAL_ID == visualID || ExecutionEnvironmentCompositeEditPart.VISUAL_ID == visualID || NodeCompositeEditPart.VISUAL_ID == visualID || ClassCompositeEditPart.VISUAL_ID == visualID || ClassClassifierEditPart.VISUAL_ID == visualID || CollaborationCompositeEditPart.VISUAL_ID == visualID || InterfaceEditPart.VISUAL_ID == visualID || PrimitiveTypeEditPart.VISUAL_ID == visualID || EnumerationEditPart.VISUAL_ID == visualID || DataTypeEditPart.VISUAL_ID == visualID || ActorEditPart.VISUAL_ID == visualID || DeploymentSpecificationEditPart.VISUAL_ID == visualID || ArtifactEditPart.VISUAL_ID == visualID || InformationItemEditPart.VISUAL_ID == visualID || SignalEditPart.VISUAL_ID == visualID || UseCaseEditPart.VISUAL_ID == visualID || SignalEventEditPart.VISUAL_ID == visualID || CallEventEditPart.VISUAL_ID == visualID || AnyReceiveEventEditPart.VISUAL_ID == visualID || SendSignalEventEditPart.VISUAL_ID == visualID || SendOperationEventEditPart.VISUAL_ID == visualID || ChangeEventEditPart.VISUAL_ID == visualID || TimeEventEditPart.VISUAL_ID == visualID || CreationEventEditPart.VISUAL_ID == visualID || DestructionEventEditPart.VISUAL_ID == visualID || ExecutionEventEditPart.VISUAL_ID == visualID || DurationObservationEditPart.VISUAL_ID == visualID || TimeObservationEditPart.VISUAL_ID == visualID || LiteralBooleanEditPart.VISUAL_ID == visualID || LiteralIntegerEditPart.VISUAL_ID == visualID || LiteralNullEditPart.VISUAL_ID == visualID || LiteralStringEditPart.VISUAL_ID == visualID || LiteralUnlimitedNaturalEditPart.VISUAL_ID == visualID || StringExpressionEditPart.VISUAL_ID == visualID || OpaqueExpressionEditPart.VISUAL_ID == visualID || TimeExpressionEditPart.VISUAL_ID == visualID || ExpressionEditPart.VISUAL_ID == visualID || DurationEditPart.VISUAL_ID == visualID || TimeIntervalEditPart.VISUAL_ID == visualID || DurationIntervalEditPart.VISUAL_ID == visualID || IntervalEditPart.VISUAL_ID == visualID || InstanceValueEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID || DurationConstraintEditPart.VISUAL_ID == visualID || TimeConstraintEditPart.VISUAL_ID == visualID || IntervalConstraintEditPart.VISUAL_ID == visualID || InteractionConstraintEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID || PortEditPart.VISUAL_ID == visualID || PropertyPartEditPartCN.VISUAL_ID == visualID || CollaborationRoleEditPartCN.VISUAL_ID == visualID || CollaborationUseEditPartCN.VISUAL_ID == visualID || ActivityCompositeEditPartCN.VISUAL_ID == visualID || InteractionCompositeEditPartCN.VISUAL_ID == visualID || ProtocolStateMachineCompositeEditPartCN.VISUAL_ID == visualID || StateMachineCompositeEditPartCN.VISUAL_ID == visualID || FunctionBehaviorCompositeEditPartCN.VISUAL_ID == visualID || OpaqueBehaviorCompositeEditPartCN.VISUAL_ID == visualID || ComponentCompositeEditPartCN.VISUAL_ID == visualID || DeviceCompositeEditPartCN.VISUAL_ID == visualID || ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID == visualID || NodeCompositeEditPartCN.VISUAL_ID == visualID || ClassCompositeEditPartCN.VISUAL_ID == visualID || CollaborationCompositeEditPartCN.VISUAL_ID == visualID || InterfaceEditPartCN.VISUAL_ID == visualID || PrimitiveTypeEditPartCN.VISUAL_ID == visualID || EnumerationEditPartCN.VISUAL_ID == visualID || DataTypeEditPartCN.VISUAL_ID == visualID || ActorEditPartCN.VISUAL_ID == visualID || DeploymentSpecificationEditPartCN.VISUAL_ID == visualID || ArtifactEditPartCN.VISUAL_ID == visualID || InformationItemEditPartCN.VISUAL_ID == visualID || SignalEditPartCN.VISUAL_ID == visualID || UseCaseEditPartCN.VISUAL_ID == visualID || CommentEditPartCN.VISUAL_ID == visualID || PropertyEditPartCLN.VISUAL_ID == visualID || OperationEditPartCLN.VISUAL_ID == visualID || ReceptionEditPartCLN.VISUAL_ID == visualID || EnumerationLiteralEditPartCLN.VISUAL_ID == visualID || ActivityEditPartCLN.VISUAL_ID == visualID || InteractionEditPartCLN.VISUAL_ID == visualID || ProtocolStateMachineEditPartCLN.VISUAL_ID == visualID || StateMachineEditPartCLN.VISUAL_ID == visualID || FunctionBehaviorEditPartCLN.VISUAL_ID == visualID || OpaqueBehaviorEditPartCLN.VISUAL_ID == visualID || CollaborationEditPartCLN.VISUAL_ID == visualID || InterfaceEditPartCLN.VISUAL_ID == visualID || EnumerationEditPartCLN.VISUAL_ID == visualID || PrimitiveTypeEditPartCLN.VISUAL_ID == visualID || DataTypeEditPartCLN.VISUAL_ID == visualID || ClassEditPartCLN.VISUAL_ID == visualID;
+		return ActivityCompositeEditPart.VISUAL_ID == visualID || InteractionCompositeEditPart.VISUAL_ID == visualID || ProtocolStateMachineCompositeEditPart.VISUAL_ID == visualID || StateMachineCompositeEditPart.VISUAL_ID == visualID || FunctionBehaviorCompositeEditPart.VISUAL_ID == visualID || OpaqueBehaviorCompositeEditPart.VISUAL_ID == visualID || ComponentCompositeEditPart.VISUAL_ID == visualID || DeviceCompositeEditPart.VISUAL_ID == visualID || ExecutionEnvironmentCompositeEditPart.VISUAL_ID == visualID || NodeCompositeEditPart.VISUAL_ID == visualID || ClassCompositeEditPart.VISUAL_ID == visualID || ClassClassifierEditPart.VISUAL_ID == visualID || CollaborationCompositeEditPart.VISUAL_ID == visualID || InterfaceEditPart.VISUAL_ID == visualID || PrimitiveTypeEditPart.VISUAL_ID == visualID || EnumerationEditPart.VISUAL_ID == visualID || DataTypeEditPart.VISUAL_ID == visualID || ActorEditPart.VISUAL_ID == visualID || DeploymentSpecificationEditPart.VISUAL_ID == visualID || ArtifactEditPart.VISUAL_ID == visualID || InformationItemEditPart.VISUAL_ID == visualID || SignalEditPart.VISUAL_ID == visualID || UseCaseEditPart.VISUAL_ID == visualID || SignalEventEditPart.VISUAL_ID == visualID || CallEventEditPart.VISUAL_ID == visualID || AnyReceiveEventEditPart.VISUAL_ID == visualID || SendSignalEventEditPart.VISUAL_ID == visualID || SendOperationEventEditPart.VISUAL_ID == visualID || ChangeEventEditPart.VISUAL_ID == visualID || TimeEventEditPart.VISUAL_ID == visualID || CreationEventEditPart.VISUAL_ID == visualID || DestructionEventEditPart.VISUAL_ID == visualID || ExecutionEventEditPart.VISUAL_ID == visualID || DurationObservationEditPart.VISUAL_ID == visualID || TimeObservationEditPart.VISUAL_ID == visualID || LiteralBooleanEditPart.VISUAL_ID == visualID || LiteralIntegerEditPart.VISUAL_ID == visualID || LiteralNullEditPart.VISUAL_ID == visualID || LiteralStringEditPart.VISUAL_ID == visualID || LiteralUnlimitedNaturalEditPart.VISUAL_ID == visualID || StringExpressionEditPart.VISUAL_ID == visualID || OpaqueExpressionEditPart.VISUAL_ID == visualID || TimeExpressionEditPart.VISUAL_ID == visualID || ExpressionEditPart.VISUAL_ID == visualID || DurationEditPart.VISUAL_ID == visualID || TimeIntervalEditPart.VISUAL_ID == visualID || DurationIntervalEditPart.VISUAL_ID == visualID || IntervalEditPart.VISUAL_ID == visualID || InstanceValueEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID || DurationConstraintEditPart.VISUAL_ID == visualID || TimeConstraintEditPart.VISUAL_ID == visualID || IntervalConstraintEditPart.VISUAL_ID == visualID || InteractionConstraintEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID || PortEditPart.VISUAL_ID == visualID || ParameterEditPart.VISUAL_ID == visualID || PropertyPartEditPartCN.VISUAL_ID == visualID || CollaborationRoleEditPartCN.VISUAL_ID == visualID || CollaborationUseEditPartCN.VISUAL_ID == visualID || ActivityCompositeEditPartCN.VISUAL_ID == visualID || InteractionCompositeEditPartCN.VISUAL_ID == visualID || ProtocolStateMachineCompositeEditPartCN.VISUAL_ID == visualID || StateMachineCompositeEditPartCN.VISUAL_ID == visualID || FunctionBehaviorCompositeEditPartCN.VISUAL_ID == visualID || OpaqueBehaviorCompositeEditPartCN.VISUAL_ID == visualID || ComponentCompositeEditPartCN.VISUAL_ID == visualID || DeviceCompositeEditPartCN.VISUAL_ID == visualID || ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID == visualID || NodeCompositeEditPartCN.VISUAL_ID == visualID || ClassCompositeEditPartCN.VISUAL_ID == visualID || CollaborationCompositeEditPartCN.VISUAL_ID == visualID || InterfaceEditPartCN.VISUAL_ID == visualID || PrimitiveTypeEditPartCN.VISUAL_ID == visualID || EnumerationEditPartCN.VISUAL_ID == visualID || DataTypeEditPartCN.VISUAL_ID == visualID || ActorEditPartCN.VISUAL_ID == visualID || DeploymentSpecificationEditPartCN.VISUAL_ID == visualID || ArtifactEditPartCN.VISUAL_ID == visualID || InformationItemEditPartCN.VISUAL_ID == visualID || SignalEditPartCN.VISUAL_ID == visualID || UseCaseEditPartCN.VISUAL_ID == visualID || CommentEditPartCN.VISUAL_ID == visualID || PropertyEditPartCLN.VISUAL_ID == visualID || OperationEditPartCLN.VISUAL_ID == visualID || ReceptionEditPartCLN.VISUAL_ID == visualID || EnumerationLiteralEditPartCLN.VISUAL_ID == visualID || ActivityEditPartCLN.VISUAL_ID == visualID || InteractionEditPartCLN.VISUAL_ID == visualID || ProtocolStateMachineEditPartCLN.VISUAL_ID == visualID || StateMachineEditPartCLN.VISUAL_ID == visualID || FunctionBehaviorEditPartCLN.VISUAL_ID == visualID || OpaqueBehaviorEditPartCLN.VISUAL_ID == visualID || CollaborationEditPartCLN.VISUAL_ID == visualID || InterfaceEditPartCLN.VISUAL_ID == visualID || EnumerationEditPartCLN.VISUAL_ID == visualID || PrimitiveTypeEditPartCLN.VISUAL_ID == visualID || DataTypeEditPartCLN.VISUAL_ID == visualID || ClassEditPartCLN.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -407,6 +408,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createConstraint_2114(domainElement, containerView, index, persisted, preferencesHint);
 		case PortEditPart.VISUAL_ID:
 			return createPort_3069(domainElement, containerView, index, persisted, preferencesHint);
+		case ParameterEditPart.VISUAL_ID:
+			return createParameter_3088(domainElement, containerView, index, persisted, preferencesHint);
 		case PropertyPartEditPartCN.VISUAL_ID:
 			return createProperty_3070(domainElement, containerView, index, persisted, preferencesHint);
 		case CollaborationRoleEditPartCN.VISUAL_ID:
@@ -2070,6 +2073,40 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6029 = (Location)label6029.getLayoutConstraint();
 		location6029.setX(25);
 		location6029.setY(-10);
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createParameter_3088(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(ParameterEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+
+		initForegroundFromPrefs(node, prefStore, "Parameter");
+
+
+
+		initBackgroundFromPrefs(node, prefStore, "Parameter");
+
+		Node label6033 = createLabel(node, UMLVisualIDRegistry.getType(ParameterNameEditPart.VISUAL_ID));
+		label6033.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
+		Location location6033 = (Location)label6033.getLayoutConstraint();
+		location6033.setX(25);
+		location6033.setY(3);
+		Node label6034 = createLabel(node, UMLVisualIDRegistry.getType(ParameterAppliedStereotypeEditPart.VISUAL_ID));
+		label6034.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
+		Location location6034 = (Location)label6034.getLayoutConstraint();
+		location6034.setX(25);
+		location6034.setY(-10);
 		return node;
 	}
 
