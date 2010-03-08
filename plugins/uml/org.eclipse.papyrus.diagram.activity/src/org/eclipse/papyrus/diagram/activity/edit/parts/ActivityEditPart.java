@@ -146,12 +146,12 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ActivityNameEditPart) {
-			((ActivityNameEditPart)childEditPart).setLabel(getPrimaryShape().getHeaderLabel());
-			return true;
-		}
 		if(childEditPart instanceof ActivityIsSingleExecutionEditPart) {
 			((ActivityIsSingleExecutionEditPart)childEditPart).setLabel(getPrimaryShape().getHeaderSingleExecution());
+			return true;
+		}
+		if(childEditPart instanceof ActivityNameEditPart) {
+			((ActivityNameEditPart)childEditPart).setLabel(getPrimaryShape().getHeaderLabel());
 			return true;
 		}
 
@@ -190,10 +190,10 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ActivityNameEditPart) {
+		if(childEditPart instanceof ActivityIsSingleExecutionEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof ActivityIsSingleExecutionEditPart) {
+		if(childEditPart instanceof ActivityNameEditPart) {
 			return true;
 		}
 		if(childEditPart instanceof ActivityActivityParametersCompartmentEditPart) {

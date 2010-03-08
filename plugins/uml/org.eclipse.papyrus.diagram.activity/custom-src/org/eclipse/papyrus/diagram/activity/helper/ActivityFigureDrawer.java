@@ -259,10 +259,13 @@ public class ActivityFigureDrawer {
 			size = new Dimension(bounds.getWidth(), bounds.getHeight());
 		}
 		if(size == null || size.isEmpty()) {
-			// recover the size from the figure
-			size = editPart.getFigure().getSize();
-			if(size == null || size.isEmpty()) {
-				size = editPart.getFigure().getPreferredSize();
+			// recover the exact size from the figure
+			Dimension preferredSize = editPart.getFigure().getPreferredSize(size.width, size.height);
+			if(size.width <= 0) {
+				size.width = preferredSize.width;
+			}
+			if(size.height <= 0) {
+				size.height = preferredSize.height;
 			}
 		}
 		return size;

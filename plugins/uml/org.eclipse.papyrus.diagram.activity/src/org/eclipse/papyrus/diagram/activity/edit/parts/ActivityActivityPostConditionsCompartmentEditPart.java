@@ -18,7 +18,6 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
@@ -26,30 +25,18 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
-import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityActivityPostConditionsCompartmentCanonicalEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityActivityPostConditionsCompartmentItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.activity.helper.SelfCompartmentNotificationHelper;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
-import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
  */
 public class ActivityActivityPostConditionsCompartmentEditPart
 
-extends ListCompartmentEditPart
-
-{
-
-	/**
-	 * Notifier for listening and stop listening model element.
-	 * 
-	 * @generated NOT
-	 */
-	private SelfCompartmentNotificationHelper notifier = new SelfCompartmentNotificationHelper(this, UMLPackage.eINSTANCE.getBehavior_Postcondition(), (IHintedType)UMLElementTypes.Constraint_3003);
+extends ListCompartmentEditPart {
 
 	/**
 	 * @generated
@@ -100,6 +87,7 @@ extends ListCompartmentEditPart
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.activity.edit.policies.ActivityActivityPostConditionsCompartmentCanonicalEditPolicy());
 
+		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new ActivityActivityPostConditionsCompartmentCanonicalEditPolicy());
 	}
 
 	/**
@@ -141,41 +129,5 @@ extends ListCompartmentEditPart
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshBounds();
-	}
-
-	/**
-	 * Activate a listener for the activity to Handle notification for new owned Parameter
-	 * 
-	 * @generated NOT
-	 */
-	public void activate() {
-		super.activate();
-		EObject activity = resolveSemanticElement();
-		notifier.listenObject(activity);
-		// ensure children parts are correctly initialized.
-		SelfCompartmentNotificationHelper.updateChildrenParts(this, UMLPackage.eINSTANCE.getBehavior_Postcondition(), (IHintedType)UMLElementTypes.Constraint_3003);
-	}
-
-	/**
-	 * Deactivate listeners to handle notification in the message occurence
-	 * specification
-	 * 
-	 * @generated NOT
-	 */
-	@Override
-	public void deactivate() {
-		notifier.unlistenAll();
-		super.deactivate();
-	}
-
-	/**
-	 * Remove listeners to handle notification in the message occurence specification
-	 * 
-	 * @generated NOT
-	 */
-	@Override
-	public void removeNotify() {
-		notifier.unlistenAll();
-		super.removeNotify();
 	}
 }

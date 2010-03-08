@@ -23,7 +23,6 @@ import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -49,13 +48,12 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.activity.edit.policies.CallOperationActionCanonicalEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.CallOperationActionItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.DeleteActionViewEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
-import org.eclipse.papyrus.diagram.activity.edit.policies.PinCreationEditPolicy;
 import org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel;
-import org.eclipse.papyrus.diagram.activity.helper.ActionPinNotificationHelper;
 import org.eclipse.papyrus.diagram.activity.locator.PinPositionLocator;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
@@ -64,7 +62,6 @@ import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPo
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -89,13 +86,6 @@ AbstractBorderedShapeEditPart {
 	protected IFigure primaryShape;
 
 	/**
-	 * Notifier for listening and stop listening model element.
-	 * 
-	 * @generated NOT
-	 */
-	private ActionPinNotificationHelper notifier = ActionPinNotificationHelper.createHelper(this, UMLPackage.eINSTANCE.getCallOperationAction());
-
-	/**
 	 * @generated
 	 */
 	public CallOperationActionEditPart(View view) {
@@ -117,8 +107,8 @@ AbstractBorderedShapeEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(RequestConstants.REQ_CREATE, new CreateActionLocalConditionEditPolicy());
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PinCreationEditPolicy());
 		installEditPolicy(RequestConstants.REQ_DELETE, new DeleteActionViewEditPolicy());
+		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new CallOperationActionCanonicalEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -531,6 +521,18 @@ AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof InputPinInCallOpActAsTargetEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof DecisionNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof MergeNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof ForkNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof JoinNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof InitialNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
@@ -592,6 +594,18 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
 		if(targetEditPart instanceof InputPinInCallOpActAsTargetEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof DecisionNodeEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof MergeNodeEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof ForkNodeEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof JoinNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
 		return types;
@@ -725,6 +739,18 @@ AbstractBorderedShapeEditPart {
 		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
 			types.add(UMLElementTypes.InputPin_3027);
 		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.DecisionNode_3038);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.MergeNode_3039);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.ForkNode_3040);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.JoinNode_3041);
+		}
 		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 		}
@@ -787,6 +813,18 @@ AbstractBorderedShapeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InputPin_3027);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.DecisionNode_3038);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.MergeNode_3039);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.ForkNode_3040);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.JoinNode_3041);
 		}
 		return types;
 	}
@@ -869,6 +907,18 @@ AbstractBorderedShapeEditPart {
 		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
 			types.add(UMLElementTypes.InputPin_3027);
 		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.DecisionNode_3038);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.MergeNode_3039);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.ForkNode_3040);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.JoinNode_3041);
+		}
 		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 		}
@@ -931,6 +981,18 @@ AbstractBorderedShapeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InputPin_3027);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.DecisionNode_3038);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.MergeNode_3039);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.ForkNode_3040);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.JoinNode_3041);
 		}
 		return types;
 	}
@@ -1048,41 +1110,5 @@ AbstractBorderedShapeEditPart {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
-	}
-
-	/**
-	 * Activate a listener for to Handle notification for new owned pins
-	 * 
-	 * @generated NOT
-	 */
-	public void activate() {
-		super.activate();
-		EObject parent = resolveSemanticElement();
-		notifier.listenObject(parent);
-		// ensure children parts are correctly initialized.
-		ActionPinNotificationHelper.updateChildrenPinParts(this, UMLPackage.eINSTANCE.getCallOperationAction());
-	}
-
-	/**
-	 * Deactivate listeners to handle notification in the message occurence
-	 * specification
-	 * 
-	 * @generated NOT
-	 */
-	@Override
-	public void deactivate() {
-		notifier.unlistenAll();
-		super.deactivate();
-	}
-
-	/**
-	 * Remove listeners to handle notification in the message occurence specification
-	 * 
-	 * @generated NOT
-	 */
-	@Override
-	public void removeNotify() {
-		notifier.unlistenAll();
-		super.removeNotify();
 	}
 }

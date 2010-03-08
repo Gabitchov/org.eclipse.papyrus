@@ -25,14 +25,16 @@ import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.ControlNode;
+import org.eclipse.uml2.uml.DecisionNode;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ObjectFlow;
 import org.eclipse.uml2.uml.ObjectNode;
 import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValuePin;
 import org.eclipse.uml2.uml.ValueSpecification;
-
 
 public class UMLValidationHelper {
 
@@ -323,6 +325,165 @@ public class UMLValidationHelper {
 	}
 
 	/**
+	 * If the decision node has no decision input flow and an incoming object flow, then a decision input behavior has one input parameter whose type
+	 * is the same as or a supertype of the type of object tokens offered on the incoming edge.
+	 * 
+	 * @param context
+	 *        The receiving '<em><b>Decision Node</b></em>' model object.
+	 * @param ctx
+	 *        The cache of context-specific information.
+	 */
+	public static IStatus validateIncomingObjectOneInputParameter(DecisionNode context, IValidationContext ctx) {
+		Behavior behavior = context.getDecisionInput();
+		if(behavior != null) {
+			ObjectFlow decisionInputFlow = context.getDecisionInputFlow();
+			ActivityEdge incomingObjectFlow = context.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());
+			if(decisionInputFlow == null && incomingObjectFlow != null) {
+				ObjectFlow inFlow = (ObjectFlow)incomingObjectFlow;
+				/*
+				 * No decision input flow and an incoming object flow.
+				 * There must be 1 in parameter with type compatibility with incomingObjectFlow
+				 */
+				boolean parameterFound = false;
+				for(Parameter param : behavior.getOwnedParameters()) {
+					if(ParameterDirectionKind.IN_LITERAL.equals(param.getDirection())) {
+						if(!parameterFound) {
+							// recover type coming from the flow
+							List<Type> types = getTypeComingFromFlow(inFlow, new LinkedList<ObjectFlow>());
+							for(Type comingType : types) {
+								if(!isSuperType(param.getType(), comingType)) {
+									// type of the parameter is not compatible with incoming edge
+									return ctx.createFailureStatus();
+								}
+							}
+						} else {
+							// unexpected second input parameter
+							return ctx.createFailureStatus();
+						}
+					}
+				}
+				if(!parameterFound) {
+					// expected input parameter not found
+					return ctx.createFailureStatus();
+				}
+			}
+		}
+		return ctx.createSuccessStatus();
+	}
+
+	/**
+	 * If the decision node has a decision input flow and an incoming control flow, then a decision input behavior has one input parameter whose type
+	 * is the same as or a supertype of the type of object tokens offered on the decision input flow.
+	 * 
+	 * @param context
+	 *        The receiving '<em><b>Decision Node</b></em>' model object.
+	 * @param ctx
+	 *        The cache of context-specific information.
+	 */
+	public static IStatus validateIncomingControlOneInputParameter(DecisionNode context, IValidationContext ctx) {
+		Behavior behavior = context.getDecisionInput();
+		if(behavior != null) {
+			ObjectFlow decisionInputFlow = context.getDecisionInputFlow();
+			ActivityEdge incomingControlFlow = context.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());
+			if(decisionInputFlow != null && incomingControlFlow != null) {
+				/*
+				 * Decision input flow and an incoming control flow.
+				 * There must be 1 in parameter with type compatibility with decisionInputFlow
+				 */
+				boolean parameterFound = false;
+				for(Parameter param : behavior.getOwnedParameters()) {
+					if(ParameterDirectionKind.IN_LITERAL.equals(param.getDirection())) {
+						if(!parameterFound) {
+							// recover type coming from the flow
+							List<Type> types = getTypeComingFromFlow(decisionInputFlow, new LinkedList<ObjectFlow>());
+							for(Type comingType : types) {
+								if(!isSuperType(param.getType(), comingType)) {
+									// type of the parameter is not compatible with incoming edge
+									return ctx.createFailureStatus();
+								}
+							}
+							parameterFound = true;
+						} else {
+							// unexpected second input parameter
+							return ctx.createFailureStatus();
+						}
+					}
+				}
+				if(!parameterFound) {
+					// expected input parameter not found
+					return ctx.createFailureStatus();
+				}
+			}
+		}
+		return ctx.createSuccessStatus();
+	}
+
+	/**
+	 * If the decision node has a decision input flow and an second incoming object flow, then a decision input behavior has two input parameters, the
+	 * first of which has a type that is the same as or a supertype of the type of the type of object tokens offered on the nondecision input flow and
+	 * the second of which has a type that is the same as or a supertype of the type of object tokens offered on the decision input flow.
+	 * 
+	 * @param context
+	 *        The receiving '<em><b>Decision Node</b></em>' model object.
+	 * @param ctx
+	 *        The cache of context-specific information.
+	 */
+	public static IStatus validateTwoInputParameters(DecisionNode context, IValidationContext ctx) {
+		Behavior behavior = context.getDecisionInput();
+		if(behavior != null) {
+			ObjectFlow decisionInputFlow = context.getDecisionInputFlow();
+			ActivityEdge incomingObjectFlow = null;
+			for(ActivityEdge incomingEdge : context.getIncomings()) {
+				// filter the decision flow
+				if(incomingEdge instanceof ObjectFlow && incomingEdge != decisionInputFlow) {
+					incomingObjectFlow = incomingEdge;
+				}
+			}
+			if(decisionInputFlow != null && incomingObjectFlow != null) {
+				ObjectFlow inFlow = (ObjectFlow)incomingObjectFlow;
+				/*
+				 * Decision input flow and an other incoming object flow.
+				 * There must be 2 in parameters with type compatibility with each flow
+				 */
+				int numberOfParameterFound = 0;
+				for(Parameter param : behavior.getOwnedParameters()) {
+					if(ParameterDirectionKind.IN_LITERAL.equals(param.getDirection())) {
+						if(numberOfParameterFound == 0) {
+							// recover type coming from the non decision flow
+							List<Type> types = getTypeComingFromFlow(inFlow, new LinkedList<ObjectFlow>());
+							for(Type comingType : types) {
+								if(!isSuperType(param.getType(), comingType)) {
+									// type of the parameter is not compatible with incoming edge
+									return ctx.createFailureStatus();
+								}
+							}
+							numberOfParameterFound++;
+						} else if(numberOfParameterFound == 1) {
+							// recover type coming from the decision flow
+							List<Type> types = getTypeComingFromFlow(decisionInputFlow, new LinkedList<ObjectFlow>());
+							for(Type comingType : types) {
+								if(!isSuperType(param.getType(), comingType)) {
+									// type of the parameter is not compatible with incoming edge
+									return ctx.createFailureStatus();
+								}
+							}
+							numberOfParameterFound++;
+						} else {
+							// unexpected third input parameter
+							return ctx.createFailureStatus();
+						}
+					}
+				}
+				if(numberOfParameterFound < 2) {
+					// expected input parameters not found
+					return ctx.createFailureStatus();
+				}
+			}
+		}
+		return ctx.createSuccessStatus();
+	}
+
+	/**
 	 * Check that type is compatible with the first one as parent
 	 * 
 	 * @param superType
@@ -395,40 +556,8 @@ public class UMLValidationHelper {
 			for(ActivityEdge incomingEdge : src.getIncomings()) {
 				if(incomingEdge instanceof ObjectFlow) {
 					ObjectFlow incomingFlow = (ObjectFlow)incomingEdge;
-					if(incomingFlow.getTransformation() == null && incomingFlow.getSelection() == null) {
-						// type coming from other object flows' sources
-						result.addAll(getUpstreamExpectedTypes(incomingFlow, alreadyMetObjectFlows));
-					} else if(incomingFlow.getTransformation() != null) {
-						// type coming from other object flows' transformation behavior
-						for(Parameter transfParam : incomingFlow.getTransformation().getOwnedParameters()) {
-							switch(transfParam.getDirection()) {
-							case IN_LITERAL:
-								break;
-							case OUT_LITERAL:
-							case RETURN_LITERAL:
-							case INOUT_LITERAL:
-								if(transfParam.getType() != null) {
-									result.add(transfParam.getType());
-								}
-								break;
-							}
-						}
-					} else if(incomingFlow.getSelection() != null) {
-						// type coming from other object flows' selection behavior
-						for(Parameter selParam : incomingFlow.getSelection().getOwnedParameters()) {
-							switch(selParam.getDirection()) {
-							case IN_LITERAL:
-								break;
-							case OUT_LITERAL:
-							case RETURN_LITERAL:
-							case INOUT_LITERAL:
-								if(selParam.getType() != null) {
-									result.add(selParam.getType());
-								}
-								break;
-							}
-						}
-					}
+					// get the types the incoming flow sends
+					result.addAll(getTypeComingFromFlow(incomingFlow, alreadyMetObjectFlows));
 				}
 			}
 			return result;
@@ -469,29 +598,93 @@ public class UMLValidationHelper {
 			for(ActivityEdge outgoingEdge : target.getOutgoings()) {
 				if(outgoingEdge instanceof ObjectFlow) {
 					ObjectFlow outgoingFlow = (ObjectFlow)outgoingEdge;
-					if(outgoingFlow.getTransformation() == null) {
-						// type coming from other object flows' sources
-						result.addAll(getDownstreamExpectedTypes(outgoingFlow, alreadyMetObjectFlows));
-					} else {
-						// type coming from other object flows' transformation behavior
-						for(Parameter transfParam : outgoingFlow.getTransformation().getOwnedParameters()) {
-							switch(transfParam.getDirection()) {
-							case IN_LITERAL:
-							case INOUT_LITERAL:
-								if(transfParam.getType() != null) {
-									result.add(transfParam.getType());
-								}
-								break;
-							case OUT_LITERAL:
-							case RETURN_LITERAL:
-								break;
-							}
-						}
-					}
+					// get the types the outgoing flow expects
+					result.addAll(getTypeExpectedByFlow(outgoingFlow, alreadyMetObjectFlows));
 				}
 			}
 			return result;
 		}
 		return Collections.emptyList();
+	}
+
+	/**
+	 * Get the types which an object flow sends (considering itself and its source)
+	 * 
+	 * @param inputFlow
+	 *        the object flow
+	 * @param alreadyMetObjectFlows
+	 *        the list of object flows which have already been visited to avoid loops. Callers shall pass new LinkedList<ObjectFlow>()
+	 * @return the list of types according to different incoming flows (unspecified types omitted).
+	 */
+	private static List<Type> getTypeComingFromFlow(ObjectFlow inputFlow, List<ObjectFlow> alreadyMetObjectFlows) {
+		List<Type> result = new LinkedList<Type>();
+		if(inputFlow.getTransformation() == null && inputFlow.getSelection() == null) {
+			// type coming from other object flows' sources
+			result.addAll(getUpstreamExpectedTypes(inputFlow, alreadyMetObjectFlows));
+		} else if(inputFlow.getTransformation() != null) {
+			// type coming from other object flows' transformation behavior
+			for(Parameter transfParam : inputFlow.getTransformation().getOwnedParameters()) {
+				switch(transfParam.getDirection()) {
+				case IN_LITERAL:
+					break;
+				case OUT_LITERAL:
+				case RETURN_LITERAL:
+				case INOUT_LITERAL:
+					if(transfParam.getType() != null) {
+						result.add(transfParam.getType());
+					}
+					break;
+				}
+			}
+		} else if(inputFlow.getSelection() != null) {
+			// type coming from other object flows' selection behavior
+			for(Parameter selParam : inputFlow.getSelection().getOwnedParameters()) {
+				switch(selParam.getDirection()) {
+				case IN_LITERAL:
+					break;
+				case OUT_LITERAL:
+				case RETURN_LITERAL:
+				case INOUT_LITERAL:
+					if(selParam.getType() != null) {
+						result.add(selParam.getType());
+					}
+					break;
+				}
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Get the types which an object flow handles (considering itself and its target)
+	 * 
+	 * @param outputFlow
+	 *        the object flow
+	 * @param alreadyMetObjectFlows
+	 *        the list of object flows which have already been visited to avoid loops. Callers shall pass new LinkedList<ObjectFlow>()
+	 * @return the list of types according to different outgoing flows (unspecified types omitted).
+	 */
+	private static List<Type> getTypeExpectedByFlow(ObjectFlow outputFlow, List<ObjectFlow> alreadyMetObjectFlows) {
+		List<Type> result = new LinkedList<Type>();
+		if(outputFlow.getTransformation() == null) {
+			// type coming from other object flows' targets
+			result.addAll(getDownstreamExpectedTypes(outputFlow, alreadyMetObjectFlows));
+		} else {
+			// type coming from other object flows' transformation behavior
+			for(Parameter transfParam : outputFlow.getTransformation().getOwnedParameters()) {
+				switch(transfParam.getDirection()) {
+				case IN_LITERAL:
+				case INOUT_LITERAL:
+					if(transfParam.getType() != null) {
+						result.add(transfParam.getType());
+					}
+					break;
+				case OUT_LITERAL:
+				case RETURN_LITERAL:
+					break;
+				}
+			}
+		}
+		return result;
 	}
 }

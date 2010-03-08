@@ -20,7 +20,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallBeActEditPart;
@@ -29,7 +32,12 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallBeActEditPa
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.activity.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.ActionInputPin;
+import org.eclipse.uml2.uml.InputPin;
+import org.eclipse.uml2.uml.OutputPin;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.ValuePin;
 
 /**
  * @generated
@@ -87,6 +95,29 @@ public class CallBehaviorActionCanonicalEditPolicy extends CanonicalEditPolicy {
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getCallAction_Result());
 		}
 		return myFeaturesToSynchronize;
+	}
+
+	/**
+	 * Return the appropriate factory hint for the children pins.
+	 * 
+	 * @see #getFactoryHint(IAdaptable, String)
+	 * @param elementAdapter
+	 *        adapter that adapts to {@link EObject}.
+	 * @return factory hint.
+	 * @generated NOT
+	 */
+	protected String getFactoryHint(IAdaptable elementAdapter) {
+		Object element = elementAdapter.getAdapter(EObject.class);
+		if(element instanceof ValuePin) {
+			return ((IHintedType)UMLElementTypes.ValuePin_3017).getSemanticHint();
+		} else if(element instanceof ActionInputPin) {
+			return ((IHintedType)UMLElementTypes.ActionInputPin_3018).getSemanticHint();
+		} else if(element instanceof InputPin) {
+			return ((IHintedType)UMLElementTypes.InputPin_3019).getSemanticHint();
+		} else if(element instanceof OutputPin) {
+			return ((IHintedType)UMLElementTypes.OutputPin_3020).getSemanticHint();
+		}
+		return null;
 	}
 
 }

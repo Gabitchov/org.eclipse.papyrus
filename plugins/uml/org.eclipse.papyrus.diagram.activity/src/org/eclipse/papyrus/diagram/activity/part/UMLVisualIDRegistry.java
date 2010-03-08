@@ -34,10 +34,6 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityActivityContentCo
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityActivityParametersCompartmentEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityActivityPostConditionsCompartmentEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityActivityPreConditionsCompartmentEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityAsSelectionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityAsSelectionNameEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityAsTransformationEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityAsTransformationNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityDiagramEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
@@ -54,13 +50,18 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondN
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowGuardEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowWeightEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionInputEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionInputFlowEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.FlowFinalNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ForkNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCBActLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCOActAsTargetLabelEditPart;
@@ -78,8 +79,14 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocal
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondNameEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.JoinNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.JoinSpecEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.MergeNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowGuardEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowNameEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowSelectionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowTransformationEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowWeightEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionNameEditPart;
@@ -452,15 +459,25 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass()) && isConstraint_3012(containerView, (Constraint)domainElement)) {
 				return ConstraintAsLocalPostcondEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
+			if(UMLPackage.eINSTANCE.getDecisionNode().isSuperTypeOf(domainElement.eClass())
 
 			) {
-				return ActivityAsSelectionEditPart.VISUAL_ID;
+				return DecisionNodeEditPart.VISUAL_ID;
 			}
-			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
+			if(UMLPackage.eINSTANCE.getMergeNode().isSuperTypeOf(domainElement.eClass())
 
 			) {
-				return ActivityAsTransformationEditPart.VISUAL_ID;
+				return MergeNodeEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getForkNode().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ForkNodeEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getJoinNode().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return JoinNodeEditPart.VISUAL_ID;
 			}
 			break;
 		case ActivityDiagramEditPart.VISUAL_ID:
@@ -866,13 +883,13 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case ActivityAsSelectionEditPart.VISUAL_ID:
-			if(ActivityAsSelectionNameEditPart.VISUAL_ID == nodeVisualID) {
+		case DecisionNodeEditPart.VISUAL_ID:
+			if(DecisionInputEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case ActivityAsTransformationEditPart.VISUAL_ID:
-			if(ActivityAsTransformationNameEditPart.VISUAL_ID == nodeVisualID) {
+		case JoinNodeEditPart.VISUAL_ID:
+			if(JoinSpecEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -940,10 +957,16 @@ public class UMLVisualIDRegistry {
 			if(ConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(ActivityAsSelectionEditPart.VISUAL_ID == nodeVisualID) {
+			if(DecisionNodeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(ActivityAsTransformationEditPart.VISUAL_ID == nodeVisualID) {
+			if(MergeNodeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ForkNodeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(JoinNodeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -959,12 +982,27 @@ public class UMLVisualIDRegistry {
 			if(ObjectFlowWeightEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ObjectFlowSelectionEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ObjectFlowTransformationEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(DecisionInputFlowEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ObjectFlowGuardEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case ControlFlowEditPart.VISUAL_ID:
 			if(ControlFlowNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(ControlFlowWeightEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ControlFlowGuardEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1210,12 +1248,6 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(4002, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-		viewInfo = new BaseViewInfo(4005, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
-		viewInfo = new BaseViewInfo(4006, ViewInfo.Edge, "");
-		root.addNode(1000, viewInfo);
-
 		viewInfo = new BaseViewInfo(4003, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
@@ -1225,6 +1257,18 @@ public class UMLVisualIDRegistry {
 		labelInfo = new BaseViewInfo(6002, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
+		labelInfo = new BaseViewInfo(6005, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+		labelInfo = new BaseViewInfo(6006, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+		labelInfo = new BaseViewInfo(6007, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+		labelInfo = new BaseViewInfo(6008, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
 		viewInfo = new BaseViewInfo(4004, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
@@ -1232,6 +1276,9 @@ public class UMLVisualIDRegistry {
 		viewInfo.getChildren().add(labelInfo);
 
 		labelInfo = new BaseViewInfo(6004, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+		labelInfo = new BaseViewInfo(6009, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
 		viewInfo = new BaseViewInfo(3001, ViewInfo.Node, "Parameter");
@@ -1370,11 +1417,19 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7004, viewInfo);
 
-		viewInfo = new BaseViewInfo(3028, ViewInfo.Node, "Activity");
+		viewInfo = new BaseViewInfo(3038, ViewInfo.Node, "DecisionNode");
 
 		root.addNode(7004, viewInfo);
 
-		viewInfo = new BaseViewInfo(3029, ViewInfo.Node, "Activity");
+		viewInfo = new BaseViewInfo(3039, ViewInfo.Node, "MergeNode");
+
+		root.addNode(7004, viewInfo);
+
+		viewInfo = new BaseViewInfo(3040, ViewInfo.Node, "ForkNode");
+
+		root.addNode(7004, viewInfo);
+
+		viewInfo = new BaseViewInfo(3041, ViewInfo.Node, "JoinNode");
 
 		root.addNode(7004, viewInfo);
 

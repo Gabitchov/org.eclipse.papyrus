@@ -20,7 +20,6 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.NamedElement;
 
@@ -61,9 +60,7 @@ public class ConfirmPinAndParameterSyncDialog extends MessageDialog {
 		}
 		String message = NLS.bind(Messages.ConfirmPinAndParameterSync_FromParameterMsg, parsedList.toString());
 		ConfirmPinAndParameterSyncDialog dialog = new ConfirmPinAndParameterSyncDialog(parentShell, message);
-		dialog.setShellStyle(dialog.getShellStyle() | SWT.SHEET);
 		return dialog.open() == 0;
 	}
-
 
 }

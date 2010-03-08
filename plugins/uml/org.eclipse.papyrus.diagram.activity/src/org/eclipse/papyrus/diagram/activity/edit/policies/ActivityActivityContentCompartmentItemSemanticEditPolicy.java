@@ -18,8 +18,12 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityFinalNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallBehaviorActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallOperationActionCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.DecisionNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.FlowFinalNodeCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.ForkNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.InitialNodeCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.JoinNodeCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.MergeNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.OpaqueActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 
@@ -36,8 +40,7 @@ public class ActivityActivityContentCompartmentItemSemanticEditPolicy extends UM
 	}
 
 	/**
-	 * @generated NOT moved local conditions creation commands to {@link CreateActionLocalConditionEditPolicy} moved transformation and selection
-	 *            creation commands to {@link CreateObjectFlowBehaviorEditPolicy}
+	 * @generated NOT (update at each gmf change) moved local conditions creation commands to {@link CreateActionLocalConditionEditPolicy}
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.InitialNode_3004 == req.getElementType()) {
@@ -58,17 +61,17 @@ public class ActivityActivityContentCompartmentItemSemanticEditPolicy extends UM
 		if(UMLElementTypes.CallOperationAction_3010 == req.getElementType()) {
 			return getGEFWrapper(new CallOperationActionCreateCommand(req));
 		}
-		//		if(UMLElementTypes.Constraint_3011 == req.getElementType()) {
-		//			return getGEFWrapper(new ConstraintAsLocalPrecondCreateCommand(req));
+		//		if(UMLElementTypes.DurationConstraint_3034 == req.getElementType()) {
+		//			return getGEFWrapper(new DurationConstraintAsLocalPrecondCreateCommand(req));
 		//		}
-		//		if(UMLElementTypes.Constraint_3012 == req.getElementType()) {
-		//			return getGEFWrapper(new ConstraintAsLocalPostcondCreateCommand(req));
+		//		if(UMLElementTypes.DurationConstraint_3035 == req.getElementType()) {
+		//			return getGEFWrapper(new DurationConstraintAsLocalPostcondCreateCommand(req));
 		//		}
-		//		if(UMLElementTypes.Activity_3028 == req.getElementType()) {
-		//			return getGEFWrapper(new ActivityAsSelectionCreateCommand(req));
+		//		if(UMLElementTypes.TimeConstraint_3036 == req.getElementType()) {
+		//			return getGEFWrapper(new TimeConstraintAsLocalPrecondCreateCommand(req));
 		//		}
-		//		if(UMLElementTypes.Activity_3029 == req.getElementType()) {
-		//			return getGEFWrapper(new ActivityAsTransformationCreateCommand(req));
+		//		if(UMLElementTypes.TimeConstraint_3037 == req.getElementType()) {
+		//			return getGEFWrapper(new TimeConstraintAsLocalPostcondCreateCommand(req));
 		//		}
 		//		if(UMLElementTypes.InteractionConstraint_3030 == req.getElementType()) {
 		//			return getGEFWrapper(new InteractionConstraintAsLocalPrecondCreateCommand(req));
@@ -82,18 +85,24 @@ public class ActivityActivityContentCompartmentItemSemanticEditPolicy extends UM
 		//		if(UMLElementTypes.IntervalConstraint_3033 == req.getElementType()) {
 		//			return getGEFWrapper(new IntervalConstraintAsLocalPostcondCreateCommand(req));
 		//		}
-		//		if(UMLElementTypes.DurationConstraint_3034 == req.getElementType()) {
-		//			return getGEFWrapper(new DurationConstraintAsLocalPrecondCreateCommand(req));
+		//		if(UMLElementTypes.Constraint_3011 == req.getElementType()) {
+		//			return getGEFWrapper(new ConstraintAsLocalPrecondCreateCommand(req));
 		//		}
-		//		if(UMLElementTypes.DurationConstraint_3035 == req.getElementType()) {
-		//			return getGEFWrapper(new DurationConstraintAsLocalPostcondCreateCommand(req));
+		//		if(UMLElementTypes.Constraint_3012 == req.getElementType()) {
+		//			return getGEFWrapper(new ConstraintAsLocalPostcondCreateCommand(req));
 		//		}
-		//		if(UMLElementTypes.TimeConstraint_3036 == req.getElementType()) {
-		//			return getGEFWrapper(new TimeConstraintAsLocalPrecondCreateCommand(req));
-		//		}
-		//		if(UMLElementTypes.TimeConstraint_3037 == req.getElementType()) {
-		//			return getGEFWrapper(new TimeConstraintAsLocalPostcondCreateCommand(req));
-		//		}
+		if(UMLElementTypes.DecisionNode_3038 == req.getElementType()) {
+			return getGEFWrapper(new DecisionNodeCreateCommand(req));
+		}
+		if(UMLElementTypes.MergeNode_3039 == req.getElementType()) {
+			return getGEFWrapper(new MergeNodeCreateCommand(req));
+		}
+		if(UMLElementTypes.ForkNode_3040 == req.getElementType()) {
+			return getGEFWrapper(new ForkNodeCreateCommand(req));
+		}
+		if(UMLElementTypes.JoinNode_3041 == req.getElementType()) {
+			return getGEFWrapper(new JoinNodeCreateCommand(req));
+		}
 		return super.getCreateCommand(req);
 	}
 

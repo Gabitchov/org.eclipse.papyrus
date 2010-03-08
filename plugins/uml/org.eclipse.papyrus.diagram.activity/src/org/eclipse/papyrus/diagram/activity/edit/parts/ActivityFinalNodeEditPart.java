@@ -18,12 +18,13 @@ import java.util.List;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Ellipse;
+import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -39,12 +40,14 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.gef.ui.internal.figures.CircleFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityFinalNodeItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
+import org.eclipse.papyrus.diagram.activity.edit.policies.ResizableSquareEditPolicy;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
@@ -77,6 +80,18 @@ ShapeNodeEditPart {
 	 */
 	public ActivityFinalNodeEditPart(View view) {
 		super(view);
+	}
+
+	/**
+	 * Return the edit policy so that the figure stays a square
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart#getPrimaryDragEditPolicy()
+	 * @return EditPolicy
+	 * @generated NOT
+	 */
+	@Override
+	public EditPolicy getPrimaryDragEditPolicy() {
+		return new ResizableSquareEditPolicy();
 	}
 
 	/**
@@ -132,10 +147,10 @@ ShapeNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT use a circle figure instead
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(22, 22);
+		DefaultSizeNodeFigure result = new CircleFigure(22, 22);
 		return result;
 	}
 
@@ -283,6 +298,18 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof InputPinInCallOpActAsTargetEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof DecisionNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof MergeNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof ForkNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof JoinNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof InitialNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
@@ -344,6 +371,18 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
 		if(targetEditPart instanceof InputPinInCallOpActAsTargetEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof DecisionNodeEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof MergeNodeEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof ForkNodeEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof JoinNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
 		return types;
@@ -417,6 +456,18 @@ ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
 			types.add(UMLElementTypes.InputPin_3027);
 		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.DecisionNode_3038);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.MergeNode_3039);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.ForkNode_3040);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.JoinNode_3041);
+		}
 		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 		}
@@ -479,6 +530,18 @@ ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InputPin_3027);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.DecisionNode_3038);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.MergeNode_3039);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.ForkNode_3040);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.JoinNode_3041);
 		}
 		return types;
 	}
@@ -561,6 +624,18 @@ ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
 			types.add(UMLElementTypes.InputPin_3027);
 		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.DecisionNode_3038);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.MergeNode_3039);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.ForkNode_3040);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.JoinNode_3041);
+		}
 		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 		}
@@ -624,26 +699,60 @@ ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InputPin_3027);
 		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.DecisionNode_3038);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.MergeNode_3039);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.ForkNode_3040);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.JoinNode_3041);
+		}
 		return types;
 	}
 
 	/**
 	 * @generated
 	 */
-	public class ActivityFinalNodeFigure extends RectangleFigure {
+	public class ActivityFinalNodeFigure extends Ellipse {
+
+		/**
+		 * @generated
+		 */
+		private Ellipse fFigureDisc;
 
 		/**
 		 * @generated
 		 */
 		public ActivityFinalNodeFigure() {
-			this.setFill(false);
-			this.setOutline(false);
 			this.setLineWidth(1);
 			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(22), getMapMode().DPtoLP(22)));
-			this.setMaximumSize(new Dimension(getMapMode().DPtoLP(23), getMapMode().DPtoLP(23)));
-			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(22), getMapMode().DPtoLP(22)));
 			this.setSize(getMapMode().DPtoLP(22), getMapMode().DPtoLP(22));
 			createContents();
+		}
+
+		/**
+		 * Sets the bounds of this Figure to the Rectangle <i>rect</i>.
+		 * This also updates sub-figures.
+		 * 
+		 * @see Figure#setBounds(Rectangle)
+		 * @param rect
+		 *        The new bounds
+		 * @generated NOT
+		 */
+		public void setBounds(Rectangle rect) {
+			if(getFigureDisc() != null) {
+				Rectangle discBounds = rect.getCopy();
+				// compute the new location and size of the disc
+				int discLocationDiff = discBounds.height / 7;
+				discBounds.resize(-2 * discLocationDiff, -2 * discLocationDiff);
+				discBounds.translate(discLocationDiff, discLocationDiff);
+				getFigureDisc().setBounds(discBounds);
+			}
+			super.setBounds(rect);
 		}
 
 		/**
@@ -651,19 +760,13 @@ ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-			Ellipse circle0 = new Ellipse();
-			circle0.setLineWidth(1);
-			circle0.setSize(getMapMode().DPtoLP(22), getMapMode().DPtoLP(22));
+			fFigureDisc = new Ellipse();
+			fFigureDisc.setLineWidth(1);
+			fFigureDisc.setBackgroundColor(ColorConstants.black);
+			fFigureDisc.setLocation(new Point(getMapMode().DPtoLP(3), getMapMode().DPtoLP(3)));
+			fFigureDisc.setSize(getMapMode().DPtoLP(16), getMapMode().DPtoLP(16));
 
-			this.add(circle0);
-
-			Ellipse disc0 = new Ellipse();
-			disc0.setLineWidth(1);
-			disc0.setBackgroundColor(ColorConstants.black);
-			disc0.setLocation(new Point(getMapMode().DPtoLP(3), getMapMode().DPtoLP(3)));
-			disc0.setSize(getMapMode().DPtoLP(16), getMapMode().DPtoLP(16));
-
-			this.add(disc0);
+			this.add(fFigureDisc);
 
 		}
 
@@ -684,6 +787,13 @@ ShapeNodeEditPart {
 		 */
 		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
 			myUseLocalCoordinates = useLocalCoordinates;
+		}
+
+		/**
+		 * @generated
+		 */
+		public Ellipse getFigureDisc() {
+			return fFigureDisc;
 		}
 
 	}

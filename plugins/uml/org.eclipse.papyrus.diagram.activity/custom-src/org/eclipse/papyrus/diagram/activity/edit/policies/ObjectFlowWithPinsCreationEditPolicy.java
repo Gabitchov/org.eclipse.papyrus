@@ -21,6 +21,7 @@ import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
@@ -31,6 +32,8 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.commands.SetConnectionBendpointsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
@@ -44,7 +47,6 @@ import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ObjectFlow;
-
 
 public class ObjectFlowWithPinsCreationEditPolicy extends GraphicalNodeEditPolicy {
 
@@ -195,6 +197,7 @@ public class ObjectFlowWithPinsCreationEditPolicy extends GraphicalNodeEditPolic
 	 * @return the view or null
 	 */
 	protected View getObjectFlowExtremityView(boolean isStartEnd) {
+
 		Object objectFlowView = getViewAdapter().getAdapter(Connector.class);
 		if(objectFlowView instanceof Connector) {
 			EObject objectFlow = ((Connector)objectFlowView).getElement();
@@ -212,6 +215,19 @@ public class ObjectFlowWithPinsCreationEditPolicy extends GraphicalNodeEditPolic
 							return view;
 						}
 					}
+					// refresh view children which have not been created yet.
+					EditPolicy policy = getHost().getEditPolicy(EditPolicyRoles.CANONICAL_ROLE);
+					if(policy instanceof CanonicalEditPolicy) {
+						CanonicalEditPolicy canonical = (CanonicalEditPolicy)policy;
+						if(!canonical.isEnabled()) {
+							canonical.setEnable(true);
+							canonical.refresh();
+							canonical.setEnable(false);
+						} else {
+							canonical.refresh();
+						}
+					}
+					// recover the appropriate child view
 					for(Object childPart : getHost().getChildren()) {
 						if(childPart instanceof EditPart) {
 							Object containedView = ((EditPart)childPart).getModel();

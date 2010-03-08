@@ -34,10 +34,6 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInOActLabel
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInOpaqueActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPostconditionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPreconditionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityAsSelectionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityAsSelectionNameEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityAsTransformationEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityAsTransformationNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityDiagramEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
@@ -54,11 +50,14 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPos
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowNameEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionInputEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.FlowFinalNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ForkNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCBActLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCOActAsTargetLabelEditPart;
@@ -76,10 +75,11 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocal
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondNameEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.JoinNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.JoinSpecEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.MergeNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowNameEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowSelectionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowTransformationEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCBActLabelEditPart;
@@ -111,7 +111,9 @@ import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonLabelProvider;
 import org.eclipse.uml2.uml.ActivityFinalNode;
 import org.eclipse.uml2.uml.FlowFinalNode;
+import org.eclipse.uml2.uml.ForkNode;
 import org.eclipse.uml2.uml.InitialNode;
+import org.eclipse.uml2.uml.MergeNode;
 import org.eclipse.uml2.uml.Package;
 
 /**
@@ -236,18 +238,18 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Constraint", UMLElementTypes.Constraint_3011); //$NON-NLS-1$
 		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Constraint", UMLElementTypes.Constraint_3012); //$NON-NLS-1$
-		case ActivityAsSelectionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Activity", UMLElementTypes.Activity_3028); //$NON-NLS-1$
-		case ActivityAsTransformationEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Activity", UMLElementTypes.Activity_3029); //$NON-NLS-1$
+		case DecisionNodeEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?DecisionNode", UMLElementTypes.DecisionNode_3038); //$NON-NLS-1$
+		case MergeNodeEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?MergeNode", UMLElementTypes.MergeNode_3039); //$NON-NLS-1$
+		case ForkNodeEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ForkNode", UMLElementTypes.ForkNode_3040); //$NON-NLS-1$
+		case JoinNodeEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?JoinNode", UMLElementTypes.JoinNode_3041); //$NON-NLS-1$
 		case ActionLocalPreconditionEditPart.VISUAL_ID:
 			return getImage("Navigator?Link?http://www.eclipse.org/uml2/3.0.0/UML?Action?localPrecondition", UMLElementTypes.ActionLocalPrecondition_4001); //$NON-NLS-1$
 		case ActionLocalPostconditionEditPart.VISUAL_ID:
 			return getImage("Navigator?Link?http://www.eclipse.org/uml2/3.0.0/UML?Action?localPostcondition", UMLElementTypes.ActionLocalPostcondition_4002); //$NON-NLS-1$
-		case ObjectFlowSelectionEditPart.VISUAL_ID:
-			return getImage("Navigator?Link?http://www.eclipse.org/uml2/3.0.0/UML?ObjectFlow?selection", UMLElementTypes.ObjectFlowSelection_4005); //$NON-NLS-1$
-		case ObjectFlowTransformationEditPart.VISUAL_ID:
-			return getImage("Navigator?Link?http://www.eclipse.org/uml2/3.0.0/UML?ObjectFlow?transformation", UMLElementTypes.ObjectFlowTransformation_4006); //$NON-NLS-1$
 		case ObjectFlowEditPart.VISUAL_ID:
 			return getImage("Navigator?Link?http://www.eclipse.org/uml2/3.0.0/UML?ObjectFlow", UMLElementTypes.ObjectFlow_4003); //$NON-NLS-1$
 		case ControlFlowEditPart.VISUAL_ID:
@@ -374,18 +376,18 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getConstraint_3011Text(view);
 		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
 			return getConstraint_3012Text(view);
-		case ActivityAsSelectionEditPart.VISUAL_ID:
-			return getActivity_3028Text(view);
-		case ActivityAsTransformationEditPart.VISUAL_ID:
-			return getActivity_3029Text(view);
+		case DecisionNodeEditPart.VISUAL_ID:
+			return getDecisionNode_3038Text(view);
+		case MergeNodeEditPart.VISUAL_ID:
+			return getMergeNode_3039Text(view);
+		case ForkNodeEditPart.VISUAL_ID:
+			return getForkNode_3040Text(view);
+		case JoinNodeEditPart.VISUAL_ID:
+			return getJoinNode_3041Text(view);
 		case ActionLocalPreconditionEditPart.VISUAL_ID:
 			return getActionLocalPrecondition_4001Text(view);
 		case ActionLocalPostconditionEditPart.VISUAL_ID:
 			return getActionLocalPostcondition_4002Text(view);
-		case ObjectFlowSelectionEditPart.VISUAL_ID:
-			return getObjectFlowSelection_4005Text(view);
-		case ObjectFlowTransformationEditPart.VISUAL_ID:
-			return getObjectFlowTransformation_4006Text(view);
 		case ObjectFlowEditPart.VISUAL_ID:
 			return getObjectFlow_4003Text(view);
 		case ControlFlowEditPart.VISUAL_ID:
@@ -761,12 +763,12 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	/**
 	 * @generated
 	 */
-	private String getActivity_3028Text(View view) {
-		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Activity_3028, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ActivityAsSelectionNameEditPart.VISUAL_ID));
+	private String getDecisionNode_3038Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.DecisionNode_3038, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(DecisionInputEditPart.VISUAL_ID));
 		if(parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5032); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5043); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -774,12 +776,38 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	/**
 	 * @generated
 	 */
-	private String getActivity_3029Text(View view) {
-		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Activity_3029, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ActivityAsTransformationNameEditPart.VISUAL_ID));
+	private String getMergeNode_3039Text(View view) {
+		MergeNode domainModelElement = (MergeNode)view.getElement();
+		if(domainModelElement != null) {
+			return String.valueOf(domainModelElement.getName());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("No domain element for view with visualID = " + 3039); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getForkNode_3040Text(View view) {
+		ForkNode domainModelElement = (ForkNode)view.getElement();
+		if(domainModelElement != null) {
+			return String.valueOf(domainModelElement.getName());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("No domain element for view with visualID = " + 3040); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getJoinNode_3041Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.JoinNode_3041, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(JoinSpecEditPart.VISUAL_ID));
 		if(parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5033); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5042); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -899,20 +927,6 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getActionLocalPostcondition_4002Text(View view) {
-		return ""; //$NON-NLS-1$
-	}
-
-	/**
-	 * @generated
-	 */
-	private String getObjectFlowSelection_4005Text(View view) {
-		return ""; //$NON-NLS-1$
-	}
-
-	/**
-	 * @generated
-	 */
-	private String getObjectFlowTransformation_4006Text(View view) {
 		return ""; //$NON-NLS-1$
 	}
 

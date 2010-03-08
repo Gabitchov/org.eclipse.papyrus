@@ -188,60 +188,30 @@
     <descriptors
         name="InitialNodeFigure">
       <actualFigure
-          xsi:type="gmfgraph:Rectangle"
-          name="InitialNodeRect"
-          outline="false"
-          fill="false">
-        <maximumSize
-            dx="17"
-            dy="17"/>
-        <minimumSize
-            dx="16"
-            dy="16"/>
+          xsi:type="gmfgraph:Ellipse"
+          name="Disc">
+        <backgroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
         <preferredSize
             dx="16"
             dy="16"/>
         <size
             x="16"
             y="16"/>
-        <children
-            xsi:type="gmfgraph:Ellipse"
-            name="Disc">
-          <backgroundColor
-              xsi:type="gmfgraph:ConstantColor"
-              value="black"/>
-          <size
-              x="16"
-              y="16"/>
-        </children>
       </actualFigure>
     </descriptors>
     <descriptors
         name="ActivityFinalNodeFigure">
       <actualFigure
-          xsi:type="gmfgraph:Rectangle"
-          name="ActivityFinalNodeRect"
-          outline="false"
-          fill="false">
-        <maximumSize
-            dx="23"
-            dy="23"/>
-        <minimumSize
-            dx="22"
-            dy="22"/>
+          xsi:type="gmfgraph:Ellipse"
+          name="Circle">
         <preferredSize
             dx="22"
             dy="22"/>
         <size
             x="22"
             y="22"/>
-        <children
-            xsi:type="gmfgraph:Ellipse"
-            name="Circle">
-          <size
-              x="22"
-              y="22"/>
-        </children>
         <children
             xsi:type="gmfgraph:Ellipse"
             name="Disc">
@@ -256,33 +226,21 @@
               y="16"/>
         </children>
       </actualFigure>
+      <accessors
+          accessor="getFigureDisc"
+          figure="//@figures.0/@descriptors.3/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="FlowFinalNodeFigure">
       <actualFigure
-          xsi:type="gmfgraph:Rectangle"
-          name="FlowFinalNodeRect"
-          outline="false"
-          fill="false">
-        <maximumSize
-            dx="23"
-            dy="23"/>
-        <minimumSize
-            dx="22"
-            dy="22"/>
+          xsi:type="gmfgraph:Ellipse"
+          name="Circle">
         <preferredSize
             dx="22"
             dy="22"/>
         <size
             x="22"
             y="22"/>
-        <children
-            xsi:type="gmfgraph:Ellipse"
-            name="">
-          <size
-              x="22"
-              y="22"/>
-        </children>
         <children
             xsi:type="gmfgraph:Polyline"
             name="Antislash">
@@ -304,6 +262,10 @@
               y="4"/>
         </children>
       </actualFigure>
+      <accessors
+          figure="//@figures.0/@descriptors.4/@actualFigure/@children.1"/>
+      <accessors
+          figure="//@figures.0/@descriptors.4/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="ActionFigure">
@@ -408,6 +370,72 @@
           accessor="getEdgeWeight"
           figure="//@figures.0/@descriptors.9/@actualFigure/@children.2"/>
     </descriptors>
+    <descriptors
+        name="DiamondFigure">
+      <actualFigure
+          xsi:type="gmfgraph:ScalablePolygon"
+          name="Diamond">
+        <preferredSize
+            dx="20"
+            dy="30"/>
+        <size
+            x="20"
+            y="30"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="SegmentFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="Segment">
+        <backgroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <minimumSize
+            dx="4"
+            dy="4"/>
+        <preferredSize
+            dx="4"
+            dy="45"/>
+        <size
+            x="4"
+            y="45"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="MultilineLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="MultilineLabel"
+          qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.WrappedLabel"/>
+    </descriptors>
+    <descriptors
+        name="LinkAndCornerBentWithTextFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="CornerBentCustFigure"
+          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure">
+        <backgroundColor
+            xsi:type="gmfgraph:RGBColor"
+            red="248"
+            green="249"
+            blue="214"/>
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="CornerBentContentLabel"
+            qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.WrappedLabel"/>
+        <children
+            xsi:type="gmfgraph:Polyline"
+            name="LinkToBehaviorProperty"
+            lineKind="LINE_DASH"/>
+      </actualFigure>
+      <accessors
+          accessor="getCornerBentContent"
+          figure="//@figures.0/@descriptors.13/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getLinkToBehaviorProperty"
+          figure="//@figures.0/@descriptors.13/@actualFigure/@children.1"/>
+    </descriptors>
   </figures>
   <nodes
       name="ActivityNode"
@@ -426,7 +454,7 @@
       name="ActionNode"
       figure="ActionFigure"/>
   <nodes
-      name="LocalCondition"
+      name="BehaviorProperty"
       figure="CornerBentWithTextFigure"/>
   <nodes
       name="ObjectFlowBehavior"
@@ -435,6 +463,15 @@
       name="PinNode"
       figure="PinDescriptor"
       affixedParentSide="NSEW"/>
+  <nodes
+      name="DiamondNode"
+      figure="DiamondFigure"/>
+  <nodes
+      name="SegmentNode"
+      figure="SegmentFigure"/>
+  <nodes
+      name="BehaviorPropertyWithLink"
+      figure="LinkAndCornerBentWithTextFigure"/>
   <connections
       name="CornerBentWithTextLinkConnection"
       figure="DashedLinkDescriptor"/>
@@ -505,13 +542,13 @@
         xsi:type="gmfgraph:AlignmentFacet"/>
   </labels>
   <labels
-      name="ObjectFlowBehaviorSpecification"
-      figure="CornerBentWithTextFigure"
-      elementIcon="false"
-      accessor="//@figures.0/@descriptors.6/@accessors.0">
-    <facets
-        xsi:type="gmfgraph:AlignmentFacet"/>
-  </labels>
+      name="ObjectFlowBehaviorSelection"
+      figure="LinkAndCornerBentWithTextFigure"
+      elementIcon="false"/>
+  <labels
+      name="ObjectFlowBehaviorTransformation"
+      figure="LinkAndCornerBentWithTextFigure"
+      elementIcon="false"/>
   <labels
       name="PinName"
       figure="CommonLabelFigure"
@@ -536,6 +573,31 @@
   </labels>
   <labels
       name="EdgeWeight"
+      figure="CommonLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"/>
+  </labels>
+  <labels
+      name="JoinSpec"
+      figure="MultilineLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"/>
+  </labels>
+  <labels
+      name="DecisionInput"
+      figure="LinkAndCornerBentWithTextFigure"
+      elementIcon="false"/>
+  <labels
+      name="DecisionInputFlow"
+      figure="CommonLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"/>
+  </labels>
+  <labels
+      name="EdgeGuard"
       figure="CommonLabelFigure"
       elementIcon="false">
     <facets

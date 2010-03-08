@@ -912,7 +912,7 @@
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.4/@tools.3"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#LocalCondition"/>
+              href="activityDiagram.gmfgraph#BehaviorProperty"/>
         </ownedChild>
       </children>
       <children
@@ -954,7 +954,7 @@
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.4/@tools.8"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#LocalCondition"/>
+              href="activityDiagram.gmfgraph#BehaviorProperty"/>
         </ownedChild>
       </children>
       <children
@@ -996,7 +996,7 @@
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.4/@tools.4"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#LocalCondition"/>
+              href="activityDiagram.gmfgraph#BehaviorProperty"/>
         </ownedChild>
       </children>
       <children
@@ -1038,7 +1038,7 @@
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.4/@tools.9"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#LocalCondition"/>
+              href="activityDiagram.gmfgraph#BehaviorProperty"/>
         </ownedChild>
       </children>
       <children
@@ -1080,7 +1080,7 @@
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.4/@tools.1"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#LocalCondition"/>
+              href="activityDiagram.gmfgraph#BehaviorProperty"/>
         </ownedChild>
       </children>
       <children
@@ -1122,7 +1122,7 @@
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.4/@tools.6"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#LocalCondition"/>
+              href="activityDiagram.gmfgraph#BehaviorProperty"/>
         </ownedChild>
       </children>
       <children
@@ -1164,7 +1164,7 @@
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.4/@tools.2"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#LocalCondition"/>
+              href="activityDiagram.gmfgraph#BehaviorProperty"/>
         </ownedChild>
       </children>
       <children
@@ -1206,7 +1206,7 @@
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.4/@tools.7"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#LocalCondition"/>
+              href="activityDiagram.gmfgraph#BehaviorProperty"/>
         </ownedChild>
       </children>
       <children
@@ -1248,7 +1248,7 @@
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.4/@tools.0"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#LocalCondition"/>
+              href="activityDiagram.gmfgraph#BehaviorProperty"/>
         </ownedChild>
       </children>
       <children
@@ -1290,20 +1290,20 @@
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.4/@tools.5"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#LocalCondition"/>
+              href="activityDiagram.gmfgraph#BehaviorProperty"/>
         </ownedChild>
       </children>
       <children
           compartment="//@nodes.0/@ownedChild/@compartments.3"
           referencedChild="//@nodes.0/@ownedChild/@children.19/@ownedChild">
         <containmentFeature
-            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package/packagedElement"/>
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
         <childrenFeature
-            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ObjectFlow/selection"/>
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
         <ownedChild
             relatedDiagrams="//@diagram">
           <domainMetaElement
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DecisionNode"/>
           <domainInitializer
               xsi:type="gmfmap:FeatureSeqInitializer">
             <initializers
@@ -1316,31 +1316,28 @@
                   language="java"/>
             </initializers>
           </domainInitializer>
-          <labelMappings
-              xsi:type="gmfmap:FeatureLabelMapping"
-              viewPattern="&lt;&lt;selection>>\n{0}"
-              editorPattern="{0}"
-              editPattern="{0}">
+          <labelMappings>
             <diagramLabel
-                href="activityDiagram.gmfgraph#ActionLocalConditionContent"/>
-            <features
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                href="activityDiagram.gmfgraph#DecisionInput"/>
           </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.3"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#ObjectFlowBehavior"/>
+              href="activityDiagram.gmfgraph#DiamondNode"/>
         </ownedChild>
       </children>
       <children
           compartment="//@nodes.0/@ownedChild/@compartments.3"
           referencedChild="//@nodes.0/@ownedChild/@children.20/@ownedChild">
         <containmentFeature
-            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package/packagedElement"/>
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
         <childrenFeature
-            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ObjectFlow/transformation"/>
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
         <ownedChild
             relatedDiagrams="//@diagram">
           <domainMetaElement
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity"/>
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//MergeNode"/>
           <domainInitializer
               xsi:type="gmfmap:FeatureSeqInitializer">
             <initializers
@@ -1353,18 +1350,75 @@
                   language="java"/>
             </initializers>
           </domainInitializer>
-          <labelMappings
-              xsi:type="gmfmap:FeatureLabelMapping"
-              viewPattern="&lt;&lt;transformation>>\n{0}"
-              editorPattern="{0}"
-              editPattern="{0}">
-            <diagramLabel
-                href="activityDiagram.gmfgraph#ActionLocalConditionContent"/>
-            <features
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
-          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.4"/>
           <diagramNode
-              href="activityDiagram.gmfgraph#ObjectFlowBehavior"/>
+              href="activityDiagram.gmfgraph#DiamondNode"/>
+        </ownedChild>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.3"
+          referencedChild="//@nodes.0/@ownedChild/@children.21/@ownedChild">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
+        <ownedChild
+            relatedDiagrams="//@diagram">
+          <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ForkNode"/>
+          <domainInitializer
+              xsi:type="gmfmap:FeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfmap:FeatureValueSpec">
+              <feature
+                  xsi:type="ecore:EAttribute"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+              <value
+                  body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                  language="java"/>
+            </initializers>
+          </domainInitializer>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.6"/>
+          <diagramNode
+              href="activityDiagram.gmfgraph#SegmentNode"/>
+        </ownedChild>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.3"
+          referencedChild="//@nodes.0/@ownedChild/@children.22/@ownedChild">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
+        <ownedChild
+            relatedDiagrams="//@diagram">
+          <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//JoinNode"/>
+          <domainInitializer
+              xsi:type="gmfmap:FeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfmap:FeatureValueSpec">
+              <feature
+                  xsi:type="ecore:EAttribute"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+              <value
+                  body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                  language="java"/>
+            </initializers>
+          </domainInitializer>
+          <labelMappings>
+            <diagramLabel
+                href="activityDiagram.gmfgraph#JoinSpec"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.5"/>
+          <diagramNode
+              href="activityDiagram.gmfgraph#SegmentNode"/>
         </ownedChild>
       </children>
       <compartments
@@ -1383,7 +1437,7 @@
             href="activityDiagram.gmfgraph#ActivityPostConditionsCompartment"/>
       </compartments>
       <compartments
-          children="//@nodes.0/@ownedChild/@children.5 //@nodes.0/@ownedChild/@children.3 //@nodes.0/@ownedChild/@children.4 //@nodes.0/@ownedChild/@children.6 //@nodes.0/@ownedChild/@children.17 //@nodes.0/@ownedChild/@children.7 //@nodes.0/@ownedChild/@children.8 //@nodes.0/@ownedChild/@children.18 //@nodes.0/@ownedChild/@children.19 //@nodes.0/@ownedChild/@children.20 //@nodes.0/@ownedChild/@children.13 //@nodes.0/@ownedChild/@children.14 //@nodes.0/@ownedChild/@children.15 //@nodes.0/@ownedChild/@children.16 //@nodes.0/@ownedChild/@children.9 //@nodes.0/@ownedChild/@children.10 //@nodes.0/@ownedChild/@children.11 //@nodes.0/@ownedChild/@children.12">
+          children="//@nodes.0/@ownedChild/@children.5 //@nodes.0/@ownedChild/@children.3 //@nodes.0/@ownedChild/@children.4 //@nodes.0/@ownedChild/@children.6 //@nodes.0/@ownedChild/@children.17 //@nodes.0/@ownedChild/@children.7 //@nodes.0/@ownedChild/@children.8 //@nodes.0/@ownedChild/@children.18 //@nodes.0/@ownedChild/@children.13 //@nodes.0/@ownedChild/@children.14 //@nodes.0/@ownedChild/@children.15 //@nodes.0/@ownedChild/@children.16 //@nodes.0/@ownedChild/@children.9 //@nodes.0/@ownedChild/@children.10 //@nodes.0/@ownedChild/@children.11 //@nodes.0/@ownedChild/@children.12 //@nodes.0/@ownedChild/@children.19 //@nodes.0/@ownedChild/@children.20 //@nodes.0/@ownedChild/@children.21 //@nodes.0/@ownedChild/@children.22">
         <compartment
             href="activityDiagram.gmfgraph#ActivityContentCompartment"/>
       </compartments>
@@ -1404,22 +1458,6 @@
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Action/localPostcondition"/>
-  </links>
-  <links
-      relatedDiagrams="//@diagram">
-    <diagramLink
-        href="activityDiagram.gmfgraph#CornerBentWithTextLinkConnection"/>
-    <linkMetaFeature
-        xsi:type="ecore:EReference"
-        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ObjectFlow/selection"/>
-  </links>
-  <links
-      relatedDiagrams="//@diagram">
-    <diagramLink
-        href="activityDiagram.gmfgraph#CornerBentWithTextLinkConnection"/>
-    <linkMetaFeature
-        xsi:type="ecore:EReference"
-        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ObjectFlow/transformation"/>
   </links>
   <links
       relatedDiagrams="//@diagram">
@@ -1448,6 +1486,22 @@
       <diagramLabel
           href="activityDiagram.gmfgraph#EdgeWeight"/>
     </labelMappings>
+    <labelMappings>
+      <diagramLabel
+          href="activityDiagram.gmfgraph#ObjectFlowBehaviorSelection"/>
+    </labelMappings>
+    <labelMappings>
+      <diagramLabel
+          href="activityDiagram.gmfgraph#ObjectFlowBehaviorTransformation"/>
+    </labelMappings>
+    <labelMappings>
+      <diagramLabel
+          href="activityDiagram.gmfgraph#DecisionInputFlow"/>
+    </labelMappings>
+    <labelMappings>
+      <diagramLabel
+          href="activityDiagram.gmfgraph#EdgeGuard"/>
+    </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/edge"/>
     <tool
@@ -1461,6 +1515,14 @@
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActivityEdge/target"/>
+    <creationConstraints>
+      <sourceEnd
+          body="if(source instanceof Action) {&#xD;&#xA;&#x9;// rule validateObjectFlow_validateNoActions&#xD;&#xA;&#x9;// rule workaround by addition of pins in case of Opaque Action&#xD;&#xA;&#x9;if(!(source instanceof OpaqueAction)) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(source instanceof InputPin) {&#xD;&#xA;&#x9;// rule validateInputPin_validateOutgoingEdgesStructuredOnly&#xD;&#xA;&#x9;if(source.getOwner() instanceof StructuredActivityNode) {&#xD;&#xA;&#x9;&#x9;if(target != null &amp;&amp; !source.getOwner().equals(target.getInStructuredNode())) {&#xD;&#xA;&#x9;&#x9;&#x9;return false;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(source instanceof InitialNode) {&#xD;&#xA;&#x9;// rule validateInitialNode_validateControlEdges&#xD;&#xA;&#x9;return false;&#xD;&#xA;}&#xD;&#xA;if(source instanceof FinalNode) {&#xD;&#xA;&#x9;// rule validateFinalNode_validateNoOutgoingEdges&#xD;&#xA;&#x9;return false;&#xD;&#xA;}&#xD;&#xA;if(source instanceof JoinNode) {&#xD;&#xA;&#x9;// rule validateJoinNode_validateOneOutgoingEdge&#xD;&#xA;&#x9;if(!source.getOutgoings().isEmpty()) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;/*&#xD;&#xA;&#x9; * rule validateJoinNode_validateIncomingObjectFlow :&#xD;&#xA;&#x9; * We do not prevent creation of an outgoing ObjectFlow even if there is no incoming ObjectFlow.&#xD;&#xA;&#x9; * We let the possibility that the user intends to add an incoming ObjectFlow later.&#xD;&#xA;&#x9; */&#xD;&#xA;}&#xD;&#xA;if(source instanceof ForkNode) {&#xD;&#xA;&#x9;// rule validateForkNode_validateEdges on source Fork node&#xD;&#xA;&#x9;ActivityEdge outgoingControlFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());&#xD;&#xA;&#x9;ActivityEdge incomingControlFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());&#xD;&#xA;&#x9;if(outgoingControlFlow != null || incomingControlFlow != null) {&#xD;&#xA;&#x9;&#x9;// there is a ControlFlow which means there must be no ObjectFlow&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(source instanceof MergeNode) {&#xD;&#xA;&#x9;//rule validateMergeNode_validateOneOutgoingEdge&#xD;&#xA;&#x9;if(!source.getOutgoings().isEmpty()) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;// rule validateMergeNode_validateEdges on source Merge node&#xD;&#xA;&#x9;ActivityEdge outgoingControlFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());&#xD;&#xA;&#x9;ActivityEdge incomingControlFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());&#xD;&#xA;&#x9;if(outgoingControlFlow != null || incomingControlFlow != null) {&#xD;&#xA;&#x9;&#x9;// there is a ControlFlow which means there must be no ObjectFlow&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(source instanceof DecisionNode) {&#xD;&#xA;&#x9;// rule validateDecisionNode_validateEdges on source Decision node&#xD;&#xA;&#x9;ActivityEdge outgoingControlFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());&#xD;&#xA;&#x9;ActivityEdge incomingControlFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());&#xD;&#xA;&#x9;if(outgoingControlFlow != null || incomingControlFlow != null) {&#xD;&#xA;&#x9;&#x9;// there is a ControlFlow which means there must be no ObjectFlow&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}"
+          language="java"/>
+      <targetEnd
+          body="if(target instanceof Action) {&#xD;&#xA;&#x9;// rule validateObjectFlow_validateNoActions&#xD;&#xA;&#x9;// rule workaround by addition of pins in case of Opaque Action&#xD;&#xA;&#x9;if(!(target instanceof OpaqueAction)) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(target instanceof OutputPin) {&#xD;&#xA;&#x9;// rule validateOutputPin_validateIncomingEdgesStructuredOnly&#xD;&#xA;&#x9;if(target.getOwner() instanceof StructuredActivityNode) {&#xD;&#xA;&#x9;&#x9;if(source != null &amp;&amp; !target.getOwner().equals(source.getInStructuredNode())) {&#xD;&#xA;&#x9;&#x9;&#x9;return false;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(target instanceof InitialNode) {&#xD;&#xA;&#x9;// rule validateInitialNode_validateNoIncomingEdges&#xD;&#xA;&#x9;return false;&#xD;&#xA;}&#xD;&#xA;if(target instanceof JoinNode) {&#xD;&#xA;&#x9;// rule validateJoinNode_validateIncomingObjectFlow&#xD;&#xA;&#x9;ActivityEdge outgoingControlFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());&#xD;&#xA;&#x9;if(outgoingControlFlow != null) {&#xD;&#xA;&#x9;&#x9;// the outgoing edge is a ControlFlow which means there must be no incoming ObjectFlow&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(target instanceof ForkNode) {&#xD;&#xA;&#x9;// rule validateForkNode_validateOneIncomingEdge&#xD;&#xA;&#x9;if(!target.getIncomings().isEmpty()) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;// rule validateForkNode_validateEdges on target Fork node&#xD;&#xA;&#x9;ActivityEdge outgoingControlFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());&#xD;&#xA;&#x9;ActivityEdge incomingControlFlow = target.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());&#xD;&#xA;&#x9;if(outgoingControlFlow != null || incomingControlFlow != null) {&#xD;&#xA;&#x9;&#x9;// there is a ControlFlow which means there must be no ObjectFlow&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(target instanceof MergeNode) {&#xD;&#xA;&#x9;// rule validateMergeNode_validateEdges on target Merge node&#xD;&#xA;&#x9;ActivityEdge outgoingControlFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());&#xD;&#xA;&#x9;ActivityEdge incomingControlFlow = target.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());&#xD;&#xA;&#x9;if(outgoingControlFlow != null || incomingControlFlow != null) {&#xD;&#xA;&#x9;&#x9;// there is a ControlFlow which means there must be no ObjectFlow&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(target instanceof DecisionNode) {&#xD;&#xA;&#x9;// rule validateDecisionNode_validateIncomingOutgoingEdges&#xD;&#xA;&#x9;if(target.getIncomings().size() >= 2) {&#xD;&#xA;&#x9;&#x9;// no more than two incoming edges&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;// rule validateDecisionNode_validateEdges on target Decision node&#xD;&#xA;&#x9;ActivityEdge outgoingControlFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());&#xD;&#xA;&#x9;ActivityEdge incomingControlFlow = target.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());&#xD;&#xA;&#x9;if(outgoingControlFlow != null || incomingControlFlow != null) {&#xD;&#xA;&#x9;&#x9;/*&#xD;&#xA;&#x9;&#x9; * There is a ControlFlow which means there must be no&#xD;&#xA;&#x9;&#x9; * ObjectFlow but the decision flow itself.&#xD;&#xA;&#x9;&#x9; * We let the user insert up to one ObjectFlow for being&#xD;&#xA;&#x9;&#x9; * able to select the decision flow among existing&#xD;&#xA;&#x9;&#x9; * input flows.&#xD;&#xA;&#x9;&#x9; */&#xD;&#xA;&#x9;&#x9;if(target.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow()) != null) {&#xD;&#xA;&#x9;&#x9;&#x9;// there is already an object flow which is intended to become the decision flow&#xD;&#xA;&#x9;&#x9;&#x9;return false;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;}"
+          language="java"/>
+    </creationConstraints>
   </links>
   <links
       relatedDiagrams="//@diagram">
@@ -1489,6 +1551,10 @@
       <diagramLabel
           href="activityDiagram.gmfgraph#EdgeWeight"/>
     </labelMappings>
+    <labelMappings>
+      <diagramLabel
+          href="activityDiagram.gmfgraph#EdgeGuard"/>
+    </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/edge"/>
     <tool
@@ -1502,6 +1568,14 @@
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActivityEdge/target"/>
+    <creationConstraints>
+      <sourceEnd
+          body="if(source instanceof ObjectNode) {&#xD;&#xA;&#x9;if(!((ObjectNode)source).isControlType()) {&#xD;&#xA;&#x9;&#x9;// rule validateControlFlow_validateObjectNodes&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(source instanceof InputPin) {&#xD;&#xA;&#x9;// rule validateInputPin_validateOutgoingEdgesStructuredOnly&#xD;&#xA;&#x9;if(source.getOwner() instanceof StructuredActivityNode) {&#xD;&#xA;&#x9;&#x9;if(target != null &amp;&amp; !source.getOwner().equals(target.getInStructuredNode())) {&#xD;&#xA;&#x9;&#x9;&#x9;return false;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(source instanceof FinalNode) {&#xD;&#xA;&#x9;// rule validateFinalNode_validateNoOutgoingEdges&#xD;&#xA;&#x9;return false;&#xD;&#xA;}&#xD;&#xA;if(source instanceof JoinNode) {&#xD;&#xA;&#x9;// rule validateJoinNode_validateOneOutgoingEdge&#xD;&#xA;&#x9;if(!source.getOutgoings().isEmpty()) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;// rule validateJoinNode_validateIncomingObjectFlow&#xD;&#xA;&#x9;ActivityEdge incomingObjectFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;if(incomingObjectFlow != null) {&#xD;&#xA;&#x9;&#x9;// the outgoing edge must be an ObjectFlow&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(source instanceof ForkNode) {&#xD;&#xA;&#x9;// rule validateForkNode_validateEdges on source Fork node&#xD;&#xA;&#x9;ActivityEdge outgoingObjectFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;ActivityEdge incomingObjectFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;if(outgoingObjectFlow != null || incomingObjectFlow != null) {&#xD;&#xA;&#x9;&#x9;// there is an ObjectFlow which means there must be no ControlFlow&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(source instanceof MergeNode) {&#xD;&#xA;&#x9;//rule validateMergeNode_validateOneOutgoingEdge&#xD;&#xA;&#x9;if(!source.getOutgoings().isEmpty()) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;// rule validateMergeNode_validateEdges on source Merge node&#xD;&#xA;&#x9;ActivityEdge outgoingObjectFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;ActivityEdge incomingObjectFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;if(outgoingObjectFlow != null || incomingObjectFlow != null) {&#xD;&#xA;&#x9;&#x9;// there is an ObjectFlow which means there must be no ControlFlow&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(source instanceof DecisionNode) {&#xD;&#xA;&#x9;// rule validateDecisionNode_validateEdges on source Decision node&#xD;&#xA;&#x9;ActivityEdge outgoingObjectFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;ActivityEdge incomingObjectFlow = null;&#xD;&#xA;&#x9;for(ActivityEdge incomingEdge : source.getIncomings()) {&#xD;&#xA;&#x9;&#x9;// filter the decision flow&#xD;&#xA;&#x9;&#x9;if(incomingEdge instanceof ObjectFlow &amp;&amp; incomingEdge != ((DecisionNode)source).getDecisionInputFlow()) {&#xD;&#xA;&#x9;&#x9;&#x9;incomingObjectFlow = incomingEdge;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;if(outgoingObjectFlow != null || incomingObjectFlow != null) {&#xD;&#xA;&#x9;&#x9;// there is an ObjectFlow which means there must be no ControlFlow&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}"
+          language="java"/>
+      <targetEnd
+          body="if(target instanceof ObjectNode) {&#xD;&#xA;&#x9;if(!((ObjectNode)target).isControlType()) {&#xD;&#xA;&#x9;&#x9;// rule validateControlFlow_validateObjectNodes&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(target instanceof OutputPin) {&#xD;&#xA;&#x9;// rule validateOutputPin_validateIncomingEdgesStructuredOnly&#xD;&#xA;&#x9;if(target.getOwner() instanceof StructuredActivityNode) {&#xD;&#xA;&#x9;&#x9;if(source != null &amp;&amp; !target.getOwner().equals(source.getInStructuredNode())) {&#xD;&#xA;&#x9;&#x9;&#x9;return false;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(target instanceof InitialNode) {&#xD;&#xA;&#x9;// rule validateInitialNode_validateNoIncomingEdges&#xD;&#xA;&#x9;return false;&#xD;&#xA;}&#xD;&#xA;if(target instanceof ForkNode) {&#xD;&#xA;&#x9;// rule validateForkNode_validateOneIncomingEdge&#xD;&#xA;&#x9;if(!target.getIncomings().isEmpty()) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;// rule validateForkNode_validateEdges on target Fork node&#xD;&#xA;&#x9;ActivityEdge outgoingObjectFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;ActivityEdge incomingObjectFlow = target.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;if(outgoingObjectFlow != null || incomingObjectFlow != null) {&#xD;&#xA;&#x9;&#x9;// there is an ObjectFlow which means there must be no ControlFlow&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(target instanceof MergeNode) {&#xD;&#xA;&#x9;// rule validateMergeNode_validateEdges on target Merge node&#xD;&#xA;&#x9;ActivityEdge outgoingObjectFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;ActivityEdge incomingObjectFlow = target.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;if(outgoingObjectFlow != null || incomingObjectFlow != null) {&#xD;&#xA;&#x9;&#x9;// there is an ObjectFlow which means there must be no ControlFlow&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(target instanceof DecisionNode) {&#xD;&#xA;&#x9;// rule validateDecisionNode_validateIncomingOutgoingEdges&#xD;&#xA;&#x9;if(target.getIncomings().size() >= 2) {&#xD;&#xA;&#x9;&#x9;// no more than two incoming edges&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;// rule validateDecisionNode_validateEdges on target Decision node&#xD;&#xA;&#x9;ActivityEdge outgoingObjectFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;ActivityEdge incomingObjectFlow = null;&#xD;&#xA;&#x9;for(ActivityEdge incomingEdge : target.getIncomings()) {&#xD;&#xA;&#x9;&#x9;// filter the decision flow&#xD;&#xA;&#x9;&#x9;if(incomingEdge instanceof ObjectFlow &amp;&amp; incomingEdge != ((DecisionNode)target).getDecisionInputFlow()) {&#xD;&#xA;&#x9;&#x9;&#x9;incomingObjectFlow = incomingEdge;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;if(outgoingObjectFlow != null || incomingObjectFlow != null) {&#xD;&#xA;&#x9;&#x9;// there is an ObjectFlow which means there must be no ControlFlow&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}"
+          language="java"/>
+    </creationConstraints>
   </links>
   <diagram>
     <diagramCanvas
@@ -1946,6 +2020,213 @@
             xsi:type="gmfmap:DomainElementTarget">
           <element
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ControlFlow"/>
+        </target>
+      </audits>
+    </childContainers>
+    <childContainers
+        id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode"
+        name="validateDecisionNode"
+        description="Validate a decision node">
+      <audits
+          name="validateIncomingOutgoingEdges"
+          description="A decision node has one or two incoming edges and at least one outgoing edge."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateIncomingOutgoingEdges"
+          message="A decision node has one or two incoming edges and at least one outgoing edge.">
+        <rule
+            body="self.outgoing->size() > 0 and&#xD;&#xA;self.incoming->size() > 0 and&#xD;&#xA;self.incoming->size() &lt;= 2"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DecisionNode"/>
+        </target>
+      </audits>
+      <audits
+          name="validateEdges"
+          description="The edges coming into and out of a decision node, other than the decision input flow (if any), must be either all object flows or all control flows."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateEdges"
+          message="Edges linking the decision node must have be of the same type (except decision input flow).">
+        <rule
+            body="(self.incoming->reject(i | i = self.decisionInputFlow)->forAll(oclIsKindOf(ObjectFlow)) and&#xD;&#xA; self.outgoing->forAll(oclIsKindOf(ObjectFlow)) ) or&#xD;&#xA;(self.incoming->reject(i | i = self.decisionInputFlow)->forAll(oclIsKindOf(ControlFlow)) and&#xD;&#xA; self.outgoing->forAll(oclIsKindOf(ControlFlow)) )"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DecisionNode"/>
+        </target>
+      </audits>
+      <audits
+          name="validateDecisionInputFlowIncoming"
+          description="The decisionInputFlow of a decision node must be an incoming edge of the decision node."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateDecisionInputFlowIncoming"
+          useInLiveMode="true"
+          message="The decisionInputFlow of a decision node must be an incoming edge of the decision node.">
+        <rule
+            body="(not self.decisionInputFlow.oclIsUndefined()) implies&#xD;&#xA;self.incoming->includes(self.decisionInputFlow)"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DecisionNode"/>
+        </target>
+      </audits>
+      <audits
+          name="validateParameters"
+          description="A decision input behavior has no output parameters, no in-out parameters and one return parameter."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateParameters"
+          useInLiveMode="true"
+          message="A decision input behavior has no output parameters, no in-out parameters and one return parameter.">
+        <rule
+            body="(not self.decisionInput.oclIsUndefined()) implies (&#xD;&#xA;self.decisionInput.ownedParameter->select(&#xD;&#xA; direction = ParameterDirectionKind::out or&#xD;&#xA; direction = ParameterDirectionKind::inout)->size() = 0&#xD;&#xA;and self.decisionInput.ownedParameter->select(&#xD;&#xA; direction = ParameterDirectionKind::return)->size() = 1&#xD;&#xA;)"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DecisionNode"/>
+        </target>
+      </audits>
+      <audits
+          name="validateZeroInputParameters"
+          description="If the decision node has no decision input flow and an incoming control flow, then a decision input behavior has zero input parameters."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateZeroInputParameters"
+          message="If the decision node has no decision input flow and an incoming control flow, then a decision input behavior has zero input parameters.">
+        <rule
+            body="(not self.decisionInput.oclIsUndefined()) implies (&#xD;&#xA;  (self.decisionInputFlow.oclIsUndefined() and&#xD;&#xA;   self.incoming->select(i | i.oclIsKindOf(ControlFlow))->size() = 1&#xD;&#xA;  ) implies&#xD;&#xA;  self.decisionInput.ownedParameter->select(&#xD;&#xA;    direction = ParameterDirectionKind::_in)->size() = 0&#xD;&#xA;)"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DecisionNode"/>
+        </target>
+      </audits>
+      <audits
+          name="validateIncomingObjectOneInputParameter"
+          description="If the decision node has no decision input flow and an incoming object flow, then a decision input behavior has one input parameter whose type is the same as or a supertype of the type of object tokens offered on the incoming edge."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateIncomingObjectOneInputParameter"
+          message="If the decision node has no decision input flow and an incoming object flow, then a decision input behavior has one input parameter whose type is the same as or a supertype of the type of object tokens offered on the incoming edge.">
+        <rule
+            body="return UMLValidationHelper.validateIncomingObjectOneInputParameter(context, ctx);"
+            language="java"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DecisionNode"/>
+        </target>
+      </audits>
+      <audits
+          name="validateIncomingControlOneInputParameter"
+          description="If the decision node has a decision input flow and an incoming control flow, then a decision input behavior has one input parameter whose type is the same as or a supertype of the type of object tokens offered on the decision input flow."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateIncomingControlOneInputParameter"
+          message="If the decision node has a decision input flow and an incoming control flow, then a decision input behavior has one input parameter whose type is the same as or a supertype of the type of object tokens offered on the decision input flow.">
+        <rule
+            body="return UMLValidationHelper.validateIncomingControlOneInputParameter(context, ctx);"
+            language="java"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DecisionNode"/>
+        </target>
+      </audits>
+      <audits
+          name="validateTwoInputParameters"
+          description="If the decision node has a decision input flow and an second incoming object flow, then a decision input behavior has two input parameters, the first of which has a type that is the same as or a supertype of the type of the type of object tokens offered on the nondecision input flow and the second of which has a type that is the same as or a supertype of the type of object tokens offered on the decision input flow."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateTwoInputParameters"
+          message="If the decision node has a decision input flow and an incoming control flow, then a decision input behavior has one input parameter whose type is the same as or a supertype of the type of object tokens offered on the decision input flow.">
+        <rule
+            body="return UMLValidationHelper.validateTwoInputParameters(context, ctx);"
+            language="java"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DecisionNode"/>
+        </target>
+      </audits>
+    </childContainers>
+    <childContainers
+        id="org.eclipse.uml2.uml.util.UMLValidator.validateMergeNode"
+        name="validateMergeNode"
+        description="Validate a merge node">
+      <audits
+          name="validateOneOutgoingEdge"
+          description="A merge node has one outgoing edge."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateMergeNode_validateOneOutgoingEdge"
+          message="A merge node has one outgoing edge.">
+        <rule
+            body="self.outgoing->size() = 1"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//MergeNode"/>
+        </target>
+      </audits>
+      <audits
+          name="validateEdges"
+          description="The edges coming into and out of a merge node must be either all object flows or all control flows."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateMergeNode_validateEdges"
+          message="The edges coming into and out of a merge node must be either all object flows or all control flows.">
+        <rule
+            body="(self.outgoing->exists(e | e.oclIsKindOf(ObjectFlow)) implies&#xD;&#xA; self.incoming->forAll(e | e.oclIsKindOf(ObjectFlow))) and&#xD;&#xA;(self.outgoing->exists(e | e.oclIsKindOf(ControlFlow)) implies&#xD;&#xA; self.incoming->forAll(e | e.oclIsKindOf(ControlFlow)))"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//MergeNode"/>
+        </target>
+      </audits>
+    </childContainers>
+    <childContainers
+        id="org.eclipse.uml2.uml.util.UMLValidator.validateForkNode"
+        name="validateForkNode"
+        description="Validate a fork node">
+      <audits
+          name="validateOneIncomingEdge"
+          description="A fork node has one incoming edge."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateForkNode_validateOneIncomingEdge"
+          message="A fork node has one incoming edge.">
+        <rule
+            body="self.incoming->size() = 1"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ForkNode"/>
+        </target>
+      </audits>
+      <audits
+          name="validateEdges"
+          description="The edges coming into and out of a fork node must be either all object flows or all control flows."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateForkNode_validateEdges"
+          message="The edges coming into and out of a fork node must be either all object flows or all control flows.">
+        <rule
+            body="(self.incoming->exists(e | e.oclIsKindOf(ObjectFlow)) implies&#xD;&#xA; self.outgoing->forAll(e | e.oclIsKindOf(ObjectFlow))) and&#xD;&#xA;(self.incoming->exists(e | e.oclIsKindOf(ControlFlow)) implies&#xD;&#xA; self.outgoing->forAll(e | e.oclIsKindOf(ControlFlow)))"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ForkNode"/>
+        </target>
+      </audits>
+    </childContainers>
+    <childContainers
+        id="org.eclipse.uml2.uml.util.UMLValidator.validateJoinNode"
+        name="validateJoinNode"
+        description="Validate a join node">
+      <audits
+          name="validateOneOutgoingEdge"
+          description="A join node has one outgoing edge."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateJoinNode_validateOneOutgoingEdge"
+          message="A join node has one outgoing edge.">
+        <rule
+            body="self.outgoing->size() = 1"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//JoinNode"/>
+        </target>
+      </audits>
+      <audits
+          name="validateIncomingObjectFlow"
+          description="If a join node has an incoming object flow, it must have an outgoing object flow, otherwise, it must have an outgoing control flow."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateJoinNode_validateIncomingObjectFlow"
+          message="If a join node has an incoming object flow, it must have an outgoing object flow, otherwise, it must have an outgoing control flow.">
+        <rule
+            body="(self.incoming->select(e | e.oclIsKindOf(ObjectFlow))->notEmpty() implies&#xD;&#xA; self.outgoing->exists(e | e.oclIsKindOf(ObjectFlow))) and&#xD;&#xA;(self.incoming->select(e | e.oclIsKindOf(ObjectFlow))->isEmpty() implies&#xD;&#xA; self.outgoing->exists(e | e.oclIsKindOf(ControlFlow)))"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//JoinNode"/>
         </target>
       </audits>
     </childContainers>

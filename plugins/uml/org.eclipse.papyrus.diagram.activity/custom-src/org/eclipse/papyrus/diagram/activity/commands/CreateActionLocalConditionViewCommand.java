@@ -221,6 +221,4 @@ public class CreateActionLocalConditionViewCommand extends Command {
 		}
 	}
 
-
-
 }

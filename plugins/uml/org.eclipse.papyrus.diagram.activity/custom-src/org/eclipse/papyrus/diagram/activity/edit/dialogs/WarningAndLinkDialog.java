@@ -80,7 +80,6 @@ public class WarningAndLinkDialog extends MessageDialog {
 				okPressed();
 			}
 
-
 		});
 		return hyperLink;
 	}

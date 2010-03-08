@@ -26,6 +26,7 @@ import org.eclipse.papyrus.diagram.activity.helper.UMLValidationHelper;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.uml2.uml.ActivityEdge;
+import org.eclipse.uml2.uml.DecisionNode;
 import org.eclipse.uml2.uml.ObjectFlow;
 import org.eclipse.uml2.uml.ValuePin;
 
@@ -194,6 +195,48 @@ public class UMLValidationProvider {
 		public IStatus validate(IValidationContext ctx) {
 			ObjectFlow context = (ObjectFlow)ctx.getTarget();
 			return UMLValidationHelper.validateInputAndOutputParameter(context, ctx);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static class Adapter30 extends AbstractModelConstraint {
+
+		/**
+		 * @generated
+		 */
+		public IStatus validate(IValidationContext ctx) {
+			DecisionNode context = (DecisionNode)ctx.getTarget();
+			return UMLValidationHelper.validateIncomingObjectOneInputParameter(context, ctx);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static class Adapter31 extends AbstractModelConstraint {
+
+		/**
+		 * @generated
+		 */
+		public IStatus validate(IValidationContext ctx) {
+			DecisionNode context = (DecisionNode)ctx.getTarget();
+			return UMLValidationHelper.validateIncomingControlOneInputParameter(context, ctx);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static class Adapter32 extends AbstractModelConstraint {
+
+		/**
+		 * @generated
+		 */
+		public IStatus validate(IValidationContext ctx) {
+			DecisionNode context = (DecisionNode)ctx.getTarget();
+			return UMLValidationHelper.validateTwoInputParameters(context, ctx);
 		}
 	}
 

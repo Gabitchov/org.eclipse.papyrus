@@ -22,12 +22,16 @@ import org.eclipse.uml2.uml.CallBehaviorAction;
 import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.ControlFlow;
+import org.eclipse.uml2.uml.DecisionNode;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.FlowFinalNode;
+import org.eclipse.uml2.uml.ForkNode;
 import org.eclipse.uml2.uml.InitialNode;
 import org.eclipse.uml2.uml.InputPin;
 import org.eclipse.uml2.uml.InteractionConstraint;
 import org.eclipse.uml2.uml.IntervalConstraint;
+import org.eclipse.uml2.uml.JoinNode;
+import org.eclipse.uml2.uml.MergeNode;
 import org.eclipse.uml2.uml.ObjectFlow;
 import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.OutputPin;
@@ -367,9 +371,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_Activity_3028(Activity instance) {
+	public static void init_DecisionNode_3038(DecisionNode instance) {
 		try {
-			Object value_0 = name_Activity_3028(instance);
+			Object value_0 = name_DecisionNode_3038(instance);
 			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
@@ -379,9 +383,33 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_Activity_3029(Activity instance) {
+	public static void init_MergeNode_3039(MergeNode instance) {
 		try {
-			Object value_0 = name_Activity_3029(instance);
+			Object value_0 = name_MergeNode_3039(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static void init_ForkNode_3040(ForkNode instance) {
+		try {
+			Object value_0 = name_ForkNode_3040(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static void init_JoinNode_3041(JoinNode instance) {
+		try {
+			Object value_0 = name_JoinNode_3041(instance);
 			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
@@ -700,14 +728,28 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private static String name_Activity_3028(Activity self) {
+	private static String name_DecisionNode_3038(DecisionNode self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_Activity_3029(Activity self) {
+	private static String name_MergeNode_3039(MergeNode self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private static String name_ForkNode_3040(ForkNode self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private static String name_JoinNode_3041(JoinNode self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 

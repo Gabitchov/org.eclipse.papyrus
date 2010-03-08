@@ -56,6 +56,58 @@
             path="icons/full/obj16/FlowFinalNode.gif"
             bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
       </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Decision node"
+          description="Create a Decision node">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/DecisionNode.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/DecisionNode.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Merge node"
+          description="Create a Merge node">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/MergeNode.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/MergeNode.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Join node"
+          description="Create a Merge node">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/JoinNode.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/JoinNode.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Fork node"
+          description="Create a Fork node">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/ForkNode.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/full/obj16/ForkNode.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit/"/>
+      </tools>
     </tools>
     <tools
         xsi:type="gmftool:ToolGroup"

@@ -241,6 +241,46 @@
  	</entry>
 	<entry
        defineOnly="true"
+       description="Create a Decision node"
+       id="createDecisionnode4CreationTool"
+       kind="tool"
+       label="Decision node"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DecisionNode.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DecisionNode.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a Merge node"
+       id="createMergenode5CreationTool"
+       kind="tool"
+       label="Merge node"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/MergeNode.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/MergeNode.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a Merge node"
+       id="createJoinnode6CreationTool"
+       kind="tool"
+       label="Join node"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/JoinNode.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/JoinNode.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a Fork node"
+       id="createForknode7CreationTool"
+       kind="tool"
+       label="Fork node"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ForkNode.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ForkNode.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
        description="Create an Opaque Action node"
        id="createOpaqueAction1CreationTool"
        kind="tool"
@@ -470,6 +510,22 @@
     </predefinedEntry>
  	<predefinedEntry
           id="createFlowfinal3CreationTool"
+          path="/createObjects1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createDecisionnode4CreationTool"
+          path="/createObjects1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createMergenode5CreationTool"
+          path="/createObjects1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createJoinnode6CreationTool"
+          path="/createObjects1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createForknode7CreationTool"
           path="/createObjects1Group">
     </predefinedEntry>
 
@@ -747,6 +803,20 @@
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.MergeNodePreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.MergeNodePreferencePage"
+            name="MergeNode" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.DecisionNodePreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.DecisionNodePreferencePage"
+            name="DecisionNode" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
 			class="org.eclipse.papyrus.diagram.activity.preferences.ConstraintPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ConstraintPreferencePage"
             name="Constraint" />	
@@ -764,6 +834,13 @@
 			class="org.eclipse.papyrus.diagram.activity.preferences.ActivityPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.ActivityPreferencePage"
             name="Activity" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.ForkNodePreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.ForkNodePreferencePage"
+            name="ForkNode" />	
 	
 	
 			<?gmfgen generated="true"?>
@@ -799,6 +876,13 @@
 			class="org.eclipse.papyrus.diagram.activity.preferences.TimeConstraintPreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.TimeConstraintPreferencePage"
             name="TimeConstraint" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.JoinNodePreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.JoinNodePreferencePage"
+            name="JoinNode" />	
 	
 	
 			<?gmfgen generated="true"?>
@@ -844,8 +928,8 @@
       <viewProvider class="org.eclipse.papyrus.diagram.activity.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLActivityDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3030,3031,3032,3033,3011,3012,3028,3029"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4005,4006,4003,4004"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3030,3031,3032,3033,3011,3012,3038,3039,3040,3041"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4003,4004"/>
       </viewProvider>
    </extension>
 
@@ -857,13 +941,13 @@
             <method name="getType()" value="PapyrusUMLActivityDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3030,3031,3032,3033,3011,3012,3028,3029"/>
+            <method name="getType()" value="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3030,3031,3032,3033,3011,3012,3038,3039,3040,3041"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="4001,4002,4005,4006,4003,4004"/>
+            <method name="getType()" value="4001,4002,4003,4004"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5001,5002,5003,5011,5024,5012,5025,5009,5010,5004,5013,5026,5014,5027,5015,5016,5006,5017,5028,5018,5029,5019,5020,5021,5030,5022,5031,5023,5038,5039,5040,5041,5034,5035,5036,5037,5007,5008,5032,5033"/>
+            <method name="getType()" value="5001,5002,5003,5011,5024,5012,5025,5009,5010,5004,5013,5026,5014,5027,5015,5016,5006,5017,5028,5018,5029,5019,5020,5021,5030,5022,5031,5023,5038,5039,5040,5041,5034,5035,5036,5037,5007,5008,5043,5042"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value="7001,7002,7003,7004"/>
@@ -1241,22 +1325,44 @@
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.diagram.activity.Activity_3028"
-               name="%metatype.name.Activity_3028"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.activity.Activity_2001"/>
-            <param name="semanticHint" value="3028"/>
-         </specializationType>
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.activity.DecisionNode_3038"
+               name="%metatype.name.DecisionNode_3038"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="DecisionNode"
+               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.DecisionNodeEditHelper">
+            <param name="semanticHint" value="3038"/>
+         </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.diagram.activity.Activity_3029"
-               name="%metatype.name.Activity_3029"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.diagram.activity.Activity_2001"/>
-            <param name="semanticHint" value="3029"/>
-         </specializationType>
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.activity.MergeNode_3039"
+               name="%metatype.name.MergeNode_3039"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="MergeNode"
+               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.MergeNodeEditHelper">
+            <param name="semanticHint" value="3039"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.activity.ForkNode_3040"
+               name="%metatype.name.ForkNode_3040"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="ForkNode"
+               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.ForkNodeEditHelper">
+            <param name="semanticHint" value="3040"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.activity.JoinNode_3041"
+               name="%metatype.name.JoinNode_3041"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="JoinNode"
+               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.JoinNodeEditHelper">
+            <param name="semanticHint" value="3041"/>
+         </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
@@ -1274,24 +1380,6 @@
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
             <param name="semanticHint" value="4002"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.diagram.activity.ObjectFlowSelection_4005"
-               name="%metatype.name.ObjectFlowSelection_4005"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="4005"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.diagram.activity.ObjectFlowTransformation_4006"
-               name="%metatype.name.ObjectFlowTransformation_4006"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="4006"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
@@ -1362,12 +1450,12 @@
          <elementType ref="org.eclipse.papyrus.diagram.activity.IntervalConstraint_3033"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.Constraint_3011"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.Constraint_3012"/>
-         <elementType ref="org.eclipse.papyrus.diagram.activity.Activity_3028"/>
-         <elementType ref="org.eclipse.papyrus.diagram.activity.Activity_3029"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.DecisionNode_3038"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.MergeNode_3039"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.ForkNode_3040"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.JoinNode_3041"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ActionLocalPrecondition_4001"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ActionLocalPostcondition_4002"/>
-         <elementType ref="org.eclipse.papyrus.diagram.activity.ObjectFlowSelection_4005"/>
-         <elementType ref="org.eclipse.papyrus.diagram.activity.ObjectFlowTransformation_4006"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ObjectFlow_4003"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ControlFlow_4004"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
@@ -1614,6 +1702,18 @@
       </category>
       <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateControlFlow" mandatory="false" name="validateControlFlow">
          <![CDATA[Validate a control flow]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode" mandatory="false" name="validateDecisionNode">
+         <![CDATA[Validate a decision node]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateMergeNode" mandatory="false" name="validateMergeNode">
+         <![CDATA[Validate a merge node]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateForkNode" mandatory="false" name="validateForkNode">
+         <![CDATA[Validate a fork node]]>
+      </category>
+      <category id="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateJoinNode" mandatory="false" name="validateJoinNode">
+         <![CDATA[Validate a join node]]>
       </category>
       <constraintProvider cache="true">
          <package namespaceUri="http://www.eclipse.org/uml2/3.0.0/UML"/>
@@ -1916,6 +2016,181 @@ and (self.target.oclIsUndefined() or not self.target.oclIsKindOf(Action))]]>
             <target class="uml.ControlFlow"/>
          </constraint>
                   </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode">
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateIncomingOutgoingEdges"
+            lang="OCL"
+            name="validateIncomingOutgoingEdges"
+            mode="Batch"
+            severity="ERROR" statusCode="200">
+            <![CDATA[self.outgoing->size() > 0 and
+self.incoming->size() > 0 and
+self.incoming->size() <= 2]]>
+            <description><![CDATA[A decision node has one or two incoming edges and at least one outgoing edge.]]></description>
+            <message><![CDATA[A decision node has one or two incoming edges and at least one outgoing edge.]]></message>
+            <target class="uml.DecisionNode"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateEdges"
+            lang="OCL"
+            name="validateEdges"
+            mode="Batch"
+            severity="ERROR" statusCode="200">
+            <![CDATA[(self.incoming->reject(i | i = self.decisionInputFlow)->forAll(oclIsKindOf(ObjectFlow)) and
+ self.outgoing->forAll(oclIsKindOf(ObjectFlow)) ) or
+(self.incoming->reject(i | i = self.decisionInputFlow)->forAll(oclIsKindOf(ControlFlow)) and
+ self.outgoing->forAll(oclIsKindOf(ControlFlow)) )]]>
+            <description><![CDATA[The edges coming into and out of a decision node, other than the decision input flow (if any), must be either all object flows or all control flows.]]></description>
+            <message><![CDATA[Edges linking the decision node must have be of the same type (except decision input flow).]]></message>
+            <target class="uml.DecisionNode"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateDecisionInputFlowIncoming"
+            lang="OCL"
+            name="validateDecisionInputFlowIncoming"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            <![CDATA[(not self.decisionInputFlow.oclIsUndefined()) implies
+self.incoming->includes(self.decisionInputFlow)]]>
+            <description><![CDATA[The decisionInputFlow of a decision node must be an incoming edge of the decision node.]]></description>
+            <message><![CDATA[The decisionInputFlow of a decision node must be an incoming edge of the decision node.]]></message>
+            <target class="uml.DecisionNode"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateParameters"
+            lang="OCL"
+            name="validateParameters"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            <![CDATA[(not self.decisionInput.oclIsUndefined()) implies (
+self.decisionInput.ownedParameter->select(
+ direction = ParameterDirectionKind::out or
+ direction = ParameterDirectionKind::inout)->size() = 0
+and self.decisionInput.ownedParameter->select(
+ direction = ParameterDirectionKind::return)->size() = 1
+)]]>
+            <description><![CDATA[A decision input behavior has no output parameters, no in-out parameters and one return parameter.]]></description>
+            <message><![CDATA[A decision input behavior has no output parameters, no in-out parameters and one return parameter.]]></message>
+            <target class="uml.DecisionNode"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateZeroInputParameters"
+            lang="OCL"
+            name="validateZeroInputParameters"
+            mode="Batch"
+            severity="ERROR" statusCode="200">
+            <![CDATA[(not self.decisionInput.oclIsUndefined()) implies (
+  (self.decisionInputFlow.oclIsUndefined() and
+   self.incoming->select(i | i.oclIsKindOf(ControlFlow))->size() = 1
+  ) implies
+  self.decisionInput.ownedParameter->select(
+    direction = ParameterDirectionKind::_in)->size() = 0
+)]]>
+            <description><![CDATA[If the decision node has no decision input flow and an incoming control flow, then a decision input behavior has zero input parameters.]]></description>
+            <message><![CDATA[If the decision node has no decision input flow and an incoming control flow, then a decision input behavior has zero input parameters.]]></message>
+            <target class="uml.DecisionNode"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateIncomingObjectOneInputParameter"
+            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter30"
+            name="validateIncomingObjectOneInputParameter"
+            mode="Batch"
+            severity="ERROR" statusCode="200">
+            
+            <description><![CDATA[If the decision node has no decision input flow and an incoming object flow, then a decision input behavior has one input parameter whose type is the same as or a supertype of the type of object tokens offered on the incoming edge.]]></description>
+            <message><![CDATA[If the decision node has no decision input flow and an incoming object flow, then a decision input behavior has one input parameter whose type is the same as or a supertype of the type of object tokens offered on the incoming edge.]]></message>
+            <target class="uml.DecisionNode"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateIncomingControlOneInputParameter"
+            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter31"
+            name="validateIncomingControlOneInputParameter"
+            mode="Batch"
+            severity="ERROR" statusCode="200">
+            
+            <description><![CDATA[If the decision node has a decision input flow and an incoming control flow, then a decision input behavior has one input parameter whose type is the same as or a supertype of the type of object tokens offered on the decision input flow.]]></description>
+            <message><![CDATA[If the decision node has a decision input flow and an incoming control flow, then a decision input behavior has one input parameter whose type is the same as or a supertype of the type of object tokens offered on the decision input flow.]]></message>
+            <target class="uml.DecisionNode"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateTwoInputParameters"
+            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter32"
+            name="validateTwoInputParameters"
+            mode="Batch"
+            severity="ERROR" statusCode="200">
+            
+            <description><![CDATA[If the decision node has a decision input flow and an second incoming object flow, then a decision input behavior has two input parameters, the first of which has a type that is the same as or a supertype of the type of the type of object tokens offered on the nondecision input flow and the second of which has a type that is the same as or a supertype of the type of object tokens offered on the decision input flow.]]></description>
+            <message><![CDATA[If the decision node has a decision input flow and an incoming control flow, then a decision input behavior has one input parameter whose type is the same as or a supertype of the type of object tokens offered on the decision input flow.]]></message>
+            <target class="uml.DecisionNode"/>
+         </constraint>
+                  </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateMergeNode">
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateMergeNode_validateOneOutgoingEdge"
+            lang="OCL"
+            name="validateOneOutgoingEdge"
+            mode="Batch"
+            severity="ERROR" statusCode="200">
+            <![CDATA[self.outgoing->size() = 1]]>
+            <description><![CDATA[A merge node has one outgoing edge.]]></description>
+            <message><![CDATA[A merge node has one outgoing edge.]]></message>
+            <target class="uml.MergeNode"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateMergeNode_validateEdges"
+            lang="OCL"
+            name="validateEdges"
+            mode="Batch"
+            severity="ERROR" statusCode="200">
+            <![CDATA[(self.outgoing->exists(e | e.oclIsKindOf(ObjectFlow)) implies
+ self.incoming->forAll(e | e.oclIsKindOf(ObjectFlow))) and
+(self.outgoing->exists(e | e.oclIsKindOf(ControlFlow)) implies
+ self.incoming->forAll(e | e.oclIsKindOf(ControlFlow)))]]>
+            <description><![CDATA[The edges coming into and out of a merge node must be either all object flows or all control flows.]]></description>
+            <message><![CDATA[The edges coming into and out of a merge node must be either all object flows or all control flows.]]></message>
+            <target class="uml.MergeNode"/>
+         </constraint>
+                  </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateForkNode">
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateForkNode_validateOneIncomingEdge"
+            lang="OCL"
+            name="validateOneIncomingEdge"
+            mode="Batch"
+            severity="ERROR" statusCode="200">
+            <![CDATA[self.incoming->size() = 1]]>
+            <description><![CDATA[A fork node has one incoming edge.]]></description>
+            <message><![CDATA[A fork node has one incoming edge.]]></message>
+            <target class="uml.ForkNode"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateForkNode_validateEdges"
+            lang="OCL"
+            name="validateEdges"
+            mode="Batch"
+            severity="ERROR" statusCode="200">
+            <![CDATA[(self.incoming->exists(e | e.oclIsKindOf(ObjectFlow)) implies
+ self.outgoing->forAll(e | e.oclIsKindOf(ObjectFlow))) and
+(self.incoming->exists(e | e.oclIsKindOf(ControlFlow)) implies
+ self.outgoing->forAll(e | e.oclIsKindOf(ControlFlow)))]]>
+            <description><![CDATA[The edges coming into and out of a fork node must be either all object flows or all control flows.]]></description>
+            <message><![CDATA[The edges coming into and out of a fork node must be either all object flows or all control flows.]]></message>
+            <target class="uml.ForkNode"/>
+         </constraint>
+                  </constraints>
+         <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateJoinNode">
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateJoinNode_validateOneOutgoingEdge"
+            lang="OCL"
+            name="validateOneOutgoingEdge"
+            mode="Batch"
+            severity="ERROR" statusCode="200">
+            <![CDATA[self.outgoing->size() = 1]]>
+            <description><![CDATA[A join node has one outgoing edge.]]></description>
+            <message><![CDATA[A join node has one outgoing edge.]]></message>
+            <target class="uml.JoinNode"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateJoinNode_validateIncomingObjectFlow"
+            lang="OCL"
+            name="validateIncomingObjectFlow"
+            mode="Batch"
+            severity="ERROR" statusCode="200">
+            <![CDATA[(self.incoming->select(e | e.oclIsKindOf(ObjectFlow))->notEmpty() implies
+ self.outgoing->exists(e | e.oclIsKindOf(ObjectFlow))) and
+(self.incoming->select(e | e.oclIsKindOf(ObjectFlow))->isEmpty() implies
+ self.outgoing->exists(e | e.oclIsKindOf(ControlFlow)))]]>
+            <description><![CDATA[If a join node has an incoming object flow, it must have an outgoing object flow, otherwise, it must have an outgoing control flow.]]></description>
+            <message><![CDATA[If a join node has an incoming object flow, it must have an outgoing object flow, otherwise, it must have an outgoing control flow.]]></message>
+            <target class="uml.JoinNode"/>
+         </constraint>
+                  </constraints>
       </constraintProvider>
    </extension>
 
@@ -1949,6 +2224,20 @@ and (self.target.oclIsUndefined() or not self.target.oclIsKindOf(Action))]]>
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateInputAndOutputParameter"/>
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateIsMulticastOrIsMultireceive"/>
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateControlFlow_validateObjectNodes"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateIncomingOutgoingEdges"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateEdges"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateDecisionInputFlowIncoming"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateParameters"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateZeroInputParameters"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateIncomingObjectOneInputParameter"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateIncomingControlOneInputParameter"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateTwoInputParameters"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateMergeNode_validateOneOutgoingEdge"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateMergeNode_validateEdges"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateForkNode_validateOneIncomingEdge"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateForkNode_validateEdges"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateJoinNode_validateOneOutgoingEdge"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateJoinNode_validateIncomingObjectFlow"/>
                </binding>
 
    </extension>

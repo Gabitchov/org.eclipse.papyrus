@@ -21,10 +21,8 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.activity.edit.policies.CreateObjectFlowBehaviorEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ObjectFlowItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.figures.WrappedLabel;
 
@@ -53,7 +51,6 @@ implements ITreeBranchEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ObjectFlowItemSemanticEditPolicy());
-		installEditPolicy(RequestConstants.REQ_CREATE, new CreateObjectFlowBehaviorEditPolicy());
 	}
 
 	/**

@@ -33,8 +33,6 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallOpAct
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInOpaqueActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPostconditionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPreconditionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityAsSelectionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityAsTransformationEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityDiagramEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
@@ -45,9 +43,11 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondE
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.FlowFinalNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ForkNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActAsTargetEditPart;
@@ -57,9 +57,9 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLo
 import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.JoinNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.MergeNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowSelectionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowTransformationEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditPart;
@@ -244,12 +244,22 @@ public class UMLElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static final IElementType Activity_3028 = getElementType("org.eclipse.papyrus.diagram.activity.Activity_3028"); //$NON-NLS-1$
+	public static final IElementType DecisionNode_3038 = getElementType("org.eclipse.papyrus.diagram.activity.DecisionNode_3038"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType Activity_3029 = getElementType("org.eclipse.papyrus.diagram.activity.Activity_3029"); //$NON-NLS-1$
+	public static final IElementType MergeNode_3039 = getElementType("org.eclipse.papyrus.diagram.activity.MergeNode_3039"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ForkNode_3040 = getElementType("org.eclipse.papyrus.diagram.activity.ForkNode_3040"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType JoinNode_3041 = getElementType("org.eclipse.papyrus.diagram.activity.JoinNode_3041"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -300,16 +310,6 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IElementType ActionLocalPostcondition_4002 = getElementType("org.eclipse.papyrus.diagram.activity.ActionLocalPostcondition_4002"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType ObjectFlowSelection_4005 = getElementType("org.eclipse.papyrus.diagram.activity.ObjectFlowSelection_4005"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType ObjectFlowTransformation_4006 = getElementType("org.eclipse.papyrus.diagram.activity.ObjectFlowTransformation_4006"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -499,17 +499,17 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(Constraint_3012, UMLPackage.eINSTANCE.getConstraint());
 
-			elements.put(Activity_3028, UMLPackage.eINSTANCE.getActivity());
+			elements.put(DecisionNode_3038, UMLPackage.eINSTANCE.getDecisionNode());
 
-			elements.put(Activity_3029, UMLPackage.eINSTANCE.getActivity());
+			elements.put(MergeNode_3039, UMLPackage.eINSTANCE.getMergeNode());
+
+			elements.put(ForkNode_3040, UMLPackage.eINSTANCE.getForkNode());
+
+			elements.put(JoinNode_3041, UMLPackage.eINSTANCE.getJoinNode());
 
 			elements.put(ActionLocalPrecondition_4001, UMLPackage.eINSTANCE.getAction_LocalPrecondition());
 
 			elements.put(ActionLocalPostcondition_4002, UMLPackage.eINSTANCE.getAction_LocalPostcondition());
-
-			elements.put(ObjectFlowSelection_4005, UMLPackage.eINSTANCE.getObjectFlow_Selection());
-
-			elements.put(ObjectFlowTransformation_4006, UMLPackage.eINSTANCE.getObjectFlow_Transformation());
 
 			elements.put(ObjectFlow_4003, UMLPackage.eINSTANCE.getObjectFlow());
 
@@ -567,12 +567,12 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(IntervalConstraint_3033);
 			KNOWN_ELEMENT_TYPES.add(Constraint_3011);
 			KNOWN_ELEMENT_TYPES.add(Constraint_3012);
-			KNOWN_ELEMENT_TYPES.add(Activity_3028);
-			KNOWN_ELEMENT_TYPES.add(Activity_3029);
+			KNOWN_ELEMENT_TYPES.add(DecisionNode_3038);
+			KNOWN_ELEMENT_TYPES.add(MergeNode_3039);
+			KNOWN_ELEMENT_TYPES.add(ForkNode_3040);
+			KNOWN_ELEMENT_TYPES.add(JoinNode_3041);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPrecondition_4001);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPostcondition_4002);
-			KNOWN_ELEMENT_TYPES.add(ObjectFlowSelection_4005);
-			KNOWN_ELEMENT_TYPES.add(ObjectFlowTransformation_4006);
 			KNOWN_ELEMENT_TYPES.add(ObjectFlow_4003);
 			KNOWN_ELEMENT_TYPES.add(ControlFlow_4004);
 		}
@@ -656,18 +656,18 @@ public class UMLElementTypes extends ElementInitializers {
 			return Constraint_3011;
 		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
 			return Constraint_3012;
-		case ActivityAsSelectionEditPart.VISUAL_ID:
-			return Activity_3028;
-		case ActivityAsTransformationEditPart.VISUAL_ID:
-			return Activity_3029;
+		case DecisionNodeEditPart.VISUAL_ID:
+			return DecisionNode_3038;
+		case MergeNodeEditPart.VISUAL_ID:
+			return MergeNode_3039;
+		case ForkNodeEditPart.VISUAL_ID:
+			return ForkNode_3040;
+		case JoinNodeEditPart.VISUAL_ID:
+			return JoinNode_3041;
 		case ActionLocalPreconditionEditPart.VISUAL_ID:
 			return ActionLocalPrecondition_4001;
 		case ActionLocalPostconditionEditPart.VISUAL_ID:
 			return ActionLocalPostcondition_4002;
-		case ObjectFlowSelectionEditPart.VISUAL_ID:
-			return ObjectFlowSelection_4005;
-		case ObjectFlowTransformationEditPart.VISUAL_ID:
-			return ObjectFlowTransformation_4006;
 		case ObjectFlowEditPart.VISUAL_ID:
 			return ObjectFlow_4003;
 		case ControlFlowEditPart.VISUAL_ID:

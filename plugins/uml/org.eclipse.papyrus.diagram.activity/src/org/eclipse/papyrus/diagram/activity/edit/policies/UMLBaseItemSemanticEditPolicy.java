@@ -45,21 +45,28 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.helpers.UMLBaseEditHelper;
+import org.eclipse.papyrus.diagram.activity.expressions.UMLAbstractExpression;
+import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Action;
 import org.eclipse.uml2.uml.Activity;
+import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.ActivityNode;
-import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.DecisionNode;
 import org.eclipse.uml2.uml.FinalNode;
+import org.eclipse.uml2.uml.ForkNode;
 import org.eclipse.uml2.uml.InitialNode;
 import org.eclipse.uml2.uml.InputPin;
+import org.eclipse.uml2.uml.JoinNode;
+import org.eclipse.uml2.uml.MergeNode;
 import org.eclipse.uml2.uml.ObjectFlow;
 import org.eclipse.uml2.uml.ObjectNode;
 import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.OutputPin;
 import org.eclipse.uml2.uml.StructuredActivityNode;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -345,6 +352,26 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		private static UMLAbstractExpression ObjectFlow_4003_SourceExpression;
+
+		/**
+		 * @generated
+		 */
+		private static UMLAbstractExpression ObjectFlow_4003_TargetExpression;
+
+		/**
+		 * @generated
+		 */
+		private static UMLAbstractExpression ControlFlow_4004_SourceExpression;
+
+		/**
+		 * @generated
+		 */
+		private static UMLAbstractExpression ControlFlow_4004_TargetExpression;
+
+		/**
+		 * @generated
+		 */
 		public static boolean canCreateActionLocalPrecondition_4001(Action source, Constraint target) {
 			if(source != null) {
 				if(source.getLocalPreconditions().contains(target)) {
@@ -372,32 +399,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			}
 
 			return canExistActionLocalPostcondition_4002(source, target);
-		}
-
-		/**
-		 * @generated
-		 */
-		public static boolean canCreateObjectFlowSelection_4005(ObjectFlow source, Behavior target) {
-			if(source != null) {
-				if(source.getSelection() != null) {
-					return false;
-				}
-			}
-
-			return canExistObjectFlowSelection_4005(source, target);
-		}
-
-		/**
-		 * @generated
-		 */
-		public static boolean canCreateObjectFlowTransformation_4006(ObjectFlow source, Behavior target) {
-			if(source != null) {
-				if(source.getTransformation() != null) {
-					return false;
-				}
-			}
-
-			return canExistObjectFlowTransformation_4006(source, target);
 		}
 
 		/**
@@ -431,115 +432,297 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistObjectFlowSelection_4005(ObjectFlow source, Behavior target) {
-			return true;
+		public static boolean canExistObjectFlow_4003(Activity container, ActivityNode source, ActivityNode target) {
+			try {
+				if(source instanceof Action) {
+					// rule validateObjectFlow_validateNoActions
+					// rule workaround by addition of pins in case of Opaque Action
+					if(!(source instanceof OpaqueAction)) {
+						return false;
+					}
+				}
+				if(source instanceof InputPin) {
+					// rule validateInputPin_validateOutgoingEdgesStructuredOnly
+					if(source.getOwner() instanceof StructuredActivityNode) {
+						if(target != null && !source.getOwner().equals(target.getInStructuredNode())) {
+							return false;
+						}
+					} else {
+						return false;
+					}
+				}
+				if(source instanceof InitialNode) {
+					// rule validateInitialNode_validateControlEdges
+					return false;
+				}
+				if(source instanceof FinalNode) {
+					// rule validateFinalNode_validateNoOutgoingEdges
+					return false;
+				}
+				if(source instanceof JoinNode) {
+					// rule validateJoinNode_validateOneOutgoingEdge
+					if(!source.getOutgoings().isEmpty()) {
+						return false;
+					}
+					/*
+					 * rule validateJoinNode_validateIncomingObjectFlow :
+					 * We do not prevent creation of an outgoing ObjectFlow even if there is no incoming ObjectFlow.
+					 * We let the possibility that the user intends to add an incoming ObjectFlow later.
+					 */
+				}
+				if(source instanceof ForkNode) {
+					// rule validateForkNode_validateEdges on source Fork node
+					ActivityEdge outgoingControlFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());
+					ActivityEdge incomingControlFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());
+					if(outgoingControlFlow != null || incomingControlFlow != null) {
+						// there is a ControlFlow which means there must be no ObjectFlow
+						return false;
+					}
+				}
+				if(source instanceof MergeNode) {
+					//rule validateMergeNode_validateOneOutgoingEdge
+					if(!source.getOutgoings().isEmpty()) {
+						return false;
+					}
+					// rule validateMergeNode_validateEdges on source Merge node
+					ActivityEdge outgoingControlFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());
+					ActivityEdge incomingControlFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());
+					if(outgoingControlFlow != null || incomingControlFlow != null) {
+						// there is a ControlFlow which means there must be no ObjectFlow
+						return false;
+					}
+				}
+				if(source instanceof DecisionNode) {
+					// rule validateDecisionNode_validateEdges on source Decision node
+					ActivityEdge outgoingControlFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());
+					ActivityEdge incomingControlFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());
+					if(outgoingControlFlow != null || incomingControlFlow != null) {
+						// there is a ControlFlow which means there must be no ObjectFlow
+						return false;
+					}
+				}
+				if(target instanceof Action) {
+					// rule validateObjectFlow_validateNoActions
+					// rule workaround by addition of pins in case of Opaque Action
+					if(!(target instanceof OpaqueAction)) {
+						return false;
+					}
+				}
+				if(target instanceof OutputPin) {
+					// rule validateOutputPin_validateIncomingEdgesStructuredOnly
+					if(target.getOwner() instanceof StructuredActivityNode) {
+						if(source != null && !target.getOwner().equals(source.getInStructuredNode())) {
+							return false;
+						}
+					} else {
+						return false;
+					}
+				}
+				if(target instanceof InitialNode) {
+					// rule validateInitialNode_validateNoIncomingEdges
+					return false;
+				}
+				if(target instanceof JoinNode) {
+					// rule validateJoinNode_validateIncomingObjectFlow
+					ActivityEdge outgoingControlFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());
+					if(outgoingControlFlow != null) {
+						// the outgoing edge is a ControlFlow which means there must be no incoming ObjectFlow
+						return false;
+					}
+				}
+				if(target instanceof ForkNode) {
+					// rule validateForkNode_validateOneIncomingEdge
+					if(!target.getIncomings().isEmpty()) {
+						return false;
+					}
+					// rule validateForkNode_validateEdges on target Fork node
+					ActivityEdge outgoingControlFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());
+					ActivityEdge incomingControlFlow = target.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());
+					if(outgoingControlFlow != null || incomingControlFlow != null) {
+						// there is a ControlFlow which means there must be no ObjectFlow
+						return false;
+					}
+				}
+				if(target instanceof MergeNode) {
+					// rule validateMergeNode_validateEdges on target Merge node
+					ActivityEdge outgoingControlFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());
+					ActivityEdge incomingControlFlow = target.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());
+					if(outgoingControlFlow != null || incomingControlFlow != null) {
+						// there is a ControlFlow which means there must be no ObjectFlow
+						return false;
+					}
+				}
+				if(target instanceof DecisionNode) {
+					// rule validateDecisionNode_validateIncomingOutgoingEdges
+					if(target.getIncomings().size() >= 2) {
+						// no more than two incoming edges
+						return false;
+					}
+					// rule validateDecisionNode_validateEdges on target Decision node
+					ActivityEdge outgoingControlFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getControlFlow());
+					ActivityEdge incomingControlFlow = target.getIncoming(null, true, UMLPackage.eINSTANCE.getControlFlow());
+					if(outgoingControlFlow != null || incomingControlFlow != null) {
+						/*
+						 * There is a ControlFlow which means there must be no
+						 * ObjectFlow but the decision flow itself.
+						 * We let the user insert up to one ObjectFlow for being
+						 * able to select the decision flow among existing
+						 * input flows.
+						 */
+						if(target.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow()) != null) {
+							// there is already an object flow which is intended to become the decision flow
+							return false;
+						}
+					}
+				}
+				return true;
+			} catch (Exception e) {
+				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
+				return false;
+			}
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistObjectFlowTransformation_4006(ObjectFlow source, Behavior target) {
-			return true;
-		}
-
-		/**
-		 * @generated NOT add check at edge creation (for simple conditions)
-		 */
-		public static boolean canExistObjectFlow_4003(Activity container, ActivityNode source, ActivityNode target) {
-			if(source instanceof Action) {
-				// rule validateObjectFlow_validateNoActions
-				// rule workaround by addition of pins in case of Opaque Action
-				if(!(source instanceof OpaqueAction)) {
-					return false;
-				}
-			}
-			if(target instanceof Action) {
-				// rule validateObjectFlow_validateNoActions
-				// rule workaround by addition of pins in case of Opaque Action
-				if(!(target instanceof OpaqueAction)) {
-					return false;
-				}
-			}
-			if(source instanceof InputPin) {
-				// rule validateInputPin_validateOutgoingEdgesStructuredOnly
-				if(source.getOwner() instanceof StructuredActivityNode) {
-					if(target != null && !source.getOwner().equals(target.getInStructuredNode())) {
-						return false;
-					}
-				} else {
-					return false;
-				}
-			}
-			if(target instanceof OutputPin) {
-				// rule validateOutputPin_validateIncomingEdgesStructuredOnly
-				if(target.getOwner() instanceof StructuredActivityNode) {
-					if(source != null && !target.getOwner().equals(source.getInStructuredNode())) {
-						return false;
-					}
-				} else {
-					return false;
-				}
-			}
-			if(source instanceof InitialNode) {
-				// rule validateInitialNode_validateControlEdges
-				return false;
-			}
-			if(target instanceof InitialNode) {
-				// rule validateInitialNode_validateNoIncomingEdges
-				return false;
-			}
-			if(source instanceof FinalNode) {
-				// rule validateFinalNode_validateNoOutgoingEdges
-				return false;
-			}
-			return true;
-		}
-
-		/**
-		 * @generated NOT add check at edge creation (for simple conditions)
-		 */
 		public static boolean canExistControlFlow_4004(Activity container, ActivityNode source, ActivityNode target) {
-			if(source instanceof ObjectNode) {
-				if(!((ObjectNode)source).isControlType()) {
-					// rule validateControlFlow_validateObjectNodes
-					return false;
-				}
-			}
-			if(target instanceof ObjectNode) {
-				if(!((ObjectNode)target).isControlType()) {
-					// rule validateControlFlow_validateObjectNodes
-					return false;
-				}
-			}
-			if(source instanceof InputPin) {
-				// rule validateInputPin_validateOutgoingEdgesStructuredOnly
-				if(source.getOwner() instanceof StructuredActivityNode) {
-					if(target != null && !source.getOwner().equals(target.getInStructuredNode())) {
+			try {
+				if(source instanceof ObjectNode) {
+					if(!((ObjectNode)source).isControlType()) {
+						// rule validateControlFlow_validateObjectNodes
 						return false;
 					}
-				} else {
-					return false;
 				}
-			}
-			if(target instanceof OutputPin) {
-				// rule validateOutputPin_validateIncomingEdgesStructuredOnly
-				if(target.getOwner() instanceof StructuredActivityNode) {
-					if(source != null && !target.getOwner().equals(source.getInStructuredNode())) {
+				if(source instanceof InputPin) {
+					// rule validateInputPin_validateOutgoingEdgesStructuredOnly
+					if(source.getOwner() instanceof StructuredActivityNode) {
+						if(target != null && !source.getOwner().equals(target.getInStructuredNode())) {
+							return false;
+						}
+					} else {
 						return false;
 					}
-				} else {
+				}
+				if(source instanceof FinalNode) {
+					// rule validateFinalNode_validateNoOutgoingEdges
 					return false;
 				}
-			}
-			if(target instanceof InitialNode) {
-				// rule validateInitialNode_validateNoIncomingEdges
+				if(source instanceof JoinNode) {
+					// rule validateJoinNode_validateOneOutgoingEdge
+					if(!source.getOutgoings().isEmpty()) {
+						return false;
+					}
+					// rule validateJoinNode_validateIncomingObjectFlow
+					ActivityEdge incomingObjectFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());
+					if(incomingObjectFlow != null) {
+						// the outgoing edge must be an ObjectFlow
+						return false;
+					}
+				}
+				if(source instanceof ForkNode) {
+					// rule validateForkNode_validateEdges on source Fork node
+					ActivityEdge outgoingObjectFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());
+					ActivityEdge incomingObjectFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());
+					if(outgoingObjectFlow != null || incomingObjectFlow != null) {
+						// there is an ObjectFlow which means there must be no ControlFlow
+						return false;
+					}
+				}
+				if(source instanceof MergeNode) {
+					//rule validateMergeNode_validateOneOutgoingEdge
+					if(!source.getOutgoings().isEmpty()) {
+						return false;
+					}
+					// rule validateMergeNode_validateEdges on source Merge node
+					ActivityEdge outgoingObjectFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());
+					ActivityEdge incomingObjectFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());
+					if(outgoingObjectFlow != null || incomingObjectFlow != null) {
+						// there is an ObjectFlow which means there must be no ControlFlow
+						return false;
+					}
+				}
+				if(source instanceof DecisionNode) {
+					// rule validateDecisionNode_validateEdges on source Decision node
+					ActivityEdge outgoingObjectFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());
+					ActivityEdge incomingObjectFlow = null;
+					for(ActivityEdge incomingEdge : source.getIncomings()) {
+						// filter the decision flow
+						if(incomingEdge instanceof ObjectFlow && incomingEdge != ((DecisionNode)source).getDecisionInputFlow()) {
+							incomingObjectFlow = incomingEdge;
+						}
+					}
+					if(outgoingObjectFlow != null || incomingObjectFlow != null) {
+						// there is an ObjectFlow which means there must be no ControlFlow
+						return false;
+					}
+				}
+				if(target instanceof ObjectNode) {
+					if(!((ObjectNode)target).isControlType()) {
+						// rule validateControlFlow_validateObjectNodes
+						return false;
+					}
+				}
+				if(target instanceof OutputPin) {
+					// rule validateOutputPin_validateIncomingEdgesStructuredOnly
+					if(target.getOwner() instanceof StructuredActivityNode) {
+						if(source != null && !target.getOwner().equals(source.getInStructuredNode())) {
+							return false;
+						}
+					} else {
+						return false;
+					}
+				}
+				if(target instanceof InitialNode) {
+					// rule validateInitialNode_validateNoIncomingEdges
+					return false;
+				}
+				if(target instanceof ForkNode) {
+					// rule validateForkNode_validateOneIncomingEdge
+					if(!target.getIncomings().isEmpty()) {
+						return false;
+					}
+					// rule validateForkNode_validateEdges on target Fork node
+					ActivityEdge outgoingObjectFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());
+					ActivityEdge incomingObjectFlow = target.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());
+					if(outgoingObjectFlow != null || incomingObjectFlow != null) {
+						// there is an ObjectFlow which means there must be no ControlFlow
+						return false;
+					}
+				}
+				if(target instanceof MergeNode) {
+					// rule validateMergeNode_validateEdges on target Merge node
+					ActivityEdge outgoingObjectFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());
+					ActivityEdge incomingObjectFlow = target.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());
+					if(outgoingObjectFlow != null || incomingObjectFlow != null) {
+						// there is an ObjectFlow which means there must be no ControlFlow
+						return false;
+					}
+				}
+				if(target instanceof DecisionNode) {
+					// rule validateDecisionNode_validateIncomingOutgoingEdges
+					if(target.getIncomings().size() >= 2) {
+						// no more than two incoming edges
+						return false;
+					}
+					// rule validateDecisionNode_validateEdges on target Decision node
+					ActivityEdge outgoingObjectFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());
+					ActivityEdge incomingObjectFlow = null;
+					for(ActivityEdge incomingEdge : target.getIncomings()) {
+						// filter the decision flow
+						if(incomingEdge instanceof ObjectFlow && incomingEdge != ((DecisionNode)target).getDecisionInputFlow()) {
+							incomingObjectFlow = incomingEdge;
+						}
+					}
+					if(outgoingObjectFlow != null || incomingObjectFlow != null) {
+						// there is an ObjectFlow which means there must be no ControlFlow
+						return false;
+					}
+				}
+				return true;
+			} catch (Exception e) {
+				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
 				return false;
 			}
-			if(source instanceof FinalNode) {
-				// rule validateFinalNode_validateNoOutgoingEdges
-				return false;
-			}
-			return true;
 		}
 	}
 }

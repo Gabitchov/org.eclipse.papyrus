@@ -24,6 +24,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.commands.operations.IOperationApprover2;
+import org.eclipse.core.commands.operations.IOperationHistory;
+import org.eclipse.core.commands.operations.IUndoableOperation;
+import org.eclipse.core.commands.operations.OperationHistoryFactory;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
@@ -41,6 +46,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
+import org.eclipse.emf.validation.internal.service.ResourceStatus;
 import org.eclipse.gmf.runtime.common.core.util.Log;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
 import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIStatusCodes;
@@ -52,6 +58,7 @@ import org.eclipse.papyrus.diagram.activity.edit.dialogs.WarningAndLinkDialog;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.CallAction;
@@ -82,6 +89,22 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 
 	/** The constant to initialize target pin name */
 	private static final String TARGET_PIN_INITIALIZATION_NAME = "target";
+
+	/** This approver is used to disable any operation during opening of a popup to avoid side effects */
+	private static IOperationApprover2 operationDisapprover = new IOperationApprover2() {
+
+		public IStatus proceedUndoing(IUndoableOperation operation, IOperationHistory history, IAdaptable info) {
+			return ResourceStatus.CANCEL_STATUS;
+		}
+
+		public IStatus proceedRedoing(IUndoableOperation operation, IOperationHistory history, IAdaptable info) {
+			return ResourceStatus.CANCEL_STATUS;
+		}
+
+		public IStatus proceedExecuting(IUndoableOperation operation, IOperationHistory history, IAdaptable info) {
+			return ResourceStatus.CANCEL_STATUS;
+		}
+	};
 
 	/**
 	 * Validate modification and update associated elements if necessary
@@ -122,7 +145,6 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 					}
 				}
 			}
-
 			if(eObject instanceof ValueSpecification) {
 				// the value specification may be in an upperValue or lowerValue
 				// replace values with appropriate ones
@@ -225,11 +247,21 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 * @param element
 	 *        element to navigate to
 	 */
-	private void proposeNavigation(NamedElement element) {
-		String elementLabel = labelProvider.getText(element);
-		String message = NLS.bind(Messages.PinAndParameterSynchronizer_UnauthorizedModificationRedirection, elementLabel);
-		WarningAndLinkDialog dialog = new WarningAndLinkDialog(Display.getDefault().getActiveShell(), Messages.PinAndParameterSynchronizer_UnauthorizedModificationTitle, message, element, elementLabel);
+	private void proposeNavigation(final NamedElement element) {
+		final String elementLabel = labelProvider.getText(element);
+		final String message = NLS.bind(Messages.PinAndParameterSynchronizer_UnauthorizedModificationRedirection, elementLabel);
+		/*
+		 * We are currently validating an ongoing operation.
+		 * Opening a popup here may have side-effects such as re-launching the same operation.
+		 * (the editor has not been deactivated yet, and its loss of focus will open a new operation)
+		 * For this reason, we temporarily disable all operations on the history,
+		 * just enough time for opening the popup.
+		 */
+		IOperationHistory history = OperationHistoryFactory.getOperationHistory();
+		history.addOperationApprover(operationDisapprover);
+		WarningAndLinkDialog dialog = new WarningAndLinkDialog(new Shell(Display.getDefault()), Messages.PinAndParameterSynchronizer_UnauthorizedModificationTitle, message, element, elementLabel);
 		dialog.open();
+		history.removeOperationApprover(operationDisapprover);
 	}
 
 	/**
@@ -1312,6 +1344,17 @@ public class PinAndParameterSynchronizer extends AbstractModelConstraint {
 	 * @return whether the user validates the modifications
 	 */
 	protected boolean askForValidation(List<? extends NamedElement> listOfActions) {
-		return ConfirmPinAndParameterSyncDialog.openConfirmFromParameter(Display.getDefault().getActiveShell(), listOfActions, labelProvider);
+		/*
+		 * We are currently validating an ongoing operation.
+		 * Opening a popup here may have side-effects such as re-launching the same operation.
+		 * (the editor has not been deactivated yet, and its loss of focus will open a new operation)
+		 * For this reason, we temporarily disable all operations on the history,
+		 * just enough time for opening the popup.
+		 */
+		IOperationHistory history = OperationHistoryFactory.getOperationHistory();
+		history.addOperationApprover(operationDisapprover);
+		boolean result = ConfirmPinAndParameterSyncDialog.openConfirmFromParameter(Display.getDefault().getActiveShell(), listOfActions, labelProvider);
+		history.removeOperationApprover(operationDisapprover);
+		return result;
 	}
 }

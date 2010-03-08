@@ -33,8 +33,6 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCOActLabe
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCOActValueEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInOActLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInOActValueEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityAsSelectionNameEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityAsTransformationNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityIsSingleExecutionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionNameEditPart;
@@ -43,8 +41,11 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcond
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowGuardEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowWeightEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionInputEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionInputFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCBActLabelEditPart;
@@ -55,7 +56,11 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLo
 import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPrecondNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondNameEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.JoinSpecEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowGuardEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowNameEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowSelectionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowTransformationEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowWeightEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCBActLabelEditPart;
@@ -76,6 +81,12 @@ import org.eclipse.papyrus.diagram.activity.parser.custom.ActivityEdgeWeightPars
 import org.eclipse.papyrus.diagram.activity.parser.custom.ActivitySingleExecutionParser;
 import org.eclipse.papyrus.diagram.activity.parser.custom.CallBehaviorActionParser;
 import org.eclipse.papyrus.diagram.activity.parser.custom.CallOperationActionParser;
+import org.eclipse.papyrus.diagram.activity.parser.custom.DecisionInputFlowParser;
+import org.eclipse.papyrus.diagram.activity.parser.custom.EdgeGuardParser;
+import org.eclipse.papyrus.diagram.activity.parser.custom.InputDecisionParser;
+import org.eclipse.papyrus.diagram.activity.parser.custom.JoinSpecParser;
+import org.eclipse.papyrus.diagram.activity.parser.custom.ObjectFlowSelectionParser;
+import org.eclipse.papyrus.diagram.activity.parser.custom.ObjectFlowTransformationParser;
 import org.eclipse.papyrus.diagram.activity.parser.custom.ParameterParser;
 import org.eclipse.papyrus.diagram.activity.parser.custom.PinParser;
 import org.eclipse.papyrus.diagram.activity.parser.custom.PinValueParser;
@@ -610,41 +621,31 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser activityName_5032Parser;
+	private InputDecisionParser decisionNodeLabel_5043Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getActivityName_5032Parser() {
-		if(activityName_5032Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("<<selection>>\n{0}"); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			activityName_5032Parser = parser;
+	private IParser getDecisionNodeLabel_5043Parser() {
+		if(decisionNodeLabel_5043Parser == null) {
+			decisionNodeLabel_5043Parser = new InputDecisionParser();
 		}
-		return activityName_5032Parser;
+		return decisionNodeLabel_5043Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser activityName_5033Parser;
+	private JoinSpecParser joinNodeLabel_5042Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getActivityName_5033Parser() {
-		if(activityName_5033Parser == null) {
-			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("<<transformation>>\n{0}"); //$NON-NLS-1$
-			parser.setEditorPattern("{0}"); //$NON-NLS-1$
-			parser.setEditPattern("{0}"); //$NON-NLS-1$
-			activityName_5033Parser = parser;
+	private IParser getJoinNodeLabel_5042Parser() {
+		if(joinNodeLabel_5042Parser == null) {
+			joinNodeLabel_5042Parser = new JoinSpecParser();
 		}
-		return activityName_5033Parser;
+		return joinNodeLabel_5042Parser;
 	}
 
 	/**
@@ -842,6 +843,66 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private ObjectFlowSelectionParser objectFlowLabel_6005Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getObjectFlowLabel_6005Parser() {
+		if(objectFlowLabel_6005Parser == null) {
+			objectFlowLabel_6005Parser = new ObjectFlowSelectionParser();
+		}
+		return objectFlowLabel_6005Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ObjectFlowTransformationParser objectFlowLabel_6006Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getObjectFlowLabel_6006Parser() {
+		if(objectFlowLabel_6006Parser == null) {
+			objectFlowLabel_6006Parser = new ObjectFlowTransformationParser();
+		}
+		return objectFlowLabel_6006Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private DecisionInputFlowParser objectFlowLabel_6007Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getObjectFlowLabel_6007Parser() {
+		if(objectFlowLabel_6007Parser == null) {
+			objectFlowLabel_6007Parser = new DecisionInputFlowParser();
+		}
+		return objectFlowLabel_6007Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private EdgeGuardParser objectFlowLabel_6008Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getObjectFlowLabel_6008Parser() {
+		if(objectFlowLabel_6008Parser == null) {
+			objectFlowLabel_6008Parser = new EdgeGuardParser();
+		}
+		return objectFlowLabel_6008Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser controlFlowName_6003Parser;
 
 	/**
@@ -869,6 +930,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			controlFlowLabel_6004Parser = new ActivityEdgeWeightParser();
 		}
 		return controlFlowLabel_6004Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private EdgeGuardParser controlFlowLabel_6009Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getControlFlowLabel_6009Parser() {
+		if(controlFlowLabel_6009Parser == null) {
+			controlFlowLabel_6009Parser = new EdgeGuardParser();
+		}
+		return controlFlowLabel_6009Parser;
 	}
 
 	/**
@@ -958,18 +1034,28 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getConstraintName_5007Parser();
 		case ConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
 			return getConstraintName_5008Parser();
-		case ActivityAsSelectionNameEditPart.VISUAL_ID:
-			return getActivityName_5032Parser();
-		case ActivityAsTransformationNameEditPart.VISUAL_ID:
-			return getActivityName_5033Parser();
+		case DecisionInputEditPart.VISUAL_ID:
+			return getDecisionNodeLabel_5043Parser();
+		case JoinSpecEditPart.VISUAL_ID:
+			return getJoinNodeLabel_5042Parser();
 		case ObjectFlowNameEditPart.VISUAL_ID:
 			return getObjectFlowName_6001Parser();
 		case ObjectFlowWeightEditPart.VISUAL_ID:
 			return getObjectFlowLabel_6002Parser();
+		case ObjectFlowSelectionEditPart.VISUAL_ID:
+			return getObjectFlowLabel_6005Parser();
+		case ObjectFlowTransformationEditPart.VISUAL_ID:
+			return getObjectFlowLabel_6006Parser();
+		case DecisionInputFlowEditPart.VISUAL_ID:
+			return getObjectFlowLabel_6007Parser();
+		case ObjectFlowGuardEditPart.VISUAL_ID:
+			return getObjectFlowLabel_6008Parser();
 		case ControlFlowNameEditPart.VISUAL_ID:
 			return getControlFlowName_6003Parser();
 		case ControlFlowWeightEditPart.VISUAL_ID:
 			return getControlFlowLabel_6004Parser();
+		case ControlFlowGuardEditPart.VISUAL_ID:
+			return getControlFlowLabel_6009Parser();
 		}
 		return null;
 	}

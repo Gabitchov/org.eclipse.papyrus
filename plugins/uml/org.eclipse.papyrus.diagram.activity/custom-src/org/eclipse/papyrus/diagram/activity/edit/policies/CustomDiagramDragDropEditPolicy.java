@@ -45,8 +45,6 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPostconditionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPreconditionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityAsSelectionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityAsTransformationEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
@@ -59,8 +57,6 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLo
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowSelectionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowTransformationEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
@@ -73,7 +69,6 @@ import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEdit
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.uml2.uml.Action;
 import org.eclipse.uml2.uml.Activity;
-import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Constraint;
@@ -94,7 +89,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	private static final Point LOCAL_CONDITIONS_TRANSLATION_POINT = new Point(160, 0);
 
 	/** The specific drop node. */
-	public int[] secificDropNode = { OpaqueActionEditPart.VISUAL_ID, CallBehaviorActionEditPart.VISUAL_ID, CallOperationActionEditPart.VISUAL_ID, TimeConstraintAsLocalPrecondEditPart.VISUAL_ID, TimeConstraintAsLocalPostcondEditPart.VISUAL_ID, DurationConstraintAsLocalPrecondEditPart.VISUAL_ID, DurationConstraintAsLocalPostcondEditPart.VISUAL_ID, IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID, IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID, InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID, InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID, ConstraintAsLocalPrecondEditPart.VISUAL_ID, ConstraintAsLocalPostcondEditPart.VISUAL_ID, ActivityAsSelectionEditPart.VISUAL_ID, ActivityAsTransformationEditPart.VISUAL_ID, ObjectFlowEditPart.VISUAL_ID, ControlFlowEditPart.VISUAL_ID };
+	public int[] secificDropNode = { OpaqueActionEditPart.VISUAL_ID, CallBehaviorActionEditPart.VISUAL_ID, CallOperationActionEditPart.VISUAL_ID, TimeConstraintAsLocalPrecondEditPart.VISUAL_ID, TimeConstraintAsLocalPostcondEditPart.VISUAL_ID, DurationConstraintAsLocalPrecondEditPart.VISUAL_ID, DurationConstraintAsLocalPostcondEditPart.VISUAL_ID, IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID, IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID, InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID, InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID, ConstraintAsLocalPrecondEditPart.VISUAL_ID, ConstraintAsLocalPostcondEditPart.VISUAL_ID, ObjectFlowEditPart.VISUAL_ID, ControlFlowEditPart.VISUAL_ID };
 
 	/**
 	 * Instantiates a new custom diagram drag drop edit policy with the right link mapping helper
@@ -149,9 +144,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
 		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
 			return dropActionLocalCondition(dropRequest, semanticElement, nodeVISUALID);
-		case ActivityAsSelectionEditPart.VISUAL_ID:
-		case ActivityAsTransformationEditPart.VISUAL_ID:
-			return dropObjectFlowBehavior(dropRequest, semanticElement, nodeVISUALID);
 		}
 		switch(linkVISUALID) {
 		case ObjectFlowEditPart.VISUAL_ID:
@@ -228,63 +220,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 				} else if(TimeConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVISUALID || DurationConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVISUALID || IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVISUALID || InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVISUALID || ConstraintAsLocalPostcondEditPart.VISUAL_ID == nodeVISUALID) {
 					return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Local Postcondition link"), linkSource, linkTarget, ActionLocalPostconditionEditPart.VISUAL_ID, location, semanticElement));
 				}
-			}
-		}
-		return UnexecutableCommand.INSTANCE;
-	}
-
-	/**
-	 * Specific drop action for an object flow's transformation or selection behavior
-	 * 
-	 * @param dropRequest
-	 *        the drop request
-	 * @param semanticElement
-	 *        the semantic link
-	 * @param nodeVISUALID
-	 *        the node visual id
-	 * 
-	 * @return the command for behavior
-	 */
-	protected Command dropObjectFlowBehavior(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID) {
-		if(getHost() instanceof GraphicalEditPart) {
-			// Adapt the location
-			Point location = dropRequest.getLocation().getCopy();
-			((GraphicalEditPart)getHost()).getContentPane().translateToRelative(location);
-			((GraphicalEditPart)getHost()).getContentPane().translateFromParent(location);
-			location.translate(((GraphicalEditPart)getHost()).getContentPane().getClientArea().getLocation().getNegated());
-			location.y += 100;
-			// Retrieve expected graphical parent
-			EObject graphicalParent = ((GraphicalEditPart)getHost()).resolveSemanticElement();
-			// verification of container differs from usually, condition is graphically contained by the activity
-			if(graphicalParent instanceof Activity) {
-				CompoundCommand globalCmd = new CompoundCommand();
-				// inspect the activity for Object Flows specified by the semanticLink behavior
-				for(ActivityEdge edge : ((Activity)graphicalParent).getEdges()) {
-					if(edge instanceof ObjectFlow) {
-						ObjectFlow objectFlow = (ObjectFlow)edge;
-						if(semanticElement.equals(objectFlow.getSelection())) {
-							// drop the selection behavior and its link to the object flow
-							ObjectFlow linkSource = objectFlow;
-							Behavior linkTarget = (Behavior)semanticElement;
-							// there is no way to distinguish VISUAL_ID of a selection from a transformation, since the element can be both at the same time
-							if(ActivityAsSelectionEditPart.VISUAL_ID == nodeVISUALID || ActivityAsTransformationEditPart.VISUAL_ID == nodeVISUALID) {
-								ICommandProxy localCmd = new ICommandProxy(dropObjectFlowSpecification(new CompositeCommand("drop Selection link"), linkSource, linkTarget, ObjectFlowSelectionEditPart.VISUAL_ID, ActivityAsSelectionEditPart.VISUAL_ID, location, semanticElement));
-								globalCmd.add(localCmd);
-							}
-						}
-						if(semanticElement.equals(objectFlow.getTransformation())) {
-							// drop the transformation behavior and its link to the object flow
-							ObjectFlow linkSource = objectFlow;
-							Behavior linkTarget = (Behavior)semanticElement;
-							// there is no way to distinguish VISUAL_ID of a selection from a transformation, since the element can be both at the same time
-							if(ActivityAsSelectionEditPart.VISUAL_ID == nodeVISUALID || ActivityAsTransformationEditPart.VISUAL_ID == nodeVISUALID) {
-								ICommandProxy localCmd = new ICommandProxy(dropObjectFlowSpecification(new CompositeCommand("drop Transformation link"), linkSource, linkTarget, ObjectFlowTransformationEditPart.VISUAL_ID, ActivityAsTransformationEditPart.VISUAL_ID, location, semanticElement));
-								globalCmd.add(localCmd);
-							}
-						}
-					}
-				}
-				return globalCmd;
 			}
 		}
 		return UnexecutableCommand.INSTANCE;

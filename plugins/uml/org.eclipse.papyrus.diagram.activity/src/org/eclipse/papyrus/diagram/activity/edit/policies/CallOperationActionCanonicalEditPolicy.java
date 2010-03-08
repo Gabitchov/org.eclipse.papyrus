@@ -32,6 +32,7 @@ import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.gmf.runtime.common.core.util.StringStatics;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.Ratio;
@@ -48,7 +49,13 @@ import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.activity.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.ActionInputPin;
+import org.eclipse.uml2.uml.CallOperationAction;
+import org.eclipse.uml2.uml.InputPin;
+import org.eclipse.uml2.uml.OutputPin;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.ValuePin;
 
 /**
  * @generated
@@ -152,6 +159,39 @@ public class CallOperationActionCanonicalEditPolicy extends CanonicalEditPolicy 
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getCallOperationAction_Target());
 		}
 		return myFeaturesToSynchronize;
+	}
+
+	/**
+	 * Return the appropriate factory hint for the children pins.
+	 * 
+	 * @see #getFactoryHint(IAdaptable, String)
+	 * @param elementAdapter
+	 *        adapter that adapts to {@link EObject}.
+	 * @return factory hint.
+	 * @generated NOT
+	 */
+	protected String getFactoryHint(IAdaptable elementAdapter) {
+		InputPin targetPin = ((CallOperationAction)getSemanticHost()).getTarget();
+		Object element = elementAdapter.getAdapter(EObject.class);
+		if(element instanceof ValuePin) {
+			if(element.equals(targetPin)) {
+				return ((IHintedType)UMLElementTypes.ValuePin_3025).getSemanticHint();
+			}
+			return ((IHintedType)UMLElementTypes.ValuePin_3022).getSemanticHint();
+		} else if(element instanceof ActionInputPin) {
+			if(element.equals(targetPin)) {
+				return ((IHintedType)UMLElementTypes.ActionInputPin_3026).getSemanticHint();
+			}
+			return ((IHintedType)UMLElementTypes.ActionInputPin_3021).getSemanticHint();
+		} else if(element instanceof InputPin) {
+			if(element.equals(targetPin)) {
+				return ((IHintedType)UMLElementTypes.InputPin_3027).getSemanticHint();
+			}
+			return ((IHintedType)UMLElementTypes.InputPin_3023).getSemanticHint();
+		} else if(element instanceof OutputPin) {
+			return ((IHintedType)UMLElementTypes.OutputPin_3024).getSemanticHint();
+		}
+		return null;
 	}
 
 }

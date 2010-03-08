@@ -416,6 +416,46 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String Decisionnode4CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Decisionnode4CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Mergenode5CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Mergenode5CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Joinnode6CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Joinnode6CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Forknode7CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Forknode7CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String OpaqueAction1CreationTool_title;
 
 	/**
@@ -632,11 +672,6 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_Package_1000_links;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Activity_2001_incominglinks;
 
 	/**
 	 * @generated
@@ -871,12 +906,42 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Activity_3028_incominglinks;
+	public static String NavigatorGroupName_DecisionNode_3038_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Activity_3029_incominglinks;
+	public static String NavigatorGroupName_DecisionNode_3038_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_MergeNode_3039_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_MergeNode_3039_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ForkNode_3040_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ForkNode_3040_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_JoinNode_3041_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_JoinNode_3041_outgoinglinks;
 
 	/**
 	 * @generated
@@ -937,16 +1002,6 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_ActionLocalPostcondition_4002_source;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ObjectFlowSelection_4005_target;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_ObjectFlowTransformation_4006_target;
 
 	/**
 	 * @generated

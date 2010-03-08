@@ -34,8 +34,6 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityActivityContentCo
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityActivityParametersCompartmentEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityActivityPostConditionsCompartmentEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityActivityPreConditionsCompartmentEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityAsSelectionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityAsTransformationEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityDiagramEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
@@ -46,9 +44,11 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondE
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.FlowFinalNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ForkNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActAsTargetEditPart;
@@ -58,9 +58,9 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLo
 import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.JoinNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.MergeNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowSelectionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowTransformationEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditPart;
@@ -78,17 +78,20 @@ import org.eclipse.uml2.uml.ActionInputPin;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityFinalNode;
 import org.eclipse.uml2.uml.ActivityNode;
-import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.CallBehaviorAction;
 import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.ControlFlow;
+import org.eclipse.uml2.uml.DecisionNode;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.FlowFinalNode;
+import org.eclipse.uml2.uml.ForkNode;
 import org.eclipse.uml2.uml.InitialNode;
 import org.eclipse.uml2.uml.InputPin;
 import org.eclipse.uml2.uml.InteractionConstraint;
 import org.eclipse.uml2.uml.IntervalConstraint;
+import org.eclipse.uml2.uml.JoinNode;
+import org.eclipse.uml2.uml.MergeNode;
 import org.eclipse.uml2.uml.ObjectFlow;
 import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.OutputPin;
@@ -323,7 +326,7 @@ public class UMLDiagramUpdater {
 	}
 
 	/**
-	 * @generated NOT (add children actions' local conditions and object flows' specification)
+	 * @generated NOT (update at each gmf change) add children actions' local conditions
 	 */
 	public static List getActivityActivityContentCompartment_7004SemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
@@ -340,10 +343,6 @@ public class UMLDiagramUpdater {
 			//add children actions' local conditions
 			if(childElement instanceof Action) {
 				result.addAll(getActionLocalConditionsDescriptors((Action)childElement, view));
-			}
-			//add children objectflows' specification
-			if(childElement instanceof ObjectFlow) {
-				result.addAll(getObjectFlowSpecificationDescriptors((ObjectFlow)childElement, view));
 			}
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if(visualID == InitialNodeEditPart.VISUAL_ID) {
@@ -370,44 +369,21 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-		}
-		return result;
-	}
-
-	/**
-	 * Get the node descriptors corresponding to transformation and selection of an Object Flow.
-	 * These nodes are children of ActivityContentCompartment_7004.
-	 * 
-	 * @param objectFlowElement
-	 *        the object flow being specified
-	 * @param parentView
-	 *        the parent activity content compartment view
-	 * @return the list of semantic children (node descriptors)
-	 * @generated NOT
-	 */
-	private static List<UMLNodeDescriptor> getObjectFlowSpecificationDescriptors(ObjectFlow objectFlowElement, View parentView) {
-		/*
-		 * Called above by customized code (instead of generated code with errors) :
-		 * //add children actions' local conditions
-		 * if(childElement instanceof Action) {
-		 * result.addAll(getActionLocalConditionsDescriptors((Action)childElement, view));
-		 * }
-		 */
-		List<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		Behavior childElement = objectFlowElement.getSelection();
-		if(childElement != null) {
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(parentView, childElement);
-			// there is no way to distinguish VISUAL_ID of a selection from a transformation, since the element can be both at the same time
-			if(ActivityAsSelectionEditPart.VISUAL_ID == visualID || ActivityAsTransformationEditPart.VISUAL_ID == visualID) {
-				result.add(new UMLNodeDescriptor(childElement, ActivityAsSelectionEditPart.VISUAL_ID));
+			if(visualID == DecisionNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
 			}
-		}
-		childElement = objectFlowElement.getTransformation();
-		if(childElement != null) {
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(parentView, childElement);
-			// there is no way to distinguish VISUAL_ID of a selection from a transformation, since the element can be both at the same time
-			if(ActivityAsSelectionEditPart.VISUAL_ID == visualID || ActivityAsTransformationEditPart.VISUAL_ID == visualID) {
-				result.add(new UMLNodeDescriptor(childElement, ActivityAsTransformationEditPart.VISUAL_ID));
+			if(visualID == MergeNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ForkNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == JoinNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
 			}
 		}
 		return result;
@@ -579,10 +555,14 @@ public class UMLDiagramUpdater {
 			return getConstraint_3011ContainedLinks(view);
 		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
 			return getConstraint_3012ContainedLinks(view);
-		case ActivityAsSelectionEditPart.VISUAL_ID:
-			return getActivity_3028ContainedLinks(view);
-		case ActivityAsTransformationEditPart.VISUAL_ID:
-			return getActivity_3029ContainedLinks(view);
+		case DecisionNodeEditPart.VISUAL_ID:
+			return getDecisionNode_3038ContainedLinks(view);
+		case MergeNodeEditPart.VISUAL_ID:
+			return getMergeNode_3039ContainedLinks(view);
+		case ForkNodeEditPart.VISUAL_ID:
+			return getForkNode_3040ContainedLinks(view);
+		case JoinNodeEditPart.VISUAL_ID:
+			return getJoinNode_3041ContainedLinks(view);
 		case ObjectFlowEditPart.VISUAL_ID:
 			return getObjectFlow_4003ContainedLinks(view);
 		case ControlFlowEditPart.VISUAL_ID:
@@ -666,10 +646,14 @@ public class UMLDiagramUpdater {
 			return getConstraint_3011IncomingLinks(view);
 		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
 			return getConstraint_3012IncomingLinks(view);
-		case ActivityAsSelectionEditPart.VISUAL_ID:
-			return getActivity_3028IncomingLinks(view);
-		case ActivityAsTransformationEditPart.VISUAL_ID:
-			return getActivity_3029IncomingLinks(view);
+		case DecisionNodeEditPart.VISUAL_ID:
+			return getDecisionNode_3038IncomingLinks(view);
+		case MergeNodeEditPart.VISUAL_ID:
+			return getMergeNode_3039IncomingLinks(view);
+		case ForkNodeEditPart.VISUAL_ID:
+			return getForkNode_3040IncomingLinks(view);
+		case JoinNodeEditPart.VISUAL_ID:
+			return getJoinNode_3041IncomingLinks(view);
 		case ObjectFlowEditPart.VISUAL_ID:
 			return getObjectFlow_4003IncomingLinks(view);
 		case ControlFlowEditPart.VISUAL_ID:
@@ -753,10 +737,14 @@ public class UMLDiagramUpdater {
 			return getConstraint_3011OutgoingLinks(view);
 		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
 			return getConstraint_3012OutgoingLinks(view);
-		case ActivityAsSelectionEditPart.VISUAL_ID:
-			return getActivity_3028OutgoingLinks(view);
-		case ActivityAsTransformationEditPart.VISUAL_ID:
-			return getActivity_3029OutgoingLinks(view);
+		case DecisionNodeEditPart.VISUAL_ID:
+			return getDecisionNode_3038OutgoingLinks(view);
+		case MergeNodeEditPart.VISUAL_ID:
+			return getMergeNode_3039OutgoingLinks(view);
+		case ForkNodeEditPart.VISUAL_ID:
+			return getForkNode_3040OutgoingLinks(view);
+		case JoinNodeEditPart.VISUAL_ID:
+			return getJoinNode_3041OutgoingLinks(view);
 		case ObjectFlowEditPart.VISUAL_ID:
 			return getObjectFlow_4003OutgoingLinks(view);
 		case ControlFlowEditPart.VISUAL_ID:
@@ -980,23 +968,29 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getActivity_3028ContainedLinks(View view) {
-		Activity modelElement = (Activity)view.getElement();
-		List result = new LinkedList();
-		result.addAll(getContainedTypeModelFacetLinks_ObjectFlow_4003(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_ControlFlow_4004(modelElement));
-		return result;
+	public static List getDecisionNode_3038ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getActivity_3029ContainedLinks(View view) {
-		Activity modelElement = (Activity)view.getElement();
-		List result = new LinkedList();
-		result.addAll(getContainedTypeModelFacetLinks_ObjectFlow_4003(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_ControlFlow_4004(modelElement));
-		return result;
+	public static List getMergeNode_3039ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getForkNode_3040ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getJoinNode_3041ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
 	}
 
 	/**
@@ -1059,11 +1053,7 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List getObjectFlow_4003ContainedLinks(View view) {
-		ObjectFlow modelElement = (ObjectFlow)view.getElement();
-		List result = new LinkedList();
-		result.addAll(getOutgoingFeatureModelFacetLinks_ObjectFlow_Selection_4005(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_ObjectFlow_Transformation_4006(modelElement));
-		return result;
+		return Collections.EMPTY_LIST;
 	}
 
 	/**
@@ -1077,12 +1067,7 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List getActivity_2001IncomingLinks(View view) {
-		Activity modelElement = (Activity)view.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		List result = new LinkedList();
-		result.addAll(getIncomingFeatureModelFacetLinks_ObjectFlow_Selection_4005(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_ObjectFlow_Transformation_4006(modelElement, crossReferences));
-		return result;
+		return Collections.EMPTY_LIST;
 	}
 
 	/**
@@ -1385,24 +1370,48 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getActivity_3028IncomingLinks(View view) {
-		Activity modelElement = (Activity)view.getElement();
+	public static List getDecisionNode_3038IncomingLinks(View view) {
+		DecisionNode modelElement = (DecisionNode)view.getElement();
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		List result = new LinkedList();
-		result.addAll(getIncomingFeatureModelFacetLinks_ObjectFlow_Selection_4005(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_ObjectFlow_Transformation_4006(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getActivity_3029IncomingLinks(View view) {
-		Activity modelElement = (Activity)view.getElement();
+	public static List getMergeNode_3039IncomingLinks(View view) {
+		MergeNode modelElement = (MergeNode)view.getElement();
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		List result = new LinkedList();
-		result.addAll(getIncomingFeatureModelFacetLinks_ObjectFlow_Selection_4005(modelElement, crossReferences));
-		result.addAll(getIncomingFeatureModelFacetLinks_ObjectFlow_Transformation_4006(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getForkNode_3040IncomingLinks(View view) {
+		ForkNode modelElement = (ForkNode)view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getJoinNode_3041IncomingLinks(View view) {
+		JoinNode modelElement = (JoinNode)view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1798,15 +1807,45 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getActivity_3028OutgoingLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List getDecisionNode_3038OutgoingLinks(View view) {
+		DecisionNode modelElement = (DecisionNode)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getActivity_3029OutgoingLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List getMergeNode_3039OutgoingLinks(View view) {
+		MergeNode modelElement = (MergeNode)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getForkNode_3040OutgoingLinks(View view) {
+		ForkNode modelElement = (ForkNode)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getJoinNode_3041OutgoingLinks(View view) {
+		JoinNode modelElement = (JoinNode)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
+		return result;
 	}
 
 	/**
@@ -1869,11 +1908,7 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List getObjectFlow_4003OutgoingLinks(View view) {
-		ObjectFlow modelElement = (ObjectFlow)view.getElement();
-		List result = new LinkedList();
-		result.addAll(getOutgoingFeatureModelFacetLinks_ObjectFlow_Selection_4005(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_ObjectFlow_Transformation_4006(modelElement));
-		return result;
+		return Collections.EMPTY_LIST;
 	}
 
 	/**
@@ -1962,36 +1997,6 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_ObjectFlow_Selection_4005(Behavior target, Map crossReferences) {
-		Collection result = new LinkedList();
-		Collection settings = (Collection)crossReferences.get(target);
-		for(Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting)it.next();
-			if(setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getObjectFlow_Selection()) {
-				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.ObjectFlowSelection_4005, ObjectFlowSelectionEditPart.VISUAL_ID));
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	private static Collection getIncomingFeatureModelFacetLinks_ObjectFlow_Transformation_4006(Behavior target, Map crossReferences) {
-		Collection result = new LinkedList();
-		Collection settings = (Collection)crossReferences.get(target);
-		for(Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting)it.next();
-			if(setting.getEStructuralFeature() == UMLPackage.eINSTANCE.getObjectFlow_Transformation()) {
-				result.add(new UMLLinkDescriptor(setting.getEObject(), target, UMLElementTypes.ObjectFlowTransformation_4006, ObjectFlowTransformationEditPart.VISUAL_ID));
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
 	private static Collection getIncomingTypeModelFacetLinks_ObjectFlow_4003(ActivityNode target, Map crossReferences) {
 		Collection result = new LinkedList();
 		Collection settings = (Collection)crossReferences.get(target);
@@ -2052,32 +2057,6 @@ public class UMLDiagramUpdater {
 			Constraint destination = (Constraint)destinations.next();
 			result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.ActionLocalPostcondition_4002, ActionLocalPostconditionEditPart.VISUAL_ID));
 		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_ObjectFlow_Selection_4005(ObjectFlow source) {
-		Collection result = new LinkedList();
-		Behavior destination = source.getSelection();
-		if(destination == null) {
-			return result;
-		}
-		result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.ObjectFlowSelection_4005, ObjectFlowSelectionEditPart.VISUAL_ID));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_ObjectFlow_Transformation_4006(ObjectFlow source) {
-		Collection result = new LinkedList();
-		Behavior destination = source.getTransformation();
-		if(destination == null) {
-			return result;
-		}
-		result.add(new UMLLinkDescriptor(source, destination, UMLElementTypes.ObjectFlowTransformation_4006, ObjectFlowTransformationEditPart.VISUAL_ID));
 		return result;
 	}
 

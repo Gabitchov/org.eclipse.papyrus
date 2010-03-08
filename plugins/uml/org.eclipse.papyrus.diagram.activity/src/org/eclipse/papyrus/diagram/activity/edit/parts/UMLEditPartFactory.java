@@ -264,17 +264,23 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ConstraintAsLocalPostcondNameEditPart.VISUAL_ID:
 				return new ConstraintAsLocalPostcondNameEditPart(view);
 
-			case ActivityAsSelectionEditPart.VISUAL_ID:
-				return new ActivityAsSelectionEditPart(view);
+			case DecisionNodeEditPart.VISUAL_ID:
+				return new DecisionNodeEditPart(view);
 
-			case ActivityAsSelectionNameEditPart.VISUAL_ID:
-				return new ActivityAsSelectionNameEditPart(view);
+			case DecisionInputEditPart.VISUAL_ID:
+				return new DecisionInputEditPart(view);
 
-			case ActivityAsTransformationEditPart.VISUAL_ID:
-				return new ActivityAsTransformationEditPart(view);
+			case MergeNodeEditPart.VISUAL_ID:
+				return new MergeNodeEditPart(view);
 
-			case ActivityAsTransformationNameEditPart.VISUAL_ID:
-				return new ActivityAsTransformationNameEditPart(view);
+			case ForkNodeEditPart.VISUAL_ID:
+				return new ForkNodeEditPart(view);
+
+			case JoinNodeEditPart.VISUAL_ID:
+				return new JoinNodeEditPart(view);
+
+			case JoinSpecEditPart.VISUAL_ID:
+				return new JoinSpecEditPart(view);
 
 			case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 				return new ActivityActivityParametersCompartmentEditPart(view);
@@ -294,12 +300,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ActionLocalPostconditionEditPart.VISUAL_ID:
 				return new ActionLocalPostconditionEditPart(view);
 
-			case ObjectFlowSelectionEditPart.VISUAL_ID:
-				return new ObjectFlowSelectionEditPart(view);
-
-			case ObjectFlowTransformationEditPart.VISUAL_ID:
-				return new ObjectFlowTransformationEditPart(view);
-
 			case ObjectFlowEditPart.VISUAL_ID:
 				return new ObjectFlowEditPart(view);
 
@@ -309,6 +309,18 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ObjectFlowWeightEditPart.VISUAL_ID:
 				return new ObjectFlowWeightEditPart(view);
 
+			case ObjectFlowSelectionEditPart.VISUAL_ID:
+				return new ObjectFlowSelectionEditPart(view);
+
+			case ObjectFlowTransformationEditPart.VISUAL_ID:
+				return new ObjectFlowTransformationEditPart(view);
+
+			case DecisionInputFlowEditPart.VISUAL_ID:
+				return new DecisionInputFlowEditPart(view);
+
+			case ObjectFlowGuardEditPart.VISUAL_ID:
+				return new ObjectFlowGuardEditPart(view);
+
 			case ControlFlowEditPart.VISUAL_ID:
 				return new ControlFlowEditPart(view);
 
@@ -317,6 +329,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case ControlFlowWeightEditPart.VISUAL_ID:
 				return new ControlFlowWeightEditPart(view);
+
+			case ControlFlowGuardEditPart.VISUAL_ID:
+				return new ControlFlowGuardEditPart(view);
 
 			}
 		}
@@ -332,14 +347,20 @@ public class UMLEditPartFactory implements EditPartFactory {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT handle LinkAndCornerBentWithTextFigure
 	 */
 	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
 		if(source.getFigure() instanceof HTMLCornerBentFigure)
 			return new CommentCellEditorLocator((HTMLCornerBentFigure)source.getFigure());
 		else if(source.getFigure() instanceof WrappingLabel)
 			return new TextCellEditorLocator((WrappingLabel)source.getFigure());
-		else {
+		else if(source.getFigure() instanceof DecisionInputEditPart.LinkAndCornerBentWithTextFigure) {
+			return new TextCellEditorLocator(((DecisionInputEditPart.LinkAndCornerBentWithTextFigure)source.getFigure()).getCornerBentContent());
+		} else if(source.getFigure() instanceof ObjectFlowSelectionEditPart.LinkAndCornerBentWithTextFigure) {
+			return new TextCellEditorLocator(((ObjectFlowSelectionEditPart.LinkAndCornerBentWithTextFigure)source.getFigure()).getCornerBentContent());
+		} else if(source.getFigure() instanceof ObjectFlowTransformationEditPart.LinkAndCornerBentWithTextFigure) {
+			return new TextCellEditorLocator(((ObjectFlowTransformationEditPart.LinkAndCornerBentWithTextFigure)source.getFigure()).getCornerBentContent());
+		} else {
 			return new LabelCellEditorLocator((Label)source.getFigure());
 		}
 	}

@@ -31,7 +31,6 @@ import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.edit.providers.UMLItemPropertyDescriptor;
 
-
 /**
  * This class provides a dialog to initialize a CallBehaviorAction at its creation.
  */

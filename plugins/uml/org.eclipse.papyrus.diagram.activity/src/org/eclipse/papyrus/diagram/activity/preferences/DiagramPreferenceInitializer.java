@@ -42,11 +42,17 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		FlowFinalNodePreferencePage.initDefaults(store);
 
+		MergeNodePreferencePage.initDefaults(store);
+
+		DecisionNodePreferencePage.initDefaults(store);
+
 		ConstraintPreferencePage.initDefaults(store);
 
 		ActivityFinalNodePreferencePage.initDefaults(store);
 
 		ActivityPreferencePage.initDefaults(store);
+
+		ForkNodePreferencePage.initDefaults(store);
 
 		InputPinPreferencePage.initDefaults(store);
 
@@ -57,6 +63,8 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		ActionInputPinPreferencePage.initDefaults(store);
 
 		TimeConstraintPreferencePage.initDefaults(store);
+
+		JoinNodePreferencePage.initDefaults(store);
 
 		IntervalConstraintPreferencePage.initDefaults(store);
 

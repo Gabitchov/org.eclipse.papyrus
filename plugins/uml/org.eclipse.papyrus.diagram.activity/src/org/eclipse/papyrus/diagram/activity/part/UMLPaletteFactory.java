@@ -46,6 +46,26 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
+	private final static String CREATEDECISIONNODE4CREATIONTOOL = "createDecisionnode4CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATEMERGENODE5CREATIONTOOL = "createMergenode5CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATEJOINNODE6CREATIONTOOL = "createJoinnode6CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATEFORKNODE7CREATIONTOOL = "createForknode7CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private final static String CREATEOPAQUEACTION1CREATIONTOOL = "createOpaqueAction1CreationTool"; //$NON-NLS-1$
 
 	/**
@@ -158,6 +178,18 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		if(toolId.equals(CREATEFLOWFINAL3CREATIONTOOL)) {
 			return createFlowfinal3CreationTool();
 		}
+		if(toolId.equals(CREATEDECISIONNODE4CREATIONTOOL)) {
+			return createDecisionnode4CreationTool();
+		}
+		if(toolId.equals(CREATEMERGENODE5CREATIONTOOL)) {
+			return createMergenode5CreationTool();
+		}
+		if(toolId.equals(CREATEJOINNODE6CREATIONTOOL)) {
+			return createJoinnode6CreationTool();
+		}
+		if(toolId.equals(CREATEFORKNODE7CREATIONTOOL)) {
+			return createForknode7CreationTool();
+		}
 		if(toolId.equals(CREATEOPAQUEACTION1CREATIONTOOL)) {
 			return createOpaqueAction1CreationTool();
 		}
@@ -254,6 +286,50 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createFlowfinal3CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.FlowFinalNode_3006);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createDecisionnode4CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.DecisionNode_3038);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createMergenode5CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.MergeNode_3039);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createJoinnode6CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.JoinNode_3041);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createForknode7CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.ForkNode_3040);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
