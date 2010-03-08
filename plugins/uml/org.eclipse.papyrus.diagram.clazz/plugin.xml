@@ -174,7 +174,7 @@
          </propertySection>
       </propertySections>
    </extension>
-<extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
+<extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
       <?gmfgen generated="true"?>
       <viewProvider class="org.eclipse.papyrus.diagram.clazz.providers.UMLViewProvider">
          <Priority name="Lowest"/>
@@ -1887,6 +1887,12 @@
             id="org.eclipse.papyrus.diagram.clazz.preferences.ProfileApplicationPreferencePage"
             name="ProfileApplication" />	
 	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
+			class="org.eclipse.papyrus.diagram.clazz.preferences.UndefinedPreferencePage"
+            id="org.eclipse.papyrus.diagram.clazz.preferences.UndefinedPreferencePage"
+            name="Undefined" />	
 	
 
 </extension>

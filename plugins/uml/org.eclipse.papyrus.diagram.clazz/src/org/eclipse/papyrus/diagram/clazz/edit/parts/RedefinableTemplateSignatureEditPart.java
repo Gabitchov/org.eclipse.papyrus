@@ -184,7 +184,7 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-		LayoutEditPolicy lep = new LayoutEditPolicy() {
+		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
@@ -2021,7 +2021,7 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 	}
 
 	/**
-	 *Papyrus codeGen
+	 * Papyrus codeGen
 	 * 
 	 * @generated
 	 **/

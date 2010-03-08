@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
+import java.util.List;
+
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
@@ -39,6 +41,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.ShortCutDiagramCreateComm
 import org.eclipse.papyrus.diagram.clazz.edit.commands.SignalCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.TimeObservationCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.commands.DuplicateNamedElementCommand;
 
 /**
  * @generated
