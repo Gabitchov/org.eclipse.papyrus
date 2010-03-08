@@ -43,7 +43,6 @@ import org.eclipse.papyrus.diagram.clazz.edit.commands.ConnectorTimeObservationC
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ConnectorTimeObservationReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ConstraintConstrainedElementReorientCommand;
-import org.eclipse.papyrus.diagram.clazz.edit.commands.ContainmentCircleCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.Dependency2ReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.Dependency3CreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.DependencyCreateCommand;
@@ -76,7 +75,6 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ConnectorDurationObservation
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConnectorTimeObservationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Constraint2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintConstrainedElementEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyEditPart;
