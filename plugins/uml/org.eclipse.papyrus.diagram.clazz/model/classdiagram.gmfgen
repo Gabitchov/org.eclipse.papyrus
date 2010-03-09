@@ -3227,11 +3227,10 @@
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
-                xsi:type="gmfgen:GenFeatureValueSpec">
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.1">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-              <value
-                  href="../../org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfgen#/0/@expressionProviders/@providers.0/@expressions.0"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -3328,11 +3327,10 @@
           <modelElementInitializer
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
-                xsi:type="gmfgen:GenFeatureValueSpec">
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.1">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
-              <value
-                  href="../../org.eclipse.papyrus.diagram.composite/model/compositediagram.gmfgen#/0/@expressionProviders/@providers.0/@expressions.0"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
@@ -6254,6 +6252,8 @@
           injectExpressionBody="true">
         <expressions
             body="return getName(self);"/>
+        <expressions
+            body="return org.eclipse.papyrus.diagram.common.helper.NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());"/>
       </providers>
       <providers
           xsi:type="gmfgen:GenExpressionInterpreter">
