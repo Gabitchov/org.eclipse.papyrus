@@ -84,6 +84,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ContinuationEditPart.VISUAL_ID:
 				return new ContinuationEditPart(view);
 
+			case ContinuationNameEditPart.VISUAL_ID:
+				return new ContinuationNameEditPart(view);
+
 			case ConstraintEditPart.VISUAL_ID:
 				return new ConstraintEditPart(view);
 

@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Continuation;
 import org.eclipse.uml2.uml.InteractionFragment;
@@ -124,6 +125,7 @@ public class ContinuationCreateCommand extends EditElementCommand {
 		owner.getFragments().add(newElement);
 
 
+		UMLElementTypes.init_Continuation_3016(newElement);
 
 		doConfigure(newElement, monitor, info);
 

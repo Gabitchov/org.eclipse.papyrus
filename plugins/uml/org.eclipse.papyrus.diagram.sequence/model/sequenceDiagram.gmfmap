@@ -226,6 +226,26 @@
                 <ownedChild>
                   <domainMetaElement
                       href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Continuation"/>
+                  <domainInitializer
+                      xsi:type="gmfmap:FeatureSeqInitializer">
+                    <initializers
+                        xsi:type="gmfmap:FeatureValueSpec">
+                      <feature
+                          xsi:type="ecore:EAttribute"
+                          href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                      <value
+                          body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"
+                          language="java"/>
+                    </initializers>
+                  </domainInitializer>
+                  <labelMappings
+                      xsi:type="gmfmap:FeatureLabelMapping"
+                      viewPattern="">
+                    <diagramLabel
+                        href="sequenceDiagram.gmfgraph#ContinuationLabel"/>
+                    <features
+                        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  </labelMappings>
                   <tool
                       xsi:type="gmftool:CreationTool"
                       href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.6"/>

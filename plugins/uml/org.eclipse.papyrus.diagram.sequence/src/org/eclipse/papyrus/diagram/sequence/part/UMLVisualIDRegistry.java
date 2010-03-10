@@ -30,6 +30,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEdi
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionNameEditPart;
@@ -347,6 +348,11 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(ContinuationEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ContinuationEditPart.VISUAL_ID:
+			if(ContinuationNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

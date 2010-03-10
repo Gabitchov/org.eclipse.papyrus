@@ -384,10 +384,16 @@
         name="ContinuationFigure">
       <actualFigure
           xsi:type="gmfgraph:RoundedRectangle"
-          name="ContinuationRoundedRectangle">
+          name="ContinuationRoundedRectangle"
+          cornerWidth="50"
+          cornerHeight="50">
+        <layout
+            xsi:type="gmfgraph:CustomLayout"
+            qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
         <children
-            xsi:type="gmfgraph:Label"
-            name="ContinuationNameLabel"/>
+            xsi:type="gmfgraph:CustomFigure"
+            name="ContinuationNameLabel"
+            qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel"/>
       </actualFigure>
       <accessors
           figure="//@figures.0/@descriptors.13/@actualFigure/@children.0"/>
@@ -570,4 +576,8 @@
         x="1"
         y="-13"/>
   </labels>
+  <labels
+      name="ContinuationLabel"
+      figure="ContinuationFigure"
+      accessor="//@figures.0/@descriptors.13/@accessors.0"/>
 </gmfgraph:Canvas>

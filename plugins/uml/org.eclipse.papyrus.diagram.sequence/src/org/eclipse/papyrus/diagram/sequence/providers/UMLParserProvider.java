@@ -28,6 +28,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.parser.CommentParser;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentBodyEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintNameEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseName2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseNameEditPart;
@@ -119,6 +120,23 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			interactionUseName_5004Parser = new InteractionUseCustomParsers();
 		}
 		return interactionUseName_5004Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser continuationName_5007Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getContinuationName_5007Parser() {
+		if(continuationName_5007Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			continuationName_5007Parser = parser;
+		}
+		return continuationName_5007Parser;
 	}
 
 	/**
@@ -271,6 +289,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getInteractionUseName_5003Parser();
 		case InteractionUseName2EditPart.VISUAL_ID:
 			return getInteractionUseName_5004Parser();
+		case ContinuationNameEditPart.VISUAL_ID:
+			return getContinuationName_5007Parser();
 		case ConstraintNameEditPart.VISUAL_ID:
 			return getConstraintName_5005Parser();
 		case CommentBodyEditPart.VISUAL_ID:
