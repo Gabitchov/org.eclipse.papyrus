@@ -57,7 +57,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 				Command changeConstraintCommand = createChangeConstraintCommand(request, child, translateToModelConstraint(constraintFor));
 				compoundCmd.add(changeConstraintCommand);
 			}
-	}
+		}
 		return compoundCmd.unwrap();
 
 	}
@@ -133,7 +133,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 			if(rect.height < minSize.height) {
 				return null;
 			}
-	}
+		}
 		rect = (Rectangle)getConstraintFor(rect);
 
 		Rectangle cons = getCurrentConstraintFor(child);
