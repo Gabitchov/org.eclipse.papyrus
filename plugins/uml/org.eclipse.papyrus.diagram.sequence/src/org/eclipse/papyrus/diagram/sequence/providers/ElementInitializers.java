@@ -30,6 +30,7 @@ import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
+// TODO report Continuation management to others namedElement to avoid code duplication
 /**
  * @generated
  */
