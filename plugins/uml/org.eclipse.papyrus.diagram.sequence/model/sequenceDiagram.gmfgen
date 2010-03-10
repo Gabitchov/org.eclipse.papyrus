@@ -430,7 +430,7 @@
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.1/@expressions.0">
+                value="/0/@expressionProviders/@providers.0/@expressions.5">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
@@ -496,7 +496,7 @@
               <newElementInitializers>
                 <initializers
                     xsi:type="gmfgen:GenFeatureValueSpec"
-                    value="/0/@expressionProviders/@providers.0/@expressions.5">
+                    value="/0/@expressionProviders/@providers.1/@expressions.0">
                   <feature
                       href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OpaqueExpression/body"/>
                 </initializers>
@@ -568,7 +568,7 @@
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.6">
+                value="/0/@expressionProviders/@providers.1/@expressions.1">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/body"/>
             </initializers>
@@ -685,7 +685,7 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
-            modelElementSelector="/0/@expressionProviders/@providers.0/@expressions.7">
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.2">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
           <containmentMetaFeature
@@ -726,8 +726,8 @@
           </modelFacet>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.8"
-            targetEnd="/0/@expressionProviders/@providers.0/@expressions.9"/>
+            sourceEnd="/0/@expressionProviders/@providers.1/@expressions.3"
+            targetEnd="/0/@expressionProviders/@providers.1/@expressions.4"/>
       </links>
       <links
           visualID="4004"
@@ -751,7 +751,7 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
-            modelElementSelector="/0/@expressionProviders/@providers.0/@expressions.10">
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.5">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
           <containmentMetaFeature
@@ -792,8 +792,8 @@
           </modelFacet>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.11"
-            targetEnd="/0/@expressionProviders/@providers.0/@expressions.12"/>
+            sourceEnd="/0/@expressionProviders/@providers.1/@expressions.6"
+            targetEnd="/0/@expressionProviders/@providers.1/@expressions.7"/>
       </links>
       <links
           visualID="4005"
@@ -817,7 +817,7 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
-            modelElementSelector="/0/@expressionProviders/@providers.0/@expressions.13">
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.8">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
           <containmentMetaFeature
@@ -857,8 +857,8 @@
           </modelFacet>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.14"
-            targetEnd="/0/@expressionProviders/@providers.0/@expressions.15"/>
+            sourceEnd="/0/@expressionProviders/@providers.1/@expressions.9"
+            targetEnd="/0/@expressionProviders/@providers.1/@expressions.10"/>
       </links>
       <links
           visualID="4006"
@@ -882,7 +882,7 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
-            modelElementSelector="/0/@expressionProviders/@providers.0/@expressions.16">
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.11">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
           <containmentMetaFeature
@@ -923,8 +923,8 @@
           </modelFacet>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.17"
-            targetEnd="/0/@expressionProviders/@providers.0/@expressions.18"/>
+            sourceEnd="/0/@expressionProviders/@providers.1/@expressions.12"
+            targetEnd="/0/@expressionProviders/@providers.1/@expressions.13"/>
       </links>
       <links
           visualID="4007"
@@ -948,7 +948,7 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
-            modelElementSelector="/0/@expressionProviders/@providers.0/@expressions.19">
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.14">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
           <containmentMetaFeature
@@ -988,8 +988,8 @@
           </modelFacet>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.20"
-            targetEnd="/0/@expressionProviders/@providers.0/@expressions.21"/>
+            sourceEnd="/0/@expressionProviders/@providers.1/@expressions.15"
+            targetEnd="/0/@expressionProviders/@providers.1/@expressions.16"/>
       </links>
       <links
           visualID="4008"
@@ -1013,7 +1013,7 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
-            modelElementSelector="/0/@expressionProviders/@providers.0/@expressions.22">
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.17">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
           <containmentMetaFeature
@@ -1054,8 +1054,8 @@
           </modelFacet>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.23"
-            targetEnd="/0/@expressionProviders/@providers.0/@expressions.24"/>
+            sourceEnd="/0/@expressionProviders/@providers.1/@expressions.18"
+            targetEnd="/0/@expressionProviders/@providers.1/@expressions.19"/>
       </links>
       <links
           visualID="4009"
@@ -1079,7 +1079,7 @@
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
-            modelElementSelector="/0/@expressionProviders/@providers.0/@expressions.25">
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.20">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
           <containmentMetaFeature
@@ -1119,8 +1119,8 @@
           </modelFacet>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.0/@expressions.26"
-            targetEnd="/0/@expressionProviders/@providers.0/@expressions.27"/>
+            sourceEnd="/0/@expressionProviders/@providers.1/@expressions.21"
+            targetEnd="/0/@expressionProviders/@providers.1/@expressions.22"/>
       </links>
       <links
           visualID="4010"
@@ -3652,17 +3652,23 @@
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#/"/>
     <expressionProviders>
       <providers
+          xsi:type="gmfgen:GenJavaExpressionProvider"
+          injectExpressionBody="true">
+        <expressions
+            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+        <expressions
+            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+        <expressions
+            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+        <expressions
+            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+        <expressions
+            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+        <expressions
+            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+      </providers>
+      <providers
           xsi:type="gmfgen:GenExpressionInterpreter">
-        <expressions
-            body="let base : String = 'Interaction' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
-        <expressions
-            body="let base : String = 'Lifeline' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
-        <expressions
-            body="let base : String = 'InteractionUse' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
-        <expressions
-            body="let base : String = 'ConsiderIgnoreFragment' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
-        <expressions
-            body="let base : String = 'CombinedFragment' in&#xD;&#xA;let suffixes : Sequence(String) = Sequence {'', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'} in &#xD;&#xA;let space : Namespace = self.namespace in&#xD;&#xA;let allMissed : Sequence(String) = suffixes->&#xD;&#xA;    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))&#xD;&#xA;    ) in&#xD;&#xA;let firstMissed : String = allMissed->first() in &#xD;&#xA;let noMisses : Boolean = firstMissed.oclIsUndefined() in&#xD;&#xA;let allNames : Set(String) = &#xD;&#xA;    if noMisses &#xD;&#xA;    then &#xD;&#xA;    space.member->collect(e : NamedElement | &#xD;&#xA;         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) &lt;> base&#xD;&#xA;         then '' &#xD;&#xA;         else e.name &#xD;&#xA;         endif)->asSet()->excluding('') else Set{'not in use'} &#xD;&#xA;    endif in &#xD;&#xA;let longestName : String = &#xD;&#xA;    if noMisses&#xD;&#xA;    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() &#xD;&#xA;    else 'not in use' &#xD;&#xA;    endif in &#xD;&#xA;if noMisses then &#xD;&#xA;    if longestName.oclIsUndefined() &#xD;&#xA;    then base &#xD;&#xA;    else longestName.concat('1') &#xD;&#xA;    endif &#xD;&#xA;else &#xD;&#xA;    base.concat(firstMissed) &#xD;&#xA;endif "/>
         <expressions
             body="'OpaqueExpression'"/>
         <expressions
@@ -3731,12 +3737,6 @@
             xsi:type="gmfgen:GenConstraint"
             body="(self.oclIsKindOf(uml::Lifeline) or self.oclIsKindOf(uml::InteractionFragment))"/>
       </providers>
-      <providers
-          xsi:type="gmfgen:GenJavaExpressionProvider"
-          injectExpressionBody="true">
-        <expressions
-            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
-      </providers>
     </expressionProviders>
     <labelParsers
         extensibleViaService="true">
@@ -3753,7 +3753,7 @@
           qualifiedName=" org.eclipse.papyrus.diagram.sequence.parser.custom.InteractionUseCustomParsers"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet"
+          uses="/0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet"
           qualifiedName=" org.eclipse.papyrus.diagram.sequence.parser.custom.MessageCustomParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
