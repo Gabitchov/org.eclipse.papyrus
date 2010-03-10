@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA
+ * Copyright (c) 2010 CEA
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -25,9 +25,9 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
-import org.eclipse.uml2.uml.Interaction;
+import org.eclipse.uml2.uml.CombinedFragment;
+import org.eclipse.uml2.uml.Continuation;
+import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.InteractionOperatorKind;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -35,7 +35,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 /**
  * @generated
  */
-public class ConsiderIgnoreFragmentCreateCommand extends EditElementCommand {
+public class ContinuationCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -50,7 +50,7 @@ public class ConsiderIgnoreFragmentCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public ConsiderIgnoreFragmentCreateCommand(CreateElementRequest req, EObject eObject) {
+	public ContinuationCreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -59,14 +59,14 @@ public class ConsiderIgnoreFragmentCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static ConsiderIgnoreFragmentCreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new ConsiderIgnoreFragmentCreateCommand(req, eObject);
+	public static ContinuationCreateCommand create(CreateElementRequest req, EObject eObject) {
+		return new ContinuationCreateCommand(req, eObject);
 	}
 
 	/**
 	 * @generated
 	 */
-	public ConsiderIgnoreFragmentCreateCommand(CreateElementRequest req) {
+	public ContinuationCreateCommand(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 
@@ -89,45 +89,41 @@ public class ConsiderIgnoreFragmentCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean canExecute() {
+		InteractionOperand interactionOperand = (InteractionOperand)getElementToEdit();
+		CombinedFragment combinedFragment = getEnclosingCombinedFragment(interactionOperand);
+		if(combinedFragment != null) {
+			if(combinedFragment.getInteractionOperator() == InteractionOperatorKind.ALT_LITERAL) {
+				return true;
+			}
+		}
+		return false;
+	}
 
-
-		return true;
-
-
-
+	private CombinedFragment getEnclosingCombinedFragment(InteractionFragment interactionFragment) {
+		if(interactionFragment.eContainer() instanceof CombinedFragment) {
+			return (CombinedFragment)interactionFragment.eContainer();
+		} else if(interactionFragment.eContainer() instanceof InteractionFragment) {
+			return getEnclosingCombinedFragment(interactionFragment);
+		}
+		return null;
 	}
 
 	/**
-	 * Handle creation on InteractionOperand
-	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		ConsiderIgnoreFragment newElement = UMLFactory.eINSTANCE.createConsiderIgnoreFragment();
 
-		UMLElementTypes.init_ConsiderIgnoreFragment_3007(newElement);
 
-		// START GENERATED NOT CODE
-		EObject elementToEdit = getElementToEdit();
-		if(elementToEdit instanceof InteractionOperand) {
-			InteractionOperand owner = (InteractionOperand)elementToEdit;
-			owner.getFragments().add(newElement);
-		} else {
-			Interaction owner = (Interaction)elementToEdit;
-			owner.getFragments().add(newElement);
-		}
+		Continuation newElement = UMLFactory.eINSTANCE.createContinuation();
 
-		newElement.setInteractionOperator(InteractionOperatorKind.CONSIDER_LITERAL);
+		InteractionOperand owner = (InteractionOperand)getElementToEdit();
+		owner.getFragments().add(newElement);
 
-		// Create an interaction operand with the ConsiderIgnoreFragment (multiplicy 1...*)
-		InteractionOperand createInteractionOperand = UMLFactory.eINSTANCE.createInteractionOperand();
-		newElement.getOperands().add(createInteractionOperand);
 
-		// END GENERATED NOT CODE
 
 		doConfigure(newElement, monitor, info);
 
@@ -135,10 +131,13 @@ public class ConsiderIgnoreFragmentCreateCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult(newElement);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(ConsiderIgnoreFragment newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected void doConfigure(Continuation newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());

@@ -28,27 +28,44 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
 
+		InteractionOperandPreferencePage.initDefaults(store);
+
+
 		InteractionPreferencePage.initDefaults(store);
 
-		InteractionUsePreferencePage.initDefaults(store);
+
+		ContinuationPreferencePage.initDefaults(store);
+
 
 		CommentPreferencePage.initDefaults(store);
 
-		ConsiderIgnoreFragmentPreferencePage.initDefaults(store);
-
-		CombinedFragmentPreferencePage.initDefaults(store);
 
 		ConstraintPreferencePage.initDefaults(store);
 
-		ActionExecutionSpecificationPreferencePage.initDefaults(store);
+
+		ConsiderIgnoreFragmentPreferencePage.initDefaults(store);
+
+
+		InteractionUsePreferencePage.initDefaults(store);
+
 
 		LifelinePreferencePage.initDefaults(store);
 
-		InteractionOperandPreferencePage.initDefaults(store);
+
+		CombinedFragmentPreferencePage.initDefaults(store);
+
 
 		BehaviorExecutionSpecificationPreferencePage.initDefaults(store);
 
+
+		ActionExecutionSpecificationPreferencePage.initDefaults(store);
+
+
+
+
 		MessagePreferencePage.initDefaults(store);
+
+
 
 	}
 

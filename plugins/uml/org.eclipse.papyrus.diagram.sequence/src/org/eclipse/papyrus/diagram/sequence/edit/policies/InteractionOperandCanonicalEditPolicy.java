@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.sequence.part.UMLNodeDescriptor;
@@ -61,6 +62,7 @@ public class InteractionOperandCanonicalEditPolicy extends CanonicalEditPolicy {
 		case InteractionUseEditPart.VISUAL_ID:
 		case CombinedFragmentEditPart.VISUAL_ID:
 		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
+		case ContinuationEditPart.VISUAL_ID:
 			if(!semanticChildren.contains(view.getElement())) {
 				return true;
 			}
@@ -82,6 +84,7 @@ public class InteractionOperandCanonicalEditPolicy extends CanonicalEditPolicy {
 		if(myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getInteraction_Fragment());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getInteractionOperand_Fragment());
 		}
 		return myFeaturesToSynchronize;
 	}

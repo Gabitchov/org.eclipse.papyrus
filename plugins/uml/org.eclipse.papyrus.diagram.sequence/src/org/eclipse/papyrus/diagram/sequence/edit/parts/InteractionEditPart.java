@@ -112,16 +112,16 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InteractionItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new SequenceGraphicalNodeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new SequenceGraphicalNodeEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-		LayoutEditPolicy lep = new LayoutEditPolicy() {
+		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
@@ -164,6 +164,7 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 			((InteractionNameEditPart)childEditPart).setLabel(getPrimaryShape().getHeaderLabel());
 			return true;
 		}
+
 
 		if(childEditPart instanceof InteractionInteractionCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getCompartmentFigure();
@@ -370,6 +371,9 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
@@ -400,6 +404,9 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
@@ -430,6 +437,9 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
@@ -460,6 +470,9 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
@@ -490,6 +503,9 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
@@ -520,6 +536,9 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
@@ -548,6 +567,9 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof ContinuationEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -589,6 +611,9 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
@@ -619,6 +644,9 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
@@ -649,6 +677,9 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
@@ -679,6 +710,9 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
@@ -709,6 +743,9 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
@@ -739,6 +776,9 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
@@ -767,6 +807,9 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Continuation_3016);
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Constraint_3008);
@@ -824,6 +867,9 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
@@ -854,6 +900,9 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
@@ -884,6 +933,9 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
@@ -914,6 +966,9 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
@@ -944,6 +999,9 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
@@ -974,6 +1032,9 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
@@ -1002,6 +1063,9 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Continuation_3016);
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Constraint_3008);

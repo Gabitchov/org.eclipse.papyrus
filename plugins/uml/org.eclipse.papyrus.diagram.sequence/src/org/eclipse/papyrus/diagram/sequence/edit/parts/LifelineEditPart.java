@@ -158,6 +158,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new LifelineItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
+
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineCanonicalEditPolicy());
 
@@ -175,7 +176,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-		LayoutEditPolicy lep = new LayoutEditPolicy() {
+		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
@@ -219,6 +220,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			((LifelineNameEditPart)childEditPart).setLabel(getPrimaryShape().getFigureLifelineLabelFigure());
 			return true;
 		}
+
 
 		return false;
 	}
@@ -426,6 +428,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
@@ -456,6 +461,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
@@ -486,6 +494,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
@@ -516,6 +527,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
@@ -546,6 +560,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
@@ -576,6 +593,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
@@ -604,6 +624,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof ContinuationEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -645,6 +668,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
@@ -675,6 +701,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
@@ -705,6 +734,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
@@ -735,6 +767,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
@@ -765,6 +800,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
@@ -795,6 +833,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
@@ -823,6 +864,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Continuation_3016);
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Constraint_3008);
@@ -880,6 +924,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
@@ -910,6 +957,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
@@ -940,6 +990,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
@@ -970,6 +1023,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
@@ -1000,6 +1056,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
@@ -1030,6 +1089,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
@@ -1058,6 +1120,9 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Continuation_3016);
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Constraint_3008);
@@ -1119,6 +1184,7 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
+
 			fFigureLifelineNameContainerFigure = new RectangleFigure();
 			fFigureLifelineNameContainerFigure.setLineWidth(1);
 
@@ -1127,15 +1193,30 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			this.add(fFigureLifelineNameContainerFigure, BorderLayout.TOP);
 			fFigureLifelineNameContainerFigure.setLayoutManager(new StackLayout());
 
+
 			fFigureLifelineLabelFigure = new WrappingLabel();
+
+
+
 
 			fFigureLifelineLabelFigure.setText("<...>");
 
+
+
+
 			fFigureLifelineLabelFigure.setTextWrap(true);
+
+
+
 
 			fFigureLifelineLabelFigure.setAlignment(PositionConstants.CENTER);
 
+
+
 			fFigureLifelineNameContainerFigure.add(fFigureLifelineLabelFigure);
+
+
+
 
 			fFigureExecutionsContainerFigure = new RectangleFigure();
 			fFigureExecutionsContainerFigure.setFill(false);
@@ -1145,9 +1226,14 @@ public class LifelineEditPart extends ShapeNodeEditPart {
 			this.add(fFigureExecutionsContainerFigure, BorderLayout.CENTER);
 			fFigureExecutionsContainerFigure.setLayoutManager(new StackLayout());
 
+
 			fFigureLifelineDotLineFigure = new LifelineDotLineCustomFigure();
 
+
+
 			fFigureExecutionsContainerFigure.add(fFigureLifelineDotLineFigure);
+
+
 
 		}
 

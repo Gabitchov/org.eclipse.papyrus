@@ -724,6 +724,7 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 

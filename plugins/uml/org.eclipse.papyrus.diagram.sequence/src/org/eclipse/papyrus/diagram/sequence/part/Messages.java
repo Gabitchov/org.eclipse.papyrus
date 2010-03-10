@@ -346,6 +346,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String Continuation7CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Continuation7CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String MessageSync1CreationTool_title;
 
 	/**
@@ -522,6 +532,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_InteractionOperand_3005_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Continuation_3016_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Continuation_3016_outgoinglinks;
 
 	/**
 	 * @generated

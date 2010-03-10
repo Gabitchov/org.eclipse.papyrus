@@ -29,6 +29,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintNameEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionNameEditPart;
@@ -228,6 +229,11 @@ public class UMLVisualIDRegistry {
 			) {
 				return CombinedFragmentEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getContinuation().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ContinuationEditPart.VISUAL_ID;
+			}
 			break;
 		case InteractionInteractionCompartmentEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(domainElement.eClass())
@@ -338,6 +344,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(ConsiderIgnoreFragmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ContinuationEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -597,62 +606,81 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(4003, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		labelInfo = new BaseViewInfo(6001, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		viewInfo = new BaseViewInfo(4004, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		labelInfo = new BaseViewInfo(6002, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		viewInfo = new BaseViewInfo(4005, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		labelInfo = new BaseViewInfo(6003, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		viewInfo = new BaseViewInfo(4006, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		labelInfo = new BaseViewInfo(6004, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		viewInfo = new BaseViewInfo(4007, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		labelInfo = new BaseViewInfo(6005, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		viewInfo = new BaseViewInfo(4008, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		labelInfo = new BaseViewInfo(6006, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		viewInfo = new BaseViewInfo(4009, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		labelInfo = new BaseViewInfo(6007, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		viewInfo = new BaseViewInfo(4010, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(4011, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3001, ViewInfo.Node, "Lifeline");
 
 		root.addNode(7001, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3006, ViewInfo.Node, "ActionExecutionSpecification");
 
 		root.addNode(3001, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3003, ViewInfo.Node, "BehaviorExecutionSpecification");
 
 		root.addNode(3001, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3002, ViewInfo.Node, "InteractionUse");
 
@@ -660,11 +688,13 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(3005, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3007, ViewInfo.Node, "ConsiderIgnoreFragment");
 
 		root.addNode(7001, viewInfo);
 
 		root.addNode(3005, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3004, ViewInfo.Node, "CombinedFragment");
 
@@ -672,13 +702,21 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(7001, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3005, ViewInfo.Node, "InteractionOperand");
 
 		root.addNode(7002, viewInfo);
 
+
+		viewInfo = new BaseViewInfo(3016, ViewInfo.Node, "Continuation");
+
+		root.addNode(3005, viewInfo);
+
+
 		viewInfo = new BaseViewInfo(3008, ViewInfo.Node, "Constraint");
 
 		root.addNode(7001, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3009, ViewInfo.Node, "Comment");
 

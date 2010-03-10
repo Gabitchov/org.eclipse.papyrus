@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA
+ * Copyright (c) 2010 CEA
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -17,14 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.command.AddCommand;
-import org.eclipse.emf.edit.command.RemoveCommand;
-import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -32,67 +29,35 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
-import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.diagram.sequence.edit.policies.CombinedFragmentItemComponentEditPolicy;
-import org.eclipse.papyrus.diagram.sequence.edit.policies.CombinedFragmentItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.sequence.figures.CombinedFragmentFigure;
-import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.ContinuationItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.uml2.uml.CombinedFragment;
-import org.eclipse.uml2.uml.InteractionOperand;
-import org.eclipse.uml2.uml.InteractionOperatorKind;
-import org.eclipse.uml2.uml.Lifeline;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
  */
-public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
+public class ContinuationEditPart extends
+
+ShapeNodeEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3004;
-
-	/**
-	 * Title for dialog of bloc operator modification error
-	 */
-	private static final String FORBIDDEN_ACTION = "Forbidden action"; //$NON-NLS-1$
-
-	/**
-	 * Message for dialog of block operator modification
-	 */
-	private static final String BLOCK_OPERATOR_MODIFICATION_MSG = "It's impossible to change the operator kind of the combined fragment\nbecause the combined fragment has more than one operand"; //$NON-NLS-1$
-
-	/**
-	 * Message for dialog of block forbidden operator modification
-	 */
-	private static final String FORBIDEN_OPERATOR_MODIFICATION_MSG = "It's impossible to configure combined fragment as consider or ignore.\nUse ConsiderIgnoreFragment instead"; //$NON-NLS-1$
-
-	/**
-	 * Message for dialog of block forbidden operand addition
-	 */
-	private static final String BLOCK_OPERAND_ADDITION_MSG = "It's impossible to add more than one operand on opt, loop, break, neg combined fragment"; //$NON-NLS-1$
+	public static final int VISUAL_ID = 3016;
 
 	/**
 	 * @generated
@@ -107,7 +72,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	/**
 	 * @generated
 	 */
-	public CombinedFragmentEditPart(View view) {
+	public ContinuationEditPart(View view) {
 		super(view);
 	}
 
@@ -115,14 +80,16 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CombinedFragmentItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ContinuationItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicy.COMPONENT_ROLE, new CombinedFragmentItemComponentEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
+
+
+
+
 
 	/**
 	 * @generated
@@ -150,81 +117,21 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	}
 
 	/**
-	 * Generated not for handle operator kind
-	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		primaryShape = new CombinedFragmentFigure();
-		updateHeaderLabel();
-		return primaryShape;
+		ContinuationFigure figure = new ContinuationFigure();
+		return primaryShape = figure;
 	}
 
 	/**
 	 * @generated
 	 */
-	public CombinedFragmentFigure getPrimaryShape() {
-		return (CombinedFragmentFigure)primaryShape;
+	public ContinuationFigure getPrimaryShape() {
+		return (ContinuationFigure)primaryShape;
 	}
 
-	/**
-	 * @generated
-	 */
-	protected boolean addFixedChild(EditPart childEditPart) {
 
-
-		if(childEditPart instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
-			IFigure pane = getPrimaryShape().getCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((CombinedFragmentCombinedFragmentCompartmentEditPart)childEditPart).getFigure());
-			return true;
-		}
-
-		return false;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
-			IFigure pane = getPrimaryShape().getCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.remove(((CombinedFragmentCombinedFragmentCompartmentEditPart)childEditPart).getFigure());
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
-			return;
-		}
-		super.addChildVisual(childEditPart, -1);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
-			return;
-		}
-		super.removeChildVisual(childEditPart);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if(editPart instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
-			return getPrimaryShape().getCompartmentFigure();
-		}
-		return getContentPane();
-	}
 
 	/**
 	 * @generated
@@ -234,11 +141,12 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		return result;
 	}
 
+
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so you may safely remove
-	 * <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -252,19 +160,14 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane. Respects layout one may have set
-	 * for generated figure.
+	 * Default implementation treats passed figure as content pane.
+	 * Respects layout one may have set for generated figure.
 	 * 
 	 * @param nodeShape
 	 *        instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if(nodeShape.getLayoutManager() == null) {
-			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
-			layout.setSpacing(5);
-			nodeShape.setLayoutManager(layout);
-		}
 		return nodeShape; // use nodeShape itself as contentPane
 	}
 
@@ -305,53 +208,6 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		}
 	}
 
-	/**
-	 * @generated
-	 */
-	public EditPart getTargetEditPart(Request request) {
-		if(request instanceof CreateViewAndElementRequest) {
-			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
-			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
-			if(type == UMLElementTypes.InteractionOperand_3005) {
-				return getChildBySemanticHint(UMLVisualIDRegistry.getType(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID));
-			}
-		}
-		return super.getTargetEditPart(request);
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
-	public Object getPreferredValue(EStructuralFeature feature) {
-		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
-		Object result = null;
-
-		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
-			String prefColor = null;
-			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("CombinedFragment", PreferenceConstantHelper.COLOR_LINE);
-			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("CombinedFragment", PreferenceConstantHelper.COLOR_FONT);
-			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("CombinedFragment", PreferenceConstantHelper.COLOR_FILL);
-			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
-		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-			String prefGradient = PreferenceConstantHelper.getElementConstant("CombinedFragment", PreferenceConstantHelper.COLOR_GRADIENT);
-			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
-			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
-				result = new Integer(gradientPreferenceConverter.getTransparency());
-			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-				result = gradientPreferenceConverter.getGradientData();
-			}
-		}
-
-		if(result == null) {
-			result = getStructuralFeatureValue(feature);
-		}
-		return result;
-	}
 
 	/**
 	 * @generated
@@ -391,13 +247,13 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart) {
+		if(targetEditPart instanceof CombinedFragmentEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
-		if(targetEditPart instanceof ContinuationEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -424,13 +280,13 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart) {
+		if(targetEditPart instanceof CombinedFragmentEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
-		if(targetEditPart instanceof ContinuationEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -457,13 +313,13 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart) {
+		if(targetEditPart instanceof CombinedFragmentEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
-		if(targetEditPart instanceof ContinuationEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -490,13 +346,13 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart) {
+		if(targetEditPart instanceof CombinedFragmentEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
-		if(targetEditPart instanceof ContinuationEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -523,13 +379,13 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart) {
+		if(targetEditPart instanceof CombinedFragmentEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
-		if(targetEditPart instanceof ContinuationEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -556,13 +412,13 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart) {
+		if(targetEditPart instanceof CombinedFragmentEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
-		if(targetEditPart instanceof ContinuationEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -589,13 +445,13 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart) {
+		if(targetEditPart instanceof CombinedFragmentEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
-		if(targetEditPart instanceof ContinuationEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -1108,98 +964,113 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 		return types;
 	}
 
+
+
+
+
 	/**
-	 * Handle for interaction operator, operator kind and covered lifelines
+	 * @generated
 	 */
-	protected void handleNotificationEvent(Notification notification) {
-		Object feature = notification.getFeature();
+	public class ContinuationFigure extends RoundedRectangle {
 
-		if(UMLPackage.eINSTANCE.getCombinedFragment_InteractionOperator().equals(feature)) {
-			CombinedFragment combinedFragment = (CombinedFragment)resolveSemanticElement();
-			String newStringValue = notification.getNewStringValue();
-			if(notification.getOldValue() instanceof InteractionOperatorKind && !isAllowedInteractionOperator(newStringValue)) {
-				MessageDialog.openError(Display.getCurrent().getActiveShell(), FORBIDDEN_ACTION, BLOCK_OPERATOR_MODIFICATION_MSG);
-				CommandHelper.executeCommandWithoutHistory(getEditingDomain(), SetCommand.create(getEditingDomain(), combinedFragment, feature, notification.getOldValue()));
-				return;
-			}
-			EList<InteractionOperand> operands = combinedFragment.getOperands();
-			if(operands == null || operands.size() <= 1) {
-				// If CombinedFragment have no operand, we can change the OperatorKind
-				updateHeaderLabel();
-			} else if(notification.getOldValue() instanceof InteractionOperatorKind && !newStringValue.equals(getPrimaryShape().getHeaderLabel().getText())) {
-				MessageDialog.openError(Display.getCurrent().getActiveShell(), FORBIDDEN_ACTION, FORBIDEN_OPERATOR_MODIFICATION_MSG);
-				CommandHelper.executeCommandWithoutHistory(getEditingDomain(), SetCommand.create(getEditingDomain(), combinedFragment, feature, notification.getOldValue()));
-				return;
-			}
-		} else if(UMLPackage.eINSTANCE.getCombinedFragment_Operand().equals(feature)) {
-			// Case only call by the model explorer
-			CombinedFragment combinedFragment = (CombinedFragment)resolveSemanticElement();
-			InteractionOperatorKind interactionOperator = combinedFragment.getInteractionOperator();
-			Object newValue = notification.getNewValue();
-			if(interactionOperator != null && newValue != null) {
-				if(InteractionOperatorKind.OPT_LITERAL.equals(interactionOperator) || InteractionOperatorKind.LOOP_LITERAL.equals(interactionOperator) || InteractionOperatorKind.BREAK_LITERAL.equals(interactionOperator) || InteractionOperatorKind.NEG_LITERAL.equals(interactionOperator)) {
-					EList<InteractionOperand> operands = combinedFragment.getOperands();
-					if(operands != null && operands.size() > 1) {
-						// Case of there is already an operand on opt, loop, break and neg
-						// CombinedFragment type
-						MessageDialog.openError(Display.getCurrent().getActiveShell(), FORBIDDEN_ACTION, BLOCK_OPERAND_ADDITION_MSG);
-						CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), combinedFragment, feature, newValue));
-						return;
-					}
-				}
-			}
-		} else if(UMLPackage.eINSTANCE.getInteractionFragment_Covered().equals(feature)) {
-			if(notification.getNotifier() instanceof CombinedFragment) {
-				// Synchronize operands' covered lifelines with combined fragment's covered lifelines
-				CombinedFragment combinedFragment = (CombinedFragment)notification.getNotifier();
-				EList<Lifeline> combinedFragmentCoveredLifelines = combinedFragment.getCovereds();
-				for(InteractionOperand operand : combinedFragment.getOperands()) {
-					EList<Lifeline> operandCoveredLifelines = operand.getCovereds();
-					if(!operandCoveredLifelines.equals(combinedFragmentCoveredLifelines)) {
-						// Add new covered lifelines (not already covered)
-						List<Lifeline> coveredLifelinesToAdd = new ArrayList<Lifeline>(combinedFragmentCoveredLifelines);
-						coveredLifelinesToAdd.removeAll(operandCoveredLifelines);
-						if(!coveredLifelinesToAdd.isEmpty()) {
-							CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), operand, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToAdd));
-						}
 
-						// Delete old covered lifelines (not covered anymore)
-						List<Lifeline> coveredLifelinesToRemove = new ArrayList<Lifeline>(operandCoveredLifelines);
-						coveredLifelinesToRemove.removeAll(combinedFragmentCoveredLifelines);
-						if(!coveredLifelinesToRemove.isEmpty()) {
-							CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), operand, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToRemove));
-						}
-					}
-				}
-			}
-		} else if(notification.getNotifier() instanceof Bounds) {
-			updateCoveredLifelines((Bounds)notification.getNotifier());
+		/**
+		 * @generated
+		 */
+		private WrappingLabel fFigureContinuationNameLabel;
+
+
+		/**
+		 * @generated
+		 */
+		public ContinuationFigure() {
+			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8), getMapMode().DPtoLP(8)));
+			this.setLineWidth(1);
+			createContents();
 		}
 
-		super.handleNotificationEvent(notification);
-	}
+		/**
+		 * @generated
+		 */
+		private void createContents() {
 
-	/**
-	 * Update header label
-	 */
-	protected void updateHeaderLabel() {
-		Object element = resolveSemanticElement();
-		if(element instanceof CombinedFragment) {
-			CombinedFragment combinedFragment = (CombinedFragment)element;
-			String operatorKind = combinedFragment.getInteractionOperator().getName();
-			getPrimaryShape().getHeaderLabel().setText(operatorKind);
+
+			fFigureContinuationNameLabel = new WrappingLabel();
+			fFigureContinuationNameLabel.setText("");
+
+			this.add(fFigureContinuationNameLabel);
+
+
 		}
+
+
+
+
+		/**
+		 * @generated
+		 */
+		private boolean myUseLocalCoordinates = false;
+
+		/**
+		 * @generated
+		 */
+		protected boolean useLocalCoordinates() {
+			return myUseLocalCoordinates;
+		}
+
+		/**
+		 * @generated
+		 */
+		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
+			myUseLocalCoordinates = useLocalCoordinates;
+		}
+
+
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getFigureContinuationNameLabel() {
+			return fFigureContinuationNameLabel;
+		}
+
+
 	}
+
+
+
 
 	/**
-	 * Return true if the InteractionOperatorKind is allowed
-	 * 
-	 * @param interactionOperatorLiteral
-	 *        The InteractionOperator to test
-	 * @return true if allowed
+	 * @generated
 	 */
-	protected boolean isAllowedInteractionOperator(String interactionOperatorLiteral) {
-		return !(InteractionOperatorKind.CONSIDER_LITERAL.getLiteral().equals(interactionOperatorLiteral) || InteractionOperatorKind.IGNORE_LITERAL.getLiteral().equals(interactionOperatorLiteral));
-	}
+	@Override
+	public Object getPreferredValue(EStructuralFeature feature) {
+		IPreferenceStore preferenceStore = (IPreferenceStore)getDiagramPreferencesHint().getPreferenceStore();
+		Object result = null;
 
+		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+			String prefColor = null;
+			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("Continuation", PreferenceConstantHelper.COLOR_LINE);
+			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("Continuation", PreferenceConstantHelper.COLOR_FONT);
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
+				prefColor = PreferenceConstantHelper.getElementConstant("Continuation", PreferenceConstantHelper.COLOR_FILL);
+			}
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
+		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+			String prefGradient = PreferenceConstantHelper.getElementConstant("Continuation", PreferenceConstantHelper.COLOR_GRADIENT);
+			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
+			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
+				result = new Integer(gradientPreferenceConverter.getTransparency());
+			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
+				result = gradientPreferenceConverter.getGradientData();
+			}
+		}
+
+		if(result == null) {
+			result = getStructuralFeatureValue(feature);
+		}
+		return result;
+	}
 }

@@ -166,13 +166,17 @@ implements ITreeBranchEditPart {
 		 */
 		private void createContents() {
 
+
 			fFigureMessageAsyncLabelFigure = new WrappingLabel();
 			fFigureMessageAsyncLabelFigure.setText("");
 			fFigureMessageAsyncLabelFigure.setForegroundColor(ColorConstants.black);
 
 			fFigureMessageAsyncLabelFigure.setFont(FFIGUREMESSAGEASYNCLABELFIGURE_FONT);
 
+
+
 			this.add(fFigureMessageAsyncLabelFigure);
+
 
 		}
 

@@ -711,6 +711,9 @@ public class MessageName4EditPart extends LabelEditPart implements ITextAwareEdi
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 

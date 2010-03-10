@@ -219,6 +219,20 @@
                 <containmentFeature
                     href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/fragment"/>
               </children>
+              <children
+                  referencedChild="//@nodes.0/@ownedChild/@children.3/@ownedChild/@children.0/@ownedChild/@children.3/@ownedChild">
+                <containmentFeature
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionOperand/fragment"/>
+                <ownedChild>
+                  <domainMetaElement
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Continuation"/>
+                  <tool
+                      xsi:type="gmftool:CreationTool"
+                      href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.6"/>
+                  <diagramNode
+                      href="sequenceDiagram.gmfgraph#ContinuationNode"/>
+                </ownedChild>
+              </children>
             </ownedChild>
           </children>
           <compartments

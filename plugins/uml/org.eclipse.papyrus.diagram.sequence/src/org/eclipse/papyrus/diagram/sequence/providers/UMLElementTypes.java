@@ -35,6 +35,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseEditPart;
@@ -116,6 +117,11 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IElementType InteractionOperand_3005 = getElementType("org.eclipse.papyrus.diagram.sequence.InteractionOperand_3005"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Continuation_3016 = getElementType("org.eclipse.papyrus.diagram.sequence.Continuation_3016"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -285,37 +291,57 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(Package_1000, UMLPackage.eINSTANCE.getPackage());
 
+
 			elements.put(Interaction_2001, UMLPackage.eINSTANCE.getInteraction());
+
 
 			elements.put(Lifeline_3001, UMLPackage.eINSTANCE.getLifeline());
 
+
 			elements.put(ActionExecutionSpecification_3006, UMLPackage.eINSTANCE.getActionExecutionSpecification());
+
 
 			elements.put(BehaviorExecutionSpecification_3003, UMLPackage.eINSTANCE.getBehaviorExecutionSpecification());
 
+
 			elements.put(InteractionUse_3002, UMLPackage.eINSTANCE.getInteractionUse());
+
 
 			elements.put(ConsiderIgnoreFragment_3007, UMLPackage.eINSTANCE.getConsiderIgnoreFragment());
 
+
 			elements.put(CombinedFragment_3004, UMLPackage.eINSTANCE.getCombinedFragment());
+
 
 			elements.put(InteractionOperand_3005, UMLPackage.eINSTANCE.getInteractionOperand());
 
+
+			elements.put(Continuation_3016, UMLPackage.eINSTANCE.getContinuation());
+
+
 			elements.put(Constraint_3008, UMLPackage.eINSTANCE.getConstraint());
+
 
 			elements.put(Comment_3009, UMLPackage.eINSTANCE.getComment());
 
+
 			elements.put(Message_4003, UMLPackage.eINSTANCE.getMessage());
+
 
 			elements.put(Message_4004, UMLPackage.eINSTANCE.getMessage());
 
+
 			elements.put(Message_4005, UMLPackage.eINSTANCE.getMessage());
+
 
 			elements.put(Message_4006, UMLPackage.eINSTANCE.getMessage());
 
+
 			elements.put(Message_4007, UMLPackage.eINSTANCE.getMessage());
 
+
 			elements.put(Message_4008, UMLPackage.eINSTANCE.getMessage());
+
 
 			elements.put(Message_4009, UMLPackage.eINSTANCE.getMessage());
 
@@ -348,6 +374,7 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(ConsiderIgnoreFragment_3007);
 			KNOWN_ELEMENT_TYPES.add(CombinedFragment_3004);
 			KNOWN_ELEMENT_TYPES.add(InteractionOperand_3005);
+			KNOWN_ELEMENT_TYPES.add(Continuation_3016);
 			KNOWN_ELEMENT_TYPES.add(Constraint_3008);
 			KNOWN_ELEMENT_TYPES.add(Comment_3009);
 			KNOWN_ELEMENT_TYPES.add(Message_4003);
@@ -386,6 +413,8 @@ public class UMLElementTypes extends ElementInitializers {
 			return CombinedFragment_3004;
 		case InteractionOperandEditPart.VISUAL_ID:
 			return InteractionOperand_3005;
+		case ContinuationEditPart.VISUAL_ID:
+			return Continuation_3016;
 		case ConstraintEditPart.VISUAL_ID:
 			return Constraint_3008;
 		case CommentEditPart.VISUAL_ID:

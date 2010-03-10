@@ -265,7 +265,7 @@
       <viewProvider class="org.eclipse.papyrus.diagram.sequence.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLSequenceDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3006,3003,3002,3007,3004,3005,3008,3009"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3006,3003,3002,3007,3004,3005,3016,3008,3009"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4003,4004,4005,4006,4007,4008,4009,4010,4011"/>
       </viewProvider>
    </extension>
@@ -278,7 +278,7 @@
             <method name="getType()" value="PapyrusUMLSequenceDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2001,3001,3006,3003,3002,3007,3004,3005,3008,3009"/>
+            <method name="getType()" value="2001,3001,3006,3003,3002,3007,3004,3005,3016,3008,3009"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="4003,4004,4005,4006,4007,4008,4009,4010,4011"/>
@@ -411,6 +411,16 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
+               id="org.eclipse.papyrus.diagram.sequence.Continuation_3016"
+               name="%metatype.name.Continuation_3016"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Continuation"
+               edithelper="org.eclipse.papyrus.diagram.sequence.edit.helpers.ContinuationEditHelper">
+            <param name="semanticHint" value="3016"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
                id="org.eclipse.papyrus.diagram.sequence.Constraint_3008"
                name="%metatype.name.Constraint_3008"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
@@ -532,6 +542,7 @@
          <elementType ref="org.eclipse.papyrus.diagram.sequence.ConsiderIgnoreFragment_3007"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.CombinedFragment_3004"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.InteractionOperand_3005"/>
+         <elementType ref="org.eclipse.papyrus.diagram.sequence.Continuation_3016"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.Constraint_3008"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.Comment_3009"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.Message_4003"/>
@@ -744,6 +755,13 @@
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.InteractionOperandPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.InteractionOperandPreferencePage"
+            name="InteractionOperand" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
 			class="org.eclipse.papyrus.diagram.sequence.preferences.InteractionPreferencePage"
             id="org.eclipse.papyrus.diagram.sequence.preferences.InteractionPreferencePage"
             name="Interaction" />	
@@ -751,9 +769,9 @@
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.InteractionUsePreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.InteractionUsePreferencePage"
-            name="InteractionUse" />	
+			class="org.eclipse.papyrus.diagram.sequence.preferences.ContinuationPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.ContinuationPreferencePage"
+            name="Continuation" />	
 	
 	
 			<?gmfgen generated="true"?>
@@ -765,20 +783,6 @@
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.ConsiderIgnoreFragmentPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.ConsiderIgnoreFragmentPreferencePage"
-            name="ConsiderIgnoreFragment" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.CombinedFragmentPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.CombinedFragmentPreferencePage"
-            name="CombinedFragment" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
 			class="org.eclipse.papyrus.diagram.sequence.preferences.ConstraintPreferencePage"
             id="org.eclipse.papyrus.diagram.sequence.preferences.ConstraintPreferencePage"
             name="Constraint" />	
@@ -786,9 +790,16 @@
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.ActionExecutionSpecificationPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.ActionExecutionSpecificationPreferencePage"
-            name="ActionExecutionSpecification" />	
+			class="org.eclipse.papyrus.diagram.sequence.preferences.ConsiderIgnoreFragmentPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.ConsiderIgnoreFragmentPreferencePage"
+            name="ConsiderIgnoreFragment" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.InteractionUsePreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.InteractionUsePreferencePage"
+            name="InteractionUse" />	
 	
 	
 			<?gmfgen generated="true"?>
@@ -800,9 +811,9 @@
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.InteractionOperandPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.InteractionOperandPreferencePage"
-            name="InteractionOperand" />	
+			class="org.eclipse.papyrus.diagram.sequence.preferences.CombinedFragmentPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.CombinedFragmentPreferencePage"
+            name="CombinedFragment" />	
 	
 	
 			<?gmfgen generated="true"?>
@@ -811,15 +822,28 @@
             id="org.eclipse.papyrus.diagram.sequence.preferences.BehaviorExecutionSpecificationPreferencePage"
             name="BehaviorExecutionSpecification" />	
 	
-
-
 	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.ActionExecutionSpecificationPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.ActionExecutionSpecificationPreferencePage"
+            name="ActionExecutionSpecification" />	
+	
+
+
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
 			class="org.eclipse.papyrus.diagram.sequence.preferences.MessagePreferencePage"
             id="org.eclipse.papyrus.diagram.sequence.preferences.MessagePreferencePage"
             name="Message" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.UndefinedPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.UndefinedPreferencePage"
+            name="Undefined" />	
 	
 
 </extension>
@@ -895,6 +919,16 @@
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionOperand.gif"
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionOperand.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create Continuation"
+       id="createContinuation7CreationTool"
+       kind="tool"
+       label="Continuation"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Continuation.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Continuation.gif">
  	</entry>
 	<entry
        defineOnly="true"
@@ -1058,6 +1092,10 @@
     </predefinedEntry>
  	<predefinedEntry
           id="createInteractionOperand6CreationTool"
+          path="/createObjects1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createContinuation7CreationTool"
           path="/createObjects1Group">
     </predefinedEntry>
 

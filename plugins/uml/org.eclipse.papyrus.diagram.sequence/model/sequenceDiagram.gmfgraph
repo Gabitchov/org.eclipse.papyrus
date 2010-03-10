@@ -380,6 +380,18 @@
       <accessors
           figure="//@figures.0/@descriptors.12/@actualFigure/@children.0"/>
     </descriptors>
+    <descriptors
+        name="ContinuationFigure">
+      <actualFigure
+          xsi:type="gmfgraph:RoundedRectangle"
+          name="ContinuationRoundedRectangle">
+        <children
+            xsi:type="gmfgraph:Label"
+            name="ContinuationNameLabel"/>
+      </actualFigure>
+      <accessors
+          figure="//@figures.0/@descriptors.13/@actualFigure/@children.0"/>
+    </descriptors>
   </figures>
   <nodes
       name="InteractionNode"
@@ -412,6 +424,9 @@
       name="InteractionOperandNode"
       figure="CustomInteractionOperandFigure"
       resizeConstraint="SOUTH"/>
+  <nodes
+      name="ContinuationNode"
+      figure="ContinuationFigure"/>
   <connections
       name="CallSynLink"
       figure="MessageSync"/>

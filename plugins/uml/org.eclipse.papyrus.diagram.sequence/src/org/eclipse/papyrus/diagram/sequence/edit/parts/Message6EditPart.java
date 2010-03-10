@@ -167,12 +167,16 @@ implements ITreeBranchEditPart {
 		 */
 		private void createContents() {
 
+
 			fFigureMessageLostLabelFigure = new WrappingLabel();
 			fFigureMessageLostLabelFigure.setText("");
 
 			fFigureMessageLostLabelFigure.setFont(FFIGUREMESSAGELOSTLABELFIGURE_FONT);
 
+
+
 			this.add(fFigureMessageLostLabelFigure);
+
 
 		}
 
@@ -182,9 +186,17 @@ implements ITreeBranchEditPart {
 		private RotatableDecoration createTargetDecoration() {
 			EllipseDecoration df = new EllipseDecoration();
 
+
+
+
 			df.setAlwaysFill(true);
 
+
+
+
 			df.setPreferredSize(new Dimension(10, 10));
+
+
 
 			return df;
 		}

@@ -16,6 +16,7 @@ package org.eclipse.papyrus.diagram.sequence.edit.parts;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
@@ -32,6 +33,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -41,13 +43,16 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
-import org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure;
+import org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.CommentItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * @generated
@@ -94,7 +99,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-		LayoutEditPolicy lep = new LayoutEditPolicy() {
+		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
@@ -119,14 +124,15 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new HTMLCornerBentFigure();
+		CornerBentDescriptor figure = new CornerBentDescriptor();
+		return primaryShape = figure;
 	}
 
 	/**
 	 * @generated
 	 */
-	public HTMLCornerBentFigure getPrimaryShape() {
-		return (HTMLCornerBentFigure)primaryShape;
+	public CornerBentDescriptor getPrimaryShape() {
+		return (CornerBentDescriptor)primaryShape;
 	}
 
 	/**
@@ -134,9 +140,10 @@ ShapeNodeEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof CommentBodyEditPart) {
-			((CommentBodyEditPart)childEditPart).setLabel(getPrimaryShape().getCornerBentFigure());
+			((CommentBodyEditPart)childEditPart).setLabel(getPrimaryShape().getCornerBentContentLabel());
 			return true;
 		}
+
 
 		return false;
 	}
@@ -309,6 +316,9 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
@@ -339,6 +349,9 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
@@ -369,6 +382,9 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
@@ -399,6 +415,9 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
@@ -429,6 +448,9 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
@@ -459,6 +481,9 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
@@ -489,6 +514,9 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof InteractionOperandEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
@@ -517,6 +545,9 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4010);
 		}
 		if(targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4010);
+		}
+		if(targetEditPart instanceof ContinuationEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4010);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -558,6 +589,9 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
@@ -588,6 +622,9 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
@@ -618,6 +655,9 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
@@ -648,6 +688,9 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
@@ -678,6 +721,9 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
@@ -708,6 +754,9 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
@@ -738,6 +787,9 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
@@ -766,6 +818,9 @@ ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4010) {
 			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4010) {
+			types.add(UMLElementTypes.Continuation_3016);
 		}
 		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4010) {
 			types.add(UMLElementTypes.Constraint_3008);
@@ -823,6 +878,9 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
@@ -853,6 +911,9 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
@@ -883,6 +944,9 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
@@ -913,6 +977,9 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
@@ -943,6 +1010,9 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
@@ -973,6 +1043,9 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
@@ -1003,6 +1076,9 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.InteractionOperand_3005);
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
@@ -1016,6 +1092,91 @@ ShapeNodeEditPart {
 		}
 		return types;
 	}
+
+	/**
+	 * @generated
+	 */
+	public class CornerBentDescriptor extends CornerBentFigure {
+
+
+		/**
+		 * @generated
+		 */
+		private WrappingLabel fCornerBentContentLabel;
+
+
+		/**
+		 * @generated
+		 */
+		public CornerBentDescriptor() {
+
+
+			this.setForegroundColor(ColorConstants.black);
+			this.setBackgroundColor(THIS_BACK);
+			createContents();
+		}
+
+		/**
+		 * @generated
+		 */
+		private void createContents() {
+
+
+			fCornerBentContentLabel = new WrappingLabel();
+			fCornerBentContentLabel.setText("");
+
+			fCornerBentContentLabel.setFont(FCORNERBENTCONTENTLABEL_FONT);
+
+
+
+			this.add(fCornerBentContentLabel);
+
+
+		}
+
+
+
+
+		/**
+		 * @generated
+		 */
+		private boolean myUseLocalCoordinates = false;
+
+		/**
+		 * @generated
+		 */
+		protected boolean useLocalCoordinates() {
+			return myUseLocalCoordinates;
+		}
+
+		/**
+		 * @generated
+		 */
+		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
+			myUseLocalCoordinates = useLocalCoordinates;
+		}
+
+
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getCornerBentContentLabel() {
+			return fCornerBentContentLabel;
+		}
+
+
+	}
+
+	/**
+	 * @generated
+	 */
+	static final Color THIS_BACK = new Color(null, 248, 249, 214);
+
+	/**
+	 * @generated
+	 */
+	static final Font FCORNERBENTCONTENTLABEL_FONT = new Font(Display.getCurrent(), "Arial", 8, SWT.NORMAL);
 
 	/**
 	 * @generated

@@ -34,6 +34,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEdi
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintNameEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPart;
@@ -68,6 +69,7 @@ import org.eclipse.uml2.uml.ActionExecutionSpecification;
 import org.eclipse.uml2.uml.BehaviorExecutionSpecification;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
+import org.eclipse.uml2.uml.Continuation;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.Package;
 
@@ -113,6 +115,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getImage(navigatorItem.getView());
 		}
 
+
 		return super.getImage(element);
 	}
 
@@ -139,6 +142,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?CombinedFragment", UMLElementTypes.CombinedFragment_3004); //$NON-NLS-1$
 		case InteractionOperandEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InteractionOperand", UMLElementTypes.InteractionOperand_3005); //$NON-NLS-1$
+		case ContinuationEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Continuation", UMLElementTypes.Continuation_3016); //$NON-NLS-1$
 		case ConstraintEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Constraint", UMLElementTypes.Constraint_3008); //$NON-NLS-1$
 		case CommentEditPart.VISUAL_ID:
@@ -200,6 +205,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getText(navigatorItem.getView());
 		}
 
+
 		return super.getText(element);
 	}
 
@@ -229,6 +235,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getCombinedFragment_3004Text(view);
 		case InteractionOperandEditPart.VISUAL_ID:
 			return getInteractionOperand_3005Text(view);
+		case ContinuationEditPart.VISUAL_ID:
+			return getContinuation_3016Text(view);
 		case ConstraintEditPart.VISUAL_ID:
 			return getConstraint_3008Text(view);
 		case CommentEditPart.VISUAL_ID:
@@ -355,6 +363,19 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return String.valueOf(domainModelElement.getName());
 		} else {
 			UMLDiagramEditorPlugin.getInstance().logError("No domain element for view with visualID = " + 3005); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getContinuation_3016Text(View view) {
+		Continuation domainModelElement = (Continuation)view.getElement();
+		if(domainModelElement != null) {
+			return String.valueOf(domainModelElement.getName());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("No domain element for view with visualID = " + 3016); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
