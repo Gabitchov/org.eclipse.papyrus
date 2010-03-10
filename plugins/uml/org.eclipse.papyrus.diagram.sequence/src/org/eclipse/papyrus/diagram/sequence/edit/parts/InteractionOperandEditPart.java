@@ -25,8 +25,11 @@ import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
@@ -54,14 +57,18 @@ import org.eclipse.papyrus.diagram.sequence.edit.policies.InteractionOperandItem
 import org.eclipse.papyrus.diagram.sequence.edit.policies.InteractionOperandLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.figures.InteractionOperandFigure;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.diagram.sequence.util.NotificationHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.uml2.uml.CombinedFragment;
+import org.eclipse.uml2.uml.Continuation;
 import org.eclipse.uml2.uml.InteractionConstraint;
+import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.InteractionOperatorKind;
+import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.LiteralInteger;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -1291,6 +1298,36 @@ ShapeNodeEditPart {
 			getPrimaryShape().updateConstraintLabel();
 		}
 
+		// Manage Continuation constraint on covered lifeline :
+		// Continuations are always global in the enclosing InteractionFragment 
+		//(e.g., it always covers all Lifelines covered by the enclosing InteractionFragment)
+		if(UMLPackage.eINSTANCE.getInteractionFragment_Covered().equals(feature)){
+			// In case we are in an alternative combined fragment, this interaction operand may have continuation which need to be updated.
+			if(InteractionOperatorKind.ALT_LITERAL.equals(getInteractionOperator())){
+				InteractionOperand interactionOperand = (InteractionOperand)notification.getNotifier();
+				EList<Lifeline> currentlyCoveredLifeline = interactionOperand.getCovereds();
+				for(InteractionFragment interactionFragment : interactionOperand.getFragments()){
+					if(interactionFragment instanceof Continuation){
+						EList<Lifeline> continuationCoveredLifelines = interactionFragment.getCovereds();
+						if(!continuationCoveredLifelines.equals(currentlyCoveredLifeline)) {
+							// Add new covered lifelines (not already covered)
+							List<Lifeline> coveredLifelinesToAdd = new ArrayList<Lifeline>(currentlyCoveredLifeline);
+							coveredLifelinesToAdd.removeAll(continuationCoveredLifelines);
+							if(!coveredLifelinesToAdd.isEmpty()) {
+								CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), interactionFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToAdd));
+							}
+
+							// Delete old covered lifelines (not covered anymore)
+							List<Lifeline> coveredLifelinesToRemove = new ArrayList<Lifeline>(continuationCoveredLifelines);
+							coveredLifelinesToRemove.removeAll(currentlyCoveredLifeline);
+							if(!coveredLifelinesToRemove.isEmpty()) {
+								CommandHelper.executeCommandWithoutHistory(getEditingDomain(), RemoveCommand.create(getEditingDomain(), interactionFragment, UMLPackage.eINSTANCE.getInteractionFragment_Covered(), coveredLifelinesToRemove));
+							}
+						}
+					}
+				}
+			}
+		}
 		super.handleNotificationEvent(notification);
 	}
 

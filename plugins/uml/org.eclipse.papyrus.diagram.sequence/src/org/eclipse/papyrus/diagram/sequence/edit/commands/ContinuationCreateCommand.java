@@ -113,7 +113,8 @@ public class ContinuationCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * Generated not to handle the constraint on covered lifelines.
+	 * @generated NOT
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
@@ -124,6 +125,9 @@ public class ContinuationCreateCommand extends EditElementCommand {
 		InteractionOperand owner = (InteractionOperand)getElementToEdit();
 		owner.getFragments().add(newElement);
 
+		// Continuations are always global in the enclosing InteractionFragment 
+		//(e.g., it always covers all Lifelines covered by the enclosing InteractionFragment)
+		newElement.getCovereds().addAll(owner.getCovereds());
 
 		UMLElementTypes.init_Continuation_3016(newElement);
 
