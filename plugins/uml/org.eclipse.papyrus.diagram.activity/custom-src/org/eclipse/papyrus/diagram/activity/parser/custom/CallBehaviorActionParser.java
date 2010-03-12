@@ -29,10 +29,13 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * A specific parser for displaying the label of a CallBehaviorAction. This parser refreshes the text
- * displayed for the CallBehaviorAction.
+ * A specific parser for displaying the label of a CallBehaviorAction. This parser refreshes the
+ * text displayed for the CallBehaviorAction.
  */
 public class CallBehaviorActionParser extends MessageFormatParser implements ISemanticParser {
+
+	/** the format for CallBehaviorAction label */
+	private static final String CALLBEHAVIORACTION_LABEL_FORMAT = "%s : %s";
 
 	public CallBehaviorActionParser(EAttribute[] features, EAttribute[] editableFeatures) {
 		super(features, editableFeatures);
@@ -82,18 +85,19 @@ public class CallBehaviorActionParser extends MessageFormatParser implements ISe
 
 		if(obj instanceof CallBehaviorAction) {
 			CallBehaviorAction action = (CallBehaviorAction)obj;
-			String name = action.getName();
-			if(name == null) {
-				name = "";
+			String actionName = "";
+			if(action.getName() != null) {
+				actionName = action.getName();
 			}
-			if("".equals(name) && action.getBehavior() != null && action.getBehavior().getName() != null) {
-				// display behavior name if name is not available
-				name = action.getBehavior().getName();
+			String behaviorName = "";
+			if(action.getBehavior() != null && action.getBehavior().getName() != null) {
+				behaviorName = action.getBehavior().getName();
 			}
-			if("".equals(name)) {
-				return " ";
+			// display behavior name alone if name is not specified differently
+			if("".equals(actionName) || actionName.equals(behaviorName)) {
+				return behaviorName;
 			} else {
-				return name;
+				return String.format(CALLBEHAVIORACTION_LABEL_FORMAT, actionName, behaviorName);
 			}
 		}
 		return " ";

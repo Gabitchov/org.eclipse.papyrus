@@ -56,8 +56,8 @@ public class UmlActivityDiagramForMultiEditor extends UMLDiagramEditor {
 	private Composite splitter;
 
 	/**
-	 * Constructor for SashSystem v2. Context and required objects are retrieved
-	 * from the ServiceRegistry.
+	 * Constructor for SashSystem v2. Context and required objects are retrieved from the
+	 * ServiceRegistry.
 	 * 
 	 * @throws BackboneException
 	 * @throws ServiceException

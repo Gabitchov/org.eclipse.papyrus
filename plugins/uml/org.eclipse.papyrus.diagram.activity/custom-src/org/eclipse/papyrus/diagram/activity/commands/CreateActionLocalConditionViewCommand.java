@@ -45,7 +45,8 @@ import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.uml2.uml.Constraint;
 
 /**
- * This command creates an action's local condition, then the corresponding edit part and the link between the condition and the action.
+ * This command creates an action's local condition, then the corresponding edit part and the link
+ * between the condition and the action.
  */
 public class CreateActionLocalConditionViewCommand extends Command {
 
@@ -68,7 +69,8 @@ public class CreateActionLocalConditionViewCommand extends Command {
 	 * Constructor a new action to create the local condition and corresponding views.
 	 * 
 	 * @param conditionType
-	 *        the type of the local condition : precondition (Constraint_3011) or postcondition (Constraint_3012)
+	 *        the type of the local condition : precondition (Constraint_3011) or postcondition
+	 *        (Constraint_3012)
 	 * @param graphicalParent
 	 *        the parent edit part which graphically contains the condition
 	 * @param containerAction
@@ -89,7 +91,8 @@ public class CreateActionLocalConditionViewCommand extends Command {
 	 * @param containerAction
 	 *        the action which owns the local condition to create
 	 * @param conditionType
-	 *        the type of the local condition : precondition (Constraint_3011) or postcondition (Constraint_3012)
+	 *        the type of the local condition : precondition (Constraint_3011) or postcondition
+	 *        (Constraint_3012)
 	 * @return the command to create model element or null
 	 */
 	private static ICommandProxy getElementCreationCommand(EObject containerAction, IHintedType conditionType) {

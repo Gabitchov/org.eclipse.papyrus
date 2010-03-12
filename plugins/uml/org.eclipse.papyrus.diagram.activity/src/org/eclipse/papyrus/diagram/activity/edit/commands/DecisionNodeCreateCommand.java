@@ -75,6 +75,7 @@ public class DecisionNodeCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -90,7 +91,10 @@ public class DecisionNodeCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
+
 		return true;
+
+
 
 	}
 
@@ -99,10 +103,13 @@ public class DecisionNodeCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		DecisionNode newElement = UMLFactory.eINSTANCE.createDecisionNode();
 
 		Activity owner = (Activity)getElementToEdit();
 		owner.getNodes().add(newElement);
+
 
 		UMLElementTypes.init_DecisionNode_3038(newElement);
 

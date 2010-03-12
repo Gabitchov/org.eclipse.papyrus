@@ -56,6 +56,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated NOT
 	 */
+	public static String PinAndParameterSynchronizer_UndeleteablePinTitle;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String PinAndParameterSynchronizer_UndeleteablePinMessage;
+
+	/**
+	 * @generated NOT
+	 */
 	public static String PinAndParameterSynchronizer_UnauthorizedModificationTitle;
 
 	/**
@@ -72,6 +82,16 @@ public class Messages extends NLS {
 	 * @generated NOT
 	 */
 	public static String ConfirmPinAndParameterSync_FromParameterMsg;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String ConfirmActivityParameterAndParameterSync_Title;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String ConfirmActivityParameterAndParameterSync_FromParameterMsg;
 
 	/**
 	 * @generated NOT
@@ -102,6 +122,21 @@ public class Messages extends NLS {
 	 * @generated NOT
 	 */
 	public static String CreateCallActionDialog_CreateBehavior;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateCallActionDialog_SignalTitle;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateCallActionDialog_SelectSignal;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateCallActionDialog_CreateSignal;
 
 	/**
 	 * @generated NOT
@@ -137,6 +172,71 @@ public class Messages extends NLS {
 	 * @generated NOT
 	 */
 	public static String CreateCallActionDialog_BehaviorInvocationTitle;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateCallActionDialog_SignalInvocationTitle;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateActivityParameterNodeDialog_DialogTitle;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateActivityParameterNodeDialog_ParameterSelectionTitle;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateActivityParameterNodeDialog_ParameterSelectionLabel;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateActivityParameterNodeDialog_ParameterCreationTitle;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateActivityParameterNodeDialog_ParameterCreationLabel;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateActivityParameterNodeDialog_NameLabel;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateActivityParameterNodeDialog_TypeLabel;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateActivityParameterNodeDialog_DirectionLabel;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String DiagramsPreferencePage_disableNotification;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String DiagramsPreferencePage_notificationGroup_label;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String DiagramsPreferencePage_confirmPinSyncFromParameter_label;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String DiagramsPreferencePage_confirmActivityParameterNodeSyncFromParameter_label;
 
 	/**
 	 * @generated
@@ -456,6 +556,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String ActivityParameterNode8CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ActivityParameterNode8CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String OpaqueAction1CreationTool_title;
 
 	/**
@@ -482,6 +592,26 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String CallOperationAction3CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String SendObjectAction4CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String SendObjectAction4CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String SendSignalAction5CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String SendSignalAction5CreationTool_desc;
 
 	/**
 	 * @generated
@@ -942,6 +1072,156 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_JoinNode_3041_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_SendObjectAction_3042_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_SendObjectAction_3042_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ValuePin_3046_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ValuePin_3046_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ActionInputPin_3047_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ActionInputPin_3047_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_InputPin_3048_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_InputPin_3048_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ValuePin_3049_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ValuePin_3049_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ActionInputPin_3050_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ActionInputPin_3050_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_InputPin_3051_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_InputPin_3051_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_SendSignalAction_3052_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_SendSignalAction_3052_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ActionInputPin_3053_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ActionInputPin_3053_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ValuePin_3054_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ValuePin_3054_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_InputPin_3055_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_InputPin_3055_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ValuePin_3060_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ValuePin_3060_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ActionInputPin_3061_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ActionInputPin_3061_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_InputPin_3062_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_InputPin_3062_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ActivityParameterNode_3059_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ActivityParameterNode_3059_outgoinglinks;
 
 	/**
 	 * @generated

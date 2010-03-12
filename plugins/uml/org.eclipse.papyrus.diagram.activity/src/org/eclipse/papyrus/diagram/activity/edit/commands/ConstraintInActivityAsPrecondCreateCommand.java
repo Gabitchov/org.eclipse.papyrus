@@ -76,6 +76,7 @@ public class ConstraintInActivityAsPrecondCreateCommand extends EditElementComma
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -91,7 +92,10 @@ public class ConstraintInActivityAsPrecondCreateCommand extends EditElementComma
 	 */
 	public boolean canExecute() {
 
+
 		return true;
+
+
 
 	}
 
@@ -100,12 +104,15 @@ public class ConstraintInActivityAsPrecondCreateCommand extends EditElementComma
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		Constraint newElement = UMLFactory.eINSTANCE.createConstraint();
 
 		Namespace owner = (Namespace)getElementToEdit();
 		owner.getOwnedRules().add(newElement);
 		Behavior childHolder = (Behavior)getElementToEdit();
 		childHolder.getPreconditions().add(newElement);
+
 
 		UMLElementTypes.init_Constraint_3002(newElement);
 

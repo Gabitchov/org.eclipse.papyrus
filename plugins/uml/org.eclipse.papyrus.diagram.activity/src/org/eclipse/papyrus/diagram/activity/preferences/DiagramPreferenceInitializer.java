@@ -30,49 +30,84 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		InteractionConstraintPreferencePage.initDefaults(store);
 
-		OpaqueActionPreferencePage.initDefaults(store);
 
-		InitialNodePreferencePage.initDefaults(store);
+		SendObjectActionPreferencePage.initDefaults(store);
 
-		DurationConstraintPreferencePage.initDefaults(store);
+
+		SendSignalActionPreferencePage.initDefaults(store);
+
 
 		CallBehaviorActionPreferencePage.initDefaults(store);
 
-		OutputPinPreferencePage.initDefaults(store);
 
 		FlowFinalNodePreferencePage.initDefaults(store);
 
-		MergeNodePreferencePage.initDefaults(store);
 
 		DecisionNodePreferencePage.initDefaults(store);
 
-		ConstraintPreferencePage.initDefaults(store);
 
 		ActivityFinalNodePreferencePage.initDefaults(store);
 
+
 		ActivityPreferencePage.initDefaults(store);
+
 
 		ForkNodePreferencePage.initDefaults(store);
 
-		InputPinPreferencePage.initDefaults(store);
 
 		ValuePinPreferencePage.initDefaults(store);
 
+
 		CallOperationActionPreferencePage.initDefaults(store);
+
 
 		ActionInputPinPreferencePage.initDefaults(store);
 
-		TimeConstraintPreferencePage.initDefaults(store);
-
-		JoinNodePreferencePage.initDefaults(store);
 
 		IntervalConstraintPreferencePage.initDefaults(store);
 
+
+		OpaqueActionPreferencePage.initDefaults(store);
+
+
+		InitialNodePreferencePage.initDefaults(store);
+
+
+		DurationConstraintPreferencePage.initDefaults(store);
+
+
+		OutputPinPreferencePage.initDefaults(store);
+
+
+		MergeNodePreferencePage.initDefaults(store);
+
+
+		ConstraintPreferencePage.initDefaults(store);
+
+
+		InputPinPreferencePage.initDefaults(store);
+
+
+		ActivityParameterNodePreferencePage.initDefaults(store);
+
+
+		TimeConstraintPreferencePage.initDefaults(store);
+
+
+		JoinNodePreferencePage.initDefaults(store);
+
+
 		ParameterPreferencePage.initDefaults(store);
+
+
+
 
 		ObjectFlowPreferencePage.initDefaults(store);
 
+
+
 		ControlFlowPreferencePage.initDefaults(store);
+
 
 	}
 

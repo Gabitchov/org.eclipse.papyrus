@@ -711,6 +711,9 @@ public class ControlFlowGuardEditPart extends LabelEditPart implements ITextAwar
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 

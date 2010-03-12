@@ -31,11 +31,16 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallBeAct
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallOpActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInOpaqueActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInSendObjActAsReqEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInSendObjActAsTargetEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInSendSigActAsTargetEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInSendSigActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPostconditionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPreconditionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityDiagramEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityParameterNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
@@ -53,6 +58,10 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallBeActEditPa
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInOpaqueActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendObjActAsReqEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendObjActAsTargetEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendSigActAsTargetEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendSigActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
@@ -65,12 +74,18 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallBeActEditP
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOpaqueActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ParameterEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallOpActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInOpaqueActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendObjActAsReqEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendObjActAsTargetEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActAsTargetEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -264,6 +279,81 @@ public class UMLElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public static final IElementType SendObjectAction_3042 = getElementType("org.eclipse.papyrus.diagram.activity.SendObjectAction_3042"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ValuePin_3046 = getElementType("org.eclipse.papyrus.diagram.activity.ValuePin_3046"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActionInputPin_3047 = getElementType("org.eclipse.papyrus.diagram.activity.ActionInputPin_3047"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InputPin_3048 = getElementType("org.eclipse.papyrus.diagram.activity.InputPin_3048"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ValuePin_3049 = getElementType("org.eclipse.papyrus.diagram.activity.ValuePin_3049"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActionInputPin_3050 = getElementType("org.eclipse.papyrus.diagram.activity.ActionInputPin_3050"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InputPin_3051 = getElementType("org.eclipse.papyrus.diagram.activity.InputPin_3051"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType SendSignalAction_3052 = getElementType("org.eclipse.papyrus.diagram.activity.SendSignalAction_3052"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActionInputPin_3053 = getElementType("org.eclipse.papyrus.diagram.activity.ActionInputPin_3053"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ValuePin_3054 = getElementType("org.eclipse.papyrus.diagram.activity.ValuePin_3054"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InputPin_3055 = getElementType("org.eclipse.papyrus.diagram.activity.InputPin_3055"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ValuePin_3060 = getElementType("org.eclipse.papyrus.diagram.activity.ValuePin_3060"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActionInputPin_3061 = getElementType("org.eclipse.papyrus.diagram.activity.ActionInputPin_3061"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InputPin_3062 = getElementType("org.eclipse.papyrus.diagram.activity.InputPin_3062"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActivityParameterNode_3059 = getElementType("org.eclipse.papyrus.diagram.activity.ActivityParameterNode_3059"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType InteractionConstraint_3030 = getElementType("org.eclipse.papyrus.diagram.activity.InteractionConstraint_3030"); //$NON-NLS-1$
 
 	/**
@@ -429,89 +519,175 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(Package_1000, UMLPackage.eINSTANCE.getPackage());
 
+
 			elements.put(Activity_2001, UMLPackage.eINSTANCE.getActivity());
+
 
 			elements.put(Parameter_3001, UMLPackage.eINSTANCE.getParameter());
 
+
 			elements.put(Constraint_3002, UMLPackage.eINSTANCE.getConstraint());
+
 
 			elements.put(Constraint_3003, UMLPackage.eINSTANCE.getConstraint());
 
+
 			elements.put(InitialNode_3004, UMLPackage.eINSTANCE.getInitialNode());
+
 
 			elements.put(ActivityFinalNode_3005, UMLPackage.eINSTANCE.getActivityFinalNode());
 
+
 			elements.put(FlowFinalNode_3006, UMLPackage.eINSTANCE.getFlowFinalNode());
+
 
 			elements.put(OpaqueAction_3007, UMLPackage.eINSTANCE.getOpaqueAction());
 
+
 			elements.put(ValuePin_3015, UMLPackage.eINSTANCE.getValuePin());
+
 
 			elements.put(ActionInputPin_3016, UMLPackage.eINSTANCE.getActionInputPin());
 
+
 			elements.put(InputPin_3013, UMLPackage.eINSTANCE.getInputPin());
+
 
 			elements.put(OutputPin_3014, UMLPackage.eINSTANCE.getOutputPin());
 
+
 			elements.put(CallBehaviorAction_3008, UMLPackage.eINSTANCE.getCallBehaviorAction());
+
 
 			elements.put(ValuePin_3017, UMLPackage.eINSTANCE.getValuePin());
 
+
 			elements.put(ActionInputPin_3018, UMLPackage.eINSTANCE.getActionInputPin());
+
 
 			elements.put(InputPin_3019, UMLPackage.eINSTANCE.getInputPin());
 
+
 			elements.put(OutputPin_3020, UMLPackage.eINSTANCE.getOutputPin());
+
 
 			elements.put(CallOperationAction_3010, UMLPackage.eINSTANCE.getCallOperationAction());
 
+
 			elements.put(ActionInputPin_3021, UMLPackage.eINSTANCE.getActionInputPin());
+
 
 			elements.put(ValuePin_3022, UMLPackage.eINSTANCE.getValuePin());
 
+
 			elements.put(InputPin_3023, UMLPackage.eINSTANCE.getInputPin());
+
 
 			elements.put(OutputPin_3024, UMLPackage.eINSTANCE.getOutputPin());
 
+
 			elements.put(ValuePin_3025, UMLPackage.eINSTANCE.getValuePin());
+
 
 			elements.put(ActionInputPin_3026, UMLPackage.eINSTANCE.getActionInputPin());
 
+
 			elements.put(InputPin_3027, UMLPackage.eINSTANCE.getInputPin());
+
 
 			elements.put(DurationConstraint_3034, UMLPackage.eINSTANCE.getDurationConstraint());
 
+
 			elements.put(DurationConstraint_3035, UMLPackage.eINSTANCE.getDurationConstraint());
+
 
 			elements.put(TimeConstraint_3036, UMLPackage.eINSTANCE.getTimeConstraint());
 
+
 			elements.put(TimeConstraint_3037, UMLPackage.eINSTANCE.getTimeConstraint());
+
 
 			elements.put(InteractionConstraint_3030, UMLPackage.eINSTANCE.getInteractionConstraint());
 
+
 			elements.put(InteractionConstraint_3031, UMLPackage.eINSTANCE.getInteractionConstraint());
+
 
 			elements.put(IntervalConstraint_3032, UMLPackage.eINSTANCE.getIntervalConstraint());
 
+
 			elements.put(IntervalConstraint_3033, UMLPackage.eINSTANCE.getIntervalConstraint());
+
 
 			elements.put(Constraint_3011, UMLPackage.eINSTANCE.getConstraint());
 
+
 			elements.put(Constraint_3012, UMLPackage.eINSTANCE.getConstraint());
+
 
 			elements.put(DecisionNode_3038, UMLPackage.eINSTANCE.getDecisionNode());
 
+
 			elements.put(MergeNode_3039, UMLPackage.eINSTANCE.getMergeNode());
+
 
 			elements.put(ForkNode_3040, UMLPackage.eINSTANCE.getForkNode());
 
+
 			elements.put(JoinNode_3041, UMLPackage.eINSTANCE.getJoinNode());
+
+
+			elements.put(SendObjectAction_3042, UMLPackage.eINSTANCE.getSendObjectAction());
+
+
+			elements.put(ValuePin_3046, UMLPackage.eINSTANCE.getValuePin());
+
+
+			elements.put(ActionInputPin_3047, UMLPackage.eINSTANCE.getActionInputPin());
+
+
+			elements.put(InputPin_3048, UMLPackage.eINSTANCE.getInputPin());
+
+
+			elements.put(ValuePin_3049, UMLPackage.eINSTANCE.getValuePin());
+
+
+			elements.put(ActionInputPin_3050, UMLPackage.eINSTANCE.getActionInputPin());
+
+
+			elements.put(InputPin_3051, UMLPackage.eINSTANCE.getInputPin());
+
+
+			elements.put(SendSignalAction_3052, UMLPackage.eINSTANCE.getSendSignalAction());
+
+
+			elements.put(ActionInputPin_3053, UMLPackage.eINSTANCE.getActionInputPin());
+
+
+			elements.put(ValuePin_3054, UMLPackage.eINSTANCE.getValuePin());
+
+
+			elements.put(InputPin_3055, UMLPackage.eINSTANCE.getInputPin());
+
+
+			elements.put(ValuePin_3060, UMLPackage.eINSTANCE.getValuePin());
+
+
+			elements.put(ActionInputPin_3061, UMLPackage.eINSTANCE.getActionInputPin());
+
+
+			elements.put(InputPin_3062, UMLPackage.eINSTANCE.getInputPin());
+
+
+			elements.put(ActivityParameterNode_3059, UMLPackage.eINSTANCE.getActivityParameterNode());
 
 			elements.put(ActionLocalPrecondition_4001, UMLPackage.eINSTANCE.getAction_LocalPrecondition());
 
 			elements.put(ActionLocalPostcondition_4002, UMLPackage.eINSTANCE.getAction_LocalPostcondition());
 
+
 			elements.put(ObjectFlow_4003, UMLPackage.eINSTANCE.getObjectFlow());
+
 
 			elements.put(ControlFlow_4004, UMLPackage.eINSTANCE.getControlFlow());
 		}
@@ -571,6 +747,21 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(MergeNode_3039);
 			KNOWN_ELEMENT_TYPES.add(ForkNode_3040);
 			KNOWN_ELEMENT_TYPES.add(JoinNode_3041);
+			KNOWN_ELEMENT_TYPES.add(SendObjectAction_3042);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_3046);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3047);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3048);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_3049);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3050);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3051);
+			KNOWN_ELEMENT_TYPES.add(SendSignalAction_3052);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3053);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_3054);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3055);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_3060);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3061);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3062);
+			KNOWN_ELEMENT_TYPES.add(ActivityParameterNode_3059);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPrecondition_4001);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPostcondition_4002);
 			KNOWN_ELEMENT_TYPES.add(ObjectFlow_4003);
@@ -664,6 +855,36 @@ public class UMLElementTypes extends ElementInitializers {
 			return ForkNode_3040;
 		case JoinNodeEditPart.VISUAL_ID:
 			return JoinNode_3041;
+		case SendObjectActionEditPart.VISUAL_ID:
+			return SendObjectAction_3042;
+		case ValuePinInSendObjActAsReqEditPart.VISUAL_ID:
+			return ValuePin_3046;
+		case ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID:
+			return ActionInputPin_3047;
+		case InputPinInSendObjActAsReqEditPart.VISUAL_ID:
+			return InputPin_3048;
+		case ValuePinInSendObjActAsTargetEditPart.VISUAL_ID:
+			return ValuePin_3049;
+		case ActionInputPinInSendObjActAsTargetEditPart.VISUAL_ID:
+			return ActionInputPin_3050;
+		case InputPinInSendObjActAsTargetEditPart.VISUAL_ID:
+			return InputPin_3051;
+		case SendSignalActionEditPart.VISUAL_ID:
+			return SendSignalAction_3052;
+		case ActionInputPinInSendSigActEditPart.VISUAL_ID:
+			return ActionInputPin_3053;
+		case ValuePinInSendSigActEditPart.VISUAL_ID:
+			return ValuePin_3054;
+		case InputPinInSendSigActEditPart.VISUAL_ID:
+			return InputPin_3055;
+		case ValuePinInSendSigActAsTargetEditPart.VISUAL_ID:
+			return ValuePin_3060;
+		case ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID:
+			return ActionInputPin_3061;
+		case InputPinInSendSigActAsTargetEditPart.VISUAL_ID:
+			return InputPin_3062;
+		case ActivityParameterNodeEditPart.VISUAL_ID:
+			return ActivityParameterNode_3059;
 		case ActionLocalPreconditionEditPart.VISUAL_ID:
 			return ActionLocalPrecondition_4001;
 		case ActionLocalPostconditionEditPart.VISUAL_ID:

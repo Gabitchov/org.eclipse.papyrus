@@ -33,10 +33,19 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCOActLabe
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCOActValueEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInOActLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInOActValueEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInSendObjActAsReqLabelEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInSendObjActAsReqValueEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInSendObjActAsTargetLabelEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInSendObjActAsTargetValueEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInSendSigActAsTargetLabelEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInSendSigActAsTargetValueEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInSendSigActLabelEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInSendSigActValueEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityIsSingleExecutionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionNameEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.CenteredWrappedLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPostcondEditPart;
@@ -52,6 +61,10 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCBActLabelEditP
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCOActAsTargetLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCOActLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInOActLabelEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendObjActAsReqLabelEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendObjActAsTargetLabelEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendSigActAsTargetLabelEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendSigActLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPostcondNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPrecondNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondNameEditPart;
@@ -67,6 +80,8 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCBActLabelEdit
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCOActLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOActLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ParameterEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionNameEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondNameEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCBActLabelEditPart;
@@ -77,7 +92,16 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCOActLabelEditP
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCOActValueEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInOActLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInOActValueEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendObjActAsReqLabelEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendObjActAsReqValueEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendObjActAsTargetLabelEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendObjActAsTargetValueEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActAsTargetLabelEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActAsTargetValueEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActLabelEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActValueEditPart;
 import org.eclipse.papyrus.diagram.activity.parser.custom.ActivityEdgeWeightParser;
+import org.eclipse.papyrus.diagram.activity.parser.custom.ActivityParameterNodeParser;
 import org.eclipse.papyrus.diagram.activity.parser.custom.ActivitySingleExecutionParser;
 import org.eclipse.papyrus.diagram.activity.parser.custom.CallBehaviorActionParser;
 import org.eclipse.papyrus.diagram.activity.parser.custom.CallOperationActionParser;
@@ -651,6 +675,355 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser sendObjectActionName_5059Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getSendObjectActionName_5059Parser() {
+		if(sendObjectActionName_5059Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			sendObjectActionName_5059Parser = parser;
+		}
+		return sendObjectActionName_5059Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinParser valuePinLabel_5049Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getValuePinLabel_5049Parser() {
+		if(valuePinLabel_5049Parser == null) {
+			valuePinLabel_5049Parser = new PinParser();
+		}
+		return valuePinLabel_5049Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinValueParser valuePinLabel_5050Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getValuePinLabel_5050Parser() {
+		if(valuePinLabel_5050Parser == null) {
+			valuePinLabel_5050Parser = new PinValueParser();
+		}
+		return valuePinLabel_5050Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinParser actionInputPinLabel_5051Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getActionInputPinLabel_5051Parser() {
+		if(actionInputPinLabel_5051Parser == null) {
+			actionInputPinLabel_5051Parser = new PinParser();
+		}
+		return actionInputPinLabel_5051Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinValueParser actionInputPinLabel_5052Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getActionInputPinLabel_5052Parser() {
+		if(actionInputPinLabel_5052Parser == null) {
+			actionInputPinLabel_5052Parser = new PinValueParser();
+		}
+		return actionInputPinLabel_5052Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinParser inputPinLabel_5053Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInputPinLabel_5053Parser() {
+		if(inputPinLabel_5053Parser == null) {
+			inputPinLabel_5053Parser = new PinParser();
+		}
+		return inputPinLabel_5053Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinParser valuePinLabel_5054Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getValuePinLabel_5054Parser() {
+		if(valuePinLabel_5054Parser == null) {
+			valuePinLabel_5054Parser = new PinParser();
+		}
+		return valuePinLabel_5054Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinValueParser valuePinLabel_5055Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getValuePinLabel_5055Parser() {
+		if(valuePinLabel_5055Parser == null) {
+			valuePinLabel_5055Parser = new PinValueParser();
+		}
+		return valuePinLabel_5055Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinParser actionInputPinLabel_5056Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getActionInputPinLabel_5056Parser() {
+		if(actionInputPinLabel_5056Parser == null) {
+			actionInputPinLabel_5056Parser = new PinParser();
+		}
+		return actionInputPinLabel_5056Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinValueParser actionInputPinLabel_5057Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getActionInputPinLabel_5057Parser() {
+		if(actionInputPinLabel_5057Parser == null) {
+			actionInputPinLabel_5057Parser = new PinValueParser();
+		}
+		return actionInputPinLabel_5057Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinParser inputPinLabel_5058Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInputPinLabel_5058Parser() {
+		if(inputPinLabel_5058Parser == null) {
+			inputPinLabel_5058Parser = new PinParser();
+		}
+		return inputPinLabel_5058Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser sendSignalActionName_5060Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getSendSignalActionName_5060Parser() {
+		if(sendSignalActionName_5060Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			sendSignalActionName_5060Parser = parser;
+		}
+		return sendSignalActionName_5060Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinParser actionInputPinLabel_5061Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getActionInputPinLabel_5061Parser() {
+		if(actionInputPinLabel_5061Parser == null) {
+			actionInputPinLabel_5061Parser = new PinParser();
+		}
+		return actionInputPinLabel_5061Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinValueParser actionInputPinLabel_5062Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getActionInputPinLabel_5062Parser() {
+		if(actionInputPinLabel_5062Parser == null) {
+			actionInputPinLabel_5062Parser = new PinValueParser();
+		}
+		return actionInputPinLabel_5062Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinParser valuePinLabel_5063Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getValuePinLabel_5063Parser() {
+		if(valuePinLabel_5063Parser == null) {
+			valuePinLabel_5063Parser = new PinParser();
+		}
+		return valuePinLabel_5063Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinValueParser valuePinLabel_5064Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getValuePinLabel_5064Parser() {
+		if(valuePinLabel_5064Parser == null) {
+			valuePinLabel_5064Parser = new PinValueParser();
+		}
+		return valuePinLabel_5064Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinParser inputPinLabel_5065Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInputPinLabel_5065Parser() {
+		if(inputPinLabel_5065Parser == null) {
+			inputPinLabel_5065Parser = new PinParser();
+		}
+		return inputPinLabel_5065Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinParser valuePinLabel_5072Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getValuePinLabel_5072Parser() {
+		if(valuePinLabel_5072Parser == null) {
+			valuePinLabel_5072Parser = new PinParser();
+		}
+		return valuePinLabel_5072Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinValueParser valuePinLabel_5073Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getValuePinLabel_5073Parser() {
+		if(valuePinLabel_5073Parser == null) {
+			valuePinLabel_5073Parser = new PinValueParser();
+		}
+		return valuePinLabel_5073Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinParser actionInputPinLabel_5074Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getActionInputPinLabel_5074Parser() {
+		if(actionInputPinLabel_5074Parser == null) {
+			actionInputPinLabel_5074Parser = new PinParser();
+		}
+		return actionInputPinLabel_5074Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinValueParser actionInputPinLabel_5075Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getActionInputPinLabel_5075Parser() {
+		if(actionInputPinLabel_5075Parser == null) {
+			actionInputPinLabel_5075Parser = new PinValueParser();
+		}
+		return actionInputPinLabel_5075Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinParser inputPinLabel_5076Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInputPinLabel_5076Parser() {
+		if(inputPinLabel_5076Parser == null) {
+			inputPinLabel_5076Parser = new PinParser();
+		}
+		return inputPinLabel_5076Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ActivityParameterNodeParser activityParameterNodeLabel_5071Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getActivityParameterNodeLabel_5071Parser() {
+		if(activityParameterNodeLabel_5071Parser == null) {
+			activityParameterNodeLabel_5071Parser = new ActivityParameterNodeParser();
+		}
+		return activityParameterNodeLabel_5071Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser interactionConstraintName_5034Parser;
 
 	/**
@@ -1038,6 +1411,52 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getDecisionNodeLabel_5043Parser();
 		case JoinSpecEditPart.VISUAL_ID:
 			return getJoinNodeLabel_5042Parser();
+		case SendObjectActionNameEditPart.VISUAL_ID:
+			return getSendObjectActionName_5059Parser();
+		case ValuePinInSendObjActAsReqLabelEditPart.VISUAL_ID:
+			return getValuePinLabel_5049Parser();
+		case ValuePinInSendObjActAsReqValueEditPart.VISUAL_ID:
+			return getValuePinLabel_5050Parser();
+		case ActionInputPinInSendObjActAsReqLabelEditPart.VISUAL_ID:
+			return getActionInputPinLabel_5051Parser();
+		case ActionInputPinInSendObjActAsReqValueEditPart.VISUAL_ID:
+			return getActionInputPinLabel_5052Parser();
+		case InputPinInSendObjActAsReqLabelEditPart.VISUAL_ID:
+			return getInputPinLabel_5053Parser();
+		case ValuePinInSendObjActAsTargetLabelEditPart.VISUAL_ID:
+			return getValuePinLabel_5054Parser();
+		case ValuePinInSendObjActAsTargetValueEditPart.VISUAL_ID:
+			return getValuePinLabel_5055Parser();
+		case ActionInputPinInSendObjActAsTargetLabelEditPart.VISUAL_ID:
+			return getActionInputPinLabel_5056Parser();
+		case ActionInputPinInSendObjActAsTargetValueEditPart.VISUAL_ID:
+			return getActionInputPinLabel_5057Parser();
+		case InputPinInSendObjActAsTargetLabelEditPart.VISUAL_ID:
+			return getInputPinLabel_5058Parser();
+		case SendSignalActionNameEditPart.VISUAL_ID:
+			return getSendSignalActionName_5060Parser();
+		case ActionInputPinInSendSigActLabelEditPart.VISUAL_ID:
+			return getActionInputPinLabel_5061Parser();
+		case ActionInputPinInSendSigActValueEditPart.VISUAL_ID:
+			return getActionInputPinLabel_5062Parser();
+		case ValuePinInSendSigActLabelEditPart.VISUAL_ID:
+			return getValuePinLabel_5063Parser();
+		case ValuePinInSendSigActValueEditPart.VISUAL_ID:
+			return getValuePinLabel_5064Parser();
+		case InputPinInSendSigActLabelEditPart.VISUAL_ID:
+			return getInputPinLabel_5065Parser();
+		case ValuePinInSendSigActAsTargetLabelEditPart.VISUAL_ID:
+			return getValuePinLabel_5072Parser();
+		case ValuePinInSendSigActAsTargetValueEditPart.VISUAL_ID:
+			return getValuePinLabel_5073Parser();
+		case ActionInputPinInSendSigActAsTargetLabelEditPart.VISUAL_ID:
+			return getActionInputPinLabel_5074Parser();
+		case ActionInputPinInSendSigActAsTargetValueEditPart.VISUAL_ID:
+			return getActionInputPinLabel_5075Parser();
+		case InputPinInSendSigActAsTargetLabelEditPart.VISUAL_ID:
+			return getInputPinLabel_5076Parser();
+		case CenteredWrappedLabelEditPart.VISUAL_ID:
+			return getActivityParameterNodeLabel_5071Parser();
 		case ObjectFlowNameEditPart.VISUAL_ID:
 			return getObjectFlowName_6001Parser();
 		case ObjectFlowWeightEditPart.VISUAL_ID:

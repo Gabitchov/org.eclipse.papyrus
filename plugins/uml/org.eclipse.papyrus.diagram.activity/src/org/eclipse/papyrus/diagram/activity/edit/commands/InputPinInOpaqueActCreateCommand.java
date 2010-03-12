@@ -75,6 +75,7 @@ public class InputPinInOpaqueActCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -90,7 +91,10 @@ public class InputPinInOpaqueActCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
+
 		return true;
+
+
 
 	}
 
@@ -99,10 +103,13 @@ public class InputPinInOpaqueActCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		InputPin newElement = UMLFactory.eINSTANCE.createInputPin();
 
 		OpaqueAction owner = (OpaqueAction)getElementToEdit();
 		owner.getInputValues().add(newElement);
+
 
 		UMLElementTypes.init_InputPin_3013(newElement);
 

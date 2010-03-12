@@ -725,6 +725,7 @@ public class DurationConstraintAsLocalPostcondNameEditPart extends CompartmentEd
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 

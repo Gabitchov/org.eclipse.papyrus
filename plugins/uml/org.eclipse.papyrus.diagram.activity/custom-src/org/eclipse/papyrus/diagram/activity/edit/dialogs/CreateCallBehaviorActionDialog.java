@@ -26,6 +26,8 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.BehavioredClassifier;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -107,6 +109,16 @@ public class CreateCallBehaviorActionDialog extends CreateCallActionDialog {
 		Set<EObject> result = new HashSet<EObject>(packages);
 		result.addAll(behavioredClassifiers);
 		return result;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.diagram.activity.edit.dialogs.CreateInvocationActionDialog#isPossibleInvokedParent(org.eclipse.emf.ecore.EObject)
+	 */
+	@Override
+	protected boolean isPossibleInvokedParent(EObject parent) {
+		return parent instanceof Package || parent instanceof BehavioredClassifier;
 	}
 
 	/**

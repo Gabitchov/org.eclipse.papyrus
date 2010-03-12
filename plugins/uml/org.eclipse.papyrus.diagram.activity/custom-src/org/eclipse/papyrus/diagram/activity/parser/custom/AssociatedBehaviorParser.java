@@ -32,8 +32,8 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * A specific parser for displaying a behavior which is associated to an element. This parser refreshes the text
- * displayed for the behavior.
+ * A specific parser for displaying a behavior which is associated to an element. This parser
+ * refreshes the text displayed for the behavior.
  */
 public abstract class AssociatedBehaviorParser extends MessageFormatParser implements ISemanticParser {
 
@@ -116,7 +116,8 @@ public abstract class AssociatedBehaviorParser extends MessageFormatParser imple
 	}
 
 	/**
-	 * Get the string format for formatting the text value. This String must contain a single "%s" occurrence where to place the value.
+	 * Get the string format for formatting the text value. This String must contain a single "%s"
+	 * occurrence where to place the value.
 	 * 
 	 * @return the format string
 	 */
@@ -179,8 +180,8 @@ public abstract class AssociatedBehaviorParser extends MessageFormatParser imple
 	}
 
 	/**
-	 * Get the feature by which the property behavior is linked.
-	 * This method must be implemented by subclasses and the returned feature must reference a Behavior.
+	 * Get the feature by which the property behavior is linked. This method must be implemented by
+	 * subclasses and the returned feature must reference a Behavior.
 	 * 
 	 * @return reference feature
 	 */

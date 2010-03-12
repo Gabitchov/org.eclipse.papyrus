@@ -15,6 +15,7 @@ package org.eclipse.papyrus.diagram.activity.edit.policies;
 
 import java.util.Iterator;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -53,6 +54,7 @@ import org.eclipse.uml2.uml.Action;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.ActivityNode;
+import org.eclipse.uml2.uml.ActivityParameterNode;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.DecisionNode;
 import org.eclipse.uml2.uml.FinalNode;
@@ -289,7 +291,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
 
+
 		return getGEFWrapper(new MoveElementsCommand(req));
+
 
 	}
 
@@ -501,6 +505,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 						return false;
 					}
 				}
+				if(source instanceof ActivityParameterNode) {
+					// rule validateActivityParameterNode_validateIncomingOrOutgoing
+					EList<ActivityEdge> incomings = source.getIncomings();
+					if(!incomings.isEmpty()) {
+						return false;
+					}
+				}
+
 				if(target instanceof Action) {
 					// rule validateObjectFlow_validateNoActions
 					// rule workaround by addition of pins in case of Opaque Action
@@ -575,6 +587,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 						}
 					}
 				}
+				if(target instanceof ActivityParameterNode) {
+					// rule validateActivityParameterNode_validateIncomingOrOutgoing
+					EList<ActivityEdge> outgoings = target.getOutgoings();
+					if(!outgoings.isEmpty()) {
+						return false;
+					}
+				}
+
 				return true;
 			} catch (Exception e) {
 				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$

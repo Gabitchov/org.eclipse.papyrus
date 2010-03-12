@@ -282,6 +282,120 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case JoinSpecEditPart.VISUAL_ID:
 				return new JoinSpecEditPart(view);
 
+			case SendObjectActionEditPart.VISUAL_ID:
+				return new SendObjectActionEditPart(view);
+
+			case SendObjectActionNameEditPart.VISUAL_ID:
+				return new SendObjectActionNameEditPart(view);
+
+			case ValuePinInSendObjActAsReqEditPart.VISUAL_ID:
+				return new ValuePinInSendObjActAsReqEditPart(view);
+
+			case ValuePinInSendObjActAsReqLabelEditPart.VISUAL_ID:
+				return new ValuePinInSendObjActAsReqLabelEditPart(view);
+
+			case ValuePinInSendObjActAsReqValueEditPart.VISUAL_ID:
+				return new ValuePinInSendObjActAsReqValueEditPart(view);
+
+			case ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID:
+				return new ActionInputPinInSendObjActAsReqEditPart(view);
+
+			case ActionInputPinInSendObjActAsReqLabelEditPart.VISUAL_ID:
+				return new ActionInputPinInSendObjActAsReqLabelEditPart(view);
+
+			case ActionInputPinInSendObjActAsReqValueEditPart.VISUAL_ID:
+				return new ActionInputPinInSendObjActAsReqValueEditPart(view);
+
+			case InputPinInSendObjActAsReqEditPart.VISUAL_ID:
+				return new InputPinInSendObjActAsReqEditPart(view);
+
+			case InputPinInSendObjActAsReqLabelEditPart.VISUAL_ID:
+				return new InputPinInSendObjActAsReqLabelEditPart(view);
+
+			case ValuePinInSendObjActAsTargetEditPart.VISUAL_ID:
+				return new ValuePinInSendObjActAsTargetEditPart(view);
+
+			case ValuePinInSendObjActAsTargetLabelEditPart.VISUAL_ID:
+				return new ValuePinInSendObjActAsTargetLabelEditPart(view);
+
+			case ValuePinInSendObjActAsTargetValueEditPart.VISUAL_ID:
+				return new ValuePinInSendObjActAsTargetValueEditPart(view);
+
+			case ActionInputPinInSendObjActAsTargetEditPart.VISUAL_ID:
+				return new ActionInputPinInSendObjActAsTargetEditPart(view);
+
+			case ActionInputPinInSendObjActAsTargetLabelEditPart.VISUAL_ID:
+				return new ActionInputPinInSendObjActAsTargetLabelEditPart(view);
+
+			case ActionInputPinInSendObjActAsTargetValueEditPart.VISUAL_ID:
+				return new ActionInputPinInSendObjActAsTargetValueEditPart(view);
+
+			case InputPinInSendObjActAsTargetEditPart.VISUAL_ID:
+				return new InputPinInSendObjActAsTargetEditPart(view);
+
+			case InputPinInSendObjActAsTargetLabelEditPart.VISUAL_ID:
+				return new InputPinInSendObjActAsTargetLabelEditPart(view);
+
+			case SendSignalActionEditPart.VISUAL_ID:
+				return new SendSignalActionEditPart(view);
+
+			case SendSignalActionNameEditPart.VISUAL_ID:
+				return new SendSignalActionNameEditPart(view);
+
+			case ActionInputPinInSendSigActEditPart.VISUAL_ID:
+				return new ActionInputPinInSendSigActEditPart(view);
+
+			case ActionInputPinInSendSigActLabelEditPart.VISUAL_ID:
+				return new ActionInputPinInSendSigActLabelEditPart(view);
+
+			case ActionInputPinInSendSigActValueEditPart.VISUAL_ID:
+				return new ActionInputPinInSendSigActValueEditPart(view);
+
+			case ValuePinInSendSigActEditPart.VISUAL_ID:
+				return new ValuePinInSendSigActEditPart(view);
+
+			case ValuePinInSendSigActLabelEditPart.VISUAL_ID:
+				return new ValuePinInSendSigActLabelEditPart(view);
+
+			case ValuePinInSendSigActValueEditPart.VISUAL_ID:
+				return new ValuePinInSendSigActValueEditPart(view);
+
+			case InputPinInSendSigActEditPart.VISUAL_ID:
+				return new InputPinInSendSigActEditPart(view);
+
+			case InputPinInSendSigActLabelEditPart.VISUAL_ID:
+				return new InputPinInSendSigActLabelEditPart(view);
+
+			case ValuePinInSendSigActAsTargetEditPart.VISUAL_ID:
+				return new ValuePinInSendSigActAsTargetEditPart(view);
+
+			case ValuePinInSendSigActAsTargetLabelEditPart.VISUAL_ID:
+				return new ValuePinInSendSigActAsTargetLabelEditPart(view);
+
+			case ValuePinInSendSigActAsTargetValueEditPart.VISUAL_ID:
+				return new ValuePinInSendSigActAsTargetValueEditPart(view);
+
+			case ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID:
+				return new ActionInputPinInSendSigActAsTargetEditPart(view);
+
+			case ActionInputPinInSendSigActAsTargetLabelEditPart.VISUAL_ID:
+				return new ActionInputPinInSendSigActAsTargetLabelEditPart(view);
+
+			case ActionInputPinInSendSigActAsTargetValueEditPart.VISUAL_ID:
+				return new ActionInputPinInSendSigActAsTargetValueEditPart(view);
+
+			case InputPinInSendSigActAsTargetEditPart.VISUAL_ID:
+				return new InputPinInSendSigActAsTargetEditPart(view);
+
+			case InputPinInSendSigActAsTargetLabelEditPart.VISUAL_ID:
+				return new InputPinInSendSigActAsTargetLabelEditPart(view);
+
+			case ActivityParameterNodeEditPart.VISUAL_ID:
+				return new ActivityParameterNodeEditPart(view);
+
+			case CenteredWrappedLabelEditPart.VISUAL_ID:
+				return new CenteredWrappedLabelEditPart(view);
+
 			case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 				return new ActivityActivityParametersCompartmentEditPart(view);
 
@@ -297,8 +411,10 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ActionLocalPreconditionEditPart.VISUAL_ID:
 				return new ActionLocalPreconditionEditPart(view);
 
+
 			case ActionLocalPostconditionEditPart.VISUAL_ID:
 				return new ActionLocalPostconditionEditPart(view);
+
 
 			case ObjectFlowEditPart.VISUAL_ID:
 				return new ObjectFlowEditPart(view);
@@ -320,6 +436,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case ObjectFlowGuardEditPart.VISUAL_ID:
 				return new ObjectFlowGuardEditPart(view);
+
 
 			case ControlFlowEditPart.VISUAL_ID:
 				return new ControlFlowEditPart(view);

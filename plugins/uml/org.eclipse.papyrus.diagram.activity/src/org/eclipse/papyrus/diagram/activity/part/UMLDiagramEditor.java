@@ -117,8 +117,10 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 		super(true);
 		this.diagram = diagram;
 
+
 		// adds a listener to the palette service, which reacts to palette customizations
 		PapyrusPaletteService.getInstance().addProviderChangeListener(this);
+
 
 		// Share the same editing provider
 		editingDomain = servicesRegistry.getService(TransactionalEditingDomain.class);
@@ -126,6 +128,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 
 		// overrides editing domain created by super constructor
 		setDocumentProvider(documentProvider);
+
 
 	}
 
@@ -390,7 +393,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 						 * (between two selected shapes)
 						 * 
 						 * @param event
-						 *        the KeyEvent
+						 *            the KeyEvent
 						 * @return <code>true</code> if KeyEvent was handled in some way
 						 */
 						public boolean keyReleased(KeyEvent event) {

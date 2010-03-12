@@ -18,6 +18,7 @@ import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Shape;
@@ -33,10 +34,13 @@ import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.editpolicies.RootComponentEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
@@ -50,8 +54,10 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ResizeActivityEditPolicy;
+import org.eclipse.papyrus.diagram.activity.locator.ActivityParameterNodePositionLocator;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.SWT;
@@ -64,7 +70,7 @@ import org.eclipse.swt.widgets.Display;
  */
 public class ActivityEditPart extends
 
-ShapeNodeEditPart {
+AbstractBorderedShapeEditPart {
 
 	/**
 	 * @generated
@@ -95,6 +101,12 @@ ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ActivityItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
+
+
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.activity.edit.policies.ActivityCanonicalEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new RootComponentEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new ResizeActivityEditPolicy());
@@ -106,9 +118,16 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-		LayoutEditPolicy lep = new LayoutEditPolicy() {
+		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
+				View childView = (View)child.getModel();
+				switch(UMLVisualIDRegistry.getVisualID(childView)) {
+				case ActivityParameterNodeEditPart.VISUAL_ID:
+
+					return new BorderItemResizableEditPolicy();
+
+				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
 					result = new NonResizableEditPolicy();
@@ -146,14 +165,15 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ActivityIsSingleExecutionEditPart) {
-			((ActivityIsSingleExecutionEditPart)childEditPart).setLabel(getPrimaryShape().getHeaderSingleExecution());
-			return true;
-		}
 		if(childEditPart instanceof ActivityNameEditPart) {
 			((ActivityNameEditPart)childEditPart).setLabel(getPrimaryShape().getHeaderLabel());
 			return true;
 		}
+		if(childEditPart instanceof ActivityIsSingleExecutionEditPart) {
+			((ActivityIsSingleExecutionEditPart)childEditPart).setLabel(getPrimaryShape().getHeaderSingleExecution());
+			return true;
+		}
+
 
 		if(childEditPart instanceof ActivityActivityParametersCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getActivityParametersCompartment();
@@ -183,6 +203,20 @@ ShapeNodeEditPart {
 			return true;
 		}
 
+
+
+
+
+		//Papyrus Gencode :Affixed Activity Parameter Node locator for Activity
+		if(childEditPart instanceof ActivityParameterNodeEditPart) {
+			IBorderItemLocator locator = new ActivityParameterNodePositionLocator(getMainFigure(), PositionConstants.NONE);
+			getBorderedFigure().getBorderItemContainer().add(((ActivityParameterNodeEditPart)childEditPart).getFigure(), locator);
+			return true;
+		}
+
+
+
+
 		return false;
 	}
 
@@ -190,10 +224,10 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ActivityIsSingleExecutionEditPart) {
+		if(childEditPart instanceof ActivityNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof ActivityNameEditPart) {
+		if(childEditPart instanceof ActivityIsSingleExecutionEditPart) {
 			return true;
 		}
 		if(childEditPart instanceof ActivityActivityParametersCompartmentEditPart) {
@@ -218,6 +252,10 @@ ShapeNodeEditPart {
 			IFigure pane = getPrimaryShape().getCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((ActivityActivityContentCompartmentEditPart)childEditPart).getFigure());
+			return true;
+		}
+		if(childEditPart instanceof ActivityParameterNodeEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ActivityParameterNodeEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -259,6 +297,9 @@ ShapeNodeEditPart {
 		if(editPart instanceof ActivityActivityContentCompartmentEditPart) {
 			return getPrimaryShape().getCompartmentFigure();
 		}
+		if(editPart instanceof IBorderItemEditPart) {
+			return getBorderedFigure().getBorderItemContainer();
+		}
 		return getContentPane();
 	}
 
@@ -278,7 +319,7 @@ ShapeNodeEditPart {
 	 * 
 	 * @generated
 	 */
-	protected NodeFigure createNodeFigure() {
+	protected NodeFigure createMainFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
 		IFigure shape = createNodeShape();
@@ -426,6 +467,7 @@ ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
+
 			RoundedRectangle activityBorderFigure0 = new RoundedRectangle();
 			activityBorderFigure0.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8), getMapMode().DPtoLP(8)));
 			activityBorderFigure0.setLineWidth(1);
@@ -441,10 +483,13 @@ ShapeNodeEditPart {
 			layoutActivityBorderFigure0.marginHeight = 0;
 			activityBorderFigure0.setLayoutManager(layoutActivityBorderFigure0);
 
+
+
 			RectangleFigure labelAndParameter1 = new RectangleFigure();
 			labelAndParameter1.setFill(false);
 			labelAndParameter1.setOutline(false);
 			labelAndParameter1.setLineWidth(0);
+
 
 			GridData constraintLabelAndParameter1 = new GridData();
 			constraintLabelAndParameter1.verticalAlignment = GridData.CENTER;
@@ -456,15 +501,21 @@ ShapeNodeEditPart {
 			constraintLabelAndParameter1.grabExcessVerticalSpace = false;
 			activityBorderFigure0.add(labelAndParameter1, constraintLabelAndParameter1);
 
+
 			GridLayout layoutLabelAndParameter1 = new GridLayout();
 			layoutLabelAndParameter1.numColumns = 1;
 			layoutLabelAndParameter1.makeColumnsEqualWidth = true;
 			labelAndParameter1.setLayoutManager(layoutLabelAndParameter1);
 
+
+
 			fHeaderLabel = new WrappingLabel();
 			fHeaderLabel.setText("ActivityName");
 
 			fHeaderLabel.setFont(FHEADERLABEL_FONT);
+
+
+
 
 			GridData constraintFHeaderLabel = new GridData();
 			constraintFHeaderLabel.verticalAlignment = GridData.CENTER;
@@ -476,10 +527,14 @@ ShapeNodeEditPart {
 			constraintFHeaderLabel.grabExcessVerticalSpace = false;
 			labelAndParameter1.add(fHeaderLabel, constraintFHeaderLabel);
 
+
+
+
 			fActivityParametersCompartment = new RectangleFigure();
 			fActivityParametersCompartment.setFill(false);
 			fActivityParametersCompartment.setOutline(false);
 			fActivityParametersCompartment.setLineWidth(0);
+
 
 			GridData constraintFActivityParametersCompartment = new GridData();
 			constraintFActivityParametersCompartment.verticalAlignment = GridData.CENTER;
@@ -493,10 +548,14 @@ ShapeNodeEditPart {
 
 			fActivityParametersCompartment.setLayoutManager(new StackLayout());
 
+
+
+
 			RectangleFigure prePostContions1 = new RectangleFigure();
 			prePostContions1.setFill(false);
 			prePostContions1.setOutline(false);
 			prePostContions1.setLineWidth(0);
+
 
 			GridData constraintPrePostContions1 = new GridData();
 			constraintPrePostContions1.verticalAlignment = GridData.CENTER;
@@ -508,15 +567,19 @@ ShapeNodeEditPart {
 			constraintPrePostContions1.grabExcessVerticalSpace = false;
 			activityBorderFigure0.add(prePostContions1, constraintPrePostContions1);
 
+
 			GridLayout layoutPrePostContions1 = new GridLayout();
 			layoutPrePostContions1.numColumns = 1;
 			layoutPrePostContions1.makeColumnsEqualWidth = true;
 			prePostContions1.setLayoutManager(layoutPrePostContions1);
 
+
+
 			fActivityPreconditionsCompartment = new RectangleFigure();
 			fActivityPreconditionsCompartment.setFill(false);
 			fActivityPreconditionsCompartment.setOutline(false);
 			fActivityPreconditionsCompartment.setLineWidth(0);
+
 
 			GridData constraintFActivityPreconditionsCompartment = new GridData();
 			constraintFActivityPreconditionsCompartment.verticalAlignment = GridData.CENTER;
@@ -530,10 +593,13 @@ ShapeNodeEditPart {
 
 			fActivityPreconditionsCompartment.setLayoutManager(new StackLayout());
 
+
+
 			fActivityPostconditionsCompartment = new RectangleFigure();
 			fActivityPostconditionsCompartment.setFill(false);
 			fActivityPostconditionsCompartment.setOutline(false);
 			fActivityPostconditionsCompartment.setLineWidth(0);
+
 
 			GridData constraintFActivityPostconditionsCompartment = new GridData();
 			constraintFActivityPostconditionsCompartment.verticalAlignment = GridData.CENTER;
@@ -547,9 +613,13 @@ ShapeNodeEditPart {
 
 			fActivityPostconditionsCompartment.setLayoutManager(new StackLayout());
 
+
+
+
 			fHeaderSingleExecution = new WrappingLabel();
 			fHeaderSingleExecution.setText("");
 			fHeaderSingleExecution.setBorder(new MarginBorder(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0), getMapMode().DPtoLP(0), getMapMode().DPtoLP(8)));
+
 
 			GridData constraintFHeaderSingleExecution = new GridData();
 			constraintFHeaderSingleExecution.verticalAlignment = GridData.CENTER;
@@ -561,11 +631,15 @@ ShapeNodeEditPart {
 			constraintFHeaderSingleExecution.grabExcessVerticalSpace = false;
 			activityBorderFigure0.add(fHeaderSingleExecution, constraintFHeaderSingleExecution);
 
+
+
+
 			fCompartmentFigure = new RectangleFigure();
 			fCompartmentFigure.setFill(false);
 			fCompartmentFigure.setOutline(false);
 			fCompartmentFigure.setLineWidth(0);
 			fCompartmentFigure.setBorder(new MarginBorder(getMapMode().DPtoLP(0), getMapMode().DPtoLP(4), getMapMode().DPtoLP(4), getMapMode().DPtoLP(4)));
+
 
 			GridData constraintFCompartmentFigure = new GridData();
 			constraintFCompartmentFigure.verticalAlignment = GridData.FILL;
@@ -576,6 +650,9 @@ ShapeNodeEditPart {
 			constraintFCompartmentFigure.grabExcessHorizontalSpace = true;
 			constraintFCompartmentFigure.grabExcessVerticalSpace = true;
 			activityBorderFigure0.add(fCompartmentFigure, constraintFCompartmentFigure);
+
+
+
 
 		}
 

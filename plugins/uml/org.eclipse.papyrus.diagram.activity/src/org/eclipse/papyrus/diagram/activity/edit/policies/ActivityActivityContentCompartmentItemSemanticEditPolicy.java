@@ -18,13 +18,25 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityFinalNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallBehaviorActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallOperationActionCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.ConstraintAsLocalPostcondCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.ConstraintAsLocalPrecondCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.DecisionNodeCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.DurationConstraintAsLocalPostcondCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.DurationConstraintAsLocalPrecondCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.FlowFinalNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ForkNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.InitialNodeCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.InteractionConstraintAsLocalPostcondCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.InteractionConstraintAsLocalPrecondCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.IntervalConstraintAsLocalPostcondCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.IntervalConstraintAsLocalPrecondCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.JoinNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.MergeNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.OpaqueActionCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.SendObjectActionCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.SendSignalActionCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.TimeConstraintAsLocalPostcondCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.TimeConstraintAsLocalPrecondCreateCommand;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 
 /**
@@ -102,6 +114,12 @@ public class ActivityActivityContentCompartmentItemSemanticEditPolicy extends UM
 		}
 		if(UMLElementTypes.JoinNode_3041 == req.getElementType()) {
 			return getGEFWrapper(new JoinNodeCreateCommand(req));
+		}
+		if(UMLElementTypes.SendObjectAction_3042 == req.getElementType()) {
+			return getGEFWrapper(new SendObjectActionCreateCommand(req));
+		}
+		if(UMLElementTypes.SendSignalAction_3052 == req.getElementType()) {
+			return getGEFWrapper(new SendSignalActionCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

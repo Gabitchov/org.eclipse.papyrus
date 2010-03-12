@@ -30,8 +30,8 @@ import org.eclipse.uml2.uml.ObjectFlow;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * A specific parser for the Object Flow to know whether it is decision input flow of a Decision Node. This parser refreshes the text displayed by the
- * Object Flow.
+ * A specific parser for the Object Flow to know whether it is decision input flow of a Decision
+ * Node. This parser refreshes the text displayed by the Object Flow.
  */
 public class DecisionInputFlowParser extends MessageFormatParser implements ISemanticParser {
 

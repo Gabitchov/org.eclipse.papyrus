@@ -29,12 +29,16 @@ import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * A specific parser for displaying the label of a Pin. This parser refreshes the text
- * displayed for the Pin.
+ * A specific parser for displaying the label of a Pin. This parser refreshes the text displayed for
+ * the Pin.
  */
 public class PinParser extends MessageFormatParser implements ISemanticParser {
 
-	private static final String STATE_DISPLAY = "\n[%s]";
+	/** The String format for displaying in State property */
+	private static final String STATE_DISPLAY = System.getProperty("line.separator").concat("[%s]");
+
+	/** The String for separating states */
+	private static final String STATE_SEPARATOR = ", ";
 
 	public PinParser(EAttribute[] features, EAttribute[] editableFeatures) {
 		super(features, editableFeatures);
@@ -90,6 +94,8 @@ public class PinParser extends MessageFormatParser implements ISemanticParser {
 			}
 			label.append(name);
 			if(pin.getInStates() != null) {
+				// manage states
+				StringBuffer stateLabel = new StringBuffer();
 				for(State state : pin.getInStates()) {
 					if(state != null) {
 						String stateName = state.getName();
@@ -97,9 +103,15 @@ public class PinParser extends MessageFormatParser implements ISemanticParser {
 							stateName = "";
 						}
 						if(!"".equals(stateName)) {
-							label.append(String.format(STATE_DISPLAY, stateName));
+							if(stateLabel.length() > 0) {
+								stateLabel.append(STATE_SEPARATOR);
+							}
+							stateLabel.append(stateName);
 						}
 					}
+				}
+				if(stateLabel.length() > 0) {
+					label.append(String.format(STATE_DISPLAY, stateLabel.toString()));
 				}
 			}
 		}

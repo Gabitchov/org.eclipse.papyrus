@@ -94,7 +94,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-		LayoutEditPolicy lep = new LayoutEditPolicy() {
+		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
@@ -138,6 +138,7 @@ ShapeNodeEditPart {
 			((InteractionConstraintAsLocalPrecondNameEditPart)childEditPart).setLabel(getPrimaryShape().getCornerBentContent());
 			return true;
 		}
+
 
 		return false;
 	}
@@ -268,8 +269,8 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		types.add(UMLElementTypes.ActionLocalPrecondition_4001);
 		types.add(UMLElementTypes.ActionLocalPostcondition_4002);
 		return types;
@@ -278,8 +279,8 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(IElementType relationshipType) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
 		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
 			types.add(UMLElementTypes.OpaqueAction_3007);
 		}
@@ -289,6 +290,12 @@ ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
 			types.add(UMLElementTypes.CallOperationAction_3010);
 		}
+		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
+			types.add(UMLElementTypes.SendObjectAction_3042);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
+			types.add(UMLElementTypes.SendSignalAction_3052);
+		}
 		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
 			types.add(UMLElementTypes.OpaqueAction_3007);
 		}
@@ -297,6 +304,12 @@ ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
 			types.add(UMLElementTypes.CallOperationAction_3010);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
+			types.add(UMLElementTypes.SendObjectAction_3042);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
+			types.add(UMLElementTypes.SendSignalAction_3052);
 		}
 		return types;
 	}
@@ -316,6 +329,7 @@ ShapeNodeEditPart {
 		 */
 		public CornerBentWithTextFigure() {
 
+
 			this.setBackgroundColor(THIS_BACK);
 			createContents();
 		}
@@ -325,9 +339,13 @@ ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
+
 			fCornerBentContent = new WrappedLabel();
 
+
+
 			this.add(fCornerBentContent);
+
 
 		}
 

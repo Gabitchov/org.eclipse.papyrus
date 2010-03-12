@@ -725,6 +725,7 @@ public class CallOperationActionNameEditPart extends CompartmentEditPart impleme
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 

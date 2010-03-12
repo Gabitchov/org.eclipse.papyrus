@@ -725,6 +725,7 @@ public class InteractionConstraintAsLocalPostcondNameEditPart extends Compartmen
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 

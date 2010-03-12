@@ -18,101 +18,7 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCBActLabelEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCBActValueEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCOActAsTargetLabelEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCOActAsTargetValueEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCOActLabelEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCOActValueEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallBeActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallOpActAsTargetEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallOpActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInOActLabelEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInOActValueEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInOpaqueActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityActivityContentCompartmentEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityActivityParametersCompartmentEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityActivityPostConditionsCompartmentEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityActivityPreConditionsCompartmentEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityDiagramEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityIsSingleExecutionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityNameEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionNameEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionNameEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondNameEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondNameEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPostcondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPrecondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowGuardEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowNameEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowWeightEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionInputEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionInputFlowEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondNameEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondNameEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.FlowFinalNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ForkNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCBActLabelEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCOActAsTargetLabelEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCOActLabelEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallBeActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActAsTargetEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInOActLabelEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInOpaqueActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPostcondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPostcondNameEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPrecondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPrecondNameEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondNameEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondNameEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.JoinNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.JoinSpecEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.MergeNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowGuardEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowNameEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowSelectionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowTransformationEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowWeightEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionNameEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCBActLabelEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCOActLabelEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallBeActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOActLabelEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOpaqueActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ParameterEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondNameEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondNameEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCBActLabelEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCBActValueEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCOActAsTargetLabelEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCOActAsTargetValueEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCOActLabelEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCOActValueEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallBeActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallOpActAsTargetEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallOpActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInOActLabelEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInOActValueEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInOpaqueActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.*;
 import org.eclipse.papyrus.diagram.activity.expressions.UMLAbstractExpression;
 import org.eclipse.papyrus.diagram.activity.expressions.UMLOCLFactory;
 import org.eclipse.papyrus.diagram.common.providers.BaseViewInfo;
@@ -181,6 +87,66 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static UMLAbstractExpression Constraint_3012_Constraint;
+
+	/**
+	 * @generated
+	 */
+	private static UMLAbstractExpression ValuePin_3046_Constraint;
+
+	/**
+	 * @generated
+	 */
+	private static UMLAbstractExpression ActionInputPin_3047_Constraint;
+
+	/**
+	 * @generated
+	 */
+	private static UMLAbstractExpression InputPin_3048_Constraint;
+
+	/**
+	 * @generated
+	 */
+	private static UMLAbstractExpression ValuePin_3049_Constraint;
+
+	/**
+	 * @generated
+	 */
+	private static UMLAbstractExpression ActionInputPin_3050_Constraint;
+
+	/**
+	 * @generated
+	 */
+	private static UMLAbstractExpression InputPin_3051_Constraint;
+
+	/**
+	 * @generated
+	 */
+	private static UMLAbstractExpression ActionInputPin_3053_Constraint;
+
+	/**
+	 * @generated
+	 */
+	private static UMLAbstractExpression ValuePin_3054_Constraint;
+
+	/**
+	 * @generated
+	 */
+	private static UMLAbstractExpression InputPin_3055_Constraint;
+
+	/**
+	 * @generated
+	 */
+	private static UMLAbstractExpression ValuePin_3060_Constraint;
+
+	/**
+	 * @generated
+	 */
+	private static UMLAbstractExpression ActionInputPin_3061_Constraint;
+
+	/**
+	 * @generated
+	 */
+	private static UMLAbstractExpression InputPin_3062_Constraint;
 
 	/**
 	 * @generated
@@ -308,6 +274,13 @@ public class UMLVisualIDRegistry {
 			}
 		}
 		switch(containerVisualID) {
+		case ActivityEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getActivityParameterNode().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ActivityParameterNodeEditPart.VISUAL_ID;
+			}
+			break;
 		case OpaqueActionEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass())
 
@@ -375,6 +348,46 @@ public class UMLVisualIDRegistry {
 			}
 			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3027(containerView, (InputPin)domainElement)) {
 				return InputPinInCallOpActAsTargetEditPart.VISUAL_ID;
+			}
+			break;
+		case SendObjectActionEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3046(containerView, (ValuePin)domainElement)) {
+				return ValuePinInSendObjActAsReqEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3047(containerView, (ActionInputPin)domainElement)) {
+				return ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3048(containerView, (InputPin)domainElement)) {
+				return InputPinInSendObjActAsReqEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3049(containerView, (ValuePin)domainElement)) {
+				return ValuePinInSendObjActAsTargetEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3050(containerView, (ActionInputPin)domainElement)) {
+				return ActionInputPinInSendObjActAsTargetEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3051(containerView, (InputPin)domainElement)) {
+				return InputPinInSendObjActAsTargetEditPart.VISUAL_ID;
+			}
+			break;
+		case SendSignalActionEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3053(containerView, (ActionInputPin)domainElement)) {
+				return ActionInputPinInSendSigActEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3054(containerView, (ValuePin)domainElement)) {
+				return ValuePinInSendSigActEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3055(containerView, (InputPin)domainElement)) {
+				return InputPinInSendSigActEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getValuePin().isSuperTypeOf(domainElement.eClass()) && isValuePin_3060(containerView, (ValuePin)domainElement)) {
+				return ValuePinInSendSigActAsTargetEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getActionInputPin().isSuperTypeOf(domainElement.eClass()) && isActionInputPin_3061(containerView, (ActionInputPin)domainElement)) {
+				return ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getInputPin().isSuperTypeOf(domainElement.eClass()) && isInputPin_3062(containerView, (InputPin)domainElement)) {
+				return InputPinInSendSigActAsTargetEditPart.VISUAL_ID;
 			}
 			break;
 		case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
@@ -479,6 +492,16 @@ public class UMLVisualIDRegistry {
 			) {
 				return JoinNodeEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getSendObjectAction().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return SendObjectActionEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getSendSignalAction().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return SendSignalActionEditPart.VISUAL_ID;
+			}
 			break;
 		case ActivityDiagramEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
@@ -514,6 +537,42 @@ public class UMLVisualIDRegistry {
 	 * 
 	 * @generated NOT (method generation is missing or generated calls are incorrect)
 	 */
+	private static boolean isValuePin_3046(View containerView, ValuePin domainElement) {
+		return isValuePin_3046(domainElement);
+	}
+
+	/**
+	 * Redirect call to defined method
+	 * 
+	 * @generated NOT (method generation is missing or generated calls are incorrect)
+	 */
+	private static boolean isValuePin_3049(View containerView, ValuePin domainElement) {
+		return isValuePin_3049(domainElement);
+	}
+
+	/**
+	 * Redirect call to defined method
+	 * 
+	 * @generated NOT (method generation is missing or generated calls are incorrect)
+	 */
+	private static boolean isValuePin_3054(View containerView, ValuePin domainElement) {
+		return isValuePin_3054(domainElement);
+	}
+
+	/**
+	 * Redirect call to defined method
+	 * 
+	 * @generated NOT (method generation is missing or generated calls are incorrect)
+	 */
+	private static boolean isValuePin_3060(View containerView, ValuePin domainElement) {
+		return isValuePin_3060(domainElement);
+	}
+
+	/**
+	 * Redirect call to defined method
+	 * 
+	 * @generated NOT (method generation is missing or generated calls are incorrect)
+	 */
 	private static boolean isInputPin_3023(View containerView, InputPin domainElement) {
 		return isInputPin_3023(domainElement);
 	}
@@ -532,6 +591,42 @@ public class UMLVisualIDRegistry {
 	 * 
 	 * @generated NOT (method generation is missing or generated calls are incorrect)
 	 */
+	private static boolean isInputPin_3048(View containerView, InputPin domainElement) {
+		return isInputPin_3048(domainElement);
+	}
+
+	/**
+	 * Redirect call to defined method
+	 * 
+	 * @generated NOT (method generation is missing or generated calls are incorrect)
+	 */
+	private static boolean isInputPin_3051(View containerView, InputPin domainElement) {
+		return isInputPin_3051(domainElement);
+	}
+
+	/**
+	 * Redirect call to defined method
+	 * 
+	 * @generated NOT (method generation is missing or generated calls are incorrect)
+	 */
+	private static boolean isInputPin_3055(View containerView, InputPin domainElement) {
+		return isInputPin_3055(domainElement);
+	}
+
+	/**
+	 * Redirect call to defined method
+	 * 
+	 * @generated NOT (method generation is missing or generated calls are incorrect)
+	 */
+	private static boolean isInputPin_3062(View containerView, InputPin domainElement) {
+		return isInputPin_3062(domainElement);
+	}
+
+	/**
+	 * Redirect call to defined method
+	 * 
+	 * @generated NOT (method generation is missing or generated calls are incorrect)
+	 */
 	private static boolean isActionInputPin_3026(View containerView, ActionInputPin domainElement) {
 		return isActionInputPin_3026(domainElement);
 	}
@@ -543,6 +638,42 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isActionInputPin_3021(View containerView, ActionInputPin domainElement) {
 		return isActionInputPin_3021(domainElement);
+	}
+
+	/**
+	 * Redirect call to defined method
+	 * 
+	 * @generated NOT (method generation is missing or generated calls are incorrect)
+	 */
+	private static boolean isActionInputPin_3047(View containerView, ActionInputPin domainElement) {
+		return isActionInputPin_3047(domainElement);
+	}
+
+	/**
+	 * Redirect call to defined method
+	 * 
+	 * @generated NOT (method generation is missing or generated calls are incorrect)
+	 */
+	private static boolean isActionInputPin_3050(View containerView, ActionInputPin domainElement) {
+		return isActionInputPin_3050(domainElement);
+	}
+
+	/**
+	 * Redirect call to defined method
+	 * 
+	 * @generated NOT (method generation is missing or generated calls are incorrect)
+	 */
+	private static boolean isActionInputPin_3053(View containerView, ActionInputPin domainElement) {
+		return isActionInputPin_3053(domainElement);
+	}
+
+	/**
+	 * Redirect call to defined method
+	 * 
+	 * @generated NOT (method generation is missing or generated calls are incorrect)
+	 */
+	private static boolean isActionInputPin_3061(View containerView, ActionInputPin domainElement) {
+		return isActionInputPin_3061(domainElement);
 	}
 
 	/**
@@ -671,6 +802,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(ActivityActivityContentCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ActivityParameterNodeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -893,6 +1027,141 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case SendObjectActionEditPart.VISUAL_ID:
+			if(SendObjectActionNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ValuePinInSendObjActAsReqEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(InputPinInSendObjActAsReqEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ValuePinInSendObjActAsTargetEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ActionInputPinInSendObjActAsTargetEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(InputPinInSendObjActAsTargetEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ValuePinInSendObjActAsReqEditPart.VISUAL_ID:
+			if(ValuePinInSendObjActAsReqLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ValuePinInSendObjActAsReqValueEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID:
+			if(ActionInputPinInSendObjActAsReqLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ActionInputPinInSendObjActAsReqValueEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case InputPinInSendObjActAsReqEditPart.VISUAL_ID:
+			if(InputPinInSendObjActAsReqLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ValuePinInSendObjActAsTargetEditPart.VISUAL_ID:
+			if(ValuePinInSendObjActAsTargetLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ValuePinInSendObjActAsTargetValueEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ActionInputPinInSendObjActAsTargetEditPart.VISUAL_ID:
+			if(ActionInputPinInSendObjActAsTargetLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ActionInputPinInSendObjActAsTargetValueEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case InputPinInSendObjActAsTargetEditPart.VISUAL_ID:
+			if(InputPinInSendObjActAsTargetLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case SendSignalActionEditPart.VISUAL_ID:
+			if(SendSignalActionNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ActionInputPinInSendSigActEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ValuePinInSendSigActEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(InputPinInSendSigActEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ValuePinInSendSigActAsTargetEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(InputPinInSendSigActAsTargetEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ActionInputPinInSendSigActEditPart.VISUAL_ID:
+			if(ActionInputPinInSendSigActLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ActionInputPinInSendSigActValueEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ValuePinInSendSigActEditPart.VISUAL_ID:
+			if(ValuePinInSendSigActLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ValuePinInSendSigActValueEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case InputPinInSendSigActEditPart.VISUAL_ID:
+			if(InputPinInSendSigActLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ValuePinInSendSigActAsTargetEditPart.VISUAL_ID:
+			if(ValuePinInSendSigActAsTargetLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ValuePinInSendSigActAsTargetValueEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID:
+			if(ActionInputPinInSendSigActAsTargetLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ActionInputPinInSendSigActAsTargetValueEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case InputPinInSendSigActAsTargetEditPart.VISUAL_ID:
+			if(InputPinInSendSigActAsTargetLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ActivityParameterNodeEditPart.VISUAL_ID:
+			if(CenteredWrappedLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -969,6 +1238,12 @@ public class UMLVisualIDRegistry {
 			if(JoinNodeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(SendObjectActionEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(SendSignalActionEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case ActivityDiagramEditPart.VISUAL_ID:
 			if(ActivityEditPart.VISUAL_ID == nodeVisualID) {
@@ -1019,10 +1294,14 @@ public class UMLVisualIDRegistry {
 		}
 		if(UMLPackage.eINSTANCE.getObjectFlow().isSuperTypeOf(domainElement.eClass())
 
+
+
 		) {
 			return ObjectFlowEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getControlFlow().isSuperTypeOf(domainElement.eClass())
+
+
 
 		) {
 			return ControlFlowEditPart.VISUAL_ID;
@@ -1125,6 +1404,138 @@ public class UMLVisualIDRegistry {
 			Constraint_3012_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(Action)\r\nthen self.owner.oclAsType(Action).localPostcondition->includes(self)\r\nelse false endif", UMLPackage.eINSTANCE.getConstraint()); //$NON-NLS-1$
 		}
 		Object result = Constraint_3012_Constraint.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isValuePin_3046(ValuePin domainElement) {
+		if(ValuePin_3046_Constraint == null) { // lazy initialization
+			ValuePin_3046_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(SendObjectAction)\r\nthen self.owner.oclAsType(SendObjectAction).request = self\r\nelse false endif", UMLPackage.eINSTANCE.getValuePin()); //$NON-NLS-1$
+		}
+		Object result = ValuePin_3046_Constraint.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isActionInputPin_3047(ActionInputPin domainElement) {
+		if(ActionInputPin_3047_Constraint == null) { // lazy initialization
+			ActionInputPin_3047_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(SendObjectAction)\r\nthen self.owner.oclAsType(SendObjectAction).request = self\r\nelse false endif", UMLPackage.eINSTANCE.getActionInputPin()); //$NON-NLS-1$
+		}
+		Object result = ActionInputPin_3047_Constraint.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isInputPin_3048(InputPin domainElement) {
+		if(InputPin_3048_Constraint == null) { // lazy initialization
+			InputPin_3048_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(SendObjectAction)\r\nthen self.owner.oclAsType(SendObjectAction).request = self\r\nelse false endif", UMLPackage.eINSTANCE.getInputPin()); //$NON-NLS-1$
+		}
+		Object result = InputPin_3048_Constraint.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isValuePin_3049(ValuePin domainElement) {
+		if(ValuePin_3049_Constraint == null) { // lazy initialization
+			ValuePin_3049_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(SendObjectAction)\r\nthen self.owner.oclAsType(SendObjectAction).target = self\r\nelse false endif", UMLPackage.eINSTANCE.getValuePin()); //$NON-NLS-1$
+		}
+		Object result = ValuePin_3049_Constraint.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isActionInputPin_3050(ActionInputPin domainElement) {
+		if(ActionInputPin_3050_Constraint == null) { // lazy initialization
+			ActionInputPin_3050_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(SendObjectAction)\r\nthen self.owner.oclAsType(SendObjectAction).target = self\r\nelse false endif", UMLPackage.eINSTANCE.getActionInputPin()); //$NON-NLS-1$
+		}
+		Object result = ActionInputPin_3050_Constraint.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isInputPin_3051(InputPin domainElement) {
+		if(InputPin_3051_Constraint == null) { // lazy initialization
+			InputPin_3051_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(SendObjectAction)\r\nthen self.owner.oclAsType(SendObjectAction).target = self\r\nelse false endif", UMLPackage.eINSTANCE.getInputPin()); //$NON-NLS-1$
+		}
+		Object result = InputPin_3051_Constraint.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isActionInputPin_3053(ActionInputPin domainElement) {
+		if(ActionInputPin_3053_Constraint == null) { // lazy initialization
+			ActionInputPin_3053_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(SendSignalAction)\r\nthen self.owner.oclAsType(SendSignalAction).argument->includes(self)\r\nelse false endif", UMLPackage.eINSTANCE.getActionInputPin()); //$NON-NLS-1$
+		}
+		Object result = ActionInputPin_3053_Constraint.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isValuePin_3054(ValuePin domainElement) {
+		if(ValuePin_3054_Constraint == null) { // lazy initialization
+			ValuePin_3054_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(SendSignalAction)\r\nthen self.owner.oclAsType(SendSignalAction).argument->includes(self)\r\nelse false endif", UMLPackage.eINSTANCE.getValuePin()); //$NON-NLS-1$
+		}
+		Object result = ValuePin_3054_Constraint.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isInputPin_3055(InputPin domainElement) {
+		if(InputPin_3055_Constraint == null) { // lazy initialization
+			InputPin_3055_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(SendSignalAction)\r\nthen self.owner.oclAsType(SendSignalAction).argument->includes(self)\r\nelse false endif", UMLPackage.eINSTANCE.getInputPin()); //$NON-NLS-1$
+		}
+		Object result = InputPin_3055_Constraint.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isValuePin_3060(ValuePin domainElement) {
+		if(ValuePin_3060_Constraint == null) { // lazy initialization
+			ValuePin_3060_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(SendSignalAction)\r\nthen self.owner.oclAsType(SendSignalAction).target = self\r\nelse false endif", UMLPackage.eINSTANCE.getValuePin()); //$NON-NLS-1$
+		}
+		Object result = ValuePin_3060_Constraint.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isActionInputPin_3061(ActionInputPin domainElement) {
+		if(ActionInputPin_3061_Constraint == null) { // lazy initialization
+			ActionInputPin_3061_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(SendSignalAction)\r\nthen self.owner.oclAsType(SendSignalAction).target = self\r\nelse false endif", UMLPackage.eINSTANCE.getActionInputPin()); //$NON-NLS-1$
+		}
+		Object result = ActionInputPin_3061_Constraint.evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean)result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isInputPin_3062(InputPin domainElement) {
+		if(InputPin_3062_Constraint == null) { // lazy initialization
+			InputPin_3062_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(SendSignalAction)\r\nthen self.owner.oclAsType(SendSignalAction).target = self\r\nelse false endif", UMLPackage.eINSTANCE.getInputPin()); //$NON-NLS-1$
+		}
+		Object result = InputPin_3062_Constraint.evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1245,193 +1656,318 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(4001, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(4002, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(4003, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		labelInfo = new BaseViewInfo(6001, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		labelInfo = new BaseViewInfo(6002, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
+
 		labelInfo = new BaseViewInfo(6005, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		labelInfo = new BaseViewInfo(6006, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
+
 		labelInfo = new BaseViewInfo(6007, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		labelInfo = new BaseViewInfo(6008, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
+
 		viewInfo = new BaseViewInfo(4004, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
+
 
 		labelInfo = new BaseViewInfo(6003, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
+
 		labelInfo = new BaseViewInfo(6004, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
+
 		labelInfo = new BaseViewInfo(6009, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		viewInfo = new BaseViewInfo(3001, ViewInfo.Node, "Parameter");
 
 		root.addNode(7001, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3002, ViewInfo.Node, "Constraint");
 
 		root.addNode(7002, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3003, ViewInfo.Node, "Constraint");
 
 		root.addNode(7003, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3004, ViewInfo.Node, "InitialNode");
 
 		root.addNode(7004, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3005, ViewInfo.Node, "ActivityFinalNode");
 
 		root.addNode(7004, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3006, ViewInfo.Node, "FlowFinalNode");
 
 		root.addNode(7004, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3007, ViewInfo.Node, "OpaqueAction");
 
 		root.addNode(7004, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3015, ViewInfo.Node, "ValuePin");
 
 		root.addNode(3007, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3016, ViewInfo.Node, "ActionInputPin");
 
 		root.addNode(3007, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3013, ViewInfo.Node, "InputPin");
 
 		root.addNode(3007, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3014, ViewInfo.Node, "OutputPin");
 
 		root.addNode(3007, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3008, ViewInfo.Node, "CallBehaviorAction");
 
 		root.addNode(7004, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3017, ViewInfo.Node, "ValuePin");
 
 		root.addNode(3008, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3018, ViewInfo.Node, "ActionInputPin");
 
 		root.addNode(3008, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3019, ViewInfo.Node, "InputPin");
 
 		root.addNode(3008, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3020, ViewInfo.Node, "OutputPin");
 
 		root.addNode(3008, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3010, ViewInfo.Node, "CallOperationAction");
 
 		root.addNode(7004, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3021, ViewInfo.Node, "ActionInputPin");
 
 		root.addNode(3010, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3022, ViewInfo.Node, "ValuePin");
 
 		root.addNode(3010, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3023, ViewInfo.Node, "InputPin");
 
 		root.addNode(3010, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3024, ViewInfo.Node, "OutputPin");
 
 		root.addNode(3010, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3025, ViewInfo.Node, "ValuePin");
 
 		root.addNode(3010, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3026, ViewInfo.Node, "ActionInputPin");
 
 		root.addNode(3010, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3027, ViewInfo.Node, "InputPin");
 
 		root.addNode(3010, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3034, ViewInfo.Node, "DurationConstraint");
 
 		root.addNode(7004, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3035, ViewInfo.Node, "DurationConstraint");
 
 		root.addNode(7004, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3036, ViewInfo.Node, "TimeConstraint");
 
 		root.addNode(7004, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3037, ViewInfo.Node, "TimeConstraint");
 
 		root.addNode(7004, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3030, ViewInfo.Node, "InteractionConstraint");
 
 		root.addNode(7004, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3031, ViewInfo.Node, "InteractionConstraint");
 
 		root.addNode(7004, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3032, ViewInfo.Node, "IntervalConstraint");
 
 		root.addNode(7004, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3033, ViewInfo.Node, "IntervalConstraint");
 
 		root.addNode(7004, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3011, ViewInfo.Node, "Constraint");
 
 		root.addNode(7004, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3012, ViewInfo.Node, "Constraint");
 
 		root.addNode(7004, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3038, ViewInfo.Node, "DecisionNode");
 
 		root.addNode(7004, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3039, ViewInfo.Node, "MergeNode");
 
 		root.addNode(7004, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(3040, ViewInfo.Node, "ForkNode");
 
 		root.addNode(7004, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(3041, ViewInfo.Node, "JoinNode");
 
 		root.addNode(7004, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3042, ViewInfo.Node, "SendObjectAction");
+
+		root.addNode(7004, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3046, ViewInfo.Node, "ValuePin");
+
+		root.addNode(3042, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3047, ViewInfo.Node, "ActionInputPin");
+
+		root.addNode(3042, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3048, ViewInfo.Node, "InputPin");
+
+		root.addNode(3042, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3049, ViewInfo.Node, "ValuePin");
+
+		root.addNode(3042, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3050, ViewInfo.Node, "ActionInputPin");
+
+		root.addNode(3042, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3051, ViewInfo.Node, "InputPin");
+
+		root.addNode(3042, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3052, ViewInfo.Node, "SendSignalAction");
+
+		root.addNode(7004, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3053, ViewInfo.Node, "ActionInputPin");
+
+		root.addNode(3052, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3054, ViewInfo.Node, "ValuePin");
+
+		root.addNode(3052, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3055, ViewInfo.Node, "InputPin");
+
+		root.addNode(3052, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3060, ViewInfo.Node, "ValuePin");
+
+		root.addNode(3052, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3061, ViewInfo.Node, "ActionInputPin");
+
+		root.addNode(3052, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3062, ViewInfo.Node, "InputPin");
+
+		root.addNode(3052, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3059, ViewInfo.Node, "ActivityParameterNode");
+
+		root.addNode(2001, viewInfo);
 
 		return root;
 	}

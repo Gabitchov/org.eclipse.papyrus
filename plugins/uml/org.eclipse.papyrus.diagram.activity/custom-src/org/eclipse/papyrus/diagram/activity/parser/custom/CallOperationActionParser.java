@@ -29,15 +29,18 @@ import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * A specific parser for displaying the label of a CallOperationAction. This parser refreshes the text
- * displayed for the CallOperationAction.
+ * A specific parser for displaying the label of a CallOperationAction. This parser refreshes the
+ * text displayed for the CallOperationAction.
  */
 public class CallOperationActionParser extends MessageFormatParser implements ISemanticParser {
 
 	/** The String format for displaying an action with its name, class name and operation name */
 	private static final String NAME_CLASS_OPERATION_FORMAT = "%s\n(%s::%s)";
 
-	/** The String format for displaying an action with its name (same as operation name) and class name */
+	/**
+	 * The String format for displaying an action with its name (same as operation name) and class
+	 * name
+	 */
 	private static final String NAME_CLASS_FORMAT = "%s\n(%s::)";
 
 	/** The String format for displaying an action name alone */

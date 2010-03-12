@@ -711,6 +711,9 @@ public class ObjectFlowGuardEditPart extends LabelEditPart implements ITextAware
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 

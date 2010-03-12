@@ -75,6 +75,7 @@ public class InitialNodeCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -90,7 +91,10 @@ public class InitialNodeCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
+
 		return true;
+
+
 
 	}
 
@@ -99,10 +103,13 @@ public class InitialNodeCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		InitialNode newElement = UMLFactory.eINSTANCE.createInitialNode();
 
 		Activity owner = (Activity)getElementToEdit();
 		owner.getNodes().add(newElement);
+
 
 		UMLElementTypes.init_InitialNode_3004(newElement);
 

@@ -44,8 +44,8 @@ import org.eclipse.uml2.uml.ValueSpecificationAction;
 import org.eclipse.uml2.uml.Variable;
 
 /**
- * A specific parser for displaying the label of a Pin. This parser refreshes the text
- * displayed for the Pin.
+ * A specific parser for displaying the label of a Pin. This parser refreshes the text displayed for
+ * the Pin.
  */
 public class PinValueParser extends MessageFormatParser implements ISemanticParser {
 

@@ -25,6 +25,7 @@ import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Activity;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
@@ -95,6 +96,16 @@ public class CreateCallOperationActionDialog extends CreateCallActionDialog {
 		Collection<EObject> classes = UMLItemPropertyDescriptor.getReachableObjectsOfType(actionParent, UMLPackage.eINSTANCE.getClass_());
 		Set<EObject> result = new HashSet<EObject>(classes);
 		return result;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.papyrus.diagram.activity.edit.dialogs.CreateInvocationActionDialog#isPossibleInvokedParent(org.eclipse.emf.ecore.EObject)
+	 */
+	@Override
+	protected boolean isPossibleInvokedParent(EObject parent) {
+		return parent instanceof Class;
 	}
 
 	/**

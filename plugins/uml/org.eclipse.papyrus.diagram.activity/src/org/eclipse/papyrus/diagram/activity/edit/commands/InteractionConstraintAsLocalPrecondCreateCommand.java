@@ -75,6 +75,7 @@ public class InteractionConstraintAsLocalPrecondCreateCommand extends EditElemen
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -90,7 +91,10 @@ public class InteractionConstraintAsLocalPrecondCreateCommand extends EditElemen
 	 */
 	public boolean canExecute() {
 
+
 		return true;
+
+
 
 	}
 
@@ -99,10 +103,13 @@ public class InteractionConstraintAsLocalPrecondCreateCommand extends EditElemen
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		InteractionConstraint newElement = UMLFactory.eINSTANCE.createInteractionConstraint();
 
 		Action owner = (Action)getElementToEdit();
 		owner.getLocalPreconditions().add(newElement);
+
 
 		UMLElementTypes.init_InteractionConstraint_3030(newElement);
 

@@ -725,6 +725,7 @@ public class OpaqueActionNameEditPart extends CompartmentEditPart implements ITe
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 
