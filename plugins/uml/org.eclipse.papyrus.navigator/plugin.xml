@@ -119,6 +119,17 @@
             </enablement>
          </actionProvider>
          <actionProvider
+               class="org.eclipse.papyrus.navigator.actions.GenericTransformActionProvider"
+               id="org.eclipse.papyrus.navigator.actions.GenericTransformActionProvider">
+            <enablement>
+               <or>
+                  <adapt
+                        type="org.eclipse.uml2.uml.Element">
+                  </adapt>
+               </or>
+            </enablement>
+         </actionProvider>
+         <actionProvider
                class="org.eclipse.papyrus.navigator.actions.CreateDiagramActionProvider"
                id="org.eclipse.papyrus.navigator.actions.CreateDiagramActionProvider">
             <enablement>
