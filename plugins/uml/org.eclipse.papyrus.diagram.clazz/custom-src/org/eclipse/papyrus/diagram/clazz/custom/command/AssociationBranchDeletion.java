@@ -119,7 +119,7 @@ public class AssociationBranchDeletion implements IObjectActionDelegate {
 
 	/**
 	 * 
-	 *{@inheritedDoc}
+	 * {@inheritedDoc}
 	 */
 	public void selectionChanged(IAction action, ISelection selection) {
 		if(selection instanceof IStructuredSelection) {
@@ -132,7 +132,7 @@ public class AssociationBranchDeletion implements IObjectActionDelegate {
 
 	/**
 	 * 
-	 *{@inheritedDoc}
+	 * {@inheritedDoc}
 	 */
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
 		// TODO Auto-generated method stub

@@ -49,7 +49,7 @@ public class AbstractTemplateParameterEditPart extends CompartmentEditPart {
 	}
 
 	/**
-	 *{@inheritDoc}
+	 * {@inheritDoc}
 	 */
 
 	public void deactivate() {

@@ -118,7 +118,7 @@ protected org.eclipse.gef.commands.Command getDuplicateCommand(org.eclipse.gmf.r
 «ENDDEFINE»
 «DEFINE DuplicateAnythingCommand FOR gmfgen::GenDiagram-»
 	«EXPAND xpt::Common::generatedClassComment»
-private static class DuplicateAnythingCommand extends org.eclipse.gmf.runtime.emf.commands.core.commands.DuplicateEObjectsCommand {
+private static class DuplicateAnythingCommand extends org.eclipse.papyrus.diagram.common.commands.DuplicateNamedElementCommand {
 private org.eclipse.gmf.runtime.notation.Diagram diagram;
 	«EXPAND DAC_constructor-»
 	«EXPAND DAC_additions-»
@@ -127,7 +127,7 @@ private org.eclipse.gmf.runtime.notation.Diagram diagram;
 «DEFINE DAC_constructor FOR gmfgen::GenDiagram-»
 	«EXPAND xpt::Common::generatedMemberComment»
 public DuplicateAnythingCommand(org.eclipse.emf.transaction.TransactionalEditingDomain editingDomain, org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest req,org.eclipse.gmf.runtime.notation.Diagram currentDiagram) {
-	super(editingDomain, req.getLabel(), req.getElementsToBeDuplicated(), req.getAllDuplicatedElementsMap());
+	super(editingDomain, req.getLabel(), req.getElementsToBeDuplicated(), req.getAllDuplicatedElementsMap(),currentDiagram);
 this.diagram = currentDiagram;
 }
 «ENDDEFINE»

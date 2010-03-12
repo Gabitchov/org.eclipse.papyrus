@@ -20,7 +20,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
-import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
@@ -61,7 +60,7 @@ public class CustomReorientContainmentLinkCommand extends AbstractTransactionalC
 		if(sourceClassifier instanceof org.eclipse.uml2.uml.Package) {
 			org.eclipse.uml2.uml.Package sourcePackage = (org.eclipse.uml2.uml.Package)sourceClassifier;
 			org.eclipse.uml2.uml.Package targetPackage = (org.eclipse.uml2.uml.Package)targetClassifier;
-			
+
 			EList<Package> listnestedclassifier = sourcePackage.getNestedPackages();
 			listnestedclassifier.add(targetPackage);
 

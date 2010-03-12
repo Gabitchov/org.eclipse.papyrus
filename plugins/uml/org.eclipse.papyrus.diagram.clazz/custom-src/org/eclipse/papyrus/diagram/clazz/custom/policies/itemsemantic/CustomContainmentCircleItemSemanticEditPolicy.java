@@ -15,30 +15,18 @@ package org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic;
 
 import java.util.Iterator;
 
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.Shape;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.ReconnectRequest;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest.ViewAndElementDescriptor;
-import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
 import org.eclipse.papyrus.diagram.clazz.custom.command.ContainmentLinkReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CustomOwnerClassChangeCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CustomReorientContainmentLinkCommand;
@@ -46,9 +34,7 @@ import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CContainmentCircleEdit
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ContainmentCircleItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
-import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.PackageableElement;
-import org.eclipse.uml2.uml.internal.impl.ConnectorImpl;
 
 
 public class CustomContainmentCircleItemSemanticEditPolicy extends ContainmentCircleItemSemanticEditPolicy {

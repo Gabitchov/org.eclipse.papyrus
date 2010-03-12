@@ -14,7 +14,6 @@
 
 package org.eclipse.papyrus.diagram.clazz;
 
-import org.eclipse.gmf.runtime.common.ui.services.action.global.IGlobalActionHandler;
 import org.eclipse.papyrus.core.adaptor.gmf.GmfEditorFactory;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
 
@@ -30,7 +29,7 @@ public class ClassDiagramEditorFactory extends GmfEditorFactory {
 	 */
 	public ClassDiagramEditorFactory() {
 		super(UmlClassDiagramForMultiEditor.class, ModelEditPart.MODEL_ID);
-		
+
 	}
 
 }

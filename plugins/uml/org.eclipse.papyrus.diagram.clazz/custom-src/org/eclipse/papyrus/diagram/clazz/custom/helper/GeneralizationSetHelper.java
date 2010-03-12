@@ -228,7 +228,7 @@ public class GeneralizationSetHelper extends ElementHelper {
 	}
 
 	/**
-	 *this command is used to overload the reconnect source command in order to move other
+	 * this command is used to overload the reconnect source command in order to move other
 	 * GeneralizationSet that have the same semantic
 	 * 
 	 * @param request

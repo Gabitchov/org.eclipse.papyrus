@@ -28,7 +28,7 @@ public class CContainmentCircleEditPart extends ContainmentCircleEditPart {
 	}
 
 	/**
-	 *Papyrus codeGen
+	 * Papyrus codeGen
 	 * 
 	 * 
 	 **/

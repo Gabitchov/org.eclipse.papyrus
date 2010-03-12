@@ -40,36 +40,25 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
-import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
-import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
-import org.eclipse.papyrus.diagram.common.helper.ElementHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.command.ContainmentCircleViewCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CustomDropAppliedStereotypeCommand;
-import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
-import org.eclipse.uml2.uml.AssociationClass;
-import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.PackageableElement;
-import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.Stereotype;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.Class3EditPart;
+import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CContainmentCircleEditPart;
+import org.eclipse.papyrus.diagram.clazz.custom.providers.CustomDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartTN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN;
+import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.diagram.common.helper.ElementHelper;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
-import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
-import org.eclipse.papyrus.diagram.clazz.custom.command.DefferedAppliedStereotypeToDisplayCommand;
-import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CContainmentCircleEditPart;
-import org.eclipse.papyrus.diagram.clazz.custom.providers.CustomDeferredCreateConnectionViewCommand;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.uml2.uml.Stereotype;
+
 public class ContainmentHelper extends ElementHelper {
 
 	public static final String CONTAINMENT_CIRCLE_POSITION = "ContainmentCirclePosition";
@@ -198,8 +187,7 @@ public class ContainmentHelper extends ElementHelper {
 		while(editPartIterator.hasNext()) {
 			EditPart currentEditPart = editPartIterator.next();
 			// look for the dropped element in the diagram
-			if((currentEditPart instanceof ClassEditPart || currentEditPart instanceof PackageEditPart || currentEditPart instanceof Class5EditPart || currentEditPart instanceof PackageEditPartCN
-				|| currentEditPart instanceof ModelEditPartCN || currentEditPart instanceof ModelEditPartTN)) {
+			if((currentEditPart instanceof ClassEditPart || currentEditPart instanceof PackageEditPart || currentEditPart instanceof Class5EditPart || currentEditPart instanceof PackageEditPartCN || currentEditPart instanceof ModelEditPartCN || currentEditPart instanceof ModelEditPartTN)) {
 				if(((GraphicalEditPart)currentEditPart).resolveSemanticElement().equals(droppedElement)) {
 					droppedElementEditPart = ((GraphicalEditPart)currentEditPart);
 				}
@@ -216,8 +204,7 @@ public class ContainmentHelper extends ElementHelper {
 			return cc;
 		}
 		// 2. *********************************************** remove the label that is the dropped element 
-		if(droppedElementEditPart != null && (droppedElementEditPart instanceof Class5EditPart || droppedElementEditPart instanceof PackageEditPartCN 
-			|| droppedElementEditPart instanceof ModelEditPartCN || droppedElementEditPart instanceof PackageEditPart)) {
+		if(droppedElementEditPart != null && (droppedElementEditPart instanceof Class5EditPart || droppedElementEditPart instanceof PackageEditPartCN || droppedElementEditPart instanceof ModelEditPartCN || droppedElementEditPart instanceof PackageEditPart)) {
 			cc.add(new ICommandProxy(new DeleteCommand(getEditingDomain(), (View)droppedElementEditPart.getModel())));
 			droppedElementEditPart = null;
 		}
@@ -286,8 +273,6 @@ public class ContainmentHelper extends ElementHelper {
 
 		return cc;
 	}
-
-
 
 
 

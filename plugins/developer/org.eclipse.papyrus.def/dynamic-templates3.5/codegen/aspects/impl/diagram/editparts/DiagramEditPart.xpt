@@ -30,6 +30,8 @@
 
 «DEFINE createDefaultEditPoliciesBody FOR gmfgen::GenDiagram-»
 	super.createDefaultEditPolicies();
+	installEditPolicy(org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy.PASTE_ROLE, new org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy());
+	
 	«EXPAND xpt::diagram::editparts::Common::installSemanticEditPolicy-»
 	«EXPAND xpt::diagram::editparts::Common::installCanonicalEditPolicy-»
 	
