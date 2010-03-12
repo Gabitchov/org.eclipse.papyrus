@@ -28,6 +28,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -48,6 +49,7 @@ import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityParameterNode;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -137,6 +139,13 @@ public class ActivityParameterAndParameterSynchronizer extends AbstractModelCons
 			for(ActivityParameterNode node : getActivityParameterNodesFromParameter(eObject)) {
 				node.setType(node.getParameter().getType());
 			}
+		} else if(EMFEventType.SET.equals(ctx.getEventType()) && UMLPackage.eINSTANCE.getNamedElement_Name().equals(ctx.getFeature())) {
+			// set the name of all the unnamed associated activity parameter nodes
+			for(ActivityParameterNode node : getActivityParameterNodesFromParameter(eObject)) {
+				if(node.getName() == null || "".equals(node.getName())) {
+					node.setName(eObject.getName());
+				}
+			}
 		}
 		return ctx.createSuccessStatus();
 	}
@@ -156,12 +165,24 @@ public class ActivityParameterAndParameterSynchronizer extends AbstractModelCons
 			// The type of an activity parameter node is the same as the type of its parameter.
 			activityParameterNode.setType(activityParameterNode.getParameter().getType());
 		}
-		// create an activity parameter node when a parameter is created
+		// constraint: the nodes of an activity must include one ActivityParameterNode for each parameter 
 		if((EMFEventType.ADD.equals(ctx.getEventType()) || EMFEventType.ADD_MANY.equals(ctx.getEventType())) && ctx.getFeatureNewValue() instanceof Parameter) {
-			// TODO create APN
+			Parameter parameter = (Parameter)ctx.getFeatureNewValue();
+			if(getActivityParameterNodesFromParameter(parameter).isEmpty()) {
+				ActivityParameterNode apn = UMLFactory.eINSTANCE.createActivityParameterNode();
+				apn.setParameter(parameter);
+				apn.setName(parameter.getName());
+				apn.setType(parameter.getType());
+				Command cmd = getAddActivityParameterNodesCmd(eObject, apn);
+				if(cmd.canExecute()) {
+					cmd.execute();
+				} else {
+					return ctx.createFailureStatus();
+				}
+			}
 		}
 		// parameter deletion
-		else if((EMFEventType.REMOVE.equals(ctx.getEventType()) || EMFEventType.REMOVE_MANY.equals(ctx.getEventType())) && ctx.getFeatureNewValue() instanceof Parameter) {
+		else if(((EMFEventType.REMOVE.equals(ctx.getEventType()) && UMLPackage.eINSTANCE.getParameter().equals(ctx.getFeatureNewValue())) || EMFEventType.REMOVE_MANY.equals(ctx.getEventType()))) {
 			nodesToRemove.clear();
 			// remove associated activity parameter nodes with the parameter
 			for(Notification n : ctx.getAllEvents()) {
@@ -213,6 +234,21 @@ public class ActivityParameterAndParameterSynchronizer extends AbstractModelCons
 	private Command getRemoveActivityParameterNodesCmd(Activity owner, Set<ActivityParameterNode> nodes) {
 		TransactionalEditingDomain editingdomain = EditorUtils.getTransactionalEditingDomain();
 		return RemoveCommand.create(editingdomain, owner, UMLPackage.eINSTANCE.getActivity_Node(), nodes);
+	}
+
+
+	/**
+	 * Gets the adds the activity parameter nodes command.
+	 * 
+	 * @param owner
+	 *        the owner
+	 * @param node
+	 *        the node
+	 * @return the adds the activity parameter nodes command
+	 */
+	private Command getAddActivityParameterNodesCmd(Activity owner, ActivityParameterNode node) {
+		TransactionalEditingDomain editingdomain = EditorUtils.getTransactionalEditingDomain();
+		return AddCommand.create(editingdomain, owner, UMLPackage.eINSTANCE.getActivity_Node(), node);
 	}
 
 	/**
