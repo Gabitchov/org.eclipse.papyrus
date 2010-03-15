@@ -32,6 +32,7 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.CombinedFragmentCombinedFragmentCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
@@ -103,6 +104,7 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CombinedFragmentCombinedFragmentCompartmentItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
+		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
 
 
 		//in Papyrus diagrams are not strongly synchronised

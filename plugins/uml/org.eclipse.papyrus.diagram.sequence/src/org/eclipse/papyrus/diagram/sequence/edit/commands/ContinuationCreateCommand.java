@@ -114,6 +114,7 @@ public class ContinuationCreateCommand extends EditElementCommand {
 
 	/**
 	 * Generated not to handle the constraint on covered lifelines.
+	 * 
 	 * @generated NOT
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {

@@ -432,7 +432,8 @@
       resizeConstraint="SOUTH"/>
   <nodes
       name="ContinuationNode"
-      figure="ContinuationFigure"/>
+      figure="ContinuationFigure"
+      affixedParentSide="NORTH_SOUTH"/>
   <connections
       name="CallSynLink"
       figure="MessageSync"/>

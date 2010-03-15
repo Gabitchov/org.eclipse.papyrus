@@ -21,6 +21,7 @@ import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -29,9 +30,10 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -44,18 +46,20 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.draw2d.CenterLayout;
 import org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.ContinuationItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.locator.ContinuationLocator;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
  */
 public class ContinuationEditPart extends
 
-ShapeNodeEditPart {
+AbstractBorderItemEditPart {
 
 	/**
 	 * @generated
@@ -84,6 +88,7 @@ ShapeNodeEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ContinuationItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -191,6 +196,9 @@ ShapeNodeEditPart {
 	 */
 	protected NodeFigure createNodePlate() {
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+
+		//FIXME: workaround for #154536
+		result.getBounds().setSize(result.getPreferredSize());
 		return result;
 	}
 
@@ -1145,4 +1153,23 @@ ShapeNodeEditPart {
 		}
 		return result;
 	}
+
+	/**
+	 * Overrides to manage the position of the Continuation
+	 */
+	@Override
+	protected void handleNotificationEvent(Notification notification) {
+
+		if(UMLPackage.eINSTANCE.getContinuation_Setting().equals(notification.getFeature())) {
+			IBorderItemLocator borderItemLocator = getBorderItemLocator();
+			int newValue = (Boolean)notification.getNewValue() ? ContinuationLocator.BOTTOM : ContinuationLocator.TOP;
+			if(borderItemLocator instanceof ContinuationLocator) {
+				((ContinuationLocator)borderItemLocator).setLocation(newValue);
+				// Refresh the position of the figure
+				borderItemLocator.relocate(this.getFigure());
+			}
+		}
+		super.handleNotificationEvent(notification);
+	}
+
 }

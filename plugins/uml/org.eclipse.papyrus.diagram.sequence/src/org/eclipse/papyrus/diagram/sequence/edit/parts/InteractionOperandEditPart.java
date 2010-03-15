@@ -34,8 +34,9 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.ResizableEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
@@ -50,12 +51,15 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.InteractionOperandComponentEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.InteractionOperandDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.InteractionOperandItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.InteractionOperandLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.figures.InteractionOperandFigure;
+import org.eclipse.papyrus.diagram.sequence.locator.ContinuationLocator;
+import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.diagram.sequence.util.NotificationHelper;
@@ -79,7 +83,7 @@ import org.eclipse.uml2.uml.ValueSpecification;
  */
 public class InteractionOperandEditPart extends
 
-ShapeNodeEditPart {
+AbstractBorderedShapeEditPart {
 
 	/**
 	 * Default value for integer.
@@ -167,6 +171,13 @@ ShapeNodeEditPart {
 		XYLayoutEditPolicy lep = new XYLayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
+				View childView = (View)child.getModel();
+				switch(UMLVisualIDRegistry.getVisualID(childView)) {
+				case ContinuationEditPart.VISUAL_ID:
+
+					return new BorderItemResizableEditPolicy();
+
+				}
 				EditPolicy result = super.createChildEditPolicy(child);
 				if(result == null) {
 					return new ResizableShapeEditPolicy();
@@ -216,12 +227,12 @@ ShapeNodeEditPart {
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so you may safely remove
-	 * <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
-	protected NodeFigure createNodeFigure() {
+	protected NodeFigure createMainFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
 		IFigure shape = createNodeShape();
@@ -252,6 +263,40 @@ ShapeNodeEditPart {
 			});
 		}
 		return nodeShape; // use nodeShape itself as contentPane
+	}
+
+	/**
+	 * Overrides to add a specific locator on the ContinuationEditPart
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart#addBorderItem(org.eclipse.draw2d.IFigure,
+	 *      org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart)
+	 */
+	@Override
+	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
+		if(borderItemEditPart instanceof ContinuationEditPart) {
+			borderItemContainer.add(borderItemEditPart.getFigure(), new ContinuationLocator(getMainFigure(), getContinuationPosition(borderItemEditPart)));
+			return;
+		}
+		super.addBorderItem(borderItemContainer, borderItemEditPart);
+	}
+
+	/**
+	 * Get the initial position of the continuation
+	 * 
+	 * @param borderItemEditPart
+	 *        the borderItemEditPart
+	 * @return the initial position. ContinuationLocator.BOTTOM if none found
+	 */
+	private int getContinuationPosition(IBorderItemEditPart borderItemEditPart) {
+		Object model = borderItemEditPart.getModel();
+		if(model instanceof org.eclipse.gmf.runtime.notation.Shape) {
+			org.eclipse.gmf.runtime.notation.Shape shape = (org.eclipse.gmf.runtime.notation.Shape)model;
+			EObject eObject = shape.getElement();
+			if(eObject instanceof Continuation) {
+				return ((Continuation)eObject).isSetting() ? ContinuationLocator.BOTTOM : ContinuationLocator.TOP;
+			}
+		}
+		return ContinuationLocator.TOP;
 	}
 
 	/**
@@ -1301,13 +1346,13 @@ ShapeNodeEditPart {
 		// Manage Continuation constraint on covered lifeline :
 		// Continuations are always global in the enclosing InteractionFragment 
 		//(e.g., it always covers all Lifelines covered by the enclosing InteractionFragment)
-		if(UMLPackage.eINSTANCE.getInteractionFragment_Covered().equals(feature)){
+		if(UMLPackage.eINSTANCE.getInteractionFragment_Covered().equals(feature)) {
 			// In case we are in an alternative combined fragment, this interaction operand may have continuation which need to be updated.
-			if(InteractionOperatorKind.ALT_LITERAL.equals(getInteractionOperator())){
+			if(InteractionOperatorKind.ALT_LITERAL.equals(getInteractionOperator())) {
 				InteractionOperand interactionOperand = (InteractionOperand)notification.getNotifier();
 				EList<Lifeline> currentlyCoveredLifeline = interactionOperand.getCovereds();
-				for(InteractionFragment interactionFragment : interactionOperand.getFragments()){
-					if(interactionFragment instanceof Continuation){
+				for(InteractionFragment interactionFragment : interactionOperand.getFragments()) {
+					if(interactionFragment instanceof Continuation) {
 						EList<Lifeline> continuationCoveredLifelines = interactionFragment.getCovereds();
 						if(!continuationCoveredLifelines.equals(currentlyCoveredLifeline)) {
 							// Add new covered lifelines (not already covered)
