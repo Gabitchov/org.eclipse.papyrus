@@ -34,6 +34,41 @@ public class Messages extends NLS {
 	}
 
 	/**
+	 * @generated NOT
+	 */
+	public static String SelectOrCreateDialog_CreateLabel;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String SelectOrCreateDialog_NameLabel;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String SelectOrCreateDialog_OwnerLabel;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String SelectOrCreateDialog_SelectLabel;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String SelectOrCreateDialog_NothingLabel;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String SelectOrCreateDialog_TypeLabel;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CommandHelper_CreateMessage;
+
+	/**
 	 * @generated
 	 */
 	public static String UMLCreationWizardTitle;

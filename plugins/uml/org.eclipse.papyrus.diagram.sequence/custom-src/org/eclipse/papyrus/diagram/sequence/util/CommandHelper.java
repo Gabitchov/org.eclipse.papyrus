@@ -15,12 +15,18 @@ package org.eclipse.papyrus.diagram.sequence.util;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.command.CommandStack;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.Transaction;
@@ -28,13 +34,17 @@ import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.uml2.uml.ActionExecutionSpecification;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.CombinedFragment;
+import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Event;
 import org.eclipse.uml2.uml.ExecutionEvent;
@@ -52,8 +62,10 @@ import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.MessageSort;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Signal;
+import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -210,67 +222,205 @@ public class CommandHelper {
 	/**
 	 * Get the signature of the message. Opens a dialog box to select a signature.
 	 * 
-	 * @param message
-	 *        The message
+	 * @param model
+	 *        The model
+	 * @param source
+	 *        The source of the message 
+	 * @param target
+	 *        The target of the message
 	 * @return null, if cancel has been pressed. An empty list if the null Element has been
 	 *         selected, or a list with the selected element.
 	 */
-	public static List<NamedElement> getSignature(Element message) {
-		return getSignature(message, null);
+	public static List<NamedElement> getSignature(Element model, Element source, Element target) {
+		return getSignature(model, source, target, null);
 	}
 
 	/**
 	 * Get the signature of the message. Opens a dialog box to select a signature. Inputs depends on
 	 * the messageSort, if any.
 	 * 
-	 * @param message
-	 *        The message
-	 * @param hasMessageSort
+	 * @param model
+	 *        The model
+	 * @param source
+	 *        The source of the message
+	 * @param target
+	 *        The target of the message
+	 * @param messageSort
 	 *        true if message sort is set
 	 * @return null, if cancel has been pressed. An empty list if the null Element has been
 	 *         selected, or a list with the selected element.
 	 */
-	public static List<NamedElement> getSignature(Element message, MessageSort messageSort) {
-
-		if(message == null) {
+	public static List<NamedElement> getSignature(Element model, Element source, Element target, MessageSort messageSort) {
+		
+		if(model == null) {
 			return null;
 		}
+		
+		// element where to look for parents
+		Element parentsOwner = target;
 
-		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
-		ElementListSelectionDialog dialog = new ElementListSelectionDialog(Display.getCurrent().getActiveShell(), labelProvider);
-		dialog.setTitle("Signature Selection");
-		dialog.setMessage("Select a signature (* = any string, ? = any char):");
+		// default values
+		// used for asynch message where messageSort = null
+		boolean useOperations = true;
+		boolean useSignals = true;
 
-		LinkedList<Object> result = new LinkedList<Object>();
-
-		result.add("");
-
-		if(messageSort == null) {
-			result.addAll(ItemPropertyDescriptor.getReachableObjectsOfType(message, UMLPackage.eINSTANCE.getOperation()));
-			result.addAll(ItemPropertyDescriptor.getReachableObjectsOfType(message, UMLPackage.eINSTANCE.getSignal()));
-		} else if(MessageSort.SYNCH_CALL_LITERAL.equals(messageSort) || MessageSort.ASYNCH_CALL_LITERAL.equals(messageSort) || MessageSort.REPLY_LITERAL.equals(messageSort)) {
-			result.addAll(ItemPropertyDescriptor.getReachableObjectsOfType(message, UMLPackage.eINSTANCE.getOperation()));
-		} else if(MessageSort.ASYNCH_SIGNAL_LITERAL.equals(messageSort)) {
-			result.addAll(ItemPropertyDescriptor.getReachableObjectsOfType(message, UMLPackage.eINSTANCE.getSignal()));
+		// according to the type of the message
+		// choose which types we should care of
+		if(MessageSort.SYNCH_CALL_LITERAL.equals(messageSort)) {
+			useSignals = false;
+		} else if(MessageSort.CREATE_MESSAGE_LITERAL.equals(messageSort) || MessageSort.DELETE_MESSAGE_LITERAL.equals(messageSort)) {
+			useOperations = false;
+		} else if(MessageSort.REPLY_LITERAL.equals(messageSort)) {
+			parentsOwner = source;
+			useSignals = false;
 		}
 
-		result.remove(null);
+		LinkedHashMap<EClass, List<EObject>> mapTypesPossibleParents = new LinkedHashMap<EClass, List<EObject>>();
 
-		// If there is no type, do not show the dialog
-		if(result.size() == 1) {
-			return Collections.emptyList();
+		if(useSignals) {
+			mapTypesPossibleParents.put(UMLPackage.eINSTANCE.getSignal(), new LinkedList<EObject>());
+		}
+		if(useOperations) {
+			mapTypesPossibleParents.put(UMLPackage.eINSTANCE.getOperation(), new LinkedList<EObject>());
 		}
 
-		dialog.setElements(result.toArray());
+		// add the parents we can find
+		boolean existingParent = false;
 
-		List<NamedElement> elements = null;
+		if(parentsOwner instanceof InteractionFragment) {
+			EList<Lifeline> lifelines = ((InteractionFragment)parentsOwner).getCovereds();
+			for(Lifeline l : lifelines) {
+				existingParent = existingParent || addParentsFromLifeline(l, mapTypesPossibleParents);
+			}
+		} else if(parentsOwner instanceof Lifeline) {
+			existingParent = addParentsFromLifeline((Lifeline)parentsOwner, mapTypesPossibleParents);
+		}
+
+		
+		// if no parent available => no signature
+		if(!existingParent) {
+			return new ArrayList<NamedElement>();
+		}
+
+		Set<EObject> existingElements = getExistingElementsFromParents(mapTypesPossibleParents);
+		
+		// Open the selection dialog
+		SelectOrCreateDialog dialog = new SelectOrCreateDialog(Display.getCurrent().getActiveShell(), Messages.CommandHelper_CreateMessage, createTypeLabelProvider(), new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory()), EditorUtils.getTransactionalEditingDomain(), existingElements, mapTypesPossibleParents);
+
+		// Get the selected result
 		if(dialog.open() == Window.OK) {
-			elements = new ArrayList<NamedElement>();
-			if(!"".equals(dialog.getFirstResult())) {
-				elements.add((NamedElement)dialog.getFirstResult());
+			// list to return
+			List<NamedElement> returnElements = new ArrayList<NamedElement>();
+			EObject element = dialog.getSelected();
+			if(element instanceof NamedElement) {
+				
+				returnElements.add((NamedElement)element);
+				return returnElements;
+			}
+			return returnElements;
+		} 
+		
+		return null;
+	}
+
+	/**
+	 * find the existing elements from the possible parents
+	 * 
+	 * @param mapTypesPossibleParents
+	 *        map of list containing the possible parents
+	 * @return
+	 */
+	private static Set<EObject> getExistingElementsFromParents(Map<EClass, List<EObject>> mapTypesPossibleParents) {
+		// find the existing elements using the parents we just found
+		Set<EObject> existingElements = new HashSet<EObject>();
+		for(EClass eClass : mapTypesPossibleParents.keySet()) {
+			List<EObject> parents = mapTypesPossibleParents.get(eClass);
+			for(EObject parent : parents) {
+				if(parent instanceof Classifier) {
+					existingElements.addAll(((Classifier)parent).getAllOperations());
+				} else if(parent instanceof Package) {
+					EList<Element> ownedElements = ((Package)parent).allOwnedElements();
+					for(Element e : ownedElements) {
+						if(e instanceof Signal) {
+							existingElements.add(e);
+						}
+					}
+				}
 			}
 		}
-		return elements;
+		return existingElements;
+	}
+
+	/**
+	 * Create a specific label provider for types
+	 * which remove everything after the first space
+	 * 
+	 * @return the label provider
+	 */
+	private static AdapterFactoryLabelProvider createTypeLabelProvider() {
+		AdapterFactoryLabelProvider typeLabelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory()) {
+
+			@Override
+			public String getText(Object object) {
+				// remove the supertypes from the label
+				// => keep only the first word
+				String text = super.getText(object);
+				int index = text.indexOf(" "); //$NON-NLS-1$
+				if(index != -1) {
+					text = text.substring(0, index);
+				}
+				return text;
+			}
+		};
+		return typeLabelProvider;
+	}
+
+	/**
+	 * add to the map the possible parents (classes, packages)
+	 * founded "in" the lifeline
+	 * 
+	 * @param l
+	 *        The lifeline where to look for possible parents
+	 * @param mapTypesPossibleParents
+	 *        The map where to store this parents
+	 * @return true if at least one parent was added
+	 */
+	private static boolean addParentsFromLifeline(Lifeline l, Map<EClass, List<EObject>> mapTypesPossibleParents) {
+		ConnectableElement e = l.getRepresents();
+		
+		boolean existingParent = false;
+
+		// If there is no connectable element (ie : lifeline doesn't have a represents property yet)
+		if(e == null) {
+			return false;
+		}
+		
+		Type type = e.getType();
+		if(type == null){
+			return false;
+		}
+
+		// the classes are related to operation
+		List<EObject> possibleClassifier = mapTypesPossibleParents.get(UMLPackage.eINSTANCE.getOperation());
+		if(possibleClassifier != null) {
+			if(type instanceof Classifier) {
+				Classifier classifier = (Classifier)type;
+				existingParent = possibleClassifier.add(classifier);
+				// add the supertypes of the class
+				possibleClassifier.addAll(classifier.allParents());
+			}
+		}
+		
+		// and the packages to signal
+		List<EObject> possiblePackages = mapTypesPossibleParents.get(UMLPackage.eINSTANCE.getSignal());
+		if(possiblePackages != null) {
+			Package package_ = type.getPackage();
+			existingParent = existingParent || possiblePackages.add(package_);
+			// add the owners of the package
+			possiblePackages.addAll(package_.allOwningPackages());
+		}
+		
+		return existingParent;
 	}
 
 	/**
@@ -298,7 +448,7 @@ public class CommandHelper {
 		Property element = null;
 		int dialogResult = dialog.open();
 		if(dialogResult == Window.OK) {
-			if(!"".equals(dialog.getFirstResult())) {
+			if(!"".equals(dialog.getFirstResult())) { //$NON-NLS-1$
 				element = (Property)dialog.getFirstResult();
 			}
 		}
@@ -495,7 +645,7 @@ public class CommandHelper {
 		}
 
 		if(gate != null) {
-			ElementInitializers.init_NamedElement(gate, direction.toString().toLowerCase() + "_");
+			ElementInitializers.init_NamedElement(gate, direction.toString().toLowerCase() + "_"); //$NON-NLS-1$
 		}
 
 		return gate;
@@ -516,7 +666,7 @@ public class CommandHelper {
 	 */
 	public static Message doCreateMessage(Interaction container, MessageSort messageSort, Element source, Element target, InteractionFragment sourceContainer, InteractionFragment targetContainer) {
 
-		List<NamedElement> signatures = getSignature(container.getModel(), messageSort);
+		List<NamedElement> signatures = getSignature(container.getModel(), source, target, messageSort);
 
 		// If signatures == null, means the user click on cancel button during selection --> Cancel the whole process of creation
 		if(signatures == null) {
