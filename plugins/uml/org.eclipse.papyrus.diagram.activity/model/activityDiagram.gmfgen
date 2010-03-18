@@ -745,6 +745,10 @@
       <viewmap
           xsi:type="gmfgen:FigureViewmap"
           figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
+      <behaviour
+          xsi:type="gmfgen:CustomBehaviour"
+          key="&quot;RemoveOrphanView&quot;"
+          editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
       <domainDiagramElement
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package"/>
       <childNodes
@@ -4207,6 +4211,14 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.ResizeActivityEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.CANONICAL_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.ActivityCanonicalEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Activity"/>
@@ -4604,6 +4616,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.CANONICAL_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.ActivityActivityParametersCompartmentCanonicalEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7002"
@@ -4626,6 +4642,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.CANONICAL_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.ActivityActivityPreConditionsCompartmentCanonicalEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7003"
@@ -4648,6 +4668,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.CANONICAL_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.ActivityActivityPostConditionsCompartmentCanonicalEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <compartments
           visualID="7004"
@@ -4679,6 +4703,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.ActivityParameterNodeInCompartmentCreationEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <palette>
         <groups

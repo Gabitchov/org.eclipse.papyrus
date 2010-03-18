@@ -32,6 +32,7 @@ import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityActivityConten
 import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityParameterNodeInCompartmentCreationEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.CompartmentXYLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.CustomDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 
@@ -87,6 +88,7 @@ public class ActivityActivityContentCompartmentEditPart extends ShapeCompartment
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new CompartmentXYLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new ActivityParameterNodeInCompartmentCreationEditPolicy());
+		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 	}
 
 	/**

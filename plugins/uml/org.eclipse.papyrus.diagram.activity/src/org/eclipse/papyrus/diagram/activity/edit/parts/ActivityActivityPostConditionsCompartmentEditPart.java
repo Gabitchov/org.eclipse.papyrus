@@ -29,6 +29,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityActivityPostConditionsCompartmentCanonicalEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityActivityPostConditionsCompartmentItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 
@@ -91,6 +92,7 @@ extends ListCompartmentEditPart {
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.activity.edit.policies.ActivityActivityPostConditionsCompartmentCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new ActivityActivityPostConditionsCompartmentCanonicalEditPolicy());
+		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 	}
 
 	/**

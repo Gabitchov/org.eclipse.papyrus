@@ -182,7 +182,7 @@ public class ActivityParameterAndParameterSynchronizer extends AbstractModelCons
 			}
 		}
 		// parameter deletion
-		else if(((EMFEventType.REMOVE.equals(ctx.getEventType()) && UMLPackage.eINSTANCE.getParameter().equals(ctx.getFeatureNewValue())) || EMFEventType.REMOVE_MANY.equals(ctx.getEventType()))) {
+		else if(((EMFEventType.REMOVE.equals(ctx.getEventType()) && ctx.getFeatureNewValue() instanceof Parameter) || EMFEventType.REMOVE_MANY.equals(ctx.getEventType()))) {
 			nodesToRemove.clear();
 			// remove associated activity parameter nodes with the parameter
 			for(Notification n : ctx.getAllEvents()) {
