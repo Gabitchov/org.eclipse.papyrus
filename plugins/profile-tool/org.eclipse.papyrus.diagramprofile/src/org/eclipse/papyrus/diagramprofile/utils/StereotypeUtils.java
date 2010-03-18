@@ -151,6 +151,12 @@ public class StereotypeUtils {
 		Profile profile = loadProfile(SYSML_URI, element.eResource().getResourceSet());
 		if (profile != null) {
 			element.applyProfile(profile);
+			// Apply sub profiles of SysML
+			for(Element e : profile.getOwnedElements()){
+				if(e instanceof Profile){
+					element.applyProfile((Profile)e);
+				}
+			}
 		}
 	}
 	
