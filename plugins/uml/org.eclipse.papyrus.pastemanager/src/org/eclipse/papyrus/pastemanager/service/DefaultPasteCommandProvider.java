@@ -30,7 +30,7 @@ import org.eclipse.papyrus.pastemanager.request.PasteRequest;
  * when the System clipboard contains a string the papyrus clipboard has no information
  * (a copy has be done on the system). In this case, a comment is created and displayed in the diagram
  * the body contains the string from the clipboard.
- * In other case, a paste request {@link org.eclipse.papyrus.pastemanager.request.PasteRequest} in send to the target editpart in order to obtain
+ * In other case, a paste request {@link org.org.eclipse.papyrus.pastemanager.request.PasteRequest} in send to the target editpart in order to obtain
  * the paste command
  * 
  */
