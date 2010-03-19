@@ -37,6 +37,8 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.gmf.runtime.common.ui.services.dnd"/>
       <import plugin="org.eclipse.papyrus.diagram.common"/>
       <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="org.eclipse.ui.navigator"/>
+      <import plugin="org.eclipse.jface"/>
       <import plugin="org.eclipse.emf.edit"/>
       <import plugin="org.eclipse.emf.ecore.edit"/>
       <import plugin="org.eclipse.core.resources"/>
