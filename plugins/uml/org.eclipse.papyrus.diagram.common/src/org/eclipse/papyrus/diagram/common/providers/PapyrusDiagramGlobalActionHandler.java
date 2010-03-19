@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.providers;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.DataFlavor;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -35,14 +37,19 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
+import org.eclipse.gmf.runtime.diagram.ui.render.clipboard.AWTClipboardHelper;
 import org.eclipse.gmf.runtime.diagram.ui.render.internal.providers.ImageSupportGlobalActionHandler;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.ui.properties.actions.PropertyPageViewAction;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.command.wrappers.GEFtoEMFCommandWrapper;
+import org.eclipse.papyrus.diagram.common.command.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.diagram.common.commands.GMFToEMFCommand;
 import org.eclipse.papyrus.diagram.common.helper.CleanDiagramHelper;
-import org.eclipse.papyrus.diagram.common.request.PasteRequest;
+import org.eclipse.papyrus.pastemanager.request.PasteRequest;
+import org.eclipse.papyrus.pastemanager.service.DefaultPasteCommandProvider;
+import org.eclipse.papyrus.pastemanager.service.PasteCommandService;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPart;
 
@@ -53,6 +60,24 @@ import org.eclipse.ui.IWorkbenchPart;
 @SuppressWarnings("restriction")
 public class PapyrusDiagramGlobalActionHandler extends ImageSupportGlobalActionHandler {
 
+	
+	protected boolean canPaste(IGlobalActionContext cntxt) {
+		/* Get the selected edit parts */
+		Object[] objectsArray = ((IStructuredSelection) cntxt.getSelection())
+		.toArray();
+
+		if(objectsArray.length>0 && objectsArray[0] instanceof GraphicalEditPart){
+			ICommand pastecommand=PasteCommandService.getInstance().getCommand(((GraphicalEditPart)objectsArray[0]), Toolkit.getDefaultToolkit().getSystemClipboard(), ((GraphicalEditPart)objectsArray[0]).getEditingDomain().getClipboard());
+			return pastecommand.canExecute();
+		}
+		
+		if (!AWTClipboardHelper.getInstance().isImageCopySupported()) {
+			return super.canPaste(cntxt);
+		}
+		
+		/* Check if the clipboard has data for the drawing surface */
+		return AWTClipboardHelper.getInstance().hasCustomData();
+	}
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -89,17 +114,20 @@ public class PapyrusDiagramGlobalActionHandler extends ImageSupportGlobalActionH
 			.toArray();
 
 			if(objectsArray.length>0 && objectsArray[0] instanceof GraphicalEditPart){
-				/* Send the request to the target edit part of the paste command for the currently selected part */
-				PasteRequest pasteRequest = new PasteRequest(((GraphicalEditPart)objectsArray[0]).getEditingDomain().getClipboard());
-				org.eclipse.gef.commands.Command pasteCommand=((GraphicalEditPart)objectsArray[0]).getCommand(pasteRequest);
-				if(pasteCommand!=null){
-					((GraphicalEditPart)objectsArray[0]).getEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(pasteCommand));
+				
+				ICommand pastecommand=PasteCommandService.getInstance().getCommand(((GraphicalEditPart)objectsArray[0]), Toolkit.getDefaultToolkit().getSystemClipboard(), ((GraphicalEditPart)objectsArray[0]).getEditingDomain().getClipboard());
+				
+				if(pastecommand.canExecute() ){
+					((GraphicalEditPart)objectsArray[0]).getEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(pastecommand));
 					RootEditPart topEditPart=((GraphicalEditPart)objectsArray[0]).getRoot();
 					if(topEditPart.getChildren().get(0) instanceof DiagramEditPart){
-					CleanDiagramHelper.getInstance().run((DiagramEditPart)topEditPart.getChildren().get(0));
+						CleanDiagramHelper.getInstance().run((DiagramEditPart)topEditPart.getChildren().get(0));
+					}
+					
 				}
-				}
+				return null;
 			}
+
 		} else if (actionId.equals(GlobalActionId.SAVE)) {
 			part.getSite().getPage().saveEditor((IEditorPart) diagramPart,
 				false);
@@ -223,8 +251,8 @@ public class PapyrusDiagramGlobalActionHandler extends ImageSupportGlobalActionH
 
 		return result;
 	}
-	
-	
+
+
 	/**
 	 * get the list of notation element from the a list of editpart
 	 * @param editPartList the list of editpart

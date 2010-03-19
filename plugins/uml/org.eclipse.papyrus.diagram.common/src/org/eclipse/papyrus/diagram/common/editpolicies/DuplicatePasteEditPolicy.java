@@ -47,7 +47,7 @@ import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.commands.PapyrusDuplicateViewsCommand;
-import org.eclipse.papyrus.diagram.common.request.PasteRequest;
+import org.eclipse.papyrus.pastemanager.request.PasteRequest;
 /**
  * this class has in charge to give a paste command, ie to copy graphically element
  */

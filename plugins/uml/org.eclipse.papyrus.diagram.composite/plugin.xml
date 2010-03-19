@@ -2746,7 +2746,7 @@
    <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders" id="global-actions">
       <?gmfgen generated="true"?>
       <GlobalActionHandlerProvider
-         class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
+         class="org.eclipse.papyrus.diagram.common.providers.PapyrusGlobalActionHandlerProvider"
          id="CompositeStructurePresentation">
          <Priority name="Highest"/>
          <ViewId id="org.eclipse.papyrus.core.papyrusEditor">
@@ -2769,7 +2769,7 @@
          </ViewId>
       </GlobalActionHandlerProvider>
       <GlobalActionHandlerProvider
-            class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
+            class="org.eclipse.papyrus.diagram.common.providers.PapyrusGlobalActionHandlerProvider"
             id="CompositeStructureRender">
          <Priority name="Highest"/>
          <ViewId id="org.eclipse.papyrus.core.papyrusEditor">

@@ -403,5 +403,12 @@
       </Priority>
    </aspectToolProvider>
 </extension>
+<extension
+      point="org.eclipse.papyrus.pastemanager.pasteCommandProvider">
+   <PasteCommandProvider
+         priority="Lowest"
+         realization="org.eclipse.papyrus.pastemanager.service.DefaultPasteCommandProvider">
+   </PasteCommandProvider>
+</extension>
 
 </plugin>
