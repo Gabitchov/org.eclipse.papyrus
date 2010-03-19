@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: VerticalAlgorithm Plug-in
 Bundle-SymbolicName: org.eclipse.papyrus.layouttool.algorithms.verticalAlgorithm;singleton:=true
-Bundle-Version: 0.7.0.vqualifier
+Bundle-Version: 0.7.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.layouttool.algorithms.verticalalgorithm.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
