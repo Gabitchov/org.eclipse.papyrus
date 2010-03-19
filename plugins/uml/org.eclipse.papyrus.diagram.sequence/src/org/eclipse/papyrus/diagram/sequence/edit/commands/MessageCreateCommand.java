@@ -86,11 +86,13 @@ public class MessageCreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
-		if(getRequest().getParameter(SequenceRequestConstant.SOURCE_MODEL_CONTAINER) != null && getRequest().getParameter(SequenceRequestConstant.TARGET_MODEL_CONTAINER) != null) {
-			if(!getRequest().getParameter(SequenceRequestConstant.SOURCE_MODEL_CONTAINER).equals(getRequest().getParameter(SequenceRequestConstant.TARGET_MODEL_CONTAINER))) {
+		
+		if(getSource() != null && getTarget() != null){
+			if(!CommandHelper.hasValidContainer(getRequest())){
 				return false;
 			}
 		}
+		
 		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateMessage_4003(getContainer(), getSource(), getTarget());
 	}
 

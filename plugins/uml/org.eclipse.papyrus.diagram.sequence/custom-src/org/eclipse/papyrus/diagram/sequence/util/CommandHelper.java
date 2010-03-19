@@ -31,6 +31,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
@@ -735,5 +736,26 @@ public class CommandHelper {
 		return messageSort;
 	}
 
+	/**
+	 * A method to validate that both source and target of a request have valid container for the creation of a message. 
+	 * @param request the request
+	 * @return false if the container of the source or the target is null and if the two container are not equals
+	 */
+	public static boolean hasValidContainer(IEditCommandRequest request){
+		if(request.getParameter(SequenceRequestConstant.SOURCE_MODEL_CONTAINER) == null)
+		{
+			return false;
+		}
+		if(request.getParameter(SequenceRequestConstant.TARGET_MODEL_CONTAINER) == null)
+		{
+			return false;
+		}
+		// Message cannot cross InteractionFragment. The two mos must be contained into the same InteractionFragment
+		if(!request.getParameter(SequenceRequestConstant.SOURCE_MODEL_CONTAINER).equals(request.getParameter(SequenceRequestConstant.TARGET_MODEL_CONTAINER))) {
+			return false;
+		}
+		
+		return true;
+	}
 
 }
