@@ -73,6 +73,7 @@ plugin@org.eclipse.papyrus.extensionpoints.uml2=SVN,,svn://dev.eclipse.org/svnro
 plugin@org.eclipse.papyrus.navigator=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.navigator
 plugin@org.eclipse.papyrus.outline.emftree=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.outline.emftree
 plugin@org.eclipse.papyrus.parsers=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.parsers
+plugin@org.eclipse.papyrus.pastemanager=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.pastemanager
 plugin@org.eclipse.papyrus.tabbedproperties.appearance=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.tabbedproperties.appearance
 plugin@org.eclipse.papyrus.tabbedproperties.uml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.tabbedproperties.uml
 plugin@org.eclipse.papyrus.ui.toolbox=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.ui.toolbox
