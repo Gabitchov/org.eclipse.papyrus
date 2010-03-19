@@ -54,11 +54,13 @@ public class ResourceItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 
 	@Override
 	public Command getCommand(Request request) {
-		Command command = delegatePolicy.getCommand(request);
-		if (command == null) {
-			return super.getCommand(request);
+		if(delegatePolicy.getHost() != null){
+			Command command = delegatePolicy.getCommand(request);
+			if (command != null) {
+				return command;
+			}
 		}
-		return command;
+		return super.getCommand(request);
 	}
 
 	@Override
