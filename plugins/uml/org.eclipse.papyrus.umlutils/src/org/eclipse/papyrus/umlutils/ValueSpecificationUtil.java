@@ -60,7 +60,10 @@ public class ValueSpecificationUtil {
 			case UMLPackage.LITERAL_NULL:
 				break;
 			case UMLPackage.OPAQUE_EXPRESSION:
-				value = OpaqueExpressionUtil.getBodyForLanguage((OpaqueExpression)specification, "UML"); //$NON-NLS-1$
+				OpaqueExpression exp = (OpaqueExpression)specification;
+				if (!exp.getLanguages().isEmpty()) {
+					value = OpaqueExpressionUtil.getBodyForLanguage(exp, exp.getLanguages().get(0)); //$NON-NLS-1$					
+				}
 				break;
 			case UMLPackage.INSTANCE_VALUE:
 				value = ((InstanceValue)specification).getInstance().getName();
@@ -88,7 +91,6 @@ public class ValueSpecificationUtil {
 	 * @param value
 	 *        the value to set
 	 */
-	// @unused
 	public static void restoreSpecificationValue(ValueSpecification specification, String value) {
 		if(value == null) {
 			return;
@@ -111,7 +113,12 @@ public class ValueSpecificationUtil {
 			restoreLiteralNull((LiteralNull)specification, value);
 			break;
 		case UMLPackage.OPAQUE_EXPRESSION:
-			restoreOpaqueExpression((org.eclipse.uml2.uml.OpaqueExpression)specification, value);
+			OpaqueExpression exp = (OpaqueExpression)specification;
+			if (!exp.getLanguages().isEmpty()) {
+				restoreOpaqueExpression((org.eclipse.uml2.uml.OpaqueExpression)specification, exp.getLanguages().get(0), value);
+			} else {
+				restoreOpaqueExpression((org.eclipse.uml2.uml.OpaqueExpression)specification, value);				
+			}
 			break;
 		default:
 		{
@@ -211,7 +218,17 @@ public class ValueSpecificationUtil {
 	public static void restoreOpaqueExpression(org.eclipse.uml2.uml.OpaqueExpression specification, String value) {
 		// save in "UML" language, but should be desactivable
 		OpaqueExpressionUtil.setBodyForLanguage(specification, "UML", value);
-
+	}
+	
+	/**
+	 * Sets the value of an opaque expression, using a string value.
+	 * 
+	 * @param specification the opaque expression to update
+	 * @param language the specified language
+	 * @param value the new value
+	 */
+	public static void restoreOpaqueExpression(org.eclipse.uml2.uml.OpaqueExpression specification, String language, String value) {
+		OpaqueExpressionUtil.setBodyForLanguage(specification, language, value);
 	}
 
 }
