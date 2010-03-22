@@ -52,6 +52,11 @@ public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedSh
 			// Not found, return an empty one which return null for each request.
 			return new PageIconsRegistry();
 		}
+		catch ( NullPointerException e) {
+			//if the editor is null null pointer exception is raised
+			// Not found, return an empty one which return null for each request.
+			return new PageIconsRegistry();
+		}
 	}
 
 	/**
