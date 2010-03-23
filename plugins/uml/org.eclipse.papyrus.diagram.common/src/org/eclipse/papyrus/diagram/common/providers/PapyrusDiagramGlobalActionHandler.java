@@ -34,6 +34,7 @@ import org.eclipse.gmf.runtime.common.ui.action.global.GlobalActionId;
 import org.eclipse.gmf.runtime.common.ui.services.action.global.IGlobalActionContext;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
@@ -67,7 +68,7 @@ public class PapyrusDiagramGlobalActionHandler extends ImageSupportGlobalActionH
 		.toArray();
 
 		if(objectsArray.length>0 && objectsArray[0] instanceof GraphicalEditPart){
-			ICommand pastecommand=PasteCommandService.getInstance().getCommand(((GraphicalEditPart)objectsArray[0]), Toolkit.getDefaultToolkit().getSystemClipboard(), ((GraphicalEditPart)objectsArray[0]).getEditingDomain().getClipboard());
+			ICommand pastecommand=PasteCommandService.getInstance().getPasteViewCommand(((GraphicalEditPart)objectsArray[0]), Toolkit.getDefaultToolkit().getSystemClipboard(), ((GraphicalEditPart)objectsArray[0]).getEditingDomain().getClipboard());
 			return pastecommand.canExecute();
 		}
 		
@@ -115,7 +116,7 @@ public class PapyrusDiagramGlobalActionHandler extends ImageSupportGlobalActionH
 
 			if(objectsArray.length>0 && objectsArray[0] instanceof GraphicalEditPart){
 				
-				ICommand pastecommand=PasteCommandService.getInstance().getCommand(((GraphicalEditPart)objectsArray[0]), Toolkit.getDefaultToolkit().getSystemClipboard(), ((GraphicalEditPart)objectsArray[0]).getEditingDomain().getClipboard());
+				ICommand pastecommand=PasteCommandService.getInstance().getPasteViewCommand(((GraphicalEditPart)objectsArray[0]), Toolkit.getDefaultToolkit().getSystemClipboard(), ((GraphicalEditPart)objectsArray[0]).getEditingDomain().getClipboard());
 				
 				if(pastecommand.canExecute() ){
 					((GraphicalEditPart)objectsArray[0]).getEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(pastecommand));
@@ -153,6 +154,10 @@ public class PapyrusDiagramGlobalActionHandler extends ImageSupportGlobalActionH
 			//((GraphicalEditPart)objectsArray[0]).getEditingDomain().setClipboard(((IStructuredSelection) cntxt.getSelection()).toList());
 			compositeCommand.add(new EMFtoGMFCommandWrapper(CopyToClipboardCommand.create(((GraphicalEditPart)objectsArray[0]).getEditingDomain(), getNotation(((IStructuredSelection) cntxt.getSelection()).toList()))));
 		}
+		if(objectsArray.length>0 && objectsArray[0] instanceof ConnectionEditPart){
+			//((GraphicalEditPart)objectsArray[0]).getEditingDomain().setClipboard(((IStructuredSelection) cntxt.getSelection()).toList());
+			compositeCommand.add(new EMFtoGMFCommandWrapper(CopyToClipboardCommand.create(((ConnectionEditPart)objectsArray[0]).getEditingDomain(), getNotation(((IStructuredSelection) cntxt.getSelection()).toList()))));
+		}
 		compositeCommand.add( super.getCopyCommand(cntxt, diagramPart, isUndoable));
 		return compositeCommand;
 	}
@@ -173,6 +178,10 @@ public class PapyrusDiagramGlobalActionHandler extends ImageSupportGlobalActionH
 			//((GraphicalEditPart)objectsArray[0]).getEditingDomain().setClipboard(((IStructuredSelection) cntxt.getSelection()).toList());
 			compositeCommand.add(new EMFtoGMFCommandWrapper(CopyToClipboardCommand.create(((GraphicalEditPart)objectsArray[0]).getEditingDomain(), getNotation(((IStructuredSelection) cntxt.getSelection()).toList()))));
 
+		}
+		if(objectsArray.length>0 && objectsArray[0] instanceof ConnectionEditPart){
+			//((GraphicalEditPart)objectsArray[0]).getEditingDomain().setClipboard(((IStructuredSelection) cntxt.getSelection()).toList());
+			compositeCommand.add(new EMFtoGMFCommandWrapper(CopyToClipboardCommand.create(((ConnectionEditPart)objectsArray[0]).getEditingDomain(), getNotation(((IStructuredSelection) cntxt.getSelection()).toList()))));
 		}
 		ICommand cutCommand=super.getCutCommand(cntxt, diagramPart);
 		if(cutCommand!=null){

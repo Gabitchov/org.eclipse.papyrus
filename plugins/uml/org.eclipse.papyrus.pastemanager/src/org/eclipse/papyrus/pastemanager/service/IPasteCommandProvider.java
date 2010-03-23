@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.pastemanager.service;
 
+import java.awt.datatransfer.Clipboard;
 import java.util.Collection;
 
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -36,5 +37,18 @@ public interface IPasteCommandProvider {
 	 *        the list of views to paste
 	 * @return a command
 	 */
-	public ICommand getCommand(GraphicalEditPart targetEditPart, java.awt.datatransfer.Clipboard systemClipboard, Collection<Object> papyrusCliboard);
+	public ICommand getPasteViewCommand(GraphicalEditPart targetEditPart, java.awt.datatransfer.Clipboard systemClipboard, Collection<Object> papyrusCliboard);
+
+	/**
+	 * return the paste command to execute by taking account parameter. It copy also element of the semantic model
+	 * 
+	 * @param targetEditPart
+	 *        the target where object will be paste
+	 * @param systemClipboard
+	 *        contains info form the system copy paste
+	 * @param papyrusCliboard
+	 *        the list of views to paste
+	 * @return a command
+	 */
+	public ICommand getPasteWithModelCommand(GraphicalEditPart targetEditPart, Clipboard systemClipboard, Collection<Object> papyrusCliboard);
 }

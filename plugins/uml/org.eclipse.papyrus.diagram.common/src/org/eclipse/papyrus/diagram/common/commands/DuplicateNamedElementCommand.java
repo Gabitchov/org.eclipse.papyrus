@@ -58,13 +58,20 @@ public class DuplicateNamedElementCommand extends DuplicateEObjectsCommand {
 			if(currentObject instanceof View) {
 				if(((View)currentObject).getElement() != null && ((View)currentObject).getElement() instanceof NamedElement) {
 					NamedElement namedElement = ((NamedElement)((View)currentObject).getElement());
-					namedElement.setName(COPY_OF + namedElement.getName());
+					if(namedElement.getName() != null && !namedElement.getName().startsWith(COPY_OF)) {
+						namedElement.setName(COPY_OF + namedElement.getName());
+					}
 				}
 			}
 
+
+
 			if(currentObject instanceof NamedElement) {
 				NamedElement namedElement = ((NamedElement)currentObject);
-				namedElement.setName(COPY_OF + namedElement.getName());
+				//some literal has not name
+				if(namedElement.getName() != null && !namedElement.getName().startsWith(COPY_OF)) {
+					namedElement.setName(COPY_OF + namedElement.getName());
+				}
 			}
 
 		}

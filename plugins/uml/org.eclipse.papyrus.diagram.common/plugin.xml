@@ -302,6 +302,20 @@
             menubarPath="editGroup">
       </action>
    </objectContribution>
+   <objectContribution
+         adaptable="false"
+         id="org.eclipse.papyrus.diagram.common.pastewithmodelaction"
+         objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart">
+      <action
+            class="org.eclipse.papyrus.diagram.common.actions.PasteWithModelAction"
+            definitionId="org.eclipse.papyrus.common.pasteWithModel"
+            enablesFor="1"
+            icon="icons/paste_edit.gif"
+            id="org.eclipse.papyrus.diagram.common.objectContribution.pastewithmodelaction"
+            label="Paste with model"
+            menubarPath="editMenu/editGroup">
+      </action>
+   </objectContribution>
 </extension>
 <extension
       point="org.eclipse.papyrus.core.modelListener">

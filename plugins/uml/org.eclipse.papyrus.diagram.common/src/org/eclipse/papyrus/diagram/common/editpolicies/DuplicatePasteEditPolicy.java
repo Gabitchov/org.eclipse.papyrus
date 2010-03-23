@@ -83,7 +83,7 @@ public class DuplicatePasteEditPolicy extends ContainerEditPolicy {
 	@SuppressWarnings("unchecked")
 	protected Command getPasteCommand(PasteRequest request) {
 		List notationView=  new ArrayList();
-		if(request.getElementToPaste()!=null||request.getElementToPaste().size()>0){
+		if(request.getElementToPaste()!=null&&request.getElementToPaste().size()>0){
 			notationView.addAll(request.getElementToPaste());
 			HashSet semanticElement= new HashSet();
 			return constructDuplicationCommand(notationView, semanticElement, request.getDuplicate(), ((IGraphicalEditPart)getHost()).getEditingDomain());

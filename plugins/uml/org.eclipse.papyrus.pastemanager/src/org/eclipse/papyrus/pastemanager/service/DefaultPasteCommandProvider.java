@@ -16,13 +16,23 @@ package org.eclipse.papyrus.pastemanager.service;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.gef.RootEditPart;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.pastemanager.command.CommentDropCreation;
+import org.eclipse.papyrus.pastemanager.command.PapyrusDuplicateWrapperCommand;
 import org.eclipse.papyrus.pastemanager.request.PasteRequest;
 
 /**
@@ -31,7 +41,7 @@ import org.eclipse.papyrus.pastemanager.request.PasteRequest;
  * (a copy has be done on the system). In this case, a comment is created and displayed in the diagram
  * the body contains the string from the clipboard.
  * In other case, a paste request {@link org.org.eclipse.papyrus.pastemanager.request.PasteRequest} in send to the target editpart in order to obtain
- * the paste command
+ * the paste command ( graphically or the paste with model command
  * 
  */
 
@@ -50,7 +60,7 @@ public class DefaultPasteCommandProvider implements IPasteCommandProvider {
 	 * @return
 	 */
 
-	public ICommand getCommand(GraphicalEditPart targetEditPart, Clipboard systemClipboard, Collection<Object> papyrusCliboard) {
+	public ICommand getPasteViewCommand(GraphicalEditPart targetEditPart, Clipboard systemClipboard, Collection<Object> papyrusCliboard) {
 
 		//look in the clipboard of the system
 		String bufferSystem = null;
@@ -93,6 +103,61 @@ public class DefaultPasteCommandProvider implements IPasteCommandProvider {
 	 */
 	public ICommand pasteFromSystem(GraphicalEditPart targetEditPart, String comment) {
 		return new CommentDropCreation("paste", comment, targetEditPart.getNotationView().getElement(), targetEditPart);
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	/**
+	 * @inheritedDoc
+	 */
+	public ICommand getPasteWithModelCommand(GraphicalEditPart targetEditPart, Clipboard systemClipboard, Collection<Object> papyrusCliboard) {
+		//look in the clipboard of the system
+		String bufferSystem = null;
+		DataFlavor[] dataFlavors = Toolkit.getDefaultToolkit().getSystemClipboard().getAvailableDataFlavors();
+		for(int i = 0; i < dataFlavors.length; i++) {
+			try {
+				if(dataFlavors[i].isFlavorTextType() && dataFlavors[i].isMimeTypeEqual(DataFlavor.stringFlavor)) {
+
+					bufferSystem = Toolkit.getDefaultToolkit().getSystemClipboard().getData(dataFlavors[i]).toString();
+				}
+			} catch (Exception e) {
+				System.err.println(e);
+			}
+		}
+		//detection of a paste command from the system
+		if(bufferSystem != null) {
+			// here, the choice is to create a comment from a string
+			// if the you want to modify it overload the method paste from System
+			return pasteFromSystem(targetEditPart, bufferSystem);
+		}
+		//else
+
+		/* Send the request to the target edit part of the paste command for the currently selected part */
+		ArrayList objectToPaste=new ArrayList();
+		if(papyrusCliboard!=null&& papyrusCliboard.size() >=1){
+			objectToPaste.addAll(papyrusCliboard);
+			Iterator iterator=papyrusCliboard.iterator();
+			//in order to paste with model, semantic element has to be put in the list
+			while(iterator.hasNext()) {
+				Object object = (Object)iterator.next();
+				if( object instanceof View){
+					objectToPaste.add(((View)object).getElement());
+				}
+
+			}
+			//creation of duplicate request to obtain the functionnality of GMF
+			DuplicateElementsRequest duplicateElementRequest = new DuplicateElementsRequest( targetEditPart.getEditingDomain(),objectToPaste);
+
+			//add the wrapper
+			RootEditPart topEditPart=targetEditPart.getRoot();
+			if(topEditPart.getChildren().get(0) instanceof DiagramEditPart){
+
+				org.eclipse.gef.commands.Command gefCommand=((DiagramEditPart)topEditPart.getChildren().get(0)).getCommand( new EditCommandRequestWrapper(duplicateElementRequest));
+				ICommand command=new PapyrusDuplicateWrapperCommand(targetEditPart.getEditingDomain(),"",objectToPaste,(ICommandProxy)gefCommand,(View)targetEditPart.getModel());
+				return command;
+			}
+		}
+
+		return UnexecutableCommand.INSTANCE;
 	}
 
 

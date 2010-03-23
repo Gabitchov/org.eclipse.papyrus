@@ -73,6 +73,7 @@ public class PasteCommandService {
 
 	protected Map<String, IPasteCommandProvider> pasteCommandProviderMap;
 
+	
 	private PasteCommandService() {
 		// Reading data from plugins
 		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(PASTECOMMANDPROVIDER_EXTENSION_ID);
@@ -112,11 +113,41 @@ public class PasteCommandService {
 		return selectedProvider;
 	}
 
-	public ICommand getCommand(GraphicalEditPart targetEditPart, Clipboard systemClipboard, Collection<Object> papyrusCliboard) {
+	/**
+	 * return the paste command to execute by taking account parameter
+	 * 
+	 * @param targetEditPart
+	 *        the target where object will be paste
+	 * @param systemClipboard
+	 *        contains info form the system copy paste
+	 * @param papyrusCliboard
+	 *        the list of views to paste
+	 * @return a command
+	 */
+	public ICommand getPasteViewCommand(GraphicalEditPart targetEditPart, Clipboard systemClipboard, Collection<Object> papyrusCliboard) {
 		IPasteCommandProvider selectedProvider = lookForProvider();
 		if(selectedProvider == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		return selectedProvider.getCommand(targetEditPart, systemClipboard, papyrusCliboard);
+		return selectedProvider.getPasteViewCommand(targetEditPart, systemClipboard, papyrusCliboard);
+	}
+	
+	/**
+	 * return the paste command to execute by taking account parameter. It copy also element of the semantic model
+	 * 
+	 * @param targetEditPart
+	 *        the target where object will be paste
+	 * @param systemClipboard
+	 *        contains info form the system copy paste
+	 * @param papyrusCliboard
+	 *        the list of views to paste
+	 * @return a command
+	 */
+	public ICommand getPasteWithModelCommand(GraphicalEditPart targetEditPart, Clipboard systemClipboard, Collection<Object> papyrusCliboard) {
+		IPasteCommandProvider selectedProvider = lookForProvider();
+		if(selectedProvider == null) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		return selectedProvider.getPasteWithModelCommand(targetEditPart, systemClipboard, papyrusCliboard);
 	}
 }
