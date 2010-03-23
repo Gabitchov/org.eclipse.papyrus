@@ -56,6 +56,7 @@ public class HelpComponentFactory {
 	public static ImageHyperlink createHelpComponent(final Composite parent, FormToolkit toolkit, final String helpText, String pToolTip) {
 		ImageHyperlink helpImage = toolkit.createImageHyperlink(parent, SWT.NONE);
 		helpImage.setImage(image);
+		helpImage.setBackground(null);
 		final String toolTip = (pToolTip == null) ? "Help" : pToolTip;
 		helpImage.setToolTipText(toolTip);
 		helpImage.addHyperlinkListener(new IHyperlinkListener() {
