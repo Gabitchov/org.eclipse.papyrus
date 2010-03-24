@@ -43,6 +43,9 @@ public class HelpComponentFactory {
 	 * Creates help component that insert a new hyperlink icon to display additional help description
 	 * if tooltip is null, default value is "Help"
 	 * 
+	 * ParseTags parameter must be used if you want to define rich text content for the helpText.
+	 * For example use <form> tag to format your text
+	 * 
 	 * @param parent
 	 *        the parent
 	 * @param toolkit
@@ -51,9 +54,11 @@ public class HelpComponentFactory {
 	 *        the help text
 	 * @param pToolTip
 	 *        the tool tip
+	 * @param parseTags
+	 *        enables tags parsing on the description content
 	 * @return the hyperlink image
 	 */
-	public static ImageHyperlink createHelpComponent(final Composite parent, FormToolkit toolkit, final String helpText, String pToolTip) {
+	public static ImageHyperlink createHelpComponent(final Composite parent, FormToolkit toolkit, final String helpText, String pToolTip, final boolean parseTags) {
 		ImageHyperlink helpImage = toolkit.createImageHyperlink(parent, SWT.NONE);
 		helpImage.setImage(image);
 		helpImage.setBackground(null);
@@ -63,7 +68,7 @@ public class HelpComponentFactory {
 
 			// create the HelpDialog that displays the help description
 			public void linkActivated(HyperlinkEvent e) {
-				HelpDialog dialog = new HelpDialog(parent.getShell(), Display.getDefault().getCursorLocation(), toolTip, helpText);
+				HelpDialog dialog = new HelpDialog(parent.getShell(), Display.getDefault().getCursorLocation(), toolTip, helpText, parseTags);
 				dialog.open();
 			}
 
@@ -80,6 +85,26 @@ public class HelpComponentFactory {
 
 	/**
 	 * Creates a new HelpComponent object.
+	 * ParseTags parameter must be used if you want to define rich text content for the helpText.
+	 * For example use <form> tag to format your text
+	 * 
+	 * @param parent
+	 *        the parent
+	 * @param toolkit
+	 *        the toolkit
+	 * @param helpText
+	 *        the help text
+	 * @param parseTags
+	 *        enables tags parsing on the description content
+	 * @return the image hyperlink
+	 */
+	public static ImageHyperlink createHelpComponent(final Composite parent, FormToolkit toolkit, final String helpText, boolean parseTags) {
+		return createHelpComponent(parent, toolkit, helpText, null, parseTags);
+	}
+
+	/**
+	 * Creates a new HelpComponent object.
+	 * You must use method with parseTags parameter if you want to define rich text content for the helpText
 	 * 
 	 * @param parent
 	 *        the parent
@@ -90,7 +115,7 @@ public class HelpComponentFactory {
 	 * @return the image hyperlink
 	 */
 	public static ImageHyperlink createHelpComponent(final Composite parent, FormToolkit toolkit, final String helpText) {
-		return createHelpComponent(parent, toolkit, helpText, null);
+		return createHelpComponent(parent, toolkit, helpText, null, false);
 	}
 
 }

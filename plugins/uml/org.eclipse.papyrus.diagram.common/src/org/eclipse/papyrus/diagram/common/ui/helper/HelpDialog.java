@@ -36,8 +36,12 @@ public class HelpDialog extends CustomPopupDialog {
 	/** The description. */
 	private String description;
 
+	/** if true, description content is parsed to perform tags */
+	private boolean parseTags;
+
 	/**
 	 * Instantiates a new help dialog.
+	 * You must use constructor with parseTags parameter if you want to define rich text content in your description
 	 * 
 	 * @param parent
 	 *        the parent
@@ -51,6 +55,29 @@ public class HelpDialog extends CustomPopupDialog {
 	public HelpDialog(Shell parent, Point point, String title, String description) {
 		super(parent, point, title);
 		this.description = description;
+		this.parseTags = false;
+	}
+
+	/**
+	 * Instantiates a new help dialog.
+	 * ParseTags parameter must be used if you want to define rich text content for the description.
+	 * For example use <form> tag to format your text
+	 * 
+	 * @param parent
+	 *        the parent
+	 * @param point
+	 *        the point
+	 * @param title
+	 *        the title
+	 * @param description
+	 *        the description
+	 * @param parseTags
+	 *        enables tags parsing on the description content
+	 */
+	public HelpDialog(Shell parent, Point point, String title, String description, boolean parseTags) {
+		super(parent, point, title);
+		this.description = description;
+		this.parseTags = parseTags;
 	}
 
 	/**
@@ -88,7 +115,7 @@ public class HelpDialog extends CustomPopupDialog {
 				MessageDialog.openError(Display.getDefault().getActiveShell(), "Error", "The browser can't be opened");
 			}
 		});
-		text.setText(description, false, false);
+		text.setText(description, parseTags, true);
 	}
 
 	/**
