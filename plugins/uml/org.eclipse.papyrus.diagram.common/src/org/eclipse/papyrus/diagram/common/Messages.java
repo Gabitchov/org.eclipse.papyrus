@@ -263,4 +263,52 @@ public class Messages extends NLS {
 
 	/** label for the tooltip of the edit drawer icon */
 	public static String PapyrusPaletteCustomizerDialog_EditButtonTooltip;
+
+	/** Message for the add Stereotype Window */
+	public static String StereotypePostAction_StereotypeSelectionMessage;
+
+	/** Title for the add Stereotype Window */
+	public static String StereotypePostAction_StereotypeSelectionTitle;
+
+	/** BooleanEditor Title */
+	public static String PropertyEditors_BooleanTitle;
+
+	/** the "Choice" String */
+	public static String PropertyEditors_Choice;
+
+	/** DataTypeEditor Title */
+	public static String PropertyEditors_DataTypeTitle;
+
+	/** EnumerationEditor Title */
+	public static String PropertyEditors_EnumerationLiteralTitle;
+
+	/** IntegerEditor Title */
+	public static String PropertyEditors_IntegerTitle;
+
+	/** warning message for the integer validator */
+	public static String PropertyEditors_IntegerWarning;
+
+	/** MetaclassEditor Title */
+	public static String PropertyEditors_MetaclassTitle;
+
+	/** warning message for metaclass editor */
+	public static String PropertyEditors_NoFoundElementMetaclass;
+
+	/** warning message for stereotype editor */
+	public static String PropertyEditors_NoFoundElementStereotype;
+
+	/** StereotypeEditor Title */
+	public static String PropertyEditors_StereotypeTitle;
+
+	/** StringEditor Title */
+	public static String PropertyEditors_StringTitle;
+
+	/** UnlimitedNaturalEditor Title */
+	public static String PropertyEditors_UnlimitedNaturalTitle;
+
+	/** warning message for the unlimited natural validator */
+	public static String PropertyEditors_UnlimitedNaturalWarning;
+
+	/** the "Value" String */
+	public static String PropertyEditors_Value;
 }
