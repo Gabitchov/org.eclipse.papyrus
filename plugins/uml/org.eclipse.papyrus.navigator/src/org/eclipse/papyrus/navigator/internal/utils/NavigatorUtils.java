@@ -22,6 +22,7 @@ import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IViewReference;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -45,8 +46,11 @@ public class NavigatorUtils {
 	 * @return the i view part
 	 */
 	public static IViewPart findViewPart(String viewID) {
-		IViewReference reference = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-				.findViewReference(viewID);
+		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		if(page == null) {
+			return null;
+		}
+		IViewReference reference = page.findViewReference(viewID);
 		if(reference == null) {
 			return null;
 		}
