@@ -286,6 +286,14 @@
          id="org.eclipse.papyrus.diagram.commands.LoadResourceAction"
          name="Load Resource">
    </command>
+   <command
+         category="Papyrus "
+         categoryId="org.eclipse.papyrus.core.papyrusEditor"
+         defaultHandler="org.eclipse.papyrus.diagram.common.handlers.PasteWithModelHandler"
+         description="Paste content in a diagram (graphic+ semantic)"
+         id="org.eclipse.papyrus.diagram.common.commands.PasteWithModelCommand"
+         name="PasteWithModel">
+   </command>
 </extension>
 <extension
       point="org.eclipse.ui.popupMenus">
@@ -423,6 +431,15 @@
          priority="Lowest"
          realization="org.eclipse.papyrus.pastemanager.service.DefaultPasteCommandProvider">
    </PasteCommandProvider>
+</extension>
+<extension
+      id="update-cmd-binding"
+      point="org.eclipse.ui.bindings">
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.PasteWithModelCommand"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+SHIFT+V">
+   </key>
 </extension>
 
 </plugin>

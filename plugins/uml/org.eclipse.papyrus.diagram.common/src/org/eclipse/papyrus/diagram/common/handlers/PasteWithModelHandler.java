@@ -1,11 +1,26 @@
 package org.eclipse.papyrus.diagram.common.handlers;
 
+import java.awt.Toolkit;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.RootEditPart;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
+import org.eclipse.papyrus.diagram.common.command.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.diagram.common.helper.CleanDiagramHelper;
+import org.eclipse.papyrus.pastemanager.service.PasteCommandService;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
 
 /**
  * Our sample handler extends AbstractHandler, an IHandler base class.
@@ -17,6 +32,7 @@ public class PasteWithModelHandler extends AbstractHandler {
 	 * The constructor.
 	 */
 	public PasteWithModelHandler() {
+		
 	}
 
 	/**
@@ -24,11 +40,26 @@ public class PasteWithModelHandler extends AbstractHandler {
 	 * from the application context.
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
-		MessageDialog.openInformation(
-				window.getShell(),
-				"Papyrus Common Diagram (Incubation)",
-				"Hello, Eclipse world");
+		IEditorPart diagramEditor = HandlerUtil.getActiveEditorChecked(event);
+		ISelection  selection=HandlerUtil.getCurrentSelection(event);
+		if (selection instanceof IStructuredSelection){
+			if (((IStructuredSelection)selection).getFirstElement() instanceof GraphicalEditPart){
+				GraphicalEditPart targetEditPart= (GraphicalEditPart) ((IStructuredSelection)selection).getFirstElement();
+				if(targetEditPart != null){
+					//get the paste command with model form the service
+					ICommand pastecommand=PasteCommandService.getInstance().getPasteWithModelCommand(targetEditPart, Toolkit.getDefaultToolkit().getSystemClipboard(), targetEditPart.getEditingDomain().getClipboard());
+
+					if(pastecommand.canExecute() ){
+						targetEditPart.getEditingDomain().getCommandStack().execute(new GMFtoEMFCommandWrapper(pastecommand));
+						RootEditPart topEditPart=targetEditPart.getRoot();
+						if(topEditPart.getChildren().get(0) instanceof DiagramEditPart){
+							CleanDiagramHelper.getInstance().run((DiagramEditPart)topEditPart.getChildren().get(0));
+						}
+					}
+				}
+			}
+		}
+
 		return null;
 	}
 }
