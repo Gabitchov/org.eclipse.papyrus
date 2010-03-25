@@ -277,6 +277,7 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
+      		category="org.eclipse.papyrus.preferences.generalcategory"
             class="org.eclipse.papyrus.navigator.preferences.NavigatorPreferencePage"
             id="org.eclipse.papyrus.navigator.preferences.NavigatorPreferencePage"
             name="Model Explorer">
