@@ -270,4 +270,52 @@
          </enablement>
       </renameParticipant>
    </extension>
+   <extension point="org.eclipse.core.runtime.preferences">
+		<?gmfgen generated="false"?>
+		<initializer class="org.eclipse.papyrus.navigator.preferences.NavigatorPreferenceInitializer"/>
+	</extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.papyrus.preferences.generalcategory"
+            class="org.eclipse.papyrus.navigator.preferences.NavigatorPreferencePage"
+            id="org.eclipse.papyrus.navigator.preferences.NavigatorPreferencePage"
+            name="Model Explorer">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.papyrus.preferences.generalcategory"
+            class="org.eclipse.papyrus.navigator.preferences.NavigatorPreferencePage"
+            id="org.eclipse.papyrus.navigator.preferences.NavigatorPreferencePage"
+            name="Navigator">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.papyrus.preferences.generalcategory"
+            class="org.eclipse.papyrus.navigator.preferences.NavigatorPreferencePage"
+            id="org.eclipse.papyrus.navigator.preferences.NavigatorPreferencePage"
+            name="Model Explorer">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.papyrus.preferences.diagrams"
+            class="org.eclipse.papyrus.navigator.preferences.NavigatorPreferencePage"
+            id="org.eclipse.papyrus.navigator.preferences.NavigatorPreferencePage"
+            name="Model Explorer">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="org.eclipse.papyrus.navigator.preferences.NavigatorPreferencePage"
+            id="org.eclipse.papyrus.navigator.preferences.NavigatorPreferencePage"
+            name="Model Explorer">
+      </page>
+   </extension>
 </plugin>
