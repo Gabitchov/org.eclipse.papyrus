@@ -27,7 +27,7 @@ import org.osgi.framework.Bundle;
 public class ModelListenerManager extends EContentAdapter {
 
 	// list of of listener
-	private Hashtable listenerRegistry;
+	private Hashtable<String, IPapyrusListener> listenerRegistry;
 
 	// extension point ID
 	private String MODELLISTENERID_EXTENSION_ID = "org.eclipse.papyrus.core.modelListener";
@@ -42,7 +42,7 @@ public class ModelListenerManager extends EContentAdapter {
 	public ModelListenerManager() {
 		super();
 		// init stack
-		listenerRegistry = new Hashtable();
+		listenerRegistry = new Hashtable<String, IPapyrusListener>();
 		initializeListenerList();
 	}
 
@@ -103,11 +103,11 @@ public class ModelListenerManager extends EContentAdapter {
 	 */
 	public String toString() {
 		String out = "ModelListener: \n";
-		Enumeration keyenum = listenerRegistry.keys();
+		Enumeration<String> keyenum = listenerRegistry.keys();
 		// we will call to string in each class
 		while(keyenum.hasMoreElements()) {
-			Object aKey = keyenum.nextElement();
-			out = out + "- " + aKey.toString() + " (" + listenerRegistry.get(aKey).toString() + ")\n";
+			String aKey = keyenum.nextElement();
+			out = out + "- " + aKey + " (" + listenerRegistry.get(aKey).toString() + ")\n";
 		}
 		return out;
 	}
@@ -117,11 +117,9 @@ public class ModelListenerManager extends EContentAdapter {
 	 */
 	public void notifyChanged(Notification notification) {
 		super.notifyChanged(notification);
-		Enumeration keyenum = listenerRegistry.keys();
-		// we will call to string in each class
-		while(keyenum.hasMoreElements()) {
-			Object aKey = keyenum.nextElement();
-			((IPapyrusListener)listenerRegistry.get(aKey)).notifyChanged(notification);
+		Enumeration<IPapyrusListener> papyrusListenersEnum = listenerRegistry.elements();
+		while(papyrusListenersEnum.hasMoreElements()) {
+			papyrusListenersEnum.nextElement().notifyChanged(notification);
 		}
 	}
 }
