@@ -28,12 +28,12 @@ public class GeneralizationFigure extends UMLEdgeFigure {
 	public GeneralizationFigure() {
 		super();
 		PolygonDecoration dec = new PolygonDecoration();
-		dec.setScale(15, 5);
+		dec.setScale(10, 8);
 		dec.setBackgroundColor(ColorConstants.white);
 		dec.setLineWidth(1);
 		setTargetDecoration(dec); // arrow at target endpoint
 		setLineStyle(Graphics.LINE_SOLID); // line drawing style
-		setLineWidth(2);
+		setLineWidth(1);
 		setForegroundColor(ColorConstants.black);
 
 	}
