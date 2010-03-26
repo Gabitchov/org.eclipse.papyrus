@@ -54,8 +54,8 @@
       <menuContribution
             locationURI="menu:org.eclipse.papyrus.ui.menu">
          <menu
-               id="org.eclipse.papyrus.diagram.ui.menu"
-               label="Papyrus II">
+               id="org.eclipse.papyrus.diagram.ui.menu.diagrams"
+               label="Diagrams">
             <command
                   commandId="org.eclipse.papyrus.diagram.sequence.CreateSequenceDiagramCommand"
                   icon="icons/SequenceDiagram.gif"
