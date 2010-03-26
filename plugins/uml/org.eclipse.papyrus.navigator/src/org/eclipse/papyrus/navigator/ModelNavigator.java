@@ -296,8 +296,6 @@ public class ModelNavigator extends CommonNavigator implements IEditingDomainPro
 	}
 
 	private void handleResourceSetChanged(ResourceSetChangeEvent event) {
-		// Refresh global viewer
-		refreshViewer();
 		// Notify all content providers
 		List<Notification> notifications = event.getNotifications();
 		int i = 0;
