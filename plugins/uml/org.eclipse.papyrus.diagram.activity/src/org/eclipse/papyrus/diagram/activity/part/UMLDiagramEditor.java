@@ -393,7 +393,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 						 * (between two selected shapes)
 						 * 
 						 * @param event
-						 *            the KeyEvent
+						 *        the KeyEvent
 						 * @return <code>true</code> if KeyEvent was handled in some way
 						 */
 						public boolean keyReleased(KeyEvent event) {

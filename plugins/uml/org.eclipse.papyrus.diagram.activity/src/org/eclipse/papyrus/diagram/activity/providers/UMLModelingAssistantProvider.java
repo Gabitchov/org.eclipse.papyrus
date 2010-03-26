@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.ModelingAssista
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallOpActEditPart;
@@ -68,6 +69,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocal
 import org.eclipse.papyrus.diagram.activity.edit.parts.JoinNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.MergeNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInAcceptEventActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOpaqueActEditPart;
@@ -154,8 +156,13 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.InputPin_3062);
 			return types;
 		}
+		if(editPart instanceof AcceptEventActionEditPart) {
+			ArrayList types = new ArrayList(1);
+			types.add(UMLElementTypes.OutputPin_3064);
+			return types;
+		}
 		if(editPart instanceof ActivityActivityContentCompartmentEditPart) {
-			ArrayList types = new ArrayList(22);
+			ArrayList types = new ArrayList(23);
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
 			types.add(UMLElementTypes.FlowFinalNode_3006);
@@ -178,6 +185,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.JoinNode_3041);
 			types.add(UMLElementTypes.SendObjectAction_3042);
 			types.add(UMLElementTypes.SendSignalAction_3052);
+			types.add(UMLElementTypes.AcceptEventAction_3063);
 			return types;
 		}
 		if(editPart instanceof ActivityDiagramEditPart) {
@@ -312,6 +320,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof ActivityParameterNodeEditPart) {
 			return ((ActivityParameterNodeEditPart)sourceEditPart).getMARelTypesOnSource();
+		}
+		if(sourceEditPart instanceof AcceptEventActionEditPart) {
+			return ((AcceptEventActionEditPart)sourceEditPart).getMARelTypesOnSource();
+		}
+		if(sourceEditPart instanceof OutputPinInAcceptEventActionEditPart) {
+			return ((OutputPinInAcceptEventActionEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -471,6 +485,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof ActivityParameterNodeEditPart) {
 			return ((ActivityParameterNodeEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
+		if(targetEditPart instanceof AcceptEventActionEditPart) {
+			return ((AcceptEventActionEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof OutputPinInAcceptEventActionEditPart) {
+			return ((OutputPinInAcceptEventActionEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -599,6 +619,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof ActivityParameterNodeEditPart) {
 			return ((ActivityParameterNodeEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if(sourceEditPart instanceof AcceptEventActionEditPart) {
+			return ((AcceptEventActionEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if(sourceEditPart instanceof OutputPinInAcceptEventActionEditPart) {
+			return ((OutputPinInAcceptEventActionEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -758,6 +784,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof ActivityParameterNodeEditPart) {
 			return ((ActivityParameterNodeEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
+		if(targetEditPart instanceof AcceptEventActionEditPart) {
+			return ((AcceptEventActionEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof OutputPinInAcceptEventActionEditPart) {
+			return ((OutputPinInAcceptEventActionEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -885,6 +917,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof ActivityParameterNodeEditPart) {
 			return ((ActivityParameterNodeEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof AcceptEventActionEditPart) {
+			return ((AcceptEventActionEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof OutputPinInAcceptEventActionEditPart) {
+			return ((OutputPinInAcceptEventActionEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}

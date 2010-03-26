@@ -96,6 +96,11 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
+	private final static String CREATEACCEPTEVENTACTION6CREATIONTOOL = "createAcceptEventAction6CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private final static String CREATEOUTPUTPIN1CREATIONTOOL = "createOutputPin1CreationTool"; //$NON-NLS-1$
 
 	/**
@@ -222,6 +227,9 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		}
 		if(toolId.equals(CREATESENDSIGNALACTION5CREATIONTOOL)) {
 			return createSendSignalAction5CreationTool();
+		}
+		if(toolId.equals(CREATEACCEPTEVENTACTION6CREATIONTOOL)) {
+			return createAcceptEventAction6CreationTool();
 		}
 		if(toolId.equals(CREATEOUTPUTPIN1CREATIONTOOL)) {
 			return createOutputPin1CreationTool();
@@ -428,11 +436,23 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
+	private Tool createAcceptEventAction6CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.AcceptEventAction_3063);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
 	private Tool createOutputPin1CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(3);
+		List<IElementType> types = new ArrayList<IElementType>(4);
 		types.add(UMLElementTypes.OutputPin_3014);
 		types.add(UMLElementTypes.OutputPin_3020);
 		types.add(UMLElementTypes.OutputPin_3024);
+		types.add(UMLElementTypes.OutputPin_3064);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;

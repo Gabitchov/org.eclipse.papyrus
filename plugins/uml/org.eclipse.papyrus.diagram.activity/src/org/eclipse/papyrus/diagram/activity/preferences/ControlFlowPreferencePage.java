@@ -16,6 +16,7 @@ package org.eclipse.papyrus.diagram.activity.preferences;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage;
+import org.eclipse.swt.widgets.Composite;
 
 /**
  * @generated
@@ -35,6 +36,23 @@ public class ControlFlowPreferencePage extends AbstractPapyrusLinkPreferencePage
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 
+	}
+
+	/**
+	 * Create preference page content concerning object flows
+	 * 
+	 * @see org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage#createPageContents(org.eclipse.swt.widgets.Composite)
+	 * @param parent
+	 *        parent composite
+	 * @generated NOT
+	 */
+	@Override
+	protected void createPageContents(Composite parent) {
+		super.createPageContents(parent);
+
+		// label visibility
+		ActivityEdgeLabelVisibilityGroup connectionGroupComposite = new ActivityEdgeLabelVisibilityGroup(parent, getTitle(), this);
+		addAbstractGroup(connectionGroupComposite);
 	}
 
 }

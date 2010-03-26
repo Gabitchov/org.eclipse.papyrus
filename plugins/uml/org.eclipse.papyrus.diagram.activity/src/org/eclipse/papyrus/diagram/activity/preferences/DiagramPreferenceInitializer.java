@@ -43,6 +43,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		FlowFinalNodePreferencePage.initDefaults(store);
 
 
+		AcceptEventActionPreferencePage.initDefaults(store);
+
+
 		DecisionNodePreferencePage.initDefaults(store);
 
 

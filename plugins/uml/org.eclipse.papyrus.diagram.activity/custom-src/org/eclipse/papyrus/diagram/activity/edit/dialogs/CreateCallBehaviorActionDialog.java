@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
+import org.eclipse.papyrus.diagram.activity.preferences.IActivityPreferenceConstants;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Shell;
@@ -51,13 +52,45 @@ public class CreateCallBehaviorActionDialog extends CreateCallActionDialog {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Get the id of the preference storing whether selection is the default choice.
 	 * 
-	 * @see org.eclipse.papyrus.diagram.activity.edit.dialogs.CreateCallActionDialog#getInvocationSectionTitle()
+	 * @return preference id
+	 */
+	protected String getSelectionIsDefaultPreference() {
+		return IActivityPreferenceConstants.PREF_NEW_CALL_BEHAVIOR_ACTION_SELECT_AS_DEFAULT;
+	}
+
+	/**
+	 * Get the id of the preference storing the last selected owner.
+	 * 
+	 * @return preference id
+	 */
+	protected String getCreationDefaultOwnerPreference() {
+		return IActivityPreferenceConstants.PREF_NEW_CALL_BEHAVIOR_ACTION_CREATION_OWNER;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.diagram.activity.edit.dialogs.CreateInvocationActionDialog#getInvocationCreationSectionTitle()
 	 */
 	@Override
-	protected String getInvocationSectionTitle() {
-		return Messages.CreateCallActionDialog_BehaviorInvocationTitle;
+	protected String getInvocationCreationSectionTitle() {
+		return Messages.CreateCallActionDialog_BehaviorInvocationCreationTitle;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.diagram.activity.edit.dialogs.CreateInvocationActionDialog#getInvocationCreationSectionHelp()
+	 */
+	@Override
+	protected String getInvocationCreationSectionHelp() {
+		return Messages.CreateCallActionDialog_BehaviorInvocationCreationHelp;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.diagram.activity.edit.dialogs.CreateInvocationActionDialog#getInvocationSelectionSectionTitle()
+	 */
+	@Override
+	protected String getInvocationSelectionSectionTitle() {
+		return Messages.CreateCallActionDialog_BehaviorInvocationSelectionTitle;
 	}
 
 	/**

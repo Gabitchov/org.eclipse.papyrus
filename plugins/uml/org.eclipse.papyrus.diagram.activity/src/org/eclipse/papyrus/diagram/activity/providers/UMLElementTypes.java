@@ -27,6 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
+import org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallOpActEditPart;
@@ -70,6 +71,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.JoinNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.MergeNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInAcceptEventActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOpaqueActEditPart;
@@ -350,6 +352,16 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IElementType ActivityParameterNode_3059 = getElementType("org.eclipse.papyrus.diagram.activity.ActivityParameterNode_3059"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType AcceptEventAction_3063 = getElementType("org.eclipse.papyrus.diagram.activity.AcceptEventAction_3063"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType OutputPin_3064 = getElementType("org.eclipse.papyrus.diagram.activity.OutputPin_3064"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -681,6 +693,12 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(ActivityParameterNode_3059, UMLPackage.eINSTANCE.getActivityParameterNode());
 
+
+			elements.put(AcceptEventAction_3063, UMLPackage.eINSTANCE.getAcceptEventAction());
+
+
+			elements.put(OutputPin_3064, UMLPackage.eINSTANCE.getOutputPin());
+
 			elements.put(ActionLocalPrecondition_4001, UMLPackage.eINSTANCE.getAction_LocalPrecondition());
 
 			elements.put(ActionLocalPostcondition_4002, UMLPackage.eINSTANCE.getAction_LocalPostcondition());
@@ -762,6 +780,8 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3061);
 			KNOWN_ELEMENT_TYPES.add(InputPin_3062);
 			KNOWN_ELEMENT_TYPES.add(ActivityParameterNode_3059);
+			KNOWN_ELEMENT_TYPES.add(AcceptEventAction_3063);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_3064);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPrecondition_4001);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPostcondition_4002);
 			KNOWN_ELEMENT_TYPES.add(ObjectFlow_4003);
@@ -885,6 +905,10 @@ public class UMLElementTypes extends ElementInitializers {
 			return InputPin_3062;
 		case ActivityParameterNodeEditPart.VISUAL_ID:
 			return ActivityParameterNode_3059;
+		case AcceptEventActionEditPart.VISUAL_ID:
+			return AcceptEventAction_3063;
+		case OutputPinInAcceptEventActionEditPart.VISUAL_ID:
+			return OutputPin_3064;
 		case ActionLocalPreconditionEditPart.VISUAL_ID:
 			return ActionLocalPrecondition_4001;
 		case ActionLocalPostconditionEditPart.VISUAL_ID:

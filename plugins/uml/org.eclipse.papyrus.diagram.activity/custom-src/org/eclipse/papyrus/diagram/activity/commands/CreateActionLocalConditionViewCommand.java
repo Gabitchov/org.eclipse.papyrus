@@ -190,12 +190,9 @@ public class CreateActionLocalConditionViewCommand extends Command {
 			viewsCreationCommand.add(nodeCreationCommand);
 
 			// try and recover the created edit part, then create the link
-			if(nodeCreationCommand instanceof CompoundCommand && linkedActionEditPart != null && getLinkType() != null) {
-				Object[] childrenCmd = ((CompoundCommand)nodeCreationCommand).getChildren();
-				if(childrenCmd.length > 0 && childrenCmd[0] instanceof ICommandProxy) {
-					ICommand createConstraintNodeCommand = ((ICommandProxy)childrenCmd[0]).getICommand();
-					// creation of the link between edit parts
-					IAdaptable targetAdapter = (IAdaptable)createConstraintNodeCommand.getCommandResult().getReturnValue();
+			if(linkedActionEditPart != null && getLinkType() != null) {
+				IAdaptable targetAdapter = extractResult(nodeCreationCommand);
+				if(targetAdapter != null) {
 					IAdaptable sourceAdapter = new SemanticAdapter(null, linkedActionEditPart.getModel());
 					// descriptor of the link
 					CreateConnectionViewRequest.ConnectionViewDescriptor linkdescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(getLinkType(), getLinkType().getSemanticHint(), compartment.getDiagramPreferencesHint());
@@ -204,9 +201,35 @@ public class CreateActionLocalConditionViewCommand extends Command {
 					viewsCreationCommand.add(new ICommandProxy(aLinkCommand));
 				}
 			}
-
 			viewsCreationCommand.execute();
 		}
+	}
+
+	/**
+	 * Extract the result out of a node creation command
+	 * 
+	 * @param nodeCreationCommand
+	 *        the command
+	 * @return the adaptable result of the command or null
+	 */
+	private IAdaptable extractResult(Command nodeCreationCommand) {
+		if(nodeCreationCommand instanceof ICommandProxy) {
+			ICommand createConstraintNodeCommand = ((ICommandProxy)nodeCreationCommand).getICommand();
+			// creation of the link between edit parts
+			IAdaptable targetAdapter = (IAdaptable)createConstraintNodeCommand.getCommandResult().getReturnValue();
+			return targetAdapter;
+		} else if(nodeCreationCommand instanceof CompoundCommand) {
+			Object[] childrenCmd = ((CompoundCommand)nodeCreationCommand).getChildren();
+			for(Object command : childrenCmd) {
+				if(command instanceof Command) {
+					IAdaptable result = extractResult((Command)command);
+					if(result != null) {
+						return result;
+					}
+				}
+			}
+		}
+		return null;
 	}
 
 	/**

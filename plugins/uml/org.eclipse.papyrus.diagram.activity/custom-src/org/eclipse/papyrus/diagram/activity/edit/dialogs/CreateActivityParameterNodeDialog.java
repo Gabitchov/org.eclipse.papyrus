@@ -36,6 +36,7 @@ import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.actions.LabelHelper;
+import org.eclipse.papyrus.diagram.common.ui.helper.HelpComponentFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -55,6 +56,7 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.forms.FormDialog;
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.uml2.uml.Activity;
@@ -114,7 +116,6 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 		super(shell);
 		activityOwner = owner;
 		labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
-
 	}
 
 	/**
@@ -126,7 +127,7 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 	 */
 	@Override
 	protected void createFormContent(IManagedForm pForm) {
-		pForm.getForm().setText(getTitle());
+		pForm.getForm().setText(Messages.CreateActivityParameterNodeDialog_DialogTitle);
 		ScrolledForm scrolledForm = pForm.getForm();
 		FormToolkit toolkit = pForm.getToolkit();
 		Composite parent = scrolledForm.getBody();
@@ -135,7 +136,7 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 		createInvocationCreationSection(scrolledForm.getBody(), toolkit);
 		createInvocationSelectionSection(scrolledForm.getBody(), toolkit);
 
-		refreshSectionsEnable(true);
+		refreshSectionsEnable(false);
 		hookListeners();
 		// invoked name is set after listeners, since we count on listener to update it properly
 		setInvokedName(null);
@@ -165,11 +166,14 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 	 */
 	private void createInvocationSelectionSection(Composite pParent, FormToolkit pToolkit) {
 		// create the section
-		String lSectionTitle = getInvocationSelectionTitle();
+		String lSectionTitle = Messages.CreateActivityParameterNodeDialog_ParameterSelectionTitle;
 		Section lSection = pToolkit.createSection(pParent, Section.EXPANDED | Section.TITLE_BAR);
+		lSection.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		if(lSectionTitle != null) {
 			lSection.setText(lSectionTitle);
 		}
+		ImageHyperlink componentHelp = HelpComponentFactory.createHelpComponent(lSection, pToolkit, Messages.CreateActivityParameterNodeDialog_ParameterSelectionHelp);
+		lSection.setTextClient(componentHelp);
 
 		ScrolledForm lInsideScrolledForm = pToolkit.createScrolledForm(lSection);
 		lInsideScrolledForm.setExpandHorizontal(true);
@@ -181,16 +185,15 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 		lBody.setLayout(lLayout);
 
 		// content of the section
-		selectionRadio = pToolkit.createButton(lBody, getSelectionLabel(), SWT.RADIO);
-		selectionRadio.setSelection(false);
+		selectionRadio = pToolkit.createButton(lBody, Messages.CreateActivityParameterNodeDialog_ParameterSelectionLabel, SWT.RADIO);
 		selectionRadio.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
 
 		// manage parameter selection
-		pToolkit.createLabel(lBody, getInvokedObjectLabel(), SWT.NONE);
+		pToolkit.createLabel(lBody, getParameterFeature().getEReferenceType().getName() + ":", SWT.NONE);
 		selectionText = pToolkit.createText(lBody, "", SWT.BORDER | SWT.READ_ONLY);
 		selectionText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		selectionButton = pToolkit.createButton(lBody, "...", SWT.FLAT);
-		Image image = UMLElementTypes.getImage(getInvocationFeature());
+		Image image = UMLElementTypes.getImage(getParameterFeature());
 		selectionButton.setImage(image);
 		selectionButton.setLayoutData(new GridData(SWT.NONE));
 
@@ -208,11 +211,14 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 	 */
 	private void createInvocationCreationSection(Composite pParent, FormToolkit pToolkit) {
 		// create the section
-		String lSectionTitle = getInvocationCreationTitle();
+		String lSectionTitle = Messages.CreateActivityParameterNodeDialog_ParameterCreationTitle;
 		Section lSection = pToolkit.createSection(pParent, Section.EXPANDED | Section.TITLE_BAR);
+		lSection.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		if(lSectionTitle != null) {
 			lSection.setText(lSectionTitle);
 		}
+		ImageHyperlink componentHelp = HelpComponentFactory.createHelpComponent(lSection, pToolkit, Messages.CreateActivityParameterNodeDialog_ParameterCreationHelp);
+		lSection.setTextClient(componentHelp);
 
 		ScrolledForm lInsideScrolledForm = pToolkit.createScrolledForm(lSection);
 		lInsideScrolledForm.setExpandHorizontal(true);
@@ -224,34 +230,34 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 		lBody.setLayout(lLayout);
 
 		// content of the section
-		creationRadio = pToolkit.createButton(lBody, getCreationLabel(), SWT.RADIO);
-		creationRadio.setSelection(true);
+		creationRadio = pToolkit.createButton(lBody, Messages.CreateActivityParameterNodeDialog_ParameterCreationLabel, SWT.RADIO);
 		creationRadio.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
 
-		pToolkit.createLabel(lBody, getInvokedNameLabel(), SWT.NONE);
+		pToolkit.createLabel(lBody, Messages.CreateActivityParameterNodeDialog_NameLabel, SWT.NONE);
 		creationNameText = pToolkit.createText(lBody, "", SWT.BORDER);
 		creationNameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 
+
 		// manage type selection
-		pToolkit.createLabel(lBody, getInvokedTypeLabel(), SWT.NONE);
+		pToolkit.createLabel(lBody, Messages.CreateActivityParameterNodeDialog_TypeLabel, SWT.NONE);
 		creationTypeText = pToolkit.createText(lBody, labelProvider.getText(selectedType), SWT.BORDER | SWT.READ_ONLY);
 		creationTypeText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		creationTypeButton = pToolkit.createButton(lBody, "...", SWT.FLAT);
-		Image image = getTypeImage();
+		Image image = UMLElementTypes.getImage(UMLPackage.eINSTANCE.getPackage_PackagedElement());
 		creationTypeButton.setImage(image);
 		creationTypeButton.setLayoutData(new GridData(SWT.NONE));
 
 		// manage direction selection
-		pToolkit.createLabel(lBody, getInvokedDirectionLabel(), SWT.NONE);
+		pToolkit.createLabel(lBody, Messages.CreateActivityParameterNodeDialog_DirectionLabel, SWT.NONE);
 		creationDirectionCombo = new Combo(lBody, SWT.DROP_DOWN | SWT.READ_ONLY);
 		directionComboViewer = new ComboViewer(creationDirectionCombo);
 		pToolkit.adapt(creationDirectionCombo);
 		creationDirectionCombo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 		directionComboViewer.setLabelProvider(labelProvider);
-		directionComboViewer.add(getPossibleDirections());
+		directionComboViewer.add(getDirections());
 		// initialize selection
-		directionComboViewer.setSelection(new StructuredSelection(getPossibleDirections()[0]));
-		selectedDirection = ParameterDirectionKind.getByName(getPossibleDirections()[0]);
+		directionComboViewer.setSelection(new StructuredSelection(getDirections()[0]));
+		selectedDirection = ParameterDirectionKind.getByName(getDirections()[0]);
 
 		lInsideScrolledForm.reflow(true);
 		lSection.setClient(lInsideScrolledForm);
@@ -273,7 +279,7 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 			selectedParameter.setName(selectedName);
 			selectedParameter.setType((Type)selectedType);
 			selectedParameter.setDirection(selectedDirection);
-			addInvokedParameter(selectedParameter);
+			addParameter(selectedParameter);
 		}
 		super.okPressed();
 	}
@@ -325,7 +331,7 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 		selectionButton.addSelectionListener(selectBtnListener);
 
 		if(creationDirectionCombo != null && directionComboViewer != null) {
-			// listener to select invocation type
+			// listener to select direction
 			ModifyListener lTypeListener = new ModifyListener() {
 
 				/**
@@ -347,7 +353,7 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 			creationDirectionCombo.addModifyListener(lTypeListener);
 		}
 
-		// listener to invocation element name
+		// listener to element name
 		ModifyListener lNameListener = new ModifyListener() {
 
 			/**
@@ -359,8 +365,8 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 		};
 		creationNameText.addModifyListener(lNameListener);
 
-		// listener to select new element parent
-		SelectionListener selectParentBtnListener = new SelectionAdapter() {
+		// listener to select new element type
+		SelectionListener selectTypeBtnListener = new SelectionAdapter() {
 
 			/**
 			 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
@@ -375,7 +381,7 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 				refreshOkButton();
 			}
 		};
-		creationTypeButton.addSelectionListener(selectParentBtnListener);
+		creationTypeButton.addSelectionListener(selectTypeBtnListener);
 	}
 
 	/**
@@ -408,24 +414,25 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 	 * 
 	 */
 	private void handleChooseParameter() {
-		Collection<EObject> elements = UMLItemPropertyDescriptor.getReachableObjectsOfType(activityOwner, getInvocationFeature().getEType());
+		Collection<EObject> elements = UMLItemPropertyDescriptor.getReachableObjectsOfType(activityOwner, getParameterFeature().getEType());
 		ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), labelProvider);
 		dialog.setMessage(Messages.UMLModelingAssistantProviderMessage);
 		dialog.setTitle(Messages.UMLModelingAssistantProviderTitle);
+		dialog.setFilter("*");
 		dialog.setMultipleSelection(false);
 		dialog.setElements(elements.toArray(new EObject[elements.size()]));
 		if(dialog.open() == Window.OK) {
-			setInvokedSelection((EObject)dialog.getFirstResult());
+			setParameterSelection((EObject)dialog.getFirstResult());
 		}
 	}
 
 	/**
-	 * Define the object that will be invoked by the parameter node (if selection mode is chosen)
+	 * Define the parameter that will be set for the parameter node (if selection mode is chosen)
 	 * 
 	 * @param invokedElement
 	 *        the selected element
 	 */
-	private void setInvokedSelection(EObject invokedElement) {
+	private void setParameterSelection(EObject invokedElement) {
 		if(invokedElement instanceof Parameter) {
 			selectedParameter = (Parameter)invokedElement;
 			selectionText.setText(labelProvider.getText(selectedParameter));
@@ -439,18 +446,19 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 	 * 
 	 */
 	private void handleChooseType() {
-		Set<Object> types = getPossibleInvokedTypes();
+		Set<Object> types = getAvailableTypes();
 		ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), labelProvider);
+		dialog.setFilter("*");
 		dialog.setMessage(Messages.UMLModelingAssistantProviderMessage);
 		dialog.setTitle(Messages.UMLModelingAssistantProviderTitle);
 		dialog.setMultipleSelection(false);
 		dialog.setElements(types.toArray());
 		if(dialog.open() == Window.OK) {
 			Object firstResult = dialog.getFirstResult();
-			if (firstResult instanceof EObject) {
-				setInvokedType((EObject)dialog.getFirstResult());				
+			if(firstResult instanceof EObject) {
+				setSelectedType((EObject)dialog.getFirstResult());
 			} else {
-				setInvokedType(null);
+				setSelectedType(null);
 			}
 		}
 	}
@@ -458,10 +466,10 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 	/**
 	 * Define the type of the object that will be created (if creation mode is chosen)
 	 * 
-	 * @param invokedType
-	 *        the selected parent
+	 * @param the
+	 *        selected parent
 	 */
-	private void setInvokedType(EObject invokedType) {
+	private void setSelectedType(EObject invokedType) {
 		selectedType = invokedType;
 		if(selectedType instanceof NamedElement) {
 			creationTypeText.setText(labelProvider.getText(selectedType));
@@ -480,8 +488,14 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 		// handle radio button value
 		if(isSelectionSelected) {
 			creationRadio.setSelection(false);
+			if(!selectionRadio.getSelection()) {
+				selectionRadio.setSelection(true);
+			}
 		} else {
 			selectionRadio.setSelection(false);
+			if(!creationRadio.getSelection()) {
+				creationRadio.setSelection(true);
+			}
 		}
 		// handle disabled section
 		selectionText.setEnabled(isSelectionSelected);
@@ -509,32 +523,33 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 	}
 
 
+
 	/**
-	 * Gets the invocation feature for parameter
+	 * Gets the parameter feature.
 	 * 
-	 * @return the invocation feature
+	 * @return the parameter feature
 	 */
-	private EReference getInvocationFeature() {
+	private EReference getParameterFeature() {
 		return UMLPackage.eINSTANCE.getBehavior_OwnedParameter();
 	}
 
 	/**
-	 * Add the created invoked object to its selected parent
+	 * Create the new Parameter
 	 */
-	protected void addInvokedParameter(EObject createdInvoked) {
+	protected void addParameter(EObject newEObject) {
 		TransactionalEditingDomain editingdomain = EditorUtils.getTransactionalEditingDomain();
 		// Let the command find the relation on its own.
-		Command addCmd = AddCommand.create(editingdomain, activityOwner, null, Collections.singleton(createdInvoked));
+		Command addCmd = AddCommand.create(editingdomain, activityOwner, null, Collections.singleton(newEObject));
 		addCmd.execute();
 	}
 
 
 	/**
-	 * Gets the possible invoked types for the parameter
+	 * Gets the available types for the parameter
 	 * 
-	 * @return the possible invoked types
+	 * @return the available types
 	 */
-	private Set<Object> getPossibleInvokedTypes() {
+	private Set<Object> getAvailableTypes() {
 		Collection<EObject> types = UMLItemPropertyDescriptor.getReachableObjectsOfType(activityOwner, UMLPackage.eINSTANCE.getTypedElement_Type().getEType());
 		Set<Object> result = new HashSet<Object>();
 		result.add("");
@@ -548,54 +563,13 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 	 * 
 	 * @return the possible directions
 	 */
-	private String[] getPossibleDirections() {
+	private String[] getDirections() {
 		List<ParameterDirectionKind> values = ParameterDirectionKind.VALUES;
 		String[] ret = new String[values.size()];
 		for(int i = 0; i < values.size(); i++) {
 			ret[i] = values.get(i).getName();
 		}
 		return ret;
-	}
-
-
-	private Image getTypeImage() {
-		return UMLElementTypes.getImage(UMLPackage.eINSTANCE.getPackage_PackagedElement());
-	}
-
-	private String getTitle() {
-		return Messages.CreateActivityParameterNodeDialog_DialogTitle;
-	}
-
-	private String getInvocationSelectionTitle() {
-		return Messages.CreateActivityParameterNodeDialog_ParameterSelectionTitle;
-	}
-
-	private String getInvocationCreationTitle() {
-		return Messages.CreateActivityParameterNodeDialog_ParameterCreationTitle;
-	}
-
-	private String getCreationLabel() {
-		return Messages.CreateActivityParameterNodeDialog_ParameterCreationLabel;
-	}
-
-	private String getSelectionLabel() {
-		return Messages.CreateActivityParameterNodeDialog_ParameterSelectionLabel;
-	}
-
-	private String getInvokedNameLabel() {
-		return Messages.CreateActivityParameterNodeDialog_NameLabel;
-	}
-
-	private String getInvokedTypeLabel() {
-		return Messages.CreateActivityParameterNodeDialog_TypeLabel;
-	}
-
-	private String getInvokedDirectionLabel() {
-		return Messages.CreateActivityParameterNodeDialog_DirectionLabel;
-	}
-
-	private String getInvokedObjectLabel() {
-		return getInvocationFeature().getEReferenceType().getName() + ":";
 	}
 
 }

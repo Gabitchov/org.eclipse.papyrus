@@ -30,6 +30,16 @@ public class DiagramSpecificPreferenceInitializer extends AbstractPreferenceInit
 
 		DiagramGeneralPreferencePage.initSpecificDefaults(store);
 
+		// preference for showing Activity edge name is common to several pages
+		store.setDefault(IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL, true);
+
+		// preferences for keeping user choices are not displayed
+		store.setDefault(IActivityPreferenceConstants.PREF_NEW_CALL_BEHAVIOR_ACTION_SELECT_AS_DEFAULT, false);
+		store.setDefault(IActivityPreferenceConstants.PREF_NEW_CALL_OPERATION_ACTION_SELECT_AS_DEFAULT, true);
+		store.setDefault(IActivityPreferenceConstants.PREF_NEW_SEND_SIGNAL_ACTION_SELECT_AS_DEFAULT, false);
+		store.setDefault(IActivityPreferenceConstants.PREF_NEW_CALL_BEHAVIOR_ACTION_CREATION_OWNER, "");
+		store.setDefault(IActivityPreferenceConstants.PREF_NEW_CALL_OPERATION_ACTION_CREATION_OWNER, "");
+		store.setDefault(IActivityPreferenceConstants.PREF_NEW_SEND_SIGNAL_ACTION_CREATION_OWNER, "");
 	}
 
 	/**

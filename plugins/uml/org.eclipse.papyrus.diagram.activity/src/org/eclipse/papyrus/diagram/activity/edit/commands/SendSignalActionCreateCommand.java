@@ -117,6 +117,8 @@ public class SendSignalActionCreateCommand extends EditElementCommand {
 			EObject signal = dialog.getSelectedInvoked();
 			if(signal instanceof Signal) {
 				newElement.setSignal((Signal)signal);
+				// initialize the action name with the signal
+				newElement.setName("Send".concat(((Signal)signal).getName()));
 			}
 		} else {
 			return CommandResult.newCancelledCommandResult();
@@ -124,7 +126,10 @@ public class SendSignalActionCreateCommand extends EditElementCommand {
 
 		owner.getNodes().add(newElement);
 
-		UMLElementTypes.init_SendSignalAction_3052(newElement);
+		if(newElement.getName() == null || newElement.getName().length() == 0) {
+			// initialize name if it is not yet 
+			UMLElementTypes.init_SendSignalAction_3052(newElement);
+		}
 
 		doConfigure(newElement, monitor, info);
 

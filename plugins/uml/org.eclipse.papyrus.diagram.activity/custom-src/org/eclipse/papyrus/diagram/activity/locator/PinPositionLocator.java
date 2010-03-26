@@ -39,6 +39,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendObjActAsReq
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendObjActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendSigActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendSigActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInAcceptEventActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOpaqueActEditPart;
@@ -50,6 +51,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendObjActAsReq
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendObjActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionEditPart.AcceptEventActionFigure;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart.SendSignalActionFigure;
 import org.eclipse.papyrus.diagram.activity.helper.ActivityFigureDrawer;
 import org.eclipse.papyrus.diagram.common.locator.AdvancedBorderItemLocator;
@@ -114,17 +116,9 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 	 * @return point
 	 */
 	protected Point locateOnBorder(Point suggestedLocation, int suggestedSide, int circuitCount, IFigure borderItem) {
+		Point suggestedCenter = borderItem.getBounds().getCopy().setLocation(suggestedLocation).getCenter();
+		suggestedSide = redefineSuggestedSide(suggestedCenter, suggestedSide);
 		if(isInSendSignalAction()) {
-			// EAST side is not authorized
-			if(suggestedSide == PositionConstants.EAST) {
-				Point parentCenter = getParentBorder().getCenter();
-				Point childCenter = borderItem.getBounds().getCenter();
-				if(childCenter.y < parentCenter.y) {
-					suggestedSide = PositionConstants.NORTH;
-				} else {
-					suggestedSide = PositionConstants.SOUTH;
-				}
-			}
 			// prevent a pin too far EAST that would be on the convex sides of the pentagon
 			if(suggestedSide == PositionConstants.SOUTH || suggestedSide == PositionConstants.NORTH) {
 				int maxLocation = getParentBorder().x + getParentBorder().width * SEND_SIGNAL_ACTION_MAX_X / SEND_SIGNAL_ACTION_WIDTH - getSize(borderItem).width;
@@ -138,6 +132,124 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 	}
 
 	/**
+	 * Ensure the suggested location actually lies on the parent boundary. The side takes
+	 * precedence.
+	 * 
+	 * @param suggestedLocation
+	 *        suggested location
+	 * @param suggestedSide
+	 *        suggested side
+	 * @param borderItem
+	 *        the item figure
+	 * @return point
+	 */
+	protected Point locateOnParent(Point suggestedLocation, int suggestedSide, IFigure borderItem) {
+		Rectangle bounds = getParentBorder();
+		int parentFigureWidth = bounds.width;
+		int parentFigureHeight = bounds.height;
+		int parentFigureX = bounds.x;
+		int parentFigureY = bounds.y;
+		Dimension borderItemSize = getSize(borderItem);
+		int newX = suggestedLocation.x;
+		int newY = suggestedLocation.y;
+		int westX = parentFigureX - borderItemSize.width + getBorderItemOffset().width;
+		int eastX = parentFigureX + parentFigureWidth - getBorderItemOffset().width;
+		int maxX = 0;
+		if(isInSendSignalAction()) {
+			// prevent a pin too far EAST that would be on the convex sides of the pentagon
+			if(suggestedSide == PositionConstants.SOUTH || suggestedSide == PositionConstants.NORTH) {
+				maxX = parentFigureX + parentFigureWidth * SEND_SIGNAL_ACTION_MAX_X / SEND_SIGNAL_ACTION_WIDTH - getBorderItemOffset().width;
+			}
+		}
+		int southY = parentFigureY + parentFigureHeight - getBorderItemOffset().height;
+		int northY = parentFigureY - borderItemSize.height + getBorderItemOffset().height;
+		if(suggestedSide == PositionConstants.WEST) {
+			if(suggestedLocation.x != westX) {
+				newX = westX;
+			}
+			if(suggestedLocation.y < bounds.getTopLeft().y) {
+				newY = northY + borderItemSize.height;
+			} else if(suggestedLocation.y > bounds.getBottomLeft().y - borderItemSize.height) {
+				newY = southY - borderItemSize.height;
+			}
+		} else if(suggestedSide == PositionConstants.EAST) {
+			if(suggestedLocation.x != eastX) {
+				newX = eastX;
+			}
+			if(suggestedLocation.y < bounds.getTopLeft().y) {
+				newY = northY + borderItemSize.height;
+			} else if(suggestedLocation.y > bounds.getBottomLeft().y - borderItemSize.height) {
+				newY = southY - borderItemSize.height;
+			}
+		} else if(suggestedSide == PositionConstants.SOUTH) {
+			if(suggestedLocation.y != southY) {
+				newY = southY;
+			}
+			if(suggestedLocation.x < bounds.getBottomLeft().x) {
+				newX = westX + borderItemSize.width;
+			} else if(suggestedLocation.x > bounds.getBottomRight().x - borderItemSize.width) {
+				newX = eastX - borderItemSize.width;
+			}
+		} else { // NORTH
+			if(suggestedLocation.y != northY) {
+				newY = northY;
+			}
+			if(suggestedLocation.x < bounds.getBottomLeft().x) {
+				newX = westX + borderItemSize.width;
+			} else if(suggestedLocation.x > bounds.getBottomRight().x - borderItemSize.width) {
+				newX = eastX - borderItemSize.width;
+			}
+		}
+		if(maxX > 0 && newX > maxX) {
+			newX = maxX;
+		}
+		return new Point(newX, newY);
+	}
+
+	/**
+	 * Recomputes the suggested side by eliminating unauthorized sides depending on the action type
+	 * 
+	 * @param childCenter
+	 *        suggested location center
+	 * @param suggestedSide
+	 *        suggested side
+	 * @return correct side
+	 */
+	private int redefineSuggestedSide(Point childCenter, int suggestedSide) {
+		if(isInSendSignalAction()) {
+			// EAST side is not authorized
+			if(suggestedSide == PositionConstants.EAST) {
+				Point parentCenter = getParentBorder().getCenter();
+				if(childCenter.y < parentCenter.y) {
+					suggestedSide = PositionConstants.NORTH;
+				} else {
+					suggestedSide = PositionConstants.SOUTH;
+				}
+			}
+		} else if(isInAcceptEventAction()) {
+			// WEST side is not authorized
+			if(suggestedSide == PositionConstants.WEST) {
+				Point parentCenter = getParentBorder().getCenter();
+				if(childCenter.y < parentCenter.y) {
+					suggestedSide = PositionConstants.NORTH;
+				} else {
+					suggestedSide = PositionConstants.SOUTH;
+				}
+			}
+			// EAST side is not authorized for AcceptTimeEventAction
+			if(suggestedSide == PositionConstants.EAST && isInAcceptTimeEventAction()) {
+				Point parentCenter = getParentBorder().getCenter();
+				if(childCenter.y < parentCenter.y) {
+					suggestedSide = PositionConstants.NORTH;
+				} else {
+					suggestedSide = PositionConstants.SOUTH;
+				}
+			}
+		}
+		return suggestedSide;
+	}
+
+	/**
 	 * Find the closest side when x,y is inside parent.
 	 * 
 	 * @param proposedLocation
@@ -146,18 +258,7 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 	 */
 	public int findClosestAuthorizedSideOfParent(Rectangle proposedLocation, Rectangle parentBorder) {
 		int side = findClosestSideOfParent(proposedLocation, parentBorder);
-		if(isInSendSignalAction()) {
-			// EAST side is not authorized
-			if(side == PositionConstants.EAST) {
-				Point parentCenter = parentBorder.getCenter();
-				Point childCenter = proposedLocation.getCenter();
-				if(childCenter.y < parentCenter.y) {
-					return PositionConstants.NORTH;
-				} else {
-					return PositionConstants.SOUTH;
-				}
-			}
-		}
+		side = redefineSuggestedSide(proposedLocation.getCenter(), side);
 		return side;
 	}
 
@@ -171,6 +272,37 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 		for(Object child : parentFigure.getChildren()) {
 			if(child instanceof SendSignalActionFigure) {
 				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Know whether containing action is an AcceptEventAction
+	 * 
+	 * @return true is containing action is an AcceptEventAction
+	 */
+	private boolean isInAcceptEventAction() {
+		IFigure parentFigure = getParentFigure();
+		for(Object child : parentFigure.getChildren()) {
+			if(child instanceof AcceptEventActionFigure) {
+				((AcceptEventActionFigure)child).isTemplateForAcceptTimeEventActionUsed();
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Know whether containing action is an AcceptTimeEventAction
+	 * 
+	 * @return true is containing action is an AcceptEventAction with AcceptTimeEventAction representation
+	 */
+	private boolean isInAcceptTimeEventAction() {
+		IFigure parentFigure = getParentFigure();
+		for(Object child : parentFigure.getChildren()) {
+			if(child instanceof AcceptEventActionFigure) {
+				return ((AcceptEventActionFigure)child).isTemplateForAcceptTimeEventActionUsed();
 			}
 		}
 		return false;
@@ -304,6 +436,9 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 		} else if(child instanceof OutputPinInCallOpActEditPart.PinDescriptor) {
 			arrowIn = false;
 			arrow = ((OutputPinInCallOpActEditPart.PinDescriptor)child).getOptionalArrowFigure();
+		} else if(child instanceof OutputPinInAcceptEventActionEditPart.PinDescriptor) {
+			arrowIn = false;
+			arrow = ((OutputPinInAcceptEventActionEditPart.PinDescriptor)child).getOptionalArrowFigure();
 		}
 		if(arrow != null && arrow.getPoints().size() > 0) {
 			int arrowDirection;

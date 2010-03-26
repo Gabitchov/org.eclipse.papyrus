@@ -332,6 +332,13 @@
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
+			class="org.eclipse.papyrus.diagram.activity.preferences.AcceptEventActionPreferencePage"
+            id="org.eclipse.papyrus.diagram.activity.preferences.AcceptEventActionPreferencePage"
+            name="AcceptEventAction" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLActivityDiagram"
 			class="org.eclipse.papyrus.diagram.activity.preferences.DecisionNodePreferencePage"
             id="org.eclipse.papyrus.diagram.activity.preferences.DecisionNodePreferencePage"
             name="DecisionNode" />	
@@ -501,7 +508,7 @@
       <viewProvider class="org.eclipse.papyrus.diagram.activity.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLActivityDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3030,3031,3032,3033,3011,3012,3038,3039,3040,3041,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3030,3031,3032,3033,3011,3012,3038,3039,3040,3041,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4003,4004"/>
       </viewProvider>
    </extension>
@@ -514,13 +521,13 @@
             <method name="getType()" value="PapyrusUMLActivityDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3030,3031,3032,3033,3011,3012,3038,3039,3040,3041,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059"/>
+            <method name="getType()" value="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3030,3031,3032,3033,3011,3012,3038,3039,3040,3041,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="4001,4002,4003,4004"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5001,5002,5003,5011,5024,5012,5025,5009,5010,5004,5013,5026,5014,5027,5015,5016,5006,5017,5028,5018,5029,5019,5020,5021,5030,5022,5031,5023,5038,5039,5040,5041,5034,5035,5036,5037,5007,5008,5043,5042,5059,5049,5050,5051,5052,5053,5054,5055,5056,5057,5058,5060,5061,5062,5063,5064,5065,5072,5073,5074,5075,5076,5071"/>
+            <method name="getType()" value="5001,5002,5003,5011,5024,5012,5025,5009,5010,5004,5013,5026,5014,5027,5015,5016,5006,5017,5028,5018,5029,5019,5020,5021,5030,5022,5031,5023,5038,5039,5040,5041,5034,5035,5036,5037,5007,5008,5043,5042,5059,5049,5050,5051,5052,5053,5054,5055,5056,5057,5058,5060,5061,5062,5063,5064,5065,5072,5073,5074,5075,5076,5071,5078,5079,5077"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value="7001,7002,7003,7004"/>
@@ -1076,6 +1083,25 @@
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.activity.AcceptEventAction_3063"
+               name="%metatype.name.AcceptEventAction_3063"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="AcceptEventAction"
+               edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.AcceptEventActionEditHelper">
+            <param name="semanticHint" value="3063"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.OutputPin_3064"
+               name="%metatype.name.OutputPin_3064"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.OutputPin_3014"/>
+            <param name="semanticHint" value="3064"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
                id="org.eclipse.papyrus.diagram.activity.ActionLocalPrecondition_4001"
                name="%metatype.name.ActionLocalPrecondition_4001"
@@ -1180,6 +1206,8 @@
          <elementType ref="org.eclipse.papyrus.diagram.activity.ActionInputPin_3061"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.InputPin_3062"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ActivityParameterNode_3059"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.AcceptEventAction_3063"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.OutputPin_3064"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ActionLocalPrecondition_4001"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ActionLocalPostcondition_4002"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ObjectFlow_4003"/>
@@ -2043,7 +2071,7 @@ and self.decisionInput.ownedParameter->select(
             mode="Live"
             severity="ERROR" statusCode="200">
             <description><![CDATA[Validate that Activity Parameter Node and corresponding Parameter type are correctly synchronized]]></description>
-            <message><![CDATA[The type of an activity parameter node must be the same as the type of its parameter.]]></message>
+            <message>Activity parameter node must be synchronized with its parameter.</message>
             <target class="uml.Activity"/>
             <target class="uml.Parameter"/>
             <target class="uml.ActivityParameterNode"/>
@@ -2204,6 +2232,16 @@ and self.decisionInput.ownedParameter->select(
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendSignalAction.gif"
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendSignalAction.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create an Accept Event Action node"
+       id="createAcceptEventAction6CreationTool"
+       kind="tool"
+       label="Accept Event Action"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AcceptEventAction.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AcceptEventAction.gif">
  	</entry>
 	<entry
        defineOnly="true"
@@ -2458,6 +2496,10 @@ and self.decisionInput.ownedParameter->select(
           id="createSendSignalAction5CreationTool"
           path="/createActions2Group">
     </predefinedEntry>
+ 	<predefinedEntry
+          id="createAcceptEventAction6CreationTool"
+          path="/createActions2Group">
+    </predefinedEntry>
 
 	<entry
        description=""
@@ -2562,6 +2604,8 @@ and self.decisionInput.ownedParameter->select(
 		</paletteProvider>	
 			
 	</extension>
+
+
 
 
 

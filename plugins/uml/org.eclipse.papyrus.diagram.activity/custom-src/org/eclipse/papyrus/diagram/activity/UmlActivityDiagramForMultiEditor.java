@@ -14,10 +14,15 @@
 package org.eclipse.papyrus.diagram.activity;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.util.LocalSelectionTransfer;
@@ -26,6 +31,8 @@ import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditor;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.listeners.DropTargetListener;
 import org.eclipse.swt.dnd.TransferData;
 import org.eclipse.swt.widgets.Composite;
@@ -124,6 +131,17 @@ public class UmlActivityDiagramForMultiEditor extends UMLDiagramEditor {
 
 	@Override
 	protected void initializeGraphicalViewer() {
+		/*
+		 * During content initialization, view with unknown semantic hint can be loaded (hint must be deduced).
+		 * In such cases, if the provider has not been set yet, view providing fails instead of loading the provider.
+		 * Ensure the activity diagram provider is correctly loaded before trying to initialize content.
+		 * To do so, we ask to provide the main activity node with all required details.
+		 */
+		IAdaptable adapter = new SemanticAdapter(getDiagram().getElement(), null);
+		String semanticHint = ((IHintedType)UMLElementTypes.Activity_2001).getSemanticHint();
+		// We already know that result is true. Provider is correctly initialized during the process.
+		ViewService.getInstance().provides(Node.class, adapter, getDiagram(), semanticHint, ViewUtil.APPEND, false, getPreferencesHint());
+		// initialize content
 		super.initializeGraphicalViewer();
 		// Enable Drop
 		getDiagramGraphicalViewer().addDropTargetListener(new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {

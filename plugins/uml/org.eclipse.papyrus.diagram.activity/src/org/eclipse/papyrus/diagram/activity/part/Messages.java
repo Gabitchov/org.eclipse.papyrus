@@ -36,6 +36,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated NOT
 	 */
+	public static String UMLValidation_ErrorTitle;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String UMLValidation_WarningTitle;
+
+	/**
+	 * @generated NOT
+	 */
 	public static String CreatePinsForObjectFlowDialog_Title;
 
 	/**
@@ -72,6 +82,21 @@ public class Messages extends NLS {
 	 * @generated NOT
 	 */
 	public static String PinAndParameterSynchronizer_UnauthorizedModificationRedirection;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String PinAndParameterSynchronizer_UnauthorizedModification;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String ActivityParameterAndParameterSynchronizer_UnauthorizedModificationTitle;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String ActivityParameterAndParameterSynchronizer_UnauthorizedModificationRedirection;
 
 	/**
 	 * @generated NOT
@@ -161,22 +186,57 @@ public class Messages extends NLS {
 	/**
 	 * @generated NOT
 	 */
+	public static String CreateCallActionDialog_IsSynchronousHelp;
+
+	/**
+	 * @generated NOT
+	 */
 	public static String CreateCallActionDialog_IsSynchronous;
 
 	/**
 	 * @generated NOT
 	 */
-	public static String CreateCallActionDialog_OperationInvocationTitle;
+	public static String CreateCallActionDialog_OperationInvocationCreationTitle;
 
 	/**
 	 * @generated NOT
 	 */
-	public static String CreateCallActionDialog_BehaviorInvocationTitle;
+	public static String CreateCallActionDialog_OperationInvocationCreationHelp;
 
 	/**
 	 * @generated NOT
 	 */
-	public static String CreateCallActionDialog_SignalInvocationTitle;
+	public static String CreateCallActionDialog_OperationInvocationSelectionTitle;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateCallActionDialog_BehaviorInvocationCreationTitle;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateCallActionDialog_BehaviorInvocationCreationHelp;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateCallActionDialog_BehaviorInvocationSelectionTitle;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateCallActionDialog_SignalInvocationCreationTitle;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateCallActionDialog_SignalInvocationCreationHelp;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateCallActionDialog_SignalInvocationSelectionTitle;
 
 	/**
 	 * @generated NOT
@@ -191,12 +251,23 @@ public class Messages extends NLS {
 	/**
 	 * @generated NOT
 	 */
+	public static String CreateActivityParameterNodeDialog_ParameterSelectionHelp;
+
+	/**
+	 * @generated NOT
+	 */
 	public static String CreateActivityParameterNodeDialog_ParameterSelectionLabel;
+
 
 	/**
 	 * @generated NOT
 	 */
 	public static String CreateActivityParameterNodeDialog_ParameterCreationTitle;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateActivityParameterNodeDialog_ParameterCreationHelp;
 
 	/**
 	 * @generated NOT
@@ -221,6 +292,91 @@ public class Messages extends NLS {
 	/**
 	 * @generated NOT
 	 */
+	public static String CreateParameterDialog_WarnNoImpact;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateParameterDialog_WarnImpact;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateParameterDialog_Open;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateParameterDialog_DialogTitle;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateParameterDialog_ParameterCreationTitle;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateParameterDialog_ParameterCreationHelp;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateParameterDialog_NameLabel;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateParameterDialog_TypeLabel;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateParameterDialog_DirectionLabel;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateAttributeDialog_WarnNoImpact;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateAttributeDialog_WarnImpact;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateAttributeDialog_Open;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateAttributeDialog_DialogTitle;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateAttributeDialog_CreationTitle;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateAttributeDialog_NameLabel;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateAttributeDialog_EClassLabel;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String CreateAttributeDialog_TypeLabel;
+
+	/**
+	 * @generated NOT
+	 */
 	public static String DiagramsPreferencePage_disableNotification;
 
 	/**
@@ -237,6 +393,16 @@ public class Messages extends NLS {
 	 * @generated NOT
 	 */
 	public static String DiagramsPreferencePage_confirmActivityParameterNodeSyncFromParameter_label;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String ActivityEdgePreferencePage_visibilityGroup;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String ActivityEdgePreferencePage_showName;
 
 	/**
 	 * @generated
@@ -612,6 +778,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String SendSignalAction5CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String AcceptEventAction6CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String AcceptEventAction6CreationTool_desc;
 
 	/**
 	 * @generated
@@ -1222,6 +1398,26 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_ActivityParameterNode_3059_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_AcceptEventAction_3063_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_AcceptEventAction_3063_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_OutputPin_3064_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_OutputPin_3064_outgoinglinks;
 
 	/**
 	 * @generated

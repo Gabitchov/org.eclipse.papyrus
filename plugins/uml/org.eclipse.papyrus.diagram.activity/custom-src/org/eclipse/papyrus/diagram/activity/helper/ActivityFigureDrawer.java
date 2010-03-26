@@ -53,20 +53,20 @@ public class ActivityFigureDrawer {
 	 */
 	private static final List<Point> RAKE_FIGURE = new ArrayList<Point>(8);
 	static {
-		RAKE_FIGURE.add(new Point(0, 16));
-		RAKE_FIGURE.add(new Point(0, 7));
-		RAKE_FIGURE.add(new Point(8, 7));
-		RAKE_FIGURE.add(new Point(8, 0));
-		RAKE_FIGURE.add(new Point(8, 16));
-		RAKE_FIGURE.add(new Point(8, 7));
-		RAKE_FIGURE.add(new Point(16, 7));
-		RAKE_FIGURE.add(new Point(16, 16));
+		RAKE_FIGURE.add(new Point(0, 10));
+		RAKE_FIGURE.add(new Point(0, 4));
+		RAKE_FIGURE.add(new Point(5, 4));
+		RAKE_FIGURE.add(new Point(5, 0));
+		RAKE_FIGURE.add(new Point(5, 10));
+		RAKE_FIGURE.add(new Point(5, 4));
+		RAKE_FIGURE.add(new Point(10, 4));
+		RAKE_FIGURE.add(new Point(10, 10));
 	}
 
 	/**
 	 * The template point for translating a rake figure
 	 */
-	private static final Point RAKE_FIGURE_TRANSLATION = new Point(-22, -22);
+	private static final Point RAKE_FIGURE_TRANSLATION = new Point(-16, -12);
 
 	/**
 	 * The template for drawing an pin arrow figure turned right

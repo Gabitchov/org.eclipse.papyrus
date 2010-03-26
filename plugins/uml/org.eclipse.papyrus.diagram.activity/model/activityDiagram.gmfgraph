@@ -280,7 +280,13 @@
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ActionLabel"
-            qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel"/>
+            qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel">
+          <insets
+              top="5"
+              left="5"
+              bottom="5"
+              right="5"/>
+        </children>
         <children
             xsi:type="gmfgraph:Polyline"
             name="RakeFigure"
@@ -453,10 +459,11 @@
             xsi:type="gmfgraph:CustomFigure"
             name="SendSignalActionLabel"
             qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel">
-          <children
-              xsi:type="gmfgraph:CustomFigure"
-              name="SendSignalActionLabel"
-              qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel"/>
+          <insets
+              top="5"
+              left="5"
+              bottom="5"
+              right="5"/>
         </children>
         <template/>
         <template
@@ -491,11 +498,56 @@
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ActivityParameterNodeLabel"
-            qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel"/>
+            qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel">
+          <insets
+              top="5"
+              left="5"
+              bottom="5"
+              right="5"/>
+        </children>
       </actualFigure>
       <accessors
           accessor="getActivityParameterNodeLabel"
           figure="//@figures.0/@descriptors.15/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="AcceptEventActionFigure">
+      <actualFigure
+          xsi:type="gmfgraph:ScalablePolygon"
+          name="ConcavePentagon">
+        <layout
+            xsi:type="gmfgraph:CustomLayout"
+            qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
+        <border
+            xsi:type="gmfgraph:MarginBorder">
+          <insets
+              left="50"/>
+        </border>
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="AcceptEventActionLabel"
+            qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel">
+          <insets
+              top="5"
+              left="5"
+              bottom="5"
+              right="5"/>
+        </children>
+        <template/>
+        <template
+            x="200"/>
+        <template
+            x="200"
+            y="50"/>
+        <template
+            y="50"/>
+        <template
+            x="50"
+            y="25"/>
+      </actualFigure>
+      <accessors
+          accessor="getAcceptEventActionLabel"
+          figure="//@figures.0/@descriptors.16/@actualFigure/@children.0"/>
     </descriptors>
   </figures>
   <nodes
@@ -540,6 +592,9 @@
       name="ActivityParameterNode"
       figure="ActivityParameterNodeDescriptor"
       affixedParentSide="NSEW"/>
+  <nodes
+      name="AcceptEventActionNode"
+      figure="AcceptEventActionFigure"/>
   <connections
       name="CornerBentWithTextLinkConnection"
       figure="DashedLinkDescriptor"/>
@@ -685,6 +740,24 @@
       figure="ActivityParameterNodeDescriptor"
       elementIcon="false"
       accessor="//@figures.0/@descriptors.15/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
+  <labels
+      name="AcceptEventActionName"
+      figure="AcceptEventActionFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.16/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
+  <labels
+      name="AcceptTimeEventActionName"
+      figure="CommonLabelFigure"
+      affixedParentSide="SOUTH"
+      elementIcon="false">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
         alignment="CENTER"/>

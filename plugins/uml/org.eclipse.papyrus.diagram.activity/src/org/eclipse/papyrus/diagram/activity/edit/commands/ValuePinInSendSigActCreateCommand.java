@@ -99,7 +99,7 @@ public class ValuePinInSendSigActCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT do not set new element which may change after validation
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
@@ -115,8 +115,9 @@ public class ValuePinInSendSigActCreateCommand extends EditElementCommand {
 
 		doConfigure(newElement, monitor, info);
 
-		((CreateElementRequest)getRequest()).setNewElement(newElement);
-		return CommandResult.newOKCommandResult(newElement);
+		// do not set new element which may change after validation
+		//((CreateElementRequest)getRequest()).setNewElement(newElement);
+		return CommandResult.newOKCommandResult();//newElement);
 	}
 
 	/**

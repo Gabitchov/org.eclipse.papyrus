@@ -51,12 +51,17 @@ import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.diagram.activity.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.activity.figures.SimpleLabel;
+import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.activity.preferences.IActivityPreferenceConstants;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.activity.providers.UMLParserProvider;
 import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditManager;
@@ -114,6 +119,13 @@ public class ControlFlowNameEditPart extends LabelEditPart implements ITextAware
 	protected IDirectEditorConfiguration configuration;
 
 	/**
+	 * the preference store
+	 * 
+	 * @generated NOT
+	 */
+	private final IPreferenceStore preferenceStore = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+
+	/**
 	 * @generated
 	 */
 	static {
@@ -121,10 +133,19 @@ public class ControlFlowNameEditPart extends LabelEditPart implements ITextAware
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT add preference listener to enable/disable the label
 	 */
 	public ControlFlowNameEditPart(View view) {
 		super(view);
+		// add preference listener to enable/disable the label
+		preferenceStore.addPropertyChangeListener(new IPropertyChangeListener() {
+
+			public void propertyChange(PropertyChangeEvent event) {
+				if(IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL.equals(event.getProperty())) {
+					refreshLabel();
+				}
+			}
+		});
 	}
 
 	/**
@@ -148,7 +169,7 @@ public class ControlFlowNameEditPart extends LabelEditPart implements ITextAware
 	 * @generated
 	 */
 	public int getKeyPoint() {
-		return ConnectionLocator.MIDDLE;
+		return ConnectionLocator.SOURCE;
 	}
 
 	/**
@@ -243,18 +264,24 @@ public class ControlFlowNameEditPart extends LabelEditPart implements ITextAware
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT consult preference store before displaying label
 	 */
 	protected String getLabelText() {
-		String text = null;
-		EObject parserElement = getParserElement();
-		if(parserElement != null && getParser() != null) {
-			text = getParser().getPrintString(new EObjectAdapter(parserElement), getParserOptions().intValue());
+		//consult preference store before displaying label
+		boolean showName = preferenceStore.getBoolean(IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL);
+		if(showName) {
+			String text = null;
+			EObject parserElement = getParserElement();
+			if(parserElement != null && getParser() != null) {
+				text = getParser().getPrintString(new EObjectAdapter(parserElement), getParserOptions().intValue());
+			}
+			if(text == null || text.length() == 0) {
+				text = defaultText;
+			}
+			return text;
+		} else {
+			return "";
 		}
-		if(text == null || text.length() == 0) {
-			text = defaultText;
-		}
-		return text;
 	}
 
 	/**
@@ -273,10 +300,12 @@ public class ControlFlowNameEditPart extends LabelEditPart implements ITextAware
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT consult preference store before displaying label
 	 */
 	public String getEditText() {
-		if(getParserElement() == null || getParser() == null) {
+		//consult preference store before displaying label
+		boolean showName = preferenceStore.getBoolean(IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL);
+		if(getParserElement() == null || getParser() == null || !showName) {
 			return ""; //$NON-NLS-1$
 		}
 		return getParser().getEditString(new EObjectAdapter(getParserElement()), getParserOptions().intValue());
@@ -363,26 +392,34 @@ public class ControlFlowNameEditPart extends LabelEditPart implements ITextAware
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT consult preference store before displaying label
 	 */
 	protected void performDirectEdit() {
-		getManager().show();
+		//consult preference store before displaying label
+		boolean showName = preferenceStore.getBoolean(IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL);
+		if(showName) {
+			getManager().show();
+		}
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT consult preference store before displaying label
 	 */
 	protected void performDirectEdit(Point eventLocation) {
-		if(getManager() instanceof TextDirectEditManager) {
+		//consult preference store before displaying label
+		boolean showName = preferenceStore.getBoolean(IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL);
+		if(getManager() instanceof TextDirectEditManager && showName) {
 			((TextDirectEditManager)getManager()).show(eventLocation.getSWTPoint());
 		}
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT consult preference store before displaying label
 	 */
 	private void performDirectEdit(char initialCharacter) {
-		if(getManager() instanceof TextDirectEditManager) {
+		//consult preference store before displaying label
+		boolean showName = preferenceStore.getBoolean(IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL);
+		if(getManager() instanceof TextDirectEditManager && showName) {
 			((TextDirectEditManager)getManager()).show(initialCharacter);
 		} else {
 			performDirectEdit();
@@ -390,9 +427,14 @@ public class ControlFlowNameEditPart extends LabelEditPart implements ITextAware
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT consult preference store before displaying label
 	 */
 	protected void performDirectEditRequest(Request request) {
+		//consult preference store before displaying label
+		boolean showName = preferenceStore.getBoolean(IActivityPreferenceConstants.PREF_ACTIVITY_EDGE_SHOW_NAME_LABEL);
+		if(!showName) {
+			return;
+		}
 
 		final Request theRequest = request;
 

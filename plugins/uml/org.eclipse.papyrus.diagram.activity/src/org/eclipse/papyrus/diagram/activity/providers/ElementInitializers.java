@@ -15,8 +15,10 @@ package org.eclipse.papyrus.diagram.activity.providers;
 
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.common.actions.LabelHelper;
+import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.uml2.uml.ActionInputPin;
 import org.eclipse.uml2.uml.Activity;
+import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.ActivityFinalNode;
 import org.eclipse.uml2.uml.ActivityParameterNode;
 import org.eclipse.uml2.uml.CallBehaviorAction;
@@ -32,10 +34,10 @@ import org.eclipse.uml2.uml.InputPin;
 import org.eclipse.uml2.uml.InteractionConstraint;
 import org.eclipse.uml2.uml.IntervalConstraint;
 import org.eclipse.uml2.uml.JoinNode;
-import org.eclipse.uml2.uml.LiteralBoolean;
 import org.eclipse.uml2.uml.MergeNode;
 import org.eclipse.uml2.uml.ObjectFlow;
 import org.eclipse.uml2.uml.OpaqueAction;
+import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.OutputPin;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.SendObjectAction;
@@ -604,6 +606,30 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public static void init_AcceptEventAction_3063(AcceptEventAction instance) {
+		try {
+			Object value_0 = name_AcceptEventAction_3063(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static void init_OutputPin_3064(OutputPin instance) {
+		try {
+			Object value_0 = name_OutputPin_3064(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	public static void init_InteractionConstraint_3030(InteractionConstraint instance) {
 		try {
 			Object value_0 = name_InteractionConstraint_3030(instance);
@@ -705,11 +731,7 @@ public class ElementInitializers {
 			Object value_0 = name_ObjectFlow_4003(instance);
 			instance.setName((String)value_0);
 			// initialize the guard
-			if(instance.getGuard() == null) {
-				LiteralBoolean guard = UMLFactory.eINSTANCE.createLiteralBoolean();
-				guard.setValue(true);
-				instance.setGuard(guard);
-			}
+			createGuardForFlow(instance);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -723,11 +745,7 @@ public class ElementInitializers {
 			Object value_0 = name_ControlFlow_4004(instance);
 			instance.setName((String)value_0);
 			// initialize the guard
-			if(instance.getGuard() == null) {
-				LiteralBoolean guard = UMLFactory.eINSTANCE.createLiteralBoolean();
-				guard.setValue(true);
-				instance.setGuard(guard);
-			}
+			createGuardForFlow(instance);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -1065,6 +1083,20 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	private static String name_AcceptEventAction_3063(AcceptEventAction self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private static String name_OutputPin_3064(OutputPin self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
 	private static String name_InteractionConstraint_3030(InteractionConstraint self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
@@ -1130,6 +1162,21 @@ public class ElementInitializers {
 	 */
 	private static String name_ControlFlow_4004(ControlFlow self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * Creates the guard for flow.
+	 * 
+	 * @param edge
+	 *        the edge
+	 */
+	private static void createGuardForFlow(ActivityEdge edge) {
+		if(edge.getGuard() == null) {
+			OpaqueExpression expression = UMLFactory.eINSTANCE.createOpaqueExpression();
+			expression.getLanguages().add("OCL");
+			expression.getBodies().add("true");
+			edge.setGuard(expression);
+		}
 	}
 
 }

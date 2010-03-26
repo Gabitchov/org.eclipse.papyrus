@@ -13,18 +13,32 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.providers;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.emf.validation.model.IClientSelector;
+import org.eclipse.emf.validation.model.IConstraintStatus;
+import org.eclipse.emf.validation.service.IValidationListener;
+import org.eclipse.emf.validation.service.ModelValidationService;
+import org.eclipse.emf.validation.service.ValidationEvent;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityDiagramEditPart;
+import org.eclipse.papyrus.diagram.activity.helper.SafeDialogOpenerDuringValidation;
 import org.eclipse.papyrus.diagram.activity.helper.UMLValidationHelper;
+import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.DecisionNode;
 import org.eclipse.uml2.uml.ObjectFlow;
@@ -39,6 +53,85 @@ public class UMLValidationProvider {
 	 * @generated
 	 */
 	private static boolean constraintsActive = false;
+
+	/**
+	 * Ids of constraints which report is already managed by themselves.
+	 * 
+	 * @generated NOT
+	 */
+	protected static final Collection<String> SELF_MANAGING_CONSTRAINTS = Arrays.asList("org.eclipse.papyrus.diagram.activity.helper.PinAndParameterSynchronizer", "org.eclipse.papyrus.diagram.activity.helper.ActivityParameterAndParameterSynchronizer");
+
+	/**
+	 * Validation listener which reports problems to the user
+	 * 
+	 * @generated NOT
+	 */
+	private static class ValidationReportListener implements IValidationListener {
+
+		/**
+		 * Report the validation result to the user in case operation did not fully succeed
+		 * 
+		 * @see org.eclipse.emf.validation.service.IValidationListener#validationOccurred(org.eclipse.emf.validation.service.ValidationEvent)
+		 * 
+		 * @param event
+		 *        provides the validation operation results
+		 * @generated NOT
+		 */
+		public void validationOccurred(ValidationEvent event) {
+			boolean needReport = false;
+			if(event.getSeverity() >= IStatus.WARNING) {
+				needReport = true;
+			}
+			if(needReport && event.getEvaluationMode().isLive()) {
+				StringBuffer messageBuff = new StringBuffer();
+				List<String> handledConstraints = new LinkedList<String>(SELF_MANAGING_CONSTRAINTS);
+				for(IConstraintStatus status : event.getValidationResults()) {
+					// report only major problems
+					if(status.getSeverity() >= event.getSeverity()) {
+						String constraintId = status.getConstraint().getDescriptor().getId();
+						String constraintPlugin = status.getConstraint().getDescriptor().getPluginId();
+						if(UMLDiagramEditorPlugin.ID.equals(constraintPlugin) && !handledConstraints.contains(constraintId)) {
+							handledConstraints.add(constraintId);
+							messageBuff.append(status.getMessage());
+						}
+					}
+				}
+				if(messageBuff.length() == 0) {
+					// no error to report
+					return;
+				}
+				final String message = messageBuff.toString();
+				if(event.getSeverity() >= IStatus.ERROR) {
+					SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<Void>() {
+
+						protected Void openDialog() {
+							MessageDialog.openWarning(new Shell(Display.getDefault()), Messages.UMLValidation_ErrorTitle, message);
+							return null;
+						}
+					};
+					opener.execute();
+				} else {
+					SafeDialogOpenerDuringValidation<Void> opener = new SafeDialogOpenerDuringValidation<Void>() {
+
+						protected Void openDialog() {
+							MessageDialog.openInformation(new Shell(Display.getDefault()), Messages.UMLValidation_WarningTitle, message);
+							return null;
+						}
+					};
+					opener.execute();
+				}
+			}
+		}
+	}
+
+	/**
+	 * Add a validation listener to report problems
+	 * 
+	 * @generated NOT
+	 */
+	static {
+		ModelValidationService.getInstance().addValidationListener(new ValidationReportListener());
+	}
 
 	/**
 	 * @generated

@@ -19,6 +19,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -43,18 +44,64 @@ public class WarningAndLinkDialog extends MessageDialog {
 	/** The label of the link */
 	private String label;
 
+	/** Whether the dialog closes on navigation */
+	private boolean allowNavigation;
+
 	/**
 	 * Construct a new dialog to open a warning message and a link to an element.
 	 * 
 	 * @param parentShell
+	 *        the parent shell
 	 * @param dialogTitle
+	 *        the title
 	 * @param dialogMessage
+	 *        the message
 	 * @param linkElement
+	 *        the element link redirects to
+	 * @param linkLabel
+	 *        the label of the link
 	 */
 	public WarningAndLinkDialog(Shell parentShell, String dialogTitle, String dialogMessage, NamedElement linkElement, String linkLabel) {
 		super(parentShell, dialogTitle, null, dialogMessage, WARNING, new String[]{ IDialogConstants.OK_LABEL }, 0);
 		element = linkElement;
 		label = linkLabel;
+		allowNavigation = true;
+	}
+
+	/**
+	 * Construct a new dialog to open a warning message and a link to an element.
+	 * 
+	 * @param parentShell
+	 *        the parent shell
+	 * @param dialogTitle
+	 *        the dialog title, or <code>null</code> if none
+	 * @param dialogTitleImage
+	 *        the dialog title image, or <code>null</code> if none
+	 * @param dialogMessage
+	 *        the dialog message
+	 * @param dialogImageType
+	 *        one of the following values:
+	 *        <ul>
+	 *        <li><code>MessageDialog.NONE</code> for a dialog with no image</li>
+	 *        <li><code>MessageDialog.ERROR</code> for a dialog with an error image</li>
+	 *        <li><code>MessageDialog.INFORMATION</code> for a dialog with an information image</li>
+	 *        <li><code>MessageDialog.QUESTION </code> for a dialog with a question image</li>
+	 *        <li><code>MessageDialog.WARNING</code> for a dialog with a warning image</li>
+	 *        </ul>
+	 * @param dialogButtonLabels
+	 *        an array of labels for the buttons in the button bar
+	 * @param defaultIndex
+	 *        the index in the button label array of the default button
+	 * @param linkElement
+	 *        the element link redirects to
+	 * @param linkLabel
+	 *        the label of the link
+	 */
+	protected WarningAndLinkDialog(Shell parentShell, String dialogTitle, Image dialogTitleImage, String dialogMessage, int dialogImageType, String[] dialogButtonLabels, int defaultIndex, NamedElement linkElement, String linkLabel, boolean closeAfterNavigation) {
+		super(parentShell, dialogTitle, dialogTitleImage, dialogMessage, dialogImageType, dialogButtonLabels, defaultIndex);
+		element = linkElement;
+		label = linkLabel;
+		allowNavigation = closeAfterNavigation;
 	}
 
 	/**
@@ -72,15 +119,17 @@ public class WarningAndLinkDialog extends MessageDialog {
 		Hyperlink hyperLink = toolkit.createHyperlink(parent, label, SWT.UNDERLINE_LINK);
 		hyperLink.setBackground(parent.getBackground());
 		hyperLink.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true, false));
-		hyperLink.addHyperlinkListener(new HyperlinkAdapter() {
+		if(allowNavigation) {
+			hyperLink.addHyperlinkListener(new HyperlinkAdapter() {
 
-			@Override
-			public void linkActivated(HyperlinkEvent e) {
-				navigateToElement();
-				okPressed();
-			}
+				@Override
+				public void linkActivated(HyperlinkEvent e) {
+					navigateToElement();
+					okPressed();
+				}
 
-		});
+			});
+		}
 		return hyperLink;
 	}
 

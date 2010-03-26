@@ -55,12 +55,10 @@ public class DeleteActionViewEditPolicy extends ViewComponentEditPolicy {
 	public Command getCommand(Request request) {
 		if(RequestConstants.REQ_DELETE.equals(request.getType())) {
 			if(request instanceof GroupRequest) {
+				// List of parts from the request is not up to date. Consider the host only.
+				List<?> parts = Collections.singletonList(getHost());
+				((GroupRequest)request).setEditParts(getHost());
 				// inspect the list of parts to add linked local conditions
-				List<?> parts = ((GroupRequest)request).getEditParts();
-				if(parts == null || parts.isEmpty()) {
-					parts = Collections.singletonList(getHost());
-					((GroupRequest)request).setEditParts(getHost());
-				}
 				List<EditPart> partsToAdd = getListOfLinkedLocalConditionsParts(parts);
 				((GroupRequest)request).getEditParts().addAll(partsToAdd);
 				return getDeleteCommand((GroupRequest)request);

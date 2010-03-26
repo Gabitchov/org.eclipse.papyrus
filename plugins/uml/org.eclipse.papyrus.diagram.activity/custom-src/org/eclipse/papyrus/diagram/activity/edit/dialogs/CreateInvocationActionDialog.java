@@ -16,6 +16,8 @@ package org.eclipse.papyrus.diagram.activity.edit.dialogs;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EClass;
@@ -25,6 +27,7 @@ import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
@@ -35,6 +38,7 @@ import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.actions.LabelHelper;
+import org.eclipse.papyrus.diagram.common.ui.helper.HelpComponentFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -54,6 +58,7 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.forms.FormDialog;
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.uml2.uml.Activity;
@@ -65,6 +70,10 @@ import org.eclipse.uml2.uml.edit.providers.UMLItemPropertyDescriptor;
  * This class provides a dialog to initialize a CallAction at its creation.
  */
 public abstract class CreateInvocationActionDialog extends FormDialog {
+
+	private static final String MAP_FORMAT = "%s|%s";
+
+	private static final Pattern MAP_PATTERN = Pattern.compile("(.*?)\\|(.*)");
 
 	private Button creationRadio;
 
@@ -107,13 +116,40 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	public CreateInvocationActionDialog(Shell shell, Activity owner) {
 		super(shell);
 		actionParent = owner;
+		selectedParent = getDefaultParent(owner);
+		labelProvider = getCustomLabelProvider();
+	}
+
+	/**
+	 * Get the parent to propose as default choice for the element creation
+	 * 
+	 * @param owner
+	 *        the invocation action's owner
+	 * @return default parent to select
+	 */
+	private EObject getDefaultParent(Activity owner) {
+		//try recovering last user choice from preferences
+		IPreferenceStore prefStore = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+		String ownerString = prefStore.getString(getCreationDefaultOwnerPreference());
+		if(ownerString != null && !"".equals(ownerString)) {
+			Matcher match = MAP_PATTERN.matcher(ownerString);
+			if(match.matches() && match.groupCount() >= 2) {
+				String ressURI = match.group(1);
+				String parentURI = match.group(2);
+				if(owner.eResource().getURI().toString().equals(ressURI)) {
+					EObject parent = owner.eResource().getEObject(parentURI);
+					if(parent != null) {
+						return parent;
+					}
+				}
+			}
+		}
+		// recover default choice from the action's owner
 		EObject parent = owner;
 		while(!isPossibleInvokedParent(parent)) {
 			parent = parent.eContainer();
 		}
-		selectedParent = parent;
-		labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
-
+		return parent;
 	}
 
 	/**
@@ -137,13 +173,37 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 		createInvocationSelectionSection(scrolledForm.getBody(), toolkit);
 		createExtraSections(scrolledForm.getBody(), toolkit);
 
-		refreshSectionsEnable(false);
+		refreshSectionsEnable(isSelectionDefault());
 		hookListeners();
 		// invoked name is set after listeners, since we count on listener to update it properly
 		setInvokedName(null);
 
 		scrolledForm.reflow(true);
 	}
+
+	/**
+	 * Get whether the selection of an existing element is the default
+	 * 
+	 * @return true if selection by default
+	 */
+	protected boolean isSelectionDefault() {
+		IPreferenceStore prefStore = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+		return prefStore.getBoolean(getSelectionIsDefaultPreference());
+	}
+
+	/**
+	 * Get the id of the preference storing whether selection is the default choice.
+	 * 
+	 * @return preference id
+	 */
+	abstract protected String getSelectionIsDefaultPreference();
+
+	/**
+	 * Get the id of the preference storing the last selected owner.
+	 * 
+	 * @return preference id
+	 */
+	abstract protected String getCreationDefaultOwnerPreference();
 
 	/**
 	 * Create the other needed sections.
@@ -180,8 +240,9 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	 */
 	private void createInvocationSelectionSection(Composite pParent, FormToolkit pToolkit) {
 		// create the section
-		String lSectionTitle = getInvocationSectionTitle();
+		String lSectionTitle = getInvocationSelectionSectionTitle();
 		Section lSection = pToolkit.createSection(pParent, Section.EXPANDED | Section.TITLE_BAR);
+		lSection.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		if(lSectionTitle != null) {
 			lSection.setText(lSectionTitle);
 		}
@@ -197,7 +258,7 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 
 		// content of the section
 		selectionRadio = pToolkit.createButton(lBody, getSelectionLabel(), SWT.RADIO);
-		selectionRadio.setSelection(false);
+		//selectionRadio.setSelection(false);
 		selectionRadio.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
 
 		pToolkit.createLabel(lBody, getInvokedObjectLabel(), SWT.NONE);
@@ -222,11 +283,14 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	 */
 	private void createInvocationCreationSection(Composite pParent, FormToolkit pToolkit) {
 		// create the section
-		String lSectionTitle = getInvocationSectionTitle();
+		String lSectionTitle = getInvocationCreationSectionTitle();
 		Section lSection = pToolkit.createSection(pParent, Section.EXPANDED | Section.TITLE_BAR);
+		lSection.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		if(lSectionTitle != null) {
 			lSection.setText(lSectionTitle);
 		}
+		ImageHyperlink componentHelp = HelpComponentFactory.createHelpComponent(lSection, pToolkit, getInvocationCreationSectionHelp(), true);
+		lSection.setTextClient(componentHelp);
 
 		ScrolledForm lInsideScrolledForm = pToolkit.createScrolledForm(lSection);
 		lInsideScrolledForm.setExpandHorizontal(true);
@@ -239,7 +303,7 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 
 		// content of the section
 		creationRadio = pToolkit.createButton(lBody, getCreationLabel(), SWT.RADIO);
-		creationRadio.setSelection(true);
+		//creationRadio.setSelection(true);
 		creationRadio.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 3, 1));
 
 		if(getPossibleInvokedTypes().length == 1) {
@@ -292,6 +356,17 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 				((NamedElement)selectedInvoked).setName(selectedName);
 			}
 			addInvokedInParent(selectedParent, selectedInvoked);
+		}
+		// store user choices in preference
+		IPreferenceStore prefStore = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+		// store choice between selection and creation
+		prefStore.setValue(getSelectionIsDefaultPreference(), isSelectionSelected);
+		if(!isSelectionSelected) {
+			// store the owner choice
+			String ressUri = selectedParent.eResource().getURI().toString();
+			String parentURI = selectedParent.eResource().getURIFragment(selectedParent);
+			String prefValue = String.format(MAP_FORMAT, ressUri, parentURI);
+			prefStore.setValue(getCreationDefaultOwnerPreference(), prefValue);
 		}
 		super.okPressed();
 	}
@@ -432,6 +507,7 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 		ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), labelProvider);
 		dialog.setMessage(Messages.UMLModelingAssistantProviderMessage);
 		dialog.setTitle(Messages.UMLModelingAssistantProviderTitle);
+		dialog.setFilter("*");
 		dialog.setMultipleSelection(false);
 		dialog.setElements(elements.toArray(new EObject[elements.size()]));
 		if(dialog.open() == Window.OK) {
@@ -463,6 +539,7 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 		ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), labelProvider);
 		dialog.setMessage(Messages.UMLModelingAssistantProviderMessage);
 		dialog.setTitle(Messages.UMLModelingAssistantProviderTitle);
+		dialog.setFilter("*");
 		dialog.setMultipleSelection(false);
 		dialog.setElements(elements.toArray(new EObject[elements.size()]));
 		if(dialog.open() == Window.OK) {
@@ -495,8 +572,14 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 		// handle radio button value
 		if(isSelectionSelected) {
 			creationRadio.setSelection(false);
+			if(!selectionRadio.getSelection()) {
+				selectionRadio.setSelection(true);
+			}
 		} else {
 			selectionRadio.setSelection(false);
+			if(!creationRadio.getSelection()) {
+				creationRadio.setSelection(true);
+			}
 		}
 		// handle disabled section
 		selectionText.setEnabled(isSelectionSelected);
@@ -531,6 +614,32 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 		// Let the command find the relation on its own.
 		Command addCmd = AddCommand.create(editingdomain, selectedParent, null, Collections.singleton(createdInvoked));
 		addCmd.execute();
+	}
+
+	/**
+	 * Gets the custom label provider that parses label for EClass
+	 * 
+	 * @return the custom label provider
+	 */
+	private ILabelProvider getCustomLabelProvider() {
+		AdapterFactoryLabelProvider adapterFactory = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory()) {
+
+			/**
+			 * Override label provider for EClass
+			 * 
+			 * @see org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider#getText(java.lang.Object)
+			 */
+			@Override
+			public String getText(Object object) {
+				String text = super.getText(object);
+				if(object instanceof EClass) {
+					return text.substring(0, text.indexOf("[") - 1);
+				} else {
+					return text;
+				}
+			}
+		};
+		return adapterFactory;
 	}
 
 	/**
@@ -616,11 +725,25 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	abstract protected String getTitle();
 
 	/**
-	 * Get the title of the invocation section
+	 * Get the title of the invocation creation section
 	 * 
 	 * @return section title
 	 */
-	abstract protected String getInvocationSectionTitle();
+	abstract protected String getInvocationCreationSectionTitle();
+
+	/**
+	 * Get the help description of the invocation creation section
+	 * 
+	 * @return section title
+	 */
+	abstract protected String getInvocationCreationSectionHelp();
+
+	/**
+	 * Get the title of the invocation selection section
+	 * 
+	 * @return section title
+	 */
+	abstract protected String getInvocationSelectionSectionTitle();
 
 	/**
 	 * Get the label to choose to select an existing element

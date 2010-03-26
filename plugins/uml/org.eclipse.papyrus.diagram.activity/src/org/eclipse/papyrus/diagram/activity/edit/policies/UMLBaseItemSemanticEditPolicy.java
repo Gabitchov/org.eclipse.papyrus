@@ -45,6 +45,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.activity.edit.helpers.ObjectFlowEditHelper;
 import org.eclipse.papyrus.diagram.activity.edit.helpers.UMLBaseEditHelper;
 import org.eclipse.papyrus.diagram.activity.expressions.UMLAbstractExpression;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
@@ -65,7 +66,6 @@ import org.eclipse.uml2.uml.JoinNode;
 import org.eclipse.uml2.uml.MergeNode;
 import org.eclipse.uml2.uml.ObjectFlow;
 import org.eclipse.uml2.uml.ObjectNode;
-import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.OutputPin;
 import org.eclipse.uml2.uml.StructuredActivityNode;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -440,8 +440,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			try {
 				if(source instanceof Action) {
 					// rule validateObjectFlow_validateNoActions
-					// rule workaround by addition of pins in case of Opaque Action
-					if(!(source instanceof OpaqueAction)) {
+					// rule workaround by addition of pins in case of Action
+					if(!ObjectFlowEditHelper.canStartNewObjectFlow((Action)source)) {
 						return false;
 					}
 				}
@@ -515,8 +515,8 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 				if(target instanceof Action) {
 					// rule validateObjectFlow_validateNoActions
-					// rule workaround by addition of pins in case of Opaque Action
-					if(!(target instanceof OpaqueAction)) {
+					// rule workaround by addition of pins in case of Action
+					if(!ObjectFlowEditHelper.canEndNewObjectFlow((Action)target)) {
 						return false;
 					}
 				}

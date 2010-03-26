@@ -15,12 +15,15 @@ package org.eclipse.papyrus.diagram.activity.edit.dialogs;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
+import org.eclipse.papyrus.diagram.common.ui.helper.HelpComponentFactory;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.uml2.uml.Activity;
@@ -96,10 +99,13 @@ public abstract class CreateCallActionDialog extends CreateInvocationActionDialo
 	private void createIsSynchronousSection(Composite pParent, FormToolkit pToolkit) {
 		// create the section
 		String lSectionTitle = getIsSynchronousSectionTitle();
-		Section lSection = pToolkit.createSection(pParent, Section.EXPANDED | Section.TITLE_BAR);
+		Section lSection = pToolkit.createSection(pParent, Section.TWISTIE | Section.TITLE_BAR);
+		lSection.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		if(lSectionTitle != null) {
 			lSection.setText(lSectionTitle);
 		}
+		ImageHyperlink componentHelp = HelpComponentFactory.createHelpComponent(lSection, pToolkit, Messages.CreateCallActionDialog_IsSynchronousHelp, true);
+		lSection.setTextClient(componentHelp);
 
 		ScrolledForm lInsideScrolledForm = pToolkit.createScrolledForm(lSection);
 		lInsideScrolledForm.setExpandHorizontal(true);

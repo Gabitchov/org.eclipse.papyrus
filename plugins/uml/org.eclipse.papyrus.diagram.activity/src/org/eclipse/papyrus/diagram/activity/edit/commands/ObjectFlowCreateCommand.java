@@ -26,13 +26,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.papyrus.diagram.activity.edit.dialogs.CreatePinsForObjectFlowDialog;
+import org.eclipse.papyrus.diagram.activity.edit.helpers.ObjectFlowEditHelper;
 import org.eclipse.papyrus.diagram.activity.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ObjectFlow;
-import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
@@ -96,7 +96,7 @@ public class ObjectFlowCreateCommand extends EditElementCommand {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		// arrange source and target to add pins if there is an opaque action
-		if(getSource() instanceof OpaqueAction || getTarget() instanceof OpaqueAction) {
+		if(ObjectFlowEditHelper.insertPinForStartingNewObjectFlow(getSource()) || ObjectFlowEditHelper.insertPinForEndingNewObjectFlow(getTarget())) {
 			CreatePinsForObjectFlowDialog dialog = new CreatePinsForObjectFlowDialog(Display.getDefault().getActiveShell(), getSource(), getTarget());
 			if(IDialogConstants.OK_ID == dialog.open()) {
 				// replace adequate source and target

@@ -37,6 +37,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.Ratio;
 import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart;
@@ -115,6 +116,7 @@ public class ActivityActivityContentCompartmentCanonicalEditPolicy extends Canon
 		case JoinNodeEditPart.VISUAL_ID:
 		case SendObjectActionEditPart.VISUAL_ID:
 		case SendSignalActionEditPart.VISUAL_ID:
+		case AcceptEventActionEditPart.VISUAL_ID:
 			if(!semanticChildren.contains(view.getElement())) {
 				return true;
 			}

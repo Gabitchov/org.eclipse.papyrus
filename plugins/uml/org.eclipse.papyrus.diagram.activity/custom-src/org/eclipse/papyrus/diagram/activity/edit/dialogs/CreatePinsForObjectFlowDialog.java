@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.diagram.activity.edit.helpers.ObjectFlowEditHelper;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
@@ -43,6 +44,7 @@ import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
+import org.eclipse.uml2.uml.Action;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.InputPin;
 import org.eclipse.uml2.uml.OpaqueAction;
@@ -112,14 +114,14 @@ public class CreatePinsForObjectFlowDialog extends FormDialog {
 
 	@Override
 	public int open() {
-		if(initialSource instanceof OpaqueAction && initialTarget instanceof OpaqueAction) {
+		if(ObjectFlowEditHelper.insertPinForStartingNewObjectFlow(initialSource) && ObjectFlowEditHelper.insertPinForEndingNewObjectFlow(initialTarget)) {
 			// create an object flow between actions : both pins must be created
 			return super.open();
 		} else {
 			boolean needInformation = false;
 			// use correct extremities or configure new one
-			if(initialSource instanceof OpaqueAction) {
-				newSource = createSource((OpaqueAction)initialSource, initialTarget);
+			if(ObjectFlowEditHelper.insertPinForStartingNewObjectFlow(initialSource)) {
+				newSource = createSource((Action)initialSource, initialTarget);
 				if(newSource == null) {
 					// ask for missing information
 					needInformation = true;
@@ -127,8 +129,8 @@ public class CreatePinsForObjectFlowDialog extends FormDialog {
 			} else {
 				newSource = initialSource;
 			}
-			if(initialTarget instanceof OpaqueAction) {
-				newTarget = createTarget((OpaqueAction)initialTarget, initialSource);
+			if(ObjectFlowEditHelper.insertPinForEndingNewObjectFlow(initialTarget)) {
+				newTarget = createTarget((Action)initialTarget, initialSource);
 				if(newTarget == null) {
 					// ask for missing information
 					needInformation = true;
@@ -152,7 +154,7 @@ public class CreatePinsForObjectFlowDialog extends FormDialog {
 	 *        the source of the object flow
 	 * @return the created pin or null if information is missing
 	 */
-	private InputPin createTarget(OpaqueAction parentAction, ActivityNode objectFlowSource) {
+	private InputPin createTarget(Action parentAction, ActivityNode objectFlowSource) {
 		if(objectFlowSource instanceof Pin) {
 			return createInputPin(parentAction, objectFlowSource.getName(), ((Pin)objectFlowSource).getType());
 		} else {
@@ -170,7 +172,7 @@ public class CreatePinsForObjectFlowDialog extends FormDialog {
 	 *        the target of the object flow
 	 * @return the created pin or null if information is missing
 	 */
-	private OutputPin createSource(OpaqueAction parentAction, ActivityNode objectFlowTarget) {
+	private OutputPin createSource(Action parentAction, ActivityNode objectFlowTarget) {
 		if(objectFlowTarget instanceof Pin) {
 			return createOutputPin(parentAction, objectFlowTarget.getName(), ((Pin)objectFlowTarget).getType());
 		} else {
@@ -190,11 +192,11 @@ public class CreatePinsForObjectFlowDialog extends FormDialog {
 	 *        pin type
 	 * @return created pin
 	 */
-	private InputPin createInputPin(OpaqueAction parentAction, String name, Type type) {
+	private InputPin createInputPin(Action parentAction, String name, Type type) {
 		InputPin result = UMLFactory.eINSTANCE.createInputPin();
 		result.setName(name);
 		result.setType(type);
-		parentAction.getInputValues().add(result);
+		ObjectFlowEditHelper.insertInputPin(parentAction, result);
 		return result;
 	}
 
@@ -209,11 +211,11 @@ public class CreatePinsForObjectFlowDialog extends FormDialog {
 	 *        pin type
 	 * @return created pin
 	 */
-	private OutputPin createOutputPin(OpaqueAction parentAction, String name, Type type) {
+	private OutputPin createOutputPin(Action parentAction, String name, Type type) {
 		OutputPin result = UMLFactory.eINSTANCE.createOutputPin();
 		result.setName(name);
 		result.setType(type);
-		parentAction.getOutputValues().add(result);
+		ObjectFlowEditHelper.insertOutputPin(parentAction, result);
 		return result;
 	}
 
@@ -253,6 +255,7 @@ public class CreatePinsForObjectFlowDialog extends FormDialog {
 		// create the section
 		String lSectionTitle = PIN_CREATION_SECTION_TITLE;
 		Section lSection = pToolkit.createSection(pParent, Section.EXPANDED | Section.TITLE_BAR);
+		lSection.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 		if(lSectionTitle != null) {
 			lSection.setText(lSectionTitle);
 		}

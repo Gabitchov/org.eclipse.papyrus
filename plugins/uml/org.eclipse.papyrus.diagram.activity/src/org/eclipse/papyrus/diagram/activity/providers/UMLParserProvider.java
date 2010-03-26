@@ -25,6 +25,8 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionLabelEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.AcceptTimeEventActionLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCBActLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCBActValueEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCOActAsTargetLabelEditPart;
@@ -76,6 +78,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowSelectionEditPa
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowTransformationEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowWeightEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionNameEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInAcceptEventActionLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCBActLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCOActLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOActLabelEditPart;
@@ -100,6 +103,8 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActAsTar
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActAsTargetValueEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActLabelEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActValueEditPart;
+import org.eclipse.papyrus.diagram.activity.parser.custom.AcceptEventActionParser;
+import org.eclipse.papyrus.diagram.activity.parser.custom.AcceptTimeEventActionParser;
 import org.eclipse.papyrus.diagram.activity.parser.custom.ActivityEdgeWeightParser;
 import org.eclipse.papyrus.diagram.activity.parser.custom.ActivityParameterNodeParser;
 import org.eclipse.papyrus.diagram.activity.parser.custom.ActivitySingleExecutionParser;
@@ -1024,6 +1029,51 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private AcceptEventActionParser acceptEventActionLabel_5078Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getAcceptEventActionLabel_5078Parser() {
+		if(acceptEventActionLabel_5078Parser == null) {
+			acceptEventActionLabel_5078Parser = new AcceptEventActionParser();
+		}
+		return acceptEventActionLabel_5078Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AcceptTimeEventActionParser acceptEventActionLabel_5079Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getAcceptEventActionLabel_5079Parser() {
+		if(acceptEventActionLabel_5079Parser == null) {
+			acceptEventActionLabel_5079Parser = new AcceptTimeEventActionParser();
+		}
+		return acceptEventActionLabel_5079Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private PinParser outputPinLabel_5077Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getOutputPinLabel_5077Parser() {
+		if(outputPinLabel_5077Parser == null) {
+			outputPinLabel_5077Parser = new PinParser();
+		}
+		return outputPinLabel_5077Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser interactionConstraintName_5034Parser;
 
 	/**
@@ -1457,6 +1507,12 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getInputPinLabel_5076Parser();
 		case CenteredWrappedLabelEditPart.VISUAL_ID:
 			return getActivityParameterNodeLabel_5071Parser();
+		case AcceptEventActionLabelEditPart.VISUAL_ID:
+			return getAcceptEventActionLabel_5078Parser();
+		case AcceptTimeEventActionLabelEditPart.VISUAL_ID:
+			return getAcceptEventActionLabel_5079Parser();
+		case OutputPinInAcceptEventActionLabelEditPart.VISUAL_ID:
+			return getOutputPinLabel_5077Parser();
 		case ObjectFlowNameEditPart.VISUAL_ID:
 			return getObjectFlowName_6001Parser();
 		case ObjectFlowWeightEditPart.VISUAL_ID:
