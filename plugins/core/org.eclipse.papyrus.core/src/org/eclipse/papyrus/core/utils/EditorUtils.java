@@ -45,6 +45,11 @@ import org.eclipse.ui.PlatformUI;
 /**
  * Set of utility methods for the CoreEditor.
  * 
+ * WARNING : Some of these methods rely on PlatformUI.getWorkbench().getActiveWorkbenchWindow()getActivePage() to 
+ * lookup for shared objects owned by the main editor. This doesn't work during the initialization of the main editor
+ * because the main editor is not yet registered in the Eclipse workbench. This can lead to a null or an exception, 
+ * and sometime this can lead to getting the shared object of another main editor !
+ * 
  * @author cedric dumoulin
  * @author <a href="mailto:thomas.szadel@atosorigin.com">Thomas Szadel</a>
  */
@@ -129,7 +134,9 @@ public class EditorUtils {
 
 	/**
 	 * Get the service registry of the currently active main editor.
-	 * 
+	 * <br>
+	 * WARNING - This method doesn't work during the initialization of the main editor. See note in class doc.
+	 *  
 	 * @return The {@link ServicesRegistry} or null if not found.
 	 */
 	static public ServicesRegistry getServiceRegistry() {
