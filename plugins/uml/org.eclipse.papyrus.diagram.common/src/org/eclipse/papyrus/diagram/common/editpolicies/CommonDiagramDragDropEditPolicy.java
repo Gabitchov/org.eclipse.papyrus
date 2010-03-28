@@ -61,7 +61,7 @@ import org.eclipse.uml2.uml.Package;
 public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEditPolicy {
 
 	/** The specific drop. */
-	private ArrayList specificDrop = new ArrayList();
+	protected ArrayList specificDrop = new ArrayList();
 
 	/** The specified link mapping helper dependeing on the diagram */
 	private ILinkMappingHelper linkmappingHelper;

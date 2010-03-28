@@ -40,17 +40,15 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.diagram.common.helper.AssociationHelper;
 import org.eclipse.papyrus.diagram.common.helper.ElementHelper;
 import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
- * The Class DurationObservationHelper has in charge to drop a durationObservation
- * 
- * This class looks like AssociationClassHelper
- * 
- * This class looks like TimeObservationHelper
+ * This class handles {@link DurationObservation} drop in diagram.
+ * Derived from {@link AssociationHelper}
  */
 public class DurationObservationHelper extends ElementHelper {
 

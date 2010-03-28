@@ -1636,14 +1636,16 @@
                   label="Create a new CompositeStructure Diagram"
                   style="push"
                   tooltip="Create a new Composite Diagram">
-               <visibleWhen>
-                  <with
-                        variable="activeEditorId">
-                     <equals
-                           value="org.eclipse.papyrus.core.papyrusEditor">
-                     </equals>
-                  </with>
-               </visibleWhen>
+					<visibleWhen>
+						<and>
+						<with variable="activeEditorId">
+							<equals value="org.eclipse.papyrus.core.papyrusEditor" />
+						</with>
+						<with variable="activeWorkbenchWindow.activePerspective">
+							<equals value="org.eclipse.papyrus.core.perspective" />
+						</with>
+						</and>
+					</visibleWhen>
             </command>
          </toolbar>
       </menuContribution>
@@ -1658,14 +1660,16 @@
                   label="Create a new CompositeStructure Diagram"
                   style="push"
                   tooltip="Create a new CompositeStructure Diagram">
-               <visibleWhen>
-                  <with
-                        variable="activeEditorId">
-                     <equals
-                           value="org.eclipse.papyrus.core.papyrusEditor">
-                     </equals>
-                  </with>
-               </visibleWhen>
+					<visibleWhen>
+						<and>
+						<with variable="activeEditorId">
+							<equals value="org.eclipse.papyrus.core.papyrusEditor" />
+						</with>
+						<with variable="activeWorkbenchWindow.activePerspective">
+							<equals value="org.eclipse.papyrus.core.perspective" />
+						</with>
+						</and>
+					</visibleWhen>
             </command>
          </menu>
       </menuContribution>

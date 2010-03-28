@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.composite.custom.edit.policies;
 
 import java.util.Collection;
+import java.util.Iterator;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.PositionConstants;
@@ -23,10 +24,10 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
-import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
@@ -40,13 +41,17 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.diagram.composite.custom.edit.command.CreateViewCommand;
+import org.eclipse.papyrus.diagram.composite.custom.helper.CollaborationHelper;
 import org.eclipse.papyrus.diagram.composite.custom.helper.CompositeLinkMappingHelper;
 import org.eclipse.papyrus.diagram.composite.custom.helper.ConnectorHelper;
 import org.eclipse.papyrus.diagram.composite.custom.helper.DurationObservationHelper;
 import org.eclipse.papyrus.diagram.composite.custom.helper.TimeObservationHelper;
+import org.eclipse.papyrus.diagram.composite.custom.helper.TypeHelper;
 import org.eclipse.papyrus.diagram.composite.custom.locators.PortPositionLocator;
 import org.eclipse.papyrus.diagram.composite.custom.log.Log;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ActivityCompositeEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ActivityCompositeEditPartCN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ActorEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.AnyReceiveEventEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ArtifactEditPart;
@@ -54,9 +59,12 @@ import org.eclipse.papyrus.diagram.composite.edit.parts.CallEventEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ChangeEventEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ClassClassifierEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ClassCompositeEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ClassCompositeEditPartCN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.CollaborationCompositeEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.CollaborationCompositeEditPartCN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ComponentCompositeEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ComponentCompositeEditPartCN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ConnectorEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.CreationEventEditPart;
@@ -64,17 +72,21 @@ import org.eclipse.papyrus.diagram.composite.edit.parts.DataTypeEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.DeploymentSpecificationEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.DeviceCompositeEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.DeviceCompositeEditPartCN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.DurationEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.EnumerationEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ExecutionEnvironmentCompositeEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ExecutionEnvironmentCompositeEditPartCN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ExecutionEventEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ExpressionEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.FunctionBehaviorCompositeEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.FunctionBehaviorCompositeEditPartCN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.InformationItemEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.InstanceValueEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.InteractionCompositeEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.InteractionCompositeEditPartCN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.InteractionConstraintEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.InterfaceEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.IntervalConstraintEditPart;
@@ -85,18 +97,22 @@ import org.eclipse.papyrus.diagram.composite.edit.parts.LiteralNullEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.LiteralStringEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.LiteralUnlimitedNaturalEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.NodeCompositeEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.NodeCompositeEditPartCN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.OpaqueBehaviorCompositeEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.OpaqueBehaviorCompositeEditPartCN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.OpaqueExpressionEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ParameterEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PortEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PrimitiveTypeEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.ProtocolStateMachineCompositeEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.ProtocolStateMachineCompositeEditPartCN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.RoleBindingEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.SendOperationEventEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.SendSignalEventEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.SignalEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.SignalEventEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.StateMachineCompositeEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.StateMachineCompositeEditPartCN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.StringExpressionEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.TimeConstraintEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.TimeEventEditPart;
@@ -106,7 +122,9 @@ import org.eclipse.papyrus.diagram.composite.edit.parts.UseCaseEditPart;
 import org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.DurationObservation;
@@ -115,8 +133,10 @@ import org.eclipse.uml2.uml.EncapsulatedClassifier;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.TimeObservation;
 import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.TypedElement;
 
 /**
  * This class provides an implementation for specific behavior of Drag and Drop in the Composite
@@ -126,10 +146,14 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 	/** List of VISUAL_ID for which a specific Drop behavior is provided */
 	public int[] specificDropNode = {
-	// TopLevelNodes
+		// TopLevelNodes
 	ActivityCompositeEditPart.VISUAL_ID, InteractionCompositeEditPart.VISUAL_ID, ProtocolStateMachineCompositeEditPart.VISUAL_ID, StateMachineCompositeEditPart.VISUAL_ID, FunctionBehaviorCompositeEditPart.VISUAL_ID, OpaqueBehaviorCompositeEditPart.VISUAL_ID, ComponentCompositeEditPart.VISUAL_ID, DeviceCompositeEditPart.VISUAL_ID, ExecutionEnvironmentCompositeEditPart.VISUAL_ID, NodeCompositeEditPart.VISUAL_ID, ClassCompositeEditPart.VISUAL_ID, ClassClassifierEditPart.VISUAL_ID, CollaborationCompositeEditPart.VISUAL_ID, InterfaceEditPart.VISUAL_ID, PrimitiveTypeEditPart.VISUAL_ID, EnumerationEditPart.VISUAL_ID, DataTypeEditPart.VISUAL_ID, ActorEditPart.VISUAL_ID, DeploymentSpecificationEditPart.VISUAL_ID, ArtifactEditPart.VISUAL_ID, InformationItemEditPart.VISUAL_ID, SignalEditPart.VISUAL_ID, UseCaseEditPart.VISUAL_ID, SignalEventEditPart.VISUAL_ID, CallEventEditPart.VISUAL_ID, AnyReceiveEventEditPart.VISUAL_ID, SendSignalEventEditPart.VISUAL_ID, SendOperationEventEditPart.VISUAL_ID, ChangeEventEditPart.VISUAL_ID, TimeEventEditPart.VISUAL_ID, CreationEventEditPart.VISUAL_ID, ExecutionEventEditPart.VISUAL_ID, LiteralBooleanEditPart.VISUAL_ID, LiteralIntegerEditPart.VISUAL_ID, LiteralNullEditPart.VISUAL_ID, LiteralStringEditPart.VISUAL_ID, LiteralUnlimitedNaturalEditPart.VISUAL_ID, StringExpressionEditPart.VISUAL_ID, OpaqueExpressionEditPart.VISUAL_ID, TimeExpressionEditPart.VISUAL_ID, ExpressionEditPart.VISUAL_ID, DurationEditPart.VISUAL_ID, IntervalEditPart.VISUAL_ID, InstanceValueEditPart.VISUAL_ID, CommentEditPart.VISUAL_ID, DurationConstraintEditPart.VISUAL_ID, TimeConstraintEditPart.VISUAL_ID, IntervalConstraintEditPart.VISUAL_ID, InteractionConstraintEditPart.VISUAL_ID, ConstraintEditPart.VISUAL_ID,
-	// TopLevelNodes
-	DependencyEditPart.VISUAL_ID, RoleBindingEditPart.VISUAL_ID, ConnectorEditPart.VISUAL_ID, PortEditPart.VISUAL_ID, ParameterEditPart.VISUAL_ID, org.eclipse.papyrus.diagram.composite.edit.parts.PropertyPartEditPartCN.VISUAL_ID, TimeObservationEditPart.VISUAL_ID, DurationObservationEditPart.VISUAL_ID };
+		// TopLevelNodes
+
+		// Class CN
+	ActivityCompositeEditPartCN.VISUAL_ID, InteractionCompositeEditPartCN.VISUAL_ID, ProtocolStateMachineCompositeEditPartCN.VISUAL_ID, StateMachineCompositeEditPartCN.VISUAL_ID, FunctionBehaviorCompositeEditPartCN.VISUAL_ID, OpaqueBehaviorCompositeEditPartCN.VISUAL_ID, ComponentCompositeEditPartCN.VISUAL_ID, DeviceCompositeEditPartCN.VISUAL_ID, ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID, NodeCompositeEditPartCN.VISUAL_ID, ClassCompositeEditPartCN.VISUAL_ID, CollaborationCompositeEditPartCN.VISUAL_ID,
+		// Class CN
+	CollaborationCompositeEditPartCN.VISUAL_ID, DependencyEditPart.VISUAL_ID, RoleBindingEditPart.VISUAL_ID, ConnectorEditPart.VISUAL_ID, PortEditPart.VISUAL_ID, ParameterEditPart.VISUAL_ID, org.eclipse.papyrus.diagram.composite.edit.parts.PropertyPartEditPartCN.VISUAL_ID, TimeObservationEditPart.VISUAL_ID, DurationObservationEditPart.VISUAL_ID };
 
 
 
@@ -444,7 +468,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		if((graphicalParentObject instanceof EncapsulatedClassifier) && (((EncapsulatedClassifier)graphicalParentObject).getOwnedPorts().contains(droppedElement))) {
 			// Drop Port on StructuredClassifier
 			if(isCompartmentTarget) {
-				return new ICommandProxy(getDropAffixedNodeInCompartmentCommand(nodeVISUALID, dropLocation, droppedElement));
+				return getDropAffixedNodeInCompartmentCommand(nodeVISUALID, dropLocation, droppedElement);
 			}
 			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropLocation, droppedElement));
 
@@ -454,7 +478,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 			if((type != null) && (type instanceof EncapsulatedClassifier) && (((EncapsulatedClassifier)type).getOwnedPorts().contains(droppedElement))) {
 				if(isCompartmentTarget) {
-					return new ICommandProxy(getDropAffixedNodeInCompartmentCommand(nodeVISUALID, dropLocation, droppedElement));
+					return getDropAffixedNodeInCompartmentCommand(nodeVISUALID, dropLocation, droppedElement);
 				}
 				return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropLocation, droppedElement));
 			}
@@ -462,7 +486,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		} else if((graphicalParentObject instanceof Behavior) && (((Behavior)graphicalParentObject).getOwnedParameters().contains(droppedElement))) {
 			// Drop Parameter on Behavior
 			if(isCompartmentTarget) {
-				return new ICommandProxy(getDropAffixedNodeInCompartmentCommand(nodeVISUALID, dropLocation, droppedElement));
+				return getDropAffixedNodeInCompartmentCommand(nodeVISUALID, dropLocation, droppedElement);
 			}
 			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropLocation, droppedElement));
 		}
@@ -561,17 +585,90 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *        the object to drop
 	 * @return a CompositeCommand for Drop
 	 */
-	protected CompositeCommand getDropAffixedNodeInCompartmentCommand(int nodeVISUALID, Point location, EObject droppedObject) {
-		CompositeCommand cc = new CompositeCommand("Drop");
+	protected CompoundCommand getDropAffixedNodeInCompartmentCommand(int nodeVISUALID, Point location, EObject droppedObject) {
+		CompoundCommand cc = new CompoundCommand("Drop");
 		IAdaptable elementAdapter = new EObjectAdapter(droppedObject);
 
 		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, false, getDiagramPreferencesHint());
 		// Create the command targeting host parent (owner of the ShapeCompartmentEditPart) 
-		CreateCommand createCommand = new CreateCommand(getEditingDomain(), descriptor, ((View)(getHost().getParent().getModel())));
-		cc.compose(createCommand);
+		CreateViewCommand createCommand = new CreateViewCommand(getEditingDomain(), descriptor, ((View)(getHost().getParent().getModel())));
+		cc.add(new ICommandProxy(createCommand));
 
 		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)createCommand.getCommandResult().getReturnValue(), location);
-		cc.compose(setBoundsCommand);
+		cc.add(new ICommandProxy(setBoundsCommand));
+
 		return cc;
+	}
+
+	/**
+	 * This method is overridden to provide DND support to element that are not
+	 * expected relatively to GMF declarations (e.g. : Drop Class on Collaboration).
+	 * In such a case, the VisualID of the dropped element cannot be retrieved, because
+	 * not expected to be created on the underlying graphical node. Such behavior should be externalized (with extension point) in order to be easily modified in derived diagrams.
+	 * 
+	 * @see org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy#getDropObjectsCommand(org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest)
+	 * 
+	 * @param dropRequest
+	 *        the drop request
+	 * @return the drop command
+	 */
+	public Command getDropObjectsCommand(DropObjectsRequest dropRequest) {
+
+		CompoundCommand cc = new CompoundCommand("Drop");
+
+		Iterator<?> iter = dropRequest.getObjects().iterator();
+		if((dropRequest.getObjects().size() > 0) && (dropRequest.getObjects().get(0) instanceof String)) {
+			return getDropFileCommand(dropRequest);
+		}
+
+		Point location = dropRequest.getLocation().getCopy();
+		((GraphicalEditPart)getHost()).getContentPane().translateToRelative(location);
+		((GraphicalEditPart)getHost()).getContentPane().translateFromParent(location);
+		location.translate(((GraphicalEditPart)getHost()).getContentPane().getClientArea().getLocation().getNegated());
+
+		EObject graphicalParentObject = ((GraphicalEditPart)getHost()).resolveSemanticElement();
+
+		while((graphicalParentObject != null) && (iter.hasNext())) {
+
+			EObject droppedObject = (EObject)iter.next();
+			if(graphicalParentObject instanceof Collaboration) {
+
+				if(droppedObject instanceof Collaboration) {
+					CollaborationHelper helper = new CollaborationHelper(getEditingDomain());
+					cc.add(helper.dropCollaborationAsCollaborationUse((GraphicalEditPart)getHost(), (Collaboration)droppedObject, location));
+
+				} else if(droppedObject instanceof Class) {
+					TypeHelper helper = new TypeHelper(getEditingDomain());
+					cc.add(helper.dropTypeAsTypedProperty((GraphicalEditPart)getHost(), (Class)droppedObject, location));
+
+				}
+
+			} else if(graphicalParentObject instanceof StructuredClassifier) {
+
+				if(droppedObject instanceof Collaboration) {
+					CollaborationHelper helper = new CollaborationHelper(getEditingDomain());
+					cc.add(helper.dropCollaborationAsCollaborationUse((GraphicalEditPart)getHost(), (Collaboration)droppedObject, location));
+
+				} else if(droppedObject instanceof Class) {
+					TypeHelper helper = new TypeHelper(getEditingDomain());
+					cc.add(helper.dropTypeAsTypedProperty((GraphicalEditPart)getHost(), (Class)droppedObject, location));
+
+				}
+
+			} else if(graphicalParentObject instanceof TypedElement) {
+
+				if(droppedObject instanceof Type) {
+
+					TypeHelper helper = new TypeHelper(getEditingDomain());
+					cc.add(helper.dropTypeOnTypedElement((GraphicalEditPart)getHost(), (Type)droppedObject, location));
+				}
+			}
+		}
+
+		if(!cc.isEmpty()) {
+			return cc;
+		}
+
+		return super.getDropObjectsCommand(dropRequest);
 	}
 }
