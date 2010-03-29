@@ -86,8 +86,8 @@ public class Message4CreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
-		if(getSource() != null && getTarget() != null){
-			if(!CommandHelper.hasValidContainer(getRequest())){
+		if(getSource() != null && getTarget() != null) {
+			if(!CommandHelper.hasValidContainer(getRequest())) {
 				return false;
 			}
 		}

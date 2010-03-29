@@ -226,7 +226,7 @@ public class CommandHelper {
 	 * @param model
 	 *        The model
 	 * @param source
-	 *        The source of the message 
+	 *        The source of the message
 	 * @param target
 	 *        The target of the message
 	 * @return null, if cancel has been pressed. An empty list if the null Element has been
@@ -252,11 +252,11 @@ public class CommandHelper {
 	 *         selected, or a list with the selected element.
 	 */
 	public static List<NamedElement> getSignature(Element model, Element source, Element target, MessageSort messageSort) {
-		
+
 		if(model == null) {
 			return null;
 		}
-		
+
 		// element where to look for parents
 		Element parentsOwner = target;
 
@@ -297,14 +297,14 @@ public class CommandHelper {
 			existingParent = addParentsFromLifeline((Lifeline)parentsOwner, mapTypesPossibleParents);
 		}
 
-		
+
 		// if no parent available => no signature
 		if(!existingParent) {
 			return new ArrayList<NamedElement>();
 		}
 
 		Set<EObject> existingElements = getExistingElementsFromParents(mapTypesPossibleParents);
-		
+
 		// Open the selection dialog
 		SelectOrCreateDialog dialog = new SelectOrCreateDialog(Display.getCurrent().getActiveShell(), Messages.CommandHelper_CreateMessage, createTypeLabelProvider(), new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory()), EditorUtils.getTransactionalEditingDomain(), existingElements, mapTypesPossibleParents);
 
@@ -314,13 +314,13 @@ public class CommandHelper {
 			List<NamedElement> returnElements = new ArrayList<NamedElement>();
 			EObject element = dialog.getSelected();
 			if(element instanceof NamedElement) {
-				
+
 				returnElements.add((NamedElement)element);
 				return returnElements;
 			}
 			return returnElements;
-		} 
-		
+		}
+
 		return null;
 	}
 
@@ -388,16 +388,16 @@ public class CommandHelper {
 	 */
 	private static boolean addParentsFromLifeline(Lifeline l, Map<EClass, List<EObject>> mapTypesPossibleParents) {
 		ConnectableElement e = l.getRepresents();
-		
+
 		boolean existingParent = false;
 
 		// If there is no connectable element (ie : lifeline doesn't have a represents property yet)
 		if(e == null) {
 			return false;
 		}
-		
+
 		Type type = e.getType();
-		if(type == null){
+		if(type == null) {
 			return false;
 		}
 
@@ -411,7 +411,7 @@ public class CommandHelper {
 				possibleClassifier.addAll(classifier.allParents());
 			}
 		}
-		
+
 		// and the packages to signal
 		List<EObject> possiblePackages = mapTypesPossibleParents.get(UMLPackage.eINSTANCE.getSignal());
 		if(possiblePackages != null) {
@@ -420,7 +420,7 @@ public class CommandHelper {
 			// add the owners of the package
 			possiblePackages.addAll(package_.allOwningPackages());
 		}
-		
+
 		return existingParent;
 	}
 
@@ -737,24 +737,24 @@ public class CommandHelper {
 	}
 
 	/**
-	 * A method to validate that both source and target of a request have valid container for the creation of a message. 
-	 * @param request the request
+	 * A method to validate that both source and target of a request have valid container for the creation of a message.
+	 * 
+	 * @param request
+	 *        the request
 	 * @return false if the container of the source or the target is null and if the two container are not equals
 	 */
-	public static boolean hasValidContainer(IEditCommandRequest request){
-		if(request.getParameter(SequenceRequestConstant.SOURCE_MODEL_CONTAINER) == null)
-		{
+	public static boolean hasValidContainer(IEditCommandRequest request) {
+		if(request.getParameter(SequenceRequestConstant.SOURCE_MODEL_CONTAINER) == null) {
 			return false;
 		}
-		if(request.getParameter(SequenceRequestConstant.TARGET_MODEL_CONTAINER) == null)
-		{
+		if(request.getParameter(SequenceRequestConstant.TARGET_MODEL_CONTAINER) == null) {
 			return false;
 		}
 		// Message cannot cross InteractionFragment. The two mos must be contained into the same InteractionFragment
 		if(!request.getParameter(SequenceRequestConstant.SOURCE_MODEL_CONTAINER).equals(request.getParameter(SequenceRequestConstant.TARGET_MODEL_CONTAINER))) {
 			return false;
 		}
-		
+
 		return true;
 	}
 
