@@ -39,7 +39,8 @@ public class ClazzDiagramAssociationHelper {
 	public static EObject createAssociation(TransactionalEditingDomain domain, Type source, Type target, Package container) {
 
 		Association association = UMLFactory.eINSTANCE.createAssociation();
-
+		String targetString= target.getName().substring(0, 1).toLowerCase()+target.getName().substring(1,target.getName().length() );
+			String sourceString=source.getName().substring(0, 1).toLowerCase()+source.getName().substring(1,source.getName().length() );
 		// create target property
 		CreateElementRequest request = new CreateElementRequest(domain, association, UMLElementTypes.Property_3002, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
 		EditElementCommand c = new PropertyCommandForAssociation(request);
@@ -48,7 +49,7 @@ public class ClazzDiagramAssociationHelper {
 		assert (c.getCommandResult().getReturnValue() == null);
 		Property targetProperty = (Property)c.getCommandResult().getReturnValue();
 		targetProperty.setType(target);
-		targetProperty.setName(target.getName().toLowerCase());
+		targetProperty.setName(targetString);
 		targetProperty.setLower(1);
 		targetProperty.setUpper(1);
 
@@ -65,7 +66,7 @@ public class ClazzDiagramAssociationHelper {
 		assert (c.getCommandResult().getReturnValue() == null);
 		Property sourceProperty = (Property)c.getCommandResult().getReturnValue();
 		sourceProperty.setType(source);
-		sourceProperty.setName(source.getName().toLowerCase());
+		sourceProperty.setName(sourceString);
 		sourceProperty.setLower(1);
 		sourceProperty.setUpper(1);
 		List<Property> memberEnds = association.getMemberEnds();
@@ -80,9 +81,10 @@ public class ClazzDiagramAssociationHelper {
 		} else {
 			association.getMemberEnds().add(1, ((Property)targetProperty));
 		}
-
+		
 		container.getPackagedElements().add(association);
 		UMLElementTypes.init_Association_4001(association);
+		association.setName(sourceString+"_"+targetString);
 		return association;
 	}
 }
