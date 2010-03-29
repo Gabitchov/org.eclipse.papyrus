@@ -1173,6 +1173,17 @@
 	</extension>
 
 
+<extension
+      point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders">
+   <modelingAssistantProvider
+         class="org.eclipse.papyrus.diagram.sequence.providers.UMLModelingAssistantProvider">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </modelingAssistantProvider>
+</extension>
+
+
 
    <!-- optionally, specify keybindings -->
 </plugin>
