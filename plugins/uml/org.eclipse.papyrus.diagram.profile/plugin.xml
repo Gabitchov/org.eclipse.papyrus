@@ -1125,10 +1125,6 @@
             id="org.eclipse.papyrus.diagram.profile.creationCommand"
             label="UML Profile Diagram">
       </creationCommand>
-      <actionBarContributor
-            id="org.eclipse.papyrus.diagram.profile.actionBarContributor"
-            implementingClass="org.eclipse.papyrus.diagram.profile.part.UMLDiagramActionBarContributor">
-      </actionBarContributor>
    </extension>
 <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor" id="prop-contrib">
       <?gmfgen generated="true"?>

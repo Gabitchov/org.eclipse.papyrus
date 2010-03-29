@@ -552,10 +552,6 @@
             id="org.eclipse.papyrus.diagram.statemachine.action.CreationCommand"
             label="UML StateMachine Diagram">
       </creationCommand>
-      <actionBarContributor
-            id="org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramActionBarContributor"
-            implementingClass="org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramActionBarContributor">
-      </actionBarContributor>
    </extension>
 <extension
 		id="PapyrusUMLStateMachineDiagram.palettedefinition"
