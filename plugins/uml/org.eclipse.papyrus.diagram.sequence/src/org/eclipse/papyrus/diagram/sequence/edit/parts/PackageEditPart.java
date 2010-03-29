@@ -49,7 +49,8 @@ public class PackageEditPart extends DiagramEditPart {
 	}
 
 	/**
-	 * @generated
+	 * Remove the two policies dealing with the popup menu
+	 * @generated NOT
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
