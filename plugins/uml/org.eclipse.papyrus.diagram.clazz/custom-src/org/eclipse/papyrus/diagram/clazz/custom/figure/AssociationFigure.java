@@ -130,7 +130,7 @@ public class AssociationFigure extends UMLEdgeFigure {
 		decorationPointList.addPoint(-2, -2);
 		decoration.setTemplate(decorationPointList);
 		decoration.setBackgroundColor(org.eclipse.draw2d.ColorConstants.white);
-		decoration.setScale(3, 3);
+		decoration.setScale(4, 2);
 		return decoration;
 	}
 
@@ -165,7 +165,7 @@ public class AssociationFigure extends UMLEdgeFigure {
 		decorationPointList.addPoint(-4, 0);
 		decorationPointList.addPoint(-2, -2);
 		decoration.setTemplate(decorationPointList);
-		decoration.setScale(3, 3);
+		decoration.setScale(4, 2);
 		return decoration;
 	}
 
@@ -262,16 +262,16 @@ public class AssociationFigure extends UMLEdgeFigure {
 		PolygonDecoration decoration = new PolygonDecoration();
 		PointList decorationPointList = new PointList();
 		decorationPointList.addPoint(0, 0);
-		decorationPointList.addPoint(-2, 2);
-		decorationPointList.addPoint(-4, 0);
-		decorationPointList.addPoint(-10, 2);
-		decorationPointList.addPoint(-4, 0);
-		decorationPointList.addPoint(-10, -2);
-		decorationPointList.addPoint(-4, 0);
-		decorationPointList.addPoint(-2, -2);
+		decorationPointList.addPoint(-3, 2);
+		decorationPointList.addPoint(-6, 0);
+		decorationPointList.addPoint(-12, 2);
+		decorationPointList.addPoint(-6, 0);
+		decorationPointList.addPoint(-12, -2);
+		decorationPointList.addPoint(-6, 0);
+		decorationPointList.addPoint(-3, -2);
 		decoration.setTemplate(decorationPointList);
 		decoration.setBackgroundColor(org.eclipse.draw2d.ColorConstants.white);
-		decoration.setScale(3, 3);
+		decoration.setScale(3,2 );
 		return decoration;
 	}
 
@@ -284,15 +284,15 @@ public class AssociationFigure extends UMLEdgeFigure {
 		PolygonDecoration decoration = new PolygonDecoration();
 		PointList decorationPointList = new PointList();
 		decorationPointList.addPoint(0, 0);
-		decorationPointList.addPoint(-2, 2);
-		decorationPointList.addPoint(-4, 0);
-		decorationPointList.addPoint(-10, 2);
-		decorationPointList.addPoint(-4, 0);
-		decorationPointList.addPoint(-10, -2);
-		decorationPointList.addPoint(-4, 0);
-		decorationPointList.addPoint(-2, -2);
+		decorationPointList.addPoint(-3, 2);
+		decorationPointList.addPoint(-6, 0);
+		decorationPointList.addPoint(-12, 2);
+		decorationPointList.addPoint(-6, 0);
+		decorationPointList.addPoint(-12, -2);
+		decorationPointList.addPoint(-6, 0);
+		decorationPointList.addPoint(-3, -2);
 		decoration.setTemplate(decorationPointList);
-		decoration.setScale(3, 3);
+		decoration.setScale(3, 2);
 		return decoration;
 	}
 
@@ -321,9 +321,9 @@ public class AssociationFigure extends UMLEdgeFigure {
 		decorationPointList.addPoint(-4, 3);
 		decorationPointList.addPoint(-6, 1);
 		decorationPointList.addPoint(-6, 0);
-		decorationPointList.addPoint(-12, 6);
-		decorationPointList.addPoint(-18, 0);
-		decorationPointList.addPoint(-12, -6);
+		decorationPointList.addPoint(-15, 6);
+		decorationPointList.addPoint(-24, 0);
+		decorationPointList.addPoint(-15, -6);
 		decorationPointList.addPoint(-6, 0);
 		decorationPointList.addPoint(-6, -1);
 		decorationPointList.addPoint(-4, -3);
@@ -342,7 +342,7 @@ public class AssociationFigure extends UMLEdgeFigure {
 		decorationPointList.addPoint(-6, 1);
 		decorationPointList.addPoint(-6, -1);
 
-		decoration.setScale(1, 1);
+		decoration.setScale(3, 2);
 		decoration.setTemplate(decorationPointList);
 		decoration.setBackgroundColor(org.eclipse.draw2d.ColorConstants.white);
 		return decoration;
@@ -361,9 +361,9 @@ public class AssociationFigure extends UMLEdgeFigure {
 		decorationPointList.addPoint(-4, 3);
 		decorationPointList.addPoint(-6, 1);
 		decorationPointList.addPoint(-6, 0);
-		decorationPointList.addPoint(-12, 6);
-		decorationPointList.addPoint(-18, 0);
-		decorationPointList.addPoint(-12, -6);
+		decorationPointList.addPoint(-15, 6);
+		decorationPointList.addPoint(-24, 0);
+		decorationPointList.addPoint(-15, -6);
 		decorationPointList.addPoint(-6, 0);
 		decorationPointList.addPoint(-6, -1);
 		decorationPointList.addPoint(-4, -3);
@@ -382,7 +382,7 @@ public class AssociationFigure extends UMLEdgeFigure {
 		// decorationPointList.addPoint(-6, 1);
 		// decorationPointList.addPoint(-6, -1);
 
-		decoration.setScale(1, 1);
+		decoration.setScale(3, 2);
 		decoration.setTemplate(decorationPointList);
 		return decoration;
 	}
@@ -423,18 +423,19 @@ public class AssociationFigure extends UMLEdgeFigure {
 		decorationPointList.addPoint(-4, 3);
 		decorationPointList.addPoint(-6, 1);
 		decorationPointList.addPoint(-6, 0);
-		decorationPointList.addPoint(-12, 6);
-		decorationPointList.addPoint(-18, 0);
-		decorationPointList.addPoint(-36, 6);
-		decorationPointList.addPoint(-18, 0);
-		decorationPointList.addPoint(-36, -6);
-		decorationPointList.addPoint(-18, 0);
-		decorationPointList.addPoint(-12, -6);
+		decorationPointList.addPoint(-15, 5);
+		decorationPointList.addPoint(-24, 0);
+		decorationPointList.addPoint(-40, 5);
+		decorationPointList.addPoint(-24, 0);
+		decorationPointList.addPoint(-40, -5);
+		decorationPointList.addPoint(-24, 0);
+		decorationPointList.addPoint(-15, -5);
 		decorationPointList.addPoint(-6, 0);
 		decorationPointList.addPoint(-6, -1);
 		decorationPointList.addPoint(-4, -3);
 		decorationPointList.addPoint(-2, -3);
 		decorationPointList.addPoint(0, -1); // color Point
+		decorationPointList.addPoint(-1, -1);
 		decorationPointList.addPoint(-1, -1);
 		decorationPointList.addPoint(-1, 1);
 		decorationPointList.addPoint(-2, 3);
@@ -467,13 +468,13 @@ public class AssociationFigure extends UMLEdgeFigure {
 		decorationPointList.addPoint(-4, 3);
 		decorationPointList.addPoint(-6, 1);
 		decorationPointList.addPoint(-6, 0);
-		decorationPointList.addPoint(-12, 6);
-		decorationPointList.addPoint(-18, 0);
-		decorationPointList.addPoint(-36, 6);
-		decorationPointList.addPoint(-18, 0);
-		decorationPointList.addPoint(-36, -6);
-		decorationPointList.addPoint(-18, 0);
-		decorationPointList.addPoint(-12, -6);
+		decorationPointList.addPoint(-15, 6);
+		decorationPointList.addPoint(-24, 0);
+		decorationPointList.addPoint(-40, 8);
+		decorationPointList.addPoint(-24, 0);
+		decorationPointList.addPoint(-40, -8);
+		decorationPointList.addPoint(-24, 0);
+		decorationPointList.addPoint(-15, -6);
 		decorationPointList.addPoint(-6, 0);
 		decorationPointList.addPoint(-6, -1);
 		decorationPointList.addPoint(-4, -3);
@@ -492,7 +493,7 @@ public class AssociationFigure extends UMLEdgeFigure {
 		// decorationPointList.addPoint(-6, 1);
 		// decorationPointList.addPoint(-6, -1);
 
-		decoration.setScale(1, 1);
+		decoration.setScale(1, 0.75);
 		decoration.setTemplate(decorationPointList);
 		return decoration;
 	}
