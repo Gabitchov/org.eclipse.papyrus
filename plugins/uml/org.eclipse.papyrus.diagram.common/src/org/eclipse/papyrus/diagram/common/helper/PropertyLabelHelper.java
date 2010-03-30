@@ -116,7 +116,13 @@ public class PropertyLabelHelper extends StereotypedElementLabelHelper {
 	 * {@inheritDoc}
 	 */
 	public Property getUMLElement(GraphicalEditPart editPart) {
-		return (Property)((View)editPart.getModel()).getElement();
+		if(editPart.getModel() instanceof View) {
+			View view = (View)editPart.getModel();
+			if(view.getElement() instanceof Property) {
+				return (Property)view.getElement();
+			}
+		}
+		return null;
 	}
 
 }
