@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.Polyline;
@@ -25,10 +26,22 @@ import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.internal.commands.SetConnectionBendpointsCommand;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message2EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message3EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message4EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message5EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message6EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Message7EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
+import org.eclipse.papyrus.diagram.sequence.part.Messages;
+import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.Message;
@@ -129,6 +142,73 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		conn.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);
 		return conn;
 	}
+	
+	/**
+	 * Gets a command that pops up a menu which allows the user to select which
+	 * type of connection to be created and then creates the connection.
+	 * 
+	 * @param content
+	 *            The list of items making up the content of the popup menu.
+	 * @param request
+	 *            The relevant create connection request.
+	 * @return the command to popup up the menu and create the connection
+	 */
+	@SuppressWarnings("rawtypes")
+	protected ICommand getPromptAndCreateConnectionCommand(List content,
+			CreateConnectionRequest request) {
+		return new SequencePromptAndCreateConnectionCommand(content, request);
+	}
+	
+	 
+	/**
+	 * Extends {@link PromptAndCreateConnectionCommand} to specify the type of message that can be selected.
+	 */
+	protected class SequencePromptAndCreateConnectionCommand
+		extends PromptAndCreateConnectionCommand {
+
+		/**
+		 * @see {@link PromptAndCreateConnectionCommand#PromptAndCreateConnectionCommand(List, CreateConnectionRequest)}
+		 */
+		public SequencePromptAndCreateConnectionCommand(List content, CreateConnectionRequest request) {
+			super(content, request);
+		}
+		
+
+		/**
+		 * Defines a specific label provider to handle message. 
+		 */
+		@Override
+		protected ILabelProvider getLabelProvider() {
+			return new LabelProvider() {
+
+				@Override
+				public String getText(Object object) {
+					if(object instanceof IHintedType) {
+						IHintedType elementType = (IHintedType)object;
+						switch(UMLVisualIDRegistry.getVisualID(elementType.getSemanticHint())) {
+						case MessageEditPart.VISUAL_ID:
+							return Messages.MessageSync1CreationTool_title;
+						case Message2EditPart.VISUAL_ID:
+							return Messages.MessageAsync2CreationTool_title;
+						case Message3EditPart.VISUAL_ID:
+							return Messages.MessageReply3CreationTool_title;
+						case Message4EditPart.VISUAL_ID:
+							return Messages.MessageCreate4CreationTool_title;
+						case Message5EditPart.VISUAL_ID:
+							return Messages.MessageDelete5CreationTool_title;
+						case Message6EditPart.VISUAL_ID:
+							return Messages.MessageLost6CreationTool_title;
+						case Message7EditPart.VISUAL_ID:
+							return Messages.MessageFound7CreationTool_title;
+						}
+					}
+					return super.getText(object);
+				}
+			};
+
+		}
+	}
+
 
 
 }
