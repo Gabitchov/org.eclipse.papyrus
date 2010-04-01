@@ -15,7 +15,6 @@ package org.eclipse.papyrus.diagram.common.editpolicies;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.papyrus.diagram.common.figure.edge.UMLEdgeFigure;
 import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusUMLElementFigure;
 import org.eclipse.swt.graphics.Image;
 
@@ -48,7 +47,7 @@ public class AppliedStereotypeLinkLabelDisplayEditPolicy extends AppliedStereoty
 		// if the string is not empty, then, the figure has to display it. Else, it displays nothing
 		// if (stereotypesToDisplay != "" || imageToDisplay != null) {
 		if(figure instanceof IPapyrusUMLElementFigure) {
-			((UMLEdgeFigure)figure).setStereotypeDisplay(tag + (stereotypesToDisplay.equals("") ? stereotypesToDisplay : "\n" + stereotypesToDisplay), imageToDisplay);
+			((IPapyrusUMLElementFigure)figure).setStereotypeDisplay(tag + (stereotypesToDisplay.equals("") ? stereotypesToDisplay : "\n" + stereotypesToDisplay), imageToDisplay);
 		}
 	}
 

@@ -24,7 +24,7 @@ public class AppliedStereotypeWrappingLabelFigure extends WrappingLabel implemen
 
 	public void setStereotypeDisplay(String stereotypes, Image image) {
 		setText(stereotypes);
-
+		setTextWrap(true);
 	}
 
 }
