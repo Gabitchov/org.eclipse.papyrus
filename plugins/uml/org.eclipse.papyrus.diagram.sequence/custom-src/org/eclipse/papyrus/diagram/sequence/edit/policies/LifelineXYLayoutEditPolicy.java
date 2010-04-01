@@ -51,8 +51,11 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	private final static int EXECUTION_INIT_WIDTH = 16;
 
 	/** Initialisation height of Execution Specification. */
-	private final static int EXECUTION_INIT_HEIGHT = 30;
-
+	private final static int EXECUTION_INIT_HEIGHT = 50;
+	
+	/** The default spacing used between Execution Specification */
+	private final static int SPACING_HEIGHT = 5;
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -64,39 +67,75 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			String semanticHint = viewAndElementDescriptor.getSemanticHint();
 			if(String.valueOf(ActionExecutionSpecificationEditPart.VISUAL_ID).equals(semanticHint) || String.valueOf(BehaviorExecutionSpecificationEditPart.VISUAL_ID).equals(semanticHint)) {
 
-				// Translate the absolute location to relative
 				Point newLocation = cver.getLocation().getCopy();
 
 				if(newLocation.x < 0 || newLocation.y < 0) {
 					newLocation.x = newLocation.y = 0;
 				}
 
-				LifelineEditPart editPart = (LifelineEditPart)getHost();
-				LifelineDotLineFigure figureLifelineDotLineFigure = null;
-				List<ShapeNodeEditPart> executionSpecificationList = new ArrayList<ShapeNodeEditPart>();
-				figureLifelineDotLineFigure = editPart.getPrimaryShape().getFigureLifelineDotLineFigure();
-				executionSpecificationList = editPart.getExecutionSpecificationList();
+				if(getHost() instanceof LifelineEditPart) {
 
-				figureLifelineDotLineFigure.translateToRelative(newLocation);
+					LifelineEditPart editPart = (LifelineEditPart)getHost();
 
-				int newHeight;
-				if(cver.getSize() != null) {
-					newHeight = cver.getSize().height;
-				} else {
-					newHeight = EXECUTION_INIT_HEIGHT;
+					// Get the dotline figure
+					LifelineDotLineFigure figureLifelineDotLineFigure = editPart.getPrimaryShape().getFigureLifelineDotLineFigure();
+					List<ShapeNodeEditPart> executionSpecificationList = editPart.getExecutionSpecificationList();
+
+					// Translate the absolute location to relative
+					figureLifelineDotLineFigure.translateToRelative(newLocation);
+
+					Rectangle dotLineFigureBounds = figureLifelineDotLineFigure.getBounds();
+					// If we are creating an ES from the popup menu bar
+					// We need to get a valid location to be able to create the ES figure
+					if(newLocation.y < dotLineFigureBounds.y) {
+						int max = dotLineFigureBounds.y;
+						for(ShapeNodeEditPart sp : executionSpecificationList) {
+							int figureBottom = sp.getFigure().getBounds().y + sp.getFigure().getBounds().height;
+							if(figureBottom > max) {
+								max = figureBottom;
+							}
+						}
+						// Vertically, the new ES is located after all existing ES on the lifeline
+						newLocation.y = max + SPACING_HEIGHT;
+						// Horizontally, the figure is placed at the center of the lifeline
+						newLocation.x = dotLineFigureBounds.x + dotLineFigureBounds.width / 2 - EXECUTION_INIT_WIDTH / 2;
+					}
+
+
+					// Get the height of the Execution specification
+					int newHeight = getExecutionSpecificationHeight(cver);
+
+					// Define the bounds of the new Execution specification
+					Rectangle newBounds = new Rectangle(newLocation.x, newLocation.y, -1, newHeight);
+
+					newBounds = getExecutionSpecificationNewBoundsForMove(figureLifelineDotLineFigure, newBounds, executionSpecificationList, new ArrayList<ShapeNodeEditPart>(0));
+
+					if(newBounds == null) {
+						return UnexecutableCommand.INSTANCE;
+					}
+
+					return new ICommandProxy(new SetBoundsCommand(editPart.getEditingDomain(), "Creation of an ExecutionSpecification", viewAndElementDescriptor, newBounds));
 				}
 
-				Rectangle newBounds = new Rectangle(newLocation.x, newLocation.y, -1, newHeight);
-				newBounds = getExecutionSpecificationNewBoundsForMove(figureLifelineDotLineFigure, newBounds, executionSpecificationList, new ArrayList<ShapeNodeEditPart>(0));
-				if(newBounds == null) {
-					return UnexecutableCommand.INSTANCE;
-				}
-
-				return new ICommandProxy(new SetBoundsCommand(editPart.getEditingDomain(), "Creation of an ExecutionSpecification", viewAndElementDescriptor, newBounds));
 			}
 		}
 
 		return super.getCreateCommand(request);
+	}
+
+	/**
+	 * Get the execution specification height
+	 * @param cr the create request 
+	 * @return the height defined in the create request or a default value
+	 */
+	private int getExecutionSpecificationHeight(CreateRequest cr) {
+		int newHeight;
+		if(cr.getSize() != null) {
+			newHeight = cr.getSize().height;
+		} else {
+			newHeight = EXECUTION_INIT_HEIGHT;
+		}
+		return newHeight;
 	}
 
 	/**
