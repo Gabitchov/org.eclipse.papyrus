@@ -24,6 +24,7 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 	/**
 	 * Add the diagram preferece page to the initialization
+	 * 
 	 * @generated NOT
 	 */
 	public void initializeDefaultPreferences() {
