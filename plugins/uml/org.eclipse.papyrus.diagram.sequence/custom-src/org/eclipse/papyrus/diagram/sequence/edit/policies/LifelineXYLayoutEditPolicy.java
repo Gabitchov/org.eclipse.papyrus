@@ -52,10 +52,10 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 	/** Initialisation height of Execution Specification. */
 	private final static int EXECUTION_INIT_HEIGHT = 50;
-	
+
 	/** The default spacing used between Execution Specification */
 	private final static int SPACING_HEIGHT = 5;
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -125,7 +125,9 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 	/**
 	 * Get the execution specification height
-	 * @param cr the create request 
+	 * 
+	 * @param cr
+	 *        the create request
 	 * @return the height defined in the create request or a default value
 	 */
 	private int getExecutionSpecificationHeight(CreateRequest cr) {

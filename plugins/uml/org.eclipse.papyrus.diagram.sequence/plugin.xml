@@ -755,44 +755,9 @@
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.InteractionOperandPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.InteractionOperandPreferencePage"
-            name="InteractionOperand" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
 			class="org.eclipse.papyrus.diagram.sequence.preferences.InteractionPreferencePage"
             id="org.eclipse.papyrus.diagram.sequence.preferences.InteractionPreferencePage"
             name="Interaction" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.ContinuationPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.ContinuationPreferencePage"
-            name="Continuation" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.CommentPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.CommentPreferencePage"
-            name="Comment" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.ConstraintPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.ConstraintPreferencePage"
-            name="Constraint" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.ConsiderIgnoreFragmentPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.ConsiderIgnoreFragmentPreferencePage"
-            name="ConsiderIgnoreFragment" />	
 	
 	
 			<?gmfgen generated="true"?>
@@ -804,9 +769,23 @@
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.LifelinePreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.LifelinePreferencePage"
-            name="Lifeline" />	
+			class="org.eclipse.papyrus.diagram.sequence.preferences.CommentPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.CommentPreferencePage"
+            name="Comment" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.ContinuationPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.ContinuationPreferencePage"
+            name="Continuation" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.ConsiderIgnoreFragmentPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.ConsiderIgnoreFragmentPreferencePage"
+            name="ConsiderIgnoreFragment" />	
 	
 	
 			<?gmfgen generated="true"?>
@@ -818,9 +797,9 @@
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.BehaviorExecutionSpecificationPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.BehaviorExecutionSpecificationPreferencePage"
-            name="BehaviorExecutionSpecification" />	
+			class="org.eclipse.papyrus.diagram.sequence.preferences.ConstraintPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.ConstraintPreferencePage"
+            name="Constraint" />	
 	
 	
 			<?gmfgen generated="true"?>
@@ -829,21 +808,42 @@
             id="org.eclipse.papyrus.diagram.sequence.preferences.ActionExecutionSpecificationPreferencePage"
             name="ActionExecutionSpecification" />	
 	
-
-
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.MessagePreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.MessagePreferencePage"
-            name="Message" />	
+			class="org.eclipse.papyrus.diagram.sequence.preferences.LifelinePreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.LifelinePreferencePage"
+            name="Lifeline" />	
 	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.InteractionOperandPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.InteractionOperandPreferencePage"
+            name="InteractionOperand" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.BehaviorExecutionSpecificationPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.BehaviorExecutionSpecificationPreferencePage"
+            name="BehaviorExecutionSpecification" />	
+	
+
+
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
 			class="org.eclipse.papyrus.diagram.sequence.preferences.UndefinedPreferencePage"
             id="org.eclipse.papyrus.diagram.sequence.preferences.UndefinedPreferencePage"
             name="Undefined" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.MessagePreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.MessagePreferencePage"
+            name="Message" />	
 	
 
 </extension>

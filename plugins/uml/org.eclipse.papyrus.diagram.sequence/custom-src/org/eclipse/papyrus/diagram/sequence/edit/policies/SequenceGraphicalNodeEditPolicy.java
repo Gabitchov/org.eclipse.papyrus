@@ -142,29 +142,27 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		conn.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);
 		return conn;
 	}
-	
+
 	/**
 	 * Gets a command that pops up a menu which allows the user to select which
 	 * type of connection to be created and then creates the connection.
 	 * 
 	 * @param content
-	 *            The list of items making up the content of the popup menu.
+	 *        The list of items making up the content of the popup menu.
 	 * @param request
-	 *            The relevant create connection request.
+	 *        The relevant create connection request.
 	 * @return the command to popup up the menu and create the connection
 	 */
 	@SuppressWarnings("rawtypes")
-	protected ICommand getPromptAndCreateConnectionCommand(List content,
-			CreateConnectionRequest request) {
+	protected ICommand getPromptAndCreateConnectionCommand(List content, CreateConnectionRequest request) {
 		return new SequencePromptAndCreateConnectionCommand(content, request);
 	}
-	
-	 
+
+
 	/**
 	 * Extends {@link PromptAndCreateConnectionCommand} to specify the type of message that can be selected.
 	 */
-	protected class SequencePromptAndCreateConnectionCommand
-		extends PromptAndCreateConnectionCommand {
+	protected class SequencePromptAndCreateConnectionCommand extends PromptAndCreateConnectionCommand {
 
 		/**
 		 * @see {@link PromptAndCreateConnectionCommand#PromptAndCreateConnectionCommand(List, CreateConnectionRequest)}
@@ -172,10 +170,10 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		public SequencePromptAndCreateConnectionCommand(List content, CreateConnectionRequest request) {
 			super(content, request);
 		}
-		
+
 
 		/**
-		 * Defines a specific label provider to handle message. 
+		 * Defines a specific label provider to handle message.
 		 */
 		@Override
 		protected ILabelProvider getLabelProvider() {

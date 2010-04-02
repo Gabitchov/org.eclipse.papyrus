@@ -336,7 +336,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 */
 	public Node createLifeline_3001(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
-		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		node.setType(UMLVisualIDRegistry.getType(LifelineEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
