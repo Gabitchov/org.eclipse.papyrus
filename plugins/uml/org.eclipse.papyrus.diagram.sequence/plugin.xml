@@ -932,6 +932,26 @@
  	</entry>
 	<entry
        defineOnly="true"
+       description="Create a comment"
+       id="createComment8CreationTool"
+       kind="tool"
+       label="Comment"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a constraint"
+       id="createConstraint9CreationTool"
+       kind="tool"
+       label="Constraint"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
        description="Create MessageSync"
        id="createMessageSync1CreationTool"
        kind="tool"
@@ -1002,18 +1022,8 @@
  	</entry>
 	<entry
        defineOnly="true"
-       description=""
-       id="createComment1CreationTool"
-       kind="tool"
-       label="Comment"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description=""
-       id="createCommentlink2CreationTool"
+       description="Create a comment link"
+       id="createCommentlink8CreationTool"
        kind="tool"
        label="Comment link"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
@@ -1022,18 +1032,8 @@
  	</entry>
 	<entry
        defineOnly="true"
-       description=""
-       id="createConstraint3CreationTool"
-       kind="tool"
-       label="Constraint"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
-       path=""
-       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
- 	</entry>
-	<entry
-       defineOnly="true"
-       description=""
-       id="createConstraintlink4CreationTool"
+       description="Create a constraint link"
+       id="createConstraintlink9CreationTool"
        kind="tool"
        label="Constraint link"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
@@ -1062,9 +1062,9 @@
 				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
 					<entry
        description=""
-       id="createObjects1Group"
+       id="createNodes1Group"
        kind="drawer"
-       label="Objects"
+       label="Nodes"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
        path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
@@ -1072,38 +1072,46 @@
  	 
  	 	<predefinedEntry
           id="createLifeline1CreationTool"
-          path="/createObjects1Group">
+          path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
           id="createActionExecutionSpecification2CreationTool"
-          path="/createObjects1Group">
+          path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
           id="createBehaviorExecutionSpecification3CreationTool"
-          path="/createObjects1Group">
+          path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
           id="createInteractionUse4CreationTool"
-          path="/createObjects1Group">
+          path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
           id="createCombinedFragment5CreationTool"
-          path="/createObjects1Group">
+          path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
           id="createInteractionOperand6CreationTool"
-          path="/createObjects1Group">
+          path="/createNodes1Group">
     </predefinedEntry>
  	<predefinedEntry
           id="createContinuation7CreationTool"
-          path="/createObjects1Group">
+          path="/createNodes1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createComment8CreationTool"
+          path="/createNodes1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createConstraint9CreationTool"
+          path="/createNodes1Group">
     </predefinedEntry>
 
 	<entry
        description="Message tools"
-       id="createMessage2Group"
+       id="createEdges2Group"
        kind="drawer"
-       label="Message"
+       label="Edges"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
        path="/"
        small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
@@ -1111,58 +1119,39 @@
  	 
  	 	<predefinedEntry
           id="createMessageSync1CreationTool"
-          path="/createMessage2Group">
+          path="/createEdges2Group">
     </predefinedEntry>
  	<predefinedEntry
           id="createMessageAsync2CreationTool"
-          path="/createMessage2Group">
+          path="/createEdges2Group">
     </predefinedEntry>
  	<predefinedEntry
           id="createMessageReply3CreationTool"
-          path="/createMessage2Group">
+          path="/createEdges2Group">
     </predefinedEntry>
  	<predefinedEntry
           id="createMessageCreate4CreationTool"
-          path="/createMessage2Group">
+          path="/createEdges2Group">
     </predefinedEntry>
  	<predefinedEntry
           id="createMessageDelete5CreationTool"
-          path="/createMessage2Group">
+          path="/createEdges2Group">
     </predefinedEntry>
  	<predefinedEntry
           id="createMessageLost6CreationTool"
-          path="/createMessage2Group">
+          path="/createEdges2Group">
     </predefinedEntry>
  	<predefinedEntry
           id="createMessageFound7CreationTool"
-          path="/createMessage2Group">
-    </predefinedEntry>
-
-	<entry
-       description="Common elements"
-       id="createCommon3Group"
-       kind="drawer"
-       label="Common"
-       large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-       path="/"
-       small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
- 	</entry>
- 	 
- 	 	<predefinedEntry
-          id="createComment1CreationTool"
-          path="/createCommon3Group">
+          path="/createEdges2Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createCommentlink2CreationTool"
-          path="/createCommon3Group">
+          id="createCommentlink8CreationTool"
+          path="/createEdges2Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createConstraint3CreationTool"
-          path="/createCommon3Group">
-    </predefinedEntry>
- 	<predefinedEntry
-          id="createConstraintlink4CreationTool"
-          path="/createCommon3Group">
+          id="createConstraintlink9CreationTool"
+          path="/createEdges2Group">
     </predefinedEntry>
 
 

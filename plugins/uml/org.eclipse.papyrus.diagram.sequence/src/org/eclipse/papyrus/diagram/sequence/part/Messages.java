@@ -291,32 +291,22 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Objects1Group_title;
+	public static String Nodes1Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Objects1Group_desc;
+	public static String Nodes1Group_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Message2Group_title;
+	public static String Edges2Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Message2Group_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Common3Group_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Common3Group_desc;
+	public static String Edges2Group_desc;
 
 	/**
 	 * @generated
@@ -391,6 +381,26 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String Comment8CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Comment8CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Constraint9CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Constraint9CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String MessageSync1CreationTool_title;
 
 	/**
@@ -461,22 +471,22 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Comment1CreationTool_title;
+	public static String Commentlink8CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Commentlink2CreationTool_title;
+	public static String Commentlink8CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Constraint3CreationTool_title;
+	public static String Constraintlink9CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Constraintlink4CreationTool_title;
+	public static String Constraintlink9CreationTool_desc;
 
 	/**
 	 * @generated

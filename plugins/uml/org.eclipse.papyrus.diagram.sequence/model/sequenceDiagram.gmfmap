@@ -39,8 +39,7 @@
           compartment="//@nodes.0/@ownedChild/@compartments.0">
         <containmentFeature
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/lifeline"/>
-        <ownedChild
-            relatedDiagrams="//@diagram">
+        <ownedChild>
           <domainMetaElement
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Lifeline"/>
           <domainInitializer
@@ -305,7 +304,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="sequenceDiagram.gmftool#//@palette/@tools.2/@tools.2"/>
+              href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.8"/>
           <diagramNode
               href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CornerBentNode"/>
         </ownedChild>
@@ -338,7 +337,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="sequenceDiagram.gmftool#//@palette/@tools.2/@tools.0"/>
+              href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.7"/>
           <diagramNode
               href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CornerBentNode"/>
         </ownedChild>
@@ -595,7 +594,7 @@
       relatedDiagrams="//@diagram">
     <tool
         xsi:type="gmftool:CreationTool"
-        href="sequenceDiagram.gmftool#//@palette/@tools.2/@tools.1"/>
+        href="sequenceDiagram.gmftool#//@palette/@tools.1/@tools.7"/>
     <diagramLink
         href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CommentLinkConnection"/>
     <linkMetaFeature
@@ -606,7 +605,7 @@
       relatedDiagrams="//@diagram">
     <tool
         xsi:type="gmftool:CreationTool"
-        href="sequenceDiagram.gmftool#//@palette/@tools.2/@tools.3"/>
+        href="sequenceDiagram.gmftool#//@palette/@tools.1/@tools.8"/>
     <diagramLink
         href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CommentLinkConnection"/>
     <linkMetaFeature

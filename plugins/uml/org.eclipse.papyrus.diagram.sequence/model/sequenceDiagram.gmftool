@@ -7,7 +7,7 @@
       title="umlPalette">
     <tools
         xsi:type="gmftool:ToolGroup"
-        title="Objects"
+        title="Nodes"
         description=""
         collapsible="true">
       <smallIcon
@@ -109,10 +109,36 @@
             path="/icons/full/obj16/Continuation.gif"
             bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
       </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Comment"
+          description="Create a comment">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Comment.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Comment.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Constraint"
+          description="Create a constraint">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Constraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Constraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+      </tools>
     </tools>
     <tools
         xsi:type="gmftool:ToolGroup"
-        title="Message"
+        title="Edges"
         description="Message tools"
         collapsible="true">
       <smallIcon
@@ -214,23 +240,10 @@
             path="/icons/full/obj16/Message.gif"
             bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
       </tools>
-    </tools>
-    <tools
-        xsi:type="gmftool:ToolGroup"
-        title="Common"
-        description="Common elements"
-        collapsible="true">
-      <smallIcon
-          xsi:type="gmftool:BundleImage"
-          path="/icons/group.gif"
-          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui"/>
-      <largeIcon
-          xsi:type="gmftool:BundleImage"
-          path="/icons/group.gif"
-          bundle="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui"/>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Comment">
+          title="Comment link"
+          description="Create a comment link">
         <smallIcon
             xsi:type="gmftool:BundleImage"
             path="/icons/full/obj16/Comment.gif"
@@ -242,31 +255,8 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Comment link">
-        <smallIcon
-            xsi:type="gmftool:BundleImage"
-            path="/icons/full/obj16/Comment.gif"
-            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
-        <largeIcon
-            xsi:type="gmftool:BundleImage"
-            path="/icons/full/obj16/Comment.gif"
-            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
-      </tools>
-      <tools
-          xsi:type="gmftool:CreationTool"
-          title="Constraint">
-        <smallIcon
-            xsi:type="gmftool:BundleImage"
-            path="/icons/full/obj16/Constraint.gif"
-            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
-        <largeIcon
-            xsi:type="gmftool:BundleImage"
-            path="/icons/full/obj16/Constraint.gif"
-            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
-      </tools>
-      <tools
-          xsi:type="gmftool:CreationTool"
-          title="Constraint link">
+          title="Constraint link"
+          description="Create a constraint link">
         <smallIcon
             xsi:type="gmftool:BundleImage"
             path="/icons/full/obj16/Constraint.gif"
