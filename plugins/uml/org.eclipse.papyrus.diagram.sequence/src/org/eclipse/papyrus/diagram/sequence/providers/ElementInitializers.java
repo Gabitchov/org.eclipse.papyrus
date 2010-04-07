@@ -75,6 +75,18 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public static void init_CombinedFragment_3018(CombinedFragment instance) {
+		try {
+			Object value_0 = name_CombinedFragment_3018(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	public static void init_InteractionUse_3002(InteractionUse instance) {
 		try {
 			Object value_0 = name_InteractionUse_3002(instance);
@@ -158,6 +170,13 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private static String name_StateInvariant_3017(StateInvariant self) {
+		return getNamedElement(self, "", self.eClass().getName(), "");
+	}
+
+	/**
+	 * @generated
+	 */
+	private static String name_CombinedFragment_3018(CombinedFragment self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 

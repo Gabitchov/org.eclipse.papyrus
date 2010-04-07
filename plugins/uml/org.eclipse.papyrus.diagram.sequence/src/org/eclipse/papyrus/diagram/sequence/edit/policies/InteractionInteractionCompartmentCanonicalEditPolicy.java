@@ -61,10 +61,10 @@ public class InteractionInteractionCompartmentCanonicalEditPolicy extends Canoni
 	protected boolean isOrphaned(Collection semanticChildren, final View view) {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
 		switch(visualID) {
-		case LifelineEditPart.VISUAL_ID:
-		case InteractionUseEditPart.VISUAL_ID:
 		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
 		case CombinedFragmentEditPart.VISUAL_ID:
+		case LifelineEditPart.VISUAL_ID:
+		case InteractionUseEditPart.VISUAL_ID:
 		case ConstraintEditPart.VISUAL_ID:
 		case CommentEditPart.VISUAL_ID:
 			if(!semanticChildren.contains(view.getElement())) {
@@ -87,8 +87,8 @@ public class InteractionInteractionCompartmentCanonicalEditPolicy extends Canoni
 	protected Set getFeaturesToSynchronize() {
 		if(myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getInteraction_Lifeline());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getInteraction_Fragment());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getInteraction_Lifeline());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getNamespace_OwnedRule());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
 		}

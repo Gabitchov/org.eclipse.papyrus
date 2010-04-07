@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2010 CEA
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -16,30 +16,20 @@ package org.eclipse.papyrus.diagram.sequence.edit.parts;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
-import org.eclipse.gef.editpolicies.ResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
@@ -48,9 +38,8 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.diagram.common.draw2d.anchors.FixedAnchor;
-import org.eclipse.papyrus.diagram.sequence.edit.policies.BehaviorExecutionSpecificationItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.sequence.edit.policies.SequenceGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.CombinedFragment2ItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.figures.CoRegionCombinedFragmentFigure;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
@@ -59,12 +48,14 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
+public class CombinedFragment2EditPart extends
+
+ShapeNodeEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3003;
+	public static final int VISUAL_ID = 3018;
 
 	/**
 	 * @generated
@@ -79,22 +70,24 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public BehaviorExecutionSpecificationEditPart(View view) {
+	public CombinedFragment2EditPart(View view) {
 		super(view);
 	}
 
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new BehaviorExecutionSpecificationItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CombinedFragment2ItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new SequenceGraphicalNodeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
+
+
+
+
 
 	/**
 	 * @generated
@@ -125,60 +118,35 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		ExecutionSpecificationRectangleFigure figure = new ExecutionSpecificationRectangleFigure();
-		return primaryShape = figure;
+		return primaryShape = new CoRegionCombinedFragmentFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public ExecutionSpecificationRectangleFigure getPrimaryShape() {
-		return (ExecutionSpecificationRectangleFigure)primaryShape;
+	public CoRegionCombinedFragmentFigure getPrimaryShape() {
+		return (CoRegionCombinedFragmentFigure)primaryShape;
 	}
 
+
+
 	/**
-	 * Overrides to disable the defaultAnchorArea. The edge is now more stuck with the middle of the
-	 * figure.
-	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(16, 60) {
-
-			/**
-			 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#isDefaultAnchorArea(org.eclipse.draw2d.geometry.PrecisionPoint)
-			 */
-			@Override
-			protected boolean isDefaultAnchorArea(PrecisionPoint p) {
-				return false;
-			}
-
-		};
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
 		return result;
 	}
 
-	/**
-	 * @generated
-	 */
-	@Override
-	public EditPolicy getPrimaryDragEditPolicy() {
-		EditPolicy result = super.getPrimaryDragEditPolicy();
-		if(result instanceof ResizableEditPolicy) {
-			ResizableEditPolicy ep = (ResizableEditPolicy)result;
-			ep.setResizeDirections(PositionConstants.NORTH | PositionConstants.SOUTH);
-		}
-		return result;
-	}
 
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so you may safely remove
-	 * <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
-	@Override
 	protected NodeFigure createNodeFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -189,8 +157,8 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane. Respects layout one may have set
-	 * for generated figure.
+	 * Default implementation treats passed figure as content pane.
+	 * Respects layout one may have set for generated figure.
 	 * 
 	 * @param nodeShape
 	 *        instance of generated figure class
@@ -203,7 +171,6 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	public IFigure getContentPane() {
 		if(contentPane != null) {
 			return contentPane;
@@ -214,7 +181,6 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setForegroundColor(Color color) {
 		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -224,7 +190,6 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineWidth(int width) {
 		if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineWidth(width);
@@ -234,12 +199,12 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineType(int style) {
 		if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineStyle(style);
 		}
 	}
+
 
 	/**
 	 * @generated
@@ -285,13 +250,13 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof ActionExecutionSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart) {
+		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
 		if(targetEditPart instanceof StateInvariantEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
-		if(targetEditPart instanceof CombinedFragment2EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragment2EditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -324,13 +289,13 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof ActionExecutionSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart) {
+		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
 		if(targetEditPart instanceof StateInvariantEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
-		if(targetEditPart instanceof CombinedFragment2EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragment2EditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -363,13 +328,13 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof ActionExecutionSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart) {
+		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
 		if(targetEditPart instanceof StateInvariantEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
-		if(targetEditPart instanceof CombinedFragment2EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragment2EditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -402,13 +367,13 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof ActionExecutionSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart) {
+		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
 		if(targetEditPart instanceof StateInvariantEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
-		if(targetEditPart instanceof CombinedFragment2EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragment2EditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -441,13 +406,13 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof ActionExecutionSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart) {
+		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
 		if(targetEditPart instanceof StateInvariantEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
-		if(targetEditPart instanceof CombinedFragment2EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragment2EditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -480,13 +445,13 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof ActionExecutionSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart) {
+		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
 		if(targetEditPart instanceof StateInvariantEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
-		if(targetEditPart instanceof CombinedFragment2EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragment2EditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -519,13 +484,13 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof ActionExecutionSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart) {
+		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof StateInvariantEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
-		if(targetEditPart instanceof CombinedFragment2EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragment2EditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -1122,41 +1087,9 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		return types;
 	}
 
-	/**
-	 * @generated
-	 */
-	public class ExecutionSpecificationRectangleFigure extends RectangleFigure {
 
-		/**
-		 * @generated
-		 */
-		public ExecutionSpecificationRectangleFigure() {
-			this.setLineWidth(1);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(60)));
-			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(16), getMapMode().DPtoLP(25)));
-		}
 
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = false;
 
-		/**
-		 * @generated
-		 */
-		@Override
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
-		}
-
-	}
 
 	/**
 	 * @generated
@@ -1169,15 +1102,15 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("BehaviorExecutionSpecification", PreferenceConstantHelper.COLOR_LINE);
+				prefColor = PreferenceConstantHelper.getElementConstant("CombinedFragment", PreferenceConstantHelper.COLOR_LINE);
 			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("BehaviorExecutionSpecification", PreferenceConstantHelper.COLOR_FONT);
+				prefColor = PreferenceConstantHelper.getElementConstant("CombinedFragment", PreferenceConstantHelper.COLOR_FONT);
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("BehaviorExecutionSpecification", PreferenceConstantHelper.COLOR_FILL);
+				prefColor = PreferenceConstantHelper.getElementConstant("CombinedFragment", PreferenceConstantHelper.COLOR_FILL);
 			}
 			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
 		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-			String prefGradient = PreferenceConstantHelper.getElementConstant("BehaviorExecutionSpecification", PreferenceConstantHelper.COLOR_GRADIENT);
+			String prefGradient = PreferenceConstantHelper.getElementConstant("CombinedFragment", PreferenceConstantHelper.COLOR_GRADIENT);
 			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
 			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
 				result = new Integer(gradientPreferenceConverter.getTransparency());
@@ -1191,106 +1124,4 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		}
 		return result;
 	}
-
-	/**
-	 * Add connection on top off the figure
-	 */
-	@Override
-	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
-		if(request instanceof CreateUnspecifiedTypeConnectionRequest) {
-			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest)request;
-			List<?> relationshipTypes = createRequest.getElementTypes();
-			for(Object obj : relationshipTypes) {
-				if(UMLElementTypes.Message_4003.equals(obj)) {
-					// Sync Message
-					return new FixedAnchor(getFigure(), FixedAnchor.TOP);
-				}
-			}
-		} else if(request instanceof ReconnectRequest) {
-			ReconnectRequest reconnectRequest = (ReconnectRequest)request;
-			ConnectionEditPart connectionEditPart = reconnectRequest.getConnectionEditPart();
-			if(connectionEditPart instanceof MessageEditPart) {
-				// Sync Message
-				return new FixedAnchor(getFigure(), FixedAnchor.TOP);
-			}
-		}
-
-		return super.getTargetConnectionAnchor(request);
-	}
-
-	/**
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getTargetConnectionAnchor(org.eclipse.gef.ConnectionEditPart)
-	 * 
-	 * @param connEditPart
-	 *        The connection edit part.
-	 * @return The anchor.
-	 */
-
-	@Override
-	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connEditPart) {
-		if(connEditPart instanceof MessageEditPart) {
-			// Sync Message
-			return new FixedAnchor(getFigure(), FixedAnchor.TOP);
-		}
-		return super.getTargetConnectionAnchor(connEditPart);
-	}
-
-	/**
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getSourceConnectionAnchor(org.eclipse.gef.Request)
-	 * 
-	 * @param request
-	 *        The request
-	 * @return The anchor
-	 */
-
-	@Override
-	public ConnectionAnchor getSourceConnectionAnchor(Request request) {
-		if(request instanceof CreateUnspecifiedTypeConnectionRequest) {
-			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest)request;
-			List<?> relationshipTypes = createRequest.getElementTypes();
-			for(Object obj : relationshipTypes) {
-				if(UMLElementTypes.Message_4005.equals(obj)) {
-					// Reply Message
-					return new FixedAnchor(getFigure(), FixedAnchor.BOTTOM);
-				}
-			}
-		} else if(request instanceof ReconnectRequest) {
-			ReconnectRequest reconnectRequest = (ReconnectRequest)request;
-			ConnectionEditPart connectionEditPart = reconnectRequest.getConnectionEditPart();
-			if(connectionEditPart instanceof Message3EditPart) {
-				// Reply Message
-				return new FixedAnchor(getFigure(), FixedAnchor.BOTTOM);
-			}
-		}
-		return super.getSourceConnectionAnchor(request);
-	}
-
-	/**
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getSourceConnectionAnchor(org.eclipse.gef.ConnectionEditPart)
-	 * 
-	 * @param connEditPart
-	 *        The connection edit part.
-	 * @return The anchor.
-	 */
-
-	@Override
-	public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connEditPart) {
-		if(connEditPart instanceof Message3EditPart) {
-			// Reply Message
-			return new FixedAnchor(getFigure(), FixedAnchor.BOTTOM);
-		}
-		return super.getSourceConnectionAnchor(connEditPart);
-	}
-
-	/**
-	 * Override for add elements on ExecutionSpecification
-	 */
-	@Override
-	public Command getCommand(Request request) {
-		if(request instanceof CreateUnspecifiedTypeRequest) {
-			return getParent().getCommand(request);
-		}
-		return super.getCommand(request);
-	}
-
 }

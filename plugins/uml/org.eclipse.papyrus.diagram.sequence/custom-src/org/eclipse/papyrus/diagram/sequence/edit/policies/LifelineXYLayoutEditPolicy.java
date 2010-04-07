@@ -40,6 +40,7 @@ import org.eclipse.papyrus.diagram.common.draw2d.LifelineDotLineFigure;
 import org.eclipse.papyrus.diagram.sequence.command.CustomZOrderCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 
@@ -66,7 +67,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			CreateViewAndElementRequest cver = (CreateViewAndElementRequest)request;
 			ViewAndElementDescriptor viewAndElementDescriptor = cver.getViewAndElementDescriptor();
 			String semanticHint = viewAndElementDescriptor.getSemanticHint();
-			if(String.valueOf(ActionExecutionSpecificationEditPart.VISUAL_ID).equals(semanticHint) || String.valueOf(BehaviorExecutionSpecificationEditPart.VISUAL_ID).equals(semanticHint) || String.valueOf(StateInvariantEditPart.VISUAL_ID).equals(semanticHint)) {
+			if(String.valueOf(ActionExecutionSpecificationEditPart.VISUAL_ID).equals(semanticHint) || String.valueOf(BehaviorExecutionSpecificationEditPart.VISUAL_ID).equals(semanticHint) || String.valueOf(StateInvariantEditPart.VISUAL_ID).equals(semanticHint) || String.valueOf(CombinedFragment2EditPart.VISUAL_ID).equals(semanticHint)) {
 
 				Point newLocation = cver.getLocation().getCopy();
 

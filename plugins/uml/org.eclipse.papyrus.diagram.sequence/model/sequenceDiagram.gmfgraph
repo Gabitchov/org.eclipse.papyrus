@@ -398,6 +398,13 @@
       <accessors
           figure="//@figures.0/@descriptors.13/@actualFigure/@children.0"/>
     </descriptors>
+    <descriptors
+        name="CoregionFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="CustomCoregionFigure"
+          qualifiedClassName="org.eclipse.papyrus.diagram.sequence.figures.CoRegionCombinedFragmentFigure"/>
+    </descriptors>
   </figures>
   <nodes
       name="InteractionNode"
@@ -437,6 +444,9 @@
   <nodes
       name="StateInvariantNode"
       figure="ContinuationFigure"/>
+  <nodes
+      name="CoregionNode"
+      figure="CoregionFigure"/>
   <connections
       name="CallSynLink"
       figure="MessageSync"/>

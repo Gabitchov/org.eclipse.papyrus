@@ -22,6 +22,7 @@ import org.eclipse.papyrus.diagram.common.providers.BaseViewInfo;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentBodyEditPart;
@@ -215,6 +216,11 @@ public class UMLVisualIDRegistry {
 			) {
 				return StateInvariantEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getCombinedFragment().isSuperTypeOf(domainElement.eClass())
+				
+			){
+				return CombinedFragment2EditPart.VISUAL_ID;
+			}
 			if(UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(domainElement.eClass())
 
 			) {
@@ -320,33 +326,6 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case LifelineEditPart.VISUAL_ID:
-			if(LifelineNameEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(ActionExecutionSpecificationEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(BehaviorExecutionSpecificationEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(StateInvariantEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case StateInvariantEditPart.VISUAL_ID:
-			if(StateInvariantNameEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case InteractionUseEditPart.VISUAL_ID:
-			if(InteractionUseNameEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(InteractionUseName2EditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
 		case CombinedFragmentEditPart.VISUAL_ID:
 			if(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -366,8 +345,38 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case InteractionUseEditPart.VISUAL_ID:
+			if(InteractionUseNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(InteractionUseName2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case ContinuationEditPart.VISUAL_ID:
 			if(ContinuationNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case LifelineEditPart.VISUAL_ID:
+			if(LifelineNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ActionExecutionSpecificationEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(BehaviorExecutionSpecificationEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(StateInvariantEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(CombinedFragment2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case StateInvariantEditPart.VISUAL_ID:
+			if(StateInvariantNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -382,16 +391,16 @@ public class UMLVisualIDRegistry {
 			}
 			break;
 		case InteractionInteractionCompartmentEditPart.VISUAL_ID:
-			if(LifelineEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(InteractionUseEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			if(ConsiderIgnoreFragmentEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(CombinedFragmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(LifelineEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(InteractionUseEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(ConstraintEditPart.VISUAL_ID == nodeVisualID) {
@@ -688,6 +697,37 @@ public class UMLVisualIDRegistry {
 		root.addNode(1000, viewInfo);
 
 
+		viewInfo = new BaseViewInfo(3007, ViewInfo.Node, "ConsiderIgnoreFragment");
+
+		root.addNode(7001, viewInfo);
+
+		root.addNode(3005, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3004, ViewInfo.Node, "CombinedFragment");
+
+		root.addNode(3005, viewInfo);
+
+		root.addNode(7001, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3005, ViewInfo.Node, "InteractionOperand");
+
+		root.addNode(7004, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3002, ViewInfo.Node, "InteractionUse");
+
+		root.addNode(3005, viewInfo);
+
+		root.addNode(7001, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3016, ViewInfo.Node, "Continuation");
+
+		root.addNode(3005, viewInfo);
+
+
 		viewInfo = new BaseViewInfo(3001, ViewInfo.Node, "Lifeline");
 
 		root.addNode(7001, viewInfo);
@@ -708,35 +748,9 @@ public class UMLVisualIDRegistry {
 		root.addNode(3001, viewInfo);
 
 
-		viewInfo = new BaseViewInfo(3002, ViewInfo.Node, "InteractionUse");
+		viewInfo = new BaseViewInfo(3018, ViewInfo.Node, "CombinedFragment");
 
-		root.addNode(7001, viewInfo);
-
-		root.addNode(3005, viewInfo);
-
-
-		viewInfo = new BaseViewInfo(3007, ViewInfo.Node, "ConsiderIgnoreFragment");
-
-		root.addNode(7001, viewInfo);
-
-		root.addNode(3005, viewInfo);
-
-
-		viewInfo = new BaseViewInfo(3004, ViewInfo.Node, "CombinedFragment");
-
-		root.addNode(3005, viewInfo);
-
-		root.addNode(7001, viewInfo);
-
-
-		viewInfo = new BaseViewInfo(3005, ViewInfo.Node, "InteractionOperand");
-
-		root.addNode(7002, viewInfo);
-
-
-		viewInfo = new BaseViewInfo(3016, ViewInfo.Node, "Continuation");
-
-		root.addNode(3005, viewInfo);
+		root.addNode(3001, viewInfo);
 
 
 		viewInfo = new BaseViewInfo(3008, ViewInfo.Node, "Constraint");

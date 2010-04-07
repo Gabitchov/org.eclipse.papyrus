@@ -38,6 +38,127 @@
       <children
           compartment="//@nodes.0/@ownedChild/@compartments.0">
         <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/fragment"/>
+        <ownedChild>
+          <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ConsiderIgnoreFragment"/>
+          <domainInitializer
+              xsi:type="gmfmap:FeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfmap:FeatureValueSpec">
+              <feature
+                  xsi:type="ecore:EAttribute"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+              <value
+                  body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"
+                  language="java"/>
+            </initializers>
+          </domainInitializer>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.4"/>
+          <diagramNode
+              href="sequenceDiagram.gmfgraph#CombinedFragmentNode"/>
+        </ownedChild>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.0">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/fragment"/>
+        <ownedChild>
+          <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CombinedFragment"/>
+          <domainInitializer
+              xsi:type="gmfmap:FeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfmap:FeatureValueSpec">
+              <feature
+                  xsi:type="ecore:EAttribute"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+              <value
+                  body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"
+                  language="java"/>
+            </initializers>
+          </domainInitializer>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.4"/>
+          <diagramNode
+              href="sequenceDiagram.gmfgraph#CombinedFragmentNode"/>
+          <children
+              compartment="//@nodes.0/@ownedChild/@children.1/@ownedChild/@compartments.0"
+              referencedChild="//@nodes.0/@ownedChild/@children.1/@ownedChild/@children.0/@ownedChild">
+            <containmentFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CombinedFragment/operand"/>
+            <ownedChild>
+              <domainMetaElement
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionOperand"/>
+              <tool
+                  xsi:type="gmftool:CreationTool"
+                  href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.5"/>
+              <diagramNode
+                  href="sequenceDiagram.gmfgraph#InteractionOperandNode"/>
+              <children
+                  referencedChild="//@nodes.0/@ownedChild/@children.3/@ownedChild">
+                <containmentFeature
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/fragment"/>
+              </children>
+              <children
+                  referencedChild="//@nodes.0/@ownedChild/@children.1/@ownedChild">
+                <containmentFeature
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/fragment"/>
+              </children>
+              <children
+                  referencedChild="//@nodes.0/@ownedChild/@children.0/@ownedChild">
+                <containmentFeature
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/fragment"/>
+              </children>
+              <children
+                  referencedChild="//@nodes.0/@ownedChild/@children.1/@ownedChild/@children.0/@ownedChild/@children.3/@ownedChild">
+                <containmentFeature
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionOperand/fragment"/>
+                <ownedChild>
+                  <domainMetaElement
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Continuation"/>
+                  <domainInitializer
+                      xsi:type="gmfmap:FeatureSeqInitializer">
+                    <initializers
+                        xsi:type="gmfmap:FeatureValueSpec">
+                      <feature
+                          xsi:type="ecore:EAttribute"
+                          href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                      <value
+                          body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"
+                          language="java"/>
+                    </initializers>
+                  </domainInitializer>
+                  <labelMappings
+                      xsi:type="gmfmap:FeatureLabelMapping"
+                      viewPattern="">
+                    <diagramLabel
+                        href="sequenceDiagram.gmfgraph#ContinuationLabel"/>
+                    <features
+                        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  </labelMappings>
+                  <tool
+                      xsi:type="gmftool:CreationTool"
+                      href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.6"/>
+                  <diagramNode
+                      href="sequenceDiagram.gmfgraph#ContinuationNode"/>
+                </ownedChild>
+              </children>
+            </ownedChild>
+          </children>
+          <compartments
+              children="//@nodes.0/@ownedChild/@children.1/@ownedChild/@children.0">
+            <compartment
+                href="sequenceDiagram.gmfgraph#CombinedFragmentCompartment"/>
+          </compartments>
+        </ownedChild>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.0">
+        <containmentFeature
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/lifeline"/>
         <ownedChild>
           <domainMetaElement
@@ -127,6 +248,31 @@
                   href="sequenceDiagram.gmfgraph#StateInvariantNode"/>
             </ownedChild>
           </children>
+          <children>
+            <containmentFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/fragment"/>
+            <ownedChild>
+              <domainMetaElement
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CombinedFragment"/>
+              <domainInitializer
+                  xsi:type="gmfmap:FeatureSeqInitializer">
+                <initializers
+                    xsi:type="gmfmap:FeatureValueSpec">
+                  <feature
+                      xsi:type="ecore:EAttribute"
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  <value
+                      body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"
+                      language="java"/>
+                </initializers>
+              </domainInitializer>
+              <tool
+                  xsi:type="gmftool:CreationTool"
+                  href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.10"/>
+              <diagramNode
+                  href="sequenceDiagram.gmfgraph#CoregionNode"/>
+            </ownedChild>
+          </children>
         </ownedChild>
       </children>
       <children
@@ -175,127 +321,6 @@
               href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.3"/>
           <diagramNode
               href="sequenceDiagram.gmfgraph#InteractionUseNode"/>
-        </ownedChild>
-      </children>
-      <children
-          compartment="//@nodes.0/@ownedChild/@compartments.0">
-        <containmentFeature
-            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/fragment"/>
-        <ownedChild>
-          <domainMetaElement
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ConsiderIgnoreFragment"/>
-          <domainInitializer
-              xsi:type="gmfmap:FeatureSeqInitializer">
-            <initializers
-                xsi:type="gmfmap:FeatureValueSpec">
-              <feature
-                  xsi:type="ecore:EAttribute"
-                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
-              <value
-                  body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"
-                  language="java"/>
-            </initializers>
-          </domainInitializer>
-          <tool
-              xsi:type="gmftool:CreationTool"
-              href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.4"/>
-          <diagramNode
-              href="sequenceDiagram.gmfgraph#CombinedFragmentNode"/>
-        </ownedChild>
-      </children>
-      <children
-          compartment="//@nodes.0/@ownedChild/@compartments.0">
-        <containmentFeature
-            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/fragment"/>
-        <ownedChild>
-          <domainMetaElement
-              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CombinedFragment"/>
-          <domainInitializer
-              xsi:type="gmfmap:FeatureSeqInitializer">
-            <initializers
-                xsi:type="gmfmap:FeatureValueSpec">
-              <feature
-                  xsi:type="ecore:EAttribute"
-                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
-              <value
-                  body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"
-                  language="java"/>
-            </initializers>
-          </domainInitializer>
-          <tool
-              xsi:type="gmftool:CreationTool"
-              href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.4"/>
-          <diagramNode
-              href="sequenceDiagram.gmfgraph#CombinedFragmentNode"/>
-          <children
-              compartment="//@nodes.0/@ownedChild/@children.3/@ownedChild/@compartments.0"
-              referencedChild="//@nodes.0/@ownedChild/@children.3/@ownedChild/@children.0/@ownedChild">
-            <containmentFeature
-                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//CombinedFragment/operand"/>
-            <ownedChild>
-              <domainMetaElement
-                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionOperand"/>
-              <tool
-                  xsi:type="gmftool:CreationTool"
-                  href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.5"/>
-              <diagramNode
-                  href="sequenceDiagram.gmfgraph#InteractionOperandNode"/>
-              <children
-                  referencedChild="//@nodes.0/@ownedChild/@children.1/@ownedChild">
-                <containmentFeature
-                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/fragment"/>
-              </children>
-              <children
-                  referencedChild="//@nodes.0/@ownedChild/@children.3/@ownedChild">
-                <containmentFeature
-                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/fragment"/>
-              </children>
-              <children
-                  referencedChild="//@nodes.0/@ownedChild/@children.2/@ownedChild">
-                <containmentFeature
-                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/fragment"/>
-              </children>
-              <children
-                  referencedChild="//@nodes.0/@ownedChild/@children.3/@ownedChild/@children.0/@ownedChild/@children.3/@ownedChild">
-                <containmentFeature
-                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InteractionOperand/fragment"/>
-                <ownedChild>
-                  <domainMetaElement
-                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Continuation"/>
-                  <domainInitializer
-                      xsi:type="gmfmap:FeatureSeqInitializer">
-                    <initializers
-                        xsi:type="gmfmap:FeatureValueSpec">
-                      <feature
-                          xsi:type="ecore:EAttribute"
-                          href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
-                      <value
-                          body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"
-                          language="java"/>
-                    </initializers>
-                  </domainInitializer>
-                  <labelMappings
-                      xsi:type="gmfmap:FeatureLabelMapping"
-                      viewPattern="">
-                    <diagramLabel
-                        href="sequenceDiagram.gmfgraph#ContinuationLabel"/>
-                    <features
-                        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
-                  </labelMappings>
-                  <tool
-                      xsi:type="gmftool:CreationTool"
-                      href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.6"/>
-                  <diagramNode
-                      href="sequenceDiagram.gmfgraph#ContinuationNode"/>
-                </ownedChild>
-              </children>
-            </ownedChild>
-          </children>
-          <compartments
-              children="//@nodes.0/@ownedChild/@children.3/@ownedChild/@children.0">
-            <compartment
-                href="sequenceDiagram.gmfgraph#CombinedFragmentCompartment"/>
-          </compartments>
         </ownedChild>
       </children>
       <children
@@ -375,7 +400,7 @@
         </ownedChild>
       </children>
       <compartments
-          children="//@nodes.0/@ownedChild/@children.0 //@nodes.0/@ownedChild/@children.1 //@nodes.0/@ownedChild/@children.2 //@nodes.0/@ownedChild/@children.3 //@nodes.0/@ownedChild/@children.4 //@nodes.0/@ownedChild/@children.5">
+          children="//@nodes.0/@ownedChild/@children.2 //@nodes.0/@ownedChild/@children.3 //@nodes.0/@ownedChild/@children.0 //@nodes.0/@ownedChild/@children.1 //@nodes.0/@ownedChild/@children.4 //@nodes.0/@ownedChild/@children.5">
         <compartment
             href="sequenceDiagram.gmfgraph#InteractionCompartment"/>
       </compartments>

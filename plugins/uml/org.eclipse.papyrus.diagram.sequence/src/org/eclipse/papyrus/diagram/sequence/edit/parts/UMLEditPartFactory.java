@@ -51,6 +51,30 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case InteractionNameEditPart.VISUAL_ID:
 				return new InteractionNameEditPart(view);
 
+			case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
+				return new ConsiderIgnoreFragmentEditPart(view);
+
+			case CombinedFragmentEditPart.VISUAL_ID:
+				return new CombinedFragmentEditPart(view);
+
+			case InteractionOperandEditPart.VISUAL_ID:
+				return new InteractionOperandEditPart(view);
+
+			case InteractionUseEditPart.VISUAL_ID:
+				return new InteractionUseEditPart(view);
+
+			case InteractionUseNameEditPart.VISUAL_ID:
+				return new InteractionUseNameEditPart(view);
+
+			case InteractionUseName2EditPart.VISUAL_ID:
+				return new InteractionUseName2EditPart(view);
+
+			case ContinuationEditPart.VISUAL_ID:
+				return new ContinuationEditPart(view);
+
+			case ContinuationNameEditPart.VISUAL_ID:
+				return new ContinuationNameEditPart(view);
+
 			case LifelineEditPart.VISUAL_ID:
 				return new LifelineEditPart(view);
 
@@ -69,29 +93,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case StateInvariantNameEditPart.VISUAL_ID:
 				return new StateInvariantNameEditPart(view);
 
-			case InteractionUseEditPart.VISUAL_ID:
-				return new InteractionUseEditPart(view);
-
-			case InteractionUseNameEditPart.VISUAL_ID:
-				return new InteractionUseNameEditPart(view);
-
-			case InteractionUseName2EditPart.VISUAL_ID:
-				return new InteractionUseName2EditPart(view);
-
-			case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
-				return new ConsiderIgnoreFragmentEditPart(view);
-
-			case CombinedFragmentEditPart.VISUAL_ID:
-				return new CombinedFragmentEditPart(view);
-
-			case InteractionOperandEditPart.VISUAL_ID:
-				return new InteractionOperandEditPart(view);
-
-			case ContinuationEditPart.VISUAL_ID:
-				return new ContinuationEditPart(view);
-
-			case ContinuationNameEditPart.VISUAL_ID:
-				return new ContinuationNameEditPart(view);
+			case CombinedFragment2EditPart.VISUAL_ID:
+				return new CombinedFragment2EditPart(view);
 
 			case ConstraintEditPart.VISUAL_ID:
 				return new ConstraintEditPart(view);

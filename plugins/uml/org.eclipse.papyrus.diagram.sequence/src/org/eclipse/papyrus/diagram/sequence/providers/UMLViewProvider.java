@@ -56,6 +56,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
@@ -182,17 +183,18 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 				switch(visualID) {
 				case InteractionEditPart.VISUAL_ID:
+				case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
+				case CombinedFragmentEditPart.VISUAL_ID:
+				case InteractionOperandEditPart.VISUAL_ID:
+				case InteractionUseEditPart.VISUAL_ID:
+				case ContinuationEditPart.VISUAL_ID:
 				case LifelineEditPart.VISUAL_ID:
 				case ActionExecutionSpecificationEditPart.VISUAL_ID:
 				case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 				case StateInvariantEditPart.VISUAL_ID:
-				case InteractionUseEditPart.VISUAL_ID:
-				case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
-				case CombinedFragmentEditPart.VISUAL_ID:
-				case InteractionOperandEditPart.VISUAL_ID:
-				case ContinuationEditPart.VISUAL_ID:
 				case ConstraintEditPart.VISUAL_ID:
 				case CommentEditPart.VISUAL_ID:
+				case CombinedFragment2EditPart.VISUAL_ID:
 					if(domainElement == null || visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 						return false; // visual id in semantic hint should match visual id for domain element
 					}
@@ -202,7 +204,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 			}
 		}
-		return InteractionEditPart.VISUAL_ID == visualID || LifelineEditPart.VISUAL_ID == visualID || ActionExecutionSpecificationEditPart.VISUAL_ID == visualID || BehaviorExecutionSpecificationEditPart.VISUAL_ID == visualID || StateInvariantEditPart.VISUAL_ID == visualID || InteractionUseEditPart.VISUAL_ID == visualID || ConsiderIgnoreFragmentEditPart.VISUAL_ID == visualID || CombinedFragmentEditPart.VISUAL_ID == visualID || InteractionOperandEditPart.VISUAL_ID == visualID || ContinuationEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID;
+		return InteractionEditPart.VISUAL_ID == visualID || ConsiderIgnoreFragmentEditPart.VISUAL_ID == visualID || CombinedFragmentEditPart.VISUAL_ID == visualID || InteractionOperandEditPart.VISUAL_ID == visualID || InteractionUseEditPart.VISUAL_ID == visualID || ContinuationEditPart.VISUAL_ID == visualID || LifelineEditPart.VISUAL_ID == visualID || ActionExecutionSpecificationEditPart.VISUAL_ID == visualID || BehaviorExecutionSpecificationEditPart.VISUAL_ID == visualID || StateInvariantEditPart.VISUAL_ID == visualID || CombinedFragment2EditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -251,6 +253,16 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		switch(visualID) {
 		case InteractionEditPart.VISUAL_ID:
 			return createInteraction_2001(domainElement, containerView, index, persisted, preferencesHint);
+		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
+			return createConsiderIgnoreFragment_3007(domainElement, containerView, index, persisted, preferencesHint);
+		case CombinedFragmentEditPart.VISUAL_ID:
+			return createCombinedFragment_3004(domainElement, containerView, index, persisted, preferencesHint);
+		case InteractionOperandEditPart.VISUAL_ID:
+			return createInteractionOperand_3005(domainElement, containerView, index, persisted, preferencesHint);
+		case InteractionUseEditPart.VISUAL_ID:
+			return createInteractionUse_3002(domainElement, containerView, index, persisted, preferencesHint);
+		case ContinuationEditPart.VISUAL_ID:
+			return createContinuation_3016(domainElement, containerView, index, persisted, preferencesHint);
 		case LifelineEditPart.VISUAL_ID:
 			return createLifeline_3001(domainElement, containerView, index, persisted, preferencesHint);
 		case ActionExecutionSpecificationEditPart.VISUAL_ID:
@@ -259,16 +271,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createBehaviorExecutionSpecification_3003(domainElement, containerView, index, persisted, preferencesHint);
 		case StateInvariantEditPart.VISUAL_ID:
 			return createStateInvariant_3017(domainElement, containerView, index, persisted, preferencesHint);
-		case InteractionUseEditPart.VISUAL_ID:
-			return createInteractionUse_3002(domainElement, containerView, index, persisted, preferencesHint);
-		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
-			return createConsiderIgnoreFragment_3007(domainElement, containerView, index, persisted, preferencesHint);
-		case CombinedFragmentEditPart.VISUAL_ID:
-			return createCombinedFragment_3004(domainElement, containerView, index, persisted, preferencesHint);
-		case InteractionOperandEditPart.VISUAL_ID:
-			return createInteractionOperand_3005(domainElement, containerView, index, persisted, preferencesHint);
-		case ContinuationEditPart.VISUAL_ID:
-			return createContinuation_3016(domainElement, containerView, index, persisted, preferencesHint);
+		case CombinedFragment2EditPart.VISUAL_ID:
+			return createCombinedFragment_3018(domainElement, containerView, index, persisted, preferencesHint);
 		case ConstraintEditPart.VISUAL_ID:
 			return createConstraint_3008(domainElement, containerView, index, persisted, preferencesHint);
 		case CommentEditPart.VISUAL_ID:
@@ -401,6 +405,28 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		initBackgroundFromPrefs(node, prefStore, "StateInvariant");
 
 		Node label5008 = createLabel(node, UMLVisualIDRegistry.getType(StateInvariantNameEditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createCombinedFragment_3018(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(CombinedFragment2EditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+
+		initForegroundFromPrefs(node, prefStore, "CombinedFragment");
+
+
+
+		initBackgroundFromPrefs(node, prefStore, "CombinedFragment");
+
 		return node;
 	}
 

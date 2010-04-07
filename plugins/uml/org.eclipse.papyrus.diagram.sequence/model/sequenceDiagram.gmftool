@@ -148,6 +148,10 @@
             path="/icons/full/obj16/Constraint.gif"
             bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
       </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="CoRegion"
+          description="Create a CoRegion"/>
     </tools>
     <tools
         xsi:type="gmftool:ToolGroup"

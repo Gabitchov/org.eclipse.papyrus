@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
@@ -78,14 +79,14 @@ public class UMLDiagramUpdater {
 	 */
 	public static List getSemanticChildren(View view) {
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
-		case LifelineEditPart.VISUAL_ID:
-			return getLifeline_3001SemanticChildren(view);
 		case InteractionOperandEditPart.VISUAL_ID:
 			return getInteractionOperand_3005SemanticChildren(view);
+		case LifelineEditPart.VISUAL_ID:
+			return getLifeline_3001SemanticChildren(view);
 		case InteractionInteractionCompartmentEditPart.VISUAL_ID:
 			return getInteractionInteractionCompartment_7001SemanticChildren(view);
 		case CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID:
-			return getCombinedFragmentCombinedFragmentCompartment_7002SemanticChildren(view);
+			return getCombinedFragmentCombinedFragmentCompartment_7004SemanticChildren(view);
 		case PackageEditPart.VISUAL_ID:
 			return getPackage_1000SemanticChildren(view);
 		}
@@ -186,26 +187,26 @@ public class UMLDiagramUpdater {
 		}
 		Interaction modelElement = (Interaction)containerView.getElement();
 		List result = new LinkedList();
-		for(Iterator it = modelElement.getLifelines().iterator(); it.hasNext();) {
-			Lifeline childElement = (Lifeline)it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == LifelineEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
 		for(Iterator it = modelElement.getFragments().iterator(); it.hasNext();) {
 			InteractionFragment childElement = (InteractionFragment)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == InteractionUseEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
 			if(visualID == ConsiderIgnoreFragmentEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
 			if(visualID == CombinedFragmentEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == InteractionUseEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for(Iterator it = modelElement.getLifelines().iterator(); it.hasNext();) {
+			Lifeline childElement = (Lifeline)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == LifelineEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -232,7 +233,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getCombinedFragmentCombinedFragmentCompartment_7002SemanticChildren(View view) {
+	public static List getCombinedFragmentCombinedFragmentCompartment_7004SemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
 			return Collections.EMPTY_LIST;
 		}
@@ -282,6 +283,16 @@ public class UMLDiagramUpdater {
 			return getPackage_1000ContainedLinks(view);
 		case InteractionEditPart.VISUAL_ID:
 			return getInteraction_2001ContainedLinks(view);
+		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
+			return getConsiderIgnoreFragment_3007ContainedLinks(view);
+		case CombinedFragmentEditPart.VISUAL_ID:
+			return getCombinedFragment_3004ContainedLinks(view);
+		case InteractionOperandEditPart.VISUAL_ID:
+			return getInteractionOperand_3005ContainedLinks(view);
+		case InteractionUseEditPart.VISUAL_ID:
+			return getInteractionUse_3002ContainedLinks(view);
+		case ContinuationEditPart.VISUAL_ID:
+			return getContinuation_3016ContainedLinks(view);
 		case LifelineEditPart.VISUAL_ID:
 			return getLifeline_3001ContainedLinks(view);
 		case ActionExecutionSpecificationEditPart.VISUAL_ID:
@@ -290,16 +301,8 @@ public class UMLDiagramUpdater {
 			return getBehaviorExecutionSpecification_3003ContainedLinks(view);
 		case StateInvariantEditPart.VISUAL_ID:
 			return getStateInvariant_3017ContainedLinks(view);
-		case InteractionUseEditPart.VISUAL_ID:
-			return getInteractionUse_3002ContainedLinks(view);
-		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
-			return getConsiderIgnoreFragment_3007ContainedLinks(view);
-		case CombinedFragmentEditPart.VISUAL_ID:
-			return getCombinedFragment_3004ContainedLinks(view);
-		case InteractionOperandEditPart.VISUAL_ID:
-			return getInteractionOperand_3005ContainedLinks(view);
-		case ContinuationEditPart.VISUAL_ID:
-			return getContinuation_3016ContainedLinks(view);
+		case CombinedFragment2EditPart.VISUAL_ID:
+			return getCombinedFragment_3018ContainedLinks(view);
 		case ConstraintEditPart.VISUAL_ID:
 			return getConstraint_3008ContainedLinks(view);
 		case CommentEditPart.VISUAL_ID:
@@ -329,6 +332,16 @@ public class UMLDiagramUpdater {
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
 		case InteractionEditPart.VISUAL_ID:
 			return getInteraction_2001IncomingLinks(view);
+		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
+			return getConsiderIgnoreFragment_3007IncomingLinks(view);
+		case CombinedFragmentEditPart.VISUAL_ID:
+			return getCombinedFragment_3004IncomingLinks(view);
+		case InteractionOperandEditPart.VISUAL_ID:
+			return getInteractionOperand_3005IncomingLinks(view);
+		case InteractionUseEditPart.VISUAL_ID:
+			return getInteractionUse_3002IncomingLinks(view);
+		case ContinuationEditPart.VISUAL_ID:
+			return getContinuation_3016IncomingLinks(view);
 		case LifelineEditPart.VISUAL_ID:
 			return getLifeline_3001IncomingLinks(view);
 		case ActionExecutionSpecificationEditPart.VISUAL_ID:
@@ -337,16 +350,8 @@ public class UMLDiagramUpdater {
 			return getBehaviorExecutionSpecification_3003IncomingLinks(view);
 		case StateInvariantEditPart.VISUAL_ID:
 			return getStateInvariant_3017IncomingLinks(view);
-		case InteractionUseEditPart.VISUAL_ID:
-			return getInteractionUse_3002IncomingLinks(view);
-		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
-			return getConsiderIgnoreFragment_3007IncomingLinks(view);
-		case CombinedFragmentEditPart.VISUAL_ID:
-			return getCombinedFragment_3004IncomingLinks(view);
-		case InteractionOperandEditPart.VISUAL_ID:
-			return getInteractionOperand_3005IncomingLinks(view);
-		case ContinuationEditPart.VISUAL_ID:
-			return getContinuation_3016IncomingLinks(view);
+		case CombinedFragment2EditPart.VISUAL_ID:
+			return getCombinedFragment_3018IncomingLinks(view);
 		case ConstraintEditPart.VISUAL_ID:
 			return getConstraint_3008IncomingLinks(view);
 		case CommentEditPart.VISUAL_ID:
@@ -376,6 +381,16 @@ public class UMLDiagramUpdater {
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
 		case InteractionEditPart.VISUAL_ID:
 			return getInteraction_2001OutgoingLinks(view);
+		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
+			return getConsiderIgnoreFragment_3007OutgoingLinks(view);
+		case CombinedFragmentEditPart.VISUAL_ID:
+			return getCombinedFragment_3004OutgoingLinks(view);
+		case InteractionOperandEditPart.VISUAL_ID:
+			return getInteractionOperand_3005OutgoingLinks(view);
+		case InteractionUseEditPart.VISUAL_ID:
+			return getInteractionUse_3002OutgoingLinks(view);
+		case ContinuationEditPart.VISUAL_ID:
+			return getContinuation_3016OutgoingLinks(view);
 		case LifelineEditPart.VISUAL_ID:
 			return getLifeline_3001OutgoingLinks(view);
 		case ActionExecutionSpecificationEditPart.VISUAL_ID:
@@ -384,16 +399,8 @@ public class UMLDiagramUpdater {
 			return getBehaviorExecutionSpecification_3003OutgoingLinks(view);
 		case StateInvariantEditPart.VISUAL_ID:
 			return getStateInvariant_3017OutgoingLinks(view);
-		case InteractionUseEditPart.VISUAL_ID:
-			return getInteractionUse_3002OutgoingLinks(view);
-		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
-			return getConsiderIgnoreFragment_3007OutgoingLinks(view);
-		case CombinedFragmentEditPart.VISUAL_ID:
-			return getCombinedFragment_3004OutgoingLinks(view);
-		case InteractionOperandEditPart.VISUAL_ID:
-			return getInteractionOperand_3005OutgoingLinks(view);
-		case ContinuationEditPart.VISUAL_ID:
-			return getContinuation_3016OutgoingLinks(view);
+		case CombinedFragment2EditPart.VISUAL_ID:
+			return getCombinedFragment_3018OutgoingLinks(view);
 		case ConstraintEditPart.VISUAL_ID:
 			return getConstraint_3008OutgoingLinks(view);
 		case CommentEditPart.VISUAL_ID:
@@ -457,6 +464,13 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List getStateInvariant_3017ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getCombinedFragment_3018ContainedLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
 
@@ -633,6 +647,25 @@ public class UMLDiagramUpdater {
 	 */
 	public static List getStateInvariant_3017IncomingLinks(View view) {
 		StateInvariant modelElement = (StateInvariant)view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getCombinedFragment_3018IncomingLinks(View view) {
+		CombinedFragment modelElement = (CombinedFragment)view.getElement();
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferences));
@@ -985,6 +1018,22 @@ public class UMLDiagramUpdater {
 	 */
 	public static List getStateInvariant_3017OutgoingLinks(View view) {
 		StateInvariant modelElement = (StateInvariant)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getCombinedFragment_3018OutgoingLinks(View view) {
+		CombinedFragment modelElement = (CombinedFragment)view.getElement();
 		List result = new LinkedList();
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));

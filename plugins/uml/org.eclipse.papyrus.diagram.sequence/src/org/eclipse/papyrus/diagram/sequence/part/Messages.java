@@ -411,6 +411,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String CoRegion11CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String CoRegion11CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String MessageSync1CreationTool_title;
 
 	/**
@@ -567,6 +577,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_StateInvariant_3017_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_CombinedFragment_3018_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_CombinedFragment_3018_outgoinglinks;
 
 	/**
 	 * @generated

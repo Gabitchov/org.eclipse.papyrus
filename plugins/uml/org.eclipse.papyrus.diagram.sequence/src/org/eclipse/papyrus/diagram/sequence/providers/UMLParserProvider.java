@@ -301,16 +301,16 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		switch(visualID) {
 		case InteractionNameEditPart.VISUAL_ID:
 			return getInteractionName_5001Parser();
-		case LifelineNameEditPart.VISUAL_ID:
-			return getLifelineName_5002Parser();
-		case StateInvariantNameEditPart.VISUAL_ID:
-			return getStateInvariantName_5008Parser();
 		case InteractionUseNameEditPart.VISUAL_ID:
 			return getInteractionUseName_5003Parser();
 		case InteractionUseName2EditPart.VISUAL_ID:
 			return getInteractionUseName_5004Parser();
 		case ContinuationNameEditPart.VISUAL_ID:
 			return getContinuationName_5007Parser();
+		case LifelineNameEditPart.VISUAL_ID:
+			return getLifelineName_5002Parser();
+		case StateInvariantNameEditPart.VISUAL_ID:
+			return getStateInvariantName_5008Parser();
 		case ConstraintNameEditPart.VISUAL_ID:
 			return getConstraintName_5005Parser();
 		case CommentBodyEditPart.VISUAL_ID:

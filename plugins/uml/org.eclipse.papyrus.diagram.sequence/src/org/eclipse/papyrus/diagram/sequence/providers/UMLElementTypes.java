@@ -29,6 +29,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentEditPart;
@@ -103,6 +104,11 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IElementType StateInvariant_3017 = getElementType("org.eclipse.papyrus.diagram.sequence.StateInvariant_3017"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType CombinedFragment_3018 = getElementType("org.eclipse.papyrus.diagram.sequence.CombinedFragment_3018"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -301,6 +307,21 @@ public class UMLElementTypes extends ElementInitializers {
 			elements.put(Interaction_2001, UMLPackage.eINSTANCE.getInteraction());
 
 
+			elements.put(ConsiderIgnoreFragment_3007, UMLPackage.eINSTANCE.getConsiderIgnoreFragment());
+
+
+			elements.put(CombinedFragment_3004, UMLPackage.eINSTANCE.getCombinedFragment());
+
+
+			elements.put(InteractionOperand_3005, UMLPackage.eINSTANCE.getInteractionOperand());
+
+
+			elements.put(InteractionUse_3002, UMLPackage.eINSTANCE.getInteractionUse());
+
+
+			elements.put(Continuation_3016, UMLPackage.eINSTANCE.getContinuation());
+
+
 			elements.put(Lifeline_3001, UMLPackage.eINSTANCE.getLifeline());
 
 
@@ -313,19 +334,7 @@ public class UMLElementTypes extends ElementInitializers {
 			elements.put(StateInvariant_3017, UMLPackage.eINSTANCE.getStateInvariant());
 
 
-			elements.put(InteractionUse_3002, UMLPackage.eINSTANCE.getInteractionUse());
-
-
-			elements.put(ConsiderIgnoreFragment_3007, UMLPackage.eINSTANCE.getConsiderIgnoreFragment());
-
-
-			elements.put(CombinedFragment_3004, UMLPackage.eINSTANCE.getCombinedFragment());
-
-
-			elements.put(InteractionOperand_3005, UMLPackage.eINSTANCE.getInteractionOperand());
-
-
-			elements.put(Continuation_3016, UMLPackage.eINSTANCE.getContinuation());
+			elements.put(CombinedFragment_3018, UMLPackage.eINSTANCE.getCombinedFragment());
 
 
 			elements.put(Constraint_3008, UMLPackage.eINSTANCE.getConstraint());
@@ -376,15 +385,16 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES = new HashSet();
 			KNOWN_ELEMENT_TYPES.add(Package_1000);
 			KNOWN_ELEMENT_TYPES.add(Interaction_2001);
+			KNOWN_ELEMENT_TYPES.add(ConsiderIgnoreFragment_3007);
+			KNOWN_ELEMENT_TYPES.add(CombinedFragment_3004);
+			KNOWN_ELEMENT_TYPES.add(InteractionOperand_3005);
+			KNOWN_ELEMENT_TYPES.add(InteractionUse_3002);
+			KNOWN_ELEMENT_TYPES.add(Continuation_3016);
 			KNOWN_ELEMENT_TYPES.add(Lifeline_3001);
 			KNOWN_ELEMENT_TYPES.add(ActionExecutionSpecification_3006);
 			KNOWN_ELEMENT_TYPES.add(BehaviorExecutionSpecification_3003);
 			KNOWN_ELEMENT_TYPES.add(StateInvariant_3017);
-			KNOWN_ELEMENT_TYPES.add(InteractionUse_3002);
-			KNOWN_ELEMENT_TYPES.add(ConsiderIgnoreFragment_3007);
-			KNOWN_ELEMENT_TYPES.add(CombinedFragment_3004);
-			KNOWN_ELEMENT_TYPES.add(InteractionOperand_3005);
-			KNOWN_ELEMENT_TYPES.add(Continuation_3016);
+			KNOWN_ELEMENT_TYPES.add(CombinedFragment_3018);
 			KNOWN_ELEMENT_TYPES.add(Constraint_3008);
 			KNOWN_ELEMENT_TYPES.add(Comment_3009);
 			KNOWN_ELEMENT_TYPES.add(Message_4003);
@@ -409,6 +419,16 @@ public class UMLElementTypes extends ElementInitializers {
 			return Package_1000;
 		case InteractionEditPart.VISUAL_ID:
 			return Interaction_2001;
+		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
+			return ConsiderIgnoreFragment_3007;
+		case CombinedFragmentEditPart.VISUAL_ID:
+			return CombinedFragment_3004;
+		case InteractionOperandEditPart.VISUAL_ID:
+			return InteractionOperand_3005;
+		case InteractionUseEditPart.VISUAL_ID:
+			return InteractionUse_3002;
+		case ContinuationEditPart.VISUAL_ID:
+			return Continuation_3016;
 		case LifelineEditPart.VISUAL_ID:
 			return Lifeline_3001;
 		case ActionExecutionSpecificationEditPart.VISUAL_ID:
@@ -417,16 +437,8 @@ public class UMLElementTypes extends ElementInitializers {
 			return BehaviorExecutionSpecification_3003;
 		case StateInvariantEditPart.VISUAL_ID:
 			return StateInvariant_3017;
-		case InteractionUseEditPart.VISUAL_ID:
-			return InteractionUse_3002;
-		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
-			return ConsiderIgnoreFragment_3007;
-		case CombinedFragmentEditPart.VISUAL_ID:
-			return CombinedFragment_3004;
-		case InteractionOperandEditPart.VISUAL_ID:
-			return InteractionOperand_3005;
-		case ContinuationEditPart.VISUAL_ID:
-			return Continuation_3016;
+		case CombinedFragment2EditPart.VISUAL_ID:
+			return CombinedFragment_3018;
 		case ConstraintEditPart.VISUAL_ID:
 			return Constraint_3008;
 		case CommentEditPart.VISUAL_ID:
