@@ -381,22 +381,32 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Comment8CreationTool_title;
+	public static String StateInvariant8CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Comment8CreationTool_desc;
+	public static String StateInvariant8CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Constraint9CreationTool_title;
+	public static String Comment9CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Constraint9CreationTool_desc;
+	public static String Comment9CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Constraint10CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Constraint10CreationTool_desc;
 
 	/**
 	 * @generated
@@ -547,6 +557,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_BehaviorExecutionSpecification_3003_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_StateInvariant_3017_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_StateInvariant_3017_outgoinglinks;
 
 	/**
 	 * @generated

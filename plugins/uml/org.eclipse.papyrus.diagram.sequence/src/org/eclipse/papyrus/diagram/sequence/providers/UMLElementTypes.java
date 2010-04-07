@@ -48,6 +48,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.Message6EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -97,6 +98,11 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IElementType BehaviorExecutionSpecification_3003 = getElementType("org.eclipse.papyrus.diagram.sequence.BehaviorExecutionSpecification_3003"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType StateInvariant_3017 = getElementType("org.eclipse.papyrus.diagram.sequence.StateInvariant_3017"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -304,6 +310,9 @@ public class UMLElementTypes extends ElementInitializers {
 			elements.put(BehaviorExecutionSpecification_3003, UMLPackage.eINSTANCE.getBehaviorExecutionSpecification());
 
 
+			elements.put(StateInvariant_3017, UMLPackage.eINSTANCE.getStateInvariant());
+
+
 			elements.put(InteractionUse_3002, UMLPackage.eINSTANCE.getInteractionUse());
 
 
@@ -370,6 +379,7 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(Lifeline_3001);
 			KNOWN_ELEMENT_TYPES.add(ActionExecutionSpecification_3006);
 			KNOWN_ELEMENT_TYPES.add(BehaviorExecutionSpecification_3003);
+			KNOWN_ELEMENT_TYPES.add(StateInvariant_3017);
 			KNOWN_ELEMENT_TYPES.add(InteractionUse_3002);
 			KNOWN_ELEMENT_TYPES.add(ConsiderIgnoreFragment_3007);
 			KNOWN_ELEMENT_TYPES.add(CombinedFragment_3004);
@@ -405,6 +415,8 @@ public class UMLElementTypes extends ElementInitializers {
 			return ActionExecutionSpecification_3006;
 		case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 			return BehaviorExecutionSpecification_3003;
+		case StateInvariantEditPart.VISUAL_ID:
+			return StateInvariant_3017;
 		case InteractionUseEditPart.VISUAL_ID:
 			return InteractionUse_3002;
 		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:

@@ -1,25 +1,13 @@
-/*****************************************************************************
- * Copyright (c) 2009 CEA
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.parts;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -33,7 +21,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -41,28 +28,26 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure;
-import org.eclipse.papyrus.diagram.sequence.edit.policies.ConstraintItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.common.draw2d.CenterLayout;
+import org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.StateInvariantItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.widgets.Display;
 
 /**
  * @generated
  */
-public class ConstraintEditPart extends
+public class StateInvariantEditPart extends
 
 ShapeNodeEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3008;
+	public static final int VISUAL_ID = 3017;
 
 	/**
 	 * @generated
@@ -77,7 +62,7 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public ConstraintEditPart(View view) {
+	public StateInvariantEditPart(View view) {
 		super(view);
 	}
 
@@ -86,11 +71,15 @@ ShapeNodeEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ConstraintItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new StateInvariantItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
+
+
+
+
 
 	/**
 	 * @generated
@@ -121,23 +110,25 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		CornerBentDescriptor figure = new CornerBentDescriptor();
+		ContinuationFigure figure = new ContinuationFigure();
 		return primaryShape = figure;
 	}
 
 	/**
 	 * @generated
 	 */
-	public CornerBentDescriptor getPrimaryShape() {
-		return (CornerBentDescriptor)primaryShape;
+	public ContinuationFigure getPrimaryShape() {
+		return (ContinuationFigure)primaryShape;
 	}
+
+
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ConstraintNameEditPart) {
-			((ConstraintNameEditPart)childEditPart).setLabel(getPrimaryShape().getCornerBentContentLabel());
+		if(childEditPart instanceof StateInvariantNameEditPart) {
+			((StateInvariantNameEditPart)childEditPart).setLabel(getPrimaryShape().getFigureContinuationNameLabel());
 			return true;
 		}
 
@@ -149,7 +140,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ConstraintNameEditPart) {
+		if(childEditPart instanceof StateInvariantNameEditPart) {
 			return true;
 		}
 		return false;
@@ -189,6 +180,7 @@ ShapeNodeEditPart {
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
 		return result;
 	}
+
 
 	/**
 	 * Creates figure for this edit part.
@@ -261,11 +253,12 @@ ShapeNodeEditPart {
 		}
 	}
 
+
 	/**
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ConstraintNameEditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(StateInvariantNameEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -280,7 +273,6 @@ ShapeNodeEditPart {
 		types.add(UMLElementTypes.Message_4007);
 		types.add(UMLElementTypes.Message_4008);
 		types.add(UMLElementTypes.Message_4009);
-		types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
 		return types;
 	}
 
@@ -301,7 +293,7 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
-		if(targetEditPart instanceof StateInvariantEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
 		if(targetEditPart instanceof InteractionUseEditPart) {
@@ -319,7 +311,7 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof ContinuationEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart) {
+		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
 		if(targetEditPart instanceof CommentEditPart) {
@@ -337,7 +329,7 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
-		if(targetEditPart instanceof StateInvariantEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
 		if(targetEditPart instanceof InteractionUseEditPart) {
@@ -355,7 +347,7 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof ContinuationEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart) {
+		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
 		if(targetEditPart instanceof CommentEditPart) {
@@ -373,7 +365,7 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
-		if(targetEditPart instanceof StateInvariantEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
 		if(targetEditPart instanceof InteractionUseEditPart) {
@@ -391,7 +383,7 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof ContinuationEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart) {
+		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
 		if(targetEditPart instanceof CommentEditPart) {
@@ -409,7 +401,7 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
-		if(targetEditPart instanceof StateInvariantEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
 		if(targetEditPart instanceof InteractionUseEditPart) {
@@ -427,7 +419,7 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof ContinuationEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart) {
+		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
 		if(targetEditPart instanceof CommentEditPart) {
@@ -445,7 +437,7 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
-		if(targetEditPart instanceof StateInvariantEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
 		if(targetEditPart instanceof InteractionUseEditPart) {
@@ -463,7 +455,7 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof ContinuationEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart) {
+		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
 		if(targetEditPart instanceof CommentEditPart) {
@@ -481,7 +473,7 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
-		if(targetEditPart instanceof StateInvariantEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
 		if(targetEditPart instanceof InteractionUseEditPart) {
@@ -499,7 +491,7 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof ContinuationEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart) {
+		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
 		if(targetEditPart instanceof CommentEditPart) {
@@ -517,7 +509,7 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
-		if(targetEditPart instanceof StateInvariantEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof InteractionUseEditPart) {
@@ -535,47 +527,11 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof ContinuationEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart) {
+		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4009);
-		}
-		if(targetEditPart instanceof InteractionEditPart) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
-		}
-		if(targetEditPart instanceof LifelineEditPart) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
-		}
-		if(targetEditPart instanceof ActionExecutionSpecificationEditPart) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
-		}
-		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
-		}
-		if(targetEditPart instanceof StateInvariantEditPart) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
-		}
-		if(targetEditPart instanceof InteractionUseEditPart) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
-		}
-		if(targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
-		}
-		if(targetEditPart instanceof CombinedFragmentEditPart) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
-		}
-		if(targetEditPart instanceof InteractionOperandEditPart) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
-		}
-		if(targetEditPart instanceof ContinuationEditPart) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
-		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
-		}
-		if(targetEditPart instanceof CommentEditPart) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
 		}
 		return types;
 	}
@@ -835,42 +791,6 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
-			types.add(UMLElementTypes.Comment_3009);
-		}
-		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
-			types.add(UMLElementTypes.Interaction_2001);
-		}
-		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
-			types.add(UMLElementTypes.Lifeline_3001);
-		}
-		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
-			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
-		}
-		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
-			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
-		}
-		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
-			types.add(UMLElementTypes.StateInvariant_3017);
-		}
-		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
-			types.add(UMLElementTypes.InteractionUse_3002);
-		}
-		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
-			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
-		}
-		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
-			types.add(UMLElementTypes.CombinedFragment_3004);
-		}
-		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
-			types.add(UMLElementTypes.InteractionOperand_3005);
-		}
-		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
-			types.add(UMLElementTypes.Continuation_3016);
-		}
-		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
-			types.add(UMLElementTypes.Constraint_3008);
-		}
-		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
 			types.add(UMLElementTypes.Comment_3009);
 		}
 		return types;
@@ -1159,24 +1079,34 @@ ShapeNodeEditPart {
 		return types;
 	}
 
+
+
+
+
 	/**
 	 * @generated
 	 */
-	public class CornerBentDescriptor extends CornerBentFigure {
+	public class ContinuationFigure extends RoundedRectangle {
+
 
 		/**
 		 * @generated
 		 */
-		private WrappingLabel fCornerBentContentLabel;
+		private CenteredWrappedLabel fFigureContinuationNameLabel;
+
 
 		/**
 		 * @generated
 		 */
-		public CornerBentDescriptor() {
+		public ContinuationFigure() {
+
+			CenterLayout layoutThis = new CenterLayout();
 
 
-			this.setForegroundColor(ColorConstants.black);
-			this.setBackgroundColor(THIS_BACK);
+			this.setLayoutManager(layoutThis);
+
+			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(50), getMapMode().DPtoLP(50)));
+			this.setLineWidth(1);
 			createContents();
 		}
 
@@ -1186,17 +1116,17 @@ ShapeNodeEditPart {
 		private void createContents() {
 
 
-			fCornerBentContentLabel = new WrappingLabel();
-			fCornerBentContentLabel.setText("");
-
-			fCornerBentContentLabel.setFont(FCORNERBENTCONTENTLABEL_FONT);
+			fFigureContinuationNameLabel = new CenteredWrappedLabel();
 
 
 
-			this.add(fCornerBentContentLabel);
+			this.add(fFigureContinuationNameLabel);
 
 
 		}
+
+
+
 
 		/**
 		 * @generated
@@ -1217,24 +1147,20 @@ ShapeNodeEditPart {
 			myUseLocalCoordinates = useLocalCoordinates;
 		}
 
+
+
 		/**
 		 * @generated
 		 */
-		public WrappingLabel getCornerBentContentLabel() {
-			return fCornerBentContentLabel;
+		public CenteredWrappedLabel getFigureContinuationNameLabel() {
+			return fFigureContinuationNameLabel;
 		}
+
 
 	}
 
-	/**
-	 * @generated
-	 */
-	static final Color THIS_BACK = new Color(null, 248, 249, 214);
 
-	/**
-	 * @generated
-	 */
-	static final Font FCORNERBENTCONTENTLABEL_FONT = new Font(Display.getCurrent(), "Arial", 8, SWT.NORMAL);
+
 
 	/**
 	 * @generated
@@ -1247,15 +1173,15 @@ ShapeNodeEditPart {
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("Constraint", PreferenceConstantHelper.COLOR_LINE);
+				prefColor = PreferenceConstantHelper.getElementConstant("StateInvariant", PreferenceConstantHelper.COLOR_LINE);
 			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("Constraint", PreferenceConstantHelper.COLOR_FONT);
+				prefColor = PreferenceConstantHelper.getElementConstant("StateInvariant", PreferenceConstantHelper.COLOR_FONT);
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("Constraint", PreferenceConstantHelper.COLOR_FILL);
+				prefColor = PreferenceConstantHelper.getElementConstant("StateInvariant", PreferenceConstantHelper.COLOR_FILL);
 			}
 			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
 		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-			String prefGradient = PreferenceConstantHelper.getElementConstant("Constraint", PreferenceConstantHelper.COLOR_GRADIENT);
+			String prefGradient = PreferenceConstantHelper.getElementConstant("StateInvariant", PreferenceConstantHelper.COLOR_GRADIENT);
 			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
 			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
 				result = new Integer(gradientPreferenceConverter.getTransparency());

@@ -40,6 +40,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName5EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName6EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageNameEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.parser.custom.InteractionUseCustomParsers;
 import org.eclipse.papyrus.diagram.sequence.parser.custom.LifelineCustomParsers;
 import org.eclipse.papyrus.diagram.sequence.parser.custom.MessageCustomParser;
@@ -85,6 +86,23 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			lifelineName_5002Parser = new LifelineCustomParsers();
 		}
 		return lifelineName_5002Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser stateInvariantName_5008Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getStateInvariantName_5008Parser() {
+		if(stateInvariantName_5008Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			stateInvariantName_5008Parser = parser;
+		}
+		return stateInvariantName_5008Parser;
 	}
 
 	/**
@@ -285,6 +303,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getInteractionName_5001Parser();
 		case LifelineNameEditPart.VISUAL_ID:
 			return getLifelineName_5002Parser();
+		case StateInvariantNameEditPart.VISUAL_ID:
+			return getStateInvariantName_5008Parser();
 		case InteractionUseNameEditPart.VISUAL_ID:
 			return getInteractionUseName_5003Parser();
 		case InteractionUseName2EditPart.VISUAL_ID:

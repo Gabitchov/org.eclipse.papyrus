@@ -434,6 +434,9 @@
       name="ContinuationNode"
       figure="ContinuationFigure"
       affixedParentSide="NORTH_SOUTH"/>
+  <nodes
+      name="StateInvariantNode"
+      figure="ContinuationFigure"/>
   <connections
       name="CallSynLink"
       figure="MessageSync"/>

@@ -58,6 +58,8 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName6EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
@@ -134,6 +136,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ActionExecutionSpecification", UMLElementTypes.ActionExecutionSpecification_3006); //$NON-NLS-1$
 		case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?BehaviorExecutionSpecification", UMLElementTypes.BehaviorExecutionSpecification_3003); //$NON-NLS-1$
+		case StateInvariantEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?StateInvariant", UMLElementTypes.StateInvariant_3017); //$NON-NLS-1$
 		case InteractionUseEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InteractionUse", UMLElementTypes.InteractionUse_3002); //$NON-NLS-1$
 		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
@@ -227,6 +231,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getActionExecutionSpecification_3006Text(view);
 		case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 			return getBehaviorExecutionSpecification_3003Text(view);
+		case StateInvariantEditPart.VISUAL_ID:
+			return getStateInvariant_3017Text(view);
 		case InteractionUseEditPart.VISUAL_ID:
 			return getInteractionUse_3002Text(view);
 		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
@@ -311,6 +317,19 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return String.valueOf(domainModelElement.getName());
 		} else {
 			UMLDiagramEditorPlugin.getInstance().logError("No domain element for view with visualID = " + 3003); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getStateInvariant_3017Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.StateInvariant_3017, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(StateInvariantNameEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5008); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}

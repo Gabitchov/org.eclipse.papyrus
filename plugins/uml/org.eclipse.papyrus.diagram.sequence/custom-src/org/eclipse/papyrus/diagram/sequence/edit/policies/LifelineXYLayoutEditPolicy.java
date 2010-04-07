@@ -41,6 +41,7 @@ import org.eclipse.papyrus.diagram.sequence.command.CustomZOrderCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 
 /**
  * The custom LayoutEditPolicy for LifelineEditPart.
@@ -65,7 +66,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			CreateViewAndElementRequest cver = (CreateViewAndElementRequest)request;
 			ViewAndElementDescriptor viewAndElementDescriptor = cver.getViewAndElementDescriptor();
 			String semanticHint = viewAndElementDescriptor.getSemanticHint();
-			if(String.valueOf(ActionExecutionSpecificationEditPart.VISUAL_ID).equals(semanticHint) || String.valueOf(BehaviorExecutionSpecificationEditPart.VISUAL_ID).equals(semanticHint)) {
+			if(String.valueOf(ActionExecutionSpecificationEditPart.VISUAL_ID).equals(semanticHint) || String.valueOf(BehaviorExecutionSpecificationEditPart.VISUAL_ID).equals(semanticHint) || String.valueOf(StateInvariantEditPart.VISUAL_ID).equals(semanticHint)) {
 
 				Point newLocation = cver.getLocation().getCopy();
 
@@ -103,7 +104,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 
 					// Get the height of the Execution specification
-					int newHeight = getExecutionSpecificationHeight(cver);
+					int newHeight = getFigureHeight(cver);
 
 					// Define the bounds of the new Execution specification
 					Rectangle newBounds = new Rectangle(newLocation.x, newLocation.y, -1, newHeight);
@@ -130,7 +131,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 *        the create request
 	 * @return the height defined in the create request or a default value
 	 */
-	private int getExecutionSpecificationHeight(CreateRequest cr) {
+	private int getFigureHeight(CreateRequest cr) {
 		int newHeight;
 		if(cr.getSize() != null) {
 			newHeight = cr.getSize().height;

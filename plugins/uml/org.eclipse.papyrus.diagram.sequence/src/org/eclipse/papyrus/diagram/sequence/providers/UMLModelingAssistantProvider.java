@@ -43,6 +43,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPar
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
@@ -60,9 +61,10 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart)host.getAdapter(IGraphicalEditPart.class);
 		if(editPart instanceof LifelineEditPart) {
-			ArrayList types = new ArrayList(2);
+			ArrayList types = new ArrayList(3);
 			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
 			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+			types.add(UMLElementTypes.StateInvariant_3017);
 			return types;
 		}
 		if(editPart instanceof CombinedFragmentEditPart) {
@@ -113,6 +115,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof BehaviorExecutionSpecificationEditPart) {
 			return ((BehaviorExecutionSpecificationEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
+		if(sourceEditPart instanceof StateInvariantEditPart) {
+			return ((StateInvariantEditPart)sourceEditPart).getMARelTypesOnSource();
+		}
 		if(sourceEditPart instanceof InteractionUseEditPart) {
 			return ((InteractionUseEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
@@ -153,6 +158,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
 			return ((BehaviorExecutionSpecificationEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof StateInvariantEditPart) {
+			return ((StateInvariantEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
 		if(targetEditPart instanceof InteractionUseEditPart) {
 			return ((InteractionUseEditPart)targetEditPart).getMARelTypesOnTarget();
@@ -196,6 +204,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof BehaviorExecutionSpecificationEditPart) {
 			return ((BehaviorExecutionSpecificationEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
+		if(sourceEditPart instanceof StateInvariantEditPart) {
+			return ((StateInvariantEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		if(sourceEditPart instanceof InteractionUseEditPart) {
 			return ((InteractionUseEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
@@ -237,6 +248,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
 			return ((BehaviorExecutionSpecificationEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
+		if(targetEditPart instanceof StateInvariantEditPart) {
+			return ((StateInvariantEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
 		if(targetEditPart instanceof InteractionUseEditPart) {
 			return ((InteractionUseEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
@@ -277,6 +291,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof BehaviorExecutionSpecificationEditPart) {
 			return ((BehaviorExecutionSpecificationEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof StateInvariantEditPart) {
+			return ((StateInvariantEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		if(sourceEditPart instanceof InteractionUseEditPart) {
 			return ((InteractionUseEditPart)sourceEditPart).getMATypesForTarget(relationshipType);

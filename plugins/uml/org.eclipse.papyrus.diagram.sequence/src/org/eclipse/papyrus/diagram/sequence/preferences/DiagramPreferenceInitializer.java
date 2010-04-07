@@ -23,7 +23,7 @@ import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer {
 
 	/**
-	 * Add the diagram preferece page to the initialization
+	 * Add the diagram preference page to the initialization
 	 * 
 	 * @generated NOT
 	 */
@@ -68,6 +68,8 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		MessagePreferencePage.initDefaults(store);
 
 		DiagramGeneralPreferencePage.initDefaults(store);
+
+		StateInvariantPreferencePage.initDefaults(store);
 
 
 	}

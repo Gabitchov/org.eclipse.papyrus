@@ -91,6 +91,8 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName6EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
@@ -183,6 +185,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case LifelineEditPart.VISUAL_ID:
 				case ActionExecutionSpecificationEditPart.VISUAL_ID:
 				case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
+				case StateInvariantEditPart.VISUAL_ID:
 				case InteractionUseEditPart.VISUAL_ID:
 				case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
 				case CombinedFragmentEditPart.VISUAL_ID:
@@ -199,7 +202,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 			}
 		}
-		return InteractionEditPart.VISUAL_ID == visualID || LifelineEditPart.VISUAL_ID == visualID || ActionExecutionSpecificationEditPart.VISUAL_ID == visualID || BehaviorExecutionSpecificationEditPart.VISUAL_ID == visualID || InteractionUseEditPart.VISUAL_ID == visualID || ConsiderIgnoreFragmentEditPart.VISUAL_ID == visualID || CombinedFragmentEditPart.VISUAL_ID == visualID || InteractionOperandEditPart.VISUAL_ID == visualID || ContinuationEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID;
+		return InteractionEditPart.VISUAL_ID == visualID || LifelineEditPart.VISUAL_ID == visualID || ActionExecutionSpecificationEditPart.VISUAL_ID == visualID || BehaviorExecutionSpecificationEditPart.VISUAL_ID == visualID || StateInvariantEditPart.VISUAL_ID == visualID || InteractionUseEditPart.VISUAL_ID == visualID || ConsiderIgnoreFragmentEditPart.VISUAL_ID == visualID || CombinedFragmentEditPart.VISUAL_ID == visualID || InteractionOperandEditPart.VISUAL_ID == visualID || ContinuationEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -254,6 +257,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createActionExecutionSpecification_3006(domainElement, containerView, index, persisted, preferencesHint);
 		case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 			return createBehaviorExecutionSpecification_3003(domainElement, containerView, index, persisted, preferencesHint);
+		case StateInvariantEditPart.VISUAL_ID:
+			return createStateInvariant_3017(domainElement, containerView, index, persisted, preferencesHint);
 		case InteractionUseEditPart.VISUAL_ID:
 			return createInteractionUse_3002(domainElement, containerView, index, persisted, preferencesHint);
 		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
@@ -373,6 +378,29 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		initBackgroundFromPrefs(node, prefStore, "BehaviorExecutionSpecification");
 
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createStateInvariant_3017(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(StateInvariantEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+
+		initForegroundFromPrefs(node, prefStore, "StateInvariant");
+
+
+
+		initBackgroundFromPrefs(node, prefStore, "StateInvariant");
+
+		Node label5008 = createLabel(node, UMLVisualIDRegistry.getType(StateInvariantNameEditPart.VISUAL_ID));
 		return node;
 	}
 

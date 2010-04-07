@@ -95,6 +95,38 @@
                   href="sequenceDiagram.gmfgraph#BehaviourExecutionSpecification"/>
             </ownedChild>
           </children>
+          <children>
+            <containmentFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/fragment"/>
+            <ownedChild>
+              <domainMetaElement
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StateInvariant"/>
+              <domainInitializer
+                  xsi:type="gmfmap:FeatureSeqInitializer">
+                <initializers
+                    xsi:type="gmfmap:FeatureValueSpec">
+                  <feature
+                      xsi:type="ecore:EAttribute"
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  <value
+                      body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"
+                      language="java"/>
+                </initializers>
+              </domainInitializer>
+              <labelMappings
+                  xsi:type="gmfmap:FeatureLabelMapping">
+                <diagramLabel
+                    href="sequenceDiagram.gmfgraph#ContinuationLabel"/>
+                <features
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+              </labelMappings>
+              <tool
+                  xsi:type="gmftool:CreationTool"
+                  href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.7"/>
+              <diagramNode
+                  href="sequenceDiagram.gmfgraph#StateInvariantNode"/>
+            </ownedChild>
+          </children>
         </ownedChild>
       </children>
       <children
@@ -304,7 +336,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.8"/>
+              href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.9"/>
           <diagramNode
               href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CornerBentNode"/>
         </ownedChild>
@@ -337,7 +369,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.7"/>
+              href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.8"/>
           <diagramNode
               href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CornerBentNode"/>
         </ownedChild>

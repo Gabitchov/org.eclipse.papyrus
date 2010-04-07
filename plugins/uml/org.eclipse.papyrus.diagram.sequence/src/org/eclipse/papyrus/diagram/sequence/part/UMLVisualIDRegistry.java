@@ -55,6 +55,8 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName6EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.expressions.UMLAbstractExpression;
 import org.eclipse.papyrus.diagram.sequence.expressions.UMLOCLFactory;
 import org.eclipse.uml2.uml.Message;
@@ -208,6 +210,11 @@ public class UMLVisualIDRegistry {
 			) {
 				return BehaviorExecutionSpecificationEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getStateInvariant().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return StateInvariantEditPart.VISUAL_ID;
+			}
 			if(UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(domainElement.eClass())
 
 			) {
@@ -321,6 +328,14 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(BehaviorExecutionSpecificationEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(StateInvariantEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case StateInvariantEditPart.VISUAL_ID:
+			if(StateInvariantNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -684,6 +699,11 @@ public class UMLVisualIDRegistry {
 
 
 		viewInfo = new BaseViewInfo(3003, ViewInfo.Node, "BehaviorExecutionSpecification");
+
+		root.addNode(3001, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3017, ViewInfo.Node, "StateInvariant");
 
 		root.addNode(3001, viewInfo);
 

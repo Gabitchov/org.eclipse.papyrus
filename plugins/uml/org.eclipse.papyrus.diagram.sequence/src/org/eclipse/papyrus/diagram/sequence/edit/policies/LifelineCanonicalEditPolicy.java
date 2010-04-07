@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.sequence.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
@@ -59,6 +60,7 @@ public class LifelineCanonicalEditPolicy extends CanonicalEditPolicy {
 		switch(visualID) {
 		case ActionExecutionSpecificationEditPart.VISUAL_ID:
 		case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
+		case StateInvariantEditPart.VISUAL_ID:
 			if(!semanticChildren.contains(view.getElement())) {
 				return true;
 			}

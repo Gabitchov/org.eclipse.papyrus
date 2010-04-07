@@ -66,12 +66,17 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private final static String CREATECOMMENT8CREATIONTOOL = "createComment8CreationTool"; //$NON-NLS-1$
+	private final static String CREATESTATEINVARIANT8CREATIONTOOL = "createStateInvariant8CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATECONSTRAINT9CREATIONTOOL = "createConstraint9CreationTool"; //$NON-NLS-1$
+	private final static String CREATECOMMENT9CREATIONTOOL = "createComment9CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	private final static String CREATECONSTRAINT10CREATIONTOOL = "createConstraint10CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -150,11 +155,14 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		if(toolId.equals(CREATECONTINUATION7CREATIONTOOL)) {
 			return createContinuation7CreationTool();
 		}
-		if(toolId.equals(CREATECOMMENT8CREATIONTOOL)) {
-			return createComment8CreationTool();
+		if(toolId.equals(CREATESTATEINVARIANT8CREATIONTOOL)) {
+			return createStateInvariant8CreationTool();
 		}
-		if(toolId.equals(CREATECONSTRAINT9CREATIONTOOL)) {
-			return createConstraint9CreationTool();
+		if(toolId.equals(CREATECOMMENT9CREATIONTOOL)) {
+			return createComment9CreationTool();
+		}
+		if(toolId.equals(CREATECONSTRAINT10CREATIONTOOL)) {
+			return createConstraint10CreationTool();
 		}
 		if(toolId.equals(CREATEMESSAGESYNC1CREATIONTOOL)) {
 			return createMessageSync1CreationTool();
@@ -275,7 +283,18 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createComment8CreationTool() {
+	private Tool createStateInvariant8CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.StateInvariant_3017);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createComment9CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Comment_3009);
 
@@ -286,7 +305,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createConstraint9CreationTool() {
+	private Tool createConstraint10CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Constraint_3008);
 

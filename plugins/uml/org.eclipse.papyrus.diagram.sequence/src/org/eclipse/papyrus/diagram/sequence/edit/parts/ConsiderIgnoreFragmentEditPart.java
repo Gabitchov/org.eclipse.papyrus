@@ -257,6 +257,9 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
+		if(targetEditPart instanceof StateInvariantEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
 		if(targetEditPart instanceof InteractionUseEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
@@ -290,6 +293,9 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
+		if(targetEditPart instanceof StateInvariantEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
 		if(targetEditPart instanceof InteractionUseEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
@@ -323,6 +329,9 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
+		if(targetEditPart instanceof StateInvariantEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
 		if(targetEditPart instanceof InteractionUseEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
@@ -354,6 +363,9 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 			types.add(UMLElementTypes.Message_4006);
 		}
 		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof StateInvariantEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
 		if(targetEditPart instanceof InteractionUseEditPart) {
@@ -387,6 +399,9 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 			types.add(UMLElementTypes.Message_4007);
 		}
 		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof StateInvariantEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
 		if(targetEditPart instanceof InteractionUseEditPart) {
@@ -420,6 +435,9 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 			types.add(UMLElementTypes.Message_4008);
 		}
 		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof StateInvariantEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
 		if(targetEditPart instanceof InteractionUseEditPart) {
@@ -453,6 +471,9 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof StateInvariantEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof InteractionUseEditPart) {
@@ -497,6 +518,9 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.StateInvariant_3017);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.InteractionUse_3002);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
@@ -530,6 +554,9 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.StateInvariant_3017);
+		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.InteractionUse_3002);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
@@ -563,6 +590,9 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.StateInvariant_3017);
+		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.InteractionUse_3002);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
@@ -596,6 +626,9 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.StateInvariant_3017);
+		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.InteractionUse_3002);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
@@ -627,6 +660,9 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.StateInvariant_3017);
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.InteractionUse_3002);
@@ -660,6 +696,9 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.StateInvariant_3017);
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.InteractionUse_3002);
@@ -693,6 +732,9 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.StateInvariant_3017);
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.InteractionUse_3002);
@@ -753,6 +795,9 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.StateInvariant_3017);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.InteractionUse_3002);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
@@ -786,6 +831,9 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.StateInvariant_3017);
+		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.InteractionUse_3002);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
@@ -819,6 +867,9 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.StateInvariant_3017);
+		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.InteractionUse_3002);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
@@ -852,6 +903,9 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.StateInvariant_3017);
+		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.InteractionUse_3002);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
@@ -883,6 +937,9 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.StateInvariant_3017);
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.InteractionUse_3002);
@@ -916,6 +973,9 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.StateInvariant_3017);
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.InteractionUse_3002);
@@ -949,6 +1009,9 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.StateInvariant_3017);
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.InteractionUse_3002);

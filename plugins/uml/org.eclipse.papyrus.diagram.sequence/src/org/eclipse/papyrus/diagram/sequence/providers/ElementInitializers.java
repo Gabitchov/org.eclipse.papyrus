@@ -27,6 +27,7 @@ import org.eclipse.uml2.uml.InteractionUse;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OpaqueExpression;
+import org.eclipse.uml2.uml.StateInvariant;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -53,6 +54,18 @@ public class ElementInitializers {
 	public static void init_Lifeline_3001(Lifeline instance) {
 		try {
 			Object value_0 = name_Lifeline_3001(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static void init_StateInvariant_3017(StateInvariant instance) {
+		try {
+			Object value_0 = name_StateInvariant_3017(instance);
 			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
@@ -138,6 +151,13 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private static String name_Lifeline_3001(Lifeline self) {
+		return getNamedElement(self, "", self.eClass().getName(), "");
+	}
+
+	/**
+	 * @generated
+	 */
+	private static String name_StateInvariant_3017(StateInvariant self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 

@@ -40,7 +40,7 @@
           itemSemanticEditPolicyClassName="LifelineItemSemanticEditPolicy"
           notationViewFactoryClassName="LifelineViewFactory"
           canonicalEditPolicyClassName="LifelineCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.2"
+          childNodes="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.2 /0/@diagram/@childNodes.3"
           graphicalNodeEditPolicyClassName="LifelineGraphicalNodeEditPolicy"
           createCommandClassName="LifelineCreateCommand"
           containers="/0/@diagram/@compartments.0">
@@ -196,6 +196,60 @@
         </modelFacet>
       </childNodes>
       <childNodes
+          visualID="3017"
+          editPartClassName="StateInvariantEditPart"
+          itemSemanticEditPolicyClassName="StateInvariantItemSemanticEditPolicy"
+          notationViewFactoryClassName="StateInvariantViewFactory"
+          canonicalEditPolicyClassName="StateInvariantCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="StateInvariantGraphicalNodeEditPolicy"
+          createCommandClassName="StateInvariantCreateCommand"
+          containers="/0/@diagram/@childNodes.0">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            editHelperClassName="StateInvariantEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="ContinuationFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ContinuationFigure extends org.eclipse.draw2d.RoundedRectangle {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel fFigureContinuationNameLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ContinuationFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.papyrus.diagram.common.draw2d.CenterLayout layoutThis = new org.eclipse.papyrus.diagram.common.draw2d.CenterLayout();&#xA;&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(50)&#xA;, getMapMode().DPtoLP(50)&#xA;));&#xA;this.setLineWidth(1);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureContinuationNameLabel = new org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel();&#xA;&#xA;&#xA;&#xA;this.add(fFigureContinuationNameLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel getFigureContinuationNameLabel() {&#xA;&#x9;&#x9;return fFigureContinuationNameLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/StateInvariant"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction/fragment"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.2">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            visualID="5008"
+            editPartClassName="StateInvariantNameEditPart"
+            itemSemanticEditPolicyClassName="StateInvariantNameItemSemanticEditPolicy"
+            elementIcon="true">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getFigureContinuationNameLabel"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel"/>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.0">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+      </childNodes>
+      <childNodes
           visualID="3002"
           editPartClassName="InteractionUseEditPart"
           itemSemanticEditPolicyClassName="InteractionUseItemSemanticEditPolicy"
@@ -203,7 +257,7 @@
           canonicalEditPolicyClassName="InteractionUseCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="InteractionUseGraphicalNodeEditPolicy"
           createCommandClassName="InteractionUseCreateCommand"
-          containers="/0/@diagram/@compartments.0 /0/@diagram/@childNodes.6">
+          containers="/0/@diagram/@compartments.0 /0/@diagram/@childNodes.7">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -225,7 +279,7 @@
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.2">
+                value="/0/@expressionProviders/@providers.0/@expressions.3">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
@@ -283,7 +337,7 @@
           canonicalEditPolicyClassName="ConsiderIgnoreFragmentCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="ConsiderIgnoreFragmentGraphicalNodeEditPolicy"
           createCommandClassName="ConsiderIgnoreFragmentCreateCommand"
-          containers="/0/@diagram/@compartments.0 /0/@diagram/@childNodes.6">
+          containers="/0/@diagram/@compartments.0 /0/@diagram/@childNodes.7">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -307,7 +361,7 @@
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.3">
+                value="/0/@expressionProviders/@providers.0/@expressions.4">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
@@ -323,7 +377,7 @@
           compartments="/0/@diagram/@compartments.1"
           graphicalNodeEditPolicyClassName="CombinedFragmentGraphicalNodeEditPolicy"
           createCommandClassName="CombinedFragmentCreateCommand"
-          containers="/0/@diagram/@childNodes.6 /0/@diagram/@compartments.0">
+          containers="/0/@diagram/@childNodes.7 /0/@diagram/@compartments.0">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -347,7 +401,7 @@
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.4">
+                value="/0/@expressionProviders/@providers.0/@expressions.5">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
@@ -360,7 +414,7 @@
           itemSemanticEditPolicyClassName="InteractionOperandItemSemanticEditPolicy"
           notationViewFactoryClassName="InteractionOperandViewFactory"
           canonicalEditPolicyClassName="InteractionOperandCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.7"
+          childNodes="/0/@diagram/@childNodes.4 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.8"
           graphicalNodeEditPolicyClassName="InteractionOperandGraphicalNodeEditPolicy"
           createCommandClassName="InteractionOperandCreateCommand"
           containers="/0/@diagram/@compartments.1">
@@ -408,7 +462,7 @@
           canonicalEditPolicyClassName="ContinuationCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="ContinuationGraphicalNodeEditPolicy"
           createCommandClassName="ContinuationCreateCommand"
-          containers="/0/@diagram/@childNodes.6">
+          containers="/0/@diagram/@childNodes.7">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -429,7 +483,7 @@
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.5">
+                value="/0/@expressionProviders/@providers.0/@expressions.6">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
@@ -1169,7 +1223,7 @@
           itemSemanticEditPolicyClassName="InteractionInteractionCompartmentItemSemanticEditPolicy"
           notationViewFactoryClassName="InteractionInteractionCompartmentViewFactory"
           canonicalEditPolicyClassName="InteractionInteractionCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10"
           title="InteractionCompartment"
           canCollapse="false"
           needsTitle="false"
@@ -1200,11 +1254,11 @@
           itemSemanticEditPolicyClassName="CombinedFragmentCombinedFragmentCompartmentItemSemanticEditPolicy"
           notationViewFactoryClassName="CombinedFragmentCombinedFragmentCompartmentViewFactory"
           canonicalEditPolicyClassName="CombinedFragmentCombinedFragmentCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.6"
+          childNodes="/0/@diagram/@childNodes.7"
           title="CombinedFragmentCompartment"
           canCollapse="false"
           needsTitle="false"
-          node="/0/@diagram/@childNodes.5">
+          node="/0/@diagram/@childNodes.6">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
@@ -1254,42 +1308,49 @@
               description="Create InteractionUse"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionUse.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionUse.gif"
-              genNodes="/0/@diagram/@childNodes.3"/>
+              genNodes="/0/@diagram/@childNodes.4"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Combined Fragment"
               description="Create Combined Fragment"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CombinedFragment.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CombinedFragment.gif"
-              genNodes="/0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5"/>
+              genNodes="/0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Interaction Operand"
               description="Create Interaction Operand"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionOperand.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionOperand.gif"
-              genNodes="/0/@diagram/@childNodes.6"/>
+              genNodes="/0/@diagram/@childNodes.7"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Continuation"
               description="Create Continuation"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Continuation.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Continuation.gif"
-              genNodes="/0/@diagram/@childNodes.7"/>
+              genNodes="/0/@diagram/@childNodes.8"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="StateInvariant"
+              description="Create StateInvariant"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateInvariant.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateInvariant.gif"
+              genNodes="/0/@diagram/@childNodes.3"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Comment"
               description="Create a comment"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
-              genNodes="/0/@diagram/@childNodes.9"/>
+              genNodes="/0/@diagram/@childNodes.10"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Constraint"
               description="Create a constraint"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
-              genNodes="/0/@diagram/@childNodes.8"/>
+              genNodes="/0/@diagram/@childNodes.9"/>
         </groups>
         <groups
             title="Edges"
@@ -1407,38 +1468,41 @@
           parent="/0/@diagram/@childNodes.0"
           child="/0/@diagram/@childNodes.2"/>
       <childReferences
+          parent="/0/@diagram/@childNodes.0"
+          child="/0/@diagram/@childNodes.3"/>
+      <childReferences
           parent="/0/@diagram/@topLevelNodes.0"
           child="/0/@diagram/@childNodes.0"/>
       <childReferences
           parent="/0/@diagram/@topLevelNodes.0"
-          child="/0/@diagram/@childNodes.3"/>
+          child="/0/@diagram/@childNodes.4"/>
       <childReferences
           parent="/0/@diagram/@topLevelNodes.0"
-          child="/0/@diagram/@childNodes.4"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.6"
-          child="/0/@diagram/@childNodes.3"/>
-      <childReferences
-          parent="/0/@diagram/@childNodes.6"
           child="/0/@diagram/@childNodes.5"/>
       <childReferences
-          parent="/0/@diagram/@childNodes.6"
+          parent="/0/@diagram/@childNodes.7"
           child="/0/@diagram/@childNodes.4"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.7"
+          child="/0/@diagram/@childNodes.6"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.7"
+          child="/0/@diagram/@childNodes.5"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.7"
+          child="/0/@diagram/@childNodes.8"/>
       <childReferences
           parent="/0/@diagram/@childNodes.6"
           child="/0/@diagram/@childNodes.7"/>
       <childReferences
-          parent="/0/@diagram/@childNodes.5"
+          parent="/0/@diagram/@topLevelNodes.0"
           child="/0/@diagram/@childNodes.6"/>
       <childReferences
           parent="/0/@diagram/@topLevelNodes.0"
-          child="/0/@diagram/@childNodes.5"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.0"
-          child="/0/@diagram/@childNodes.8"/>
-      <childReferences
-          parent="/0/@diagram/@topLevelNodes.0"
           child="/0/@diagram/@childNodes.9"/>
+      <childReferences
+          parent="/0/@diagram/@topLevelNodes.0"
+          child="/0/@diagram/@childNodes.10"/>
       <childReferences
           parent="/0/@diagram"
           child="/0/@diagram/@topLevelNodes.0"/>
@@ -1581,6 +1645,18 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.0"
+          child="/0/@diagram/@childNodes.10"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.10"
+          child="/0/@diagram/@links.0"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.0"
           child="/0/@diagram/@topLevelNodes.0"
           referenceType="in_source"
           groupName="source"
@@ -1707,6 +1783,18 @@
           groupIcon="icons/linkSourceNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@childNodes.9"
+          child="/0/@diagram/@links.0"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.0"
+          child="/0/@diagram/@childNodes.10"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.10"
           child="/0/@diagram/@links.0"
           referenceType="out_target"
           groupName="outgoing links"
@@ -1850,6 +1938,18 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.1"
+          child="/0/@diagram/@childNodes.10"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.10"
+          child="/0/@diagram/@links.1"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.1"
           child="/0/@diagram/@topLevelNodes.0"
           referenceType="in_source"
           groupName="source"
@@ -1976,6 +2076,18 @@
           groupIcon="icons/linkSourceNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@childNodes.9"
+          child="/0/@diagram/@links.1"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.1"
+          child="/0/@diagram/@childNodes.10"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.10"
           child="/0/@diagram/@links.1"
           referenceType="out_target"
           groupName="outgoing links"
@@ -2119,6 +2231,18 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.2"
+          child="/0/@diagram/@childNodes.10"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.10"
+          child="/0/@diagram/@links.2"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.2"
           child="/0/@diagram/@topLevelNodes.0"
           referenceType="in_source"
           groupName="source"
@@ -2245,6 +2369,18 @@
           groupIcon="icons/linkSourceNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@childNodes.9"
+          child="/0/@diagram/@links.2"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.2"
+          child="/0/@diagram/@childNodes.10"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.10"
           child="/0/@diagram/@links.2"
           referenceType="out_target"
           groupName="outgoing links"
@@ -2388,6 +2524,18 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.3"
+          child="/0/@diagram/@childNodes.10"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.10"
+          child="/0/@diagram/@links.3"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.3"
           child="/0/@diagram/@topLevelNodes.0"
           referenceType="in_source"
           groupName="source"
@@ -2514,6 +2662,18 @@
           groupIcon="icons/linkSourceNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@childNodes.9"
+          child="/0/@diagram/@links.3"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.3"
+          child="/0/@diagram/@childNodes.10"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.10"
           child="/0/@diagram/@links.3"
           referenceType="out_target"
           groupName="outgoing links"
@@ -2657,6 +2817,18 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.4"
+          child="/0/@diagram/@childNodes.10"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.10"
+          child="/0/@diagram/@links.4"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.4"
           child="/0/@diagram/@topLevelNodes.0"
           referenceType="in_source"
           groupName="source"
@@ -2783,6 +2955,18 @@
           groupIcon="icons/linkSourceNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@childNodes.9"
+          child="/0/@diagram/@links.4"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.4"
+          child="/0/@diagram/@childNodes.10"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.10"
           child="/0/@diagram/@links.4"
           referenceType="out_target"
           groupName="outgoing links"
@@ -2926,6 +3110,18 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.5"
+          child="/0/@diagram/@childNodes.10"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.10"
+          child="/0/@diagram/@links.5"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.5"
           child="/0/@diagram/@topLevelNodes.0"
           referenceType="in_source"
           groupName="source"
@@ -3052,6 +3248,18 @@
           groupIcon="icons/linkSourceNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@childNodes.9"
+          child="/0/@diagram/@links.5"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.5"
+          child="/0/@diagram/@childNodes.10"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.10"
           child="/0/@diagram/@links.5"
           referenceType="out_target"
           groupName="outgoing links"
@@ -3195,6 +3403,18 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.6"
+          child="/0/@diagram/@childNodes.10"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.10"
+          child="/0/@diagram/@links.6"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.6"
           child="/0/@diagram/@topLevelNodes.0"
           referenceType="in_source"
           groupName="source"
@@ -3321,6 +3541,18 @@
           groupIcon="icons/linkSourceNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@childNodes.9"
+          child="/0/@diagram/@links.6"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.6"
+          child="/0/@diagram/@childNodes.10"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.10"
           child="/0/@diagram/@links.6"
           referenceType="out_target"
           groupName="outgoing links"
@@ -3464,12 +3696,24 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@childNodes.9"
+          child="/0/@diagram/@childNodes.10"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.10"
+          child="/0/@diagram/@links.7"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.7"
+          child="/0/@diagram/@childNodes.10"
           referenceType="in_source"
           groupName="source"
           groupIcon="icons/linkSourceNavigatorGroup.gif"/>
       <childReferences
-          parent="/0/@diagram/@childNodes.9"
+          parent="/0/@diagram/@childNodes.10"
           child="/0/@diagram/@links.7"
           referenceType="out_target"
           groupName="outgoing links"
@@ -3613,12 +3857,24 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@childNodes.8"
+          child="/0/@diagram/@childNodes.10"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.10"
+          child="/0/@diagram/@links.8"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.8"
+          child="/0/@diagram/@childNodes.9"
           referenceType="in_source"
           groupName="source"
           groupIcon="icons/linkSourceNavigatorGroup.gif"/>
       <childReferences
-          parent="/0/@diagram/@childNodes.8"
+          parent="/0/@diagram/@childNodes.9"
           child="/0/@diagram/@links.8"
           referenceType="out_target"
           groupName="outgoing links"
@@ -3650,6 +3906,8 @@
       <providers
           xsi:type="gmfgen:GenJavaExpressionProvider"
           injectExpressionBody="true">
+        <expressions
+            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
         <expressions
             body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
         <expressions
@@ -3738,22 +3996,22 @@
         extensibleViaService="true">
       <implementations
           xsi:type="gmfgen:PredefinedParser"
-          uses="/0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet"/>
+          uses="/0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.9/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@childNodes.0/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.sequence.parser.custom.LifelineCustomParsers"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.3/@labels.1/@modelFacet"
+          uses="/0/@diagram/@childNodes.4/@labels.1/@modelFacet"
           qualifiedName=" org.eclipse.papyrus.diagram.sequence.parser.custom.InteractionUseCustomParsers"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet"
+          uses="/0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet"
           qualifiedName=" org.eclipse.papyrus.diagram.sequence.parser.custom.MessageCustomParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.9/@labels.0/@modelFacet"
+          uses="/0/@diagram/@childNodes.10/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.common.parser.CommentParser"/>
     </labelParsers>
     <contextMenus
@@ -3765,13 +4023,13 @@
   <papyrusgmfgenextension:PapyrusExtensionRootNode>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
-        genView="/0/@diagram/@childNodes.5 /0/@diagram/@childNodes.3"
+        genView="/0/@diagram/@childNodes.6 /0/@diagram/@childNodes.4"
         name="InteractionFragmentEditPart"
         superOwnedEditPart="org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionFragmentEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
-        genView="/0/@diagram/@childNodes.4"
-        superGenViews="/0/@diagram/@childNodes.5"
+        genView="/0/@diagram/@childNodes.5"
+        superGenViews="/0/@diagram/@childNodes.6"
         name="CombinedFragmentEditPart"
         superOwnedEditPart="org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>

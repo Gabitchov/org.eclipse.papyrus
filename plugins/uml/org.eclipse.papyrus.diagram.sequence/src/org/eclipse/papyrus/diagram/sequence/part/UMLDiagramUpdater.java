@@ -47,6 +47,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.Message6EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.ActionExecutionSpecification;
 import org.eclipse.uml2.uml.BehaviorExecutionSpecification;
@@ -64,6 +65,7 @@ import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.uml2.uml.StateInvariant;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -286,6 +288,8 @@ public class UMLDiagramUpdater {
 			return getActionExecutionSpecification_3006ContainedLinks(view);
 		case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 			return getBehaviorExecutionSpecification_3003ContainedLinks(view);
+		case StateInvariantEditPart.VISUAL_ID:
+			return getStateInvariant_3017ContainedLinks(view);
 		case InteractionUseEditPart.VISUAL_ID:
 			return getInteractionUse_3002ContainedLinks(view);
 		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
@@ -331,6 +335,8 @@ public class UMLDiagramUpdater {
 			return getActionExecutionSpecification_3006IncomingLinks(view);
 		case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 			return getBehaviorExecutionSpecification_3003IncomingLinks(view);
+		case StateInvariantEditPart.VISUAL_ID:
+			return getStateInvariant_3017IncomingLinks(view);
 		case InteractionUseEditPart.VISUAL_ID:
 			return getInteractionUse_3002IncomingLinks(view);
 		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
@@ -376,6 +382,8 @@ public class UMLDiagramUpdater {
 			return getActionExecutionSpecification_3006OutgoingLinks(view);
 		case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 			return getBehaviorExecutionSpecification_3003OutgoingLinks(view);
+		case StateInvariantEditPart.VISUAL_ID:
+			return getStateInvariant_3017OutgoingLinks(view);
 		case InteractionUseEditPart.VISUAL_ID:
 			return getInteractionUse_3002OutgoingLinks(view);
 		case ConsiderIgnoreFragmentEditPart.VISUAL_ID:
@@ -442,6 +450,13 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List getBehaviorExecutionSpecification_3003ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getStateInvariant_3017ContainedLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
 
@@ -599,6 +614,25 @@ public class UMLDiagramUpdater {
 	 */
 	public static List getBehaviorExecutionSpecification_3003IncomingLinks(View view) {
 		BehaviorExecutionSpecification modelElement = (BehaviorExecutionSpecification)view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getStateInvariant_3017IncomingLinks(View view) {
+		StateInvariant modelElement = (StateInvariant)view.getElement();
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferences));
@@ -935,6 +969,22 @@ public class UMLDiagramUpdater {
 	 */
 	public static List getBehaviorExecutionSpecification_3003OutgoingLinks(View view) {
 		BehaviorExecutionSpecification modelElement = (BehaviorExecutionSpecification)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getStateInvariant_3017OutgoingLinks(View view) {
+		StateInvariant modelElement = (StateInvariant)view.getElement();
 		List result = new LinkedList();
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
