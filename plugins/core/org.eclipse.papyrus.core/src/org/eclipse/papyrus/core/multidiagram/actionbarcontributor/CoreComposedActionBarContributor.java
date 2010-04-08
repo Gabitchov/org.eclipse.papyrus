@@ -97,13 +97,12 @@ public class CoreComposedActionBarContributor extends ComposedActionBarContribut
 	 * @see org.eclipse.gef.ui.actions.ActionBarContributor#buildActions()
 	 */
 	protected void buildActions() {
-		getActionBars().getToolBarManager().add(new UndoRetargetAction());
-		getActionBars().getToolBarManager().add(new RedoRetargetAction());
+		//getActionBars().getToolBarManager().add(new UndoRetargetAction());
+		//getActionBars().getToolBarManager().add(new RedoRetargetAction());
 	}
 
 
 	public void setActiveEditor(IEditorPart targetEditor) {
-//		System.err.println(this.getClass().getSimpleName() + ".setActiveEditor(" + targetEditor + ") ");
 		super.setActiveEditor(targetEditor);
 	}
 
