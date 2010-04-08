@@ -5,6 +5,7 @@
 	<extension
          point="org.eclipse.ui.commands">
       <command
+            categoryId="org.eclipse.papyrus.editor.category"
             description="Create a new UseCase Diagram (Papyrus II)"
             id="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand"
             name="Create UseCase Diagram">

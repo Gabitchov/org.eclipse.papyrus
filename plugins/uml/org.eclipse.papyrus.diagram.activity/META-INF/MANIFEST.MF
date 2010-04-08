@@ -41,7 +41,8 @@ Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.eclipse.papyrus.diagram.activity.edit.parts,
+Export-Package: org.eclipse.papyrus.diagram.activity,
+ org.eclipse.papyrus.diagram.activity.edit.parts,
  org.eclipse.papyrus.diagram.activity.part,
  org.eclipse.papyrus.diagram.activity.providers
 Bundle-ActivationPolicy: lazy

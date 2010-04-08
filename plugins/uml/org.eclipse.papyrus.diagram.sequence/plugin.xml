@@ -4,6 +4,7 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
+            categoryId="org.eclipse.papyrus.editor.category"
             description="Create a new Sequence Diagram (Papyrus II)"
             id="org.eclipse.papyrus.diagram.sequence.CreateSequenceDiagramCommand"
             name="Create Sequence Diagram">

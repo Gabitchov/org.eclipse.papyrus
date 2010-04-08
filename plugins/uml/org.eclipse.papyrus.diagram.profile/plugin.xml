@@ -1335,6 +1335,7 @@
 <extension
       point="org.eclipse.ui.commands">
    <command
+         categoryId="org.eclipse.papyrus.editor.category"
          description="Create a New UML2 Profile Diagram"
          id="org.eclipse.papyrus.diagram.profile.CreateProfileDiagramCommand"
          name="New PapyII Profile Diagram( Papyrus II)">
