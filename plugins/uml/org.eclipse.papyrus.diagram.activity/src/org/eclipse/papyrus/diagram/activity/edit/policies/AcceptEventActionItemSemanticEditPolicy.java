@@ -43,12 +43,15 @@ import org.eclipse.papyrus.diagram.activity.edit.commands.ActionLocalPreconditio
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActionLocalPreconditionReorientCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ControlFlowCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ControlFlowReorientCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.ExceptionHandlerCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.ExceptionHandlerReorientCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ObjectFlowCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ObjectFlowReorientCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.OutputPinInAcceptEventActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPostconditionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPreconditionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ExceptionHandlerEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInAcceptEventActionEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
@@ -147,6 +150,12 @@ public class AcceptEventActionItemSemanticEditPolicy extends UMLBaseItemSemantic
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
 			}
+			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ExceptionHandlerEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+				continue;
+			}
 		}
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
@@ -179,6 +188,12 @@ public class AcceptEventActionItemSemanticEditPolicy extends UMLBaseItemSemantic
 						continue;
 					}
 					if(UMLVisualIDRegistry.getVisualID(incomingLink) == ControlFlowEditPart.VISUAL_ID) {
+						DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+						cmd.add(new DestroyElementCommand(r));
+						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+						continue;
+					}
+					if(UMLVisualIDRegistry.getVisualID(incomingLink) == ExceptionHandlerEditPart.VISUAL_ID) {
 						DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 						cmd.add(new DestroyElementCommand(r));
 						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
@@ -232,6 +247,9 @@ public class AcceptEventActionItemSemanticEditPolicy extends UMLBaseItemSemantic
 		if(UMLElementTypes.ControlFlow_4004 == req.getElementType()) {
 			return getGEFWrapper(new ControlFlowCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.ExceptionHandler_4005 == req.getElementType()) {
+			return getGEFWrapper(new ExceptionHandlerCreateCommand(req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -251,6 +269,9 @@ public class AcceptEventActionItemSemanticEditPolicy extends UMLBaseItemSemantic
 		if(UMLElementTypes.ControlFlow_4004 == req.getElementType()) {
 			return getGEFWrapper(new ControlFlowCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.ExceptionHandler_4005 == req.getElementType()) {
+			return null;
+		}
 		return null;
 	}
 
@@ -266,6 +287,8 @@ public class AcceptEventActionItemSemanticEditPolicy extends UMLBaseItemSemantic
 			return getGEFWrapper(new ObjectFlowReorientCommand(req));
 		case ControlFlowEditPart.VISUAL_ID:
 			return getGEFWrapper(new ControlFlowReorientCommand(req));
+		case ExceptionHandlerEditPart.VISUAL_ID:
+			return getGEFWrapper(new ExceptionHandlerReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

@@ -16,6 +16,7 @@ package org.eclipse.papyrus.diagram.activity.edit.dialogs;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -236,7 +237,7 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 		pToolkit.createLabel(lBody, Messages.CreateActivityParameterNodeDialog_NameLabel, SWT.NONE);
 		creationNameText = pToolkit.createText(lBody, "", SWT.BORDER);
 		creationNameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
-
+		creationNameText.setFocus();
 
 		// manage type selection
 		pToolkit.createLabel(lBody, Messages.CreateActivityParameterNodeDialog_TypeLabel, SWT.NONE);
@@ -415,6 +416,13 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 	 */
 	private void handleChooseParameter() {
 		Collection<EObject> elements = UMLItemPropertyDescriptor.getReachableObjectsOfType(activityOwner, getParameterFeature().getEType());
+		// only keep parameter that are children of the activity
+		for(Iterator<EObject> it = elements.iterator(); it.hasNext();) {
+			EObject eObject = (EObject)it.next();
+			if(!(activityOwner.equals(((Parameter)eObject).getOwner()))) {
+				it.remove();
+			}
+		}
 		ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), labelProvider);
 		dialog.setMessage(Messages.UMLModelingAssistantProviderMessage);
 		dialog.setTitle(Messages.UMLModelingAssistantProviderTitle);
@@ -504,6 +512,7 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 			creationDirectionCombo.setEnabled(!isSelectionSelected);
 		}
 		creationNameText.setEnabled(!isSelectionSelected);
+		creationNameText.setFocus();
 		creationTypeText.setEnabled(!isSelectionSelected);
 		creationTypeButton.setEnabled(!isSelectionSelected);
 	}

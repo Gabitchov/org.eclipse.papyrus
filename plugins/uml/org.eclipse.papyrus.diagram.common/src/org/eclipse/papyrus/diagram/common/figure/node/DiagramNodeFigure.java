@@ -20,6 +20,9 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 public class DiagramNodeFigure extends RectangleFigure {
 
+	/**
+	 * @deprecated use org.eclipse.papyrus.diagram.common.figure.layout.PropertiesCompartmentLayoutManager instead
+	 */
 	private class PropertiesCompatmentLayoutManager extends AbstractLayout {
 
 		/**

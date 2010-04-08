@@ -373,15 +373,17 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 						// checks also for whole hierarchy...
 						EObject parentNotifier = (EObject)notifier;
 
-						// this should be one of the elements that are inside the 
-						List<View> views = additionalParentToListen.get(parentNotifier);
+						if(additionalParentToListen.containsKey(parentNotifier)) {
+							// this should be one of the elements that are inside the 
+							List<View> views = additionalParentToListen.get(parentNotifier);
 
-						List<View> orphaned = findOrphanView(views.iterator());
-						//
-						// delete all the remaining views
-						deleteViews(orphaned.iterator());
+							List<View> orphaned = findOrphanView(views.iterator());
+							//
+							// delete all the remaining views
+							deleteViews(orphaned.iterator());
 
-						removeListeners(orphaned);
+							removeListeners(orphaned);
+						}
 					}
 				} else { // Notifier is a View
 					// REMOVE or ADD are interesting events:

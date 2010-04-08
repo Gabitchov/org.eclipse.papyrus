@@ -116,6 +116,8 @@ public class ActivityParameterNodeCreateCommand extends EditElementCommand {
 			EObject parameter = dialog.getSelectedInvoked();
 			if(parameter instanceof Parameter) {
 				newElement.setParameter((Parameter)parameter);
+				// initialize the parameter node name
+				newElement.setName(((Parameter)parameter).getName());
 			}
 		} else {
 			return CommandResult.newCancelledCommandResult();
@@ -123,7 +125,10 @@ public class ActivityParameterNodeCreateCommand extends EditElementCommand {
 
 		owner.getNodes().add(newElement);
 
-		UMLElementTypes.init_ActivityParameterNode_3059(newElement);
+		if(newElement.getName() == null || newElement.getName().length() == 0) {
+			// initialize name if it is not yet 
+			UMLElementTypes.init_ActivityParameterNode_3059(newElement);
+		}
 
 		doConfigure(newElement, monitor, info);
 

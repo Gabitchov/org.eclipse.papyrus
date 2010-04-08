@@ -130,6 +130,12 @@ public class WarningAndCreateAttributeDialog extends MessageDialog {
 				impactedElements.add(referencing);
 				String elementText = provider.getText(referencing);
 				elementText = elementText.replaceAll(LT, ESC_LT).replaceAll(GT, ESC_GT);
+				if(referencing instanceof NamedElement) {
+					String qualifiedName = ((NamedElement)referencing).getQualifiedName();
+					if(qualifiedName != null && qualifiedName.length() != 0) {
+						elementText = elementText + " (" + qualifiedName + ")";
+					}
+				}
 				impactText.append(String.format(LIST_FORMAT, elementText));
 			}
 		}

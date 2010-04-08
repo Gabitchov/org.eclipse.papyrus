@@ -128,7 +128,7 @@ implements ITextAwareEditPart {
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowSelectionEditPart.VISUAL_ID), new Point(0, 80));
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowSelectionEditPart.VISUAL_ID), new Point(20, 40));
 	}
 
 	/**

@@ -299,6 +299,24 @@ ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
 			types.add(UMLElementTypes.AcceptEventAction_3063);
 		}
+		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
+			types.add(UMLElementTypes.ConditionalNode_3069);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
+			types.add(UMLElementTypes.ExpansionRegion_3070);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
+			types.add(UMLElementTypes.LoopNode_3071);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
+			types.add(UMLElementTypes.SequenceNode_3073);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
+			types.add(UMLElementTypes.StructuredActivityNode_3065);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
+			types.add(UMLElementTypes.ValueSpecificationAction_3076);
+		}
 		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
 			types.add(UMLElementTypes.OpaqueAction_3007);
 		}
@@ -316,6 +334,24 @@ ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
 			types.add(UMLElementTypes.AcceptEventAction_3063);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
+			types.add(UMLElementTypes.ConditionalNode_3069);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
+			types.add(UMLElementTypes.ExpansionRegion_3070);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
+			types.add(UMLElementTypes.LoopNode_3071);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
+			types.add(UMLElementTypes.SequenceNode_3073);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
+			types.add(UMLElementTypes.StructuredActivityNode_3065);
+		}
+		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
+			types.add(UMLElementTypes.ValueSpecificationAction_3076);
 		}
 		return types;
 	}

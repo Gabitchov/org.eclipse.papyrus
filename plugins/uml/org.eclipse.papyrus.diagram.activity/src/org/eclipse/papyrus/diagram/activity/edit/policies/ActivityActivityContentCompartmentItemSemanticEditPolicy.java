@@ -17,17 +17,26 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.diagram.activity.edit.commands.AcceptEventActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityFinalNodeCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityPartitionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallBehaviorActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallOperationActionCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.ConditionalNodeCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.DataStoreNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.DecisionNodeCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.ExpansionRegionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.FlowFinalNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ForkNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.InitialNodeCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.InterruptibleActivityRegionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.JoinNodeCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.LoopNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.MergeNodeCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.OpaqueActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.SendObjectActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.SendSignalActionCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.SequenceNodeCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.StructuredActivityNodeCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.ValueSpecificationActionCreateCommand;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 
 /**
@@ -114,6 +123,33 @@ public class ActivityActivityContentCompartmentItemSemanticEditPolicy extends UM
 		}
 		if(UMLElementTypes.AcceptEventAction_3063 == req.getElementType()) {
 			return getGEFWrapper(new AcceptEventActionCreateCommand(req));
+		}
+		if(UMLElementTypes.ConditionalNode_3069 == req.getElementType()) {
+			return getGEFWrapper(new ConditionalNodeCreateCommand(req));
+		}
+		if(UMLElementTypes.ExpansionRegion_3070 == req.getElementType()) {
+			return getGEFWrapper(new ExpansionRegionCreateCommand(req));
+		}
+		if(UMLElementTypes.LoopNode_3071 == req.getElementType()) {
+			return getGEFWrapper(new LoopNodeCreateCommand(req));
+		}
+		if(UMLElementTypes.SequenceNode_3073 == req.getElementType()) {
+			return getGEFWrapper(new SequenceNodeCreateCommand(req));
+		}
+		if(UMLElementTypes.StructuredActivityNode_3065 == req.getElementType()) {
+			return getGEFWrapper(new StructuredActivityNodeCreateCommand(req));
+		}
+		if(UMLElementTypes.ActivityPartition_3067 == req.getElementType()) {
+			return getGEFWrapper(new ActivityPartitionCreateCommand(req));
+		}
+		if(UMLElementTypes.InterruptibleActivityRegion_3068 == req.getElementType()) {
+			return getGEFWrapper(new InterruptibleActivityRegionCreateCommand(req));
+		}
+		if(UMLElementTypes.ValueSpecificationAction_3076 == req.getElementType()) {
+			return getGEFWrapper(new ValueSpecificationActionCreateCommand(req));
+		}
+		if(UMLElementTypes.DataStoreNode_3078 == req.getElementType()) {
+			return getGEFWrapper(new DataStoreNodeCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

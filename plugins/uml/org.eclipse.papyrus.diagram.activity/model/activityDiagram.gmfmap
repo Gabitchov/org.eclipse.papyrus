@@ -171,6 +171,11 @@
                   language="java"/>
             </initializers>
           </domainInitializer>
+          <labelMappings
+              readOnly="true">
+            <diagramLabel
+                href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+          </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.0/@tools.0"/>
@@ -201,6 +206,11 @@
                   language="java"/>
             </initializers>
           </domainInitializer>
+          <labelMappings
+              readOnly="true">
+            <diagramLabel
+                href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+          </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.0/@tools.1"/>
@@ -231,6 +241,11 @@
                   language="java"/>
             </initializers>
           </domainInitializer>
+          <labelMappings
+              readOnly="true">
+            <diagramLabel
+                href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+          </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.0/@tools.2"/>
@@ -303,9 +318,14 @@
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinValue"/>
               </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.2/@tools.3"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.3"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -340,9 +360,14 @@
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinValue"/>
               </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.2/@tools.2"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.2"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -373,9 +398,14 @@
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinName"/>
               </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.2/@tools.1"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.1"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -406,9 +436,14 @@
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinName"/>
               </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.2/@tools.0"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.0"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -477,9 +512,14 @@
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinValue"/>
               </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.2/@tools.3"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.3"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -514,9 +554,14 @@
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinValue"/>
               </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.2/@tools.2"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.2"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -547,9 +592,14 @@
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinName"/>
               </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.2/@tools.1"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.1"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -580,9 +630,14 @@
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinName"/>
               </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.2/@tools.0"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.0"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -653,9 +708,14 @@
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinValue"/>
               </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.2/@tools.2"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.2"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -692,9 +752,14 @@
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinValue"/>
               </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.2/@tools.3"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.3"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -727,9 +792,14 @@
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinName"/>
               </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.2/@tools.1"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.1"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -760,9 +830,14 @@
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinName"/>
               </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.2/@tools.0"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.0"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -798,6 +873,11 @@
               <labelMappings>
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinValue"/>
+              </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
               </labelMappings>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
@@ -835,6 +915,11 @@
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinValue"/>
               </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -866,6 +951,11 @@
               <labelMappings>
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinName"/>
+              </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
               </labelMappings>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
@@ -910,7 +1000,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.4/@tools.3"/>
+              href="activityDiagram.gmftool#//@palette/@tools.5/@tools.3"/>
           <diagramNode
               href="activityDiagram.gmfgraph#BehaviorProperty"/>
         </ownedChild>
@@ -952,7 +1042,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.4/@tools.8"/>
+              href="activityDiagram.gmftool#//@palette/@tools.5/@tools.8"/>
           <diagramNode
               href="activityDiagram.gmfgraph#BehaviorProperty"/>
         </ownedChild>
@@ -994,7 +1084,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.4/@tools.4"/>
+              href="activityDiagram.gmftool#//@palette/@tools.5/@tools.4"/>
           <diagramNode
               href="activityDiagram.gmfgraph#BehaviorProperty"/>
         </ownedChild>
@@ -1036,7 +1126,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.4/@tools.9"/>
+              href="activityDiagram.gmftool#//@palette/@tools.5/@tools.9"/>
           <diagramNode
               href="activityDiagram.gmfgraph#BehaviorProperty"/>
         </ownedChild>
@@ -1078,7 +1168,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.4/@tools.1"/>
+              href="activityDiagram.gmftool#//@palette/@tools.5/@tools.1"/>
           <diagramNode
               href="activityDiagram.gmfgraph#BehaviorProperty"/>
         </ownedChild>
@@ -1120,7 +1210,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.4/@tools.6"/>
+              href="activityDiagram.gmftool#//@palette/@tools.5/@tools.6"/>
           <diagramNode
               href="activityDiagram.gmfgraph#BehaviorProperty"/>
         </ownedChild>
@@ -1162,7 +1252,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.4/@tools.2"/>
+              href="activityDiagram.gmftool#//@palette/@tools.5/@tools.2"/>
           <diagramNode
               href="activityDiagram.gmfgraph#BehaviorProperty"/>
         </ownedChild>
@@ -1204,7 +1294,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.4/@tools.7"/>
+              href="activityDiagram.gmftool#//@palette/@tools.5/@tools.7"/>
           <diagramNode
               href="activityDiagram.gmfgraph#BehaviorProperty"/>
         </ownedChild>
@@ -1246,7 +1336,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.4/@tools.0"/>
+              href="activityDiagram.gmftool#//@palette/@tools.5/@tools.0"/>
           <diagramNode
               href="activityDiagram.gmfgraph#BehaviorProperty"/>
         </ownedChild>
@@ -1288,7 +1378,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="activityDiagram.gmftool#//@palette/@tools.4/@tools.5"/>
+              href="activityDiagram.gmftool#//@palette/@tools.5/@tools.5"/>
           <diagramNode
               href="activityDiagram.gmfgraph#BehaviorProperty"/>
         </ownedChild>
@@ -1320,6 +1410,11 @@
             <diagramLabel
                 href="activityDiagram.gmfgraph#DecisionInput"/>
           </labelMappings>
+          <labelMappings
+              readOnly="true">
+            <diagramLabel
+                href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+          </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.0/@tools.3"/>
@@ -1350,6 +1445,11 @@
                   language="java"/>
             </initializers>
           </domainInitializer>
+          <labelMappings
+              readOnly="true">
+            <diagramLabel
+                href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+          </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.0/@tools.4"/>
@@ -1380,6 +1480,11 @@
                   language="java"/>
             </initializers>
           </domainInitializer>
+          <labelMappings
+              readOnly="true">
+            <diagramLabel
+                href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+          </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.0/@tools.6"/>
@@ -1413,6 +1518,11 @@
           <labelMappings>
             <diagramLabel
                 href="activityDiagram.gmfgraph#JoinSpec"/>
+          </labelMappings>
+          <labelMappings
+              readOnly="true">
+            <diagramLabel
+                href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
@@ -1488,6 +1598,11 @@
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinValue"/>
               </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -1524,6 +1639,11 @@
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinValue"/>
               </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -1555,6 +1675,11 @@
               <labelMappings>
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinName"/>
+              </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
               </labelMappings>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
@@ -1592,6 +1717,11 @@
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinValue"/>
               </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -1628,6 +1758,11 @@
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinValue"/>
               </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -1659,6 +1794,11 @@
               <labelMappings>
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinName"/>
+              </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
               </labelMappings>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
@@ -1733,9 +1873,14 @@
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinValue"/>
               </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.2/@tools.2"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.2"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -1772,9 +1917,14 @@
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinValue"/>
               </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.2/@tools.3"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.3"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -1807,9 +1957,14 @@
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinName"/>
               </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.2/@tools.1"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.1"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -1845,6 +2000,11 @@
               <labelMappings>
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinValue"/>
+              </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
               </labelMappings>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
@@ -1882,6 +2042,11 @@
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinValue"/>
               </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
@@ -1913,6 +2078,11 @@
               <labelMappings>
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinName"/>
+              </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
               </labelMappings>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
@@ -1984,6 +2154,11 @@
             <diagramLabel
                 href="activityDiagram.gmfgraph#AcceptTimeEventActionName"/>
           </labelMappings>
+          <labelMappings
+              readOnly="true">
+            <diagramLabel
+                href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+          </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.1/@tools.5"/>
@@ -2015,13 +2190,447 @@
                 <diagramLabel
                     href="activityDiagram.gmfgraph#PinName"/>
               </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
               <tool
                   xsi:type="gmftool:CreationTool"
-                  href="activityDiagram.gmftool#//@palette/@tools.2/@tools.0"/>
+                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.0"/>
               <diagramNode
                   href="activityDiagram.gmfgraph#PinNode"/>
             </ownedChild>
           </children>
+        </ownedChild>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.3"
+          referencedChild="//@nodes.0/@ownedChild/@children.27/@ownedChild">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/group"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/group"/>
+        <ownedChild
+            relatedDiagrams="//@diagram">
+          <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ConditionalNode"/>
+          <domainInitializer
+              xsi:type="gmfmap:FeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfmap:FeatureValueSpec">
+              <feature
+                  xsi:type="ecore:EAttribute"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+              <value
+                  body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                  language="java"/>
+            </initializers>
+          </domainInitializer>
+          <labelMappings
+              readOnly="true">
+            <diagramLabel
+                href="activityDiagram.gmfgraph#StructuredActivityNodeKeyword"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="activityDiagram.gmftool#//@palette/@tools.2/@tools.3"/>
+          <diagramNode
+              href="activityDiagram.gmfgraph#StructuredActivityNode"/>
+          <compartments>
+            <compartment
+                href="activityDiagram.gmfgraph#StructuredActivityNodeContentCompartment"/>
+          </compartments>
+        </ownedChild>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.3"
+          referencedChild="//@nodes.0/@ownedChild/@children.28/@ownedChild">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/group"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/group"/>
+        <ownedChild
+            relatedDiagrams="//@diagram">
+          <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExpansionRegion"/>
+          <domainInitializer
+              xsi:type="gmfmap:FeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfmap:FeatureValueSpec">
+              <feature
+                  xsi:type="ecore:EAttribute"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+              <value
+                  body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                  language="java"/>
+            </initializers>
+          </domainInitializer>
+          <labelMappings
+              readOnly="true">
+            <diagramLabel
+                href="activityDiagram.gmfgraph#StructuredActivityNodeKeyword"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="activityDiagram.gmftool#//@palette/@tools.2/@tools.4"/>
+          <diagramNode
+              href="activityDiagram.gmfgraph#StructuredActivityNode"/>
+          <children
+              referencedChild="//@nodes.0/@ownedChild/@children.28/@ownedChild/@children.0/@ownedChild">
+            <containmentFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuredActivityNode/node"/>
+            <childrenFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExpansionRegion/inputElement"/>
+            <ownedChild
+                relatedDiagrams="//@diagram">
+              <domainMetaElement
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExpansionNode"/>
+              <domainSpecialization
+                  body="if self.owner.oclIsKindOf(ExpansionRegion)&#xD;&#xA;then self.owner.oclAsType(ExpansionRegion).inputElement->includes(self)&#xD;&#xA;else false endif"/>
+              <domainInitializer
+                  xsi:type="gmfmap:FeatureSeqInitializer">
+                <initializers
+                    xsi:type="gmfmap:FeatureValueSpec">
+                  <feature
+                      xsi:type="ecore:EAttribute"
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  <value
+                      body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                      language="java"/>
+                </initializers>
+              </domainInitializer>
+              <tool
+                  xsi:type="gmftool:CreationTool"
+                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.4"/>
+              <diagramNode
+                  href="activityDiagram.gmfgraph#ExpansionNode"/>
+            </ownedChild>
+          </children>
+          <children
+              referencedChild="//@nodes.0/@ownedChild/@children.28/@ownedChild/@children.1/@ownedChild">
+            <containmentFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuredActivityNode/node"/>
+            <childrenFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExpansionRegion/outputElement"/>
+            <ownedChild
+                relatedDiagrams="//@diagram">
+              <domainMetaElement
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExpansionNode"/>
+              <domainSpecialization
+                  body="if self.owner.oclIsKindOf(ExpansionRegion)&#xD;&#xA;then self.owner.oclAsType(ExpansionRegion).outputElement->includes(self)&#xD;&#xA;else false endif"/>
+              <domainInitializer
+                  xsi:type="gmfmap:FeatureSeqInitializer">
+                <initializers
+                    xsi:type="gmfmap:FeatureValueSpec">
+                  <feature
+                      xsi:type="ecore:EAttribute"
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  <value
+                      body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                      language="java"/>
+                </initializers>
+              </domainInitializer>
+              <tool
+                  xsi:type="gmftool:CreationTool"
+                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.5"/>
+              <diagramNode
+                  href="activityDiagram.gmfgraph#ExpansionNode"/>
+            </ownedChild>
+          </children>
+          <compartments>
+            <compartment
+                href="activityDiagram.gmfgraph#StructuredActivityNodeContentCompartment"/>
+          </compartments>
+        </ownedChild>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.3"
+          referencedChild="//@nodes.0/@ownedChild/@children.29/@ownedChild">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/group"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/group"/>
+        <ownedChild
+            relatedDiagrams="//@diagram">
+          <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LoopNode"/>
+          <domainInitializer
+              xsi:type="gmfmap:FeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfmap:FeatureValueSpec">
+              <feature
+                  xsi:type="ecore:EAttribute"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+              <value
+                  body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                  language="java"/>
+            </initializers>
+          </domainInitializer>
+          <labelMappings
+              readOnly="true">
+            <diagramLabel
+                href="activityDiagram.gmfgraph#StructuredActivityNodeKeyword"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="activityDiagram.gmftool#//@palette/@tools.2/@tools.5"/>
+          <diagramNode
+              href="activityDiagram.gmfgraph#StructuredActivityNode"/>
+          <compartments>
+            <compartment
+                href="activityDiagram.gmfgraph#StructuredActivityNodeContentCompartment"/>
+          </compartments>
+        </ownedChild>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.3"
+          referencedChild="//@nodes.0/@ownedChild/@children.30/@ownedChild">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/group"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/group"/>
+        <ownedChild
+            relatedDiagrams="//@diagram">
+          <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//SequenceNode"/>
+          <domainInitializer
+              xsi:type="gmfmap:FeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfmap:FeatureValueSpec">
+              <feature
+                  xsi:type="ecore:EAttribute"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+              <value
+                  body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                  language="java"/>
+            </initializers>
+          </domainInitializer>
+          <labelMappings
+              readOnly="true">
+            <diagramLabel
+                href="activityDiagram.gmfgraph#StructuredActivityNodeKeyword"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="activityDiagram.gmftool#//@palette/@tools.2/@tools.6"/>
+          <diagramNode
+              href="activityDiagram.gmfgraph#StructuredActivityNode"/>
+          <compartments>
+            <compartment
+                href="activityDiagram.gmfgraph#StructuredActivityNodeContentCompartment"/>
+          </compartments>
+        </ownedChild>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.3"
+          referencedChild="//@nodes.0/@ownedChild/@children.31/@ownedChild">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/group"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/group"/>
+        <ownedChild
+            relatedDiagrams="//@diagram">
+          <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuredActivityNode"/>
+          <domainInitializer
+              xsi:type="gmfmap:FeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfmap:FeatureValueSpec">
+              <feature
+                  xsi:type="ecore:EAttribute"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+              <value
+                  body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                  language="java"/>
+            </initializers>
+          </domainInitializer>
+          <labelMappings
+              readOnly="true">
+            <diagramLabel
+                href="activityDiagram.gmfgraph#StructuredActivityNodeKeyword"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="activityDiagram.gmftool#//@palette/@tools.2/@tools.2"/>
+          <diagramNode
+              href="activityDiagram.gmfgraph#StructuredActivityNode"/>
+          <compartments>
+            <compartment
+                href="activityDiagram.gmfgraph#StructuredActivityNodeContentCompartment"/>
+          </compartments>
+        </ownedChild>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.3"
+          referencedChild="//@nodes.0/@ownedChild/@children.32/@ownedChild">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/group"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/group"/>
+        <ownedChild
+            relatedDiagrams="//@diagram">
+          <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActivityPartition"/>
+          <domainInitializer
+              xsi:type="gmfmap:FeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfmap:FeatureValueSpec">
+              <feature
+                  xsi:type="ecore:EAttribute"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+              <value
+                  body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                  language="java"/>
+            </initializers>
+          </domainInitializer>
+          <labelMappings
+              xsi:type="gmfmap:FeatureLabelMapping">
+            <diagramLabel
+                href="activityDiagram.gmfgraph#ActivityPartitionLabel"/>
+            <features
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="activityDiagram.gmftool#//@palette/@tools.2/@tools.0"/>
+          <diagramNode
+              href="activityDiagram.gmfgraph#ActivityPartitionNode"/>
+          <compartments>
+            <compartment
+                href="activityDiagram.gmfgraph#ActivityPartitionContentCompartment"/>
+          </compartments>
+        </ownedChild>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.3"
+          referencedChild="//@nodes.0/@ownedChild/@children.33/@ownedChild">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/group"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/group"/>
+        <ownedChild
+            relatedDiagrams="//@diagram">
+          <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//InterruptibleActivityRegion"/>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="activityDiagram.gmftool#//@palette/@tools.2/@tools.1"/>
+          <diagramNode
+              href="activityDiagram.gmfgraph#InterruptibleActivityRegionNode"/>
+          <compartments>
+            <compartment
+                href="activityDiagram.gmfgraph#InterruptibleActivityRegionContentCompartment"/>
+          </compartments>
+        </ownedChild>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.3"
+          referencedChild="//@nodes.0/@ownedChild/@children.34/@ownedChild">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
+        <ownedChild
+            relatedDiagrams="//@diagram">
+          <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ValueSpecificationAction"/>
+          <domainInitializer
+              xsi:type="gmfmap:FeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfmap:FeatureValueSpec">
+              <feature
+                  xsi:type="ecore:EAttribute"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+              <value
+                  body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                  language="java"/>
+            </initializers>
+          </domainInitializer>
+          <labelMappings
+              xsi:type="gmfmap:FeatureLabelMapping">
+            <diagramLabel
+                href="activityDiagram.gmfgraph#ActionName"/>
+            <features
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="activityDiagram.gmftool#//@palette/@tools.1/@tools.6"/>
+          <diagramNode
+              href="activityDiagram.gmfgraph#ActionNode"/>
+          <children
+              referencedChild="//@nodes.0/@ownedChild/@children.34/@ownedChild/@children.0/@ownedChild">
+            <containmentFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ValueSpecificationAction/result"/>
+            <childrenFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ValueSpecificationAction/result"/>
+            <ownedChild
+                relatedDiagrams="//@diagram">
+              <domainMetaElement
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OutputPin"/>
+              <domainInitializer
+                  xsi:type="gmfmap:FeatureSeqInitializer">
+                <initializers
+                    xsi:type="gmfmap:FeatureValueSpec">
+                  <feature
+                      xsi:type="ecore:EAttribute"
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  <value
+                      body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                      language="java"/>
+                </initializers>
+              </domainInitializer>
+              <labelMappings>
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#PinName"/>
+              </labelMappings>
+              <labelMappings
+                  readOnly="true">
+                <diagramLabel
+                    href="activityDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+              </labelMappings>
+              <tool
+                  xsi:type="gmftool:CreationTool"
+                  href="activityDiagram.gmftool#//@palette/@tools.3/@tools.0"/>
+              <diagramNode
+                  href="activityDiagram.gmfgraph#PinNode"/>
+            </ownedChild>
+          </children>
+        </ownedChild>
+      </children>
+      <children
+          compartment="//@nodes.0/@ownedChild/@compartments.3"
+          referencedChild="//@nodes.0/@ownedChild/@children.35/@ownedChild">
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
+        <childrenFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/node"/>
+        <ownedChild
+            relatedDiagrams="//@diagram">
+          <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DataStoreNode"/>
+          <domainInitializer
+              xsi:type="gmfmap:FeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfmap:FeatureValueSpec">
+              <feature
+                  xsi:type="ecore:EAttribute"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+              <value
+                  body="return org.eclipse.papyrus.diagram.common.actions.LabelHelper.INSTANCE.findName(self.eContainer(), self);"
+                  language="java"/>
+            </initializers>
+          </domainInitializer>
+          <labelMappings>
+            <diagramLabel
+                href="activityDiagram.gmfgraph#ObjectNodeName"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="activityDiagram.gmftool#//@palette/@tools.0/@tools.8"/>
+          <diagramNode
+              href="activityDiagram.gmfgraph#ObjectNode"/>
         </ownedChild>
       </children>
       <compartments
@@ -2040,7 +2649,7 @@
             href="activityDiagram.gmfgraph#ActivityPostConditionsCompartment"/>
       </compartments>
       <compartments
-          children="//@nodes.0/@ownedChild/@children.5 //@nodes.0/@ownedChild/@children.3 //@nodes.0/@ownedChild/@children.4 //@nodes.0/@ownedChild/@children.6 //@nodes.0/@ownedChild/@children.17 //@nodes.0/@ownedChild/@children.7 //@nodes.0/@ownedChild/@children.8 //@nodes.0/@ownedChild/@children.18 //@nodes.0/@ownedChild/@children.13 //@nodes.0/@ownedChild/@children.14 //@nodes.0/@ownedChild/@children.15 //@nodes.0/@ownedChild/@children.16 //@nodes.0/@ownedChild/@children.9 //@nodes.0/@ownedChild/@children.10 //@nodes.0/@ownedChild/@children.11 //@nodes.0/@ownedChild/@children.12 //@nodes.0/@ownedChild/@children.19 //@nodes.0/@ownedChild/@children.20 //@nodes.0/@ownedChild/@children.21 //@nodes.0/@ownedChild/@children.22 //@nodes.0/@ownedChild/@children.23 //@nodes.0/@ownedChild/@children.24 //@nodes.0/@ownedChild/@children.26">
+          children="//@nodes.0/@ownedChild/@children.5 //@nodes.0/@ownedChild/@children.3 //@nodes.0/@ownedChild/@children.4 //@nodes.0/@ownedChild/@children.6 //@nodes.0/@ownedChild/@children.17 //@nodes.0/@ownedChild/@children.7 //@nodes.0/@ownedChild/@children.8 //@nodes.0/@ownedChild/@children.18 //@nodes.0/@ownedChild/@children.13 //@nodes.0/@ownedChild/@children.14 //@nodes.0/@ownedChild/@children.15 //@nodes.0/@ownedChild/@children.16 //@nodes.0/@ownedChild/@children.9 //@nodes.0/@ownedChild/@children.10 //@nodes.0/@ownedChild/@children.11 //@nodes.0/@ownedChild/@children.12 //@nodes.0/@ownedChild/@children.19 //@nodes.0/@ownedChild/@children.20 //@nodes.0/@ownedChild/@children.21 //@nodes.0/@ownedChild/@children.22 //@nodes.0/@ownedChild/@children.23 //@nodes.0/@ownedChild/@children.24 //@nodes.0/@ownedChild/@children.26 //@nodes.0/@ownedChild/@children.31 //@nodes.0/@ownedChild/@children.32 //@nodes.0/@ownedChild/@children.33 //@nodes.0/@ownedChild/@children.27 //@nodes.0/@ownedChild/@children.28 //@nodes.0/@ownedChild/@children.29 //@nodes.0/@ownedChild/@children.30 //@nodes.0/@ownedChild/@children.35 //@nodes.0/@ownedChild/@children.34">
         <compartment
             href="activityDiagram.gmfgraph#ActivityContentCompartment"/>
       </compartments>
@@ -2105,11 +2714,16 @@
       <diagramLabel
           href="activityDiagram.gmfgraph#EdgeGuard"/>
     </labelMappings>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="activityDiagram.gmfgraph#ActivityEdgeAppliedStereotypeDiagramLabel"/>
+    </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/edge"/>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="activityDiagram.gmftool#//@palette/@tools.3/@tools.1"/>
+        href="activityDiagram.gmftool#//@palette/@tools.4/@tools.1"/>
     <diagramLink
         href="activityDiagram.gmfgraph#ActivityEdgeConnection"/>
     <sourceMetaFeature
@@ -2158,11 +2772,16 @@
       <diagramLabel
           href="activityDiagram.gmfgraph#EdgeGuard"/>
     </labelMappings>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="activityDiagram.gmfgraph#ActivityEdgeAppliedStereotypeDiagramLabel"/>
+    </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Activity/edge"/>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="activityDiagram.gmftool#//@palette/@tools.3/@tools.0"/>
+        href="activityDiagram.gmftool#//@palette/@tools.4/@tools.0"/>
     <diagramLink
         href="activityDiagram.gmfgraph#ActivityEdgeConnection"/>
     <sourceMetaFeature
@@ -2173,12 +2792,34 @@
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ActivityEdge/target"/>
     <creationConstraints>
       <sourceEnd
-          body="if(source instanceof ObjectNode) {&#xD;&#xA;&#x9;if(!((ObjectNode)source).isControlType()) {&#xD;&#xA;&#x9;&#x9;// rule validateControlFlow_validateObjectNodes&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(source instanceof InputPin) {&#xD;&#xA;&#x9;// rule validateInputPin_validateOutgoingEdgesStructuredOnly&#xD;&#xA;&#x9;if(source.getOwner() instanceof StructuredActivityNode) {&#xD;&#xA;&#x9;&#x9;if(target != null &amp;&amp; !source.getOwner().equals(target.getInStructuredNode())) {&#xD;&#xA;&#x9;&#x9;&#x9;return false;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(source instanceof FinalNode) {&#xD;&#xA;&#x9;// rule validateFinalNode_validateNoOutgoingEdges&#xD;&#xA;&#x9;return false;&#xD;&#xA;}&#xD;&#xA;if(source instanceof JoinNode) {&#xD;&#xA;&#x9;// rule validateJoinNode_validateOneOutgoingEdge&#xD;&#xA;&#x9;if(!source.getOutgoings().isEmpty()) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;// rule validateJoinNode_validateIncomingObjectFlow&#xD;&#xA;&#x9;ActivityEdge incomingObjectFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;if(incomingObjectFlow != null) {&#xD;&#xA;&#x9;&#x9;// the outgoing edge must be an ObjectFlow&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(source instanceof ForkNode) {&#xD;&#xA;&#x9;// rule validateForkNode_validateEdges on source Fork node&#xD;&#xA;&#x9;ActivityEdge outgoingObjectFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;ActivityEdge incomingObjectFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;if(outgoingObjectFlow != null || incomingObjectFlow != null) {&#xD;&#xA;&#x9;&#x9;// there is an ObjectFlow which means there must be no ControlFlow&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(source instanceof MergeNode) {&#xD;&#xA;&#x9;//rule validateMergeNode_validateOneOutgoingEdge&#xD;&#xA;&#x9;if(!source.getOutgoings().isEmpty()) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;// rule validateMergeNode_validateEdges on source Merge node&#xD;&#xA;&#x9;ActivityEdge outgoingObjectFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;ActivityEdge incomingObjectFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;if(outgoingObjectFlow != null || incomingObjectFlow != null) {&#xD;&#xA;&#x9;&#x9;// there is an ObjectFlow which means there must be no ControlFlow&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(source instanceof DecisionNode) {&#xD;&#xA;&#x9;// rule validateDecisionNode_validateEdges on source Decision node&#xD;&#xA;&#x9;ActivityEdge outgoingObjectFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;ActivityEdge incomingObjectFlow = null;&#xD;&#xA;&#x9;for(ActivityEdge incomingEdge : source.getIncomings()) {&#xD;&#xA;&#x9;&#x9;// filter the decision flow&#xD;&#xA;&#x9;&#x9;if(incomingEdge instanceof ObjectFlow &amp;&amp; incomingEdge != ((DecisionNode)source).getDecisionInputFlow()) {&#xD;&#xA;&#x9;&#x9;&#x9;incomingObjectFlow = incomingEdge;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;if(outgoingObjectFlow != null || incomingObjectFlow != null) {&#xD;&#xA;&#x9;&#x9;// there is an ObjectFlow which means there must be no ControlFlow&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}"
+          body="if(source instanceof ObjectNode) {&#xD;&#xA;&#x9;if(!((ObjectNode)source).isControlType()) {&#xD;&#xA;&#x9;&#x9;// rule validateControlFlow_validateObjectNodes&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(source instanceof InputPin) {&#xD;&#xA;&#x9;// rule validateInputPin_validateOutgoingEdgesStructuredOnly&#xD;&#xA;&#x9;if(source.getOwner() instanceof StructuredActivityNode) {&#xD;&#xA;&#x9;&#x9;if(target != null &amp;&amp; !source.getOwner().equals(target.getInStructuredNode())) {&#xD;&#xA;&#x9;&#x9;&#x9;return false;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(source instanceof FinalNode) {&#xD;&#xA;&#x9;// rule validateFinalNode_validateNoOutgoingEdges&#xD;&#xA;&#x9;return false;&#xD;&#xA;}&#xD;&#xA;if(source instanceof JoinNode) {&#xD;&#xA;&#x9;// rule validateJoinNode_validateOneOutgoingEdge&#xD;&#xA;&#x9;if(!source.getOutgoings().isEmpty()) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;// rule validateJoinNode_validateIncomingObjectFlow&#xD;&#xA;&#x9;ActivityEdge incomingObjectFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;if(incomingObjectFlow != null) {&#xD;&#xA;&#x9;&#x9;// the outgoing edge must be an ObjectFlow&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(source instanceof ForkNode) {&#xD;&#xA;&#x9;// rule validateForkNode_validateEdges on source Fork node&#xD;&#xA;&#x9;ActivityEdge outgoingObjectFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;ActivityEdge incomingObjectFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;if(outgoingObjectFlow != null || incomingObjectFlow != null) {&#xD;&#xA;&#x9;&#x9;// there is an ObjectFlow which means there must be no ControlFlow&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(source instanceof MergeNode) {&#xD;&#xA;&#x9;//rule validateMergeNode_validateOneOutgoingEdge&#xD;&#xA;&#x9;if(!source.getOutgoings().isEmpty()) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;// rule validateMergeNode_validateEdges on source Merge node&#xD;&#xA;&#x9;ActivityEdge outgoingObjectFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;ActivityEdge incomingObjectFlow = source.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;if(outgoingObjectFlow != null || incomingObjectFlow != null) {&#xD;&#xA;&#x9;&#x9;// there is an ObjectFlow which means there must be no ControlFlow&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(source instanceof DecisionNode) {&#xD;&#xA;&#x9;// rule validateDecisionNode_validateEdges on source Decision node&#xD;&#xA;&#x9;ActivityEdge outgoingObjectFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;int incomingObjectFlowNumber = 0;&#xD;&#xA;&#x9;for(ActivityEdge incomingEdge : source.getIncomings()) {&#xD;&#xA;&#x9;&#x9;if(incomingEdge instanceof ObjectFlow) {&#xD;&#xA;&#x9;&#x9;&#x9;incomingObjectFlowNumber++;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;if(outgoingObjectFlow != null || incomingObjectFlowNumber > 1) {&#xD;&#xA;&#x9;&#x9;// there is an ObjectFlow (not intended for decisionInputFlow) which means there must be no ControlFlow&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}"
           language="java"/>
       <targetEnd
           body="if(target instanceof ObjectNode) {&#xD;&#xA;&#x9;if(!((ObjectNode)target).isControlType()) {&#xD;&#xA;&#x9;&#x9;// rule validateControlFlow_validateObjectNodes&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(target instanceof OutputPin) {&#xD;&#xA;&#x9;// rule validateOutputPin_validateIncomingEdgesStructuredOnly&#xD;&#xA;&#x9;if(target.getOwner() instanceof StructuredActivityNode) {&#xD;&#xA;&#x9;&#x9;if(source != null &amp;&amp; !target.getOwner().equals(source.getInStructuredNode())) {&#xD;&#xA;&#x9;&#x9;&#x9;return false;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(target instanceof InitialNode) {&#xD;&#xA;&#x9;// rule validateInitialNode_validateNoIncomingEdges&#xD;&#xA;&#x9;return false;&#xD;&#xA;}&#xD;&#xA;if(target instanceof ForkNode) {&#xD;&#xA;&#x9;// rule validateForkNode_validateOneIncomingEdge&#xD;&#xA;&#x9;if(!target.getIncomings().isEmpty()) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;// rule validateForkNode_validateEdges on target Fork node&#xD;&#xA;&#x9;ActivityEdge outgoingObjectFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;ActivityEdge incomingObjectFlow = target.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;if(outgoingObjectFlow != null || incomingObjectFlow != null) {&#xD;&#xA;&#x9;&#x9;// there is an ObjectFlow which means there must be no ControlFlow&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(target instanceof MergeNode) {&#xD;&#xA;&#x9;// rule validateMergeNode_validateEdges on target Merge node&#xD;&#xA;&#x9;ActivityEdge outgoingObjectFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;ActivityEdge incomingObjectFlow = target.getIncoming(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;if(outgoingObjectFlow != null || incomingObjectFlow != null) {&#xD;&#xA;&#x9;&#x9;// there is an ObjectFlow which means there must be no ControlFlow&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;if(target instanceof DecisionNode) {&#xD;&#xA;&#x9;// rule validateDecisionNode_validateIncomingOutgoingEdges&#xD;&#xA;&#x9;if(target.getIncomings().size() >= 2) {&#xD;&#xA;&#x9;&#x9;// no more than two incoming edges&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;// rule validateDecisionNode_validateEdges on target Decision node&#xD;&#xA;&#x9;ActivityEdge outgoingObjectFlow = target.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());&#xD;&#xA;&#x9;ActivityEdge incomingObjectFlow = null;&#xD;&#xA;&#x9;for(ActivityEdge incomingEdge : target.getIncomings()) {&#xD;&#xA;&#x9;&#x9;// filter the decision flow&#xD;&#xA;&#x9;&#x9;if(incomingEdge instanceof ObjectFlow &amp;&amp; incomingEdge != ((DecisionNode)target).getDecisionInputFlow()) {&#xD;&#xA;&#x9;&#x9;&#x9;incomingObjectFlow = incomingEdge;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;if(outgoingObjectFlow != null || incomingObjectFlow != null) {&#xD;&#xA;&#x9;&#x9;// there is an ObjectFlow which means there must be no ControlFlow&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;}"
           language="java"/>
     </creationConstraints>
+  </links>
+  <links
+      relatedDiagrams="//@diagram">
+    <domainMetaElement
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExceptionHandler"/>
+    <labelMappings>
+      <diagramLabel
+          href="activityDiagram.gmfgraph#ExceptionHandlerTypeLabel"/>
+    </labelMappings>
+    <containmentFeature
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExecutableNode/handler"/>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="activityDiagram.gmftool#//@palette/@tools.4/@tools.2"/>
+    <diagramLink
+        href="activityDiagram.gmfgraph#ExceptionHandlerConnection"/>
+    <sourceMetaFeature
+        xsi:type="ecore:EReference"
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExceptionHandler/protectedNode"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ExceptionHandler/exceptionInput"/>
   </links>
   <diagram>
     <diagramCanvas

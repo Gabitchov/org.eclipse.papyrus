@@ -44,32 +44,42 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityActivityPostCondi
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityActivityPreConditionsCompartmentEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityParameterNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ExceptionHandlerEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionRegionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.FlowFinalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ForkNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InterruptibleActivityRegionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.JoinNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.LoopNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.MergeNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ParameterEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ValueSpecificationActionEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 
@@ -133,6 +143,12 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 						continue;
 					}
 					if(UMLVisualIDRegistry.getVisualID(incomingLink) == ControlFlowEditPart.VISUAL_ID) {
+						DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+						cmd.add(new DestroyElementCommand(r));
+						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+						continue;
+					}
+					if(UMLVisualIDRegistry.getVisualID(incomingLink) == ExceptionHandlerEditPart.VISUAL_ID) {
 						DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 						cmd.add(new DestroyElementCommand(r));
 						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
@@ -367,6 +383,12 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 								continue;
 							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ExceptionHandlerEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
 						}
 						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
@@ -436,6 +458,12 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 								continue;
 							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ExceptionHandlerEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
 						}
 						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
@@ -500,6 +528,12 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 								continue;
 							}
 							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ControlFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ExceptionHandlerEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -1134,6 +1168,12 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 								continue;
 							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ExceptionHandlerEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
 						}
 						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
@@ -1203,6 +1243,12 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 								continue;
 							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ExceptionHandlerEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
 						}
 						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
@@ -1260,6 +1306,513 @@ public class ActivityItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 								continue;
 							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ObjectFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ControlFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ExceptionHandlerEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+						}
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					case ConditionalNodeEditPart.VISUAL_ID:
+						for(Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+							Edge incomingLink = (Edge)it.next();
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ObjectFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ControlFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+						}
+						for(Iterator it = cnode.getSourceEdges().iterator(); it.hasNext();) {
+							Edge outgoingLink = (Edge)it.next();
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ActionLocalPreconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null, outgoingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ActionLocalPostconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null, outgoingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ObjectFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ControlFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ExceptionHandlerEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+						}
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					case ExpansionRegionEditPart.VISUAL_ID:
+						for(Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+							Edge incomingLink = (Edge)it.next();
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ObjectFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ControlFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+						}
+						for(Iterator it = cnode.getSourceEdges().iterator(); it.hasNext();) {
+							Edge outgoingLink = (Edge)it.next();
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ActionLocalPreconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null, outgoingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ActionLocalPostconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null, outgoingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ObjectFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ControlFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ExceptionHandlerEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+						}
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					case LoopNodeEditPart.VISUAL_ID:
+						for(Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+							Edge incomingLink = (Edge)it.next();
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ObjectFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ControlFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+						}
+						for(Iterator it = cnode.getSourceEdges().iterator(); it.hasNext();) {
+							Edge outgoingLink = (Edge)it.next();
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ActionLocalPreconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null, outgoingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ActionLocalPostconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null, outgoingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ObjectFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ControlFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ExceptionHandlerEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+						}
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					case SequenceNodeEditPart.VISUAL_ID:
+						for(Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+							Edge incomingLink = (Edge)it.next();
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ObjectFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ControlFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+						}
+						for(Iterator it = cnode.getSourceEdges().iterator(); it.hasNext();) {
+							Edge outgoingLink = (Edge)it.next();
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ActionLocalPreconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null, outgoingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ActionLocalPostconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null, outgoingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ObjectFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ControlFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ExceptionHandlerEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+						}
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					case StructuredActivityNodeEditPart.VISUAL_ID:
+						for(Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+							Edge incomingLink = (Edge)it.next();
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ObjectFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ControlFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+						}
+						for(Iterator it = cnode.getSourceEdges().iterator(); it.hasNext();) {
+							Edge outgoingLink = (Edge)it.next();
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ActionLocalPreconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null, outgoingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ActionLocalPostconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null, outgoingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ObjectFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ControlFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ExceptionHandlerEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+						}
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					case ActivityPartitionEditPart.VISUAL_ID:
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					case InterruptibleActivityRegionEditPart.VISUAL_ID:
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					case ValueSpecificationActionEditPart.VISUAL_ID:
+						for(Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+							Edge incomingLink = (Edge)it.next();
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ObjectFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ControlFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+						}
+						for(Iterator it = cnode.getSourceEdges().iterator(); it.hasNext();) {
+							Edge outgoingLink = (Edge)it.next();
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ActionLocalPreconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null, outgoingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ActionLocalPostconditionEditPart.VISUAL_ID) {
+								DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null, outgoingLink.getTarget().getElement(), false);
+								cmd.add(new DestroyReferenceCommand(r) {
+
+									protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+										EObject referencedObject = getReferencedObject();
+										Resource resource = referencedObject.eResource();
+										CommandResult result = super.doExecuteWithResult(progressMonitor, info);
+										if(resource != null) {
+											resource.getContents().add(referencedObject);
+										}
+										return result;
+									}
+								});
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ObjectFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ControlFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ExceptionHandlerEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								continue;
+							}
+						}
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					case DataStoreNodeEditPart.VISUAL_ID:
+						for(Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+							Edge incomingLink = (Edge)it.next();
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ObjectFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ControlFlowEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ExceptionHandlerEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								continue;
+							}
+						}
+						for(Iterator it = cnode.getSourceEdges().iterator(); it.hasNext();) {
+							Edge outgoingLink = (Edge)it.next();
 							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ObjectFlowEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(r));

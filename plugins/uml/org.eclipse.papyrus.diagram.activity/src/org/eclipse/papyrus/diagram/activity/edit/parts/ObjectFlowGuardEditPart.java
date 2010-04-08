@@ -117,7 +117,7 @@ public class ObjectFlowGuardEditPart extends LabelEditPart implements ITextAware
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowGuardEditPart.VISUAL_ID), new Point(0, 140));
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowGuardEditPart.VISUAL_ID), new Point(0, 20));
 	}
 
 	/**

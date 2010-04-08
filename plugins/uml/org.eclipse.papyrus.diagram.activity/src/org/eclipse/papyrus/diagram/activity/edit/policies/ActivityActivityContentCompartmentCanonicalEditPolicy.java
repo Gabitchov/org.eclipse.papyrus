@@ -39,27 +39,36 @@ import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionRegionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.FlowFinalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ForkNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InterruptibleActivityRegionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.JoinNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.LoopNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.MergeNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ValueSpecificationActionEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.activity.part.UMLNodeDescriptor;
@@ -117,6 +126,15 @@ public class ActivityActivityContentCompartmentCanonicalEditPolicy extends Canon
 		case SendObjectActionEditPart.VISUAL_ID:
 		case SendSignalActionEditPart.VISUAL_ID:
 		case AcceptEventActionEditPart.VISUAL_ID:
+		case ConditionalNodeEditPart.VISUAL_ID:
+		case ExpansionRegionEditPart.VISUAL_ID:
+		case LoopNodeEditPart.VISUAL_ID:
+		case SequenceNodeEditPart.VISUAL_ID:
+		case StructuredActivityNodeEditPart.VISUAL_ID:
+		case ActivityPartitionEditPart.VISUAL_ID:
+		case InterruptibleActivityRegionEditPart.VISUAL_ID:
+		case ValueSpecificationActionEditPart.VISUAL_ID:
+		case DataStoreNodeEditPart.VISUAL_ID:
 			if(!semanticChildren.contains(view.getElement())) {
 				return true;
 			}
@@ -182,6 +200,7 @@ public class ActivityActivityContentCompartmentCanonicalEditPolicy extends Canon
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getActivity_Node());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getAction_LocalPrecondition());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getAction_LocalPostcondition());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getActivity_Group());
 		}
 		return myFeaturesToSynchronize;
 	}

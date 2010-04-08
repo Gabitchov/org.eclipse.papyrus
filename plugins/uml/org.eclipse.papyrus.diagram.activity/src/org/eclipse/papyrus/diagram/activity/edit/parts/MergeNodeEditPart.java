@@ -14,10 +14,12 @@
 package org.eclipse.papyrus.diagram.activity.edit.parts;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -27,14 +29,19 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
+import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -44,6 +51,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.activity.edit.policies.MergeNodeItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
+import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
@@ -54,7 +62,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class MergeNodeEditPart extends
 
-ShapeNodeEditPart {
+AbstractBorderedShapeEditPart {
 
 	/**
 	 * @generated
@@ -97,6 +105,18 @@ ShapeNodeEditPart {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
+				View childView = (View)child.getModel();
+				switch(UMLVisualIDRegistry.getVisualID(childView)) {
+				case MergeNodeAppliedStereotypeEditPart.VISUAL_ID:
+					return new BorderItemSelectionEditPolicy() {
+
+						protected List createSelectionHandles() {
+							MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+							mh.setBorder(null);
+							return Collections.singletonList(mh);
+						}
+					};
+				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
 					result = new NonResizableEditPolicy();
@@ -131,6 +151,19 @@ ShapeNodeEditPart {
 	}
 
 	/**
+	 * @generated
+	 */
+	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
+		if(borderItemEditPart instanceof MergeNodeAppliedStereotypeEditPart) {
+			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
+			locator.setBorderItemOffset(new Dimension(-20, -20));
+			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
+		} else {
+			super.addBorderItem(borderItemContainer, borderItemEditPart);
+		}
+	}
+
+	/**
 	 * @generated NOT use a diamond figure instead
 	 */
 	protected NodeFigure createNodePlate() {
@@ -146,7 +179,7 @@ ShapeNodeEditPart {
 	 * 
 	 * @generated
 	 */
-	protected NodeFigure createNodeFigure() {
+	protected NodeFigure createMainFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
 		IFigure shape = createNodeShape();
@@ -202,6 +235,13 @@ ShapeNodeEditPart {
 		if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineStyle(style);
 		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public EditPart getPrimaryChildEditPart() {
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(MergeNodeAppliedStereotypeEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -345,6 +385,36 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof OutputPinInAcceptEventActionEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof ConditionalNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof ExpansionRegionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof ExpansionNodeAsInEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof ExpansionNodeAsOutEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof LoopNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof SequenceNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof StructuredActivityNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof OutputPinInValSpecActEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof DataStoreNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof InitialNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
@@ -469,6 +539,36 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
 		if(targetEditPart instanceof OutputPinInAcceptEventActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof ConditionalNodeEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof ExpansionRegionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof ExpansionNodeAsInEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof ExpansionNodeAsOutEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof LoopNodeEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof SequenceNodeEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof StructuredActivityNodeEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof OutputPinInValSpecActEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof DataStoreNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
 		return types;
@@ -605,6 +705,36 @@ ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
 			types.add(UMLElementTypes.OutputPin_3064);
 		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.ConditionalNode_3069);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.ExpansionRegion_3070);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.ExpansionNode_3074);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.ExpansionNode_3075);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.LoopNode_3071);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.SequenceNode_3073);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.StructuredActivityNode_3065);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.ValueSpecificationAction_3076);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.OutputPin_3077);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.DataStoreNode_3078);
+		}
 		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 		}
@@ -730,6 +860,36 @@ ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.OutputPin_3064);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.ConditionalNode_3069);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.ExpansionRegion_3070);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.ExpansionNode_3074);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.ExpansionNode_3075);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.LoopNode_3071);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.SequenceNode_3073);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.StructuredActivityNode_3065);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.ValueSpecificationAction_3076);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.OutputPin_3077);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.DataStoreNode_3078);
 		}
 		return types;
 	}
@@ -875,6 +1035,36 @@ ShapeNodeEditPart {
 		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
 			types.add(UMLElementTypes.OutputPin_3064);
 		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.ConditionalNode_3069);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.ExpansionRegion_3070);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.ExpansionNode_3074);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.ExpansionNode_3075);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.LoopNode_3071);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.SequenceNode_3073);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.StructuredActivityNode_3065);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.ValueSpecificationAction_3076);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.OutputPin_3077);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.DataStoreNode_3078);
+		}
 		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 		}
@@ -1000,6 +1190,36 @@ ShapeNodeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.OutputPin_3064);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.ConditionalNode_3069);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.ExpansionRegion_3070);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.ExpansionNode_3074);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.ExpansionNode_3075);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.LoopNode_3071);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.SequenceNode_3073);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.StructuredActivityNode_3065);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.ValueSpecificationAction_3076);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.OutputPin_3077);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.DataStoreNode_3078);
 		}
 		return types;
 	}

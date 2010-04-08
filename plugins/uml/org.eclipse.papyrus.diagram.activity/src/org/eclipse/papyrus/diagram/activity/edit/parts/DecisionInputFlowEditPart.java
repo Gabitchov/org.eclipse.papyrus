@@ -117,7 +117,7 @@ public class DecisionInputFlowEditPart extends LabelEditPart implements ITextAwa
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.DecisionInputFlowEditPart.VISUAL_ID), new Point(0, 120));
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.DecisionInputFlowEditPart.VISUAL_ID), new Point(0, -20));
 	}
 
 	/**

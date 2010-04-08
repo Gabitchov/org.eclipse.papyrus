@@ -117,7 +117,7 @@ public class ControlFlowWeightEditPart extends LabelEditPart implements ITextAwa
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowWeightEditPart.VISUAL_ID), new Point(0, 60));
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowWeightEditPart.VISUAL_ID), new Point(0, 20));
 	}
 
 	/**

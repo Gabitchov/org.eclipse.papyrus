@@ -58,6 +58,7 @@ import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ActivityParameterNode;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.DecisionNode;
+import org.eclipse.uml2.uml.ExecutableNode;
 import org.eclipse.uml2.uml.FinalNode;
 import org.eclipse.uml2.uml.ForkNode;
 import org.eclipse.uml2.uml.InitialNode;
@@ -422,6 +423,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		public static boolean canCreateExceptionHandler_4005(ExecutableNode container, ExecutableNode source, ObjectNode target) {
+			return canExistExceptionHandler_4005(container, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
 		public static boolean canExistActionLocalPrecondition_4001(Action source, Constraint target) {
 			return true;
 		}
@@ -664,15 +672,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				if(source instanceof DecisionNode) {
 					// rule validateDecisionNode_validateEdges on source Decision node
 					ActivityEdge outgoingObjectFlow = source.getOutgoing(null, true, UMLPackage.eINSTANCE.getObjectFlow());
-					ActivityEdge incomingObjectFlow = null;
+					int incomingObjectFlowNumber = 0;
 					for(ActivityEdge incomingEdge : source.getIncomings()) {
-						// filter the decision flow
-						if(incomingEdge instanceof ObjectFlow && incomingEdge != ((DecisionNode)source).getDecisionInputFlow()) {
-							incomingObjectFlow = incomingEdge;
+						if(incomingEdge instanceof ObjectFlow) {
+							incomingObjectFlowNumber++;
 						}
 					}
-					if(outgoingObjectFlow != null || incomingObjectFlow != null) {
-						// there is an ObjectFlow which means there must be no ControlFlow
+					if(outgoingObjectFlow != null || incomingObjectFlowNumber > 1) {
+						// there is an ObjectFlow (not intended for decisionInputFlow) which means there must be no ControlFlow
 						return false;
 					}
 				}
@@ -743,6 +750,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
 				return false;
 			}
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistExceptionHandler_4005(ExecutableNode container, ExecutableNode source, ObjectNode target) {
+			return true;
 		}
 	}
 }

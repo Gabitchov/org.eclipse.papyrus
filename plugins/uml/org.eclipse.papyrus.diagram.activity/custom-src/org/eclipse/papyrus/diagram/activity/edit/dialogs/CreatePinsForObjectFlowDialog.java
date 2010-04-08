@@ -25,6 +25,7 @@ import org.eclipse.papyrus.diagram.activity.edit.helpers.ObjectFlowEditHelper;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.ui.helper.HelpComponentFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -42,6 +43,7 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.forms.FormDialog;
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.uml2.uml.Action;
@@ -259,6 +261,8 @@ public class CreatePinsForObjectFlowDialog extends FormDialog {
 		if(lSectionTitle != null) {
 			lSection.setText(lSectionTitle);
 		}
+		ImageHyperlink componentHelp = HelpComponentFactory.createHelpComponent(lSection, pToolkit, Messages.CreatePinsForObjectFlowDialog_PinCreationHelp, true);
+		lSection.setTextClient(componentHelp);
 
 		ScrolledForm lInsideScrolledForm = pToolkit.createScrolledForm(lSection);
 		lInsideScrolledForm.setExpandHorizontal(true);
@@ -273,6 +277,7 @@ public class CreatePinsForObjectFlowDialog extends FormDialog {
 		pToolkit.createLabel(lBody, NAME_LABEL, SWT.NONE);
 		creationNameText = pToolkit.createText(lBody, NAME_INITIAL_VALUE, SWT.BORDER);
 		creationNameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
+		creationNameText.setFocus();
 
 		pToolkit.createLabel(lBody, TYPE_LABEL, SWT.NONE);
 		creationTypeText = pToolkit.createText(lBody, "", SWT.BORDER | SWT.READ_ONLY);
@@ -327,6 +332,7 @@ public class CreatePinsForObjectFlowDialog extends FormDialog {
 		ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), labelProvider);
 		dialog.setMessage(Messages.UMLModelingAssistantProviderMessage);
 		dialog.setTitle(Messages.UMLModelingAssistantProviderTitle);
+		dialog.setFilter("*");
 		dialog.setMultipleSelection(false);
 		dialog.setElements(typesSet.toArray(new EObject[typesSet.size()]));
 		if(dialog.open() == Window.OK) {

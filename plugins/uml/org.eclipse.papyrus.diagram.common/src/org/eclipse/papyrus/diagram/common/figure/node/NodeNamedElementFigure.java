@@ -28,7 +28,6 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.swt.graphics.Image;
 
@@ -672,6 +671,9 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		this.iconLabel.setIcon(image);
 	}
 
+	/**
+	 * @deprecated use org.eclipse.papyrus.diagram.common.figure.layout.PropertiesCompartmentLayoutManager instead
+	 */
 	private class PropertiesCompatmentLayoutManager extends AbstractLayout {
 
 		/**

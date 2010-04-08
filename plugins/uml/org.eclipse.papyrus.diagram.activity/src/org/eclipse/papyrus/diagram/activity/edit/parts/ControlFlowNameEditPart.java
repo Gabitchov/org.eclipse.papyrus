@@ -129,7 +129,7 @@ public class ControlFlowNameEditPart extends LabelEditPart implements ITextAware
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowNameEditPart.VISUAL_ID), new Point(0, 40));
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowNameEditPart.VISUAL_ID), new Point(0, 20));
 	}
 
 	/**

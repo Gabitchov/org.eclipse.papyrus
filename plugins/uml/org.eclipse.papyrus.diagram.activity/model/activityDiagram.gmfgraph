@@ -268,37 +268,48 @@
           figure="//@figures.0/@descriptors.4/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
-        name="ActionFigure">
+        name="ActionFigureDescriptor">
       <actualFigure
-          xsi:type="gmfgraph:RoundedRectangle"
-          name="ActionRectangle"
-          cornerWidth="16"
-          cornerHeight="16">
-        <layout
-            xsi:type="gmfgraph:CustomLayout"
-            qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
-        <children
-            xsi:type="gmfgraph:CustomFigure"
-            name="ActionLabel"
-            qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel">
-          <insets
-              top="5"
-              left="5"
-              bottom="5"
-              right="5"/>
-        </children>
+          xsi:type="gmfgraph:CustomFigure"
+          name="AbstractActionFigure"
+          qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.AbstractActionFigure">
         <children
             xsi:type="gmfgraph:Polyline"
             name="RakeFigure"
             fill="false"
             lineWidth="2"/>
+        <children
+            xsi:type="gmfgraph:Rectangle"
+            name="LabelRect"
+            outline="false"
+            fill="false">
+          <layoutData
+              xsi:type="gmfgraph:GridLayoutData"
+              grabExcessHorizontalSpace="true"
+              grabExcessVerticalSpace="true"
+              verticalAlignment="FILL"
+              horizontalAlignment="FILL"/>
+          <layout
+              xsi:type="gmfgraph:CustomLayout"
+              qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
+          <children
+              xsi:type="gmfgraph:CustomFigure"
+              name="ActionLabel"
+              qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel">
+            <insets
+                top="5"
+                left="5"
+                bottom="5"
+                right="5"/>
+          </children>
+        </children>
       </actualFigure>
       <accessors
           accessor="getActionLabel"
-          figure="//@figures.0/@descriptors.5/@actualFigure/@children.0"/>
+          figure="//@figures.0/@descriptors.5/@actualFigure/@children.1/@children.0"/>
       <accessors
           accessor="getOptionalRakeFigure"
-          figure="//@figures.0/@descriptors.5/@actualFigure/@children.1"/>
+          figure="//@figures.0/@descriptors.5/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="CornerBentWithTextFigure">
@@ -375,6 +386,9 @@
       <accessors
           accessor="getEdgeWeight"
           figure="//@figures.0/@descriptors.9/@actualFigure/@children.2"/>
+      <accessors
+          accessor="getAppliedStereotypeLabel"
+          figure="//@figures.0/@descriptors.9/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors
         name="DiamondFigure">
@@ -448,22 +462,36 @@
           xsi:type="gmfgraph:ScalablePolygon"
           name="ConvexPentagon">
         <layout
-            xsi:type="gmfgraph:CustomLayout"
-            qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
+            xsi:type="gmfgraph:GridLayout"/>
         <border
             xsi:type="gmfgraph:MarginBorder">
           <insets
               right="50"/>
         </border>
         <children
-            xsi:type="gmfgraph:CustomFigure"
-            name="SendSignalActionLabel"
-            qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel">
-          <insets
-              top="5"
-              left="5"
-              bottom="5"
-              right="5"/>
+            xsi:type="gmfgraph:Rectangle"
+            name="LabelRect"
+            outline="false"
+            fill="false">
+          <layoutData
+              xsi:type="gmfgraph:GridLayoutData"
+              grabExcessHorizontalSpace="true"
+              grabExcessVerticalSpace="true"
+              verticalAlignment="FILL"
+              horizontalAlignment="FILL"/>
+          <layout
+              xsi:type="gmfgraph:CustomLayout"
+              qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
+          <children
+              xsi:type="gmfgraph:CustomFigure"
+              name="SendSignalActionLabel"
+              qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel">
+            <insets
+                top="5"
+                left="5"
+                bottom="5"
+                right="5"/>
+          </children>
         </children>
         <template/>
         <template
@@ -479,7 +507,7 @@
       </actualFigure>
       <accessors
           accessor="getSendSignalActionLabel"
-          figure="//@figures.0/@descriptors.14/@actualFigure/@children.0"/>
+          figure="//@figures.0/@descriptors.14/@actualFigure/@children.0/@children.0"/>
     </descriptors>
     <descriptors
         name="ActivityParameterNodeDescriptor">
@@ -487,28 +515,39 @@
           xsi:type="gmfgraph:Rectangle"
           name="ActivityParameterNodeFigure">
         <layout
-            xsi:type="gmfgraph:CustomLayout"
-            qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
-        <maximumSize
-            dx="300"
-            dy="150"/>
+            xsi:type="gmfgraph:GridLayout"/>
         <preferredSize
             dx="100"
             dy="50"/>
         <children
-            xsi:type="gmfgraph:CustomFigure"
-            name="ActivityParameterNodeLabel"
-            qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel">
-          <insets
-              top="5"
-              left="5"
-              bottom="5"
-              right="5"/>
+            xsi:type="gmfgraph:Rectangle"
+            name="LabelRect"
+            outline="false"
+            fill="false">
+          <layoutData
+              xsi:type="gmfgraph:GridLayoutData"
+              grabExcessHorizontalSpace="true"
+              grabExcessVerticalSpace="true"
+              verticalAlignment="FILL"
+              horizontalAlignment="FILL"/>
+          <layout
+              xsi:type="gmfgraph:CustomLayout"
+              qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
+          <children
+              xsi:type="gmfgraph:CustomFigure"
+              name="ActivityParameterNodeLabel"
+              qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel">
+            <insets
+                top="5"
+                left="5"
+                bottom="5"
+                right="5"/>
+          </children>
         </children>
       </actualFigure>
       <accessors
           accessor="getActivityParameterNodeLabel"
-          figure="//@figures.0/@descriptors.15/@actualFigure/@children.0"/>
+          figure="//@figures.0/@descriptors.15/@actualFigure/@children.0/@children.0"/>
     </descriptors>
     <descriptors
         name="AcceptEventActionFigure">
@@ -516,22 +555,36 @@
           xsi:type="gmfgraph:ScalablePolygon"
           name="ConcavePentagon">
         <layout
-            xsi:type="gmfgraph:CustomLayout"
-            qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
+            xsi:type="gmfgraph:GridLayout"/>
         <border
             xsi:type="gmfgraph:MarginBorder">
           <insets
               left="50"/>
         </border>
         <children
-            xsi:type="gmfgraph:CustomFigure"
-            name="AcceptEventActionLabel"
-            qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel">
-          <insets
-              top="5"
-              left="5"
-              bottom="5"
-              right="5"/>
+            xsi:type="gmfgraph:Rectangle"
+            name="LabelRect"
+            outline="false"
+            fill="false">
+          <layoutData
+              xsi:type="gmfgraph:GridLayoutData"
+              grabExcessHorizontalSpace="true"
+              grabExcessVerticalSpace="true"
+              verticalAlignment="FILL"
+              horizontalAlignment="FILL"/>
+          <layout
+              xsi:type="gmfgraph:CustomLayout"
+              qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
+          <children
+              xsi:type="gmfgraph:CustomFigure"
+              name="AcceptEventActionLabel"
+              qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel">
+            <insets
+                top="5"
+                left="5"
+                bottom="5"
+                right="5"/>
+          </children>
         </children>
         <template/>
         <template
@@ -547,7 +600,231 @@
       </actualFigure>
       <accessors
           accessor="getAcceptEventActionLabel"
-          figure="//@figures.0/@descriptors.16/@actualFigure/@children.0"/>
+          figure="//@figures.0/@descriptors.16/@actualFigure/@children.0/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="AppliedStereotypeWrappingLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="AppliedStereotypeWrappingLabel"
+          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure"/>
+    </descriptors>
+    <descriptors
+        name="StructuredActivityNodeDescriptor">
+      <actualFigure
+          xsi:type="gmfgraph:RoundedRectangle"
+          name="StructuredActivityNodeFigure"
+          fill="false"
+          lineKind="LINE_DASH">
+        <layout
+            xsi:type="gmfgraph:GridLayout"
+            equalWidth="false">
+          <margins/>
+          <spacing/>
+        </layout>
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="StructuredActivityNodeKeyword"
+            qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel">
+          <layoutData
+              xsi:type="gmfgraph:GridLayoutData"
+              horizontalAlignment="BEGINNING"/>
+          <insets
+              top="5"
+              left="5"
+              bottom="5"
+              right="5"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:Rectangle"
+            name="StructuredActivityNodeCompartment"
+            outline="false"
+            fill="false">
+          <layoutData
+              xsi:type="gmfgraph:GridLayoutData"
+              grabExcessHorizontalSpace="true"
+              grabExcessVerticalSpace="true"
+              verticalAlignment="FILL"
+              horizontalAlignment="FILL"/>
+        </children>
+      </actualFigure>
+      <accessors
+          accessor="getStructuredActivityNodeCompartment"
+          figure="//@figures.0/@descriptors.18/@actualFigure/@children.1"/>
+      <accessors
+          accessor="getKeyword"
+          figure="//@figures.0/@descriptors.18/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="InterruptibleActivityRegionDescriptor">
+      <actualFigure
+          xsi:type="gmfgraph:RoundedRectangle"
+          name="InterruptibleActivityRegionFigure"
+          fill="false"
+          lineKind="LINE_DASH">
+        <layout
+            xsi:type="gmfgraph:GridLayout"
+            equalWidth="false">
+          <margins/>
+          <spacing/>
+        </layout>
+        <children
+            xsi:type="gmfgraph:Rectangle"
+            name="InterruptibleActivityRegionCompartment"
+            outline="false"
+            fill="false">
+          <layoutData
+              xsi:type="gmfgraph:GridLayoutData"
+              grabExcessHorizontalSpace="true"
+              grabExcessVerticalSpace="true"
+              verticalAlignment="FILL"
+              horizontalAlignment="FILL"/>
+        </children>
+      </actualFigure>
+      <accessors
+          accessor="getInterruptibleActivityRegionCompartment"
+          figure="//@figures.0/@descriptors.19/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="ActivityPartitionDescriptor">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="ActivityPartitionFigure"
+          fill="false">
+        <layout
+            xsi:type="gmfgraph:GridLayout"
+            equalWidth="false">
+          <margins/>
+          <spacing/>
+        </layout>
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="ActivityPartitionLabel"
+            qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel">
+          <layoutData
+              xsi:type="gmfgraph:GridLayoutData"/>
+          <insets
+              top="5"
+              left="5"
+              bottom="5"
+              right="5"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:Rectangle"
+            name="ActivityPartitionContent"
+            outline="false"
+            fill="false">
+          <layoutData
+              xsi:type="gmfgraph:GridLayoutData"
+              grabExcessHorizontalSpace="true"
+              grabExcessVerticalSpace="true"
+              verticalAlignment="FILL"
+              horizontalAlignment="FILL"/>
+        </children>
+      </actualFigure>
+      <accessors
+          accessor="getActivityPartitionCompartment"
+          figure="//@figures.0/@descriptors.20/@actualFigure/@children.1"/>
+      <accessors
+          accessor="getPartitionLabel"
+          figure="//@figures.0/@descriptors.20/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="ExpansionNodeDescriptor">
+      <actualFigure
+          xsi:type="gmfgraph:ScalablePolygon">
+        <maximumSize
+            dx="48"
+            dy="16"/>
+        <template/>
+        <template
+            y="16"/>
+        <template
+            x="48"
+            y="16"/>
+        <template
+            x="48"/>
+        <template
+            x="36"/>
+        <template
+            x="36"
+            y="16"/>
+        <template
+            x="36"/>
+        <template
+            x="24"/>
+        <template
+            x="24"
+            y="16"/>
+        <template
+            x="24"/>
+        <template
+            x="12"/>
+        <template
+            x="12"
+            y="16"/>
+        <template
+            x="12"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="ExceptionHandlerDescriptor">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="ExceptionHandlerPolyline"
+          targetDecoration="//@figures.0/@descriptors.22/@actualFigure/@children.0">
+        <children
+            xsi:type="gmfgraph:PolylineDecoration"
+            name="ExceptionHandlerArrow">
+          <template
+              x="-2"
+              y="2"/>
+          <template/>
+          <template
+              x="-2"
+              y="-2"/>
+        </children>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="ObjectNodeDescriptor">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="ObjectNodeFigure">
+        <layout
+            xsi:type="gmfgraph:GridLayout"/>
+        <preferredSize
+            dx="100"
+            dy="50"/>
+        <children
+            xsi:type="gmfgraph:Rectangle"
+            name="ObjectNodeLabelRect"
+            outline="false"
+            fill="false">
+          <layoutData
+              xsi:type="gmfgraph:GridLayoutData"
+              grabExcessHorizontalSpace="true"
+              grabExcessVerticalSpace="true"
+              verticalAlignment="FILL"
+              horizontalAlignment="FILL"/>
+          <layout
+              xsi:type="gmfgraph:CustomLayout"
+              qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
+          <children
+              xsi:type="gmfgraph:CustomFigure"
+              name="ObjectNodeLabel"
+              qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel">
+            <insets
+                top="5"
+                left="5"
+                bottom="5"
+                right="5"/>
+          </children>
+        </children>
+      </actualFigure>
+      <accessors
+          accessor="getObjectNodeLabel"
+          figure="//@figures.0/@descriptors.23/@actualFigure/@children.0/@children.0"/>
     </descriptors>
   </figures>
   <nodes
@@ -565,7 +842,7 @@
       figure="FlowFinalNodeFigure"/>
   <nodes
       name="ActionNode"
-      figure="ActionFigure"/>
+      figure="ActionFigureDescriptor"/>
   <nodes
       name="BehaviorProperty"
       figure="CornerBentWithTextFigure"/>
@@ -595,12 +872,31 @@
   <nodes
       name="AcceptEventActionNode"
       figure="AcceptEventActionFigure"/>
+  <nodes
+      name="StructuredActivityNode"
+      figure="StructuredActivityNodeDescriptor"/>
+  <nodes
+      name="InterruptibleActivityRegionNode"
+      figure="InterruptibleActivityRegionDescriptor"/>
+  <nodes
+      name="ActivityPartitionNode"
+      figure="ActivityPartitionDescriptor"/>
+  <nodes
+      name="ExpansionNode"
+      figure="ExpansionNodeDescriptor"
+      affixedParentSide="NSEW"/>
+  <nodes
+      name="ObjectNode"
+      figure="ObjectNodeDescriptor"/>
   <connections
       name="CornerBentWithTextLinkConnection"
       figure="DashedLinkDescriptor"/>
   <connections
       name="ActivityEdgeConnection"
       figure="ActivityEdgeDescriptor"/>
+  <connections
+      name="ExceptionHandlerConnection"
+      figure="ExceptionHandlerDescriptor"/>
   <compartments
       name="ActivityParametersCompartment"
       figure="CustomActivityRectangleFigure"
@@ -617,6 +913,18 @@
       name="ActivityContentCompartment"
       figure="CustomActivityRectangleFigure"
       accessor="//@figures.0/@descriptors.0/@accessors.5"/>
+  <compartments
+      name="StructuredActivityNodeContentCompartment"
+      figure="StructuredActivityNodeDescriptor"
+      accessor="//@figures.0/@descriptors.18/@accessors.0"/>
+  <compartments
+      name="InterruptibleActivityRegionContentCompartment"
+      figure="InterruptibleActivityRegionDescriptor"
+      accessor="//@figures.0/@descriptors.19/@accessors.0"/>
+  <compartments
+      name="ActivityPartitionContentCompartment"
+      figure="ActivityPartitionDescriptor"
+      accessor="//@figures.0/@descriptors.20/@accessors.0"/>
   <labels
       name="ActivityName"
       figure="CustomActivityRectangleFigure"
@@ -649,7 +957,7 @@
   </labels>
   <labels
       name="ActionName"
-      figure="ActionFigure"
+      figure="ActionFigureDescriptor"
       elementIcon="false"
       accessor="//@figures.0/@descriptors.5/@accessors.0">
     <facets
@@ -758,6 +1066,51 @@
       figure="CommonLabelFigure"
       affixedParentSide="SOUTH"
       elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
+  <labels
+      name="ActivityEdgeAppliedStereotypeDiagramLabel"
+      figure="ActivityEdgeDescriptor"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.9/@accessors.2">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
+  <labels
+      name="AppliedStereotypeExternalLabel"
+      figure="AppliedStereotypeWrappingLabelFigure"/>
+  <labels
+      name="ActivityPartitionLabel"
+      figure="ActivityPartitionDescriptor"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.20/@accessors.1">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
+  <labels
+      name="StructuredActivityNodeKeyword"
+      figure="StructuredActivityNodeDescriptor"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.18/@accessors.1">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"/>
+  </labels>
+  <labels
+      name="ExceptionHandlerTypeLabel"
+      figure="CommonLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"/>
+  </labels>
+  <labels
+      name="ObjectNodeName"
+      figure="ObjectNodeDescriptor"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.23/@accessors.0">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
         alignment="CENTER"/>

@@ -21,10 +21,12 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ObjectFlowItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.figures.WrappedLabel;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.figure.edge.UMLEdgeFigure;
 
 /**
  * @generated
@@ -51,12 +53,17 @@ implements ITreeBranchEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ObjectFlowItemSemanticEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
+		if(childEditPart instanceof ObjectFlowAppliedStereotypeEditPart) {
+			((ObjectFlowAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			return true;
+		}
 		return false;
 	}
 
@@ -74,6 +81,9 @@ implements ITreeBranchEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
+		if(childEditPart instanceof ObjectFlowAppliedStereotypeEditPart) {
+			return true;
+		}
 		return false;
 	}
 
@@ -108,9 +118,9 @@ implements ITreeBranchEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT inherits from UMLEdgeFigure to manage stereotype label
 	 */
-	public class ActivityEdgeDescriptor extends PolylineConnectionEx {
+	public class ActivityEdgeDescriptor extends UMLEdgeFigure {
 
 		/**
 		 * @generated
@@ -125,10 +135,29 @@ implements ITreeBranchEditPart {
 		/**
 		 * @generated
 		 */
-		public ActivityEdgeDescriptor() {
-			this.setLineWidth(1);
+		private WrappedLabel fAppliedStereotypeLabel;
 
+		/**
+		 * @generated NOT call the super constructor
+		 */
+		public ActivityEdgeDescriptor() {
+			super();
+			this.setLineWidth(1);
 			setTargetDecoration(createTargetDecoration());
+		}
+
+		/**
+		 * @generated NOT
+		 */
+		protected void createContents() {
+			super.createContents();
+
+			//fAppliedStereotypeLabel = new WrappingLabel();
+			//fAppliedStereotypeLabel.setText("");
+
+			//this.add(fAppliedStereotypeLabel);
+
+
 		}
 
 		/**
@@ -158,6 +187,13 @@ implements ITreeBranchEditPart {
 		 */
 		public WrappedLabel getEdgeWeight() {
 			return fEdgeWeight;
+		}
+
+		/**
+		 * @generated NOT get the stereotype label of super class
+		 */
+		public WrappingLabel getAppliedStereotypeLabel() {
+			return super.getAppliedStereotypeLabel();
 		}
 
 	}

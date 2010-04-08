@@ -56,6 +56,11 @@ public class Messages extends NLS {
 	/**
 	 * @generated NOT
 	 */
+	public static String CreatePinsForObjectFlowDialog_PinCreationHelp;
+
+	/**
+	 * @generated NOT
+	 */
 	public static String CreatePinsForObjectFlowDialog_Name;
 
 	/**
@@ -405,6 +410,16 @@ public class Messages extends NLS {
 	public static String ActivityEdgePreferencePage_showName;
 
 	/**
+	 * @generated NOT
+	 */
+	public static String ForkJoinSegmentSwitchOrientation_actionLabel;
+
+	/**
+	 * @generated NOT
+	 */
+	public static String ForkJoinSegmentSwitchOrientation_helpMessage;
+
+	/**
 	 * @generated
 	 */
 	public static String UMLCreationWizardTitle;
@@ -637,17 +652,22 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Pins3Group_title;
+	public static String Groups3Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Edges4Group_title;
+	public static String Pins4Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ActionsLocalConditions5Group_title;
+	public static String Edges5Group_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ActionsLocalConditions6Group_title;
 
 	/**
 	 * @generated
@@ -732,6 +752,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String DataStoreNode9CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String DataStoreNode9CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String OpaqueAction1CreationTool_title;
 
 	/**
@@ -792,6 +822,86 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String ValueSpecificationAction7CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ValueSpecificationAction7CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String ActivityPartition1CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ActivityPartition1CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String InterruptibleActivityRegion2CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String InterruptibleActivityRegion2CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String StructuredActivityNode3CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String StructuredActivityNode3CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String ConditionalNode4CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ConditionalNode4CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String ExpansionRegion5CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ExpansionRegion5CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String LoopNode6CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String LoopNode6CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String SequenceNode7CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String SequenceNode7CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String OutputPin1CreationTool_title;
 
 	/**
@@ -832,6 +942,26 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String InputExpansionNode5CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String InputExpansionNode5CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String OutputExpansionNode6CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String OutputExpansionNode6CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String ControlFlow1CreationTool_title;
 
 	/**
@@ -848,6 +978,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String ObjectFlow2CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String ExceptionHandler3CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ExceptionHandler3CreationTool_desc;
 
 	/**
 	 * @generated
@@ -968,6 +1108,41 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String ActivityActivityContentCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ActivityPartitionActivityPartitionContentCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ConditionalNodeStructuredActivityNodeContentCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ExpansionRegionStructuredActivityNodeContentCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String LoopNodeStructuredActivityNodeContentCompartmentEditPart_title;
+
+	/**
+	 * @generated
+	 */
+	public static String SequenceNodeStructuredActivityNodeContentCompartmentEditPart_title;
 
 	/**
 	 * @generated
@@ -1422,6 +1597,106 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_StructuredActivityNode_3065_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_StructuredActivityNode_3065_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ValueSpecificationAction_3076_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ValueSpecificationAction_3076_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_OutputPin_3077_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_OutputPin_3077_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DataStoreNode_3078_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DataStoreNode_3078_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ConditionalNode_3069_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ConditionalNode_3069_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ExpansionRegion_3070_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ExpansionRegion_3070_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ExpansionNode_3074_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ExpansionNode_3074_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ExpansionNode_3075_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ExpansionNode_3075_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_LoopNode_3071_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_LoopNode_3071_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_SequenceNode_3073_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_SequenceNode_3073_incominglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_InteractionConstraint_3030_incominglinks;
 
 	/**
@@ -1498,6 +1773,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_ControlFlow_4004_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ExceptionHandler_4005_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ExceptionHandler_4005_source;
 
 	/**
 	 * @generated

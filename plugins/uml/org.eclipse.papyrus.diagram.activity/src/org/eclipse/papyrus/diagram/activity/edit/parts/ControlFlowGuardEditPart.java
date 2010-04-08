@@ -117,7 +117,7 @@ public class ControlFlowGuardEditPart extends LabelEditPart implements ITextAwar
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowGuardEditPart.VISUAL_ID), new Point(0, 80));
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowGuardEditPart.VISUAL_ID), new Point(0, 20));
 	}
 
 	/**

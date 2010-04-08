@@ -181,6 +181,7 @@ public class CreateParameterDialog extends FormDialog {
 		pToolkit.createLabel(lBody, getNameLabel(), SWT.NONE);
 		creationNameText = pToolkit.createText(lBody, "", SWT.BORDER);
 		creationNameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
+		creationNameText.setFocus();
 
 		// manage type selection
 		pToolkit.createLabel(lBody, getTypeLabel(), SWT.NONE);

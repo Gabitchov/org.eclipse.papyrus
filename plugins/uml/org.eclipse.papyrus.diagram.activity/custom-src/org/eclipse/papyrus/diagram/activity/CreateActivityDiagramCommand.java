@@ -20,10 +20,12 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
+import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityDiagramEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Activity;
+import org.eclipse.uml2.uml.BehavioredClassifier;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -38,6 +40,9 @@ public class CreateActivityDiagramCommand extends AbstractPapyrusGmfCreateDiagra
 	/** the activity containing the diagram */
 	private Activity activity = null;
 
+	/** the chosen name for the diagram */
+	private String diagramName = null;
+
 	@Override
 	protected String getDiagramNotationID() {
 		return ActivityDiagramEditPart.MODEL_ID;
@@ -46,6 +51,22 @@ public class CreateActivityDiagramCommand extends AbstractPapyrusGmfCreateDiagra
 	@Override
 	protected PreferencesHint getPreferenceHint() {
 		return UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
+	}
+
+	@Override
+	protected void runAsTransaction(DiResourceSet diResourceSet, EObject container, String name) {
+		if(name == null && container instanceof Activity) {
+			String activityName = ((Activity)container).getName();
+			if(activityName != null && !"".equals(activityName)) {
+				// initialize name with activity's name
+				name = openDiagramNameDialog(((Activity)container).getName());
+				if(name == null) {
+					// operation canceled
+					return;
+				}
+			}
+		}
+		super.runAsTransaction(diResourceSet, container, name);
 	}
 
 	@Override
@@ -80,7 +101,19 @@ public class CreateActivityDiagramCommand extends AbstractPapyrusGmfCreateDiagra
 				activity = (Activity)selectedElement;
 			} else if(selectedElement instanceof Package) {
 				// Create the activity
-				activity = (Activity)((Package)selectedElement).createPackagedElement("", UMLPackage.eINSTANCE.getActivity());
+				String name = "";
+				if(diagramName != null) {
+					name = diagramName;
+				}
+				activity = (Activity)((Package)selectedElement).createPackagedElement(name, UMLPackage.eINSTANCE.getActivity());
+				ElementInitializers.init_Activity_2001(activity);
+			} else if(selectedElement instanceof BehavioredClassifier) {
+				// Create the activity
+				String name = "";
+				if(diagramName != null) {
+					name = diagramName;
+				}
+				activity = (Activity)((BehavioredClassifier)selectedElement).createOwnedBehavior(name, UMLPackage.eINSTANCE.getActivity());
 				ElementInitializers.init_Activity_2001(activity);
 			}
 		}
@@ -88,8 +121,9 @@ public class CreateActivityDiagramCommand extends AbstractPapyrusGmfCreateDiagra
 
 	@Override
 	protected Diagram createDiagram(Resource diagramResource, EObject owner, String name) {
+		diagramName = name;
 		Diagram diagram = null;
-		if(owner instanceof Package) {
+		if(owner instanceof Package || owner instanceof BehavioredClassifier) {
 			diagram = super.createDiagram(diagramResource, owner, name);
 		} else {
 			if(owner instanceof Element) {

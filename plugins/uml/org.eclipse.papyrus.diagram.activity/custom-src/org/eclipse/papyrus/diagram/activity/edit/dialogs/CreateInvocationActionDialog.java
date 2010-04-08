@@ -326,6 +326,7 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 		pToolkit.createLabel(lBody, getInvokedNameLabel(), SWT.NONE);
 		creationNameText = pToolkit.createText(lBody, "", SWT.BORDER);
 		creationNameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
+		creationNameText.setFocus();
 
 		pToolkit.createLabel(lBody, getInvokedParentLabel(), SWT.NONE);
 		creationParentText = pToolkit.createText(lBody, labelProvider.getText(selectedParent), SWT.BORDER | SWT.READ_ONLY);
@@ -588,6 +589,7 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 			creationTypeCombo.setEnabled(!isSelectionSelected);
 		}
 		creationNameText.setEnabled(!isSelectionSelected);
+		creationNameText.setFocus();
 		creationParentText.setEnabled(!isSelectionSelected);
 		creationParentButton.setEnabled(!isSelectionSelected);
 	}

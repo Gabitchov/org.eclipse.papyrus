@@ -43,16 +43,23 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityDiagramEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityParameterNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ExceptionHandlerEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionNodeAsInEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionNodeAsOutEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionRegionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.FlowFinalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ForkNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeEditPart;
@@ -66,9 +73,11 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendSigActAsTar
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendSigActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InterruptibleActivityRegionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.JoinNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.LoopNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.MergeNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionEditPart;
@@ -76,9 +85,12 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInAcceptEventAct
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOpaqueActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInValSpecActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ParameterEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallBeActEditPart;
@@ -89,20 +101,28 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendObjActAsReq
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendObjActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ValueSpecificationActionEditPart;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.uml2.uml.Action;
 import org.eclipse.uml2.uml.ActionInputPin;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityFinalNode;
+import org.eclipse.uml2.uml.ActivityGroup;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ActivityParameterNode;
 import org.eclipse.uml2.uml.CallBehaviorAction;
 import org.eclipse.uml2.uml.CallOperationAction;
+import org.eclipse.uml2.uml.ConditionalNode;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.ControlFlow;
+import org.eclipse.uml2.uml.DataStoreNode;
 import org.eclipse.uml2.uml.DecisionNode;
 import org.eclipse.uml2.uml.DurationConstraint;
+import org.eclipse.uml2.uml.ExceptionHandler;
+import org.eclipse.uml2.uml.ExecutableNode;
+import org.eclipse.uml2.uml.ExpansionNode;
+import org.eclipse.uml2.uml.ExpansionRegion;
 import org.eclipse.uml2.uml.FlowFinalNode;
 import org.eclipse.uml2.uml.ForkNode;
 import org.eclipse.uml2.uml.InitialNode;
@@ -110,8 +130,10 @@ import org.eclipse.uml2.uml.InputPin;
 import org.eclipse.uml2.uml.InteractionConstraint;
 import org.eclipse.uml2.uml.IntervalConstraint;
 import org.eclipse.uml2.uml.JoinNode;
+import org.eclipse.uml2.uml.LoopNode;
 import org.eclipse.uml2.uml.MergeNode;
 import org.eclipse.uml2.uml.ObjectFlow;
+import org.eclipse.uml2.uml.ObjectNode;
 import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.OutputPin;
 import org.eclipse.uml2.uml.Package;
@@ -119,9 +141,12 @@ import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.SendObjectAction;
 import org.eclipse.uml2.uml.SendSignalAction;
+import org.eclipse.uml2.uml.SequenceNode;
+import org.eclipse.uml2.uml.StructuredActivityNode;
 import org.eclipse.uml2.uml.TimeConstraint;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValuePin;
+import org.eclipse.uml2.uml.ValueSpecificationAction;
 
 /**
  * @generated
@@ -147,6 +172,10 @@ public class UMLDiagramUpdater {
 			return getSendSignalAction_3052SemanticChildren(view);
 		case AcceptEventActionEditPart.VISUAL_ID:
 			return getAcceptEventAction_3063SemanticChildren(view);
+		case ExpansionRegionEditPart.VISUAL_ID:
+			return getExpansionRegion_3070SemanticChildren(view);
+		case ValueSpecificationActionEditPart.VISUAL_ID:
+			return getValueSpecificationAction_3076SemanticChildren(view);
 		case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 			return getActivityActivityParametersCompartment_7001SemanticChildren(view);
 		case ActivityActivityPreConditionsCompartmentEditPart.VISUAL_ID:
@@ -404,6 +433,53 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List getExpansionRegion_3070SemanticChildren(View view) {
+		if(!view.isSetElement()) {
+			return Collections.EMPTY_LIST;
+		}
+		ExpansionRegion modelElement = (ExpansionRegion)view.getElement();
+		List result = new LinkedList();
+		for(Iterator it = modelElement.getInputElements().iterator(); it.hasNext();) {
+			ExpansionNode childElement = (ExpansionNode)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ExpansionNodeAsInEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for(Iterator it = modelElement.getOutputElements().iterator(); it.hasNext();) {
+			ExpansionNode childElement = (ExpansionNode)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ExpansionNodeAsOutEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getValueSpecificationAction_3076SemanticChildren(View view) {
+		if(!view.isSetElement()) {
+			return Collections.EMPTY_LIST;
+		}
+		ValueSpecificationAction modelElement = (ValueSpecificationAction)view.getElement();
+		List result = new LinkedList();
+		{
+			OutputPin childElement = modelElement.getResult();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == OutputPinInValSpecActEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List getActivityActivityParametersCompartment_7001SemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
 			return Collections.EMPTY_LIST;
@@ -542,6 +618,46 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			if(visualID == AcceptEventActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ValueSpecificationActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == DataStoreNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		for(Iterator it = modelElement.getGroups().iterator(); it.hasNext();) {
+			ActivityGroup childElement = (ActivityGroup)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ConditionalNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ExpansionRegionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == LoopNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == SequenceNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == StructuredActivityNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ActivityPartitionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == InterruptibleActivityRegionEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -757,10 +873,36 @@ public class UMLDiagramUpdater {
 			return getAcceptEventAction_3063ContainedLinks(view);
 		case OutputPinInAcceptEventActionEditPart.VISUAL_ID:
 			return getOutputPin_3064ContainedLinks(view);
+		case ConditionalNodeEditPart.VISUAL_ID:
+			return getConditionalNode_3069ContainedLinks(view);
+		case ExpansionRegionEditPart.VISUAL_ID:
+			return getExpansionRegion_3070ContainedLinks(view);
+		case ExpansionNodeAsInEditPart.VISUAL_ID:
+			return getExpansionNode_3074ContainedLinks(view);
+		case ExpansionNodeAsOutEditPart.VISUAL_ID:
+			return getExpansionNode_3075ContainedLinks(view);
+		case LoopNodeEditPart.VISUAL_ID:
+			return getLoopNode_3071ContainedLinks(view);
+		case SequenceNodeEditPart.VISUAL_ID:
+			return getSequenceNode_3073ContainedLinks(view);
+		case StructuredActivityNodeEditPart.VISUAL_ID:
+			return getStructuredActivityNode_3065ContainedLinks(view);
+		case ActivityPartitionEditPart.VISUAL_ID:
+			return getActivityPartition_3067ContainedLinks(view);
+		case InterruptibleActivityRegionEditPart.VISUAL_ID:
+			return getInterruptibleActivityRegion_3068ContainedLinks(view);
+		case ValueSpecificationActionEditPart.VISUAL_ID:
+			return getValueSpecificationAction_3076ContainedLinks(view);
+		case OutputPinInValSpecActEditPart.VISUAL_ID:
+			return getOutputPin_3077ContainedLinks(view);
+		case DataStoreNodeEditPart.VISUAL_ID:
+			return getDataStoreNode_3078ContainedLinks(view);
 		case ObjectFlowEditPart.VISUAL_ID:
 			return getObjectFlow_4003ContainedLinks(view);
 		case ControlFlowEditPart.VISUAL_ID:
 			return getControlFlow_4004ContainedLinks(view);
+		case ExceptionHandlerEditPart.VISUAL_ID:
+			return getExceptionHandler_4005ContainedLinks(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -882,10 +1024,36 @@ public class UMLDiagramUpdater {
 			return getAcceptEventAction_3063IncomingLinks(view);
 		case OutputPinInAcceptEventActionEditPart.VISUAL_ID:
 			return getOutputPin_3064IncomingLinks(view);
+		case ConditionalNodeEditPart.VISUAL_ID:
+			return getConditionalNode_3069IncomingLinks(view);
+		case ExpansionRegionEditPart.VISUAL_ID:
+			return getExpansionRegion_3070IncomingLinks(view);
+		case ExpansionNodeAsInEditPart.VISUAL_ID:
+			return getExpansionNode_3074IncomingLinks(view);
+		case ExpansionNodeAsOutEditPart.VISUAL_ID:
+			return getExpansionNode_3075IncomingLinks(view);
+		case LoopNodeEditPart.VISUAL_ID:
+			return getLoopNode_3071IncomingLinks(view);
+		case SequenceNodeEditPart.VISUAL_ID:
+			return getSequenceNode_3073IncomingLinks(view);
+		case StructuredActivityNodeEditPart.VISUAL_ID:
+			return getStructuredActivityNode_3065IncomingLinks(view);
+		case ActivityPartitionEditPart.VISUAL_ID:
+			return getActivityPartition_3067IncomingLinks(view);
+		case InterruptibleActivityRegionEditPart.VISUAL_ID:
+			return getInterruptibleActivityRegion_3068IncomingLinks(view);
+		case ValueSpecificationActionEditPart.VISUAL_ID:
+			return getValueSpecificationAction_3076IncomingLinks(view);
+		case OutputPinInValSpecActEditPart.VISUAL_ID:
+			return getOutputPin_3077IncomingLinks(view);
+		case DataStoreNodeEditPart.VISUAL_ID:
+			return getDataStoreNode_3078IncomingLinks(view);
 		case ObjectFlowEditPart.VISUAL_ID:
 			return getObjectFlow_4003IncomingLinks(view);
 		case ControlFlowEditPart.VISUAL_ID:
 			return getControlFlow_4004IncomingLinks(view);
+		case ExceptionHandlerEditPart.VISUAL_ID:
+			return getExceptionHandler_4005IncomingLinks(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -1007,10 +1175,36 @@ public class UMLDiagramUpdater {
 			return getAcceptEventAction_3063OutgoingLinks(view);
 		case OutputPinInAcceptEventActionEditPart.VISUAL_ID:
 			return getOutputPin_3064OutgoingLinks(view);
+		case ConditionalNodeEditPart.VISUAL_ID:
+			return getConditionalNode_3069OutgoingLinks(view);
+		case ExpansionRegionEditPart.VISUAL_ID:
+			return getExpansionRegion_3070OutgoingLinks(view);
+		case ExpansionNodeAsInEditPart.VISUAL_ID:
+			return getExpansionNode_3074OutgoingLinks(view);
+		case ExpansionNodeAsOutEditPart.VISUAL_ID:
+			return getExpansionNode_3075OutgoingLinks(view);
+		case LoopNodeEditPart.VISUAL_ID:
+			return getLoopNode_3071OutgoingLinks(view);
+		case SequenceNodeEditPart.VISUAL_ID:
+			return getSequenceNode_3073OutgoingLinks(view);
+		case StructuredActivityNodeEditPart.VISUAL_ID:
+			return getStructuredActivityNode_3065OutgoingLinks(view);
+		case ActivityPartitionEditPart.VISUAL_ID:
+			return getActivityPartition_3067OutgoingLinks(view);
+		case InterruptibleActivityRegionEditPart.VISUAL_ID:
+			return getInterruptibleActivityRegion_3068OutgoingLinks(view);
+		case ValueSpecificationActionEditPart.VISUAL_ID:
+			return getValueSpecificationAction_3076OutgoingLinks(view);
+		case OutputPinInValSpecActEditPart.VISUAL_ID:
+			return getOutputPin_3077OutgoingLinks(view);
+		case DataStoreNodeEditPart.VISUAL_ID:
+			return getDataStoreNode_3078OutgoingLinks(view);
 		case ObjectFlowEditPart.VISUAL_ID:
 			return getObjectFlow_4003OutgoingLinks(view);
 		case ControlFlowEditPart.VISUAL_ID:
 			return getControlFlow_4004OutgoingLinks(view);
+		case ExceptionHandlerEditPart.VISUAL_ID:
+			return getExceptionHandler_4005OutgoingLinks(view);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -1083,6 +1277,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
 		return result;
 	}
 
@@ -1122,6 +1317,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
 		return result;
 	}
 
@@ -1161,6 +1357,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
 		return result;
 	}
 
@@ -1263,6 +1460,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
 		return result;
 	}
 
@@ -1316,6 +1514,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
 		return result;
 	}
 
@@ -1376,6 +1575,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
 		return result;
 	}
 
@@ -1384,6 +1584,120 @@ public class UMLDiagramUpdater {
 	 */
 	public static List getOutputPin_3064ContainedLinks(View view) {
 		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getStructuredActivityNode_3065ContainedLinks(View view) {
+		StructuredActivityNode modelElement = (StructuredActivityNode)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getActivityPartition_3067ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getInterruptibleActivityRegion_3068ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getValueSpecificationAction_3076ContainedLinks(View view) {
+		ValueSpecificationAction modelElement = (ValueSpecificationAction)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getOutputPin_3077ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getDataStoreNode_3078ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getConditionalNode_3069ContainedLinks(View view) {
+		ConditionalNode modelElement = (ConditionalNode)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getExpansionRegion_3070ContainedLinks(View view) {
+		ExpansionRegion modelElement = (ExpansionRegion)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getExpansionNode_3074ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getExpansionNode_3075ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getLoopNode_3071ContainedLinks(View view) {
+		LoopNode modelElement = (LoopNode)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getSequenceNode_3073ContainedLinks(View view) {
+		SequenceNode modelElement = (SequenceNode)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
+		return result;
 	}
 
 	/**
@@ -1453,6 +1767,13 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List getControlFlow_4004ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getExceptionHandler_4005ContainedLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
 
@@ -1541,6 +1862,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1553,6 +1875,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1565,6 +1888,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1577,6 +1901,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1601,6 +1926,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1613,6 +1939,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1625,6 +1952,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1637,6 +1965,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1661,6 +1990,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1673,6 +2003,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1685,6 +2016,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1697,6 +2029,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1709,6 +2042,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1721,6 +2055,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1733,6 +2068,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1829,6 +2165,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1841,6 +2178,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1853,6 +2191,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1865,6 +2204,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1877,6 +2217,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1889,6 +2230,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1913,6 +2255,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1925,6 +2268,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1937,6 +2281,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1949,6 +2294,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1961,6 +2307,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1973,6 +2320,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -1985,6 +2333,7 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
 		return result;
 	}
 
@@ -2005,6 +2354,145 @@ public class UMLDiagramUpdater {
 	 */
 	public static List getOutputPin_3064IncomingLinks(View view) {
 		OutputPin modelElement = (OutputPin)view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getStructuredActivityNode_3065IncomingLinks(View view) {
+		StructuredActivityNode modelElement = (StructuredActivityNode)view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getActivityPartition_3067IncomingLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getInterruptibleActivityRegion_3068IncomingLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getValueSpecificationAction_3076IncomingLinks(View view) {
+		ValueSpecificationAction modelElement = (ValueSpecificationAction)view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getOutputPin_3077IncomingLinks(View view) {
+		OutputPin modelElement = (OutputPin)view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getDataStoreNode_3078IncomingLinks(View view) {
+		DataStoreNode modelElement = (DataStoreNode)view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getConditionalNode_3069IncomingLinks(View view) {
+		ConditionalNode modelElement = (ConditionalNode)view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getExpansionRegion_3070IncomingLinks(View view) {
+		ExpansionRegion modelElement = (ExpansionRegion)view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getExpansionNode_3074IncomingLinks(View view) {
+		ExpansionNode modelElement = (ExpansionNode)view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getExpansionNode_3075IncomingLinks(View view) {
+		ExpansionNode modelElement = (ExpansionNode)view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getLoopNode_3071IncomingLinks(View view) {
+		LoopNode modelElement = (LoopNode)view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getSequenceNode_3073IncomingLinks(View view) {
+		SequenceNode modelElement = (SequenceNode)view.getElement();
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
@@ -2125,6 +2613,13 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List getExceptionHandler_4005IncomingLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List getActivity_2001OutgoingLinks(View view) {
 		return Collections.EMPTY_LIST;
 	}
@@ -2193,6 +2688,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
 		return result;
 	}
 
@@ -2250,6 +2746,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
 		return result;
 	}
 
@@ -2307,6 +2804,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
 		return result;
 	}
 
@@ -2455,6 +2953,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
 		return result;
 	}
 
@@ -2534,6 +3033,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
 		return result;
 	}
 
@@ -2624,6 +3124,7 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
 		return result;
 	}
 
@@ -2635,6 +3136,148 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getStructuredActivityNode_3065OutgoingLinks(View view) {
+		StructuredActivityNode modelElement = (StructuredActivityNode)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getActivityPartition_3067OutgoingLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getInterruptibleActivityRegion_3068OutgoingLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getValueSpecificationAction_3076OutgoingLinks(View view) {
+		ValueSpecificationAction modelElement = (ValueSpecificationAction)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getOutputPin_3077OutgoingLinks(View view) {
+		OutputPin modelElement = (OutputPin)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getDataStoreNode_3078OutgoingLinks(View view) {
+		DataStoreNode modelElement = (DataStoreNode)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getConditionalNode_3069OutgoingLinks(View view) {
+		ConditionalNode modelElement = (ConditionalNode)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getExpansionRegion_3070OutgoingLinks(View view) {
+		ExpansionRegion modelElement = (ExpansionRegion)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getExpansionNode_3074OutgoingLinks(View view) {
+		ExpansionNode modelElement = (ExpansionNode)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getExpansionNode_3075OutgoingLinks(View view) {
+		ExpansionNode modelElement = (ExpansionNode)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getLoopNode_3071OutgoingLinks(View view) {
+		LoopNode modelElement = (LoopNode)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getSequenceNode_3073OutgoingLinks(View view) {
+		SequenceNode modelElement = (SequenceNode)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
 		return result;
 	}
 
@@ -2711,6 +3354,13 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List getExceptionHandler_4005OutgoingLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
 	private static Collection getContainedTypeModelFacetLinks_ObjectFlow_4003(Activity container) {
 		Collection result = new LinkedList();
 		for(Iterator links = container.getEdges().iterator(); links.hasNext();) {
@@ -2758,6 +3408,34 @@ public class UMLDiagramUpdater {
 			ActivityNode dst = link.getTarget();
 			ActivityNode src = link.getSource();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.ControlFlow_4004, ControlFlowEditPart.VISUAL_ID));
+
+
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection getContainedTypeModelFacetLinks_ExceptionHandler_4005(ExecutableNode container) {
+		Collection result = new LinkedList();
+		for(Iterator links = container.getHandlers().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject)links.next();
+			if(false == linkObject instanceof ExceptionHandler) {
+				continue;
+			}
+			ExceptionHandler link = (ExceptionHandler)linkObject;
+			if(ExceptionHandlerEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+
+
+
+
+
+			ObjectNode dst = link.getExceptionInput();
+			ExecutableNode src = link.getProtectedNode();
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.ExceptionHandler_4005, ExceptionHandlerEditPart.VISUAL_ID));
 
 
 		}
@@ -2832,6 +3510,27 @@ public class UMLDiagramUpdater {
 			}
 			ActivityNode src = link.getSource();
 			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.ControlFlow_4004, ControlFlowEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection getIncomingTypeModelFacetLinks_ExceptionHandler_4005(ObjectNode target, Map crossReferences) {
+		Collection result = new LinkedList();
+		Collection settings = (Collection)crossReferences.get(target);
+		for(Iterator it = settings.iterator(); it.hasNext();) {
+			EStructuralFeature.Setting setting = (EStructuralFeature.Setting)it.next();
+			if(setting.getEStructuralFeature() != UMLPackage.eINSTANCE.getExceptionHandler_ExceptionInput() || false == setting.getEObject() instanceof ExceptionHandler) {
+				continue;
+			}
+			ExceptionHandler link = (ExceptionHandler)setting.getEObject();
+			if(ExceptionHandlerEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+			ExecutableNode src = link.getProtectedNode();
+			result.add(new UMLLinkDescriptor(src, target, link, UMLElementTypes.ExceptionHandler_4005, ExceptionHandlerEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -2940,6 +3639,49 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.ControlFlow_4004, ControlFlowEditPart.VISUAL_ID));
+
+
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection getOutgoingTypeModelFacetLinks_ExceptionHandler_4005(ExecutableNode source) {
+		ExecutableNode container = null;
+		// Find container element for the link.
+		// Climb up by containment hierarchy starting from the source
+		// and return the first element that is instance of the container class.
+		for(EObject element = source; element != null && container == null; element = element.eContainer()) {
+			if(element instanceof ExecutableNode) {
+				container = (ExecutableNode)element;
+			}
+		}
+		if(container == null) {
+			return Collections.EMPTY_LIST;
+		}
+		Collection result = new LinkedList();
+		for(Iterator links = container.getHandlers().iterator(); links.hasNext();) {
+			EObject linkObject = (EObject)links.next();
+			if(false == linkObject instanceof ExceptionHandler) {
+				continue;
+			}
+			ExceptionHandler link = (ExceptionHandler)linkObject;
+			if(ExceptionHandlerEditPart.VISUAL_ID != UMLVisualIDRegistry.getLinkWithClassVisualID(link)) {
+				continue;
+			}
+
+
+
+
+
+			ObjectNode dst = link.getExceptionInput();
+			ExecutableNode src = link.getProtectedNode();
+			if(src != source) {
+				continue;
+			}
+			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.ExceptionHandler_4005, ExceptionHandlerEditPart.VISUAL_ID));
 
 
 		}

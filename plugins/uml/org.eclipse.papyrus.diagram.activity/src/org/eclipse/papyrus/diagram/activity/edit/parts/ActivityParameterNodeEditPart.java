@@ -16,7 +16,10 @@ package org.eclipse.papyrus.diagram.activity.edit.parts;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.GridData;
+import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
@@ -35,6 +38,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -45,19 +49,25 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ActivityParameterNodeItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel;
+import org.eclipse.papyrus.diagram.activity.helper.StereotypeFigureHelper;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.draw2d.CenterLayout;
+import org.eclipse.papyrus.diagram.common.editparts.IPapyrusEditPart;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Image;
 
 /**
- * @generated
+ * @generated NOT implements IPapyrusEditPart
  */
 public class ActivityParameterNodeEditPart extends
 
-AbstractBorderItemEditPart {
+AbstractBorderItemEditPart implements IPapyrusEditPart {
 
 	/**
 	 * @generated
@@ -90,6 +100,7 @@ AbstractBorderItemEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ActivityParameterNodeItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -414,6 +425,36 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof OutputPinInAcceptEventActionEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof ConditionalNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof ExpansionRegionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof ExpansionNodeAsInEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof ExpansionNodeAsOutEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof LoopNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof SequenceNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof StructuredActivityNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof OutputPinInValSpecActEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof DataStoreNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof InitialNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
@@ -538,6 +579,36 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
 		if(targetEditPart instanceof OutputPinInAcceptEventActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof ConditionalNodeEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof ExpansionRegionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof ExpansionNodeAsInEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof ExpansionNodeAsOutEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof LoopNodeEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof SequenceNodeEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof StructuredActivityNodeEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof OutputPinInValSpecActEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof DataStoreNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
 		return types;
@@ -674,6 +745,36 @@ AbstractBorderItemEditPart {
 		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
 			types.add(UMLElementTypes.OutputPin_3064);
 		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.ConditionalNode_3069);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.ExpansionRegion_3070);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.ExpansionNode_3074);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.ExpansionNode_3075);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.LoopNode_3071);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.SequenceNode_3073);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.StructuredActivityNode_3065);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.ValueSpecificationAction_3076);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.OutputPin_3077);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.DataStoreNode_3078);
+		}
 		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 		}
@@ -800,6 +901,36 @@ AbstractBorderItemEditPart {
 		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.OutputPin_3064);
 		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.ConditionalNode_3069);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.ExpansionRegion_3070);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.ExpansionNode_3074);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.ExpansionNode_3075);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.LoopNode_3071);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.SequenceNode_3073);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.StructuredActivityNode_3065);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.ValueSpecificationAction_3076);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.OutputPin_3077);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.DataStoreNode_3078);
+		}
 		return types;
 	}
 
@@ -810,6 +941,7 @@ AbstractBorderItemEditPart {
 		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
 		types.add(UMLElementTypes.ObjectFlow_4003);
 		types.add(UMLElementTypes.ControlFlow_4004);
+		types.add(UMLElementTypes.ExceptionHandler_4005);
 		return types;
 	}
 
@@ -944,6 +1076,36 @@ AbstractBorderItemEditPart {
 		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
 			types.add(UMLElementTypes.OutputPin_3064);
 		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.ConditionalNode_3069);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.ExpansionRegion_3070);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.ExpansionNode_3074);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.ExpansionNode_3075);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.LoopNode_3071);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.SequenceNode_3073);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.StructuredActivityNode_3065);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.ValueSpecificationAction_3076);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.OutputPin_3077);
+		}
+		if(relationshipType == UMLElementTypes.ObjectFlow_4003) {
+			types.add(UMLElementTypes.DataStoreNode_3078);
+		}
 		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 		}
@@ -1070,33 +1232,122 @@ AbstractBorderItemEditPart {
 		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.OutputPin_3064);
 		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.ConditionalNode_3069);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.ExpansionRegion_3070);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.ExpansionNode_3074);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.ExpansionNode_3075);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.LoopNode_3071);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.SequenceNode_3073);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.StructuredActivityNode_3065);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.ValueSpecificationAction_3076);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.OutputPin_3077);
+		}
+		if(relationshipType == UMLElementTypes.ControlFlow_4004) {
+			types.add(UMLElementTypes.DataStoreNode_3078);
+		}
+		if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
+			types.add(UMLElementTypes.OpaqueAction_3007);
+		}
+		if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
+			types.add(UMLElementTypes.CallBehaviorAction_3008);
+		}
+		if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
+			types.add(UMLElementTypes.CallOperationAction_3010);
+		}
+		if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
+			types.add(UMLElementTypes.SendObjectAction_3042);
+		}
+		if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
+			types.add(UMLElementTypes.SendSignalAction_3052);
+		}
+		if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
+			types.add(UMLElementTypes.AcceptEventAction_3063);
+		}
+		if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
+			types.add(UMLElementTypes.ConditionalNode_3069);
+		}
+		if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
+			types.add(UMLElementTypes.ExpansionRegion_3070);
+		}
+		if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
+			types.add(UMLElementTypes.LoopNode_3071);
+		}
+		if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
+			types.add(UMLElementTypes.SequenceNode_3073);
+		}
+		if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
+			types.add(UMLElementTypes.StructuredActivityNode_3065);
+		}
+		if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
+			types.add(UMLElementTypes.ValueSpecificationAction_3076);
+		}
 		return types;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT implements IPapyrusNodeUMLElementFigure
 	 */
-	public class ActivityParameterNodeDescriptor extends RectangleFigure {
+	public class ActivityParameterNodeDescriptor extends RectangleFigure implements IPapyrusNodeUMLElementFigure {
 
 		/**
 		 * @generated
 		 */
 		private CenteredWrappedLabel fActivityParameterNodeLabel;
 
+		/** The helper which handles stereotype aspects */
+		private StereotypeFigureHelper stereotypeHelper;
+
 		/**
-		 * @generated
+		 * @generated NOT use StereotypeFigureHelper
 		 */
 		public ActivityParameterNodeDescriptor() {
 
-			CenterLayout layoutThis = new CenterLayout();
-
-
+			GridLayout layoutThis = new GridLayout();
+			layoutThis.numColumns = 1;
+			layoutThis.makeColumnsEqualWidth = true;
 			this.setLayoutManager(layoutThis);
 
 			this.setLineWidth(1);
 			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(100), getMapMode().DPtoLP(50)));
-			this.setMaximumSize(new Dimension(getMapMode().DPtoLP(300), getMapMode().DPtoLP(150)));
 			createContents();
+			// use StereotypeFigureHelper
+			stereotypeHelper = new StereotypeFigureHelper(this) {
+
+				@Override
+				public IMapMode getMapMode() {
+					return ActivityParameterNodeEditPart.this.getMapMode();
+				}
+
+				@Override
+				public Object getStereotypeRectangleConstraint() {
+					GridData constraintStereotypeRect0 = new GridData();
+					constraintStereotypeRect0.verticalAlignment = GridData.BEGINNING;
+					constraintStereotypeRect0.horizontalAlignment = GridData.FILL;
+					constraintStereotypeRect0.horizontalIndent = 0;
+					constraintStereotypeRect0.horizontalSpan = 1;
+					constraintStereotypeRect0.verticalSpan = 1;
+					constraintStereotypeRect0.grabExcessHorizontalSpace = false;
+					constraintStereotypeRect0.grabExcessVerticalSpace = false;
+					return constraintStereotypeRect0;
+				}
+			};
 		}
 
 		/**
@@ -1105,15 +1356,94 @@ AbstractBorderItemEditPart {
 		private void createContents() {
 
 
+			RectangleFigure labelRect0 = new RectangleFigure();
+			labelRect0.setFill(false);
+			labelRect0.setOutline(false);
+			labelRect0.setLineWidth(1);
+
+
+			GridData constraintLabelRect0 = new GridData();
+			constraintLabelRect0.verticalAlignment = GridData.FILL;
+			constraintLabelRect0.horizontalAlignment = GridData.FILL;
+			constraintLabelRect0.horizontalIndent = 0;
+			constraintLabelRect0.horizontalSpan = 1;
+			constraintLabelRect0.verticalSpan = 1;
+			constraintLabelRect0.grabExcessHorizontalSpace = true;
+			constraintLabelRect0.grabExcessVerticalSpace = true;
+			this.add(labelRect0, constraintLabelRect0);
+
+
+			CenterLayout layoutLabelRect0 = new CenterLayout();
+
+
+			labelRect0.setLayoutManager(layoutLabelRect0);
+
+
+
 			fActivityParameterNodeLabel = new CenteredWrappedLabel();
 
 
 
 			fActivityParameterNodeLabel.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
 
-			this.add(fActivityParameterNodeLabel);
+			labelRect0.add(fActivityParameterNodeLabel);
 
 
+
+		}
+
+		/**
+		 * Refresh the layout of the figure
+		 */
+		protected void refreshLayout() {
+		}
+
+		/**
+		 * Sets the stereotypes for this figure.
+		 * 
+		 * @param stereotypes
+		 *        the string representing the stereotypes to be displayed
+		 * @param image
+		 *        the image representing the stereotypes to be displayed
+		 * @see org.eclipse.papyrus.diagram.common.figure.node.IPapyrusUMLElementFigure#setStereotypeDisplay(java.lang.String,
+		 *      org.eclipse.swt.graphics.Image)
+		 */
+		public void setStereotypeDisplay(String stereotypes, Image image) {
+			stereotypeHelper.setStereotypeDisplay(stereotypes, image);
+			refreshLayout();
+		}
+
+		/**
+		 * Sets the stereotypes properties for this figure.
+		 * 
+		 * @param stereotypeProperties
+		 *        the string representing the stereotype properties to be displayed
+		 */
+		public void setStereotypePropertiesInBrace(String stereotypeProperties) {
+			stereotypeHelper.setStereotypePropertiesInBrace(stereotypeProperties);
+			refreshLayout();
+		}
+
+		/**
+		 * displays the new string corresponding to the list of stereotypes.
+		 * 
+		 * @param stereotypeProperties
+		 *        the string to be displayed.
+		 */
+		public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
+			stereotypeHelper.setStereotypePropertiesInCompartment(stereotypeProperties);
+			refreshLayout();
+		}
+
+		/**
+		 * Gets the stereotype label.
+		 * 
+		 * @return the stereotype label
+		 * @unused
+		 * @deprecated
+		 */
+		public Label getStereotypesLabel() {
+			return null;//fActionStereotypeLabel;
 		}
 
 		/**

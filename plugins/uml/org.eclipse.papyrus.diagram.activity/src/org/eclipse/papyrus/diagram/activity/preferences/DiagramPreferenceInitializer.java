@@ -31,10 +31,22 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		InteractionConstraintPreferencePage.initDefaults(store);
 
 
+		ValueSpecificationActionPreferencePage.initDefaults(store);
+
+
 		SendObjectActionPreferencePage.initDefaults(store);
 
 
+		SequenceNodePreferencePage.initDefaults(store);
+
+
 		SendSignalActionPreferencePage.initDefaults(store);
+
+
+		DataStoreNodePreferencePage.initDefaults(store);
+
+
+		LoopNodePreferencePage.initDefaults(store);
 
 
 		CallBehaviorActionPreferencePage.initDefaults(store);
@@ -46,6 +58,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		AcceptEventActionPreferencePage.initDefaults(store);
 
 
+		ConditionalNodePreferencePage.initDefaults(store);
+
+
 		DecisionNodePreferencePage.initDefaults(store);
 
 
@@ -53,6 +68,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 
 		ActivityPreferencePage.initDefaults(store);
+
+
+		ActivityPartitionPreferencePage.initDefaults(store);
 
 
 		ForkNodePreferencePage.initDefaults(store);
@@ -67,6 +85,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		ActionInputPinPreferencePage.initDefaults(store);
 
 
+		StructuredActivityNodePreferencePage.initDefaults(store);
+
+
 		IntervalConstraintPreferencePage.initDefaults(store);
 
 
@@ -77,6 +98,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 
 		DurationConstraintPreferencePage.initDefaults(store);
+
+
+		ExpansionRegionPreferencePage.initDefaults(store);
 
 
 		OutputPinPreferencePage.initDefaults(store);
@@ -91,10 +115,16 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		InputPinPreferencePage.initDefaults(store);
 
 
+		ExpansionNodePreferencePage.initDefaults(store);
+
+
 		ActivityParameterNodePreferencePage.initDefaults(store);
 
 
 		TimeConstraintPreferencePage.initDefaults(store);
+
+
+		InterruptibleActivityRegionPreferencePage.initDefaults(store);
 
 
 		JoinNodePreferencePage.initDefaults(store);
@@ -110,6 +140,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 
 		ControlFlowPreferencePage.initDefaults(store);
+
+
+		ExceptionHandlerPreferencePage.initDefaults(store);
 
 
 	}

@@ -272,18 +272,24 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT do not edit label if hidden
 	 */
 	protected String getLabelText() {
-		String text = null;
-		EObject parserElement = getParserElement();
-		if(parserElement != null && getParser() != null) {
-			text = getParser().getPrintString(new EObjectAdapter(parserElement), getParserOptions().intValue());
+		//do not edit label if hidden
+		boolean decisionSet = ((DecisionNode)resolveSemanticElement()).getDecisionInput() != null;
+		if(decisionSet) {
+			String text = null;
+			EObject parserElement = getParserElement();
+			if(parserElement != null && getParser() != null) {
+				text = getParser().getPrintString(new EObjectAdapter(parserElement), getParserOptions().intValue());
+			}
+			if(text == null || text.length() == 0) {
+				text = defaultText;
+			}
+			return text;
+		} else {
+			return "";
 		}
-		if(text == null || text.length() == 0) {
-			text = defaultText;
-		}
-		return text;
 	}
 
 	/**
@@ -302,10 +308,12 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT do not edit label if hidden
 	 */
 	public String getEditText() {
-		if(getParserElement() == null || getParser() == null) {
+		//do not edit label if hidden
+		boolean decisionSet = ((DecisionNode)resolveSemanticElement()).getDecisionInput() != null;
+		if(getParserElement() == null || getParser() == null || !decisionSet) {
 			return ""; //$NON-NLS-1$
 		}
 		return getParser().getEditString(new EObjectAdapter(getParserElement()), getParserOptions().intValue());
@@ -392,26 +400,34 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT do not edit label if hidden
 	 */
 	protected void performDirectEdit() {
-		getManager().show();
+		//do not edit label if hidden
+		boolean decisionSet = ((DecisionNode)resolveSemanticElement()).getDecisionInput() != null;
+		if(decisionSet) {
+			getManager().show();
+		}
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT do not edit label if hidden
 	 */
 	protected void performDirectEdit(Point eventLocation) {
-		if(getManager() instanceof TextDirectEditManager) {
+		//do not edit label if hidden
+		boolean decisionSet = ((DecisionNode)resolveSemanticElement()).getDecisionInput() != null;
+		if(getManager() instanceof TextDirectEditManager && decisionSet) {
 			((TextDirectEditManager)getManager()).show(eventLocation.getSWTPoint());
 		}
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT do not edit label if hidden
 	 */
 	private void performDirectEdit(char initialCharacter) {
-		if(getManager() instanceof TextDirectEditManager) {
+		//do not edit label if hidden
+		boolean decisionSet = ((DecisionNode)resolveSemanticElement()).getDecisionInput() != null;
+		if(getManager() instanceof TextDirectEditManager && decisionSet) {
 			((TextDirectEditManager)getManager()).show(initialCharacter);
 		} else {
 			performDirectEdit();
@@ -419,9 +435,14 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT do not edit label if hidden
 	 */
 	protected void performDirectEditRequest(Request request) {
+		//do not edit label if hidden
+		boolean decisionSet = ((DecisionNode)resolveSemanticElement()).getDecisionInput() != null;
+		if(!decisionSet) {
+			return;
+		}
 
 		final Request theRequest = request;
 

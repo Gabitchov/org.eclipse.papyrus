@@ -27,9 +27,12 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ControlFlowCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ControlFlowReorientCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.ExceptionHandlerCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.ExceptionHandlerReorientCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ObjectFlowCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ObjectFlowReorientCommand;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ExceptionHandlerEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
@@ -62,6 +65,12 @@ public class ActionInputPinInCallOpActItemSemanticEditPolicy extends UMLBaseItem
 				continue;
 			}
 			if(UMLVisualIDRegistry.getVisualID(incomingLink) == ControlFlowEditPart.VISUAL_ID) {
+				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(r));
+				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+				continue;
+			}
+			if(UMLVisualIDRegistry.getVisualID(incomingLink) == ExceptionHandlerEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
@@ -113,6 +122,9 @@ public class ActionInputPinInCallOpActItemSemanticEditPolicy extends UMLBaseItem
 		if(UMLElementTypes.ControlFlow_4004 == req.getElementType()) {
 			return getGEFWrapper(new ControlFlowCreateCommand(req, req.getSource(), req.getTarget()));
 		}
+		if(UMLElementTypes.ExceptionHandler_4005 == req.getElementType()) {
+			return null;
+		}
 		return null;
 	}
 
@@ -125,6 +137,9 @@ public class ActionInputPinInCallOpActItemSemanticEditPolicy extends UMLBaseItem
 		}
 		if(UMLElementTypes.ControlFlow_4004 == req.getElementType()) {
 			return getGEFWrapper(new ControlFlowCreateCommand(req, req.getSource(), req.getTarget()));
+		}
+		if(UMLElementTypes.ExceptionHandler_4005 == req.getElementType()) {
+			return getGEFWrapper(new ExceptionHandlerCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -141,6 +156,8 @@ public class ActionInputPinInCallOpActItemSemanticEditPolicy extends UMLBaseItem
 			return getGEFWrapper(new ObjectFlowReorientCommand(req));
 		case ControlFlowEditPart.VISUAL_ID:
 			return getGEFWrapper(new ControlFlowReorientCommand(req));
+		case ExceptionHandlerEditPart.VISUAL_ID:
+			return getGEFWrapper(new ExceptionHandlerReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}
