@@ -148,50 +148,6 @@
                </popupAction>
             </popupContribution>
          </contributionItemProvider>
-                  <contributionItemProvider
-               checkPluginLoaded="true"
-               class="org.eclipse.papyrus.diagram.common.actions.MoveCompartmentObjectItemProvider">
-            <Priority
-                  name="Medium">
-            </Priority>
-            <popupContribution
-                  class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-               <popupMenuGroup
-                     id="menu_order_within_compartment_group"
-                     path="/propertiesGroup"
-                     separator="true">
-               </popupMenuGroup>
-               <popupMenu
-                     id="menu_order_within_compartment"
-                     path="/menu_order_within_compartment_group">
-               </popupMenu>
-               <popupStructuredContributionCriteria
-                     policyClass="org.eclipse.papyrus.diagram.common.actions.MoveCompartmentPopupContributionPolicy">
-               </popupStructuredContributionCriteria>
-            </popupContribution>
-         </contributionItemProvider>
-                  <contributionItemProvider
-                        checkPluginLoaded="true"
-                        class="org.eclipse.papyrus.diagram.common.providers.DiagramValidationProvider">
-                     <Priority
-                           name="Lowest">
-                     </Priority>
-                     <popupContribution
-                           class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-                        <popupMenuGroup
-                              id="diagramValidationGroup"
-                              path="/"
-                              separator="true">
-                        </popupMenuGroup>
-                        <popupStructuredContributionCriteria
-                              policyClass="org.eclipse.papyrus.diagram.common.actions.ValidationPopupMenuContributionPolicy">
-                        </popupStructuredContributionCriteria>
-                        <popupAction
-                              id="validateDiagramAction"
-                              path="/diagramValidationGroup">
-                        </popupAction>
-                     </popupContribution>
-                  </contributionItemProvider>
       </extension>
 <extension
       point="org.eclipse.papyrus.core.modelListener">
@@ -440,6 +396,20 @@
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="CTRL+SHIFT+V">
    </key>
+</extension>
+<extension
+      point="org.eclipse.ui.newWizards">
+   <wizard
+         category="org.eclipse.ui.Basic"
+         class="org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard"
+         icon="icons/papyrus/PapyrusLogo16x16.gif"
+         id="org.eclipse.ui.wizards.new.project"
+         name="Papyrus Project"
+         project="true">
+      <description>
+         %NewWizards.project.description
+      </description>
+   </wizard>
 </extension>
 
 </plugin>

@@ -58,7 +58,7 @@ public class InputDialog extends Dialog {
 	 * @param parentShell
 	 * @param initialValue
 	 */
-	protected InputDialog(Shell parentShell, String title, String message, String initialValue) {
+	public InputDialog(Shell parentShell, String title, String message, String initialValue) {
 		super(parentShell);
 		this.title = title;
 		this.message = message;
