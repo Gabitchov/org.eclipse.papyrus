@@ -31,5 +31,13 @@
          </menu>
       </menuContribution>
    </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            description="this a category of papyrus commands"
+            id="org.eclipse.papyrus.editor.category"
+            name="Papyrus Category">
+      </category>
+   </extension>
 
 </plugin>
