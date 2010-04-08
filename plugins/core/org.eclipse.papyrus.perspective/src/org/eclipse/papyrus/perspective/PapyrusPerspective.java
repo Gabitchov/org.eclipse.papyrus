@@ -48,9 +48,9 @@ public class PapyrusPerspective implements IPerspectiveFactory {
 	public void defineActions(IPageLayout layout) {
 		// Add "new wizards".
 		layout.addNewWizardShortcut("org.eclipse.ui.wizards.new.project");
+		layout.addNewWizardShortcut("org.eclipse.papyrus.wizards.createumlmodel");
 		layout.addNewWizardShortcut("org.eclipse.ui.wizards.new.folder");
 		layout.addNewWizardShortcut(CreateUMLModelWizard.ID_UMLWIZARD);
-
 		// Add "show views".
 		layout.addShowViewShortcut(IPageLayout.ID_RES_NAV);
 		layout.addShowViewShortcut(ModelNavigator.ID_MODELNAVIGATOR);
@@ -80,7 +80,6 @@ public class PapyrusPerspective implements IPerspectiveFactory {
 		IFolderLayout left = layout.createFolder("left", IPageLayout.LEFT, (float)0.20, editorArea);
 		left.addView(ModelNavigator.ID_MODELNAVIGATOR);
 		left.addView(IPageLayout.ID_RES_NAV);
-
 		// place outline under the navigator
 		IFolderLayout left_bottom = layout.createFolder("left_bottom", IPageLayout.BOTTOM, (float)0.70, "left");
 		left_bottom.addView(IPageLayout.ID_OUTLINE);
