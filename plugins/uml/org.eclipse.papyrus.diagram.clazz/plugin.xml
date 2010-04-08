@@ -2,16 +2,6 @@
 <?eclipse version="3.0"?>
 <plugin> 
 
-<extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
-	<contributionItemProvider checkPluginLoaded="false" class="org.eclipse.papyrus.diagram.clazz.custom.providers.ClassDiagramContributionItemProvider">
-		<Priority name="Low"/>
-		<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-			<popupStructuredContributionCriteria objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart"/>
-			<popupAction id="papyrus.restoreRelatedLinksAction" path="/navigateMenu/additions"/>
-			<popupAction id="papyrus.initializeDiagramAction" path="/editGroup"/>
-		</popupContribution>
-	</contributionItemProvider>
-</extension>
    
 <extension point="org.eclipse.team.core.fileTypes" id="repo-ftype">
       <?gmfgen generated="true"?>
@@ -1170,6 +1160,7 @@
     <extension
          point="org.eclipse.ui.commands">
       <command
+            categoryId="org.eclipse.papyrus.editor.category"
             description="Create a New UML2 Class Diagram"
             id="org.eclipse.papyrus.diagram.clazz.CreateClassDiagramCommand"
             name="New PapyII Class Diagram( Papyrus II)">
