@@ -81,7 +81,7 @@ public class CreationCommandExtensionFactory extends DescriptorExtensionFactory 
 					CONDITION_COMMAND_CLASS_ATTR, CREATION_COMMAND_EXTENSIONPOINT);
 			if(classCondition != null) {
 				try {
-					res.condition = classCondition.newInstance();
+					res.setCondition(classCondition.newInstance());
 				} catch (InstantiationException e) {
 					throw new ExtensionException("can nott instantiate class : " + e.getMessage());
 				} catch (IllegalAccessException e) {

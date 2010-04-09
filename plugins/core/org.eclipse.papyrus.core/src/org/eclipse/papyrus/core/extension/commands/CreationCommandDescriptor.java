@@ -29,7 +29,7 @@ public class CreationCommandDescriptor {
 
 	protected ImageDescriptor icon;
 
-	protected ICreationCondition condition;
+	private ICreationCondition condition;
 
 	public String getCommandId() {
 		return commandId;
@@ -45,6 +45,11 @@ public class CreationCommandDescriptor {
 
 	public ICreationCondition getCondition() {
 		return condition;
+	}
+	public void setCondition(ICreationCondition condition){
+		this.condition= condition;
+		condition.setCommand(getCommandId());
+		
 	}
 
 	/**
