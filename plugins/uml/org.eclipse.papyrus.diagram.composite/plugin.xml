@@ -1619,8 +1619,9 @@
       </editorDiagram>
       <creationCommand
             creationCommandClass="org.eclipse.papyrus.diagram.composite.CreateCompositeDiagramCommand"
+            creationCondition="org.eclipse.papyrus.core.extension.commands.PerspectiveContextDependence"
             icon="icons/obj16/Diagram_CompositeStructureDiagram.gif"
-            id="org.eclipse.papyrus.diagram.composite.CreationCommand"
+            id="org.eclipse.papyrus.diagram.composite.createCompositeDiagram"
             label="UML CompositeStructure Diagram">
       </creationCommand>
    </extension>
@@ -1677,6 +1678,7 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
+            categoryId="org.eclipse.papyrus.editor.category"
             description="Create a New UML2 CompositeDiagram"
             id="org.eclipse.papyrus.diagram.composite.createCompositeDiagram"
             name="New PapyII CompositeDiagram ( Papyrus II)">

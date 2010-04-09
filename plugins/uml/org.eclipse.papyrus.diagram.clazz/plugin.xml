@@ -1239,8 +1239,9 @@
       </editorDiagram>
       <creationCommand
             creationCommandClass="org.eclipse.papyrus.diagram.clazz.CreateClassDiagramCommand"
+            creationCondition="org.eclipse.papyrus.core.extension.commands.PerspectiveContextDependence"
             icon="icons/ClassDiagram.gif"
-            id="org.eclipse.papyrus.diagram.clazz.action.CreationCommand"
+            id="org.eclipse.papyrus.diagram.clazz.CreateClassDiagramCommand"
             label="UML Class Diagram">
       </creationCommand>      
    </extension>

@@ -61,14 +61,14 @@
       <menuContribution
             locationURI="menu:org.eclipse.papyrus.ui.menu">
          <menu
-               id="org.eclipse.papyrus.diagram.ui.menu"
-               label="Papyrus II">
+               id="org.eclipse.papyrus.diagram.ui.menu.diagrams"
+               label="Diagrams">
             <command
                   commandId="org.eclipse.papyrus.diagram.activity.CreateActivityDiagramCommand"
                   icon="icons/ActivityDiagram.gif"
-                  label="Create Activity Diagram"
+                  label="Create a new Activity Diagram"
                   style="push"
-                  tooltip="Create a new UML2 Activity Diagram  (Papyrus II)">
+                  tooltip="Create a new Activity Diagram">
             </command>
          </menu>
       </menuContribution>
@@ -84,7 +84,7 @@
             creationCommandClass="org.eclipse.papyrus.diagram.activity.CreateActivityDiagramCommand"
             creationCondition="org.eclipse.papyrus.diagram.activity.ActivityDiagramCreationCondition"
             icon="icons/ActivityDiagram.gif"
-            id="org.eclipse.papyrus.diagram.activity.CreationCommand"
+            id="org.eclipse.papyrus.diagram.activity.CreateActivityDiagramCommand"
             label="UML Activity Diagram">
       </creationCommand>
    </extension>
