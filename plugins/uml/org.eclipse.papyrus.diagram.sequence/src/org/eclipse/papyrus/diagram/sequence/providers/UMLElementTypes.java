@@ -50,6 +50,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -109,6 +110,11 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IElementType CombinedFragment_3018 = getElementType("org.eclipse.papyrus.diagram.sequence.CombinedFragment_3018"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType TimeConstraint_3019 = getElementType("org.eclipse.papyrus.diagram.sequence.TimeConstraint_3019"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -337,6 +343,9 @@ public class UMLElementTypes extends ElementInitializers {
 			elements.put(CombinedFragment_3018, UMLPackage.eINSTANCE.getCombinedFragment());
 
 
+			elements.put(TimeConstraint_3019, UMLPackage.eINSTANCE.getTimeConstraint());
+
+
 			elements.put(Constraint_3008, UMLPackage.eINSTANCE.getConstraint());
 
 
@@ -395,6 +404,7 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(BehaviorExecutionSpecification_3003);
 			KNOWN_ELEMENT_TYPES.add(StateInvariant_3017);
 			KNOWN_ELEMENT_TYPES.add(CombinedFragment_3018);
+			KNOWN_ELEMENT_TYPES.add(TimeConstraint_3019);
 			KNOWN_ELEMENT_TYPES.add(Constraint_3008);
 			KNOWN_ELEMENT_TYPES.add(Comment_3009);
 			KNOWN_ELEMENT_TYPES.add(Message_4003);
@@ -439,6 +449,8 @@ public class UMLElementTypes extends ElementInitializers {
 			return StateInvariant_3017;
 		case CombinedFragment2EditPart.VISUAL_ID:
 			return CombinedFragment_3018;
+		case TimeConstraintEditPart.VISUAL_ID:
+			return TimeConstraint_3019;
 		case ConstraintEditPart.VISUAL_ID:
 			return Constraint_3008;
 		case CommentEditPart.VISUAL_ID:

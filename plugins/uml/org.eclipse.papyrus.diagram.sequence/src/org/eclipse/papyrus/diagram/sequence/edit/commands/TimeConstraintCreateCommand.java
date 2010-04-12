@@ -25,16 +25,14 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
-import org.eclipse.uml2.uml.CombinedFragment;
-import org.eclipse.uml2.uml.Interaction;
+import org.eclipse.uml2.uml.Namespace;
+import org.eclipse.uml2.uml.TimeConstraint;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * @generated
  */
-public class CombinedFragment2CreateCommand extends EditElementCommand {
+public class TimeConstraintCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -49,7 +47,7 @@ public class CombinedFragment2CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public CombinedFragment2CreateCommand(CreateElementRequest req, EObject eObject) {
+	public TimeConstraintCreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -58,14 +56,14 @@ public class CombinedFragment2CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static CombinedFragment2CreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new CombinedFragment2CreateCommand(req, eObject);
+	public static TimeConstraintCreateCommand create(CreateElementRequest req, EObject eObject) {
+		return new TimeConstraintCreateCommand(req, eObject);
 	}
 
 	/**
 	 * @generated
 	 */
-	public CombinedFragment2CreateCommand(CreateElementRequest req) {
+	public TimeConstraintCreateCommand(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 
@@ -100,21 +98,19 @@ public class CombinedFragment2CreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated NOT get the Lifeline parent as owner
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		// Get the model container
-		Object modelContainer = ((CreateElementRequest)getRequest()).getParameters().get(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER);
-
-		CombinedFragment newElement = UMLFactory.eINSTANCE.createCombinedFragment();
-
-		// TODO : modelContainer may be an operand. 
-		Interaction owner = (Interaction)modelContainer;
-		owner.getFragments().add(newElement);
 
 
-		UMLElementTypes.init_CombinedFragment_3018(newElement);
+		TimeConstraint newElement = UMLFactory.eINSTANCE.createTimeConstraint();
+
+		// get the Lifeline parent as owner
+		Namespace owner = (Namespace)getElementToEdit().eContainer();
+		owner.getOwnedRules().add(newElement);
+
+
 
 		doConfigure(newElement, monitor, info);
 
@@ -128,7 +124,7 @@ public class CombinedFragment2CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(CombinedFragment newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected void doConfigure(TimeConstraint newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());

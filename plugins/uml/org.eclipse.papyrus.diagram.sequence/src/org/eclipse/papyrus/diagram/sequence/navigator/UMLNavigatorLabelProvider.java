@@ -61,6 +61,8 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantNameEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintLabelEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
@@ -151,6 +153,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?StateInvariant", UMLElementTypes.StateInvariant_3017); //$NON-NLS-1$
 		case CombinedFragment2EditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?CombinedFragment", UMLElementTypes.CombinedFragment_3018); //$NON-NLS-1$
+		case TimeConstraintEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?TimeConstraint", UMLElementTypes.TimeConstraint_3019); //$NON-NLS-1$
 		case ConstraintEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Constraint", UMLElementTypes.Constraint_3008); //$NON-NLS-1$
 		case CommentEditPart.VISUAL_ID:
@@ -248,6 +252,8 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getStateInvariant_3017Text(view);
 		case CombinedFragment2EditPart.VISUAL_ID:
 			return getCombinedFragment_3018Text(view);
+		case TimeConstraintEditPart.VISUAL_ID:
+			return getTimeConstraint_3019Text(view);
 		case ConstraintEditPart.VISUAL_ID:
 			return getConstraint_3008Text(view);
 		case CommentEditPart.VISUAL_ID:
@@ -348,6 +354,19 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return String.valueOf(domainModelElement.getName());
 		} else {
 			UMLDiagramEditorPlugin.getInstance().logError("No domain element for view with visualID = " + 3018); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getTimeConstraint_3019Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.TimeConstraint_3019, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(TimeConstraintLabelEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5009); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}

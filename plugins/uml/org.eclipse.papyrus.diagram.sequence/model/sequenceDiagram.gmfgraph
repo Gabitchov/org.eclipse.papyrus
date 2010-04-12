@@ -405,6 +405,50 @@
           name="CustomCoregionFigure"
           qualifiedClassName="org.eclipse.papyrus.diagram.sequence.figures.CoRegionCombinedFragmentFigure"/>
     </descriptors>
+    <descriptors
+        name="DurationObservation">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="DurationObservationLabelFigure"
+          qualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <font
+            xsi:type="gmfgraph:BasicFont"
+            faceName="SANS"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="TimeMarkElementFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="TimeMarkElementRect"
+          outline="false"
+          fill="false">
+        <layout
+            xsi:type="gmfgraph:GridLayout"/>
+        <children
+            xsi:type="gmfgraph:Polyline"
+            name="TimeMark">
+          <template/>
+          <template
+              x="10"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:Label"
+            name="TimeMarkElementLabel">
+          <layoutData
+              xsi:type="gmfgraph:GridLayoutData"/>
+        </children>
+      </actualFigure>
+      <accessors
+          accessor="getTimeMark"
+          figure="//@figures.0/@descriptors.16/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getTimeMarkElementLabel"
+          figure="//@figures.0/@descriptors.16/@actualFigure/@children.1"/>
+    </descriptors>
   </figures>
   <nodes
       name="InteractionNode"
@@ -447,6 +491,10 @@
   <nodes
       name="CoregionNode"
       figure="CoregionFigure"/>
+  <nodes
+      name="TimeMarkElementNode"
+      figure="TimeMarkElementFigure"
+      affixedParentSide="EAST_WEST"/>
   <connections
       name="CallSynLink"
       figure="MessageSync"/>
@@ -594,4 +642,20 @@
       name="ContinuationLabel"
       figure="ContinuationFigure"
       accessor="//@figures.0/@descriptors.13/@accessors.0"/>
+  <labels
+      name="DurationObservationLabel"
+      figure="DurationObservation"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        x="1"
+        y="-13"/>
+  </labels>
+  <labels
+      name="TimeMarkElementLabel"
+      figure="TimeMarkElementFigure"
+      accessor="//@figures.0/@descriptors.16/@accessors.1"/>
 </gmfgraph:Canvas>

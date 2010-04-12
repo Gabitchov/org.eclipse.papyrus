@@ -17,11 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.RoundedRectangle;
+import org.eclipse.draw2d.MarginBorder;
+import org.eclipse.draw2d.Polyline;
+import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -33,9 +36,9 @@ import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -43,28 +46,24 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.diagram.common.draw2d.CenterLayout;
-import org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel;
-import org.eclipse.papyrus.diagram.sequence.edit.policies.ContinuationItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.sequence.locator.ContinuationLocator;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.TimeConstraintItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
  */
-public class ContinuationEditPart extends
+public class TimeConstraintEditPart extends
 
 AbstractBorderItemEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3016;
+	public static final int VISUAL_ID = 3019;
 
 	/**
 	 * @generated
@@ -79,7 +78,7 @@ AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	public ContinuationEditPart(View view) {
+	public TimeConstraintEditPart(View view) {
 		super(view);
 	}
 
@@ -89,7 +88,7 @@ AbstractBorderItemEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ContinuationItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new TimeConstraintItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -128,25 +127,23 @@ AbstractBorderItemEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		ContinuationFigure figure = new ContinuationFigure();
+		TimeMarkElementFigure figure = new TimeMarkElementFigure();
 		return primaryShape = figure;
 	}
 
 	/**
 	 * @generated
 	 */
-	public ContinuationFigure getPrimaryShape() {
-		return (ContinuationFigure)primaryShape;
+	public TimeMarkElementFigure getPrimaryShape() {
+		return (TimeMarkElementFigure)primaryShape;
 	}
-
-
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ContinuationNameEditPart) {
-			((ContinuationNameEditPart)childEditPart).setLabel(getPrimaryShape().getFigureContinuationNameLabel());
+		if(childEditPart instanceof TimeConstraintLabelEditPart) {
+			((TimeConstraintLabelEditPart)childEditPart).setLabel(getPrimaryShape().getTimeMarkElementLabel());
 			return true;
 		}
 
@@ -154,11 +151,12 @@ AbstractBorderItemEditPart {
 		return false;
 	}
 
+
 	/**
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof ContinuationNameEditPart) {
+		if(childEditPart instanceof TimeConstraintLabelEditPart) {
 			return true;
 		}
 		return false;
@@ -190,6 +188,7 @@ AbstractBorderItemEditPart {
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		return getContentPane();
 	}
+
 
 	/**
 	 * @generated
@@ -274,12 +273,11 @@ AbstractBorderItemEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ContinuationNameEditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(TimeConstraintLabelEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -294,6 +292,7 @@ AbstractBorderItemEditPart {
 		types.add(UMLElementTypes.Message_4007);
 		types.add(UMLElementTypes.Message_4008);
 		types.add(UMLElementTypes.Message_4009);
+		types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
 		return types;
 	}
 
@@ -317,7 +316,7 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof InteractionUseEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart) {
+		if(targetEditPart instanceof ContinuationEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
 		if(targetEditPart instanceof LifelineEditPart) {
@@ -335,7 +334,7 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof CombinedFragment2EditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
-		if(targetEditPart instanceof TimeConstraintEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -359,7 +358,7 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof InteractionUseEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart) {
+		if(targetEditPart instanceof ContinuationEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
 		if(targetEditPart instanceof LifelineEditPart) {
@@ -377,7 +376,7 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof CombinedFragment2EditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
-		if(targetEditPart instanceof TimeConstraintEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -401,7 +400,7 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof InteractionUseEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart) {
+		if(targetEditPart instanceof ContinuationEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
 		if(targetEditPart instanceof LifelineEditPart) {
@@ -419,7 +418,7 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof CombinedFragment2EditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
-		if(targetEditPart instanceof TimeConstraintEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -443,7 +442,7 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof InteractionUseEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart) {
+		if(targetEditPart instanceof ContinuationEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
 		if(targetEditPart instanceof LifelineEditPart) {
@@ -461,7 +460,7 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof CombinedFragment2EditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
-		if(targetEditPart instanceof TimeConstraintEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -485,7 +484,7 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof InteractionUseEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart) {
+		if(targetEditPart instanceof ContinuationEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
 		if(targetEditPart instanceof LifelineEditPart) {
@@ -503,7 +502,7 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof CombinedFragment2EditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
-		if(targetEditPart instanceof TimeConstraintEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -527,7 +526,7 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof InteractionUseEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart) {
+		if(targetEditPart instanceof ContinuationEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
 		if(targetEditPart instanceof LifelineEditPart) {
@@ -545,7 +544,7 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof CombinedFragment2EditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
-		if(targetEditPart instanceof TimeConstraintEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -569,7 +568,7 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof InteractionUseEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart) {
+		if(targetEditPart instanceof ContinuationEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof LifelineEditPart) {
@@ -587,7 +586,7 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof CombinedFragment2EditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
-		if(targetEditPart instanceof TimeConstraintEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -595,6 +594,48 @@ AbstractBorderItemEditPart {
 		}
 		if(targetEditPart instanceof CommentEditPart) {
 			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof InteractionEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof ConsiderIgnoreFragmentEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof CombinedFragmentEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof InteractionOperandEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof InteractionUseEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof ContinuationEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof LifelineEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof ActionExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof BehaviorExecutionSpecificationEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof StateInvariantEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof CombinedFragment2EditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof ConstraintEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof CommentEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
 		}
 		return types;
 	}
@@ -896,6 +937,48 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.Comment_3009);
+		}
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
+			types.add(UMLElementTypes.Interaction_2001);
+		}
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
+			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
+		}
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
+			types.add(UMLElementTypes.CombinedFragment_3004);
+		}
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
+			types.add(UMLElementTypes.InteractionOperand_3005);
+		}
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
+			types.add(UMLElementTypes.InteractionUse_3002);
+		}
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
+			types.add(UMLElementTypes.Continuation_3016);
+		}
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
+			types.add(UMLElementTypes.Lifeline_3001);
+		}
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
+			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
+		}
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
+			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
+		}
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
+			types.add(UMLElementTypes.StateInvariant_3017);
+		}
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
+			types.add(UMLElementTypes.CombinedFragment_3018);
+		}
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
+			types.add(UMLElementTypes.TimeConstraint_3019);
+		}
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
+			types.add(UMLElementTypes.Constraint_3008);
+		}
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
 			types.add(UMLElementTypes.Comment_3009);
 		}
 		return types;
@@ -1236,28 +1319,68 @@ AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	public class ContinuationFigure extends RoundedRectangle {
+	public class TimeMarkElementFigure extends RectangleFigure {
+
+		/**
+		 * the length of the time mark
+		 * 
+		 * @generated NOT
+		 */
+		private static final int TIME_MARK_LENGTH = 20;
+
+		/**
+		 * @generated
+		 */
+		private Polyline fTimeMark;
+
+		/**
+		 * @generated
+		 */
+		private WrappingLabel fTimeMarkElementLabel;
+
+		/**
+		 * The side where the figure currently is
+		 * 
+		 * @generated NOT
+		 */
+		private int sideOfFigure = PositionConstants.NONE;
 
 
 		/**
 		 * @generated
 		 */
-		private CenteredWrappedLabel fFigureContinuationNameLabel;
-
-
-		/**
-		 * @generated
-		 */
-		public ContinuationFigure() {
-
-			CenterLayout layoutThis = new CenterLayout();
-
-
-			this.setLayoutManager(layoutThis);
-
-			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(50), getMapMode().DPtoLP(50)));
+		public TimeMarkElementFigure() {
+			this.setFill(false);
+			this.setOutline(false);
 			this.setLineWidth(1);
 			createContents();
+		}
+
+		/**
+		 * Update the side of the lifeline where the figure lies
+		 * 
+		 * @param side
+		 *        side where the figure must be
+		 * @param newLocation
+		 *        the new location rectangle
+		 * @generated NOT
+		 */
+		public void setCurrentSideOfFigure(int side, Rectangle newLocation) {
+			// no effect if side has not changed
+			if(sideOfFigure != side) {
+				sideOfFigure = side;
+				if(side == PositionConstants.EAST) {
+					Point startPoint = newLocation.getLeft().translate(newLocation.getLocation().getNegated());
+					getTimeMark().setStart(startPoint);
+					getTimeMark().setEnd(startPoint.getCopy().translate(TIME_MARK_LENGTH, 0));
+					getTimeMarkElementLabel().setBorder(new MarginBorder(0, TIME_MARK_LENGTH, 0, 0));
+				} else {
+					Point startPoint = newLocation.getRight().translate(newLocation.getLocation().getNegated());
+					getTimeMark().setStart(startPoint);
+					getTimeMark().setEnd(startPoint.getCopy().translate(-TIME_MARK_LENGTH, 0));
+					getTimeMarkElementLabel().setBorder(new MarginBorder(0, 0, 0, TIME_MARK_LENGTH));
+				}
+			}
 		}
 
 		/**
@@ -1266,11 +1389,19 @@ AbstractBorderItemEditPart {
 		private void createContents() {
 
 
-			fFigureContinuationNameLabel = new CenteredWrappedLabel();
+			fTimeMark = new Polyline();
+			fTimeMark.addPoint(new Point(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0)));
+			fTimeMark.addPoint(new Point(getMapMode().DPtoLP(10), getMapMode().DPtoLP(0)));
+			fTimeMark.setLineWidth(1);
+
+			this.add(fTimeMark);
 
 
 
-			this.add(fFigureContinuationNameLabel);
+			fTimeMarkElementLabel = new WrappingLabel();
+			fTimeMarkElementLabel.setText("");
+
+			this.add(fTimeMarkElementLabel);
 
 
 		}
@@ -1281,7 +1412,7 @@ AbstractBorderItemEditPart {
 		/**
 		 * @generated
 		 */
-		private boolean myUseLocalCoordinates = false;
+		private boolean myUseLocalCoordinates = true;
 
 		/**
 		 * @generated
@@ -1302,8 +1433,15 @@ AbstractBorderItemEditPart {
 		/**
 		 * @generated
 		 */
-		public CenteredWrappedLabel getFigureContinuationNameLabel() {
-			return fFigureContinuationNameLabel;
+		public Polyline getTimeMark() {
+			return fTimeMark;
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappingLabel getTimeMarkElementLabel() {
+			return fTimeMarkElementLabel;
 		}
 
 
@@ -1323,15 +1461,15 @@ AbstractBorderItemEditPart {
 		if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor() || feature == NotationPackage.eINSTANCE.getFontStyle_FontColor() || feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 			String prefColor = null;
 			if(feature == NotationPackage.eINSTANCE.getLineStyle_LineColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("Continuation", PreferenceConstantHelper.COLOR_LINE);
+				prefColor = PreferenceConstantHelper.getElementConstant("TimeConstraint", PreferenceConstantHelper.COLOR_LINE);
 			} else if(feature == NotationPackage.eINSTANCE.getFontStyle_FontColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("Continuation", PreferenceConstantHelper.COLOR_FONT);
+				prefColor = PreferenceConstantHelper.getElementConstant("TimeConstraint", PreferenceConstantHelper.COLOR_FONT);
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
-				prefColor = PreferenceConstantHelper.getElementConstant("Continuation", PreferenceConstantHelper.COLOR_FILL);
+				prefColor = PreferenceConstantHelper.getElementConstant("TimeConstraint", PreferenceConstantHelper.COLOR_FILL);
 			}
 			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
 		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
-			String prefGradient = PreferenceConstantHelper.getElementConstant("Continuation", PreferenceConstantHelper.COLOR_GRADIENT);
+			String prefGradient = PreferenceConstantHelper.getElementConstant("TimeConstraint", PreferenceConstantHelper.COLOR_GRADIENT);
 			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
 			if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency()) {
 				result = new Integer(gradientPreferenceConverter.getTransparency());
@@ -1345,23 +1483,4 @@ AbstractBorderItemEditPart {
 		}
 		return result;
 	}
-
-	/**
-	 * Overrides to manage the position of the Continuation
-	 */
-	@Override
-	protected void handleNotificationEvent(Notification notification) {
-
-		if(UMLPackage.eINSTANCE.getContinuation_Setting().equals(notification.getFeature())) {
-			IBorderItemLocator borderItemLocator = getBorderItemLocator();
-			int newValue = (Boolean)notification.getNewValue() ? ContinuationLocator.BOTTOM : ContinuationLocator.TOP;
-			if(borderItemLocator instanceof ContinuationLocator) {
-				((ContinuationLocator)borderItemLocator).setLocation(newValue);
-				// Refresh the position of the figure
-				borderItemLocator.relocate(this.getFigure());
-			}
-		}
-		super.handleNotificationEvent(notification);
-	}
-
 }

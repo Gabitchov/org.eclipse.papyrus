@@ -14,13 +14,16 @@
 
 package org.eclipse.papyrus.umlutils;
 
+import org.eclipse.uml2.uml.Expression;
 import org.eclipse.uml2.uml.InstanceValue;
+import org.eclipse.uml2.uml.Interval;
 import org.eclipse.uml2.uml.LiteralBoolean;
 import org.eclipse.uml2.uml.LiteralInteger;
 import org.eclipse.uml2.uml.LiteralNull;
 import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.LiteralUnlimitedNatural;
 import org.eclipse.uml2.uml.OpaqueExpression;
+import org.eclipse.uml2.uml.TimeExpression;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
 
@@ -29,18 +32,19 @@ import org.eclipse.uml2.uml.ValueSpecification;
  */
 public class ValueSpecificationUtil {
 
-	/** The * KeyWord to represent an unlimited integer (infinite)*/
+	/** The * KeyWord to represent an unlimited integer (infinite) */
 	private static final String UNLIMITED_KEYWORD = "*";
+
+	private static final String INTERVAL_FORMAT = "%1s..%2s";
 
 	/**
 	 * Get a string representing of a ValueSpecification
 	 * 
 	 * @param specification
 	 */
-	// @unused
 	public static String getSpecificationValue(ValueSpecification specification) {
 		String value = ""; //$NON-NLS-1$
-		if (specification != null && specification.eClass() != null) {
+		if(specification != null && specification.eClass() != null) {
 			switch(specification.eClass().getClassifierID()) {
 			case UMLPackage.LITERAL_STRING:
 				value = ((LiteralString)specification).getValue();
@@ -61,7 +65,7 @@ public class ValueSpecificationUtil {
 				break;
 			case UMLPackage.OPAQUE_EXPRESSION:
 				OpaqueExpression exp = (OpaqueExpression)specification;
-				if (!exp.getLanguages().isEmpty()) {
+				if(!exp.getLanguages().isEmpty()) {
 					value = OpaqueExpressionUtil.getBodyForLanguage(exp, exp.getLanguages().get(0)); //$NON-NLS-1$					
 				}
 				break;
@@ -69,10 +73,42 @@ public class ValueSpecificationUtil {
 				value = ((InstanceValue)specification).getInstance().getName();
 				break;
 			case UMLPackage.EXPRESSION:
+				Expression expr = (Expression)specification;
+				if(!expr.getOperands().isEmpty()) {
+					StringBuffer operandsBuff = new StringBuffer(expr.getSymbol());
+					operandsBuff.append("(");
+					int initialLength = operandsBuff.length();
+					for(ValueSpecification operand : expr.getOperands()) {
+						if(operandsBuff.length() > initialLength) {
+							operandsBuff.append(",");
+						}
+						operandsBuff.append(getSpecificationValue(operand));
+					}
+					operandsBuff.append(")");
+					value = operandsBuff.toString();
+				} else {
+					value = expr.getSymbol();
+				}
+				break;
+			case UMLPackage.STRING_EXPRESSION:
 				// TODO
 				break;
+			case UMLPackage.DURATION:
 			case UMLPackage.TIME_EXPRESSION:
-				// TODO
+				TimeExpression timeExpr = (TimeExpression)specification;
+				if(timeExpr.getExpr() != null) {
+					value = getSpecificationValue(timeExpr.getExpr());
+				} else if(timeExpr.getObservations().size() > 0) {
+					value = timeExpr.getObservations().get(0).getName();
+				}
+				break;
+			case UMLPackage.INTERVAL:
+			case UMLPackage.TIME_INTERVAL:
+			case UMLPackage.DURATION_INTERVAL:
+				Interval interval = (Interval)specification;
+				String min = getSpecificationValue(interval.getMin());
+				String max = getSpecificationValue(interval.getMax());
+				value = String.format(INTERVAL_FORMAT, min, max);
 				break;
 			default:
 			{
@@ -114,10 +150,10 @@ public class ValueSpecificationUtil {
 			break;
 		case UMLPackage.OPAQUE_EXPRESSION:
 			OpaqueExpression exp = (OpaqueExpression)specification;
-			if (!exp.getLanguages().isEmpty()) {
+			if(!exp.getLanguages().isEmpty()) {
 				restoreOpaqueExpression((org.eclipse.uml2.uml.OpaqueExpression)specification, exp.getLanguages().get(0), value);
 			} else {
-				restoreOpaqueExpression((org.eclipse.uml2.uml.OpaqueExpression)specification, value);				
+				restoreOpaqueExpression((org.eclipse.uml2.uml.OpaqueExpression)specification, value);
 			}
 			break;
 		default:
@@ -219,13 +255,16 @@ public class ValueSpecificationUtil {
 		// save in "UML" language, but should be desactivable
 		OpaqueExpressionUtil.setBodyForLanguage(specification, "UML", value);
 	}
-	
+
 	/**
 	 * Sets the value of an opaque expression, using a string value.
 	 * 
-	 * @param specification the opaque expression to update
-	 * @param language the specified language
-	 * @param value the new value
+	 * @param specification
+	 *        the opaque expression to update
+	 * @param language
+	 *        the specified language
+	 * @param value
+	 *        the new value
 	 */
 	public static void restoreOpaqueExpression(org.eclipse.uml2.uml.OpaqueExpression specification, String language, String value) {
 		OpaqueExpressionUtil.setBodyForLanguage(specification, language, value);

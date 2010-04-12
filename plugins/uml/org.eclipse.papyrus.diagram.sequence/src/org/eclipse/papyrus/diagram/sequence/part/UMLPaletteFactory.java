@@ -86,6 +86,11 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
+	private final static String CREATETIMECONSTRAINT13CREATIONTOOL = "createTimeConstraint13CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private final static String CREATEMESSAGESYNC1CREATIONTOOL = "createMessageSync1CreationTool"; //$NON-NLS-1$
 
 	/**
@@ -171,6 +176,9 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		}
 		if(toolId.equals(CREATECOREGION11CREATIONTOOL)) {
 			return createCoRegion11CreationTool();
+		}
+		if(toolId.equals(CREATETIMECONSTRAINT13CREATIONTOOL)) {
+			return createTimeConstraint13CreationTool();
 		}
 		if(toolId.equals(CREATEMESSAGESYNC1CREATIONTOOL)) {
 			return createMessageSync1CreationTool();
@@ -327,6 +335,17 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createCoRegion11CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.CombinedFragment_3018);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createTimeConstraint13CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.TimeConstraint_3019);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;

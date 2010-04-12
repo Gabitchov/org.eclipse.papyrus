@@ -273,6 +273,24 @@
                   href="sequenceDiagram.gmfgraph#CoregionNode"/>
             </ownedChild>
           </children>
+          <children
+              referencedChild="//@nodes.0/@ownedChild/@children.2/@ownedChild/@children.0/@ownedChild">
+            <containmentFeature
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Namespace/ownedRule"/>
+            <ownedChild>
+              <domainMetaElement
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//TimeConstraint"/>
+              <labelMappings>
+                <diagramLabel
+                    href="sequenceDiagram.gmfgraph#TimeMarkElementLabel"/>
+              </labelMappings>
+              <tool
+                  xsi:type="gmftool:CreationTool"
+                  href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.12"/>
+              <diagramNode
+                  href="sequenceDiagram.gmfgraph#TimeMarkElementNode"/>
+            </ownedChild>
+          </children>
         </ownedChild>
       </children>
       <children
@@ -421,6 +439,10 @@
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
     </labelMappings>
+    <labelMappings>
+      <diagramLabel
+          href="sequenceDiagram.gmfgraph#DurationObservationLabel"/>
+    </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/message"/>
     <tool
@@ -455,6 +477,10 @@
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
     </labelMappings>
+    <labelMappings>
+      <diagramLabel
+          href="sequenceDiagram.gmfgraph#DurationObservationLabel"/>
+    </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/message"/>
     <tool
@@ -488,6 +514,10 @@
           href="sequenceDiagram.gmfgraph#MessageReplyLabel"/>
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+    </labelMappings>
+    <labelMappings>
+      <diagramLabel
+          href="sequenceDiagram.gmfgraph#DurationObservationLabel"/>
     </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/message"/>
@@ -524,6 +554,10 @@
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
     </labelMappings>
+    <labelMappings>
+      <diagramLabel
+          href="sequenceDiagram.gmfgraph#DurationObservationLabel"/>
+    </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/message"/>
     <tool
@@ -557,6 +591,10 @@
           href="sequenceDiagram.gmfgraph#MessageDeleteLabel"/>
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+    </labelMappings>
+    <labelMappings>
+      <diagramLabel
+          href="sequenceDiagram.gmfgraph#DurationObservationLabel"/>
     </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/message"/>
@@ -593,6 +631,10 @@
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
     </labelMappings>
+    <labelMappings>
+      <diagramLabel
+          href="sequenceDiagram.gmfgraph#DurationObservationLabel"/>
+    </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/message"/>
     <tool
@@ -626,6 +668,10 @@
           href="sequenceDiagram.gmfgraph#MessageFoundLabel"/>
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+    </labelMappings>
+    <labelMappings>
+      <diagramLabel
+          href="sequenceDiagram.gmfgraph#DurationObservationLabel"/>
     </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/message"/>

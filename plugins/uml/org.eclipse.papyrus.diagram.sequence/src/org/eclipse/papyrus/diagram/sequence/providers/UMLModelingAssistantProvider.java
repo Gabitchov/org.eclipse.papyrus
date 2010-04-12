@@ -46,6 +46,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
@@ -71,11 +72,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof LifelineEditPart) {
-			ArrayList types = new ArrayList(4);
+			ArrayList types = new ArrayList(5);
 			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
 			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
 			types.add(UMLElementTypes.StateInvariant_3017);
 			types.add(UMLElementTypes.CombinedFragment_3018);
+			types.add(UMLElementTypes.TimeConstraint_3019);
 			return types;
 		}
 		if(editPart instanceof InteractionInteractionCompartmentEditPart) {
@@ -139,6 +141,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof CombinedFragment2EditPart) {
 			return ((CombinedFragment2EditPart)sourceEditPart).getMARelTypesOnSource();
 		}
+		if(sourceEditPart instanceof TimeConstraintEditPart) {
+			return ((TimeConstraintEditPart)sourceEditPart).getMARelTypesOnSource();
+		}
 		if(sourceEditPart instanceof ConstraintEditPart) {
 			return ((ConstraintEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
@@ -185,6 +190,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(targetEditPart instanceof CombinedFragment2EditPart) {
 			return ((CombinedFragment2EditPart)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof TimeConstraintEditPart) {
+			return ((TimeConstraintEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			return ((ConstraintEditPart)targetEditPart).getMARelTypesOnTarget();
@@ -234,6 +242,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof CombinedFragment2EditPart) {
 			return ((CombinedFragment2EditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
+		if(sourceEditPart instanceof TimeConstraintEditPart) {
+			return ((TimeConstraintEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		if(sourceEditPart instanceof ConstraintEditPart) {
 			return ((ConstraintEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
@@ -281,6 +292,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof CombinedFragment2EditPart) {
 			return ((CombinedFragment2EditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
+		if(targetEditPart instanceof TimeConstraintEditPart) {
+			return ((TimeConstraintEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			return ((ConstraintEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
@@ -327,6 +341,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof CombinedFragment2EditPart) {
 			return ((CombinedFragment2EditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof TimeConstraintEditPart) {
+			return ((TimeConstraintEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		if(sourceEditPart instanceof ConstraintEditPart) {
 			return ((ConstraintEditPart)sourceEditPart).getMATypesForTarget(relationshipType);

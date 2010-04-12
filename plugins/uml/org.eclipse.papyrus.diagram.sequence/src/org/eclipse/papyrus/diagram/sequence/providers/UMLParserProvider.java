@@ -29,6 +29,13 @@ import org.eclipse.papyrus.diagram.common.parser.CommentParser;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentBodyEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationNameEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationInAsyncEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationInCreateEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationInDeleteEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationInFoundEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationInLostEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationInReplyEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationInSyncEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseName2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseNameEditPart;
@@ -41,9 +48,12 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName6EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantNameEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintLabelEditPart;
+import org.eclipse.papyrus.diagram.sequence.parser.custom.DurationObservationParser;
 import org.eclipse.papyrus.diagram.sequence.parser.custom.InteractionUseCustomParsers;
 import org.eclipse.papyrus.diagram.sequence.parser.custom.LifelineCustomParsers;
 import org.eclipse.papyrus.diagram.sequence.parser.custom.MessageCustomParser;
+import org.eclipse.papyrus.diagram.sequence.parser.custom.TimeConstraintParser;
 import org.eclipse.papyrus.diagram.sequence.parsers.MessageFormatParser;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -103,6 +113,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			stateInvariantName_5008Parser = parser;
 		}
 		return stateInvariantName_5008Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private TimeConstraintParser timeConstraintLabel_5009Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTimeConstraintLabel_5009Parser() {
+		if(timeConstraintLabel_5009Parser == null) {
+			timeConstraintLabel_5009Parser = new TimeConstraintParser();
+		}
+		return timeConstraintLabel_5009Parser;
 	}
 
 	/**
@@ -207,6 +232,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private DurationObservationParser messageLabel_6009Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageLabel_6009Parser() {
+		if(messageLabel_6009Parser == null) {
+			messageLabel_6009Parser = new DurationObservationParser();
+		}
+		return messageLabel_6009Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private MessageCustomParser messageName_6002Parser;
 
 	/**
@@ -217,6 +257,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			messageName_6002Parser = new MessageCustomParser();
 		}
 		return messageName_6002Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private DurationObservationParser messageLabel_6008Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageLabel_6008Parser() {
+		if(messageLabel_6008Parser == null) {
+			messageLabel_6008Parser = new DurationObservationParser();
+		}
+		return messageLabel_6008Parser;
 	}
 
 	/**
@@ -237,6 +292,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private DurationObservationParser messageLabel_6010Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageLabel_6010Parser() {
+		if(messageLabel_6010Parser == null) {
+			messageLabel_6010Parser = new DurationObservationParser();
+		}
+		return messageLabel_6010Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private MessageCustomParser messageName_6004Parser;
 
 	/**
@@ -247,6 +317,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			messageName_6004Parser = new MessageCustomParser();
 		}
 		return messageName_6004Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private DurationObservationParser messageLabel_6011Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageLabel_6011Parser() {
+		if(messageLabel_6011Parser == null) {
+			messageLabel_6011Parser = new DurationObservationParser();
+		}
+		return messageLabel_6011Parser;
 	}
 
 	/**
@@ -267,6 +352,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private DurationObservationParser messageLabel_6012Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageLabel_6012Parser() {
+		if(messageLabel_6012Parser == null) {
+			messageLabel_6012Parser = new DurationObservationParser();
+		}
+		return messageLabel_6012Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private MessageCustomParser messageName_6006Parser;
 
 	/**
@@ -277,6 +377,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			messageName_6006Parser = new MessageCustomParser();
 		}
 		return messageName_6006Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private DurationObservationParser messageLabel_6013Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageLabel_6013Parser() {
+		if(messageLabel_6013Parser == null) {
+			messageLabel_6013Parser = new DurationObservationParser();
+		}
+		return messageLabel_6013Parser;
 	}
 
 	/**
@@ -297,6 +412,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private DurationObservationParser messageLabel_6014Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageLabel_6014Parser() {
+		if(messageLabel_6014Parser == null) {
+			messageLabel_6014Parser = new DurationObservationParser();
+		}
+		return messageLabel_6014Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch(visualID) {
 		case InteractionNameEditPart.VISUAL_ID:
@@ -311,24 +441,40 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getLifelineName_5002Parser();
 		case StateInvariantNameEditPart.VISUAL_ID:
 			return getStateInvariantName_5008Parser();
+		case TimeConstraintLabelEditPart.VISUAL_ID:
+			return getTimeConstraintLabel_5009Parser();
 		case ConstraintNameEditPart.VISUAL_ID:
 			return getConstraintName_5005Parser();
 		case CommentBodyEditPart.VISUAL_ID:
 			return getCommentBody_5006Parser();
 		case MessageNameEditPart.VISUAL_ID:
 			return getMessageName_6001Parser();
+		case DurationObservationInSyncEditPart.VISUAL_ID:
+			return getMessageLabel_6009Parser();
 		case MessageName2EditPart.VISUAL_ID:
 			return getMessageName_6002Parser();
+		case DurationObservationInAsyncEditPart.VISUAL_ID:
+			return getMessageLabel_6008Parser();
 		case MessageName3EditPart.VISUAL_ID:
 			return getMessageName_6003Parser();
+		case DurationObservationInReplyEditPart.VISUAL_ID:
+			return getMessageLabel_6010Parser();
 		case MessageName4EditPart.VISUAL_ID:
 			return getMessageName_6004Parser();
+		case DurationObservationInCreateEditPart.VISUAL_ID:
+			return getMessageLabel_6011Parser();
 		case MessageName5EditPart.VISUAL_ID:
 			return getMessageName_6005Parser();
+		case DurationObservationInDeleteEditPart.VISUAL_ID:
+			return getMessageLabel_6012Parser();
 		case MessageName6EditPart.VISUAL_ID:
 			return getMessageName_6006Parser();
+		case DurationObservationInLostEditPart.VISUAL_ID:
+			return getMessageLabel_6013Parser();
 		case MessageName7EditPart.VISUAL_ID:
 			return getMessageName_6007Parser();
+		case DurationObservationInFoundEditPart.VISUAL_ID:
+			return getMessageLabel_6014Parser();
 		}
 		return null;
 	}

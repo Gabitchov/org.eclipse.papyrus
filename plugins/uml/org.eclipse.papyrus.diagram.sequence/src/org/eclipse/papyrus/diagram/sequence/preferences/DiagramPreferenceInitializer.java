@@ -25,10 +25,25 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	/**
 	 * Add the diagram preference page to the initialization
 	 * 
-	 * @generated NOT
+	 * @generated NOT (update at each gmf change) diagram preference page
 	 */
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
+
+		CommentPreferencePage.initDefaults(store);
+
+
+		StateInvariantPreferencePage.initDefaults(store);
+
+
+		CombinedFragmentPreferencePage.initDefaults(store);
+
+
+		ConstraintPreferencePage.initDefaults(store);
+
+
+		ActionExecutionSpecificationPreferencePage.initDefaults(store);
+
 
 		InteractionOperandPreferencePage.initDefaults(store);
 
@@ -36,40 +51,31 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		InteractionPreferencePage.initDefaults(store);
 
 
+		InteractionUsePreferencePage.initDefaults(store);
+
+
 		ContinuationPreferencePage.initDefaults(store);
-
-
-		CommentPreferencePage.initDefaults(store);
-
-
-		ConstraintPreferencePage.initDefaults(store);
 
 
 		ConsiderIgnoreFragmentPreferencePage.initDefaults(store);
 
 
-		InteractionUsePreferencePage.initDefaults(store);
+		TimeConstraintPreferencePage.initDefaults(store);
 
 
 		LifelinePreferencePage.initDefaults(store);
 
 
-		CombinedFragmentPreferencePage.initDefaults(store);
-
-
 		BehaviorExecutionSpecificationPreferencePage.initDefaults(store);
 
-
-		ActionExecutionSpecificationPreferencePage.initDefaults(store);
 
 
 
 
 		MessagePreferencePage.initDefaults(store);
 
+		// diagram preference page
 		DiagramGeneralPreferencePage.initDefaults(store);
-
-		StateInvariantPreferencePage.initDefaults(store);
 
 
 	}

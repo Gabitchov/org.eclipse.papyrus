@@ -421,6 +421,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String TimeConstraint13CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String TimeConstraint13CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String MessageSync1CreationTool_title;
 
 	/**
@@ -587,6 +597,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_CombinedFragment_3018_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_TimeConstraint_3019_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_TimeConstraint_3019_outgoinglinks;
 
 	/**
 	 * @generated

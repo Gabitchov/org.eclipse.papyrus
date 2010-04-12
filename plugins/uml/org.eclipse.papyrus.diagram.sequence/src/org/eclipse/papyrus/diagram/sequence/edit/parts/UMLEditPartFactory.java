@@ -96,6 +96,12 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case CombinedFragment2EditPart.VISUAL_ID:
 				return new CombinedFragment2EditPart(view);
 
+			case TimeConstraintEditPart.VISUAL_ID:
+				return new TimeConstraintEditPart(view);
+
+			case TimeConstraintLabelEditPart.VISUAL_ID:
+				return new TimeConstraintLabelEditPart(view);
+
 			case ConstraintEditPart.VISUAL_ID:
 				return new ConstraintEditPart(view);
 
@@ -120,12 +126,18 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case MessageNameEditPart.VISUAL_ID:
 				return new MessageNameEditPart(view);
 
+			case DurationObservationInSyncEditPart.VISUAL_ID:
+				return new DurationObservationInSyncEditPart(view);
+
 
 			case Message2EditPart.VISUAL_ID:
 				return new Message2EditPart(view);
 
 			case MessageName2EditPart.VISUAL_ID:
 				return new MessageName2EditPart(view);
+
+			case DurationObservationInAsyncEditPart.VISUAL_ID:
+				return new DurationObservationInAsyncEditPart(view);
 
 
 			case Message3EditPart.VISUAL_ID:
@@ -134,12 +146,18 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case MessageName3EditPart.VISUAL_ID:
 				return new MessageName3EditPart(view);
 
+			case DurationObservationInReplyEditPart.VISUAL_ID:
+				return new DurationObservationInReplyEditPart(view);
+
 
 			case Message4EditPart.VISUAL_ID:
 				return new Message4EditPart(view);
 
 			case MessageName4EditPart.VISUAL_ID:
 				return new MessageName4EditPart(view);
+
+			case DurationObservationInCreateEditPart.VISUAL_ID:
+				return new DurationObservationInCreateEditPart(view);
 
 
 			case Message5EditPart.VISUAL_ID:
@@ -148,6 +166,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case MessageName5EditPart.VISUAL_ID:
 				return new MessageName5EditPart(view);
 
+			case DurationObservationInDeleteEditPart.VISUAL_ID:
+				return new DurationObservationInDeleteEditPart(view);
+
 
 			case Message6EditPart.VISUAL_ID:
 				return new Message6EditPart(view);
@@ -155,12 +176,18 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case MessageName6EditPart.VISUAL_ID:
 				return new MessageName6EditPart(view);
 
+			case DurationObservationInLostEditPart.VISUAL_ID:
+				return new DurationObservationInLostEditPart(view);
+
 
 			case Message7EditPart.VISUAL_ID:
 				return new Message7EditPart(view);
 
 			case MessageName7EditPart.VISUAL_ID:
 				return new MessageName7EditPart(view);
+
+			case DurationObservationInFoundEditPart.VISUAL_ID:
+				return new DurationObservationInFoundEditPart(view);
 
 
 			case CommentAnnotatedElementEditPart.VISUAL_ID:
