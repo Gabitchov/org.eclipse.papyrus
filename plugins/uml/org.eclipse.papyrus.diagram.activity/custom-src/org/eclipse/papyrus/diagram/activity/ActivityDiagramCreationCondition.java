@@ -27,14 +27,8 @@ public class ActivityDiagramCreationCondition  extends PerspectiveContextDepende
 	 * @return whether the diagram can be created.
 	 */
 	public boolean create(EObject selectedElement) {
-
 		if(super.create(selectedElement)){
-
-			// FIXME creation under BehavioredClassifier disabled for now (until bug 348 fixed)
-			if(selectedElement instanceof Activity && selectedElement.eContainer() instanceof BehavioredClassifier) {
-				return false;
-			}
-			return selectedElement instanceof Activity || selectedElement instanceof Package;// || selectedElement instanceof BehavioredClassifier;
+			return selectedElement instanceof Activity || selectedElement instanceof Package || selectedElement instanceof BehavioredClassifier;
 		}
 		return false;
 	}
