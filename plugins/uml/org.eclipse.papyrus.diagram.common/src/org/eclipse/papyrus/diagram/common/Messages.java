@@ -264,6 +264,12 @@ public class Messages extends NLS {
 	/** label for the tooltip of the edit drawer icon */
 	public static String PapyrusPaletteCustomizerDialog_EditButtonTooltip;
 
+	/** Message for dialog to edit the runtime properties */
+	public static String StereotypePostAction_EditRuntimePropertiesMessage;
+
+	/** Title for dialog to edit the runtime properties */
+	public static String StereotypePostAction_EditRuntimePropertiesTitle;
+
 	/** Message for the add Stereotype Window */
 	public static String StereotypePostAction_StereotypeSelectionMessage;
 
@@ -311,4 +317,10 @@ public class Messages extends NLS {
 
 	/** the "Value" String */
 	public static String PropertyEditors_Value;
+
+	/** message for the runtime dialog */
+	public static String SetDynamicValueCommand_DialogMessage;
+
+	/** title for the runtime dialog */
+	public static String SetDynamicValueCommand_DialogTile;
 }

@@ -22,18 +22,19 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
+import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.util.StringStatics;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.util.EditPartUtil;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.service.IPapyrusPaletteConstant;
@@ -48,6 +49,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.uml2.uml.Profile;
 import org.w3c.dom.Element;
@@ -151,48 +153,67 @@ public class ChangeStereotypeDisplayPostAction extends GraphicalPostAction {
 	 * @{inheritDoc
 	 */
 	@Override
-	public void run(EditPart editPart) {
+	public void run(final EditPart editPart) {
 
 		final CompositeCommand compositeCommand = new CompositeCommand("Modify Stereotype Display");
-		View view = (View)editPart.getModel();
-		TransactionalEditingDomain editingDomain = org.eclipse.papyrus.core.utils.EditorUtils.getTransactionalEditingDomain();
+		//	View view = (View)editPart.getModel();
 
-		String stereotypetoDisplay = AppliedStereotypeHelper.getStereotypesToDisplay(view);
-		RecordingCommand command = AppliedStereotypeHelper.getAppliedStereotypeToDisplayCommand(editingDomain, view, stereotypetoDisplay, displayKind);
-		compositeCommand.compose(new EMFtoGMFCommandWrapper(command));
-		compositeCommand.reduce();
+		final EModelElement view = (EModelElement)((GraphicalEditPart)editPart).getModel();
+		final TransactionalEditingDomain editingDomain = org.eclipse.papyrus.core.utils.EditorUtils.getTransactionalEditingDomain();
+		try {
+			editingDomain.runExclusive(new Runnable() {
 
-		if(compositeCommand.canExecute()) {
-			boolean isActivating = true;
-			Map<String, Boolean> options = null;
-			// use the viewer to determine if we are still initializing the diagram
-			// do not use the DiagramEditPart.isActivating since ConnectionEditPart's
-			// parent will not be a diagram edit part
-			EditPartViewer viewer = editPart.getViewer();
-			if(viewer instanceof DiagramGraphicalViewer) {
-				isActivating = ((DiagramGraphicalViewer)viewer).isInitializing();
-			}
+				public void run() {
+					Display.getCurrent().asyncExec(new Runnable() {
 
-			if(isActivating || !EditPartUtil.isWriteTransactionInProgress((IGraphicalEditPart)editPart, false, false)) {
-				options = Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-			}
+						public void run() {
 
-			AbstractEMFOperation operation = new AbstractEMFOperation(((IGraphicalEditPart)editPart).getEditingDomain(), StringStatics.BLANK, options) {
+							String stereotypetoDisplay = AppliedStereotypeHelper.getStereotypesToDisplay(view);
+							final RecordingCommand command = AppliedStereotypeHelper.getAppliedStereotypeToDisplayCommand(editingDomain, view, stereotypetoDisplay, displayKind);
+							compositeCommand.compose(new EMFtoGMFCommandWrapper(command));
+							compositeCommand.reduce();
 
-				protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+							if(compositeCommand.canExecute()) {
+								boolean isActivating = true;
+								Map<String, Boolean> options = null;
+								// use the viewer to determine if we are still initializing the diagram
+								// do not use the DiagramEditPart.isActivating since ConnectionEditPart's
+								// parent will not be a diagram edit part
+								EditPartViewer viewer = editPart.getViewer();
+								if(viewer instanceof DiagramGraphicalViewer) {
+									isActivating = ((DiagramGraphicalViewer)viewer).isInitializing();
+								}
 
-					compositeCommand.execute(monitor, info);
+								if(isActivating || !EditPartUtil.isWriteTransactionInProgress((IGraphicalEditPart)editPart, false, false)) {
+									options = Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
+								}
 
-					return Status.OK_STATUS;
+								AbstractEMFOperation operation = new AbstractEMFOperation(((IGraphicalEditPart)editPart).getEditingDomain(), StringStatics.BLANK, options) {
+
+									@Override
+									protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+
+										editingDomain.getCommandStack().execute(command);
+
+										return Status.OK_STATUS;
+									}
+								};
+								try {
+									operation.execute(new NullProgressMonitor(), null);
+								} catch (ExecutionException e) {
+									Activator.log.error(e);
+								}
+							} else {
+								Activator.log.error("Impossible to execute graphical post action " + propertiesToUpdate, null);
+							}
+						}
+					});
 				}
-			};
-			try {
-				operation.execute(new NullProgressMonitor(), null);
-			} catch (ExecutionException e) {
-				Activator.log.error(e);
-			}
-		} else {
-			Activator.log.error("Impossible to execute graphical post action " + propertiesToUpdate, null);
+
+			});
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

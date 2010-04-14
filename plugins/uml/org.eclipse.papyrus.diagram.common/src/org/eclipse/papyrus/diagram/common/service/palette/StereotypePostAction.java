@@ -13,33 +13,31 @@
 package org.eclipse.papyrus.diagram.common.service.palette;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.util.DisplayUtils;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.CellLabelProvider;
+import org.eclipse.jface.viewers.CheckboxCellEditor;
 import org.eclipse.jface.viewers.ColumnViewer;
 import org.eclipse.jface.viewers.ComboBoxCellEditor;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.ITreeSelection;
@@ -54,11 +52,11 @@ import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.Messages;
+import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.diagram.common.command.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.part.PaletteUtil;
 import org.eclipse.papyrus.diagram.common.service.ApplyStereotypeRequest;
-import org.eclipse.papyrus.diagram.common.service.IPapyrusPaletteConstant;
 import org.eclipse.papyrus.diagram.common.ui.dialogs.PropertyEditors;
-import org.eclipse.papyrus.diagram.common.util.SuperString;
 import org.eclipse.papyrus.diagram.common.util.Util;
 import org.eclipse.papyrus.diagram.common.wizards.PaletteAspectToolEntryProxy;
 import org.eclipse.papyrus.diagram.common.wizards.PaletteEntryProxy;
@@ -68,6 +66,7 @@ import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -75,11 +74,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.CheckedTreeSelectionDialog;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.DataType;
-import org.eclipse.uml2.uml.Enumeration;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Property;
@@ -87,16 +85,14 @@ import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 
 /**
  * Aspect action that applies stereotypes on the edit part newly created
  * 
  * /!\ WARNING
- * always use the setters and getters for manipulating the 2 hashmaps
+ * use the setters and getters for manipulating the {@link #propertiesToUpdate} and {@link #valuesToProperties}
  * 
  * 
  */
@@ -150,28 +146,8 @@ public class StereotypePostAction extends ModelPostAction {
 	/** datatype icon path */
 	protected static final String ICON_DATATYPE = "/icons/DataType.gif"; //$NON-NLS-1$
 
-	/** list of properties to update, the key is the property and the value is an Object or an ArrayList<Object> if it's a multi-valued property */
-	protected Map<Object, Object> propertiesToUpdate;
-
-	/*
-	 * list of the values key = the object value, value = the property containing the value!
-	 * we need this map to refind easier the type of the value, because, we use String for :
-	 * - integer
-	 * - unlimited natural
-	 * - string
-	 * - ... and maybe others
-	 * 
-	 * moreover, we have the same problem with multi-valued property
-	 * 
-	 * So we have the property and property.getType() is easiest!
-	 */
-	protected Map<Object, Property> valuesToProperties;
-
-	/** list of stereotypes to apply, identified by their qualified names */
-	protected List<String> stereotypesToApply;
-
-	/** we can't find the real objects stereotype and property during the init(), so we store them in this hashmap */
-	protected Map<String, Object> valuesToApply;
+	/** the configuration for the palette element */
+	protected Configuration config;
 
 	/** Separator for displaying the different values owned by a multi-valued property */
 	protected static final String SEPARATOR = ", "; //$NON-NLS-1$
@@ -182,15 +158,11 @@ public class StereotypePostAction extends ModelPostAction {
 	/** entry proxy "parent" of this action when configuring the action */
 	protected PaletteEntryProxy entryProxy;
 
-	/** list of applied profiles */
-	protected List<Profile> appliedProfiles;
-
-	/** stereotypes label provider */
-	protected StereotypeLabelProvider stereotypeLabelProvider = new StereotypeLabelProvider();
-
 	/** editor label provider */
 	protected EditorLabelProvider editorLabelProvider = new EditorLabelProvider();
 
+	/** editor content provider */
+	protected StereotypeContentProvider stereotypeContentProvider = new StereotypeContentProvider();
 
 	/*
 	 * the buttons
@@ -229,34 +201,25 @@ public class StereotypePostAction extends ModelPostAction {
 	/** constant to identify the type of an Unlimited Natural property */
 	final static public String UMLPrimitiveTypes_UNLIMITED_NATURAL = "UMLPrimitiveTypes::UnlimitedNatural"; //$NON-NLS-1$
 
-	/*
-	 * String used to save and init the palette's configuration
-	 */
-	/** name of the property node */
-	public static final String PROPERTY = "property"; //$NON-NLS-1$
+	/** path to the checked box image */
+	protected final static String ICON_CHECKED = "/icons/complete_tsk.gif"; //$NON-NLS-1$
 
-	/** name of the property name attribute */
-	public static final String PROPERTY_NAME = "propertyName"; //$NON-NLS-1$
+	/** path to the unchecked box image */
+	protected final static String ICON_UNCHECKED = "/icons/incomplete_tsk.gif"; //$NON-NLS-1$
 
-	/** name of the stereotype node */
-	public static final String STEREOTYPE = "stereotype"; //$NON-NLS-1$
+	/** the column for the stereotypes */
+	private TreeViewerColumn stereotypeColumn = null;
 
-	/** name of the stereotypes to apply node */
-	public static final String STEREOTYPE_TO_APPLY = "stereotypesToApply"; //$NON-NLS-1$
+	/** the column with the checkboxes for the runtime properties */
+	private TreeViewerColumn runtimeColumn = null;
 
-	/** name of the property name */
-	public static final String STEREOTYPE_NAME = "stereotypeName"; //$NON-NLS-1$
-
-	/** name of the value node */
-	public static final String VALUE = "value"; //$NON-NLS-1$
+	private ArrayList<Value> savedValues;
 
 	/**
 	 * Constructor.
 	 */
 	public StereotypePostAction() {
-		propertiesToUpdate = new HashMap<Object, Object>();
-		valuesToProperties = new HashMap<Object, Property>();
-		stereotypesToApply = new ArrayList<String>();
+
 	}
 
 	/**
@@ -276,117 +239,26 @@ public class StereotypePostAction extends ModelPostAction {
 	}
 
 	/**
-	 * @{inheritDoc
+	 * 
+	 * @see org.eclipse.papyrus.diagram.common.service.palette.ModelPostAction#init(org.w3c.dom.Node,
+	 *      org.eclipse.papyrus.diagram.common.service.palette.IAspectActionProvider)
+	 * 
+	 * @param configurationNode
+	 * @param factory
 	 */
 	@Override
 	public void init(Node configurationNode, IAspectActionProvider factory) {
 		super.init(configurationNode, factory);
-		if(configurationNode == null) {
-			return;
-		}
-		NamedNodeMap nodeAttributes = configurationNode.getAttributes();
-		if(null != nodeAttributes.getNamedItem(IPapyrusPaletteConstant.STEREOTYPES_TO_APPLY)) {//old version
-			String stereotypesToApplyQN = configurationNode.getAttributes().getNamedItem(IPapyrusPaletteConstant.STEREOTYPES_TO_APPLY).getNodeValue();
-			if(stereotypesToApplyQN != null && !"".equals(stereotypesToApplyQN)) { //$NON-NLS-1$
-				stereotypesToApply.addAll(PaletteUtil.getStereotypeListFromString(stereotypesToApplyQN));
-			}
-		} else {//new version
-
-			Node stereotypesToApplyNode = configurationNode.getFirstChild();//stereotypesToApply Node
-			if(!IPapyrusPaletteConstant.STEREOTYPES_TO_APPLY.equals(stereotypesToApplyNode.getLocalName())) {
-				//the first node must be STEREOTYPE_TO_APPLY
-				return;
-			}
-			NodeList childNodes = stereotypesToApplyNode.getChildNodes();
-			valuesToApply = new HashMap<String, Object>();
-			if(stereotypesToApplyNode.hasChildNodes()) {
-				for(int iter = 0; iter < childNodes.getLength(); iter++) {
-					Node steNode = childNodes.item(iter);
-					if(STEREOTYPE.equals(steNode.getLocalName())) {//this node is really a stereotype?
-						String propertyName = null;
-						String stereotypeName = steNode.getAttributes().getNamedItem(STEREOTYPE_NAME).getNodeValue();
-
-						// we store the stereotype
-						stereotypesToApply.add(stereotypeName);
-
-						if(steNode.hasChildNodes()) {//there are associated properties and values
-							NodeList properties = steNode.getChildNodes();
-							for(int i = 0; i < properties.getLength(); i++) {//we iterate on the properties
-								Node propertyNode = properties.item(i);
-								if(PROPERTY.equals(propertyNode.getLocalName())) {//this node is really a property?
-									propertyName = propertyNode.getAttributes().getNamedItem(PROPERTY_NAME).getNodeValue();
-									NodeList valuesList = propertyNode.getChildNodes();
-									/*
-									 * the test on mono-valued or multi-valued property can't do here, because we doesn't have the real properties.
-									 * This test should be make in the fillHashMap() method
-									 */
-									if(valuesList.getLength() == 1) {
-										Node valueNode = valuesList.item(0);
-										if(VALUE.equals(valueNode.getLocalName())) {//this node is really a value?
-											//we store the value
-											valuesToApply.put(stereotypeName + NamedElement.SEPARATOR + propertyName, valueNode.getTextContent());
-										}
-									} else {
-										ArrayList<String> values = new ArrayList<String>();
-										for(int ii = 0; ii < valuesList.getLength(); ii++) {//we iterate on the values
-											Node valueNode = valuesList.item(ii);
-											if(valueNode.getLocalName().equals(VALUE)) {//this node is really a value?
-												values.add(valueNode.getTextContent());
-											}
-										}
-										//we store the value
-										valuesToApply.put(stereotypeName + NamedElement.SEPARATOR + propertyName, values);
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
+		config = new Configuration(configurationNode);
 	}
+
 
 	/**
 	 * @{inheritDoc
 	 */
 	public void save(Node parentNode) {
 		if(parentNode instanceof Element) {
-			Iterator<String> it = stereotypesToApply.listIterator();
-			Set<Object> keys = propertiesToUpdate.keySet();
-			//((Element)parentNode).appendChild(arg0)
-			Element appliedStereotypeNode = ((Element)parentNode).getOwnerDocument().createElement(STEREOTYPE_TO_APPLY);
-			while(it.hasNext()) {//iteration on stereotypes
-				String currentStereotype = it.next();
-				Element stereotypeNode = ((Element)parentNode).getOwnerDocument().createElement(STEREOTYPE);
-				stereotypeNode.setAttribute(STEREOTYPE_NAME, currentStereotype);
-
-				for(Object obj : keys) {//iteration on properties
-					if((obj instanceof Property) && ((Property)obj).getQualifiedName().contains(currentStereotype)) {//we have a property to save for this stereotype
-						Element propertyNode = ((Element)parentNode).getOwnerDocument().createElement(PROPERTY);
-						propertyNode.setAttribute(PROPERTY_NAME, ((Property)obj).getName());
-						Object values = propertiesToUpdate.get(obj);
-						if(values instanceof ArrayList<?>) {
-							for(int i = 0; i < ((ArrayList<?>)values).size(); i++) {//iteration on values
-								Element valueNode = ((Element)parentNode).getOwnerDocument().createElement(VALUE);
-								valueNode.setTextContent(((ArrayList<?>)values).get(i).toString());
-								propertyNode.appendChild(valueNode);
-							}
-						} else {
-							Element valueNode = ((Element)parentNode).getOwnerDocument().createElement(VALUE);
-							valueNode.setTextContent(values.toString());
-							propertyNode.appendChild(valueNode);
-						}
-						stereotypeNode.appendChild(propertyNode);
-					}
-				}//end of iteration on properties
-				appliedStereotypeNode.appendChild(stereotypeNode);
-
-			}//end of iteration on stereotype
-			parentNode.appendChild(appliedStereotypeNode);
-
-			//clean the hashmaps
-			propertiesToUpdate.clear();
-			valuesToProperties.clear();
+			config.save(parentNode);
 		} else {
 			Activator.log.error("parent node is not an Element", null); //$NON-NLS-1$
 		}
@@ -398,8 +270,12 @@ public class StereotypePostAction extends ModelPostAction {
 	@Override
 	@SuppressWarnings("unchecked")
 	public void run(final EditPart editPart) {
+		//so, we doesn't need to save the default values which can be modified during the runtime
+		config = new Configuration(config.getConfigurationNode());
+
+
 		// Apply the required stereotypes
-		ApplyStereotypeRequest request = new ApplyStereotypeRequest(stereotypesToApply);
+		ApplyStereotypeRequest request = new ApplyStereotypeRequest(config.getStereotypesToApplyQN());
 		request.getExtendedData().put(ApplyStereotypeRequest.NEW_EDIT_PART_NAME, "NEW"); //$NON-NLS-1$
 		editPart.performRequest(request);
 
@@ -410,349 +286,124 @@ public class StereotypePostAction extends ModelPostAction {
 
 		//element where are the properties
 		final EObject objectToEdit = ((View)editPart.getModel()).getElement();
-		//the current stereotype
-		Stereotype currentStereotype = null;
-		//all the properties to edit
-		Set<String> keys = valuesToApply.keySet();
+
 		if(!(objectToEdit instanceof org.eclipse.uml2.uml.NamedElement)) {
+			//TODO for the Element which are not NamedElement
 			return;
 		}
+		//we search the container for the object
+		org.eclipse.uml2.uml.Element packageContainerTmp = ((org.eclipse.uml2.uml.Element)objectToEdit);
+		do {
+			packageContainerTmp = packageContainerTmp.getOwner();
+		} while(!(packageContainerTmp instanceof org.eclipse.uml2.uml.Package));
+		final org.eclipse.uml2.uml.Element packageContainer = packageContainerTmp;
 
-		for(String steQN : stereotypesToApply) {
-			for(String key : keys) {
-				if(key.contains(steQN)) {//there is a property to apply!!!
-					//get the stereotype
-					EList<Stereotype> appliedSte = ((org.eclipse.uml2.uml.Element)objectToEdit).getAppliedStereotypes();
-					for(Stereotype ste : appliedSte) {
-						if(ste.getQualifiedName().equals(steQN)) {
-							currentStereotype = ste;
-							break;
+		config.setAppliedProfiles(((org.eclipse.uml2.uml.Package)packageContainer).getAllAppliedProfiles());
+
+		if(config.hasRuntimeProperties()) {
+
+			defineRuntimeProperties(config);
+		}
+
+		final TransactionalEditingDomain editingDomain = org.eclipse.papyrus.core.utils.EditorUtils.getTransactionalEditingDomain();
+
+		//-----------------create a composite command
+		CompositeCommand cmd = new CompositeCommand("Apply values for properties");
+		ArrayList<StereotypeRepresentation> stereotypes = config.getStereotypesRepresentations();
+		for(StereotypeRepresentation stereotype : stereotypes) {
+			final Stereotype stereotypeToEdit = stereotype.getUMLStereotype();
+			ArrayList<PropertyRepresentation> properties = stereotype.getPropertiesWithValues();
+			for(PropertyRepresentation property : properties) {
+				if(property.hasValues()) {
+					Type type = property.getType();
+					final String propertyName = property.getUMLProperty().getName();
+					if(type != null && propertyName != null) {
+						final Object newValue;
+						if(type instanceof PrimitiveType) {
+							newValue = Util.getValueFromString(property.getUMLProperty(), property.getStringValue());
+						} else if(Util.isMetaclass(type)) {
+							newValue = Util.retrievesMetaclassElementFromString(property.getUMLProperty(), property.getStringValue(), packageContainer);
+							// property is an Enumeration 
+						} else if(type instanceof org.eclipse.uml2.uml.Enumeration) {
+							newValue = Util.retrievesEnumerationLiteralFromString(property.getUMLProperty(), property.getStringValue(), packageContainer);
+							// property is a DataType 
+						} else if(type instanceof org.eclipse.uml2.uml.DataType) {
+							newValue = Util.getValueFromString(property.getUMLProperty(), property.getStringValue());
+							// property is a Stereotype 
+						} else if(type instanceof Stereotype) {
+							newValue = Util.retrievesStereotypedElementFromString(property.getUMLProperty(), property.getStringValue(), packageContainer);
+							// property is a composite class
+						} else if((type instanceof org.eclipse.uml2.uml.Class) && !(type instanceof Stereotype) && property.getUMLProperty().isMultivalued()) {
+							//TODO
+							newValue = null;
+						} else {
+							Activator.log.error("impossible to find a correct editor for the property" + property, null); //$NON-NLS-1$
+							return;
 						}
-					}
-					if(currentStereotype == null) {
-						return;
-					}
-					final Stereotype stereotypeToEdit = currentStereotype;
-					//get the property
-					final Property property = stereotypeToEdit.getAttribute(key.substring(key.lastIndexOf(NamedElement.SEPARATOR) + 2), null);
-					final Object propertyValue = valuesToApply.get(property.getQualifiedName());
-					final TransactionalEditingDomain editingDomain = org.eclipse.papyrus.core.utils.EditorUtils.getTransactionalEditingDomain();
-					try {
-						editingDomain.runExclusive(new Runnable() {
+						//we create and execute the recording command
+						RecordingCommand command = null;
+						if(newValue != null) {
+							command = new RecordingCommand(editingDomain) {
 
-							public void run() {
-								Display.getCurrent().asyncExec(new Runnable() {
+								@Override
+								protected void doExecute() {
+									((org.eclipse.uml2.uml.Element)objectToEdit).setValue(stereotypeToEdit, propertyName, newValue);
 
-									public void run() {
-										Type type = property.getType();
-										final Object newValue;
-										if(type instanceof PrimitiveType) {
-											newValue = getValueFromString(property, propertyValue);
-										} else if(Util.isMetaclass(type)) {
-											newValue = retrievesMetaclassElementFromString(property, propertyValue);
-											// property is an Enumeration 
-										} else if(type instanceof org.eclipse.uml2.uml.Enumeration) {
-											newValue = retrievesEnumerationLiteralFromString(property, propertyValue);
-											// property is a DataType 
-										} else if(type instanceof org.eclipse.uml2.uml.DataType) {
-											newValue = getValueFromString(property, propertyValue);
-											// property is a Stereotype 
-										} else if(type instanceof Stereotype) {
-											newValue = retrievesStereotypedElementFromString(property, propertyValue);
-											// property is a composite class
-										} else if((type instanceof org.eclipse.uml2.uml.Class) && !(type instanceof Stereotype) && property.isMultivalued()) {
-											//TODO
-											newValue = null;
-										} else {
-											Activator.log.error("impossible to find a correct editor for the property" + property, null); //$NON-NLS-1$
-											return;
-										}
-										//we create and execute the recording command
-										if(newValue != null) {
-											RecordingCommand command = new RecordingCommand(editingDomain) {
+								}
+							};
 
-												@Override
-												protected void doExecute() {
-													((org.eclipse.uml2.uml.Element)objectToEdit).setValue(stereotypeToEdit, property.getName(), newValue);
-												}
-											};
-											editingDomain.getCommandStack().execute(command);
-										}
-									}
-
-									/**
-									 * 
-									 * @param property
-									 *        : the property to edit
-									 * @param propertyValue
-									 *        : the value to find
-									 * @return the set of the element representing the value to apply to the property or <code>null</code>
-									 * 
-									 */
-									private Object retrievesMetaclassElementFromString(Property property, Object propertyValue) {
-										//we search the container for the object
-										org.eclipse.uml2.uml.Element packageContainer = ((org.eclipse.uml2.uml.Element)objectToEdit);
-										do {
-											packageContainer = packageContainer.getOwner();
-										} while(!(packageContainer instanceof org.eclipse.uml2.uml.Package));
-										//the applied profiles
-										EList<Profile> profiles = ((org.eclipse.uml2.uml.Package)packageContainer).getAllAppliedProfiles();
-
-										ArrayList<Object> returnedValues = new ArrayList();
-										// the values to apply 
-										ArrayList<String> stringValues = new ArrayList<String>();
-										ArrayList<Object> metaclassElement = new ArrayList<Object>();
-										String metaclassName = ((org.eclipse.uml2.uml.Class)property.getType()).getName();
-										if(propertyValue instanceof ArrayList) {
-											stringValues.addAll((ArrayList)propertyValue);
-										} else if(propertyValue instanceof String) {
-											stringValues.add((String)propertyValue);
-										}
-
-
-
-										/*
-										 * we research all the representation of the metaclass in the Profiles
-										 */
-										// Try to retrieve type of the metaclass
-										java.lang.Class metaType = null;
-										try {
-											metaType = java.lang.Class.forName("org.eclipse.uml2.uml." + metaclassName); //$NON-NLS-1$
-										} catch (Exception e) {
-											e.printStackTrace();
-										}
-										for(Profile profile : profiles) {
-											metaclassElement.addAll(Util.getInstancesFilteredByType(profile, metaType, null));
-										}
-
-										/*
-										 * we retrieve the element with its QualifiedName
-										 */
-
-										for(String valuesQualifiedName : stringValues) {
-											for(Object metaclassRepresentation : metaclassElement) {
-												if(metaclassRepresentation instanceof NamedElement) {
-													if(((NamedElement)metaclassRepresentation).getQualifiedName().equals(valuesQualifiedName)) {
-														((ArrayList)returnedValues).add(metaclassRepresentation);
-													}
-												}
-											}
-
-
-										}
-
-										if(property.getUpper() != 1) {
-											return returnedValues;
-										} else if(returnedValues.size() > 0) {
-											return returnedValues.get(0);
-										}
-										return null;
-									}
-
-									/**
-									 * 
-									 * @param property
-									 *        : the property to edit
-									 * @param propertyValue
-									 *        : the value to find
-									 * @return the set of the stereotyped element to apply to the property or <code>null</code>
-									 * 
-									 */
-									private Object retrievesStereotypedElementFromString(Property property, Object propertyValue) {
-
-										//we search the container for the object
-										org.eclipse.uml2.uml.Element packageContainer = ((org.eclipse.uml2.uml.Element)objectToEdit);
-										do {
-											packageContainer = packageContainer.getOwner();
-										} while(!(packageContainer instanceof org.eclipse.uml2.uml.Package));
-
-										ArrayList returnedValues = new ArrayList();
-
-										ArrayList<String> stringvalues = new ArrayList<String>();
-										ArrayList<Object> stereotypedElement = new ArrayList<Object>();
-										if(propertyValue instanceof ArrayList) {
-											stringvalues.addAll((ArrayList)propertyValue);
-										} else if(propertyValue instanceof String) {
-											stringvalues.add((String)propertyValue);
-										}
-
-
-										EList<Profile> profiles = ((org.eclipse.uml2.uml.Package)packageContainer).getAllAppliedProfiles();
-										/*
-										 * we research all the representation of the stereotype in the Profiles
-										 */
-										for(Profile profile : profiles) {
-											stereotypedElement.addAll(Util.getInstancesFilteredByType(profile, null, (Stereotype)property.getType()));
-										}
-
-										/*
-										 * we retrieve the element with its QualifiedName
-										 */
-										for(String valuesQualifiedName : stringvalues) {
-											for(Object element : stereotypedElement) {
-												if(element instanceof NamedElement) {
-													if(((NamedElement)element).getQualifiedName().equals(valuesQualifiedName)) {
-
-
-
-														//Like in AppliedStereotypePropertyEditor
-														EObject newValue = ((NamedElement)element).getStereotypeApplication((Stereotype)property.getType());
-														if(newValue == null) {
-															EList subStereotypes = ((NamedElement)element).getAppliedSubstereotypes((Stereotype)property.getType());
-															if(!subStereotypes.isEmpty()) {
-																newValue = ((NamedElement)element).getStereotypeApplication((Stereotype)subStereotypes.get(0));
-															}
-														}
-														//Like in StereotypeValueTreeObject
-														if(newValue != null) {
-
-															returnedValues.add(newValue);
-
-														}
-														returnedValues.add(element);
-														break;
-													}
-												} else {
-													//TODO for the element which don't are NamedElement
-												}
-											}
-										}
-
-
-										if(property.getUpper() != 1) {
-											return returnedValues;
-										} else if(returnedValues.size() > 0) {
-											return returnedValues.get(0);
-										}
-										return null;
-
-									}
-
-									/**
-									 * 
-									 * @param property
-									 *        : the property to edit
-									 * @param propertyValue
-									 *        : the value to find
-									 * @return the set of EnumerationLiteral to apply to the property
-									 * 
-									 */
-									private Object retrievesEnumerationLiteralFromString(Property property, Object object) {
-										//we search the container for the object
-										org.eclipse.uml2.uml.Element packageContainer = ((org.eclipse.uml2.uml.Element)objectToEdit);
-										do {
-											packageContainer = packageContainer.getOwner();
-										} while(!(packageContainer instanceof org.eclipse.uml2.uml.Package));
-										ArrayList returnedValues = new ArrayList();
-
-										ArrayList<String> stringvalues = new ArrayList<String>();
-										String typeName = property.getType().getName();
-										if(object instanceof ArrayList) {
-											stringvalues.addAll((ArrayList)object);
-										} else if(object instanceof String) {
-											stringvalues.add((String)object);
-										}
-
-										//get the enumerationLiteral
-										Enumeration enume = null;
-										String enumerationQN = property.getType().getQualifiedName();
-										String profileQN = enumerationQN.substring(0, enumerationQN.lastIndexOf(NamedElement.SEPARATOR));
-										Profile profile = null;
-
-										EList<Profile> profiles = ((org.eclipse.uml2.uml.Package)packageContainer).getAllAppliedProfiles();
-										for(Profile prof : profiles) {
-											if(prof.getQualifiedName().equals(profileQN)) {
-												profile = prof;
-												break;
-											}
-										}
-										enume = (Enumeration)profile.getPackagedElement(typeName);
-
-
-										//we research the enumerationLiteral
-										for(int i = 0; i < stringvalues.size(); i++) {
-											Object obj = enume.getOwnedLiteral(stringvalues.get(i));
-											(returnedValues).add(obj);
-										}
-
-										if(property.getUpper() != 1) {
-											return returnedValues;
-										} else if(returnedValues.size() > 0) {
-											return returnedValues.get(0);
-										}
-										return null;
-									}
-
-
-									/**
-									 * This function refind the value from a string for the following types :
-									 * <ul>
-									 * <li>Boolean</li>
-									 * <li>Integer</li>
-									 * <li>String</li>
-									 * <li>UnlimitedNatural</li>
-									 * <li>DataType</li>
-									 * </ul>
-									 * 
-									 * @param property
-									 *        : the property to edit
-									 * @param propertyValue
-									 *        : the value to find
-									 * @return the set of value to apply to the property
-									 * 
-									 */
-									private Object getValueFromString(Property property, Object object) {
-										ArrayList returnedValue = new ArrayList();
-										ArrayList<String> stringvalues = new ArrayList<String>();
-										String typeName = property.getType().getQualifiedName();
-										if(object instanceof ArrayList) {
-											stringvalues.addAll((ArrayList)object);
-										} else if(object instanceof String) {
-											stringvalues.add((String)object);
-										}
-
-										if(property.getType() instanceof PrimitiveType) {
-											if(UMLPrimitiveTypes_INTEGER.equals(typeName)) {
-												for(int i = 0; i < stringvalues.size(); i++) {
-													returnedValue.add(Integer.valueOf(stringvalues.get(i)));
-												}
-											} else if(UMLPrimitiveTypes_UNLIMITED_NATURAL.equals(typeName)) {
-												for(int i = 0; i < stringvalues.size(); i++) {
-													returnedValue.add(Integer.valueOf(stringvalues.get(i)));
-												}
-											} else if(UMLPrimitiveTypes_STRING.equals(typeName)) {
-												for(int i = 0; i < stringvalues.size(); i++) {
-													returnedValue.add(stringvalues.get(i));
-												}
-											} else if(UMLPrimitiveTypes_BOOLEAN.equals(typeName)) {
-												for(int i = 0; i < stringvalues.size(); i++) {
-													returnedValue.add(Boolean.valueOf(stringvalues.get(i)));
-												}
-											} else { // user defined primitive type
-												for(int i = 0; i < stringvalues.size(); i++) {
-													returnedValue.add(stringvalues.get(i));
-												}
-											}
-										} else if(property.getType() instanceof DataType) {
-											for(int i = 0; i < stringvalues.size(); i++) {
-												returnedValue.add(stringvalues.get(i));
-											}
-										}
-
-										if(property.getUpper() == 1) {
-											return returnedValue.get(0);
-										}
-										return returnedValue;
-									}
-								});
-							}
-						});
-					} catch (InterruptedException e) {
-						e.printStackTrace();
+						}
+						if(command != null) {
+							cmd.add(new EMFtoGMFCommandWrapper(command));
+						}
 					}
 				}
 			}
+		}
 
+		final ICommand iCmd = cmd.reduce();
+		try {
+			if(iCmd.canExecute()) {
+				//execute the command
+				editingDomain.runExclusive(new Runnable() {
+
+					//
+					public void run() {
+						Display.getCurrent().asyncExec(new Runnable() {
+
+							public void run() {
+								editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(iCmd));
+
+							}
+						});
+					}
+				});
+
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	private void saveValues() {
+		savedValues = new ArrayList<Value>();
+		for(StereotypeRepresentation steRep : config.getStereotypesRepresentations()) {
+			if(steRep.hasRuntimeProperties()) {
+				for(PropertyRepresentation propRep : steRep.getRuntimeProperties()) {
+					for(Value value : propRep.getValues()) {
+						Value newVal = new Value(value);
+						newVal.setPropertyRepresentation(propRep);
+						savedValues.add(newVal);
+					}
+				}
+			}
+		}
+
+	}
+
+	private void restoreValues() {
+		for(Value val : savedValues) {
 
 		}
 
@@ -762,10 +413,8 @@ public class StereotypePostAction extends ModelPostAction {
 	 * @{inheritDoc
 	 */
 	public Control createConfigurationComposite(Composite parent, PaletteEntryProxy entryProxy, List<Profile> appliedProfiles) {
-		this.appliedProfiles = appliedProfiles;
+		config.setAppliedProfiles(appliedProfiles);
 		this.entryProxy = entryProxy;
-		//we can make it before, because, we doesn't have the really stereotype
-		fillHashMaps();
 
 
 		Composite mainComposite = new Composite(parent, SWT.BORDER);
@@ -785,7 +434,9 @@ public class StereotypePostAction extends ModelPostAction {
 			 * @{inheritDoc
 			 */
 			public void mouseUp(MouseEvent e) {
-				moveElement(MOVE_DOWN);
+				moveElement(MOVE_DOWN, stereotypesViewer);
+				selectionHasChange();
+
 			}
 
 			/**
@@ -811,7 +462,8 @@ public class StereotypePostAction extends ModelPostAction {
 			 * @{inheritDoc
 			 */
 			public void mouseUp(MouseEvent e) {
-				moveElement(MOVE_UP);
+				moveElement(MOVE_UP, stereotypesViewer);
+				selectionHasChange();
 			}
 
 			/**
@@ -838,7 +490,8 @@ public class StereotypePostAction extends ModelPostAction {
 			 * @{inheritDoc
 			 */
 			public void mouseUp(MouseEvent e) {
-				performAddButtonPressed();
+				performAddButtonPressed(stereotypesViewer);
+				selectionHasChange();
 			}
 
 			/**
@@ -864,7 +517,7 @@ public class StereotypePostAction extends ModelPostAction {
 			 * @{inheritDoc
 			 */
 			public void mouseUp(MouseEvent e) {
-				performRemoveAction();
+				performRemoveAction(stereotypesViewer);
 			}
 
 			/**
@@ -884,29 +537,18 @@ public class StereotypePostAction extends ModelPostAction {
 		removeButton.setEnabled(false);
 
 		// stereotype viewer creation 
-		stereotypesViewer = new TreeViewer(mainComposite, SWT.BORDER | SWT.MULTI);
+		stereotypesViewer = new TreeViewer(mainComposite, SWT.BORDER | SWT.MULTI | SWT.FULL_SELECTION);
 		data = new GridData(SWT.FILL, SWT.FILL, true, true);
 		data.horizontalSpan = 3;
 
 		stereotypesViewer.getControl().setLayoutData(data);
-		stereotypesViewer.setLabelProvider(stereotypeLabelProvider);
-		stereotypesViewer.setContentProvider(new StereotypeContentProvider());
-
+		stereotypesViewer.setContentProvider(stereotypeContentProvider);
 		stereotypesViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
 			public void selectionChanged(SelectionChangedEvent event) {
-				performedSelectionChange(event);
+				performSelectionChange(event);
 
 			}
-		});
-
-		stereotypesViewer.addDoubleClickListener(new IDoubleClickListener() {
-
-			public void doubleClick(DoubleClickEvent event) {
-
-				performedDoubleClickAction(event);
-			}
-
 		});
 
 		stereotypesViewer.getControl().addKeyListener(new KeyListener() {
@@ -916,15 +558,41 @@ public class StereotypePostAction extends ModelPostAction {
 			}
 
 			public void keyPressed(KeyEvent e) {
-
 				if(e.keyCode == SWT.F2) {
-					performF2Action();
+					performF2Action(stereotypesViewer);
 				} else if(e.character == SWT.DEL) {
-					performRemoveAction();
-				} else if(e.stateMask == SWT.CTRL && e.keyCode == 110) {//e.character=='N' seems doesn't work on my computer
-					performedCTRL_N_Action(e);
+					performRemoveAction(stereotypesViewer);
+				} else if(e.stateMask == SWT.CTRL && e.keyCode == 110) {//e.character=='N' doesn't work
+					performCTRL_N_Action(e, stereotypesViewer);
 				}
+				selectionHasChange();
+			}
+		});
 
+		/*
+		 * we can't do :
+		 * stereotypesViewer.addDoubleClickListener, because we can't know on which column we are to make something or nothing!
+		 */
+		stereotypesViewer.getControl().addMouseListener(new MouseListener() {
+
+			public void mouseUp(MouseEvent e) {
+			}
+
+			public void mouseDown(MouseEvent e) {
+			}
+
+			public void mouseDoubleClick(MouseEvent e) {
+				if(stereotypeColumn != null) {
+					if(e.x < stereotypeColumn.getColumn().getWidth()) {//we are on the stereotype column
+						performDoubleClickAction(stereotypesViewer);
+					} else {//change the property value
+						ViewerCell cell = runtimeColumn.getViewer().getCell(new Point(e.x, e.y));
+						if(cell != null) {
+							Object element = ((TreeSelection)stereotypesViewer.getSelection()).getFirstElement();
+							stereotypesViewer.editElement(element, 1);
+						}
+					}
+				}
 			}
 		});
 		createColumn(stereotypesViewer);
@@ -933,18 +601,26 @@ public class StereotypePostAction extends ModelPostAction {
 
 	}
 
-
 	/**
-	 * Create the necessary column to have CellEditor in the tree
+	 * Create the necessary columns to have CellEditor in the tree
 	 * 
-	 * @param stereotypesViewer2
+	 * @param viewer
+	 *        the viewer owning the columns
 	 */
 	protected void createColumn(TreeViewer viewer) {
-		TreeViewerColumn stereotypeColumn = new TreeViewerColumn(viewer, SWT.FILL);
+		stereotypeColumn = new TreeViewerColumn(viewer, SWT.FILL);
 		stereotypeColumn.getColumn().setResizable(true);
-		stereotypeColumn.getColumn().setWidth(400);
-		stereotypeColumn.setLabelProvider(new EditorLabelProvider());
+		stereotypeColumn.getColumn().setWidth(300);
+		stereotypeColumn.setLabelProvider(editorLabelProvider);
 		stereotypeColumn.setEditingSupport(new AttributeEditingSupport(viewer));
+
+		runtimeColumn = new TreeViewerColumn(viewer, SWT.CENTER);
+		runtimeColumn.getColumn().setText("Runtime"); //$NON-NLS-1$
+		runtimeColumn.getColumn().setResizable(true);
+		runtimeColumn.getColumn().setWidth(80);
+		runtimeColumn.setLabelProvider(new RuntimeLabelProvider());
+		runtimeColumn.setEditingSupport(new RuntimeEditingSupport(viewer));
+
 		viewer.getTree().setLinesVisible(true);
 		viewer.getTree().setHeaderVisible(true);
 	}
@@ -953,41 +629,50 @@ public class StereotypePostAction extends ModelPostAction {
 	 * updates the stereotype viewer
 	 * set the expandedNode
 	 * refresh the status button
+	 * this method is called by
+	 * <ul>
+	 * <li> {@link #createConfigurationComposite(Composite, PaletteEntryProxy, List)}</li>
+	 * <li> {@link #performAddButtonPressed(TreeViewer)} when we add or remove stereotypes</li>
+	 * </ul>
 	 */
 	protected void updateStereotypeViewer() {
 		if(stereotypesViewer != null) {
-			stereotypesViewer.setInput(getStereotypesToApply());
+			saveExpandedNode();
+			stereotypesViewer.setInput(config.getStereotypesRepresentations());
+			restoreExpandedNode();
 		}
-		restoreExpandedNode();
-		//to force the update for the buttons!
-		performedSelectionChange(new SelectionChangedEvent(stereotypesViewer, stereotypesViewer.getSelection()));
+	}
 
+	/**
+	 * used to force the buttons update
+	 */
+	protected void selectionHasChange() {
+		performSelectionChange(new SelectionChangedEvent(stereotypesViewer, stereotypesViewer.getSelection()));
 	}
 
 	/**
 	 * Action done when the add button is pressed
+	 * 
+	 * @param tree
+	 * 
 	 */
-	protected void performAddButtonPressed() {
-		saveExpandedNode();
-		TreeSelection selection = (TreeSelection)stereotypesViewer.getSelection();
-		if(selection != null && selection.size() == 1) {
-			Object selectedElement = selection.getFirstElement();
-			if(valuesToProperties.containsKey(selectedElement)) {
-				//it's a property value -> we do nothing
-				return;
-			} else if(selectedElement instanceof Property) {
+	protected void performAddButtonPressed(TreeViewer tree) {
+		TreeSelection selection = (TreeSelection)tree.getSelection();
+		Object selectedElement = selection.getFirstElement();
+		if(selection != null && selection.size() == 1 && !(selectedElement instanceof StereotypeRepresentation)) {
+			if(selectedElement instanceof PropertyRepresentation) {
 				//We want add a value to a multi-valued property or edit a value to a mono-valued property
-				Property property = (Property)selectedElement;
-				if(property.isMultivalued()) {
-					editMe(property, null);//we add a value
-				} else if(propertiesToUpdate.containsKey(property)) { //mono-valued property and the valu exists
-					editMe(property, propertiesToUpdate.get(property));
+				PropertyRepresentation prop = (PropertyRepresentation)selectedElement;
+				if(prop.getUpperMultiplicity() != 1) {
+					editMe(prop, null);//we add a value
+				} else if(!prop.getValues().isEmpty()) { //mono-valued property and the valu exists
+					editMe(prop, prop.getValues().get(0));
 				} else {//monovalued property, the value doesn't exist
-					editMe(property, null);
+					editMe(prop, null);
 				}
-				updateStereotypeViewer();
-				return;
+				tree.refresh(selectedElement);
 			}
+			return;
 		}
 
 
@@ -1008,17 +693,17 @@ public class StereotypePostAction extends ModelPostAction {
 		}
 
 		// retrieve the original stereotype list from the qualified names
-		List<Stereotype> stereotypeList = retrieveStereotypesFromQualifiedNames();
+		List<Stereotype> stereotypeList = config.getUMLStereotypes();//retrieveStereotypesFromQualifiedNames();
 
 		// we have all applied profiles, the list of already applied stereotypes, the metaclass of the created element...
 		// just have to open a selection dialog
-		final CheckedTreeSelectionDialog selectionDialog = new CheckedTreeSelectionDialog(DisplayUtils.getDisplay().getActiveShell(), stereotypeLabelProvider, new ProfileContentProvider(metaClass));
+		final CheckedTreeSelectionDialog selectionDialog = new CheckedTreeSelectionDialog(DisplayUtils.getDisplay().getActiveShell(), editorLabelProvider, new ProfileContentProvider(metaClass));
 		selectionDialog.setTitle(Messages.StereotypePostAction_StereotypeSelectionTitle);
 		selectionDialog.setMessage(Messages.StereotypePostAction_StereotypeSelectionMessage);
 		selectionDialog.setContainerMode(true);
 		selectionDialog.setInitialElementSelections(stereotypeList);
-		selectionDialog.setInput(appliedProfiles);
-		selectionDialog.setExpandedElements(appliedProfiles.toArray());
+		selectionDialog.setInput(config.getAppliedProfiles());
+		selectionDialog.setExpandedElements(config.getAppliedProfiles().toArray());
 
 		ViewerComparator comparator = new ViewerComparator();
 		selectionDialog.setComparator(comparator);
@@ -1027,12 +712,15 @@ public class StereotypePostAction extends ModelPostAction {
 		if(CheckedTreeSelectionDialog.OK == selectionDialog.open()) {
 			// update the list of stereotype to apply
 			Object[] result = selectionDialog.getResult();
-			stereotypesToApply = new ArrayList<String>();
+			ArrayList<String> stereotypesToApply = new ArrayList<String>();
 			for(int i = 0; i < result.length; i++) {
 				if(result[i] instanceof Stereotype) {
 					stereotypesToApply.add(((Stereotype)result[i]).getQualifiedName());
+
 				}
 			}
+			config.setStereotypesRepresentations(stereotypesToApply);
+			//it's not possible to use refresh or update here!
 			updateStereotypeViewer();
 		}
 
@@ -1041,67 +729,44 @@ public class StereotypePostAction extends ModelPostAction {
 
 	/**
 	 * Action done when the remove button is pressed
+	 * 
+	 * @param viewer
+	 *        the viewer on which the remove action is applied
 	 */
-	protected void performRemoveAction() {
-		saveExpandedNode();
-		// remove the selected stereotype(s) from the list of stereotypes to apply
-		ITreeSelection selection = (ITreeSelection)stereotypesViewer.getSelection();
+	protected void performRemoveAction(TreeViewer viewer) {
 
-		List<?> selectedElements = ((TreeSelection)selection).toList();
-		if(selectedElements == null) {
-			return;
-		}
-
-		/*
-		 * get the level of the selection
-		 * level 1 = the stereotypes
-		 * level 2 = a mono-valued property
-		 * level 3 = the values of the multi-valued properties
-		 */
-		int level = getSelectionLevel();
-
-
-		switch(level) {
-		case -1:
-			return;
-		case 1:
-			//we remove stereotype
-			//1:remove all the property owned by the stereotype, containing by the hashmaps
-			for(Object steQN : selectedElements) {
-				List<Stereotype> stereotypesList = retrieveStereotypesFromQualifiedNames();
-				for(Stereotype stereotype : stereotypesList) {
-					if(stereotype.getQualifiedName().equals(steQN)) {
-						EList<Property> attributes = stereotype.getOwnedAttributes();
-						for(Property property : attributes) {
-							destroyPropertyInHashMaps(property);
+		ITreeSelection selection = (ITreeSelection)viewer.getSelection();
+		if(selection != null) {
+			List<?> selectedElements = ((TreeSelection)selection).toList();
+			if(sameLevelForFullSelection(selection)) {
+				//all the element have the same type 
+				if(selection.getFirstElement() instanceof StereotypeRepresentation) {
+					for(Object object : selectedElements) {
+						if(object instanceof StereotypeRepresentation) {
+							config.removeStereotype((StereotypeRepresentation)object);
 						}
+					}
 
+				} else if(selection.getFirstElement() instanceof PropertyRepresentation) {
+					//we delete the value for mono-valued property
+					for(Object object : selectedElements) {
+						if(object instanceof PropertyRepresentation) {
+							if(!((PropertyRepresentation)object).getUMLProperty().isMultivalued()) {
+								((PropertyRepresentation)object).getValues().remove(0);
+							}
+						}
+					}
+				} else if(selection.getFirstElement() instanceof Value) {
+					//we remove value from a multivalued property
+					for(Object object : selectedElements) {
+						if(object instanceof Value) {
+							((Value)object).getPropertyRepresentation().removeValue((Value)object);
+						}
 					}
 				}
+				viewer.refresh();
 			}
-			//2:remove the stereotype
-			stereotypesToApply.removeAll(selection.toList());
-			break;
-		case 2:
-			if((Property)selectedElements.get(0) instanceof Property) {
-				Object value = propertiesToUpdate.get(selectedElements.get(0));
-				Property property = (Property)selectedElements.get(0);
-				removeValueFromHashMaps(property, value);
-			}
-			break;
-		case 3:
-			//we remove value from multi-valued properties
-			for(Object object : selectedElements) {
-				removeValueFromHashMaps(valuesToProperties.get(object), object);
-			}
-			break;
-		default:
-			break;
 		}
-
-
-
-		updateStereotypeViewer();
 	}
 
 	/**
@@ -1110,134 +775,111 @@ public class StereotypePostAction extends ModelPostAction {
 	 * <li>open a CellEditor for the PrimitiveType and DataType</li>
 	 * <li>open a popup editor for others types</li>
 	 * </ul>
+	 * 
+	 * @param viewer
+	 *        the viewer on which the F2 action is applied
 	 */
-	protected void performF2Action() {
+	protected void performF2Action(TreeViewer viewer) {
 
-		TreeSelection selection = (TreeSelection)stereotypesViewer.getSelection();
-		if(selection == null || selection.size() != 1) {
-			return;
-		}
-		int level = getSelectionLevel();
-		switch(level) {
-		case -1:
-			break;
-		case 1://stereotype
-				//nothing to do
-			return;
-		case 2://property
-				//nothing to do
-			break;
-		case 3://edit a value
+		TreeSelection selection = (TreeSelection)viewer.getSelection();
+		if((selection != null) && (selection.size() == 1)) {
 			Object objectToEdit = selection.getFirstElement();
-			Property property = valuesToProperties.get(selection.getFirstElement());
-			if(property != null) {//it's not a property
-				Type type = property.getType();
-				if(type instanceof PrimitiveType || type instanceof DataType) {
-					stereotypesViewer.editElement(objectToEdit, 0);
-				} else {//popupEditor
-					saveExpandedNode();
-					editMe(property, selection.getFirstElement());
-					updateStereotypeViewer();
+			if(objectToEdit instanceof PropertyRepresentation) {
+				Property prop = ((PropertyRepresentation)objectToEdit).getUMLProperty();
+				if(prop.isMultivalued() == false) {
+					if((prop.getType() instanceof PrimitiveType) || (prop.getType() instanceof DataType)) {
+						viewer.editElement(prop, 0);
+					} else {
+						//TODO
+					}
+				}
+			} else if(objectToEdit instanceof Value) {
+				PropertyRepresentation propRep = ((Value)objectToEdit).getPropertyRepresentation();
+				Type type = propRep.getType();
+				if(type != null) {
+					if(type instanceof PrimitiveType || type instanceof DataType) {
+						viewer.editElement(objectToEdit, 0);
+
+						//the refresh is do by the cellEditor! (if the resfresh is do here, there is a bug!)
+						//viewer.refresh(property);
+					} else {//popupEditor
+						editMe(propRep, (Value)objectToEdit);
+						viewer.refresh(propRep);
+					}
 				}
 			}
-			break;
-		default:
-			break;
-
 		}
+
+
 	}
 
 	/**
 	 * Action done when a DoubleClick is received by the tree
 	 * 
-	 * @param event
+	 * @param viewer
+	 *        the viewer on which the DoubleClick action is applied
 	 */
-	protected void performedDoubleClickAction(DoubleClickEvent event) {
-		saveExpandedNode();
-		TreeSelection selection = (TreeSelection)stereotypesViewer.getSelection();
-		if(selection == null || selection.size() != 1) {
-			return;
-		}
-		int level = getSelectionLevel();
-		switch(level) {
-		case -1:
-			break;
-		case 1://stereotype
-				//we expand the node
-			stereotypesViewer.setExpandedState(selection.getFirstElement(), !stereotypesViewer.getExpandedState(selection.getFirstElement()));
-			return;
-		case 2://property
-			Property property = (Property)selection.getFirstElement();
-			if(property.isMultivalued()) {
-				//we expand the node
-				stereotypesViewer.setExpandedState(selection.getFirstElement(), !stereotypesViewer.getExpandedState(selection.getFirstElement()));
-				return;
-			} else {
-				//we edit a property value
-				if(propertiesToUpdate.containsKey(property)) {
-					editMe(property, propertiesToUpdate.get(property));
-				} else {
-					editMe(property, null);
-				}
-			}
-			break;
-		case 3://value
-			Property propertyParent = valuesToProperties.get(selection.getFirstElement());
-			editMe(propertyParent, selection.getFirstElement());
-			break;
-		default:
-			break;
+	protected void performDoubleClickAction(TreeViewer viewer) {
 
+		TreeSelection selection = (TreeSelection)viewer.getSelection();
+		if(selection != null && selection.size() == 1) {
+			Object selectedObject = selection.getFirstElement();
+			if(selectedObject instanceof StereotypeRepresentation) {
+				//we expand or collapse the node
+				viewer.setExpandedState(selectedObject, !viewer.getExpandedState(selectedObject));
+			} else if(selectedObject instanceof PropertyRepresentation) {
+				Property prop = ((PropertyRepresentation)selectedObject).getUMLProperty();
+				if(prop.isMultivalued()) {
+					//we expand or collapse the node
+					viewer.setExpandedState(selectedObject, !viewer.getExpandedState(selectedObject));
+				} else {
+					//we edit a value
+					if(((PropertyRepresentation)selectedObject).getValues().isEmpty()) {
+						editMe((PropertyRepresentation)selectedObject, null);
+					} else {
+						editMe((PropertyRepresentation)selectedObject, ((PropertyRepresentation)selectedObject).getValues().get(0));
+					}
+
+
+					viewer.update(selectedObject, null);
+				}
+			} else if(selectedObject instanceof Value) {
+				editMe(((Value)selectedObject).getPropertyRepresentation(), (Value)selectedObject);
+				viewer.refresh(selectedObject);
+			}
 		}
-		updateStereotypeViewer();
 	}
 
 	/**
-	 * Action done when the user do CTRL^N on the tree
+	 * Action done when the user does a CTRL^N on the tree
 	 * 
-	 * @param event
+	 * @param e
+	 *        the KeyEvent
+	 * @param viewer
+	 *        the TreeViewer in which we add something
 	 */
-	protected void performedCTRL_N_Action(KeyEvent e) {
-		saveExpandedNode();
-		TreeSelection selection = (TreeSelection)stereotypesViewer.getSelection();
-		if(selection == null || selection.size() != 1) {
-			return;
-		}
-		int level = getSelectionLevel();
-		switch(level) {
-		case -1:
-			break;
-		case 1://stereotype
-				//do nothing
-			break;
-		case 2://property
-			Property property = (Property)selection.getFirstElement();
-			if(property.isMultivalued()) {
-				//can we add a new value?
-				if(valuesToProperties.containsKey(property)) {
-					int upperMultiplicity = property.getUpper();
+	protected void performCTRL_N_Action(KeyEvent e, TreeViewer viewer) {
 
-					ArrayList<?> values = (ArrayList<?>)propertiesToUpdate.get(property);
-					if(upperMultiplicity == -1 || values.size() < upperMultiplicity) {
-						editMe(property, null);
+		TreeSelection selection = (TreeSelection)viewer.getSelection();
+		if(selection != null && selection.size() == 1) {
+			Object selectedObject = selection.getFirstElement();
+			if(selectedObject != null) {
+				if(selectedObject instanceof PropertyRepresentation) {
+					Property property = ((PropertyRepresentation)selectedObject).getUMLProperty();
+					if(property.isMultivalued()) {
+						//can we add a new value?
+						int upperMultiplicity = property.getUpper();
+						ArrayList<Value> values = ((PropertyRepresentation)selectedObject).getValues();
+						if(upperMultiplicity == -1 || values.size() < upperMultiplicity) {
+							editMe((PropertyRepresentation)selectedObject, null);
+						} else if(values.size() == 0) {
+							editMe((PropertyRepresentation)selectedObject, null);
+						}
+						viewer.refresh(selectedObject);
 					}
 				}
-				editMe(property, null);
-			} else {
-				//does a value exists yet?
-				if(!propertiesToUpdate.containsKey(property)) {
-					editMe(property, null);
-				}
 			}
-			break;
-		case 3://value
-				//do nothing
-			break;
-		default:
-			break;
-
 		}
-		updateStereotypeViewer();
 	}
 
 	/**
@@ -1251,64 +893,47 @@ public class StereotypePostAction extends ModelPostAction {
 	 * </ul>
 	 * 
 	 * @param event
+	 *        the SelectionChangeEvent
 	 */
-	@SuppressWarnings("unchecked")
-	protected void performedSelectionChange(SelectionChangedEvent event) {
+	protected void performSelectionChange(SelectionChangedEvent event) {
 		ITreeSelection selection = (ITreeSelection)event.getSelection();
-		int level = getSelectionLevel();
-		/*
-		 * remove button state
-		 */
-		if(selection.size() > 0) {
-			switch(level) {
-			case -1:
-				removeButton.setEnabled(false);
-				break;
-			case 1://stereotype
+		int selectionSize = selection.size();
+		if((selectionSize == 0) || !(sameLevelForFullSelection(selection))) {
+			addButton.setEnabled(true);
+			removeButton.setEnabled(false);
+			upButton.setEnabled(false);
+			downButton.setEnabled(false);
+		} else if(selectionSize == 1) {
+			Object selectedElement = selection.getFirstElement();
+			//removeButton state
+			if(selectedElement instanceof StereotypeRepresentation) {
 				removeButton.setEnabled(true);
-				break;
-			case 2://property
-				Property property = (Property)selection.getFirstElement();
-				if(property.getUpper() == 1 && propertiesToUpdate.containsKey(property)) {
+			} else if(selectedElement instanceof PropertyRepresentation) {
+				if(((PropertyRepresentation)selectedElement).getUpperMultiplicity() == 1) {
 					removeButton.setEnabled(true);
 				} else {
 					removeButton.setEnabled(false);
 				}
-				break;
-			case 3://value
+			} else if(selectedElement instanceof Value) {
 				removeButton.setEnabled(true);
-				break;
-			default:
-				break;
+
 			}
-		} else {
-			removeButton.setEnabled(false);
-		}
 
-
-		/*
-		 * add button state
-		 */
-		if(selection.size() == 1) {
-			switch(level) {
-			case -1:
-				addButton.setEnabled(false);
-				break;
-			case 1://stereotype
+			//addButton state
+			if(selectedElement instanceof StereotypeRepresentation) {
 				addButton.setEnabled(true);
-				break;
-			case 2://property
-				Property prop = (Property)selection.getFirstElement();
+			} else if(selectedElement instanceof PropertyRepresentation) {
+				ArrayList<Value> values = ((PropertyRepresentation)selectedElement).getValues();
+				Property prop = ((PropertyRepresentation)selectedElement).getUMLProperty();
 				if(!prop.isMultivalued()) {
-					if(!propertiesToUpdate.containsKey(prop)) {
+					if(values.size() == 0) {
 						addButton.setEnabled(true);
 					} else {
 						addButton.setEnabled(false);
 					}
 				} else {//multi-valued property}
 					int upper = prop.getUpper();
-					ArrayList<Object> values = (ArrayList<Object>)propertiesToUpdate.get(prop);
-					if(values == null || upper == -1) {
+					if(upper == -1) {
 						addButton.setEnabled(true);
 					} else if(values.size() < upper) {
 						addButton.setEnabled(true);
@@ -1316,69 +941,61 @@ public class StereotypePostAction extends ModelPostAction {
 						addButton.setEnabled(false);
 					}
 				}
-				break;
-			case 3://value
+			} else if(selectedElement instanceof Value) {
 				addButton.setEnabled(false);
-				break;
-			default:
-				break;
 			}
-		} else if(selection.size() == 0) {
-			addButton.setEnabled(true);
-		}
-
-
-		/*
-		 * up and down buttons state
-		 * 
-		 * We change the order of the values for a property, or the order for the stereotype
-		 */
-		if(selection.size() == 1) {
-			switch(level) {
-			case -1:
-
-				break;
-			case 1://stereotype
-				int index = getIndexOf((ArrayList<?>)stereotypesToApply, selection.getFirstElement());
-				if(stereotypesToApply.size() == 1) {
+			//upButton and downButton states
+			if(selectedElement instanceof StereotypeRepresentation) {
+				int index = config.getStereotypesRepresentations().indexOf(selectedElement);
+				if(config.getStereotypesRepresentations().size() == 1) {
 					downButton.setEnabled(false);
 					upButton.setEnabled(false);
-					break;
 				} else if(index == 0) {
 					downButton.setEnabled(true);
 					upButton.setEnabled(false);
-				} else if(index == stereotypesToApply.size() - 1) {
+				} else if(index == config.getStereotypesRepresentations().size() - 1) {
 					downButton.setEnabled(false);
 					upButton.setEnabled(true);
 				} else {
 					downButton.setEnabled(true);
 					upButton.setEnabled(true);
 				}
-				break;
-			case 2://property
+			} else if(selectedElement instanceof PropertyRepresentation) {
 				downButton.setEnabled(false);
 				upButton.setEnabled(false);
-				break;
-			case 3://value
-				Property property = valuesToProperties.get(selection.getFirstElement());
-				ArrayList<Object> valuesList = (ArrayList<Object>)propertiesToUpdate.get(property);
-				int index2 = getIndexOf(valuesList, selection.getFirstElement());
-				if(((ArrayList<?>)propertiesToUpdate.get(property)).size() == 1) {
+			} else if(selectedElement instanceof Value) {
+				ArrayList<Value> valuesList = ((Value)selectedElement).getPropertyRepresentation().getValues();
+				int index = valuesList.indexOf(selectedElement);
+				if(valuesList.size() == 1) {
 					upButton.setEnabled(false);
 					downButton.setEnabled(false);
-				} else if(index2 == 0) {
+				} else if(index == 0) {
 					upButton.setEnabled(false);
 					downButton.setEnabled(true);
-				} else if(index2 == valuesList.size() - 1) {
+				} else if(index == valuesList.size() - 1) {
 					upButton.setEnabled(true);
 					downButton.setEnabled(false);
 				} else {
 					upButton.setEnabled(true);
 					downButton.setEnabled(true);
 				}
-				break;
-			default:
-				break;
+			}
+
+		} else {//all the elements are from the same level
+
+			List<?> selectedElements = ((TreeSelection)selection).toList();
+			if(selection.getFirstElement() instanceof StereotypeRepresentation) {
+				removeButton.setEnabled(true);
+				upButton.setEnabled(false);
+				downButton.setEnabled(false);
+				addButton.setEnabled(true);
+			} else
+
+			if(selection.getFirstElement() instanceof Value) {
+				removeButton.setEnabled(true);
+				upButton.setEnabled(false);
+				downButton.setEnabled(false);
+				addButton.setEnabled(false);
 			}
 		}
 	}
@@ -1386,52 +1003,59 @@ public class StereotypePostAction extends ModelPostAction {
 	/**
 	 * move the selected element in stereotypeViewer following shiftValue
 	 * 
-	 * shiftValue can take the values :
-	 * <ul>
-	 * <li>{@link StereotypePostAction#MOVE_UP}</li>
-	 * <li>{@link StereotypePostAction#MOVE_DOWN}</li>
-	 * </ul>
+	 * 
 	 * 
 	 * @param shiftValue
+	 *        shiftValue can take the values :
+	 *        <ul>
+	 *        <li>{@link StereotypePostAction#MOVE_UP}</li>
+	 *        <li>{@link StereotypePostAction#MOVE_DOWN}</li>
+	 *        </ul>
+	 * @param viewer
+	 *        the TreeViewer in which we move elements
 	 * 
 	 */
-	@SuppressWarnings("unchecked")
-	protected void moveElement(String shiftValue) {
-		saveExpandedNode();
-		TreeSelection selection = (TreeSelection)stereotypesViewer.getSelection();
+	protected void moveElement(String shiftValue, TreeViewer viewer) {
+
+		TreeSelection selection = (TreeSelection)viewer.getSelection();
 		if(selection != null && selection.size() == 1) {
 			Object selectedElement = selection.getFirstElement();
+			if(selectedElement instanceof Value) {
 
-			if(valuesToProperties.containsKey(selectedElement)) {
 				/** it's a property value */
-				Property property = valuesToProperties.get(selectedElement);
-				exchangeTwoValues((ArrayList<Object>)propertiesToUpdate.get(property), selectedElement, shiftValue);
+				exchangeTwoValues(((Value)selectedElement).getPropertyRepresentation().getValues(), selectedElement, shiftValue);
 
-			} else if(stereotypesToApply.contains(selectedElement)) {//it's OK, because it's the qualified name!
+
+				viewer.refresh(((Value)selectedElement).getPropertyRepresentation());
+
+			} else if(selectedElement instanceof StereotypeRepresentation) {
 				/** it's a stereotype */
-				exchangeTwoValues((ArrayList)stereotypesToApply, selectedElement, shiftValue);
+				exchangeTwoValues(config.getStereotypesRepresentations(), selectedElement, shiftValue);
+				viewer.refresh();
 			}
-			updateStereotypeViewer();
 		}
 	}
 
 	/**
 	 * Exchange the selectedElement with its neighbor, in arrayList, up or down following shiftValue
-	 * shiftValue can take the values :
-	 * <ul>
-	 * <li>{@link StereotypePostAction#MOVE_UP}</li>
-	 * <li>{@link StereotypePostAction#MOVE_DOWN}</li>
-	 * </ul>
+	 * 
 	 * 
 	 * @param arrayList
+	 *        the ArrayList containing the elements to move
 	 * @param selectedElement
+	 *        the element to move
 	 * @param shiftValue
-	 * 
+	 *        shiftValue can take the values :
+	 *        <ul>
+	 *        <li>{@link StereotypePostAction#MOVE_UP}</li>
+	 *        <li>{@link StereotypePostAction#MOVE_DOWN}</li>
+	 *        </ul>
 	 */
-	protected void exchangeTwoValues(ArrayList<Object> arrayList, Object selectedElement, String shiftValue) {
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	protected void exchangeTwoValues(ArrayList arrayList, Object selectedElement, String shiftValue) {
 		int index = getIndexOf(arrayList, selectedElement);
 		/**
-		 * is it possible to move the object ?
+		 * is it possible to move the objects ?
 		 */
 		if(arrayList == null || arrayList.size() < 2) {
 			//the list is to small
@@ -1452,96 +1076,44 @@ public class StereotypePostAction extends ModelPostAction {
 		}
 	}
 
-	/**
-	 * get the level of the selection
-	 * level 1 = the stereotypes
-	 * level 2 = a mono-valued property
-	 * level 3 = the values of the multi-valued properties
-	 * 
-	 * return :
-	 * - the level
-	 * - or -1 if the selected elements belong to different level
-	 */
 
-	protected int getSelectionLevel() {
-		ITreeSelection selection = (ITreeSelection)stereotypesViewer.getSelection();
+	/**
+	 * test if all the selected element in the selection are fron the same level
+	 * 
+	 * @param selection
+	 * @return
+	 *         <ul>
+	 *         <li>{@code true} if all the element are from the same level in the tree</li>
+	 *         <li>{@code false if not}</li>
+	 *         </ul>
+	 * 
+	 */
+	protected boolean sameLevelForFullSelection(ITreeSelection selection) {
+		//ITreeSelection selection = (ITreeSelection)stereotypesViewer.getSelection();
 		//we do the delete action, only if all the elements have the same level
 		List<?> selectedElements = ((TreeSelection)selection).toList();
-		if(selectedElements.isEmpty()) {
-			return -1;
-		}
-		TreePath[] path = selection.getPathsFor(selectedElements.get(0));
-		if(path == null) {
-			return -1;
-		}
-		//the level for the first selected Element
-		int level = path[0].getSegmentCount();
-		for(Object object : selectedElements) {
-			path = selection.getPathsFor(object);
-			if(level != path[0].getSegmentCount()) {
-				/**
-				 * the selection is a mixed between different types of elements
-				 */
-				return -1;
+		if(!selectedElements.isEmpty()) {
+			TreePath[] path = selection.getPathsFor(selectedElements.get(0));
+			if(path != null) {
+				//the level for the first selected Element
+				int level = path[0].getSegmentCount();
+				for(Object object : selectedElements) {
+					path = selection.getPathsFor(object);
+					if(level != path[0].getSegmentCount()) {
+						/**
+						 * the selection is a mixed between different types of elements
+						 */
+						return false;
+					}
+				}
+				return true;
 			}
 		}
-		return level;
+		return false;
 	}
 
-	/**
-	 * Retrieves the stereotype from its qualified name
-	 * 
-	 * @param stereotypeQualifiedName
-	 * @return the stereotype or null if not found
-	 */
-	protected Stereotype retriveStereotypeFromQualifiedName(String stereotypeQualifiedName) {
-		List<Stereotype> stereotypes = retrieveStereotypesFromQualifiedNames();
-		for(Stereotype stereotype : stereotypes) {
-			if(stereotype.getQualifiedName().equals(stereotypeQualifiedName)) {
-				return stereotype;
-			}
-		}
-		return null;
-	}
 
-	/**
-	 * Retrieves the list of stereotypes to apply
-	 * 
-	 * @return the list of stereotypes to apply
-	 */
-	protected List<Stereotype> retrieveStereotypesFromQualifiedNames() {
-		List<Stereotype> stereotypes = new ArrayList<Stereotype>();
-		for(String qualifiedName : getStereotypesToApply()) {
-			Stereotype stereotype = null;
-			Iterator<Profile> it = appliedProfiles.iterator();
-			while(stereotype == null && it.hasNext()) {
-				stereotype = retrieveStereotypeFromQualifiedName(qualifiedName, it.next());
-			}
-			if(stereotype == null) {
-				Activator.log.error("impossible to retrieve stereotype " + qualifiedName, null); //$NON-NLS-1$
-			}
-			stereotypes.add(stereotype);
-		}
-		return stereotypes;
-	}
 
-	/**
-	 * Retrieves a Stereotype in a profile, given its qualified name.
-	 * 
-	 * @param qualifiedName
-	 *        the qualified name of the steretoype to find
-	 * @param profile
-	 *        the profile to look in
-	 * @return <code>null</code> or the found stereotype
-	 */
-	protected Stereotype retrieveStereotypeFromQualifiedName(String qualifiedName, Profile profile) {
-		for(Stereotype stereotype : profile.getOwnedStereotypes()) {
-			if(qualifiedName.equals(stereotype.getQualifiedName())) {
-				return stereotype;
-			}
-		}
-		return null;
-	}
 
 	/**
 	 * Returns the list of stereotypes applied by this action
@@ -1549,7 +1121,7 @@ public class StereotypePostAction extends ModelPostAction {
 	 * @return the list of stereotypes applied by this action
 	 */
 	public List<String> getStereotypesToApply() {
-		return stereotypesToApply;
+		return config.getStereotypesToApplyQN();
 	}
 
 	/**
@@ -1570,7 +1142,6 @@ public class StereotypePostAction extends ModelPostAction {
 		public void update(ViewerCell cell) {
 			cell.setText(getText(cell.getElement()));
 			cell.setImage(getImage(cell.getElement()));
-
 		}
 
 		/**
@@ -1581,11 +1152,12 @@ public class StereotypePostAction extends ModelPostAction {
 				return ((Profile)element).getLabel();
 			} else if(element instanceof Stereotype) {
 				return ((Stereotype)element).getLabel();
-			} else if(element instanceof Property) {
-				Property prop = (Property)element;
-				String label = prop.getLabel();
-				label += ": " + prop.getType().getLabel() + getPropertyMultiplicity((Property)element) + " = " + getValueToDisplay((Property)element); //$NON-NLS-1$ //$NON-NLS-2$
-				return label;
+			} else if(element instanceof StereotypeRepresentation) {
+				return ((StereotypeRepresentation)element).getStereotypeQualifiedName();
+			} else if(element instanceof Value) {
+				return ((Value)element).getValue();
+			} else if(element instanceof PropertyRepresentation) {
+				return ((PropertyRepresentation)element).getLabel();
 			}
 			return element.toString();
 		}
@@ -1598,70 +1170,62 @@ public class StereotypePostAction extends ModelPostAction {
 		 */
 
 		public Image getImage(Object element) {
-			if(valuesToProperties.containsKey(element)) {
-				//We are in the third level, it a property
-				Property property = valuesToProperties.get(element);
-				Type type = property.getType();
-				if(type instanceof PrimitiveType) {
-					String typeName = type.getQualifiedName();
-					// property is a boolean property 
-
-					if(UMLPrimitiveTypes_BOOLEAN.equals(typeName)) {
-						return Activator.getPluginIconImage(Activator.ID, ICON_LITERALBOOLEAN);
-
-						// property is a String 
-					} else if(UMLPrimitiveTypes_STRING.equals(typeName)) {
-						return Activator.getPluginIconImage(Activator.ID, ICON_LITERALSTRING);
-
-						// property is an Integer 
-					} else if(UMLPrimitiveTypes_INTEGER.equals(typeName)) {
-						return Activator.getPluginIconImage(Activator.ID, ICON_LITERALINTEGER);
-
-						// property is an unlimitedNatural 
-					} else if(UMLPrimitiveTypes_UNLIMITED_NATURAL.equals(typeName)) {
-						return Activator.getPluginIconImage(Activator.ID, ICON_LITERALUNLIMITEDNATURAL);
-						// property is a user primitive Type 
-					} else {
-						//never used!
-						//newVTO = new UserPrimitiveTypeValueTreeObject(parent, newValue, domain);
-					}
-
-					// property is a Metaclass property 
-				} else if(Util.isMetaclass(type)) {
-					return Activator.getPluginIconImage(Activator.ID, ICON_METACLASS);
-
-					// property is an Enumeration 
-				} else if(type instanceof org.eclipse.uml2.uml.Enumeration) {
-					return Activator.getPluginIconImage(Activator.ID, ICON_ENUMERATION);
-
-					// property is a DataType 
-				} else if(type instanceof org.eclipse.uml2.uml.DataType) {
-					return Activator.getPluginIconImage(Activator.ID, ICON_DATATYPE);
-
-					// property is a Stereotype 
-				} else if(type instanceof Stereotype) {
-					return Activator.getPluginIconImage(Activator.ID, ICON_STEREOTYPE);
-
-					// property is a composite class 
-				} else if((type instanceof org.eclipse.uml2.uml.Class) && !(type instanceof Stereotype) && property.isMultivalued()) {
-					//TODO
-
-				}
-			}
-
-			/*
-			 * the element is not a property value , it's can be :
-			 * - a profile
-			 * - a root stereotype
-			 * - a property
-			 */
-
-			if(element instanceof Profile) {
-				return Activator.getPluginIconImage(Activator.ID, ICON_PROFILE);
-			} else if(element instanceof Property) {
-				return Activator.getPluginIconImage(Activator.ID, ICON_PROPERTY);
-			} else if(element instanceof String) {//it's a string
+			if(element instanceof StereotypeRepresentation) {
 				return Activator.getPluginIconImage(Activator.ID, ICON_STEREOTYPE);
+			} else if(element instanceof PropertyRepresentation) {
+				return Activator.getPluginIconImage(Activator.ID, ICON_PROPERTY);
+			} else if(element instanceof Value) {
+				Property property = ((Value)element).getPropertyRepresentation().getUMLProperty();
+				Type type = property.getType();
+				if(type != null) {
+					if(type instanceof PrimitiveType) {
+						String typeName = type.getQualifiedName();
+						// property is a boolean property 
+
+						if(UMLPrimitiveTypes_BOOLEAN.equals(typeName)) {
+							return Activator.getPluginIconImage(Activator.ID, ICON_LITERALBOOLEAN);
+
+							// property is a String 
+						} else if(UMLPrimitiveTypes_STRING.equals(typeName)) {
+							return Activator.getPluginIconImage(Activator.ID, ICON_LITERALSTRING);
+
+							// property is an Integer 
+						} else if(UMLPrimitiveTypes_INTEGER.equals(typeName)) {
+							return Activator.getPluginIconImage(Activator.ID, ICON_LITERALINTEGER);
+
+							// property is an unlimitedNatural 
+						} else if(UMLPrimitiveTypes_UNLIMITED_NATURAL.equals(typeName)) {
+							return Activator.getPluginIconImage(Activator.ID, ICON_LITERALUNLIMITEDNATURAL);
+							// property is a user primitive Type 
+						} else {
+							//never used!
+							//newVTO = new UserPrimitiveTypeValueTreeObject(parent, newValue, domain);
+						}
+
+						// property is a Metaclass property 
+					} else if(Util.isMetaclass(type)) {
+						return Activator.getPluginIconImage(Activator.ID, ICON_METACLASS);
+
+						// property is an Enumeration 
+					} else if(type instanceof org.eclipse.uml2.uml.Enumeration) {
+						return Activator.getPluginIconImage(Activator.ID, ICON_ENUMERATION);
+
+						// property is a DataType 
+					} else if(type instanceof org.eclipse.uml2.uml.DataType) {
+						return Activator.getPluginIconImage(Activator.ID, ICON_DATATYPE);
+
+						// property is a Stereotype 
+					} else if(type instanceof Stereotype) {
+						return Activator.getPluginIconImage(Activator.ID, ICON_STEREOTYPE);
+
+						// property is a composite class 
+					} else if((type instanceof org.eclipse.uml2.uml.Class) && !(type instanceof Stereotype) && property.isMultivalued()) {
+						//TODO
+
+					}
+				}
+			} else if(element instanceof Profile) {
+				return Activator.getPluginIconImage(Activator.ID, ICON_PROFILE);
 			} else if(element instanceof Stereotype) {//it's a stereotype 
 				return Activator.getPluginIconImage(Activator.ID, ICON_STEREOTYPE);
 			}
@@ -1669,80 +1233,6 @@ public class StereotypePostAction extends ModelPostAction {
 			return Activator.getPluginIconImage(Activator.ID, ICON_UNKNOWN);
 		}
 	}
-
-	/**
-	 * Label provider for the stereotype viewer
-	 */
-	protected class StereotypeLabelProvider implements ILabelProvider {
-
-
-		/**
-		 * @{inheritDoc
-		 */
-		public Image getImage(Object element) {
-
-
-			/*
-			 * the element is not a property value , it's can be :
-			 * - a profile
-			 * - a root stereotype
-			 * - a property
-			 */
-
-			if(element instanceof Profile) {
-				return Activator.getPluginIconImage(Activator.ID, ICON_PROFILE);
-			} else if(element instanceof Property) {
-				return Activator.getPluginIconImage(Activator.ID, ICON_PROPERTY);
-			} else if(element instanceof String) {
-				return Activator.getPluginIconImage(Activator.ID, ICON_STEREOTYPE);
-			} else if(element instanceof Stereotype) {
-				return Activator.getPluginIconImage(Activator.ID, ICON_STEREOTYPE);
-			}
-
-			return Activator.getPluginIconImage(Activator.ID, ICON_UNKNOWN);
-		}
-
-		/**
-		 * @{inheritDoc
-		 */
-		public String getText(Object element) {
-			if(element instanceof Profile) {
-				return ((Profile)element).getLabel();
-			} else if(element instanceof Stereotype) {
-				return ((Stereotype)element).getLabel();
-			}
-			return element.toString();
-		}
-
-		/**
-		 * @{inheritDoc
-		 */
-		public void addListener(ILabelProviderListener listener) {
-
-		}
-
-		/**
-		 * @{inheritDoc
-		 */
-		public void dispose() {
-		}
-
-		/**
-		 * @{inheritDoc
-		 */
-		public boolean isLabelProperty(Object element, String property) {
-			return false;
-		}
-
-		/**
-		 * @{inheritDoc
-		 */
-		public void removeListener(ILabelProviderListener listener) {
-
-		}
-
-	}
-
 
 
 	/**
@@ -1758,42 +1248,13 @@ public class StereotypePostAction extends ModelPostAction {
 
 			if(parentElement instanceof List<?>) {
 				return ((List<?>)parentElement).toArray();
-
-			}
-
-			if(parentElement instanceof Property) {
-				Property property = (Property)parentElement;
-				if(property.isMultivalued()) {
-					Object valuesList = propertiesToUpdate.get(property);
-					if(valuesList instanceof ArrayList<?>) {
-						return ((ArrayList<?>)valuesList).toArray();
-					}
+			} else if(parentElement instanceof StereotypeRepresentation) {
+				return ((StereotypeRepresentation)parentElement).getPropertyRepresentations().toArray();
+			} else if(parentElement instanceof PropertyRepresentation) {
+				if(((PropertyRepresentation)parentElement).getUpperMultiplicity() != 1 && ((PropertyRepresentation)parentElement).getValues().size() != 0) {
+					return ((PropertyRepresentation)parentElement).getValues().toArray();
 				}
 			}
-
-			List<Stereotype> steQN = retrieveStereotypesFromQualifiedNames();
-			ArrayList<Property> returnedProperty = new ArrayList<Property>();
-
-			for(Stereotype stereotype : steQN) {
-				if(stereotype.getQualifiedName().equals(parentElement)) {
-					Iterator<Property> propIt = stereotype.getAllAttributes().iterator();
-					while(propIt.hasNext()) {
-						final Property currentProp = propIt.next();
-						// Select authorized properties
-						// if(currentProp.isComposite() || (currentProp.getAssociation() == null)) {
-						if(currentProp.getAssociation() != null) {
-							if(!currentProp.getName().startsWith("base_")) //$NON-NLS-1$
-								returnedProperty.add(currentProp);
-						} else {
-							returnedProperty.add(currentProp);
-						}
-					}
-
-					return returnedProperty.toArray();
-				}
-			}
-
-
 			return new Object[0];
 		}
 
@@ -1801,6 +1262,11 @@ public class StereotypePostAction extends ModelPostAction {
 		 * @{inheritDoc
 		 */
 		public Object getParent(Object element) {
+			if(element instanceof Value) {
+				return ((Value)element).getPropertyRepresentation();
+			} else if(element instanceof PropertyRepresentation) {
+				return ((PropertyRepresentation)element).getStereotypeRepresentation();
+			}
 			return null;
 		}
 
@@ -1835,7 +1301,7 @@ public class StereotypePostAction extends ModelPostAction {
 		}
 	}
 
-	//	
+
 
 	/**
 	 * Content provider for the selection dialog
@@ -1928,44 +1394,8 @@ public class StereotypePostAction extends ModelPostAction {
 
 	}
 
-	/**
-	 * 
-	 * @param prop
-	 * @return
-	 *         return the string corresponding to the property multiplicity
-	 */
-	protected String getPropertyMultiplicity(Property prop) {
-		String multiplicity = "[" + prop.getLower() + ".."; //$NON-NLS-1$ //$NON-NLS-2$
-		int upper = prop.getUpper();
-		if(upper == -1) {
-			multiplicity += "*"; //$NON-NLS-1$
-		} else {
-			multiplicity += upper;
-		}
-		multiplicity += "]"; //$NON-NLS-1$
-		return multiplicity;
-	}
 
-	/**
-	 * 
-	 * 
-	 * @param property
-	 * @return
-	 *         return a string corresponding to the value to display for the property
-	 * 
-	 */
-	protected String getValueToDisplay(Property property) {
-		Object values = propertiesToUpdate.get(property);
-		String stringToDisplay = null;
-		if(values != null) {//a value exists. It's an ArrayList<SuperString> or a SuperString
-			stringToDisplay = values.toString();
-		} else if(property.isMultivalued()) {
-			stringToDisplay = "[]"; //$NON-NLS-1$
-		} else if(property.isSetDefault()) {
-			stringToDisplay = property.getDefault();
-		}
-		return stringToDisplay;
-	}
+
 
 	/**
 	 * Give the correct editor to a property following the property type.
@@ -1978,10 +1408,11 @@ public class StereotypePostAction extends ModelPostAction {
 	 * @param property
 	 * @param value
 	 */
-	public void editMe(Property property, Object valueToEdit) {
-		Type type = property.getType();
+	public void editMe(PropertyRepresentation propRepresentation, Value valueToEdit) {
+
+		Type type = propRepresentation.getType();
+		Property property = propRepresentation.getUMLProperty();
 		String value = null;
-		int upperMultiplicity = property.getUpper();
 		// property is a a primitive type
 		if(type instanceof PrimitiveType) {
 			String typeName = type.getQualifiedName();
@@ -2010,7 +1441,7 @@ public class StereotypePostAction extends ModelPostAction {
 
 			// property is a Metaclass property 
 		} else if(Util.isMetaclass(type)) {
-			value = PropertyEditors.MetaclassEditor(property, valueToEdit, appliedProfiles);
+			value = PropertyEditors.MetaclassEditor(property, valueToEdit, config.getAppliedProfiles());
 
 			// property is an Enumeration 
 		} else if(type instanceof org.eclipse.uml2.uml.Enumeration) {
@@ -2023,7 +1454,7 @@ public class StereotypePostAction extends ModelPostAction {
 
 			// property is a Stereotype 
 		} else if(type instanceof Stereotype) {
-			value = PropertyEditors.StereotypeEditor(property, valueToEdit, appliedProfiles);
+			value = PropertyEditors.StereotypeEditor(property, valueToEdit, config.getAppliedProfiles());
 
 			// property is a composite class 
 		} else if((type instanceof org.eclipse.uml2.uml.Class) && !(type instanceof Stereotype) && property.isMultivalued()) {
@@ -2035,20 +1466,19 @@ public class StereotypePostAction extends ModelPostAction {
 
 		if(value == null && valueToEdit == null) {
 			//nothing to do
-			updateStereotypeViewer();
 			return;
 		} else if(value == null && valueToEdit != null) {
-			//we delete a value
-			removeValueFromHashMaps(property, value);
+			//we delete a value			
+			valueToEdit.getPropertyRepresentation().getValues().remove(valueToEdit);
 		} else if(value != null && valueToEdit == null) {
 			//we add a value
-			addInHashMaps(property, value);
+			propRepresentation.addValue(new Value(value));
 		} else if(value != null && valueToEdit != null) {
 			//we change a value
-			replaceValueInHashMaps(property, value, valueToEdit);
+			valueToEdit.setValue(value);
 		}
-	}
 
+	}
 
 
 	/**
@@ -2074,9 +1504,7 @@ public class StereotypePostAction extends ModelPostAction {
 	 * save the expanded Nodes
 	 */
 	protected void saveExpandedNode() {
-		if(expandedElements == null) {
-			expandedElements = stereotypesViewer.getExpandedElements();
-		}
+		expandedElements = stereotypesViewer.getExpandedElements();
 	}
 
 	/**
@@ -2089,188 +1517,20 @@ public class StereotypePostAction extends ModelPostAction {
 		}
 	}
 
-	//-------------------------------------------------------the hashmap methods-------------------------------------------------------------
 
-	/**
-	 * 
-	 * 
-	 * @param propertyQN
-	 *        the property identified by its qualified
-	 * @return
-	 *         <ul>
-	 *         <li>the property</li>
-	 *         <li>{@code null} if the property was not found</li>
-	 *         </ul>
-	 * 
-	 */
-	protected Property findPropertyByQualifiedName(String propertyQN) {
 
-		String stereotypeQualifiedName = propertyQN.substring(0, propertyQN.lastIndexOf(NamedElement.SEPARATOR));
-		Stereotype stereotype = retriveStereotypeFromQualifiedName(stereotypeQualifiedName);
-		if(stereotype != null) {
-			EList<Property> properties = stereotype.getOwnedAttributes();
-			for(Property prop : properties) {
-				if(prop.getQualifiedName().equals(propertyQN)) {
-					return prop;
-				}
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * This function fills the 2 hashmaps {@link StereotypePostAction#valuesToProperties} and {@link StereotypePostAction#propertiesToUpdate}.
-	 * This function must be called only one time by {@link StereotypePostAction#createConfigurationComposite(Composite, PaletteEntryProxy, List)} In
-	 */
-
-	protected void fillHashMaps() {
-
-		if(!stereotypesToApply.isEmpty() && !valuesToProperties.isEmpty()) {
-			return;
-		}
-
-		if(valuesToApply == null) {
-			return;
-		}
-		Set<String> keys = valuesToApply.keySet();
-		for(String propertyQN : keys) {
-			Object value = valuesToApply.get(propertyQN);
-			Property property = findPropertyByQualifiedName(propertyQN);
-			if(value instanceof ArrayList<?>) {
-				for(Object object : ((ArrayList<?>)value)) {
-					addInHashMaps(property, object);
-				}
-			} else {
-				addInHashMaps(property, value);
-			}
-		}
-	}
 
 
 	/**
-	 * manage the filling of the two hashmaps!
-	 * 
-	 * @param property
-	 *        the property to add in hasmaps
-	 * @param value
-	 *        the value associated to this property
+	 * Class giving cell editors for the {@link stereotypesViewer} and for the {@link RuntimePropertiesDialog#tree}
 	 */
-	@SuppressWarnings("unchecked")
-	protected void addInHashMaps(Property property, Object value) {
-		if(value == null || property == null) {
-			return;
-		}
-
-		/*
-		 * 2 different strings with the same contents have the same hashcode!
-		 * 
-		 * it's a big problem with the hashmap!, so we use SuperString to have 2 different hashcodes
-		 * for string with the same contents
-		 */
-		if(value instanceof String) {//in fact, all values are String!
-			value = new SuperString((String)value);
-		}
-
-		valuesToProperties.put(value, property);
-		if(property.isMultivalued()) {
-			if(propertiesToUpdate.containsKey(property)) {
-				((ArrayList<Object>)propertiesToUpdate.get(property)).add(value);
-			} else {
-				//we create a list
-				ArrayList<Object> list = new ArrayList<Object>();
-				list.add(value);
-				propertiesToUpdate.put(property, list);
-			}
-		} else {
-			propertiesToUpdate.put(property, value);
-		}
-
-	}
-
-	/**
-	 * manage the remove action in the two hashmaps!
-	 * 
-	 * @param property
-	 * @param value
-	 */
-	@SuppressWarnings("unchecked")
-	protected void removeValueFromHashMaps(Property property, Object value) {
-		if(value == null || property == null) {
-			return;
-		}
-		valuesToProperties.remove(value);
-		if(property.isMultivalued()) {
-			ArrayList<Object> valuesList = (ArrayList<Object>)propertiesToUpdate.get(property);
-			int index = getIndexOf(valuesList, value);
-			valuesList.remove(index);
-			if(valuesList.size() == 0) {
-				propertiesToUpdate.remove(property);
-			}
-		} else {
-			propertiesToUpdate.remove(property);
-		}
-	}
-
-	/**
-	 * manage the replace action in the two hashmaps!
-	 * 
-	 * @param property
-	 * @param value
-	 */
-	@SuppressWarnings("unchecked")
-	protected void replaceValueInHashMaps(Property property, Object newValue, Object oldValue) {
-		if(newValue == null || property == null || oldValue == null) {
-			return;
-		}
-
-		if(newValue instanceof String) {
-			newValue = new SuperString((String)newValue);
-		}
-		valuesToProperties.remove(oldValue);
-		valuesToProperties.put(newValue, property);
-
-		if(property.isMultivalued()) {
-			ArrayList<Object> valuesList = (ArrayList<Object>)propertiesToUpdate.get(property);
-			int index = getIndexOf(valuesList, oldValue);
-			//we erase the oldValue
-			valuesList.set(index, newValue);
-		} else {
-			//we erase the oldValue
-			propertiesToUpdate.put(property, newValue);
-		}
-	}
-
-	/**
-	 * destroy a property in the hashmaps
-	 * 
-	 * @param property
-	 */
-	@SuppressWarnings("unchecked")
-	protected void destroyPropertyInHashMaps(Property property) {
-		if(property == null) {
-			return;
-		}
-		if(propertiesToUpdate.containsKey(property)) {
-
-			if(property.isMultivalued()) {
-				ArrayList<Object> valuesList = (ArrayList<Object>)propertiesToUpdate.get(property);
-				for(Object object : valuesList) {
-					valuesToProperties.remove(object);
-				}
-			} else {
-				valuesToProperties.remove(propertiesToUpdate.get(property));
-			}
-			propertiesToUpdate.remove(property);
-		}
-	}
-
-	/**
-	 * Class giving cell editors for the {@link stereotypesViewer}
-	 */
-	protected class AttributeEditingSupport extends EditingSupport {
+	public class AttributeEditingSupport extends EditingSupport {
 
 		/** proposals for boolean */
 		protected final String[] booleanProposals = new String[]{ "", "true", "false" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+
+
+		protected TreeViewer treeViewer = null;
 
 		/**
 		 * Constructor.
@@ -2280,6 +1540,7 @@ public class StereotypePostAction extends ModelPostAction {
 		 */
 		public AttributeEditingSupport(ColumnViewer viewer) {
 			super(viewer);
+			this.treeViewer = (TreeViewer)viewer;
 		}
 
 		/**
@@ -2295,39 +1556,40 @@ public class StereotypePostAction extends ModelPostAction {
 		 */
 		@Override
 		protected CellEditor getCellEditor(Object element) {
-			Property property = null;
-			if(element instanceof SuperString) {
-				property = valuesToProperties.get(element);
+			Type type = null;
+			CellEditor editor = null;
+			if(element instanceof Value) {
+				type = ((Value)element).getPropertyRepresentation().getType();
 			}
-			if(property != null) {
-				Type type = property.getType();
+			if(type != null) {
 				if(type instanceof PrimitiveType) {
 					String typeName = type.getQualifiedName();
 
 					// property is a boolean property 
 					if(UMLPrimitiveTypes_BOOLEAN.equals(typeName)) {
-						return createBooleanEditor(stereotypesViewer.getTree());
+						editor = createBooleanEditor(treeViewer.getTree());
 
 						// property is a String 
 					} else if(UMLPrimitiveTypes_STRING.equals(typeName)) {
-						return new TextCellEditor(stereotypesViewer.getTree());
+						editor = new TextCellEditor(treeViewer.getTree());
 
 						// property is an Integer
 					} else if(UMLPrimitiveTypes_INTEGER.equals(typeName)) {
-						return new TextCellEditor(stereotypesViewer.getTree());
+						editor = new TextCellEditor(treeViewer.getTree());
+
 						// property is an unlimitedNatural
 					} else if(UMLPrimitiveTypes_UNLIMITED_NATURAL.equals(typeName)) {
-						return new TextCellEditor(stereotypesViewer.getTree());
+						editor = new TextCellEditor(treeViewer.getTree());
 
 						// property is a user primitive Type
 					} else {
 						//never used!
 						//newVTO = new UserPrimitiveTypeValueTreeObject(parent, newValue, domain);
 					}
+
 				}
 			}
-			return null;
-
+			return editor;
 
 		}
 
@@ -2348,38 +1610,21 @@ public class StereotypePostAction extends ModelPostAction {
 		 */
 		@Override
 		protected Object getValue(Object element) {
-			Property property = valuesToProperties.get(element);
-			Type type = property.getType();
 
-			if(type instanceof PrimitiveType) {
-				String typeName = type.getQualifiedName();
-				// property is a boolean property 
-				if(UMLPrimitiveTypes_BOOLEAN.equals(typeName)) {
-					return getBooleanValue((SuperString)element);
-
+			if(element instanceof Value) {
+				Property prop = ((Value)element).getPropertyRepresentation().getUMLProperty();
+				if(prop.getType() != null) {
+					if(prop.getType().getQualifiedName().equals(UMLPrimitiveTypes_BOOLEAN)) {
+						for(int index = 0; index < booleanProposals.length; index++) {
+							if(booleanProposals[index].equals(element.toString())) {
+								return index;
+							}
+						}
+						return 0;
+					}
 				}
-				// property is a SuperString 
-			} else if(element instanceof SuperString) {
-				return ((SuperString)element).toString();
 			}
-
 			return element.toString();
-		}
-
-		/**
-		 * Returns the value from the feature
-		 * 
-		 * @param feature
-		 *        the feature to edit
-		 * @return the boolean value
-		 */
-		protected Object getBooleanValue(SuperString str) {
-			List<String> booleans = Arrays.asList(booleanProposals);
-			if(str == null) {
-				return 0;
-			} else {
-				return booleans.indexOf(str.toString());
-			}
 		}
 
 		/**
@@ -2387,23 +1632,27 @@ public class StereotypePostAction extends ModelPostAction {
 		 */
 		@Override
 		protected void setValue(Object oldValue, Object newValue) {
-			saveExpandedNode();
 			//property can't be null, because, we change a value, we never create a new value
 			if(!"".equals(newValue)) { //$NON-NLS-1$
-				Property property = valuesToProperties.get(oldValue);
-				if(property.getType() instanceof PrimitiveType) {
-					String typeName = property.getType().getQualifiedName();
-					if(UMLPrimitiveTypes_BOOLEAN.equals(typeName)) {
-						setBooleanValue(oldValue, newValue);
-					} else {
-						replaceValueInHashMaps(property, newValue, oldValue);
-					}
-				} else {
+				if(oldValue instanceof Value) {
+					Property property = ((Value)oldValue).getPropertyRepresentation().getUMLProperty();
+					if(property.getType() != null) {
+						if(property.getType() instanceof PrimitiveType) {
 
-					replaceValueInHashMaps(property, newValue, oldValue);
+							String typeName = property.getType().getQualifiedName();
+							if(UMLPrimitiveTypes_BOOLEAN.equals(typeName)) {
+								setBooleanValue(oldValue, newValue);
+							} else {
+								((Value)oldValue).setValue((String)newValue);
+							}
+						} else {
+							((Value)oldValue).setValue((String)newValue);
+						}
+					}
+					treeViewer.refresh(oldValue);
+
 				}
 			}
-			updateStereotypeViewer();
 		}
 
 		/**
@@ -2415,13 +1664,12 @@ public class StereotypePostAction extends ModelPostAction {
 		 *        the new value
 		 */
 		protected void setBooleanValue(Object oldValue, Object newValue) {
-			Property property = valuesToProperties.get(oldValue);
 			if(newValue == null || newValue.equals(0)) {
-				removeValueFromHashMaps(property, oldValue);
+				((Value)oldValue).getPropertyRepresentation().getValues().remove(oldValue);
 			} else if(newValue.equals(1)) {
-				replaceValueInHashMaps(property, booleanProposals[1], oldValue);
+				((Value)oldValue).setValue(booleanProposals[1]);
 			} else if(newValue.equals(2)) {
-				replaceValueInHashMaps(property, booleanProposals[2], oldValue);
+				((Value)oldValue).setValue(booleanProposals[2]);
 			} else {
 				Activator.log.error("Impossible to set boolean value " + newValue, null); //$NON-NLS-1$
 			}
@@ -2429,4 +1677,511 @@ public class StereotypePostAction extends ModelPostAction {
 
 	}
 
+
+	/**
+	 * This class provides a {@link CheckboxCellEditor} for the {@link StereotypePostAction#runtimeColumn}
+	 * 
+	 * 
+	 */
+	protected class RuntimeEditingSupport extends EditingSupport {
+
+		/** editor */
+		private final CellEditor editor;
+
+		/**
+		 * 
+		 * Constructor.
+		 * 
+		 * @param viewer
+		 *        viewer in which editors will open
+		 */
+		public RuntimeEditingSupport(ColumnViewer viewer) {
+			super(viewer);
+			editor = new CheckboxCellEditor(null, SWT.NONE);
+		}
+
+		/**
+		 * 
+		 * @see org.eclipse.jface.viewers.EditingSupport#getCellEditor(java.lang.Object)
+		 * 
+		 * @param element
+		 * @return
+		 */
+		@Override
+		protected CellEditor getCellEditor(Object element) {
+			return editor;
+		}
+
+		/**
+		 * 
+		 * @see org.eclipse.jface.viewers.EditingSupport#canEdit(java.lang.Object)
+		 * 
+		 * @param element
+		 * @return
+		 */
+		@Override
+		protected boolean canEdit(Object element) {
+			if(element instanceof PropertyRepresentation) {
+				return true;
+			}
+			return false;
+		}
+
+		/**
+		 * 
+		 * @see org.eclipse.jface.viewers.EditingSupport#getValue(java.lang.Object)
+		 * 
+		 * @param element
+		 * @return
+		 */
+		@Override
+		protected Object getValue(Object element) {
+			if(element instanceof PropertyRepresentation) {
+				return ((PropertyRepresentation)element).isRuntime();
+			}
+			return null;
+		}
+
+		/**
+		 * 
+		 * @see org.eclipse.jface.viewers.EditingSupport#setValue(java.lang.Object, java.lang.Object)
+		 * 
+		 * @param element
+		 * @param value
+		 */
+		@Override
+		protected void setValue(Object element, Object value) {
+			if(element instanceof PropertyRepresentation) {
+				((PropertyRepresentation)element).setRuntime((Boolean)value);
+				stereotypesViewer.update(element, null);
+			}
+		}
+	}
+
+	/**
+	 * This class provides the methods for displaying the stereotypeViewer's column.
+	 * This class gives the correct Label and it's {@link Image} to display for each element
+	 * 
+	 */
+	protected class RuntimeLabelProvider extends CellLabelProvider implements ILabelProvider {
+
+		/**
+		 * @see org.eclipse.jface.viewers.CellLabelProvider#update(org.eclipse.jface.viewers.ViewerCell)
+		 * 
+		 * @param cell
+		 */
+
+		@Override
+		public void update(ViewerCell cell) {
+			cell.setText(getText(cell.getElement()));
+			cell.setImage(getImage(cell.getElement()));
+		}
+
+		/**
+		 * @{inheritDoc
+		 */
+		public String getText(Object element) {
+			return ""; //$NON-NLS-1$
+		}
+
+		/**
+		 * @see org.eclipse.jface.viewers.ILabelProvider#getImage(java.lang.Object)
+		 * 
+		 * @param element
+		 * @return the image corresponding to the status (define or not at runtime)
+		 */
+
+		public Image getImage(Object element) {
+			if(element instanceof PropertyRepresentation) {
+				if(((PropertyRepresentation)element).isRuntime()) {
+					return Activator.getPluginIconImage(Activator.ID, ICON_CHECKED);
+				}
+				return Activator.getPluginIconImage(Activator.ID, ICON_UNCHECKED);
+
+			}
+			return null;
+		}
+	}
+
+	/**
+	 * This method does the action to define the properties defined at runtime, that's to say, open a dialog to propose editing the properties defined
+	 * during the palette customisation
+	 * 
+	 * @param config
+	 *        the configuration which contains all the applied stereotypes with properties and values
+	 * @param editPart
+	 *        the edit
+	 */
+	protected void defineRuntimeProperties(Configuration config) {
+
+		/*
+		 * we copy the stereotype with runtime properties
+		 * we copy the runtime properties (note that the values aren't not copied)
+		 * 
+		 * so steWithPropToEdit contains only stereotypes with only their runtime properties.
+		 */
+
+		List<StereotypeRepresentation> steWithPropToEdit = new ArrayList<StereotypeRepresentation>();
+		for(StereotypeRepresentation ste : config.getStereotypesRepresentations()) {
+			if(ste.hasRuntimeProperties()) {
+				StereotypeRepresentation newSte = new StereotypeRepresentation(ste);
+				for(PropertyRepresentation propRep : ste.getRuntimeProperties()) {
+					PropertyRepresentation prop = new PropertyRepresentation(propRep);
+					newSte.addProperty(prop);
+				}
+				steWithPropToEdit.add(newSte);
+			}
+		}
+
+		RuntimePropertiesDialog dialog = new RuntimePropertiesDialog(new Shell(), steWithPropToEdit);
+		dialog.open();
+
+	}
+
+
+	/**
+	 * 
+	 * This class provides a Dialog to define the properties values during the element creation
+	 * 
+	 */
+	protected class RuntimePropertiesDialog extends Dialog {
+
+
+		/** the dialog title */
+		private String title = null;
+
+		/** the dialog message */
+		private String message = null;
+
+		/** the viewer */
+		private TreeViewer tree = null;
+
+		/** the list containing the {@link StereotypeRepresentation} with the runtime roperties */
+		private List<StereotypeRepresentation> stereotypesRep;
+
+		/**
+		 * 
+		 * Constructor.
+		 * 
+		 * @param parent
+		 * @param stereotypesList
+		 */
+
+		public RuntimePropertiesDialog(Shell parent, List<StereotypeRepresentation> steWithPropToEdit) {
+			super(parent);
+			this.title = Messages.StereotypePostAction_EditRuntimePropertiesTitle;
+			this.message = Messages.StereotypePostAction_EditRuntimePropertiesMessage;
+			this.stereotypesRep = steWithPropToEdit;
+		}
+
+		/**
+		 * 
+		 * @see org.eclipse.jface.window.Window#configureShell(org.eclipse.swt.widgets.Shell)
+		 * 
+		 * @param shell
+		 */
+		@Override
+		protected void configureShell(Shell shell) {
+			super.configureShell(shell);
+			if(title != null) {
+				shell.setText(title);
+			}
+
+		}
+
+		/**
+		 * 
+		 * @see org.eclipse.jface.dialogs.Dialog#createButtonsForButtonBar(org.eclipse.swt.widgets.Composite)
+		 *      we remove the CANCEL Button
+		 * @param parent
+		 */
+		@Override
+		protected void createButtonsForButtonBar(Composite parent) {
+			createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, true);
+		}
+
+		/**
+		 * 
+		 * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets.Composite)
+		 * 
+		 * @param parent
+		 * @return
+		 */
+		@Override
+		protected Control createDialogArea(Composite parent) {
+			// create composite
+			Composite composite = (Composite)super.createDialogArea(parent);
+			GridLayout layout = new GridLayout(5, false);
+			composite.setLayout(layout);
+			if(message != null) {
+				Label titleLabel = new Label(composite, SWT.WRAP);
+				titleLabel.setText(message); //$NON-NLS-1$
+				GridData data = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
+				titleLabel.setLayoutData(data);
+			}
+
+			downButton = new Button(composite, SWT.NONE);
+			downButton.setImage(Activator.getPluginIconImage(Activator.ID, ICONS_DOWN));
+			downButton.setEnabled(false);
+			downButton.addMouseListener(new MouseListener() {
+
+				public void mouseUp(MouseEvent e) {
+					moveElement(MOVE_DOWN, tree);
+					runtimeSelectionHasChange();
+				}
+
+				public void mouseDown(MouseEvent e) {
+				}
+
+				public void mouseDoubleClick(MouseEvent e) {
+				}
+			});
+
+			upButton = new Button(composite, SWT.NONE);
+			upButton.setImage(Activator.getPluginIconImage(Activator.ID, ICONS_UP));
+			upButton.setEnabled(false);
+			upButton.addMouseListener(new MouseListener() {
+
+				public void mouseUp(MouseEvent e) {
+					moveElement(MOVE_UP, tree);
+					runtimeSelectionHasChange();
+				}
+
+				public void mouseDown(MouseEvent e) {
+				}
+
+				public void mouseDoubleClick(MouseEvent e) {
+
+				}
+			});
+
+			addButton = new Button(composite, SWT.NONE);
+			addButton.setImage(Activator.getPluginIconImage(Activator.ID, ICONS_ADD));
+			addButton.setEnabled(false);
+			addButton.addMouseListener(new MouseListener() {
+
+				public void mouseUp(MouseEvent e) {
+					//performedAddButtonRuntime(e);
+					performAddButtonPressed(tree);
+					tree.refresh();
+					runtimeSelectionHasChange();
+				}
+
+				public void mouseDown(MouseEvent e) {
+
+				}
+
+				public void mouseDoubleClick(MouseEvent e) {
+
+				}
+			});
+
+			removeButton = new Button(composite, SWT.NONE);
+			removeButton.setImage(Activator.getPluginIconImage(Activator.ID, ICONS_REMOVE));
+			removeButton.setEnabled(false);
+			removeButton.addMouseListener(new MouseListener() {
+
+				public void mouseUp(MouseEvent e) {
+					performRemoveAction(tree);
+					runtimeSelectionHasChange();
+				}
+
+				public void mouseDown(MouseEvent e) {
+
+				}
+
+				public void mouseDoubleClick(MouseEvent e) {
+
+				}
+			});
+
+			//create the tree
+			tree = new TreeViewer(parent, SWT.BORDER | SWT.MULTI);
+			//tree.setContentProvider(new RuntimePropertiesStereotypeContentProvider());
+			tree.setContentProvider(new StereotypeContentProvider());
+			tree.getControl().setLayoutData(new GridData(GridData.GRAB_HORIZONTAL | GridData.HORIZONTAL_ALIGN_FILL));
+			createColumn(tree);
+			tree.addSelectionChangedListener(new ISelectionChangedListener() {
+
+				public void selectionChanged(SelectionChangedEvent event) {
+					performSelectionChangeRuntime(event);
+				}
+			});
+
+			tree.addDoubleClickListener(new IDoubleClickListener() {
+
+				public void doubleClick(DoubleClickEvent event) {
+
+					performDoubleClickAction(tree);
+					runtimeSelectionHasChange();
+				}
+
+			});
+
+
+			tree.getControl().addKeyListener(new KeyListener() {
+
+				public void keyReleased(KeyEvent e) {
+
+				}
+
+				public void keyPressed(KeyEvent e) {
+
+					if(e.keyCode == SWT.F2) {
+						performF2Action(tree);
+					} else if(e.character == SWT.DEL) {
+						performRemoveAction(tree);
+					} else if(e.stateMask == SWT.CTRL && e.keyCode == 110) {//e.character=='N' doesn't work on my computer
+						performCTRL_N_Action(e, tree);
+					}
+					runtimeSelectionHasChange();
+				}
+
+
+			});
+			updateTreeViewer();
+			tree.expandAll();
+			return composite;
+		}
+
+		/**
+		 * create the column for the given
+		 * 
+		 * @param viewer
+		 */
+		protected void createColumn(TreeViewer viewer) {
+			final TreeViewerColumn stereotypeColumn = new TreeViewerColumn(viewer, SWT.FILL);
+			stereotypeColumn.getColumn().setResizable(true);
+			stereotypeColumn.getColumn().setWidth(400);
+			stereotypeColumn.setLabelProvider(editorLabelProvider);
+			stereotypeColumn.setEditingSupport(new AttributeEditingSupport(viewer));
+		}
+
+		/**
+		 * update the TreevViewer
+		 */
+		private void updateTreeViewer() {
+			tree.setInput(stereotypesRep);
+			runtimeSelectionHasChange();
+		}
+
+		/**
+		 * use to force the buttons's update
+		 */
+		private void runtimeSelectionHasChange() {
+			performSelectionChangeRuntime(new SelectionChangedEvent(this.tree, tree.getSelection()));
+		}
+
+
+
+		/**
+		 * this function updates the buttons status
+		 * 
+		 * @param event
+		 */
+		protected void performSelectionChangeRuntime(SelectionChangedEvent event) {
+
+			ITreeSelection selection = (ITreeSelection)event.getSelection();
+			int selectionSize = selection.size();
+			if((selectionSize == 0) || !(sameLevelForFullSelection(selection))) {
+				addButton.setEnabled(true);
+				removeButton.setEnabled(false);
+				upButton.setEnabled(false);
+				downButton.setEnabled(false);
+			} else if(selectionSize == 1) {
+				Object selectedElement = selection.getFirstElement();
+				//removeButton state
+				if(selectedElement instanceof StereotypeRepresentation) {
+					removeButton.setEnabled(false);
+				} else if(selectedElement instanceof PropertyRepresentation) {
+					if(((PropertyRepresentation)selectedElement).getUpperMultiplicity() == 1) {
+						removeButton.setEnabled(true);
+					} else {
+						removeButton.setEnabled(false);
+					}
+				} else if(selectedElement instanceof Value) {
+					removeButton.setEnabled(true);
+
+				}
+
+				//addButton state
+				if(selectedElement instanceof StereotypeRepresentation) {
+					addButton.setEnabled(false);
+				} else if(selectedElement instanceof PropertyRepresentation) {
+					ArrayList<Value> values = ((PropertyRepresentation)selectedElement).getValues();
+					Property prop = ((PropertyRepresentation)selectedElement).getUMLProperty();
+					if(!prop.isMultivalued()) {
+						if(values.size() == 0) {
+							addButton.setEnabled(true);
+						} else {
+							addButton.setEnabled(false);
+						}
+					} else {//multi-valued property}
+						int upper = prop.getUpper();
+						if(upper == -1) {
+							addButton.setEnabled(true);
+						} else if(values.size() < upper) {
+							addButton.setEnabled(true);
+						} else {
+							addButton.setEnabled(false);
+						}
+					}
+				} else if(selectedElement instanceof Value) {
+					addButton.setEnabled(false);
+				}
+				//upButton and downButton states
+				if(selectedElement instanceof StereotypeRepresentation) {
+					int index = stereotypesRep.indexOf(selectedElement);
+					if(config.getStereotypesRepresentations().size() == 1) {
+						downButton.setEnabled(false);
+						upButton.setEnabled(false);
+					} else if(index == 0) {
+						downButton.setEnabled(true);
+						upButton.setEnabled(false);
+					} else if(index == stereotypesRep.indexOf(selectedElement) - 1) {
+						downButton.setEnabled(false);
+						upButton.setEnabled(true);
+					} else {
+						downButton.setEnabled(true);
+						upButton.setEnabled(true);
+					}
+				} else if(selectedElement instanceof PropertyRepresentation) {
+					downButton.setEnabled(false);
+					upButton.setEnabled(false);
+				} else if(selectedElement instanceof Value) {
+					ArrayList<Value> valuesList = ((Value)selectedElement).getPropertyRepresentation().getValues();
+					int index = valuesList.indexOf(selectedElement);
+					if(valuesList.size() == 1) {
+						upButton.setEnabled(false);
+						downButton.setEnabled(false);
+					} else if(index == 0) {
+						upButton.setEnabled(false);
+						downButton.setEnabled(true);
+					} else if(index == valuesList.size() - 1) {
+						upButton.setEnabled(true);
+						downButton.setEnabled(false);
+					} else {
+						upButton.setEnabled(true);
+						downButton.setEnabled(true);
+					}
+				}
+
+			} else {//all the elements are from the same level
+
+				if(selection.getFirstElement() instanceof StereotypeRepresentation) {
+					removeButton.setEnabled(true);
+					upButton.setEnabled(false);
+					downButton.setEnabled(false);
+					addButton.setEnabled(true);
+				} else
+
+				if(selection.getFirstElement() instanceof Value) {
+					removeButton.setEnabled(true);
+					upButton.setEnabled(false);
+					downButton.setEnabled(false);
+					addButton.setEnabled(false);
+				}
+			}
+		}
+	}
 }

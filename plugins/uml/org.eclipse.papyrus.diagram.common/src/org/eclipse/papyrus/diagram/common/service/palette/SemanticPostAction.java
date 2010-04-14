@@ -520,7 +520,7 @@ public class SemanticPostAction extends ModelPostAction {
 				if(instanceTypeName.equals("boolean")) {
 					return getBooleanValue(feature);
 				}
-				return (propertiesToUpdate.get(feature) != null) ? propertiesToUpdate.get(feature) : "";
+				return (propertiesToUpdate.get(feature.getName()) != null) ? propertiesToUpdate.get(feature.getName()) : "";
 			}
 		}
 
@@ -538,9 +538,9 @@ public class SemanticPostAction extends ModelPostAction {
 			proposals.add("");
 			for(int i = 0; i < literals.size(); i++) {
 				// i+1 because there is already the "" string
-				proposals.add(i, literals.get(i).getLiteral());
+				proposals.add(i + 1, literals.get(i).getLiteral());
 			}
-			Object value = propertiesToUpdate.get(feature);
+			Object value = propertiesToUpdate.get(feature.getName());
 
 			if(value == null) {
 				return 0;
@@ -558,7 +558,7 @@ public class SemanticPostAction extends ModelPostAction {
 		 */
 		protected Object getBooleanValue(EStructuralFeature feature) {
 			List<String> booleans = Arrays.asList(booleanProposals);
-			Object value = propertiesToUpdate.get(feature);
+			Object value = propertiesToUpdate.get(feature.getName());
 			if(value == null || value.equals("")) {
 				return 0;
 			} else {
