@@ -619,6 +619,7 @@
       <creationCommand
             creationCommandClass="org.eclipse.papyrus.sysml.diagram.parametric.CreateParametricDiagramCommand"
             creationCondition="org.eclipse.papyrus.sysml.diagram.parametric.ParametricDiagramCondition"
+            modelFileExtension="uml"
             icon="icons/obj16/ResourceDiagramFile.gif"
             id="org.eclipse.papyrus.sysml.diagram.parametric.CreateParametricDiagramCommand"
             label="SysML Parametric Diagram">

@@ -602,6 +602,7 @@
       </editorDiagram>
       <creationCommand
             creationCommandClass="org.eclipse.papyrus.sysml.diagram.blockdiagram.BDDCreation"
+            modelFileExtension="uml"
             id="org.eclipse.papyrus.sysml.diagram.blockdiagram.creationCommand"
             label="SysML Block Definition Diagram">
       </creationCommand>

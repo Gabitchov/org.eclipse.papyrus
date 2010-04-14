@@ -474,6 +474,7 @@
       <creationCommand
             creationCommandClass="org.eclipse.papyrus.sysml.diagram.internalblock.IBDCreation"
             creationCondition="org.eclipse.papyrus.sysml.diagram.internalblock.IBDCondition"
+            modelFileExtension="uml"
             id="org.eclipse.papyrus.sysml.diagram.internalblock.creationCommand"
             label="SysML Internal Block Diagram">
       </creationCommand>

@@ -14,20 +14,22 @@
 package org.eclipse.papyrus.sysml.diagram.internalblock;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.core.extension.commands.ICreationCondition;
+import org.eclipse.papyrus.core.extension.commands.PerspectiveContextDependence;
 import org.eclipse.papyrus.diagramprofile.utils.StereotypeUtils;
 import org.eclipse.uml2.uml.Element;
 
-public class IBDCondition implements ICreationCondition {
+public class IBDCondition extends PerspectiveContextDependence {
 
 	public boolean create(EObject selectedElement) {
-		if (selectedElement instanceof Element) {
-			Element element = (Element) selectedElement;
-			boolean isProfileApplied = StereotypeUtils.isProfileApplied("SysML::Blocks", element)
-					&& StereotypeUtils.isProfileApplied("SysML::PortAndFlows", element);
-			if (isProfileApplied) {
-				return StereotypeUtils.isStereotypeApplied("SysML::Blocks::Block", element)
-						|| StereotypeUtils.isStereotypeApplied("SysML::Blocks::ConstraintBlock", element);
+		if(super.create(selectedElement)) {
+			if (selectedElement instanceof Element) {
+				Element element = (Element) selectedElement;
+				boolean isProfileApplied = StereotypeUtils.isProfileApplied("SysML::Blocks", element)
+						&& StereotypeUtils.isProfileApplied("SysML::PortAndFlows", element);
+				if (isProfileApplied) {
+					return StereotypeUtils.isStereotypeApplied("SysML::Blocks::Block", element)
+							|| StereotypeUtils.isStereotypeApplied("SysML::Blocks::ConstraintBlock", element);
+				}
 			}
 		}
 		return false;
