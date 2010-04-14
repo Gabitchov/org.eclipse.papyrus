@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.navigator.internal.ltk;
 
+import java.io.File;
+
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
@@ -23,7 +25,6 @@ import org.eclipse.ltk.core.refactoring.Change;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 import org.eclipse.ltk.core.refactoring.participants.CheckConditionsContext;
 import org.eclipse.ltk.core.refactoring.participants.RenameParticipant;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
 
 /**
  * Participant that is aware of the renaming of a model.
@@ -31,7 +32,7 @@ import org.eclipse.papyrus.core.utils.DiResourceSet;
  * @author <a href="mailto:thomas.szadel@atosorigin.com">Thomas Szadel</a>
  * 
  */
-public class RenameModelParticipant extends RenameParticipant implements IModelParticipantConstants {
+public class RenameModelParticipant extends RenameParticipant {
 
 	private IFile fileToRename;
 
@@ -103,7 +104,7 @@ public class RenameModelParticipant extends RenameParticipant implements IModelP
 		}
 		fileToRename = (IFile)element;
 		String ext = fileToRename.getFileExtension();
-		if(DiResourceSet.DI_FILE_EXTENSION.equals(ext) || DiResourceSet.MODEL_FILE_EXTENSION.equals(ext) || DiResourceSet.NOTATION_FILE_EXTENSION.equals(ext)) {
+		
 			IContainer parent = fileToRename.getParent();
 			String newName = getArguments().getNewName();
 			int idx = newName.lastIndexOf('.');
@@ -115,8 +116,8 @@ public class RenameModelParticipant extends RenameParticipant implements IModelP
 			IPath path;
 			IPath resourcePath = fileToRename.getFullPath().removeFileExtension();
 			boolean otherFiles = false;
-			for(String pathExt : MODEL_EXTENSIONS) {
-				path = resourcePath.addFileExtension(pathExt);
+			for(IFile file : ModelParticipantHelpers.getRelatedFiles(fileToRename)) {
+				path = resourcePath.addFileExtension(file.getFileExtension());
 				// Only add the change if the resource exists
 				IFile renFile = parent.getFile(path.makeRelativeTo(parent.getFullPath()));
 				if(!path.equals(fileToRename.getFullPath()) && renFile.exists()) {
@@ -129,12 +130,10 @@ public class RenameModelParticipant extends RenameParticipant implements IModelP
 				IPath newDiPath = fileToRename.getFullPath().removeLastSegments(1);
 				newDiPath = newDiPath.append(newName).addFileExtension(ext);
 				newFile = parent.getFile(newDiPath.makeRelativeTo(parent.getFullPath()));
-				return true;
-			} else {
-				return false;
-			}
+			return true;
 		} else {
 			return false;
 		}
+		
 	}
 }

@@ -16,7 +16,6 @@ package org.eclipse.papyrus.navigator.internal.ltk;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
@@ -30,7 +29,6 @@ import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 import org.eclipse.ltk.core.refactoring.participants.CheckConditionsContext;
 import org.eclipse.ltk.core.refactoring.participants.DeleteParticipant;
 import org.eclipse.ltk.core.refactoring.resource.DeleteResourceChange;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
 
 /**
  * The participant that is aware of file deletion.
@@ -38,9 +36,9 @@ import org.eclipse.papyrus.core.utils.DiResourceSet;
  * @author <a href="mailto:thomas.szadel@atosorigin.com">Thomas Szadel</a>
  * 
  */
-public class DeleteModelParticipant extends DeleteParticipant implements IModelParticipantConstants {
+public class DeleteModelParticipant extends DeleteParticipant {
 
-	private List<IFile> filesToRemove = new ArrayList<IFile>();
+	private List<IFile> filesToRemove;
 
 	/**
 	 * Overrides checkConditions.
@@ -52,7 +50,7 @@ public class DeleteModelParticipant extends DeleteParticipant implements IModelP
 	 */
 	@Override
 	public RefactoringStatus checkConditions(IProgressMonitor pm, CheckConditionsContext context)
-			throws OperationCanceledException {
+	throws OperationCanceledException {
 		return new RefactoringStatus();
 	}
 
@@ -103,25 +101,12 @@ public class DeleteModelParticipant extends DeleteParticipant implements IModelP
 			return false;
 		}
 		IFile file = (IFile)element;
-		String ext = file.getFileExtension();
-		if(DiResourceSet.DI_FILE_EXTENSION.equals(ext) || DiResourceSet.MODEL_FILE_EXTENSION.equals(ext)) {
-			IContainer parent = file.getParent();
-			IPath resourcePath = file.getFullPath().removeFileExtension();
 
-			IPath path;
-			for(String pathExt : MODEL_EXTENSIONS) {
-				path = resourcePath.addFileExtension(pathExt);
-				// Only add the change if the resource exists
-				// Note: the current file is already marked as deleted... so do not add it here!
-				IFile childFile = parent.getFile(path.makeRelativeTo(parent.getFullPath()));
-				if(!path.equals(file.getFullPath()) && childFile.exists()) {
-					filesToRemove.add(childFile);
-				}
-			}
-			return filesToRemove.size() > 0;
-		}
-		return false;
+		filesToRemove = ModelParticipantHelpers.getRelatedFiles(file);
+		return filesToRemove.size() > 0;
 	}
+
+
 
 	private class InternalDeleteResourceChange extends DeleteResourceChange {
 

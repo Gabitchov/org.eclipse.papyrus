@@ -21,7 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
@@ -57,6 +56,8 @@ public class RenameModelChange extends Change {
 
 	private final IFile newFile;
 
+	private final List<IFile> relatedFiles;
+
 	/**
 	 * Constructor.
 	 * 
@@ -71,13 +72,14 @@ public class RenameModelChange extends Change {
 		this.oldFile = oldFile;
 		this.newFile = newFile;
 
-		IPath oldPathWithoutExt = oldFile.getFullPath().removeFileExtension();
 		IPath newPathWithoutExt = newFile.getFullPath().removeFileExtension();
 
 		// Create the map of URI that are being modified in the resource set
-		for(String ext : IModelParticipantConstants.MODEL_EXTENSIONS) {
-			URI oldURI = getPlatformURI(oldPathWithoutExt.addFileExtension(ext));
-			URI newURI = getPlatformURI(newPathWithoutExt.addFileExtension(ext));
+		relatedFiles = ModelParticipantHelpers.getRelatedFiles(oldFile);
+		for (IFile file : relatedFiles) {
+			IPath path = file.getFullPath();
+			URI oldURI = getPlatformURI(path);
+			URI newURI = getPlatformURI(newPathWithoutExt.addFileExtension(path.getFileExtension()));
 			uriMap.put(oldURI, newURI);
 		}
 	}
@@ -205,11 +207,10 @@ public class RenameModelChange extends Change {
 			pm.worked(5);
 
 			// Now, save all the resources
-			Map<?, ?> options = new HashMap();
 			pm.subTask("Saving resources");
 			for(Resource res : resourceSet.getResources()) {
 				try {
-					res.save(options);
+					res.save(null);
 				} catch (IOException e) {
 					log.error("Error while loading resource " + res.getURI(), e);
 				}
@@ -247,15 +248,11 @@ public class RenameModelChange extends Change {
 			}
 
 			// Then, remove the old model files
-			IContainer parent = oldFile.getParent();
-			IPath oldPathWithoutExt = oldFile.getFullPath().removeFileExtension().makeRelativeTo(parent.getFullPath());
 			pm.subTask("Removing old files");
-			for(String ext : IModelParticipantConstants.MODEL_EXTENSIONS) {
-				IFile file = parent.getFile(oldPathWithoutExt.addFileExtension(ext));
-				// Do not remove the file that is being renamed
+			for (IFile file : relatedFiles) {
 				if(file.exists()) {
 					file.delete(true, new NullProgressMonitor());
-				}
+				}	
 			}
 			pm.worked(4);
 
