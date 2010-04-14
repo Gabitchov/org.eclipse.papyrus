@@ -36,7 +36,9 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IPropertyListener;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.internal.ErrorEditorPart;
 import org.eclipse.ui.internal.dnd.IDropTarget;
+import org.eclipse.ui.internal.misc.StatusUtil;
 import org.eclipse.ui.part.EditorActionBarContributor;
 import org.eclipse.ui.part.IWorkbenchPartOrientation;
 
@@ -172,11 +174,13 @@ public class EditorPart extends PagePart implements IEditorPage {
 			// TODO Create a fake Error Page and initialize this part with.
 			//			editorPart = new ErrorEditorPart();
 			//			editorControl = createEditorPartControl(parent, editorPart);
-			editorControl = createErrorPartControl(parent, e);
+//			editorControl = createErrorPartControl(parent, e);
+			createErrorEditorPart(parent, e);
 		} catch (Exception e) {
 			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage(), e));
 			// TODO Create a fake Error Page and initialize this part with.
-			editorControl = createErrorPartControl(parent, e);
+//			editorControl = createErrorPartControl(parent, e);
+			createErrorEditorPart(parent, e);
 		}
 	}
 
@@ -206,6 +210,29 @@ public class EditorPart extends PagePart implements IEditorPage {
 		return comp;
 	}
 
+	/**
+	 * Create an EditorPart showing the Exception.
+	 * This is used when the creation of the regular IEditorPart failed.
+	 * @param e
+	 */
+	private void createErrorEditorPart(Composite parent, Exception e) {
+		
+		try {
+			PartInitException partInitException = new PartInitException( StatusUtil.getLocalizedMessage(e), StatusUtil.getCause(e));
+			editorPart = new ErrorEditorPart(partInitException.getStatus());
+			// Initialize it and create its controls.
+			editorControl = createEditorPartControl(parent, editorPart);
+
+		} catch (Exception ex) {
+			// Even the ErrorEditorPart creation fail.
+			// Use a more simple renderer.
+			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage(), e));
+			// TODO Create a fake Error Page and initialize this part with.
+			editorControl = createErrorPartControl(parent, e);
+		}
+
+	}
+	
 	/**
 	 * Create the editor associated to this TabPart.
 	 * 

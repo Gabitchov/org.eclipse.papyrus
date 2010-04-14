@@ -287,6 +287,13 @@ public class DiagramOutline extends Page implements IPapyrusContentOutlinePage, 
 
 		if(multiEditor.getActiveEditor() != null) {
 			GraphicalViewer viewer = (GraphicalViewer)multiEditor.getActiveEditor().getAdapter(GraphicalViewer.class);
+			if( viewer == null)
+			{ // In case of an editor that is not GEF based.
+				root = null;
+				diagram = null;
+				return;
+			}
+			
 			RootEditPart rootEditPart = viewer.getRootEditPart();
 
 			if(rootEditPart instanceof RenderedDiagramRootEditPart) {
