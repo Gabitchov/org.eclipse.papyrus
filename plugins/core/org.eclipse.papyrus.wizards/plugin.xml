@@ -8,19 +8,5 @@
 		</category>
 	</extension>
 	
-	<extension point="org.eclipse.ui.popupMenus">
-      <objectContribution
-            id="org.eclipse.papyrus.wizards.InitDiagram"
-            nameFilter="*.uml"
-            objectClass="org.eclipse.core.resources.IFile">
-         <action
-               label="Initialize Papyrus Diagram"
-               class="org.eclipse.papyrus.wizards.InitDiagramAction"
-               menubarPath="additions"
-               enablesFor="1"
-               id="org.eclipse.papyrus.wizards.InitDiagramAction">
-         </action>
-      </objectContribution>
-   </extension>
    
 </plugin>

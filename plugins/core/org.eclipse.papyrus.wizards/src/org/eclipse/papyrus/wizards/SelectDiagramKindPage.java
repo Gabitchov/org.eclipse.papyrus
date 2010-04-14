@@ -61,6 +61,13 @@ public class SelectDiagramKindPage extends WizardPage {
 	private Text nameText;
 
 	/**
+	 * The list containing all registered diagram kind
+	 */
+	private CCombo diagramList = null;
+
+	private String modelFileExtension;
+
+	/**
 	 * @return the new diagram name
 	 */
 	protected String getDiagramName() {
@@ -74,15 +81,11 @@ public class SelectDiagramKindPage extends WizardPage {
 		return creationCommand;
 	}
 
-	/**
-	 * The list containing all registered diagram kind
-	 */
-	private CCombo diagramList = null;
-
-	protected SelectDiagramKindPage(String pageName, NewModelFilePage modelFilePage) {
+	protected SelectDiagramKindPage(String pageName, String modelFileExtension, NewModelFilePage modelFilePage) {
 		super(pageName);
 		setTitle("Select a new Diagram");
 		setDescription("Select a new Diagram");
+		this.modelFileExtension = modelFileExtension;
 		this.modelFilePage = modelFilePage;
 	}
 
@@ -121,7 +124,7 @@ public class SelectDiagramKindPage extends WizardPage {
 		diagramList = new CCombo(composite, SWT.BORDER);
 		data = new GridData(SWT.FILL, SWT.FILL, true, false);
 		diagramList.setLayoutData(data);
-		fillList(diagramList);
+		fillList();
 		diagramList.addSelectionListener(new SelectionListener() {
 
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -163,26 +166,33 @@ public class SelectDiagramKindPage extends WizardPage {
 		updateStatus(null);
 	}
 
-	private void fillList(CCombo list) {
+	private void fillList() {
+		diagramList.add("");
+		diagramList.setData(DIAGRAM_KIND_ID + 1, null);
 		for(CreationCommandDescriptor desc : getCreationCommandRegistry().getCommandDescriptors()) {
-			list.add(desc.getLabel());
-			list.setData(DIAGRAM_KIND_ID + list.getItemCount(), desc.getCommandId());
+			if(modelFileExtension.equals(desc.getModelFileExtension())) {
+				diagramList.add(desc.getLabel());
+				diagramList.setData(DIAGRAM_KIND_ID + diagramList.getItemCount(), desc);
+			}
 		}
-		if(diagramList.getItemCount() > 0) {
-			diagramList.select(0);
-			// Uncomment next if we always want a default diagram.
-			// Ensure that this is the ClassDiagram !!
-			// handleListSelected();
-		}
+		diagramList.select(0);
+		handleListSelected();
 	}
 
 	private void handleListSelected() {
 		int i = diagramList.getSelectionIndex();
-		String diagramKindId = (String)diagramList.getData(DIAGRAM_KIND_ID + (i + 1));
-		try {
-			this.creationCommand = getCreationCommandRegistry().getCommand(diagramKindId);
-		} catch (NotFoundException e) {
-			PapyrusTrace.log(e);
+
+		Object obj = diagramList.getData(DIAGRAM_KIND_ID + (i + 1));
+		if(obj instanceof CreationCommandDescriptor) {
+			CreationCommandDescriptor commandDescriptor = (CreationCommandDescriptor)obj;
+			try {
+				this.creationCommand = getCreationCommandRegistry().getCommand(commandDescriptor.getCommandId());
+			} catch (NotFoundException e) {
+				this.creationCommand = null;
+				PapyrusTrace.log(e);
+			}
+		} else {
+			this.creationCommand = null;
 		}
 	}
 

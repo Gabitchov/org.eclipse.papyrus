@@ -550,7 +550,8 @@
             creationCommandClass="org.eclipse.papyrus.diagram.statemachine.CreateStateMachineDiagramCommand"
             icon="icons/StateMachineDiagram.gif"
             id="org.eclipse.papyrus.diagram.statemachine.action.CreationCommand"
-            label="UML StateMachine Diagram">
+            label="UML StateMachine Diagram"
+            modelFileExtension="uml">
       </creationCommand>
    </extension>
 <extension

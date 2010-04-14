@@ -13,16 +13,23 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.wizards;
 
-import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExecutableExtension;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.wizards.CreateModelWizard;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
-public class CreateUMLModelWizard extends CreateModelWizard implements IExecutableExtension{
+public class CreateUMLModelWizard extends CreateModelWizard {
+	
+	public CreateUMLModelWizard() {
+		super();
+	}
+	
+	public CreateUMLModelWizard(URI domainModelURI) {
+		super(domainModelURI);
+	}
 
 	/**
 	 * This ID is the id defined in the extension "org.eclipse.ui.newWizards" of
@@ -41,6 +48,11 @@ public class CreateUMLModelWizard extends CreateModelWizard implements IExecutab
 	protected String getModelContentType() {
 		return UMLPackage.eCONTENT_TYPE;
 	}
+	
+	@Override
+	protected String getModelFileExtension() {
+		return "uml";
+	}
 
 	@Override
 	protected void initializeModelResource(Resource resource, String rootElementName) {
@@ -52,12 +64,6 @@ public class CreateUMLModelWizard extends CreateModelWizard implements IExecutab
 		} else {
 			super.initializeModelResource(resource, rootElementName);
 		}
-	}
-
-	public void setInitializationData(IConfigurationElement config,
-			String propertyName, Object data) throws CoreException {
-		configElement = config;
-		
 	}
 
 }

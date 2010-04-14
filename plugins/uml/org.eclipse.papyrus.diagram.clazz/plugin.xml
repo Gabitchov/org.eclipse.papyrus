@@ -1242,7 +1242,8 @@
             creationCondition="org.eclipse.papyrus.core.extension.commands.PerspectiveContextDependence"
             icon="icons/ClassDiagram.gif"
             id="org.eclipse.papyrus.diagram.clazz.CreateClassDiagramCommand"
-            label="UML Class Diagram">
+            label="UML Class Diagram"
+            modelFileExtension="uml">
       </creationCommand>      
    </extension>
    <!--extension

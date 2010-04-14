@@ -82,7 +82,8 @@
             creationCondition="org.eclipse.papyrus.core.extension.commands.PerspectiveContextDependence"
             icon="icons/UseCaseDiagram.gif"
             id="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand"
-            label="UML UseCase Diagram">
+            label="UML UseCase Diagram"
+            modelFileExtension="uml">
       </creationCommand>
    </extension>
 

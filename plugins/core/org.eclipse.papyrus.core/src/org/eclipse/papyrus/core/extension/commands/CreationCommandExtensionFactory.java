@@ -47,6 +47,9 @@ public class CreationCommandExtensionFactory extends DescriptorExtensionFactory 
 	/** constant for the attribute icon **/
 	public final static String ICON_ATTR = "icon";
 
+	/** constant for the attribute modelFileExtension **/
+	public final static String MODEL_FILE_EXTENSION_ATTR = "modelFileExtension";
+
 	/**
 	 * @return the eINSTANCE
 	 */
@@ -67,18 +70,17 @@ public class CreationCommandExtensionFactory extends DescriptorExtensionFactory 
 		CreationCommandDescriptor res;
 		checkTagName(element, CREATION_COMMAND_EXTENSIONPOINT);
 		res = new CreationCommandDescriptor();
-		res.creationCommandClass = (Class<ICreationCommand>)parseClass(element, CREATION_COMMAND_CLASS_ATTR,
-				CREATION_COMMAND_EXTENSIONPOINT);
+		res.creationCommandClass = (Class<ICreationCommand>)parseClass(element, CREATION_COMMAND_CLASS_ATTR, CREATION_COMMAND_EXTENSIONPOINT);
 		res.commandId = element.getAttribute(ID_ATTRIBUTE);
 		res.label = element.getAttribute(LABEL_ATTR);
+		res.modelFileExtension = element.getAttribute(MODEL_FILE_EXTENSION_ATTR);
 		String iconPath = element.getAttribute(ICON_ATTR);
 		if(iconPath != null) {
 			res.icon = AbstractUIPlugin.imageDescriptorFromPlugin(element.getNamespaceIdentifier(), iconPath);
 		}
 		String attributeForCreationCondition = element.getAttribute(CONDITION_COMMAND_CLASS_ATTR);
 		if(attributeForCreationCondition != null && attributeForCreationCondition.length() > 0) {
-			Class<ICreationCondition> classCondition = (Class<ICreationCondition>)parseClass(element,
-					CONDITION_COMMAND_CLASS_ATTR, CREATION_COMMAND_EXTENSIONPOINT);
+			Class<ICreationCondition> classCondition = (Class<ICreationCondition>)parseClass(element, CONDITION_COMMAND_CLASS_ATTR, CREATION_COMMAND_EXTENSIONPOINT);
 			if(classCondition != null) {
 				try {
 					res.setCondition(classCondition.newInstance());

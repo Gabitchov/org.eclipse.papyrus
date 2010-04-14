@@ -27,7 +27,7 @@ import org.eclipse.ui.IWorkbenchPart;
  * 
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public class InitDiagramAction implements IObjectActionDelegate {
+public abstract class InitDiagramAction implements IObjectActionDelegate {
 
 	/**
 	 * The active part
@@ -78,7 +78,7 @@ public class InitDiagramAction implements IObjectActionDelegate {
 	 */
 	public void run(IAction action) {
 		if(domainModelURI != null) {
-			CreateModelWizard wizard = new CreateModelWizard(domainModelURI);
+			CreateModelWizard wizard = getCreateModelWizard(domainModelURI);
 			wizard.init(targetPart.getSite().getWorkbenchWindow().getWorkbench(), selection);
 			WizardDialog dialog = new WizardDialog(getShell(), wizard);
 			dialog.create();
@@ -86,5 +86,7 @@ public class InitDiagramAction implements IObjectActionDelegate {
 			dialog.open();
 		}
 	}
+
+	protected abstract CreateModelWizard getCreateModelWizard(URI domainModelURI);
 
 }

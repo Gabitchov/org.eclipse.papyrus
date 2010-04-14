@@ -1622,7 +1622,8 @@
             creationCondition="org.eclipse.papyrus.core.extension.commands.PerspectiveContextDependence"
             icon="icons/obj16/Diagram_CompositeStructureDiagram.gif"
             id="org.eclipse.papyrus.diagram.composite.createCompositeDiagram"
-            label="UML CompositeStructure Diagram">
+            label="UML CompositeStructure Diagram"
+            modelFileExtension="uml">
       </creationCommand>
    </extension>
    <extension

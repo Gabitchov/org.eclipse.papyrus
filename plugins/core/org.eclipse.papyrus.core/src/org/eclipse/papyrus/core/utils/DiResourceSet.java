@@ -18,14 +18,19 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.core.listenerservice.ModelListenerManager;
 
 /**
@@ -43,17 +48,17 @@ public class DiResourceSet extends ResourceSetImpl {
 	public static final String DI_FILE_EXTENSION = "di"; //$NON-NLS-1$
 
 	/**
-	 * File extension used for Model.
-	 */
-	public static final String MODEL_FILE_EXTENSION = "uml"; //$NON-NLS-1$
-
-	/**
-	 * File extension used for Model.
+	 * File extension used for notation.
 	 */
 	public static final String NOTATION_FILE_EXTENSION = "notation"; //$NON-NLS-1$
 
 	/**
-	 * The UML model resource.
+	 * File extension used for Model
+	 */
+	private String modelFileExtension; //$NON-NLS-1$
+
+	/**
+	 * The model resource.
 	 */
 	private Resource modelResource;
 
@@ -63,7 +68,7 @@ public class DiResourceSet extends ResourceSetImpl {
 	private Resource diResource;
 
 	/**
-	 * The DI resource.
+	 * The notation resource.
 	 */
 	private Resource notationResource;
 
@@ -77,7 +82,18 @@ public class DiResourceSet extends ResourceSetImpl {
 	public Resource loadModelResource(URI uri) {
 		// FIXME maybe check that model is null ?!
 		modelResource = getResource(uri, true);
+		modelFileExtension = modelResource.getURI().fileExtension();
 		return getModelResource();
+	}
+
+	/**
+	 * Returns the extension of the model
+	 */
+	public String getModelFileExtension() {
+		if(modelFileExtension == null) {
+			modelFileExtension = modelResource.getURI().fileExtension();
+		}
+		return modelFileExtension;
 	}
 
 	/**
@@ -90,14 +106,6 @@ public class DiResourceSet extends ResourceSetImpl {
 		// Extract file name, without extension
 		IPath fullPath = file.getFullPath().removeFileExtension();
 
-		// Load UML file
-		URI uri = getPlatformURI(fullPath.addFileExtension(MODEL_FILE_EXTENSION));
-		loadModelResource(uri);
-
-		// TODO move next line away from DiResourceSet ? Define a place
-		// where Resource initialization can take place.
-		modelResource.eAdapters().add(new ModelListenerManager());
-
 		// load DI2
 		URI diUri = getPlatformURI(fullPath.addFileExtension(DI_FILE_EXTENSION));
 		diResource = getResource(diUri, true);
@@ -106,6 +114,41 @@ public class DiResourceSet extends ResourceSetImpl {
 		URI notationURI = getPlatformURI(fullPath.addFileExtension(NOTATION_FILE_EXTENSION));
 		notationResource = getResource(notationURI, true);
 
+		if(notationResource != null) {
+			// look for a model associated with a diagram in notation
+			for(EObject eObject : notationResource.getContents()) {
+				if(eObject instanceof Diagram) {
+					Diagram diagram = (Diagram)eObject;
+					if(diagram.getElement() != null) {
+						modelResource = diagram.getElement().eResource();
+						break;
+					}
+				}
+			}
+		}
+
+
+		// if modelResource is still null, we look for a file with the same name and a different extension
+		if(modelResource == null) {
+			IContainer folder = file.getParent();
+			try {
+				IResource[] files = folder.members();
+				for(IResource r : files) {
+					String extension = r.getFullPath().getFileExtension();
+					if(r.getFullPath().removeFileExtension().lastSegment().equals(fullPath.lastSegment()) && !DI_FILE_EXTENSION.equalsIgnoreCase(extension) && !NOTATION_FILE_EXTENSION.equalsIgnoreCase(extension)) {
+						modelResource = getResource(getPlatformURI(r.getFullPath()), true);
+						break;
+					}
+				}
+			} catch (CoreException e) {
+			}
+		}
+
+		modelFileExtension = modelResource.getURI().fileExtension();
+
+		// TODO move next line away from DiResourceSet ? Define a place
+		// where Resource initialization can take place.
+		modelResource.eAdapters().add(new ModelListenerManager());
 	}
 
 	/**
@@ -127,7 +170,7 @@ public class DiResourceSet extends ResourceSetImpl {
 	 * @param newFile
 	 *        The file from which path is extracted to create the new files
 	 */
-	public void createModelResources(IFile newFile, String eContentType) {
+	public void createModelResources(IFile newFile, String eContentType, String modelExtension) {
 
 		// create the di resource URI
 		URI diUri = getPlatformURI(newFile.getFullPath());
@@ -137,12 +180,13 @@ public class DiResourceSet extends ResourceSetImpl {
 		diResource = createResource(diUri);
 
 		IPath filenameWithoutExtension = newFile.getFullPath().removeFileExtension();
-		// if the uml model is not loaded, create resource
+		// if the model is not loaded, create resource
 		if(modelResource == null) {
 			// create the model URI
-			URI modelUri = getPlatformURI(filenameWithoutExtension.addFileExtension("uml"));
+			URI modelUri = getPlatformURI(filenameWithoutExtension.addFileExtension(modelExtension));
 			// create the model resource
 			modelResource = createResource(modelUri, eContentType);
+			this.modelFileExtension = modelExtension;
 		}
 		// create the notation URI
 		URI notationURI = getPlatformURI(filenameWithoutExtension.addFileExtension(NOTATION_FILE_EXTENSION));
@@ -193,7 +237,7 @@ public class DiResourceSet extends ResourceSetImpl {
 	 */
 	public void saveAs(IPath path) throws IOException {
 		IPath nameWithoutExt = path.removeFileExtension();
-		IPath modelPath = nameWithoutExt.addFileExtension(MODEL_FILE_EXTENSION);
+		IPath modelPath = nameWithoutExt.addFileExtension(getModelFileExtension());
 		IPath notationPath = nameWithoutExt.addFileExtension(NOTATION_FILE_EXTENSION);
 		IPath diPath = nameWithoutExt.addFileExtension(DI_FILE_EXTENSION);
 
@@ -281,7 +325,7 @@ public class DiResourceSet extends ResourceSetImpl {
 			return null;
 		}
 		IFile diFile;
-		if(DiResourceSet.DI_FILE_EXTENSION.equals(file.getFileExtension())) {
+		if(DI_FILE_EXTENSION.equalsIgnoreCase(file.getFileExtension())) {
 			diFile = file;
 		} else {
 			// Find the correct file

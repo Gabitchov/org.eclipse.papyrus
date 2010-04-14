@@ -115,6 +115,13 @@ An ActionBarContributor can be shared among several Editors or Views.
                </appinfo>
             </annotation>
          </attribute>
+         <attribute name="modelFileExtension" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The extension of the model files supported by the diagram.
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 
@@ -170,6 +177,13 @@ An ActionBarContributor can be shared among several Editors or Views.
                <appinfo>
                   <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.extension.commands.ICreationCondition"/>
                </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="modelFileExtension" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The extension of the model files supported by the diagram.
+               </documentation>
             </annotation>
          </attribute>
       </complexType>
