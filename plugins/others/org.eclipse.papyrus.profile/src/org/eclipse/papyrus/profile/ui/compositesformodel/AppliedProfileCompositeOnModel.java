@@ -20,10 +20,12 @@ import java.util.Iterator;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -443,9 +445,11 @@ public class AppliedProfileCompositeOnModel extends Composite {
 					diagramEditPart.resolveSemanticElement() instanceof Package) {
 				selectedPackage = (Package)diagramEditPart.resolveSemanticElement();
 			}
-		} else if(input instanceof Package) {
+		}
+		EObject eObject= resolveSemanticObject(input);
+		if(eObject!=null && eObject instanceof Package) {
 			//the selection is provided by the model explorer
-			selectedPackage = (Package)input;
+			selectedPackage = (Package)eObject;
 		}
 		return selectedPackage;
 	}
@@ -647,5 +651,23 @@ public class AppliedProfileCompositeOnModel extends Composite {
 			unApplyProfile(getSelectedPackage(), profileToUnapply);
 		}
 
+	}
+	/**
+	 * Resolve semantic element
+	 * 
+	 * @param object
+	 *            the object to resolve
+	 * @return <code>null</code> or the semantic element associated to the specified object
+	 */
+	private EObject resolveSemanticObject(Object object) {
+		if (object instanceof EObject) {
+			return (EObject) object;
+		} else if (object instanceof IAdaptable) {
+			IAdaptable adaptable = (IAdaptable) object;
+			if (adaptable.getAdapter(EObject.class) != null) {
+				return (EObject) adaptable.getAdapter(EObject.class);
+			}
+		}
+		return null;
 	}
 }

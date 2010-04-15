@@ -16,6 +16,7 @@ import java.util.Iterator;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -88,6 +89,8 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 			if(view != null) {
 				return view.getElement();
 			}
+			EObject elem = (EObject)((IAdaptable)selected).getAdapter(EObject.class);
+			return elem;
 		}
 		return selected;
 	}

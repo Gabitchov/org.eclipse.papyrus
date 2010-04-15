@@ -14,6 +14,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.profile.ui.section;
 
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.GraphicalEditPart;
@@ -28,6 +30,7 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.views.properties.tabbed.AbstractPropertySection;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Package;
 
 /**
  * This section is used to apply stereotype on uml Element.
@@ -107,8 +110,11 @@ public class AppliedStereotypeSectionWithView extends AbstractPropertySection {
 					appliedStereotypeComposite.setElement(UMLElement);
 					appliedStereotypeComposite.setInput(new StereotypedElementTreeObject(UMLElement, editingDomain));
 				}
-			} else if(input instanceof Element) {
-				Element UMLElement = (Element)input;
+			} 
+			EObject eobject=resolveSemanticObject(input);
+			
+			if(eobject instanceof Element) {
+				Element UMLElement = (Element)eobject;
 				appliedStereotypeComposite.setDiagramElement(UMLElement);
 				appliedStereotypeComposite.setElement(UMLElement);
 				appliedStereotypeComposite.setInput(new StereotypedElementTreeObject(UMLElement, editingDomain));
@@ -116,6 +122,25 @@ public class AppliedStereotypeSectionWithView extends AbstractPropertySection {
 
 		}
 	}
+	/**
+	 * Resolve semantic element
+	 * 
+	 * @param object
+	 *            the object to resolve
+	 * @return <code>null</code> or the semantic element associated to the specified object
+	 */
+	private EObject resolveSemanticObject(Object object) {
+		if (object instanceof EObject) {
+			return (EObject) object;
+		} else if (object instanceof IAdaptable) {
+			IAdaptable adaptable = (IAdaptable) object;
+			if (adaptable.getAdapter(EObject.class) != null) {
+				return (EObject) adaptable.getAdapter(EObject.class);
+			}
+		}
+		return null;
+	}
+
 
 	/*
 	 * (non-Javadoc)

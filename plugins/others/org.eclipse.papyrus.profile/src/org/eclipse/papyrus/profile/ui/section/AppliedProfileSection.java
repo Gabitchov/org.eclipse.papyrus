@@ -15,7 +15,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.profile.ui.section;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.GraphicalEditPart;
@@ -80,7 +82,9 @@ public class AppliedProfileSection extends AbstractPropertySection {
 				if(view.getElement() != null) {
 					appliedProfileComposite.setSelection(selection);
 				}
-			} else if(input instanceof EModelElement) {
+			} 
+			EObject eObject= resolveSemanticObject(input);
+			if(eObject!=null &&eObject instanceof EObject) {
 				appliedProfileComposite.setSelection(selection);
 			}
 			if(part instanceof IEditingDomainProvider) {
@@ -88,6 +92,24 @@ public class AppliedProfileSection extends AbstractPropertySection {
 				appliedProfileComposite.setDomain(editingDomain);
 			}
 		}
+	}
+	/**
+	 * Resolve semantic element
+	 * 
+	 * @param object
+	 *            the object to resolve
+	 * @return <code>null</code> or the semantic element associated to the specified object
+	 */
+	private EObject resolveSemanticObject(Object object) {
+		if (object instanceof EObject) {
+			return (EObject) object;
+		} else if (object instanceof IAdaptable) {
+			IAdaptable adaptable = (IAdaptable) object;
+			if (adaptable.getAdapter(EObject.class) != null) {
+				return (EObject) adaptable.getAdapter(EObject.class);
+			}
+		}
+		return null;
 	}
 
 	/**
