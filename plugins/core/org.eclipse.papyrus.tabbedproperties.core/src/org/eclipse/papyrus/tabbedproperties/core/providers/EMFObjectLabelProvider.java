@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -76,9 +77,8 @@ public class EMFObjectLabelProvider extends AdapterFactoryLabelProvider implemen
 		if(element != null && element instanceof StructuredSelection) {
 			StructuredSelection selection = (StructuredSelection)element;
 			Object o = selection.getFirstElement();
-			if(o instanceof EObject) {
-				eObject = (EObject)o;
-			} else if(o instanceof IGraphicalEditPart) {
+			eObject=resolveSemanticObject(o);
+			if(o instanceof IGraphicalEditPart) {
 				IGraphicalEditPart editPart = (IGraphicalEditPart)o;
 				eObject = editPart.resolveSemanticElement();
 			}
@@ -86,6 +86,24 @@ public class EMFObjectLabelProvider extends AdapterFactoryLabelProvider implemen
 		return eObject;
 	}
 
+	/**
+	 * Resolve semantic element
+	 * 
+	 * @param object
+	 *            the object to resolve
+	 * @return <code>null</code> or the semantic element associated to the specified object
+	 */
+	private EObject resolveSemanticObject(Object object) {
+		if (object instanceof EObject) {
+			return (EObject) object;
+		} else if (object instanceof IAdaptable) {
+			IAdaptable adaptable = (IAdaptable) object;
+			if (adaptable.getAdapter(EObject.class) != null) {
+				return (EObject) adaptable.getAdapter(EObject.class);
+			}
+		}
+		return null;
+	}
 	private IItemLabelProvider getItemLabelProvider(EObject eObject) {
 		IItemLabelProvider itemLabelProvider = null;
 		if(eObject != null) {
