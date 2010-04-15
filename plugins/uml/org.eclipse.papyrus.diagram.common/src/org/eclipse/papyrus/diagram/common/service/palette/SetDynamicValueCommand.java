@@ -23,7 +23,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.ui.util.DisplayUtils;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.AbstractEditCommandRequest;
-
+import org.eclipse.papyrus.diagram.common.Messages;
 
 /**
  * Command that pops up a dialog to ask which values you want.
