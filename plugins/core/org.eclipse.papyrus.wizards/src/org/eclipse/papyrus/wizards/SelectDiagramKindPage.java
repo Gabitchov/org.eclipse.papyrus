@@ -167,8 +167,6 @@ public class SelectDiagramKindPage extends WizardPage {
 	}
 
 	private void fillList() {
-		diagramList.add("");
-		diagramList.setData(DIAGRAM_KIND_ID + 1, null);
 		for(CreationCommandDescriptor desc : getCreationCommandRegistry().getCommandDescriptors()) {
 			if(modelFileExtension.equals(desc.getModelFileExtension())) {
 				diagramList.add(desc.getLabel());
