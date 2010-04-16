@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.core.extension.NotFoundException;
 import org.eclipse.papyrus.core.listenerservice.ModelListenerManager;
 
 /**
@@ -128,7 +129,7 @@ public class DiResourceSet extends ResourceSetImpl {
 		}
 
 
-		// if modelResource is still null, we look for a file with the same name and a different extension
+		// if modelResource is still null, we look for a file with the same name and a supported extension
 		if(modelResource == null) {
 			IContainer folder = file.getParent();
 			try {
@@ -136,11 +137,14 @@ public class DiResourceSet extends ResourceSetImpl {
 				for(IResource r : files) {
 					String extension = r.getFullPath().getFileExtension();
 					if(r.getFullPath().removeFileExtension().lastSegment().equals(fullPath.lastSegment()) && !DI_FILE_EXTENSION.equalsIgnoreCase(extension) && !NOTATION_FILE_EXTENSION.equalsIgnoreCase(extension)) {
-						modelResource = getResource(getPlatformURI(r.getFullPath()), true);
-						break;
+						if(Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().get(extension) != null) {
+							modelResource = getResource(getPlatformURI(r.getFullPath()), true);
+							break;
+						}
 					}
 				}
 			} catch (CoreException e) {
+				// never happens.
 			}
 		}
 
