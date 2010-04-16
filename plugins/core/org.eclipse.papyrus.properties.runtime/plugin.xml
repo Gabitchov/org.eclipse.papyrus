@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.5"?>
+<plugin>
+   <extension-point id="propertyEditorProvider" name="propertyEditorProvider" schema="schema/propertyEditorProvider.exsd"/>
+   <extension-point id="propertyEditorControllerProvider" name="propertyEditorControllerProvider" schema="schema/propertyEditorControllerProvider.exsd"/>
+   <extension-point id="propertyViewProvider" name="propertyViewProvider" schema="schema/propertyViewProvider.exsd"/>
+<extension
+      point="org.eclipse.papyrus.properties.runtime.propertyEditorProvider">
+   <propertyEditorProvider
+         class="org.eclipse.papyrus.properties.runtime.propertyeditor.PropertyEditorProvider">
+      <Priority
+            name="Lowest">
+      </Priority>
+      <PropertyEditor
+            allowMultiValue="false"
+            class="org.eclipse.papyrus.properties.runtime.propertyeditor.TextPropertyEditor"
+            description="This editor allows edition of String-valued properties"
+            factory="org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.PropertyEditorDescriptorFactory"
+            id="org.eclipse.papyrus.properties.runtime.textPropertyEditor"
+            typeValidator="org.eclipse.papyrus.properties.runtime.propertyeditor.TextPropertyEditorValidator">
+      </PropertyEditor>
+      <PropertyEditor
+            allowMultiValue="false"
+            class="org.eclipse.papyrus.properties.runtime.propertyeditor.ComboPropertyEditor"
+            description="This is the basic combo to edit enumeration"
+            factory="org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.ComboPropertyEditorDescriptorFactory"
+            id="org.eclipse.papyrus.properties.runtime.comboPropertyEditor"
+            typeValidator="org.eclipse.papyrus.properties.runtime.propertyeditor.PropertyEditorTypeValidator">
+      </PropertyEditor>
+      <PropertyEditor
+            allowMultiValue="false"
+            class="org.eclipse.papyrus.properties.runtime.propertyeditor.RadioBoxPropertyEditor"
+            description="This editor displays a list of radio buttons, where only one can be selected."
+            factory="org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.ComboPropertyEditorDescriptorFactory"
+            id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor"
+            typeValidator="org.eclipse.papyrus.properties.runtime.propertyeditor.PropertyEditorTypeValidator">
+      </PropertyEditor>
+      <PropertyEditor
+            allowMultiValue="false"
+            class="org.eclipse.papyrus.properties.runtime.propertyeditor.GroupedRadioBoxPropertyEditor"
+            description="This editor is a group, filled with radioBox buttons"
+            factory="org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.RadioBoxPropertyEditorDescriptorFactory"
+            id="org.eclipse.papyrus.properties.runtime.groupedRadioBoxPropertyEditor"
+            typeValidator="org.eclipse.papyrus.properties.runtime.propertyeditor.PropertyEditorTypeValidator">
+      </PropertyEditor>
+      <PropertyEditor
+            allowMultiValue="false"
+            class="org.eclipse.papyrus.properties.runtime.propertyeditor.SimpleReferencePropertyEditor"
+            description="This is a basic editor for simple references value"
+            factory="org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.SimpleReferencePropertyEditorDescriptorFactory"
+            id="org.eclipse.papyrus.properties.runtime.simpleReferencePropertyEditor"
+            typeValidator="org.eclipse.papyrus.properties.runtime.propertyeditor.SimpleReferencePropertyEditorValidator">
+      </PropertyEditor>
+      <PropertyEditor
+            allowMultiValue="true"
+            class="org.eclipse.papyrus.properties.runtime.propertyeditor.MultipleReferencePropertyEditor"
+            description="This is a basic editor for multiple references value"
+            factory="org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.MultipleReferencePropertyEditorDescriptorFactory"
+            id="org.eclipse.papyrus.properties.runtime.multipleReferencePropertyEditor"
+            typeValidator="org.eclipse.papyrus.properties.runtime.propertyeditor.MultipleReferencePropertyEditorValidator">
+      </PropertyEditor>
+   </propertyEditorProvider>
+</extension>
+<extension
+      point="org.eclipse.papyrus.properties.runtime.propertyEditorControllerProvider">
+   <propertyEditorControllerProvider
+         class="org.eclipse.papyrus.properties.runtime.controller.PropertyEditorControllerProvider"
+         id="propertyEditorController"
+         description="provider for emf structural features, using transactionnal editing domain">
+      <Priority
+            name="Lowest">
+      </Priority>
+      <PropertyEditorController
+            class="org.eclipse.papyrus.properties.runtime.controller.EMFTStructuralFeatureController"
+            description="This is an EMFT controller, for direct structural features"
+            factory="org.eclipse.papyrus.properties.runtime.controller.descriptor.EMFTPropertyEditorControllerDescriptorFactory"
+            id="emftStructuralFeatureController">
+      </PropertyEditorController>
+      <PropertyEditorController
+            class="org.eclipse.papyrus.properties.runtime.controller.EMFTEReferenceController"
+            description="Controller for references"
+            factory="org.eclipse.papyrus.properties.runtime.controller.descriptor.EMFTBindingPropertyEditorControllerDescriptorFactory"
+            id="emftBindingReferenceController">
+      </PropertyEditorController>
+      </propertyEditorControllerProvider>
+</extension>
+</plugin>
