@@ -22,7 +22,7 @@ import org.eclipse.jface.viewers.ViewerFilter;
 /**
  * Interface for bounded values controller (references, etc)
  */
-public interface IBoundedValuesController extends IPropertyEditorController {
+public interface IBoundedValuesController extends ILabelProviderController {
 
 	/**
 	 * Returns the list of available elements
@@ -39,20 +39,6 @@ public interface IBoundedValuesController extends IPropertyEditorController {
 	public Object[] getCurrentValues();
 
 	/**
-	 * Returns the label provider used to display elements in the dialog which looks for values
-	 * 
-	 * @return the label provider used to display elements in the list which looks for values
-	 */
-	public ILabelProvider getLabelProvider();
-
-	/**
-	 * Returns the label provider used to display elements in the editor
-	 * 
-	 * @return the label provider used to display elements in the editor
-	 */
-	public ILabelProvider getEditorLabelProvider();
-
-	/**
 	 * Returns the set of filters used to display the tree
 	 * 
 	 * @return the set of filters used to display the tree
@@ -65,5 +51,12 @@ public interface IBoundedValuesController extends IPropertyEditorController {
 	 * @return the content provider for the viewer
 	 */
 	public IContentProvider getContentProvider();
+
+	/**
+	 * Returns the label provider used to display elements in the reference browser
+	 * 
+	 * @return the label provider used to display elements in the reference browser
+	 */
+	public ILabelProvider getBrowserLabelProvider();
 
 }

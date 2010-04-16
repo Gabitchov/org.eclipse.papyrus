@@ -176,7 +176,7 @@ public class ReferenceExplorerDialog extends SelectionStatusDialog {
 		data.verticalAlignment = GridData.FILL;
 		tree.setLayoutData(data);
 
-		treeViewer.setLabelProvider(controller.getLabelProvider());
+		treeViewer.setLabelProvider(controller.getBrowserLabelProvider());
 
 		List<ViewerFilter> filters = controller.getViewerFilters();
 		filters.add(patternfilter);

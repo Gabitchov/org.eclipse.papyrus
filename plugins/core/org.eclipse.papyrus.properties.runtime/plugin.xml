@@ -59,6 +59,14 @@
             id="org.eclipse.papyrus.properties.runtime.multipleReferencePropertyEditor"
             typeValidator="org.eclipse.papyrus.properties.runtime.propertyeditor.MultipleReferencePropertyEditorValidator">
       </PropertyEditor>
+       <PropertyEditor
+            allowMultiValue="true"
+            class="org.eclipse.papyrus.properties.runtime.propertyeditor.MultipleStructuralFeaturesPropertyEditor"
+            description="This is a basic editor for multiple structural features values"
+            factory="org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.MultipleStructuralFeaturesPropertyEditorDescriptorFactory"
+            id="org.eclipse.papyrus.properties.runtime.multipleStructuralFeaturesPropertyEditor"
+            typeValidator="org.eclipse.papyrus.properties.runtime.propertyeditor.MultipleStructuralFeaturesPropertyEditorValidator">
+      </PropertyEditor>
    </propertyEditorProvider>
 </extension>
 <extension
@@ -79,8 +87,20 @@
       <PropertyEditorController
             class="org.eclipse.papyrus.properties.runtime.controller.EMFTEReferenceController"
             description="Controller for references"
+            factory="org.eclipse.papyrus.properties.runtime.controller.descriptor.EMFTPropertyEditorControllerDescriptorFactory"
+            id="emftEReferenceController">
+      </PropertyEditorController>
+        <PropertyEditorController
+            class="org.eclipse.papyrus.properties.runtime.controller.EMFTBindingEReferenceController"
+            description="Controller for references using binding label provider"
             factory="org.eclipse.papyrus.properties.runtime.controller.descriptor.EMFTBindingPropertyEditorControllerDescriptorFactory"
             id="emftBindingReferenceController">
+      </PropertyEditorController>
+      <PropertyEditorController
+            class="org.eclipse.papyrus.properties.runtime.controller.EMFTLabelProviderStructuralFeatureController"
+            description="Controller for structural features with a label provider"
+            factory="org.eclipse.papyrus.properties.runtime.controller.descriptor.EMFTPropertyEditorControllerDescriptorFactory"
+            id="emftLabelProviderStructuralFeatureController">
       </PropertyEditorController>
       </propertyEditorControllerProvider>
 </extension>

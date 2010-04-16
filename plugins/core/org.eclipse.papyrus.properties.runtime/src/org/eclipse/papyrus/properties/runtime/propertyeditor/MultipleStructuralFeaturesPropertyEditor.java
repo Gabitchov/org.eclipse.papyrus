@@ -26,6 +26,7 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.controller.IBoundedValuesController;
+import org.eclipse.papyrus.properties.runtime.controller.ILabelProviderController;
 import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorController;
 import org.eclipse.papyrus.properties.runtime.dialogs.ReferenceExplorerDialog;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
@@ -45,10 +46,10 @@ import org.eclipse.ui.PlatformUI;
 /**
  * Property editor for references that have multiplicity [n..*]
  */
-public class MultipleReferencePropertyEditor extends AbstractPropertyEditor {
+public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEditor {
 
 	/** id of this editor */
-	public static final String ID = "org.eclipse.papyrus.properties.runtime.multipleReferencePropertyEditor";
+	public static final String ID = "org.eclipse.papyrus.properties.runtime.multipleStructuralFeaturesPropertyEditor";
 
 	/** main composite created by this property editor */
 	protected Composite composite;
@@ -238,7 +239,7 @@ public class MultipleReferencePropertyEditor extends AbstractPropertyEditor {
 				return new Object[0];
 			}
 		});
-		referencesViewer.setLabelProvider(((IBoundedValuesController)getController()).getEditorLabelProvider());
+		referencesViewer.setLabelProvider(((ILabelProviderController)getController()).getEditorLabelProvider());
 		return composite;
 	}
 

@@ -17,7 +17,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -25,14 +24,8 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.properties.runtime.Activator;
-import org.eclipse.papyrus.properties.runtime.controller.descriptor.IBindingLabelProviderDescriptor;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.uml2.uml.StructuralFeature;
 
 
 /**
@@ -45,9 +38,6 @@ public class EMFTEReferenceController extends EMFTStructuralFeatureController im
 
 	/** label provider for EMF objects */
 	protected ILabelProvider labelProvider = new AdapterFactoryLabelProvider(factory);
-
-	/** editor label provider for EMF objects */
-	protected ILabelProvider editorLabelProvider = new BindingLabelProvider(labelProvider);
 
 	/**
 	 * {@inheritDoc}
@@ -70,7 +60,7 @@ public class EMFTEReferenceController extends EMFTStructuralFeatureController im
 	/**
 	 * {@inheritDoc}
 	 */
-	public ILabelProvider getLabelProvider() {
+	public ILabelProvider getBrowserLabelProvider() {
 		return labelProvider;
 	}
 
@@ -78,7 +68,7 @@ public class EMFTEReferenceController extends EMFTStructuralFeatureController im
 	 * {@inheritDoc}
 	 */
 	public ILabelProvider getEditorLabelProvider() {
-		return editorLabelProvider;
+		return labelProvider;
 	}
 
 	/**
@@ -155,120 +145,5 @@ public class EMFTEReferenceController extends EMFTStructuralFeatureController im
 			}
 		}
 		return false;
-	}
-
-
-	/**
-	 * Label provider which proposed binded messages if possible, otherwise relies on an other label provider
-	 */
-	public class BindingLabelProvider implements ILabelProvider {
-
-		/** label provider used by default */
-		protected final ILabelProvider referenceLabelProvider;
-
-		/**
-		 * Creates a new EMFTEReferenceController.BindingLabelProvider.
-		 * 
-		 * @param labelProvider
-		 *        the referenced label provider, which is used by default when the label provider can not bind elements
-		 */
-		public BindingLabelProvider(ILabelProvider labelProvider) {
-			this.referenceLabelProvider = labelProvider;
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		public void addListener(ILabelProviderListener listener) {
-
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		public void dispose() {
-
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		public boolean isLabelProperty(Object element, String property) {
-			return false;
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		public void removeListener(ILabelProviderListener listener) {
-
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		public Image getImage(Object element) {
-			return referenceLabelProvider.getImage(element);
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		public String getText(Object element) {
-			if(getDescriptor() instanceof IBindingLabelProviderDescriptor) {
-				String message = ((IBindingLabelProviderDescriptor)getDescriptor()).getMessage();
-
-				// retrieve message to display
-				// the features are the features of the element referenced by the structural feature => has to compute this value
-				if(element instanceof EObject) {
-					Object[] bindings = computeBindings((EObject)element, (IBindingLabelProviderDescriptor)getDescriptor());
-
-					// binds
-					return NLS.bind(message, bindings);
-				}
-			}
-			return referenceLabelProvider.getText(element);
-		}
-
-		/**
-		 * computes bindings from the given descriptor
-		 * 
-		 * @param objectToEdit
-		 *        the object edited
-		 * @param descriptor
-		 *        the descriptor which contributes to bindings
-		 * @return the list of values to bind
-		 */
-		protected Object[] computeBindings(EObject objectToEdit, IBindingLabelProviderDescriptor descriptor) {
-			List<Object> bindings = new ArrayList<Object>();
-			for(String name : descriptor.getFeaturesNameToBind()) {
-				EStructuralFeature feature = getFeatureByName(objectToEdit, name);
-				if(feature != null) {
-					Object value = objectToEdit.eGet(feature);
-					bindings.add(value);
-				} else {
-					Activator.log.error("impossible to find the feature with name : " + name, null);
-				}
-			}
-
-			return bindings.toArray();
-		}
-
-		/**
-		 * Returns the feature given its name
-		 * 
-		 * @param objectToEdit
-		 *        the object to edit
-		 * @param name
-		 *        the name of the feature to find
-		 * @return the {@link StructuralFeature} found
-		 */
-		protected EStructuralFeature getFeatureByName(EObject objectToEdit, String name) {
-			EStructuralFeature feature = objectToEdit.eClass().getEStructuralFeature(name);
-			if(feature != null) {
-				return feature;
-			}
-			return null;
-		}
 	}
 }
