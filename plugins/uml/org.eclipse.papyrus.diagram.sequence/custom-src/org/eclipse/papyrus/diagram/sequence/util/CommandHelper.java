@@ -36,6 +36,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.diagram.common.actions.LabelHelper;
 import org.eclipse.papyrus.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
@@ -46,6 +47,7 @@ import org.eclipse.uml2.uml.ActionExecutionSpecification;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.ConnectableElement;
+import org.eclipse.uml2.uml.DestructionEvent;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Event;
 import org.eclipse.uml2.uml.ExecutionEvent;
@@ -504,6 +506,43 @@ public class CommandHelper {
 			}
 		}
 		return lifeline;
+	}
+
+	/**
+	 * Create an DestructionEvent and an occurrenceSpecification bounds to the lifeline
+	 * 
+	 * @param destructionEvent the destructionEvent 
+	 * @param lifeline the lifeline associated with the destructionEvent
+	 * @param modelContainer the container of the occurrenceSpecification that will bound the lifeline and the destructionEvent.
+	 * @return
+	 */
+	public static DestructionEvent doCreateDestructionEvent(DestructionEvent destructionEvent, Lifeline lifeline, Object modelContainer) {
+
+		InteractionFragment interactionFragment = null;
+
+		// Get the nearest package
+		Package pack = lifeline.getNearestPackage();
+
+		// Add the destructionEvent to the Package
+		pack.getPackagedElements().add(destructionEvent);
+
+		EClass eClass = UMLPackage.eINSTANCE.getOccurrenceSpecification();
+		// Create an occurrenceSpecification
+		OccurrenceSpecification os = null;
+		if(modelContainer instanceof InteractionOperand) {
+			InteractionOperand interactionOperand = (InteractionOperand)modelContainer;
+			os = (OccurrenceSpecification)interactionOperand.createFragment(LabelHelper.INSTANCE.findName(interactionOperand, eClass), eClass);
+			interactionFragment = interactionOperand;
+		} else {
+			Interaction interaction = lifeline.getInteraction();
+			os = (OccurrenceSpecification)interaction.createFragment(LabelHelper.INSTANCE.findName(interaction, eClass), eClass);
+			interactionFragment = interaction;
+		}
+		doConfigureOccurenceSpecification(os, destructionEvent, interactionFragment, lifeline);
+
+
+
+		return destructionEvent;
 	}
 
 	/**

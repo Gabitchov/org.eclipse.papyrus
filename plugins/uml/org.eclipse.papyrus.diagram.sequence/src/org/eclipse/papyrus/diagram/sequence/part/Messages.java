@@ -451,6 +451,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String DestructionEvent16CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String DestructionEvent16CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String MessageSync1CreationTool_title;
 
 	/**
@@ -647,6 +657,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_DurationConstraint_3021_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DestructionEvent_3022_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DestructionEvent_3022_outgoinglinks;
 
 	/**
 	 * @generated

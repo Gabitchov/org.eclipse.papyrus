@@ -52,6 +52,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
@@ -189,6 +190,7 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 				case TimeConstraintEditPart.VISUAL_ID:
 				case TimeObservationEditPart.VISUAL_ID:
 				case DurationConstraintEditPart.VISUAL_ID:
+				case DestructionEventEditPart.VISUAL_ID:
 
 					return new BorderItemResizableEditPolicy();
 
@@ -271,6 +273,15 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 
 
 
+
+		if(childEditPart instanceof DestructionEventEditPart) {
+			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
+			getBorderedFigure().getBorderItemContainer().add(((DestructionEventEditPart)childEditPart).getFigure(), locator);
+			return true;
+		}
+
+
+
 		return false;
 	}
 
@@ -291,6 +302,10 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 		}
 		if(childEditPart instanceof DurationConstraintEditPart) {
 			getBorderedFigure().getBorderItemContainer().remove(((DurationConstraintEditPart)childEditPart).getFigure());
+			return true;
+		}
+		if(childEditPart instanceof DestructionEventEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((DestructionEventEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -506,6 +521,9 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
+		if(targetEditPart instanceof DestructionEventEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
@@ -554,6 +572,9 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
+		if(targetEditPart instanceof DestructionEventEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
@@ -602,6 +623,9 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
+		if(targetEditPart instanceof DestructionEventEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
@@ -650,6 +674,9 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
+		if(targetEditPart instanceof DestructionEventEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
@@ -698,6 +725,9 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
+		if(targetEditPart instanceof DestructionEventEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
@@ -746,6 +776,9 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
+		if(targetEditPart instanceof DestructionEventEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
@@ -792,6 +825,9 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof DurationConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof DestructionEventEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -851,6 +887,9 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3021);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
@@ -899,6 +938,9 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3021);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
+		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
@@ -947,6 +989,9 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3021);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
+		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
@@ -995,6 +1040,9 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3021);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
+		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
@@ -1043,6 +1091,9 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3021);
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
+		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
@@ -1091,6 +1142,9 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3021);
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
+		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
@@ -1137,6 +1191,9 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.DurationConstraint_3021);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Constraint_3008);
@@ -1212,6 +1269,9 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3021);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
@@ -1260,6 +1320,9 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3021);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
+		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
@@ -1308,6 +1371,9 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3021);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
+		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
@@ -1356,6 +1422,9 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3021);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
+		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
@@ -1404,6 +1473,9 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3021);
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
+		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
@@ -1452,6 +1524,9 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3021);
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
+		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
@@ -1498,6 +1573,9 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.DurationConstraint_3021);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Constraint_3008);
@@ -1749,27 +1827,27 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 			if(notification.getOldValue() instanceof MessageOccurrenceSpecification) {
 				notifier.unlistenObject((Notifier)notification.getOldValue());
 				if(newValue == null) {
-					updateCrossEnd();
+					//updateCrossEnd();
 				}
 			}
 			if(newValue instanceof MessageOccurrenceSpecification) {
 				MessageOccurrenceSpecification newMessageOccurrenceSpecification = (MessageOccurrenceSpecification)newValue;
 				notifier.listenObject(newMessageOccurrenceSpecification);
-				if(newMessageOccurrenceSpecification.getEvent() instanceof DestructionEvent) {
-					getPrimaryShape().getFigureLifelineDotLineFigure().setCrossAtEnd(true);
-					getPrimaryShape().repaint();
-				}
+//				if(newMessageOccurrenceSpecification.getEvent() instanceof DestructionEvent) {
+//					getPrimaryShape().getFigureLifelineDotLineFigure().setCrossAtEnd(true);
+//					getPrimaryShape().repaint();
+//				}
 			}
 		} else if(UMLPackage.eINSTANCE.getOccurrenceSpecification_Event().equals(feature)) {
-			// Handle destruction event
-			Object newValue = notification.getNewValue();
-			if(notification.getOldValue() instanceof DestructionEvent && newValue instanceof DestructionEvent == false) {
-				updateCrossEnd();
-			}
-			if(newValue instanceof DestructionEvent) {
-				getPrimaryShape().getFigureLifelineDotLineFigure().setCrossAtEnd(true);
-				getPrimaryShape().repaint();
-			}
+//			// Handle destruction event
+//			Object newValue = notification.getNewValue();
+//			if(notification.getOldValue() instanceof DestructionEvent && newValue instanceof DestructionEvent == false) {
+//				//updateCrossEnd();
+//			}
+//			if(newValue instanceof DestructionEvent) {
+//				getPrimaryShape().getFigureLifelineDotLineFigure().setCrossAtEnd(true);
+//				getPrimaryShape().repaint();
+//			}
 		} else if(notification.getNotifier() instanceof Bounds) {
 			updateCoveredByLifelines((Bounds)notification.getNotifier());
 		}
@@ -1849,28 +1927,28 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 		}
 	}
 
-	/**
-	 * Update the cross end
-	 */
-	private void updateCrossEnd() {
-		LifelineDotLineFigure figureLifelineDotLineFigure = getPrimaryShape().getFigureLifelineDotLineFigure();
-		if(figureLifelineDotLineFigure != null) {
-			figureLifelineDotLineFigure.setCrossAtEnd(false);
-			Lifeline lifeline = (Lifeline)resolveSemanticElement();
-			if(lifeline != null) {
-				for(InteractionFragment interactionFragment : lifeline.getCoveredBys()) {
-					if(interactionFragment instanceof MessageOccurrenceSpecification) {
-						MessageOccurrenceSpecification messageOccurrenceSpecification = (MessageOccurrenceSpecification)interactionFragment;
-						notifier.listenObject(messageOccurrenceSpecification);
-						if(messageOccurrenceSpecification.getEvent() instanceof DestructionEvent) {
-							figureLifelineDotLineFigure.setCrossAtEnd(true);
-						}
-					}
-				}
-				getPrimaryShape().repaint();
-			}
-		}
-	}
+//	/**
+//	 * Update the cross end
+//	 */
+//	private void updateCrossEnd() {
+//		LifelineDotLineFigure figureLifelineDotLineFigure = getPrimaryShape().getFigureLifelineDotLineFigure();
+//		if(figureLifelineDotLineFigure != null) {
+//			figureLifelineDotLineFigure.setCrossAtEnd(false);
+//			Lifeline lifeline = (Lifeline)resolveSemanticElement();
+//			if(lifeline != null) {
+//				for(InteractionFragment interactionFragment : lifeline.getCoveredBys()) {
+//					if(interactionFragment instanceof MessageOccurrenceSpecification) {
+//						MessageOccurrenceSpecification messageOccurrenceSpecification = (MessageOccurrenceSpecification)interactionFragment;
+//						notifier.listenObject(messageOccurrenceSpecification);
+//						if(messageOccurrenceSpecification.getEvent() instanceof DestructionEvent) {
+//							figureLifelineDotLineFigure.setCrossAtEnd(true);
+//						}
+//					}
+//				}
+//				getPrimaryShape().repaint();
+//			}
+//		}
+//	}
 
 	/**
 	 * Overrides to return the DashLineFigure instead of this figure. This is necessary for the
@@ -1934,7 +2012,8 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 		} else if(connEditPart instanceof Message5EditPart) {
 			// Delete message
 			AbstractConnectionAnchor anchor = (AbstractConnectionAnchor)super.getTargetConnectionAnchor(connEditPart);
-			anchor.setOwner(getCrossFigure());
+			//TODO Get the DestructionEventFigure
+			//anchor.setOwner();
 			return anchor;
 		} else {
 			return super.getTargetConnectionAnchor(connEditPart);
@@ -1957,7 +2036,8 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 				} else if(UMLElementTypes.Message_4007.equals(obj)) {
 					// Delete Message
 					AbstractConnectionAnchor anchor = (AbstractConnectionAnchor)super.getTargetConnectionAnchor(request);
-					anchor.setOwner(getCrossFigure());
+					//TODO Get the DestructionEventFigure
+					//anchor.setOwner();
 					return anchor;
 				}
 			}
@@ -1970,7 +2050,8 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 			} else if(connectionEditPart instanceof Message5EditPart) {
 				// Delete
 				AbstractConnectionAnchor anchor = (AbstractConnectionAnchor)super.getTargetConnectionAnchor(request);
-				anchor.setOwner(getCrossFigure());
+				//TODO Get the DestructionEventFigure
+				//anchor.setOwner();
 				return anchor;
 			}
 		}
@@ -1987,17 +2068,6 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 			centerFigure = ((LifelineDotLineCustomFigure)getContentPane()).getDashLineRectangle();
 		}
 		return centerFigure;
-	}
-
-	/**
-	 * Get the cross figure
-	 */
-	private IFigure getCrossFigure() {
-		IFigure bottomCenterFigure = getContentPane();
-		if(bottomCenterFigure instanceof LifelineDotLineCustomFigure) {
-			bottomCenterFigure = ((LifelineDotLineCustomFigure)bottomCenterFigure).getCrossAtEndRectangle();
-		}
-		return bottomCenterFigure;
 	}
 
 	/**
@@ -2039,7 +2109,7 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 	 */
 	@Override
 	public void activate() {
-		updateCrossEnd();
+		//updateCrossEnd();
 		super.activate();
 	}
 

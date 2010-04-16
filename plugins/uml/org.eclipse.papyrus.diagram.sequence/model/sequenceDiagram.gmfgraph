@@ -510,6 +510,13 @@
           accessor="getDurationConstraintLabel"
           figure="//@figures.0/@descriptors.17/@actualFigure/@children.1"/>
     </descriptors>
+    <descriptors
+        name="DestructionEventFigureDesc">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="DestructionEventFigure"
+          qualifiedClassName="org.eclipse.papyrus.diagram.sequence.figures.DestructionEventFigure"/>
+    </descriptors>
   </figures>
   <nodes
       name="InteractionNode"
@@ -560,6 +567,11 @@
       name="DurationConstraintNode"
       figure="DurationConstraintFigure"
       affixedParentSide="EAST_WEST"/>
+  <nodes
+      name="DestructionEventNode"
+      figure="DestructionEventFigureDesc"
+      resizeConstraint="NONE"
+      affixedParentSide="SOUTH"/>
   <connections
       name="CallSynLink"
       figure="MessageSync"/>

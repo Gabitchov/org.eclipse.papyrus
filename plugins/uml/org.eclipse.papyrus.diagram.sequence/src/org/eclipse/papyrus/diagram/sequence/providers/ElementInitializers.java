@@ -22,6 +22,7 @@ import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Continuation;
+import org.eclipse.uml2.uml.DestructionEvent;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.DurationInterval;
 import org.eclipse.uml2.uml.Interaction;
@@ -130,6 +131,18 @@ public class ElementInitializers {
 
 			Object value_1 = name_DurationConstraint_3021(instance);
 			instance.setName((String)value_1);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static void init_DestructionEvent_3022(DestructionEvent instance) {
+		try {
+			Object value_0 = name_DestructionEvent_3022(instance);
+			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -256,6 +269,13 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private static String name_DurationConstraint_3021(DurationConstraint self) {
+		return getNamedElement(self, "", self.eClass().getName(), "");
+	}
+
+	/**
+	 * @generated
+	 */
+	private static String name_DestructionEvent_3022(DestructionEvent self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 

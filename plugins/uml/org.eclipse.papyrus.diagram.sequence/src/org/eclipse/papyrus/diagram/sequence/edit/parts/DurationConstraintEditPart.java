@@ -348,6 +348,9 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
+		if(targetEditPart instanceof DestructionEventEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
@@ -396,6 +399,9 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
+		if(targetEditPart instanceof DestructionEventEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
@@ -444,6 +450,9 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
+		if(targetEditPart instanceof DestructionEventEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
@@ -492,6 +501,9 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
+		if(targetEditPart instanceof DestructionEventEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
@@ -540,6 +552,9 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
+		if(targetEditPart instanceof DestructionEventEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
@@ -588,6 +603,9 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
+		if(targetEditPart instanceof DestructionEventEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
@@ -636,6 +654,9 @@ AbstractBorderItemEditPart {
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
+		if(targetEditPart instanceof DestructionEventEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
@@ -682,6 +703,9 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
 		}
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart) {
+			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+		}
+		if(targetEditPart instanceof DestructionEventEditPart) {
 			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -741,6 +765,9 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3021);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
@@ -789,6 +816,9 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3021);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
+		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
@@ -837,6 +867,9 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3021);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
+		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
@@ -885,6 +918,9 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3021);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
+		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
@@ -933,6 +969,9 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3021);
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
+		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
@@ -981,6 +1020,9 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3021);
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
+		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
@@ -1029,6 +1071,9 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3021);
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
@@ -1075,6 +1120,9 @@ AbstractBorderItemEditPart {
 		}
 		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
 			types.add(UMLElementTypes.DurationConstraint_3021);
+		}
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
 		}
 		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
 			types.add(UMLElementTypes.Constraint_3008);
@@ -1150,6 +1198,9 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3021);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
@@ -1198,6 +1249,9 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3021);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
+		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
@@ -1246,6 +1300,9 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3021);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
+		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
@@ -1294,6 +1351,9 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3021);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
+		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
@@ -1342,6 +1402,9 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3021);
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
+		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
@@ -1390,6 +1453,9 @@ AbstractBorderItemEditPart {
 			types.add(UMLElementTypes.DurationConstraint_3021);
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
+		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
@@ -1436,6 +1502,9 @@ AbstractBorderItemEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.DurationConstraint_3021);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.DestructionEvent_3022);
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Constraint_3008);

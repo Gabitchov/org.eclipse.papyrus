@@ -38,6 +38,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEdi
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
@@ -63,6 +64,7 @@ import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Continuation;
+import org.eclipse.uml2.uml.DestructionEvent;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interaction;
@@ -363,6 +365,8 @@ public class UMLDiagramUpdater {
 			return getTimeObservation_3020ContainedLinks(view);
 		case DurationConstraintEditPart.VISUAL_ID:
 			return getDurationConstraint_3021ContainedLinks(view);
+		case DestructionEventEditPart.VISUAL_ID:
+			return getDestructionEvent_3022ContainedLinks(view);
 		case ConstraintEditPart.VISUAL_ID:
 			return getConstraint_3008ContainedLinks(view);
 		case CommentEditPart.VISUAL_ID:
@@ -418,6 +422,8 @@ public class UMLDiagramUpdater {
 			return getTimeObservation_3020IncomingLinks(view);
 		case DurationConstraintEditPart.VISUAL_ID:
 			return getDurationConstraint_3021IncomingLinks(view);
+		case DestructionEventEditPart.VISUAL_ID:
+			return getDestructionEvent_3022IncomingLinks(view);
 		case ConstraintEditPart.VISUAL_ID:
 			return getConstraint_3008IncomingLinks(view);
 		case CommentEditPart.VISUAL_ID:
@@ -473,6 +479,8 @@ public class UMLDiagramUpdater {
 			return getTimeObservation_3020OutgoingLinks(view);
 		case DurationConstraintEditPart.VISUAL_ID:
 			return getDurationConstraint_3021OutgoingLinks(view);
+		case DestructionEventEditPart.VISUAL_ID:
+			return getDestructionEvent_3022OutgoingLinks(view);
 		case ConstraintEditPart.VISUAL_ID:
 			return getConstraint_3008OutgoingLinks(view);
 		case CommentEditPart.VISUAL_ID:
@@ -571,6 +579,13 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement));
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getDestructionEvent_3022ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
 	}
 
 	/**
@@ -822,6 +837,25 @@ public class UMLDiagramUpdater {
 	 */
 	public static List getDurationConstraint_3021IncomingLinks(View view) {
 		DurationConstraint modelElement = (DurationConstraint)view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getDestructionEvent_3022IncomingLinks(View view) {
+		DestructionEvent modelElement = (DestructionEvent)view.getElement();
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferences));
@@ -1248,6 +1282,22 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getDestructionEvent_3022OutgoingLinks(View view) {
+		DestructionEvent modelElement = (DestructionEvent)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
 		return result;
 	}
 

@@ -101,6 +101,11 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
+	private final static String CREATEDESTRUCTIONEVENT16CREATIONTOOL = "createDestructionEvent16CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private final static String CREATEMESSAGESYNC1CREATIONTOOL = "createMessageSync1CreationTool"; //$NON-NLS-1$
 
 	/**
@@ -195,6 +200,9 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		}
 		if(toolId.equals(CREATEDURATIONCONSTRAINT15CREATIONTOOL)) {
 			return createDurationConstraint15CreationTool();
+		}
+		if(toolId.equals(CREATEDESTRUCTIONEVENT16CREATIONTOOL)) {
+			return createDestructionEvent16CreationTool();
 		}
 		if(toolId.equals(CREATEMESSAGESYNC1CREATIONTOOL)) {
 			return createMessageSync1CreationTool();
@@ -384,6 +392,17 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	private Tool createDurationConstraint15CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.DurationConstraint_3021);
+
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createDestructionEvent16CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.DestructionEvent_3022);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;

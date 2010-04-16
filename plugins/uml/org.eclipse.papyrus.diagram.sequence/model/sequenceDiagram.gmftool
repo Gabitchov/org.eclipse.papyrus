@@ -213,6 +213,19 @@
             path="/icons/full/obj16/DurationConstraint.gif"
             bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
       </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Destruction Event"
+          description="Create a Destruction Event">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/DestructionEvent.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/DestructionEvent.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+      </tools>
     </tools>
     <tools
         xsi:type="gmftool:ToolGroup"

@@ -32,6 +32,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationNameEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInAsyncEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInCreateEditPart;
@@ -279,6 +280,11 @@ public class UMLVisualIDRegistry {
 			) {
 				return DurationConstraintEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getDestructionEvent().isSuperTypeOf(domainElement.eClass())
+				
+			) {
+				return DestructionEventEditPart.VISUAL_ID;
+			}
 			// lifeline : add lifelines on lifeline
 			if(UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(domainElement.eClass())
 
@@ -418,6 +424,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(DurationConstraintEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(DestructionEventEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -923,6 +932,11 @@ public class UMLVisualIDRegistry {
 
 
 		viewInfo = new BaseViewInfo(3021, ViewInfo.Node, "DurationConstraint");
+
+		root.addNode(3001, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3022, ViewInfo.Node, "DestructionEvent");
 
 		root.addNode(3001, viewInfo);
 
