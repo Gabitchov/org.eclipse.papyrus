@@ -115,13 +115,6 @@ An ActionBarContributor can be shared among several Editors or Views.
                </appinfo>
             </annotation>
          </attribute>
-         <attribute name="modelFileExtension" type="string" use="required">
-            <annotation>
-               <documentation>
-                  The extension of the model files supported by the diagram.
-               </documentation>
-            </annotation>
-         </attribute>
       </complexType>
    </element>
 
