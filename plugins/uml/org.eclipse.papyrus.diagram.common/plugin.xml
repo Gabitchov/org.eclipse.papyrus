@@ -300,7 +300,8 @@
       point="org.eclipse.papyrus.core.papyrusDiagram">
    <actionBarContributor
          id="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
-         implementingClass="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor">
+         implementingClass="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
+         modelFileExtension="uml">
    </actionBarContributor>
 </extension>
 <extension
