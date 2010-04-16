@@ -65,8 +65,7 @@ public class GroupableAdapterFactory extends AdapterFactoryImpl {
 
 	@Override
 	public boolean isFactoryForType(Object type) {
-		return (((type instanceof EObject) || (type instanceof PackagingNode) || supportedTypes.contains(type)) && (!(type instanceof View)))
-				|| this.wrappedAdapterFactory.isFactoryForType(type);
+		return (((type instanceof EObject) || (type instanceof PackagingNode) || supportedTypes.contains(type)) && (!(type instanceof View))) || this.wrappedAdapterFactory.isFactoryForType(type);
 	}
 
 }

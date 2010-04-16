@@ -44,10 +44,10 @@ public class GenericTransformAction extends Action {
 
 	/** title of error dialog */
 	private static final String WARNING_TITLE = "Warning: transformation command";
-	
+
 	/** WARNING_MESSAGE for transform command execution */
 	private static final String WARNING_MESSAGE = "You are trying to transform an element typed %s into %s.\nThis operation will copy all the common elements between the two eclasses.\nDo you want to continue ?";
-	
+
 	/** The EClass to transform into. */
 	private EClass targetEClass = null;
 

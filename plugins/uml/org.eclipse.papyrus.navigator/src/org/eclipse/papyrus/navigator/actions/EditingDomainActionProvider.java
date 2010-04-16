@@ -61,8 +61,7 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 		this.actionsFactoriesMap = new HashMap<IActionHandlerFactory, ActionProperties>();
 		TransactionalEditingDomain editingDomain = EditorUtils.getTransactionalEditingDomain();
 
-		IConfigurationElement[] registry = Platform.getExtensionRegistry().getConfigurationElementsFor(
-				ACTION_HANDLER_EXTENSION_POINT_ID);
+		IConfigurationElement[] registry = Platform.getExtensionRegistry().getConfigurationElementsFor(ACTION_HANDLER_EXTENSION_POINT_ID);
 		for(IConfigurationElement elt : registry) {
 			try {
 				final String actionId = elt.getAttribute("actionId");
@@ -167,8 +166,7 @@ public class EditingDomainActionProvider extends AbstractSubmenuActionProvider {
 	 * 
 	 * @return the sorted list of factories
 	 */
-	private List<IActionHandlerFactory> sortFactories(
-			final Map<IActionHandlerFactory, ActionProperties> actionsFactoriesMap) {
+	private List<IActionHandlerFactory> sortFactories(final Map<IActionHandlerFactory, ActionProperties> actionsFactoriesMap) {
 
 		List<IActionHandlerFactory> factories = new ArrayList<IActionHandlerFactory>(actionsFactoriesMap.keySet());
 

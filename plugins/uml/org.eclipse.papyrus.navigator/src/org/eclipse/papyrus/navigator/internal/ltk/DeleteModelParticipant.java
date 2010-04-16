@@ -49,8 +49,7 @@ public class DeleteModelParticipant extends DeleteParticipant {
 	 *      org.eclipse.ltk.core.refactoring.participants.CheckConditionsContext)
 	 */
 	@Override
-	public RefactoringStatus checkConditions(IProgressMonitor pm, CheckConditionsContext context)
-	throws OperationCanceledException {
+	public RefactoringStatus checkConditions(IProgressMonitor pm, CheckConditionsContext context) throws OperationCanceledException {
 		return new RefactoringStatus();
 	}
 

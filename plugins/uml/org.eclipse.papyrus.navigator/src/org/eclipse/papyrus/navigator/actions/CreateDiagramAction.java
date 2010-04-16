@@ -69,8 +69,7 @@ public class CreateDiagramAction extends Action {
 		}
 
 		try {
-			ICreationCommand creationCommand = getCreationCommandRegistry()
-					.getCommand(commandDescriptor.getCommandId());
+			ICreationCommand creationCommand = getCreationCommandRegistry().getCommand(commandDescriptor.getCommandId());
 			creationCommand.createDiagram(EditorUtils.getDiResourceSet(), container, null);
 		} catch (NotFoundException e) {
 			log.error(e);

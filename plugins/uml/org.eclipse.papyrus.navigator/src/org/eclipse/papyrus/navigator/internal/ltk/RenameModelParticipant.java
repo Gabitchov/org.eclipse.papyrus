@@ -104,36 +104,36 @@ public class RenameModelParticipant extends RenameParticipant {
 		}
 		fileToRename = (IFile)element;
 		String ext = fileToRename.getFileExtension();
-		
-			IContainer parent = fileToRename.getParent();
-			String newName = getArguments().getNewName();
-			int idx = newName.lastIndexOf('.');
-			if(idx > 0) {
-				newName = newName.substring(0, idx);
-			} else {
-				newName = newName + '.' + ext; // Always append the extension
+
+		IContainer parent = fileToRename.getParent();
+		String newName = getArguments().getNewName();
+		int idx = newName.lastIndexOf('.');
+		if(idx > 0) {
+			newName = newName.substring(0, idx);
+		} else {
+			newName = newName + '.' + ext; // Always append the extension
+		}
+		IPath path;
+		IPath resourcePath = fileToRename.getFullPath().removeFileExtension();
+		boolean otherFiles = false;
+		for(IFile file : ModelParticipantHelpers.getRelatedFiles(fileToRename)) {
+			path = resourcePath.addFileExtension(file.getFileExtension());
+			// Only add the change if the resource exists
+			IFile renFile = parent.getFile(path.makeRelativeTo(parent.getFullPath()));
+			if(!path.equals(fileToRename.getFullPath()) && renFile.exists()) {
+				otherFiles = true;
+				break;
 			}
-			IPath path;
-			IPath resourcePath = fileToRename.getFullPath().removeFileExtension();
-			boolean otherFiles = false;
-			for(IFile file : ModelParticipantHelpers.getRelatedFiles(fileToRename)) {
-				path = resourcePath.addFileExtension(file.getFileExtension());
-				// Only add the change if the resource exists
-				IFile renFile = parent.getFile(path.makeRelativeTo(parent.getFullPath()));
-				if(!path.equals(fileToRename.getFullPath()) && renFile.exists()) {
-					otherFiles = true;
-					break;
-				}
-			}
-			if(otherFiles) {
-				// Get the new file
-				IPath newDiPath = fileToRename.getFullPath().removeLastSegments(1);
-				newDiPath = newDiPath.append(newName).addFileExtension(ext);
-				newFile = parent.getFile(newDiPath.makeRelativeTo(parent.getFullPath()));
+		}
+		if(otherFiles) {
+			// Get the new file
+			IPath newDiPath = fileToRename.getFullPath().removeLastSegments(1);
+			newDiPath = newDiPath.append(newName).addFileExtension(ext);
+			newFile = parent.getFile(newDiPath.makeRelativeTo(parent.getFullPath()));
 			return true;
 		} else {
 			return false;
 		}
-		
+
 	}
 }

@@ -50,8 +50,7 @@ public class MoveModelParticipant extends MoveParticipant {
 	 *      org.eclipse.ltk.core.refactoring.participants.CheckConditionsContext)
 	 */
 	@Override
-	public RefactoringStatus checkConditions(IProgressMonitor pm, CheckConditionsContext context)
-			throws OperationCanceledException {
+	public RefactoringStatus checkConditions(IProgressMonitor pm, CheckConditionsContext context) throws OperationCanceledException {
 		return new RefactoringStatus();
 	}
 

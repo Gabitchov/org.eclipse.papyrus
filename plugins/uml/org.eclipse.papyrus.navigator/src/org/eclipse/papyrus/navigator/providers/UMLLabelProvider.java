@@ -143,7 +143,7 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements ICo
 	 * the singleton eINSTANCE. This method can be subclassed to return another registry.
 	 * 
 	 * @return the singleton eINSTANCE of editor registry
-	 * @throws ServiceException 
+	 * @throws ServiceException
 	 */
 	protected IPageIconsRegistry getEditorRegistry() {
 		if(editorRegistry == null) {
@@ -157,7 +157,7 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements ICo
 	 * method in order to return the registry associated to the extension point namespace.
 	 * 
 	 * @return the EditorRegistry for nested editor descriptors
-	 * @throws ServiceException 
+	 * @throws ServiceException
 	 */
 	protected IPageIconsRegistry createEditorRegistry() {
 		try {

@@ -83,8 +83,7 @@ public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 		// Create Delete action
 		this.deleteAction = new DeleteAction(editingDomain, true);
 		this.deleteAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE));
-		this.deleteAction.setDisabledImageDescriptor(sharedImages
-				.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE_DISABLED));
+		this.deleteAction.setDisabledImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE_DISABLED));
 		actions.add(deleteAction);
 
 		// Undo action

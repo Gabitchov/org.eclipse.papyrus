@@ -26,7 +26,7 @@ import org.eclipse.papyrus.core.utils.DiResourceSet;
 public class ModelParticipantHelpers {
 
 	public static List<IFile> getRelatedFiles(IFile file) {
-		
+
 		List<IFile> relatedFiles = new ArrayList<IFile>();
 
 		IContainer parent = file.getParent();

@@ -108,8 +108,7 @@ public class RenameNamedElementAction extends CommandActionHandler {
 
 			@Override
 			protected void doExecute() {
-				InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(),
-						"Rename an existing diagram", "New name:", getSelectedNamedElement().getName(), null);
+				InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), "Rename an existing diagram", "New name:", getSelectedNamedElement().getName(), null);
 				if(dialog.open() == Window.OK) {
 					final String name = dialog.getValue();
 					getSelectedNamedElement().setName(name);

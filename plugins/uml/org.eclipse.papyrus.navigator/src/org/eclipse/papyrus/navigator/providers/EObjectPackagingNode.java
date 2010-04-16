@@ -39,7 +39,7 @@ public class EObjectPackagingNode extends PackagingNode {
 
 	public EObjectPackagingNode(EClass eClass, EObject parent) {
 		super(eClass.getName(), parent);
-		if (eClass == null || parent == null) {
+		if(eClass == null || parent == null) {
 			throw new IllegalArgumentException("No EClass or EObject provided");
 		}
 		this.eClass = eClass;
@@ -51,8 +51,8 @@ public class EObjectPackagingNode extends PackagingNode {
 	 * @return
 	 */
 	public EObject getEObjectParent() {
-		if (getParent() instanceof EObject) {
-			return (EObject) getParent();
+		if(getParent() instanceof EObject) {
+			return (EObject)getParent();
 		}
 		return null;
 	}
@@ -83,25 +83,23 @@ public class EObjectPackagingNode extends PackagingNode {
 
 	private Collection<Object> findContainedEClassElements() {
 		EObject parent = getEObjectParent();
-		if (parent == null) {
+		if(parent == null) {
 			return Collections.EMPTY_SET;
 		}
 		Collection<Object> elements = new ArrayList<Object>();
 		List<EObject> contents = null;
-		if (parent instanceof PackageImport) {
+		if(parent instanceof PackageImport) {
 			// fjcano #297372 : show PackageImport's imported Package's children
 			contents = new ArrayList<EObject>();
-			for (PackageableElement element : ((PackageImport) parent)
-					.getImportedPackage().getPackagedElements()) {
+			for(PackageableElement element : ((PackageImport)parent).getImportedPackage().getPackagedElements()) {
 				contents.add(element);
 			}
 		} else {
 			contents = parent.eContents();
 		}
-		for (EObject content : contents) {
-			if (content != null && content.eClass() != null
-					&& content.eClass().getName() != null) {
-				if (content.eClass().getName().equals(getEClass().getName())) {
+		for(EObject content : contents) {
+			if(content != null && content.eClass() != null && content.eClass().getName() != null) {
+				if(content.eClass().getName().equals(getEClass().getName())) {
 					elements.add(content);
 				}
 			}
@@ -114,12 +112,9 @@ public class EObjectPackagingNode extends PackagingNode {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof EObjectPackagingNode) {
-			EObjectPackagingNode other = (EObjectPackagingNode) obj;
-			if (other.getEClass() != null
-					&& other.getEClass().equals(getEClass())
-					&& other.getEObjectParent() != null
-					&& other.getEObjectParent().equals(getEObjectParent())) {
+		if(obj instanceof EObjectPackagingNode) {
+			EObjectPackagingNode other = (EObjectPackagingNode)obj;
+			if(other.getEClass() != null && other.getEClass().equals(getEClass()) && other.getEObjectParent() != null && other.getEObjectParent().equals(getEObjectParent())) {
 				return true;
 			}
 		}

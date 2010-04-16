@@ -76,7 +76,7 @@ public class RenameModelChange extends Change {
 
 		// Create the map of URI that are being modified in the resource set
 		relatedFiles = ModelParticipantHelpers.getRelatedFiles(oldFile);
-		for (IFile file : relatedFiles) {
+		for(IFile file : relatedFiles) {
 			IPath path = file.getFullPath();
 			URI oldURI = getPlatformURI(path);
 			URI newURI = getPlatformURI(newPathWithoutExt.addFileExtension(path.getFileExtension()));
@@ -249,10 +249,10 @@ public class RenameModelChange extends Change {
 
 			// Then, remove the old model files
 			pm.subTask("Removing old files");
-			for (IFile file : relatedFiles) {
+			for(IFile file : relatedFiles) {
 				if(file.exists()) {
 					file.delete(true, new NullProgressMonitor());
-				}	
+				}
 			}
 			pm.worked(4);
 

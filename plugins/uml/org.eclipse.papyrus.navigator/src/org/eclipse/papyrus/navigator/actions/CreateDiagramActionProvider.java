@@ -37,8 +37,8 @@ public class CreateDiagramActionProvider extends AbstractSubmenuActionProvider {
 			PackageableElement packageableElement = (PackageableElement)selectedElement;
 			MenuManager newDiagramMenu = new MenuManager("New Diagram");
 			menu.add(newDiagramMenu);
-			for (CreationCommandDescriptor desc : getCreationCommandRegistry().getCommandDescriptors()) {
-				if (desc.getCondition() == null || desc.getCondition().create(packageableElement)) {
+			for(CreationCommandDescriptor desc : getCreationCommandRegistry().getCommandDescriptors()) {
+				if(desc.getCondition() == null || desc.getCondition().create(packageableElement)) {
 					CreateDiagramAction createDiagramAction = new CreateDiagramAction(packageableElement, desc);
 					newDiagramMenu.add(createDiagramAction);
 				}

@@ -72,8 +72,7 @@ public abstract class AbstractSubmenuActionProvider extends AbstractCommonAction
 	 * @param contributionID
 	 *        the contribution id
 	 */
-	protected void populateManager(IContributionManager manager, Collection<? extends IAction> actions,
-			String contributionID) {
+	protected void populateManager(IContributionManager manager, Collection<? extends IAction> actions, String contributionID) {
 		if(actions != null) {
 			for(IAction action : actions) {
 				if(contributionID != null) {
@@ -96,8 +95,7 @@ public abstract class AbstractSubmenuActionProvider extends AbstractCommonAction
 	 * @param contributionID
 	 *        the contribution id
 	 */
-	protected void populateManager(IContributionManager manager, Map<String, Collection<IAction>> submenuActions,
-			String contributionID) {
+	protected void populateManager(IContributionManager manager, Map<String, Collection<IAction>> submenuActions, String contributionID) {
 		if(submenuActions != null) {
 			for(Map.Entry<String, Collection<IAction>> entry : submenuActions.entrySet()) {
 				MenuManager submenuManager = new MenuManager(entry.getKey());
