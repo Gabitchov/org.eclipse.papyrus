@@ -19,8 +19,9 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.papyrus.diagram.common.locator.AdvancedBorderItemLocator;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart.LifelineFigure;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart.TimeMarkElementFigure;
 import org.eclipse.papyrus.diagram.sequence.figures.LifelineDotLineCustomFigure;
 
 /**
@@ -53,6 +54,34 @@ public class TimeMarkElementPositionLocator extends AdvancedBorderItemLocator {
 		Point newTopLeft = locateOnBorder(realLocation.getTopLeft(), side, 0, borderItem);
 		realLocation.setLocation(newTopLeft);
 		return realLocation;
+	}
+
+	/**
+	 * The y location takes precedence on the preferred side or on collision.
+	 * 
+	 * @param suggestedLocation
+	 *        the suggester location (y must be respected)
+	 * @param suggestedSide
+	 *        the suggested side
+	 * @param circuitCount
+	 *        recursion count to avoid an infinite loop
+	 * @return point
+	 */
+	protected Point locateOnBorder(Point suggestedLocation, int suggestedSide, int circuitCount, IFigure borderItem) {
+		Point recommendedLocation = locateOnParent(suggestedLocation, suggestedSide, borderItem);
+
+		IFigure conflictingBorderItem = getConflictingBorderItemFigure(recommendedLocation, borderItem);
+
+		if(circuitCount == 0 && conflictingBorderItem != null) {
+			if(suggestedSide == PositionConstants.WEST) {
+				// west is occupied, try east
+				return locateOnBorder(recommendedLocation, PositionConstants.EAST, circuitCount + 1, borderItem);
+			} else { //EAST
+				// east is occupied, try west
+				return locateOnBorder(recommendedLocation, PositionConstants.WEST, circuitCount + 1, borderItem);
+			}
+		}
+		return recommendedLocation;
 	}
 
 
@@ -89,8 +118,8 @@ public class TimeMarkElementPositionLocator extends AdvancedBorderItemLocator {
 		Dimension borderItemSize = getSize(borderItem);
 		int newX = suggestedLocation.x;
 		int newY = suggestedLocation.y;
-		int westX = parentFigureXCenter - borderItemSize.width + getBorderItemOffset().width;
-		int eastX = parentFigureXCenter - getBorderItemOffset().width;
+		int westX = parentFigureXCenter - borderItemSize.width;// + getBorderItemOffset().width;
+		int eastX = parentFigureXCenter;// - getBorderItemOffset().width;
 		int southY = parentFigureY + parentFigureHeight - getBorderItemOffset().height;
 		int northY = parentFigureY + getBorderItemOffset().height;
 		if(suggestedSide == PositionConstants.WEST) {
@@ -174,8 +203,10 @@ public class TimeMarkElementPositionLocator extends AdvancedBorderItemLocator {
 	 */
 	private void redrawTimeMarks(IFigure borderItem, Rectangle location) {
 		for(Object child : borderItem.getChildren()) {
-			if(child instanceof TimeMarkElementFigure) {
-				((TimeMarkElementFigure)child).setCurrentSideOfFigure(getCurrentSideOfParent(), location);
+			if(child instanceof TimeConstraintEditPart.TimeMarkElementFigure) {
+				((TimeConstraintEditPart.TimeMarkElementFigure)child).setCurrentSideOfFigure(getCurrentSideOfParent(), location);
+			} else if(child instanceof TimeObservationEditPart.TimeMarkElementFigure) {
+				((TimeObservationEditPart.TimeMarkElementFigure)child).setCurrentSideOfFigure(getCurrentSideOfParent(), location);
 			}
 		}
 	}

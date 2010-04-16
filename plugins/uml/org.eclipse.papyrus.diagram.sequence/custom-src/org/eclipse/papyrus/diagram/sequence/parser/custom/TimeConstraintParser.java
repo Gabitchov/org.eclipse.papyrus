@@ -20,21 +20,27 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
+import org.eclipse.papyrus.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.diagram.sequence.parsers.MessageFormatParser;
 import org.eclipse.papyrus.umlutils.ValueSpecificationUtil;
+import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.TimeConstraint;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
 
 
 /**
- * Specific Parser for the TimeConstraint.
+ * Specific Parser for the TimeConstraint and DurationConstraint.
  */
 public class TimeConstraintParser extends MessageFormatParser implements ISemanticParser {
+
+	/** The String for displaying a line break */
+	private static final String LINE_BREAK = System.getProperty("line.separator");
 
 	/** The format for displaying time constraint text */
 	private static final String FORMAT = "{%s}";
@@ -85,6 +91,24 @@ public class TimeConstraintParser extends MessageFormatParser implements ISemant
 			TimeConstraint constraint = (TimeConstraint)adapter;
 			ValueSpecification spec = constraint.getSpecification();
 			return String.format(FORMAT, ValueSpecificationUtil.getSpecificationValue(spec));
+		} else if(adapter instanceof DurationConstraint) {
+			DurationConstraint constraint = (DurationConstraint)adapter;
+			ValueSpecification spec = constraint.getSpecification();
+			return String.format(FORMAT, ValueSpecificationUtil.getSpecificationValue(spec));
+		} else if(adapter instanceof Message) {
+			StringBuffer result = new StringBuffer();
+			Message message = (Message)adapter;
+			MessageEnd event1 = message.getSendEvent();
+			MessageEnd event2 = message.getReceiveEvent();
+			List<DurationConstraint> constraints = DurationConstraintHelper.getDurationConstraintsBetween(event1, event2);
+			for(DurationConstraint constraint : constraints) {
+				if(result.length() > 0) {
+					result.append(LINE_BREAK);
+				}
+				ValueSpecification spec = constraint.getSpecification();
+				result.append(String.format(FORMAT, ValueSpecificationUtil.getSpecificationValue(spec)));
+			}
+			return result.toString();
 		}
 		return "";
 	}
@@ -106,6 +130,22 @@ public class TimeConstraintParser extends MessageFormatParser implements ISemant
 		if(element instanceof TimeConstraint) {
 			TimeConstraint constraint = (TimeConstraint)element;
 			semanticElementsBeingParsed.add(constraint);
+		} else if(element instanceof DurationConstraint) {
+			DurationConstraint constraint = (DurationConstraint)element;
+			semanticElementsBeingParsed.add(constraint);
+		} else if(element instanceof Message) {
+			Message message = (Message)element;
+			semanticElementsBeingParsed.add(message);
+			MessageEnd event1 = message.getSendEvent();
+			semanticElementsBeingParsed.add(event1);
+			MessageEnd event2 = message.getReceiveEvent();
+			semanticElementsBeingParsed.add(event2);
+			List<DurationConstraint> constraints = DurationConstraintHelper.getDurationConstraintsBetween(event1, event2);
+			for(DurationConstraint constraint : constraints) {
+				semanticElementsBeingParsed.add(constraint);
+				// owner for listening DurationConstraint deletion
+				semanticElementsBeingParsed.add(constraint.getOwner());
+			}
 		}
 		return semanticElementsBeingParsed;
 	}
@@ -118,10 +158,6 @@ public class TimeConstraintParser extends MessageFormatParser implements ISemant
 	 * @return true if is valid, false otherwise
 	 */
 	private boolean isValidFeature(EStructuralFeature feature) {
-		// detect DurationObservation deletion
-		if(feature instanceof EReference && ((EReference)feature).isContainment()) {
-			return true;
-		}
 		return UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature) || UMLPackage.eINSTANCE.getConstraint_Specification().equals(feature) || ValueSpecification.class.isAssignableFrom(feature.getContainerClass());
 	}
 

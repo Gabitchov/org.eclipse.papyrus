@@ -268,7 +268,7 @@
       <viewProvider class="org.eclipse.papyrus.diagram.sequence.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLSequenceDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3007,3004,3005,3002,3016,3001,3006,3003,3017,3018,3019,3008,3009"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3007,3004,3005,3002,3016,3001,3006,3003,3017,3018,3019,3020,3021,3008,3009"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4003,4004,4005,4006,4007,4008,4009,4010,4011"/>
       </viewProvider>
    </extension>
@@ -281,13 +281,13 @@
             <method name="getType()" value="PapyrusUMLSequenceDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2001,3007,3004,3005,3002,3016,3001,3006,3003,3017,3018,3019,3008,3009"/>
+            <method name="getType()" value="2001,3007,3004,3005,3002,3016,3001,3006,3003,3017,3018,3019,3020,3021,3008,3009"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="4003,4004,4005,4006,4007,4008,4009,4010,4011"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5001,5003,5004,5007,5002,5008,5009,5005,5006"/>
+            <method name="getType()" value="5001,5003,5004,5007,5002,5008,5009,5010,5011,5005,5006"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value="7001,7004"/>
@@ -453,6 +453,26 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
+               id="org.eclipse.papyrus.diagram.sequence.TimeObservation_3020"
+               name="%metatype.name.TimeObservation_3020"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="TimeObservation"
+               edithelper="org.eclipse.papyrus.diagram.sequence.edit.helpers.TimeObservationEditHelper">
+            <param name="semanticHint" value="3020"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.sequence.DurationConstraint_3021"
+               name="%metatype.name.DurationConstraint_3021"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="DurationConstraint"
+               edithelper="org.eclipse.papyrus.diagram.sequence.edit.helpers.DurationConstraintEditHelper">
+            <param name="semanticHint" value="3021"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
                id="org.eclipse.papyrus.diagram.sequence.Constraint_3008"
                name="%metatype.name.Constraint_3008"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
@@ -578,6 +598,8 @@
          <elementType ref="org.eclipse.papyrus.diagram.sequence.StateInvariant_3017"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.CombinedFragment_3018"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.TimeConstraint_3019"/>
+         <elementType ref="org.eclipse.papyrus.diagram.sequence.TimeObservation_3020"/>
+         <elementType ref="org.eclipse.papyrus.diagram.sequence.DurationConstraint_3021"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.Constraint_3008"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.Comment_3009"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.Message_4003"/>
@@ -790,6 +812,13 @@
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.TimeObservationPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.TimeObservationPreferencePage"
+            name="TimeObservation" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
 			class="org.eclipse.papyrus.diagram.sequence.preferences.CommentPreferencePage"
             id="org.eclipse.papyrus.diagram.sequence.preferences.CommentPreferencePage"
             name="Comment" />	
@@ -835,6 +864,13 @@
 			class="org.eclipse.papyrus.diagram.sequence.preferences.InteractionPreferencePage"
             id="org.eclipse.papyrus.diagram.sequence.preferences.InteractionPreferencePage"
             name="Interaction" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.DurationConstraintPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.DurationConstraintPreferencePage"
+            name="DurationConstraint" />	
 	
 	
 			<?gmfgen generated="true"?>
@@ -1031,6 +1067,26 @@
  	</entry>
 	<entry
        defineOnly="true"
+       description="Create a Time Observation"
+       id="createTimeObservation14CreationTool"
+       kind="tool"
+       label="Time Observation"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a Duration Constraint"
+       id="createDurationConstraint15CreationTool"
+       kind="tool"
+       label="Duration Constraint"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
        description="Create MessageSync"
        id="createMessageSync1CreationTool"
        kind="tool"
@@ -1199,6 +1255,14 @@
     </predefinedEntry>
  	<predefinedEntry
           id="createTimeConstraint13CreationTool"
+          path="/createNodes1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createTimeObservation14CreationTool"
+          path="/createNodes1Group">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createDurationConstraint15CreationTool"
           path="/createNodes1Group">
     </predefinedEntry>
 

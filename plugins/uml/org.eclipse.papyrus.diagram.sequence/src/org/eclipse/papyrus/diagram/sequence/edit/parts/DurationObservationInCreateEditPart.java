@@ -741,30 +741,38 @@ public class DurationObservationInCreateEditPart extends LabelEditPart implement
 	 * @generated
 	 */
 	protected IFigure createFigurePrim() {
-		return new DurationObservation();
+		return new DurationObservationConstraint();
 	}
 
 
 	/**
 	 * @generated
 	 */
-	public class DurationObservation extends WrappingLabel {
+	public class DurationObservationConstraint extends WrappingLabel {
 
 
 
 
 		/**
-		 * @generated NOT handle line breaks
+		 * @generated
 		 */
-		public DurationObservation() {
+		public DurationObservationConstraint() {
+
+
+
+
+			this.setTextWrap(true);
+
+
+
+
+			this.setTextJustification(PositionConstants.CENTER);
 
 
 			this.setForegroundColor(ColorConstants.black);
 
 			this.setFont(THIS_FONT);
-			// handle line breaks
-			this.setTextWrap(true);
-			this.setTextJustification(PositionConstants.CENTER);
+
 
 		}
 

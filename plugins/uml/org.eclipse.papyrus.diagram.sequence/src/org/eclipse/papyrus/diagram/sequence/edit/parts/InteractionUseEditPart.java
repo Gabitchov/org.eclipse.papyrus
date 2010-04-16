@@ -403,6 +403,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof TimeConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
+		if(targetEditPart instanceof DurationConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4003);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4003);
 		}
@@ -445,6 +451,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof TimeConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
+		if(targetEditPart instanceof DurationConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4004);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4004);
 		}
@@ -487,6 +499,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof TimeConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
+		if(targetEditPart instanceof DurationConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4005);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4005);
 		}
@@ -529,6 +547,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof TimeConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
+		if(targetEditPart instanceof DurationConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4006);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4006);
 		}
@@ -571,6 +595,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof TimeConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
+		if(targetEditPart instanceof DurationConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4007);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4007);
 		}
@@ -613,6 +643,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 		if(targetEditPart instanceof TimeConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
+		if(targetEditPart instanceof DurationConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4008);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4008);
 		}
@@ -653,6 +689,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof TimeConstraintEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.Message_4009);
+		}
+		if(targetEditPart instanceof DurationConstraintEditPart) {
 			types.add(UMLElementTypes.Message_4009);
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
@@ -706,6 +748,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.TimeObservation_3020);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.DurationConstraint_3021);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
@@ -748,6 +796,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.TimeObservation_3020);
+		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.DurationConstraint_3021);
+		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
@@ -790,6 +844,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.TimeObservation_3020);
+		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.DurationConstraint_3021);
+		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
@@ -832,6 +892,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.TimeObservation_3020);
+		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.DurationConstraint_3021);
+		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
@@ -874,6 +940,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.TimeObservation_3020);
+		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.DurationConstraint_3021);
+		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
@@ -916,6 +988,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.TimeObservation_3020);
+		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.DurationConstraint_3021);
+		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
@@ -956,6 +1034,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.TimeConstraint_3019);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.TimeObservation_3020);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.DurationConstraint_3021);
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Constraint_3008);
@@ -1025,6 +1109,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.TimeObservation_3020);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
+			types.add(UMLElementTypes.DurationConstraint_3021);
+		}
+		if(relationshipType == UMLElementTypes.Message_4003) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4003) {
@@ -1067,6 +1157,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.TimeObservation_3020);
+		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
+			types.add(UMLElementTypes.DurationConstraint_3021);
+		}
+		if(relationshipType == UMLElementTypes.Message_4004) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4004) {
@@ -1109,6 +1205,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.TimeObservation_3020);
+		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
+			types.add(UMLElementTypes.DurationConstraint_3021);
+		}
+		if(relationshipType == UMLElementTypes.Message_4005) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4005) {
@@ -1151,6 +1253,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.TimeObservation_3020);
+		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
+			types.add(UMLElementTypes.DurationConstraint_3021);
+		}
+		if(relationshipType == UMLElementTypes.Message_4006) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4006) {
@@ -1193,6 +1301,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.TimeObservation_3020);
+		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
+			types.add(UMLElementTypes.DurationConstraint_3021);
+		}
+		if(relationshipType == UMLElementTypes.Message_4007) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4007) {
@@ -1235,6 +1349,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.TimeObservation_3020);
+		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
+			types.add(UMLElementTypes.DurationConstraint_3021);
+		}
+		if(relationshipType == UMLElementTypes.Message_4008) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4008) {
@@ -1277,6 +1397,12 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			types.add(UMLElementTypes.TimeConstraint_3019);
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.TimeObservation_3020);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
+			types.add(UMLElementTypes.DurationConstraint_3021);
+		}
+		if(relationshipType == UMLElementTypes.Message_4009) {
 			types.add(UMLElementTypes.Constraint_3008);
 		}
 		if(relationshipType == UMLElementTypes.Message_4009) {
@@ -1287,6 +1413,9 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 		}
 		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
 			types.add(UMLElementTypes.TimeConstraint_3019);
+		}
+		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
+			types.add(UMLElementTypes.DurationConstraint_3021);
 		}
 		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
 			types.add(UMLElementTypes.Constraint_3008);

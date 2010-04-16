@@ -301,7 +301,7 @@
           itemSemanticEditPolicyClassName="LifelineItemSemanticEditPolicy"
           notationViewFactoryClassName="LifelineViewFactory"
           canonicalEditPolicyClassName="LifelineCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10"
+          childNodes="/0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12"
           graphicalNodeEditPolicyClassName="LifelineGraphicalNodeEditPolicy"
           createCommandClassName="LifelineCreateCommand"
           containers="/0/@diagram/@compartments.0">
@@ -334,7 +334,11 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.sequence.edit.policies.SequenceGraphicalNodeEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineGraphicalNodeEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Lifeline"/>
@@ -551,6 +555,7 @@
           visualID="3019"
           editPartClassName="TimeConstraintEditPart"
           itemSemanticEditPolicyClassName="TimeConstraintItemSemanticEditPolicy"
+          notationViewFactoryClassName="TimeConstraintViewFactory"
           canonicalEditPolicyClassName="TimeConstraintCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="TimeConstraintGraphicalNodeEditPolicy"
           createCommandClassName="TimeConstraintCreateCommand"
@@ -563,7 +568,7 @@
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
             className="TimeMarkElementFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class TimeMarkElementFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.Polyline fTimeMark; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fTimeMarkElementLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public TimeMarkElementFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setFill(false);&#xA;this.setOutline(false);&#xA;this.setLineWidth(1);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fTimeMark = new org.eclipse.draw2d.Polyline();&#xA;fTimeMark.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;fTimeMark.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;fTimeMark.setLineWidth(1);&#xA;&#xA;this.add(fTimeMark);&#xA;&#xA;&#xA;&#xA;fTimeMarkElementLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fTimeMarkElementLabel.setText(&quot;&quot;);&#xA;&#xA;this.add(fTimeMarkElementLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = true;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.Polyline getTimeMark() {&#xA;&#x9;&#x9;return fTimeMark;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getTimeMarkElementLabel() {&#xA;&#x9;&#x9;return fTimeMarkElementLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class TimeMarkElementFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.Polyline fTimeMark; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fTimeMarkElementLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public TimeMarkElementFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutThis.numColumns = 1;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = true;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setFill(false);&#xA;this.setOutline(false);&#xA;this.setLineWidth(1);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fTimeMark = new org.eclipse.draw2d.Polyline();&#xA;fTimeMark.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;fTimeMark.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;fTimeMark.setLineWidth(1);&#xA;&#xA;this.add(fTimeMark);&#xA;&#xA;&#xA;&#xA;fTimeMarkElementLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fTimeMarkElementLabel.setText(&quot;&quot;);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFTimeMarkElementLabel = new org.eclipse.draw2d.GridData();&#xA;constraintFTimeMarkElementLabel.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFTimeMarkElementLabel.horizontalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFTimeMarkElementLabel.horizontalIndent = 0;&#xA;constraintFTimeMarkElementLabel.horizontalSpan = 1;&#xA;constraintFTimeMarkElementLabel.verticalSpan = 1;&#xA;constraintFTimeMarkElementLabel.grabExcessHorizontalSpace = false;&#xA;constraintFTimeMarkElementLabel.grabExcessVerticalSpace = false;&#xA;this.add(fTimeMarkElementLabel, constraintFTimeMarkElementLabel);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = true;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.Polyline getTimeMark() {&#xA;&#x9;&#x9;return fTimeMark;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getTimeMarkElementLabel() {&#xA;&#x9;&#x9;return fTimeMarkElementLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TimeConstraint"/>
@@ -571,17 +576,163 @@
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/ownedRule"/>
           <childMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/ownedRule"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenReferenceNewElementSpec">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/specification"/>
+              <newElementInitializers>
+                <initializers
+                    xsi:type="gmfgen:GenFeatureValueSpec"
+                    value="/0/@expressionProviders/@providers.0/@expressions.8">
+                  <feature
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                </initializers>
+                <elementClass
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TimeInterval"/>
+              </newElementInitializers>
+            </initializers>
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.9">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
         </modelFacet>
         <labels
             visualID="5009"
             editPartClassName="TimeConstraintLabelEditPart"
             itemSemanticEditPolicyClassName="TimeConstraintLabelItemSemanticEditPolicy"
-            elementIcon="true">
+            notationViewFactoryClassName="TimeConstraintLabelViewFactory">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getTimeMarkElementLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.6"/>
+        </labels>
+      </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildSideAffixedNode"
+          visualID="3020"
+          editPartClassName="TimeObservationEditPart"
+          itemSemanticEditPolicyClassName="TimeObservationItemSemanticEditPolicy"
+          notationViewFactoryClassName="TimeObservationViewFactory"
+          canonicalEditPolicyClassName="TimeObservationCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="TimeObservationGraphicalNodeEditPolicy"
+          createCommandClassName="TimeObservationCreateCommand"
+          containers="/0/@diagram/@childNodes.5">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            editHelperClassName="TimeObservationEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="TimeMarkElementFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class TimeMarkElementFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.Polyline fTimeMark; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fTimeMarkElementLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public TimeMarkElementFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutThis.numColumns = 1;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = true;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setFill(false);&#xA;this.setOutline(false);&#xA;this.setLineWidth(1);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fTimeMark = new org.eclipse.draw2d.Polyline();&#xA;fTimeMark.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;fTimeMark.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;fTimeMark.setLineWidth(1);&#xA;&#xA;this.add(fTimeMark);&#xA;&#xA;&#xA;&#xA;fTimeMarkElementLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fTimeMarkElementLabel.setText(&quot;&quot;);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFTimeMarkElementLabel = new org.eclipse.draw2d.GridData();&#xA;constraintFTimeMarkElementLabel.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFTimeMarkElementLabel.horizontalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFTimeMarkElementLabel.horizontalIndent = 0;&#xA;constraintFTimeMarkElementLabel.horizontalSpan = 1;&#xA;constraintFTimeMarkElementLabel.verticalSpan = 1;&#xA;constraintFTimeMarkElementLabel.grabExcessHorizontalSpace = false;&#xA;constraintFTimeMarkElementLabel.grabExcessVerticalSpace = false;&#xA;this.add(fTimeMarkElementLabel, constraintFTimeMarkElementLabel);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = true;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.Polyline getTimeMark() {&#xA;&#x9;&#x9;return fTimeMark;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getTimeMarkElementLabel() {&#xA;&#x9;&#x9;return fTimeMarkElementLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/TimeObservation"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Package/packagedElement"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.10">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            visualID="5010"
+            editPartClassName="TimeObservationLabelEditPart"
+            itemSemanticEditPolicyClassName="TimeObservationLabelItemSemanticEditPolicy"
+            notationViewFactoryClassName="TimeObservationLabelViewFactory">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getTimeMarkElementLabel"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.7"/>
+        </labels>
+      </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildSideAffixedNode"
+          visualID="3021"
+          editPartClassName="DurationConstraintEditPart"
+          itemSemanticEditPolicyClassName="DurationConstraintItemSemanticEditPolicy"
+          notationViewFactoryClassName="DurationConstraintViewFactory"
+          canonicalEditPolicyClassName="DurationConstraintCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="DurationConstraintGraphicalNodeEditPolicy"
+          createCommandClassName="DurationConstraintCreateCommand"
+          containers="/0/@diagram/@childNodes.5">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            editHelperClassName="DurationConstraintEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="DurationConstraintFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DurationConstraintFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.Polyline fDurationArrow; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fDurationConstraintLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DurationConstraintFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.papyrus.diagram.common.draw2d.CenterLayout layoutThis = new org.eclipse.papyrus.diagram.common.draw2d.CenterLayout();&#xA;&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setFill(false);&#xA;this.setOutline(false);&#xA;this.setLineWidth(1);&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(40)&#xA;, getMapMode().DPtoLP(80)&#xA;));&#xA;this.setBorder(createBorder0());&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fDurationArrow = new org.eclipse.draw2d.Polyline();&#xA;fDurationArrow.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;fDurationArrow.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;fDurationArrow.setLineWidth(1);&#xA;&#xA;this.add(fDurationArrow);&#xA;&#xA;&#xA;&#xA;fDurationConstraintLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;&#xA;&#xA;&#xA;fDurationConstraintLabel.setTextAlignment(&#xA;PositionConstants.CENTER);&#xA;&#xA;&#xA;&#xA;&#xA;fDurationConstraintLabel.setAlignment(&#xA;PositionConstants.CENTER);&#xA;&#xA;&#xA;&#xA;&#xA;fDurationConstraintLabel.setBackgroundColor(&#xA;getBackgroundColor());&#xA;&#xA;&#xA;&#xA;&#xA;fDurationConstraintLabel.setTextWrap(&#xA;true);&#xA;&#xA;&#xA;&#xA;&#xA;fDurationConstraintLabel.setTextJustification(&#xA;PositionConstants.CENTER);&#xA;&#xA;&#xA;&#xA;this.add(fDurationConstraintLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.Border createBorder0() {&#xA;&#x9;&#x9;org.eclipse.papyrus.diagram.common.draw2d.LinesBorder result = new org.eclipse.papyrus.diagram.common.draw2d.LinesBorder();&#xA;&#x9;&#x9;&#xA;&#xA;&#xA;&#xA;result.setSides(&#xA;PositionConstants.TOP | PositionConstants.BOTTOM);&#xA;&#xA;&#xA;&#xA;&#x9;&#x9;return result;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = true;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.Polyline getDurationArrow() {&#xA;&#x9;&#x9;return fDurationArrow;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getDurationConstraintLabel() {&#xA;&#x9;&#x9;return fDurationConstraintLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="-1"
+              height="80"/>
+        </viewmap>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DurationConstraint"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/ownedRule"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Namespace/ownedRule"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenReferenceNewElementSpec">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint/specification"/>
+              <newElementInitializers>
+                <initializers
+                    xsi:type="gmfgen:GenFeatureValueSpec"
+                    value="/0/@expressionProviders/@providers.0/@expressions.11">
+                  <feature
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+                </initializers>
+                <elementClass
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DurationInterval"/>
+              </newElementInitializers>
+            </initializers>
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.12">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            visualID="5011"
+            editPartClassName="DurationConstraintLabelEditPart"
+            itemSemanticEditPolicyClassName="DurationConstraintLabelItemSemanticEditPolicy"
+            notationViewFactoryClassName="DurationConstraintLabelViewFactory">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getDurationConstraintLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
@@ -864,8 +1015,8 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:InnerClassViewmap"
-              className="DurationObservation"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DurationObservation extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DurationObservation() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;this.setFont(THIS_FONT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;SANS&quot;, 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+              className="DurationObservationConstraint"
+              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DurationObservationConstraint extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DurationObservationConstraint() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#xA;&#xA;this.setTextWrap(&#xA;true);&#xA;&#xA;&#xA;&#xA;&#xA;this.setTextJustification(&#xA;PositionConstants.CENTER);&#xA;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;this.setFont(THIS_FONT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;SANS&quot;, 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
                 fixedFont="true"
@@ -877,6 +1028,29 @@
           </viewmap>
           <modelFacet
               parser="/0/@labelParsers/@implementations.5"/>
+        </labels>
+        <labels
+            visualID="6015"
+            editPartClassName="DurationConstraintInSyncEditPart"
+            itemSemanticEditPolicyClassName="DurationConstraintInSyncItemSemanticEditPolicy"
+            notationViewFactoryClassName="MessageLabelViewFactory">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:InnerClassViewmap"
+              className="DurationObservationConstraint"
+              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DurationObservationConstraint extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DurationObservationConstraint() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#xA;&#xA;this.setTextWrap(&#xA;true);&#xA;&#xA;&#xA;&#xA;&#xA;this.setTextJustification(&#xA;PositionConstants.CENTER);&#xA;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;this.setFont(THIS_FONT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;SANS&quot;, 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+            <attributes
+                xsi:type="gmfgen:StyleAttributes"
+                fixedFont="true"
+                fixedForeground="true"/>
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="1"
+                y="-13"/>
+          </viewmap>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.6"/>
         </labels>
         <creationConstraints
             sourceEnd="/0/@expressionProviders/@providers.1/@expressions.3"
@@ -953,8 +1127,8 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:InnerClassViewmap"
-              className="DurationObservation"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DurationObservation extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DurationObservation() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;this.setFont(THIS_FONT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;SANS&quot;, 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+              className="DurationObservationConstraint"
+              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DurationObservationConstraint extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DurationObservationConstraint() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#xA;&#xA;this.setTextWrap(&#xA;true);&#xA;&#xA;&#xA;&#xA;&#xA;this.setTextJustification(&#xA;PositionConstants.CENTER);&#xA;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;this.setFont(THIS_FONT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;SANS&quot;, 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
                 fixedFont="true"
@@ -966,6 +1140,29 @@
           </viewmap>
           <modelFacet
               parser="/0/@labelParsers/@implementations.5"/>
+        </labels>
+        <labels
+            visualID="6016"
+            editPartClassName="DurationConstraintInAsyncEditPart"
+            itemSemanticEditPolicyClassName="DurationConstraintInAsyncItemSemanticEditPolicy"
+            notationViewFactoryClassName="MessageLabelViewFactory">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:InnerClassViewmap"
+              className="DurationObservationConstraint"
+              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DurationObservationConstraint extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DurationObservationConstraint() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#xA;&#xA;this.setTextWrap(&#xA;true);&#xA;&#xA;&#xA;&#xA;&#xA;this.setTextJustification(&#xA;PositionConstants.CENTER);&#xA;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;this.setFont(THIS_FONT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;SANS&quot;, 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+            <attributes
+                xsi:type="gmfgen:StyleAttributes"
+                fixedFont="true"
+                fixedForeground="true"/>
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="1"
+                y="-13"/>
+          </viewmap>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.6"/>
         </labels>
         <creationConstraints
             sourceEnd="/0/@expressionProviders/@providers.1/@expressions.6"
@@ -1041,8 +1238,8 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:InnerClassViewmap"
-              className="DurationObservation"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DurationObservation extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DurationObservation() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;this.setFont(THIS_FONT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;SANS&quot;, 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+              className="DurationObservationConstraint"
+              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DurationObservationConstraint extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DurationObservationConstraint() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#xA;&#xA;this.setTextWrap(&#xA;true);&#xA;&#xA;&#xA;&#xA;&#xA;this.setTextJustification(&#xA;PositionConstants.CENTER);&#xA;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;this.setFont(THIS_FONT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;SANS&quot;, 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
                 fixedFont="true"
@@ -1054,6 +1251,29 @@
           </viewmap>
           <modelFacet
               parser="/0/@labelParsers/@implementations.5"/>
+        </labels>
+        <labels
+            visualID="6017"
+            editPartClassName="DurationConstraintInReplyEditPart"
+            itemSemanticEditPolicyClassName="DurationConstraintInReplyItemSemanticEditPolicy"
+            notationViewFactoryClassName="MessageLabelViewFactory">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:InnerClassViewmap"
+              className="DurationObservationConstraint"
+              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DurationObservationConstraint extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DurationObservationConstraint() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#xA;&#xA;this.setTextWrap(&#xA;true);&#xA;&#xA;&#xA;&#xA;&#xA;this.setTextJustification(&#xA;PositionConstants.CENTER);&#xA;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;this.setFont(THIS_FONT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;SANS&quot;, 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+            <attributes
+                xsi:type="gmfgen:StyleAttributes"
+                fixedFont="true"
+                fixedForeground="true"/>
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="1"
+                y="-13"/>
+          </viewmap>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.6"/>
         </labels>
         <creationConstraints
             sourceEnd="/0/@expressionProviders/@providers.1/@expressions.9"
@@ -1130,8 +1350,8 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:InnerClassViewmap"
-              className="DurationObservation"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DurationObservation extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DurationObservation() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;this.setFont(THIS_FONT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;SANS&quot;, 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+              className="DurationObservationConstraint"
+              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DurationObservationConstraint extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DurationObservationConstraint() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#xA;&#xA;this.setTextWrap(&#xA;true);&#xA;&#xA;&#xA;&#xA;&#xA;this.setTextJustification(&#xA;PositionConstants.CENTER);&#xA;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;this.setFont(THIS_FONT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;SANS&quot;, 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
                 fixedFont="true"
@@ -1143,6 +1363,29 @@
           </viewmap>
           <modelFacet
               parser="/0/@labelParsers/@implementations.5"/>
+        </labels>
+        <labels
+            visualID="6018"
+            editPartClassName="DurationConstraintInCreateEditPart"
+            itemSemanticEditPolicyClassName="DurationConstraintInCreateItemSemanticEditPolicy"
+            notationViewFactoryClassName="MessageLabelViewFactory">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:InnerClassViewmap"
+              className="DurationObservationConstraint"
+              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DurationObservationConstraint extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DurationObservationConstraint() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#xA;&#xA;this.setTextWrap(&#xA;true);&#xA;&#xA;&#xA;&#xA;&#xA;this.setTextJustification(&#xA;PositionConstants.CENTER);&#xA;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;this.setFont(THIS_FONT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;SANS&quot;, 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+            <attributes
+                xsi:type="gmfgen:StyleAttributes"
+                fixedFont="true"
+                fixedForeground="true"/>
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="1"
+                y="-13"/>
+          </viewmap>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.6"/>
         </labels>
         <creationConstraints
             sourceEnd="/0/@expressionProviders/@providers.1/@expressions.12"
@@ -1218,8 +1461,8 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:InnerClassViewmap"
-              className="DurationObservation"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DurationObservation extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DurationObservation() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;this.setFont(THIS_FONT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;SANS&quot;, 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+              className="DurationObservationConstraint"
+              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DurationObservationConstraint extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DurationObservationConstraint() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#xA;&#xA;this.setTextWrap(&#xA;true);&#xA;&#xA;&#xA;&#xA;&#xA;this.setTextJustification(&#xA;PositionConstants.CENTER);&#xA;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;this.setFont(THIS_FONT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;SANS&quot;, 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
                 fixedFont="true"
@@ -1231,6 +1474,29 @@
           </viewmap>
           <modelFacet
               parser="/0/@labelParsers/@implementations.5"/>
+        </labels>
+        <labels
+            visualID="6019"
+            editPartClassName="DurationConstraintInDeleteEditPart"
+            itemSemanticEditPolicyClassName="DurationConstraintInDeleteItemSemanticEditPolicy"
+            notationViewFactoryClassName="MessageLabelViewFactory">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:InnerClassViewmap"
+              className="DurationObservationConstraint"
+              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DurationObservationConstraint extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DurationObservationConstraint() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#xA;&#xA;this.setTextWrap(&#xA;true);&#xA;&#xA;&#xA;&#xA;&#xA;this.setTextJustification(&#xA;PositionConstants.CENTER);&#xA;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;this.setFont(THIS_FONT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;SANS&quot;, 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+            <attributes
+                xsi:type="gmfgen:StyleAttributes"
+                fixedFont="true"
+                fixedForeground="true"/>
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="1"
+                y="-13"/>
+          </viewmap>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.6"/>
         </labels>
         <creationConstraints
             sourceEnd="/0/@expressionProviders/@providers.1/@expressions.15"
@@ -1307,8 +1573,8 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:InnerClassViewmap"
-              className="DurationObservation"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DurationObservation extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DurationObservation() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;this.setFont(THIS_FONT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;SANS&quot;, 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+              className="DurationObservationConstraint"
+              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DurationObservationConstraint extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DurationObservationConstraint() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#xA;&#xA;this.setTextWrap(&#xA;true);&#xA;&#xA;&#xA;&#xA;&#xA;this.setTextJustification(&#xA;PositionConstants.CENTER);&#xA;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;this.setFont(THIS_FONT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;SANS&quot;, 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
                 fixedFont="true"
@@ -1320,6 +1586,29 @@
           </viewmap>
           <modelFacet
               parser="/0/@labelParsers/@implementations.5"/>
+        </labels>
+        <labels
+            visualID="6020"
+            editPartClassName="DurationConstraintInLostEditPart"
+            itemSemanticEditPolicyClassName="DurationConstraintInLostItemSemanticEditPolicy"
+            notationViewFactoryClassName="MessageLabelViewFactory">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:InnerClassViewmap"
+              className="DurationObservationConstraint"
+              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DurationObservationConstraint extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DurationObservationConstraint() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#xA;&#xA;this.setTextWrap(&#xA;true);&#xA;&#xA;&#xA;&#xA;&#xA;this.setTextJustification(&#xA;PositionConstants.CENTER);&#xA;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;this.setFont(THIS_FONT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;SANS&quot;, 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+            <attributes
+                xsi:type="gmfgen:StyleAttributes"
+                fixedFont="true"
+                fixedForeground="true"/>
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="1"
+                y="-13"/>
+          </viewmap>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.6"/>
         </labels>
         <creationConstraints
             sourceEnd="/0/@expressionProviders/@providers.1/@expressions.18"
@@ -1395,8 +1684,8 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:InnerClassViewmap"
-              className="DurationObservation"
-              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DurationObservation extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DurationObservation() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;this.setFont(THIS_FONT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;SANS&quot;, 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+              className="DurationObservationConstraint"
+              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DurationObservationConstraint extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DurationObservationConstraint() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#xA;&#xA;this.setTextWrap(&#xA;true);&#xA;&#xA;&#xA;&#xA;&#xA;this.setTextJustification(&#xA;PositionConstants.CENTER);&#xA;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;this.setFont(THIS_FONT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;SANS&quot;, 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
                 fixedFont="true"
@@ -1408,6 +1697,29 @@
           </viewmap>
           <modelFacet
               parser="/0/@labelParsers/@implementations.5"/>
+        </labels>
+        <labels
+            visualID="6021"
+            editPartClassName="DurationConstraintInFoundEditPart"
+            itemSemanticEditPolicyClassName="DurationConstraintInFoundItemSemanticEditPolicy"
+            notationViewFactoryClassName="MessageLabelViewFactory">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:InnerClassViewmap"
+              className="DurationObservationConstraint"
+              classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DurationObservationConstraint extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DurationObservationConstraint() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#xA;&#xA;this.setTextWrap(&#xA;true);&#xA;&#xA;&#xA;&#xA;&#xA;this.setTextJustification(&#xA;PositionConstants.CENTER);&#xA;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;this.setFont(THIS_FONT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;SANS&quot;, 9, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+            <attributes
+                xsi:type="gmfgen:StyleAttributes"
+                fixedFont="true"
+                fixedForeground="true"/>
+            <attributes
+                xsi:type="gmfgen:LabelOffsetAttributes"
+                x="1"
+                y="-13"/>
+          </viewmap>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.6"/>
         </labels>
         <creationConstraints
             sourceEnd="/0/@expressionProviders/@providers.1/@expressions.21"
@@ -1461,7 +1773,7 @@
           itemSemanticEditPolicyClassName="InteractionInteractionCompartmentItemSemanticEditPolicy"
           notationViewFactoryClassName="InteractionInteractionCompartmentViewFactory"
           canonicalEditPolicyClassName="InteractionInteractionCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12"
+          childNodes="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14"
           title="InteractionCompartment"
           canCollapse="false"
           needsTitle="false"
@@ -1574,14 +1886,14 @@
               description="Create a comment"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
-              genNodes="/0/@diagram/@childNodes.12"/>
+              genNodes="/0/@diagram/@childNodes.14"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Constraint"
               description="Create a constraint"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
-              genNodes="/0/@diagram/@childNodes.11"/>
+              genNodes="/0/@diagram/@childNodes.13"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="CoRegion"
@@ -1602,6 +1914,20 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeConstraint.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeConstraint.gif"
               genNodes="/0/@diagram/@childNodes.10"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Time Observation"
+              description="Create a Time Observation"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
+              genNodes="/0/@diagram/@childNodes.11"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Duration Constraint"
+              description="Create a Duration Constraint"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif"
+              genNodes="/0/@diagram/@childNodes.12"/>
         </groups>
         <groups
             title="Edges"
@@ -1749,6 +2075,12 @@
           parent="/0/@diagram/@childNodes.5"
           child="/0/@diagram/@childNodes.10"/>
       <childReferences
+          parent="/0/@diagram/@childNodes.5"
+          child="/0/@diagram/@childNodes.11"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.5"
+          child="/0/@diagram/@childNodes.12"/>
+      <childReferences
           parent="/0/@diagram/@topLevelNodes.0"
           child="/0/@diagram/@childNodes.5"/>
       <childReferences
@@ -1756,10 +2088,10 @@
           child="/0/@diagram/@childNodes.3"/>
       <childReferences
           parent="/0/@diagram/@topLevelNodes.0"
-          child="/0/@diagram/@childNodes.11"/>
+          child="/0/@diagram/@childNodes.13"/>
       <childReferences
           parent="/0/@diagram/@topLevelNodes.0"
-          child="/0/@diagram/@childNodes.12"/>
+          child="/0/@diagram/@childNodes.14"/>
       <childReferences
           parent="/0/@diagram"
           child="/0/@diagram/@topLevelNodes.0"/>
@@ -1938,6 +2270,30 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.0"
+          child="/0/@diagram/@childNodes.13"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.13"
+          child="/0/@diagram/@links.0"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.0"
+          child="/0/@diagram/@childNodes.14"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.14"
+          child="/0/@diagram/@links.0"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.0"
           child="/0/@diagram/@topLevelNodes.0"
           referenceType="in_source"
           groupName="source"
@@ -2100,6 +2456,30 @@
           groupIcon="icons/linkSourceNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@childNodes.12"
+          child="/0/@diagram/@links.0"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.0"
+          child="/0/@diagram/@childNodes.13"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.13"
+          child="/0/@diagram/@links.0"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.0"
+          child="/0/@diagram/@childNodes.14"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.14"
           child="/0/@diagram/@links.0"
           referenceType="out_target"
           groupName="outgoing links"
@@ -2279,6 +2659,30 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.1"
+          child="/0/@diagram/@childNodes.13"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.13"
+          child="/0/@diagram/@links.1"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.1"
+          child="/0/@diagram/@childNodes.14"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.14"
+          child="/0/@diagram/@links.1"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.1"
           child="/0/@diagram/@topLevelNodes.0"
           referenceType="in_source"
           groupName="source"
@@ -2441,6 +2845,30 @@
           groupIcon="icons/linkSourceNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@childNodes.12"
+          child="/0/@diagram/@links.1"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.1"
+          child="/0/@diagram/@childNodes.13"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.13"
+          child="/0/@diagram/@links.1"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.1"
+          child="/0/@diagram/@childNodes.14"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.14"
           child="/0/@diagram/@links.1"
           referenceType="out_target"
           groupName="outgoing links"
@@ -2620,6 +3048,30 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.2"
+          child="/0/@diagram/@childNodes.13"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.13"
+          child="/0/@diagram/@links.2"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.2"
+          child="/0/@diagram/@childNodes.14"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.14"
+          child="/0/@diagram/@links.2"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.2"
           child="/0/@diagram/@topLevelNodes.0"
           referenceType="in_source"
           groupName="source"
@@ -2782,6 +3234,30 @@
           groupIcon="icons/linkSourceNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@childNodes.12"
+          child="/0/@diagram/@links.2"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.2"
+          child="/0/@diagram/@childNodes.13"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.13"
+          child="/0/@diagram/@links.2"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.2"
+          child="/0/@diagram/@childNodes.14"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.14"
           child="/0/@diagram/@links.2"
           referenceType="out_target"
           groupName="outgoing links"
@@ -2961,6 +3437,30 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.3"
+          child="/0/@diagram/@childNodes.13"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.13"
+          child="/0/@diagram/@links.3"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.3"
+          child="/0/@diagram/@childNodes.14"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.14"
+          child="/0/@diagram/@links.3"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.3"
           child="/0/@diagram/@topLevelNodes.0"
           referenceType="in_source"
           groupName="source"
@@ -3123,6 +3623,30 @@
           groupIcon="icons/linkSourceNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@childNodes.12"
+          child="/0/@diagram/@links.3"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.3"
+          child="/0/@diagram/@childNodes.13"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.13"
+          child="/0/@diagram/@links.3"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.3"
+          child="/0/@diagram/@childNodes.14"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.14"
           child="/0/@diagram/@links.3"
           referenceType="out_target"
           groupName="outgoing links"
@@ -3302,6 +3826,30 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.4"
+          child="/0/@diagram/@childNodes.13"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.13"
+          child="/0/@diagram/@links.4"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.4"
+          child="/0/@diagram/@childNodes.14"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.14"
+          child="/0/@diagram/@links.4"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.4"
           child="/0/@diagram/@topLevelNodes.0"
           referenceType="in_source"
           groupName="source"
@@ -3464,6 +4012,30 @@
           groupIcon="icons/linkSourceNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@childNodes.12"
+          child="/0/@diagram/@links.4"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.4"
+          child="/0/@diagram/@childNodes.13"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.13"
+          child="/0/@diagram/@links.4"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.4"
+          child="/0/@diagram/@childNodes.14"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.14"
           child="/0/@diagram/@links.4"
           referenceType="out_target"
           groupName="outgoing links"
@@ -3643,6 +4215,30 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.5"
+          child="/0/@diagram/@childNodes.13"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.13"
+          child="/0/@diagram/@links.5"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.5"
+          child="/0/@diagram/@childNodes.14"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.14"
+          child="/0/@diagram/@links.5"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.5"
           child="/0/@diagram/@topLevelNodes.0"
           referenceType="in_source"
           groupName="source"
@@ -3805,6 +4401,30 @@
           groupIcon="icons/linkSourceNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@childNodes.12"
+          child="/0/@diagram/@links.5"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.5"
+          child="/0/@diagram/@childNodes.13"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.13"
+          child="/0/@diagram/@links.5"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.5"
+          child="/0/@diagram/@childNodes.14"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.14"
           child="/0/@diagram/@links.5"
           referenceType="out_target"
           groupName="outgoing links"
@@ -3984,6 +4604,30 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.6"
+          child="/0/@diagram/@childNodes.13"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.13"
+          child="/0/@diagram/@links.6"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.6"
+          child="/0/@diagram/@childNodes.14"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.14"
+          child="/0/@diagram/@links.6"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.6"
           child="/0/@diagram/@topLevelNodes.0"
           referenceType="in_source"
           groupName="source"
@@ -4146,6 +4790,30 @@
           groupIcon="icons/linkSourceNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@childNodes.12"
+          child="/0/@diagram/@links.6"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.6"
+          child="/0/@diagram/@childNodes.13"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.13"
+          child="/0/@diagram/@links.6"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.6"
+          child="/0/@diagram/@childNodes.14"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.14"
           child="/0/@diagram/@links.6"
           referenceType="out_target"
           groupName="outgoing links"
@@ -4325,12 +4993,36 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.7"
-          child="/0/@diagram/@childNodes.12"
+          child="/0/@diagram/@childNodes.13"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.13"
+          child="/0/@diagram/@links.7"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.7"
+          child="/0/@diagram/@childNodes.14"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.14"
+          child="/0/@diagram/@links.7"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.7"
+          child="/0/@diagram/@childNodes.14"
           referenceType="in_source"
           groupName="source"
           groupIcon="icons/linkSourceNavigatorGroup.gif"/>
       <childReferences
-          parent="/0/@diagram/@childNodes.12"
+          parent="/0/@diagram/@childNodes.14"
           child="/0/@diagram/@links.7"
           referenceType="out_target"
           groupName="outgoing links"
@@ -4510,6 +5202,30 @@
           groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.8"
+          child="/0/@diagram/@childNodes.13"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.13"
+          child="/0/@diagram/@links.8"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.8"
+          child="/0/@diagram/@childNodes.14"
+          referenceType="out_target"
+          groupName="target"
+          groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.14"
+          child="/0/@diagram/@links.8"
+          referenceType="in_source"
+          groupName="incoming links"
+          groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.8"
           child="/0/@diagram/@childNodes.10"
           referenceType="in_source"
           groupName="source"
@@ -4522,12 +5238,24 @@
           groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
       <childReferences
           parent="/0/@diagram/@links.8"
-          child="/0/@diagram/@childNodes.11"
+          child="/0/@diagram/@childNodes.12"
           referenceType="in_source"
           groupName="source"
           groupIcon="icons/linkSourceNavigatorGroup.gif"/>
       <childReferences
-          parent="/0/@diagram/@childNodes.11"
+          parent="/0/@diagram/@childNodes.12"
+          child="/0/@diagram/@links.8"
+          referenceType="out_target"
+          groupName="outgoing links"
+          groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@links.8"
+          child="/0/@diagram/@childNodes.13"
+          referenceType="in_source"
+          groupName="source"
+          groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+      <childReferences
+          parent="/0/@diagram/@childNodes.13"
           child="/0/@diagram/@links.8"
           referenceType="out_target"
           groupName="outgoing links"
@@ -4571,6 +5299,16 @@
             body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
         <expressions
             body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+        <expressions
+            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+        <expressions
+            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+        <expressions
+            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+        <expressions
+            body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
+        <expressions
+            body="return getNamedElement(self, &quot;&quot;, &quot;t&quot;, &quot;&quot;);"/>
         <expressions
             body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
         <expressions
@@ -4651,7 +5389,7 @@
         extensibleViaService="true">
       <implementations
           xsi:type="gmfgen:PredefinedParser"
-          uses="/0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.11/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet"/>
+          uses="/0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.13/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@childNodes.5/@labels.0/@modelFacet"
@@ -4662,20 +5400,24 @@
           qualifiedName=" org.eclipse.papyrus.diagram.sequence.parser.custom.InteractionUseCustomParsers"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet"
+          uses="/0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet"
           qualifiedName=" org.eclipse.papyrus.diagram.sequence.parser.custom.MessageCustomParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.12/@labels.0/@modelFacet"
+          uses="/0/@diagram/@childNodes.14/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.common.parser.CommentParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@links.4/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.1/@labels.1/@modelFacet /0/@diagram/@links.2/@labels.1/@modelFacet /0/@diagram/@links.0/@labels.1/@modelFacet"
+          uses="/0/@diagram/@links.2/@labels.1/@modelFacet /0/@diagram/@links.4/@labels.1/@modelFacet /0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.0/@labels.1/@modelFacet /0/@diagram/@links.1/@labels.1/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.sequence.parser.custom.DurationObservationParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.10/@labels.0/@modelFacet"
+          uses="/0/@diagram/@links.2/@labels.2/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@links.0/@labels.2/@modelFacet /0/@diagram/@links.6/@labels.2/@modelFacet /0/@diagram/@links.1/@labels.2/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.2/@modelFacet /0/@diagram/@links.5/@labels.2/@modelFacet /0/@diagram/@links.4/@labels.2/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.sequence.parser.custom.TimeConstraintParser"/>
+      <implementations
+          xsi:type="gmfgen:CustomParser"
+          uses="/0/@diagram/@childNodes.11/@labels.0/@modelFacet"
+          qualifiedName="org.eclipse.papyrus.diagram.sequence.parser.custom.TimeObservationParser"/>
     </labelParsers>
     <contextMenus
         context="/0/@diagram">
@@ -4699,6 +5441,6 @@
         xsi:type="papyrusgmfgenextension:SpecificLocator"
         comment="Affixed locator for Lifelines to place element with a time bar"
         classpath="org.eclipse.papyrus.diagram.sequence.locator.TimeMarkElementPositionLocator"
-        genChildSideAffixedNode="/0/@diagram/@childNodes.10"/>
+        genChildSideAffixedNode="/0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

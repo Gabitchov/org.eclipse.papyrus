@@ -22,6 +22,7 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
@@ -31,10 +32,13 @@ import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest.ViewAndElementDescriptor;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.draw2d.LifelineDotLineFigure;
 import org.eclipse.papyrus.diagram.sequence.command.CustomZOrderCommand;
@@ -43,6 +47,8 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecific
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
+import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
 
 /**
  * The custom LayoutEditPolicy for LifelineEditPart.
@@ -119,6 +125,24 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 					return new ICommandProxy(new SetBoundsCommand(editPart.getEditingDomain(), "Creation of an ExecutionSpecification", viewAndElementDescriptor, newBounds));
 				}
 
+			}
+			// force location of time/duration elements
+			String timeConstraintHint = ((IHintedType)UMLElementTypes.TimeConstraint_3019).getSemanticHint();
+			String timeObservationHint = ((IHintedType)UMLElementTypes.TimeObservation_3020).getSemanticHint();
+			if(timeConstraintHint.equals(semanticHint) || timeObservationHint.equals(semanticHint)) {
+				Object loc = cver.getExtendedData().get(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION);
+				if(loc instanceof Point) {
+					IFigure parentFigure = ((IGraphicalEditPart)getHost()).getFigure();
+					Point referencePoint = (Point)loc;
+					parentFigure.translateToRelative(referencePoint);
+					referencePoint.translate(parentFigure.getBounds().getLocation().getCopy().negate());
+					// Get the height of the element
+					int newHeight = getFigureHeight(cver);
+					// Define the bounds of the new time element
+					Rectangle newBounds = new Rectangle(referencePoint.x, referencePoint.y + SPACING_HEIGHT - newHeight / 2, -1, newHeight);
+					TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+					return new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewAndElementDescriptor, newBounds));
+				}
 			}
 		}
 

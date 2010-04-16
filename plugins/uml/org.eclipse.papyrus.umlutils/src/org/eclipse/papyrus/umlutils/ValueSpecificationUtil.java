@@ -14,6 +14,7 @@
 
 package org.eclipse.papyrus.umlutils;
 
+import org.eclipse.uml2.uml.Duration;
 import org.eclipse.uml2.uml.Expression;
 import org.eclipse.uml2.uml.InstanceValue;
 import org.eclipse.uml2.uml.Interval;
@@ -94,6 +95,13 @@ public class ValueSpecificationUtil {
 				// TODO
 				break;
 			case UMLPackage.DURATION:
+				Duration durationExpr = (Duration)specification;
+				if(durationExpr.getExpr() != null) {
+					value = getSpecificationValue(durationExpr.getExpr());
+				} else if(durationExpr.getObservations().size() > 0) {
+					value = durationExpr.getObservations().get(0).getName();
+				}
+				break;
 			case UMLPackage.TIME_EXPRESSION:
 				TimeExpression timeExpr = (TimeExpression)specification;
 				if(timeExpr.getExpr() != null) {

@@ -37,6 +37,8 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationNameEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintLabelEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPart;
@@ -63,6 +65,8 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintLabelEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
@@ -155,6 +159,10 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?CombinedFragment", UMLElementTypes.CombinedFragment_3018); //$NON-NLS-1$
 		case TimeConstraintEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?TimeConstraint", UMLElementTypes.TimeConstraint_3019); //$NON-NLS-1$
+		case TimeObservationEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?TimeObservation", UMLElementTypes.TimeObservation_3020); //$NON-NLS-1$
+		case DurationConstraintEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?DurationConstraint", UMLElementTypes.DurationConstraint_3021); //$NON-NLS-1$
 		case ConstraintEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Constraint", UMLElementTypes.Constraint_3008); //$NON-NLS-1$
 		case CommentEditPart.VISUAL_ID:
@@ -254,6 +262,10 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getCombinedFragment_3018Text(view);
 		case TimeConstraintEditPart.VISUAL_ID:
 			return getTimeConstraint_3019Text(view);
+		case TimeObservationEditPart.VISUAL_ID:
+			return getTimeObservation_3020Text(view);
+		case DurationConstraintEditPart.VISUAL_ID:
+			return getDurationConstraint_3021Text(view);
 		case ConstraintEditPart.VISUAL_ID:
 			return getConstraint_3008Text(view);
 		case CommentEditPart.VISUAL_ID:
@@ -367,6 +379,32 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
 			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5009); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getTimeObservation_3020Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.TimeObservation_3020, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(TimeObservationLabelEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5010); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getDurationConstraint_3021Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.DurationConstraint_3021, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(DurationConstraintLabelEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5011); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}

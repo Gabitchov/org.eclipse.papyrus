@@ -24,7 +24,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.diagram.common.helper.TimeConstraintHelper;
+import org.eclipse.papyrus.diagram.common.helper.TimeObservationHelper;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragment2EditPart;
@@ -36,6 +38,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEdi
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPart;
@@ -51,6 +54,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.ActionExecutionSpecification;
 import org.eclipse.uml2.uml.BehaviorExecutionSpecification;
@@ -59,6 +63,7 @@ import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Continuation;
+import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
@@ -70,6 +75,7 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.StateInvariant;
 import org.eclipse.uml2.uml.TimeConstraint;
+import org.eclipse.uml2.uml.TimeObservation;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -133,7 +139,8 @@ public class UMLDiagramUpdater {
 	}
 
 	/**
-	 * @generated NOT Added code for manage ExecutionSpecification, handle TimeConstraintEditPart children
+	 * @generated NOT (update at each lifeline modification) Added code for manage ExecutionSpecification, handle TimeConstraintEditPart and
+	 *            DurationConstraintEditPart children, handle TimeObservationEditPart children
 	 */
 	public static List getLifeline_3001SemanticChildren(View view) {
 		if(!view.isSetElement()) {
@@ -183,13 +190,35 @@ public class UMLDiagramUpdater {
 		 * UMLNodeDescriptor(childElement, visualID)); continue; } }
 		 */
 
-		// handle TimeConstraintEditPart children
+		// handle TimeConstraintEditPart and DurationConstraintEditPart children
 		if(modelElement instanceof Lifeline) {
 			for(InteractionFragment covering : modelElement.getCoveredBys()) {
 				for(TimeConstraint childElement : TimeConstraintHelper.getTimeConstraintsOn(covering)) {
 					// block from generated code
 					int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 					if(visualID == TimeConstraintEditPart.VISUAL_ID) {
+						result.add(new UMLNodeDescriptor(childElement, visualID));
+						continue;
+					}
+				}
+				for(DurationConstraint childElement : DurationConstraintHelper.getDurationConstraintsOn(covering)) {
+					// block from generated code
+					int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+					if(visualID == DurationConstraintEditPart.VISUAL_ID) {
+						result.add(new UMLNodeDescriptor(childElement, visualID));
+						continue;
+					}
+				}
+			}
+		}
+
+		// handle TimeObservationEditPart children
+		if(modelElement instanceof Lifeline) {
+			for(InteractionFragment covering : modelElement.getCoveredBys()) {
+				for(TimeObservation childElement : TimeObservationHelper.getTimeObservations(covering)) {
+					// block from generated code
+					int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+					if(visualID == TimeObservationEditPart.VISUAL_ID) {
 						result.add(new UMLNodeDescriptor(childElement, visualID));
 						continue;
 					}
@@ -330,6 +359,10 @@ public class UMLDiagramUpdater {
 			return getCombinedFragment_3018ContainedLinks(view);
 		case TimeConstraintEditPart.VISUAL_ID:
 			return getTimeConstraint_3019ContainedLinks(view);
+		case TimeObservationEditPart.VISUAL_ID:
+			return getTimeObservation_3020ContainedLinks(view);
+		case DurationConstraintEditPart.VISUAL_ID:
+			return getDurationConstraint_3021ContainedLinks(view);
 		case ConstraintEditPart.VISUAL_ID:
 			return getConstraint_3008ContainedLinks(view);
 		case CommentEditPart.VISUAL_ID:
@@ -381,6 +414,10 @@ public class UMLDiagramUpdater {
 			return getCombinedFragment_3018IncomingLinks(view);
 		case TimeConstraintEditPart.VISUAL_ID:
 			return getTimeConstraint_3019IncomingLinks(view);
+		case TimeObservationEditPart.VISUAL_ID:
+			return getTimeObservation_3020IncomingLinks(view);
+		case DurationConstraintEditPart.VISUAL_ID:
+			return getDurationConstraint_3021IncomingLinks(view);
 		case ConstraintEditPart.VISUAL_ID:
 			return getConstraint_3008IncomingLinks(view);
 		case CommentEditPart.VISUAL_ID:
@@ -432,6 +469,10 @@ public class UMLDiagramUpdater {
 			return getCombinedFragment_3018OutgoingLinks(view);
 		case TimeConstraintEditPart.VISUAL_ID:
 			return getTimeConstraint_3019OutgoingLinks(view);
+		case TimeObservationEditPart.VISUAL_ID:
+			return getTimeObservation_3020OutgoingLinks(view);
+		case DurationConstraintEditPart.VISUAL_ID:
+			return getDurationConstraint_3021OutgoingLinks(view);
 		case ConstraintEditPart.VISUAL_ID:
 			return getConstraint_3008OutgoingLinks(view);
 		case CommentEditPart.VISUAL_ID:
@@ -510,6 +551,23 @@ public class UMLDiagramUpdater {
 	 */
 	public static List getTimeConstraint_3019ContainedLinks(View view) {
 		TimeConstraint modelElement = (TimeConstraint)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getTimeObservation_3020ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getDurationConstraint_3021ContainedLinks(View view) {
+		DurationConstraint modelElement = (DurationConstraint)view.getElement();
 		List result = new LinkedList();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement));
 		return result;
@@ -726,6 +784,44 @@ public class UMLDiagramUpdater {
 	 */
 	public static List getTimeConstraint_3019IncomingLinks(View view) {
 		TimeConstraint modelElement = (TimeConstraint)view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getTimeObservation_3020IncomingLinks(View view) {
+		TimeObservation modelElement = (TimeObservation)view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4004(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4005(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4006(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4007(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4008(modelElement, crossReferences));
+		result.addAll(getIncomingTypeModelFacetLinks_Message_4009(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferences));
+		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferences));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getDurationConstraint_3021IncomingLinks(View view) {
+		DurationConstraint modelElement = (DurationConstraint)view.getElement();
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		List result = new LinkedList();
 		result.addAll(getIncomingTypeModelFacetLinks_Message_4003(modelElement, crossReferences));
@@ -1110,6 +1206,39 @@ public class UMLDiagramUpdater {
 	 */
 	public static List getTimeConstraint_3019OutgoingLinks(View view) {
 		TimeConstraint modelElement = (TimeConstraint)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getTimeObservation_3020OutgoingLinks(View view) {
+		TimeObservation modelElement = (TimeObservation)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4005(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4006(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4007(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4008(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getDurationConstraint_3021OutgoingLinks(View view) {
+		DurationConstraint modelElement = (DurationConstraint)view.getElement();
 		List result = new LinkedList();
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_4003(modelElement));
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_4004(modelElement));

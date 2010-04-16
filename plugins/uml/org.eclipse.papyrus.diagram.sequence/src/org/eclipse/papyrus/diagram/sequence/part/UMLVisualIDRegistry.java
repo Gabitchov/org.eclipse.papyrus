@@ -32,6 +32,15 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationNameEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInAsyncEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInCreateEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInDeleteEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInFoundEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInLostEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInReplyEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInSyncEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintLabelEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationInAsyncEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationInCreateEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationInDeleteEditPart;
@@ -67,6 +76,8 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintLabelEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
 import org.eclipse.papyrus.diagram.sequence.expressions.UMLAbstractExpression;
 import org.eclipse.papyrus.diagram.sequence.expressions.UMLOCLFactory;
 import org.eclipse.uml2.uml.Message;
@@ -188,7 +199,7 @@ public class UMLVisualIDRegistry {
 	/**
 	 * Generated not for add lifelines on lifeline
 	 * 
-	 * @generated NOT (update at each gmf change) lifeline and order
+	 * @generated NOT (update at each gmf change) lifeline, order
 	 */
 	public static int getNodeVisualID(View containerView, EObject domainElement) {
 		if(domainElement == null) {
@@ -257,6 +268,16 @@ public class UMLVisualIDRegistry {
 
 			) {
 				return TimeConstraintEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getTimeObservation().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return TimeObservationEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return DurationConstraintEditPart.VISUAL_ID;
 			}
 			// lifeline : add lifelines on lifeline
 			if(UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(domainElement.eClass())
@@ -393,6 +414,12 @@ public class UMLVisualIDRegistry {
 			if(TimeConstraintEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(TimeObservationEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(DurationConstraintEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case StateInvariantEditPart.VISUAL_ID:
 			if(StateInvariantNameEditPart.VISUAL_ID == nodeVisualID) {
@@ -401,6 +428,16 @@ public class UMLVisualIDRegistry {
 			break;
 		case TimeConstraintEditPart.VISUAL_ID:
 			if(TimeConstraintLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case TimeObservationEditPart.VISUAL_ID:
+			if(TimeObservationLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case DurationConstraintEditPart.VISUAL_ID:
+			if(DurationConstraintLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -451,12 +488,18 @@ public class UMLVisualIDRegistry {
 			if(DurationObservationInSyncEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(DurationConstraintInSyncEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case Message2EditPart.VISUAL_ID:
 			if(MessageName2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(DurationObservationInAsyncEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(DurationConstraintInAsyncEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -467,12 +510,18 @@ public class UMLVisualIDRegistry {
 			if(DurationObservationInReplyEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(DurationConstraintInReplyEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case Message4EditPart.VISUAL_ID:
 			if(MessageName4EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(DurationObservationInCreateEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(DurationConstraintInCreateEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -483,6 +532,9 @@ public class UMLVisualIDRegistry {
 			if(DurationObservationInDeleteEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(DurationConstraintInDeleteEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case Message6EditPart.VISUAL_ID:
 			if(MessageName6EditPart.VISUAL_ID == nodeVisualID) {
@@ -491,12 +543,18 @@ public class UMLVisualIDRegistry {
 			if(DurationObservationInLostEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(DurationConstraintInLostEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case Message7EditPart.VISUAL_ID:
 			if(MessageName7EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(DurationObservationInFoundEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(DurationConstraintInFoundEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -690,6 +748,10 @@ public class UMLVisualIDRegistry {
 		viewInfo.getChildren().add(labelInfo);
 
 
+		labelInfo = new BaseViewInfo(6015, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
 		viewInfo = new BaseViewInfo(4004, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
@@ -699,6 +761,10 @@ public class UMLVisualIDRegistry {
 
 
 		labelInfo = new BaseViewInfo(6008, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
+		labelInfo = new BaseViewInfo(6016, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
 
@@ -714,6 +780,10 @@ public class UMLVisualIDRegistry {
 		viewInfo.getChildren().add(labelInfo);
 
 
+		labelInfo = new BaseViewInfo(6017, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
 		viewInfo = new BaseViewInfo(4006, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
@@ -723,6 +793,10 @@ public class UMLVisualIDRegistry {
 
 
 		labelInfo = new BaseViewInfo(6011, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
+		labelInfo = new BaseViewInfo(6018, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
 
@@ -738,6 +812,10 @@ public class UMLVisualIDRegistry {
 		viewInfo.getChildren().add(labelInfo);
 
 
+		labelInfo = new BaseViewInfo(6019, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
 		viewInfo = new BaseViewInfo(4008, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
@@ -750,6 +828,10 @@ public class UMLVisualIDRegistry {
 		viewInfo.getChildren().add(labelInfo);
 
 
+		labelInfo = new BaseViewInfo(6020, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
 		viewInfo = new BaseViewInfo(4009, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
@@ -759,6 +841,10 @@ public class UMLVisualIDRegistry {
 
 
 		labelInfo = new BaseViewInfo(6014, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
+		labelInfo = new BaseViewInfo(6021, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
 
@@ -827,6 +913,16 @@ public class UMLVisualIDRegistry {
 
 
 		viewInfo = new BaseViewInfo(3019, ViewInfo.Node, "TimeConstraint");
+
+		root.addNode(3001, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3020, ViewInfo.Node, "TimeObservation");
+
+		root.addNode(3001, viewInfo);
+
+
+		viewInfo = new BaseViewInfo(3021, ViewInfo.Node, "DurationConstraint");
 
 		root.addNode(3001, viewInfo);
 

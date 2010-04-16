@@ -25,7 +25,10 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.uml2.uml.Namespace;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.TimeConstraint;
 import org.eclipse.uml2.uml.UMLFactory;
 
@@ -86,19 +89,15 @@ public class TimeConstraintCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT enable only if there is an occurrence specification
 	 */
 	public boolean canExecute() {
-
-
-		return true;
-
-
-
+		Object occurrence = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
+		return occurrence instanceof OccurrenceSpecification;
 	}
 
 	/**
-	 * @generated NOT get the Lifeline parent as owner
+	 * @generated NOT get the Lifeline parent as owner, assign the occurrence specification
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
@@ -111,6 +110,13 @@ public class TimeConstraintCreateCommand extends EditElementCommand {
 		owner.getOwnedRules().add(newElement);
 
 
+		UMLElementTypes.init_TimeConstraint_3019(newElement);
+
+		// assign the occurrence specification
+		Object occurrence = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
+		if(occurrence instanceof OccurrenceSpecification) {
+			newElement.getConstrainedElements().add((OccurrenceSpecification)occurrence);
+		}
 
 		doConfigure(newElement, monitor, info);
 

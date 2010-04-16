@@ -406,7 +406,7 @@
           qualifiedClassName="org.eclipse.papyrus.diagram.sequence.figures.CoRegionCombinedFragmentFigure"/>
     </descriptors>
     <descriptors
-        name="DurationObservation">
+        name="DurationObservationConstraint">
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="DurationObservationLabelFigure"
@@ -417,6 +417,12 @@
         <font
             xsi:type="gmfgraph:BasicFont"
             faceName="SANS"/>
+        <attributes
+            name="TextWrap"
+            value="true"/>
+        <attributes
+            name="TextJustification"
+            value="PositionConstants.CENTER"/>
       </actualFigure>
     </descriptors>
     <descriptors
@@ -448,6 +454,61 @@
       <accessors
           accessor="getTimeMarkElementLabel"
           figure="//@figures.0/@descriptors.16/@actualFigure/@children.1"/>
+    </descriptors>
+    <descriptors
+        name="DurationConstraintFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="DurationRect"
+          outline="false"
+          fill="false">
+        <layout
+            xsi:type="gmfgraph:CustomLayout"
+            qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
+        <preferredSize
+            dx="40"
+            dy="80"/>
+        <border
+            xsi:type="gmfgraph:CustomBorder"
+            qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.LinesBorder">
+          <attributes
+              name="sides"
+              value="PositionConstants.TOP | PositionConstants.BOTTOM"/>
+        </border>
+        <children
+            xsi:type="gmfgraph:Polyline"
+            name="DurationArrow">
+          <template/>
+          <template
+              x="10"/>
+        </children>
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="DurationConstraintLabel"
+            qualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+          <attributes
+              name="TextAlignment"
+              value="PositionConstants.CENTER"/>
+          <attributes
+              name="Alignment"
+              value="PositionConstants.CENTER"/>
+          <attributes
+              name="BackgroundColor"
+              value="getBackgroundColor()"/>
+          <attributes
+              name="TextWrap"
+              value="true"/>
+          <attributes
+              name="TextJustification"
+              value="PositionConstants.CENTER"/>
+        </children>
+      </actualFigure>
+      <accessors
+          accessor="getDurationArrow"
+          figure="//@figures.0/@descriptors.17/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getDurationConstraintLabel"
+          figure="//@figures.0/@descriptors.17/@actualFigure/@children.1"/>
     </descriptors>
   </figures>
   <nodes
@@ -494,6 +555,10 @@
   <nodes
       name="TimeMarkElementNode"
       figure="TimeMarkElementFigure"
+      affixedParentSide="EAST_WEST"/>
+  <nodes
+      name="DurationConstraintNode"
+      figure="DurationConstraintFigure"
       affixedParentSide="EAST_WEST"/>
   <connections
       name="CallSynLink"
@@ -644,7 +709,7 @@
       accessor="//@figures.0/@descriptors.13/@accessors.0"/>
   <labels
       name="DurationObservationLabel"
-      figure="DurationObservation"
+      figure="DurationObservationConstraint"
       elementIcon="false">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
@@ -657,5 +722,23 @@
   <labels
       name="TimeMarkElementLabel"
       figure="TimeMarkElementFigure"
+      elementIcon="false"
       accessor="//@figures.0/@descriptors.16/@accessors.1"/>
+  <labels
+      name="DurationConstraintLabel"
+      figure="DurationConstraintFigure"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.17/@accessors.1"/>
+  <labels
+      name="DurationConstraintOnMessage"
+      figure="DurationObservationConstraint"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        x="1"
+        y="-13"/>
+  </labels>
 </gmfgraph:Canvas>

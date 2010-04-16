@@ -29,6 +29,14 @@ import org.eclipse.papyrus.diagram.common.parser.CommentParser;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentBodyEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationNameEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInAsyncEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInCreateEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInDeleteEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInFoundEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInLostEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInReplyEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInSyncEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintLabelEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationInAsyncEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationInCreateEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationInDeleteEditPart;
@@ -49,11 +57,13 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintLabelEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
 import org.eclipse.papyrus.diagram.sequence.parser.custom.DurationObservationParser;
 import org.eclipse.papyrus.diagram.sequence.parser.custom.InteractionUseCustomParsers;
 import org.eclipse.papyrus.diagram.sequence.parser.custom.LifelineCustomParsers;
 import org.eclipse.papyrus.diagram.sequence.parser.custom.MessageCustomParser;
 import org.eclipse.papyrus.diagram.sequence.parser.custom.TimeConstraintParser;
+import org.eclipse.papyrus.diagram.sequence.parser.custom.TimeObservationParser;
 import org.eclipse.papyrus.diagram.sequence.parsers.MessageFormatParser;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -128,6 +138,36 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			timeConstraintLabel_5009Parser = new TimeConstraintParser();
 		}
 		return timeConstraintLabel_5009Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private TimeObservationParser timeObservationLabel_5010Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTimeObservationLabel_5010Parser() {
+		if(timeObservationLabel_5010Parser == null) {
+			timeObservationLabel_5010Parser = new TimeObservationParser();
+		}
+		return timeObservationLabel_5010Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private TimeConstraintParser durationConstraintLabel_5011Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDurationConstraintLabel_5011Parser() {
+		if(durationConstraintLabel_5011Parser == null) {
+			durationConstraintLabel_5011Parser = new TimeConstraintParser();
+		}
+		return durationConstraintLabel_5011Parser;
 	}
 
 	/**
@@ -247,6 +287,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private TimeConstraintParser messageLabel_6015Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageLabel_6015Parser() {
+		if(messageLabel_6015Parser == null) {
+			messageLabel_6015Parser = new TimeConstraintParser();
+		}
+		return messageLabel_6015Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private MessageCustomParser messageName_6002Parser;
 
 	/**
@@ -272,6 +327,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			messageLabel_6008Parser = new DurationObservationParser();
 		}
 		return messageLabel_6008Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private TimeConstraintParser messageLabel_6016Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageLabel_6016Parser() {
+		if(messageLabel_6016Parser == null) {
+			messageLabel_6016Parser = new TimeConstraintParser();
+		}
+		return messageLabel_6016Parser;
 	}
 
 	/**
@@ -307,6 +377,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private TimeConstraintParser messageLabel_6017Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageLabel_6017Parser() {
+		if(messageLabel_6017Parser == null) {
+			messageLabel_6017Parser = new TimeConstraintParser();
+		}
+		return messageLabel_6017Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private MessageCustomParser messageName_6004Parser;
 
 	/**
@@ -332,6 +417,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			messageLabel_6011Parser = new DurationObservationParser();
 		}
 		return messageLabel_6011Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private TimeConstraintParser messageLabel_6018Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageLabel_6018Parser() {
+		if(messageLabel_6018Parser == null) {
+			messageLabel_6018Parser = new TimeConstraintParser();
+		}
+		return messageLabel_6018Parser;
 	}
 
 	/**
@@ -367,6 +467,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private TimeConstraintParser messageLabel_6019Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageLabel_6019Parser() {
+		if(messageLabel_6019Parser == null) {
+			messageLabel_6019Parser = new TimeConstraintParser();
+		}
+		return messageLabel_6019Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private MessageCustomParser messageName_6006Parser;
 
 	/**
@@ -392,6 +507,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			messageLabel_6013Parser = new DurationObservationParser();
 		}
 		return messageLabel_6013Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private TimeConstraintParser messageLabel_6020Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageLabel_6020Parser() {
+		if(messageLabel_6020Parser == null) {
+			messageLabel_6020Parser = new TimeConstraintParser();
+		}
+		return messageLabel_6020Parser;
 	}
 
 	/**
@@ -427,6 +557,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private TimeConstraintParser messageLabel_6021Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageLabel_6021Parser() {
+		if(messageLabel_6021Parser == null) {
+			messageLabel_6021Parser = new TimeConstraintParser();
+		}
+		return messageLabel_6021Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch(visualID) {
 		case InteractionNameEditPart.VISUAL_ID:
@@ -443,6 +588,10 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getStateInvariantName_5008Parser();
 		case TimeConstraintLabelEditPart.VISUAL_ID:
 			return getTimeConstraintLabel_5009Parser();
+		case TimeObservationLabelEditPart.VISUAL_ID:
+			return getTimeObservationLabel_5010Parser();
+		case DurationConstraintLabelEditPart.VISUAL_ID:
+			return getDurationConstraintLabel_5011Parser();
 		case ConstraintNameEditPart.VISUAL_ID:
 			return getConstraintName_5005Parser();
 		case CommentBodyEditPart.VISUAL_ID:
@@ -451,30 +600,44 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getMessageName_6001Parser();
 		case DurationObservationInSyncEditPart.VISUAL_ID:
 			return getMessageLabel_6009Parser();
+		case DurationConstraintInSyncEditPart.VISUAL_ID:
+			return getMessageLabel_6015Parser();
 		case MessageName2EditPart.VISUAL_ID:
 			return getMessageName_6002Parser();
 		case DurationObservationInAsyncEditPart.VISUAL_ID:
 			return getMessageLabel_6008Parser();
+		case DurationConstraintInAsyncEditPart.VISUAL_ID:
+			return getMessageLabel_6016Parser();
 		case MessageName3EditPart.VISUAL_ID:
 			return getMessageName_6003Parser();
 		case DurationObservationInReplyEditPart.VISUAL_ID:
 			return getMessageLabel_6010Parser();
+		case DurationConstraintInReplyEditPart.VISUAL_ID:
+			return getMessageLabel_6017Parser();
 		case MessageName4EditPart.VISUAL_ID:
 			return getMessageName_6004Parser();
 		case DurationObservationInCreateEditPart.VISUAL_ID:
 			return getMessageLabel_6011Parser();
+		case DurationConstraintInCreateEditPart.VISUAL_ID:
+			return getMessageLabel_6018Parser();
 		case MessageName5EditPart.VISUAL_ID:
 			return getMessageName_6005Parser();
 		case DurationObservationInDeleteEditPart.VISUAL_ID:
 			return getMessageLabel_6012Parser();
+		case DurationConstraintInDeleteEditPart.VISUAL_ID:
+			return getMessageLabel_6019Parser();
 		case MessageName6EditPart.VISUAL_ID:
 			return getMessageName_6006Parser();
 		case DurationObservationInLostEditPart.VISUAL_ID:
 			return getMessageLabel_6013Parser();
+		case DurationConstraintInLostEditPart.VISUAL_ID:
+			return getMessageLabel_6020Parser();
 		case MessageName7EditPart.VISUAL_ID:
 			return getMessageName_6007Parser();
 		case DurationObservationInFoundEditPart.VISUAL_ID:
 			return getMessageLabel_6014Parser();
+		case DurationConstraintInFoundEditPart.VISUAL_ID:
+			return getMessageLabel_6021Parser();
 		}
 		return null;
 	}

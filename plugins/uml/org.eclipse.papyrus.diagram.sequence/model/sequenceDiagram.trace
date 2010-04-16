@@ -86,6 +86,20 @@
         visualID="5009"
         queryText="true"/>
   </childNodeTraces>
+  <childNodeTraces
+      visualID="3020"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'TimeObservation') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Package') and _containmentMF_.name = 'packagedElement')">
+    <nodeLabelTraces
+        visualID="5010"
+        queryText="true"/>
+  </childNodeTraces>
+  <childNodeTraces
+      visualID="3021"
+      queryText="(let _eClass_:ecore::EClass = modelFacet.metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'DurationConstraint') and (let _containmentMF_:ecore::EStructuralFeature = modelFacet.containmentMetaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _containmentMF_.eContainingClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Namespace') and _containmentMF_.name = 'ownedRule')">
+    <nodeLabelTraces
+        visualID="5011"
+        queryText="true"/>
+  </childNodeTraces>
   <linkTraces
       visualID="4003"
       queryText="modelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet) and (let _eClass_:ecore::EClass = modelFacet.oclAsType(gmfgen::TypeLinkModelFacet).metaClass.ecoreClass in _eClass_.ePackage.nsURI = 'http://www.eclipse.org/uml2/3.0.0/UML' and _eClass_.name = 'Message')">
@@ -94,6 +108,9 @@
         queryText="true"/>
     <linkLabelTraces
         visualID="6009"
+        queryText="true"/>
+    <linkLabelTraces
+        visualID="6015"
         queryText="true"/>
   </linkTraces>
   <linkTraces
@@ -105,6 +122,9 @@
     <linkLabelTraces
         visualID="6008"
         queryText="true"/>
+    <linkLabelTraces
+        visualID="6016"
+        queryText="true"/>
   </linkTraces>
   <linkTraces
       visualID="4005"
@@ -114,6 +134,9 @@
         queryText="true"/>
     <linkLabelTraces
         visualID="6010"
+        queryText="true"/>
+    <linkLabelTraces
+        visualID="6017"
         queryText="true"/>
   </linkTraces>
   <linkTraces
@@ -125,6 +148,9 @@
     <linkLabelTraces
         visualID="6011"
         queryText="true"/>
+    <linkLabelTraces
+        visualID="6018"
+        queryText="true"/>
   </linkTraces>
   <linkTraces
       visualID="4007"
@@ -134,6 +160,9 @@
         queryText="true"/>
     <linkLabelTraces
         visualID="6012"
+        queryText="true"/>
+    <linkLabelTraces
+        visualID="6019"
         queryText="true"/>
   </linkTraces>
   <linkTraces
@@ -145,6 +174,9 @@
     <linkLabelTraces
         visualID="6013"
         queryText="true"/>
+    <linkLabelTraces
+        visualID="6020"
+        queryText="true"/>
   </linkTraces>
   <linkTraces
       visualID="4009"
@@ -154,6 +186,9 @@
         queryText="true"/>
     <linkLabelTraces
         visualID="6014"
+        queryText="true"/>
+    <linkLabelTraces
+        visualID="6021"
         queryText="true"/>
   </linkTraces>
   <linkTraces

@@ -30,6 +30,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
 
+		TimeObservationPreferencePage.initDefaults(store);
+
+
 		CommentPreferencePage.initDefaults(store);
 
 
@@ -49,6 +52,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 
 		InteractionPreferencePage.initDefaults(store);
+
+
+		DurationConstraintPreferencePage.initDefaults(store);
 
 
 		InteractionUsePreferencePage.initDefaults(store);

@@ -37,6 +37,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEdi
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseEditPart;
@@ -51,6 +52,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -115,6 +117,16 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IElementType TimeConstraint_3019 = getElementType("org.eclipse.papyrus.diagram.sequence.TimeConstraint_3019"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType TimeObservation_3020 = getElementType("org.eclipse.papyrus.diagram.sequence.TimeObservation_3020"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType DurationConstraint_3021 = getElementType("org.eclipse.papyrus.diagram.sequence.DurationConstraint_3021"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -346,6 +358,12 @@ public class UMLElementTypes extends ElementInitializers {
 			elements.put(TimeConstraint_3019, UMLPackage.eINSTANCE.getTimeConstraint());
 
 
+			elements.put(TimeObservation_3020, UMLPackage.eINSTANCE.getTimeObservation());
+
+
+			elements.put(DurationConstraint_3021, UMLPackage.eINSTANCE.getDurationConstraint());
+
+
 			elements.put(Constraint_3008, UMLPackage.eINSTANCE.getConstraint());
 
 
@@ -405,6 +423,8 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(StateInvariant_3017);
 			KNOWN_ELEMENT_TYPES.add(CombinedFragment_3018);
 			KNOWN_ELEMENT_TYPES.add(TimeConstraint_3019);
+			KNOWN_ELEMENT_TYPES.add(TimeObservation_3020);
+			KNOWN_ELEMENT_TYPES.add(DurationConstraint_3021);
 			KNOWN_ELEMENT_TYPES.add(Constraint_3008);
 			KNOWN_ELEMENT_TYPES.add(Comment_3009);
 			KNOWN_ELEMENT_TYPES.add(Message_4003);
@@ -451,6 +471,10 @@ public class UMLElementTypes extends ElementInitializers {
 			return CombinedFragment_3018;
 		case TimeConstraintEditPart.VISUAL_ID:
 			return TimeConstraint_3019;
+		case TimeObservationEditPart.VISUAL_ID:
+			return TimeObservation_3020;
+		case DurationConstraintEditPart.VISUAL_ID:
+			return DurationConstraint_3021;
 		case ConstraintEditPart.VISUAL_ID:
 			return Constraint_3008;
 		case CommentEditPart.VISUAL_ID:

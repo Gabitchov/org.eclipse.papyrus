@@ -187,6 +187,32 @@
             path="/icons/full/obj16/TimeConstraint.gif"
             bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
       </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Time Observation"
+          description="Create a Time Observation">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/TimeObservation.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/TimeObservation.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Duration Constraint"
+          description="Create a Duration Constraint">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/DurationConstraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/DurationConstraint.gif"
+            bundle="platform:/plugin/org.eclipse.uml2.uml.edit"/>
+      </tools>
     </tools>
     <tools
         xsi:type="gmftool:ToolGroup"

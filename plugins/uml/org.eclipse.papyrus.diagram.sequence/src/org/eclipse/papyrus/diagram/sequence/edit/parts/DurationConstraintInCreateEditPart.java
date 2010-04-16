@@ -83,12 +83,12 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class DurationObservationEditPart extends LabelEditPart implements ITextAwareEditPart {
+public class DurationConstraintInCreateEditPart extends LabelEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 6008;
+	public static final int VISUAL_ID = 6018;
 
 	/**
 	 * @generated
@@ -124,13 +124,13 @@ public class DurationObservationEditPart extends LabelEditPart implements ITextA
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationEditPart.VISUAL_ID), new Point(1, -13));
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInCreateEditPart.VISUAL_ID), new Point(1, -13));
 	}
 
 	/**
 	 * @generated
 	 */
-	public DurationObservationEditPart(View view) {
+	public DurationConstraintInCreateEditPart(View view) {
 		super(view);
 	}
 
@@ -347,7 +347,7 @@ public class DurationObservationEditPart extends LabelEditPart implements ITextA
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Message_4004, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationEditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.Message_4006, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInCreateEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -741,32 +741,41 @@ public class DurationObservationEditPart extends LabelEditPart implements ITextA
 	 * @generated
 	 */
 	protected IFigure createFigurePrim() {
-		return new DurationObservation();
+		return new DurationObservationConstraint();
 	}
 
 
 	/**
 	 * @generated
 	 */
-	public class DurationObservation extends WrappingLabel {
+	public class DurationObservationConstraint extends WrappingLabel {
 
 
 
 
 		/**
-		 * @generated NOT handle line breaks
+		 * @generated
 		 */
-		public DurationObservation() {
+		public DurationObservationConstraint() {
+
+
+
+
+			this.setTextWrap(true);
+
+
+
+
+			this.setTextJustification(PositionConstants.CENTER);
 
 
 			this.setForegroundColor(ColorConstants.black);
 
 			this.setFont(THIS_FONT);
-			// handle line breaks
-			this.setTextWrap(true);
-			this.setTextJustification(PositionConstants.CENTER);
+
 
 		}
+
 
 		/**
 		 * @generated

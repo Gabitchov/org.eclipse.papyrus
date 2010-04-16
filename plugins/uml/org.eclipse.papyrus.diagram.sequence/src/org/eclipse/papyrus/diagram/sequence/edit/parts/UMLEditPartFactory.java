@@ -102,6 +102,18 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case TimeConstraintLabelEditPart.VISUAL_ID:
 				return new TimeConstraintLabelEditPart(view);
 
+			case TimeObservationEditPart.VISUAL_ID:
+				return new TimeObservationEditPart(view);
+
+			case TimeObservationLabelEditPart.VISUAL_ID:
+				return new TimeObservationLabelEditPart(view);
+
+			case DurationConstraintEditPart.VISUAL_ID:
+				return new DurationConstraintEditPart(view);
+
+			case DurationConstraintLabelEditPart.VISUAL_ID:
+				return new DurationConstraintLabelEditPart(view);
+
 			case ConstraintEditPart.VISUAL_ID:
 				return new ConstraintEditPart(view);
 
@@ -129,6 +141,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case DurationObservationInSyncEditPart.VISUAL_ID:
 				return new DurationObservationInSyncEditPart(view);
 
+			case DurationConstraintInSyncEditPart.VISUAL_ID:
+				return new DurationConstraintInSyncEditPart(view);
+
 
 			case Message2EditPart.VISUAL_ID:
 				return new Message2EditPart(view);
@@ -138,6 +153,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case DurationObservationInAsyncEditPart.VISUAL_ID:
 				return new DurationObservationInAsyncEditPart(view);
+
+			case DurationConstraintInAsyncEditPart.VISUAL_ID:
+				return new DurationConstraintInAsyncEditPart(view);
 
 
 			case Message3EditPart.VISUAL_ID:
@@ -149,6 +167,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case DurationObservationInReplyEditPart.VISUAL_ID:
 				return new DurationObservationInReplyEditPart(view);
 
+			case DurationConstraintInReplyEditPart.VISUAL_ID:
+				return new DurationConstraintInReplyEditPart(view);
+
 
 			case Message4EditPart.VISUAL_ID:
 				return new Message4EditPart(view);
@@ -158,6 +179,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case DurationObservationInCreateEditPart.VISUAL_ID:
 				return new DurationObservationInCreateEditPart(view);
+
+			case DurationConstraintInCreateEditPart.VISUAL_ID:
+				return new DurationConstraintInCreateEditPart(view);
 
 
 			case Message5EditPart.VISUAL_ID:
@@ -169,6 +193,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case DurationObservationInDeleteEditPart.VISUAL_ID:
 				return new DurationObservationInDeleteEditPart(view);
 
+			case DurationConstraintInDeleteEditPart.VISUAL_ID:
+				return new DurationConstraintInDeleteEditPart(view);
+
 
 			case Message6EditPart.VISUAL_ID:
 				return new Message6EditPart(view);
@@ -179,6 +206,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case DurationObservationInLostEditPart.VISUAL_ID:
 				return new DurationObservationInLostEditPart(view);
 
+			case DurationConstraintInLostEditPart.VISUAL_ID:
+				return new DurationConstraintInLostEditPart(view);
+
 
 			case Message7EditPart.VISUAL_ID:
 				return new Message7EditPart(view);
@@ -188,6 +218,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case DurationObservationInFoundEditPart.VISUAL_ID:
 				return new DurationObservationInFoundEditPart(view);
+
+			case DurationConstraintInFoundEditPart.VISUAL_ID:
+				return new DurationConstraintInFoundEditPart(view);
 
 
 			case CommentAnnotatedElementEditPart.VISUAL_ID:

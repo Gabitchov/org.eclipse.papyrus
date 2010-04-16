@@ -22,12 +22,17 @@ import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Continuation;
+import org.eclipse.uml2.uml.DurationConstraint;
+import org.eclipse.uml2.uml.DurationInterval;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionUse;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.StateInvariant;
+import org.eclipse.uml2.uml.TimeConstraint;
+import org.eclipse.uml2.uml.TimeInterval;
+import org.eclipse.uml2.uml.TimeObservation;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -79,6 +84,52 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_CombinedFragment_3018(instance);
 			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static void init_TimeConstraint_3019(TimeConstraint instance) {
+		try {
+			TimeInterval newInstance_0_0 = UMLFactory.eINSTANCE.createTimeInterval();
+			instance.setSpecification(newInstance_0_0);
+			Object value_0_0_0 = name_specification_TimeConstraint_3019(newInstance_0_0);
+			newInstance_0_0.setName((String)value_0_0_0);
+
+			Object value_1 = name_TimeConstraint_3019(instance);
+			instance.setName((String)value_1);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static void init_TimeObservation_3020(TimeObservation instance) {
+		try {
+			Object value_0 = name_TimeObservation_3020(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static void init_DurationConstraint_3021(DurationConstraint instance) {
+		try {
+			DurationInterval newInstance_0_0 = UMLFactory.eINSTANCE.createDurationInterval();
+			instance.setSpecification(newInstance_0_0);
+			Object value_0_0_0 = name_specification_DurationConstraint_3021(newInstance_0_0);
+			newInstance_0_0.setName((String)value_0_0_0);
+
+			Object value_1 = name_DurationConstraint_3021(instance);
+			instance.setName((String)value_1);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -177,6 +228,41 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private static String name_CombinedFragment_3018(CombinedFragment self) {
+		return getNamedElement(self, "", self.eClass().getName(), "");
+	}
+
+	/**
+	 * @generated
+	 */
+	private static String name_TimeConstraint_3019(TimeConstraint self) {
+		return getNamedElement(self, "", self.eClass().getName(), "");
+	}
+
+	/**
+	 * @generated
+	 */
+	private static String name_specification_TimeConstraint_3019(TimeInterval self) {
+		return getNamedElement(self, "", self.eClass().getName(), "");
+	}
+
+	/**
+	 * @generated
+	 */
+	private static String name_TimeObservation_3020(TimeObservation self) {
+		return getNamedElement(self, "", "t", "");
+	}
+
+	/**
+	 * @generated
+	 */
+	private static String name_DurationConstraint_3021(DurationConstraint self) {
+		return getNamedElement(self, "", self.eClass().getName(), "");
+	}
+
+	/**
+	 * @generated
+	 */
+	private static String name_specification_DurationConstraint_3021(DurationInterval self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 

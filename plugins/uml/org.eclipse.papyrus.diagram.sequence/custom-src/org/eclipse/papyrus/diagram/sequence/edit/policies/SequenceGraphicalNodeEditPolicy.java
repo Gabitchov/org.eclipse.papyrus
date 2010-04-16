@@ -122,7 +122,14 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 			if(edge.getElement() instanceof Message) {
 				if(connectionEditPart.getFigure() instanceof Polyline) {
 					Polyline polyline = (Polyline)connectionEditPart.getFigure();
-					return polyline.getPoints().getFirstPoint().y >= polyline.getPoints().getLastPoint().y;
+					// look at the request rather than at both polyline ends which may not be up to date
+					if(REQ_RECONNECT_SOURCE.equals(request.getType())) {
+						return request.getLocation().y >= polyline.getEnd().y;
+					} else if(REQ_RECONNECT_TARGET.equals(request.getType())) {
+						return polyline.getStart().y >= request.getLocation().y;
+					} else {
+						return polyline.getPoints().getFirstPoint().y >= polyline.getPoints().getLastPoint().y;
+					}
 				}
 			}
 		}

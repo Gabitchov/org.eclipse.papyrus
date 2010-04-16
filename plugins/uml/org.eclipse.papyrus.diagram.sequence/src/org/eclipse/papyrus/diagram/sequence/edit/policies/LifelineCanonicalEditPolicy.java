@@ -25,8 +25,10 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragment2EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.sequence.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
@@ -65,6 +67,8 @@ public class LifelineCanonicalEditPolicy extends CanonicalEditPolicy {
 		case StateInvariantEditPart.VISUAL_ID:
 		case CombinedFragment2EditPart.VISUAL_ID:
 		case TimeConstraintEditPart.VISUAL_ID:
+		case TimeObservationEditPart.VISUAL_ID:
+		case DurationConstraintEditPart.VISUAL_ID:
 			if(!semanticChildren.contains(view.getElement())) {
 				return true;
 			}
@@ -87,6 +91,7 @@ public class LifelineCanonicalEditPolicy extends CanonicalEditPolicy {
 			myFeaturesToSynchronize = new HashSet();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getInteraction_Fragment());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getNamespace_OwnedRule());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getPackage_PackagedElement());
 		}
 		return myFeaturesToSynchronize;
 	}

@@ -39,6 +39,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPart;
@@ -47,6 +48,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
@@ -72,12 +74,14 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof LifelineEditPart) {
-			ArrayList types = new ArrayList(5);
+			ArrayList types = new ArrayList(7);
 			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
 			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
 			types.add(UMLElementTypes.StateInvariant_3017);
 			types.add(UMLElementTypes.CombinedFragment_3018);
 			types.add(UMLElementTypes.TimeConstraint_3019);
+			types.add(UMLElementTypes.TimeObservation_3020);
+			types.add(UMLElementTypes.DurationConstraint_3021);
 			return types;
 		}
 		if(editPart instanceof InteractionInteractionCompartmentEditPart) {
@@ -144,6 +148,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof TimeConstraintEditPart) {
 			return ((TimeConstraintEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
+		if(sourceEditPart instanceof TimeObservationEditPart) {
+			return ((TimeObservationEditPart)sourceEditPart).getMARelTypesOnSource();
+		}
+		if(sourceEditPart instanceof DurationConstraintEditPart) {
+			return ((DurationConstraintEditPart)sourceEditPart).getMARelTypesOnSource();
+		}
 		if(sourceEditPart instanceof ConstraintEditPart) {
 			return ((ConstraintEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
@@ -193,6 +203,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(targetEditPart instanceof TimeConstraintEditPart) {
 			return ((TimeConstraintEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			return ((TimeObservationEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof DurationConstraintEditPart) {
+			return ((DurationConstraintEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			return ((ConstraintEditPart)targetEditPart).getMARelTypesOnTarget();
@@ -245,6 +261,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof TimeConstraintEditPart) {
 			return ((TimeConstraintEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
+		if(sourceEditPart instanceof TimeObservationEditPart) {
+			return ((TimeObservationEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if(sourceEditPart instanceof DurationConstraintEditPart) {
+			return ((DurationConstraintEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		if(sourceEditPart instanceof ConstraintEditPart) {
 			return ((ConstraintEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
@@ -295,6 +317,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof TimeConstraintEditPart) {
 			return ((TimeConstraintEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
+		if(targetEditPart instanceof TimeObservationEditPart) {
+			return ((TimeObservationEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof DurationConstraintEditPart) {
+			return ((DurationConstraintEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
 		if(targetEditPart instanceof ConstraintEditPart) {
 			return ((ConstraintEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
@@ -344,6 +372,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof TimeConstraintEditPart) {
 			return ((TimeConstraintEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof TimeObservationEditPart) {
+			return ((TimeObservationEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof DurationConstraintEditPart) {
+			return ((DurationConstraintEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		if(sourceEditPart instanceof ConstraintEditPart) {
 			return ((ConstraintEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
