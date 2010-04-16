@@ -14,10 +14,13 @@
 package org.eclipse.papyrus.navigator.internal.ltk;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
@@ -37,7 +40,7 @@ import org.eclipse.ltk.core.refactoring.resource.MoveResourceChange;
  */
 public class MoveModelParticipant extends MoveParticipant {
 
-	private List<IFile> filesToMove = new ArrayList<IFile>();
+	private Set<IResource> filesToMove = new HashSet<IResource>();
 
 	private IContainer destination;
 
@@ -65,7 +68,7 @@ public class MoveModelParticipant extends MoveParticipant {
 	public Change createChange(IProgressMonitor pm) throws CoreException, OperationCanceledException {
 		List<Change> changes = new ArrayList<Change>(filesToMove.size());
 
-		for(IFile path : filesToMove) {
+		for(IResource path : filesToMove) {
 			if(path.exists()) {
 				changes.add(new MoveResourceChange(path, destination));
 			}

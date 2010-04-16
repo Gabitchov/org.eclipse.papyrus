@@ -13,10 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.navigator.internal.ltk;
 
-import java.io.File;
-
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -113,11 +112,10 @@ public class RenameModelParticipant extends RenameParticipant {
 		} else {
 			newName = newName + '.' + ext; // Always append the extension
 		}
-		IPath path;
-		IPath resourcePath = fileToRename.getFullPath().removeFileExtension();
+
 		boolean otherFiles = false;
-		for(IFile file : ModelParticipantHelpers.getRelatedFiles(fileToRename)) {
-			path = resourcePath.addFileExtension(file.getFileExtension());
+		for(IResource file : ModelParticipantHelpers.getRelatedFiles(fileToRename)) {
+			IPath path = file.getFullPath();
 			// Only add the change if the resource exists
 			IFile renFile = parent.getFile(path.makeRelativeTo(parent.getFullPath()));
 			if(!path.equals(fileToRename.getFullPath()) && renFile.exists()) {

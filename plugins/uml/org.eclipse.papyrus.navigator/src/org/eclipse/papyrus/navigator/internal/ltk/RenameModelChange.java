@@ -20,8 +20,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -56,7 +58,7 @@ public class RenameModelChange extends Change {
 
 	private final IFile newFile;
 
-	private final List<IFile> relatedFiles;
+	private final Set<IResource> relatedFiles;
 
 	/**
 	 * Constructor.
@@ -76,7 +78,8 @@ public class RenameModelChange extends Change {
 
 		// Create the map of URI that are being modified in the resource set
 		relatedFiles = ModelParticipantHelpers.getRelatedFiles(oldFile);
-		for(IFile file : relatedFiles) {
+		relatedFiles.add(oldFile);
+		for(IResource file : relatedFiles) {
 			IPath path = file.getFullPath();
 			URI oldURI = getPlatformURI(path);
 			URI newURI = getPlatformURI(newPathWithoutExt.addFileExtension(path.getFileExtension()));
@@ -249,7 +252,7 @@ public class RenameModelChange extends Change {
 
 			// Then, remove the old model files
 			pm.subTask("Removing old files");
-			for(IFile file : relatedFiles) {
+			for(IResource file : relatedFiles) {
 				if(file.exists()) {
 					file.delete(true, new NullProgressMonitor());
 				}

@@ -15,6 +15,7 @@ package org.eclipse.papyrus.navigator.internal.ltk;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -38,7 +39,7 @@ import org.eclipse.ltk.core.refactoring.resource.DeleteResourceChange;
  */
 public class DeleteModelParticipant extends DeleteParticipant {
 
-	private List<IFile> filesToRemove;
+	private Set<IResource> filesToRemove;
 
 	/**
 	 * Overrides checkConditions.
@@ -63,7 +64,7 @@ public class DeleteModelParticipant extends DeleteParticipant {
 	@Override
 	public Change createChange(IProgressMonitor pm) throws CoreException, OperationCanceledException {
 		List<Change> changes = new ArrayList<Change>(filesToRemove.size());
-		for(IFile file : filesToRemove) {
+		for(IResource file : filesToRemove) {
 			if(file.exists()) {
 				changes.add(new InternalDeleteResourceChange(file.getFullPath(), true));
 			}
