@@ -58,7 +58,7 @@ public class UMLLabelProvider extends AdapterFactoryLabelProvider implements ICo
 	}
 
 	public UMLLabelProvider() {
-		super(UMLComposedAdapterFactory.getAdapterFactory());
+		super(NavigatorComposedAdapterFactory.getAdapterFactory());
 	}
 
 	public void init(ICommonContentExtensionSite config) {

@@ -411,5 +411,11 @@
       </description>
    </wizard>
 </extension>
+<extension
+      point="org.eclipse.papyrus.navigator.providerAdapterFactory">
+   <providerAdapterFactory
+         adapterFactoryClass="org.eclipse.papyrus.diagram.common.providers.UMLComposedAdapterFactory">
+   </providerAdapterFactory>
+</extension>
 
 </plugin>

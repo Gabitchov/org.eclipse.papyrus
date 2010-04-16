@@ -60,7 +60,7 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 	/**
 	 * {@link ComposedAdapterFactory} used to get the adapters to content providers.
 	 */
-	protected static ComposedAdapterFactory umlComposedAdapterFactory = UMLComposedAdapterFactory.getAdapterFactory();
+	protected static ComposedAdapterFactory umlComposedAdapterFactory = NavigatorComposedAdapterFactory.getAdapterFactory();
 
 	/**
 	 * Factory to adapt children grouping elements
