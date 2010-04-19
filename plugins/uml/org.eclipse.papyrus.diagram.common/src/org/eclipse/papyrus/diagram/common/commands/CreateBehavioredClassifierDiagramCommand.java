@@ -21,6 +21,7 @@ import org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramComma
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.BehavioredClassifier;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
 
@@ -131,8 +132,8 @@ public abstract class CreateBehavioredClassifierDiagramCommand extends AbstractP
 
 	@Override
 	protected void runAsTransaction(DiResourceSet diResourceSet, EObject container, String name) {
-		if(name == null && container instanceof Behavior) {
-			setName(((Behavior)container).getName());
+		if(name == null && container instanceof NamedElement) {
+			setName(((NamedElement)container).getName());
 			if(!"".equals(getName())) {
 				// initialize name with activity's name
 				name = openDiagramNameDialog(getName());
