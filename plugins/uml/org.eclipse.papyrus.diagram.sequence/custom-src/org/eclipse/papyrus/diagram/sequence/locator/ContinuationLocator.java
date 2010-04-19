@@ -27,19 +27,7 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
  */
 public class ContinuationLocator extends BorderItemLocator {
 
-	/**
-	 * To locate the continuation at the bottom of the figure
-	 */
-	public static final int BOTTOM = PositionConstants.SOUTH;
-
-	/**
-	 * To locate the continuation at the top of the figure
-	 */
-	public static final int TOP = PositionConstants.NORTH;
-
 	private static final int MARGIN = 2;
-
-
 
 	/**
 	 * Constructor

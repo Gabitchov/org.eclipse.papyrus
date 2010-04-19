@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
@@ -1546,7 +1547,7 @@ AbstractBorderItemEditPart {
 
 		if(UMLPackage.eINSTANCE.getContinuation_Setting().equals(notification.getFeature())) {
 			IBorderItemLocator borderItemLocator = getBorderItemLocator();
-			int newValue = (Boolean)notification.getNewValue() ? ContinuationLocator.BOTTOM : ContinuationLocator.TOP;
+			int newValue = (Boolean)notification.getNewValue() ? PositionConstants.SOUTH : PositionConstants.NORTH;
 			if(borderItemLocator instanceof ContinuationLocator) {
 				((ContinuationLocator)borderItemLocator).setPreferredSideOfParent(newValue);
 				// Refresh the position of the figure

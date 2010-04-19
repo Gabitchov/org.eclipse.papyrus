@@ -293,10 +293,10 @@ AbstractBorderedShapeEditPart {
 			org.eclipse.gmf.runtime.notation.Shape shape = (org.eclipse.gmf.runtime.notation.Shape)model;
 			EObject eObject = shape.getElement();
 			if(eObject instanceof Continuation) {
-				return ((Continuation)eObject).isSetting() ? ContinuationLocator.BOTTOM : ContinuationLocator.TOP;
+				return ((Continuation)eObject).isSetting() ? PositionConstants.SOUTH : PositionConstants.NORTH;
 			}
 		}
-		return ContinuationLocator.TOP;
+		return PositionConstants.NORTH;
 	}
 
 	/**
