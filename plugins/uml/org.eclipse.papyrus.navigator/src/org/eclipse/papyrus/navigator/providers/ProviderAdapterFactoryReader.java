@@ -35,7 +35,6 @@ public class ProviderAdapterFactoryReader extends DescriptorExtensionFactory {
 		
 		Class<AdapterFactory> adapterFactoryClass = (Class<AdapterFactory>)parseClass(element, ADAPTER_FACTORY_CLASS_ATTR,
 				PROVIDER_ADAPTER_FACTORY_EXTENSIONPOINT);
-		System.out.println(adapterFactoryClass.getName());
 		try {
 			return adapterFactoryClass.newInstance();
 		} catch (Exception e) {
