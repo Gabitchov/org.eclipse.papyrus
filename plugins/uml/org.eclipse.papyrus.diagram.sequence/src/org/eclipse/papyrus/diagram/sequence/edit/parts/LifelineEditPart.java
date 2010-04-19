@@ -52,7 +52,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
@@ -67,7 +66,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.diagram.common.draw2d.LifelineDotLineFigure;
 import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy;
 import org.eclipse.papyrus.diagram.common.providers.UIAdapterImpl;
@@ -78,6 +76,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineItemSemanticEd
 import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.figures.LifelineAnchor;
 import org.eclipse.papyrus.diagram.sequence.figures.LifelineDotLineCustomFigure;
+import org.eclipse.papyrus.diagram.sequence.locator.ContinuationLocator;
 import org.eclipse.papyrus.diagram.sequence.locator.TimeMarkElementPositionLocator;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
@@ -87,7 +86,6 @@ import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.uml2.uml.ConnectableElement;
-import org.eclipse.uml2.uml.DestructionEvent;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
@@ -274,11 +272,13 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 
 
 
+		//Papyrus Gencode :Specific locator for the destructionEvent
 		if(childEditPart instanceof DestructionEventEditPart) {
-			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
+			IBorderItemLocator locator = new ContinuationLocator(getMainFigure(), PositionConstants.SOUTH);
 			getBorderedFigure().getBorderItemContainer().add(((DestructionEventEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
+
 
 
 
@@ -1833,21 +1833,21 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 			if(newValue instanceof MessageOccurrenceSpecification) {
 				MessageOccurrenceSpecification newMessageOccurrenceSpecification = (MessageOccurrenceSpecification)newValue;
 				notifier.listenObject(newMessageOccurrenceSpecification);
-//				if(newMessageOccurrenceSpecification.getEvent() instanceof DestructionEvent) {
-//					getPrimaryShape().getFigureLifelineDotLineFigure().setCrossAtEnd(true);
-//					getPrimaryShape().repaint();
-//				}
+				//				if(newMessageOccurrenceSpecification.getEvent() instanceof DestructionEvent) {
+				//					getPrimaryShape().getFigureLifelineDotLineFigure().setCrossAtEnd(true);
+				//					getPrimaryShape().repaint();
+				//				}
 			}
 		} else if(UMLPackage.eINSTANCE.getOccurrenceSpecification_Event().equals(feature)) {
-//			// Handle destruction event
-//			Object newValue = notification.getNewValue();
-//			if(notification.getOldValue() instanceof DestructionEvent && newValue instanceof DestructionEvent == false) {
-//				//updateCrossEnd();
-//			}
-//			if(newValue instanceof DestructionEvent) {
-//				getPrimaryShape().getFigureLifelineDotLineFigure().setCrossAtEnd(true);
-//				getPrimaryShape().repaint();
-//			}
+			//			// Handle destruction event
+			//			Object newValue = notification.getNewValue();
+			//			if(notification.getOldValue() instanceof DestructionEvent && newValue instanceof DestructionEvent == false) {
+			//				//updateCrossEnd();
+			//			}
+			//			if(newValue instanceof DestructionEvent) {
+			//				getPrimaryShape().getFigureLifelineDotLineFigure().setCrossAtEnd(true);
+			//				getPrimaryShape().repaint();
+			//			}
 		} else if(notification.getNotifier() instanceof Bounds) {
 			updateCoveredByLifelines((Bounds)notification.getNotifier());
 		}
@@ -1927,28 +1927,28 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 		}
 	}
 
-//	/**
-//	 * Update the cross end
-//	 */
-//	private void updateCrossEnd() {
-//		LifelineDotLineFigure figureLifelineDotLineFigure = getPrimaryShape().getFigureLifelineDotLineFigure();
-//		if(figureLifelineDotLineFigure != null) {
-//			figureLifelineDotLineFigure.setCrossAtEnd(false);
-//			Lifeline lifeline = (Lifeline)resolveSemanticElement();
-//			if(lifeline != null) {
-//				for(InteractionFragment interactionFragment : lifeline.getCoveredBys()) {
-//					if(interactionFragment instanceof MessageOccurrenceSpecification) {
-//						MessageOccurrenceSpecification messageOccurrenceSpecification = (MessageOccurrenceSpecification)interactionFragment;
-//						notifier.listenObject(messageOccurrenceSpecification);
-//						if(messageOccurrenceSpecification.getEvent() instanceof DestructionEvent) {
-//							figureLifelineDotLineFigure.setCrossAtEnd(true);
-//						}
-//					}
-//				}
-//				getPrimaryShape().repaint();
-//			}
-//		}
-//	}
+	//	/**
+	//	 * Update the cross end
+	//	 */
+	//	private void updateCrossEnd() {
+	//		LifelineDotLineFigure figureLifelineDotLineFigure = getPrimaryShape().getFigureLifelineDotLineFigure();
+	//		if(figureLifelineDotLineFigure != null) {
+	//			figureLifelineDotLineFigure.setCrossAtEnd(false);
+	//			Lifeline lifeline = (Lifeline)resolveSemanticElement();
+	//			if(lifeline != null) {
+	//				for(InteractionFragment interactionFragment : lifeline.getCoveredBys()) {
+	//					if(interactionFragment instanceof MessageOccurrenceSpecification) {
+	//						MessageOccurrenceSpecification messageOccurrenceSpecification = (MessageOccurrenceSpecification)interactionFragment;
+	//						notifier.listenObject(messageOccurrenceSpecification);
+	//						if(messageOccurrenceSpecification.getEvent() instanceof DestructionEvent) {
+	//							figureLifelineDotLineFigure.setCrossAtEnd(true);
+	//						}
+	//					}
+	//				}
+	//				getPrimaryShape().repaint();
+	//			}
+	//		}
+	//	}
 
 	/**
 	 * Overrides to return the DashLineFigure instead of this figure. This is necessary for the

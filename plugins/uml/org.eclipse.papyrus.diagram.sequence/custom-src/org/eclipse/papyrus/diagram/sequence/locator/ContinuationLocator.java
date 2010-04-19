@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.sequence.locator;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -29,14 +30,12 @@ public class ContinuationLocator extends BorderItemLocator {
 	/**
 	 * To locate the continuation at the bottom of the figure
 	 */
-	public static final int BOTTOM = 0;
+	public static final int BOTTOM = PositionConstants.SOUTH;
 
 	/**
 	 * To locate the continuation at the top of the figure
 	 */
-	public static final int TOP = 1;
-
-	private int location;
+	public static final int TOP = PositionConstants.NORTH;
 
 	private static final int MARGIN = 2;
 
@@ -51,8 +50,7 @@ public class ContinuationLocator extends BorderItemLocator {
 	 *        ContinuationLocator.TOP or ContinuationLocator.BOTTOM
 	 */
 	public ContinuationLocator(IFigure parentFigure, int location) {
-		super(parentFigure);
-		this.location = location;
+		super(parentFigure, location);
 	}
 
 	/**
@@ -66,25 +64,11 @@ public class ContinuationLocator extends BorderItemLocator {
 
 		Rectangle bounds = getParentBorder();
 		Dimension borderItemSize = getSize(borderItem);
-		if(location == BOTTOM) {
+		if(getPreferredSideOfParent() == PositionConstants.SOUTH) {
 			return new Point(bounds.x + MARGIN, bounds.y + bounds.height - borderItemSize.height - MARGIN);
 		}
 		return new Point(bounds.x + MARGIN, bounds.y + MARGIN);
 	}
-
-	/**
-	 * Set the new location of the figure.
-	 * 
-	 * @param location
-	 *        It must be ContinuationLocator.TOP or ContinuationLocator.BOTTOM
-	 */
-	public void setLocation(int location) {
-		if(this.location != location && (location == BOTTOM || location == TOP)) {
-			this.location = location;
-		}
-	}
-
-
 
 	/**
 	 * Overrides :

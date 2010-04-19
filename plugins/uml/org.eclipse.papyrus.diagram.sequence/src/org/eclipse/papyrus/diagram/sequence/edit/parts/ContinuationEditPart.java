@@ -1548,7 +1548,7 @@ AbstractBorderItemEditPart {
 			IBorderItemLocator borderItemLocator = getBorderItemLocator();
 			int newValue = (Boolean)notification.getNewValue() ? ContinuationLocator.BOTTOM : ContinuationLocator.TOP;
 			if(borderItemLocator instanceof ContinuationLocator) {
-				((ContinuationLocator)borderItemLocator).setLocation(newValue);
+				((ContinuationLocator)borderItemLocator).setPreferredSideOfParent(newValue);
 				// Refresh the position of the figure
 				borderItemLocator.relocate(this.getFigure());
 			}

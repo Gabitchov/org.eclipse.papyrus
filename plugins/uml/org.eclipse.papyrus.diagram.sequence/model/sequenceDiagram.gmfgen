@@ -5685,5 +5685,10 @@
         comment="Affixed locator for Lifelines to place element with a time bar"
         classpath="org.eclipse.papyrus.diagram.sequence.locator.TimeMarkElementPositionLocator"
         genChildSideAffixedNode="/0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:SpecificLocator"
+        comment="Specific locator for the destructionEvent"
+        classpath="org.eclipse.papyrus.diagram.sequence.locator.ContinuationLocator"
+        genChildSideAffixedNode="/0/@diagram/@childNodes.13"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>
