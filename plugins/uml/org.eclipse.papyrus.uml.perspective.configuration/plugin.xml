@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.ui.perspectiveconfiguration">
+      <configuration
+            perspectiveID="org.eclipse.papyrus.core.perspective">
+         <menu
+               menuID="file">
+         </menu>
+         <menu
+               menuID="edit">
+         </menu>
+         <menu
+               menuID="org.eclipse.papyrus.ui.menu">
+         </menu>
+         <menu
+               menuID="window">
+         </menu>
+         <menu
+               menuID="help">
+         </menu>
+         <toolbar
+               toolbarID="org.eclipse.papyrus.diagram.ui.toolbar">
+         </toolbar>
+         <preferencePage
+               preferencepageID="org.eclipse.papyrus.preferences.generalcategory">
+         </preferencePage>
+         <category
+               categoryID="org.eclipse.ui.category.file">
+         </category>
+         <category
+               categoryID="org.eclipse.ui.category.edit">
+         </category>
+         <category
+               categoryID="org.eclipse.ui.category.help">
+         </category>
+         <category
+               categoryID="org.eclipse.papyrus.editor.category">
+         </category>
+      </configuration>
+   </extension>
+
+</plugin>
