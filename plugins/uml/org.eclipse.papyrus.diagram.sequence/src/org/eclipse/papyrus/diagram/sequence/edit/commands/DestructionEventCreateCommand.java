@@ -29,7 +29,9 @@ import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.uml2.uml.DestructionEvent;
+import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
 
@@ -90,15 +92,26 @@ public class DestructionEventCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * A DestructionEvent on a lifeline can only be created if it doesn't exist yet a destructionEvent on that lifeline.
+	 * @generated NOT
 	 */
 	public boolean canExecute() {
-
-
+		
+		// Get the lifeline
+		Lifeline lifeline = (Lifeline)getElementToEdit();
+		 
+		for(InteractionFragment ift :lifeline.getCoveredBys())
+		{
+			if(ift instanceof OccurrenceSpecification)
+			{
+				// For each occurenceSpecification which covered the lifeline, check the associated event.
+				OccurrenceSpecification os = (OccurrenceSpecification)ift;
+				if(os.getEvent() instanceof DestructionEvent){
+					return false;
+				}
+			}
+		}
 		return true;
-
-
-
 	}
 
 	/**
