@@ -281,7 +281,7 @@ public class UMLVisualIDRegistry {
 				return DurationConstraintEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getDestructionEvent().isSuperTypeOf(domainElement.eClass())
-				
+
 			) {
 				return DestructionEventEditPart.VISUAL_ID;
 			}

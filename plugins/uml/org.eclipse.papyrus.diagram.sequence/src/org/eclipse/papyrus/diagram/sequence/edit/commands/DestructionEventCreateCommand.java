@@ -102,7 +102,7 @@ public class DestructionEventCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
@@ -113,9 +113,9 @@ public class DestructionEventCreateCommand extends EditElementCommand {
 		DestructionEvent destructionEvent = UMLFactory.eINSTANCE.createDestructionEvent();
 		Lifeline lifeline = (Lifeline)getElementToEdit();
 		Package pack = lifeline.getNearestPackage();
-		
+
 		CommandHelper.doCreateDestructionEvent(destructionEvent, lifeline, modelContainer);
-		
+
 		pack.getPackagedElements().add(destructionEvent);
 
 
