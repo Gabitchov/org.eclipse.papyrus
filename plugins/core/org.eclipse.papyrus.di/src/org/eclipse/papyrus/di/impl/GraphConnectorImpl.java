@@ -151,7 +151,7 @@ public class GraphConnectorImpl extends EObjectImpl implements GraphConnector {
 	 * @generated
 	 */
 	public GraphElement getGraphElement() {
-		if(eContainerFeatureID != DiPackage.GRAPH_CONNECTOR__GRAPH_ELEMENT)
+		if(eContainerFeatureID() != DiPackage.GRAPH_CONNECTOR__GRAPH_ELEMENT)
 			return null;
 		return (GraphElement)eContainer();
 	}
@@ -174,7 +174,7 @@ public class GraphConnectorImpl extends EObjectImpl implements GraphConnector {
 	 * @generated
 	 */
 	public void setGraphElement(GraphElement newGraphElement) {
-		if(newGraphElement != eInternalContainer() || (eContainerFeatureID != DiPackage.GRAPH_CONNECTOR__GRAPH_ELEMENT && newGraphElement != null)) {
+		if(newGraphElement != eInternalContainer() || (eContainerFeatureID() != DiPackage.GRAPH_CONNECTOR__GRAPH_ELEMENT && newGraphElement != null)) {
 			if(EcoreUtil.isAncestor(this, newGraphElement))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -234,7 +234,7 @@ public class GraphConnectorImpl extends EObjectImpl implements GraphConnector {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch(eContainerFeatureID) {
+		switch(eContainerFeatureID()) {
 		case DiPackage.GRAPH_CONNECTOR__GRAPH_ELEMENT:
 			return eInternalContainer().eInverseRemove(this, DiPackage.GRAPH_ELEMENT__ANCHORAGE, GraphElement.class, msgs);
 		}

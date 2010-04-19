@@ -168,7 +168,7 @@ public class ReferenceImpl extends DiagramElementImpl implements Reference {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch(featureID) {
 		case DiPackage.REFERENCE__IS_INDIVIDUAL_REPRESENTATION:
-			return isIsIndividualRepresentation() ? Boolean.TRUE : Boolean.FALSE;
+			return isIsIndividualRepresentation();
 		case DiPackage.REFERENCE__REFERENCED:
 			if(resolve)
 				return getReferenced();
@@ -187,7 +187,7 @@ public class ReferenceImpl extends DiagramElementImpl implements Reference {
 	public void eSet(int featureID, Object newValue) {
 		switch(featureID) {
 		case DiPackage.REFERENCE__IS_INDIVIDUAL_REPRESENTATION:
-			setIsIndividualRepresentation(((Boolean)newValue).booleanValue());
+			setIsIndividualRepresentation((Boolean)newValue);
 			return;
 		case DiPackage.REFERENCE__REFERENCED:
 			setReferenced((DiagramElement)newValue);

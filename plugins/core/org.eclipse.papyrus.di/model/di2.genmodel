@@ -7,7 +7,7 @@
     editorPluginClass="org.eclipse.papyrus.di.presentation.diEditorPlugin" testSuiteClass="org.eclipse.papyrus.di.tests.diAllTests"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml">
   <foreignModel>di.ecore</foreignModel>
-  <genPackages prefix="Di" basePackage="org.eclipse.papyrus" disposableProviderFactory="true"
+  <genPackages prefix="Di" basePackage="org.eclipse.papyrus" resource="XMI" disposableProviderFactory="true"
       ecorePackage="di.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="di.ecore#//PapyrusKeyEnumeration">
       <genEnumLiterals ecoreEnumLiteral="di.ecore#//PapyrusKeyEnumeration/papyruseditpart"/>

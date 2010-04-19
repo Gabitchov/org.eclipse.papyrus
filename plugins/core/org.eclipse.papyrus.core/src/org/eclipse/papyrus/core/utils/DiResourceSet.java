@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.core.listenerservice.ModelListenerManager;
 
@@ -73,6 +74,12 @@ public class DiResourceSet extends ResourceSetImpl {
 	private Resource notationResource;
 
 	private TransactionalEditingDomain transactionalEditingDomain;
+
+	public DiResourceSet() {
+		super();
+		GMFResourceFactory gmfFactory = new GMFResourceFactory();
+		getResourceFactoryRegistry().getExtensionToFactoryMap().put(NOTATION_FILE_EXTENSION, gmfFactory);
+	}
 
 	/**
 	 * Just loads the model into the current resource set.

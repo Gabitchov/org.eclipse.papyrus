@@ -275,7 +275,7 @@ public class DiagramLinkImpl extends EObjectImpl implements DiagramLink {
 				return getDiagram();
 			return basicGetDiagram();
 		case DiPackage.DIAGRAM_LINK__ZOOM:
-			return new Double(getZoom());
+			return getZoom();
 		case DiPackage.DIAGRAM_LINK__VIEWPORT:
 			return getViewport();
 		case DiPackage.DIAGRAM_LINK__GRAPH_ELEMENT:
@@ -299,7 +299,7 @@ public class DiagramLinkImpl extends EObjectImpl implements DiagramLink {
 			setDiagram((Diagram)newValue);
 			return;
 		case DiPackage.DIAGRAM_LINK__ZOOM:
-			setZoom(((Double)newValue).doubleValue());
+			setZoom((Double)newValue);
 			return;
 		case DiPackage.DIAGRAM_LINK__VIEWPORT:
 			setViewport((Point)newValue);

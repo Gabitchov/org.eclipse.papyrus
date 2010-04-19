@@ -371,7 +371,7 @@ public class DiagramImpl extends GraphNodeImpl implements Diagram {
 		case DiPackage.DIAGRAM__NAME:
 			return getName();
 		case DiPackage.DIAGRAM__ZOOM:
-			return new Double(getZoom());
+			return getZoom();
 		case DiPackage.DIAGRAM__VIEWPORT:
 			return getViewport();
 		case DiPackage.DIAGRAM__DIAGRAM_LINK:
@@ -399,7 +399,7 @@ public class DiagramImpl extends GraphNodeImpl implements Diagram {
 			setName((String)newValue);
 			return;
 		case DiPackage.DIAGRAM__ZOOM:
-			setZoom(((Double)newValue).doubleValue());
+			setZoom((Double)newValue);
 			return;
 		case DiPackage.DIAGRAM__VIEWPORT:
 			setViewport((Point)newValue);

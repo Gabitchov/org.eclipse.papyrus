@@ -347,15 +347,15 @@ public class EllipseImpl extends GraphicPrimitiveImpl implements Ellipse {
 		case DiPackage.ELLIPSE__CENTER:
 			return getCenter();
 		case DiPackage.ELLIPSE__RADIUS_X:
-			return new Double(getRadiusX());
+			return getRadiusX();
 		case DiPackage.ELLIPSE__RADIUS_Y:
-			return new Double(getRadiusY());
+			return getRadiusY();
 		case DiPackage.ELLIPSE__ROTATION:
-			return new Double(getRotation());
+			return getRotation();
 		case DiPackage.ELLIPSE__START_ANGLE:
-			return new Double(getStartAngle());
+			return getStartAngle();
 		case DiPackage.ELLIPSE__END_ANGLE:
-			return new Double(getEndAngle());
+			return getEndAngle();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -373,19 +373,19 @@ public class EllipseImpl extends GraphicPrimitiveImpl implements Ellipse {
 			setCenter((Point)newValue);
 			return;
 		case DiPackage.ELLIPSE__RADIUS_X:
-			setRadiusX(((Double)newValue).doubleValue());
+			setRadiusX((Double)newValue);
 			return;
 		case DiPackage.ELLIPSE__RADIUS_Y:
-			setRadiusY(((Double)newValue).doubleValue());
+			setRadiusY((Double)newValue);
 			return;
 		case DiPackage.ELLIPSE__ROTATION:
-			setRotation(((Double)newValue).doubleValue());
+			setRotation((Double)newValue);
 			return;
 		case DiPackage.ELLIPSE__START_ANGLE:
-			setStartAngle(((Double)newValue).doubleValue());
+			setStartAngle((Double)newValue);
 			return;
 		case DiPackage.ELLIPSE__END_ANGLE:
-			setEndAngle(((Double)newValue).doubleValue());
+			setEndAngle((Double)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

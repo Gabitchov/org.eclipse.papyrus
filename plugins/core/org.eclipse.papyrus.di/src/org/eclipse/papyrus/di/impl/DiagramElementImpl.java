@@ -410,7 +410,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	 * @generated
 	 */
 	public GraphElement getContainer() {
-		if(eContainerFeatureID != DiPackage.DIAGRAM_ELEMENT__CONTAINER)
+		if(eContainerFeatureID() != DiPackage.DIAGRAM_ELEMENT__CONTAINER)
 			return null;
 		return (GraphElement)eContainer();
 	}
@@ -433,7 +433,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	 * @generated
 	 */
 	public void setContainer(GraphElement newContainer) {
-		if(newContainer != eInternalContainer() || (eContainerFeatureID != DiPackage.DIAGRAM_ELEMENT__CONTAINER && newContainer != null)) {
+		if(newContainer != eInternalContainer() || (eContainerFeatureID() != DiPackage.DIAGRAM_ELEMENT__CONTAINER && newContainer != null)) {
 			if(EcoreUtil.isAncestor(this, newContainer))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -829,7 +829,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch(eContainerFeatureID) {
+		switch(eContainerFeatureID()) {
 		case DiPackage.DIAGRAM_ELEMENT__CONTAINER:
 			return eInternalContainer().eInverseRemove(this, DiPackage.GRAPH_ELEMENT__CONTAINED, GraphElement.class, msgs);
 		}
@@ -848,7 +848,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 		case DiPackage.DIAGRAM_ELEMENT__PROPERTY:
 			return getProperty();
 		case DiPackage.DIAGRAM_ELEMENT__IS_VISIBLE:
-			return isIsVisible() ? Boolean.TRUE : Boolean.FALSE;
+			return isIsVisible();
 		case DiPackage.DIAGRAM_ELEMENT__REFERENCE:
 			return getReference();
 		case DiPackage.DIAGRAM_ELEMENT__CONTAINER:
@@ -856,11 +856,11 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 		case DiPackage.DIAGRAM_ELEMENT__FONT_FAMILY:
 			return getFontFamily();
 		case DiPackage.DIAGRAM_ELEMENT__FONT_SIZE:
-			return new Integer(getFontSize());
+			return getFontSize();
 		case DiPackage.DIAGRAM_ELEMENT__LINE_STYLE:
 			return getLineStyle();
 		case DiPackage.DIAGRAM_ELEMENT__LINE_THICKNESS:
-			return new Integer(getLineThickness());
+			return getLineThickness();
 		case DiPackage.DIAGRAM_ELEMENT__FONT_COLOR:
 			return getFontColor();
 		case DiPackage.DIAGRAM_ELEMENT__FOREGROUND_COLOR:
@@ -870,7 +870,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 		case DiPackage.DIAGRAM_ELEMENT__BORDER_COLOR:
 			return getBorderColor();
 		case DiPackage.DIAGRAM_ELEMENT__TRANSLUCENT:
-			return isTranslucent() ? Boolean.TRUE : Boolean.FALSE;
+			return isTranslucent();
 		case DiPackage.DIAGRAM_ELEMENT__SEMANTIC_PARENT:
 			if(resolve)
 				return getSemanticParent();
@@ -896,7 +896,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 			getProperty().addAll((Collection<? extends Property>)newValue);
 			return;
 		case DiPackage.DIAGRAM_ELEMENT__IS_VISIBLE:
-			setIsVisible(((Boolean)newValue).booleanValue());
+			setIsVisible((Boolean)newValue);
 			return;
 		case DiPackage.DIAGRAM_ELEMENT__REFERENCE:
 			getReference().clear();
@@ -909,13 +909,13 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 			setFontFamily((String)newValue);
 			return;
 		case DiPackage.DIAGRAM_ELEMENT__FONT_SIZE:
-			setFontSize(((Integer)newValue).intValue());
+			setFontSize((Integer)newValue);
 			return;
 		case DiPackage.DIAGRAM_ELEMENT__LINE_STYLE:
 			setLineStyle((String)newValue);
 			return;
 		case DiPackage.DIAGRAM_ELEMENT__LINE_THICKNESS:
-			setLineThickness(((Integer)newValue).intValue());
+			setLineThickness((Integer)newValue);
 			return;
 		case DiPackage.DIAGRAM_ELEMENT__FONT_COLOR:
 			setFontColor((RGB)newValue);
@@ -930,7 +930,7 @@ public class DiagramElementImpl extends EObjectImpl implements DiagramElement {
 			setBorderColor((RGB)newValue);
 			return;
 		case DiPackage.DIAGRAM_ELEMENT__TRANSLUCENT:
-			setTranslucent(((Boolean)newValue).booleanValue());
+			setTranslucent((Boolean)newValue);
 			return;
 		case DiPackage.DIAGRAM_ELEMENT__SEMANTIC_PARENT:
 			setSemanticParent((DiagramElement)newValue);

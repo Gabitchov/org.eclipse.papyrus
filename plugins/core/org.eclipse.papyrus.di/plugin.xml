@@ -16,6 +16,13 @@
        class = "org.eclipse.papyrus.di.DiPackage"
        genModel = "model/di2.genmodel" /> 
   </extension>
+  <extension
+        point="org.eclipse.emf.ecore.extension_parser">
+     <parser
+           class="org.eclipse.papyrus.di.util.DiResourceFactoryImpl"
+           type="di">
+     </parser>
+  </extension>
 
 </plugin>
 
