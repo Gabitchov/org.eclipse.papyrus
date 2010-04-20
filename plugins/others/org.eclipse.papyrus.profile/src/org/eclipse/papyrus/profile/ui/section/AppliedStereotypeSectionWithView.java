@@ -111,13 +111,15 @@ public class AppliedStereotypeSectionWithView extends AbstractPropertySection {
 					appliedStereotypeComposite.setInput(new StereotypedElementTreeObject(UMLElement, editingDomain));
 				}
 			} 
-			EObject eobject=resolveSemanticObject(input);
-			
-			if(eobject instanceof Element) {
-				Element UMLElement = (Element)eobject;
-				appliedStereotypeComposite.setDiagramElement(UMLElement);
-				appliedStereotypeComposite.setElement(UMLElement);
-				appliedStereotypeComposite.setInput(new StereotypedElementTreeObject(UMLElement, editingDomain));
+			else{
+				EObject eobject=resolveSemanticObject(input);
+
+				if(eobject instanceof Element) {
+					Element UMLElement = (Element)eobject;
+					appliedStereotypeComposite.setDiagramElement(null);
+					appliedStereotypeComposite.setElement(UMLElement);
+					appliedStereotypeComposite.setInput(new StereotypedElementTreeObject(UMLElement, editingDomain));
+				}
 			}
 
 		}

@@ -83,13 +83,15 @@ public class AppliedProfileSection extends AbstractPropertySection {
 					appliedProfileComposite.setSelection(selection);
 				}
 			} 
-			EObject eObject= resolveSemanticObject(input);
-			if(eObject!=null &&eObject instanceof EObject) {
-				appliedProfileComposite.setSelection(selection);
-			}
-			if(part instanceof IEditingDomainProvider) {
-				TransactionalEditingDomain editingDomain = (TransactionalEditingDomain)((IEditingDomainProvider)part).getEditingDomain();
-				appliedProfileComposite.setDomain(editingDomain);
+			else{
+				EObject eObject= resolveSemanticObject(input);
+				if(eObject!=null &&eObject instanceof EObject) {
+					appliedProfileComposite.setSelection(selection);
+				}
+				if(part instanceof IEditingDomainProvider) {
+					TransactionalEditingDomain editingDomain = (TransactionalEditingDomain)((IEditingDomainProvider)part).getEditingDomain();
+					appliedProfileComposite.setDomain(editingDomain);
+				}
 			}
 		}
 	}
