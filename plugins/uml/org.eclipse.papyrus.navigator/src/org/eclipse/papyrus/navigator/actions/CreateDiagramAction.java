@@ -12,6 +12,7 @@ package org.eclipse.papyrus.navigator.actions;
 
 import static org.eclipse.papyrus.navigator.internal.Activator.log;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.Action;
 import org.eclipse.papyrus.core.extension.NotFoundException;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
@@ -19,7 +20,6 @@ import org.eclipse.papyrus.core.extension.commands.CreationCommandRegistry;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.uml2.uml.PackageableElement;
 
 /**
  * Action used to create a new diagram for given type
@@ -28,7 +28,7 @@ import org.eclipse.uml2.uml.PackageableElement;
  */
 public class CreateDiagramAction extends Action {
 
-	private final PackageableElement container;
+	private final EObject container;
 
 	private final CreationCommandDescriptor commandDescriptor;
 
@@ -40,7 +40,7 @@ public class CreateDiagramAction extends Action {
 	 * @param selectedObject
 	 *        the selected Element on which the diagram is to be associated
 	 */
-	public CreateDiagramAction(PackageableElement selectedElement, CreationCommandDescriptor commandDescriptor) {
+	public CreateDiagramAction(EObject selectedElement, CreationCommandDescriptor commandDescriptor) {
 		this.container = selectedElement;
 		this.commandDescriptor = commandDescriptor;
 		setText(commandDescriptor.getLabel());

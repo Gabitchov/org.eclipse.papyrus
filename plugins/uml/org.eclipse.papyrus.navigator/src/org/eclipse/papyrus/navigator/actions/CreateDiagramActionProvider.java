@@ -11,12 +11,12 @@
  *******************************************************************************/
 package org.eclipse.papyrus.navigator.actions;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandRegistry;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
-import org.eclipse.uml2.uml.PackageableElement;
 
 /**
  * Provider used to create a new diagram actions
@@ -33,13 +33,13 @@ public class CreateDiagramActionProvider extends AbstractSubmenuActionProvider {
 	@Override
 	public void fillContextMenu(IMenuManager menu) {
 		Object selectedElement = getFirstSelectedElement();
-		if(selectedElement instanceof PackageableElement) {
-			PackageableElement packageableElement = (PackageableElement)selectedElement;
+		if(selectedElement instanceof EObject) {
+			EObject eObject = (EObject)selectedElement;
 			MenuManager newDiagramMenu = new MenuManager("New Diagram");
 			menu.add(newDiagramMenu);
 			for(CreationCommandDescriptor desc : getCreationCommandRegistry().getCommandDescriptors()) {
-				if(desc.getCondition() == null || desc.getCondition().create(packageableElement)) {
-					CreateDiagramAction createDiagramAction = new CreateDiagramAction(packageableElement, desc);
+				if(desc.getCondition() == null || desc.getCondition().create(eObject)) {
+					CreateDiagramAction createDiagramAction = new CreateDiagramAction(eObject, desc);
 					newDiagramMenu.add(createDiagramAction);
 				}
 			}
