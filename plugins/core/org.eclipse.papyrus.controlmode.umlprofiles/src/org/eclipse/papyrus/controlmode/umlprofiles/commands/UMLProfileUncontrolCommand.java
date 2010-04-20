@@ -49,7 +49,7 @@ public class UMLProfileUncontrolCommand implements IUncontrolCommand {
 			commandToModify.append(new ChangeCommand(domain, new Runnable() {
 
 				public void run() {
-					unapplyDuplicateProfiles(selection);
+					unapplyDuplicateProfiles(selection, target);
 				}
 			}));
 			break;
@@ -66,14 +66,21 @@ public class UMLProfileUncontrolCommand implements IUncontrolCommand {
 	}
 
 	/**
+	 * Unapply profiles duplicated for control action
 	 * @param selection
+	 * @param the resource target 
 	 */
-	private void unapplyDuplicateProfiles(final EObject selection) {
+	private void unapplyDuplicateProfiles(final EObject selection, Resource target) {
 		Package _package = (Package)selection;
-		for(Profile profile : _package.getAppliedProfiles()) {
-			// TODO check ii is eAnnotated to unapply it
-			// do not unapply it if it is not annotated
-			_package.unapplyProfile(profile);
+		EList<Profile> allAppliedProfiles = _package.getAllAppliedProfiles();
+		if (!allAppliedProfiles.isEmpty()) {
+			for(Profile profile : _package.getAppliedProfiles()) {
+				if (allAppliedProfiles.contains(profile)) {
+					// profile is duplicate, unapply it
+					_package.unapplyProfile(profile);
+				}
+			}
+			
 		}
 	}
 
