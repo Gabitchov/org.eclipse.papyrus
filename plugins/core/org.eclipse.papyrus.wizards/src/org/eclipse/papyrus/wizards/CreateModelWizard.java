@@ -137,7 +137,7 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 		if(domainModelURI == null) {
 			this.newModelFilePage = new NewModelFilePage("Create a new Papyrus model", "Create a new empty Papyrus model", selection, false);
 		}
-		selectDiagramKindPage = new SelectDiagramKindPage("Select kind of diagram", getModelFileExtension(), newModelFilePage);
+		selectDiagramKindPage = new SelectDiagramKindPage("Select kind of diagram", newModelFilePage);
 		// fjcano #293135 :: support model templates
 		selectTemplateWizardPage = new SelectTemplateWizardPage(Activator.PLUGIN_ID, null, null);
 	}

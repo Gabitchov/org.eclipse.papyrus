@@ -27,8 +27,6 @@ public class CreationCommandDescriptor {
 
 	protected String label;
 
-	protected String modelFileExtension;
-
 	protected ImageDescriptor icon;
 
 	private ICreationCondition condition;
@@ -41,10 +39,6 @@ public class CreationCommandDescriptor {
 		return label;
 	}
 
-	public String getModelFileExtension() {
-		return modelFileExtension;
-	}
-
 	public ImageDescriptor getIcon() {
 		return icon;
 	}
@@ -52,11 +46,10 @@ public class CreationCommandDescriptor {
 	public ICreationCondition getCondition() {
 		return condition;
 	}
-
-	public void setCondition(ICreationCondition condition) {
-		this.condition = condition;
+	public void setCondition(ICreationCondition condition){
+		this.condition= condition;
 		condition.setCommand(getCommandId());
-
+		
 	}
 
 	/**
