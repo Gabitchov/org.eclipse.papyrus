@@ -40,6 +40,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.DestructionEventCompleteItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.DestructionEventItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.figures.DestructionEventFigure;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
@@ -84,6 +85,7 @@ AbstractBorderItemEditPart {
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DestructionEventItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DestructionEventCompleteItemSemanticEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}

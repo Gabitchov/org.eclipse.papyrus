@@ -93,20 +93,19 @@ public class DestructionEventCreateCommand extends EditElementCommand {
 
 	/**
 	 * A DestructionEvent on a lifeline can only be created if it doesn't exist yet a destructionEvent on that lifeline.
+	 * 
 	 * @generated NOT
 	 */
 	public boolean canExecute() {
-		
+
 		// Get the lifeline
 		Lifeline lifeline = (Lifeline)getElementToEdit();
-		 
-		for(InteractionFragment ift :lifeline.getCoveredBys())
-		{
-			if(ift instanceof OccurrenceSpecification)
-			{
+
+		for(InteractionFragment ift : lifeline.getCoveredBys()) {
+			if(ift instanceof OccurrenceSpecification) {
 				// For each occurenceSpecification which covered the lifeline, check the associated event.
 				OccurrenceSpecification os = (OccurrenceSpecification)ift;
-				if(os.getEvent() instanceof DestructionEvent){
+				if(os.getEvent() instanceof DestructionEvent) {
 					return false;
 				}
 			}
