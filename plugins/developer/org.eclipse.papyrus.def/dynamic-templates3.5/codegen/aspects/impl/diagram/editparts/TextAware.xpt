@@ -251,7 +251,7 @@
 		java.util.List<org.eclipse.gmf.runtime.notation.View> views = org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil.findViews(parserElement, getViewer());
 		for (org.eclipse.gmf.runtime.notation.View view : views) {
 			if (org.eclipse.papyrus.umlutils.ui.helper.NameLabelIconHelper.showLabelIcon(view)) {
-				return UMLElementTypes.getImage(parserElement.eClass());
+				return «diagram.getElementTypesQualifiedClassName()».getImage(parserElement.eClass());
 			}
 		}
 		return null;
