@@ -1622,8 +1622,7 @@
             creationCondition="org.eclipse.papyrus.diagram.composite.CompositeDiagramCreationCondition"
             icon="icons/obj16/Diagram_CompositeStructureDiagram.gif"
             id="org.eclipse.papyrus.diagram.composite.createCompositeDiagram"
-            label="UML CompositeStructure Diagram"
-            modelFileExtension="uml">
+            label="UML CompositeStructure Diagram">
       </creationCommand>
    </extension>
    <extension

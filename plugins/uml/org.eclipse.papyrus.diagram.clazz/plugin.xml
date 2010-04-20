@@ -1242,8 +1242,7 @@
             creationCondition="org.eclipse.papyrus.diagram.clazz.ClassDiagramCreationCondition"
             icon="icons/ClassDiagram.gif"
             id="org.eclipse.papyrus.diagram.clazz.CreateClassDiagramCommand"
-            label="UML Class Diagram"
-            modelFileExtension="uml">
+            label="UML Class Diagram">
       </creationCommand>      
    </extension>
    <!--extension
