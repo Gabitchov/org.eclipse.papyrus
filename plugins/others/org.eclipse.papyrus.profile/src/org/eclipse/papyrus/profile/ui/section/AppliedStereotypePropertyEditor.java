@@ -75,19 +75,25 @@ public class AppliedStereotypePropertyEditor {
 		// VSLLabelEditorDialog valueDialog = new VSLLabelEditorDialog(this.getShell(), "", 0, (DataType)type);
 		// int val = valueDialog.open();
 
+		//A DataType is treated as a String. 
+		//This is due to the fact that a DataType is defined as a java.lang.String during the profile definition step. 
+		InputDialogPrimitiveType valueDialog = new InputDialogPrimitiveType(shell, property, null, -1);
+		int val = valueDialog.open();
+
 		// Treat Cancel case first
-		// if (val == InputDialogPrimitiveType.CANCEL) {
-		// Close dialog box
-		// valueDialog.close();
-		// And quit
-		return null;
-		// }
+		if (val == InputDialogPrimitiveType.CANCEL) {
+			// Close dialog box
+			valueDialog.close();
+			// And quit
+			return null;
+		}
 
 		// New object as string (user input)
-		// String dialogValue = valueDialog.getValue();
-		// Treat dialogValue
-		// newValue = Util.getValueObjectFromString(dialogValue, type);
-		// valueDialog.close();
+		String dialogValue = valueDialog.getValue();
+		//Treat dialogValue
+		Object newValue = Util.getValueObjectFromString(dialogValue, type);
+		valueDialog.close();
+		return newValue;
 	}
 
 	/**

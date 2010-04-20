@@ -15,6 +15,9 @@
 package org.eclipse.papyrus.profile.tree.objects;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.profile.ui.dialogs.InputDialogPrimitiveType;
+import org.eclipse.papyrus.profile.utils.Util;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 
@@ -32,29 +35,30 @@ public class DataTypeValueTreeObject extends ValueTreeObject {
 		Type type = property.getType();
 
 		// Creates a dialog box to enter value
-		// InputDialogPrimitiveType valueDialog = new InputDialogPrimitiveType(new Shell(), property, getValue());
+		InputDialogPrimitiveType valueDialog = new InputDialogPrimitiveType(new Shell(), property, getValue());
 
 		// VSLLabelEditorDialog valueDialog = new VSLLabelEditorDialog(new Shell(), getValue().toString(), 0, (DataType)type);
 
-		// int val = valueDialog.open();
+		int val = valueDialog.open();
 
 		// Treat Cancel case first
-		// if (val == InputDialogPrimitiveType.CANCEL) {
-		// Close dialog box
-		// valueDialog.close();
-		// And quit
-		return;
+		if (val == InputDialogPrimitiveType.CANCEL) {
+			// Close dialog box
+			valueDialog.close();
+			// And quit
+			return;
+		}
+
+		// New object as string (user input)
+		String dialogValue = valueDialog.getValue();
+		// Treat dialogValue
+		Object newValue = Util.getValueObjectFromString(dialogValue, type);
+
+		updateValue(newValue);
+
+		// Close dialog box and refresh table
+		valueDialog.close();
 	}
-	// New object as string (user input)
-	// String dialogValue = valueDialog.getValue();
-	// Treat dialogValue
-	// Object newValue = Util.getValueObjectFromString(dialogValue, type);
 
-	// updateValue(newValue);
-
-	// Close dialog box and refresh table
-	// valueDialog.close();
 }
-
-// }
 
