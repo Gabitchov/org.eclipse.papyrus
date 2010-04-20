@@ -14,6 +14,8 @@
 package org.eclipse.papyrus.diagram.usecase.edit.policies;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
@@ -37,17 +39,23 @@ import org.eclipse.uml2.uml.Element;
  */
 public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
 
-	/** The specific drop node. */
-	public int[] secificDropNode = { AssociationEditPart.VISUAL_ID };
-
 	/**
 	 * Instantiates a new custom diagram drag drop edit policy with the right link mapping helper
 	 */
 	public CustomDiagramDragDropEditPolicy() {
 		super(UseCaseLinkMappingHelper.getInstance());
-		init(secificDropNode);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Set<Integer> getDroppableElementVisualId() {
+		Set<Integer> droppableElementsVisualId = new HashSet<Integer>();
+		droppableElementsVisualId.add(AssociationEditPart.VISUAL_ID);
+		return droppableElementsVisualId;
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 */

@@ -14,9 +14,11 @@
 package org.eclipse.papyrus.diagram.activity.edit.policies;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Point;
@@ -88,15 +90,37 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	/** Point to translate successive local conditions to avoid overlapping */
 	private static final Point LOCAL_CONDITIONS_TRANSLATION_POINT = new Point(160, 0);
 
-	/** The specific drop node. */
-	public int[] secificDropNode = { OpaqueActionEditPart.VISUAL_ID, CallBehaviorActionEditPart.VISUAL_ID, CallOperationActionEditPart.VISUAL_ID, TimeConstraintAsLocalPrecondEditPart.VISUAL_ID, TimeConstraintAsLocalPostcondEditPart.VISUAL_ID, DurationConstraintAsLocalPrecondEditPart.VISUAL_ID, DurationConstraintAsLocalPostcondEditPart.VISUAL_ID, IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID, IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID, InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID, InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID, ConstraintAsLocalPrecondEditPart.VISUAL_ID, ConstraintAsLocalPostcondEditPart.VISUAL_ID, ObjectFlowEditPart.VISUAL_ID, ControlFlowEditPart.VISUAL_ID };
-
 	/**
 	 * Instantiates a new custom diagram drag drop edit policy with the right link mapping helper
 	 */
 	public CustomDiagramDragDropEditPolicy() {
 		super(ActivityLinkMappingHelper.getInstance());
-		init(secificDropNode);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Set<Integer> getDroppableElementVisualId() {
+		Set<Integer> droppableElementsVisualID = new HashSet<Integer>();
+		
+		droppableElementsVisualID.add(OpaqueActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(CallBehaviorActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(CallOperationActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(TimeConstraintAsLocalPrecondEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(TimeConstraintAsLocalPostcondEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(DurationConstraintAsLocalPrecondEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(DurationConstraintAsLocalPostcondEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ConstraintAsLocalPrecondEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ConstraintAsLocalPostcondEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ObjectFlowEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ControlFlowEditPart.VISUAL_ID);
+
+		return droppableElementsVisualID;
 	}
 
 	/**

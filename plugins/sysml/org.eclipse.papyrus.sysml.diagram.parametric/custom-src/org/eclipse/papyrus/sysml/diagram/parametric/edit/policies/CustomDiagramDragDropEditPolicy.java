@@ -14,7 +14,9 @@
 package org.eclipse.papyrus.sysml.diagram.parametric.edit.policies;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -50,10 +52,6 @@ import org.eclipse.uml2.uml.Property;
  */
 public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
 
-	/** The specific drop node. */
-	public int[] secificDropNode = { ConnectorEditPart.VISUAL_ID, ConstraintPropertyEditPart.VISUAL_ID,
-			PropertyEditPart.VISUAL_ID };
-
 	/** The container view where the drop is done */
 	private View containerView;
 
@@ -62,9 +60,20 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 */
 	public CustomDiagramDragDropEditPolicy() {
 		super(ConnectorLinkMappingHelper.getInstance());
-		init(secificDropNode);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Set<Integer> getDroppableElementVisualId() {
+		Set<Integer> droppableElementsVisualId = new HashSet<Integer>();
+		droppableElementsVisualId.add(ConnectorEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(ConstraintPropertyEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(PropertyEditPart.VISUAL_ID);
+		return droppableElementsVisualId;
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -246,5 +255,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		}
 		return null;
 	}
+
+
 
 }

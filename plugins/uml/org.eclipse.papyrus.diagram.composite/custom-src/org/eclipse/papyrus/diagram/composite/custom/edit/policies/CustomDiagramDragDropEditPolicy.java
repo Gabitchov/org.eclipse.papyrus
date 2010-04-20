@@ -14,7 +14,9 @@
 package org.eclipse.papyrus.diagram.composite.custom.edit.policies;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.PositionConstants;
@@ -144,26 +146,96 @@ import org.eclipse.uml2.uml.TypedElement;
  */
 public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
 
-	/** List of VISUAL_ID for which a specific Drop behavior is provided */
-	public int[] specificDropNode = {
-		// TopLevelNodes
-	ActivityCompositeEditPart.VISUAL_ID, InteractionCompositeEditPart.VISUAL_ID, ProtocolStateMachineCompositeEditPart.VISUAL_ID, StateMachineCompositeEditPart.VISUAL_ID, FunctionBehaviorCompositeEditPart.VISUAL_ID, OpaqueBehaviorCompositeEditPart.VISUAL_ID, ComponentCompositeEditPart.VISUAL_ID, DeviceCompositeEditPart.VISUAL_ID, ExecutionEnvironmentCompositeEditPart.VISUAL_ID, NodeCompositeEditPart.VISUAL_ID, ClassCompositeEditPart.VISUAL_ID, ClassClassifierEditPart.VISUAL_ID, CollaborationCompositeEditPart.VISUAL_ID, InterfaceEditPart.VISUAL_ID, PrimitiveTypeEditPart.VISUAL_ID, EnumerationEditPart.VISUAL_ID, DataTypeEditPart.VISUAL_ID, ActorEditPart.VISUAL_ID, DeploymentSpecificationEditPart.VISUAL_ID, ArtifactEditPart.VISUAL_ID, InformationItemEditPart.VISUAL_ID, SignalEditPart.VISUAL_ID, UseCaseEditPart.VISUAL_ID, SignalEventEditPart.VISUAL_ID, CallEventEditPart.VISUAL_ID, AnyReceiveEventEditPart.VISUAL_ID, SendSignalEventEditPart.VISUAL_ID, SendOperationEventEditPart.VISUAL_ID, ChangeEventEditPart.VISUAL_ID, TimeEventEditPart.VISUAL_ID, CreationEventEditPart.VISUAL_ID, ExecutionEventEditPart.VISUAL_ID, LiteralBooleanEditPart.VISUAL_ID, LiteralIntegerEditPart.VISUAL_ID, LiteralNullEditPart.VISUAL_ID, LiteralStringEditPart.VISUAL_ID, LiteralUnlimitedNaturalEditPart.VISUAL_ID, StringExpressionEditPart.VISUAL_ID, OpaqueExpressionEditPart.VISUAL_ID, TimeExpressionEditPart.VISUAL_ID, ExpressionEditPart.VISUAL_ID, DurationEditPart.VISUAL_ID, IntervalEditPart.VISUAL_ID, InstanceValueEditPart.VISUAL_ID, CommentEditPart.VISUAL_ID, DurationConstraintEditPart.VISUAL_ID, TimeConstraintEditPart.VISUAL_ID, IntervalConstraintEditPart.VISUAL_ID, InteractionConstraintEditPart.VISUAL_ID, ConstraintEditPart.VISUAL_ID,
-		// TopLevelNodes
-
-		// Class CN
-	ActivityCompositeEditPartCN.VISUAL_ID, InteractionCompositeEditPartCN.VISUAL_ID, ProtocolStateMachineCompositeEditPartCN.VISUAL_ID, StateMachineCompositeEditPartCN.VISUAL_ID, FunctionBehaviorCompositeEditPartCN.VISUAL_ID, OpaqueBehaviorCompositeEditPartCN.VISUAL_ID, ComponentCompositeEditPartCN.VISUAL_ID, DeviceCompositeEditPartCN.VISUAL_ID, ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID, NodeCompositeEditPartCN.VISUAL_ID, ClassCompositeEditPartCN.VISUAL_ID, CollaborationCompositeEditPartCN.VISUAL_ID,
-		// Class CN
-	CollaborationCompositeEditPartCN.VISUAL_ID, DependencyEditPart.VISUAL_ID, RoleBindingEditPart.VISUAL_ID, ConnectorEditPart.VISUAL_ID, PortEditPart.VISUAL_ID, ParameterEditPart.VISUAL_ID, org.eclipse.papyrus.diagram.composite.edit.parts.PropertyPartEditPartCN.VISUAL_ID, TimeObservationEditPart.VISUAL_ID, DurationObservationEditPart.VISUAL_ID };
-
-
-
-
 	/**
 	 * Default constructor
 	 */
 	public CustomDiagramDragDropEditPolicy() {
 		super(CompositeLinkMappingHelper.getInstance());
-		init(specificDropNode);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Set<Integer> getDroppableElementVisualId() {
+		// TopLevelNodes
+		Set<Integer> droppableElementsVisualId = new HashSet<Integer>();
+		droppableElementsVisualId.add(ActivityCompositeEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(InteractionCompositeEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(ProtocolStateMachineCompositeEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(StateMachineCompositeEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(FunctionBehaviorCompositeEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(OpaqueBehaviorCompositeEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(ComponentCompositeEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(DeviceCompositeEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(ExecutionEnvironmentCompositeEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(NodeCompositeEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(ClassCompositeEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(ClassClassifierEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(CollaborationCompositeEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(InterfaceEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(PrimitiveTypeEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(EnumerationEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(DataTypeEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(ActorEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(DeploymentSpecificationEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(ArtifactEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(InformationItemEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(SignalEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(UseCaseEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(SignalEventEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(CallEventEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(AnyReceiveEventEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(SendSignalEventEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(SendOperationEventEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(ChangeEventEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(TimeEventEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(CreationEventEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(ExecutionEventEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(LiteralBooleanEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(LiteralIntegerEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(LiteralNullEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(LiteralStringEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(LiteralUnlimitedNaturalEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(StringExpressionEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(OpaqueExpressionEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(TimeExpressionEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(ExpressionEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(DurationEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(IntervalEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(InstanceValueEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(CommentEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(DurationConstraintEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(TimeConstraintEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(IntervalConstraintEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(InteractionConstraintEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(ConstraintEditPart.VISUAL_ID);
+		
+		// Class CN
+		droppableElementsVisualId.add(ActivityCompositeEditPartCN.VISUAL_ID);
+		droppableElementsVisualId.add(InteractionCompositeEditPartCN.VISUAL_ID);
+		droppableElementsVisualId.add(ProtocolStateMachineCompositeEditPartCN.VISUAL_ID);
+		droppableElementsVisualId.add(StateMachineCompositeEditPartCN.VISUAL_ID);
+		droppableElementsVisualId.add(FunctionBehaviorCompositeEditPartCN.VISUAL_ID);
+		droppableElementsVisualId.add(OpaqueBehaviorCompositeEditPartCN.VISUAL_ID);
+		droppableElementsVisualId.add(ComponentCompositeEditPartCN.VISUAL_ID);
+		droppableElementsVisualId.add(DeviceCompositeEditPartCN.VISUAL_ID);
+		droppableElementsVisualId.add(ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID);
+		droppableElementsVisualId.add(NodeCompositeEditPartCN.VISUAL_ID);
+		droppableElementsVisualId.add(ClassCompositeEditPartCN.VISUAL_ID);
+		droppableElementsVisualId.add(CollaborationCompositeEditPartCN.VISUAL_ID);
+		
+		droppableElementsVisualId.add(CollaborationCompositeEditPartCN.VISUAL_ID);
+		droppableElementsVisualId.add(DependencyEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(RoleBindingEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(ConnectorEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(PortEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(ParameterEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(org.eclipse.papyrus.diagram.composite.edit.parts.PropertyPartEditPartCN.VISUAL_ID);
+		droppableElementsVisualId.add(TimeObservationEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(DurationObservationEditPart.VISUAL_ID);
+		
+		return droppableElementsVisualId;
 	}
 
 	/**
@@ -671,4 +743,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 		return super.getDropObjectsCommand(dropRequest);
 	}
+
+	
 }

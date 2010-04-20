@@ -1,6 +1,8 @@
 package org.eclipse.papyrus.diagram.statemachine.custom.policies;
 
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.ColorConstants;
@@ -52,9 +54,6 @@ import org.eclipse.uml2.uml.StateMachine;
 
 public class CustomStateMachineDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
 
-	/** List of VISUAL_ID for which a specific Drop behavior is provided */
-	public int[] secificDropNode = { StateMachineEditPart.VISUAL_ID, RegionEditPart.VISUAL_ID };
-
 	IFigure sizeOnDropFeedback = null;
 
 	String dropLocation = Zone.RIGHT;
@@ -67,7 +66,17 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends CommonDiagramDr
 	 */
 	public CustomStateMachineDiagramDragDropEditPolicy() {
 		super(StateMachineLinkMappingHelper.getInstance());
-		init(secificDropNode);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Set<Integer> getDroppableElementVisualId() {
+		Set<Integer> droppableElementsVisualId = new HashSet<Integer>();
+		droppableElementsVisualId.add(StateMachineEditPart.VISUAL_ID);
+		droppableElementsVisualId.add(RegionEditPart.VISUAL_ID);
+		return droppableElementsVisualId;
 	}
 
 	@Override

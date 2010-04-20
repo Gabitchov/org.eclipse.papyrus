@@ -15,8 +15,10 @@ package org.eclipse.papyrus.diagram.profile.custom.policies;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Point;
@@ -37,9 +39,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
+import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Location;
@@ -47,15 +50,20 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.profile.custom.helper.ClassLinkMappingHelper;
 import org.eclipse.papyrus.diagram.profile.custom.helper.MetaclassHelper;
 import org.eclipse.papyrus.diagram.profile.custom.helper.MultiAssociationHelper;
 import org.eclipse.papyrus.diagram.profile.custom.helper.MultiDependencyHelper;
+import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationNodeEditPart;
+import org.eclipse.papyrus.diagram.profile.edit.parts.DependencyNodeEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ElementImportEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ExtensionEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.MetaclassEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.MetaclassEditPartCN;
+import org.eclipse.papyrus.diagram.profile.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Dependency;
@@ -65,19 +73,53 @@ import org.eclipse.uml2.uml.ElementImport;
 /**
  * The Class ClassDiagramDragDropEditPolicy.
  */
-public class ProfileDiagramDragDropEditPolicy extends CustomDiagramDragDropEditPolicy {
-
-	/** The specific drop node. */
-	public int[] secificDropNode = { 2014, 2013, 2015, 3014, 2008, ElementImportEditPart.VISUAL_ID, ExtensionEditPart.VISUAL_ID };
+public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
 
 	/**
 	 * Instantiates a new class diagram drag drop edit policy.
 	 */
 	public ProfileDiagramDragDropEditPolicy() {
-		super();
-		init(secificDropNode);
+		super(ClassLinkMappingHelper.getInstance());
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Set<Integer> getDroppableElementVisualId() {
+		Set<Integer> droppableElementsVisualID = new HashSet<Integer>();
+		droppableElementsVisualID.add(DependencyNodeEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ElementImportEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ExtensionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(AssociationNodeEditPart.VISUAL_ID);
+		
+		return droppableElementsVisualID;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int getLinkWithClassVisualID(EObject domainElement) {
+		return UMLVisualIDRegistry.getLinkWithClassVisualID(domainElement);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int getNodeVisualID(View containerView, EObject domainElement) {
+		return UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public IElementType getUMLElementType(int elementID) {
+		return UMLElementTypes.getElementType(elementID);
+	}
+	
 	/**
 	 * this method has in charge to create command for create an association if the number of
 	 * endtype is superior of 2 a multi association is dropped. if the number of endtype this is

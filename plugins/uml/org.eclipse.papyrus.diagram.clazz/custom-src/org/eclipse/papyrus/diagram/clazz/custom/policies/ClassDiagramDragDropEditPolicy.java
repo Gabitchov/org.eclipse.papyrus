@@ -14,10 +14,13 @@
 package org.eclipse.papyrus.diagram.clazz.custom.policies;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
@@ -27,6 +30,7 @@ import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Shape;
@@ -36,8 +40,13 @@ import org.eclipse.papyrus.diagram.clazz.custom.helper.ClassLinkMappingHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.ContainmentHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.MultiAssociationHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.MultiDependencyHelper;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNodeEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.Class5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartTN;
@@ -47,6 +56,9 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartment2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPart;
+import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.AssociationClass;
 import org.eclipse.uml2.uml.Dependency;
@@ -57,20 +69,59 @@ import org.eclipse.uml2.uml.PackageableElement;
 /**
  * The Class ClassDiagramDragDropEditPolicy.
  */
-public class ClassDiagramDragDropEditPolicy extends CustomDiagramDragDropEditPolicy {
+public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
 
 	public static final String CONTAINED_CLASS_DROP_TO_COMPARTMENT = "ContainedClassDropToCompartment";
-
-	/** The specific drop node. */
-	public int[] secificDropNode = { 2014, 2013, 2015, 2008, 2007, 2005, 3009, 3014, 3024 };
-
 
 	/**
 	 * Instantiates a new class diagram drag drop edit policy.
 	 */
 	public ClassDiagramDragDropEditPolicy() {
-		super();
-		init(secificDropNode);
+		super(ClassLinkMappingHelper.getInstance());
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Set<Integer> getDroppableElementVisualId() {
+		Set<Integer> droppableElementsVisualID = new HashSet<Integer>();
+		
+		droppableElementsVisualID.add(Dependency2EditPart.VISUAL_ID);
+		droppableElementsVisualID.add(AssociationClassEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(AssociationNodeEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ClassEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(PackageEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ModelEditPartTN.VISUAL_ID);
+		droppableElementsVisualID.add(PackageEditPartCN.VISUAL_ID);
+		droppableElementsVisualID.add(Class5EditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ModelEditPartCN.VISUAL_ID);
+		
+		return droppableElementsVisualID;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int getLinkWithClassVisualID(EObject domainElement) {
+		return UMLVisualIDRegistry.getLinkWithClassVisualID(domainElement);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public int getNodeVisualID(View containerView, EObject domainElement) {
+		return UMLVisualIDRegistry.getNodeVisualID(containerView, domainElement);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public IElementType getUMLElementType(int elementID) {
+		return UMLElementTypes.getElementType(elementID);
 	}
 
 	/**
@@ -277,27 +328,25 @@ public class ClassDiagramDragDropEditPolicy extends CustomDiagramDragDropEditPol
 	 */
 	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID, int linkVISUALID) {
 		switch(nodeVISUALID) {
-		case 2014:
+		case Dependency2EditPart.VISUAL_ID:
 			return dropDependency(dropRequest, semanticLink, nodeVISUALID);
-		case 2013:
+		case AssociationClassEditPart.VISUAL_ID:
 			return dropAssociationClass(dropRequest, semanticLink, nodeVISUALID);
-		case 2015:
+		case AssociationNodeEditPart.VISUAL_ID:
 			return dropAssociation(dropRequest, semanticLink, nodeVISUALID);
-		case 3014:
+		case Class5EditPart.VISUAL_ID:
+		case PackageEditPartCN.VISUAL_ID:
+		case ModelEditPartCN.VISUAL_ID:
 			return compartmentDropContainedClass(dropRequest, semanticLink, nodeVISUALID);
-		case 3009:
-			return compartmentDropContainedClass(dropRequest, semanticLink, nodeVISUALID);
-		case 3024:
-			return compartmentDropContainedClass(dropRequest, semanticLink, nodeVISUALID);
-		case 2005:
-			return outlineDropContainedClass(dropRequest, semanticLink, nodeVISUALID);
-		case 2008:
-			return outlineDropContainedClass(dropRequest, semanticLink, nodeVISUALID);
-		case 2007:
+		case ModelEditPartTN.VISUAL_ID:
+		case ClassEditPart.VISUAL_ID:
+		case PackageEditPart.VISUAL_ID:
 			return outlineDropContainedClass(dropRequest, semanticLink, nodeVISUALID);
 		default:
 			return UnexecutableCommand.INSTANCE;
 		}
 	}
+
+	
 
 }

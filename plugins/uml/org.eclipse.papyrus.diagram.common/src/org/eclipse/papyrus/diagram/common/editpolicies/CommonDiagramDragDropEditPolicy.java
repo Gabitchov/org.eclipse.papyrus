@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Point;
@@ -41,8 +42,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
+import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
@@ -61,9 +62,9 @@ import org.eclipse.uml2.uml.Package;
 public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEditPolicy {
 
 	/** The specific drop. */
-	protected ArrayList specificDrop = new ArrayList();
+	private Set<Integer> specificDrop = null;
 
-	/** The specified link mapping helper dependeing on the diagram */
+	/** The specified link mapping helper depending on the diagram */
 	private ILinkMappingHelper linkmappingHelper;
 
 	/**
@@ -74,6 +75,16 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	 */
 	public CommonDiagramDragDropEditPolicy(ILinkMappingHelper mappingHelper) {
 		linkmappingHelper = mappingHelper;
+	}
+	
+	/**
+	 * Gets elements visual id that can be dropped in the diagram
+	 */
+	private Set<Integer> getSpecificDrop(){
+		if(specificDrop == null){
+			specificDrop = getDroppableElementVisualId();
+		}
+		return specificDrop;
 	}
 
 	/**
@@ -89,6 +100,11 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	public abstract int getNodeVisualID(View containerView, EObject domainElement);
 
 	public abstract int getLinkWithClassVisualID(EObject domainElement);
+	
+	/**
+	 * The list of visualID that the policy manages.
+	 */
+	protected abstract Set<Integer> getDroppableElementVisualId();
 
 	/**
 	 * {@inheritedDoc}
@@ -195,7 +211,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 			EObject droppedObject = (EObject)iter.next();
 			int nodeVISUALID = getNodeVisualID(((IGraphicalEditPart)getHost()).getNotationView(), droppedObject);
 			int linkVISUALID = getLinkWithClassVisualID(droppedObject);
-			if(specificDrop.contains(nodeVISUALID) || specificDrop.contains(linkVISUALID)) {
+			if(getSpecificDrop().contains(nodeVISUALID) || getSpecificDrop().contains(linkVISUALID)) {
 				dropRequest.setLocation(location);
 				return getSpecificDropCommand(dropRequest, (Element)droppedObject, nodeVISUALID, linkVISUALID);
 			}
@@ -295,18 +311,6 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	 */
 	protected EditPartViewer getViewer() {
 		return ((IGraphicalEditPart)getHost()).getViewer();
-	}
-
-	/**
-	 * Inits the.
-	 * 
-	 * @param arraySpecificDrop
-	 *        the array specific drop
-	 */
-	public void init(int[] arraySpecificDrop) {
-		for(int i = 0; i < arraySpecificDrop.length; i++) {
-			specificDrop.add(new Integer(arraySpecificDrop[i]));
-		}
 	}
 
 	/**

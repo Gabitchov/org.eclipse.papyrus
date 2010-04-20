@@ -14,7 +14,9 @@
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
@@ -39,6 +41,7 @@ import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEdit
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message3EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message4EditPart;
@@ -61,12 +64,30 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
 
-	/** The specific drop node. */
-	public int[] specificDropNode = { BehaviorExecutionSpecificationEditPart.VISUAL_ID, ActionExecutionSpecificationEditPart.VISUAL_ID, MessageEditPart.VISUAL_ID, Message2EditPart.VISUAL_ID, Message3EditPart.VISUAL_ID, Message4EditPart.VISUAL_ID, Message5EditPart.VISUAL_ID, Message6EditPart.VISUAL_ID, Message7EditPart.VISUAL_ID };
 
 	public CustomDiagramDragDropEditPolicy() {
 		super(SequenceLinkMappingHelper.getInstance());
-		init(specificDropNode);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Set<Integer> getDroppableElementVisualId() {
+		Set<Integer> elementsVisualId = new HashSet<Integer>();
+		elementsVisualId.add(BehaviorExecutionSpecificationEditPart.VISUAL_ID);
+		elementsVisualId.add(ActionExecutionSpecificationEditPart.VISUAL_ID);
+		elementsVisualId.add(MessageEditPart.VISUAL_ID);
+		elementsVisualId.add(Message2EditPart.VISUAL_ID);
+		elementsVisualId.add(Message3EditPart.VISUAL_ID);
+		elementsVisualId.add(Message4EditPart.VISUAL_ID);
+		elementsVisualId.add(Message4EditPart.VISUAL_ID);
+		elementsVisualId.add(Message5EditPart.VISUAL_ID);
+		elementsVisualId.add(Message6EditPart.VISUAL_ID);
+		elementsVisualId.add(Message7EditPart.VISUAL_ID);
+		elementsVisualId.add(Message6EditPart.VISUAL_ID);
+		elementsVisualId.add(DestructionEventEditPart.VISUAL_ID);
+		return elementsVisualId;
 	}
 
 	/**
@@ -100,6 +121,8 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 			case ActionExecutionSpecificationEditPart.VISUAL_ID:
 				return dropExecutionSpecification(dropRequest, semanticLink, nodeVISUALID);
+			case DestructionEventEditPart.VISUAL_ID:
+				return dropDestructionEvent(dropRequest, semanticLink, nodeVISUALID);
 			default:
 				return UnexecutableCommand.INSTANCE;
 			}
@@ -124,6 +147,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	}
 
 
+
+	private Command dropDestructionEvent(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	private Command dropExecutionSpecification(DropObjectsRequest dropRequest, Element semanticLink, int nodeVisualID) {
 		if(semanticLink instanceof ExecutionSpecification) {
