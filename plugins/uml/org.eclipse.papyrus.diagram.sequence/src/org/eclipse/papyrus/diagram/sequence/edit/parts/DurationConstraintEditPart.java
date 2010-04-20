@@ -39,6 +39,7 @@ import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -1603,7 +1604,9 @@ AbstractBorderItemEditPart {
 		 * @generated NOT
 		 */
 		public void updateArrow(int figureWidth, int figureHeight) {
-
+			// handle insets to avoid figure growing indefinitely
+			figureWidth -= getInsets().left + getInsets().right;
+			figureHeight -= getInsets().top + getInsets().bottom;
 			if(getDurationArrow() != null) {
 				PointList points = new PointList(8);
 				points.addPoint(figureWidth / 2 - ARROW_SEMI_WIDTH, getLineWidth() / 2 + ARROW_HEIGHT);
@@ -1758,5 +1761,38 @@ AbstractBorderItemEditPart {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
+	}
+
+	/**
+	 * @generated NOT Override for redirecting creation request to the lifeline
+	 */
+	@Override
+	public Command getCommand(Request request) {
+		if(request instanceof CreateUnspecifiedTypeRequest) {
+			return getParent().getCommand(request);
+		}
+		return super.getCommand(request);
+	}
+
+	/**
+	 * @generated NOT Override for redirecting creation request to the lifeline
+	 */
+	@Override
+	public void showSourceFeedback(Request request) {
+		if(request instanceof CreateUnspecifiedTypeRequest) {
+			getParent().showSourceFeedback(request);
+		}
+		super.showSourceFeedback(request);
+	}
+
+	/**
+	 * @generated NOT Override for redirecting creation request to the lifeline
+	 */
+	@Override
+	public void eraseSourceFeedback(Request request) {
+		if(request instanceof CreateUnspecifiedTypeRequest) {
+			getParent().eraseSourceFeedback(request);
+		}
+		super.eraseSourceFeedback(request);
 	}
 }

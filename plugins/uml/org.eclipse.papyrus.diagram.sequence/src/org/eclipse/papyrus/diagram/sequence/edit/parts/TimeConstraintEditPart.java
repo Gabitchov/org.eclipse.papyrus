@@ -38,6 +38,7 @@ import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -1595,8 +1596,8 @@ AbstractBorderItemEditPart {
 		 * @generated NOT
 		 */
 		public void setCurrentSideOfFigure(int side, Rectangle newLocation) {
-			// no effect if side has not changed
-			if(sideOfFigure != side) {
+			// no effect if side has not changed and no size modification
+			if(sideOfFigure != side || !newLocation.getSize().equals(getSize())) {
 				sideOfFigure = side;
 				if(side == PositionConstants.EAST) {
 					Point startPoint = newLocation.getLeft().translate(newLocation.getLocation().getNegated());
@@ -1721,5 +1722,38 @@ AbstractBorderItemEditPart {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
+	}
+
+	/**
+	 * @generated NOT Override for redirecting creation request to the lifeline
+	 */
+	@Override
+	public Command getCommand(Request request) {
+		if(request instanceof CreateUnspecifiedTypeRequest) {
+			return getParent().getCommand(request);
+		}
+		return super.getCommand(request);
+	}
+
+	/**
+	 * @generated NOT Override for redirecting creation request to the lifeline
+	 */
+	@Override
+	public void showSourceFeedback(Request request) {
+		if(request instanceof CreateUnspecifiedTypeRequest) {
+			getParent().showSourceFeedback(request);
+		}
+		super.showSourceFeedback(request);
+	}
+
+	/**
+	 * @generated NOT Override for redirecting creation request to the lifeline
+	 */
+	@Override
+	public void eraseSourceFeedback(Request request) {
+		if(request instanceof CreateUnspecifiedTypeRequest) {
+			getParent().eraseSourceFeedback(request);
+		}
+		super.eraseSourceFeedback(request);
 	}
 }

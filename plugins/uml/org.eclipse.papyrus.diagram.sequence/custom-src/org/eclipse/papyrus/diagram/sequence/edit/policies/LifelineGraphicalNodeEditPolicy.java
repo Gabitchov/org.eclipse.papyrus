@@ -13,12 +13,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Polyline;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
@@ -28,10 +32,12 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationEditPart;
+import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
@@ -43,6 +49,9 @@ import org.eclipse.uml2.uml.TimeObservation;
  * A specific policy to handle time/duration move when a message end is moved
  */
 public class LifelineGraphicalNodeEditPolicy extends SequenceGraphicalNodeEditPolicy {
+
+	/** the feedback for creating a duration constraint node */
+	private Polyline durationConstraintCreationFeedback = null;
 
 	/**
 	 * Get the command to reconnect the source and move associated time/duration constraints/observation.
@@ -209,5 +218,52 @@ public class LifelineGraphicalNodeEditPolicy extends SequenceGraphicalNodeEditPo
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Show the feedback for creating a duration constraint from this edit part
+	 * 
+	 * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy#showSourceFeedback(org.eclipse.gef.Request)
+	 * @param request
+	 *        creation request
+	 */
+	@Override
+	public void showSourceFeedback(Request request) {
+		if(request instanceof CreateUnspecifiedTypeRequest) {
+			Object hintedType = ((CreateUnspecifiedTypeRequest)request).getElementTypes().get(0);
+			if(UMLElementTypes.DurationConstraint_3021.equals(hintedType)) {
+				CreateRequest req = ((CreateUnspecifiedTypeRequest)request).getRequestForType(UMLElementTypes.DurationConstraint_3021);
+				Object initLocation = req.getExtendedData().get(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION);
+				if(initLocation instanceof Point) {
+					Point startPoint = ((Point)initLocation).getCopy();
+					Point targetPoint = ((CreateUnspecifiedTypeRequest)request).getLocation().getCopy();
+					if(durationConstraintCreationFeedback == null) {
+						durationConstraintCreationFeedback = new Polyline();
+						durationConstraintCreationFeedback.setLineWidth(1);
+						durationConstraintCreationFeedback.setLineStyle(Graphics.LINE_DASHDOT);
+						durationConstraintCreationFeedback.setForegroundColor(((IGraphicalEditPart)getHost()).getFigure().getLocalForegroundColor());
+						addFeedback(durationConstraintCreationFeedback);
+					}
+					durationConstraintCreationFeedback.setStart(startPoint);
+					durationConstraintCreationFeedback.setEnd(targetPoint);
+					return;
+				}
+			}
+		}
+	}
+
+	/**
+	 * Erase the feedback for creating a duration constraint from this edit part
+	 * 
+	 * @see org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy#eraseSourceFeedback(org.eclipse.gef.Request)
+	 * @param request
+	 *        creation request
+	 */
+	@Override
+	public void eraseSourceFeedback(Request request) {
+		super.eraseSourceFeedback(request);
+		if(durationConstraintCreationFeedback != null)
+			removeFeedback(durationConstraintCreationFeedback);
+		durationConstraintCreationFeedback = null;
 	}
 }

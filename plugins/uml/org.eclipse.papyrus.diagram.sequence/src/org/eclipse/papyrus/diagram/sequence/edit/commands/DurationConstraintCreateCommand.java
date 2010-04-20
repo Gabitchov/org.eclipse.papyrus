@@ -26,8 +26,10 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.Namespace;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
@@ -87,19 +89,27 @@ public class DurationConstraintCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT enable only if there is occurrence specifications
 	 */
 	public boolean canExecute() {
-
-
-		return true;
-
-
-
+		// check first occurrence specification
+		if(!getRequest().getParameters().containsKey(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION)) {
+			return true; // duration creation is in progress; source is not defined yet
+		}
+		Object occurrence = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
+		if(!(occurrence instanceof OccurrenceSpecification)) {
+			return false;
+		}
+		// check second occurrence specification
+		if(!getRequest().getParameters().containsKey(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2)) {
+			return true; // duration creation is in progress; target is not defined yet
+		}
+		Object occurrence2 = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2);
+		return occurrence2 instanceof OccurrenceSpecification && !occurrence.equals(occurrence2);
 	}
 
 	/**
-	 * @generated get the Lifeline parent as owner
+	 * @generated NOT get the Lifeline parent as owner, assign the occurrence specifications
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
@@ -113,6 +123,16 @@ public class DurationConstraintCreateCommand extends EditElementCommand {
 
 
 		UMLElementTypes.init_DurationConstraint_3021(newElement);
+
+		// assign the occurrence specification
+		Object occurrence1 = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
+		Object occurrence2 = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2);
+		if(occurrence1 instanceof OccurrenceSpecification) {
+			newElement.getConstrainedElements().add((OccurrenceSpecification)occurrence1);
+			if(occurrence2 instanceof OccurrenceSpecification) {
+				newElement.getConstrainedElements().add((OccurrenceSpecification)occurrence2);
+			}
+		}
 
 		doConfigure(newElement, monitor, info);
 

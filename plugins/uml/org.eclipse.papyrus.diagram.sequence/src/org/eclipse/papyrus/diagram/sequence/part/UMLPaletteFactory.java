@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
 import org.eclipse.papyrus.diagram.common.service.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.sequence.service.DurationCreationTool;
 
 /**
  * @generated
@@ -387,13 +388,14 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT use DurationCreationTool
 	 */
 	private Tool createDurationConstraint15CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.DurationConstraint_3021);
 
-		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		// use DurationCreationTool
+		Tool tool = new DurationCreationTool(types);
 		return tool;
 	}
 

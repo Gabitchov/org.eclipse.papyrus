@@ -130,24 +130,85 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			// force location of time/duration elements
 			String timeConstraintHint = ((IHintedType)UMLElementTypes.TimeConstraint_3019).getSemanticHint();
 			String timeObservationHint = ((IHintedType)UMLElementTypes.TimeObservation_3020).getSemanticHint();
+			String durationConstraintOnLifelineHint = ((IHintedType)UMLElementTypes.DurationConstraint_3021).getSemanticHint();
 			if(timeConstraintHint.equals(semanticHint) || timeObservationHint.equals(semanticHint)) {
-				Object loc = cver.getExtendedData().get(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION);
-				if(loc instanceof Point) {
-					IFigure parentFigure = ((IGraphicalEditPart)getHost()).getFigure();
-					Point referencePoint = (Point)loc;
-					parentFigure.translateToRelative(referencePoint);
-					referencePoint.translate(parentFigure.getBounds().getLocation().getCopy().negate());
-					// Get the height of the element
-					int newHeight = getFigureHeight(cver);
-					// Define the bounds of the new time element
-					Rectangle newBounds = new Rectangle(referencePoint.x, referencePoint.y + SPACING_HEIGHT - newHeight / 2, -1, newHeight);
-					TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
-					return new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewAndElementDescriptor, newBounds));
+				Command cmd = getCommandForTimeObservationOrConstraint(cver);
+				if(cmd != null) {
+					return cmd;
+				}
+			}
+			if(durationConstraintOnLifelineHint.equals(semanticHint)) {
+				Command cmd = getCommandForDurationConstraint(cver);
+				if(cmd != null) {
+					return cmd;
 				}
 			}
 		}
 
 		return super.getCreateCommand(request);
+	}
+
+	/**
+	 * Get the command for setting initial bounds of a Time Observation or Constraint representation
+	 * 
+	 * @param cver
+	 *        the request
+	 * @return command or null if none is appropriate
+	 */
+	private Command getCommandForTimeObservationOrConstraint(CreateViewAndElementRequest cver) {
+		ViewAndElementDescriptor viewAndElementDescriptor = cver.getViewAndElementDescriptor();
+		Object loc = cver.getExtendedData().get(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION);
+		if(loc instanceof Point) {
+			IFigure parentFigure = ((IGraphicalEditPart)getHost()).getFigure();
+			Point referencePoint = ((Point)loc).getCopy();
+			parentFigure.translateToRelative(referencePoint);
+			referencePoint.translate(parentFigure.getBounds().getLocation().getCopy().negate());
+			// Get the height of the element
+			int newHeight = getFigureHeight(cver);
+			// Define the bounds of the new time element
+			Rectangle newBounds = new Rectangle(referencePoint.x, referencePoint.y + SPACING_HEIGHT - newHeight / 2, -1, newHeight);
+			TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+			return new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewAndElementDescriptor, newBounds));
+		}
+		return null;
+	}
+
+	/**
+	 * Get the command for setting initial bounds of a Duration Constraint representation
+	 * 
+	 * @param cver
+	 *        the request
+	 * @return command or null if none is appropriate
+	 */
+	private Command getCommandForDurationConstraint(CreateViewAndElementRequest cver) {
+		ViewAndElementDescriptor viewAndElementDescriptor = cver.getViewAndElementDescriptor();
+		Object locTop = cver.getExtendedData().get(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION);
+		Object locBottom = cver.getExtendedData().get(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION_2);
+		if(locTop instanceof Point && locBottom instanceof Point) {
+			IFigure parentFigure = ((IGraphicalEditPart)getHost()).getFigure();
+			Point referenceTop = ((Point)locTop).getCopy();
+			Point referenceBottom = ((Point)locBottom).getCopy();
+			// Get the height of the element
+			int newHeight = referenceBottom.y - referenceTop.y;
+			if(newHeight > 0) {
+				parentFigure.translateToRelative(referenceTop);
+				Point parentFigDelta = parentFigure.getBounds().getLocation().getCopy().negate();
+				referenceTop.translate(parentFigDelta);
+				// Define the bounds of the new time element
+				Rectangle newBounds = new Rectangle(referenceTop.x, referenceTop.y, -1, newHeight);
+				TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+				return new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewAndElementDescriptor, newBounds));
+			} else if(newHeight < 0) {
+				parentFigure.translateToRelative(referenceBottom);
+				Point parentFigDelta = parentFigure.getBounds().getLocation().getCopy().negate();
+				referenceBottom.translate(parentFigDelta);
+				// Define the bounds of the new time element
+				Rectangle newBounds = new Rectangle(referenceBottom.x, referenceBottom.y, -1, -newHeight);
+				TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+				return new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewAndElementDescriptor, newBounds));
+			}
+		}
+		return null;
 	}
 
 	/**

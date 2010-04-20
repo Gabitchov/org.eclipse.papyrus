@@ -14,8 +14,10 @@
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
+import org.eclipse.draw2d.Polyline;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
@@ -49,6 +51,8 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
  */
 public class LifelineCreationEditPolicy extends CreationEditPolicy {
 
+	private Polyline feedback;
+
 	@Override
 	protected Command getCreateElementAndViewCommand(CreateViewAndElementRequest request) {
 		// get the element descriptor
@@ -77,23 +81,34 @@ public class LifelineCreationEditPolicy extends CreationEditPolicy {
 
 		InteractionFragment ift = SequenceUtil.findInteractionFragmentAt(request.getLocation(), getHost());
 
-		request.getExtendedData().put(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER, ift);
+		Map<String, Object> extendedData = request.getExtendedData();
+		extendedData.put(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER, ift);
 
 		// record the nearest event if necessary
 		String timeConstraintHint = ((IHintedType)UMLElementTypes.TimeConstraint_3019).getSemanticHint();
 		String timeObservationHint = ((IHintedType)UMLElementTypes.TimeObservation_3020).getSemanticHint();
+		String durationConstraintOnLifelineHint = ((IHintedType)UMLElementTypes.DurationConstraint_3021).getSemanticHint();
 		String requestHint = request.getViewAndElementDescriptor().getSemanticHint();
-		if(timeConstraintHint.equals(requestHint) || timeObservationHint.equals(requestHint)) {
+		if(timeConstraintHint.equals(requestHint) || timeObservationHint.equals(requestHint) || durationConstraintOnLifelineHint.equals(requestHint)) {
 			EditPart hostPart = getHost();
 			if(hostPart instanceof LifelineEditPart) {
 				Entry<OccurrenceSpecification, Point> eventAndLocation = SequenceUtil.findNearestEvent(request.getLocation(), (LifelineEditPart)hostPart);
 				// find an event near enough to create the constraint or observation
+				OccurrenceSpecification event = null;
+				Point location = null;
 				if(eventAndLocation != null) {
-					request.getExtendedData().put(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION, eventAndLocation.getKey());
-					request.getExtendedData().put(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION, eventAndLocation.getValue());
+					event = eventAndLocation.getKey();
+					location = eventAndLocation.getValue();
+				}
+				if(extendedData.containsKey(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2)) {
+					extendedData.put(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2, event);
 				} else {
-					request.getExtendedData().put(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION, null);
-					request.getExtendedData().put(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION, null);
+					extendedData.put(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION, event);
+				}
+				if(extendedData.containsKey(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION_2)) {
+					extendedData.put(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION_2, location);
+				} else {
+					extendedData.put(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION, location);
 				}
 			}
 		}

@@ -1551,4 +1551,26 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 		return super.getCommand(request);
 	}
 
+	/**
+	 * @generated NOT Override for redirecting creation request to the lifeline
+	 */
+	@Override
+	public void showSourceFeedback(Request request) {
+		if(request instanceof CreateUnspecifiedTypeRequest) {
+			getParent().showSourceFeedback(request);
+		}
+		super.showSourceFeedback(request);
+	}
+
+	/**
+	 * @generated NOT Override for redirecting creation request to the lifeline
+	 */
+	@Override
+	public void eraseSourceFeedback(Request request) {
+		if(request instanceof CreateUnspecifiedTypeRequest) {
+			getParent().eraseSourceFeedback(request);
+		}
+		super.eraseSourceFeedback(request);
+	}
+
 }

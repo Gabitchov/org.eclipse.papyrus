@@ -31,6 +31,12 @@ public interface SequenceRequestConstant {
 	/** The location of the occurrence specification which is the nearest from a creation request */
 	public static final String OCCURRENCE_SPECIFICATION_LOCATION = "Nearest occurrence specification location"; //$NON-NLS-1$
 
+	/** The occurrence specification which is the nearest from a creation request (2nd end of creation) */
+	public static final String NEAREST_OCCURRENCE_SPECIFICATION_2 = "Nearest occurrence specification (end)"; //$NON-NLS-1$
+
+	/** The location of the occurrence specification which is the nearest from a creation requestt (2nd end of creation) */
+	public static final String OCCURRENCE_SPECIFICATION_LOCATION_2 = "Nearest occurrence specification location (end)"; //$NON-NLS-1$
+
 	/** The time element which must not be moved after reconnection command (when reconnection comes from a move command) */
 	public static final Object DO_NOT_MOVE_TIME_ELEMENT = "Do not move this time element";
 }
