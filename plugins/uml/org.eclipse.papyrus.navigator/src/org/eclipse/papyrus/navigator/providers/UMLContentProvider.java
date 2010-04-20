@@ -37,7 +37,6 @@ import org.eclipse.ui.IMemento;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.navigator.CommonNavigator;
 import org.eclipse.ui.navigator.ICommonContentExtensionSite;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.PackageImport;
 
 /**
@@ -136,8 +135,8 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 		// 2. and associated diagrams
 		if(parentElement instanceof EObject || parentElement instanceof IWrapperItemProvider || parentElement instanceof FeatureMap.Entry) {
 			Object object = AdapterFactoryEditingDomain.unwrap(parentElement);
-			if(object instanceof Element) {
-				Element owner = (Element)object;
+			if(object instanceof EObject) {
+				EObject owner = (EObject)object;
 				if(owner != null) {
 					children.addAll(findAllExistingDiagrams(owner));
 				}
@@ -200,7 +199,7 @@ public class UMLContentProvider extends AdapterFactoryContentProvider implements
 	 *        the owner of the diagrams
 	 * @return the list of diagrams contained by the given owner
 	 */
-	private List<Diagram> findAllExistingDiagrams(Element owner) {
+	private List<Diagram> findAllExistingDiagrams(EObject owner) {
 		ArrayList<Diagram> diagrams = new ArrayList<Diagram>();
 
 		// Walk on page (Diagram) references
