@@ -15,6 +15,7 @@ package org.eclipse.papyrus.controlmode.commands;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -23,12 +24,15 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -37,6 +41,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -44,6 +49,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.emf.commands.core.command.EditingDomainUndoContext;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.papyrus.controlmode.commands.IUncontrolCommand.STATE_CONTROL;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.core.utils.NotationUtils;
@@ -51,9 +57,19 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * @author eperico
+ * The Class UncontrolCommand in charge of uncontrolling all papyrus resources
+ * 
  */
 public class UncontrolCommand extends AbstractTransactionalCommand {
+
+	/** extension point ID for custom control command */
+	private static final String CONTROL_EXTENSION_POINT_ID = "org.eclipse.papyrus.controlmode.customControlCommand";
+
+	/** attribute ID for the custom command class. */
+	private static final String UNCONTROL_CMD_ATTRIBUTE_EXTENSION_POINT = "uncontrolCommand";
+
+	/** element ID for the custom command class. */
+	private static final String UNCONTROL_CMD_ELEMENT_EXTENSION_POINT = "customUncontrolCommand";
 
 	private EObject eObject;
 
@@ -65,6 +81,8 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 
 	private Resource controlledDI;
 
+	private List<IUncontrolCommand> commands;
+
 	/**
 	 * Instantiates a new uncontrol command.
 	 * 
@@ -73,8 +91,7 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 	 * @param affectedFiles
 	 * @param selectedObject
 	 */
-	@SuppressWarnings("unchecked")
-	public UncontrolCommand(TransactionalEditingDomain domain, EObject selectedObject, String label, List affectedFiles) {
+	public UncontrolCommand(TransactionalEditingDomain domain, EObject selectedObject, String label, List<?> affectedFiles) {
 		super(domain, label, affectedFiles);
 		this.eObject = selectedObject;
 		// Add an undo context to allow the editor to react to that change
@@ -86,6 +103,7 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		commands = getCommandExtensions();
 		doRedo(monitor, info);
 		return CommandResult.newOKCommandResult();
 	}
@@ -97,10 +115,8 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 	protected IStatus doUndo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		// execute control command
 		try {
-			ControlCommand transactionalCommand = new ControlCommand(diResourceSet.getTransactionalEditingDomain(),
-					controlledModel, eObject, "Control", null);
-			OperationHistoryFactory.getOperationHistory()
-					.execute(transactionalCommand, new NullProgressMonitor(), null);
+			ControlCommand transactionalCommand = new ControlCommand(diResourceSet.getTransactionalEditingDomain(), controlledModel, eObject, "Control", null);
+			OperationHistoryFactory.getOperationHistory().execute(transactionalCommand, new NullProgressMonitor(), null);
 			return Status.OK_STATUS;
 		} catch (ExecutionException e) {
 			EMFEditUIPlugin.INSTANCE.log(e);
@@ -115,43 +131,117 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 	protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if(eObject != null) {
 			controlledModel = eObject.eResource();
-			final URI newNotationURI = URI.createURI(controlledModel.getURI().trimFileExtension().appendFileExtension(
-					DiResourceSet.NOTATION_FILE_EXTENSION).toString());
+			final URI newNotationURI = URI.createURI(controlledModel.getURI().trimFileExtension().appendFileExtension(DiResourceSet.NOTATION_FILE_EXTENSION).toString());
 			this.controlledNotation = getEditingDomain().getResourceSet().getResource(newNotationURI, false);
 
-			final URI newDiURI = URI.createURI(controlledModel.getURI().trimFileExtension().appendFileExtension(
-					DiResourceSet.DI_FILE_EXTENSION).toString());
+			final URI newDiURI = URI.createURI(controlledModel.getURI().trimFileExtension().appendFileExtension(DiResourceSet.DI_FILE_EXTENSION).toString());
 			this.controlledDI = getEditingDomain().getResourceSet().getResource(newDiURI, true);
 		}
-		CompoundCommand compoundCommand = new CompoundCommand();
 		this.diResourceSet = EditorUtils.getDiResourceSet();
 
-		// First retrieve the Diagrams that match with the model object to Uncontrol
-		final List<Diagram> controlledDiagrams = NotationUtils.getDiagrams(controlledNotation, eObject);
-
-		if(!controlledDiagrams.isEmpty()) {
-			final Resource notationResource = diResourceSet.getNotationResource();
-			compoundCommand.append(new AddCommand(getEditingDomain(), notationResource.getContents(),
-					controlledDiagrams));
-		}
-
-		// Create the Command to Uncontrol the model object
-		compoundCommand.append(new RemoveCommand(getEditingDomain(), eObject.eResource().getContents(), eObject));
+		CompoundCommand compoundCommand = new CompoundCommand();
+		uncontrolNotation(compoundCommand);
+		uncontrolModel(compoundCommand);
 
 		// Ensure that all proxies are resolved so that references to the controlled object will be
 		// updated to reference the new resource.
 		EcoreUtil.resolveAll(getEditingDomain().getResourceSet());
 
-		compoundCommand.execute();
-		// TODO save resources, check if it is useful
-		// try {
-		// diResourceSet.save(new NullProgressMonitor());
-		// } catch (IOException e) {
-		// EMFEditUIPlugin.INSTANCE.log(e);
-		// return Status.CANCEL_STATUS;
-		// }
-		deleteControlledResources();
-		return Status.OK_STATUS;
+		if(compoundCommand.canExecute()) {
+			compoundCommand.execute();
+			// TODO save resources, check if it is useful
+			// try {
+			// diResourceSet.save(new NullProgressMonitor());
+			// } catch (IOException e) {
+			// EMFEditUIPlugin.INSTANCE.log(e);
+			// return Status.CANCEL_STATUS;
+			// }
+			deleteControlledResources();
+			return Status.OK_STATUS;
+		} else {
+			MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), CommonPlugin.INSTANCE.getString("_UI_UnexecutableCommand_label"), CommonPlugin.INSTANCE.getString("_UI_UnexecutableCommand_description"));
+			return Status.CANCEL_STATUS;
+		}
+	}
+
+	/**
+	 * Uncontrol the model resource
+	 * 
+	 * @param compoundCommand
+	 */
+	private void uncontrolModel(CompoundCommand compoundCommand) {
+		// PRE uncontrol operation
+		uncontrol(getEditingDomain(), eObject, controlledModel, diResourceSet.getModelResource(), compoundCommand, STATE_CONTROL.PRE_MODEL);
+
+		// Create the Command to Uncontrol the model object
+		compoundCommand.append(new RemoveCommand(getEditingDomain(), eObject.eResource().getContents(), eObject));
+
+		// POST uncontrol operation
+		uncontrol(getEditingDomain(), eObject, controlledModel, diResourceSet.getModelResource(), compoundCommand, STATE_CONTROL.POST_MODEL);
+	}
+
+	/**
+	 * Uncontrol the notation resource
+	 * 
+	 * @param compoundCommand
+	 */
+	private void uncontrolNotation(CompoundCommand compoundCommand) {
+		// First retrieve the Diagrams that match with the model object to Uncontrol
+		final List<Diagram> controlledDiagrams = NotationUtils.getDiagrams(controlledNotation, eObject);
+
+		if(!controlledDiagrams.isEmpty()) {
+			// PRE uncontrol operation
+			for(Diagram diag : controlledDiagrams) {
+				uncontrol(getEditingDomain(), diag, controlledNotation, diResourceSet.getNotationResource(), compoundCommand, STATE_CONTROL.PRE_NOTATION);
+			}
+
+			// uncontrol the Notation model
+			compoundCommand.append(new AddCommand(getEditingDomain(), diResourceSet.getNotationResource().getContents(), controlledDiagrams));
+
+			// POST uncontrol operation
+			for(Diagram diag : controlledDiagrams) {
+				uncontrol(getEditingDomain(), diag, controlledNotation, diResourceSet.getNotationResource(), compoundCommand, STATE_CONTROL.POST_NOTATION);
+			}
+		}
+	}
+
+	/**
+	 * Control action applied on the specified selection
+	 * 
+	 * @param domain
+	 * @param selection
+	 * @param source
+	 * @param target
+	 * @param command
+	 * @param state
+	 */
+	public void uncontrol(EditingDomain domain, EObject selection, Resource source, Resource target, CompoundCommand command, STATE_CONTROL state) {
+		for(IUncontrolCommand cmd : commands) {
+			if(cmd.provides(selection, state, source, target)) {
+				cmd.uncontrol(domain, selection, state, source, target, command);
+			}
+		}
+	}
+
+	/**
+	 * Gets the custom command extensions that will be executed with the default uncontrol action.
+	 * 
+	 * @return the command extensions
+	 */
+	private List<IUncontrolCommand> getCommandExtensions() {
+		List<IUncontrolCommand> commands = new LinkedList<IUncontrolCommand>();
+		IConfigurationElement[] extensions = Platform.getExtensionRegistry().getConfigurationElementsFor(CONTROL_EXTENSION_POINT_ID);
+		for(IConfigurationElement e : extensions) {
+			if(UNCONTROL_CMD_ELEMENT_EXTENSION_POINT.equals(e.getName())) {
+				try {
+					IUncontrolCommand uncontrolCmd = (IUncontrolCommand)e.createExecutableExtension(UNCONTROL_CMD_ATTRIBUTE_EXTENSION_POINT);
+					commands.add(uncontrolCmd);
+				} catch (CoreException exception) {
+					exception.printStackTrace();
+				}
+			}
+		}
+		return commands;
 	}
 
 	/**
@@ -169,8 +259,7 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 		addFileResource(controlledNotation, todelete);
 		addFileResource(controlledDI, todelete);
 
-		boolean confirmDelete = MessageDialog.openQuestion(Display.getDefault().getActiveShell(),
-				"Delete controlled resources?", "Delete the original controlled files ?");
+		boolean confirmDelete = MessageDialog.openQuestion(Display.getDefault().getActiveShell(), "Delete controlled resources?", "Delete the original controlled files ?");
 		// if confirmed delete is false, uncontrol is done and old controlled resource is a single
 		// resource
 		if(confirmDelete) {
@@ -178,9 +267,7 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 				try {
 					file.delete(true, new NullProgressMonitor());
 				} catch (CoreException exception) {
-					MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
-							"Unable to delete", "An error occurred when trying to delete " + file.toString()
-							+ ". See error logs for more details.");
+					MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Unable to delete", "An error occurred when trying to delete " + file.toString() + ". See error logs for more details.");
 					EMFEditUIPlugin.INSTANCE.log(exception);
 				}
 			}

@@ -21,9 +21,11 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.emf.edit.ui.action.CommandActionHandler;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.controlmode.commands.UncontrolCommand;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * An action to uncontrol a papyrus resource.
@@ -93,6 +95,7 @@ public class PapyrusUncontrolAction extends CommandActionHandler {
 			OperationHistoryFactory.getOperationHistory()
 					.execute(transactionalCommand, new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {
+			MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_CannotCreateResource"));
 			EMFEditUIPlugin.INSTANCE.log(e);
 		}
 	}

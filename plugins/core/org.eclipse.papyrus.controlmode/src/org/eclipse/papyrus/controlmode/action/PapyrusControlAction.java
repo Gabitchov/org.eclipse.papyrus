@@ -98,6 +98,7 @@ public class PapyrusControlAction extends ControlAction {
 			OperationHistoryFactory.getOperationHistory()
 					.execute(transactionalCommand, new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {
+			MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_CannotCreateResource"));
 			EMFEditUIPlugin.INSTANCE.log(e);
 		}
 	}

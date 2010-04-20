@@ -14,21 +14,27 @@
 package org.eclipse.papyrus.controlmode.commands;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -36,6 +42,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.emf.commands.core.command.EditingDomainUndoContext;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.papyrus.controlmode.commands.IControlCommand.STATE_CONTROL;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.core.utils.NotationUtils;
@@ -46,9 +53,18 @@ import org.eclipse.papyrus.sashwindows.di.util.DiUtils;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * @author eperico
+ * The Class ControlCommand in charge of controlling all papyrus resources
  */
 public class ControlCommand extends AbstractTransactionalCommand {
+
+	/** extension point ID for custom control command */
+	private static final String CONTROL_EXTENSION_POINT_ID = "org.eclipse.papyrus.controlmode.customControlCommand";
+
+	/** attribute ID for the custom command class. */
+	private static final String CONTROL_CMD_ATTRIBUTE_EXTENSION_POINT = "controlCommand";
+	
+	/** element ID for the custom command class. */
+	private static final String CONTROL_CMD_ELEMENT_EXTENSION_POINT = "customControlCommand";
 
 	private EObject eObject;
 
@@ -60,6 +76,8 @@ public class ControlCommand extends AbstractTransactionalCommand {
 
 	private Resource controlledDI;
 
+	private List<IControlCommand> commands;
+
 	/**
 	 * Instantiates a new control command.
 	 * 
@@ -67,9 +85,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	 * @param label
 	 * @param affectedFiles
 	 */
-	@SuppressWarnings("unchecked")
-	public ControlCommand(TransactionalEditingDomain domain, Resource model, EObject selectedObject, String label,
-			List affectedFiles) {
+	public ControlCommand(TransactionalEditingDomain domain, Resource model, EObject selectedObject, String label, List<?> affectedFiles) {
 		super(domain, label, affectedFiles);
 		this.eObject = selectedObject;
 		this.controlledModel = model;
@@ -82,6 +98,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		commands = getCommandExtensions();
 		doRedo(monitor, info);
 		return CommandResult.newOKCommandResult();
 	}
@@ -93,10 +110,8 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	protected IStatus doUndo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		// execute uncontrol command
 		try {
-			UncontrolCommand transactionalCommand = new UncontrolCommand(diResourceSet.getTransactionalEditingDomain(),
-					eObject, "Uncontrol", null);
-			OperationHistoryFactory.getOperationHistory()
-					.execute(transactionalCommand, new NullProgressMonitor(), null);
+			UncontrolCommand transactionalCommand = new UncontrolCommand(diResourceSet.getTransactionalEditingDomain(), eObject, "Uncontrol", null);
+			OperationHistoryFactory.getOperationHistory().execute(transactionalCommand, new NullProgressMonitor(), null);
 			return Status.OK_STATUS;
 		} catch (ExecutionException e) {
 			EMFEditUIPlugin.INSTANCE.log(e);
@@ -109,54 +124,146 @@ public class ControlCommand extends AbstractTransactionalCommand {
 	 */
 	@Override
 	protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		// get the parent notation resource
 		this.diResourceSet = EditorUtils.getDiResourceSet();
-		final Resource notationResource = diResourceSet.getNotationResource();
 
 		// Create the URI from models that will be created
-		final URI newNotationURI = URI.createURI(controlledModel.getURI().trimFileExtension().appendFileExtension(
-				DiResourceSet.NOTATION_FILE_EXTENSION).toString());
+		final URI newNotationURI = URI.createURI(controlledModel.getURI().trimFileExtension().appendFileExtension(DiResourceSet.NOTATION_FILE_EXTENSION).toString());
 		this.controlledNotation = getResource(newNotationURI);
 
-		final Resource diResource = diResourceSet.getDiResource();
-		final URI newDiURI = URI.createURI(controlledModel.getURI().trimFileExtension().appendFileExtension(
-				DiResourceSet.DI_FILE_EXTENSION).toString());
+		final URI newDiURI = URI.createURI(controlledModel.getURI().trimFileExtension().appendFileExtension(DiResourceSet.DI_FILE_EXTENSION).toString());
 		this.controlledDI = getResource(newDiURI);
 
+		final List<Diagram> diagrams = NotationUtils.getDiagrams(diResourceSet.getNotationResource(), eObject);
+
+		// compound command that executes whole control action
 		CompoundCommand compoundCommand = new CompoundCommand();
-		// === Control the Model
-		compoundCommand.append(new AddCommand(getEditingDomain(), controlledModel.getContents(), eObject));
 
-		// === Control the Notation model
-		final List<Diagram> diagrams = NotationUtils.getDiagrams(notationResource, eObject);
-		compoundCommand.append(new AddCommand(getEditingDomain(), controlledNotation.getContents(), diagrams));
-
-		// === Control the DI model
-		// Create a new SashWindowManager
-		SashWindowsMngr windowsMngr = DiUtils.createDefaultSashWindowsMngr();
-
-		// add pages to the page list
-		for(Diagram diagram : diagrams) {
-			PageRef pageRef = DiUtils.getPageRef(diResource, diagram);
-			windowsMngr.getPageList().addPage(pageRef.getPageIdentifier());
-
-			// add a tab folder
-			try {
-				DiUtils.addPageToTabFolder(windowsMngr, pageRef);
-			} catch (SashEditorException exception) {
-				EMFEditUIPlugin.INSTANCE.log(exception);
-				return Status.CANCEL_STATUS;
-			}
+		controlModel(compoundCommand);
+		controlNotation(compoundCommand, diagrams);
+		try {
+			controlDi(compoundCommand, diagrams);
+		} catch (SashEditorException exception) {
+			EMFEditUIPlugin.INSTANCE.log(exception);
+			return Status.CANCEL_STATUS;
 		}
-		compoundCommand.append(new AddCommand(getEditingDomain(), controlledDI.getContents(), windowsMngr));
 
 		// Ensure that all proxies are resolved so that references into the controlled object will
 		// be saved to reference the new resource
 		EcoreUtil.resolveAll(getEditingDomain().getResourceSet());
 
-		compoundCommand.execute();
-		saveResources();
-		return Status.OK_STATUS;
+		if(compoundCommand.canExecute()) {
+			compoundCommand.execute();
+			saveResources();
+			return Status.OK_STATUS;
+		} else {
+			MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), CommonPlugin.INSTANCE.getString("_UI_UnexecutableCommand_label"), CommonPlugin.INSTANCE.getString("_UI_UnexecutableCommand_description"));
+			return Status.CANCEL_STATUS;
+		}
+	}
+
+	/**
+	 * Control the model resource
+	 * 
+	 * @param compoundCommand
+	 */
+	private void controlModel(CompoundCommand compoundCommand) {
+		// PRE control operation
+		control(getEditingDomain(), eObject, diResourceSet.getModelResource(), controlledModel, compoundCommand, STATE_CONTROL.PRE_MODEL);
+
+		// Control the Model
+		compoundCommand.append(new AddCommand(getEditingDomain(), controlledModel.getContents(), eObject));
+
+		// POST control operation
+		control(getEditingDomain(), eObject, diResourceSet.getModelResource(), controlledModel, compoundCommand, STATE_CONTROL.POST_MODEL);
+	}
+
+	/**
+	 * Control the notation resource
+	 * 
+	 * @param compoundCommand
+	 * @param diagrams
+	 *        list
+	 */
+	private void controlNotation(CompoundCommand compoundCommand, List<Diagram> diagrams) {
+		// PRE control operation
+		for(Diagram diag : diagrams) {
+			control(getEditingDomain(), diag, diResourceSet.getNotationResource(), controlledNotation, compoundCommand, STATE_CONTROL.PRE_NOTATION);
+		}
+
+		// Control the Notation model
+		compoundCommand.append(new AddCommand(getEditingDomain(), controlledNotation.getContents(), diagrams));
+
+		// POST control operation
+		for(Diagram diag : diagrams) {
+			control(getEditingDomain(), diag, diResourceSet.getNotationResource(), controlledNotation, compoundCommand, STATE_CONTROL.POST_NOTATION);
+		}
+	}
+
+	/**
+	 * Control the di resource
+	 * 
+	 * @param compoundCommand
+	 * @param diagrams
+	 * @throws SashEditorException
+	 */
+	private void controlDi(CompoundCommand compoundCommand, final List<Diagram> diagrams) throws SashEditorException {
+		// Create a new SashWindowManager
+		SashWindowsMngr windowsMngr = DiUtils.createDefaultSashWindowsMngr();
+
+		// add pages to the page list
+		for(Diagram diagram : diagrams) {
+			PageRef pageRef = DiUtils.getPageRef(diResourceSet.getDiResource(), diagram);
+			windowsMngr.getPageList().addPage(pageRef.getPageIdentifier());
+			DiUtils.addPageToTabFolder(windowsMngr, pageRef);
+		}
+
+		// PRE control operation
+		control(getEditingDomain(), eObject, diResourceSet.getDiResource(), controlledDI, compoundCommand, STATE_CONTROL.PRE_DI);
+
+		// Control the DI model
+		compoundCommand.append(new AddCommand(getEditingDomain(), controlledDI.getContents(), windowsMngr));
+
+		// POST control operation
+		control(getEditingDomain(), eObject, diResourceSet.getDiResource(), controlledDI, compoundCommand, STATE_CONTROL.POST_DI);
+	}
+
+	/**
+	 * Control action applied on the specified selection
+	 * 
+	 * @param domain
+	 * @param selection
+	 * @param source
+	 * @param target
+	 * @param command
+	 * @param state
+	 */
+	public void control(EditingDomain domain, EObject selection, Resource source, Resource target, CompoundCommand command, STATE_CONTROL state) {
+		for(IControlCommand cmd : commands) {
+			if(cmd.provides(selection, state, source, target)) {
+				cmd.control(domain, selection, state, source, target, command);
+			}
+		}
+	}
+
+	/**
+	 * Gets the custom command extensions that will be executed with the default control action.
+	 * 
+	 * @return the command extensions
+	 */
+	private List<IControlCommand> getCommandExtensions() {
+		List<IControlCommand> commands = new LinkedList<IControlCommand>();
+		IConfigurationElement[] extensions = Platform.getExtensionRegistry().getConfigurationElementsFor(CONTROL_EXTENSION_POINT_ID);
+		for(IConfigurationElement e : extensions) {
+			if (CONTROL_CMD_ELEMENT_EXTENSION_POINT.equals(e.getName())) {
+				try {
+					IControlCommand controlCmd = (IControlCommand)e.createExecutableExtension(CONTROL_CMD_ATTRIBUTE_EXTENSION_POINT);
+					commands.add(controlCmd);
+				} catch (CoreException exception) {
+					exception.printStackTrace();
+				}				
+			}
+		}
+		return commands;
 	}
 
 	/**
@@ -189,9 +296,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 			if(getEditingDomain().getCommandStack().canUndo()) {
 				getEditingDomain().getCommandStack().undo();
 			}
-			MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
-					EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"), EMFEditUIPlugin.INSTANCE
-					.getString("_WARN_CannotCreateResource"));
+			MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_CannotCreateResource"));
 			EMFEditUIPlugin.INSTANCE.log(exception);
 		}
 	}
