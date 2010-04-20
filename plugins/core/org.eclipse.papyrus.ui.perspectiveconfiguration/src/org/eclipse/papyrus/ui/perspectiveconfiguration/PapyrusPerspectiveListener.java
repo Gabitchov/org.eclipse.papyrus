@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.internal.jobs.Worker;
 import org.eclipse.jface.action.ContributionManager;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.IToolBarManager;
@@ -113,6 +114,13 @@ public class PapyrusPerspectiveListener extends PerspectiveAdapter {
 
 		}
 		updatePreferencePage(perspectivedescriptor);
+		Perspective perspective = ((WorkbenchPage)page).findPerspective(perspectivedescriptor);
+		
+		//due to a bug on the refresh, we need to call explicitly this method.
+		//to remove, when the origin is found.
+		if( perspective!=null){
+			perspective.updateActionBars();
+		}
 	}
 
 	protected void updatePreferencePage(IPerspectiveDescriptor perspectivedescriptor) {
@@ -154,7 +162,6 @@ public class PapyrusPerspectiveListener extends PerspectiveAdapter {
 	protected void updateTooling(IPerspectiveDescriptor perspectivedescriptor) {
 
 		CustomizeActionBars customizeActionBars = loadData();
-
 
 		if(configurationservice.getConfiguration(perspectivedescriptor.getId()) != null) {
 			Configuration configuration = configurationservice.getConfiguration(perspectivedescriptor.getId());
@@ -267,28 +274,28 @@ public class PapyrusPerspectiveListener extends PerspectiveAdapter {
 
 		// Fill fake action bars with static menu information.
 		((WorkbenchWindow)window).fillActionBars(ownedActionBar, ActionBarAdvisor.FILL_PROXY | ActionBarAdvisor.FILL_MENU_BAR | ActionBarAdvisor.FILL_COOL_BAR);
-		Activator.log.debug("\n+-> ActionSetDescriptor");
+		//	Activator.log.debug("\n+-> ActionSetDescriptor");
 		for(int i = 0; i < sets.length; i++) {
 			ActionSetDescriptor actionSetDesc = (ActionSetDescriptor)sets[i];
-			Activator.log.debug("+--->" + actionSetDesc.getId());
+			//	Activator.log.debug("+--->" + actionSetDesc.getId());
 
 		}
 
 		final IMenuService menuService = (IMenuService)window.getService(IMenuService.class);
 		menuService.populateContributionManager((ContributionManager)ownedActionBar.getMenuManager(), MenuUtil.MAIN_MENU);
-		Activator.log.debug("\n+-> Menu " + ownedActionBar.getMenuManager().getItems().length);
+		//Activator.log.debug("\n+-> Menu " + ownedActionBar.getMenuManager().getItems().length);
 		for(int i = 0; i < ownedActionBar.getMenuManager().getItems().length; i++) {
 			IContributionItem item = ownedActionBar.getMenuManager().getItems()[i];
-			Activator.log.debug("+--->" + item.getId());
+			//	Activator.log.debug("+--->" + item.getId());
 		}
 
 
 		IToolBarManager toolBarManager = ownedActionBar.getToolBarManager();
 		menuService.populateContributionManager((ContributionManager)toolBarManager, MenuUtil.MAIN_TOOLBAR);
-		Activator.log.debug("\n+-> toolbar " + ownedActionBar.getToolBarManager() + " " + ownedActionBar.getToolBarManager().getItems().length);
+		//Activator.log.debug("\n+-> toolbar " + ownedActionBar.getToolBarManager() + " " + ownedActionBar.getToolBarManager().getItems().length);
 		for(int i = 0; i < ownedActionBar.getToolBarManager().getItems().length; i++) {
 			IContributionItem item = toolBarManager.getItems()[i];
-			Activator.log.debug("+--->" + item.getId());
+			//Activator.log.debug("+--->" + item.getId());
 		}
 
 		return ownedActionBar;
@@ -301,7 +308,7 @@ public class PapyrusPerspectiveListener extends PerspectiveAdapter {
 	public void perspectiveDeactivated(IWorkbenchPage page, IPerspectiveDescriptor perspective) {
 		//in the case of reset this method is called.
 		//Activator.log.debug("perspectiveDeactivated "+perspective.getId());
-		updateTooling(perspective);
-		page.savePerspective();
+		//updateTooling(perspective);
+		//page.savePerspective();
 	}
 }
