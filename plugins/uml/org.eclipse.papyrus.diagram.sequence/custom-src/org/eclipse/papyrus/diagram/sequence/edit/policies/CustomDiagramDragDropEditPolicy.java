@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -52,10 +53,12 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceLinkMappingHelper;
+import org.eclipse.uml2.uml.DestructionEvent;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -120,9 +123,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			switch(nodeVISUALID) {
 			case BehaviorExecutionSpecificationEditPart.VISUAL_ID:
 			case ActionExecutionSpecificationEditPart.VISUAL_ID:
-				return dropExecutionSpecification(dropRequest, semanticLink, nodeVISUALID);
+				return dropExecutionSpecification((ExecutionSpecification)semanticLink, nodeVISUALID);
 			case DestructionEventEditPart.VISUAL_ID:
-				return dropDestructionEvent(dropRequest, semanticLink, nodeVISUALID);
+				return dropDestructionEvent((DestructionEvent)semanticLink, nodeVISUALID);
 			default:
 				return UnexecutableCommand.INSTANCE;
 			}
@@ -146,57 +149,110 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		return UnexecutableCommand.INSTANCE;
 	}
 
-
-
-	private Command dropDestructionEvent(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * Get lifelines element which contains these existingViews
+	 * 
+	 * @param existingViews
+	 *        the existing views.
+	 * @return the list of lifeline.
+	 */
+	private List<Lifeline> getLifelines(List<View> existingViews) {
+		List<Lifeline> lifelines = new ArrayList<Lifeline>();
+		for(View view : existingViews) {
+			EObject eObject = ViewUtil.resolveSemanticElement((View)view.eContainer());
+			if(eObject instanceof Lifeline) {
+				lifelines.add((Lifeline)eObject);
+			}
+		}
+		return lifelines;
 	}
 
-	private Command dropExecutionSpecification(DropObjectsRequest dropRequest, Element semanticLink, int nodeVisualID) {
-		if(semanticLink instanceof ExecutionSpecification) {
-			List<View> existingViews = DiagramEditPartsUtil.findViews(semanticLink, getViewer());
-			ExecutionSpecification es = (ExecutionSpecification)semanticLink;
-			if(existingViews.isEmpty()) {
-				// Find the lifeline of the ES
+	/**
+	 * Drop a destructionEvent on a lifeline
+	 * 
+	 * @param destructionEvent
+	 *        the destructionEvent to drop
+	 * @param nodeVISUALID
+	 *        the node visualID
+	 * @return the command to drop the destructionEvent on a lifeline if allowed.
+	 */
+	private Command dropDestructionEvent(DestructionEvent destructionEvent, int nodeVISUALID) {
+		// Get all the view of this destructionEvent.
+		List<View> existingViews = DiagramEditPartsUtil.findViews(destructionEvent, getViewer());
+		// Get the lifelines containing the graphical destructionEvent
+		List<Lifeline> lifelines = getLifelines(existingViews);
 
-				if(es.getStart() != null) {
-					// an Occurrence Specification covereds systematically a unique lifeline
-					Lifeline lifeline = es.getStart().getCovereds().get(0);
-					// Check that the container view is the view of the lifeline
-					if(lifeline.equals(ViewUtil.resolveSemanticElement((View)getHost().getModel()))) {
-						ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(semanticLink), Node.class, String.valueOf(nodeVisualID), ViewUtil.APPEND, true, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
-						CreateCommand cc = new CreateCommand(getEditingDomain(), viewDescriptor, (View)getHost().getModel());
-						return new ICommandProxy(cc);
+		// If the list of lifeline already containing the destructionEvent doesn't contain the lifeline targeted.
+		if(!lifelines.contains(getHostObject())) {
+			Lifeline lifeline = (Lifeline)getHostObject();
+			for(InteractionFragment ift : lifeline.getCoveredBys()) {
+				if(ift instanceof OccurrenceSpecification) {
+					OccurrenceSpecification occurrenceSpecification = (OccurrenceSpecification)ift;
+					// if the event of the occurrenceSpecification is the DestructionEvent, create the command
+					if(destructionEvent.equals(occurrenceSpecification.getEvent())) {
+						return getCreateCommand(destructionEvent, nodeVISUALID);
 					}
 				}
-			} else {
-
-				CompositeCommand cc = new CompositeCommand("Moving an ES");
-
-				// Add the view to the new container
-				AddCommand addCommand = new AddCommand(getEditingDomain(), new EObjectAdapter((View)getHost().getModel()), new EObjectAdapter(existingViews.get(0)));
-				cc.add(addCommand);
-
-
-				Lifeline oldCoveredLifeline = (Lifeline)ViewUtil.resolveSemanticElement((View)existingViews.get(0).eContainer());
-
-				// Update the ES covered lifeline
-				updateCoveredLifeline(es, cc, oldCoveredLifeline);
-
-				// Update the start and finish occurrence specification covered lifeline
-				updateCoveredLifeline(es.getStart(), cc, oldCoveredLifeline);
-				updateCoveredLifeline(es.getFinish(), cc, oldCoveredLifeline);
-
-				//TODO  Set the new location of the view. 
-				// Actually there is some layout problems, so it is disable. 
-				//				SetBoundsCommand boundsCommand = new SetBoundsCommand(getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(existingViews.get(0)), dropRequest.getLocation());
-				//				cc.add(boundsCommand);
-
-				return new ICommandProxy(cc);
 			}
-
 		}
+		return UnexecutableCommand.INSTANCE;
+	}
+
+	/**
+	 * Get the create command
+	 * 
+	 * @param semanticLink
+	 *        the element
+	 * @param nodeVISUALID
+	 *        the visualID
+	 * @return the command
+	 */
+	private Command getCreateCommand(Element semanticLink, int nodeVISUALID) {
+		ViewDescriptor viewDescriptor = new ViewDescriptor(new EObjectAdapter(semanticLink), Node.class, String.valueOf(nodeVISUALID), ViewUtil.APPEND, true, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
+		CreateCommand cc = new CreateCommand(getEditingDomain(), viewDescriptor, (View)getHost().getModel());
+		return new ICommandProxy(cc);
+	}
+
+	private Command dropExecutionSpecification(ExecutionSpecification es, int nodeVISUALID) {
+		List<View> existingViews = DiagramEditPartsUtil.findViews(es, getViewer());
+		if(existingViews.isEmpty()) {
+			// Find the lifeline of the ES
+
+			if(es.getStart() != null) {
+				// an Occurrence Specification covereds systematically a unique lifeline
+				Lifeline lifeline = es.getStart().getCovereds().get(0);
+				// Check that the container view is the view of the lifeline
+				if(lifeline.equals(getHostObject())) {
+					return getCreateCommand(es, nodeVISUALID);
+				}
+			}
+		} else {
+
+			CompositeCommand cc = new CompositeCommand("Moving an ES");
+
+			// Add the view to the new container
+			AddCommand addCommand = new AddCommand(getEditingDomain(), new EObjectAdapter((View)getHost().getModel()), new EObjectAdapter(existingViews.get(0)));
+			cc.add(addCommand);
+
+
+			Lifeline oldCoveredLifeline = (Lifeline)ViewUtil.resolveSemanticElement((View)existingViews.get(0).eContainer());
+
+			// Update the ES covered lifeline
+			updateCoveredLifeline(es, cc, oldCoveredLifeline);
+
+			// Update the start and finish occurrence specification covered lifeline
+			updateCoveredLifeline(es.getStart(), cc, oldCoveredLifeline);
+			updateCoveredLifeline(es.getFinish(), cc, oldCoveredLifeline);
+
+			//TODO  Set the new location of the view. 
+			// Actually there is some layout problems, so it is disable. 
+			//				SetBoundsCommand boundsCommand = new SetBoundsCommand(getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter(existingViews.get(0)), dropRequest.getLocation());
+			//				cc.add(boundsCommand);
+
+			return new ICommandProxy(cc);
+		}
+
+
 		return UnexecutableCommand.INSTANCE;
 	}
 
