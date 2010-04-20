@@ -79,7 +79,7 @@
       </editorDiagram>
       <creationCommand
             creationCommandClass="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand"
-            creationCondition="org.eclipse.papyrus.core.extension.commands.PerspectiveContextDependence"
+            creationCondition="org.eclipse.papyrus.diagram.usecase.UseCaseDiagramCreationCondition"
             icon="icons/UseCaseDiagram.gif"
             id="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand"
             label="UML UseCase Diagram"

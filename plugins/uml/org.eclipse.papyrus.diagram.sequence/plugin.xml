@@ -78,7 +78,7 @@
       </editorDiagram>
       <creationCommand
             creationCommandClass="org.eclipse.papyrus.diagram.sequence.CreateSequenceDiagramCommand"
-            creationCondition="org.eclipse.papyrus.core.extension.commands.PerspectiveContextDependence"
+            creationCondition="org.eclipse.papyrus.diagram.sequence.SequenceDiagramCreationCondition"
             icon="icons/SequenceDiagram.gif"
             id="org.eclipse.papyrus.diagram.sequence.CreateSequenceDiagramCommand"
             label="UML Sequence Diagram"

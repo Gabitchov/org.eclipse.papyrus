@@ -548,6 +548,7 @@
       </editorDiagram>
       <creationCommand
             creationCommandClass="org.eclipse.papyrus.diagram.statemachine.CreateStateMachineDiagramCommand"
+            creationCondition="org.eclipse.papyrus.diagram.statemachine.StateMachineDiagramCreationCondition"
             icon="icons/StateMachineDiagram.gif"
             id="org.eclipse.papyrus.diagram.statemachine.action.CreationCommand"
             label="UML StateMachine Diagram"

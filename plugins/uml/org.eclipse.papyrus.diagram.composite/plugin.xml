@@ -1619,7 +1619,7 @@
       </editorDiagram>
       <creationCommand
             creationCommandClass="org.eclipse.papyrus.diagram.composite.CreateCompositeDiagramCommand"
-            creationCondition="org.eclipse.papyrus.core.extension.commands.PerspectiveContextDependence"
+            creationCondition="org.eclipse.papyrus.diagram.composite.CompositeDiagramCreationCondition"
             icon="icons/obj16/Diagram_CompositeStructureDiagram.gif"
             id="org.eclipse.papyrus.diagram.composite.createCompositeDiagram"
             label="UML CompositeStructure Diagram"
