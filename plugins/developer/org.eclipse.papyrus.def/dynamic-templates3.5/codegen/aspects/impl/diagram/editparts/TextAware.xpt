@@ -32,10 +32,10 @@
 	
 	«REM»BEGIN: PapyrusGenCode«ENDREM»
 	«REM»Add attributes to manage extended editors«ENDREM»
-	/** direct edition mode (default, undefined, registered editor, etc.) */
+	«EXPAND xpt::Common::generatedMemberComment('direct edition mode (default, undefined, registered editor, etc.)')»
 	protected int directEditionMode = org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
-	/** configuration from a registered edit dialog */
+	«EXPAND xpt::Common::generatedMemberComment('configuration from a registered edit dialog')»
 	protected org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration configuration;
 	«REM»END: BEGIN: PapyrusGenCode«ENDREM»
 	
@@ -701,6 +701,7 @@
 «DEFINE updateExtendedEditorConfiguration FOR gmfgen::GenCommonBase-»
 	/**
 	 * Updates the preference configuration
+	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = org.eclipse.papyrus.extensionpoints.editors.Activator.getDefault().getPreferenceStore().getString(
@@ -718,6 +719,7 @@
 	/**
  	* Performs the direct edit usually used by GMF editors.
  	* @param theRequest the direct edit request that starts the direct edit system
+ 	* @generated
  	*/
 	protected void performDefaultDirectEditorEdit(final org.eclipse.gef.Request theRequest) {
 		// initialize the direct edit manager

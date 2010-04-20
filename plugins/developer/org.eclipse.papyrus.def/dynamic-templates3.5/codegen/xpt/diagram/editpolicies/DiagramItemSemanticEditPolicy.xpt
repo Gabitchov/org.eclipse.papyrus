@@ -119,6 +119,7 @@ protected org.eclipse.gef.commands.Command getDuplicateCommand(org.eclipse.gmf.r
 «DEFINE DuplicateAnythingCommand FOR gmfgen::GenDiagram-»
 	«EXPAND xpt::Common::generatedClassComment»
 private static class DuplicateAnythingCommand extends org.eclipse.papyrus.diagram.common.commands.DuplicateNamedElementCommand {
+«EXPAND xpt::Common::generatedMemberComment»
 private org.eclipse.gmf.runtime.notation.Diagram diagram;
 	«EXPAND DAC_constructor-»
 	«EXPAND DAC_additions-»

@@ -69,6 +69,7 @@ public class «editPartClassName» «EXPAND extendsList» «EXPAND implementsLis
 «DEFINE additions FOR gmfgen::GenNodeLabel-»
 «REM»Code to refresh icon«ENDREM»
 
+«EXPAND xpt::Common::generatedMemberComment»
 private static final String ADD_PARENT_MODEL = "AddParentModel";
 
 	

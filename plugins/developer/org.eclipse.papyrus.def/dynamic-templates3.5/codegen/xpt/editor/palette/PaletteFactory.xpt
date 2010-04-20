@@ -62,6 +62,7 @@ public class «factoryClassName» extends org.eclipse.gmf.runtime.diagram.ui.ser
 
 
 «DEFINE generateGetTemplate FOR gmfgen::Palette»
+	«EXPAND xpt::Common::generatedMemberComment»
  	public Object getTemplate(String templateId) {
  		
  		// default return: null
