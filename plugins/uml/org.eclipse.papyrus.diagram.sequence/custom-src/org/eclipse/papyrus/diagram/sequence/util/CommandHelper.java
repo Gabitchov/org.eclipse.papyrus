@@ -511,9 +511,12 @@ public class CommandHelper {
 	/**
 	 * Create an DestructionEvent and an occurrenceSpecification bounds to the lifeline
 	 * 
-	 * @param destructionEvent the destructionEvent 
-	 * @param lifeline the lifeline associated with the destructionEvent
-	 * @param modelContainer the container of the occurrenceSpecification that will bound the lifeline and the destructionEvent.
+	 * @param destructionEvent
+	 *        the destructionEvent
+	 * @param lifeline
+	 *        the lifeline associated with the destructionEvent
+	 * @param modelContainer
+	 *        the container of the occurrenceSpecification that will bound the lifeline and the destructionEvent.
 	 * @return
 	 */
 	public static DestructionEvent doCreateDestructionEvent(DestructionEvent destructionEvent, Lifeline lifeline, Object modelContainer) {

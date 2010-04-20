@@ -31,7 +31,7 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 
 /**
- * A specific itemSemantic edit policy for the destructionEvent. 
+ * A specific itemSemantic edit policy for the destructionEvent.
  * Add some behavior specific to the DestructionEvent.
  */
 public class DestructionEventCompleteItemSemanticEditPolicy extends DestructionEventItemSemanticEditPolicy {
@@ -42,59 +42,55 @@ public class DestructionEventCompleteItemSemanticEditPolicy extends DestructionE
 	 */
 	@Override
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		
+
 		// Get the super command
 		Command command = super.getDestroyElementCommand(req);
-		
+
 		// Define a new CompositeTransactional command
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
-		
-		if(command instanceof ICommandProxy){
-			
+
+		if(command instanceof ICommandProxy) {
+
 			// Retrieve the ICommand from the super command to add it to the new CompositeTransactional command
 			ICommandProxy cmdProxy = (ICommandProxy)command;
 			cmd.add(cmdProxy.getICommand());
-			
+
 			// Get the UML element associated with this policy
 			View view = (View)getHost().getModel();
 			EObject eObject = view.getElement();
-			
+
 			if(eObject instanceof DestructionEvent) {
 				// Get the usage of this destructionEvent in the resourceSet. 
 				Collection<EStructuralFeature.Setting> usages = getUsages(eObject, getEditingDomain().getResourceSet());
-				
-				for(EStructuralFeature.Setting setting : usages){
+
+				for(EStructuralFeature.Setting setting : usages) {
 					EObject settingEObj = setting.getEObject();
 					// In case it is an OccurrenceSpecification, add a DestroyElement command.
 					// An OccurrenceSpecification must have an event
-					if(settingEObj instanceof OccurrenceSpecification){
+					if(settingEObj instanceof OccurrenceSpecification) {
 						DestroyElementRequest r = new DestroyElementRequest((OccurrenceSpecification)settingEObj, false);
 						cmd.add(new DestroyElementCommand(r));
 					}
 				}
 			}
-			
-			
+
+
 		}
-		
+
 		// Wrap and return the command
 		return getGEFWrapper(cmd.reduce());
 	}
-	
+
 	//TODO : comment and extract this method into a generic class.
-	public static Collection<EStructuralFeature.Setting> getUsages(EObject source,ResourceSet r)
-	{
-	    Collection<EStructuralFeature.Setting> collection = null;
-	    ECrossReferenceAdapter crossReferenceAdapter = ECrossReferenceAdapter.getCrossReferenceAdapter(source);
-	    if (crossReferenceAdapter != null)
-	    {
-	        collection = crossReferenceAdapter.getNonNavigableInverseReferences(source);
-	    }
-	    else
-	    {
-	        collection = EcoreUtil.UsageCrossReferencer.find(source, r);
-	    }
-	    return collection;
+	public static Collection<EStructuralFeature.Setting> getUsages(EObject source, ResourceSet r) {
+		Collection<EStructuralFeature.Setting> collection = null;
+		ECrossReferenceAdapter crossReferenceAdapter = ECrossReferenceAdapter.getCrossReferenceAdapter(source);
+		if(crossReferenceAdapter != null) {
+			collection = crossReferenceAdapter.getNonNavigableInverseReferences(source);
+		} else {
+			collection = EcoreUtil.UsageCrossReferencer.find(source, r);
+		}
+		return collection;
 	}
 }

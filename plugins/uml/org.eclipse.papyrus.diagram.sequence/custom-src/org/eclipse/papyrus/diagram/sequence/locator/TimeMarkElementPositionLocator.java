@@ -19,9 +19,9 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.papyrus.diagram.common.locator.AdvancedBorderItemLocator;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart.LifelineFigure;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart.LifelineFigure;
 import org.eclipse.papyrus.diagram.sequence.figures.LifelineDotLineCustomFigure;
 
 /**
