@@ -371,9 +371,7 @@ public class PaletteUtil {
 						}
 					}
 				}
-				return true;
 			}
-			return false;
 		}
 		// by default, returns true if the descriptor is not a local descriptor, as they do not use
 		// profile
