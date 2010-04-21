@@ -84,7 +84,7 @@ public class LoadBrowserCustomization extends AbstractHandler {
 			if (loadCustomizationsDialog.open() == Window.OK) {
 				try {
 
-					customizationManager.clearCustomization();
+					 customizationManager.clearCustomizations();
 					List<MetamodelView> selectedCustomizations = loadCustomizationsDialog
 							.getSelectedCustomizations();
 
