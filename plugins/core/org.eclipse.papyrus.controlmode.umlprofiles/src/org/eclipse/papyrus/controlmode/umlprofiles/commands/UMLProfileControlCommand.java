@@ -36,7 +36,7 @@ public class UMLProfileControlCommand implements IControlCommand {
 	 * {@inheritDoc}
 	 */
 	public boolean provides(EObject selection, STATE_CONTROL state, Resource source, Resource target) {
-		return selection instanceof Package;
+		return true;
 	}
 
 	/**

@@ -13,9 +13,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.controlmode.action;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -30,6 +36,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.controlmode.commands.ControlCommand;
+import org.eclipse.papyrus.controlmode.commands.IControlCondition;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
@@ -38,6 +45,18 @@ import org.eclipse.ui.PlatformUI;
  * An action to control a papyrus resource.
  */
 public class PapyrusControlAction extends ControlAction {
+
+	/** extension point ID for custom control command */
+	private static final String CONTROL_CONDITION_EXTENSION_POINT_ID = "org.eclipse.papyrus.controlmode.customControlCommand";
+
+	/** attribute ID for the custom command class. */
+	private static final String CONTROL_CONDITION_ATTRIBUTE_EXTENSION_POINT = "controlCondition";
+
+	/** element ID for the custom command class. */
+	private static final String CONTROL_CONDITION_ELEMENT_EXTENSION_POINT = "enableControlCommand";
+
+	/** custom commands from extensions */
+	private static List<IControlCondition> commands;
 
 	/**
 	 * Instantiates a new papyrus control action.
@@ -49,6 +68,7 @@ public class PapyrusControlAction extends ControlAction {
 		super(domain);
 		setDescription(EMFEditUIPlugin.INSTANCE.getString("_UI_Control_menu_item_description"));
 		setToolTipText("Split the model into an external model");
+		commands = getCommandConditionsExtensions();
 	}
 
 	/**
@@ -56,8 +76,12 @@ public class PapyrusControlAction extends ControlAction {
 	 */
 	@Override
 	public boolean isEnabled() {
-		return getEditingDomain().isControllable(eObject) && !AdapterFactoryEditingDomain.isControlled(eObject)
-				&& !eObject.eContents().isEmpty();
+		boolean enableControl = true;
+		for(IControlCondition cond : commands) {
+			// check if action is disabled by an extension
+			enableControl &= cond.enableControl(eObject);
+		}
+		return enableControl && getEditingDomain().isControllable(eObject) && !AdapterFactoryEditingDomain.isControlled(eObject) && !eObject.eContents().isEmpty();
 	}
 
 	/**
@@ -93,10 +117,8 @@ public class PapyrusControlAction extends ControlAction {
 			return;
 		}
 		try {
-			ControlCommand transactionalCommand = new ControlCommand(EditorUtils.getTransactionalEditingDomain(),
-					controlledModel, eObject, "Control", null);
-			OperationHistoryFactory.getOperationHistory()
-					.execute(transactionalCommand, new NullProgressMonitor(), null);
+			ControlCommand transactionalCommand = new ControlCommand(EditorUtils.getTransactionalEditingDomain(), controlledModel, eObject, "Control", null);
+			OperationHistoryFactory.getOperationHistory().execute(transactionalCommand, new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {
 			MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_CannotCreateResource"));
 			EMFEditUIPlugin.INSTANCE.log(e);
@@ -109,8 +131,7 @@ public class PapyrusControlAction extends ControlAction {
 	 * @return the controlled resource
 	 */
 	private Resource getControlledResource() {
-		org.eclipse.papyrus.controlmode.ui.ControlResourceDialog dialog = new org.eclipse.papyrus.controlmode.ui.ControlResourceDialog(
-				Display.getDefault().getActiveShell(), getEditingDomain(), eObject.eResource(), getElementName(eObject));
+		org.eclipse.papyrus.controlmode.ui.ControlResourceDialog dialog = new org.eclipse.papyrus.controlmode.ui.ControlResourceDialog(Display.getDefault().getActiveShell(), getEditingDomain(), eObject.eResource(), getElementName(eObject));
 		int returnCode = dialog.open();
 		Resource resource = null;
 
@@ -118,9 +139,7 @@ public class PapyrusControlAction extends ControlAction {
 			resource = dialog.getControlResource();
 
 			if(resource == null || !resource.getURI().isPlatformResource()) {
-				MessageDialog.openWarning(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
-						EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"), EMFEditUIPlugin.INSTANCE
-						.getString("_WARN_CannotCreateResource"));
+				MessageDialog.openWarning(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_CannotCreateResource"));
 				resource = null;
 			}
 		}
@@ -160,13 +179,33 @@ public class PapyrusControlAction extends ControlAction {
 				if("name".equalsIgnoreCase(eAttribute.getName())) {
 					result = eAttribute;
 					break;
-				} else if(eAttribute.getEAttributeType().getInstanceClass() == String.class && result != null
-						&& result.getEAttributeType().getInstanceClass() != String.class) {
+				} else if(eAttribute.getEAttributeType().getInstanceClass() == String.class && result != null && result.getEAttributeType().getInstanceClass() != String.class) {
 					result = eAttribute;
 				}
 			}
 		}
 		return result;
+	}
+
+	/**
+	 * Gets the conditions that enable control action
+	 * 
+	 * @return the command extensions
+	 */
+	private List<IControlCondition> getCommandConditionsExtensions() {
+		List<IControlCondition> commands = new LinkedList<IControlCondition>();
+		IConfigurationElement[] extensions = Platform.getExtensionRegistry().getConfigurationElementsFor(CONTROL_CONDITION_EXTENSION_POINT_ID);
+		for(IConfigurationElement e : extensions) {
+			if(CONTROL_CONDITION_ELEMENT_EXTENSION_POINT.equals(e.getName())) {
+				try {
+					IControlCondition controlCondition = (IControlCondition)e.createExecutableExtension(CONTROL_CONDITION_ATTRIBUTE_EXTENSION_POINT);
+					commands.add(controlCondition);
+				} catch (CoreException exception) {
+					exception.printStackTrace();
+				}
+			}
+		}
+		return commands;
 	}
 
 }

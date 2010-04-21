@@ -6,7 +6,7 @@
          <meta.schema plugin="org.eclipse.papyrus.controlmode" id="customControlCommand" name="Custom Control Command"/>
       </appinfo>
       <documentation>
-         An extension point to define custom control action executed with the default Papyrus control action.
+         An extension point to define custom control action executed with the default Papyrus control or uncontrol action.
       </documentation>
    </annotation>
 
@@ -20,6 +20,7 @@
          <sequence minOccurs="0" maxOccurs="unbounded">
             <element ref="customControlCommand" minOccurs="0" maxOccurs="1"/>
             <element ref="customUncontrolCommand" minOccurs="0" maxOccurs="1"/>
+            <element ref="enableControlCommand" minOccurs="0" maxOccurs="1"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -78,6 +79,21 @@
       </complexType>
    </element>
 
+   <element name="enableControlCommand">
+      <complexType>
+         <attribute name="controlCondition" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.controlmode.commands.IControlCondition"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
    <annotation>
       <appinfo>
          <meta.section type="since"/>
@@ -101,7 +117,9 @@
          <meta.section type="apiinfo"/>
       </appinfo>
       <documentation>
-         The class must implement the interface org.eclipse.papyrus.controlmode.commands.IControlCommand
+         The class must implement the interface org.eclipse.papyrus.controlmode.commands.IControlCommand to specify control command.
+
+The class must implement the interface org.eclipse.papyrus.controlmode.commands.IUncontrolCommand to specify uncontrol command.
       </documentation>
    </annotation>
 

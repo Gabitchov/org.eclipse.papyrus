@@ -9,6 +9,9 @@
       <customUncontrolCommand
             uncontrolCommand="org.eclipse.papyrus.controlmode.umlprofiles.commands.UMLProfileUncontrolCommand">
       </customUncontrolCommand>
+      <enableControlCommand
+            controlCondition="org.eclipse.papyrus.controlmode.umlprofiles.commands.UMLProfileControlCondition">
+      </enableControlCommand>
    </extension>
 
 </plugin>
