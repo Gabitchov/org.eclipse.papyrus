@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension-point id="actionHandler" name="actionHandler" schema="schema/org.eclipse.papyrus.navigator.actionHandler.exsd"/>
+   <extension-point id="actionHandler" name="actionHandler" schema="schema/org.eclipse.papyrus.modelexplorer.actionHandler.exsd"/>
    <extension
          point="org.eclipse.ui.views">
       <view
