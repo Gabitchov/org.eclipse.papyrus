@@ -19,6 +19,7 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.papyrus.diagram.common.locator.AdvancedBorderItemLocator;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart.LifelineFigure;
@@ -115,7 +116,7 @@ public class TimeMarkElementPositionLocator extends AdvancedBorderItemLocator {
 		int parentFigureXCenter = bounds.getCenter().x;
 		int parentFigureHeight = bounds.height;
 		int parentFigureY = bounds.y;
-		Dimension borderItemSize = getSize(borderItem);
+		Dimension borderItemSize = getCorrectSize(borderItem);
 		int newX = suggestedLocation.x;
 		int newY = suggestedLocation.y;
 		int westX = parentFigureXCenter - borderItemSize.width;// + getBorderItemOffset().width;
@@ -174,7 +175,7 @@ public class TimeMarkElementPositionLocator extends AdvancedBorderItemLocator {
 	@Override
 	public void relocate(IFigure borderItem) {
 		// reset bounds of borderItem
-		Dimension size = getSize(borderItem);
+		Dimension size = getCorrectSize(borderItem);
 		Rectangle rectSuggested = getConstraint().getCopy();
 		if(rectSuggested.getTopLeft().x == 0 && rectSuggested.getTopLeft().y == 0) {
 			rectSuggested.setLocation(getPreferredLocation(borderItem));
@@ -194,6 +195,20 @@ public class TimeMarkElementPositionLocator extends AdvancedBorderItemLocator {
 	}
 
 	/**
+	 * Gets the size of the border item figure. Take in account the constraint as a minimum size.
+	 * 
+	 * @param borderItem
+	 * @return the size of the border item figure.
+	 */
+	protected final Dimension getCorrectSize(IFigure borderItem) {
+		Dimension size = getConstraint().getSize();
+		if(size.isEmpty()) {
+			size.union(borderItem.getPreferredSize(size.width, size.height));
+		}
+		return size;
+	}
+
+	/**
 	 * Redraw the time marks
 	 * 
 	 * @param borderItem
@@ -207,6 +222,8 @@ public class TimeMarkElementPositionLocator extends AdvancedBorderItemLocator {
 				((TimeConstraintEditPart.TimeMarkElementFigure)child).setCurrentSideOfFigure(getCurrentSideOfParent(), location);
 			} else if(child instanceof TimeObservationEditPart.TimeMarkElementFigure) {
 				((TimeObservationEditPart.TimeMarkElementFigure)child).setCurrentSideOfFigure(getCurrentSideOfParent(), location);
+			} else if(child instanceof DurationConstraintEditPart.DurationConstraintFigure) {
+				((DurationConstraintEditPart.DurationConstraintFigure)child).updateArrow(location.width, location.height);
 			}
 		}
 	}

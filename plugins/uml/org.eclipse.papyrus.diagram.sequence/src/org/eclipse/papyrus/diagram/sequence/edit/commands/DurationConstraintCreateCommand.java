@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.uml2.uml.DurationConstraint;
@@ -105,7 +106,18 @@ public class DurationConstraintCreateCommand extends EditElementCommand {
 			return true; // duration creation is in progress; target is not defined yet
 		}
 		Object occurrence2 = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2);
-		return occurrence2 instanceof OccurrenceSpecification && !occurrence.equals(occurrence2);
+		if(!(occurrence2 instanceof OccurrenceSpecification)) {
+			return false;
+		}
+		// disable duration constraint on a same event
+		if(occurrence.equals(occurrence2)) {
+			return false;
+		}
+		// enable duration constraint only on a same lifeline or on message
+		boolean enabled = DurationConstraintHelper.coversSameLifeline((OccurrenceSpecification)occurrence, (OccurrenceSpecification)occurrence2);
+		// TODO handle creation on message
+		//enabled |= DurationConstraintHelper.endsOfSameMessage((OccurrenceSpecification)occurrence, (OccurrenceSpecification)occurrence2);
+		return enabled;
 	}
 
 	/**
