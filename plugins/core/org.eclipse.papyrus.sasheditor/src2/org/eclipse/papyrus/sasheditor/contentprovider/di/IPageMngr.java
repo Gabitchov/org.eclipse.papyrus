@@ -17,11 +17,15 @@ package org.eclipse.papyrus.sasheditor.contentprovider.di;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer;
 
 
 /**
  * Interface providing method to manage pages in the Sash Windows system.
  * This interface provide basic access to the Sash Windows system.
+ * It is intended to be used from the application in order to interact with the ContentProvider. Then,
+ * the {@link SashWindowsContainer} will refresh its views.
+ * 
  * 
  * @author dumoulin
  */

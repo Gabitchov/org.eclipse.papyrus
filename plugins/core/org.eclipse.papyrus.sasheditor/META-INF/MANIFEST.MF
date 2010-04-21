@@ -8,6 +8,7 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: org.eclipse.papyrus.sasheditor.contentprovider,
  org.eclipse.papyrus.sasheditor.contentprovider.di,
+ org.eclipse.papyrus.sasheditor.contentprovider.di.commands,
  org.eclipse.papyrus.sasheditor.contentprovider.simple,
  org.eclipse.papyrus.sasheditor.editor,
  org.eclipse.papyrus.sasheditor.editor.actionbarcontributor,

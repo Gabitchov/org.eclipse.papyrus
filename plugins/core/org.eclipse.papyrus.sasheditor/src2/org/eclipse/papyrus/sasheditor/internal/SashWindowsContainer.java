@@ -13,9 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.internal;
 
-import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.util.Geometry;
 import org.eclipse.papyrus.sasheditor.contentprovider.IComponentModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IEditorModel;
@@ -82,6 +82,11 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 	/** A flag that indicates that the model is being synchronized. */
 	private AtomicBoolean isRefreshing = new AtomicBoolean(false);
+
+	/**
+	 * The cached value of the menu manager, if any.
+	 */
+	private MenuManager folderTabMenuManager;
 
 	/**
 	 * Constructor.
@@ -459,6 +464,27 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	}
 
 	/**
+	 * Set a {@link MenuManager} used to manage a contextual menu that is shown on the tabs area of the folders.
+	 * 
+	 * @param menuManager
+	 *        The {@link MenuManager} used to create the menu on the tab area.
+	 */
+	public void setFolderTabMenuManager(MenuManager menuManager) {
+		this.folderTabMenuManager = menuManager;
+		// Set the MenuManager in each existing folder.
+		// Use a visitor.
+		SetFolderTabMenuVisitor visitor = new SetFolderTabMenuVisitor(menuManager);
+		rootPart.visit(visitor);
+	}
+
+	/**
+	 * @return the menuManager
+	 */
+	protected MenuManager getFolderTabMenuManager() {
+		return folderTabMenuManager;
+	}
+
+	/**
 	 * Show the status of the different Tiles composing the sash system.
 	 * Used for debug purpose.
 	 */
@@ -473,6 +499,15 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 */
 	public void visit(IPageVisitor pageVisitor) {
 		PageVisitorWrapper visitor = new PageVisitorWrapper(pageVisitor);
+		rootPart.visit(visitor);
+	}
+
+	/**
+	 * Visit the Part associated to the container. This method visibility is protected in order to be able to access it
+	 * from junit tests.
+	 * It is not intended to be used by public API or from outside.
+	 */
+	protected void visit(IPartVisitor visitor) {
 		rootPart.visit(visitor);
 	}
 
@@ -704,6 +739,40 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 */
 	public void removePageChangedListener(IPageChangedListener pageChangedListener) {
 		activePageTracker.removePageChangedListener(pageChangedListener);
+	}
+
+	/* ***************************************************** */
+	/* Internal Visitors */
+	/* ***************************************************** */
+
+
+	/**
+	 * Inner class.
+	 * A visitor setting the {@link MenuManager} on each folder.
+	 */
+	private class SetFolderTabMenuVisitor extends PartVisitor {
+
+
+		private MenuManager menuManager;
+
+		/**
+		 * Constructor.
+		 * 
+		 * @param menuManager
+		 */
+		public SetFolderTabMenuVisitor(MenuManager menuManager) {
+			this.menuManager = menuManager;
+		}
+
+		/**
+		 * Set the menu if the visited node is a folder.
+		 */
+		@Override
+		public boolean accept(TabFolderPart part) {
+			part.setFolderTabMenuManager(menuManager);
+			return true;
+		}
+
 	}
 
 

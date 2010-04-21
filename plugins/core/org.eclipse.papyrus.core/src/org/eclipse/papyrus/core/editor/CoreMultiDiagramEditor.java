@@ -40,6 +40,8 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
+import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.papyrus.core.Activator;
 import org.eclipse.papyrus.core.contentoutline.ContentOutlineRegistry;
@@ -47,9 +49,9 @@ import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.core.editorsfactory.PageModelFactoryRegistry;
 import org.eclipse.papyrus.core.extension.diagrameditor.PluggableEditorFactoryReader;
+import org.eclipse.papyrus.core.lifecycleevents.DoSaveEvent;
 import org.eclipse.papyrus.core.lifecycleevents.ILifeCycleEventsProvider;
 import org.eclipse.papyrus.core.lifecycleevents.LifeCycleEventsProvider;
-import org.eclipse.papyrus.core.lifecycleevents.DoSaveEvent;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContributorRegistry;
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.CoreComposedActionBarContributor;
 import org.eclipse.papyrus.core.services.ExtensionServicesRegistry;
@@ -64,6 +66,7 @@ import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.TransactionalDiSashModelMngr;
 import org.eclipse.papyrus.sasheditor.editor.AbstractMultiPageSashEditor;
+import org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.sasheditor.editor.gef.MultiDiagramEditorGefDelegate;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorActionBarContributor;
@@ -71,6 +74,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.SaveAsDialog;
@@ -125,12 +129,12 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 * This class can be retrieved as a service using {@link ILifeCycleEventsProvider}.class.
 	 */
 	protected LifeCycleEventsProvider lifeCycleEventsProvider;
-	
+
 	/**
 	 * Cached event that can be reused.
 	 */
 	protected DoSaveEvent lifeCycleEvent;
-	
+
 	/**
 	 * 
 	 */
@@ -247,7 +251,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		// Create Services Registry
 		try {
 			ServicesRegistry servicesRegistry = new ExtensionServicesRegistry(Activator.PLUGIN_ID);
-//			servicesRegistry.startRegistry();
+			//			servicesRegistry.startRegistry();
 			return servicesRegistry;
 		} catch (ServiceException e) {
 			// Show log and error
@@ -339,8 +343,9 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 * 
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	@Override
-	public Object getAdapter(@SuppressWarnings("unchecked") Class adapter) {
+	public Object getAdapter(Class adapter) {
 
 		if(ServicesRegistry.class == adapter) {
 			return getServicesRegistry();
@@ -425,10 +430,10 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		// Create Gef adaptor
 		gefAdaptorDelegate = new MultiDiagramEditorGefDelegate();
 
-		
+
 		// Create ServicesRegistry and register services
 		servicesRegistry = createServicesRegistry();
-		
+
 		// Create lifeCycle event provider.
 		lifeCycleEventsProvider = new LifeCycleEventsProvider();
 		lifeCycleEvent = new DoSaveEvent(servicesRegistry, this);
@@ -457,10 +462,10 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		servicesRegistry.add(ISashWindowsContentProvider.class, 1, getContentProvider());
 		servicesRegistry.add(IPageMngr.class, 1, getIPageMngr());
 
-		
+
 		// Start servicesRegistry
 		servicesRegistry.startRegistry();
-		
+
 		// Listen to the modifications of the EMF model
 		transactionalEditingDomain.getCommandStack().addCommandStackListener(commandStackListener);
 
@@ -472,6 +477,36 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 		// Listen on contentProvider changes
 		sashModelMngr.getSashModelContentChangedProvider().addContentChangedListener(contentChangedListener);
+	}
+
+	/**
+	 * Activate this editor.
+	 * Called after the SWT.control is created.
+	 */
+	@Override
+	protected void activate() {
+		// TODO Auto-generated method stub
+		super.activate();
+		initFolderTabMenus();
+	}
+
+	/**
+	 * Init the contextual menu shown in the folder tabs.
+	 * This popup menu is contributed by the help of Eclipse extensions, using the Commands framework.
+	 * I.e, to add a menu item, create a menu, a command and an handler in the extension.
+	 */
+	protected void initFolderTabMenus() {
+		ISashWindowsContainer container = getISashWindowsContainer();
+
+		// TODO : use a constant
+		MenuManager menuManager = new MenuManager("tabmenu");
+		menuManager.add(new Separator("tabcommands"));
+		menuManager.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
+		container.setFolderTabMenuManager(menuManager);
+
+		// TODO : use a constant
+		getSite().registerContextMenu("org.eclipse.papyrus.core.editor.ui.tabmenu", menuManager, getSite().getSelectionProvider());
+
 	}
 
 	/**
@@ -507,13 +542,12 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		if(resourceSet != null) {
 			resourceSet.unload();
 		}
-		
+
 		// dispose available service
-		if(servicesRegistry != null)
-		{
+		if(servicesRegistry != null) {
 			servicesRegistry.disposeService();
 		}
-		
+
 		super.dispose();
 	}
 
@@ -526,10 +560,10 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 */
 	@Override
 	public void doSave(IProgressMonitor monitor) {
-		
+
 		// Sent pre doSave event
 		lifeCycleEventsProvider.fireAboutToDoSaveEvent(lifeCycleEvent);
-		
+
 		// sent doSaveEvent
 		lifeCycleEventsProvider.fireDoSaveEvent(lifeCycleEvent);
 		// Perform local doSave
@@ -541,10 +575,10 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		} catch (IOException e) {
 			log.error("Error during save", e);
 		}
-		
+
 		// Sent post Events
 		lifeCycleEventsProvider.firePostDoSaveEvent(lifeCycleEvent);
-		
+
 	}
 
 	/**
@@ -574,15 +608,15 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 */
 	@Override
 	public void doSaveAs() {
-		
+
 		// Sent pre doSave event
 		lifeCycleEventsProvider.fireAboutToDoSaveAsEvent(lifeCycleEvent);
-		
+
 		// sent doSaveEvent
 		lifeCycleEventsProvider.fireDoSaveAsEvent(lifeCycleEvent);
 		// Perform local doSaveAs
 
-		
+
 		// Show a SaveAs dialog
 		Shell shell = getEditorSite().getWorkbenchWindow().getShell();
 		SaveAsDialog dialog = new SaveAsDialog(shell);

@@ -209,6 +209,14 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	}
 
 	/**
+	 * Get the {@link ISashWindowsContainer}. 
+	 * Note the the ISashWindowsContainer can also be acuired with getAdapter(ISashWindowsContainer.class).
+	 */
+	public ISashWindowsContainer getISashWindowsContainer() {
+		return sashContainer;
+	}
+
+	/**
 	 * 
 	 * {@inheritDoc}
 	 */

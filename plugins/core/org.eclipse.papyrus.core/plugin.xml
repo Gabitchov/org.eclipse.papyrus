@@ -5,6 +5,158 @@
    <extension-point id="modelListener" name="ModelListener" schema="schema/modelListener.exsd"/>
    <extension-point id="papyrusContentOutline" name="PapyrusContentOutline" schema="schema/contentOutline.exsd"/>
    <extension-point id="service" name="Service" schema="schema/service.exsd"/>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar">
+         <toolbar
+               id="org.eclipse.papyrus.diagram.ui.toolbar">
+            <command
+                  commandId="org.eclipse.papyrus.core.commands.dropdowncommand"
+                  icon="icons/papyrus/32x32/Papyrus_32x32_t.gif"
+                  label="Close Diagrams"
+                  style="pulldown"
+                  tooltip="Close Current Editor&apos;s Diagrams ">
+               <visibleWhen>
+                  <with
+                        variable="activeEditorId">
+                     <equals
+                           value="org.eclipse.papyrus.core.papyrusEditor">
+                     </equals>
+                  </with>
+               </visibleWhen>
+            </command>
+         </toolbar>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.eclipse.papyrus.diagram.ui.toolbar">
+      </menuContribution>
+      <menuContribution
+            locationURI="popup:org.eclipse.papyrus.core.editor.ui.tabmenu?endof=tabcommands">
+         <command
+               commandId="org.eclipse.papyrus.core.commands.closediagram"
+               label="Close Diagram"
+               style="push"
+               tooltip="Close Currently Selected Diagram">
+            <visibleWhen>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.core.commands.closealldiagram"
+               label="Close All Diagrams"
+               style="push"
+               tooltip="Close All Opened Diagrams">
+            <visibleWhen>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.core.commands.closealldiagram"
+               label="Close Others Diagrams"
+               style="push"
+               tooltip="Close All Diagrams except the selected one">
+            <visibleWhen>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.papyrus.core.commands.dropdowncommand">
+         <command
+               commandId="org.eclipse.papyrus.core.commands.closediagram"
+               style="push"
+               tooltip="Close Currently Selected Diagram">
+            <visibleWhen>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.core.commands.closealldiagram"
+               label="Close All Diagrams"
+               style="push"
+               tooltip="Close All Opened Diagrams">
+            <visibleWhen>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.papyrus.core.commands.closealldiagram"
+               label="Close Others Diagrams"
+               style="push"
+               tooltip="Close All Diagrams except the selected one">
+            <visibleWhen>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="org.eclipse.papyrus.core.commands.closealldiagram"
+            name="Close All Diagrams">
+      </command>
+      <command
+            id="org.eclipse.papyrus.core.commands.closediagram"
+            name="Close Diagram">
+      </command>
+      <command
+            id="org.eclipse.papyrus.core.commands.closeothersdiagrams"
+            name="Close Others Diagrams">
+      </command>
+      <command
+            defaultHandler="org.eclipse.papyrus.sasheditor.contentprovider.di.commands.CloseDiagramCommand"
+            id="org.eclipse.papyrus.core.commands.dropdowncommand"
+            name="dropdown tool">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.sasheditor.contentprovider.di.commands.CloseDiagramCommand"
+            commandId="org.eclipse.papyrus.core.commands.closediagram">
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.sasheditor.contentprovider.di.commands.CloseAllDiagramsCommand"
+            commandId="org.eclipse.papyrus.core.commands.closealldiagram">
+      </handler>
+      <handler
+            class="org.eclipse.papyrus.sasheditor.contentprovider.di.commands.CloseAllDiagramsCommand"
+            commandId="org.eclipse.papyrus.core.commands.closeothersdiagrams">
+      </handler>
+   </extension>
 	
 	
 </plugin>

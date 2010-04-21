@@ -79,6 +79,7 @@ public class PTabFolder {
 	/**
 	 * Listen on menu detect.
 	 * The event is forwarded.
+	 * TODO [20100417] deprecated ?
 	 */
 	private MenuDetectListener menuDetectListener = new MenuDetectListener() {
 
@@ -222,9 +223,9 @@ public class PTabFolder {
 	 */
 	private void handleMenuDetect(Point displayPos, MenuDetectEvent e) {
 
-		if(isOnBorder(displayPos)) {
-			return;
-		}
+		//		if(isOnBorder(displayPos)) {
+		//			return;
+		//		}
 
 		CTabItem tab = getItem(displayPos);
 		listenersManager.fireMenuDetectEvent(tab, e);

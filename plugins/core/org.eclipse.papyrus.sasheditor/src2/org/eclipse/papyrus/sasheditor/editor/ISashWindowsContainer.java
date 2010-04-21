@@ -1,5 +1,6 @@
 package org.eclipse.papyrus.sasheditor.editor;
 
+import org.eclipse.jface.action.MenuManager;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.ui.IEditorPart;
 
@@ -49,4 +50,9 @@ public interface ISashWindowsContainer {
 	 */
 	public abstract void removePageChangedListener(IPageChangedListener pageChangedListener);
 
+	/**
+	 * Set a {@link MenuManager} used to manage a contextual menu that is shown on the tabs area of the folders.
+	 * @param menuManager The {@link MenuManager} used to create the menu on the tab area.
+	 */
+	public abstract void setFolderTabMenuManager( MenuManager menuManager );
 }

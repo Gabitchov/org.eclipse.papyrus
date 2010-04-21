@@ -139,6 +139,32 @@ public class SimpleSashWindowsContentProviderTest extends TestCase {
 	}
 
 	/**
+	 * Test method for
+	 * {@link org.eclipse.papyrus.sasheditor.contentprovider.simple.SimpleSashWindowsContentProvider#createFolder(org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel, int, org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel, int)}
+	 * .
+	 */
+	public void testCreateFolder_ITabFolderModel_int() {
+
+		// Create pages and add them to the default folder
+		List<IPageModel> models = new ArrayList<IPageModel>();
+		for(int i = 0; i < 8; i++) {
+			IPageModel newModel = new FakePageModel("model" + i);
+			contentProvider.addPage(newModel);
+			models.add(newModel);
+		}
+
+		ITabFolderModel referenceFolder = contentProvider.getCurrentTabFolder();
+
+		assertNotNull("referenceFolder exist", referenceFolder);
+		
+		// Create a new folder.
+		ITabFolderModel createdFolder = contentProvider.createFolder(referenceFolder, SWT.TOP);
+		
+		assertNotNull("folder created", createdFolder);
+		
+	}
+
+	/**
 	 * Assert folder is correctly created
 	 * 
 	 * @param srcFolder

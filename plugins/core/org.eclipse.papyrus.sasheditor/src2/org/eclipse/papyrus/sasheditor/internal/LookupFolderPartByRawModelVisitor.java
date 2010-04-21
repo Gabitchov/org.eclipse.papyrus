@@ -7,19 +7,19 @@ import org.eclipse.papyrus.sasheditor.editor.IPage;
 
 
 /**
- * A visitor used to lookup a PagePart from its raw model.
+ * A visitor used to lookup a {@link TabFolderPart} by its raw model.
  * 
  * @author cedric dumoulin
  * 
  */
-public class LookupModelPageVisitor extends PartVisitor {
+public class LookupFolderPartByRawModelVisitor extends PartVisitor {
 
 	private Object rawModel;
 
-	private IPage result;
+	private TabFolderPart result;
 
 
-	public LookupModelPageVisitor(Object rawModel) {
+	public LookupFolderPartByRawModelVisitor(Object rawModel) {
 		this.rawModel = rawModel;
 	}
 
@@ -28,7 +28,7 @@ public class LookupModelPageVisitor extends PartVisitor {
 	 * 
 	 * @return
 	 */
-	public IPage result() {
+	public TabFolderPart result() {
 		return result;
 	}
 
@@ -38,7 +38,7 @@ public class LookupModelPageVisitor extends PartVisitor {
 	 * @param part
 	 * @return
 	 */
-	private boolean isModelFor(PagePart part) {
+	private boolean isModelFor(TabFolderPart part) {
 
 		if(part.getRawModel() == rawModel) {
 			result = part;
@@ -52,19 +52,7 @@ public class LookupModelPageVisitor extends PartVisitor {
 	 * Check if it is this Component
 	 */
 	@Override
-	protected boolean acceptEditorTile(ComponentPart part) {
-		if(isModelFor(part))
-			return false;
-
-		// Continue looking
-		return true;
-	}
-
-	/**
-	 * Check if it is this IEditor
-	 */
-	@Override
-	protected boolean acceptEditorTile(EditorPart part) {
+	protected boolean acceptTabFolderPart(TabFolderPart part) {
 		if(isModelFor(part))
 			return false;
 

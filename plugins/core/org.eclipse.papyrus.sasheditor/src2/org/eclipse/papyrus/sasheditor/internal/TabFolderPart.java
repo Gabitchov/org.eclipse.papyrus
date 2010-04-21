@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.util.Geometry;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
@@ -35,6 +36,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.internal.DragCursors;
 import org.eclipse.ui.internal.dnd.DragUtil;
 import org.eclipse.ui.internal.dnd.IDragOverListener;
@@ -113,7 +115,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		 * The close cross has been pressed. Remove the corresponding tab. {@inheritDoc}
 		 */
 		public void itemClosedEvent(CTabFolderEvent event, int pageIndex) {
-			System.out.println("itemClosedEvent()");
+//			System.out.println("itemClosedEvent()");
 			// TODO: call appropriate method (to be determine)
 			//			model.removeTab(pageIndex);
 			//			getSashWindowContainer().getContentProvider().removeTab(model, pageIndex);
@@ -121,7 +123,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		}
 
 		public void menuDetectEvent(CTabItem tab, MenuDetectEvent event) {
-			System.out.println("menuDetectEvent()");
+//			System.out.println("menuDetectEvent()");
 		}
 
 		/**
@@ -228,7 +230,34 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		pTabFolder = res;
 		res.createPartControl(parent);
 		initDrag(res.getControl());
+		// init menu
+		initMenuManager();
 	}
+
+	/**
+	 * Init the menuManager after the control has been created.
+	 * Get the {@link MenuManager} from the {@link SashWindowsContainer}. Set it to this folder if it
+	 * is not null.
+	 */
+	private void initMenuManager() {
+		MenuManager menuManager = getSashWindowContainer().getFolderTabMenuManager();
+		if(menuManager != null)
+		{
+			setFolderTabMenuManager(menuManager);
+		}
+		
+	}
+
+	/**
+	 * Set a {@link MenuManager} used to manage a contextual menu that is shown on the tabs area of this folder.
+	 * @param menuManager The {@link MenuManager} used to create the menu on the tab area.
+	 */
+	public void setFolderTabMenuManager(MenuManager menuManager) {
+		Composite folderControl = getControl();
+		Menu menu = menuManager.createContextMenu(folderControl);
+		folderControl.setMenu(menu);
+	}
+
 
 	/**
 	 * The page has change. Propagate the event to the container.
@@ -268,8 +297,13 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	 * @see org.eclipse.papyrus.sasheditor.eclipsecopy.MultiPageEditorTile#dispose()
 	 */
 	public void dispose() {
+		// detach menu as it is shared between folders.
+		getControl().setMenu(null);
+
 		deactivate();
-		getControl().dispose();
+		
+//		getControl().dispose();
+		pTabFolder.dispose();
 	}
 
 	/**

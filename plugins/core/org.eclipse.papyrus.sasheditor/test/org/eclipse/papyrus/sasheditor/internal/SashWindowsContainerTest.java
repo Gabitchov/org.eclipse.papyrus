@@ -9,6 +9,7 @@ import java.util.List;
 
 import junit.framework.TestCase;
 
+import org.eclipse.jface.action.MenuManager;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
@@ -260,5 +261,63 @@ public class SashWindowsContainerTest extends TestCase {
 		Object model = models.get(1);
 		IPage foundPage = container.lookupModelPage(model);
 		assertEquals("Corresponding page is found", foundPage.getRawModel(), model);
+	}
+	
+	/**
+	 * Test method for {@link SashWindowsContainer#setFolderTabMenuManager(MenuManager)}
+	 */
+	public void testSetFolderTabMenuManager_MenuManager() {
+		// Create 
+		SimpleSashWindowsContentProvider contentProvider = new SimpleSashWindowsContentProvider();
+
+		// Create pages and add them to the default folder
+		List<IPageModel> models = new ArrayList<IPageModel>();
+		for(int i = 0; i < 2; i++) {
+			IPageModel newModel = new MessagePartModel("model" + i);
+			contentProvider.addPage(newModel);
+			models.add(newModel);
+		}
+
+		// Create new folders
+		ITabFolderModel referenceFolder = contentProvider.getCurrentTabFolder();
+		ITabFolderModel folder1 = contentProvider.createFolder(referenceFolder, SWT.TOP);
+		ITabFolderModel folder2 = contentProvider.createFolder(referenceFolder, SWT.DOWN);
+		ITabFolderModel folder3 = contentProvider.createFolder(referenceFolder, SWT.LEFT);
+
+		// Create SashWindowsContainer
+		SashWindowsContainer container = createSashWindowsContainer(contentProvider);
+		// Set a MenuManager
+		MenuManager menuManager = new MenuManager();
+		container.setFolderTabMenuManager(menuManager);
+		
+		// Test if the menu has been set in already created folders.
+		TabFolderPart folderPart = lookupTabFolderPart(container, referenceFolder);
+		assertNotNull("menu exist", folderPart.getControl().getMenu() );;
+		
+		folderPart = lookupTabFolderPart(container, folder1);
+		assertNotNull("menu exist", folderPart.getControl().getMenu() );;
+		
+		folderPart = lookupTabFolderPart(container, folder2);
+		assertNotNull("menu exist", folderPart.getControl().getMenu() );;
+		
+		folderPart = lookupTabFolderPart(container, folder3);
+		assertNotNull("menu exist", folderPart.getControl().getMenu() );;
+		
+
+		// Now create another tab, refresh the container in order that the part is created,
+		// ant test it
+		ITabFolderModel folder4 = contentProvider.createFolder(referenceFolder, SWT.RIGHT);
+		container.refreshTabs();
+		
+		folderPart = lookupTabFolderPart(container, folder4);
+		assertNotNull("menu exist", folderPart.getControl().getMenu() );;
+		
+	}
+
+	protected TabFolderPart lookupTabFolderPart(SashWindowsContainer container, Object rawModel) {
+
+		LookupFolderPartByRawModelVisitor visitor = new LookupFolderPartByRawModelVisitor(rawModel);
+		container.visit(visitor);
+		return visitor.result();
 	}
 }

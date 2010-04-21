@@ -23,6 +23,7 @@ import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener.ContentEvent;
+import org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer;
 import org.eclipse.swt.SWT;
 
 /**
@@ -168,15 +169,36 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	}
 
 	/**
-	 * Create a new folder and insert it at the specified side.
+	 * Create a new folder and insert it at the specified side. Move the specified tab into the created Folder.
+	 * 
 	 * The change event is sent only once after the complete operation is performed. {@inheritDoc}
+	 * 
+	 * @param referenceFolder The folder used as reference to insert the newly created Folder. 
+	 * @param side The side to which the created folder is inserted. Can be SWT.TOP, DOWN, LEFT, RIGHT.
 	 */
-	public void createFolder(ITabFolderModel tabFolder, int tabIndex, ITabFolderModel targetFolder, int side) {
+	public void createFolder(ITabFolderModel sourceFolder, int tabIndex, ITabFolderModel referenceFolder, int side) {
 		System.out.println("createFolder()");
 
-		ITabFolderModel newFolder = doCreateFolder((TabFolderModel)tabFolder, tabIndex, (TabFolderModel)targetFolder, side);
-		contentChangedListenerManager.fireContentChanged(new ContentEvent(ContentEvent.CHANGED, this, tabFolder));
+		ITabFolderModel newFolder = doCreateFolder((TabFolderModel)sourceFolder, tabIndex, (TabFolderModel)referenceFolder, side);
+		contentChangedListenerManager.fireContentChanged(new ContentEvent(ContentEvent.CHANGED, this, sourceFolder));
 		//		return newFolder;
+	}
+
+	/**
+	 * Create a new folder and insert it at the specified side of the reference folder.
+	 * The change event is sent only once after the complete operation is performed. 
+	 * 
+	 * This method is not part of the {@link SashWindowsContainer} API. It is here to help writing junit tests.
+	 * 
+	 * @param referenceFolder The folder used as reference to insert the newly created Folder. 
+	 * @param side The side to which the created folder is inserted. Can be SWT.TOP, DOWN, LEFT, RIGHT.
+	 */
+	public ITabFolderModel createFolder(ITabFolderModel referenceFolder, int side) {
+		System.out.println("createFolder()");
+
+		ITabFolderModel newFolder = doCreateFolder((TabFolderModel)referenceFolder, side);
+		contentChangedListenerManager.fireContentChanged(new ContentEvent(ContentEvent.CHANGED, this, referenceFolder));
+		return newFolder;
 	}
 
 	/**
@@ -218,6 +240,21 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 		// Remove unused folder if necessary
 		removeEmptyFolder(tabFolder);
 		doSetCurrentFolder(targetFolder);
+
+		return newFolder;
+	}
+
+	/**
+	 * Create a new folder and insert it at the specified side.
+	 * 
+	 */
+	private TabFolderModel doCreateFolder(TabFolderModel referenceFolder, int side) {
+
+		// Create new folder. Parent will be set when inserted.
+		TabFolderModel newFolder = new TabFolderModel(this);
+		// Insert folder
+		doInsertFolder(newFolder, referenceFolder, side);
+		doSetCurrentFolder(referenceFolder);
 
 		return newFolder;
 	}
