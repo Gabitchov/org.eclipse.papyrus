@@ -11,26 +11,26 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.core.view;
 
-import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.gmf.runtime.common.core.service.IProvider;
-import org.eclipse.papyrus.properties.runtime.view.IPropertyViewOperation;
+import org.eclipse.gmf.runtime.common.core.service.ExecutionStrategy;
+import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
 
 
 /**
- * retrieve the list of tab descriptors for the papyrus property view
+ * Util class for {@link PropertyViewService}
  */
-public class GetTabDescriptorsFromConfiguration implements IPropertyViewOperation {
+public class PropertyServiceUtil {
 
 	/**
-	 * {@inheritDoc}
+	 * Returns the tab descriptors for the property view service
+	 * 
+	 * @return the tab descriptors for the property view service
 	 */
-	public List<ITabDescriptor> execute(IProvider provider) {
-		if(provider instanceof IPropertyTabViewProvider) {
-			return ((IPropertyTabViewProvider)provider).getTabDescriptors();
-		}
-		return Collections.emptyList();
+	@SuppressWarnings("unchecked")
+	public static List<List<ITabDescriptor>> getTabDescriptors() {
+		return ExecutionStrategy.REVERSE.execute(PropertyViewService.getInstance(), new GetTabDescriptorsFromConfiguration());
 	}
+
 }

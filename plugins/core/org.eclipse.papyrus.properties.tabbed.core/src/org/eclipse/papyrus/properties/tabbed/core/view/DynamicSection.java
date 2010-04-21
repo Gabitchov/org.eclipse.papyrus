@@ -20,8 +20,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorController;
-import org.eclipse.papyrus.properties.tabbed.core.view.content.AbstractContainerDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.ViewDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.content.AbstractContainerDescriptor;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbenchPart;
@@ -40,14 +40,14 @@ public class DynamicSection extends AbstractPropertySection {
 	/** Elements being selected */
 	protected List<Object> objectsToEdit;
 
-	/** configuration of th econtent of this section */
-	protected final SectionConfiguration configuration;
-
 	/** list of controllers created for this section */
-	protected final List<PropertyEditorController> controllers;
+	protected final List<AbstractContainerDescriptor> containers;
 
 	/** tabbed property sheet page */
 	protected TabbedPropertySheetPage tabbedPropertySheetPage;
+
+	/** list of view descriptors that compose the section */
+	protected List<ViewDescriptor> viewDescriptors;
 
 	/**
 	 * Creates a new DynamicSection.
@@ -56,9 +56,9 @@ public class DynamicSection extends AbstractPropertySection {
 	 *        the graphical configuration of the section
 	 * 
 	 */
-	public DynamicSection(SectionConfiguration configuration) {
-		this.configuration = configuration;
-		this.controllers = new ArrayList<PropertyEditorController>();
+	public DynamicSection(List<ViewDescriptor> viewDescriptors) {
+		this.viewDescriptors = viewDescriptors;
+		this.containers = new ArrayList<AbstractContainerDescriptor>();
 	}
 
 	/**
@@ -77,9 +77,9 @@ public class DynamicSection extends AbstractPropertySection {
 	 */
 	@Override
 	public void dispose() {
-		for(PropertyEditorController controller : controllers) {
-			controller.dispose();
-			controller = null;
+		for(AbstractContainerDescriptor container : containers) {
+			container.dispose();
+			container = null;
 		}
 		super.dispose();
 	}
@@ -109,14 +109,17 @@ public class DynamicSection extends AbstractPropertySection {
 		if(!newObjects.isEmpty() && !newObjects.equals(objectsToEdit)) {
 			objectsToEdit = newObjects;
 
-			for(PropertyEditorController controller : controllers) {
-				controller.dispose();
+			for(AbstractContainerDescriptor container : containers) {
+				container.dispose();
 			}
-			controllers.clear();
+			containers.clear();
 
 			// generate the content of the section, given the configuration
-			for(AbstractContainerDescriptor descriptor : configuration.getContainers()) {
-				controllers.addAll(descriptor.createContent(this.parent, this.tabbedPropertySheetPage, objectsToEdit));
+			for(ViewDescriptor viewDescriptor : viewDescriptors) {
+				for(AbstractContainerDescriptor descriptor : viewDescriptor.getContainerDescriptors()) {
+					descriptor.createContent(this.parent, this.tabbedPropertySheetPage, objectsToEdit);
+					containers.add(descriptor);
+				}
 			}
 		}
 		// force the parent to layout

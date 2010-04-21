@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.papyrus.properties.tabbed.core.view.PropertyViewService;
+import org.eclipse.papyrus.properties.tabbed.core.view.PropertyServiceUtil;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptorProvider;
@@ -36,7 +36,7 @@ public class XMLBasedTabDescriptorProvider implements ITabDescriptorProvider {
 		if(descriptors == null) {
 			List<ITabDescriptor> descriptors = new ArrayList<ITabDescriptor>();
 
-			List<List<ITabDescriptor>> list = (List<List<ITabDescriptor>>)PropertyViewService.getInstance().getTabDescriptors();
+			List<List<ITabDescriptor>> list = PropertyServiceUtil.getTabDescriptors();
 			for(List<ITabDescriptor> sub : list) {
 				descriptors.addAll((List<ITabDescriptor>)sub);
 			}

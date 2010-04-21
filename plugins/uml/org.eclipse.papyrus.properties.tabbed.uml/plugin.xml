@@ -9,45 +9,33 @@
          <propertyCategory category="org.eclipse.papyrus"/>
       </propertyContributor>
    </extension>
-   <!--
-   <extension
-      point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
-   <propertyTabs
-         contributorId="TreeOutlinePage">
-      <propertyTab
-            afterTab="Base"
-            category="org.eclipse.papyrus"
-            id="DomainTab"
-            image="icons/tool.gif"
-            label="Papyrus">
-      </propertyTab>
-   </propertyTabs>
-</extension>
-<extension
-      point="org.eclipse.ui.views.properties.tabbed.propertySections">
-   <propertySections
-         contributorId="TreeOutlinePage">
-      <propertySection
-            class="org.eclipse.papyrus.properties.tabbed.uml.section.DomainPropertySection"
-            filter="org.eclipse.papyrus.properties.tabbed.uml.section.DomainPropertySection"
-            id="org.eclipse.papyrus.properties.runtime.domainsection"
-            tab="DomainTab">
-      </propertySection>
-   </propertySections>
-</extension>
--->
-<extension
+	<extension
       point="org.eclipse.papyrus.properties.runtime.propertyViewProvider">
    <propertyViewProvider
-         class="org.eclipse.papyrus.properties.tabbed.core.view.XMLPropertyViewProvider">
+         class="org.eclipse.papyrus.properties.tabbed.core.view.XMLPropertyTabViewProvider">
       <Priority
             name="Lowest">
       </Priority>
       <PropertyViewContribution
-            description="This is the generic view for uml properties"
+            description="This is the generic view for uml tabbed properties"
             icon="icons/tool.gif"
             name="UML"
             path="resources/uml_generic.xml">
+      </PropertyViewContribution>
+   </propertyViewProvider>
+</extension>
+<extension
+      point="org.eclipse.papyrus.properties.runtime.propertyViewProvider">
+   <propertyViewProvider
+         class="org.eclipse.papyrus.properties.runtime.view.XMLPropertyViewProvider">
+      <Priority
+            name="Lowest">
+      </Priority>
+      <PropertyViewContribution
+            description="These are generic views for uml elements"
+            icon="icons/tool.gif"
+            name="UML Views"
+            path="resources/uml_view.xml">
       </PropertyViewContribution>
    </propertyViewProvider>
 </extension>

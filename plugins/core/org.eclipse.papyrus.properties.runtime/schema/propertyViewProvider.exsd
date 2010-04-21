@@ -93,7 +93,7 @@
                   Class that implements this property editor
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn="org.eclipse.papyrus.properties.runtime.propertyeditor.PropertyEditorProvider:"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.properties.runtime.view.IPropertyViewProvider"/>
                </appinfo>
             </annotation>
          </attribute>

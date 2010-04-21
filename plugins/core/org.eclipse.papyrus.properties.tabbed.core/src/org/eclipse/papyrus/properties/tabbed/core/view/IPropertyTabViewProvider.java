@@ -9,22 +9,22 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.properties.tabbed.core.view.constraints;
+package org.eclipse.papyrus.properties.tabbed.core.view;
 
+import java.util.List;
+
+import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
 
 
 /**
- * Descriptor for constraints on the sections
+ * Interface for Tabbed property view providers
  */
-public interface IConstraintDescriptor {
+public interface IPropertyTabViewProvider {
 
 	/**
-	 * Returns <code>true</code> if the constraint is valid for the given object
+	 * Returns the list of tab descriptors for tab described in the configuration file
 	 * 
-	 * @param objectToTest
-	 *        the object to test
-	 * @return <code>true</code> if the constraint is valid
+	 * @return the list of tab descriptors for tab described in the configuration file or an empty list
 	 */
-	public boolean select(Object objectToTest);
-
+	public List<ITabDescriptor> getTabDescriptors();
 }
