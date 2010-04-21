@@ -9,6 +9,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
 import org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer;
+import org.eclipse.papyrus.sashwindows.di.PageRef;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.handlers.HandlerUtil;
 
@@ -42,6 +43,12 @@ public class CloseDiagramCommand extends AbstractHandler {
 			IPageMngr pageMngr = (IPageMngr)part.getAdapter(IPageMngr.class);
 			ISashWindowsContainer container = (ISashWindowsContainer)part.getAdapter(ISashWindowsContainer.class);
 			Object pageIdentifier = container.getActiveSashWindowsPage().getRawModel();
+			// Bug from sash Di to be corrected
+			if(pageIdentifier instanceof PageRef)
+			{
+				pageIdentifier = ((PageRef)pageIdentifier).getPageIdentifier();
+			}
+			
 			execute(pageMngr, pageIdentifier);
 
 		} catch (NullPointerException e) {
