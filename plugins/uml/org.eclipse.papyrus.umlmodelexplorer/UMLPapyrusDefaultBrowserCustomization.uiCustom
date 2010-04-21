@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ASCII"?>
+<uicustom:MetamodelView xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:query="http://www.eclipse.org/MoDisco/infra/query/0.8.incubation" xmlns:uicustom="http://www.eclipse.org/MoDisco/infra/browser/custom/0.8" metamodelURI="http://www.eclipse.org/uml2/3.0.0/UML">
+  <types metaclassName="uml.Package">
+    <references referenceName="packagedElement">
+      <customizedFeatures customizedFeature="collapseLink">
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+      </customizedFeatures>
+    </references>
+  </types>
+  <types metaclassName="uml.NamedElement">
+    <customizedFeatures customizedFeature="label">
+      <defaultValue xsi:type="uicustom:DerivedFeatureValue">
+        <valueCalculator xsi:type="query:JavaModelQuery" href="modisco:/query/PapyrusBrowserQuery#GetComplexName"/>
+      </defaultValue>
+    </customizedFeatures>
+    <customizedFeatures customizedFeature="color">
+      <defaultValue xsi:type="uicustom:StaticFeatureValue" value="(0,0,0)"/>
+    </customizedFeatures>
+  </types>
+  <types metaclassName="uml.Element">
+    <customizedFeatures customizedFeature="hideMetaclassName">
+      <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+    </customizedFeatures>
+    <references referenceName="eAnnotations">
+      <customizedFeatures>
+        <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
+      </customizedFeatures>
+    </references>
+  </types>
+</uicustom:MetamodelView>

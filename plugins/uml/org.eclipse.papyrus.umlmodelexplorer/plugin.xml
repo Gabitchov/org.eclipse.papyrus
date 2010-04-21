@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.4"?>
+
+<plugin>
+   <extension point="org.eclipse.papyrus.modelexplorer.actionHandler">
+      <customAction actionHandler="org.eclipse.papyrus.umlmodelexplorer.factory.RenameActionFactory" actionId="org.eclipse.papyrus.umlmodelexplorer.factory.RenameActionFactory" needSeparator="false">
+      </customAction>
+   </extension>
+
+   <extension point="org.eclipse.gmt.modisco.infra.browser.custom.core.registration">
+      <browserCustomization file="UMLPapyrusDefaultBrowserCustomization.uiCustom" loadByDefault="true"/>
+   </extension>
+   <extension point="org.eclipse.gmt.modisco.infra.query.registration">
+      <modelqueryset file="PapyrusBrowserQuery.querySet"/>
+   </extension>
+</plugin>
