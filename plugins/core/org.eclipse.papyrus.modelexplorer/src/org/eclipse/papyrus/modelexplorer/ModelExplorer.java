@@ -15,6 +15,7 @@ package org.eclipse.papyrus.modelexplorer;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListener;
 import org.eclipse.emf.transaction.ResourceSetListenerImpl;
@@ -22,6 +23,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.IPartListener2;
@@ -29,7 +31,9 @@ import org.eclipse.ui.IViewSite;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchPartReference;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.navigator.CommonNavigator;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor;
@@ -39,7 +43,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
  * this is an extension of {@link CommonNavigator} to be a model explorer
  */
 public class ModelExplorer extends CommonNavigator implements
-		IEditingDomainProvider {
+IEditingDomainProvider {
 
 	private IMultiDiagramEditor editorPart;
 	private TransactionalEditingDomain editingDomain;
@@ -62,10 +66,12 @@ public class ModelExplorer extends CommonNavigator implements
 
 	@Override
 	public void init(IViewSite aSite, IMemento aMemento)
-			throws PartInitException {
+	throws PartInitException {
 		// TODO Auto-generated method stub
 		super.init(aSite, aMemento);
 		page = aSite.getPage();
+
+
 		partListener = new IPartListener2() {
 
 			public void partActivated(IWorkbenchPartReference partRef) {
@@ -124,11 +130,35 @@ public class ModelExplorer extends CommonNavigator implements
 	 * Activate the Model Explorer.
 	 */
 	private void activate() {
+//		Display.getCurrent().syncExec(
+//				new Runnable() {
+//					public void run(){
+//						IWorkbenchWindow workbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+//
+//						IWorkbenchPage page = workbenchWindow.getActivePage();
+//						if(page == null) {
+//							try{
+//								Thread.sleep(1000);
+//							}
+//							catch (InterruptedException e) {
+//								System.err.println(e);
+//							}
+//						}
+//					}
+//				});
+
+
+
+
 		this.editorPart = EditorUtils.getMultiDiagramEditor();
 		this.editingDomain = EditorUtils.getTransactionalEditingDomain();
 		if (editingDomain != null) {
 			editingDomain.addResourceSetListener(resourceSetListener);
 		}
+		if(this.getCommonViewer()!=null){
+			this.getCommonViewer().refresh();
+		}
+
 	}
 
 	/**
@@ -159,7 +189,11 @@ public class ModelExplorer extends CommonNavigator implements
 	 * @param partRef
 	 */
 	private void handlePartActivated(IWorkbenchPartReference partRef) {
-		IWorkbenchPart part = partRef.getPart(false);
+		final IWorkbenchPart part = partRef.getPart(false);
+
+
+
+
 		if (part instanceof IEditorPart) {
 			activate();
 		}
@@ -180,7 +214,7 @@ public class ModelExplorer extends CommonNavigator implements
 	 */
 	private IPropertySheetPage getPropertySheetPage() {
 		final IMultiDiagramEditor multiDiagramEditor = EditorUtils
-				.getMultiDiagramEditor();
+		.getMultiDiagramEditor();
 		if (multiDiagramEditor != null) {
 			if (propertySheetPage == null) {
 				if (multiDiagramEditor instanceof ITabbedPropertySheetPageContributor) {

@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmt.modisco.infra.browser.uicore.CustomizableModelContentProvider;
 import org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem;
+import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
@@ -106,11 +107,7 @@ public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 				return null;
 			}
 			IWorkbenchPage page = workbenchWindow.getActivePage();
-			// while(page==null ||page.getActiveEditor()==null) {
-
-			// Thread.currentThread().sleep(1000);
-			// }
-			if (page != null) {
+			if (page != null && page.getActiveEditor() instanceof IMultiDiagramEditor) {
 				EList<EObject> contents = EditorUtils.getDiResourceSet()
 						.getModelResource().getContents();
 				ArrayList<EObject> result = new ArrayList<EObject>();
