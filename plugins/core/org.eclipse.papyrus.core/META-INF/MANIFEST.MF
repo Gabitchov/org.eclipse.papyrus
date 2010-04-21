@@ -6,10 +6,10 @@ Bundle-SymbolicName: org.eclipse.papyrus.core;singleton:=true
 Bundle-Version: 0.7.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.core.Activator
 Require-Bundle: org.eclipse.papyrus.sasheditor;bundle-version="0.7.0";visibility:=reexport,
+ org.eclipse.papyrus.sasheditor.di;bundle-version="0.7.0";visibility:=reexport,
  org.eclipse.ui.ide;bundle-version="3.4.0";visibility:=reexport,
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.1.0";visibility:=reexport,
- org.junit,
- org.eclipse.papyrus.sasheditor.di;bundle-version="0.7.0"
+ org.junit
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.core,

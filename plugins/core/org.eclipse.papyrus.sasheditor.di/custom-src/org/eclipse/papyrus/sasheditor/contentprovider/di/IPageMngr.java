@@ -17,7 +17,6 @@ package org.eclipse.papyrus.sasheditor.contentprovider.di;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer;
 
 
 /**
