@@ -1,0 +1,196 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *****************************************************************************/
+package org.eclipse.papyrus.properties.runtime.view.content;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorController;
+import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorControllerService;
+import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
+import org.eclipse.papyrus.properties.runtime.controller.predefined.PredefinedPropertyControllerProvider;
+import org.eclipse.papyrus.properties.runtime.view.Activator;
+import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Layout;
+import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+/**
+ * simple container descriptor
+ */
+public class ContainerDescriptor extends AbstractContainerDescriptor {
+
+	/** composite managed by this descriptor */
+	protected Composite describedComposite;
+
+	/** List of controllers managed in this composite */
+	protected List<PropertyEditorController> controllers = new ArrayList<PropertyEditorController>();
+
+	/** list of objects to edit */
+	protected List<Object> objectsToEdit;
+
+	/** boolean set to <code>true</code> when the content of the node has been parsed */
+	protected boolean unparsedContent = true;
+
+	/** boolean that indicates if the parsing of the content has already failed */
+	protected boolean parseFailed;
+
+	/** list of uncached Property editor controller descriptors */
+	protected List<IPropertyEditorControllerDescriptor> uncachedDescriptors;
+
+	/**
+	 * Creates a new ContainerDescriptor.
+	 * 
+	 * @param layout
+	 *        the layout of the composite described by this element
+	 */
+	public ContainerDescriptor(Layout layout, Node containerNode) {
+		super(layout, containerNode);
+	}
+
+	/**
+	 * Returns the describedComposite
+	 * 
+	 * @return the describedComposite
+	 */
+	public Composite getDescribedComposite() {
+		return describedComposite;
+	}
+
+	/**
+	 * Sets the describedComposite
+	 * 
+	 * @param describedComposite
+	 *        the describedComposite to set
+	 */
+	public void setDescribedComposite(Composite describedComposite) {
+		this.describedComposite = describedComposite;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<PropertyEditorController> createContent(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage, List<Object> objectsToEdit) {
+		this.objectsToEdit = objectsToEdit;
+		if(getDescribedComposite() == null || getDescribedComposite().isDisposed()) {
+			setDescribedComposite(tabbedPropertySheetPage.getWidgetFactory().createComposite(parent));
+			// creates the layout
+			getDescribedComposite().setLayout(layout);
+			getDescribedComposite().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		}
+
+		controllers = updateControllers();
+		return controllers;
+	}
+
+	/**
+	 * Returns the Composite containing the property editors.
+	 * 
+	 * @return the Composite containing the property editors.
+	 */
+	protected Composite getPropertyEditorContainer() {
+		return getDescribedComposite();
+	}
+
+	/**
+	 * Update controllers managed by this descriptor
+	 * 
+	 * @return the list of update controllers
+	 */
+	protected List<PropertyEditorController> updateControllers() {
+		// clear and re-create the list of controllers
+		for(PropertyEditorController controller : controllers) {
+			controller.dispose();
+		}
+		controllers.clear();
+
+		// parses the property editor controller descriptors from the configuration node if required
+		if(unparsedContent) {
+			uncachedDescriptors = new ArrayList<IPropertyEditorControllerDescriptor>();
+			parseContent();
+		}
+
+		if(!parseFailed) {
+			// creates the content for the controllers
+			for(IPropertyEditorControllerDescriptor descriptor : getControllerDescriptors()) {
+				controllers.add(PropertyViewService.getInstance().createPropertyEditorController(objectsToEdit, getPropertyEditorContainer(), descriptor));
+			}
+		}
+
+		return controllers;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void dispose() {
+		for(PropertyEditorController controller : controllers) {
+			controller.dispose();
+		}
+		controllers.clear();
+		if(getDescribedComposite() != null && !getDescribedComposite().isDisposed()) {
+			getDescribedComposite().dispose();
+		}
+	}
+
+	/**
+	 * parses the content of the container.
+	 */
+	protected void parseContent() {
+		NodeList children = containerNode.getChildNodes();
+		for(int i = 0; i < children.getLength(); i++) {
+			Node child = children.item(i);
+			if("controller".equals(child.getNodeName())) {
+				parseControllerNode(child);
+			}
+		}
+	}
+
+	/**
+	 * parses the controller node
+	 * 
+	 * @param child
+	 *        the controller node
+	 */
+	protected void parseControllerNode(Node controllerNode) {
+		if(!controllerNode.hasAttributes()) {
+			Activator.log.error("impossible to find attributes for node " + controllerNode, null);
+			return;
+		}
+		IPropertyEditorControllerDescriptor controllerDescriptor = null;
+		// should check here if this is a predefined controller node or a locally defined one
+		Node predefinedIDNode = controllerNode.getAttributes().getNamedItem(PredefinedPropertyControllerProvider.PREDEFINED_ID);
+		if(predefinedIDNode != null) {
+			controllerDescriptor = PropertyEditorControllerService.getInstance().createPredefinedControllerDescriptor(predefinedIDNode.getNodeValue());
+		} else {
+			String controllerId = controllerNode.getAttributes().getNamedItem("id").getNodeValue();
+			controllerDescriptor = PropertyEditorControllerService.getInstance().createPropertyEditorControllerDescriptor(controllerId, controllerNode);
+		}
+
+		if(controllerDescriptor != null) {
+			uncachedDescriptors.add(controllerDescriptor);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public List<IPropertyEditorControllerDescriptor> getControllerDescriptors() {
+		return uncachedDescriptors;
+	}
+}
