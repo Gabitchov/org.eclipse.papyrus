@@ -6,7 +6,6 @@ package org.eclipse.papyrus.sasheditor.contentprovider.di.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -35,12 +34,6 @@ public class CloseAllDiagramsCommand extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		
-		IEditorPart part = HandlerUtil.getActiveEditor(event);
-		System.out.println("HandlerUtil.getActiveEditor(event): " + part);
-		
-		ISelection selection = HandlerUtil.getCurrentSelection(event);
-		System.out.println("HandlerUtil.getCurrentSelection(event): " + HandlerUtil.getCurrentSelection(event));
-
 		IPageMngr pageMngr;
 		try {
 			pageMngr = getPageMngr(event);
