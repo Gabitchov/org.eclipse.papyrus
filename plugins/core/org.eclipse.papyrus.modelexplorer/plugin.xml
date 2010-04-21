@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="actionHandler" name="actionHandler" schema="schema/org.eclipse.papyrus.navigator.actionHandler.exsd"/>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="org.eclipse.papyrus.views.category"
+            class="org.eclipse.papyrus.modelexplorer.ModelExplorer"
+            icon="icons/ModelExplorer.gif"
+            id="org.eclipse.papyrus.modelexplorer.modelexplorer"
+            name="Papyrus Model Explorer"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <viewer
+            viewerId="org.eclipse.papyrus.modelexplorer.modelexplorer">
+      </viewer>
+      <viewerContentBinding
+            viewerId="org.eclipse.papyrus.modelexplorer.modelexplorer">
+         <includes>
+            <contentExtension
+                  pattern="org.eclipse.papyrus.modelexplorer.navigatorContent">
+            </contentExtension></includes>
+      </viewerContentBinding>
+      <dragAssistant
+            class="org.eclipse.papyrus.modelexplorer.dnd.CommonDragAdapterAssistant"
+            viewerId="org.eclipse.papyrus.modelexplorer.dnd.CommonDragAdapterAssistant">
+      </dragAssistant>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <navigatorContent
+            contentProvider="org.eclipse.papyrus.modelexplorer.MoDiscoContentProvider"
+            icon="icons/PapyrusLogo16x16.gif"
+            id="org.eclipse.papyrus.modelexplorer.navigatorContent"
+            labelProvider="org.eclipse.papyrus.modelexplorer.MoDiscoLabelProvider"
+            name="Model Contents"
+            priority="normal">
+         <triggerPoints>
+            <or>
+               <instanceof
+                     value="org.eclipse.emf.ecore.EObject">
+               </instanceof>
+               <adapt
+                     type="org.eclipse.emf.ecore.EObject">
+               </adapt>
+               <instanceof
+                     value="java.lang.Object">
+               </instanceof>
+            </or></triggerPoints>
+         <possibleChildren>
+            <or>
+               <instanceof value="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem"/> 
+            </or>
+         </possibleChildren>
+         <actionProvider
+               class="org.eclipse.papyrus.modelexplorer.actionprovider.CreateChildActionProvider"
+               id="org.eclipse.papyrus.modelexplorer.actionprovider.CreateChildActionProvider">
+            <enablement>
+               <or>
+                  <adapt
+                        type="org.eclipse.emf.ecore.EObject">
+                  </adapt>
+               </or>
+            </enablement>
+         </actionProvider>
+         <actionProvider
+               class="org.eclipse.papyrus.modelexplorer.actionprovider.GenericTransformActionProvider"
+               id="org.eclipse.papyrus.modelexplorer.actionprovider.GenericTransformActionProvider">
+            <enablement>
+               <or>
+                  <adapt
+                        type="org.eclipse.emf.ecore.EObject">
+                  </adapt>
+               </or>
+            </enablement>
+         </actionProvider>
+          <actionProvider
+               class="org.eclipse.papyrus.modelexplorer.actionprovider.CreateDiagramActionProvider"
+               id="org.eclipse.papyrus.modelexplorer.actionprovider.CreateDiagramActionProvider">
+                 <enablement>
+               <and>
+                  <not>
+                     <instanceof
+                           value="org.eclipse.gmf.runtime.notation.Diagram">
+                     </instanceof>
+                  </not>
+                  <adapt
+                        type="org.eclipse.emf.ecore.EObject">
+                  </adapt>
+               </and>
+            </enablement>
+         </actionProvider>
+          
+         <actionProvider
+               class="org.eclipse.papyrus.modelexplorer.actionprovider.EditingDomainActionProvider"
+               id="org.eclipse.papyrus.modelexplorer.actionprovider.EditingDomainActionProvider">
+                  <enablement>
+               <and>
+                  <not>
+                     <instanceof
+                           value="org.eclipse.gmf.runtime.notation.Diagram">
+                     </instanceof>
+                  </not>
+                  <adapt
+                        type="org.eclipse.emf.ecore.EObject">
+                  </adapt>
+               </and>
+            </enablement>
+         </actionProvider>
+         <actionProvider
+               class="org.eclipse.papyrus.modelexplorer.actionprovider.DiagramActionProvider"
+               id="org.eclipse.papyrus.modelexplorer.actionprovider.DiagramActionProvider">
+            <enablement>
+               <or>
+                  <adapt
+                        type="org.eclipse.gmf.runtime.notation.Diagram">
+                  </adapt>
+               </or>
+            </enablement>
+         </actionProvider>
+         <dropAssistant
+               class="org.eclipse.papyrus.modelexplorer.dnd.CommonDropAdapterAssistant"
+               id="org.eclipse.papyrus.modelexplorer.dnd.CommonDropAdapterAssistant">
+            <possibleDropTargets></possibleDropTargets>
+         </dropAssistant>
+    
+      </navigatorContent>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.modelexplorer.actionHandler">
+      
+      <customAction
+            actionHandler="org.eclipse.papyrus.modelexplorer.factory.DefaultEMFActionsFactory"
+            actionId="org.eclipse.papyrus.modelexplorer.factory.defaultEMFActions"
+            afterAction="org.eclipse.papyrus.modelexplorer.factory.renameAction"
+            needSeparator="true">
+      </customAction>
+   </extension>
+    <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="false"
+            id="org.eclipse.gmt.modisco.infra.query.ui.executeQuery"
+            objectClass="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem">
+         <action
+               class="org.eclipse.papyrus.modelexplorer.actions.ExecuteQueryAction"
+               id="org.eclipse.gmt.modisco.infra.query.ui.executeQuery"
+               label="Execute Query">
+         </action>
+      </objectContribution>
+      <objectContribution
+            adaptable="false"
+            id="org.eclipse.gmt.modisco.infra.query.ui.executeQuery"
+            objectClass="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem">
+         <action
+               class="org.eclipse.papyrus.modelexplorer.actions.CreateQueryAction"
+               id="org.eclipse.gmt.modisco.infra.query.ui.executeQuery"
+               label="Create Query">
+         </action>
+      </objectContribution>
+   </extension>
+    <extension
+          point="org.eclipse.ui.menus">
+       <menuContribution
+             allPopups="false"
+             locationURI="toolbar:org.eclipse.papyrus.modelexplorer.modelexplorer">
+          <command
+                commandId="org.eclipse.papyrus.modelexplorer.LoadBrowserCustomization"
+                icon="icons/etool16/uiCustom.gif"
+                label="Load browser customization"
+                style="push">
+          </command>
+          <command
+                commandId="org.eclipse.papyrus.modelexplorer.searchelement"
+                icon="icons/etool16/search.gif"
+                label="Search element"
+                style="push">
+          </command>
+       </menuContribution>
+    </extension>
+    <extension
+          point="org.eclipse.ui.commands">
+       <command
+             categoryId="org.eclipse.papyrus.editor.category"
+             defaultHandler="org.eclipse.papyrus.modelexplorer.handler.LoadBrowserCustomization"
+             description="Load a customization for the papyrus browser"
+             id="org.eclipse.papyrus.modelexplorer.LoadBrowserCustomization"
+             name="loadBrowserCustomization">
+       </command>
+       <command
+             categoryId="org.eclipse.papyrus.editor.category"
+             defaultHandler="org.eclipse.papyrus.modelexplorer.handler.SearchElementHandler"
+             description="Search an element in the model explorer"
+             id="org.eclipse.papyrus.modelexplorer.searchelement"
+             name="searchelement">
+       </command>
+    </extension>
+     <extension point="org.eclipse.core.runtime.preferences">
+		<?gmfgen generated="false"?>
+		<initializer class="org.eclipse.papyrus.modelexplorer.preferences.NavigatorPreferenceInitializer"/>
+	</extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+      		category="org.eclipse.papyrus.preferences.generalcategory"
+            class="org.eclipse.papyrus.modelexplorer.preferences.NavigatorPreferencePage"
+            id="org.eclipse.papyrus.modelexplorer.preferences.NavigatorPreferencePage"
+            name="Model Explorer">
+      </page>
+   </extension>
+
+</plugin>
