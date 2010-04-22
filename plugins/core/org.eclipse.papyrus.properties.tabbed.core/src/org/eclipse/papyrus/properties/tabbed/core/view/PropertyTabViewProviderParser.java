@@ -70,6 +70,9 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 	/** attribute for name */
 	protected static final String ATTRIBUTE_NAME = "name";
 
+	/** node name for sub feature sections */
+	protected static final String NODE_NAME_SECTION_SUBFEATURE = "subFeatureSection";
+
 	/** list of generated tab descriptors */
 	protected List<ITabDescriptor> tabDescriptors;
 
@@ -189,7 +192,7 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 			String nodeName = child.getNodeName();
 			if("context".equals(nodeName)) {
 				contextNode = child;
-			} else if(NODE_NAME_SECTION.equals(nodeName)) {
+			} else if(NODE_NAME_SECTION.equals(nodeName) || NODE_NAME_SECTION_SUBFEATURE.equals(nodeName)) {
 				sectionNodes.add(child);
 			}
 		}
@@ -220,6 +223,14 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 	 */
 	@SuppressWarnings("unchecked")
 	protected void parseSectionNode(Node sectionNode, List<IConstraintDescriptor> constraints, int selectionSize) {
+
+		// Is this a subfeature section or a "standard one"
+		String nodeName = sectionNode.getNodeName();
+		boolean isSubFeatureSection = false;
+		if(nodeName.equals(NODE_NAME_SECTION_SUBFEATURE)) {
+			isSubFeatureSection = true;
+		}
+
 		// read attributes
 		NamedNodeMap attributes = sectionNode.getAttributes();
 		String id = null;
@@ -259,14 +270,46 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 			Activator.log.error("Problem during parsing of replaced sections for node " + sectionNode, e);
 		}
 
-		DynamicSectionDescriptor descriptor = new DynamicSectionDescriptor(id, tabId, constraints, selectionSize, adapterId, replacedSectionsId, viewsId);
-		descriptor.setUnparsedContent(sectionNode);
+		if(isSubFeatureSection) {
+			// parse additional information
+			int maxColumn = 2;
+			if(attributes != null) {
+				Node node = attributes.getNamedItem("maxColumn");
+				if(node != null) {
+					maxColumn = Integer.parseInt(node.getNodeValue());
+				}
+			}
 
-		// retrieve the tab to add section to it.
-		// this means that the descriptor for the tab should already exist.
-		for(ITabDescriptor tabDescriptor : tabDescriptors) {
-			if(tabDescriptor.getId().equals(tabId)) {
-				tabDescriptor.getSectionDescriptors().add(descriptor);
+			// retrieve the subfeature descriptor
+			NodeList children = sectionNode.getChildNodes();
+			SubFeatureDescriptor subFeatureDescriptor = null;
+			for(int i = 0; i < children.getLength(); i++) {
+				Node childNode = children.item(i);
+				if("subFeatureDescriptor".equals(childNode.getNodeName())) {
+					// retrieve feature name
+					String name = childNode.getAttributes().getNamedItem("featureName").getNodeValue();
+					subFeatureDescriptor = new EMFSimpleSubFeatureDescriptor(name);
+				}
+			}
+
+			DynamicSectionDescriptor descriptor = new DynamicSubFeatureSectionDescriptor(id, tabId, constraints, selectionSize, adapterId, replacedSectionsId, viewsId, subFeatureDescriptor, maxColumn);
+			descriptor.setUnparsedContent(sectionNode);
+			// retrieve the tab to add section to it.
+			// this means that the descriptor for the tab should already exist.
+			for(ITabDescriptor tabDescriptor : tabDescriptors) {
+				if(tabDescriptor.getId().equals(tabId)) {
+					tabDescriptor.getSectionDescriptors().add(descriptor);
+				}
+			}
+		} else {
+			DynamicSectionDescriptor descriptor = new DynamicSectionDescriptor(id, tabId, constraints, selectionSize, adapterId, replacedSectionsId, viewsId);
+			descriptor.setUnparsedContent(sectionNode);
+			// retrieve the tab to add section to it.
+			// this means that the descriptor for the tab should already exist.
+			for(ITabDescriptor tabDescriptor : tabDescriptors) {
+				if(tabDescriptor.getId().equals(tabId)) {
+					tabDescriptor.getSectionDescriptors().add(descriptor);
+				}
 			}
 		}
 	}

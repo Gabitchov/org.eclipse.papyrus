@@ -11,34 +11,40 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.propertyeditor;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.commands.operations.IUndoableOperation;
+import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.controller.IBoundedValuesController;
 import org.eclipse.papyrus.properties.runtime.controller.ILabelProviderController;
+import org.eclipse.papyrus.properties.runtime.controller.IWizardPropertyEditorController;
 import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorController;
-import org.eclipse.papyrus.properties.runtime.dialogs.ReferenceExplorerDialog;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.PlatformUI;
 
@@ -99,18 +105,55 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 			@SuppressWarnings("unchecked")
 			public void mouseUp(MouseEvent e) {
 				// pops up a window to ask for a new reference
-				Display display = Display.getCurrent();
-				if(display == null && PlatformUI.isWorkbenchRunning()) {
-					display = PlatformUI.getWorkbench().getDisplay();
+				Display tmp = Display.getCurrent();
+				if(tmp == null && PlatformUI.isWorkbenchRunning()) {
+					tmp = PlatformUI.getWorkbench().getDisplay();
 				}
-				display = (display != null) ? display : Display.getDefault();
-				ReferenceExplorerDialog dialog = new ReferenceExplorerDialog(display.getActiveShell(), (IBoundedValuesController)getController(), true);
-				dialog.setInitialElementSelections(getValue());
-				// should select the current value by default
-				if(Dialog.OK == dialog.open()) {
-					currentValue = new BasicEList<EObject>((List<? extends EObject>)Arrays.asList(dialog.getResult()));
-					getController().updateModel();
+				final Display display = (tmp != null) ? tmp : Display.getDefault();
+
+				// 2 possibilities:
+				// we can create only one type of element, so the element is created, and then, a pop up dialog is displayed
+				// several elements can be created (ex: nestedClassifiers for a class, we can create a class or an interface or any implementation of classifier
+				if(getController() instanceof IWizardPropertyEditorController) {
+					List<IUndoableOperation> availableCommands = ((IWizardPropertyEditorController)getController()).getAvailableCreationOperations();
+					if(availableCommands.isEmpty()) {
+						Activator.log.info("no command was available to create elements for this view");
+						return;
+					} else if(availableCommands.size() == 1) {
+						// only one command is available, create the element
+						try {
+							OperationHistoryFactory.getOperationHistory().execute(availableCommands.get(0), new NullProgressMonitor(), null);
+						} catch (ExecutionException e1) {
+							Activator.log.error(e1);
+						}
+					} else if(availableCommands.size() > 1) {
+						Menu menu = new Menu(addButton);
+						for(final IUndoableOperation operation : availableCommands) {
+							MenuItem item = new MenuItem(menu, SWT.NONE);
+							item.setText(operation.getLabel());
+							item.addSelectionListener(new SelectionListener() {
+
+								public void widgetSelected(SelectionEvent e) {
+									MessageDialog.openConfirm(display.getActiveShell(), "This is a debug message", "create with operation " + operation.getLabel());
+								}
+
+								public void widgetDefaultSelected(SelectionEvent e) {
+
+								}
+							});
+						}
+					}
 				}
+
+				//
+				//
+				//				ReferenceExplorerDialog dialog = new ReferenceExplorerDialog(display.getActiveShell(), (IBoundedValuesController)getController(), true);
+				//				dialog.setInitialElementSelections(getValue());
+				//				// should select the current value by default
+				//				if(Dialog.OK == dialog.open()) {
+				//					currentValue = new BasicEList<EObject>((List<? extends EObject>)Arrays.asList(dialog.getResult()));
+				//					getController().updateModel();
+				//				}
 			}
 
 			/**

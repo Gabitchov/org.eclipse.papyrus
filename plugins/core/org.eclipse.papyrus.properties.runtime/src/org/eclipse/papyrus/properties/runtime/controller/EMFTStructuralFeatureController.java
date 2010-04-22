@@ -125,9 +125,9 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 				String featureName = descriptor.getFeatureNameToEdit();
 				// retrieve the feature using its name
 				featureToEdit = retrieveFeatureFromName(featureName);
-			}
-			if(featureToEdit == null) {
-				Activator.log.error("impossible to retrieve feature to edit", null);
+				if(featureToEdit == null) {
+					Activator.log.error("impossible to retrieve feature " + featureName + " to edit for " + getObjectsToEdit(), null);
+				}
 			}
 		}
 		return featureToEdit;

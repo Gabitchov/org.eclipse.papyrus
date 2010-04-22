@@ -71,7 +71,7 @@ public class DynamicSectionDescriptor extends AbstractSectionDescriptor implemen
 	protected final List<ViewDescriptor> viewDescriptors;
 
 	/** list of views Identifiers */
-	private final List<String> viewsId;
+	protected final List<String> viewsId;
 
 	/**
 	 * Creates a new DynamicSectionDescriptor.
@@ -130,129 +130,6 @@ public class DynamicSectionDescriptor extends AbstractSectionDescriptor implemen
 		return null;
 	}
 
-	//	/**
-	//	 * Parses the xml section node to set the content of the section
-	//	 * 
-	//	 * @param unparsedSectionNode
-	//	 *        the node to parse
-	//	 * @return the new configuration for the section
-	//	 */
-	//	protected List<String> parseSectionNode(Node unparsedSectionNode) throws XMLParseException {
-	//		List<String> views = new ArrayList<String>();
-	//		NodeList children = unparsedSectionNode.getChildNodes();
-	//		for(int i = 0; i < children.getLength(); i++) {
-	//			Node containerNode = children.item(i);
-	//			if("container".equals(containerNode.getNodeName())) {
-	//				configuration.getContainers().add(parseContainerNode(containerNode));
-	//			} else if("expandableContainer".equals(containerNode.getNodeName())) {
-	//				configuration.getContainers().add(parseExpandableContainerNode(containerNode));
-	//			} else if("groupContainer".equals(containerNode.getNodeName())) {
-	//				configuration.getContainers().add(parseGroupNode(containerNode));
-	//			}
-	//		}
-	//		return configuration;
-	//
-	//	}
-	//
-	//	/**
-	//	 * Parses the container XML description and returns the descriptor.
-	//	 * 
-	//	 * @param containerNode
-	//	 *        the node to parse
-	//	 */
-	//	protected ContainerDescriptor parseContainerNode(Node containerNode) throws XMLParseException {
-	//		Layout layout = parseLayout(containerNode);
-	//		return new ContainerDescriptor(layout, containerNode);
-	//	}
-	//
-	//	/**
-	//	 * Parses the group container XML description and returns the descriptor.
-	//	 * 
-	//	 * @param containerNode
-	//	 *        the node to parse
-	//	 */
-	//	protected ContainerDescriptor parseGroupNode(Node containerNode) throws XMLParseException {
-	//		Layout layout = parseLayout(containerNode);
-	//		String label = parseLabel(containerNode);
-	//		return new GroupContainerDescriptor(layout, label, containerNode);
-	//	}
-	//
-	//	/**
-	//	 * Parses the expandable container XML description and returns the descriptor.
-	//	 * 
-	//	 * @param containerNode
-	//	 *        the node to parse
-	//	 */
-	//	protected ContainerDescriptor parseExpandableContainerNode(Node containerNode) throws XMLParseException {
-	//		Layout layout = parseLayout(containerNode);
-	//		String label = parseLabel(containerNode);
-	//		return new ExpandableContainerDescriptor(layout, label, containerNode);
-	//	}
-	//
-	//	/**
-	//	 * Parses the label for the given container
-	//	 * 
-	//	 * @param containerNode
-	//	 *        the container node to parse
-	//	 * @return the label of the container
-	//	 * @throws XMLParseException
-	//	 *         exception thrown when XML file could not be parsed.
-	//	 */
-	//	protected String parseLabel(Node containerNode) throws XMLParseException {
-	//		NamedNodeMap attributes = containerNode.getAttributes();
-	//		if(attributes == null) {
-	//			throw new XMLParseException("Impossible to find attributes for container node " + containerNode);
-	//		}
-	//		// retrieve the name
-	//		Node nameNode = attributes.getNamedItem("label");
-	//		String label = "";
-	//		if(nameNode == null) {
-	//			throw new XMLParseException("Impossible to find layout attribute for container node " + containerNode);
-	//		} else {
-	//			label = nameNode.getNodeValue();
-	//		}
-	//		return label;
-	//	}
-	//
-	//	/**
-	//	 * Parses the layout for the container
-	//	 * 
-	//	 * @param containerNode
-	//	 *        the container node which contains layout information
-	//	 * @return the layout for the container
-	//	 */
-	//	protected Layout parseLayout(Node containerNode) throws XMLParseException {
-	//		Layout layout = null;
-	//		// this is a simple container. 
-	//		// Retrieving the layout and generates the composite descriptor
-	//		NamedNodeMap attributes = containerNode.getAttributes();
-	//		if(attributes == null) {
-	//			throw new XMLParseException("Impossible to find attributes for container node " + containerNode);
-	//		}
-	//		Node layoutNode = attributes.getNamedItem("layout");
-	//		if(layoutNode == null) {
-	//			throw new XMLParseException("Impossible to find layout attribute for container node " + containerNode);
-	//		} else if("Grid".equals(layoutNode.getNodeValue())) {
-	//			// retrieve number of columns 
-	//			int columnNu = 1;
-	//			boolean sameSize = false;
-	//
-	//			Node columnNuNode = attributes.getNamedItem("columns");
-	//			if(columnNuNode == null) {
-	//				throw new XMLParseException("Impossible to find column number attribute for container node " + containerNode);
-	//			} else {
-	//				columnNu = Integer.parseInt(columnNuNode.getNodeValue());
-	//			}
-	//			Node columnSizeNode = attributes.getNamedItem("sameSize");
-	//			if(columnSizeNode == null) {
-	//				throw new XMLParseException("Impossible to find column size attribute for container node " + containerNode);
-	//			} else {
-	//				sameSize = Boolean.parseBoolean(columnSizeNode.getNodeValue());
-	//			}
-	//			layout = new GridLayout(columnNu, sameSize);
-	//		}
-	//		return layout;
-	//	}
 
 	/**
 	 * {@inheritDoc}

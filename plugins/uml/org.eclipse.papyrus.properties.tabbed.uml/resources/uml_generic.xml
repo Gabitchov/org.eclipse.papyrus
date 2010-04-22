@@ -24,16 +24,16 @@
 			<view predefinedId="view_multi_NamedElement"/>
 		</section>
 	</sectionSet>
-	<sectionSet name="Section Set for single Classifier">
+	<sectionSet name="Section Set for single Class">
 		<context enablesFor="1">
-			<elementClass name="org.eclipse.uml2.uml.Classifier"/>
+			<elementClass name="org.eclipse.uml2.uml.Class"/>
 		</context>
 		<section id="singleClassifierSection" tabId="basicTab" adapterId="Semantic">
 			<view id="view_single_Classifier">	<!-- view for UML Classifier -->
 				<context enablesFor="1">
-				<elementClass name="org.eclipse.uml2.uml.Classifier"></elementClass>
-			</context>
-			<content>
+					<elementClass name="org.eclipse.uml2.uml.Classifier"></elementClass>
+				</context>
+				<content>
 					<container layout="Grid" columns="2" sameSize="false">
 						 <controller predefinedId="UML_Classifier_isAbstract"/>
 					</container>
@@ -56,10 +56,10 @@
 								<icon pluginID="org.eclipse.papyrus.properties.tabbed.uml" path="/icons/tool.gif"/>
 							</editor>
 						</controller>
-				</groupContainer>
-		</content>
-	</view>
-	</section>
+					</groupContainer>
+				</content>
+			</view>
+		</section>
 	</sectionSet>
 	<sectionSet name="Section Set for single Property">
 		<context enablesFor="1">
@@ -68,5 +68,35 @@
 		<section id="singlePropertySection" tabId="basicTab" adapterId="Semantic">
 			<view predefinedId="view_single_Property"/>
 		</section>
+	</sectionSet>
+	<sectionSet name="Section Set for single Association">
+		<context enablesFor="1">
+			<elementClass name="org.eclipse.uml2.uml.Association"/>
+		</context>
+		<subFeatureSection id="associationEndSection" tabId="basicTab" adapterId="Semantic" maxColumn="2">
+			<subFeatureDescriptor featureName="memberEnd">
+			</subFeatureDescriptor>
+			<view id="view_single_MemberEnd">	<!-- view for UML Property as a member end -->
+				<context enablesFor="1">
+					<elementClass name="org.eclipse.uml2.uml.Property"></elementClass>
+				</context>
+				<content>
+					<groupContainer label="" layout="Grid" columns="1" sameSize="false">
+						 <controller predefinedId="UML_NamedElement_name"/>
+						 <controller id="emftBindingReferenceController">
+							<feature name="type" handlerID="Reference"/>
+							<binding message="{0} - ({1})">
+								<feature name="name"/>
+								<feature name="qualifiedName"/>
+							</binding>
+							<editor id="org.eclipse.papyrus.properties.runtime.simpleReferencePropertyEditor" label="Type:" labelPosition="16384">
+								<icon pluginID="org.eclipse.papyrus.properties.tabbed.uml" path="/icons/type.gif"/>
+							</editor>
+						</controller>
+						<controller predefinedId="UML_Property_aggregation"/>
+					</groupContainer>
+				</content>
+			</view>
+		</subFeatureSection>
 	</sectionSet>
 </propertyTabView>

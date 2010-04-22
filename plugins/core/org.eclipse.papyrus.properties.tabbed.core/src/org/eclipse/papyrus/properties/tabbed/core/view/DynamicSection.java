@@ -104,6 +104,19 @@ public class DynamicSection extends AbstractPropertySection {
 			}
 		}
 
+		refreshDisplay(newObjects);
+
+		// force the parent to layout
+		parent.layout(true, true);
+	}
+
+	/**
+	 * Refreshes the display (if necessary) for the given set of objects
+	 * 
+	 * @param newObjects
+	 *        the list of object to edit
+	 */
+	protected void refreshDisplay(List<Object> newObjects) {
 		// the editing domain should not be null.
 		// the list should not be empty, and it should not be the same as before. In the latter case, there is no need to update the property section
 		if(!newObjects.isEmpty() && !newObjects.equals(objectsToEdit)) {
@@ -122,11 +135,7 @@ public class DynamicSection extends AbstractPropertySection {
 				}
 			}
 		}
-		// force the parent to layout
-		this.parent.layout(true, true);
 	}
-
-
 
 	/**
 	 * Resolve semantic element
