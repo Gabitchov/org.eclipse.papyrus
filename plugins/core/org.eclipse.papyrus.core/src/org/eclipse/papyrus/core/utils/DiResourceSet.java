@@ -43,42 +43,44 @@ import org.eclipse.papyrus.core.listenerservice.ModelListenerManager;
  */
 public class DiResourceSet extends ResourceSetImpl {
 
-	/**
-	 * File extension used for DI.
-	 */
+	/** File extension used for DI. */
 	public static final String DI_FILE_EXTENSION = "di"; //$NON-NLS-1$
 
-	/**
-	 * File extension used for notation.
-	 */
+	/** File extension used for notation. */
 	public static final String NOTATION_FILE_EXTENSION = "notation"; //$NON-NLS-1$
 
-	/**
-	 * File extension used for Model
-	 */
+	/** File extension used for Model */
 	private String modelFileExtension; //$NON-NLS-1$
 
-	/**
-	 * The model resource.
-	 */
+	/** The model resource */
 	private Resource modelResource;
 
-	/**
-	 * The DI resource.
-	 */
+	/** The DI resource */
 	private Resource diResource;
 
-	/**
-	 * The notation resource.
-	 */
+	/** The notation resource */
 	private Resource notationResource;
 
+	/** URI of the model resource */
+	private URI modelURI;
+
+	/** URI of the notation resource */
+	private URI notationURI;
+
+	/** URI of the di resource */
+	private URI diURI;
+
+	/** The transactional editing domain. */
 	private TransactionalEditingDomain transactionalEditingDomain;
+
+	/** The proxy manager that loads the model according to a specific strategy. */
+	private ProxyManager proxyManager;
 
 	public DiResourceSet() {
 		super();
 		GMFResourceFactory gmfFactory = new GMFResourceFactory();
 		getResourceFactoryRegistry().getExtensionToFactoryMap().put(NOTATION_FILE_EXTENSION, gmfFactory);
+		proxyManager = new ProxyManager();
 	}
 
 	/**
@@ -104,6 +106,52 @@ public class DiResourceSet extends ResourceSetImpl {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public EObject getEObject(URI uri, boolean loadOnDemand) {
+		// do we have to override getResource ?
+		URI resourceURI = uri.trimFragment();
+		if(resourceURI.equals(modelURI) || resourceURI.equals(notationURI) || resourceURI.equals(diURI)) {
+			// do not manage eObject of the initial resources
+			return super.getEObject(uri, loadOnDemand);
+		} else {
+			// use ProxyManager to resolve proxies according to the strategy
+			String fragment = uri.fragment() ;
+			EObject result = null ;
+			// overrided method is called
+			loadOnDemand = proxyManager.loadResource(uri);
+			Resource r = getResource(resourceURI, loadOnDemand);
+			if (r != null)
+			{
+				result = r.getEObject(fragment);
+			}
+			// if load on demand = true and result = null it's time to start router exploration !
+			if (result == null && loadOnDemand)
+			{
+				// router manager
+				// retrieve di of the loaded resource
+				// browse route map and get the target resource
+				// !!! does the policy authorize the loading of the new resource ?
+				// is it normal to have object = null ?
+			}
+			// search element
+			return result;
+		}
+	}
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.ecore.resource.impl.ResourceSetImpl#getResource(org.eclipse.emf.common.util.URI, boolean)
+	 */
+	@Override
+	public Resource getResource(URI uri, boolean loadOnDemand) {
+		if (loadOnDemand)
+		{
+			loadOnDemand = proxyManager.loadResource(uri);
+		}
+		return super.getResource(uri, loadOnDemand);
+	}
+
+	/**
 	 * Load both files (DI and UML) from an handle on one of the two files.
 	 * 
 	 * @param file
@@ -114,11 +162,11 @@ public class DiResourceSet extends ResourceSetImpl {
 		IPath fullPath = file.getFullPath().removeFileExtension();
 
 		// load DI2
-		URI diUri = getPlatformURI(fullPath.addFileExtension(DI_FILE_EXTENSION));
-		diResource = getResource(diUri, true);
+		diURI = getPlatformURI(fullPath.addFileExtension(DI_FILE_EXTENSION));
+		diResource = getResource(diURI, true);
 
 		// load notation
-		URI notationURI = getPlatformURI(fullPath.addFileExtension(NOTATION_FILE_EXTENSION));
+		notationURI = getPlatformURI(fullPath.addFileExtension(NOTATION_FILE_EXTENSION));
 		notationResource = getResource(notationURI, true);
 
 		if(notationResource != null) {
@@ -144,7 +192,8 @@ public class DiResourceSet extends ResourceSetImpl {
 					String extension = r.getFullPath().getFileExtension();
 					if(r.getFullPath().removeFileExtension().lastSegment().equals(fullPath.lastSegment()) && !DI_FILE_EXTENSION.equalsIgnoreCase(extension) && !NOTATION_FILE_EXTENSION.equalsIgnoreCase(extension)) {
 						if(Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().get(extension) != null) {
-							modelResource = getResource(getPlatformURI(r.getFullPath()), true);
+							modelURI = getPlatformURI(r.getFullPath());
+							modelResource = getResource(modelURI, true);
 							break;
 						}
 					}
@@ -344,5 +393,6 @@ public class DiResourceSet extends ResourceSetImpl {
 		}
 		return diFile;
 	}
+
 
 }
