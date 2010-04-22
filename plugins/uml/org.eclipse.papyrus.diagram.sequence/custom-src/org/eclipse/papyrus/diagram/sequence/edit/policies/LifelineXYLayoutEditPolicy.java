@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.draw2d.Figure;
@@ -22,6 +23,7 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -32,6 +34,7 @@ import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
@@ -50,6 +53,9 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
+import org.eclipse.uml2.uml.ExecutionSpecification;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
  * The custom LayoutEditPolicy for LifelineEditPart.
@@ -279,6 +285,9 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			// Move also children
 			compoundCmd.add(createMovingAffixedExecutionSpecificationCommand(executionSpecificationEP, realMoveDelta, newBounds));
 
+			// Move also linked Time elements
+			compoundCmd.add(createMoveTimeElementsCommands(executionSpecificationEP, newBounds, request));
+
 			if(!compoundCmd.isEmpty()) {
 				return compoundCmd;
 			}
@@ -373,6 +382,9 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			compoundCmd.add(createMovingAffixedExecutionSpecificationCommand(executionSpecificationEP, realMoveDelta, newBounds));
 
 			compoundCmd.add(createZOrderCommand(lifelineEP, executionSpecificationEP, newBounds, notToCheckExecutionSpecificationList));
+
+			// Move also linked Time elements
+			compoundCmd.add(createMoveTimeElementsCommands(executionSpecificationEP, newBounds, cbr));
 
 			if(!compoundCmd.isEmpty()) {
 				return compoundCmd;
@@ -689,4 +701,51 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		return relBounds;
 	}
 
+	/**
+	 * Create a command which moves time/duration constraints/observation which are linked to the moved edit part
+	 * 
+	 * @param executionSpecificationEP
+	 *        the moved edit part representing an execution specification
+	 * @param newBounds
+	 *        the new part's bounds (relative to the figure's parent)
+	 * @param request
+	 *        the change bounds request which originated this move
+	 * @return the command to move linked time elements or null
+	 */
+	protected Command createMoveTimeElementsCommands(ShapeNodeEditPart executionSpecificationEP, Rectangle newBounds, ChangeBoundsRequest request) {
+		List<IBorderItemEditPart> notToMoveEditPartList = Collections.emptyList();
+		Object editPartNotToMove = request.getExtendedData().get(SequenceRequestConstant.DO_NOT_MOVE_TIME_ELEMENT);
+		if(editPartNotToMove instanceof IBorderItemEditPart) {
+			notToMoveEditPartList = Collections.singletonList((IBorderItemEditPart)editPartNotToMove);
+		}
+		// Move events delimiting the ExecutionSpecification
+		EObject execSpec = executionSpecificationEP.resolveSemanticElement();
+		if(execSpec instanceof ExecutionSpecification) {
+			LifelineEditPart parent = SequenceUtil.getParentLifelinePart(executionSpecificationEP);
+			CompoundCommand cmd = new CompoundCommand();
+			// first, get absolute bounds
+			newBounds = newBounds.getCopy();
+			IFigure parentFig = executionSpecificationEP.getFigure().getParent();
+			parentFig.translateToAbsolute(newBounds);
+			newBounds.translate(parentFig.getBounds().getLocation());
+			// move start event
+			OccurrenceSpecification start = ((ExecutionSpecification)execSpec).getStart();
+			Point startPoint = newBounds.getTop();
+			Command cmdStart = SequenceUtil.getTimeRelatedElementsMoveCommands(parent, start, startPoint, notToMoveEditPartList);
+			if(cmdStart != null) {
+				cmd.add(cmdStart);
+			}
+			// move finish event
+			OccurrenceSpecification finish = ((ExecutionSpecification)execSpec).getFinish();
+			Point finishPoint = newBounds.getBottom();
+			Command cmdFinish = SequenceUtil.getTimeRelatedElementsMoveCommands(parent, finish, finishPoint, notToMoveEditPartList);
+			if(cmdFinish != null) {
+				cmd.add(cmdFinish);
+			}
+			if(!cmd.isEmpty()) {
+				return cmd;
+			}
+		}
+		return null;
+	}
 }

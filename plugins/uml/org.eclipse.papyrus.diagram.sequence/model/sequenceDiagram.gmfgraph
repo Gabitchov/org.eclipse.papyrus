@@ -467,7 +467,7 @@
             qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
         <preferredSize
             dx="40"
-            dy="80"/>
+            dy="-1"/>
         <border
             xsi:type="gmfgraph:CustomBorder"
             qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.LinesBorder">

@@ -72,8 +72,8 @@ public class TimeMarkElementPositionLocator extends AdvancedBorderItemLocator {
 		Point recommendedLocation = locateOnParent(suggestedLocation, suggestedSide, borderItem);
 
 		IFigure conflictingBorderItem = getConflictingBorderItemFigure(recommendedLocation, borderItem);
-
-		if(circuitCount == 0 && conflictingBorderItem != null) {
+		// max circuit count of 2 allows to try other side, then go back to original side if occupied
+		if(circuitCount < 2 && conflictingBorderItem != null) {
 			if(suggestedSide == PositionConstants.WEST) {
 				// west is occupied, try east
 				return locateOnBorder(recommendedLocation, PositionConstants.EAST, circuitCount + 1, borderItem);

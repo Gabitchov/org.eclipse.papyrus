@@ -53,6 +53,7 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.draw2d.CenterLayout;
 import org.eclipse.papyrus.diagram.common.draw2d.LinesBorder;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.DurationConstraintItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.TimeRelatedSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
@@ -100,8 +101,18 @@ AbstractBorderItemEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
+	/**
+	 * This method creates a specific edit policy for time realted elements
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart#getPrimaryDragEditPolicy()
+	 * 
+	 * @return <code>EditPolicy</code>
+	 * @generated NOT
+	 */
+	@Override
+	public EditPolicy getPrimaryDragEditPolicy() {
+		return new TimeRelatedSelectionEditPolicy();
+	}
 
 
 	/**
@@ -200,7 +211,7 @@ AbstractBorderItemEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(-1, 80);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(-1, -1);
 
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
@@ -1575,7 +1586,7 @@ AbstractBorderItemEditPart {
 			this.setFill(false);
 			this.setOutline(false);
 			this.setLineWidth(1);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(40), getMapMode().DPtoLP(80)));
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(40), getMapMode().DPtoLP(-1)));
 			this.setBorder(createBorder0());
 			createContents();
 		}

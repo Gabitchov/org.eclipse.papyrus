@@ -13,42 +13,39 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Polyline;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
-import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
-import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
-import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
-import org.eclipse.uml2.uml.TimeConstraint;
-import org.eclipse.uml2.uml.TimeObservation;
+import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 
 /**
- * A specific policy to handle time/duration move when a message end is moved
+ * A specific policy to handle :
+ * - Message aspects inherited from {@link SequenceGraphicalNodeEditPolicy} - time/duration move when a message end or an execution is moved
+ * - duration constraint creation feedback
+ * This edit policy is intended to be installed on parts which represent a lifeline or which are contained within a lifeline part.
  */
-public class LifelineGraphicalNodeEditPolicy extends SequenceGraphicalNodeEditPolicy {
+public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeEditPolicy {
 
 	/** the feedback for creating a duration constraint node */
 	private Polyline durationConstraintCreationFeedback = null;
@@ -99,104 +96,20 @@ public class LifelineGraphicalNodeEditPolicy extends SequenceGraphicalNodeEditPo
 	 * @return the completed command
 	 */
 	private Command chainTimeRelatedElementsMoveCommands(Command command, ReconnectRequest request) {
+		List<IBorderItemEditPart> notToMoveEditPartList = Collections.emptyList();
 		Object editPartNotToMove = request.getExtendedData().get(SequenceRequestConstant.DO_NOT_MOVE_TIME_ELEMENT);
+		if(editPartNotToMove instanceof IBorderItemEditPart) {
+			notToMoveEditPartList = Collections.singletonList((IBorderItemEditPart)editPartNotToMove);
+		}
 		// move time related elements linked with the event
 		INodeEditPart node = getConnectableEditPart();
+		LifelineEditPart lifelinePart = SequenceUtil.getParentLifelinePart(node);
 		MessageEnd event = getMessageEndEvent(request);
-		if(node != null && event != null) {
-			boolean constraintMoved = false;
-			for(Object lifelineChild : node.getChildren()) {
-				if(!lifelineChild.equals(editPartNotToMove)) {
-					boolean partIsLinked = isChildPartLinkedWithEvent(lifelineChild, event);
-					if(partIsLinked && lifelineChild instanceof AbstractBorderItemEditPart) {
-						final AbstractBorderItemEditPart part = (AbstractBorderItemEditPart)lifelineChild;
-						IFigure parentFigure = ((IGraphicalEditPart)getHost()).getFigure();
-						Command resize = getMovePartCommand(parentFigure, part, request.getLocation().getCopy());
-						command = command.chain(resize);
-						constraintMoved = true;
-					}
-				}
-			}
-			if(constraintMoved) {
-				Command relayout = getReLayoutCmd(node);
-				if(relayout != null) {
-					command = command.chain(relayout);
-				}
-			}
+		if(lifelinePart != null && event instanceof MessageOccurrenceSpecification) {
+			Command cmdMove = SequenceUtil.getTimeRelatedElementsMoveCommands(lifelinePart, (OccurrenceSpecification)event, request.getLocation(), notToMoveEditPartList);
+			command = command.chain(cmdMove);
 		}
 		return command;
-	}
-
-	/**
-	 * Get the command to move the bordered edit part next to the event
-	 * 
-	 * @param parentFigure
-	 *        the containing figure
-	 * @param movedPart
-	 *        the border part which must be moved
-	 * @param referencePoint
-	 *        the point where the event is moved
-	 * @return the move command
-	 */
-	private Command getMovePartCommand(IFigure parentFigure, AbstractBorderItemEditPart movedPart, Point referencePoint) {
-		parentFigure.translateToRelative(referencePoint);
-		referencePoint.x = movedPart.getLocation().x;
-		referencePoint.translate(parentFigure.getBounds().getLocation().getCopy().negate());
-		// Get the height of the element
-		int newHeight = movedPart.getSize().height;
-		// Define the new bounds of the time element
-		Rectangle newBounds = new Rectangle(referencePoint.x, referencePoint.y - newHeight / 2, -1, newHeight);
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
-		// chain the resize command
-		ICommandProxy resize = new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter((View)movedPart.getModel()), newBounds));
-		return resize;
-	}
-
-	/**
-	 * Know whether lifeline child part is linked with the event
-	 * 
-	 * @param lifelineChild
-	 *        the lifeline child part
-	 * @param event
-	 *        the message end event
-	 * @return true if child is linked with the event
-	 */
-	private boolean isChildPartLinkedWithEvent(Object lifelineChild, MessageEnd event) {
-		if(lifelineChild instanceof TimeObservationEditPart || lifelineChild instanceof TimeConstraintEditPart) {
-			final AbstractBorderItemEditPart part = (AbstractBorderItemEditPart)lifelineChild;
-			EObject element = part.resolveSemanticElement();
-			if(element instanceof TimeObservation) {
-				return event.equals(((TimeObservation)element).getEvent());
-			} else if(element instanceof TimeConstraint) {
-				return ((TimeConstraint)element).getConstrainedElements().contains(event);
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Get a command which refreshes the bordered layout of the node.
-	 * 
-	 * @param node
-	 *        the node with bordered items
-	 * @return the refresh command or null
-	 */
-	private Command getReLayoutCmd(INodeEditPart node) {
-
-		// relayout the border container figure so that time elements are refreshed
-		IFigure fig = node.getFigure();
-		if(fig instanceof BorderedNodeFigure) {
-			final IFigure container = ((BorderedNodeFigure)fig).getBorderItemContainer();
-			Command cmd = new Command() {
-
-				@Override
-				public void execute() {
-					container.getLayoutManager().layout(container);
-				}
-			};
-			return cmd;
-		}
-		return null;
 	}
 
 	/**

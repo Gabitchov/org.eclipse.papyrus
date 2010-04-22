@@ -334,7 +334,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineGraphicalNodeEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineChildGraphicalNodeEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
@@ -411,7 +411,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.sequence.edit.policies.SequenceGraphicalNodeEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineChildGraphicalNodeEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActionExecutionSpecification"/>
@@ -450,7 +450,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.sequence.edit.policies.SequenceGraphicalNodeEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineChildGraphicalNodeEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/BehaviorExecutionSpecification"/>
@@ -685,11 +685,11 @@
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
             className="DurationConstraintFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DurationConstraintFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.Polyline fDurationArrow; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fDurationConstraintLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DurationConstraintFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.papyrus.diagram.common.draw2d.CenterLayout layoutThis = new org.eclipse.papyrus.diagram.common.draw2d.CenterLayout();&#xA;&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setFill(false);&#xA;this.setOutline(false);&#xA;this.setLineWidth(1);&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(40)&#xA;, getMapMode().DPtoLP(80)&#xA;));&#xA;this.setBorder(createBorder0());&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fDurationArrow = new org.eclipse.draw2d.Polyline();&#xA;fDurationArrow.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;fDurationArrow.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;fDurationArrow.setLineWidth(1);&#xA;&#xA;this.add(fDurationArrow);&#xA;&#xA;&#xA;&#xA;fDurationConstraintLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;&#xA;&#xA;&#xA;fDurationConstraintLabel.setTextAlignment(&#xA;PositionConstants.CENTER);&#xA;&#xA;&#xA;&#xA;&#xA;fDurationConstraintLabel.setAlignment(&#xA;PositionConstants.CENTER);&#xA;&#xA;&#xA;&#xA;&#xA;fDurationConstraintLabel.setBackgroundColor(&#xA;getBackgroundColor());&#xA;&#xA;&#xA;&#xA;&#xA;fDurationConstraintLabel.setTextWrap(&#xA;true);&#xA;&#xA;&#xA;&#xA;&#xA;fDurationConstraintLabel.setTextJustification(&#xA;PositionConstants.CENTER);&#xA;&#xA;&#xA;&#xA;this.add(fDurationConstraintLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.Border createBorder0() {&#xA;&#x9;&#x9;org.eclipse.papyrus.diagram.common.draw2d.LinesBorder result = new org.eclipse.papyrus.diagram.common.draw2d.LinesBorder();&#xA;&#x9;&#x9;&#xA;&#xA;&#xA;&#xA;result.setSides(&#xA;PositionConstants.TOP | PositionConstants.BOTTOM);&#xA;&#xA;&#xA;&#xA;&#x9;&#x9;return result;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = true;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.Polyline getDurationArrow() {&#xA;&#x9;&#x9;return fDurationArrow;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getDurationConstraintLabel() {&#xA;&#x9;&#x9;return fDurationConstraintLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class DurationConstraintFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.Polyline fDurationArrow; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fDurationConstraintLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public DurationConstraintFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.papyrus.diagram.common.draw2d.CenterLayout layoutThis = new org.eclipse.papyrus.diagram.common.draw2d.CenterLayout();&#xA;&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setFill(false);&#xA;this.setOutline(false);&#xA;this.setLineWidth(1);&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(40)&#xA;, getMapMode().DPtoLP(-1)&#xA;));&#xA;this.setBorder(createBorder0());&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fDurationArrow = new org.eclipse.draw2d.Polyline();&#xA;fDurationArrow.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;fDurationArrow.addPoint(new org.eclipse.draw2d.geometry.Point(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;fDurationArrow.setLineWidth(1);&#xA;&#xA;this.add(fDurationArrow);&#xA;&#xA;&#xA;&#xA;fDurationConstraintLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;&#xA;&#xA;&#xA;fDurationConstraintLabel.setTextAlignment(&#xA;PositionConstants.CENTER);&#xA;&#xA;&#xA;&#xA;&#xA;fDurationConstraintLabel.setAlignment(&#xA;PositionConstants.CENTER);&#xA;&#xA;&#xA;&#xA;&#xA;fDurationConstraintLabel.setBackgroundColor(&#xA;getBackgroundColor());&#xA;&#xA;&#xA;&#xA;&#xA;fDurationConstraintLabel.setTextWrap(&#xA;true);&#xA;&#xA;&#xA;&#xA;&#xA;fDurationConstraintLabel.setTextJustification(&#xA;PositionConstants.CENTER);&#xA;&#xA;&#xA;&#xA;this.add(fDurationConstraintLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.Border createBorder0() {&#xA;&#x9;&#x9;org.eclipse.papyrus.diagram.common.draw2d.LinesBorder result = new org.eclipse.papyrus.diagram.common.draw2d.LinesBorder();&#xA;&#x9;&#x9;&#xA;&#xA;&#xA;&#xA;result.setSides(&#xA;PositionConstants.TOP | PositionConstants.BOTTOM);&#xA;&#xA;&#xA;&#xA;&#x9;&#x9;return result;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = true;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.Polyline getDurationArrow() {&#xA;&#x9;&#x9;return fDurationArrow;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getDurationConstraintLabel() {&#xA;&#x9;&#x9;return fDurationConstraintLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;">
           <attributes
               xsi:type="gmfgen:DefaultSizeAttributes"
               width="-1"
-              height="80"/>
+              height="-1"/>
         </viewmap>
         <modelFacet>
           <metaClass
@@ -743,6 +743,7 @@
           visualID="3022"
           editPartClassName="DestructionEventEditPart"
           itemSemanticEditPolicyClassName="DestructionEventItemSemanticEditPolicy"
+          notationViewFactoryClassName="DestructionEventViewFactory"
           canonicalEditPolicyClassName="DestructionEventCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="DestructionEventGraphicalNodeEditPolicy"
           createCommandClassName="DestructionEventCreateCommand"
@@ -5647,7 +5648,7 @@
           qualifiedName=" org.eclipse.papyrus.diagram.sequence.parser.custom.InteractionUseCustomParsers"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet"
+          uses="/0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.0/@modelFacet"
           qualifiedName=" org.eclipse.papyrus.diagram.sequence.parser.custom.MessageCustomParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -5655,11 +5656,11 @@
           qualifiedName="org.eclipse.papyrus.diagram.common.parser.CommentParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.1/@labels.1/@modelFacet /0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.0/@labels.1/@modelFacet /0/@diagram/@links.4/@labels.1/@modelFacet /0/@diagram/@links.2/@labels.1/@modelFacet"
+          uses="/0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.1/@labels.1/@modelFacet /0/@diagram/@links.0/@labels.1/@modelFacet /0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@links.4/@labels.1/@modelFacet /0/@diagram/@links.2/@labels.1/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.sequence.parser.custom.DurationObservationParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.2/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.2/@modelFacet /0/@diagram/@links.4/@labels.2/@modelFacet /0/@diagram/@links.3/@labels.2/@modelFacet /0/@diagram/@links.0/@labels.2/@modelFacet /0/@diagram/@links.6/@labels.2/@modelFacet /0/@diagram/@links.5/@labels.2/@modelFacet"
+          uses="/0/@diagram/@links.4/@labels.2/@modelFacet /0/@diagram/@links.2/@labels.2/@modelFacet /0/@diagram/@links.3/@labels.2/@modelFacet /0/@diagram/@links.5/@labels.2/@modelFacet /0/@diagram/@links.6/@labels.2/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@links.0/@labels.2/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.2/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.sequence.parser.custom.TimeConstraintParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
