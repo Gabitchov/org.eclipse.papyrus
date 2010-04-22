@@ -5,7 +5,8 @@
    <extension-point id="modelListener" name="ModelListener" schema="schema/modelListener.exsd"/>
    <extension-point id="papyrusContentOutline" name="PapyrusContentOutline" schema="schema/contentOutline.exsd"/>
    <extension-point id="service" name="Service" schema="schema/service.exsd"/>
-   <extension
+   <extension-point id="org.eclipse.papyrus.core" name="loadingStrategy" schema="schema/org.eclipse.papyrus.core.exsd"/>
+	<extension
          point="org.eclipse.ui.menus">
       <menuContribution
             locationURI="toolbar:org.eclipse.ui.main.toolbar">
@@ -157,6 +158,5 @@
             commandId="org.eclipse.papyrus.core.commands.closeothersdiagrams">
       </handler>
    </extension>
-	
 	
 </plugin>
