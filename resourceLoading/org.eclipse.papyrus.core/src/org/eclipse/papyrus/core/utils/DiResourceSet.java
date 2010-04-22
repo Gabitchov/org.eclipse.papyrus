@@ -110,45 +110,72 @@ public class DiResourceSet extends ResourceSetImpl {
 	 */
 	@Override
 	public EObject getEObject(URI uri, boolean loadOnDemand) {
-		// do we have to override getResource ?
+		//return super.getEObject(uri, loadOnDemand);
 		URI resourceURI = uri.trimFragment();
 		if(resourceURI.equals(modelURI) || resourceURI.equals(notationURI) || resourceURI.equals(diURI)) {
 			// do not manage eObject of the initial resources
 			return super.getEObject(uri, loadOnDemand);
 		} else {
-			// use ProxyManager to resolve proxies according to the strategy
-			String fragment = uri.fragment() ;
-			EObject result = null ;
-			// overrided method is called
-			loadOnDemand = proxyManager.loadResource(uri);
-			Resource r = getResource(resourceURI, loadOnDemand);
-			if (r != null)
-			{
-				result = r.getEObject(fragment);
-			}
-			// if load on demand = true and result = null it's time to start router exploration !
-			if (result == null && loadOnDemand)
-			{
-				// router manager
-				// retrieve di of the loaded resource
-				// browse route map and get the target resource
-				// !!! does the policy authorize the loading of the new resource ?
-				// is it normal to have object = null ?
-			}
-			// search element
-			return result;
+			return getEObjectFromStrategy(uri);
 		}
 	}
-	/* (non-Javadoc)
-	 * @see org.eclipse.emf.ecore.resource.impl.ResourceSetImpl#getResource(org.eclipse.emf.common.util.URI, boolean)
-	 */
-	@Override
-	public Resource getResource(URI uri, boolean loadOnDemand) {
-		if (loadOnDemand)
-		{
-			loadOnDemand = proxyManager.loadResource(uri);
+	
+	// move it in ProxyManager ?
+	private EObject getEObjectFromStrategy(URI uri) {
+		// ask the strategy if the resource of the uri must be loaded
+		boolean loadOnDemand = proxyManager.loadResource(uri);
+		if (loadOnDemand) {
+			Resource resource = getResource(uri, loadOnDemand);
+			if (resource != null) {
+				EObject object = resource.getEObject(uri.fragment());
+				if (object != null) {
+					// object find in the resource
+					return object;
+				} 
+				// explore routes in historic
+				// RouteManager should be used for that
+				else {
+					String fileExtension = uri.fileExtension();
+					Resource diResource = null;
+					if (DI_FILE_EXTENSION.equals(fileExtension)) {
+						// proxy is in DI resource
+						diResource = getResource(uri, loadOnDemand);
+					} else {
+						// retrieve the DI resource from the uri to get the historic
+						URI newURI = URI.createURI(uri.fragment().replace(fileExtension, DI_FILE_EXTENSION));
+						diResource = getResource(newURI, loadOnDemand);
+					}
+					
+					// get the historic from the Di resource
+					if (diResource != null) {
+						// TODO resource.getHistoric();	
+						// call the RouteManager to get the EObject
+						// TODO algo de parcours à définir: largeur ou profondeur
+						// c'est le routeurManager qui trouve l'object
+						// return RouteManager.getEObject(uri, context);
+						return null;
+						
+					} else {
+						// resource not found -> Error managed in proxyManager
+						// warn the user, ask him to select a resource to search in
+						// or ask to seach in the entire resource set
+						// or use a proxy
+						// return Popup.getChoice();
+						return null;
+					}
+				}
+			} else {
+				// resource not found -> Error managed in proxyManager
+				// warn the user, ask him to select a resource to search in
+				// or ask to seach in the entire resource set
+				// or use a proxy
+				// return Popup.getChoice();
+				return null;
+			}
+		} else {
+			// we just want to manage a proxy for this object
+			return null;
 		}
-		return super.getResource(uri, loadOnDemand);
 	}
 
 	/**

@@ -27,7 +27,8 @@ public interface ILoadingStrategy {
 	// 1: ask the user which resource is loaded
 	// 2: load the model and all the controlled resources below
 	// 3: load the model and all the controlled resources below and the profiles
-	// 4: load the model and all the controlled resources below and the pathmaps and profiles
-	// 5: load all
+	// 4: load the model and all the controlled resources below and the pathmaps and profiles defined in the preferences -- default
+	// 5: load the model and the pathmaps and profiles not the controlled resources below
+	// 6: load all
 
 }
