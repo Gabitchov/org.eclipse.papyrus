@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/4" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/4 pathmap://UML_PROFILES/Ecore.profile.uml#_B7dOIMEREduRdatXodjBjA">
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/4" xmlns:Ecore_1="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/4 pathmap://UML_PROFILES/Ecore.profile.uml#_B7dOIMEREduRdatXodjBjA http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
   <uml:Model xmi:id="_NuHhwEJVEd6kIY39uis5Uw" name="di">
     <packageImport xmi:id="_NuHhwUJVEd6kIY39uis5Uw">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -143,6 +143,47 @@ Lookup in the entire SashModel structure.</body>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_OoMtUkoJEd6ussMWxXGeXg" value="1"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_OoMtU0oJEd6ussMWxXGeXg" value="1"/>
           <defaultValue xmi:type="uml:LiteralString" xmi:id="_OoMtVEoJEd6ussMWxXGeXg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_vaMqoE4OEd-B2uXHu4qMXg" name="removeAllPages">
+        <ownedComment xmi:id="_yKxU0E4OEd-B2uXHu4qMXg" annotatedElement="_vaMqoE4OEd-B2uXHu4qMXg">
+          <body>Remove all pages from the model. Only left one empty top level folder.</body>
+        </ownedComment>
+      </ownedOperation>
+      <ownedOperation xmi:id="_-TkSoE4OEd-B2uXHu4qMXg" name="removeOtherPages">
+        <ownedComment xmi:id="_Ar2_sE4PEd-B2uXHu4qMXg" annotatedElement="_-TkSoE4OEd-B2uXHu4qMXg">
+          <body>Remove pages other than the one specified from the model. Intermediate folders are also removed.</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_-TkSoU4OEd-B2uXHu4qMXg" name="pageIdentifier" type="_A-BP8EVhEd6g-YgfS2DHrA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-TkSok4OEd-B2uXHu4qMXg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-TkSo04OEd-B2uXHu4qMXg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_-TkSpE4OEd-B2uXHu4qMXg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_1jUIgE4PEd-B2uXHu4qMXg" name="lookupFirstWindow">
+        <ownedComment xmi:id="_JhGFkE4QEd-B2uXHu4qMXg" annotatedElement="_1jUIgE4PEd-B2uXHu4qMXg">
+          <body>Get the first available window.</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_9JGOIE4PEd-B2uXHu4qMXg" name="window" type="_Xa5wIEJVEd6kIY39uis5Uw" direction="return">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__PD1EU4PEd-B2uXHu4qMXg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__PD1EE4PEd-B2uXHu4qMXg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="__PD1Ek4PEd-B2uXHu4qMXg">
+            <value xsi:nil="true"/>
+          </defaultValue>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_4qi_ME4PEd-B2uXHu4qMXg" name="lookupFirstFolder">
+        <ownedComment xmi:id="_MKOD8E4QEd-B2uXHu4qMXg" annotatedElement="_4qi_ME4PEd-B2uXHu4qMXg">
+          <body>Lookup the first available folder.</body>
+        </ownedComment>
+        <ownedParameter xmi:id="__o-w8E4PEd-B2uXHu4qMXg" name="folder" type="_fbWYgEJVEd6kIY39uis5Uw" direction="return">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_BO6M8E4QEd-B2uXHu4qMXg" value="1"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_BOwb8E4QEd-B2uXHu4qMXg" value="1"/>
+          <defaultValue xmi:type="uml:LiteralString" xmi:id="_BO6M8U4QEd-B2uXHu4qMXg">
             <value xsi:nil="true"/>
           </defaultValue>
         </ownedParameter>
@@ -482,20 +523,22 @@ Used to insert a new SashPanel.</body>
     </profileApplication>
     <profileApplication xmi:id="_wpAy0EJfEd6kIY39uis5Uw">
       <eAnnotations xmi:id="_wpJ8wEJfEd6kIY39uis5Uw" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_B7dOIMEREduRdatXodjBjA"/>
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
       </eAnnotations>
       <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
     </profileApplication>
   </uml:Model>
   <Ecore:EPackage xmi:id="_zLIxUEJfEd6kIY39uis5Uw" nsPrefix="di2" nsURI="http://www.eclipse.org/papyrus/0.7.0/sashdi" basePackage="org.eclipse.papyrus.sashwindows.di"/>
-  <Ecore:EPackage xmi:id="_mo48QEJgEd6kIY39uis5Uw" base_Package="_NuHhwEJVEd6kIY39uis5Uw" nsPrefix="di" nsURI="http://www.eclipse.org/papyrus/0.7.0/sashdi" basePackage="org.eclipse.papyrus.sashwindows" prefix="Di"/>
+  <Ecore_1:EPackage xmi:id="_mo48QEJgEd6kIY39uis5Uw" base_Package="_NuHhwEJVEd6kIY39uis5Uw" nsPrefix="di" nsURI="http://www.eclipse.org/papyrus/0.7.0/sashdi" basePackage="org.eclipse.papyrus.sashwindows" prefix="Di">
+    <annotation>resource=XMI</annotation>
+  </Ecore_1:EPackage>
   <Ecore:EClass xmi:id="_XL4scES1Ed6g-YgfS2DHrA" instanceClassName="java.lang.Integer"/>
   <Ecore:EAttribute xmi:id="_7fEJYEVfEd6g-YgfS2DHrA"/>
   <Ecore:EClass xmi:id="_NUMKIEVbEd6g-YgfS2DHrA" instanceClassName="java.lang.Object"/>
-  <Ecore:EDataType xmi:id="_6EWpcEVgEd6g-YgfS2DHrA" instanceClassName="int" base_PrimitiveType="_Hkk78EVbEd6g-YgfS2DHrA" dataTypeName="int"/>
-  <Ecore:EDataType xmi:id="_DLSYwEVhEd6g-YgfS2DHrA" instanceClassName="java.lang.Object" base_PrimitiveType="_A-BP8EVhEd6g-YgfS2DHrA"/>
-  <Ecore:EDataType xmi:id="_MeaSgEV4Ed6g-YgfS2DHrA" instanceClassName="float" base_PrimitiveType="_IEBx4EV4Ed6g-YgfS2DHrA"/>
-  <Ecore:EDataType xmi:id="_UtLf4EbaEd6g-YgfS2DHrA" instanceClassName="boolean" base_PrimitiveType="_SNSWAEbaEd6g-YgfS2DHrA"/>
-  <Ecore:EAttribute xmi:id="_UVaAMEnnEd6ussMWxXGeXg" isTransient="true" base_Property="_GrqUYEnkEd6ussMWxXGeXg"/>
-  <Ecore:EReference xmi:id="_uX7T8EsFEd6MxdnlcgT3eA" isTransient="true" isVolatile="true" base_Property="_lnNFMEsFEd6MxdnlcgT3eA"/>
+  <Ecore_1:EDataType xmi:id="_6EWpcEVgEd6g-YgfS2DHrA" instanceClassName="int" base_PrimitiveType="_Hkk78EVbEd6g-YgfS2DHrA" dataTypeName="int"/>
+  <Ecore_1:EDataType xmi:id="_DLSYwEVhEd6g-YgfS2DHrA" instanceClassName="java.lang.Object" base_PrimitiveType="_A-BP8EVhEd6g-YgfS2DHrA"/>
+  <Ecore_1:EDataType xmi:id="_MeaSgEV4Ed6g-YgfS2DHrA" instanceClassName="float" base_PrimitiveType="_IEBx4EV4Ed6g-YgfS2DHrA"/>
+  <Ecore_1:EDataType xmi:id="_UtLf4EbaEd6g-YgfS2DHrA" instanceClassName="boolean" base_PrimitiveType="_SNSWAEbaEd6g-YgfS2DHrA"/>
+  <Ecore_1:EAttribute xmi:id="_UVaAMEnnEd6ussMWxXGeXg" isTransient="true" base_Property="_GrqUYEnkEd6ussMWxXGeXg"/>
+  <Ecore_1:EReference xmi:id="_uX7T8EsFEd6MxdnlcgT3eA" isTransient="true" isVolatile="true" base_Property="_lnNFMEsFEd6MxdnlcgT3eA"/>
 </xmi:XMI>

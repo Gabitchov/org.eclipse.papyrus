@@ -55,7 +55,7 @@ import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkManagerShel
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkWeb;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperlinkDocument;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperlinkObject;
-import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
+import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IEditorDescriptor;

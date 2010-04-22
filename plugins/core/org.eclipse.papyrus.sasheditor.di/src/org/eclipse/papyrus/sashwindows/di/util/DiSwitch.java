@@ -33,7 +33,6 @@ import org.eclipse.papyrus.sashwindows.di.Window;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.papyrus.sashwindows.di.DiPackage
  * @generated
  */
@@ -43,7 +42,6 @@ public class DiSwitch<T> {
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected static DiPackage modelPackage;
@@ -52,11 +50,10 @@ public class DiSwitch<T> {
 	 * Creates an instance of the switch.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DiSwitch() {
-		if(modelPackage == null) {
+		if (modelPackage == null) {
 			modelPackage = DiPackage.eINSTANCE;
 		}
 	}
@@ -65,7 +62,6 @@ public class DiSwitch<T> {
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
@@ -77,16 +73,17 @@ public class DiSwitch<T> {
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject) {
-		if(theEClass.eContainer() == modelPackage) {
+		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
-		} else {
+		}
+		else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return eSuperTypes.isEmpty() ?
+			return
+				eSuperTypes.isEmpty() ?
 					defaultCase(theEObject) :
 					doSwitch(eSuperTypes.get(0), theEObject);
 		}
@@ -96,118 +93,88 @@ public class DiSwitch<T> {
 	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch(classifierID) {
-		case DiPackage.SASH_MODEL:
-		{
-			SashModel sashModel = (SashModel)theEObject;
-			T result = caseSashModel(sashModel);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case DiPackage.WINDOW:
-		{
-			Window window = (Window)theEObject;
-			T result = caseWindow(window);
-			if(result == null)
-				result = casePanelParent(window);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case DiPackage.PANEL_PARENT:
-		{
-			PanelParent panelParent = (PanelParent)theEObject;
-			T result = casePanelParent(panelParent);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case DiPackage.ABSTRACT_PANEL:
-		{
-			AbstractPanel abstractPanel = (AbstractPanel)theEObject;
-			T result = caseAbstractPanel(abstractPanel);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case DiPackage.POSITION:
-		{
-			Position position = (Position)theEObject;
-			T result = casePosition(position);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case DiPackage.SIZE:
-		{
-			Size size = (Size)theEObject;
-			T result = caseSize(size);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case DiPackage.TAB_FOLDER:
-		{
-			TabFolder tabFolder = (TabFolder)theEObject;
-			T result = caseTabFolder(tabFolder);
-			if(result == null)
-				result = caseAbstractPanel(tabFolder);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case DiPackage.PAGE_REF:
-		{
-			PageRef pageRef = (PageRef)theEObject;
-			T result = casePageRef(pageRef);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case DiPackage.SASH_PANEL:
-		{
-			SashPanel sashPanel = (SashPanel)theEObject;
-			T result = caseSashPanel(sashPanel);
-			if(result == null)
-				result = caseAbstractPanel(sashPanel);
-			if(result == null)
-				result = casePanelParent(sashPanel);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case DiPackage.ABSTRACT_PAGE:
-		{
-			AbstractPage abstractPage = (AbstractPage)theEObject;
-			T result = caseAbstractPage(abstractPage);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case DiPackage.PAGE_LIST:
-		{
-			PageList pageList = (PageList)theEObject;
-			T result = casePageList(pageList);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case DiPackage.SASH_WINDOWS_MNGR:
-		{
-			SashWindowsMngr sashWindowsMngr = (SashWindowsMngr)theEObject;
-			T result = caseSashWindowsMngr(sashWindowsMngr);
-			if(result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		default:
-			return defaultCase(theEObject);
+		switch (classifierID) {
+			case DiPackage.SASH_MODEL: {
+				SashModel sashModel = (SashModel)theEObject;
+				T result = caseSashModel(sashModel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiPackage.WINDOW: {
+				Window window = (Window)theEObject;
+				T result = caseWindow(window);
+				if (result == null) result = casePanelParent(window);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiPackage.PANEL_PARENT: {
+				PanelParent panelParent = (PanelParent)theEObject;
+				T result = casePanelParent(panelParent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiPackage.ABSTRACT_PANEL: {
+				AbstractPanel abstractPanel = (AbstractPanel)theEObject;
+				T result = caseAbstractPanel(abstractPanel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiPackage.POSITION: {
+				Position position = (Position)theEObject;
+				T result = casePosition(position);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiPackage.SIZE: {
+				Size size = (Size)theEObject;
+				T result = caseSize(size);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiPackage.TAB_FOLDER: {
+				TabFolder tabFolder = (TabFolder)theEObject;
+				T result = caseTabFolder(tabFolder);
+				if (result == null) result = caseAbstractPanel(tabFolder);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiPackage.PAGE_REF: {
+				PageRef pageRef = (PageRef)theEObject;
+				T result = casePageRef(pageRef);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiPackage.SASH_PANEL: {
+				SashPanel sashPanel = (SashPanel)theEObject;
+				T result = caseSashPanel(sashPanel);
+				if (result == null) result = caseAbstractPanel(sashPanel);
+				if (result == null) result = casePanelParent(sashPanel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiPackage.ABSTRACT_PAGE: {
+				AbstractPage abstractPage = (AbstractPage)theEObject;
+				T result = caseAbstractPage(abstractPage);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiPackage.PAGE_LIST: {
+				PageList pageList = (PageList)theEObject;
+				T result = casePageList(pageList);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DiPackage.SASH_WINDOWS_MNGR: {
+				SashWindowsMngr sashWindowsMngr = (SashWindowsMngr)theEObject;
+				T result = caseSashWindowsMngr(sashWindowsMngr);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			default: return defaultCase(theEObject);
 		}
 	}
 
@@ -217,9 +184,7 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Sash Model</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -234,9 +199,7 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Window</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -251,9 +214,7 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Panel Parent</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -268,9 +229,7 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Abstract Panel</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -285,9 +244,7 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Position</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -302,9 +259,7 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Size</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -319,9 +274,7 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Tab Folder</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -336,9 +289,7 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Page Ref</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -353,9 +304,7 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Sash Panel</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -370,9 +319,7 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Abstract Page</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -387,9 +334,7 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Page List</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -404,9 +349,7 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Sash Windows Mngr</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -421,9 +364,7 @@ public class DiSwitch<T> {
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch, but this is the last case anyway.
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
+	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated

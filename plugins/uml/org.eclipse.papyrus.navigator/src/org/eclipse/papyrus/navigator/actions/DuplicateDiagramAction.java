@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.action.Action;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.navigator.internal.Activator;
-import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
+import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 
 /**
  * Action used to duplicate the given diagram

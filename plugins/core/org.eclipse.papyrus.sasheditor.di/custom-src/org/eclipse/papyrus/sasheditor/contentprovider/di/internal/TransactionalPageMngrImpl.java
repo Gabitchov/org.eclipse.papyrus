@@ -18,7 +18,7 @@ import java.util.List;
 
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
+import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 
 
 /**
@@ -58,7 +58,7 @@ public class TransactionalPageMngrImpl implements IPageMngr {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr#addPage(java.lang.Object)
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr#addPage(java.lang.Object)
 	 * 
 	 * @param pageIdentifier
 	 */
@@ -78,7 +78,7 @@ public class TransactionalPageMngrImpl implements IPageMngr {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr#allPages()
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr#allPages()
 	 * 
 	 * @return
 	 */
@@ -87,7 +87,7 @@ public class TransactionalPageMngrImpl implements IPageMngr {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr#closePage(java.lang.Object)
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr#closePage(java.lang.Object)
 	 * 
 	 * @param pageIdentifier
 	 */
@@ -107,7 +107,50 @@ public class TransactionalPageMngrImpl implements IPageMngr {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr#openPage(java.lang.Object)
+	 * Remove all pages from the SashModel. Left only the top level folder
+	 * 
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr#closePage(org.eclipse.emf.ecore.EObject)
+	 * 
+	 * @param pageIdentifier
+	 */
+	public void closeAllOpenedPages() {
+		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
+
+		RecordingCommand command = new RecordingCommand(editingDomain) {
+
+			@Override
+			protected void doExecute() {
+				pageMngr.closeAllOpenedPages();
+
+			}
+		};
+
+		editingDomain.getCommandStack().execute(command);
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr#closePage(org.eclipse.emf.ecore.EObject)
+	 * 
+	 * @param pageIdentifier
+	 */
+	public void closeOtherPages(final Object pageIdentifier) {
+		TransactionalEditingDomain editingDomain = getTransactionalEditingDomain();
+
+		RecordingCommand command = new RecordingCommand(editingDomain) {
+
+			@Override
+			protected void doExecute() {
+				pageMngr.closeOtherPages(pageIdentifier);
+
+			}
+		};
+
+		editingDomain.getCommandStack().execute(command);
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr#openPage(java.lang.Object)
 	 * 
 	 * @param pageIdentifier
 	 */
@@ -127,7 +170,7 @@ public class TransactionalPageMngrImpl implements IPageMngr {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr#removePage(java.lang.Object)
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr#removePage(java.lang.Object)
 	 * 
 	 * @param pageIdentifier
 	 */
@@ -148,7 +191,7 @@ public class TransactionalPageMngrImpl implements IPageMngr {
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr#isOpen(java.lang.Object)
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr#isOpen(java.lang.Object)
 	 * @param pageIdentifier
 	 * @return
 	 * 

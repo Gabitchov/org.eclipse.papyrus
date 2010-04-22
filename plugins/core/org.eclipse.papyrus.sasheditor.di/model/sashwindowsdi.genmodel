@@ -24,7 +24,7 @@
   </genAnnotations>
   <foreignModel>sashwindowsdi.uml</foreignModel>
   <genPackages xsi:type="genmodel:GenPackage" prefix="Di" basePackage="org.eclipse.papyrus.sashwindows"
-      disposableProviderFactory="true" ecorePackage="di.ecore#/">
+      resource="XMI" disposableProviderFactory="true" ecorePackage="di.ecore#/">
     <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="di.ecore#//int"/>
     <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="di.ecore#//JavaObject"/>
     <genDataTypes xsi:type="genmodel:GenDataType" ecoreDataType="di.ecore#//Float"/>
@@ -62,6 +62,12 @@
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//SashModel/removeEmptyFolder">
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//SashModel/removeEmptyFolder/folder"/>
       </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//SashModel/removeAllPages"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//SashModel/removeOtherPages">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="di.ecore#//SashModel/removeOtherPages/pageIdentifier"/>
+      </genOperations>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//SashModel/lookupFirstWindow"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="di.ecore#//SashModel/lookupFirstFolder"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="di.ecore#//Window">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"

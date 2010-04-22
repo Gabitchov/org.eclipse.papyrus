@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.sasheditor.contentprovider.di;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 
 

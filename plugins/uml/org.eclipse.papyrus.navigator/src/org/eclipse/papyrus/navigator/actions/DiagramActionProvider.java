@@ -13,7 +13,7 @@ package org.eclipse.papyrus.navigator.actions;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
+import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 
 /**
  * Provider used to create actions applicable on diagrams

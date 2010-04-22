@@ -12,15 +12,18 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.sasheditor.contentprovider.di;
+package org.eclipse.papyrus.sasheditor.contentprovider;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer;
 
 
 /**
  * Interface providing method to manage pages in the Sash Windows system.
+ * This interface can be provided by ContentProvider whishing to provide a standard 
+ * way to manage pages. This interface is not mandatory for the Sasheditor.
  * This interface provide basic access to the Sash Windows system.
  * It is intended to be used from the application in order to interact with the ContentProvider. Then,
  * the {@link SashWindowsContainer} will refresh its views.
@@ -58,6 +61,19 @@ public interface IPageMngr {
 	 */
 	public void closePage(Object pageIdentifier);
 
+
+	/**
+	 * Close all opened pages.
+	 * 
+	 */
+	public void closeAllOpenedPages();
+
+	/**
+	 * Close all opened pages except the one provided as parameter.
+	 * 
+	 * @param pageIdentifier
+	 */
+	public void closeOtherPages(Object pageIdentifier);
 
 	/**
 	 * Open a Page corresponding to the identifier. If the page is not in the list of pages, add it.

@@ -57,10 +57,11 @@ public class PageMngrImplTest extends TestCase {
 		super.setUp();
 
 		SashWindowsMngr diSashModel = DiUtils.createDefaultSashWindowsMngr();
-		pageMngr = new PageMngrImpl(diSashModel);
+		ContentChangedEventProvider eventProvider = new ContentChangedEventProvider(diSashModel);
+		pageMngr = new PageMngrImpl(diSashModel, eventProvider);
 
 		IPageModelFactory pageModelFactory = new FakePageModelFactory();
-		contentProvider = new DiContentProvider(diSashModel.getSashModel(), pageModelFactory);
+		contentProvider = new DiContentProvider(diSashModel.getSashModel(), pageModelFactory, eventProvider);
 
 	}
 
@@ -81,8 +82,8 @@ public class PageMngrImplTest extends TestCase {
 		ContentChangeListener changeListener = new ContentChangeListener();
 
 		// Set change listener
-		contentProvider.addContentChangedListener(changeListener);
-
+		contentProvider.getContentChangedEventProvider().addListener(changeListener);
+		
 		// Add identifiers
 		// Use Object as identifiers.
 		List<Object> identifiers = new ArrayList<Object>();
@@ -112,7 +113,7 @@ public class PageMngrImplTest extends TestCase {
 		ContentChangeListener changeListener = new ContentChangeListener();
 
 		// Set change listener
-		contentProvider.addContentChangedListener(changeListener);
+		contentProvider.getContentChangedEventProvider().addListener(changeListener);
 
 		// Add identifiers
 		// Use Object as identifiers.
@@ -141,7 +142,7 @@ public class PageMngrImplTest extends TestCase {
 		ContentChangeListener changeListener = new ContentChangeListener();
 
 		// Set change listener
-		contentProvider.addContentChangedListener(changeListener);
+		contentProvider.getContentChangedEventProvider().addListener(changeListener);
 
 		// Add identifiers
 		// Use Object as identifiers.
@@ -162,7 +163,11 @@ public class PageMngrImplTest extends TestCase {
 		assertEquals("all pages added", 10, pageMngr.allPages().size());
 
 		// Close page
+		changeListener.reset();
 		pageMngr.closePage(identifiers.get(3));
+
+		// Check fired events
+		assertEquals("One event fired", 1, changeListener.getChangeCount());
 
 		// Check page still in pages
 		assertEquals("all pages still in list", 10, pageMngr.allPages().size());
@@ -174,6 +179,102 @@ public class PageMngrImplTest extends TestCase {
 	}
 
 	/**
+	 * Test method for {@link org.eclipse.papyrus.sasheditor.contentprovider.di.internal.PageMngrImpl#closeAllOpenedPages())}.
+	 */
+	public void testCloseAllOpenedPages() {
+		// A listener on change event.
+		ContentChangeListener changeListener = new ContentChangeListener();
+
+		// Set change listener
+		contentProvider.getContentChangedEventProvider().addListener(changeListener);
+
+		// Add identifiers
+		// Use Object as identifiers.
+		List<Object> identifiers = new ArrayList<Object>();
+		// Add 10 folders
+		for(int i = 0; i < 10; i++) {
+			// reset change count
+			changeListener.reset();
+			// Add Editor
+			Object id = new Object();
+			identifiers.add(id);
+			pageMngr.openPage(id);
+
+			// Check fired events
+			assertEquals("One event fired", 1, changeListener.getChangeCount());
+		}
+		// Check if pages are in PageList
+		assertEquals("all pages added", 10, pageMngr.allPages().size());
+
+		// Close page
+		changeListener.reset();
+		pageMngr.closeAllOpenedPages();
+
+		// Check fired events
+		assertEquals("One event fired", 1, changeListener.getChangeCount());
+
+		// Check page still in pages
+		assertEquals("all pages still in list", 10, pageMngr.allPages().size());
+
+		// Check if pages are in SashStructure
+		for(int i = 0; i < 10; i++) {
+			PageRef pageRef = contentProvider.getDiSashModel().lookupPage(identifiers.get(i));
+			assertNull("Page " + i + " removed from sashStructure ", pageRef);
+		}
+
+	}
+
+	/**
+	 * Test method for {@link org.eclipse.papyrus.sasheditor.contentprovider.di.internal.PageMngrImpl#closeAllOpenedPages())}.
+	 */
+	public void testCloseOtherOpenedPages() {
+		// A listener on change event.
+		ContentChangeListener changeListener = new ContentChangeListener();
+
+		// Set change listener
+		contentProvider.getContentChangedEventProvider().addListener(changeListener);
+
+		// Add identifiers
+		// Use Object as identifiers.
+		List<Object> identifiers = new ArrayList<Object>();
+		// Add 10 folders
+		for(int i = 0; i < 10; i++) {
+			// reset change count
+			changeListener.reset();
+			// Add Editor
+			Object id = new Object();
+			identifiers.add(id);
+			pageMngr.openPage(id);
+
+			// Check fired events
+			assertEquals("One event fired", 1, changeListener.getChangeCount());
+		}
+		// Check if pages are in PageList
+		assertEquals("all pages added", 10, pageMngr.allPages().size());
+
+		// Close page
+		changeListener.reset();
+		pageMngr.closeOtherPages(identifiers.get(3));
+
+		// Check fired events
+		assertEquals("One event fired", 1, changeListener.getChangeCount());
+
+		// Check page still in pages
+		assertEquals("all pages still in list", 10, pageMngr.allPages().size());
+
+		// Check if pages are in SashStructure
+		for(int i = 0; i < 10; i++) {
+			PageRef pageRef = contentProvider.getDiSashModel().lookupPage(identifiers.get(i));
+			if(i!=3) {
+				assertNull("Page " + i + " removed from sashStructure ", pageRef);
+			} else {
+				assertNotNull("Page " + i + " not removed from sashStructure ", pageRef);
+			}
+		}
+
+	}
+
+	/**
 	 * Test method for {@link org.eclipse.papyrus.sasheditor.contentprovider.di.internal.PageMngrImpl#openPage(org.eclipse.emf.ecore.EObject)}.
 	 */
 	public void testOpenPage() {
@@ -181,7 +282,7 @@ public class PageMngrImplTest extends TestCase {
 		ContentChangeListener changeListener = new ContentChangeListener();
 
 		// Set change listener
-		contentProvider.addContentChangedListener(changeListener);
+		contentProvider.getContentChangedEventProvider().addListener(changeListener);
 
 		// Add identifiers
 		// Use Object as identifiers.
@@ -217,7 +318,7 @@ public class PageMngrImplTest extends TestCase {
 		ContentChangeListener changeListener = new ContentChangeListener();
 
 		// Set change listener
-		contentProvider.addContentChangedListener(changeListener);
+		contentProvider.getContentChangedEventProvider().addListener(changeListener);
 
 		// Add identifiers
 		// Use Object as identifiers.
@@ -236,12 +337,21 @@ public class PageMngrImplTest extends TestCase {
 		}
 		// Check if pages are in PageList
 		assertEquals("all pages added", 10, pageMngr.allPages().size());
+		// Check if page id is in page list
+		assertTrue("check page id is added to page list", pageMngr.allPages().contains(identifiers.get(3)));
 
 		// Close page
+		changeListener.reset();
 		pageMngr.removePage(identifiers.get(3));
+
+		// Check fired events
+		assertEquals("One event fired", 1, changeListener.getChangeCount());
 
 		// Check page still in pages
 		assertEquals("page remove from list", 9, pageMngr.allPages().size());
+		
+		// Check removed from page list
+		assertFalse("check removed from page list", pageMngr.allPages().contains(identifiers.get(3)));
 
 		// Check if pages are in SashStructure
 		PageRef pageRef = contentProvider.getDiSashModel().lookupPage(identifiers.get(3));

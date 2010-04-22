@@ -60,9 +60,9 @@ import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.BusinessModelResolver;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener;
+import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr;
-import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.TransactionalDiSashModelMngr;
 import org.eclipse.papyrus.sasheditor.editor.AbstractMultiPageSashEditor;
@@ -476,7 +476,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		setPartName(file.getName());
 
 		// Listen on contentProvider changes
-		sashModelMngr.getSashModelContentChangedProvider().addContentChangedListener(contentChangedListener);
+		sashModelMngr.getSashModelContentChangedProvider().addListener(contentChangedListener);
 	}
 
 	/**
@@ -530,7 +530,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	@Override
 	public void dispose() {
 		if(sashModelMngr != null) {
-			sashModelMngr.getSashModelContentChangedProvider().removeContentChangedListener(contentChangedListener);
+			sashModelMngr.getSashModelContentChangedProvider().removeListener(contentChangedListener);
 		}
 
 		if(transactionalEditingDomain != null) {

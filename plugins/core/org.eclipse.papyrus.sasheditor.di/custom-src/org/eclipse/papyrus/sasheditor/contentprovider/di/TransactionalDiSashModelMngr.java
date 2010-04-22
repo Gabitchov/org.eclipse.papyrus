@@ -6,7 +6,9 @@ package org.eclipse.papyrus.sasheditor.contentprovider.di;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
+import org.eclipse.papyrus.sasheditor.contentprovider.di.internal.ContentChangedEventProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.internal.TransactionalDiContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.internal.TransactionalPageMngrImpl;
 

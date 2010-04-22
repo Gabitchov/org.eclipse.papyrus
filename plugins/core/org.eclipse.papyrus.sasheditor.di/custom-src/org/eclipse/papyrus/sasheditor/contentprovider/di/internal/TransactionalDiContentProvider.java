@@ -20,7 +20,7 @@ import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
  * @author cedric dumoulin
  * 
  */
-public class TransactionalDiContentProvider implements ISashWindowsContentProvider, IContentChangedProvider {
+public class TransactionalDiContentProvider implements ISashWindowsContentProvider {
 
 	/**
 	 * wrapped ContentProvider. All commands will use this provider.
@@ -262,16 +262,6 @@ public class TransactionalDiContentProvider implements ISashWindowsContentProvid
 		};
 
 		editingDomain.getCommandStack().execute(command);
-	}
-
-	public void addContentChangedListener(IContentChangedListener listener) {
-		diContentProvider.addContentChangedListener(listener);
-
-	}
-
-	public void removeContentChangedListener(IContentChangedListener listener) {
-		diContentProvider.removeContentChangedListener(listener);
-
 	}
 
 }

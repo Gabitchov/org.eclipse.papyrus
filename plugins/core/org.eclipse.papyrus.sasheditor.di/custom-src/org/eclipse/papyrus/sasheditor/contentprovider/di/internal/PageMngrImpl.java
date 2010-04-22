@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
+import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.sashwindows.di.PageRef;
 import org.eclipse.papyrus.sashwindows.di.SashWindowsMngr;
 
@@ -34,26 +34,31 @@ public class PageMngrImpl implements IPageMngr {
 
 	/** Internal EMF model */
 	private SashWindowsMngr diSashModel;
+	
+	ContentChangedEventProvider contentChangedEventProvider;
 
-	public PageMngrImpl(SashWindowsMngr diSashModel) {
+	public PageMngrImpl(SashWindowsMngr diSashModel, ContentChangedEventProvider contentChangedEventProvider) {
 		this.diSashModel = diSashModel;
+		this.contentChangedEventProvider = contentChangedEventProvider;
 	}
 
 	/**
 	 * Add a page to the PageList. Do not open the corresponding editor.
 	 * The page will be visible in the list.
 	 * 
-	 * @see org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr#addEditor(org.eclipse.emf.ecore.EObject)
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr#addEditor(org.eclipse.emf.ecore.EObject)
 	 * 
 	 * @param pageIdentifier
 	 */
 	public void addPage(Object pageIdentifier) {
 
+		// We do not need to disable event delivering, 
+		// as addition to pageList doesn't fire events.
 		diSashModel.getPageList().addPage(pageIdentifier);
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr#allPages()
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr#allPages()
 	 * 
 	 * @return
 	 */
@@ -72,21 +77,55 @@ public class PageMngrImpl implements IPageMngr {
 	/**
 	 * Remove the page from the SashModel
 	 * 
-	 * @see org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr#closePage(org.eclipse.emf.ecore.EObject)
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr#closePage(org.eclipse.emf.ecore.EObject)
 	 * 
 	 * @param pageIdentifier
 	 */
 	public void closePage(Object pageIdentifier) {
+		
+		contentChangedEventProvider.setDeliver(false);
 		diSashModel.getSashModel().removePage(pageIdentifier);
+		contentChangedEventProvider.setDeliver(true);
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr#openPage(org.eclipse.emf.ecore.EObject)
+	 * Remove all pages from the SashModel. Left only the top level folder
+	 * 
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr#closePage(org.eclipse.emf.ecore.EObject)
+	 * 
+	 * @param pageIdentifier
+	 */
+	public void closeAllOpenedPages() {
+		
+		contentChangedEventProvider.setDeliver(false);
+		diSashModel.getSashModel().removeAllPages();
+		contentChangedEventProvider.setDeliver(true);
+
+	}
+
+	/**
+	 * Remove all pages from the SashModel. Left only the top level folder
+	 * 
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr#closePage(org.eclipse.emf.ecore.EObject)
+	 * 
+	 * @param pageIdentifier
+	 */
+	public void closeOtherPages(Object pageIdentifier) {
+		contentChangedEventProvider.setDeliver(false);
+		diSashModel.getSashModel().removeOtherPages(pageIdentifier);
+		contentChangedEventProvider.setDeliver(true);
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr#openPage(org.eclipse.emf.ecore.EObject)
 	 * 
 	 * @param pageIdentifier
 	 */
 	public void openPage(Object pageIdentifier) {
 		// Add the page to the SashModel and to the PageList
+
+        // We do not need to disable event delivering as the operation already fired
+		// one single event.
 
 		Iterator<PageRef> iterator = diSashModel.getPageList().getAvailablePage().iterator();
 		boolean found = false;
@@ -103,19 +142,22 @@ public class PageMngrImpl implements IPageMngr {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr#removePage(org.eclipse.emf.ecore.EObject)
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr#removePage(org.eclipse.emf.ecore.EObject)
 	 * 
 	 * @param pageIdentifier
 	 */
 	public void removePage(Object pageIdentifier) {
 		// remove from pageList and from SashModel
 		diSashModel.getPageList().removePage(pageIdentifier);
+		
+		contentChangedEventProvider.setDeliver(false);
 		diSashModel.getSashModel().removePage(pageIdentifier);
+		contentChangedEventProvider.setDeliver(true);
 	}
 
 	/**
 	 * 
-	 * @see org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr#isOpen(java.lang.Object)
+	 * @see org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr#isOpen(java.lang.Object)
 	 * @param pageIdentifier
 	 * @return
 	 * 

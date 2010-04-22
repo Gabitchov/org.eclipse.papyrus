@@ -6,7 +6,7 @@ package org.eclipse.papyrus.sasheditor.contentprovider.di.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
+import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.handlers.HandlerUtil;
 
@@ -67,12 +67,7 @@ public class CloseAllDiagramsCommand extends AbstractHandler {
 	 */
 	public void execute(IPageMngr pageMngr) {
 		
-		// close all open diagrams
-		for(Object identifier : pageMngr.allPages()) {
-			if(pageMngr.isOpen(identifier)) {
-				pageMngr.closePage(identifier);
-			}
-		}
+		pageMngr.closeAllOpenedPages();
 	}
 
 }

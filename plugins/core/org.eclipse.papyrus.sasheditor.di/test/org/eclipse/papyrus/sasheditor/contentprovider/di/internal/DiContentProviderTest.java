@@ -114,7 +114,7 @@ public class DiContentProviderTest extends TestCase {
 		ContentChangeListener changeListener = new ContentChangeListener();
 
 		// Set change listener
-		contentProvider.addContentChangedListener(changeListener);
+		contentProvider.getContentChangedEventProvider().addListener(changeListener);
 
 		// Add identifiers
 		// Use Object as identifiers.
@@ -160,7 +160,7 @@ public class DiContentProviderTest extends TestCase {
 		// A listener on change event.
 		ContentChangeListener changeListener = new ContentChangeListener();
 		// Set change listener
-		contentProvider.addContentChangedListener(changeListener);
+		contentProvider.getContentChangedEventProvider().addListener(changeListener);
 
 		// Add pages in the model
 		// Use Object as identifiers.
@@ -207,7 +207,7 @@ public class DiContentProviderTest extends TestCase {
 		// A listener on change event.
 		ContentChangeListener changeListener = new ContentChangeListener();
 		// Set change listener
-		contentProvider.addContentChangedListener(changeListener);
+		contentProvider.getContentChangedEventProvider().addListener(changeListener);
 
 		// Add pages in the model
 		// Use Object as identifiers.

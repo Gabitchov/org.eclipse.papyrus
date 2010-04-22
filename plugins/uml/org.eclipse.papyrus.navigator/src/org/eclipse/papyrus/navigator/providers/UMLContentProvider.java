@@ -32,7 +32,7 @@ import org.eclipse.papyrus.navigator.ModelNavigator;
 import org.eclipse.papyrus.navigator.factory.GroupableAdapterFactory;
 import org.eclipse.papyrus.navigator.internal.AdditionalResources;
 import org.eclipse.papyrus.navigator.internal.utils.NavigatorUtils;
-import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
+import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.navigator.CommonNavigator;

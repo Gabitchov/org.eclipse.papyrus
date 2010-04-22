@@ -108,6 +108,7 @@ public class DiSashModelMngrTest extends TestCase {
 		assertNotNull("retrieve PageMngr", modelMngr.getIPageMngr());
 		assertNotNull("model created", modelMngr.getDiSashWindowsMngr());
 		assertNotNull("default folder is set", modelMngr.getDiSashWindowsMngr().getSashModel().getCurrentSelection());
+		assertNotNull("event provider is created", modelMngr.getSashModelContentChangedProvider());
 		// Check resource
 
 		assertNotNull("model attached to resource", lookupSashModel(resource));
@@ -129,6 +130,7 @@ public class DiSashModelMngrTest extends TestCase {
 		assertNotNull("retrieve PageMngr", modelMngr.getIPageMngr());
 		assertNotNull("model created", modelMngr.getDiSashWindowsMngr());
 		assertNotNull("default folder is set", modelMngr.getDiSashWindowsMngr().getSashModel().getCurrentSelection());
+		assertNotNull("event provider is created", modelMngr.getSashModelContentChangedProvider());
 	}
 
 	/**

@@ -17,7 +17,7 @@ public interface IContentChangedProvider {
 	 * 
 	 * @param listener
 	 */
-	public abstract void addContentChangedListener(IContentChangedListener listener);
+	public abstract void addListener(IContentChangedListener listener);
 
 	/**
 	 * Add a listener listening on content changed. This listener will be
@@ -25,6 +25,6 @@ public interface IContentChangedProvider {
 	 * 
 	 * @param listener
 	 */
-	public abstract void removeContentChangedListener(IContentChangedListener listener);
+	public abstract void removeListener(IContentChangedListener listener);
 
 }

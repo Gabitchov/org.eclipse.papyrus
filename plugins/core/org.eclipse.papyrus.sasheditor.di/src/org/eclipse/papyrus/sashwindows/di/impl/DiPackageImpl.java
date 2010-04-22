@@ -33,7 +33,6 @@ import org.eclipse.papyrus.sashwindows.di.Window;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class DiPackageImpl extends EPackageImpl implements DiPackage {
@@ -41,7 +40,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass sashModelEClass = null;
@@ -49,7 +47,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass windowEClass = null;
@@ -57,7 +54,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass panelParentEClass = null;
@@ -65,7 +61,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass abstractPanelEClass = null;
@@ -73,7 +68,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass positionEClass = null;
@@ -81,7 +75,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass sizeEClass = null;
@@ -89,7 +82,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass tabFolderEClass = null;
@@ -97,7 +89,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass pageRefEClass = null;
@@ -105,7 +96,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass sashPanelEClass = null;
@@ -113,7 +103,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass abstractPageEClass = null;
@@ -121,7 +110,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass pageListEClass = null;
@@ -129,7 +117,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass sashWindowsMngrEClass = null;
@@ -137,7 +124,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EDataType intEDataType = null;
@@ -145,7 +131,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EDataType javaObjectEDataType = null;
@@ -153,7 +138,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EDataType floatEDataType = null;
@@ -161,19 +145,19 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EDataType booleanEDataType = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
-	 * package
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
-	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
-	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <p>Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.sashwindows.di.DiPackage#eNS_URI
 	 * @see #init()
@@ -186,36 +170,26 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this
-	 * model, and for any others upon which it depends. Simple
-	 * dependencies are satisfied by calling this method on all
-	 * dependent packages before doing anything else. This method drives
-	 * initialization for interdependent packages directly, in parallel
-	 * with this package, itself.
-	 * <p>
-	 * Of this package and its interdependencies, all packages which have not yet been registered by their URI values are first created and
-	 * registered. The packages are then initialized in two steps: meta-model objects for all of the packages are created before any are initialized,
-	 * since one package's meta-model objects may refer to those of another.
-	 * <p>
-	 * Invocation of this method will not affect any packages that have already been initialized. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
+	 * <p>This method is used to initialize {@link DiPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static DiPackage init() {
-		if(isInited)
-			return (DiPackage)EPackage.Registry.INSTANCE.getEPackage(DiPackage.eNS_URI);
+		if (isInited) return (DiPackage)EPackage.Registry.INSTANCE.getEPackage(DiPackage.eNS_URI);
 
 		// Obtain or create and register package
-		DiPackageImpl theDiPackage = (DiPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof DiPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new DiPackageImpl());
+		DiPackageImpl theDiPackage = (DiPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof DiPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new DiPackageImpl());
 
 		isInited = true;
 
@@ -231,13 +205,15 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 		// Mark meta-data to indicate it can't be changed
 		theDiPackage.freeze();
 
+  
+		// Update the registry and return the package
+		EPackage.Registry.INSTANCE.put(DiPackage.eNS_URI, theDiPackage);
 		return theDiPackage;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getSashModel() {
@@ -247,7 +223,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getSashModel_Windows() {
@@ -257,7 +232,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getSashModel_CurrentSelection() {
@@ -267,7 +241,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getWindow() {
@@ -277,7 +250,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getWindow_Position() {
@@ -287,7 +259,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getWindow_Size() {
@@ -297,7 +268,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getWindow_Panel() {
@@ -307,7 +277,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getPanelParent() {
@@ -317,7 +286,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getPanelParent_Children() {
@@ -327,7 +295,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getAbstractPanel() {
@@ -337,7 +304,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getAbstractPanel_Parent() {
@@ -347,7 +313,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getPosition() {
@@ -357,7 +322,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getPosition_X() {
@@ -367,7 +331,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getPosition_Y() {
@@ -377,7 +340,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getSize() {
@@ -387,7 +349,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getSize_Width() {
@@ -397,7 +358,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getSize_Length() {
@@ -407,7 +367,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getTabFolder() {
@@ -417,7 +376,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getTabFolder_Children() {
@@ -427,7 +385,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getPageRef() {
@@ -437,7 +394,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getPageRef_EmfPageIdentifier() {
@@ -447,7 +403,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getPageRef_PageIdentifier() {
@@ -457,7 +412,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getPageRef_ObjectPageIdentifier() {
@@ -467,7 +421,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getPageRef_Parent() {
@@ -477,7 +430,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getSashPanel() {
@@ -487,7 +439,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getSashPanel_SashPosition() {
@@ -497,7 +448,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getSashPanel_Direction() {
@@ -507,7 +457,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getAbstractPage() {
@@ -517,7 +466,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getAbstractPage_PageIdentifier() {
@@ -527,7 +475,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getPageList() {
@@ -537,7 +484,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getPageList_AvailablePage() {
@@ -547,7 +493,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getSashWindowsMngr() {
@@ -557,7 +502,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getSashWindowsMngr_PageList() {
@@ -567,7 +511,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getSashWindowsMngr_SashModel() {
@@ -577,7 +520,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EDataType getint() {
@@ -587,7 +529,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EDataType getJavaObject() {
@@ -597,7 +538,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EDataType getFloat() {
@@ -607,7 +547,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EDataType getboolean() {
@@ -617,7 +556,6 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DiFactory getDiFactory() {
@@ -627,22 +565,19 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is
+	 * Creates the meta-model objects for the package.  This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if(isCreated)
-			return;
+		if (isCreated) return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -702,22 +637,19 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This
+	 * Complete the initialization of the package and its meta-model.  This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if(isInitialized)
-			return;
+		if (isInitialized) return;
 		isInitialized = true;
 
 		// Initialize package
@@ -770,6 +702,15 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 
 		op = addEOperation(sashModelEClass, null, "removeEmptyFolder", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getTabFolder(), "folder", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		addEOperation(sashModelEClass, null, "removeAllPages", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		op = addEOperation(sashModelEClass, null, "removeOtherPages", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getJavaObject(), "pageIdentifier", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		addEOperation(sashModelEClass, this.getWindow(), "lookupFirstWindow", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		addEOperation(sashModelEClass, this.getTabFolder(), "lookupFirstFolder", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(windowEClass, Window.class, "Window", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWindow_Position(), this.getPosition(), null, "position", null, 1, 1, Window.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -852,6 +793,25 @@ public class DiPackageImpl extends EPackageImpl implements DiPackage {
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// resource=XMI
+		createResourceXMIAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>resource=XMI</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createResourceXMIAnnotations() {
+		String source = "resource=XMI";		
+		addAnnotation
+		  (this, 
+		   source, 
+		   new String[] {
+		   });											
 	}
 
 } //DiPackageImpl

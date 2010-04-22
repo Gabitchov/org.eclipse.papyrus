@@ -61,7 +61,7 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 * 
 	 * @param listener
 	 */
-	public void addContentChangedListener(IContentChangedListener listener) {
+	public void addListener(IContentChangedListener listener) {
 		contentChangedListenerManager.addContentChangedListener(listener);
 	}
 
@@ -71,7 +71,7 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 * 
 	 * @param listener
 	 */
-	public void removeContentChangedListener(IContentChangedListener listener) {
+	public void removeListener(IContentChangedListener listener) {
 		contentChangedListenerManager.removeContentChangedListener(listener);
 	}
 

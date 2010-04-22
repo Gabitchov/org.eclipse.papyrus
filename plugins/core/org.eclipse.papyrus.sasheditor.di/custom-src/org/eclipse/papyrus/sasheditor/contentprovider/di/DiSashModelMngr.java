@@ -16,7 +16,9 @@ package org.eclipse.papyrus.sasheditor.contentprovider.di;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedProvider;
+import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
+import org.eclipse.papyrus.sasheditor.contentprovider.di.internal.ContentChangedEventProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.internal.DiContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.internal.PageMngrImpl;
 import org.eclipse.papyrus.sashwindows.di.SashWindowsMngr;
@@ -42,6 +44,12 @@ public class DiSashModelMngr {
 	 * Instance of the DiContentProvider used to manipulate SashModel.
 	 */
 	private DiContentProvider contentProvider;
+	
+	/**
+	 * Object used externally listen to model changes.
+	 * The object is also used internally to control how events are fired (limit multiple events).
+	 */
+	protected ContentChangedEventProvider contentChangedEventProvider;
 
 	/** The factory used to create IPageModel */
 	private IPageModelFactory pageModelFactory;
@@ -50,7 +58,7 @@ public class DiSashModelMngr {
 	/**
 	 * Constructor.
 	 * Create a DiSashModelMngr with the specified factory. A SashModel is created but not attached to a resource.
-	 * 
+	 * This constructor is for subclasses. The subclasses should initialize the sashWindowMngr
 	 * @param pageModelFactory
 	 * @param createDefaultSashModel
 	 *        If true, create the default SashModel by calling {@link #createDefaultSashModel()}
@@ -59,7 +67,9 @@ public class DiSashModelMngr {
 		this.pageModelFactory = pageModelFactory;
 		// Create a SashModel
 		if(createDefaultSashModel)
+		{
 			sashWindowMngr = createDefaultSashModel();
+		}
 	}
 
 	/**
@@ -126,7 +136,7 @@ public class DiSashModelMngr {
 	 */
 	protected final DiContentProvider getDiContentProvider() {
 		if(contentProvider == null) {
-			contentProvider = new DiContentProvider(sashWindowMngr.getSashModel(), pageModelFactory);
+			contentProvider = new DiContentProvider(sashWindowMngr.getSashModel(), pageModelFactory, getContentChangedEventProvider());
 		}
 		return contentProvider;
 	}
@@ -140,10 +150,25 @@ public class DiSashModelMngr {
 	 */
 	protected final PageMngrImpl getPageMngrImpl() {
 		if(pageMngr == null) {
-			pageMngr = new PageMngrImpl(sashWindowMngr);
+			pageMngr = new PageMngrImpl(sashWindowMngr, getContentChangedEventProvider());
 		}
 
 		return pageMngr;
+	}
+
+	/**
+	 * Return the internal implementation of ContentChangedEventProvider.
+	 * Create if if needed.
+	 * This method should not be subclassed
+	 * 
+	 * @return the PageMngrImpl
+	 */
+	protected final ContentChangedEventProvider getContentChangedEventProvider() {
+		if(contentChangedEventProvider == null) {
+			contentChangedEventProvider = new ContentChangedEventProvider(sashWindowMngr);
+		}
+
+		return contentChangedEventProvider;
 	}
 
 	/**
@@ -173,7 +198,7 @@ public class DiSashModelMngr {
 	 * @return
 	 */
 	public IContentChangedProvider getSashModelContentChangedProvider() {
-		return getDiContentProvider();
+		return getContentChangedEventProvider();
 	}
 
 	/**
