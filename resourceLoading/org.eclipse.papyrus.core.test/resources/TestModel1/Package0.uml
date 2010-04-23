@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_mQdlEE61Ed-33f5wCAz2-g" name="Package0">
+  <packagedElement xmi:type="uml:Class" xmi:id="_pOAUQE61Ed-33f5wCAz2-g" name="Class1"/>
+  <packagedElement xmi:type="uml:Package" href="Package1.uml#_qthmQE61Ed-33f5wCAz2-g"/>
+</uml:Package>
