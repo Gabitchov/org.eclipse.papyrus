@@ -58,7 +58,7 @@ public class ProxyManager {
 	}
 
 	public boolean loadResource(URI uri) {
-		if (currentStrategy == -1)
+		if (currentStrategy == 0)
 		{
 			return true ;
 		}

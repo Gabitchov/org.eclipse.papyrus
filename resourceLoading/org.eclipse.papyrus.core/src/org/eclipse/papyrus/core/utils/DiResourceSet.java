@@ -15,8 +15,10 @@ package org.eclipse.papyrus.core.utils;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -70,6 +72,9 @@ public class DiResourceSet extends ResourceSetImpl {
 	/** URI of the di resource */
 	private URI diURI;
 
+	/** Set that enables to always load the uri with any strategy*/
+	private Set<URI> uriLoading = new HashSet<URI>();
+
 	/** The transactional editing domain. */
 	private TransactionalEditingDomain transactionalEditingDomain;
 
@@ -112,54 +117,56 @@ public class DiResourceSet extends ResourceSetImpl {
 	public EObject getEObject(URI uri, boolean loadOnDemand) {
 		//return super.getEObject(uri, loadOnDemand);
 		URI resourceURI = uri.trimFragment();
-		if(resourceURI.equals(modelURI) || resourceURI.equals(notationURI) || resourceURI.equals(diURI)) {
+		// for performance reasons, we check the three initial resources first
+		if(resourceURI.equals(modelURI) || resourceURI.equals(notationURI) || resourceURI.equals(diURI) || uriLoading.contains(resourceURI)) {
 			// do not manage eObject of the initial resources
 			return super.getEObject(uri, loadOnDemand);
-		} else {
+		} else if(loadOnDemand) {
 			return getEObjectFromStrategy(uri);
+		} else {
+			return null;
 		}
 	}
-	
+
 	// move it in ProxyManager ?
 	private EObject getEObjectFromStrategy(URI uri) {
 		// ask the strategy if the resource of the uri must be loaded
 		boolean loadOnDemand = proxyManager.loadResource(uri);
-		if (loadOnDemand) {
+		if(loadOnDemand) {
 			Resource resource = getResource(uri, loadOnDemand);
-			if (resource != null) {
+			if(resource != null) {
 				EObject object = resource.getEObject(uri.fragment());
-				if (object != null) {
+				if(object != null) {
 					// object find in the resource
 					return object;
-				} 
+				}
 				// explore routes in historic
 				// RouteManager should be used for that
 				else {
 					String fileExtension = uri.fileExtension();
 					Resource diResource = null;
-					if (DI_FILE_EXTENSION.equals(fileExtension)) {
+					if(DI_FILE_EXTENSION.equals(fileExtension)) {
 						// proxy is in DI resource
 						diResource = getResource(uri, loadOnDemand);
 					} else {
 						// retrieve the DI resource from the uri to get the historic
-						URI newURI = URI.createURI(uri.fragment().replace(fileExtension, DI_FILE_EXTENSION));
+						// TODO check if it needs to add the dot
+						URI newURI = uri.trimFragment().trimFileExtension().appendFileExtension(DI_FILE_EXTENSION);
 						diResource = getResource(newURI, loadOnDemand);
 					}
-					
+
 					// get the historic from the Di resource
-					if (diResource != null) {
+					if(diResource != null) {
 						// TODO resource.getHistoric();	
 						// call the RouteManager to get the EObject
 						// TODO algo de parcours à définir: largeur ou profondeur
 						// c'est le routeurManager qui trouve l'object
 						// return RouteManager.getEObject(uri, context);
 						return null;
-						
+
 					} else {
-						// resource not found -> Error managed in proxyManager
-						// warn the user, ask him to select a resource to search in
-						// or ask to seach in the entire resource set
-						// or use a proxy
+						// resource di not found -> Error managed in proxyManager
+						// warn the user, ask him to select the resource
 						// return Popup.getChoice();
 						return null;
 					}
@@ -170,12 +177,59 @@ public class DiResourceSet extends ResourceSetImpl {
 				// or ask to seach in the entire resource set
 				// or use a proxy
 				// return Popup.getChoice();
+				// strategy used for the specified resource only 
 				return null;
 			}
 		} else {
 			// we just want to manage a proxy for this object
 			return null;
 		}
+	}
+
+	public void loadResources(URI pDiUri, URI pNotationURI, URI pModelResourceURi, IFile file) {
+		diURI = pDiUri;
+		notationURI = pNotationURI;
+		diResource = getResource(diURI, true);
+		notationResource = getResource(notationURI, true);
+		if(notationResource != null) {
+			// look for a model associated with a diagram in notation
+			for(EObject eObject : notationResource.getContents()) {
+				if(eObject instanceof Diagram) {
+					Diagram diagram = (Diagram)eObject;
+					if(diagram.getElement() != null) {
+						modelResource = diagram.getElement().eResource();
+						break;
+					}
+				}
+			}
+		}
+		// if modelResource is still null, we look for a file with the same name and a supported extension
+		if(pModelResourceURi != null) {
+			modelResource = getResource(pModelResourceURi, true);
+			modelURI = pModelResourceURi;
+		}
+		if(modelResource == null && file != null) {
+			IContainer folder = file.getParent();
+			try {
+				IResource[] files = folder.members();
+				for(IResource r : files) {
+					String extension = r.getFullPath().getFileExtension();
+					if(r.getFullPath().removeFileExtension().lastSegment().equals(file.getFullPath().removeFileExtension().lastSegment()) && !DI_FILE_EXTENSION.equalsIgnoreCase(extension) && !NOTATION_FILE_EXTENSION.equalsIgnoreCase(extension)) {
+						if(Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().get(extension) != null) {
+							modelURI = getPlatformURI(r.getFullPath());
+							modelResource = getResource(modelURI, true);
+							break;
+						}
+					}
+				}
+			} catch (CoreException e) {
+				// never happens.
+			}
+		}
+		modelFileExtension = modelResource.getURI().fileExtension();
+		// TODO move next line away from DiResourceSet ? Define a place
+		// where Resource initialization can take place.
+		modelResource.eAdapters().add(new ModelListenerManager());
 	}
 
 	/**
@@ -189,52 +243,12 @@ public class DiResourceSet extends ResourceSetImpl {
 		IPath fullPath = file.getFullPath().removeFileExtension();
 
 		// load DI2
-		diURI = getPlatformURI(fullPath.addFileExtension(DI_FILE_EXTENSION));
-		diResource = getResource(diURI, true);
+		URI diUri = getPlatformURI(fullPath.addFileExtension(DI_FILE_EXTENSION));
 
 		// load notation
-		notationURI = getPlatformURI(fullPath.addFileExtension(NOTATION_FILE_EXTENSION));
-		notationResource = getResource(notationURI, true);
+		URI notation = getPlatformURI(fullPath.addFileExtension(NOTATION_FILE_EXTENSION));
+		loadResources(diUri, notation, null, file);
 
-		if(notationResource != null) {
-			// look for a model associated with a diagram in notation
-			for(EObject eObject : notationResource.getContents()) {
-				if(eObject instanceof Diagram) {
-					Diagram diagram = (Diagram)eObject;
-					if(diagram.getElement() != null) {
-						modelResource = diagram.getElement().eResource();
-						break;
-					}
-				}
-			}
-		}
-
-
-		// if modelResource is still null, we look for a file with the same name and a supported extension
-		if(modelResource == null) {
-			IContainer folder = file.getParent();
-			try {
-				IResource[] files = folder.members();
-				for(IResource r : files) {
-					String extension = r.getFullPath().getFileExtension();
-					if(r.getFullPath().removeFileExtension().lastSegment().equals(fullPath.lastSegment()) && !DI_FILE_EXTENSION.equalsIgnoreCase(extension) && !NOTATION_FILE_EXTENSION.equalsIgnoreCase(extension)) {
-						if(Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().get(extension) != null) {
-							modelURI = getPlatformURI(r.getFullPath());
-							modelResource = getResource(modelURI, true);
-							break;
-						}
-					}
-				}
-			} catch (CoreException e) {
-				// never happens.
-			}
-		}
-
-		modelFileExtension = modelResource.getURI().fileExtension();
-
-		// TODO move next line away from DiResourceSet ? Define a place
-		// where Resource initialization can take place.
-		modelResource.eAdapters().add(new ModelListenerManager());
 	}
 
 	/**
@@ -420,6 +434,15 @@ public class DiResourceSet extends ResourceSetImpl {
 		}
 		return diFile;
 	}
-
+	
+	/**
+	 * Enables to add an URI that will be always loaded.
+	 * It is not listening at the current loading strategy and always load the specified URI if needed. 
+	 *
+	 * @param the uri always loaded
+	 */
+	public void forceUriLoading(URI alwaysLoadedUri) {
+		uriLoading.add(alwaysLoadedUri);
+	}
 
 }
