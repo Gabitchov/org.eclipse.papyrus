@@ -9,7 +9,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.properties.tabbed.core.view;
+package org.eclipse.papyrus.properties.tabbed.core.view.subfeatures;
 
 import java.util.ArrayList;
 import java.util.List;

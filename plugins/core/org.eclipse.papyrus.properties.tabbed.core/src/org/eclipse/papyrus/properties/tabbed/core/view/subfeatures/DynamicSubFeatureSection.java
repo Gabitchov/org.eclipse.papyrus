@@ -9,13 +9,14 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.properties.tabbed.core.view;
+package org.eclipse.papyrus.properties.tabbed.core.view.subfeatures;
 
 import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.papyrus.properties.runtime.view.ViewDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.AbstractContainerDescriptor;
+import org.eclipse.papyrus.properties.tabbed.core.view.DynamicSection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -40,7 +41,10 @@ public class DynamicSubFeatureSection extends DynamicSection {
 	protected final int maxColumn;
 
 	/** main composite to hold all containers describing sub elements */
-	protected Composite mainComposite;
+	// protected Composite mainComposite;
+
+	/** main container for the sub feature section */
+	protected final SubFeatureContainerDescriptor subFeatureContainerDescriptor;
 
 	/**
 	 * Creates a new DynamicSubFeatureSection.
@@ -48,10 +52,12 @@ public class DynamicSubFeatureSection extends DynamicSection {
 	 * @param viewDescriptors
 	 *        the list of view descriptors used by this section
 	 */
-	public DynamicSubFeatureSection(List<ViewDescriptor> viewDescriptors, SubFeatureDescriptor subFeatureDescriptor, int maxColumn) {
+	public DynamicSubFeatureSection(List<ViewDescriptor> viewDescriptors, SubFeatureDescriptor subFeatureDescriptor, int maxColumn, SubFeatureContainerDescriptor subFeatureContainerDescriptor) {
 		super(viewDescriptors);
 		this.subFeatureDescriptor = subFeatureDescriptor;
 		this.maxColumn = maxColumn;
+		this.subFeatureContainerDescriptor = subFeatureContainerDescriptor;
+
 	}
 
 	/**
@@ -69,19 +75,16 @@ public class DynamicSubFeatureSection extends DynamicSection {
 			if(!subObjects.isEmpty() && !subObjects.equals(subElementsToEdit)) {
 				subElementsToEdit = subObjects;
 
-				// the composite holding all sub containers should be removed
-				if(isValid(mainComposite)) {
-					mainComposite.dispose();
-					mainComposite = null;
-				}
-
 				for(AbstractContainerDescriptor container : containers) {
 					container.dispose();
 				}
 				containers.clear();
 
+				// the composite holding all sub containers should be removed
+				subFeatureContainerDescriptor.disposeContainer();
+
 				// create the new Composite, then sub groups
-				mainComposite = getWidgetFactory().createComposite(parent);
+				Composite mainComposite = subFeatureContainerDescriptor.createContainer(parent, getWidgetFactory());
 				mainComposite.setLayout(new GridLayout(Math.min(maxColumn, subElementsToEdit.size()), true));
 				GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
 				mainComposite.setLayoutData(data);
@@ -90,7 +93,7 @@ public class DynamicSubFeatureSection extends DynamicSection {
 					// generate the content of the section, given the configuration
 					for(ViewDescriptor viewDescriptor : viewDescriptors) {
 						for(AbstractContainerDescriptor descriptor : viewDescriptor.getContainerDescriptors()) {
-							descriptor.createContent(this.mainComposite, this.tabbedPropertySheetPage, Arrays.asList(subElement));
+							descriptor.createContent(mainComposite, this.tabbedPropertySheetPage, Arrays.asList(subElement));
 							containers.add(descriptor);
 						}
 					}
@@ -100,7 +103,7 @@ public class DynamicSubFeatureSection extends DynamicSection {
 	}
 
 	/**
-	 * Returns <code>true</code> if the specified composiute is not <code>null</code> and not disposed
+	 * Returns <code>true</code> if the specified composite is not <code>null</code> and not disposed
 	 * 
 	 * @param mainComposite
 	 *        the composite to test

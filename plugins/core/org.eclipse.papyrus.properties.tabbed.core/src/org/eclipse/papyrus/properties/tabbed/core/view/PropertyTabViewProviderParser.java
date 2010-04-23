@@ -20,6 +20,13 @@ import org.eclipse.papyrus.properties.runtime.view.PropertyViewProviderParser;
 import org.eclipse.papyrus.properties.runtime.view.ViewDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.XMLParseException;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
+import org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.DynamicSubFeatureSectionDescriptor;
+import org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.EMFSimpleSubFeatureDescriptor;
+import org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.ExpandableContainerDescriptor;
+import org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.GroupContainerDescriptor;
+import org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.SimpleContainerDescriptor;
+import org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.SubFeatureContainerDescriptor;
+import org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.SubFeatureDescriptor;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -283,16 +290,19 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 			// retrieve the subfeature descriptor
 			NodeList children = sectionNode.getChildNodes();
 			SubFeatureDescriptor subFeatureDescriptor = null;
+			SubFeatureContainerDescriptor subFeatureContainerDescriptor = null;
 			for(int i = 0; i < children.getLength(); i++) {
 				Node childNode = children.item(i);
 				if("subFeatureDescriptor".equals(childNode.getNodeName())) {
 					// retrieve feature name
 					String name = childNode.getAttributes().getNamedItem("featureName").getNodeValue();
 					subFeatureDescriptor = new EMFSimpleSubFeatureDescriptor(name);
+				} else if("subFeatureDescriptorContainer".equals(childNode.getNodeName())) {
+					subFeatureContainerDescriptor = parseSubFeatureContainerDescriptorNode(childNode);
 				}
 			}
 
-			DynamicSectionDescriptor descriptor = new DynamicSubFeatureSectionDescriptor(id, tabId, constraints, selectionSize, adapterId, replacedSectionsId, viewsId, subFeatureDescriptor, maxColumn);
+			DynamicSectionDescriptor descriptor = new DynamicSubFeatureSectionDescriptor(id, tabId, constraints, selectionSize, adapterId, replacedSectionsId, viewsId, subFeatureDescriptor, maxColumn, subFeatureContainerDescriptor);
 			descriptor.setUnparsedContent(sectionNode);
 			// retrieve the tab to add section to it.
 			// this means that the descriptor for the tab should already exist.
@@ -312,6 +322,46 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Parses the sub feature container descriptor node
+	 * 
+	 * @param childNode
+	 *        the node to parse
+	 * @return the descriptor
+	 */
+	protected SubFeatureContainerDescriptor parseSubFeatureContainerDescriptorNode(Node descriptorNode) {
+		String type = "simpleContainer";
+		NamedNodeMap attributes = descriptorNode.getAttributes();
+		if(attributes != null) {
+			Node typeNode = attributes.getNamedItem("type");
+			if(typeNode != null) {
+				type = typeNode.getNodeValue();
+			}
+		} else {
+			return new SimpleContainerDescriptor();
+		}
+
+		if("simpleContainer".equals(type)) {
+			return new SimpleContainerDescriptor();
+		} else if("groupContainer".equals(type)) {
+			String label = "";
+			// attributes are not null, otherwise, the method would have already returned new simpleContainer
+			Node labelNode = attributes.getNamedItem("label");
+			if(labelNode != null) {
+				label = labelNode.getNodeValue();
+			}
+			return new GroupContainerDescriptor(label);
+		} else if("expandableContainer".equals(type)) {
+			String label = "";
+			Node labelNode = attributes.getNamedItem("label");
+			if(labelNode != null) {
+				label = labelNode.getNodeValue();
+			}
+			return new ExpandableContainerDescriptor(label);
+		}
+		return new SimpleContainerDescriptor();
 	}
 
 	/**

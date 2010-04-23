@@ -63,10 +63,7 @@ public class ExpandableContainerDescriptor extends ContainerDescriptor {
 
 			expandableContainer = tabbedPropertySheetPage.getWidgetFactory().createComposite(getDescribedComposite());
 			expandableContainer.setLayout(layout);
-			// getDescribedComposite().setActiveToggleColor(JFaceColors.getHyperlinkText(tabbedPropertySheetPage.getSite().getShell().getDisplay()));
 			getDescribedComposite().setText(label);
-			// creates the layout
-			// getDescribedComposite().setLayout(layout);
 
 			tabbedPropertySheetPage.getWidgetFactory().paintBordersFor(expandableContainer);
 			getDescribedComposite().setClient(expandableContainer);

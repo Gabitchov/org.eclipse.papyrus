@@ -76,6 +76,7 @@
 		<subFeatureSection id="associationEndSection" tabId="basicTab" adapterId="Semantic" maxColumn="2">
 			<subFeatureDescriptor featureName="memberEnd">
 			</subFeatureDescriptor>
+			<subFeatureDescriptorContainer type="expandableContainer" label="member ends"/>
 			<view id="view_single_MemberEnd">	<!-- view for UML Property as a member end -->
 				<context enablesFor="1">
 					<elementClass name="org.eclipse.uml2.uml.Property"></elementClass>
@@ -98,5 +99,32 @@
 				</content>
 			</view>
 		</subFeatureSection>
+	</sectionSet>
+	<sectionSet name="Section Set for single Class stereotyped EClass">
+		<context enablesFor="1">
+			<elementClass name="org.eclipse.uml2.uml.Class"/>
+			<appliedStereotypes>
+				<appliedStereotype qualifiedName="Ecore::EClass"/>
+			</appliedStereotypes>
+		</context>
+		<section id="singleClass_EClassSection" tabId="basicTab" adapterId="Semantic">
+			<replacedSections>
+				<replacedSection id="singleClassifierSection"/> 
+			</replacedSections>
+			<view id="view_single_Class_Eclass">	<!-- view for UML Classifier -->
+				<context enablesFor="1">
+					<elementClass name="org.eclipse.uml2.uml.Class"></elementClass>
+				</context>
+				<content>
+					<expandableContainer label="EClass" layout="Grid" columns="1" sameSize="false">
+						<controller id="emftStructuralFeatureController">
+							<feature name="className" handlerID="String"/>
+							<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Class Name:" labelPosition="16384">
+							</editor>
+						</controller>
+					</expandableContainer>
+				</content>
+			</view>
+		</section>
 	</sectionSet>
 </propertyTabView>

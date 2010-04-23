@@ -51,10 +51,10 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 	public final static String ID = "emftStructuralFeatureController";
 
 	/** model handler to interact with the model for this controller */
-	private IEMFModelHandler modelHandler;
+	protected IEMFModelHandler modelHandler;
 
 	/** cached feature to edit */
-	private EStructuralFeature featureToEdit = null;
+	protected EStructuralFeature featureToEdit = null;
 
 	static {
 		// initialize the list of model handlers

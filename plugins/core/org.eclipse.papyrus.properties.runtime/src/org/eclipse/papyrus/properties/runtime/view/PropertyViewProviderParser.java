@@ -170,6 +170,25 @@ public class PropertyViewProviderParser {
 						Activator.log.error(e);
 					}
 				}
+			} else if("appliedStereotypes".equals(child2.getNodeName())) {
+				List<String> appliedStereotypeQNames = new ArrayList<String>();
+				// each child node of this node is the stereotype with qualified names
+				NodeList stereotypeNodes = child2.getChildNodes();
+				for(int i = 0; i < stereotypeNodes.getLength(); i++) {
+					Node stereotypeNode = stereotypeNodes.item(i);
+					String stereotypeNodeName = stereotypeNode.getNodeName();
+					if("appliedStereotype".equals(stereotypeNodeName)) {
+						// retrieve attribute QN
+						NamedNodeMap attributes = stereotypeNode.getAttributes();
+						if(attributes != null) {
+							Node qualifiedName = attributes.getNamedItem("qualifiedName");
+							if(qualifiedName != null) {
+								appliedStereotypeQNames.add(qualifiedName.getNodeValue());
+							}
+						}
+					}
+				}
+
 			}
 		}
 		return constraintDescriptors;

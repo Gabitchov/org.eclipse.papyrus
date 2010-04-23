@@ -9,7 +9,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.properties.tabbed.core.view;
+package org.eclipse.papyrus.properties.tabbed.core.view.subfeatures;
 
 import java.util.List;
 
@@ -17,6 +17,7 @@ import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
 import org.eclipse.papyrus.properties.runtime.view.ViewDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
+import org.eclipse.papyrus.properties.tabbed.core.view.DynamicSectionDescriptor;
 import org.eclipse.ui.views.properties.tabbed.ISection;
 
 
@@ -31,6 +32,9 @@ public class DynamicSubFeatureSectionDescriptor extends DynamicSectionDescriptor
 	/** descriptor to give access to the sub-elements */
 	protected final SubFeatureDescriptor subFeatureDescriptor;
 
+	/** descriptor for container */
+	protected final SubFeatureContainerDescriptor subFeatureContainerDescriptor;
+
 	/**
 	 * Creates a new DynamicSectionDescriptor.
 	 * 
@@ -38,10 +42,11 @@ public class DynamicSubFeatureSectionDescriptor extends DynamicSectionDescriptor
 	 *        id of the views to display in the section
 	 * 
 	 */
-	public DynamicSubFeatureSectionDescriptor(String id, String tabId, List<IConstraintDescriptor> constraints, int selectionSize, String adapterID, List<String> replacedSectionIds, List<String> viewsId, SubFeatureDescriptor subFeatureDescriptor, int maxColumn) {
+	public DynamicSubFeatureSectionDescriptor(String id, String tabId, List<IConstraintDescriptor> constraints, int selectionSize, String adapterID, List<String> replacedSectionIds, List<String> viewsId, SubFeatureDescriptor subFeatureDescriptor, int maxColumn, SubFeatureContainerDescriptor containerDescriptor) {
 		super(id, tabId, constraints, selectionSize, adapterID, replacedSectionIds, viewsId);
 		this.maxColumn = maxColumn;
 		this.subFeatureDescriptor = subFeatureDescriptor;
+		this.subFeatureContainerDescriptor = containerDescriptor;
 	}
 
 	/**
@@ -62,7 +67,7 @@ public class DynamicSubFeatureSectionDescriptor extends DynamicSectionDescriptor
 			unparsed = false;
 		}
 		if(!parseSectionFailed) {
-			return new DynamicSubFeatureSection(viewDescriptors, subFeatureDescriptor, maxColumn);
+			return new DynamicSubFeatureSection(viewDescriptors, subFeatureDescriptor, maxColumn, subFeatureContainerDescriptor);
 		}
 
 		return null;
