@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.Polyline;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.Request;
@@ -121,14 +122,20 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 			Edge edge = (Edge)connectionEditPart.getModel();
 			if(edge.getElement() instanceof Message) {
 				if(connectionEditPart.getFigure() instanceof Polyline) {
+					// get connection end points translated to absolute
 					Polyline polyline = (Polyline)connectionEditPart.getFigure();
+					Point end = polyline.getEnd().getCopy();
+					Point start = polyline.getStart().getCopy();
+					polyline.getParent().translateToAbsolute(end);
+					polyline.getParent().translateToAbsolute(start);
+
 					// look at the request rather than at both polyline ends which may not be up to date
 					if(REQ_RECONNECT_SOURCE.equals(request.getType())) {
-						return request.getLocation().y >= polyline.getEnd().y;
+						return request.getLocation().y >= end.y;
 					} else if(REQ_RECONNECT_TARGET.equals(request.getType())) {
-						return polyline.getStart().y >= request.getLocation().y;
+						return start.y >= request.getLocation().y;
 					} else {
-						return polyline.getPoints().getFirstPoint().y >= polyline.getPoints().getLastPoint().y;
+						return start.y >= end.y;
 					}
 				}
 			}

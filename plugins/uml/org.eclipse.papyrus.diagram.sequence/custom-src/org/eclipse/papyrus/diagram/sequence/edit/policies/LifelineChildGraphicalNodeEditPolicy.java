@@ -151,6 +151,8 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 				if(initLocation instanceof Point) {
 					Point startPoint = ((Point)initLocation).getCopy();
 					Point targetPoint = ((CreateUnspecifiedTypeRequest)request).getLocation().getCopy();
+					getFeedbackLayer().translateToRelative(startPoint);
+					getFeedbackLayer().translateToRelative(targetPoint);
 					if(durationConstraintCreationFeedback == null) {
 						durationConstraintCreationFeedback = new Polyline();
 						durationConstraintCreationFeedback.setLineWidth(1);
