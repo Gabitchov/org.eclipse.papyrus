@@ -15,6 +15,7 @@ package org.eclipse.papyrus.diagram.sequence.util;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,16 +48,23 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.uml2.common.util.CacheAdapter;
+import org.eclipse.uml2.uml.DestructionEvent;
 import org.eclipse.uml2.uml.DurationConstraint;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Event;
 import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
+import org.eclipse.uml2.uml.IntervalConstraint;
+import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.TimeConstraint;
 import org.eclipse.uml2.uml.TimeObservation;
@@ -116,9 +124,10 @@ public class SequenceUtil {
 		}
 		// Map referencing children occurrences by their location on the lifeline.
 		Map<OccurrenceSpecification, Point> occurrences = new HashMap<OccurrenceSpecification, Point>();
-		// children executions
+		// graphical children of the lifeline
 		List<?> children = lifelineEditPart.getChildren();
 		for(Object child : children) {
+			// children executions
 			if(child instanceof ActionExecutionSpecificationEditPart || child instanceof BehaviorExecutionSpecificationEditPart) {
 				EObject element = ((GraphicalEditPart)child).resolveSemanticElement();
 				if(element instanceof ExecutionSpecification) {
@@ -129,6 +138,24 @@ public class SequenceUtil {
 					occurrences.put(((ExecutionSpecification)element).getFinish(), bounds.getBottom());
 					// messages to and from the execution
 					completeOccurrencesMapWithMessages((GraphicalEditPart)child, occurrences);
+				}
+			}
+			// destruction event
+			if(child instanceof DestructionEventEditPart) {
+				EObject destructionEvent = ((GraphicalEditPart)child).resolveSemanticElement();
+				EObject lifeline = lifelineEditPart.resolveSemanticElement();
+				if(destructionEvent instanceof DestructionEvent && lifeline instanceof Lifeline) {
+					for(InteractionFragment occurence : ((Lifeline)lifeline).getCoveredBys()) {
+						if(occurence instanceof OccurrenceSpecification) {
+							Event event = ((OccurrenceSpecification)occurence).getEvent();
+							if(destructionEvent.equals(event)) {
+								Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
+								lifelineEditPart.getFigure().translateToAbsolute(bounds);
+								occurrences.put((OccurrenceSpecification)occurence, bounds.getCenter());
+								break;
+							}
+						}
+					}
 				}
 			}
 		}
@@ -167,7 +194,8 @@ public class SequenceUtil {
 					// finish events of the message
 					IFigure figure = ((ConnectionNodeEditPart)conn).getFigure();
 					if(figure instanceof AbstractPointListShape) {
-						Point end = ((AbstractPointListShape)figure).getEnd();
+						Point end = ((AbstractPointListShape)figure).getEnd().getCopy();
+						((AbstractPointListShape)figure).getParent().translateToAbsolute(end);
 						occurrencesMap.put((MessageOccurrenceSpecification)((Message)element).getReceiveEvent(), end);
 					}
 				}
@@ -182,7 +210,8 @@ public class SequenceUtil {
 					// start events of the message
 					IFigure figure = ((ConnectionNodeEditPart)conn).getFigure();
 					if(figure instanceof AbstractPointListShape) {
-						Point start = ((AbstractPointListShape)figure).getStart();
+						Point start = ((AbstractPointListShape)figure).getStart().getCopy();
+						((AbstractPointListShape)figure).getParent().translateToAbsolute(start);
 						occurrencesMap.put((MessageOccurrenceSpecification)((Message)element).getSendEvent(), start);
 					}
 				}
@@ -391,5 +420,34 @@ public class SequenceUtil {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * Know whether this time element part can be moved within the lifeline or not.
+	 * Parts linked with a destruction event can not be moved since the destruction event is always at the end.
+	 * 
+	 * @param timeElementPart
+	 *        the part representing a time/duration constraint/observation
+	 * @return true if the part can be moved
+	 */
+	public static boolean canTimeElementPartBeYMoved(IBorderItemEditPart timeElementPart) {
+		EObject timeElement = timeElementPart.resolveSemanticElement();
+		List<? extends Element> occurrences = Collections.emptyList();
+		if(timeElement instanceof TimeObservation) {
+			NamedElement occurence = ((TimeObservation)timeElement).getEvent();
+			occurrences = Collections.singletonList(occurence);
+		} else if(timeElement instanceof TimeConstraint || timeElement instanceof DurationConstraint) {
+			occurrences = ((IntervalConstraint)timeElement).getConstrainedElements();
+		}
+		// check whether one of the time occurrences correspond to a DestructionEvent
+		for(Element occurrence : occurrences) {
+			if(occurrence instanceof OccurrenceSpecification) {
+				Event event = ((OccurrenceSpecification)occurrence).getEvent();
+				if(event instanceof DestructionEvent) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 }

@@ -26,6 +26,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
@@ -52,6 +53,12 @@ public class TimeRelatedSelectionEditPolicy extends BorderItemSelectionEditPolic
 
 	@Override
 	protected Command getMoveCommand(ChangeBoundsRequest request) {
+		// Erase the y move if element can not be moved on y axe
+		if(getHost() instanceof IBorderItemEditPart) {
+			if(!SequenceUtil.canTimeElementPartBeYMoved((IBorderItemEditPart)getHost())) {
+				request.getMoveDelta().y = 0;
+			}
+		}
 		Command command = super.getMoveCommand(request);
 		if(command != null) {
 			Rectangle bounds = request.getTransformedRectangle(getHostFigure().getBounds());
@@ -101,6 +108,15 @@ public class TimeRelatedSelectionEditPolicy extends BorderItemSelectionEditPolic
 								}
 								Point location = getLocation(bounds, whereEventIsLinked((OccurrenceSpecification)event));
 								if(location != null) {
+									// before reconnecting, ensure the reconnection point is within the bounds
+									if(linkedPart instanceof GraphicalEditPart) {
+										IFigure linkedFigure = ((GraphicalEditPart)linkedPart).getFigure();
+										Rectangle linkedBounds = linkedFigure.getBounds().getCopy();
+										linkedFigure.getParent().translateToAbsolute(linkedBounds);
+										if(location.y > linkedBounds.getBottom().y || location.y < linkedBounds.getTop().y) {
+											return UnexecutableCommand.INSTANCE;
+										}
+									}
 									Command reconnect = linkedPart.getCommand(makeReconnectRequest((ConnectionNodeEditPart)conn, isStart, location));
 									command = command.chain(reconnect);
 								}

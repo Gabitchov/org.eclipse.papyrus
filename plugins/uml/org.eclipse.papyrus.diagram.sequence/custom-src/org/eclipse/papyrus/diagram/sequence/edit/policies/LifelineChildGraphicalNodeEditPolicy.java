@@ -41,8 +41,9 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 /**
  * A specific policy to handle :
- * - Message aspects inherited from {@link SequenceGraphicalNodeEditPolicy} - time/duration move when a message end or an execution is moved
- * - duration constraint creation feedback
+ * - Message aspects inherited from {@link SequenceGraphicalNodeEditPolicy}.
+ * - Time/duration move when a message end or an execution is moved.
+ * - Duration constraint creation feedback.
  * This edit policy is intended to be installed on parts which represent a lifeline or which are contained within a lifeline part.
  */
 public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeEditPolicy {
@@ -163,6 +164,7 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 				}
 			}
 		}
+		super.showSourceFeedback(request);
 	}
 
 	/**

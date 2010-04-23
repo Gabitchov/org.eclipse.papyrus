@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.eclipse.draw2d.Polyline;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
@@ -50,8 +49,6 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
  * 
  */
 public class LifelineCreationEditPolicy extends CreationEditPolicy {
-
-	private Polyline feedback;
 
 	@Override
 	protected Command getCreateElementAndViewCommand(CreateViewAndElementRequest request) {
