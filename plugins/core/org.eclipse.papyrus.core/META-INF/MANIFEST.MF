@@ -23,5 +23,6 @@ Export-Package: org.eclipse.papyrus.core,
  org.eclipse.papyrus.core.listenerservice,
  org.eclipse.papyrus.core.multidiagram.actionbarcontributor,
  org.eclipse.papyrus.core.services,
- org.eclipse.papyrus.core.utils
+ org.eclipse.papyrus.core.utils,
+ org.eclipse.papyrus.core.utils.caches
 Bundle-Vendor: %providerName

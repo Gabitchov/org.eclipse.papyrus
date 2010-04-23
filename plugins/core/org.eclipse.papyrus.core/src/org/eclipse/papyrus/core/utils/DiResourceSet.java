@@ -33,6 +33,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.core.listenerservice.ModelListenerManager;
+import org.eclipse.papyrus.core.utils.caches.TypeCacheAdapter;
 
 /**
  * ResourceSet Manager for UML and DI files, and also other loaded models.
@@ -73,12 +74,25 @@ public class DiResourceSet extends ResourceSetImpl {
 	 */
 	private Resource notationResource;
 
+	/**
+	 * The type cache adapter used to reference elements from a type
+	 */
+	protected TypeCacheAdapter typeCacheAdapter = new TypeCacheAdapter();
+
 	private TransactionalEditingDomain transactionalEditingDomain;
 
 	public DiResourceSet() {
 		super();
+		installAdapters();
 		GMFResourceFactory gmfFactory = new GMFResourceFactory();
 		getResourceFactoryRegistry().getExtensionToFactoryMap().put(NOTATION_FILE_EXTENSION, gmfFactory);
+	}
+
+	/**
+	 * Install the different default adapters on the resource set
+	 */
+	protected void installAdapters() {
+		eAdapters().add(typeCacheAdapter);
 	}
 
 	/**
@@ -158,6 +172,7 @@ public class DiResourceSet extends ResourceSetImpl {
 
 		// TODO move next line away from DiResourceSet ? Define a place
 		// where Resource initialization can take place.
+		// move this line to centralize all the adapters
 		modelResource.eAdapters().add(new ModelListenerManager());
 	}
 
@@ -172,6 +187,7 @@ public class DiResourceSet extends ResourceSetImpl {
 		diResource = null;
 		modelResource = null;
 		notationResource = null;
+		typeCacheAdapter.dispose();
 	}
 
 	/**
