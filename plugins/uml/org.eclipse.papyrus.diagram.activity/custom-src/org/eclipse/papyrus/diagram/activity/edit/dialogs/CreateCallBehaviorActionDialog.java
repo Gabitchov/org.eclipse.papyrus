@@ -20,6 +20,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.papyrus.core.utils.caches.TypeCacheAdapter;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.preferences.IActivityPreferenceConstants;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
@@ -137,7 +138,7 @@ public class CreateCallBehaviorActionDialog extends CreateCallActionDialog {
 	 */
 	@Override
 	protected Set<EObject> getPossibleInvokedParents(EObject actionParent) {
-		Collection<EObject> packages = UMLItemPropertyDescriptor.getReachableObjectsOfType(actionParent, UMLPackage.eINSTANCE.getPackage());
+		Collection<EObject> packages = TypeCacheAdapter.getExistingTypeCacheAdapter(actionParent).getReachableObjectsOfType(actionParent, UMLPackage.eINSTANCE.getPackage());
 		Collection<EObject> behavioredClassifiers = UMLItemPropertyDescriptor.getReachableObjectsOfType(actionParent, UMLPackage.eINSTANCE.getBehavioredClassifier());
 		Set<EObject> result = new HashSet<EObject>(packages);
 		result.addAll(behavioredClassifiers);

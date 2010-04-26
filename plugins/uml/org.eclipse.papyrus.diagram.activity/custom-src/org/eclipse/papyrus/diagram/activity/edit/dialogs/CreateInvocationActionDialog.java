@@ -34,6 +34,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.core.utils.caches.TypeCacheAdapter;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
@@ -64,7 +65,6 @@ import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.edit.providers.UMLItemPropertyDescriptor;
 
 /**
  * This class provides a dialog to initialize a CallAction at its creation.
@@ -504,7 +504,7 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	 * 
 	 */
 	private void handleChooseInvoked() {
-		Collection<EObject> elements = UMLItemPropertyDescriptor.getReachableObjectsOfType(actionParent, getInvocationFeature().getEType());
+		Collection<EObject> elements = TypeCacheAdapter.getExistingTypeCacheAdapter(actionParent).getReachableObjectsOfType(actionParent, getInvocationFeature().getEType());
 		ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), labelProvider);
 		dialog.setMessage(Messages.UMLModelingAssistantProviderMessage);
 		dialog.setTitle(Messages.UMLModelingAssistantProviderTitle);

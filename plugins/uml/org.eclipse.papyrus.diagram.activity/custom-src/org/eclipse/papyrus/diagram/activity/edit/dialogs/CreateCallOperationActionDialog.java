@@ -20,6 +20,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.papyrus.core.utils.caches.TypeCacheAdapter;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.preferences.IActivityPreferenceConstants;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
@@ -31,7 +32,6 @@ import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.edit.providers.UMLItemPropertyDescriptor;
 
 /**
  * This class provides a dialog to initialize a CallOperationAction at its creation.
@@ -112,7 +112,7 @@ public class CreateCallOperationActionDialog extends CreateCallActionDialog {
 	 */
 	@Override
 	protected Set<EObject> getPossibleInvokedParents(EObject actionParent) {
-		Collection<EObject> classes = UMLItemPropertyDescriptor.getReachableObjectsOfType(actionParent, UMLPackage.eINSTANCE.getClass_());
+		Collection<EObject> classes = TypeCacheAdapter.getExistingTypeCacheAdapter(actionParent).getReachableObjectsOfType(actionParent, UMLPackage.eINSTANCE.getClass_());
 		Set<EObject> result = new HashSet<EObject>(classes);
 		return result;
 	}

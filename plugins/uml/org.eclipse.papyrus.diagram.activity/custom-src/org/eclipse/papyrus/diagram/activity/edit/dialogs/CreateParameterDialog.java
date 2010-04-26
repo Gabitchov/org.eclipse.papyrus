@@ -31,6 +31,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.core.utils.caches.TypeCacheAdapter;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
@@ -64,7 +65,6 @@ import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.edit.providers.UMLItemPropertyDescriptor;
 
 /**
  * DialogBox in order to link a parameter with the new ActivityParameterNode that will be created
@@ -380,7 +380,7 @@ public class CreateParameterDialog extends FormDialog {
 	 * @return the possible types
 	 */
 	private Set<Object> getPossibleTypes() {
-		Collection<EObject> types = UMLItemPropertyDescriptor.getReachableObjectsOfType(parameterOwner, UMLPackage.eINSTANCE.getTypedElement_Type().getEType());
+		Collection<EObject> types = TypeCacheAdapter.getExistingTypeCacheAdapter(parameterOwner).getReachableObjectsOfType(parameterOwner, UMLPackage.eINSTANCE.getTypedElement_Type().getEType());
 		Set<Object> result = new HashSet<Object>();
 		result.add("");
 		result.addAll(types);

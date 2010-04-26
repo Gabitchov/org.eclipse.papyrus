@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.core.utils.caches.TypeCacheAdapter;
 import org.eclipse.papyrus.diagram.activity.edit.helpers.ObjectFlowEditHelper;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
@@ -55,7 +56,6 @@ import org.eclipse.uml2.uml.Pin;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.edit.providers.UMLItemPropertyDescriptor;
 
 /**
  * This class provides a dialog to initialize a CallBehaviorAction at its creation.
@@ -326,7 +326,7 @@ public class CreatePinsForObjectFlowDialog extends FormDialog {
 	 * 
 	 */
 	private void handleChooseType() {
-		Collection<EObject> types = UMLItemPropertyDescriptor.getReachableObjectsOfType(initialSource, UMLPackage.eINSTANCE.getType());
+		Collection<EObject> types = TypeCacheAdapter.getExistingTypeCacheAdapter(initialSource).getReachableObjectsOfType(initialSource, UMLPackage.eINSTANCE.getType());
 		Set<EObject> typesSet = new HashSet<EObject>(types);
 
 		ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), labelProvider);

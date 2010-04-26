@@ -20,6 +20,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.papyrus.core.utils.caches.TypeCacheAdapter;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.preferences.IActivityPreferenceConstants;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
@@ -28,7 +29,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.edit.providers.UMLItemPropertyDescriptor;
 
 /**
  * This class provides a dialog to initialize a SendSignalAction at its creation.
@@ -116,7 +116,7 @@ public class CreateSendSignalActionDialog extends CreateInvocationActionDialog {
 	 */
 	@Override
 	protected Set<EObject> getPossibleInvokedParents(EObject actionParent) {
-		Collection<EObject> packages = UMLItemPropertyDescriptor.getReachableObjectsOfType(actionParent, UMLPackage.eINSTANCE.getPackage());
+		Collection<EObject> packages = TypeCacheAdapter.getExistingTypeCacheAdapter(actionParent).getReachableObjectsOfType(actionParent, UMLPackage.eINSTANCE.getPackage());
 		Set<EObject> result = new HashSet<EObject>(packages);
 		return result;
 	}
