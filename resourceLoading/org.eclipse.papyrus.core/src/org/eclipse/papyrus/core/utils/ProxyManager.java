@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.core.utils;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
@@ -55,14 +56,17 @@ public class ProxyManager {
 	public ProxyManager() {
 		super();
 		// TODO load currentStrategy in preference
+		currentStrategy = 0;
 	}
 
 	public boolean loadResource(URI uri) {
-		if (currentStrategy == 0)
+		boolean result = availableStrategies.get(currentStrategy).loadResource(uri) ;
+		Iterator i = null ; // extended strategy
+		while (!result && i.hasNext())
 		{
-			return true ;
+			//result = i.loadResource ;
 		}
-		return availableStrategies.get(currentStrategy).loadResource(uri);
+		return result ;
 	}
 	
 	/**

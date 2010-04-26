@@ -115,17 +115,17 @@ public class DiResourceSet extends ResourceSetImpl {
 	 */
 	@Override
 	public EObject getEObject(URI uri, boolean loadOnDemand) {
-		//return super.getEObject(uri, loadOnDemand);
-		URI resourceURI = uri.trimFragment();
-		// for performance reasons, we check the three initial resources first
-		if(resourceURI.equals(modelURI) || resourceURI.equals(notationURI) || resourceURI.equals(diURI) || uriLoading.contains(resourceURI)) {
-			// do not manage eObject of the initial resources
-			return super.getEObject(uri, loadOnDemand);
-		} else if(loadOnDemand) {
-			return getEObjectFromStrategy(uri);
-		} else {
-			return null;
-		}
+		return super.getEObject(uri, loadOnDemand);
+//		URI resourceURI = uri.trimFragment();
+//		// for performance reasons, we check the three initial resources first
+//		if(resourceURI.equals(modelURI) || resourceURI.equals(notationURI) || resourceURI.equals(diURI) || uriLoading.contains(resourceURI)) {
+//			// do not manage eObject of the initial resources
+//			return super.getEObject(uri, loadOnDemand);
+//		} else if(loadOnDemand) {
+//			return getEObjectFromStrategy(uri);
+//		} else {
+//			return null;
+//		}
 	}
 
 	// move it in ProxyManager ?
