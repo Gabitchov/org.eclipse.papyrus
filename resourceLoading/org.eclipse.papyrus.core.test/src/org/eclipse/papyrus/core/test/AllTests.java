@@ -23,7 +23,8 @@ public class AllTests {
     {
         TestSuite suite = new TestSuite("Test for org.eclipse.papyrus.core");
         //$JUnit-BEGIN$
-        suite.addTestSuite(ResourceLoadingTests.class);
+        suite.addTestSuite(LoadAllStrategyTestModel1.class);
+        suite.addTestSuite(LoadAllStrategyTestModel2.class);
         //$JUnit-END$
         return suite;
     }

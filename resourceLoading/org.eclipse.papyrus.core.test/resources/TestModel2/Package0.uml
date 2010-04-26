@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Package xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_lwVJ8FEaEd-KU8D5rCZoaQ" name="Package0">
+  <packagedElement xmi:type="uml:Class" xmi:id="_nvSxAFEaEd-KU8D5rCZoaQ" name="Class1">
+    <ownedAttribute xmi:id="_oP7Y4FEaEd-KU8D5rCZoaQ" name="Property0" visibility="public" isUnique="false">
+      <type xmi:type="uml:Class" href="model1.uml#_lUxPUFEaEd-KU8D5rCZoaQ"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_pqgggVEaEd-KU8D5rCZoaQ" value="1"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_pqgggFEaEd-KU8D5rCZoaQ" value="1"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_pqggglEaEd-KU8D5rCZoaQ">
+        <value xsi:nil="true"/>
+      </defaultValue>
+    </ownedAttribute>
+  </packagedElement>
+</uml:Package>
