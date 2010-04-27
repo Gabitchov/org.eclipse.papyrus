@@ -20,8 +20,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.papyrus.core.resourceloading.ProxyManager;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
-import org.eclipse.papyrus.core.utils.ProxyManager;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Type;
 

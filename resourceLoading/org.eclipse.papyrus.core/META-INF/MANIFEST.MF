@@ -22,6 +22,8 @@ Export-Package: org.eclipse.papyrus.core,
  org.eclipse.papyrus.core.lifecycleevents,
  org.eclipse.papyrus.core.listenerservice,
  org.eclipse.papyrus.core.multidiagram.actionbarcontributor,
+ org.eclipse.papyrus.core.resourceloading,
+ org.eclipse.papyrus.core.resourceloading.strategy,
  org.eclipse.papyrus.core.services,
  org.eclipse.papyrus.core.utils
 Bundle-Vendor: %providerName

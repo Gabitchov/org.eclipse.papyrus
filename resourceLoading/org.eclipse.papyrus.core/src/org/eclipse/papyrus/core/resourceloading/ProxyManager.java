@@ -11,7 +11,7 @@
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.core.utils;
+package org.eclipse.papyrus.core.resourceloading;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.core.Activator;
+import org.eclipse.papyrus.core.utils.DiResourceSet;
 
 
 /**

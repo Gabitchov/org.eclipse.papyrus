@@ -11,7 +11,7 @@
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
   *****************************************************************************/
-package org.eclipse.papyrus.core.utils;
+package org.eclipse.papyrus.core.resourceloading;
 
 import org.eclipse.emf.common.util.URI;
 

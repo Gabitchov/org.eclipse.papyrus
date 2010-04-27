@@ -35,6 +35,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.core.listenerservice.ModelListenerManager;
+import org.eclipse.papyrus.core.resourceloading.ProxyManager;
 
 /**
  * ResourceSet Manager for UML and DI files, and also other loaded models.

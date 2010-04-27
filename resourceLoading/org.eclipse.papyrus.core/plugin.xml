@@ -164,12 +164,12 @@
       <loadingStrategy
             description="Load all the needed resources"
             id="0"
-            strategy="org.eclipse.papyrus.core.utils.LoadAllResources">
+            strategy="org.eclipse.papyrus.core.resourceloading.strategy.LoadAllResources">
       </loadingStrategy>
       <loadingStrategy
             description="Load the addtionnal resources such as profiles and patmap only. Controlled resources are not loaded"
             id="1"
-            strategy="org.eclipse.papyrus.core.utils.LoadCurrentResource">
+            strategy="org.eclipse.papyrus.core.resourceloading.strategy.LoadCurrentResource">
       </loadingStrategy>
    </extension>
 	
