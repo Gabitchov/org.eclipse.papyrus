@@ -25,7 +25,7 @@ http://www.eclipse.org/legal/epl-v10.html
    </license>
 
    <url>
-      <discovery label="%PapyrusUpdateSiteName" url="http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/"/>
+      <update label="%PapyrusUpdateSiteName" url="http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/"/>
       <discovery label="GEF Update Site - Milestones" url="http://download.eclipse.org/tools/gef/updates/milestones/"/>
       <discovery label="GMF Update Site - Milestones" url="http://download.eclipse.org/modeling/gmf/updates/milestones/"/>
    </url>
