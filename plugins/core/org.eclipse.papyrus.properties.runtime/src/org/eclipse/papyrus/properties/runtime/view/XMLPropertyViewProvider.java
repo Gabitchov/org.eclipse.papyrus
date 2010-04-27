@@ -163,6 +163,11 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 	public void configure(IConfigurationElement element) {
 		// 1. retrieve path of the xml file
 		IConfigurationElement[] children = element.getChildren();
+		Bundle bundle = Platform.getBundle(element.getContributor().getName());
+		if(bundle == null) {
+			Activator.log.warn("Ignoring extension " + element + ". Impossible to find bundle " + bundle);
+			return;
+		}
 		for(IConfigurationElement child : children) {
 			if(PROPERTY_VIEW_CONTRIBUTION.equals(child.getName())) {
 				// this is one of the configuration, parses the config itself, i.e. retrieve the xml file
@@ -179,7 +184,7 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 
 					// retrieve xml file from path
 					String path = child.getAttribute(XML_PATH);
-					File file = getXmlFile(child, path);
+					File file = getXmlFile(child, path, bundle);
 					// the file should never be null in this implementation, but sub-classes could return null
 					if(file == null) {
 						throw new IOException("Impossible to load file: " + path);
@@ -188,7 +193,7 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 					} else {
 						Document document = documentBuilder.parse(file);
 						NodeList viewNodes = document.getChildNodes();
-						getParser().parseXMLfile(viewNodes, this.predefinedViews);
+						getParser().parseXMLfile(viewNodes, this.predefinedViews, bundle);
 					}
 				} catch (ParserConfigurationException e) {
 					Activator.log.error(e);
@@ -203,35 +208,16 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 		}
 	}
 
-	//	/**
-	//	 * Creates the property editor controller and the controlled editor
-	//	 * 
-	//	 * @param objectsToEdit
-	//	 * 
-	//	 * @return the created controller
-	//	 */
-	//	public PropertyEditorController createControllerEditor(List<Object> objectsToEdit, IPropertyEditorControllerDescriptor controllerDescriptor, Composite parent) {
-	//		PropertyEditorController controller = PropertyEditorControllerService.getInstance().createPropertyEditorController(objectsToEdit, parent, controllerDescriptor);
-	//
-	//		if(controller != null) {
-	//			controller.createPropertyEditor(controllerDescriptor.getEditorDescriptor());
-	//		}
-	//		return controller;
-	//	}
-
 	/**
 	 * Retrieves the xml file configuring the property view
 	 */
-	public File getXmlFile(IConfigurationElement element, String path) throws IOException {
+	public File getXmlFile(IConfigurationElement element, String path, Bundle bundle) throws IOException {
 		// try to read it in a plugin...
-		Bundle bundle = Platform.getBundle(element.getContributor().getName());
-		if(bundle != null) {
-			URL urlFile = bundle.getEntry(path);
-			urlFile = FileLocator.resolve(urlFile);
-			urlFile = FileLocator.toFileURL(urlFile);
-			if("file".equals(urlFile.getProtocol())) { //$NON-NLS-1$
-				return new File(urlFile.getFile());
-			}
+		URL urlFile = bundle.getEntry(path);
+		urlFile = FileLocator.resolve(urlFile);
+		urlFile = FileLocator.toFileURL(urlFile);
+		if("file".equals(urlFile.getProtocol())) { //$NON-NLS-1$
+			return new File(urlFile.getFile());
 		}
 		return null;
 	}

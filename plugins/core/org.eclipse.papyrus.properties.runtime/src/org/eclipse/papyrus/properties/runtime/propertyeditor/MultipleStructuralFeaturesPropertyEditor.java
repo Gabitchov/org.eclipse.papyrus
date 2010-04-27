@@ -102,7 +102,6 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 			/**
 			 * {@inheritDoc}
 			 */
-			@SuppressWarnings("unchecked")
 			public void mouseUp(MouseEvent e) {
 				// pops up a window to ask for a new reference
 				Display tmp = Display.getCurrent();
@@ -144,16 +143,6 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 						}
 					}
 				}
-
-				//
-				//
-				//				ReferenceExplorerDialog dialog = new ReferenceExplorerDialog(display.getActiveShell(), (IBoundedValuesController)getController(), true);
-				//				dialog.setInitialElementSelections(getValue());
-				//				// should select the current value by default
-				//				if(Dialog.OK == dialog.open()) {
-				//					currentValue = new BasicEList<EObject>((List<? extends EObject>)Arrays.asList(dialog.getResult()));
-				//					getController().updateModel();
-				//				}
 			}
 
 			/**

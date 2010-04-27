@@ -11,16 +11,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.view;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.core.runtime.FileLocator;
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.view.constraints.AppliedStereotypeConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
@@ -56,22 +50,8 @@ public class PropertyViewProviderParser {
 	/** reference to the map containing predefined Views */
 	protected Map<String, ViewDescriptor> predefinedViews;
 
-	/**
-	 * Retrieves the xml file configuring the property view
-	 */
-	public File getXmlFile(IConfigurationElement element, String path) throws IOException {
-		// try to read it in a plugin...
-		Bundle bundle = Platform.getBundle(element.getContributor().getName());
-		if(bundle != null) {
-			URL urlFile = bundle.getEntry(path);
-			urlFile = FileLocator.resolve(urlFile);
-			urlFile = FileLocator.toFileURL(urlFile);
-			if("file".equals(urlFile.getProtocol())) { //$NON-NLS-1$
-				return new File(urlFile.getFile());
-			}
-		}
-		return null;
-	}
+	/** stores the reference to the bundle, so the bundle class loader can be used to load classes */
+	protected Bundle bundle;
 
 	/**
 	 * Parses the view node
@@ -165,7 +145,9 @@ public class PropertyViewProviderParser {
 					String elementClassName = child2.getAttributes().getNamedItem("name").getNodeValue();
 					// should retrieve java class corresponding to this class
 					try {
-						elementClass = Class.forName(elementClassName);
+						// should use the bundle defining the property view and not this bundle to load the class
+						// to remove dependencies
+						elementClass = bundle.loadClass(elementClassName);
 						constraintDescriptors.add(new ObjectTypeConstraintDescriptor(elementClass));
 					} catch (ClassNotFoundException e) {
 						Activator.log.error(e);
@@ -203,8 +185,9 @@ public class PropertyViewProviderParser {
 	 * @throws XMLParseException
 	 *         parsing failed
 	 */
-	public void parseXMLfile(NodeList views, Map<String, ViewDescriptor> predefinedViews) throws XMLParseException {
+	public void parseXMLfile(NodeList views, Map<String, ViewDescriptor> predefinedViews, Bundle bundle) throws XMLParseException {
 		this.predefinedViews = predefinedViews;
+		this.bundle = bundle;
 		for(int i = 0; i < views.getLength(); i++) {
 			Node propertyViewNode = views.item(i);
 			// check this is a "views" node, not a comment or a text format node.

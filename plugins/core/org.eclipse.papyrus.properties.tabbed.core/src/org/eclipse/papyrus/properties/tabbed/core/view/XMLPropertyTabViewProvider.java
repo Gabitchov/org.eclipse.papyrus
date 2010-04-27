@@ -21,12 +21,14 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.view.PropertyViewProviderParser;
 import org.eclipse.papyrus.properties.runtime.view.XMLParseException;
 import org.eclipse.papyrus.properties.runtime.view.XMLPropertyViewProvider;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
+import org.osgi.framework.Bundle;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -76,6 +78,11 @@ public class XMLPropertyTabViewProvider extends XMLPropertyViewProvider implemen
 	public void configure(IConfigurationElement element) {
 		// 1. retrieve path of the xml file
 		IConfigurationElement[] children = element.getChildren();
+		Bundle bundle = Platform.getBundle(element.getContributor().getName());
+		if(bundle == null) {
+			Activator.log.warn("Ignoring extension " + element + ". Impossible to find bundle " + bundle);
+			return;
+		}
 		for(IConfigurationElement child : children) {
 			if(PROPERTY_VIEW_CONTRIBUTION.equals(child.getName())) {
 				// this is one of the configuration, parses the config itself, i.e. retrieve the xml file
@@ -92,7 +99,7 @@ public class XMLPropertyTabViewProvider extends XMLPropertyViewProvider implemen
 
 					// retrieve xml file from path
 					String path = child.getAttribute(XML_PATH);
-					File file = getXmlFile(child, path);
+					File file = getXmlFile(child, path, bundle);
 					// the file should never be null in this implementation, but sub-classes could return null
 					if(file == null) {
 						throw new IOException("Impossible to load file: " + path);
@@ -101,7 +108,7 @@ public class XMLPropertyTabViewProvider extends XMLPropertyViewProvider implemen
 					} else {
 						Document document = documentBuilder.parse(file);
 						NodeList viewNodes = document.getChildNodes();
-						getParser().parseXMLfile(viewNodes, this.predefinedViews);
+						getParser().parseXMLfile(viewNodes, this.predefinedViews, bundle);
 					}
 				} catch (ParserConfigurationException e) {
 					Activator.log.error(e);
@@ -117,41 +124,42 @@ public class XMLPropertyTabViewProvider extends XMLPropertyViewProvider implemen
 	}
 
 
-	/**
-	 * Reads the xml configuration file and constructs the ViewDescriptors
-	 */
-	protected void readXMLConfiguration(IConfigurationElement child) {
-		DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-		documentBuilderFactory.setNamespaceAware(true);
-		try {
-			DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-
-			// retrieve xml file from path
-			String path = child.getAttribute(XML_PATH);
-			File file = getXmlFile(child, path);
-			// the file should never be null in this implementation, but sub-classes could return null
-			if(file == null) {
-				throw new IOException("Impossible to load file: " + path);
-			} else if(!file.exists()) {
-				throw new IOException("Impossible to load file: " + file);
-			} else {
-				Document document = documentBuilder.parse(file);
-				NodeList views = document.getChildNodes();
-				parser.parseXMLfile(views, this.predefinedViews);
-				// retrieve the result for the parser
-
-			}
-		} catch (ParserConfigurationException e) {
-			Activator.log.error(e);
-		} catch (IOException e) {
-			Activator.log.error(e);
-		} catch (SAXException e) {
-			Activator.log.error(e);
-		} catch (XMLParseException e) {
-			Activator.log.error(e);
-		}
-
-	}
+	//	/**
+	//	 * Reads the xml configuration file and constructs the ViewDescriptors
+	//	 */
+	//	protected void readXMLConfiguration(IConfigurationElement child) {
+	//		DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+	//		documentBuilderFactory.setNamespaceAware(true);
+	//		
+	//		try {
+	//			DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+	//
+	//			// retrieve xml file from path
+	//			String path = child.getAttribute(XML_PATH);
+	//			File file = getXmlFile(child, path, bundle);
+	//			// the file should never be null in this implementation, but sub-classes could return null
+	//			if(file == null) {
+	//				throw new IOException("Impossible to load file: " + path);
+	//			} else if(!file.exists()) {
+	//				throw new IOException("Impossible to load file: " + file);
+	//			} else {
+	//				Document document = documentBuilder.parse(file);
+	//				NodeList views = document.getChildNodes();
+	//				parser.parseXMLfile(views, this.predefinedViews, bundle);
+	//				// retrieve the result for the parser
+	//
+	//			}
+	//		} catch (ParserConfigurationException e) {
+	//			Activator.log.error(e);
+	//		} catch (IOException e) {
+	//			Activator.log.error(e);
+	//		} catch (SAXException e) {
+	//			Activator.log.error(e);
+	//		} catch (XMLParseException e) {
+	//			Activator.log.error(e);
+	//		}
+	//
+	//	}
 
 
 }

@@ -11,7 +11,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.controller.descriptor;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandler;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 
@@ -20,23 +19,20 @@ import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropert
  */
 public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorControllerDescriptor {
 
-	/** Structural feature to edit */
-	private EStructuralFeature featureToEdit = null;
-
 	/** handler used by this controller */
-	private final IEMFModelHandler handler;
+	protected final IEMFModelHandler handler;
 
 	/** boolean that indicates if the controller accepts multi selection */
-	private boolean multiSelection;
+	protected boolean multiSelection;
 
 	/** controller unique identifier */
-	private String controllerID;
+	protected String controllerID;
 
 	/** name of the feature to edit */
-	private String featureNameToEdit;
+	protected String featureNameToEdit;
 
 	/** editor descriptor */
-	private IPropertyEditorDescriptor editorDescriptor;
+	protected IPropertyEditorDescriptor editorDescriptor;
 
 	/**
 	 * 

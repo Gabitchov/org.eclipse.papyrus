@@ -40,6 +40,7 @@ public class EMFSimpleSubFeatureDescriptor extends SubFeatureDescriptor {
 	/**
 	 * {@inheritDoc}
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Object> getSubElementsToEdit(List<Object> editedObjects) {
 		List<Object> results = new ArrayList<Object>();

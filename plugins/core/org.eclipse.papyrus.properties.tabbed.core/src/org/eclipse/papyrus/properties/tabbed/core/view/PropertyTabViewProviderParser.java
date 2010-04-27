@@ -28,6 +28,7 @@ import org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.SimpleContain
 import org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.SubFeatureContainerDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.SubFeatureDescriptor;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
+import org.osgi.framework.Bundle;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -93,15 +94,12 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 	}
 
 	/**
-	 * Parses the content of the xml file
-	 * 
-	 * @param views
-	 * @param predefinedViews
-	 * @throws XMLParseException
-	 *         parsing failed
+	 * {@inheritDoc}
 	 */
-	public void parseXMLfile(NodeList views, Map<String, ViewDescriptor> predefinedViews) throws XMLParseException {
+	@Override
+	public void parseXMLfile(NodeList views, Map<String, ViewDescriptor> predefinedViews, Bundle bundle) throws XMLParseException {
 		this.predefinedViews = predefinedViews;
+		this.bundle = bundle;
 		for(int i = 0; i < views.getLength(); i++) {
 			Node propertyViewNode = views.item(i);
 			// check this is a "views" node, not a comment or a text format node.
@@ -206,7 +204,7 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 
 		// check both context node and list of sections
 		if(contextNode == null || sectionNodes.isEmpty()) {
-			Activator.log.error("impossible to find a context node or a list of sections for section set " + sectionSetNode, null);
+			Activator.log.error("impossible to find a context node or a list of sections for section set " + name, null);
 			return;
 		}
 
@@ -429,7 +427,7 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 	 * 
 	 * @return the result of the parsing
 	 */
-	List<ITabDescriptor> getResult() {
+	protected List<ITabDescriptor> getResult() {
 		return tabDescriptors;
 	}
 }
