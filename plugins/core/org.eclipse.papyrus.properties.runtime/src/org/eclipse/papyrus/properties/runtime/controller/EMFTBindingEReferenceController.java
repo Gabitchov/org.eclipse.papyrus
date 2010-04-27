@@ -23,6 +23,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IBindingLabelProviderDescriptor;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.uml2.uml.StructuralFeature;
 
 
 /**
@@ -99,12 +100,17 @@ public class EMFTBindingEReferenceController extends EMFTEReferenceController {
 		 * {@inheritDoc}
 		 */
 		public String getText(Object element) {
+
 			if(getDescriptor() instanceof IBindingLabelProviderDescriptor) {
 				String message = ((IBindingLabelProviderDescriptor)getDescriptor()).getMessage();
 
 				// retrieve message to display
 				// the features are the features of the element referenced by the structural feature => has to compute this value
 				if(element instanceof EObject) {
+					if(((EObject)element).eIsProxy()) {
+						return "Proxy - " + element;
+					}
+
 					Object[] bindings = computeBindings((EObject)element, (IBindingLabelProviderDescriptor)getDescriptor());
 
 					// binds

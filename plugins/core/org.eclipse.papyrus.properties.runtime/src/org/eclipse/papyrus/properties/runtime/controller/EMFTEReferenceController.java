@@ -20,12 +20,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.properties.runtime.Activator;
 
 
 /**
@@ -33,17 +36,49 @@ import org.eclipse.jface.viewers.ViewerFilter;
  */
 public class EMFTEReferenceController extends EMFTStructuralFeatureController implements IBoundedValuesController {
 
-	/** adapter factory used by EMF objects */
+	/** factory used by EMF objects */
 	protected AdapterFactory factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
 	/** label provider for EMF objects */
-	protected ILabelProvider labelProvider = new AdapterFactoryLabelProvider(factory);
+	protected ILabelProvider labelProvider = initLabelProvider();
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Object getAvailableValues() {
 		return getEditingDomain().getResourceSet();
+	}
+
+	/**
+	 * Creates and return the label provider for this controller
+	 * 
+	 * @return the label provider for this controller
+	 */
+	protected ILabelProvider initLabelProvider() {
+		final ILabelProvider provider = EditorUtils.getLabelProvider();
+		if(provider != null) {
+			return provider;
+		}
+		Activator.log.warn("Impossible to find the label provider from the service registry");
+		//adapter factory used by EMF objects 
+		return new AdapterFactoryLabelProvider(factory) {
+
+			/**
+			 * This implements {@link ILabelProvider}.getText by forwarding it to an object that implements {@link IItemLabelProvider#getText
+			 * IItemLabelProvider.getText}
+			 */
+			public String getText(Object object) {
+				// Get the adapter from the factory.
+				//
+				IItemLabelProvider itemLabelProvider = (IItemLabelProvider)adapterFactory.adapt(object, IItemLabelProvider.class);
+				if(object instanceof EObject) {
+					if(((EObject)object).eIsProxy()) {
+						return "Proxy - " + object;
+					}
+				}
+				return itemLabelProvider != null ? itemLabelProvider.getText(object) : object == null ? "" : object.toString();
+			}
+		};
 	}
 
 	/**

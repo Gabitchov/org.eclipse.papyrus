@@ -26,9 +26,14 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListener;
@@ -43,6 +48,7 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.core.Activator;
 import org.eclipse.papyrus.core.contentoutline.ContentOutlineRegistry;
 import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
@@ -462,6 +468,30 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		servicesRegistry.add(ISashWindowsContentProvider.class, 1, getContentProvider());
 		servicesRegistry.add(IPageMngr.class, 1, getIPageMngr());
 
+		// register a basic label provider
+		// adapter factory used by EMF objects
+		AdapterFactory factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+
+		/** label provider for EMF objects */
+		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(factory) {
+
+			/**
+			 * This implements {@link ILabelProvider}.getText by forwarding it to an object that implements {@link IItemLabelProvider#getText
+			 * IItemLabelProvider.getText}
+			 */
+			public String getText(Object object) {
+				// Get the adapter from the factory.
+				//
+				IItemLabelProvider itemLabelProvider = (IItemLabelProvider)adapterFactory.adapt(object, IItemLabelProvider.class);
+				if(object instanceof EObject) {
+					if(((EObject)object).eIsProxy()) {
+						return "Proxy - " + object;
+					}
+				}
+				return itemLabelProvider != null ? itemLabelProvider.getText(object) : object == null ? "" : object.toString();
+			}
+		};
+		servicesRegistry.add(ILabelProvider.class, 1, labelProvider);
 
 		// Start servicesRegistry
 		servicesRegistry.startRegistry();
