@@ -42,6 +42,7 @@ import org.eclipse.papyrus.core.listenerservice.ModelListenerManager;
  * @author Cedric dumoulin
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  * @author <a href="mailto:thomas.szadel@atosorigin.com">Thomas Szadel</a>
+ * @author <a href ="mailto:emilien.perico@atosorigin.com>Emilien Perico - resource loading management</a>
  */
 public class DiResourceSet extends ResourceSetImpl {
 
@@ -85,7 +86,7 @@ public class DiResourceSet extends ResourceSetImpl {
 		super();
 		GMFResourceFactory gmfFactory = new GMFResourceFactory();
 		getResourceFactoryRegistry().getExtensionToFactoryMap().put(NOTATION_FILE_EXTENSION, gmfFactory);
-		proxyManager = new ProxyManager();
+		proxyManager = new ProxyManager(this);
 	}
 
 	/**
@@ -115,76 +116,18 @@ public class DiResourceSet extends ResourceSetImpl {
 	 */
 	@Override
 	public EObject getEObject(URI uri, boolean loadOnDemand) {
-		return super.getEObject(uri, loadOnDemand);
-//		URI resourceURI = uri.trimFragment();
-//		// for performance reasons, we check the three initial resources first
-//		if(resourceURI.equals(modelURI) || resourceURI.equals(notationURI) || resourceURI.equals(diURI) || uriLoading.contains(resourceURI)) {
-//			// do not manage eObject of the initial resources
-//			return super.getEObject(uri, loadOnDemand);
-//		} else if(loadOnDemand) {
-//			return getEObjectFromStrategy(uri);
-//		} else {
-//			return null;
-//		}
-	}
-
-	// move it in ProxyManager ?
-	private EObject getEObjectFromStrategy(URI uri) {
-		// ask the strategy if the resource of the uri must be loaded
-		boolean loadOnDemand = proxyManager.loadResource(uri);
-		if(loadOnDemand) {
-			Resource resource = getResource(uri, loadOnDemand);
-			if(resource != null) {
-				EObject object = resource.getEObject(uri.fragment());
-				if(object != null) {
-					// object find in the resource
-					return object;
-				}
-				// explore routes in historic
-				// RouteManager should be used for that
-				else {
-					String fileExtension = uri.fileExtension();
-					Resource diResource = null;
-					if(DI_FILE_EXTENSION.equals(fileExtension)) {
-						// proxy is in DI resource
-						diResource = getResource(uri, loadOnDemand);
-					} else {
-						// retrieve the DI resource from the uri to get the historic
-						// TODO check if it needs to add the dot
-						URI newURI = uri.trimFragment().trimFileExtension().appendFileExtension(DI_FILE_EXTENSION);
-						diResource = getResource(newURI, loadOnDemand);
-					}
-
-					// get the historic from the Di resource
-					if(diResource != null) {
-						// TODO resource.getHistoric();	
-						// call the RouteManager to get the EObject
-						// TODO algo de parcours à définir: largeur ou profondeur
-						// c'est le routeurManager qui trouve l'object
-						// return RouteManager.getEObject(uri, context);
-						return null;
-
-					} else {
-						// resource di not found -> Error managed in proxyManager
-						// warn the user, ask him to select the resource
-						// return Popup.getChoice();
-						return null;
-					}
-				}
-			} else {
-				// resource not found -> Error managed in proxyManager
-				// warn the user, ask him to select a resource to search in
-				// or ask to seach in the entire resource set
-				// or use a proxy
-				// return Popup.getChoice();
-				// strategy used for the specified resource only 
-				return null;
-			}
+		//return super.getEObject(uri, loadOnDemand);
+		URI resourceURI = uri.trimFragment();
+		// for performance reasons, we check the three initial resources first
+		if(resourceURI.equals(modelURI) || resourceURI.equals(notationURI) || resourceURI.equals(diURI) || uriLoading.contains(resourceURI)) {
+			// do not manage eObject of the current resources
+			return super.getEObject(uri, loadOnDemand);
+		} else if(loadOnDemand) {
+			return proxyManager.getEObjectFromStrategy(uri);
 		} else {
-			// we just want to manage a proxy for this object
 			return null;
 		}
-	}
+	}	
 
 	public void loadResources(URI pDiUri, URI pNotationURI, URI pModelResourceURi, IFile file) {
 		diURI = pDiUri;

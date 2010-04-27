@@ -6,6 +6,7 @@
    <extension-point id="papyrusContentOutline" name="PapyrusContentOutline" schema="schema/contentOutline.exsd"/>
    <extension-point id="service" name="Service" schema="schema/service.exsd"/>
    <extension-point id="loadingStrategy" name="loadingStrategy" schema="schema/loadingStrategy.exsd"/>
+   <extension-point id="loadingStrategyExtender" name="loadingStrategyExtender" schema="schema/loadingStrategyExtender.exsd"/>
 	<extension
          point="org.eclipse.ui.menus">
       <menuContribution

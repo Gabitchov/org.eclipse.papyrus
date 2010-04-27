@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.URI;
 public interface ILoadingStrategy {
 	
 	/**
-	 * Check if the resource from the uri need to be loaded accoding to the strategy
+	 * Check if the resource from the uri need to be loaded according to the strategy
 	 *
 	 * @param uri
 	 * @return true if resource must be loaded, return false otherwise
