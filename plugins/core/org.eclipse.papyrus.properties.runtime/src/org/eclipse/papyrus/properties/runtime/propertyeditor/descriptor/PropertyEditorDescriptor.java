@@ -50,28 +50,28 @@ public class PropertyEditorDescriptor implements IPropertyEditorDescriptor {
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public ImageDescriptor getLabelImageDescriptor() {
 		return imageDescriptor;
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public int getLabelPosition() {
 		return labelPosition;
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public String getLabel() {
 		return label;
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public String getEditorId() {
 		return editorID;

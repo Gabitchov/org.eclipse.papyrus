@@ -71,13 +71,6 @@ public class EMFTLabelProviderStructuralFeatureController extends EMFTStructural
 	/**
 	 * {@inheritDoc}
 	 */
-	public ILabelProvider getLabelProvider() {
-		return labelProvider;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
 	public ILabelProvider getEditorLabelProvider() {
 		return labelProvider;
 	}

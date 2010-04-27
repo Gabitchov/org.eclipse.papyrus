@@ -23,14 +23,14 @@ public class MultipleReferencePropertyEditorValidator implements IPropertyEditor
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public boolean isValidForValue(Object valueToEdit) {
 		return true;
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public void setPropertyEditor(AbstractPropertyEditor editor) {
 	}

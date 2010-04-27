@@ -30,7 +30,7 @@ public interface IBoundedValuesPropertyEditorDescriptor {
 	/**
 	 * Returns the list of available values
 	 * 
-	 * @Return the list of available values
+	 * @return the list of available values
 	 */
 	public List<?> getAvailableValues();
 }

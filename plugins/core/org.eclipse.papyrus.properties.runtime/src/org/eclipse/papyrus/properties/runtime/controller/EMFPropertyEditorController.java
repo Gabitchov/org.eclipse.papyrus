@@ -22,18 +22,13 @@ import org.eclipse.emf.ecore.EObject;
 public abstract class EMFPropertyEditorController extends PropertyEditorController {
 
 	/**
-	 * Constructor.
-	 * 
-	 * @param objectToEdit
-	 *        the {@link EObject} to edit
-	 * @param parent
-	 *        the parent composite for all created controls by the property editor
+	 * Creates a new EMFPropertyEditorController.
 	 */
 	public EMFPropertyEditorController() {
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@SuppressWarnings("unchecked")
 	@Override

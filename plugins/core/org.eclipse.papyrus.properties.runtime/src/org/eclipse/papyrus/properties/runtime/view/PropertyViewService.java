@@ -24,7 +24,6 @@ import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorControlle
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
 import org.eclipse.swt.widgets.Composite;
 
-
 /**
  * Service to provide property views providers.
  */
@@ -142,12 +141,4 @@ public class PropertyViewService extends Service {
 		}
 	}
 
-	//	/**
-	//	 * Returns the list of predefined views
-	//	 * 
-	//	 * @return the list of predefined views
-	//	 */
-	//	public Map<String, ViewDescriptor> getPredefinedViews() {
-	//		return predefinedViews;
-	//	}
 }

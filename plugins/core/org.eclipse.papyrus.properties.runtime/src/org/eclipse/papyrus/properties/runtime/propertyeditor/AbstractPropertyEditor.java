@@ -44,10 +44,7 @@ public abstract class AbstractPropertyEditor implements IDisposable {
 
 	/**
 	 * Creates a new {@link AbstractPropertyEditor}. It uses a created widget factory each time a property editor is created, the other constructor
-	 * {@link #AbstractPropertyEditor(PropertyEditorController, TabbedPropertySheetWidgetFactory)} should be used instead.
-	 * 
-	 * @param controller
-	 *        the controller for this view
+	 * {@link #AbstractPropertyEditor(TabbedPropertySheetWidgetFactory)} should be used instead.
 	 */
 	public AbstractPropertyEditor() {
 		this(new TabbedPropertySheetWidgetFactory());
@@ -55,9 +52,8 @@ public abstract class AbstractPropertyEditor implements IDisposable {
 
 	/**
 	 * Creates a new {@link AbstractPropertyEditor}.
-	 * 
-	 * @param controller
-	 *        the controller for this view
+	 * @param widgetFactory
+	 * 		  widget factory used to create {@link Control}
 	 */
 	public AbstractPropertyEditor(TabbedPropertySheetWidgetFactory widgetFactory) {
 		this.widgetFactory = widgetFactory;
@@ -180,7 +176,7 @@ public abstract class AbstractPropertyEditor implements IDisposable {
 	public abstract void setValue(Object valueToEdit);
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public abstract void dispose();
 

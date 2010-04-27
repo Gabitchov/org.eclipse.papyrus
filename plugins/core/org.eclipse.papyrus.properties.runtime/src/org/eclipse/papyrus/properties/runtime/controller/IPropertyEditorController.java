@@ -58,8 +58,6 @@ public interface IPropertyEditorController {
 	/**
 	 * Creates the property editor, with label on the specified position and the given icon.
 	 * 
-	 * @param id
-	 *        the id of the property editor to create
 	 * @param descriptor
 	 *        the image descriptor for the property editor
 	 */

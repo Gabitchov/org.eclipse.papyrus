@@ -31,11 +31,11 @@ public class EMFTBindingPropertyEditorControllerDescriptor extends EMFTPropertyE
 	 * @param controllerID
 	 *        the id of the controller
 	 * @param multiSelection
-	 *        indicates if the controller accepts multi selection
+	 *        indicates if the controller accepts multi-selection
 	 * @param featureNameToEdit
 	 *        name of the features to edit
-	 * @param handlerID
-	 *        id of the model handler
+	 * @param handler
+	 *        model handler used to interact with the model
 	 * @param editorDescriptor
 	 *        descriptor of the editor
 	 * @param message

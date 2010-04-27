@@ -69,7 +69,7 @@ public class CreatePropertyEditorControllerOperation implements IOperation {
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public PropertyEditorController execute(IProvider provider) {
 		if(provider instanceof PropertyEditorControllerProvider) {

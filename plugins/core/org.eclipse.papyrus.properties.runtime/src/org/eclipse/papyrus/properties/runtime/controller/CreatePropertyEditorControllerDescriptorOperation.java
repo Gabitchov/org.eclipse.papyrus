@@ -42,7 +42,7 @@ public class CreatePropertyEditorControllerDescriptorOperation implements IOpera
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public IPropertyEditorControllerDescriptor execute(IProvider provider) {
 		IPropertyEditorControllerDescriptor descriptor = null;

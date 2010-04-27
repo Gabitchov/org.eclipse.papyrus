@@ -1,7 +1,3 @@
-package org.eclipse.papyrus.properties.runtime.propertyeditor;
-
-
-
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *    
@@ -13,6 +9,7 @@ package org.eclipse.papyrus.properties.runtime.propertyeditor;
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *****************************************************************************/
+package org.eclipse.papyrus.properties.runtime.propertyeditor;
 
 /**
  * Validator for the simple reference property editors
@@ -27,14 +24,14 @@ public class TextPropertyEditorValidator implements IPropertyEditorTypeValidator
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public boolean isValidForValue(Object valueToEdit) {
 		return true;
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public void setPropertyEditor(AbstractPropertyEditor editor) {
 	}

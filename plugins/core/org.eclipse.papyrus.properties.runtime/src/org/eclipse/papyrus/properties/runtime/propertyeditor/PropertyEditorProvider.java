@@ -92,7 +92,7 @@ public class PropertyEditorProvider extends AbstractProvider {
 
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public boolean provides(IOperation operation) {
 		if(operation instanceof CreatePropertyEditorOperation) {

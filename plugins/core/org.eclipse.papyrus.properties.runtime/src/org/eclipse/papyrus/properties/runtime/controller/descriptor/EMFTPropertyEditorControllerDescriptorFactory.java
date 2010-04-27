@@ -41,7 +41,7 @@ public class EMFTPropertyEditorControllerDescriptorFactory implements IPropertyE
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public EMFTPropertyEditorControllerDescriptor createDescriptor(Node controllerNode) {
 		// parse content of the node

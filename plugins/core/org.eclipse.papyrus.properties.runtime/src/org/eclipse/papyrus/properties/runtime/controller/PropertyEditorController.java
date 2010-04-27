@@ -39,11 +39,6 @@ public abstract class PropertyEditorController implements IDisposable, IProperty
 
 	/**
 	 * Creates a new {@link PropertyEditorController}
-	 * 
-	 * @param objectToEdit
-	 *        the object to edit
-	 * @param the
-	 *        composite parent for all controls created by the property editor
 	 */
 	public PropertyEditorController() {
 	}
@@ -197,7 +192,7 @@ public abstract class PropertyEditorController implements IDisposable, IProperty
 	public abstract void updateModel();
 
 	/**
-	 * @{inheritDoc
+	 *  {@inheritDoc}
 	 */
 	public void dispose() {
 		// remove added listeners

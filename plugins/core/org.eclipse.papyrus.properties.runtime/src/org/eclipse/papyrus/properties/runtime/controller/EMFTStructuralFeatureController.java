@@ -49,9 +49,6 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 
 	/**
 	 * Creates a new EMFTStructuralFeatureController.
-	 * 
-	 * @param descriptor
-	 *        descriptor that configures this controller
 	 */
 	public EMFTStructuralFeatureController() {
 		super();
@@ -91,42 +88,8 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 		return Status.OK_STATUS;
 	}
 
-	//	/**
-	//	 * Returns the structural feature being edited
-	//	 * 
-	//	 * @return the feature to edit
-	//	 */
-	//	protected EStructuralFeature getFeatureToEdit() {
-	//		if(featureToEdit == null) {
-	//			String featureName = descriptor.getFeatureNameToEdit();
-	//			// retrieve the feature using its name
-	//			featureToEdit = retrieveFeatureFromName(featureName);
-	//			if(featureToEdit == null) {
-	//				Activator.log.error("impossible to retrieve feature " + featureName + " to edit for " + getObjectsToEdit(), null);
-	//			}
-	//		}
-	//		return featureToEdit;
-	//	}
-
-	//	/**
-	//	 * Retrieve the feature to edit, given its name
-	//	 * 
-	//	 * @param featureName
-	//	 *        the name of the feature to edit
-	//	 * @return the feature to edit
-	//	 */
-	//	protected EStructuralFeature retrieveFeatureFromName(String featureName) {
-	//		for(EObject eObject : getObjectsToEdit()) {
-	//			EStructuralFeature feature = eObject.eClass().getEStructuralFeature(featureName);
-	//			if(feature != null) {
-	//				return feature;
-	//			}
-	//		}
-	//		return null;
-	//	}
-
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public boolean acceptMultiSelection() {
@@ -153,7 +116,7 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 	}
 
 	/**
-	 * @{inheritDoc
+	 *  {@inheritDoc}
 	 */
 	@Override
 	protected void addListenersToModel() {
@@ -163,7 +126,7 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 	}
 
 	/**
-	 * @{inheritDoc
+	 *  {@inheritDoc}
 	 */
 	@Override
 	protected String getDefaultLabel() {
@@ -171,7 +134,7 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	protected Object getValueToEdit() {
@@ -182,7 +145,7 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	protected void setValueInModel(Object value) {
@@ -194,7 +157,7 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	protected IStatus initPropertyEditor(IPropertyEditorDescriptor descriptor) {
@@ -205,7 +168,7 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	protected void removeListenersFromModel() {
@@ -215,7 +178,7 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public Notifier getTarget() {
 		// nothing to do here, as there is only one target
@@ -224,7 +187,7 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public boolean isAdapterForType(Object type) {
 		for(EObject eObject : getObjectsToEdit()) {
@@ -236,7 +199,7 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public void notifyChanged(Notification notification) {
 		// refresh the editors
@@ -244,7 +207,7 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public void setTarget(Notifier newTarget) {
 		// nothing to do here, as the adapter already knows the target

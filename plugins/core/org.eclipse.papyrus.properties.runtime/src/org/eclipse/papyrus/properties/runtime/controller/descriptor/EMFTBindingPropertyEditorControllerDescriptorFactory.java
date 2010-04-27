@@ -40,7 +40,7 @@ public class EMFTBindingPropertyEditorControllerDescriptorFactory extends EMFTPr
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public EMFTPropertyEditorControllerDescriptor createDescriptor(Node controllerNode) {
 		// parse content of the node

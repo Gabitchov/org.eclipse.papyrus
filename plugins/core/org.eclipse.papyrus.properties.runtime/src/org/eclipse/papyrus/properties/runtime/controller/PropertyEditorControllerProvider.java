@@ -70,7 +70,7 @@ public class PropertyEditorControllerProvider extends AbstractProvider {
 	}
 
 	/**
-	 * @{inheritDoc
+	 *  {@inheritDoc}
 	 */
 	public boolean provides(IOperation operation) {
 		if(operation instanceof CreatePropertyEditorControllerOperation) {

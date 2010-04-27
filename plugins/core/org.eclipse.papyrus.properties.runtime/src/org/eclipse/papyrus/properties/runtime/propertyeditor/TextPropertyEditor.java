@@ -47,7 +47,7 @@ public class TextPropertyEditor extends AbstractPropertyEditor {
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void handleContentChanged() {
@@ -56,7 +56,7 @@ public class TextPropertyEditor extends AbstractPropertyEditor {
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public IStatus init(IPropertyEditorDescriptor descriptor) {
@@ -65,7 +65,7 @@ public class TextPropertyEditor extends AbstractPropertyEditor {
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Composite createContent(Composite parent) {
@@ -114,7 +114,7 @@ public class TextPropertyEditor extends AbstractPropertyEditor {
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Object getValue() {
@@ -127,7 +127,7 @@ public class TextPropertyEditor extends AbstractPropertyEditor {
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setValue(Object valueToEdit) {
@@ -138,7 +138,7 @@ public class TextPropertyEditor extends AbstractPropertyEditor {
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public void dispose() {
 		if(isValid(composite)) {

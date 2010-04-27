@@ -35,8 +35,7 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 	protected IPropertyEditorDescriptor editorDescriptor;
 
 	/**
-	 * 
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public boolean acceptMultiSelection() {
 		return multiSelection;
@@ -63,10 +62,16 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 	/**
 	 * Creates a new PropertyEditorDescriptor.
 	 * 
+	 * @param controllerID 
+	 * 		  id of the controller described by this element
+	 * @param multiSelection
+	 * 		  boolean that indicates if the controller described accepts multi-selection
 	 * @param featureNameToEdit
 	 *        the name of feature to edit for the controller configured by this descriptor
-	 * @param handlerID
+	 * @param handler
 	 *        the handler id for the controller
+	 * @param editorDescriptor
+	 * 		  descriptor of the editor managed by this controller       
 	 */
 	public EMFTPropertyEditorControllerDescriptor(String controllerID, boolean multiSelection, String featureNameToEdit, IEMFModelHandler handler, IPropertyEditorDescriptor editorDescriptor) {
 		this.controllerID = controllerID;
@@ -77,7 +82,7 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public String getControllerID() {
 		return controllerID;

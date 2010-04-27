@@ -55,7 +55,7 @@ public class RadioBoxPropertyEditor extends AbstractPropertyEditor {
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Composite createContent(Composite parent) {
@@ -96,7 +96,7 @@ public class RadioBoxPropertyEditor extends AbstractPropertyEditor {
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void dispose() {
@@ -129,7 +129,7 @@ public class RadioBoxPropertyEditor extends AbstractPropertyEditor {
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void handleContentChanged() {
@@ -138,7 +138,7 @@ public class RadioBoxPropertyEditor extends AbstractPropertyEditor {
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public IStatus init(IPropertyEditorDescriptor descriptor) {
@@ -153,7 +153,7 @@ public class RadioBoxPropertyEditor extends AbstractPropertyEditor {
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setValue(Object valueToEdit) {
@@ -195,7 +195,7 @@ public class RadioBoxPropertyEditor extends AbstractPropertyEditor {
 	protected class RadioButtonListener implements SelectionListener {
 
 		/**
-		 * @{inheritDoc
+		 * {@inheritDoc}
 		 */
 		public void widgetSelected(SelectionEvent e) {
 			for(Button button : buttons) {
@@ -206,7 +206,7 @@ public class RadioBoxPropertyEditor extends AbstractPropertyEditor {
 		}
 
 		/**
-		 * @{inheritDoc
+		 * {@inheritDoc}
 		 */
 		public void widgetDefaultSelected(SelectionEvent e) {
 

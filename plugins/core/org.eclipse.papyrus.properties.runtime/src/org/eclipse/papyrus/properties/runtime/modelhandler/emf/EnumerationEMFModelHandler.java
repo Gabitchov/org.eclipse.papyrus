@@ -43,7 +43,7 @@ public class EnumerationEMFModelHandler extends EMFFeatureModelHandler {
 	public static final String ID = "Enumeration";
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Object getValueToEdit(EObject objectToEdit) {
@@ -56,7 +56,7 @@ public class EnumerationEMFModelHandler extends EMFFeatureModelHandler {
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public void setValueInModel(EObject objectToEdit, Object newValue) {
 		EStructuralFeature featureToEdit = getFeatureByName(objectToEdit);
@@ -79,7 +79,7 @@ public class EnumerationEMFModelHandler extends EMFFeatureModelHandler {
 
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public void completeEditorDescriptor(IPropertyEditorDescriptor descriptor, List<EObject> objectToEdit) {
 		if(objectToEdit.size() < 1) {

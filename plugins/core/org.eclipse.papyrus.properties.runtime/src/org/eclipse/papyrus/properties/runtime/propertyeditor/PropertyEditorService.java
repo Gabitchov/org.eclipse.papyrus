@@ -61,8 +61,6 @@ public class PropertyEditorService extends Service {
 	 * 
 	 * @param controller
 	 *        the controller that manages this editors
-	 * @param parent
-	 *        the parent of all controls created by the editor
 	 * @param id
 	 *        the identifier of the editor to create
 	 * @return the created property editor
@@ -79,8 +77,10 @@ public class PropertyEditorService extends Service {
 	/**
 	 * Creates the property editor descriptor
 	 * 
-	 * @param child
-	 *        the configuration element
+	 * @param editorID
+	 * 		  id of the editor described by this element
+	 * @param editorNode
+	 *        the configuration node of the editor
 	 * @return the configuration descriptor for the property editor
 	 */
 	public IPropertyEditorDescriptor createPropertyEditorDescriptor(String editorID, Node editorNode) {
@@ -91,6 +91,7 @@ public class PropertyEditorService extends Service {
 	/**
 	 * @see org.eclipse.gmf.runtime.common.core.service.Service#newProviderDescriptor(org.eclipse.core.runtime.IConfigurationElement)
 	 */
+	@Override
 	protected Service.ProviderDescriptor newProviderDescriptor(IConfigurationElement element) {
 		return new ProviderDescriptor(element);
 	}

@@ -67,7 +67,7 @@ public class EnumerationStereotypeModelHandler extends EMFStereotypeFeatureModel
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Object getValueToEdit(EObject objectToEdit) {
@@ -89,7 +89,7 @@ public class EnumerationStereotypeModelHandler extends EMFStereotypeFeatureModel
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public void completeEditorDescriptor(IPropertyEditorDescriptor descriptor, List<EObject> objectToEdit) {
 		Element elementToEdit = retrieveElement(objectToEdit);

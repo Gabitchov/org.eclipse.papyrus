@@ -40,7 +40,7 @@ public abstract class EMFTPropertyEditorController extends EMFPropertyEditorCont
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void updateModel() {

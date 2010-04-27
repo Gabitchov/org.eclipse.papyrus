@@ -44,7 +44,7 @@ public class BooleanStereotypeModelHandler extends EnumerationStereotypeModelHan
 	public static final String ID = "BooleanStereotype";
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Object getValueToEdit(EObject objectToEdit) {
@@ -65,7 +65,7 @@ public class BooleanStereotypeModelHandler extends EnumerationStereotypeModelHan
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setValueInModel(EObject objectToEdit, Object newValue) {
@@ -91,7 +91,7 @@ public class BooleanStereotypeModelHandler extends EnumerationStereotypeModelHan
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void completeEditorDescriptor(IPropertyEditorDescriptor descriptor, List<EObject> objectToEdit) {

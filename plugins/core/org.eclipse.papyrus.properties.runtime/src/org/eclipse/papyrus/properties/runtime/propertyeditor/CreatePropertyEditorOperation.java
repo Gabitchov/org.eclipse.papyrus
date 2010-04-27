@@ -19,7 +19,7 @@ import org.eclipse.swt.widgets.Composite;
 
 
 /**
- * Operation that creates a {@link IPropertyEditor} from a provider
+ * Operation that creates an {@link AbstractPropertyEditor} from a provider
  */
 public class CreatePropertyEditorOperation implements IOperation {
 
@@ -32,14 +32,14 @@ public class CreatePropertyEditorOperation implements IOperation {
 	/** indicates if the property to edit is multi-valued */
 	protected final boolean multiValue;
 
-	/** controller which requires the proeprty editor creation */
+	/** controller which requires the property editor creation */
 	protected PropertyEditorController controller;
 
 	/**
 	 * Constructor.
 	 * 
-	 * @param parent
-	 *        the parent composite of all created widgets
+	 * @param controller
+	 *        the controller that manages the created editor
 	 * @param id
 	 *        the identifier of the editor to find
 	 */
@@ -50,7 +50,7 @@ public class CreatePropertyEditorOperation implements IOperation {
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public AbstractPropertyEditor execute(IProvider provider) {
 		if(provider instanceof PropertyEditorProvider) {

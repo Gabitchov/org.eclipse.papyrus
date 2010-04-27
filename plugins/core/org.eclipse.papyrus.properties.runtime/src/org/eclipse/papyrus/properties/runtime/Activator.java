@@ -28,7 +28,7 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void start(BundleContext context) throws Exception {
@@ -38,7 +38,7 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void stop(BundleContext context) throws Exception {

@@ -38,7 +38,7 @@ public abstract class EMFFeatureModelHandler implements IEMFModelHandler {
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public Object getValueToEdit(EObject objectToEdit) {
 		EStructuralFeature featureToEdit = getFeatureByName(objectToEdit);

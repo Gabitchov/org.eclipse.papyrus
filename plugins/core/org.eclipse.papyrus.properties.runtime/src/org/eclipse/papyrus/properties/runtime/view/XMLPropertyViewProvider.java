@@ -118,7 +118,7 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public boolean provides(IOperation operation) {
 		if(operation instanceof GetPropertyViewDescriptorOperation) {

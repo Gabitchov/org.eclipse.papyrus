@@ -39,7 +39,7 @@ public class BooleanEMFModelHandler extends EnumerationEMFModelHandler {
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Object getValueToEdit(EObject objectToEdit) {
@@ -54,7 +54,7 @@ public class BooleanEMFModelHandler extends EnumerationEMFModelHandler {
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setValueInModel(EObject objectToEdit, Object newValue) {
@@ -73,7 +73,7 @@ public class BooleanEMFModelHandler extends EnumerationEMFModelHandler {
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void completeEditorDescriptor(IPropertyEditorDescriptor descriptor, List<EObject> objectToEdit) {

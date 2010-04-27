@@ -23,14 +23,14 @@ public class MultipleStructuralFeaturesPropertyEditorValidator implements IPrope
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public boolean isValidForValue(Object valueToEdit) {
 		return true;
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public void setPropertyEditor(AbstractPropertyEditor editor) {
 	}

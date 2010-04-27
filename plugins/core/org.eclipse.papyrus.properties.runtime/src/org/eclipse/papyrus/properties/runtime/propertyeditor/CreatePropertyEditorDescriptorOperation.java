@@ -37,7 +37,7 @@ public class CreatePropertyEditorDescriptorOperation implements IOperation {
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public IPropertyEditorDescriptor execute(IProvider provider) {
 		if(provider instanceof PropertyEditorProvider) {

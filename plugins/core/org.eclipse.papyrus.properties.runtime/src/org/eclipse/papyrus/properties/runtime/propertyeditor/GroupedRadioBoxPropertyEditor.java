@@ -31,7 +31,7 @@ public class GroupedRadioBoxPropertyEditor extends RadioBoxPropertyEditor {
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	@Override
 	public Composite createContent(Composite parent) {

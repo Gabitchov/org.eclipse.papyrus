@@ -13,9 +13,8 @@ package org.eclipse.papyrus.properties.runtime.propertyeditor;
 
 import java.util.List;
 
-
 /**
- *
+ * Simple validator for property editor
  */
 public class PropertyEditorTypeValidator implements IPropertyEditorTypeValidator {
 
@@ -26,14 +25,14 @@ public class PropertyEditorTypeValidator implements IPropertyEditorTypeValidator
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public boolean isValidForValue(Object valueToEdit) {
 		return (valueToEdit instanceof String[] || valueToEdit instanceof List<?>);
 	}
 
 	/**
-	 * @{inheritDoc
+	 * {@inheritDoc}
 	 */
 	public void setPropertyEditor(AbstractPropertyEditor editor) {
 
