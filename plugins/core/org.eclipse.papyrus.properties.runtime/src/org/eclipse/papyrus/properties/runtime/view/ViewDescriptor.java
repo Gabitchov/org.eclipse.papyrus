@@ -101,16 +101,6 @@ public class ViewDescriptor {
 	}
 
 	/**
-	 * Parses the content of the view
-	 * 
-	 * @return the list of root containers for the view
-	 */
-	protected List<ContainerDescriptor> parseContentNode() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
 	 * Returns the list of containers descriptors
 	 * 
 	 * @return the list of containers descriptors
