@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.properties.runtime.Activator;
+import org.eclipse.papyrus.properties.runtime.view.constraints.AppliedStereotypeConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.ObjectTypeConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptor;
@@ -188,7 +189,7 @@ public class PropertyViewProviderParser {
 						}
 					}
 				}
-
+				constraintDescriptors.add(new AppliedStereotypeConstraintDescriptor(appliedStereotypeQNames));
 			}
 		}
 		return constraintDescriptors;

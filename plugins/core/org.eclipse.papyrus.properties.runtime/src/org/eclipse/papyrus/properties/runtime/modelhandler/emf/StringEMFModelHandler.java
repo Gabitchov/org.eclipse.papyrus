@@ -15,36 +15,42 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 
 
 /**
  * Extract or inject values for a string-typed feature.
  */
-public class StringEMFModelHandler implements IEMFModelHandler {
+public class StringEMFModelHandler extends EMFFeatureModelHandler {
 
 	/** ID of this model handler */
 	public static final String ID = "String";
 
 	/**
-	 * @{inheritDoc
+	 * Creates a new StringEMFModelHandler.
+	 * 
+	 * @param featureName
+	 *        the name of the feature to edit
 	 */
-	public Object getValueToEdit(EObject objectToEdit, EStructuralFeature featureToEdit, IPropertyEditorControllerDescriptor descriptor) {
-		return objectToEdit.eGet(featureToEdit);
+	public StringEMFModelHandler(String featureName) {
+		super(featureName);
 	}
 
 	/**
 	 * @{inheritDoc
 	 */
-	public void setValueInModel(EObject objectToEdit, EStructuralFeature featureToEdit, Object newValue) {
+	public void setValueInModel(EObject objectToEdit, Object newValue) {
+		EStructuralFeature featureToEdit = getFeatureByName(objectToEdit);
+		if(featureToEdit == null) {
+			return;
+		}
 		objectToEdit.eSet(featureToEdit, newValue);
 	}
 
 	/**
 	 * @{inheritDoc
 	 */
-	public void completeEditorDescriptor(IPropertyEditorDescriptor descriptor, List<EObject> objectToEdit, EStructuralFeature featureToEdit) {
+	public void completeEditorDescriptor(IPropertyEditorDescriptor descriptor, List<EObject> objectToEdit) {
 		// nothing to do here
 	}
 

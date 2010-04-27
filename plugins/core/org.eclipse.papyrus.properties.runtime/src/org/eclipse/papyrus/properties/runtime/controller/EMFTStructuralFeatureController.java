@@ -11,10 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.controller;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -28,11 +26,7 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.EMFTPropertyEditorControllerDescriptor;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
-import org.eclipse.papyrus.properties.runtime.modelhandler.emf.BooleanEMFModelHandler;
-import org.eclipse.papyrus.properties.runtime.modelhandler.emf.EnumerationEMFModelHandler;
 import org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandler;
-import org.eclipse.papyrus.properties.runtime.modelhandler.emf.ReferenceEMFModelHandler;
-import org.eclipse.papyrus.properties.runtime.modelhandler.emf.StringEMFModelHandler;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 import org.eclipse.swt.widgets.Composite;
 
@@ -41,9 +35,6 @@ import org.eclipse.swt.widgets.Composite;
  * Controller for {@link EStructuralFeature} property editor controller.
  */
 public class EMFTStructuralFeatureController extends EMFTPropertyEditorController implements Adapter {
-
-	/** list of registered model handlers */
-	protected final static Map<String, IEMFModelHandler> modelHandlers = new HashMap<String, IEMFModelHandler>();
 
 	/** descriptor that configures this controller */
 	private EMFTPropertyEditorControllerDescriptor descriptor;
@@ -55,14 +46,6 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 
 	/** cached feature to edit */
 	protected EStructuralFeature featureToEdit = null;
-
-	static {
-		// initialize the list of model handlers
-		modelHandlers.put(StringEMFModelHandler.ID, new StringEMFModelHandler());
-		modelHandlers.put(EnumerationEMFModelHandler.ID, new EnumerationEMFModelHandler());
-		modelHandlers.put(BooleanEMFModelHandler.ID, new BooleanEMFModelHandler());
-		modelHandlers.put(ReferenceEMFModelHandler.ID, new ReferenceEMFModelHandler());
-	}
 
 	/**
 	 * Creates a new EMFTStructuralFeatureController.
@@ -104,51 +87,43 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 			return new Status(IStatus.ERROR, Activator.ID, "impossible to adapt descriptor to an EMFTPropertyEditorControllerDescriptor");
 		}
 
-		this.modelHandler = modelHandlers.get(getDescriptor().getHandlerID());
-		if(modelHandler == null) {
-			return new Status(IStatus.ERROR, Activator.ID, "impossible to find model handler with ID : " + getDescriptor().getHandlerID());
-		}
+		this.modelHandler = this.descriptor.getHandler();
 		return Status.OK_STATUS;
 	}
 
-	/**
-	 * Returns the structural feature being edited
-	 * 
-	 * @return the feature to edit
-	 */
-	protected EStructuralFeature getFeatureToEdit() {
-		if(featureToEdit == null) {
-			EStructuralFeature descriptorFeature = descriptor.getFeatureToEdit();
-			if(descriptorFeature != null) {
-				featureToEdit = descriptorFeature;
-			} else {
-				String featureName = descriptor.getFeatureNameToEdit();
-				// retrieve the feature using its name
-				featureToEdit = retrieveFeatureFromName(featureName);
-				if(featureToEdit == null) {
-					Activator.log.error("impossible to retrieve feature " + featureName + " to edit for " + getObjectsToEdit(), null);
-				}
-			}
-		}
-		return featureToEdit;
-	}
+	//	/**
+	//	 * Returns the structural feature being edited
+	//	 * 
+	//	 * @return the feature to edit
+	//	 */
+	//	protected EStructuralFeature getFeatureToEdit() {
+	//		if(featureToEdit == null) {
+	//			String featureName = descriptor.getFeatureNameToEdit();
+	//			// retrieve the feature using its name
+	//			featureToEdit = retrieveFeatureFromName(featureName);
+	//			if(featureToEdit == null) {
+	//				Activator.log.error("impossible to retrieve feature " + featureName + " to edit for " + getObjectsToEdit(), null);
+	//			}
+	//		}
+	//		return featureToEdit;
+	//	}
 
-	/**
-	 * Retrieve the feature to edit, given its name
-	 * 
-	 * @param featureName
-	 *        the name of the feature to edit
-	 * @return the feature to edit
-	 */
-	protected EStructuralFeature retrieveFeatureFromName(String featureName) {
-		for(EObject eObject : getObjectsToEdit()) {
-			EStructuralFeature feature = eObject.eClass().getEStructuralFeature(featureName);
-			if(feature != null) {
-				return feature;
-			}
-		}
-		return null;
-	}
+	//	/**
+	//	 * Retrieve the feature to edit, given its name
+	//	 * 
+	//	 * @param featureName
+	//	 *        the name of the feature to edit
+	//	 * @return the feature to edit
+	//	 */
+	//	protected EStructuralFeature retrieveFeatureFromName(String featureName) {
+	//		for(EObject eObject : getObjectsToEdit()) {
+	//			EStructuralFeature feature = eObject.eClass().getEStructuralFeature(featureName);
+	//			if(feature != null) {
+	//				return feature;
+	//			}
+	//		}
+	//		return null;
+	//	}
 
 	/**
 	 * @{inheritDoc
@@ -192,7 +167,7 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 	 */
 	@Override
 	protected String getDefaultLabel() {
-		return getFeatureToEdit().getName();
+		return descriptor.getFeatureNameToEdit();
 	}
 
 	/**
@@ -203,7 +178,7 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 		// when editing multiple objects, the value returned is the value of the first element
 		// it has already been asserted in the contructor that the list is not empty. get(0) should never throw an exception 
 		EObject object = getObjectsToEdit().get(0);
-		return getModelHandler().getValueToEdit(object, getFeatureToEdit(), descriptor);
+		return getModelHandler().getValueToEdit(object);
 	}
 
 	/**
@@ -214,7 +189,7 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 		// when editing multiple objects, the value set will be the same for all elements
 		// should look for exceptions here perhaps?
 		for(EObject object : getObjectsToEdit()) {
-			getModelHandler().setValueInModel(object, getFeatureToEdit(), getEditorValue());
+			getModelHandler().setValueInModel(object, getEditorValue());
 		}
 	}
 
@@ -224,8 +199,8 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 	@Override
 	protected IStatus initPropertyEditor(IPropertyEditorDescriptor descriptor) {
 		// property editor has already been created, but it is not initialized
-		getPropertyEditor().setIsReadOnly(!getFeatureToEdit().isChangeable());
-		getModelHandler().completeEditorDescriptor(descriptor, getObjectsToEdit(), getFeatureToEdit());
+		getPropertyEditor().setIsReadOnly(!getModelHandler().isChangeable(getObjectsToEdit()));
+		getModelHandler().completeEditorDescriptor(descriptor, getObjectsToEdit());
 		return getPropertyEditor().init(descriptor);
 	}
 

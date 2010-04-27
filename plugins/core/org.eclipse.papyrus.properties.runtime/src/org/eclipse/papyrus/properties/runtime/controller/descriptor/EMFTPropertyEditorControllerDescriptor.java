@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.properties.runtime.controller.descriptor;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandler;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 
 /**
@@ -22,8 +23,8 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 	/** Structural feature to edit */
 	private EStructuralFeature featureToEdit = null;
 
-	/** id of the handler used by this controller */
-	private String handlerID;
+	/** handler used by this controller */
+	private final IEMFModelHandler handler;
 
 	/** boolean that indicates if the controller accepts multi selection */
 	private boolean multiSelection;
@@ -46,15 +47,6 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 	}
 
 	/**
-	 * Returns the feature to edit for the controller configured by this descriptor
-	 * 
-	 * @return the feature to edit for the controller configured by this descriptor
-	 */
-	public EStructuralFeature getFeatureToEdit() {
-		return featureToEdit;
-	}
-
-	/**
 	 * Returns the name of the feature to edit
 	 * 
 	 * @return the name of the feature to edit
@@ -68,24 +60,8 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 	 * 
 	 * @return the handler id for the controller
 	 */
-	public String getHandlerID() {
-		return handlerID;
-	}
-
-	/**
-	 * Creates a new PropertyEditorDescriptor.
-	 * 
-	 * @param featureToEdit
-	 *        the feature to edit for the controller configured by this descriptor
-	 * @param handlerID
-	 *        the handler id for the controller
-	 */
-	public EMFTPropertyEditorControllerDescriptor(String controllerID, boolean multiSelection, EStructuralFeature featureToEdit, String handlerID, IPropertyEditorDescriptor editorDescriptor) {
-		this.controllerID = controllerID;
-		this.multiSelection = multiSelection;
-		this.featureToEdit = featureToEdit;
-		this.handlerID = handlerID;
-		this.editorDescriptor = editorDescriptor;
+	public IEMFModelHandler getHandler() {
+		return handler;
 	}
 
 	/**
@@ -96,11 +72,11 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 	 * @param handlerID
 	 *        the handler id for the controller
 	 */
-	public EMFTPropertyEditorControllerDescriptor(String controllerID, boolean multiSelection, String featureNameToEdit, String handlerID, IPropertyEditorDescriptor editorDescriptor) {
+	public EMFTPropertyEditorControllerDescriptor(String controllerID, boolean multiSelection, String featureNameToEdit, IEMFModelHandler handler, IPropertyEditorDescriptor editorDescriptor) {
 		this.controllerID = controllerID;
 		this.multiSelection = multiSelection;
 		this.featureNameToEdit = featureNameToEdit;
-		this.handlerID = handlerID;
+		this.handler = handler;
 		this.editorDescriptor = editorDescriptor;
 	}
 

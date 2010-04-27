@@ -52,7 +52,7 @@ public class EMFTEReferenceController extends EMFTStructuralFeatureController im
 	public Object[] getCurrentValues() {
 		List<Object> values = new ArrayList<Object>();
 		for(EObject objectToEdit : getObjectsToEdit()) {
-			values.add(objectToEdit.eGet(getFeatureToEdit()));
+			values.add(getModelHandler().getValueToEdit(objectToEdit));
 		}
 		return values.toArray();
 	}
@@ -83,7 +83,8 @@ public class EMFTEReferenceController extends EMFTStructuralFeatureController im
 			 */
 			@Override
 			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				return containsValidElements(element, getFeatureToEdit().getEType().getInstanceClass());
+				//return containsValidElements(element, getFeatureToEdit().getEType().getInstanceClass());
+				return true;
 			}
 		};
 		filters.add(typeFilter);

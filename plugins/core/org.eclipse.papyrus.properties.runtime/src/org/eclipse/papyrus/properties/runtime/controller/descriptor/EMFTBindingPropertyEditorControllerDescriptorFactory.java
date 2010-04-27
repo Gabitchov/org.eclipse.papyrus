@@ -14,6 +14,7 @@ package org.eclipse.papyrus.properties.runtime.controller.descriptor;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandler;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.PropertyEditorService;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 import org.w3c.dom.NamedNodeMap;
@@ -24,7 +25,7 @@ import org.w3c.dom.NodeList;
 /**
  * Factory that creates the configuration for the EMFTPropertyEditorController.
  */
-public class EMFTBindingPropertyEditorControllerDescriptorFactory implements IPropertyEditorControllerDescriptorFactory {
+public class EMFTBindingPropertyEditorControllerDescriptorFactory extends EMFTPropertyEditorControllerDescriptorFactory {
 
 	/** message to bind */
 	private String message;
@@ -46,7 +47,6 @@ public class EMFTBindingPropertyEditorControllerDescriptorFactory implements IPr
 
 		String controllerID = "";
 		boolean multiSelection = true;
-		String handlerID = "";
 
 		NamedNodeMap attributes = controllerNode.getAttributes();
 		for(int i = 0; i < attributes.getLength(); i++) {
@@ -57,6 +57,7 @@ public class EMFTBindingPropertyEditorControllerDescriptorFactory implements IPr
 			}
 		}
 
+		IEMFModelHandler modelHandler = null;
 		String featureName = null;
 		IPropertyEditorDescriptor editorDescriptor = null;
 		NodeList children = controllerNode.getChildNodes();
@@ -71,11 +72,7 @@ public class EMFTBindingPropertyEditorControllerDescriptorFactory implements IPr
 						featureName = featureNameNode.getNodeValue();
 					}
 
-					// retrieve handler id
-					Node handlerIDNameNode = featureAttributes.getNamedItem("handlerID");
-					if(handlerIDNameNode != null) {
-						handlerID = handlerIDNameNode.getNodeValue();
-					}
+					modelHandler = parseModelHandler(child);
 				}
 			} else if("editor".equals(child.getNodeName())) {
 				// retrieve editor id
@@ -100,10 +97,10 @@ public class EMFTBindingPropertyEditorControllerDescriptorFactory implements IPr
 			}
 		}
 
-		assert (handlerID != null && !"".equals(handlerID)) : "impossible to find handler Id for controller " + controllerID;
+		assert (modelHandler != null) : "impossible to find handler for controller " + controllerID;
 		assert (featureName != null && !"".equals(featureName)) : "impossible to find feature name for controller " + controllerID;
 		assert (editorDescriptor != null) : "impossible to create editor descriptor";
 
-		return new EMFTBindingPropertyEditorControllerDescriptor(controllerID, multiSelection, featureName, handlerID, editorDescriptor, message, featuresName.toArray(new String[]{}));
+		return new EMFTBindingPropertyEditorControllerDescriptor(controllerID, multiSelection, featureName, modelHandler, editorDescriptor, message, featuresName.toArray(new String[]{}));
 	}
 }

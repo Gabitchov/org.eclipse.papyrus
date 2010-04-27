@@ -14,8 +14,6 @@ package org.eclipse.papyrus.properties.runtime.modelhandler.emf;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 
 
@@ -29,7 +27,7 @@ public interface IEMFModelHandler {
 	 * 
 	 * @return the value to edit from the model
 	 */
-	public Object getValueToEdit(EObject objectToEdit, EStructuralFeature featureToEdit, IPropertyEditorControllerDescriptor descriptor);
+	public Object getValueToEdit(EObject objectToEdit);
 
 	/**
 	 * Sets the new Value in the model
@@ -37,12 +35,22 @@ public interface IEMFModelHandler {
 	 * @param newValue
 	 *        the new value to set
 	 */
-	public void setValueInModel(EObject objectToEdit, EStructuralFeature featureToEdit, Object newValue);
+	public void setValueInModel(EObject objectToEdit, Object newValue);
 
 	/**
 	 * Returns the initialization data that will be given to the property editor
 	 * 
 	 * @return the initialization data that will be given to the property editor
 	 */
-	public void completeEditorDescriptor(IPropertyEditorDescriptor descriptor, List<EObject> objectToEdit, EStructuralFeature featureToEdit);
+	public void completeEditorDescriptor(IPropertyEditorDescriptor descriptor, List<EObject> objectToEdit);
+
+	/**
+	 * checks if the feature is changeable
+	 * 
+	 * @param objectsToEdit
+	 *        the list of objects to edit
+	 * @return <code>true</code> if the feature is changeable
+	 */
+	public boolean isChangeable(List<EObject> objectsToEdit);
+
 }

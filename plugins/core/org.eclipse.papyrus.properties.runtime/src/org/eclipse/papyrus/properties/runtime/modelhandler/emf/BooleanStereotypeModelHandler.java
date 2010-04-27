@@ -15,39 +15,50 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IBoundedValuesPropertyEditorDescriptor;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.StructuralFeature;
+
 
 /**
- * Model Handler for enumeration
+ * Model Handler for Boolean-typed stereotype properties
  */
-public class BooleanEMFModelHandler extends EnumerationEMFModelHandler {
-
-	/** id of this model handler */
-	public static final String ID = "Boolean";
+public class BooleanStereotypeModelHandler extends EnumerationStereotypeModelHandler {
 
 	/**
-	 * Creates a new BooleanEMFModelHandler.
+	 * Creates a new BooleanStereotypeModelHandler.
 	 * 
+	 * @param stereotypeName
+	 *        the name of the stereotype
 	 * @param featureName
-	 *        the name of the feature to edit
+	 *        the name of the feature
 	 */
-	public BooleanEMFModelHandler(String featureName) {
-		super(featureName);
+	public BooleanStereotypeModelHandler(String stereotypeName, String featureName) {
+		super(stereotypeName, featureName);
 	}
+
+	/** identifier for this model handler */
+	public static final String ID = "BooleanStereotype";
 
 	/**
 	 * @{inheritDoc
 	 */
 	@Override
 	public Object getValueToEdit(EObject objectToEdit) {
-		EStructuralFeature featureToEdit = getFeatureByName(objectToEdit);
-		if(featureToEdit == null) {
+		if(!(objectToEdit instanceof Element)) {
+			Activator.log.warn("the element selected is not a UML element: " + objectToEdit);
 			return null;
 		}
-		Object value = objectToEdit.eGet(featureToEdit);
+		Element elementToEdit = (Element)objectToEdit;
+		Stereotype stereotype = retrieveStereotype(elementToEdit);
+		if(stereotype == null) {
+			Activator.log.warn("Impossible to find the stereotype " + getStereotypeName() + " for the given element" + elementToEdit);
+			return null;
+		}
+		Object value = elementToEdit.getValue(stereotype, getFeatureName());
 
 		// should perhaps take into account default values in case the feature is not set...
 		return (value instanceof Boolean) ? ((Boolean)value).toString() : value;
@@ -58,17 +69,24 @@ public class BooleanEMFModelHandler extends EnumerationEMFModelHandler {
 	 */
 	@Override
 	public void setValueInModel(EObject objectToEdit, Object newValue) {
-		EStructuralFeature featureToEdit = getFeatureByName(objectToEdit);
-		if(featureToEdit == null) {
+		if(!(objectToEdit instanceof Element)) {
+			Activator.log.warn("the element selected is not a UML element: " + objectToEdit);
 			return;
 		}
+		Element elementToEdit = (Element)objectToEdit;
+		Stereotype stereotype = retrieveStereotype(elementToEdit);
+		if(stereotype == null) {
+			Activator.log.warn("Impossible to find the stereotype " + getStereotypeName() + " for the given element" + elementToEdit);
+			return;
+		}
+
 		// remove value if result of the editor is empty
 		if(newValue == null || newValue.equals("")) {
-			objectToEdit.eUnset(featureToEdit);
+			elementToEdit.setValue(stereotype, getFeatureName(), null);
 		} else if(newValue instanceof String) {
-			objectToEdit.eSet(featureToEdit, Boolean.parseBoolean((String)newValue));
+			elementToEdit.setValue(stereotype, getFeatureName(), Boolean.parseBoolean((String)newValue));
 		} else if(newValue instanceof Boolean) {
-			objectToEdit.eSet(featureToEdit, (Boolean)newValue);
+			elementToEdit.setValue(stereotype, getFeatureName(), (Boolean)newValue);
 		}
 	}
 
@@ -77,18 +95,24 @@ public class BooleanEMFModelHandler extends EnumerationEMFModelHandler {
 	 */
 	@Override
 	public void completeEditorDescriptor(IPropertyEditorDescriptor descriptor, List<EObject> objectToEdit) {
-		if(objectToEdit.size() < 1) {
+		Element elementToEdit = retrieveElement(objectToEdit);
+		if(elementToEdit == null) {
 			return;
 		}
-		EStructuralFeature featureToEdit = getFeatureByName(objectToEdit.get(0));
-		if(featureToEdit == null) {
+		Stereotype stereotype = retrieveStereotype(elementToEdit);
+
+		if(stereotype == null) {
+			Activator.log.warn("Impossible to find stereotype: " + getStereotypeName() + " for element: " + elementToEdit);
 			return;
 		}
+
+		StructuralFeature featureToEdit = retrieveStructuralFeature(elementToEdit, stereotype);
+
 		// test enumeration, reference, etc.
 		List<String> values = new ArrayList<String>();
 
 		// check if there is an empty string at the beginning. there is one if the lower bound of the feature to edit equal 0 
-		if(featureToEdit.getLowerBound() == 0) {
+		if(featureToEdit.getLower() == 0) {
 			values.add("");
 		}
 
@@ -100,5 +124,4 @@ public class BooleanEMFModelHandler extends EnumerationEMFModelHandler {
 			Activator.log.info("Warning: " + descriptor + "could not be completed.");
 		}
 	}
-
 }

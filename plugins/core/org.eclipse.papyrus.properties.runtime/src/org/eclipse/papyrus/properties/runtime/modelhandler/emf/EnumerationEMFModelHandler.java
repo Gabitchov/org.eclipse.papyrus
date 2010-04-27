@@ -20,14 +20,24 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.properties.runtime.Activator;
-import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IBoundedValuesPropertyEditorDescriptor;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 
 /**
  * Model Handler for enumeration
  */
-public class EnumerationEMFModelHandler implements IEMFModelHandler {
+public class EnumerationEMFModelHandler extends EMFFeatureModelHandler {
+
+	/**
+	 * Creates a new EnumerationEMFModelHandler.
+	 * 
+	 * @param featureName
+	 *        the name of the feature to edit
+	 */
+	public EnumerationEMFModelHandler(String featureName) {
+		super(featureName);
+	}
+
 
 	/** id of this model handler */
 	public static final String ID = "Enumeration";
@@ -35,7 +45,12 @@ public class EnumerationEMFModelHandler implements IEMFModelHandler {
 	/**
 	 * @{inheritDoc
 	 */
-	public Object getValueToEdit(EObject objectToEdit, EStructuralFeature featureToEdit, IPropertyEditorControllerDescriptor descriptor) {
+	@Override
+	public Object getValueToEdit(EObject objectToEdit) {
+		EStructuralFeature featureToEdit = getFeatureByName(objectToEdit);
+		if(featureToEdit == null) {
+			return null;
+		}
 		Object value = objectToEdit.eGet(featureToEdit);
 		return (value instanceof Enumerator) ? ((Enumerator)value).getLiteral() : value;
 	}
@@ -43,7 +58,11 @@ public class EnumerationEMFModelHandler implements IEMFModelHandler {
 	/**
 	 * @{inheritDoc
 	 */
-	public void setValueInModel(EObject objectToEdit, EStructuralFeature featureToEdit, Object newValue) {
+	public void setValueInModel(EObject objectToEdit, Object newValue) {
+		EStructuralFeature featureToEdit = getFeatureByName(objectToEdit);
+		if(featureToEdit == null) {
+			return;
+		}
 		// remove value if result of the editor is empty
 		if(newValue == null || newValue.equals("")) {
 			objectToEdit.eUnset(featureToEdit);
@@ -62,7 +81,15 @@ public class EnumerationEMFModelHandler implements IEMFModelHandler {
 	/**
 	 * @{inheritDoc
 	 */
-	public void completeEditorDescriptor(IPropertyEditorDescriptor descriptor, List<EObject> objectToEdit, EStructuralFeature featureToEdit) {
+	public void completeEditorDescriptor(IPropertyEditorDescriptor descriptor, List<EObject> objectToEdit) {
+		if(objectToEdit.size() < 1) {
+			return;
+		}
+		EStructuralFeature featureToEdit = getFeatureByName(objectToEdit.get(0));
+		if(featureToEdit == null) {
+			return;
+		}
+
 
 		// test enumeration, reference, etc.
 		List<String> values = new ArrayList<String>();

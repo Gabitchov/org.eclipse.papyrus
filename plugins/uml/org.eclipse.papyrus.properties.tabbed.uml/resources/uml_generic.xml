@@ -118,8 +118,71 @@
 				<content>
 					<expandableContainer label="EClass" layout="Grid" columns="1" sameSize="false">
 						<controller id="emftStructuralFeatureController">
-							<feature name="className" handlerID="String"/>
+							<feature stereotypeName="Ecore::EClass" name="className" handlerID="StringStereotype"/>
 							<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Class Name:" labelPosition="16384">
+							</editor>
+						</controller>
+						<controller id="emftStructuralFeatureController">
+							<feature stereotypeName="Ecore::EClass" name="xmlContentKind" handlerID="EnumerationStereotype"/>
+							<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="XML Content kind:" labelPosition="16384">
+							</editor>
+						</controller>
+					</expandableContainer>
+				</content>
+			</view>
+		</section>
+	</sectionSet>
+	<sectionSet name="Section Set for single Property stereotyped EAttribute">
+		<context enablesFor="1">
+			<elementClass name="org.eclipse.uml2.uml.Property"/>
+			<appliedStereotypes>
+				<appliedStereotype qualifiedName="Ecore::EAttribute"/>
+			</appliedStereotypes>
+		</context>
+		<section id="singleProperty_EAttributeSection" tabId="basicTab" adapterId="Semantic">
+			<replacedSections>
+				<replacedSection id="singlePropertySection"/> 
+			</replacedSections>
+			<view id="view_single_Property_EAttribute">	<!-- view for UML Property with stereotype Ecore::EAttribute -->
+				<context enablesFor="1">
+					<elementClass name="org.eclipse.uml2.uml.Property"></elementClass>
+				</context>
+				<content>
+					<expandableContainer label="EAttribute" layout="Grid" columns="1" sameSize="false">
+						<controller id="emftStructuralFeatureController">
+							<feature stereotypeName="Ecore::EAttribute" name="isTransient" handlerID="BooleanStereotype"/>
+							<editor id="org.eclipse.papyrus.properties.runtime.comboPropertyEditor" label="Transient:" labelPosition="16384">
+							</editor>
+						</controller>
+					</expandableContainer>
+				</content>
+			</view>
+		</section>
+	</sectionSet>
+	<sectionSet name="Section Set for single Property stereotyped SysML::Blocks::ConnectorProperty">
+		<context enablesFor="1">
+			<elementClass name="org.eclipse.uml2.uml.Property"/>
+			<appliedStereotypes>
+				<appliedStereotype qualifiedName="SysML::Blocks::ConnectorProperty"/>
+			</appliedStereotypes>
+		</context>
+		<section id="singleProperty_ConnectorProperty" tabId="basicTab" adapterId="Semantic">
+			<replacedSections>
+				<replacedSection id="singlePropertySection"/> 
+			</replacedSections>
+			<view id="view_single_Property_ConnectorProperty">	<!-- view for UML Property with stereotype SysML::Blocks::ConnectorProperty -->
+				<context enablesFor="1">
+					<elementClass name="org.eclipse.uml2.uml.Property"></elementClass>
+				</context>
+				<content>
+					<expandableContainer label="SysML" layout="Grid" columns="1" sameSize="false">
+						<controller id="emftBindingReferenceController">
+							<binding message="{0} - ({1})">
+								<feature name="name"/>
+								<feature name="qualifiedName"/>
+							</binding>
+							<feature stereotypeName="SysML::Blocks::ConnectorProperty" name="connector" handlerID="ReferenceStereotype"/>
+							<editor id="org.eclipse.papyrus.properties.runtime.simpleReferencePropertyEditor" label="Connector:" labelPosition="16384">
 							</editor>
 						</controller>
 					</expandableContainer>

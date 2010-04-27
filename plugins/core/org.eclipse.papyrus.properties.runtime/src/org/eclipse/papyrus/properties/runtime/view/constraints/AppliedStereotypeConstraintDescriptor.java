@@ -53,6 +53,7 @@ public class AppliedStereotypeConstraintDescriptor implements IConstraintDescrip
 					return false;
 				}
 			}
+			return true;
 		}
 		return false;
 	}

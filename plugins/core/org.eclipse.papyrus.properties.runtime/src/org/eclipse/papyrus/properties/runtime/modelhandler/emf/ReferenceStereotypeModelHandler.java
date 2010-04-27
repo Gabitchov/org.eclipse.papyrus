@@ -11,55 +11,43 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.modelhandler.emf;
 
-import java.util.List;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.properties.runtime.Activator;
-import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 
 
 /**
- * Model Handler for References
+ * Model handler for reference properties of stereotypes
  */
-public class ReferenceEMFModelHandler extends EMFFeatureModelHandler {
+public class ReferenceStereotypeModelHandler extends EMFStereotypeFeatureModelHandler {
+
+	/** identifier for this model handler */
+	public final static String ID = "ReferenceStereotype";
 
 	/**
-	 * Creates a new ReferenceEMFModelHandler.
+	 * Creates a new ReferenceStereotypeModelHandler.
 	 * 
+	 * @param stereotypeName
+	 *        the name of the stereotype that holds the property
 	 * @param featureName
-	 *        the name of the feature to edit
+	 *        the name of the feature to modify
 	 */
-	public ReferenceEMFModelHandler(String featureName) {
-		super(featureName);
+	public ReferenceStereotypeModelHandler(String stereotypeName, String featureName) {
+		super(stereotypeName, featureName);
 	}
-
-	/** identifier fot this model handler */
-	public static final String ID = "Reference";
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public void setValueInModel(EObject objectToEdit, Object newValue) {
-		EStructuralFeature featureToEdit = getFeatureByName(objectToEdit);
-		if(featureToEdit == null) {
-			return;
-		}
+	@Override
+	protected void setValueForElement(org.eclipse.uml2.uml.Element elementToEdit, org.eclipse.uml2.uml.Stereotype stereotype, Object newValue) {
+
 		if(newValue instanceof EObject || newValue == null) {
-			objectToEdit.eSet(featureToEdit, newValue);
+			elementToEdit.setValue(stereotype, getFeatureName(), newValue);
 		} else if(newValue instanceof EList<?>) {
-			objectToEdit.eSet(featureToEdit, newValue);
+			elementToEdit.setValue(stereotype, getFeatureName(), newValue);
 		} else {
 			Activator.log.error("impossible to set the new value", null);
 		}
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void completeEditorDescriptor(IPropertyEditorDescriptor descriptor, List<EObject> objectToEdit) {
-
-	}
-
 }

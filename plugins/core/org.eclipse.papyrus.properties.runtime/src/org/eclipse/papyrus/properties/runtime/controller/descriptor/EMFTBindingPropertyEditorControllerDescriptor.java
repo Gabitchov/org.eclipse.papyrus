@@ -11,7 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.controller.descriptor;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandler;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 
 /**
@@ -32,30 +32,6 @@ public class EMFTBindingPropertyEditorControllerDescriptor extends EMFTPropertyE
 	 *        the id of the controller
 	 * @param multiSelection
 	 *        indicates if the controller accepts multi selection
-	 * @param featureToEdit
-	 *        feature to edit
-	 * @param handlerID
-	 *        id of the model handler
-	 * @param editorDescriptor
-	 *        descriptor of the editor
-	 * @param message
-	 *        message to bind
-	 * @param featuresName
-	 *        names of the features to bind
-	 */
-	public EMFTBindingPropertyEditorControllerDescriptor(String controllerID, boolean multiSelection, EStructuralFeature featureToEdit, String handlerID, IPropertyEditorDescriptor editorDescriptor, String message, String[] featuresName) {
-		super(controllerID, multiSelection, featureToEdit, handlerID, editorDescriptor);
-		this.message = message;
-		this.featuresName = featuresName;
-	}
-
-	/**
-	 * Creates a new EMFTBindingPropertyEditorControllerDescriptor.
-	 * 
-	 * @param controllerID
-	 *        the id of the controller
-	 * @param multiSelection
-	 *        indicates if the controller accepts multi selection
 	 * @param featureNameToEdit
 	 *        name of the features to edit
 	 * @param handlerID
@@ -67,8 +43,8 @@ public class EMFTBindingPropertyEditorControllerDescriptor extends EMFTPropertyE
 	 * @param featuresName
 	 *        names of the features to bind
 	 */
-	public EMFTBindingPropertyEditorControllerDescriptor(String controllerID, boolean multiSelection, String featureNameToEdit, String handlerID, IPropertyEditorDescriptor editorDescriptor, String message, String[] featuresName) {
-		super(controllerID, multiSelection, featureNameToEdit, handlerID, editorDescriptor);
+	public EMFTBindingPropertyEditorControllerDescriptor(String controllerID, boolean multiSelection, String featureNameToEdit, IEMFModelHandler handler, IPropertyEditorDescriptor editorDescriptor, String message, String[] featuresName) {
+		super(controllerID, multiSelection, featureNameToEdit, handler, editorDescriptor);
 		this.message = message;
 		this.featuresName = featuresName;
 	}
