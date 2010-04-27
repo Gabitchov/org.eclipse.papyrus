@@ -121,15 +121,7 @@ public class DestructionEventCreateCommand extends EditElementCommand {
 		// Get the model container
 		Object modelContainer = ((CreateElementRequest)getRequest()).getParameters().get(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER);
 
-
-		DestructionEvent destructionEvent = UMLFactory.eINSTANCE.createDestructionEvent();
-		Lifeline lifeline = (Lifeline)getElementToEdit();
-		Package pack = lifeline.getNearestPackage();
-
-		CommandHelper.doCreateDestructionEvent(destructionEvent, lifeline, modelContainer);
-
-		pack.getPackagedElements().add(destructionEvent);
-
+		DestructionEvent destructionEvent = (DestructionEvent)CommandHelper.doCreateDestructionEvent((Lifeline)getElementToEdit(), modelContainer);
 
 		UMLElementTypes.init_DestructionEvent_3022(destructionEvent);
 

@@ -25,10 +25,10 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
-import org.eclipse.uml2.uml.Interaction;
+import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.StateInvariant;
-import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * @generated
@@ -108,18 +108,13 @@ public class StateInvariantCreateCommand extends EditElementCommand {
 		// Get the model container
 		Object modelContainer = ((CreateElementRequest)getRequest()).getParameters().get(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER);
 
-		StateInvariant newElement = UMLFactory.eINSTANCE.createStateInvariant();
+		// Create the stateInvariant
+		StateInvariant stateInvariant = CommandHelper.doCreateStateInvariant((Lifeline)getElementToEdit(), modelContainer);
 
-		// TODO : modelContainer may be an operand. 
-		Interaction owner = (Interaction)modelContainer;
-		owner.getFragments().add(newElement);
+		doConfigure(stateInvariant, monitor, info);
 
-
-
-		doConfigure(newElement, monitor, info);
-
-		((CreateElementRequest)getRequest()).setNewElement(newElement);
-		return CommandResult.newOKCommandResult(newElement);
+		((CreateElementRequest)getRequest()).setNewElement(stateInvariant);
+		return CommandResult.newOKCommandResult(stateInvariant);
 	}
 
 

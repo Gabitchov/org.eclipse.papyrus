@@ -68,6 +68,7 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Signal;
+import org.eclipse.uml2.uml.StateInvariant;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -519,33 +520,61 @@ public class CommandHelper {
 	 *        the container of the occurrenceSpecification that will bound the lifeline and the destructionEvent.
 	 * @return
 	 */
-	public static DestructionEvent doCreateDestructionEvent(DestructionEvent destructionEvent, Lifeline lifeline, Object modelContainer) {
-
-		InteractionFragment interactionFragment = null;
+	public static DestructionEvent doCreateDestructionEvent(Lifeline lifeline, Object modelContainer) {
 
 		// Get the nearest package
 		Package pack = lifeline.getNearestPackage();
 
+		EClass destructionEventEClass = UMLPackage.eINSTANCE.getDestructionEvent();
 		// Add the destructionEvent to the Package
-		pack.getPackagedElements().add(destructionEvent);
+		DestructionEvent destructionEvent = (DestructionEvent)pack.createPackagedElement(LabelHelper.INSTANCE.findName(pack, destructionEventEClass), destructionEventEClass);
 
-		EClass eClass = UMLPackage.eINSTANCE.getOccurrenceSpecification();
 		// Create an occurrenceSpecification
+		Element element = createElement(modelContainer, UMLPackage.eINSTANCE.getOccurrenceSpecification());
 		OccurrenceSpecification os = null;
-		if(modelContainer instanceof InteractionOperand) {
-			InteractionOperand interactionOperand = (InteractionOperand)modelContainer;
-			os = (OccurrenceSpecification)interactionOperand.createFragment(LabelHelper.INSTANCE.findName(interactionOperand, eClass), eClass);
-			interactionFragment = interactionOperand;
-		} else {
-			Interaction interaction = lifeline.getInteraction();
-			os = (OccurrenceSpecification)interaction.createFragment(LabelHelper.INSTANCE.findName(interaction, eClass), eClass);
-			interactionFragment = interaction;
+		if(element instanceof OccurrenceSpecification) {
+			os = (OccurrenceSpecification)element;
+			doConfigureOccurenceSpecification(os, destructionEvent, (InteractionFragment)modelContainer, lifeline);
 		}
-		doConfigureOccurenceSpecification(os, destructionEvent, interactionFragment, lifeline);
-
-
 
 		return destructionEvent;
+	}
+	
+	/**
+	 * Create an StateInvariant
+	 * 
+	 * @param lifeline the lifeline on which the stateInvariant is created (or which is covered by the StateInvariant).
+	 * @param modelContainer the model container
+	 * @return the created stateInvariant or null
+	 */
+	public static StateInvariant doCreateStateInvariant(Lifeline lifeline, Object modelContainer)
+	{
+		StateInvariant stateInvariant = null;
+		
+		Element element = createElement(modelContainer, UMLPackage.eINSTANCE.getStateInvariant());
+		
+		if(element instanceof StateInvariant){
+			stateInvariant = (StateInvariant)element;
+			// Get the covered lifeline
+			stateInvariant.getCovereds().add(lifeline);
+		}	
+		
+		return stateInvariant;
+	}
+	
+	private static Element createElement(Object modelContainer, EClass eClass){
+
+		// Get the enclosing interaction fragment
+		if(modelContainer instanceof InteractionOperand) {
+			InteractionOperand interactionOperand = (InteractionOperand)modelContainer;
+			// Create the ES 
+			return interactionOperand.createFragment(LabelHelper.INSTANCE.findName(interactionOperand, eClass), eClass);
+		} else if(modelContainer instanceof Interaction) {
+			Interaction interaction = (Interaction)modelContainer;
+			// Create the ES 
+			return interaction.createFragment(LabelHelper.INSTANCE.findName(interaction, eClass), eClass);
+		}
+		return null;
 	}
 
 	/**

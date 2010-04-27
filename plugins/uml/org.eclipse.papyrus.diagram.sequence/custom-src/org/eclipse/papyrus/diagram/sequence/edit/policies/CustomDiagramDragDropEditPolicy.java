@@ -28,8 +28,8 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
+import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
@@ -50,6 +50,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.Message5EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message6EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceLinkMappingHelper;
@@ -59,6 +60,7 @@ import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
+import org.eclipse.uml2.uml.StateInvariant;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -90,6 +92,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		elementsVisualId.add(Message7EditPart.VISUAL_ID);
 		elementsVisualId.add(Message6EditPart.VISUAL_ID);
 		elementsVisualId.add(DestructionEventEditPart.VISUAL_ID);
+		elementsVisualId.add(StateInvariantEditPart.VISUAL_ID);
 		return elementsVisualId;
 	}
 
@@ -126,6 +129,8 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 				return dropExecutionSpecification((ExecutionSpecification)semanticLink, nodeVISUALID);
 			case DestructionEventEditPart.VISUAL_ID:
 				return dropDestructionEvent((DestructionEvent)semanticLink, nodeVISUALID);
+			case StateInvariantEditPart.VISUAL_ID:
+				return dropStateInvariant((StateInvariant)semanticLink, nodeVISUALID);
 			default:
 				return UnexecutableCommand.INSTANCE;
 			}
@@ -145,6 +150,20 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			default:
 				return UnexecutableCommand.INSTANCE;
 			}
+		}
+		return UnexecutableCommand.INSTANCE;
+	}
+
+	private Command dropStateInvariant(StateInvariant stateInvariant, int nodeVISUALID) {
+		List<View> existingViews = DiagramEditPartsUtil.findViews(stateInvariant, getViewer());
+		if(existingViews.isEmpty()) {
+
+				// an StateInvariant covereds systematically a unique lifeline
+				Lifeline lifeline = stateInvariant.getCovereds().get(0);
+				// Check that the container view is the view of the lifeline
+				if(lifeline.equals(getHostObject())) {
+					return getCreateCommand(stateInvariant, nodeVISUALID);
+				}
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
