@@ -51,6 +51,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		InteractionOperandPreferencePage.initDefaults(store);
 
 
+		DestructionEventPreferencePage.initDefaults(store);
+
+
 		InteractionPreferencePage.initDefaults(store);
 
 
@@ -64,6 +67,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 
 		ConsiderIgnoreFragmentPreferencePage.initDefaults(store);
+
+
+		DurationObservationPreferencePage.initDefaults(store);
 
 
 		TimeConstraintPreferencePage.initDefaults(store);

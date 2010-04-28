@@ -39,6 +39,8 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseEditPart;
@@ -168,6 +170,16 @@ public class UMLElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IElementType Comment_3009 = getElementType("org.eclipse.papyrus.diagram.sequence.Comment_3009"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType DurationConstraint_3023 = getElementType("org.eclipse.papyrus.diagram.sequence.DurationConstraint_3023"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType DurationObservation_3024 = getElementType("org.eclipse.papyrus.diagram.sequence.DurationObservation_3024"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -379,6 +391,12 @@ public class UMLElementTypes extends ElementInitializers {
 			elements.put(Comment_3009, UMLPackage.eINSTANCE.getComment());
 
 
+			elements.put(DurationConstraint_3023, UMLPackage.eINSTANCE.getDurationConstraint());
+
+
+			elements.put(DurationObservation_3024, UMLPackage.eINSTANCE.getDurationObservation());
+
+
 			elements.put(Message_4003, UMLPackage.eINSTANCE.getMessage());
 
 
@@ -437,6 +455,8 @@ public class UMLElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(DestructionEvent_3022);
 			KNOWN_ELEMENT_TYPES.add(Constraint_3008);
 			KNOWN_ELEMENT_TYPES.add(Comment_3009);
+			KNOWN_ELEMENT_TYPES.add(DurationConstraint_3023);
+			KNOWN_ELEMENT_TYPES.add(DurationObservation_3024);
 			KNOWN_ELEMENT_TYPES.add(Message_4003);
 			KNOWN_ELEMENT_TYPES.add(Message_4004);
 			KNOWN_ELEMENT_TYPES.add(Message_4005);
@@ -491,6 +511,10 @@ public class UMLElementTypes extends ElementInitializers {
 			return Constraint_3008;
 		case CommentEditPart.VISUAL_ID:
 			return Comment_3009;
+		case DurationConstraintInMessageEditPart.VISUAL_ID:
+			return DurationConstraint_3023;
+		case DurationObservationEditPart.VISUAL_ID:
+			return DurationObservation_3024;
 		case MessageEditPart.VISUAL_ID:
 			return Message_4003;
 		case Message2EditPart.VISUAL_ID:

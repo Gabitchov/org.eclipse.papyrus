@@ -37,6 +37,8 @@ import org.eclipse.gef.requests.LocationRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
@@ -109,8 +111,15 @@ public class InteractionEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InteractionItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
+
+
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.sequence.edit.policies.InteractionCanonicalEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new SequenceGraphicalNodeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies

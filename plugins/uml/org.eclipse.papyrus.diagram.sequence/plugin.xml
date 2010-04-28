@@ -267,7 +267,7 @@
       <viewProvider class="org.eclipse.papyrus.diagram.sequence.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLSequenceDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3007,3004,3005,3002,3016,3001,3006,3003,3017,3018,3019,3020,3021,3022,3008,3009"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3007,3004,3005,3002,3016,3001,3006,3003,3017,3018,3019,3020,3021,3022,3008,3009,3023,3024"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4003,4004,4005,4006,4007,4008,4009,4010,4011"/>
       </viewProvider>
    </extension>
@@ -280,7 +280,7 @@
             <method name="getType()" value="PapyrusUMLSequenceDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2001,3007,3004,3005,3002,3016,3001,3006,3003,3017,3018,3019,3020,3021,3022,3008,3009"/>
+            <method name="getType()" value="2001,3007,3004,3005,3002,3016,3001,3006,3003,3017,3018,3019,3020,3021,3022,3008,3009,3023,3024"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="4003,4004,4005,4006,4007,4008,4009,4010,4011"/>
@@ -501,6 +501,25 @@
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.sequence.DurationConstraint_3023"
+               name="%metatype.name.DurationConstraint_3023"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.sequence.DurationConstraint_3021"/>
+            <param name="semanticHint" value="3023"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.sequence.DurationObservation_3024"
+               name="%metatype.name.DurationObservation_3024"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="DurationObservation"
+               edithelper="org.eclipse.papyrus.diagram.sequence.edit.helpers.DurationObservationEditHelper">
+            <param name="semanticHint" value="3024"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.diagram.sequence.Message_4003"
                name="%metatype.name.Message_4003"
@@ -612,6 +631,8 @@
          <elementType ref="org.eclipse.papyrus.diagram.sequence.DestructionEvent_3022"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.Constraint_3008"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.Comment_3009"/>
+         <elementType ref="org.eclipse.papyrus.diagram.sequence.DurationConstraint_3023"/>
+         <elementType ref="org.eclipse.papyrus.diagram.sequence.DurationObservation_3024"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.Message_4003"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.Message_4004"/>
          <elementType ref="org.eclipse.papyrus.diagram.sequence.Message_4005"/>
@@ -913,6 +934,13 @@
 	
 			<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.DurationObservationPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.DurationObservationPreferencePage"
+            name="DurationObservation" />	
+	
+	
+			<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
 			class="org.eclipse.papyrus.diagram.sequence.preferences.TimeConstraintPreferencePage"
             id="org.eclipse.papyrus.diagram.sequence.preferences.TimeConstraintPreferencePage"
             name="TimeConstraint" />	
@@ -1071,6 +1099,16 @@
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CombinedFragment.gif"
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CombinedFragment.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Create a Duration Observation on a Message"
+       id="createDurationObservation12CreationTool"
+       kind="tool"
+       label="Duration Observation"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif">
  	</entry>
 	<entry
        defineOnly="true"

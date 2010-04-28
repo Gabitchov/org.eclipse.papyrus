@@ -43,13 +43,13 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
  * A specific policy to handle :
  * - Message aspects inherited from {@link SequenceGraphicalNodeEditPolicy}.
  * - Time/duration move when a message end or an execution is moved.
- * - Duration constraint creation feedback.
+ * - Duration constraint/observation creation feedback.
  * This edit policy is intended to be installed on parts which represent a lifeline or which are contained within a lifeline part.
  */
 public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeEditPolicy {
 
 	/** the feedback for creating a duration constraint node */
-	private Polyline durationConstraintCreationFeedback = null;
+	private Polyline durationCreationFeedback = null;
 
 	/**
 	 * Get the command to reconnect the source and move associated time/duration constraints/observation.
@@ -145,23 +145,28 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 	public void showSourceFeedback(Request request) {
 		if(request instanceof CreateUnspecifiedTypeRequest) {
 			Object hintedType = ((CreateUnspecifiedTypeRequest)request).getElementTypes().get(0);
+			CreateRequest req = null;
 			if(UMLElementTypes.DurationConstraint_3021.equals(hintedType)) {
-				CreateRequest req = ((CreateUnspecifiedTypeRequest)request).getRequestForType(UMLElementTypes.DurationConstraint_3021);
+				req = ((CreateUnspecifiedTypeRequest)request).getRequestForType(UMLElementTypes.DurationConstraint_3021);
+			} else if(UMLElementTypes.DurationObservation_3024.equals(hintedType)) {
+				req = ((CreateUnspecifiedTypeRequest)request).getRequestForType(UMLElementTypes.DurationObservation_3024);
+			}
+			if(req != null) {
 				Object initLocation = req.getExtendedData().get(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION);
 				if(initLocation instanceof Point) {
 					Point startPoint = ((Point)initLocation).getCopy();
 					Point targetPoint = ((CreateUnspecifiedTypeRequest)request).getLocation().getCopy();
 					getFeedbackLayer().translateToRelative(startPoint);
 					getFeedbackLayer().translateToRelative(targetPoint);
-					if(durationConstraintCreationFeedback == null) {
-						durationConstraintCreationFeedback = new Polyline();
-						durationConstraintCreationFeedback.setLineWidth(1);
-						durationConstraintCreationFeedback.setLineStyle(Graphics.LINE_DASHDOT);
-						durationConstraintCreationFeedback.setForegroundColor(((IGraphicalEditPart)getHost()).getFigure().getLocalForegroundColor());
-						addFeedback(durationConstraintCreationFeedback);
+					if(durationCreationFeedback == null) {
+						durationCreationFeedback = new Polyline();
+						durationCreationFeedback.setLineWidth(1);
+						durationCreationFeedback.setLineStyle(Graphics.LINE_DASHDOT);
+						durationCreationFeedback.setForegroundColor(((IGraphicalEditPart)getHost()).getFigure().getLocalForegroundColor());
+						addFeedback(durationCreationFeedback);
 					}
-					durationConstraintCreationFeedback.setStart(startPoint);
-					durationConstraintCreationFeedback.setEnd(targetPoint);
+					durationCreationFeedback.setStart(startPoint);
+					durationCreationFeedback.setEnd(targetPoint);
 					return;
 				}
 			}
@@ -179,8 +184,8 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 	@Override
 	public void eraseSourceFeedback(Request request) {
 		super.eraseSourceFeedback(request);
-		if(durationConstraintCreationFeedback != null)
-			removeFeedback(durationConstraintCreationFeedback);
-		durationConstraintCreationFeedback = null;
+		if(durationCreationFeedback != null)
+			removeFeedback(durationCreationFeedback);
+		durationCreationFeedback = null;
 	}
 }

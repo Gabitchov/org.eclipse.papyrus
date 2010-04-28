@@ -28,10 +28,9 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.AccessibleEditPart;
+import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
-import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gef.requests.DirectEditRequest;
 import org.eclipse.gef.tools.DirectEditManager;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
@@ -41,8 +40,9 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableLabelEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ListItemComponentEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
@@ -60,6 +60,9 @@ import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditMan
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.DurationConstraintInMessageItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.MoveableNonResizableLabelEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.UMLTextNonResizableEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
@@ -81,14 +84,14 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * @generated
+ * @generated NOT extend LabelEditPart to make DurationConstraint as message label
  */
-public class DurationObservationInLostEditPart extends LabelEditPart implements ITextAwareEditPart {
+public class DurationConstraintInMessageEditPart extends LabelEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 6013;
+	public static final int VISUAL_ID = 3023;
 
 	/**
 	 * @generated
@@ -112,26 +115,44 @@ public class DurationObservationInLostEditPart extends LabelEditPart implements 
 
 
 
-	/** direct edition mode (default, undefined, registered editor, etc.) */
+	/**
+	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * 
+	 * @generated
+	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
-	/** configuration from a registered edit dialog */
+	/**
+	 * configuration from a registered edit dialog
+	 * 
+	 * @generated
+	 */
 	protected IDirectEditorConfiguration configuration;
 
 
-
 	/**
-	 * @generated
+	 * @generated NOT make duration constraint label under the name
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationInLostEditPart.VISUAL_ID), new Point(1, -13));
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart.VISUAL_ID), new Point(1, 13));
 	}
 
 	/**
 	 * @generated
 	 */
-	public DurationObservationInLostEditPart(View view) {
+	public DurationConstraintInMessageEditPart(View view) {
 		super(view);
+	}
+
+	/**
+	 * @generated NOT
+	 */
+	public DragTracker getDragTracker(Request request) {
+		return super.getDragTracker(request);
+		//		if(request instanceof SelectionRequest && ((SelectionRequest)request).getLastButtonPressed() == 3) {
+		//			return null;
+		//		}
+		//		return new DragEditPartsTrackerEx(this);
 	}
 
 	/**
@@ -139,20 +160,16 @@ public class DurationObservationInLostEditPart extends LabelEditPart implements 
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DurationConstraintInMessageItemSemanticEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new UMLTextNonResizableEditPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ListItemComponentEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new NonResizableLabelEditPolicy() {
-
-			protected List createSelectionHandles() {
-				MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
-				mh.setBorder(null);
-				return Collections.singletonList(mh);
-			}
-		});
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new MoveableNonResizableLabelEditPolicy());
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT link to the middle of the message
 	 */
 	public int getKeyPoint() {
 		return ConnectionLocator.MIDDLE;
@@ -347,7 +364,7 @@ public class DurationObservationInLostEditPart extends LabelEditPart implements 
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Message_4008, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationInLostEditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.DurationConstraint_3023, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -650,6 +667,8 @@ public class DurationObservationInLostEditPart extends LabelEditPart implements 
 
 	/**
 	 * Updates the preference configuration
+	 * 
+	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
@@ -665,6 +684,7 @@ public class DurationObservationInLostEditPart extends LabelEditPart implements 
 	 * 
 	 * @param theRequest
 	 *        the direct edit request that starts the direct edit system
+	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
@@ -688,6 +708,24 @@ public class DurationObservationInLostEditPart extends LabelEditPart implements 
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+
+
+
+	/**
+	 * @generated
+	 */
+	protected void addNotationalListeners() {
+		super.addNotationalListeners();
+		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeNotationalListeners() {
+		super.removeNotationalListeners();
+		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
 
 
@@ -721,10 +759,6 @@ public class DurationObservationInLostEditPart extends LabelEditPart implements 
 				}
 			}
 		}
-
-
-
-
 		super.handleNotificationEvent(event);
 	}
 

@@ -170,6 +170,12 @@ public class SequenceUtil {
 			if(distance < smallerDistance) {
 				smallerDistance = distance;
 				nearestObject = entry;
+			} else if(distance == smallerDistance) {
+				// two events at the exact same position. Should not be a coincidence
+				// take the message occurrence for being able to create a duration constraint on a message
+				if(entry.getKey() instanceof MessageOccurrenceSpecification) {
+					nearestObject = entry;
+				}
 			}
 		}
 

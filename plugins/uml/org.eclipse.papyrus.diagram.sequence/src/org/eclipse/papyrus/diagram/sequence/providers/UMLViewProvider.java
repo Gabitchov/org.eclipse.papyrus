@@ -70,21 +70,9 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInAsyncEditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInCreateEditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInDeleteEditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInFoundEditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInLostEditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInReplyEditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInSyncEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintLabelEditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationInAsyncEditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationInCreateEditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationInDeleteEditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationInFoundEditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationInLostEditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationInReplyEditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationInSyncEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionNameEditPart;
@@ -219,7 +207,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case DestructionEventEditPart.VISUAL_ID:
 				case ConstraintEditPart.VISUAL_ID:
 				case CommentEditPart.VISUAL_ID:
+				case DurationObservationEditPart.VISUAL_ID:
 				case CombinedFragment2EditPart.VISUAL_ID:
+				case DurationConstraintInMessageEditPart.VISUAL_ID:
 					if(domainElement == null || visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
 						return false; // visual id in semantic hint should match visual id for domain element
 					}
@@ -229,7 +219,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 			}
 		}
-		return InteractionEditPart.VISUAL_ID == visualID || ConsiderIgnoreFragmentEditPart.VISUAL_ID == visualID || CombinedFragmentEditPart.VISUAL_ID == visualID || InteractionOperandEditPart.VISUAL_ID == visualID || InteractionUseEditPart.VISUAL_ID == visualID || ContinuationEditPart.VISUAL_ID == visualID || LifelineEditPart.VISUAL_ID == visualID || ActionExecutionSpecificationEditPart.VISUAL_ID == visualID || BehaviorExecutionSpecificationEditPart.VISUAL_ID == visualID || StateInvariantEditPart.VISUAL_ID == visualID || CombinedFragment2EditPart.VISUAL_ID == visualID || TimeConstraintEditPart.VISUAL_ID == visualID || TimeObservationEditPart.VISUAL_ID == visualID || DurationConstraintEditPart.VISUAL_ID == visualID || DestructionEventEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID;
+		return InteractionEditPart.VISUAL_ID == visualID || ConsiderIgnoreFragmentEditPart.VISUAL_ID == visualID || CombinedFragmentEditPart.VISUAL_ID == visualID || InteractionOperandEditPart.VISUAL_ID == visualID || InteractionUseEditPart.VISUAL_ID == visualID || ContinuationEditPart.VISUAL_ID == visualID || LifelineEditPart.VISUAL_ID == visualID || ActionExecutionSpecificationEditPart.VISUAL_ID == visualID || BehaviorExecutionSpecificationEditPart.VISUAL_ID == visualID || StateInvariantEditPart.VISUAL_ID == visualID || CombinedFragment2EditPart.VISUAL_ID == visualID || TimeConstraintEditPart.VISUAL_ID == visualID || TimeObservationEditPart.VISUAL_ID == visualID || DurationConstraintEditPart.VISUAL_ID == visualID || DestructionEventEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID || DurationConstraintInMessageEditPart.VISUAL_ID == visualID || DurationObservationEditPart.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -310,6 +300,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createConstraint_3008(domainElement, containerView, index, persisted, preferencesHint);
 		case CommentEditPart.VISUAL_ID:
 			return createComment_3009(domainElement, containerView, index, persisted, preferencesHint);
+		case DurationConstraintInMessageEditPart.VISUAL_ID:
+			return createDurationConstraint_3023(domainElement, containerView, index, persisted, preferencesHint);
+		case DurationObservationEditPart.VISUAL_ID:
+			return createDurationObservation_3024(domainElement, containerView, index, persisted, preferencesHint);
 		}
 		// can't happen, provided #provides(CreateNodeViewOperation) is correct
 		return null;
@@ -709,6 +703,40 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	}
 
 	/**
+	 * @generated NOT custom layout for duration constraint as label of message
+	 */
+	public Node createDurationConstraint_3023(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		node.setType(UMLVisualIDRegistry.getType(DurationConstraintInMessageEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// custom layout for duration constraint as label of message
+		Location location = (Location)node.getLayoutConstraint();
+		location.setX(1);
+		location.setY(13);
+
+		return node;
+	}
+
+	/**
+	 * @generated NOT custom layout for duration observation as label of message
+	 */
+	public Node createDurationObservation_3024(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Node node = NotationFactory.eINSTANCE.createNode();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		node.setType(UMLVisualIDRegistry.getType(DurationObservationEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// custom layout for duration observation as label of message
+		Location location = (Location)node.getLayoutConstraint();
+		location.setX(1);
+		location.setY(13);
+
+		return node;
+	}
+
+	/**
 	 * @generated NOT
 	 */
 	public Node createConsiderIgnoreFragment_3007(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
@@ -764,16 +792,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6001 = (Location)label6001.getLayoutConstraint();
 		location6001.setX(1);
 		location6001.setY(-13);
-		Node label6009 = createLabel(edge, UMLVisualIDRegistry.getType(DurationObservationInSyncEditPart.VISUAL_ID));
-		label6009.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6009 = (Location)label6009.getLayoutConstraint();
-		location6009.setX(1);
-		location6009.setY(-13);
-		Node label6015 = createLabel(edge, UMLVisualIDRegistry.getType(DurationConstraintInSyncEditPart.VISUAL_ID));
-		label6015.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6015 = (Location)label6015.getLayoutConstraint();
-		location6015.setX(1);
-		location6015.setY(-13);
 		return edge;
 	}
 
@@ -807,16 +825,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6002 = (Location)label6002.getLayoutConstraint();
 		location6002.setX(1);
 		location6002.setY(-13);
-		Node label6008 = createLabel(edge, UMLVisualIDRegistry.getType(DurationObservationInAsyncEditPart.VISUAL_ID));
-		label6008.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6008 = (Location)label6008.getLayoutConstraint();
-		location6008.setX(1);
-		location6008.setY(-13);
-		Node label6016 = createLabel(edge, UMLVisualIDRegistry.getType(DurationConstraintInAsyncEditPart.VISUAL_ID));
-		label6016.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6016 = (Location)label6016.getLayoutConstraint();
-		location6016.setX(1);
-		location6016.setY(-13);
 		return edge;
 	}
 
@@ -850,16 +858,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6003 = (Location)label6003.getLayoutConstraint();
 		location6003.setX(1);
 		location6003.setY(-13);
-		Node label6010 = createLabel(edge, UMLVisualIDRegistry.getType(DurationObservationInReplyEditPart.VISUAL_ID));
-		label6010.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6010 = (Location)label6010.getLayoutConstraint();
-		location6010.setX(1);
-		location6010.setY(-13);
-		Node label6017 = createLabel(edge, UMLVisualIDRegistry.getType(DurationConstraintInReplyEditPart.VISUAL_ID));
-		label6017.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6017 = (Location)label6017.getLayoutConstraint();
-		location6017.setX(1);
-		location6017.setY(-13);
 		return edge;
 	}
 
@@ -893,16 +891,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6004 = (Location)label6004.getLayoutConstraint();
 		location6004.setX(1);
 		location6004.setY(-13);
-		Node label6011 = createLabel(edge, UMLVisualIDRegistry.getType(DurationObservationInCreateEditPart.VISUAL_ID));
-		label6011.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6011 = (Location)label6011.getLayoutConstraint();
-		location6011.setX(1);
-		location6011.setY(-13);
-		Node label6018 = createLabel(edge, UMLVisualIDRegistry.getType(DurationConstraintInCreateEditPart.VISUAL_ID));
-		label6018.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6018 = (Location)label6018.getLayoutConstraint();
-		location6018.setX(1);
-		location6018.setY(-13);
 		return edge;
 	}
 
@@ -936,16 +924,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6005 = (Location)label6005.getLayoutConstraint();
 		location6005.setX(1);
 		location6005.setY(-13);
-		Node label6012 = createLabel(edge, UMLVisualIDRegistry.getType(DurationObservationInDeleteEditPart.VISUAL_ID));
-		label6012.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6012 = (Location)label6012.getLayoutConstraint();
-		location6012.setX(1);
-		location6012.setY(-13);
-		Node label6019 = createLabel(edge, UMLVisualIDRegistry.getType(DurationConstraintInDeleteEditPart.VISUAL_ID));
-		label6019.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6019 = (Location)label6019.getLayoutConstraint();
-		location6019.setX(1);
-		location6019.setY(-13);
 		return edge;
 	}
 
@@ -979,16 +957,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6006 = (Location)label6006.getLayoutConstraint();
 		location6006.setX(1);
 		location6006.setY(-13);
-		Node label6013 = createLabel(edge, UMLVisualIDRegistry.getType(DurationObservationInLostEditPart.VISUAL_ID));
-		label6013.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6013 = (Location)label6013.getLayoutConstraint();
-		location6013.setX(1);
-		location6013.setY(-13);
-		Node label6020 = createLabel(edge, UMLVisualIDRegistry.getType(DurationConstraintInLostEditPart.VISUAL_ID));
-		label6020.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6020 = (Location)label6020.getLayoutConstraint();
-		location6020.setX(1);
-		location6020.setY(-13);
 		return edge;
 	}
 
@@ -1022,16 +990,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6007 = (Location)label6007.getLayoutConstraint();
 		location6007.setX(1);
 		location6007.setY(-13);
-		Node label6014 = createLabel(edge, UMLVisualIDRegistry.getType(DurationObservationInFoundEditPart.VISUAL_ID));
-		label6014.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6014 = (Location)label6014.getLayoutConstraint();
-		location6014.setX(1);
-		location6014.setY(-13);
-		Node label6021 = createLabel(edge, UMLVisualIDRegistry.getType(DurationConstraintInFoundEditPart.VISUAL_ID));
-		label6021.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		Location location6021 = (Location)label6021.getLayoutConstraint();
-		location6021.setX(1);
-		location6021.setY(-13);
 		return edge;
 	}
 
@@ -1118,6 +1076,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		ViewUtil.insertChildView(owner, rv, ViewUtil.APPEND, true);
 		return rv;
 	}
+
 
 	/**
 	 * @generated

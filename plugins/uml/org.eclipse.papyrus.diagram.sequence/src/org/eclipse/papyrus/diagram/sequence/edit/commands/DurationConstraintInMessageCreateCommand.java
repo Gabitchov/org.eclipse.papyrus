@@ -25,18 +25,15 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.Namespace;
-import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * @generated
  */
-public class DurationConstraintCreateCommand extends EditElementCommand {
+public class DurationConstraintInMessageCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -51,7 +48,7 @@ public class DurationConstraintCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public DurationConstraintCreateCommand(CreateElementRequest req, EObject eObject) {
+	public DurationConstraintInMessageCreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -60,14 +57,14 @@ public class DurationConstraintCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static DurationConstraintCreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new DurationConstraintCreateCommand(req, eObject);
+	public static DurationConstraintInMessageCreateCommand create(CreateElementRequest req, EObject eObject) {
+		return new DurationConstraintInMessageCreateCommand(req, eObject);
 	}
 
 	/**
 	 * @generated
 	 */
-	public DurationConstraintCreateCommand(CreateElementRequest req) {
+	public DurationConstraintInMessageCreateCommand(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 
@@ -90,38 +87,15 @@ public class DurationConstraintCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated NOT enable only if there is occurrence specifications
+	 * @generated NOT disable, use {@link DurationConstraintCreateCommand} instead
 	 */
 	public boolean canExecute() {
-		// check first occurrence specification
-		if(!getRequest().getParameters().containsKey(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION)) {
-			return true; // duration creation is in progress; source is not defined yet
-		}
-		Object occurrence = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
-		if(!(occurrence instanceof OccurrenceSpecification)) {
-			return false;
-		}
-		// check second occurrence specification
-		if(!getRequest().getParameters().containsKey(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2)) {
-			return true; // duration creation is in progress; target is not defined yet
-		}
-		Object occurrence2 = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2);
-		if(!(occurrence2 instanceof OccurrenceSpecification)) {
-			return false;
-		}
-		// disable duration constraint on a same event
-		if(occurrence.equals(occurrence2)) {
-			return false;
-		}
-		// enable duration constraint only on a same lifeline or on message
-		boolean enabled = DurationConstraintHelper.coversSameLifeline((OccurrenceSpecification)occurrence, (OccurrenceSpecification)occurrence2);
-		// handle creation on message
-		enabled |= DurationConstraintHelper.endsOfSameMessage((OccurrenceSpecification)occurrence, (OccurrenceSpecification)occurrence2);
-		return enabled;
+		// disable, use {@link DurationConstraintCreateCommand} instead
+		return false;
 	}
 
 	/**
-	 * @generated NOT get the Lifeline parent as owner, assign the occurrence specifications
+	 * @generated
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
@@ -129,22 +103,11 @@ public class DurationConstraintCreateCommand extends EditElementCommand {
 
 		DurationConstraint newElement = UMLFactory.eINSTANCE.createDurationConstraint();
 
-		// get the Lifeline parent as owner
-		Namespace owner = (Namespace)getElementToEdit().eContainer();
+		Namespace owner = (Namespace)getElementToEdit();
 		owner.getOwnedRules().add(newElement);
 
 
-		UMLElementTypes.init_DurationConstraint_3021(newElement);
-
-		// assign the occurrence specification
-		Object occurrence1 = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
-		Object occurrence2 = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2);
-		if(occurrence1 instanceof OccurrenceSpecification) {
-			newElement.getConstrainedElements().add((OccurrenceSpecification)occurrence1);
-			if(occurrence2 instanceof OccurrenceSpecification) {
-				newElement.getConstrainedElements().add((OccurrenceSpecification)occurrence2);
-			}
-		}
+		UMLElementTypes.init_DurationConstraint_3023(newElement);
 
 		doConfigure(newElement, monitor, info);
 

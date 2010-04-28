@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
@@ -34,6 +35,8 @@ import org.eclipse.papyrus.diagram.sequence.edit.commands.CommentAnnotatedElemen
 import org.eclipse.papyrus.diagram.sequence.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.ConstraintConstrainedElementReorientCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.DurationConstraintInMessageCreateCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.DurationObservationCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message2CreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message2ReorientCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message3CreateCommand;
@@ -54,6 +57,8 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
@@ -77,6 +82,19 @@ public class InteractionItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 	 */
 	public InteractionItemSemanticEditPolicy() {
 		super(UMLElementTypes.Interaction_2001);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getCreateCommand(CreateElementRequest req) {
+		if(UMLElementTypes.DurationConstraint_3023 == req.getElementType()) {
+			return getGEFWrapper(new DurationConstraintInMessageCreateCommand(req));
+		}
+		if(UMLElementTypes.DurationObservation_3024 == req.getElementType()) {
+			return getGEFWrapper(new DurationObservationCreateCommand(req));
+		}
+		return super.getCreateCommand(req);
 	}
 
 	/**
@@ -190,7 +208,7 @@ public class InteractionItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 		}
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
-			// there are indirectly referenced children, need extra commands: false
+			// there are indirectly referenced children, need extra commands: true
 			addDestroyChildNodesCommand(cmd);
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
@@ -209,6 +227,16 @@ public class InteractionItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 		for(Iterator nit = view.getChildren().iterator(); nit.hasNext();) {
 			Node node = (Node)nit.next();
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
+			case DurationConstraintInMessageEditPart.VISUAL_ID:
+				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: true
+				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
+				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
+				break;
+			case DurationObservationEditPart.VISUAL_ID:
+				cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), node.getElement(), false))); // directlyOwned: false
+				// don't need explicit deletion of node as parent's view deletion would clean child views as well 
+				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
+				break;
 			case InteractionInteractionCompartmentEditPart.VISUAL_ID:
 				for(Iterator cit = node.getChildren().iterator(); cit.hasNext();) {
 					Node cnode = (Node)cit.next();

@@ -33,13 +33,17 @@ import org.eclipse.gef.tools.TargetingTool;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.papyrus.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.diagram.common.service.AspectUnspecifiedTypeCreationTool;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 
 
 public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
@@ -402,6 +406,40 @@ public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 				return CURSOR_TARGET_MENU;
 		}
 		return super.calculateCursor();
+	}
+
+	/**
+	 * Get the command to execute
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.tools.CreationTool#getCommand()
+	 * 
+	 * @return the command
+	 */
+	@Override
+	protected Command getCommand() {
+		if(!antiScroll) {
+			EditPart targetPart = getTargetEditPart();
+			if(targetPart == null) {
+				return null;
+			}
+			Request req = getTargetRequest();
+			LifelineEditPart lifelinePart = SequenceUtil.getParentLifelinePart(targetPart);
+			if(lifelinePart instanceof LifelineEditPart) {
+				Object occ1 = req.getExtendedData().get(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
+				Object occ2 = req.getExtendedData().get(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2);
+				if(occ1 instanceof OccurrenceSpecification && occ2 instanceof OccurrenceSpecification) {
+					if(!occ1.equals(occ2) && DurationConstraintHelper.endsOfSameMessage((OccurrenceSpecification)occ1, (OccurrenceSpecification)occ2)) {
+						// call request on the link
+						EditPart part = SequenceUtil.getLinkedEditPart(lifelinePart, (OccurrenceSpecification)occ2);
+						if(part != null) {
+							return part.getCommand(req);
+						}
+					}
+				}
+			}
+			return targetPart.getCommand(req);
+		}
+		return null;
 	}
 
 }

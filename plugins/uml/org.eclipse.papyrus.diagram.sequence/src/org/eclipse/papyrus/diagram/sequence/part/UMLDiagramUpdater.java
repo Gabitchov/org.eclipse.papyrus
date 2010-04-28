@@ -40,6 +40,8 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionInteractionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPart;
@@ -90,6 +92,8 @@ public class UMLDiagramUpdater {
 	 */
 	public static List getSemanticChildren(View view) {
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
+		case InteractionEditPart.VISUAL_ID:
+			return getInteraction_2001SemanticChildren(view);
 		case InteractionOperandEditPart.VISUAL_ID:
 			return getInteractionOperand_3005SemanticChildren(view);
 		case LifelineEditPart.VISUAL_ID:
@@ -102,6 +106,19 @@ public class UMLDiagramUpdater {
 			return getPackage_1000SemanticChildren(view);
 		}
 		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated NOT remove fake children for messages (DurationConstraintInMessageEditPart/DurationObservationEditPart)
+	 */
+	public static List getInteraction_2001SemanticChildren(View view) {
+		if(!view.isSetElement()) {
+			return Collections.EMPTY_LIST;
+		}
+		Interaction modelElement = (Interaction)view.getElement();
+		List result = new LinkedList();
+		// remove fake children for messages (DurationConstraintInMessageEditPart/DurationObservationEditPart)
+		return result;
 	}
 
 	/**
@@ -371,6 +388,10 @@ public class UMLDiagramUpdater {
 			return getConstraint_3008ContainedLinks(view);
 		case CommentEditPart.VISUAL_ID:
 			return getComment_3009ContainedLinks(view);
+		case DurationConstraintInMessageEditPart.VISUAL_ID:
+			return getDurationConstraint_3023ContainedLinks(view);
+		case DurationObservationEditPart.VISUAL_ID:
+			return getDurationObservation_3024ContainedLinks(view);
 		case MessageEditPart.VISUAL_ID:
 			return getMessage_4003ContainedLinks(view);
 		case Message2EditPart.VISUAL_ID:
@@ -428,6 +449,10 @@ public class UMLDiagramUpdater {
 			return getConstraint_3008IncomingLinks(view);
 		case CommentEditPart.VISUAL_ID:
 			return getComment_3009IncomingLinks(view);
+		case DurationConstraintInMessageEditPart.VISUAL_ID:
+			return getDurationConstraint_3023IncomingLinks(view);
+		case DurationObservationEditPart.VISUAL_ID:
+			return getDurationObservation_3024IncomingLinks(view);
 		case MessageEditPart.VISUAL_ID:
 			return getMessage_4003IncomingLinks(view);
 		case Message2EditPart.VISUAL_ID:
@@ -485,6 +510,10 @@ public class UMLDiagramUpdater {
 			return getConstraint_3008OutgoingLinks(view);
 		case CommentEditPart.VISUAL_ID:
 			return getComment_3009OutgoingLinks(view);
+		case DurationConstraintInMessageEditPart.VISUAL_ID:
+			return getDurationConstraint_3023OutgoingLinks(view);
+		case DurationObservationEditPart.VISUAL_ID:
+			return getDurationObservation_3024OutgoingLinks(view);
 		case MessageEditPart.VISUAL_ID:
 			return getMessage_4003OutgoingLinks(view);
 		case Message2EditPart.VISUAL_ID:
@@ -641,6 +670,23 @@ public class UMLDiagramUpdater {
 		List result = new LinkedList();
 		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement));
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getDurationConstraint_3023ContainedLinks(View view) {
+		DurationConstraint modelElement = (DurationConstraint)view.getElement();
+		List result = new LinkedList();
+		result.addAll(getOutgoingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getDurationObservation_3024ContainedLinks(View view) {
+		return Collections.EMPTY_LIST;
 	}
 
 	/**
@@ -1001,6 +1047,20 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Constraint_ConstrainedElement_4011(modelElement, crossReferences));
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getDurationConstraint_3023IncomingLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getDurationObservation_3024IncomingLinks(View view) {
+		return Collections.EMPTY_LIST;
 	}
 
 	/**
@@ -1413,6 +1473,20 @@ public class UMLDiagramUpdater {
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_4009(modelElement));
 		result.addAll(getOutgoingFeatureModelFacetLinks_Comment_AnnotatedElement_4010(modelElement));
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getDurationConstraint_3023OutgoingLinks(View view) {
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List getDurationObservation_3024OutgoingLinks(View view) {
+		return Collections.EMPTY_LIST;
 	}
 
 	/**

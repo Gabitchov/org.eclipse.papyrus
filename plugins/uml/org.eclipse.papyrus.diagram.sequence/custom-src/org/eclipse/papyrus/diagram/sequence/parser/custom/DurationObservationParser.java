@@ -20,15 +20,12 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.papyrus.diagram.common.helper.DurationObservationHelper;
 import org.eclipse.papyrus.diagram.sequence.parsers.MessageFormatParser;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Message;
-import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.UMLPackage;
 
 
@@ -81,21 +78,11 @@ public class DurationObservationParser extends MessageFormatParser implements IS
 	 * {@inheritDoc}
 	 */
 	public String getPrintString(IAdaptable element, int flags) {
-		StringBuffer result = new StringBuffer();
 		Object adapter = element.getAdapter(EObject.class);
-		if(adapter instanceof Message) {
-			Message message = (Message)adapter;
-			MessageEnd event1 = message.getSendEvent();
-			MessageEnd event2 = message.getReceiveEvent();
-			List<DurationObservation> observations = DurationObservationHelper.getDurationObservationsBetween(event1, event2);
-			for(DurationObservation observation : observations) {
-				if(result.length() > 0) {
-					result.append(LINE_BREAK);
-				}
-				result.append(DurationObservationHelper.getLabelString(observation));
-			}
+		if(adapter instanceof DurationObservation) {
+			return DurationObservationHelper.getLabelString((DurationObservation)adapter);
 		}
-		return result.toString();
+		return "";
 	}
 
 	/**
@@ -112,19 +99,9 @@ public class DurationObservationParser extends MessageFormatParser implements IS
 	@SuppressWarnings("unchecked")
 	public List getSemanticElementsBeingParsed(EObject element) {
 		List<Element> semanticElementsBeingParsed = new ArrayList<Element>();
-		if(element instanceof Message) {
-			Message message = (Message)element;
-			semanticElementsBeingParsed.add(message);
-			MessageEnd event1 = message.getSendEvent();
-			semanticElementsBeingParsed.add(event1);
-			MessageEnd event2 = message.getReceiveEvent();
-			semanticElementsBeingParsed.add(event2);
-			List<DurationObservation> observations = DurationObservationHelper.getDurationObservationsBetween(event1, event2);
-			for(DurationObservation observation : observations) {
-				semanticElementsBeingParsed.add(observation);
-				// owner for listening DurationObservation deletion
-				semanticElementsBeingParsed.add(observation.getOwner());
-			}
+		if(element instanceof DurationObservation) {
+			DurationObservation observation = (DurationObservation)element;
+			semanticElementsBeingParsed.add(observation);
 		}
 		return semanticElementsBeingParsed;
 	}
@@ -137,10 +114,6 @@ public class DurationObservationParser extends MessageFormatParser implements IS
 	 * @return true if is valid, false otherwise
 	 */
 	private boolean isValidFeature(EStructuralFeature feature) {
-		// detect DurationObservation deletion
-		if(feature instanceof EReference && ((EReference)feature).isContainment()) {
-			return true;
-		}
 		return UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature) || UMLPackage.eINSTANCE.getMessage_SendEvent().equals(feature) || UMLPackage.eINSTANCE.getMessage_ReceiveEvent().equals(feature) || UMLPackage.eINSTANCE.getDurationObservation_Event().equals(feature);
 	}
 

@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
@@ -26,6 +27,8 @@ import org.eclipse.papyrus.diagram.sequence.edit.commands.CommentAnnotatedElemen
 import org.eclipse.papyrus.diagram.sequence.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.ConstraintConstrainedElementReorientCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.DurationConstraintCreateCommand;
+import org.eclipse.papyrus.diagram.sequence.edit.commands.DurationObservationCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message2CreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message2ReorientCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message3CreateCommand;
@@ -63,6 +66,21 @@ public class Message5ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	 */
 	public Message5ItemSemanticEditPolicy() {
 		super(UMLElementTypes.Message_4007);
+	}
+
+	/**
+	 * Added to add duration constraint
+	 * 
+	 * @generated NOT add Duration Constraint
+	 */
+	protected Command getCreateCommand(CreateElementRequest req) {
+		if(UMLElementTypes.DurationConstraint_3023 == req.getElementType()) {
+			return getGEFWrapper(new DurationConstraintCreateCommand(req));
+		}
+		if(UMLElementTypes.DurationObservation_3024 == req.getElementType()) {
+			return getGEFWrapper(new DurationObservationCreateCommand(req));
+		}
+		return null;
 	}
 
 	/**

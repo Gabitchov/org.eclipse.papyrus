@@ -22,7 +22,8 @@ import java.util.Set;
 
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.sequence.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
@@ -44,7 +45,7 @@ public class InteractionCanonicalEditPolicy extends CanonicalEditPolicy {
 	protected List getSemanticChildrenList() {
 		View viewObject = (View)getHost().getModel();
 		List result = new LinkedList();
-		for(Iterator it = UMLDiagramUpdater.getInteractionInteractionCompartment_7001SemanticChildren(viewObject).iterator(); it.hasNext();) {
+		for(Iterator it = UMLDiagramUpdater.getInteraction_2001SemanticChildren(viewObject).iterator(); it.hasNext();) {
 			result.add(((UMLNodeDescriptor)it.next()).getModelElement());
 		}
 		return result;
@@ -56,7 +57,8 @@ public class InteractionCanonicalEditPolicy extends CanonicalEditPolicy {
 	protected boolean isOrphaned(Collection semanticChildren, final View view) {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
 		switch(visualID) {
-		case LifelineEditPart.VISUAL_ID:
+		case DurationConstraintInMessageEditPart.VISUAL_ID:
+		case DurationObservationEditPart.VISUAL_ID:
 			if(!semanticChildren.contains(view.getElement())) {
 				return true;
 			}
@@ -77,7 +79,8 @@ public class InteractionCanonicalEditPolicy extends CanonicalEditPolicy {
 	protected Set getFeaturesToSynchronize() {
 		if(myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getInteraction_Lifeline());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getNamespace_OwnedRule());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getPackage_PackagedElement());
 		}
 		return myFeaturesToSynchronize;
 	}

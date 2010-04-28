@@ -729,7 +729,7 @@
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         x="1"
-        y="-13"/>
+        y="13"/>
   </labels>
   <labels
       name="TimeMarkElementLabel"
@@ -751,6 +751,6 @@
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         x="1"
-        y="-13"/>
+        y="13"/>
   </labels>
 </gmfgraph:Canvas>

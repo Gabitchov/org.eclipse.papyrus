@@ -552,6 +552,83 @@
               href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CornerBentNode"/>
         </ownedChild>
       </children>
+      <children>
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Namespace/ownedRule"/>
+        <ownedChild>
+          <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DurationConstraint"/>
+          <domainInitializer
+              xsi:type="gmfmap:FeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfmap:ReferenceNewElementSpec">
+              <feature
+                  xsi:type="ecore:EReference"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Constraint/specification"/>
+              <newElementInitializers>
+                <initializers
+                    xsi:type="gmfmap:FeatureValueSpec">
+                  <feature
+                      xsi:type="ecore:EAttribute"
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+                  <value
+                      body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"
+                      language="java"/>
+                </initializers>
+                <elementClass
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DurationInterval"/>
+              </newElementInitializers>
+            </initializers>
+            <initializers
+                xsi:type="gmfmap:FeatureValueSpec">
+              <feature
+                  xsi:type="ecore:EAttribute"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+              <value
+                  body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"
+                  language="java"/>
+            </initializers>
+          </domainInitializer>
+          <labelMappings>
+            <diagramLabel
+                href="sequenceDiagram.gmfgraph#DurationConstraintOnMessage"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.14"/>
+          <diagramNode
+              href="sequenceDiagram.gmfgraph#DurationConstraintOnMessage"/>
+        </ownedChild>
+      </children>
+      <children>
+        <containmentFeature
+            href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package/packagedElement"/>
+        <ownedChild>
+          <domainMetaElement
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//DurationObservation"/>
+          <domainInitializer
+              xsi:type="gmfmap:FeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfmap:FeatureValueSpec">
+              <feature
+                  xsi:type="ecore:EAttribute"
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+              <value
+                  body="return getNamedElement(self, &quot;&quot;, &quot;d&quot;, &quot;&quot;);"
+                  language="java"/>
+            </initializers>
+          </domainInitializer>
+          <labelMappings>
+            <diagramLabel
+                href="sequenceDiagram.gmfgraph#DurationObservationLabel"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.11"/>
+          <diagramNode
+              href="sequenceDiagram.gmfgraph#DurationObservationLabel"/>
+        </ownedChild>
+      </children>
       <compartments
           children="//@nodes.0/@ownedChild/@children.2 //@nodes.0/@ownedChild/@children.3 //@nodes.0/@ownedChild/@children.0 //@nodes.0/@ownedChild/@children.1 //@nodes.0/@ownedChild/@children.4 //@nodes.0/@ownedChild/@children.5">
         <compartment
@@ -573,14 +650,6 @@
           href="sequenceDiagram.gmfgraph#MessageSyncLabel"/>
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
-    </labelMappings>
-    <labelMappings>
-      <diagramLabel
-          href="sequenceDiagram.gmfgraph#DurationObservationLabel"/>
-    </labelMappings>
-    <labelMappings>
-      <diagramLabel
-          href="sequenceDiagram.gmfgraph#DurationConstraintOnMessage"/>
     </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/message"/>
@@ -616,14 +685,6 @@
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
     </labelMappings>
-    <labelMappings>
-      <diagramLabel
-          href="sequenceDiagram.gmfgraph#DurationObservationLabel"/>
-    </labelMappings>
-    <labelMappings>
-      <diagramLabel
-          href="sequenceDiagram.gmfgraph#DurationConstraintOnMessage"/>
-    </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/message"/>
     <tool
@@ -657,14 +718,6 @@
           href="sequenceDiagram.gmfgraph#MessageReplyLabel"/>
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
-    </labelMappings>
-    <labelMappings>
-      <diagramLabel
-          href="sequenceDiagram.gmfgraph#DurationObservationLabel"/>
-    </labelMappings>
-    <labelMappings>
-      <diagramLabel
-          href="sequenceDiagram.gmfgraph#DurationConstraintOnMessage"/>
     </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/message"/>
@@ -701,14 +754,6 @@
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
     </labelMappings>
-    <labelMappings>
-      <diagramLabel
-          href="sequenceDiagram.gmfgraph#DurationObservationLabel"/>
-    </labelMappings>
-    <labelMappings>
-      <diagramLabel
-          href="sequenceDiagram.gmfgraph#DurationConstraintOnMessage"/>
-    </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/message"/>
     <tool
@@ -742,14 +787,6 @@
           href="sequenceDiagram.gmfgraph#MessageDeleteLabel"/>
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
-    </labelMappings>
-    <labelMappings>
-      <diagramLabel
-          href="sequenceDiagram.gmfgraph#DurationObservationLabel"/>
-    </labelMappings>
-    <labelMappings>
-      <diagramLabel
-          href="sequenceDiagram.gmfgraph#DurationConstraintOnMessage"/>
     </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/message"/>
@@ -786,14 +823,6 @@
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
     </labelMappings>
-    <labelMappings>
-      <diagramLabel
-          href="sequenceDiagram.gmfgraph#DurationObservationLabel"/>
-    </labelMappings>
-    <labelMappings>
-      <diagramLabel
-          href="sequenceDiagram.gmfgraph#DurationConstraintOnMessage"/>
-    </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/message"/>
     <tool
@@ -827,14 +856,6 @@
           href="sequenceDiagram.gmfgraph#MessageFoundLabel"/>
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
-    </labelMappings>
-    <labelMappings>
-      <diagramLabel
-          href="sequenceDiagram.gmfgraph#DurationObservationLabel"/>
-    </labelMappings>
-    <labelMappings>
-      <diagramLabel
-          href="sequenceDiagram.gmfgraph#DurationConstraintOnMessage"/>
     </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/message"/>

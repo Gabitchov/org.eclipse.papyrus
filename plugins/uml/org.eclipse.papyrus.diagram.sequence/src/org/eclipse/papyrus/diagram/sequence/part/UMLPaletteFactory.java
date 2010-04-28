@@ -87,6 +87,11 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
+	private final static String CREATEDURATIONOBSERVATION12CREATIONTOOL = "createDurationObservation12CreationTool"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private final static String CREATETIMECONSTRAINT13CREATIONTOOL = "createTimeConstraint13CreationTool"; //$NON-NLS-1$
 
 	/**
@@ -192,6 +197,9 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		}
 		if(toolId.equals(CREATECOREGION11CREATIONTOOL)) {
 			return createCoRegion11CreationTool();
+		}
+		if(toolId.equals(CREATEDURATIONOBSERVATION12CREATIONTOOL)) {
+			return createDurationObservation12CreationTool();
 		}
 		if(toolId.equals(CREATETIMECONSTRAINT13CREATIONTOOL)) {
 			return createTimeConstraint13CreationTool();
@@ -366,6 +374,18 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	}
 
 	/**
+	 * @generated NOT use DurationCreationTool
+	 */
+	private Tool createDurationObservation12CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.DurationObservation_3024);
+
+		// use DurationCreationTool
+		Tool tool = new DurationCreationTool(types);
+		return tool;
+	}
+
+	/**
 	 * @generated
 	 */
 	private Tool createTimeConstraint13CreationTool() {
@@ -391,8 +411,9 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated NOT use DurationCreationTool
 	 */
 	private Tool createDurationConstraint15CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
+		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.DurationConstraint_3021);
+		types.add(UMLElementTypes.DurationConstraint_3023);
 
 		// use DurationCreationTool
 		Tool tool = new DurationCreationTool(types);

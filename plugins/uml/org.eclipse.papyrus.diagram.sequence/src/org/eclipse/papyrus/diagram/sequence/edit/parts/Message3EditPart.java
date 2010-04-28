@@ -27,10 +27,12 @@ import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.CreationOnMessageEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.Message3ItemSemanticEditPolicy;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
@@ -79,6 +81,7 @@ implements ITreeBranchEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new Message3ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationOnMessageEditPolicy());
 	}
 
 	/**
@@ -249,6 +252,30 @@ implements ITreeBranchEditPart {
 			}
 		}
 		super.handleNotificationEvent(notification);
+	}
+
+	/**
+	 * @generated NOT Override for redirecting creation request to the lifeline
+	 */
+	@Override
+	public void showSourceFeedback(Request request) {
+		if(request instanceof CreateUnspecifiedTypeRequest) {
+			getSource().showSourceFeedback(request);
+			getTarget().showSourceFeedback(request);
+		}
+		super.showSourceFeedback(request);
+	}
+
+	/**
+	 * @generated NOT Override for redirecting creation request to the lifeline
+	 */
+	@Override
+	public void eraseSourceFeedback(Request request) {
+		if(request instanceof CreateUnspecifiedTypeRequest) {
+			getSource().eraseSourceFeedback(request);
+			getTarget().eraseSourceFeedback(request);
+		}
+		super.eraseSourceFeedback(request);
 	}
 
 }

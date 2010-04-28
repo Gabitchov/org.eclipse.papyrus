@@ -39,7 +39,9 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintLabelEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPart;
@@ -171,6 +173,10 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Constraint", UMLElementTypes.Constraint_3008); //$NON-NLS-1$
 		case CommentEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Comment", UMLElementTypes.Comment_3009); //$NON-NLS-1$
+		case DurationConstraintInMessageEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?DurationConstraint", UMLElementTypes.DurationConstraint_3023); //$NON-NLS-1$
+		case DurationObservationEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?DurationObservation", UMLElementTypes.DurationObservation_3024); //$NON-NLS-1$
 		case MessageEditPart.VISUAL_ID:
 			return getImage("Navigator?Link?http://www.eclipse.org/uml2/3.0.0/UML?Message", UMLElementTypes.Message_4003); //$NON-NLS-1$
 		case Message2EditPart.VISUAL_ID:
@@ -276,6 +282,10 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getConstraint_3008Text(view);
 		case CommentEditPart.VISUAL_ID:
 			return getComment_3009Text(view);
+		case DurationConstraintInMessageEditPart.VISUAL_ID:
+			return getDurationConstraint_3023Text(view);
+		case DurationObservationEditPart.VISUAL_ID:
+			return getDurationObservation_3024Text(view);
 		case MessageEditPart.VISUAL_ID:
 			return getMessage_4003Text(view);
 		case Message2EditPart.VISUAL_ID:
@@ -515,6 +525,32 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
 			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5006); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getDurationConstraint_3023Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.DurationConstraint_3023, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(DurationConstraintInMessageEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 3023); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getDurationObservation_3024Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.DurationObservation_3024, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(DurationObservationEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 3024); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}

@@ -82,11 +82,8 @@ public class LifelineCreationEditPolicy extends CreationEditPolicy {
 		extendedData.put(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER, ift);
 
 		// record the nearest event if necessary
-		String timeConstraintHint = ((IHintedType)UMLElementTypes.TimeConstraint_3019).getSemanticHint();
-		String timeObservationHint = ((IHintedType)UMLElementTypes.TimeObservation_3020).getSemanticHint();
-		String durationConstraintOnLifelineHint = ((IHintedType)UMLElementTypes.DurationConstraint_3021).getSemanticHint();
 		String requestHint = request.getViewAndElementDescriptor().getSemanticHint();
-		if(timeConstraintHint.equals(requestHint) || timeObservationHint.equals(requestHint) || durationConstraintOnLifelineHint.equals(requestHint)) {
+		if(isTimeHint(requestHint)) {
 			EditPart hostPart = getHost();
 			if(hostPart instanceof LifelineEditPart) {
 				Entry<OccurrenceSpecification, Point> eventAndLocation = SequenceUtil.findNearestEvent(request.getLocation(), (LifelineEditPart)hostPart);
@@ -136,6 +133,15 @@ public class LifelineCreationEditPolicy extends CreationEditPolicy {
 		}
 
 		return new ICommandProxy(cc);
+	}
+
+	private boolean isTimeHint(String requestHint) {
+		String timeConstraintHint = ((IHintedType)UMLElementTypes.TimeConstraint_3019).getSemanticHint();
+		String timeObservationHint = ((IHintedType)UMLElementTypes.TimeObservation_3020).getSemanticHint();
+		String durCstOnLifelineHint = ((IHintedType)UMLElementTypes.DurationConstraint_3021).getSemanticHint();
+		String durCstOnMessage = ((IHintedType)UMLElementTypes.DurationConstraint_3023).getSemanticHint();
+		String durObsOnMessage = ((IHintedType)UMLElementTypes.DurationObservation_3024).getSemanticHint();
+		return timeConstraintHint.equals(requestHint) || timeObservationHint.equals(requestHint) || durCstOnLifelineHint.equals(requestHint) || durCstOnMessage.equals(requestHint) || durObsOnMessage.equals(requestHint);
 	}
 
 }

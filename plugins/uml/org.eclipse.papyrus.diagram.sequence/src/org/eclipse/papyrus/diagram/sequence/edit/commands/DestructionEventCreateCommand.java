@@ -32,8 +32,6 @@ import org.eclipse.uml2.uml.DestructionEvent;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
-import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * @generated
