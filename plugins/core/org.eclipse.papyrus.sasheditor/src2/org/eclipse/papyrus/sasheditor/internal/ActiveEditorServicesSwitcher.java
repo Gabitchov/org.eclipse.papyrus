@@ -34,7 +34,10 @@ import org.eclipse.ui.services.IServiceLocator;
 
 
 /**
- * This class is used to switch the current Active Editor.
+ * This class is used to switch the services of a nested editor when the active nested editor change.
+ * This class is a {@link IActiveEditorChangedListener} registered to the {@link ActivePageTracker} 
+ * by the {@link SashWindowsContainer}.
+ * 
  * When a new Editor is set active, by calling {@link #setActiveEditor(PagePart)}, following actions are
  * performed:
  * <ul>

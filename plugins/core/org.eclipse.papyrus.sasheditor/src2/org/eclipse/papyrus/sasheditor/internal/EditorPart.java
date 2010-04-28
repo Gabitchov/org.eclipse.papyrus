@@ -52,7 +52,7 @@ import org.eclipse.ui.part.IWorkbenchPartOrientation;
  */
 @SuppressWarnings("restriction")
 public class EditorPart extends PagePart implements IEditorPage {
-
+ 
 	/**
 	 * The model representing the editor.
 	 */
@@ -168,7 +168,6 @@ public class EditorPart extends PagePart implements IEditorPage {
 			// Initialize it and create its controls.
 			editorControl = createEditorPartControl(parent, editorPart);
 			attachListeners(editorControl, true);
-
 		} catch (PartInitException e) {
 			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage(), e));
 			// TODO Create a fake Error Page and initialize this part with.
@@ -567,6 +566,7 @@ public class EditorPart extends PagePart implements IEditorPage {
 
 	/**
 	 * Garbage this part.
+	 * This part will be not used anymore.
 	 * The part is already marked as ORPHANED. It is not used anymore. It is already detached
 	 * from its parent.
 	 * 
@@ -574,6 +574,8 @@ public class EditorPart extends PagePart implements IEditorPage {
 	@Override
 	public void garbage() {
 		dispose();
+		// fire appropriate life cycle event
+		getSashWindowContainer().getLifeCycleEventProvider().firePageClosedEvent(this);
 	}
 
 

@@ -215,7 +215,7 @@ public class SashWindowsContainerTest extends TestCase {
 		container.visit(pageVisitor);
 
 		// Check each elements
-		Collection results = pageVisitor.collected;
+		Collection<Object> results = pageVisitor.collected;
 		assertEquals("list are of same size", models.size(), results.size());
 		for(Object model : models) {
 			assertTrue("model is in the collected list", results.contains(model));

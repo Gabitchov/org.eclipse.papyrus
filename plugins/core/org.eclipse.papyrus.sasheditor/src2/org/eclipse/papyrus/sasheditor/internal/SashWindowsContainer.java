@@ -64,6 +64,12 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	private ActivePageTracker activePageTracker;
 
 	/**
+	 * Event provider firing Pages life cycle events to registered listeners. Inner parts call the fireXxxEvents
+	 * when appropriate.
+	 */
+	private SashContainerEventsProvider lifeCycleEventProvider;
+	
+	/**
 	 * The part used as root. We use an extra class as root in order to separate the code dedicated to
 	 * ITilePart.
 	 */
@@ -116,6 +122,9 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 			// This listener will take in charge editor services switching.
 			activePageTracker.addActiveEditorChangedListener(new ActiveEditorServicesSwitcher(multiEditorManager.getEditorSite()));
 		}
+		
+		// Life cycle event provider
+		lifeCycleEventProvider = new SashContainerEventsProvider();
 	}
 
 	/**
@@ -186,6 +195,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 */
 	protected void pageChanged(PagePart childPart) {
 		activePageTracker.setActiveEditor(childPart);
+		lifeCycleEventProvider.firePageActivatedEvent(childPart);
 	}
 
 	/**
@@ -511,7 +521,6 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		rootPart.visit(visitor);
 	}
 
-
 	/* ***************************************************** */
 	/* Drag and Drop methods */
 	/* ***************************************************** */
@@ -718,6 +727,14 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 
 	}
 
+	
+	/**
+	 * @return the lifeCycleEventProvider
+	 */
+	protected SashContainerEventsProvider getLifeCycleEventProvider() {
+		return lifeCycleEventProvider;
+	}
+
 	/**
 	 * Add a listener on pageChanged event.
 	 * This implementation delegates to the internal PageTracker.
@@ -739,6 +756,29 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	 */
 	public void removePageChangedListener(IPageChangedListener pageChangedListener) {
 		activePageTracker.removePageChangedListener(pageChangedListener);
+	}
+
+	/**
+	 * Add a listener on Page LifeCycle events.
+	 * This implementation delegates to the internal PageTracker.
+	 * 
+	 * @see org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer#addPageChangedListener(org.eclipse.papyrus.sasheditor.editor.IPageChangedListener)
+	 * @param listener
+	 * 
+	 */
+	public void addLifeCycleListener(SashContainerEventsListener listener) {
+		lifeCycleEventProvider.addListener(listener);
+	}
+
+	/**
+	 * Remove a listener on Page LifeCycle events.
+	 * 
+	 * @see org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer#removePageChangedListener(org.eclipse.papyrus.sasheditor.editor.IPageChangedListener)
+	 * @param listener
+	 * 
+	 */
+	public void removeLifeCycleListener(SashContainerEventsListener listener) {
+		lifeCycleEventProvider.removeListener(listener);
 	}
 
 	/* ***************************************************** */

@@ -25,6 +25,7 @@ import org.eclipse.swt.widgets.Shell;
 
 /**
  * A standalone application testing the Sash system.
+ * It must be run as Java program.
  * 
  * @author dumoulin
  */

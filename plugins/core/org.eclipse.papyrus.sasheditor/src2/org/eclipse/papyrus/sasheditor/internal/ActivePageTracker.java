@@ -31,7 +31,7 @@ import org.eclipse.papyrus.sasheditor.editor.IPageChangedListener;
  * This class allows tow kind of listeners:
  * 
  * <ul>
- * <li> {@link IActiveEditorChangedListener} for internal use</li>
+ * <li> {@link IActiveEditorChangedListener} for internal use (ex: {@link ActiveEditorServicesSwitcher})</li>
  * <li> {@link IPageChangedListener} for public API use.</li>
  * </ul>
  * This class allows to set externally the active editor.
@@ -39,7 +39,6 @@ import org.eclipse.papyrus.sasheditor.editor.IPageChangedListener;
  * @author dumoulin
  * 
  */
-@SuppressWarnings("unchecked")
 public class ActivePageTracker {
 
 	/** Log object */
@@ -162,8 +161,8 @@ public class ActivePageTracker {
 	 */
 	private void fireEditorChangeEvent(PagePart oldEditor, PagePart newEditor) {
 		// Fire only if really change
-		if(oldEditor == newEditor)
-			return;
+//		if(oldEditor == newEditor)
+//			return;
 
 		// Fire events to internal listeners
 		for(IActiveEditorChangedListener listener : activeEditorChangedListeners) {

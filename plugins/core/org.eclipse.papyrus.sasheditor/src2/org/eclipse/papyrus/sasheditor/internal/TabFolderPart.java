@@ -276,7 +276,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	}
 
 	/**
-	 * An event signaling that the selected page is changed has be caught. Propagate the event to
+	 * An event signaling that the selected page is changed has been caught. Propagate the event to
 	 * the container.
 	 * 
 	 * @param newPageIndex
@@ -885,7 +885,10 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		// objects not available from the part.
 		PagePart newPart = getSashWindowContainer().createPagePart(this, partModel, newModel);
 		// Create control.
+		// Fire events before and after
+		getSashWindowContainer().getLifeCycleEventProvider().firePageAboutToBeOpenedEvent(newPart);
 		newPart.createPartControl(getControl());
+		getSashWindowContainer().getLifeCycleEventProvider().firePageOpenedEvent(newPart);
 
 		return newPart;
 	}

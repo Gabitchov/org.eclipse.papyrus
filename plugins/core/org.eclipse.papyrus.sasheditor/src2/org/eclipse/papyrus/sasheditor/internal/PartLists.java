@@ -110,7 +110,7 @@ public class PartLists {
 	 * @return a valid active page, or null if none exists.
 	 */
 	public PagePart getFirstValidPage() {
-		// Remove orphaned part (no more used)
+		
 		for(PagePart part : pageParts) {
 			if(!part.isOrphaned())
 				return part;
