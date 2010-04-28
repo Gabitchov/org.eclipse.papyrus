@@ -22,7 +22,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.core.utils.DisplayUtils;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.swt.widgets.Shell;
 
@@ -41,7 +41,7 @@ public class EMFTLabelProviderStructuralFeatureController extends EMFTStructural
 	 * @return the label provider for this controller
 	 */
 	protected ILabelProvider initLabelProvider() {
-		final ILabelProvider provider = EditorUtils.getLabelProvider();
+		final ILabelProvider provider = DisplayUtils.getLabelProvider();
 		if(provider != null) {
 			return provider;
 		}

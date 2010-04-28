@@ -27,7 +27,7 @@ import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.core.utils.DisplayUtils;
 import org.eclipse.papyrus.properties.runtime.Activator;
 
 
@@ -55,7 +55,7 @@ public class EMFTEReferenceController extends EMFTStructuralFeatureController im
 	 * @return the label provider for this controller
 	 */
 	protected ILabelProvider initLabelProvider() {
-		final ILabelProvider provider = EditorUtils.getLabelProvider();
+		final ILabelProvider provider = DisplayUtils.getLabelProvider();
 		if(provider != null) {
 			return provider;
 		}
