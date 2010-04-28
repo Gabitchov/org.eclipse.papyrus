@@ -21,6 +21,7 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.emf.edit.ui.action.CommandActionHandler;
+import org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.controlmode.commands.UncontrolCommand;
@@ -72,6 +73,10 @@ public class PapyrusUncontrolAction extends CommandActionHandler {
 
 		if(selection.size() == 1) {
 			Object object = AdapterFactoryEditingDomain.unwrap(selection.getFirstElement());
+			if(object instanceof ModelElementItem) {
+				ModelElementItem eltItem = (ModelElementItem)object;
+				object = eltItem.getEObject();
+			}
 			// Check whether the selected object is controllable
 			result = domain.isControllable(object);
 			if(result) {
@@ -90,10 +95,8 @@ public class PapyrusUncontrolAction extends CommandActionHandler {
 	@Override
 	public void run() {
 		try {
-			UncontrolCommand transactionalCommand = new UncontrolCommand(
-					EditorUtils.getTransactionalEditingDomain(), eObject, "Uncontrol", null);
-			OperationHistoryFactory.getOperationHistory()
-					.execute(transactionalCommand, new NullProgressMonitor(), null);
+			UncontrolCommand transactionalCommand = new UncontrolCommand(EditorUtils.getTransactionalEditingDomain(), eObject, "Uncontrol", null);
+			OperationHistoryFactory.getOperationHistory().execute(transactionalCommand, new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {
 			MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_CannotCreateResource"));
 			EMFEditUIPlugin.INSTANCE.log(e);

@@ -32,6 +32,7 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.emf.edit.ui.action.ControlAction;
+import org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
@@ -94,6 +95,10 @@ public class PapyrusControlAction extends ControlAction {
 
 		if(selection.size() == 1) {
 			Object object = AdapterFactoryEditingDomain.unwrap(selection.getFirstElement());
+			if(object instanceof ModelElementItem) {
+				ModelElementItem eltItem = (ModelElementItem)object;
+				object = eltItem.getEObject();
+			}
 			// Check whether the selected object is controllable
 			result = domain.isControllable(object);
 			if(result) {
