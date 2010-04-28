@@ -3,14 +3,14 @@
 
 <plugin>
    <extension point="org.eclipse.papyrus.modelexplorer.actionHandler">
-      <customAction actionHandler="org.eclipse.papyrus.umlmodelexplorer.factory.RenameActionFactory" actionId="org.eclipse.papyrus.umlmodelexplorer.factory.RenameActionFactory" needSeparator="false">
+      <customAction actionHandler="org.eclipse.papyrus.uml.modelexplorer.factory.RenameActionFactory" actionId="org.eclipse.papyrus.umlmodelexplorer.factory.RenameActionFactory" needSeparator="false">
       </customAction>
    </extension>
 
    <extension point="org.eclipse.gmt.modisco.infra.browser.custom.core.registration">
-      <browserCustomization file="UMLPapyrusDefaultBrowserCustomization.uiCustom" loadByDefault="true"/>
+      <browserCustomization file="resource/UMLPapyrusDefaultBrowserCustomization.uiCustom" loadByDefault="true"/>
    </extension>
    <extension point="org.eclipse.gmt.modisco.infra.query.registration">
-      <modelqueryset file="PapyrusBrowserQuery.querySet"/>
+      <modelqueryset file="resource/PapyrusBrowserQuery.querySet"/>
    </extension>
 </plugin>

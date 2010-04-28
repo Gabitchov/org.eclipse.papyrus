@@ -10,13 +10,12 @@ Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.7.0.qualifier
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.umlmodelexplorer.Activator
-Bundle-SymbolicName: org.eclipse.papyrus.umlmodelexplorer;singleton:=t
- rue
+Bundle-Activator: org.eclipse.papyrus.uml.modelexplorer.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.uml.modelexplorer;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.papyrus.umlmodelexplorer,
- org.eclipse.papyrus.umlmodelexplorer.actions,
- org.eclipse.papyrus.umlmodelexplorer.factory,
- org.eclipse.papyrus.umlmodelexplorer.queries
+Export-Package: org.eclipse.papyrus.uml.modelexplorer,
+ org.eclipse.papyrus.uml.modelexplorer.actions,
+ org.eclipse.papyrus.uml.modelexplorer.factory,
+ org.eclipse.papyrus.uml.modelexplorer.queries
 Bundle-Vendor: %providerName
 
