@@ -555,7 +555,8 @@
       affixedParentSide="NORTH_SOUTH"/>
   <nodes
       name="StateInvariantNode"
-      figure="ContinuationFigure"/>
+      figure="ContinuationFigure"
+      affixedParentSide="NSEW"/>
   <nodes
       name="CoregionNode"
       figure="CoregionFigure"/>

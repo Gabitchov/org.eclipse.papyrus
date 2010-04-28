@@ -76,7 +76,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineItemSemanticEd
 import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.figures.LifelineAnchor;
 import org.eclipse.papyrus.diagram.sequence.figures.LifelineDotLineCustomFigure;
-import org.eclipse.papyrus.diagram.sequence.locator.ContinuationLocator;
+import org.eclipse.papyrus.diagram.sequence.locator.CenterLocator;
 import org.eclipse.papyrus.diagram.sequence.locator.TimeMarkElementPositionLocator;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
@@ -185,6 +185,7 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				View childView = (View)child.getModel();
 				switch(UMLVisualIDRegistry.getVisualID(childView)) {
+				case StateInvariantEditPart.VISUAL_ID:
 				case TimeConstraintEditPart.VISUAL_ID:
 				case TimeObservationEditPart.VISUAL_ID:
 				case DurationConstraintEditPart.VISUAL_ID:
@@ -280,10 +281,17 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 
 		//Papyrus Gencode :Specific locator for the destructionEvent
 		if(childEditPart instanceof DestructionEventEditPart) {
-			IBorderItemLocator locator = new ContinuationLocator(getMainFigure(), PositionConstants.SOUTH);
+			IBorderItemLocator locator = new CenterLocator(getMainFigure(), PositionConstants.SOUTH);
 			getBorderedFigure().getBorderItemContainer().add(((DestructionEventEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
+
+		if(childEditPart instanceof StateInvariantEditPart) {
+			IBorderItemLocator locator = new CenterLocator(getMainFigure(), PositionConstants.NONE);
+			getBorderedFigure().getBorderItemContainer().add(((StateInvariantEditPart)childEditPart).getFigure(), locator);
+			return true;
+		}
+
 
 
 
@@ -296,6 +304,10 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof LifelineNameEditPart) {
+			return true;
+		}
+		if(childEditPart instanceof StateInvariantEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((StateInvariantEditPart)childEditPart).getFigure());
 			return true;
 		}
 		if(childEditPart instanceof TimeConstraintEditPart) {
@@ -346,7 +358,7 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		// Execution specification handling
-		if(editPart instanceof BehaviorExecutionSpecificationEditPart || editPart instanceof ActionExecutionSpecificationEditPart || editPart instanceof StateInvariantEditPart) {
+		if(editPart instanceof BehaviorExecutionSpecificationEditPart || editPart instanceof ActionExecutionSpecificationEditPart) {
 			return getPrimaryShape().getFigureLifelineDotLineFigure();
 		}
 		if(editPart instanceof IBorderItemEditPart) {
@@ -1932,29 +1944,6 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 			rect.height = getFigure().getPreferredSize().height;
 		}
 	}
-
-	//	/**
-	//	 * Update the cross end
-	//	 */
-	//	private void updateCrossEnd() {
-	//		LifelineDotLineFigure figureLifelineDotLineFigure = getPrimaryShape().getFigureLifelineDotLineFigure();
-	//		if(figureLifelineDotLineFigure != null) {
-	//			figureLifelineDotLineFigure.setCrossAtEnd(false);
-	//			Lifeline lifeline = (Lifeline)resolveSemanticElement();
-	//			if(lifeline != null) {
-	//				for(InteractionFragment interactionFragment : lifeline.getCoveredBys()) {
-	//					if(interactionFragment instanceof MessageOccurrenceSpecification) {
-	//						MessageOccurrenceSpecification messageOccurrenceSpecification = (MessageOccurrenceSpecification)interactionFragment;
-	//						notifier.listenObject(messageOccurrenceSpecification);
-	//						if(messageOccurrenceSpecification.getEvent() instanceof DestructionEvent) {
-	//							figureLifelineDotLineFigure.setCrossAtEnd(true);
-	//						}
-	//					}
-	//				}
-	//				getPrimaryShape().repaint();
-	//			}
-	//		}
-	//	}
 
 	/**
 	 * Overrides to return the DashLineFigure instead of this figure. This is necessary for the

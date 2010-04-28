@@ -461,10 +461,10 @@
         </modelFacet>
       </childNodes>
       <childNodes
+          xsi:type="gmfgen:GenChildSideAffixedNode"
           visualID="3017"
           editPartClassName="StateInvariantEditPart"
           itemSemanticEditPolicyClassName="StateInvariantItemSemanticEditPolicy"
-          notationViewFactoryClassName="StateInvariantViewFactory"
           canonicalEditPolicyClassName="StateInvariantCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="StateInvariantGraphicalNodeEditPolicy"
           createCommandClassName="StateInvariantCreateCommand"
@@ -499,7 +499,6 @@
             visualID="5008"
             editPartClassName="StateInvariantNameEditPart"
             itemSemanticEditPolicyClassName="StateInvariantNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="StateInvariantNameViewFactory"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -5887,7 +5886,7 @@
           qualifiedName=" org.eclipse.papyrus.diagram.sequence.parser.custom.InteractionUseCustomParsers"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@links.0/@labels.0/@modelFacet"
+          uses="/0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet"
           qualifiedName=" org.eclipse.papyrus.diagram.sequence.parser.custom.MessageCustomParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -5931,9 +5930,9 @@
         genChildSideAffixedNode="/0/@diagram/@childNodes.10 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.12"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:SpecificLocator"
-        comment="Specific locator for the destructionEvent"
-        classpath="org.eclipse.papyrus.diagram.sequence.locator.ContinuationLocator"
-        genChildSideAffixedNode="/0/@diagram/@childNodes.13"/>
+        comment="Specific locator for the itemBorder of the lifeline."
+        classpath="org.eclipse.papyrus.diagram.sequence.locator.CenterLocator"
+        genChildSideAffixedNode="/0/@diagram/@childNodes.13 /0/@diagram/@childNodes.8"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="// make DurationConstraint as message label"

@@ -28,8 +28,8 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
+import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
@@ -158,12 +158,12 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		List<View> existingViews = DiagramEditPartsUtil.findViews(stateInvariant, getViewer());
 		if(existingViews.isEmpty()) {
 
-				// an StateInvariant covereds systematically a unique lifeline
-				Lifeline lifeline = stateInvariant.getCovereds().get(0);
-				// Check that the container view is the view of the lifeline
-				if(lifeline.equals(getHostObject())) {
-					return getCreateCommand(stateInvariant, nodeVISUALID);
-				}
+			// an StateInvariant covereds systematically a unique lifeline
+			Lifeline lifeline = stateInvariant.getCovereds().get(0);
+			// Check that the container view is the view of the lifeline
+			if(lifeline.equals(getHostObject())) {
+				return getCreateCommand(stateInvariant, nodeVISUALID);
+			}
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
