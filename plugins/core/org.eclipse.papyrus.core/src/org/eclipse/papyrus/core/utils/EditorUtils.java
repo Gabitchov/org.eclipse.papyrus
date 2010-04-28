@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.services.ServiceException;
@@ -297,23 +296,6 @@ public class EditorUtils {
 		try {
 			ServicesRegistry registry = getServiceRegistry();
 			return registry == null ? null : registry.getService(TransactionalEditingDomain.class);
-		} catch (IllegalStateException e) {
-			// Registry can't be found, do nothing.
-		} catch (ServiceException e) {
-			log.error(e);
-		}
-		return null;
-	}
-
-	/**
-	 * Gets the shared label provider.
-	 * 
-	 * @return Get the current {@link ILabelProvider} or <code>null</code> if not found
-	 */
-	public static ILabelProvider getLabelProvider() {
-		try {
-			ServicesRegistry registry = getServiceRegistry();
-			return registry == null ? null : registry.getService(ILabelProvider.class);
 		} catch (IllegalStateException e) {
 			// Registry can't be found, do nothing.
 		} catch (ServiceException e) {
