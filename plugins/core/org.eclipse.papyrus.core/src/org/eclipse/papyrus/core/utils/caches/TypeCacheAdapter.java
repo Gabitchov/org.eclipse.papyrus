@@ -463,6 +463,19 @@ public class TypeCacheAdapter implements ITypeCacheAdapter, Adapter.Internal {
 		return true;
 	}
 
+	public void fillFirstEntryCache(EClassifier type, Collection<EObject> list) {
+		cache.put(type, list);
+	}
+
+	public boolean isAlreadyComputed(EClassifier type) {
+		return cache.containsKey(type);
+	}
+
+
+	public static ITypeCacheAdapter getSimpleTypeCacheAdapter() {
+		return simpleCacheAdapter;
+	}
+
 	/**
 	 * This implementation uses ItemPropertyDescriptor class to resolve objects from type
 	 * 
@@ -474,5 +487,6 @@ public class TypeCacheAdapter implements ITypeCacheAdapter, Adapter.Internal {
 			return ItemPropertyDescriptor.getReachableObjectsOfType(object, type);
 		}
 	}
+
 
 }
