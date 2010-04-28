@@ -35,14 +35,14 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class UMLProfileStrategyExtension implements ILoadingStrategyExtension {
 
-	private static final String UML_FILE_EXTENSION = "uml";
+	//private static final String UML_FILE_EXTENSION = "uml";
 
 	/**
 	 * {@inheritDoc}
 	 * Load a profile resource if it used in the model
 	 */
 	public boolean loadResource(DiResourceSet diResourceSet, URI uri) {
-		if(UML_FILE_EXTENSION.equals(diResourceSet.getModelFileExtension())) {
+			// TODO test if model is UML to avoid profile search for others
 			TypeCacheAdapter adapter = null;
 			for(Adapter a : diResourceSet.eAdapters()) {
 				if(a instanceof TypeCacheAdapter) {
@@ -87,7 +87,6 @@ public class UMLProfileStrategyExtension implements ILoadingStrategyExtension {
 					}
 				}
 			}
-		}
 		return false;
 	}
 
