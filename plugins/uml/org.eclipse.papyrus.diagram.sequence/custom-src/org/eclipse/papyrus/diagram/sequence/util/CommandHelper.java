@@ -539,30 +539,34 @@ public class CommandHelper {
 
 		return destructionEvent;
 	}
-	
+
 	/**
 	 * Create an StateInvariant
 	 * 
-	 * @param lifeline the lifeline on which the stateInvariant is created (or which is covered by the StateInvariant).
-	 * @param modelContainer the model container
+	 * @param lifeline
+	 *        the lifeline on which the stateInvariant is created (or which is covered by the StateInvariant).
+	 * @param modelContainer
+	 *        the model container
 	 * @return the created stateInvariant or null
 	 */
-	public static StateInvariant doCreateStateInvariant(Lifeline lifeline, Object modelContainer)
-	{
+	public static StateInvariant doCreateStateInvariant(Lifeline lifeline, Object modelContainer) {
 		StateInvariant stateInvariant = null;
-		
+
 		Element element = createElement(modelContainer, UMLPackage.eINSTANCE.getStateInvariant());
-		
-		if(element instanceof StateInvariant){
+
+		if(element instanceof StateInvariant) {
 			stateInvariant = (StateInvariant)element;
 			// Get the covered lifeline
 			stateInvariant.getCovereds().add(lifeline);
-		}	
-		
+
+			// Create the associated invariant
+			stateInvariant.createInvariant(LabelHelper.INSTANCE.findName(stateInvariant, UMLPackage.eINSTANCE.getConstraint()));
+		}
+
 		return stateInvariant;
 	}
-	
-	private static Element createElement(Object modelContainer, EClass eClass){
+
+	private static Element createElement(Object modelContainer, EClass eClass) {
 
 		// Get the enclosing interaction fragment
 		if(modelContainer instanceof InteractionOperand) {
