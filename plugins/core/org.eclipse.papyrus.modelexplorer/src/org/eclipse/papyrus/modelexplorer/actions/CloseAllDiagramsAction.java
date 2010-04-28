@@ -11,7 +11,7 @@
 package org.eclipse.papyrus.modelexplorer.actions;
 
 import org.eclipse.jface.action.Action;
-import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
+import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 

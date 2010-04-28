@@ -19,7 +19,7 @@ import org.eclipse.papyrus.modelexplorer.actions.DeleteDiagramAction;
 import org.eclipse.papyrus.modelexplorer.actions.DuplicateDiagramAction;
 import org.eclipse.papyrus.modelexplorer.actions.OpenDiagramAction;
 import org.eclipse.papyrus.modelexplorer.actions.RenameDiagramAction;
-import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageMngr;
+import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 
 /**
  * Provider used to create actions applicable on diagrams
