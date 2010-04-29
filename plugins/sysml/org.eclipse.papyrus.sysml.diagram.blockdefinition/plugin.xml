@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+<!-- Diagram declaration -->
+<extension point="org.eclipse.papyrus.core.papyrusDiagram">
+	<creationCommand
+		creationCommandClass="org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinitionDiagramCreateCommand"
+		icon="icons/diagram/Diagram_BlockDefinitionDiagram.gif" 
+		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand"
+		label="SysML Block Definition Diagram" />
+	<editorDiagram
+		actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
+		contextId="org.eclipse.papyrus.gmf.editor.context"
+		factoryClass="org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinitionDiagramEditorFactory"
+		icon="icons/diagram/Diagram_BlockDefinitionDiagram.gif" />
+</extension>
+
+<!-- Diagram creation command and handler -->
+<extension point="org.eclipse.ui.commands">
+	<command id="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand" 
+		name="Create a new Block Definition Diagram"
+		description="Create a new Block Definition Diagram"
+		categoryId="org.eclipse.papyrus.editor.category" />
+</extension>
+
+<extension point="org.eclipse.ui.handlers">
+	<handler
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinitionDiagramCreateCommand"
+		commandId="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand">
+		<activeWhen>
+			<with variable="activeEditorId">
+				<equals value="org.eclipse.papyrus.core.papyrusEditor" />
+			</with>
+		</activeWhen>
+	</handler>
+</extension>
+
+<!-- Diagram creation command registration in menu and toolbar -->
+<extension point="org.eclipse.ui.menus">
+	
+	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
+	<menu id="org.eclipse.papyrus.diagram.ui.menu.diagrams" label="Diagrams">
+		<command commandId="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand"
+			icon="icons/diagram/Diagram_BlockDefinitionDiagram.gif" label="Create a new Block Definition Diagram"
+			style="push" tooltip="Create a new Block Definition Diagram">
+			<visibleWhen>
+				<with variable="activeEditorId">
+					<equals value="org.eclipse.papyrus.core.papyrusEditor" />
+				</with>
+			</visibleWhen>
+		</command>
+	</menu>
+	</menuContribution>
+	
+	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
+	<toolbar id="org.eclipse.papyrus.diagram.ui.toolbar">
+		<command commandId="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand"
+			icon="icons/diagram/Diagram_BlockDefinitionDiagram.gif" label="Create a new Block Definition Diagram"
+			style="push" tooltip="Create a new Block Definition Diagram">
+				<visibleWhen>
+					<with variable="activeEditorId">
+						<equals value="org.eclipse.papyrus.core.papyrusEditor" />
+					</with>
+				</visibleWhen>
+		</command>
+	</toolbar>
+	</menuContribution>
+</extension>
+
+<!-- Palette tool declaration (declares the real palette containment) -->
+<extension point="org.eclipse.papyrus.diagram.common.paletteDefinition"
+	name="SysML_BDD">
+	
+	<paletteDefinition ID="SysML_BDD"
+		class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+		name="BDD" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" 
+		path="palettes/blockdefinition.palette.xml"
+		provider="CEA LIST">
+		<Priority name="Low"/>
+
+		<!-- Specify diagram this palette tools relate to -->				
+		<editor id="org.eclipse.papyrus.sysml.diagram.blockdefinition"/>
+	</paletteDefinition>
+</extension>
+
+<!-- Palette tool definition (defines tools possibly used by the palette(s)) -->
+<extension point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"
+	name="SysML BDD Predefined Entries"
+	id="org.eclipse.papyrus.sysml.diagram.blockdefinition.palettedefinition"> 
+		
+	<paletteProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DefaultPaletteProvider">
+	<Priority name="Lowest"/> <!-- Lower priority than Palette tool declaration -->
+	
+
+	<!-- Block Definition Diagram specific tool definition -->
+	<contribution
+		factoryClass="org.eclipse.papyrus.sysml.diagram.blockdefinition.factory.BlockDefinitionDiagramPaletteFactory">
+		
+		<!-- blockdefinition.tool.block -->
+		<entry
+			defineOnly="true"
+			description="Create a Block"
+			id="blockdefinition.tool.block"
+			kind="tool"
+			label="Block"
+			large_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif"
+			path=""
+			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif">
+		</entry> 		
+	</contribution>	
+
+	<!-- Block Definition Diagram inherited (from Class Diagram here) tool definition -->
+	<contribution
+		factoryClass="org.eclipse.papyrus.diagram.clazz.part.UMLPaletteFactory">
+		<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
+		<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
+		<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>	
+		
+		<!-- clazz.tool.package -->
+		<entry
+			defineOnly="true"
+			description="Create a new Package"
+			id="clazz.tool.package"
+			kind="tool"
+			label="Package"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
+			path=""
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif">
+		</entry>
+		
+		<!-- clazz.tool.property -->
+		<entry
+			defineOnly="true"
+			description="Create a new Property"
+			id="clazz.tool.property"
+			kind="tool"
+			label="Property"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+			path=""
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
+		</entry>
+		
+		<!-- clazz.tool.usage -->
+		<entry
+			defineOnly="true"
+			description="Create a new Usage"
+			id="clazz.tool.usage"
+			kind="tool"
+			label="Usage"
+			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif"
+			path=""
+			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif">
+		</entry>		
+	</contribution>
+
+	<!-- Specify diagram this palette tools relate to -->
+	<editor id="org.eclipse.papyrus.sysml.diagram.blockdefinition"/>	
+	</paletteProvider>	
+</extension>
+
+<!-- Diagram view providers declaration -->
+<extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders">
+
+	<!-- Diagram view provider -->
+	<viewProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockDefinitionDiagramViewProvider">
+		<Priority name="Low"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="BlockDefinition"/>
+	</viewProvider>
+	
+	<!-- Block view provider -->
+	<viewProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockViewProvider">
+		<Priority name="Low"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="Block"/>		
+	</viewProvider>	
+
+	<!-- ViewProvider for inherited elements (from ClassDiagramm UMLViewProvider) -->
+	<viewProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.InheritedElementViewProvider">
+		<Priority name="Low"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2007, 3012"/> <!-- "2007" = Package, "3012" = Property -->
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4007"/> <!-- "4007" = Usage -->		
+	</viewProvider>	
+	
+</extension>
+
+<!-- Diagram edit part providers declaration -->
+<extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
+
+	<!-- Diagram edit part provider -->
+	<editpartProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockDefinitionDiagramEditPartProvider">
+		<Priority name="Low"/>
+		<object
+			class="org.eclipse.gmf.runtime.notation.Diagram(org.eclipse.gmf.runtime.notation)"
+			id="BlockDefinition">
+			<method name="getType()" value="BlockDefinition"/>
+		</object>
+	</editpartProvider>
+
+	<!-- Block edit part provider -->
+	<editpartProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockEditPartProvider">
+		<Priority name="Low"/>
+		<object
+			class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
+			id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Block">
+			<method name="getType()" value="Block, Block_Constraint_Compartment"/>
+		</object>
+	</editpartProvider>
+
+	<!-- EditPartProvider for inherited elements (from ClassDiagram) -->
+	<editpartProvider class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.InheritedElementEditPartProvider">
+		<Priority name="Low"/>
+		
+		<!-- 
+			"5029" = Class name label
+			"7017" = Class property compartment
+			"7018" = Class operation compartment
+			"7019" = Class nested classifier compartment
+			"2007" = Package
+			"5026" = Package name label
+			"7016" = Package compartment -->			
+		<object
+			class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
+			id="inherited-nodes">
+			<method name="getType()" value="5029, 7017, 7018, 7019, 3012, 2007, 5026, 7016"/>
+		</object>
+
+		<!-- 
+			"4007" = Usage -->			
+		<object
+			class="org.eclipse.gmf.runtime.notation.Edge(org.eclipse.gmf.runtime.notation)"
+			id="inherited-edges">
+			<method name="getType()" value="4007"/>
+		</object>
+	</editpartProvider>
+
+</extension>
+
+<!-- Diagram edit policy providers declaration -->
+<extension
+	point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+	<editpolicyProvider
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.EditPolicyProvider">
+		<Priority name="Low"/>
+	</editpolicyProvider>
+</extension>
+ 
+<!-- Diagram element types declaration -->
+<!-- The diagram itself should be declared as an element type -->
+<!-- A kind type should be created for diagram elements       -->
+   <extension
+         point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+        
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
+               id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Class"
+               name="Class"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Class"
+               edithelper="org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.ClassHelper">
+            <param name="semanticHint" value="Class"/>
+         </metamodelType>
+      </metamodel>
+            
+      <specializationType
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Block"
+            name="Block"
+            kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+            icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif"
+            edithelperadvice="org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.BlockHelperAdvice">
+         <specializes id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Class"/>
+		 <param name="semanticHint" value="Block"/>
+         <matcher class = "org.eclipse.papyrus.sysml.diagram.blockdefinition.matcher.BlockMatcher" />
+      </specializationType>  
+   </extension>
+
+<!-- Context binding does not seem to be used - maybe broken by the backbone -->
+<!--
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
+	
+	<clientContext id="org.eclipse.papyrus.sysml.diagram.blockdefinition.TypeContext">
+		<enablement>
+		<test
+			property="org.eclipse.gmf.runtime.emf.core.editingDomain"
+			value="org.eclipse.papyrus.sysml.diagram.blockdefinition.EditingDomain"/>
+		</enablement>
+	</clientContext> 
+	
+	<binding context="org.eclipse.papyrus.sysml.diagram.blockdefinition.TypeContext">
+		<elementType ref="org.eclipse.papyrus.sysml.diagram.blockdefinition.Class"/>
+		<elementType ref="org.eclipse.papyrus.sysml.diagram.blockdefinition.Block"/>
+		<elementType ref="org.eclipse.papyrus.diagram.clazz.Package_2007"/>      
+		<elementType ref="org.eclipse.papyrus.diagram.clazz.Property_3012"/>
+		<elementType ref="org.eclipse.papyrus.diagram.clazz.Usage_4007"/>       
+	</binding>
+	
+</extension>   
+  -->
+
+<!-- Preference pages declaration -->
+<extension point="org.eclipse.ui.preferencePages" id="prefpages">
+
+	<!-- Diagram Preference pages declaration -->
+	<page
+		id="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+		name="Block Definition Diagram"
+		category="org.eclipse.papyrus.preferences.diagrams"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DiagramGeneralPreferencePage">
+	</page>
+
+	<page
+		id="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences.DiagramPrintingPreferencePage"
+		name="Printing"
+		category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DiagramPrintingPreferencePage">
+	</page>
+
+	<page
+		id="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preference.DiagramRulersAndGridPreferencePage"
+		name="Rulers and Grid"
+		category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DiagramRulersAndGridPreferencePage">
+	</page>
+
+	<!-- Element Preference pages declaration -->
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.BlockPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.BlockPreferencePage"
+            name="Block">
+	</page>
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PackagePreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PackagePreferencePage"
+            name="Package">
+	</page>	
+
+</extension>
+
+<!-- Preference pages initializer -->
+<extension point="org.eclipse.core.runtime.preferences">
+	<initializer class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DiagramPreferenceInitializer"/>
+</extension>
+
+</plugin>

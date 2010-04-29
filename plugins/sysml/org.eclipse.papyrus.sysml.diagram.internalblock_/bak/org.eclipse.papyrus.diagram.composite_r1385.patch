@@ -1,0 +1,1472 @@
+Index: src/org/eclipse/papyrus/diagram/composite/edit/parts/UMLEditPartFactory.java
+===================================================================
+--- src/org/eclipse/papyrus/diagram/composite/edit/parts/UMLEditPartFactory.java	(revision 1460)
++++ src/org/eclipse/papyrus/diagram/composite/edit/parts/UMLEditPartFactory.java	(working copy)
+@@ -34,836 +34,843 @@
+  */
+ public class UMLEditPartFactory implements EditPartFactory {
+ 
+-	/**
+-	 * @generated
+-	 */
+ 	public EditPart createEditPart(EditPart context, Object model) {
+ 		if(model instanceof View) {
+ 			View view = (View)model;
+-			switch(UMLVisualIDRegistry.getVisualID(view)) {
++			return createEditPart(context, view, UMLVisualIDRegistry.getVisualID(view));
++		}
++		return createUnrecognizedEditPart(context, model);
++	}
++
++	/**
++	 * @generated
++	 */
++	protected EditPart createEditPart(EditPart context, View view, int visualId) {
+ 
+-			case PackageEditPart.VISUAL_ID:
+-				return new PackageEditPart(view);
++		switch(visualId) {
+ 
+-			case ActivityCompositeEditPart.VISUAL_ID:
+-				return new ActivityCompositeEditPart(view);
++		case PackageEditPart.VISUAL_ID:
++			return new PackageEditPart(view);
+ 
+-			case ActivityCompositeNameEditPart.VISUAL_ID:
+-				return new ActivityCompositeNameEditPart(view);
++		case ActivityCompositeEditPart.VISUAL_ID:
++			return new ActivityCompositeEditPart(view);
+ 
+-			case InteractionCompositeEditPart.VISUAL_ID:
+-				return new InteractionCompositeEditPart(view);
++		case ActivityCompositeNameEditPart.VISUAL_ID:
++			return new ActivityCompositeNameEditPart(view);
+ 
+-			case InteractionCompositeNameEditPart.VISUAL_ID:
+-				return new InteractionCompositeNameEditPart(view);
++		case InteractionCompositeEditPart.VISUAL_ID:
++			return new InteractionCompositeEditPart(view);
+ 
+-			case ProtocolStateMachineCompositeEditPart.VISUAL_ID:
+-				return new ProtocolStateMachineCompositeEditPart(view);
++		case InteractionCompositeNameEditPart.VISUAL_ID:
++			return new InteractionCompositeNameEditPart(view);
+ 
+-			case ProtocolStateMachineCompositeNameEditPart.VISUAL_ID:
+-				return new ProtocolStateMachineCompositeNameEditPart(view);
++		case ProtocolStateMachineCompositeEditPart.VISUAL_ID:
++			return new ProtocolStateMachineCompositeEditPart(view);
+ 
+-			case StateMachineCompositeEditPart.VISUAL_ID:
+-				return new StateMachineCompositeEditPart(view);
++		case ProtocolStateMachineCompositeNameEditPart.VISUAL_ID:
++			return new ProtocolStateMachineCompositeNameEditPart(view);
+ 
+-			case StateMachineCompositeNameEditPart.VISUAL_ID:
+-				return new StateMachineCompositeNameEditPart(view);
++		case StateMachineCompositeEditPart.VISUAL_ID:
++			return new StateMachineCompositeEditPart(view);
+ 
+-			case FunctionBehaviorCompositeEditPart.VISUAL_ID:
+-				return new FunctionBehaviorCompositeEditPart(view);
++		case StateMachineCompositeNameEditPart.VISUAL_ID:
++			return new StateMachineCompositeNameEditPart(view);
+ 
+-			case FunctionBehaviorCompositeNameEditPart.VISUAL_ID:
+-				return new FunctionBehaviorCompositeNameEditPart(view);
++		case FunctionBehaviorCompositeEditPart.VISUAL_ID:
++			return new FunctionBehaviorCompositeEditPart(view);
+ 
+-			case OpaqueBehaviorCompositeEditPart.VISUAL_ID:
+-				return new OpaqueBehaviorCompositeEditPart(view);
++		case FunctionBehaviorCompositeNameEditPart.VISUAL_ID:
++			return new FunctionBehaviorCompositeNameEditPart(view);
+ 
+-			case OpaqueBehaviorCompositeNameEditPart.VISUAL_ID:
+-				return new OpaqueBehaviorCompositeNameEditPart(view);
++		case OpaqueBehaviorCompositeEditPart.VISUAL_ID:
++			return new OpaqueBehaviorCompositeEditPart(view);
+ 
+-			case ComponentCompositeEditPart.VISUAL_ID:
+-				return new ComponentCompositeEditPart(view);
++		case OpaqueBehaviorCompositeNameEditPart.VISUAL_ID:
++			return new OpaqueBehaviorCompositeNameEditPart(view);
+ 
+-			case ComponentCompositeNameEditPart.VISUAL_ID:
+-				return new ComponentCompositeNameEditPart(view);
++		case ComponentCompositeEditPart.VISUAL_ID:
++			return new ComponentCompositeEditPart(view);
+ 
+-			case DeviceCompositeEditPart.VISUAL_ID:
+-				return new DeviceCompositeEditPart(view);
++		case ComponentCompositeNameEditPart.VISUAL_ID:
++			return new ComponentCompositeNameEditPart(view);
+ 
+-			case DeviceCompositeNameEditPart.VISUAL_ID:
+-				return new DeviceCompositeNameEditPart(view);
++		case DeviceCompositeEditPart.VISUAL_ID:
++			return new DeviceCompositeEditPart(view);
+ 
+-			case ExecutionEnvironmentCompositeEditPart.VISUAL_ID:
+-				return new ExecutionEnvironmentCompositeEditPart(view);
++		case DeviceCompositeNameEditPart.VISUAL_ID:
++			return new DeviceCompositeNameEditPart(view);
+ 
+-			case ExecutionEnvironmentCompositeNameEditPart.VISUAL_ID:
+-				return new ExecutionEnvironmentCompositeNameEditPart(view);
++		case ExecutionEnvironmentCompositeEditPart.VISUAL_ID:
++			return new ExecutionEnvironmentCompositeEditPart(view);
+ 
+-			case NodeCompositeEditPart.VISUAL_ID:
+-				return new NodeCompositeEditPart(view);
++		case ExecutionEnvironmentCompositeNameEditPart.VISUAL_ID:
++			return new ExecutionEnvironmentCompositeNameEditPart(view);
+ 
+-			case NodeCompositeNameEditPart.VISUAL_ID:
+-				return new NodeCompositeNameEditPart(view);
++		case NodeCompositeEditPart.VISUAL_ID:
++			return new NodeCompositeEditPart(view);
+ 
+-			case ClassCompositeEditPart.VISUAL_ID:
+-				return new ClassCompositeEditPart(view);
++		case NodeCompositeNameEditPart.VISUAL_ID:
++			return new NodeCompositeNameEditPart(view);
+ 
+-			case ClassCompositeNameEditPart.VISUAL_ID:
+-				return new ClassCompositeNameEditPart(view);
++		case ClassCompositeEditPart.VISUAL_ID:
++			return new ClassCompositeEditPart(view);
+ 
+-			case ClassClassifierEditPart.VISUAL_ID:
+-				return new ClassClassifierEditPart(view);
++		case ClassCompositeNameEditPart.VISUAL_ID:
++			return new ClassCompositeNameEditPart(view);
+ 
+-			case ClassClassifierNameEditPart.VISUAL_ID:
+-				return new ClassClassifierNameEditPart(view);
++		case ClassClassifierEditPart.VISUAL_ID:
++			return new ClassClassifierEditPart(view);
+ 
+-			case CollaborationCompositeEditPart.VISUAL_ID:
+-				return new CollaborationCompositeEditPart(view);
++		case ClassClassifierNameEditPart.VISUAL_ID:
++			return new ClassClassifierNameEditPart(view);
+ 
+-			case CollaborationCompositeNameEditPart.VISUAL_ID:
+-				return new CollaborationCompositeNameEditPart(view);
++		case CollaborationCompositeEditPart.VISUAL_ID:
++			return new CollaborationCompositeEditPart(view);
+ 
+-			case InterfaceEditPart.VISUAL_ID:
+-				return new InterfaceEditPart(view);
++		case CollaborationCompositeNameEditPart.VISUAL_ID:
++			return new CollaborationCompositeNameEditPart(view);
+ 
+-			case InterfaceNameEditPart.VISUAL_ID:
+-				return new InterfaceNameEditPart(view);
++		case InterfaceEditPart.VISUAL_ID:
++			return new InterfaceEditPart(view);
+ 
+-			case PrimitiveTypeEditPart.VISUAL_ID:
+-				return new PrimitiveTypeEditPart(view);
++		case InterfaceNameEditPart.VISUAL_ID:
++			return new InterfaceNameEditPart(view);
+ 
+-			case PrimitiveTypeNameEditPart.VISUAL_ID:
+-				return new PrimitiveTypeNameEditPart(view);
++		case PrimitiveTypeEditPart.VISUAL_ID:
++			return new PrimitiveTypeEditPart(view);
+ 
+-			case EnumerationEditPart.VISUAL_ID:
+-				return new EnumerationEditPart(view);
++		case PrimitiveTypeNameEditPart.VISUAL_ID:
++			return new PrimitiveTypeNameEditPart(view);
+ 
+-			case EnumerationNameEditPart.VISUAL_ID:
+-				return new EnumerationNameEditPart(view);
++		case EnumerationEditPart.VISUAL_ID:
++			return new EnumerationEditPart(view);
+ 
+-			case DataTypeEditPart.VISUAL_ID:
+-				return new DataTypeEditPart(view);
++		case EnumerationNameEditPart.VISUAL_ID:
++			return new EnumerationNameEditPart(view);
+ 
+-			case DataTypeNameEditPart.VISUAL_ID:
+-				return new DataTypeNameEditPart(view);
++		case DataTypeEditPart.VISUAL_ID:
++			return new DataTypeEditPart(view);
+ 
+-			case ActorEditPart.VISUAL_ID:
+-				return new ActorEditPart(view);
++		case DataTypeNameEditPart.VISUAL_ID:
++			return new DataTypeNameEditPart(view);
+ 
+-			case ActorNameEditPart.VISUAL_ID:
+-				return new ActorNameEditPart(view);
++		case ActorEditPart.VISUAL_ID:
++			return new ActorEditPart(view);
+ 
+-			case DeploymentSpecificationEditPart.VISUAL_ID:
+-				return new DeploymentSpecificationEditPart(view);
++		case ActorNameEditPart.VISUAL_ID:
++			return new ActorNameEditPart(view);
+ 
+-			case DeploymentSpecificationNameEditPart.VISUAL_ID:
+-				return new DeploymentSpecificationNameEditPart(view);
++		case DeploymentSpecificationEditPart.VISUAL_ID:
++			return new DeploymentSpecificationEditPart(view);
+ 
+-			case ArtifactEditPart.VISUAL_ID:
+-				return new ArtifactEditPart(view);
++		case DeploymentSpecificationNameEditPart.VISUAL_ID:
++			return new DeploymentSpecificationNameEditPart(view);
+ 
+-			case ArtifactNameEditPart.VISUAL_ID:
+-				return new ArtifactNameEditPart(view);
++		case ArtifactEditPart.VISUAL_ID:
++			return new ArtifactEditPart(view);
+ 
+-			case InformationItemEditPart.VISUAL_ID:
+-				return new InformationItemEditPart(view);
++		case ArtifactNameEditPart.VISUAL_ID:
++			return new ArtifactNameEditPart(view);
+ 
+-			case InformationItemNameEditPart.VISUAL_ID:
+-				return new InformationItemNameEditPart(view);
++		case InformationItemEditPart.VISUAL_ID:
++			return new InformationItemEditPart(view);
+ 
+-			case SignalEditPart.VISUAL_ID:
+-				return new SignalEditPart(view);
++		case InformationItemNameEditPart.VISUAL_ID:
++			return new InformationItemNameEditPart(view);
+ 
+-			case SignalNameEditPart.VISUAL_ID:
+-				return new SignalNameEditPart(view);
++		case SignalEditPart.VISUAL_ID:
++			return new SignalEditPart(view);
+ 
+-			case UseCaseEditPart.VISUAL_ID:
+-				return new UseCaseEditPart(view);
++		case SignalNameEditPart.VISUAL_ID:
++			return new SignalNameEditPart(view);
+ 
+-			case UseCaseNameEditPart.VISUAL_ID:
+-				return new UseCaseNameEditPart(view);
++		case UseCaseEditPart.VISUAL_ID:
++			return new UseCaseEditPart(view);
+ 
+-			case SignalEventEditPart.VISUAL_ID:
+-				return new SignalEventEditPart(view);
++		case UseCaseNameEditPart.VISUAL_ID:
++			return new UseCaseNameEditPart(view);
+ 
+-			case SignalEventNameEditPart.VISUAL_ID:
+-				return new SignalEventNameEditPart(view);
++		case SignalEventEditPart.VISUAL_ID:
++			return new SignalEventEditPart(view);
+ 
+-			case CallEventEditPart.VISUAL_ID:
+-				return new CallEventEditPart(view);
++		case SignalEventNameEditPart.VISUAL_ID:
++			return new SignalEventNameEditPart(view);
+ 
+-			case CallEventNameEditPart.VISUAL_ID:
+-				return new CallEventNameEditPart(view);
++		case CallEventEditPart.VISUAL_ID:
++			return new CallEventEditPart(view);
+ 
+-			case AnyReceiveEventEditPart.VISUAL_ID:
+-				return new AnyReceiveEventEditPart(view);
++		case CallEventNameEditPart.VISUAL_ID:
++			return new CallEventNameEditPart(view);
+ 
+-			case AnyReceiveEventNameEditPart.VISUAL_ID:
+-				return new AnyReceiveEventNameEditPart(view);
++		case AnyReceiveEventEditPart.VISUAL_ID:
++			return new AnyReceiveEventEditPart(view);
+ 
+-			case SendSignalEventEditPart.VISUAL_ID:
+-				return new SendSignalEventEditPart(view);
++		case AnyReceiveEventNameEditPart.VISUAL_ID:
++			return new AnyReceiveEventNameEditPart(view);
+ 
+-			case SendSignalEventNameEditPart.VISUAL_ID:
+-				return new SendSignalEventNameEditPart(view);
++		case SendSignalEventEditPart.VISUAL_ID:
++			return new SendSignalEventEditPart(view);
+ 
+-			case SendOperationEventEditPart.VISUAL_ID:
+-				return new SendOperationEventEditPart(view);
++		case SendSignalEventNameEditPart.VISUAL_ID:
++			return new SendSignalEventNameEditPart(view);
+ 
+-			case SendOperationEventNameEditPart.VISUAL_ID:
+-				return new SendOperationEventNameEditPart(view);
++		case SendOperationEventEditPart.VISUAL_ID:
++			return new SendOperationEventEditPart(view);
+ 
+-			case ChangeEventEditPart.VISUAL_ID:
+-				return new ChangeEventEditPart(view);
++		case SendOperationEventNameEditPart.VISUAL_ID:
++			return new SendOperationEventNameEditPart(view);
+ 
+-			case ChangeEventNameEditPart.VISUAL_ID:
+-				return new ChangeEventNameEditPart(view);
++		case ChangeEventEditPart.VISUAL_ID:
++			return new ChangeEventEditPart(view);
+ 
+-			case TimeEventEditPart.VISUAL_ID:
+-				return new TimeEventEditPart(view);
++		case ChangeEventNameEditPart.VISUAL_ID:
++			return new ChangeEventNameEditPart(view);
+ 
+-			case TimeEventNameEditPart.VISUAL_ID:
+-				return new TimeEventNameEditPart(view);
++		case TimeEventEditPart.VISUAL_ID:
++			return new TimeEventEditPart(view);
+ 
+-			case CreationEventEditPart.VISUAL_ID:
+-				return new CreationEventEditPart(view);
++		case TimeEventNameEditPart.VISUAL_ID:
++			return new TimeEventNameEditPart(view);
+ 
+-			case CreationEventNameEditPart.VISUAL_ID:
+-				return new CreationEventNameEditPart(view);
++		case CreationEventEditPart.VISUAL_ID:
++			return new CreationEventEditPart(view);
+ 
+-			case DestructionEventEditPart.VISUAL_ID:
+-				return new DestructionEventEditPart(view);
++		case CreationEventNameEditPart.VISUAL_ID:
++			return new CreationEventNameEditPart(view);
+ 
+-			case DestructionEventNameEditPart.VISUAL_ID:
+-				return new DestructionEventNameEditPart(view);
++		case DestructionEventEditPart.VISUAL_ID:
++			return new DestructionEventEditPart(view);
+ 
+-			case ExecutionEventEditPart.VISUAL_ID:
+-				return new ExecutionEventEditPart(view);
++		case DestructionEventNameEditPart.VISUAL_ID:
++			return new DestructionEventNameEditPart(view);
+ 
+-			case ExecutionEventNameEditPart.VISUAL_ID:
+-				return new ExecutionEventNameEditPart(view);
++		case ExecutionEventEditPart.VISUAL_ID:
++			return new ExecutionEventEditPart(view);
+ 
+-			case DurationObservationEditPart.VISUAL_ID:
+-				return new DurationObservationEditPart(view);
++		case ExecutionEventNameEditPart.VISUAL_ID:
++			return new ExecutionEventNameEditPart(view);
+ 
+-			case DurationObservationNameEditPart.VISUAL_ID:
+-				return new DurationObservationNameEditPart(view);
++		case DurationObservationEditPart.VISUAL_ID:
++			return new DurationObservationEditPart(view);
+ 
+-			case DurationObservationStereotypeLabelEditPart.VISUAL_ID:
+-				return new DurationObservationStereotypeLabelEditPart(view);
++		case DurationObservationNameEditPart.VISUAL_ID:
++			return new DurationObservationNameEditPart(view);
+ 
+-			case TimeObservationEditPart.VISUAL_ID:
+-				return new TimeObservationEditPart(view);
++		case DurationObservationStereotypeLabelEditPart.VISUAL_ID:
++			return new DurationObservationStereotypeLabelEditPart(view);
+ 
+-			case TimeObservationNameEditPart.VISUAL_ID:
+-				return new TimeObservationNameEditPart(view);
++		case TimeObservationEditPart.VISUAL_ID:
++			return new TimeObservationEditPart(view);
+ 
+-			case TimeObservationStereotypeLabelEditPart.VISUAL_ID:
+-				return new TimeObservationStereotypeLabelEditPart(view);
++		case TimeObservationNameEditPart.VISUAL_ID:
++			return new TimeObservationNameEditPart(view);
+ 
+-			case LiteralBooleanEditPart.VISUAL_ID:
+-				return new LiteralBooleanEditPart(view);
++		case TimeObservationStereotypeLabelEditPart.VISUAL_ID:
++			return new TimeObservationStereotypeLabelEditPart(view);
+ 
+-			case LiteralBooleanNameEditPart.VISUAL_ID:
+-				return new LiteralBooleanNameEditPart(view);
++		case LiteralBooleanEditPart.VISUAL_ID:
++			return new LiteralBooleanEditPart(view);
+ 
+-			case LiteralIntegerEditPart.VISUAL_ID:
+-				return new LiteralIntegerEditPart(view);
++		case LiteralBooleanNameEditPart.VISUAL_ID:
++			return new LiteralBooleanNameEditPart(view);
+ 
+-			case LiteralIntegerNameEditPart.VISUAL_ID:
+-				return new LiteralIntegerNameEditPart(view);
++		case LiteralIntegerEditPart.VISUAL_ID:
++			return new LiteralIntegerEditPart(view);
+ 
+-			case LiteralNullEditPart.VISUAL_ID:
+-				return new LiteralNullEditPart(view);
++		case LiteralIntegerNameEditPart.VISUAL_ID:
++			return new LiteralIntegerNameEditPart(view);
+ 
+-			case LiteralNullNameEditPart.VISUAL_ID:
+-				return new LiteralNullNameEditPart(view);
++		case LiteralNullEditPart.VISUAL_ID:
++			return new LiteralNullEditPart(view);
+ 
+-			case LiteralStringEditPart.VISUAL_ID:
+-				return new LiteralStringEditPart(view);
++		case LiteralNullNameEditPart.VISUAL_ID:
++			return new LiteralNullNameEditPart(view);
+ 
+-			case LiteralStringNameEditPart.VISUAL_ID:
+-				return new LiteralStringNameEditPart(view);
++		case LiteralStringEditPart.VISUAL_ID:
++			return new LiteralStringEditPart(view);
+ 
+-			case LiteralUnlimitedNaturalEditPart.VISUAL_ID:
+-				return new LiteralUnlimitedNaturalEditPart(view);
++		case LiteralStringNameEditPart.VISUAL_ID:
++			return new LiteralStringNameEditPart(view);
+ 
+-			case LiteralUnlimitedNaturalNameEditPart.VISUAL_ID:
+-				return new LiteralUnlimitedNaturalNameEditPart(view);
++		case LiteralUnlimitedNaturalEditPart.VISUAL_ID:
++			return new LiteralUnlimitedNaturalEditPart(view);
+ 
+-			case StringExpressionEditPart.VISUAL_ID:
+-				return new StringExpressionEditPart(view);
++		case LiteralUnlimitedNaturalNameEditPart.VISUAL_ID:
++			return new LiteralUnlimitedNaturalNameEditPart(view);
+ 
+-			case StringExpressionNameEditPart.VISUAL_ID:
+-				return new StringExpressionNameEditPart(view);
++		case StringExpressionEditPart.VISUAL_ID:
++			return new StringExpressionEditPart(view);
+ 
+-			case OpaqueExpressionEditPart.VISUAL_ID:
+-				return new OpaqueExpressionEditPart(view);
++		case StringExpressionNameEditPart.VISUAL_ID:
++			return new StringExpressionNameEditPart(view);
+ 
+-			case OpaqueExpressionNameEditPart.VISUAL_ID:
+-				return new OpaqueExpressionNameEditPart(view);
++		case OpaqueExpressionEditPart.VISUAL_ID:
++			return new OpaqueExpressionEditPart(view);
+ 
+-			case TimeExpressionEditPart.VISUAL_ID:
+-				return new TimeExpressionEditPart(view);
++		case OpaqueExpressionNameEditPart.VISUAL_ID:
++			return new OpaqueExpressionNameEditPart(view);
+ 
+-			case TimeExpressionNameEditPart.VISUAL_ID:
+-				return new TimeExpressionNameEditPart(view);
++		case TimeExpressionEditPart.VISUAL_ID:
++			return new TimeExpressionEditPart(view);
+ 
+-			case ExpressionEditPart.VISUAL_ID:
+-				return new ExpressionEditPart(view);
++		case TimeExpressionNameEditPart.VISUAL_ID:
++			return new TimeExpressionNameEditPart(view);
+ 
+-			case ExpressionNameEditPart.VISUAL_ID:
+-				return new ExpressionNameEditPart(view);
++		case ExpressionEditPart.VISUAL_ID:
++			return new ExpressionEditPart(view);
+ 
+-			case DurationEditPart.VISUAL_ID:
+-				return new DurationEditPart(view);
++		case ExpressionNameEditPart.VISUAL_ID:
++			return new ExpressionNameEditPart(view);
+ 
+-			case DurationNameEditPart.VISUAL_ID:
+-				return new DurationNameEditPart(view);
++		case DurationEditPart.VISUAL_ID:
++			return new DurationEditPart(view);
+ 
+-			case TimeIntervalEditPart.VISUAL_ID:
+-				return new TimeIntervalEditPart(view);
++		case DurationNameEditPart.VISUAL_ID:
++			return new DurationNameEditPart(view);
+ 
+-			case TimeIntervalNameEditPart.VISUAL_ID:
+-				return new TimeIntervalNameEditPart(view);
++		case TimeIntervalEditPart.VISUAL_ID:
++			return new TimeIntervalEditPart(view);
+ 
+-			case DurationIntervalEditPart.VISUAL_ID:
+-				return new DurationIntervalEditPart(view);
++		case TimeIntervalNameEditPart.VISUAL_ID:
++			return new TimeIntervalNameEditPart(view);
+ 
+-			case DurationIntervalNameEditPart.VISUAL_ID:
+-				return new DurationIntervalNameEditPart(view);
++		case DurationIntervalEditPart.VISUAL_ID:
++			return new DurationIntervalEditPart(view);
+ 
+-			case IntervalEditPart.VISUAL_ID:
+-				return new IntervalEditPart(view);
++		case DurationIntervalNameEditPart.VISUAL_ID:
++			return new DurationIntervalNameEditPart(view);
+ 
+-			case IntervalNameEditPart.VISUAL_ID:
+-				return new IntervalNameEditPart(view);
++		case IntervalEditPart.VISUAL_ID:
++			return new IntervalEditPart(view);
+ 
+-			case InstanceValueEditPart.VISUAL_ID:
+-				return new InstanceValueEditPart(view);
++		case IntervalNameEditPart.VISUAL_ID:
++			return new IntervalNameEditPart(view);
+ 
+-			case InstanceValueNameEditPart.VISUAL_ID:
+-				return new InstanceValueNameEditPart(view);
++		case InstanceValueEditPart.VISUAL_ID:
++			return new InstanceValueEditPart(view);
+ 
+-			case CommentEditPart.VISUAL_ID:
+-				return new CommentEditPart(view);
++		case InstanceValueNameEditPart.VISUAL_ID:
++			return new InstanceValueNameEditPart(view);
+ 
+-			case CommentBodyEditPart.VISUAL_ID:
+-				return new CommentBodyEditPart(view);
++		case CommentEditPart.VISUAL_ID:
++			return new CommentEditPart(view);
+ 
+-			case DurationConstraintEditPart.VISUAL_ID:
+-				return new DurationConstraintEditPart(view);
++		case CommentBodyEditPart.VISUAL_ID:
++			return new CommentBodyEditPart(view);
+ 
+-			case DurationConstraintNameEditPart.VISUAL_ID:
+-				return new DurationConstraintNameEditPart(view);
++		case DurationConstraintEditPart.VISUAL_ID:
++			return new DurationConstraintEditPart(view);
+ 
+-			case TimeConstraintEditPart.VISUAL_ID:
+-				return new TimeConstraintEditPart(view);
++		case DurationConstraintNameEditPart.VISUAL_ID:
++			return new DurationConstraintNameEditPart(view);
+ 
+-			case TimeConstraintNameEditPart.VISUAL_ID:
+-				return new TimeConstraintNameEditPart(view);
++		case TimeConstraintEditPart.VISUAL_ID:
++			return new TimeConstraintEditPart(view);
+ 
+-			case IntervalConstraintEditPart.VISUAL_ID:
+-				return new IntervalConstraintEditPart(view);
++		case TimeConstraintNameEditPart.VISUAL_ID:
++			return new TimeConstraintNameEditPart(view);
+ 
+-			case IntervalConstraintNameEditPart.VISUAL_ID:
+-				return new IntervalConstraintNameEditPart(view);
++		case IntervalConstraintEditPart.VISUAL_ID:
++			return new IntervalConstraintEditPart(view);
+ 
+-			case InteractionConstraintEditPart.VISUAL_ID:
+-				return new InteractionConstraintEditPart(view);
++		case IntervalConstraintNameEditPart.VISUAL_ID:
++			return new IntervalConstraintNameEditPart(view);
+ 
+-			case InteractionConstraintNameEditPart.VISUAL_ID:
+-				return new InteractionConstraintNameEditPart(view);
++		case InteractionConstraintEditPart.VISUAL_ID:
++			return new InteractionConstraintEditPart(view);
+ 
+-			case ConstraintEditPart.VISUAL_ID:
+-				return new ConstraintEditPart(view);
++		case InteractionConstraintNameEditPart.VISUAL_ID:
++			return new InteractionConstraintNameEditPart(view);
+ 
+-			case ConstraintNameEditPart.VISUAL_ID:
+-				return new ConstraintNameEditPart(view);
++		case ConstraintEditPart.VISUAL_ID:
++			return new ConstraintEditPart(view);
+ 
+-			case PortEditPart.VISUAL_ID:
+-				return new PortEditPart(view);
++		case ConstraintNameEditPart.VISUAL_ID:
++			return new ConstraintNameEditPart(view);
+ 
+-			case PortNameEditPart.VISUAL_ID:
+-				return new PortNameEditPart(view);
++		case PortEditPart.VISUAL_ID:
++			return new PortEditPart(view);
+ 
+-			case PortAppliedStereotypeEditPart.VISUAL_ID:
+-				return new PortAppliedStereotypeEditPart(view);
++		case PortNameEditPart.VISUAL_ID:
++			return new PortNameEditPart(view);
+ 
+-			case ParameterEditPart.VISUAL_ID:
+-				return new ParameterEditPart(view);
++		case PortAppliedStereotypeEditPart.VISUAL_ID:
++			return new PortAppliedStereotypeEditPart(view);
+ 
+-			case ParameterNameEditPart.VISUAL_ID:
+-				return new ParameterNameEditPart(view);
++		case ParameterEditPart.VISUAL_ID:
++			return new ParameterEditPart(view);
+ 
+-			case ParameterAppliedStereotypeEditPart.VISUAL_ID:
+-				return new ParameterAppliedStereotypeEditPart(view);
++		case ParameterNameEditPart.VISUAL_ID:
++			return new ParameterNameEditPart(view);
+ 
+-			case PropertyPartEditPartCN.VISUAL_ID:
+-				return new PropertyPartEditPartCN(view);
++		case ParameterAppliedStereotypeEditPart.VISUAL_ID:
++			return new ParameterAppliedStereotypeEditPart(view);
+ 
+-			case PropertyPartNameEditPartCN.VISUAL_ID:
+-				return new PropertyPartNameEditPartCN(view);
++		case PropertyPartEditPartCN.VISUAL_ID:
++			return new PropertyPartEditPartCN(view);
+ 
+-			case CollaborationRoleEditPartCN.VISUAL_ID:
+-				return new CollaborationRoleEditPartCN(view);
++		case PropertyPartNameEditPartCN.VISUAL_ID:
++			return new PropertyPartNameEditPartCN(view);
+ 
+-			case CollaborationRoleNameEditPartCN.VISUAL_ID:
+-				return new CollaborationRoleNameEditPartCN(view);
++		case CollaborationRoleEditPartCN.VISUAL_ID:
++			return new CollaborationRoleEditPartCN(view);
+ 
+-			case CollaborationUseEditPartCN.VISUAL_ID:
+-				return new CollaborationUseEditPartCN(view);
++		case CollaborationRoleNameEditPartCN.VISUAL_ID:
++			return new CollaborationRoleNameEditPartCN(view);
+ 
+-			case CollaborationUseNameEditPart.VISUAL_ID:
+-				return new CollaborationUseNameEditPart(view);
++		case CollaborationUseEditPartCN.VISUAL_ID:
++			return new CollaborationUseEditPartCN(view);
+ 
+-			case ActivityCompositeEditPartCN.VISUAL_ID:
+-				return new ActivityCompositeEditPartCN(view);
++		case CollaborationUseNameEditPart.VISUAL_ID:
++			return new CollaborationUseNameEditPart(view);
+ 
+-			case ActivityCompositeNameEditPartCN.VISUAL_ID:
+-				return new ActivityCompositeNameEditPartCN(view);
++		case ActivityCompositeEditPartCN.VISUAL_ID:
++			return new ActivityCompositeEditPartCN(view);
+ 
+-			case InteractionCompositeEditPartCN.VISUAL_ID:
+-				return new InteractionCompositeEditPartCN(view);
++		case ActivityCompositeNameEditPartCN.VISUAL_ID:
++			return new ActivityCompositeNameEditPartCN(view);
+ 
+-			case InteractionCompositeNameEditPartCN.VISUAL_ID:
+-				return new InteractionCompositeNameEditPartCN(view);
++		case InteractionCompositeEditPartCN.VISUAL_ID:
++			return new InteractionCompositeEditPartCN(view);
+ 
+-			case ProtocolStateMachineCompositeEditPartCN.VISUAL_ID:
+-				return new ProtocolStateMachineCompositeEditPartCN(view);
++		case InteractionCompositeNameEditPartCN.VISUAL_ID:
++			return new InteractionCompositeNameEditPartCN(view);
+ 
+-			case ProtocolStateMachineCompositeNameEditPartCN.VISUAL_ID:
+-				return new ProtocolStateMachineCompositeNameEditPartCN(view);
++		case ProtocolStateMachineCompositeEditPartCN.VISUAL_ID:
++			return new ProtocolStateMachineCompositeEditPartCN(view);
+ 
+-			case StateMachineCompositeEditPartCN.VISUAL_ID:
+-				return new StateMachineCompositeEditPartCN(view);
++		case ProtocolStateMachineCompositeNameEditPartCN.VISUAL_ID:
++			return new ProtocolStateMachineCompositeNameEditPartCN(view);
+ 
+-			case StateMachineCompositeNameEditPartCN.VISUAL_ID:
+-				return new StateMachineCompositeNameEditPartCN(view);
++		case StateMachineCompositeEditPartCN.VISUAL_ID:
++			return new StateMachineCompositeEditPartCN(view);
+ 
+-			case FunctionBehaviorCompositeEditPartCN.VISUAL_ID:
+-				return new FunctionBehaviorCompositeEditPartCN(view);
++		case StateMachineCompositeNameEditPartCN.VISUAL_ID:
++			return new StateMachineCompositeNameEditPartCN(view);
+ 
+-			case FunctionBehaviorCompositeNameEditPartCN.VISUAL_ID:
+-				return new FunctionBehaviorCompositeNameEditPartCN(view);
++		case FunctionBehaviorCompositeEditPartCN.VISUAL_ID:
++			return new FunctionBehaviorCompositeEditPartCN(view);
+ 
+-			case OpaqueBehaviorCompositeEditPartCN.VISUAL_ID:
+-				return new OpaqueBehaviorCompositeEditPartCN(view);
++		case FunctionBehaviorCompositeNameEditPartCN.VISUAL_ID:
++			return new FunctionBehaviorCompositeNameEditPartCN(view);
+ 
+-			case OpaqueBehaviorCompositeNameEditPartCN.VISUAL_ID:
+-				return new OpaqueBehaviorCompositeNameEditPartCN(view);
++		case OpaqueBehaviorCompositeEditPartCN.VISUAL_ID:
++			return new OpaqueBehaviorCompositeEditPartCN(view);
+ 
+-			case ComponentCompositeEditPartCN.VISUAL_ID:
+-				return new ComponentCompositeEditPartCN(view);
++		case OpaqueBehaviorCompositeNameEditPartCN.VISUAL_ID:
++			return new OpaqueBehaviorCompositeNameEditPartCN(view);
+ 
+-			case ComponentCompositeNameEditPartCN.VISUAL_ID:
+-				return new ComponentCompositeNameEditPartCN(view);
++		case ComponentCompositeEditPartCN.VISUAL_ID:
++			return new ComponentCompositeEditPartCN(view);
+ 
+-			case DeviceCompositeEditPartCN.VISUAL_ID:
+-				return new DeviceCompositeEditPartCN(view);
++		case ComponentCompositeNameEditPartCN.VISUAL_ID:
++			return new ComponentCompositeNameEditPartCN(view);
+ 
+-			case DeviceCompositeNameEditPartCN.VISUAL_ID:
+-				return new DeviceCompositeNameEditPartCN(view);
++		case DeviceCompositeEditPartCN.VISUAL_ID:
++			return new DeviceCompositeEditPartCN(view);
+ 
+-			case ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID:
+-				return new ExecutionEnvironmentCompositeEditPartCN(view);
++		case DeviceCompositeNameEditPartCN.VISUAL_ID:
++			return new DeviceCompositeNameEditPartCN(view);
+ 
+-			case ExecutionEnvironmentCompositeNameEditPartCN.VISUAL_ID:
+-				return new ExecutionEnvironmentCompositeNameEditPartCN(view);
++		case ExecutionEnvironmentCompositeEditPartCN.VISUAL_ID:
++			return new ExecutionEnvironmentCompositeEditPartCN(view);
+ 
+-			case NodeCompositeEditPartCN.VISUAL_ID:
+-				return new NodeCompositeEditPartCN(view);
++		case ExecutionEnvironmentCompositeNameEditPartCN.VISUAL_ID:
++			return new ExecutionEnvironmentCompositeNameEditPartCN(view);
+ 
+-			case NodeCompositeNameEditPartCN.VISUAL_ID:
+-				return new NodeCompositeNameEditPartCN(view);
++		case NodeCompositeEditPartCN.VISUAL_ID:
++			return new NodeCompositeEditPartCN(view);
+ 
+-			case ClassCompositeEditPartCN.VISUAL_ID:
+-				return new ClassCompositeEditPartCN(view);
++		case NodeCompositeNameEditPartCN.VISUAL_ID:
++			return new NodeCompositeNameEditPartCN(view);
+ 
+-			case ClassCompositeNameEditPartCN.VISUAL_ID:
+-				return new ClassCompositeNameEditPartCN(view);
++		case ClassCompositeEditPartCN.VISUAL_ID:
++			return new ClassCompositeEditPartCN(view);
+ 
+-			case CollaborationCompositeEditPartCN.VISUAL_ID:
+-				return new CollaborationCompositeEditPartCN(view);
++		case ClassCompositeNameEditPartCN.VISUAL_ID:
++			return new ClassCompositeNameEditPartCN(view);
+ 
+-			case CollaborationCompositeNameEditPartCN.VISUAL_ID:
+-				return new CollaborationCompositeNameEditPartCN(view);
++		case CollaborationCompositeEditPartCN.VISUAL_ID:
++			return new CollaborationCompositeEditPartCN(view);
+ 
+-			case InterfaceEditPartCN.VISUAL_ID:
+-				return new InterfaceEditPartCN(view);
++		case CollaborationCompositeNameEditPartCN.VISUAL_ID:
++			return new CollaborationCompositeNameEditPartCN(view);
+ 
+-			case InterfaceNameEditPartCN.VISUAL_ID:
+-				return new InterfaceNameEditPartCN(view);
++		case InterfaceEditPartCN.VISUAL_ID:
++			return new InterfaceEditPartCN(view);
+ 
+-			case PrimitiveTypeEditPartCN.VISUAL_ID:
+-				return new PrimitiveTypeEditPartCN(view);
++		case InterfaceNameEditPartCN.VISUAL_ID:
++			return new InterfaceNameEditPartCN(view);
+ 
+-			case PrimitiveTypeNameEditPartCN.VISUAL_ID:
+-				return new PrimitiveTypeNameEditPartCN(view);
++		case PrimitiveTypeEditPartCN.VISUAL_ID:
++			return new PrimitiveTypeEditPartCN(view);
+ 
+-			case EnumerationEditPartCN.VISUAL_ID:
+-				return new EnumerationEditPartCN(view);
++		case PrimitiveTypeNameEditPartCN.VISUAL_ID:
++			return new PrimitiveTypeNameEditPartCN(view);
+ 
+-			case EnumerationNameEditPartCN.VISUAL_ID:
+-				return new EnumerationNameEditPartCN(view);
++		case EnumerationEditPartCN.VISUAL_ID:
++			return new EnumerationEditPartCN(view);
+ 
+-			case DataTypeEditPartCN.VISUAL_ID:
+-				return new DataTypeEditPartCN(view);
++		case EnumerationNameEditPartCN.VISUAL_ID:
++			return new EnumerationNameEditPartCN(view);
+ 
+-			case DataTypeNameEditPartCN.VISUAL_ID:
+-				return new DataTypeNameEditPartCN(view);
++		case DataTypeEditPartCN.VISUAL_ID:
++			return new DataTypeEditPartCN(view);
+ 
+-			case ActorEditPartCN.VISUAL_ID:
+-				return new ActorEditPartCN(view);
++		case DataTypeNameEditPartCN.VISUAL_ID:
++			return new DataTypeNameEditPartCN(view);
+ 
+-			case ActorNameEditPartCN.VISUAL_ID:
+-				return new ActorNameEditPartCN(view);
++		case ActorEditPartCN.VISUAL_ID:
++			return new ActorEditPartCN(view);
+ 
+-			case DeploymentSpecificationEditPartCN.VISUAL_ID:
+-				return new DeploymentSpecificationEditPartCN(view);
++		case ActorNameEditPartCN.VISUAL_ID:
++			return new ActorNameEditPartCN(view);
+ 
+-			case DeploymentSpecificationNameEditPartCN.VISUAL_ID:
+-				return new DeploymentSpecificationNameEditPartCN(view);
++		case DeploymentSpecificationEditPartCN.VISUAL_ID:
++			return new DeploymentSpecificationEditPartCN(view);
+ 
+-			case ArtifactEditPartCN.VISUAL_ID:
+-				return new ArtifactEditPartCN(view);
++		case DeploymentSpecificationNameEditPartCN.VISUAL_ID:
++			return new DeploymentSpecificationNameEditPartCN(view);
+ 
+-			case ArtifactNameEditPartCN.VISUAL_ID:
+-				return new ArtifactNameEditPartCN(view);
++		case ArtifactEditPartCN.VISUAL_ID:
++			return new ArtifactEditPartCN(view);
+ 
+-			case InformationItemEditPartCN.VISUAL_ID:
+-				return new InformationItemEditPartCN(view);
++		case ArtifactNameEditPartCN.VISUAL_ID:
++			return new ArtifactNameEditPartCN(view);
+ 
+-			case InformationItemNameEditPartCN.VISUAL_ID:
+-				return new InformationItemNameEditPartCN(view);
++		case InformationItemEditPartCN.VISUAL_ID:
++			return new InformationItemEditPartCN(view);
+ 
+-			case SignalEditPartCN.VISUAL_ID:
+-				return new SignalEditPartCN(view);
++		case InformationItemNameEditPartCN.VISUAL_ID:
++			return new InformationItemNameEditPartCN(view);
+ 
+-			case SignalNameEditPartCN.VISUAL_ID:
+-				return new SignalNameEditPartCN(view);
++		case SignalEditPartCN.VISUAL_ID:
++			return new SignalEditPartCN(view);
+ 
+-			case UseCaseEditPartCN.VISUAL_ID:
+-				return new UseCaseEditPartCN(view);
++		case SignalNameEditPartCN.VISUAL_ID:
++			return new SignalNameEditPartCN(view);
+ 
+-			case UseCaseNameEditPartCN.VISUAL_ID:
+-				return new UseCaseNameEditPartCN(view);
++		case UseCaseEditPartCN.VISUAL_ID:
++			return new UseCaseEditPartCN(view);
+ 
+-			case CommentEditPartCN.VISUAL_ID:
+-				return new CommentEditPartCN(view);
++		case UseCaseNameEditPartCN.VISUAL_ID:
++			return new UseCaseNameEditPartCN(view);
+ 
+-			case CommentBodyEditPartCN.VISUAL_ID:
+-				return new CommentBodyEditPartCN(view);
++		case CommentEditPartCN.VISUAL_ID:
++			return new CommentEditPartCN(view);
+ 
+-			case PropertyEditPartCLN.VISUAL_ID:
+-				return new PropertyEditPartCLN(view);
++		case CommentBodyEditPartCN.VISUAL_ID:
++			return new CommentBodyEditPartCN(view);
+ 
+-			case OperationEditPartCLN.VISUAL_ID:
+-				return new OperationEditPartCLN(view);
++		case PropertyEditPartCLN.VISUAL_ID:
++			return new PropertyEditPartCLN(view);
+ 
+-			case ReceptionEditPartCLN.VISUAL_ID:
+-				return new ReceptionEditPartCLN(view);
++		case OperationEditPartCLN.VISUAL_ID:
++			return new OperationEditPartCLN(view);
+ 
+-			case EnumerationLiteralEditPartCLN.VISUAL_ID:
+-				return new EnumerationLiteralEditPartCLN(view);
++		case ReceptionEditPartCLN.VISUAL_ID:
++			return new ReceptionEditPartCLN(view);
+ 
+-			case ActivityEditPartCLN.VISUAL_ID:
+-				return new ActivityEditPartCLN(view);
++		case EnumerationLiteralEditPartCLN.VISUAL_ID:
++			return new EnumerationLiteralEditPartCLN(view);
+ 
+-			case InteractionEditPartCLN.VISUAL_ID:
+-				return new InteractionEditPartCLN(view);
++		case ActivityEditPartCLN.VISUAL_ID:
++			return new ActivityEditPartCLN(view);
+ 
+-			case ProtocolStateMachineEditPartCLN.VISUAL_ID:
+-				return new ProtocolStateMachineEditPartCLN(view);
++		case InteractionEditPartCLN.VISUAL_ID:
++			return new InteractionEditPartCLN(view);
+ 
+-			case StateMachineEditPartCLN.VISUAL_ID:
+-				return new StateMachineEditPartCLN(view);
++		case ProtocolStateMachineEditPartCLN.VISUAL_ID:
++			return new ProtocolStateMachineEditPartCLN(view);
+ 
+-			case FunctionBehaviorEditPartCLN.VISUAL_ID:
+-				return new FunctionBehaviorEditPartCLN(view);
++		case StateMachineEditPartCLN.VISUAL_ID:
++			return new StateMachineEditPartCLN(view);
+ 
+-			case OpaqueBehaviorEditPartCLN.VISUAL_ID:
+-				return new OpaqueBehaviorEditPartCLN(view);
++		case FunctionBehaviorEditPartCLN.VISUAL_ID:
++			return new FunctionBehaviorEditPartCLN(view);
+ 
+-			case CollaborationEditPartCLN.VISUAL_ID:
+-				return new CollaborationEditPartCLN(view);
++		case OpaqueBehaviorEditPartCLN.VISUAL_ID:
++			return new OpaqueBehaviorEditPartCLN(view);
+ 
+-			case InterfaceEditPartCLN.VISUAL_ID:
+-				return new InterfaceEditPartCLN(view);
++		case CollaborationEditPartCLN.VISUAL_ID:
++			return new CollaborationEditPartCLN(view);
+ 
+-			case EnumerationEditPartCLN.VISUAL_ID:
+-				return new EnumerationEditPartCLN(view);
++		case InterfaceEditPartCLN.VISUAL_ID:
++			return new InterfaceEditPartCLN(view);
+ 
+-			case PrimitiveTypeEditPartCLN.VISUAL_ID:
+-				return new PrimitiveTypeEditPartCLN(view);
++		case EnumerationEditPartCLN.VISUAL_ID:
++			return new EnumerationEditPartCLN(view);
+ 
+-			case DataTypeEditPartCLN.VISUAL_ID:
+-				return new DataTypeEditPartCLN(view);
++		case PrimitiveTypeEditPartCLN.VISUAL_ID:
++			return new PrimitiveTypeEditPartCLN(view);
+ 
+-			case ClassEditPartCLN.VISUAL_ID:
+-				return new ClassEditPartCLN(view);
++		case DataTypeEditPartCLN.VISUAL_ID:
++			return new DataTypeEditPartCLN(view);
+ 
+-			case DataTypeAttributeCompartmentEditPart.VISUAL_ID:
+-				return new DataTypeAttributeCompartmentEditPart(view);
++		case ClassEditPartCLN.VISUAL_ID:
++			return new ClassEditPartCLN(view);
+ 
+-			case DataTypeOperationCompartmentEditPart.VISUAL_ID:
+-				return new DataTypeOperationCompartmentEditPart(view);
++		case DataTypeAttributeCompartmentEditPart.VISUAL_ID:
++			return new DataTypeAttributeCompartmentEditPart(view);
+ 
+-			case DataTypeAttributeCompartmentEditPartCN.VISUAL_ID:
+-				return new DataTypeAttributeCompartmentEditPartCN(view);
++		case DataTypeOperationCompartmentEditPart.VISUAL_ID:
++			return new DataTypeOperationCompartmentEditPart(view);
+ 
+-			case DataTypeOperationCompartmentEditPartCN.VISUAL_ID:
+-				return new DataTypeOperationCompartmentEditPartCN(view);
++		case DataTypeAttributeCompartmentEditPartCN.VISUAL_ID:
++			return new DataTypeAttributeCompartmentEditPartCN(view);
+ 
+-			case ClassAttributeCompartmentEditPart.VISUAL_ID:
+-				return new ClassAttributeCompartmentEditPart(view);
++		case DataTypeOperationCompartmentEditPartCN.VISUAL_ID:
++			return new DataTypeOperationCompartmentEditPartCN(view);
+ 
+-			case ClassOperationCompartmentEditPart.VISUAL_ID:
+-				return new ClassOperationCompartmentEditPart(view);
++		case ClassAttributeCompartmentEditPart.VISUAL_ID:
++			return new ClassAttributeCompartmentEditPart(view);
+ 
+-			case ClassNestedClassifierCompartmentEditPart.VISUAL_ID:
+-				return new ClassNestedClassifierCompartmentEditPart(view);
++		case ClassOperationCompartmentEditPart.VISUAL_ID:
++			return new ClassOperationCompartmentEditPart(view);
+ 
+-			case EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID:
+-				return new EnumerationEnumerationLiteralCompartmentEditPart(view);
++		case ClassNestedClassifierCompartmentEditPart.VISUAL_ID:
++			return new ClassNestedClassifierCompartmentEditPart(view);
+ 
+-			case EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID:
+-				return new EnumerationEnumerationLiteralCompartmentEditPartCN(view);
++		case EnumerationEnumerationLiteralCompartmentEditPart.VISUAL_ID:
++			return new EnumerationEnumerationLiteralCompartmentEditPart(view);
+ 
+-			case ActivityCompositeCompartmentEditPartCN.VISUAL_ID:
+-				return new ActivityCompositeCompartmentEditPartCN(view);
++		case EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID:
++			return new EnumerationEnumerationLiteralCompartmentEditPartCN(view);
+ 
+-			case InteractionCompositeCompartmentEditPartCN.VISUAL_ID:
+-				return new InteractionCompositeCompartmentEditPartCN(view);
++		case ActivityCompositeCompartmentEditPartCN.VISUAL_ID:
++			return new ActivityCompositeCompartmentEditPartCN(view);
+ 
+-			case ProtocolStateMachineCompositeCompartmentEditPartCN.VISUAL_ID:
+-				return new ProtocolStateMachineCompositeCompartmentEditPartCN(view);
++		case InteractionCompositeCompartmentEditPartCN.VISUAL_ID:
++			return new InteractionCompositeCompartmentEditPartCN(view);
+ 
+-			case StateMachineCompositeCompartmentEditPartCN.VISUAL_ID:
+-				return new StateMachineCompositeCompartmentEditPartCN(view);
++		case ProtocolStateMachineCompositeCompartmentEditPartCN.VISUAL_ID:
++			return new ProtocolStateMachineCompositeCompartmentEditPartCN(view);
+ 
+-			case FunctionBehaviorCompositeCompartmentEditPartCN.VISUAL_ID:
+-				return new FunctionBehaviorCompositeCompartmentEditPartCN(view);
++		case StateMachineCompositeCompartmentEditPartCN.VISUAL_ID:
++			return new StateMachineCompositeCompartmentEditPartCN(view);
+ 
+-			case OpaqueBehaviorCompositeCompartmentEditPartCN.VISUAL_ID:
+-				return new OpaqueBehaviorCompositeCompartmentEditPartCN(view);
++		case FunctionBehaviorCompositeCompartmentEditPartCN.VISUAL_ID:
++			return new FunctionBehaviorCompositeCompartmentEditPartCN(view);
+ 
+-			case ComponentCompositeCompartmentEditPartCN.VISUAL_ID:
+-				return new ComponentCompositeCompartmentEditPartCN(view);
++		case OpaqueBehaviorCompositeCompartmentEditPartCN.VISUAL_ID:
++			return new OpaqueBehaviorCompositeCompartmentEditPartCN(view);
+ 
+-			case DeviceCompositeCompartmentEditPartCN.VISUAL_ID:
+-				return new DeviceCompositeCompartmentEditPartCN(view);
++		case ComponentCompositeCompartmentEditPartCN.VISUAL_ID:
++			return new ComponentCompositeCompartmentEditPartCN(view);
+ 
+-			case ExecutionEnvironmentCompositeCompartmentEditPartCN.VISUAL_ID:
+-				return new ExecutionEnvironmentCompositeCompartmentEditPartCN(view);
++		case DeviceCompositeCompartmentEditPartCN.VISUAL_ID:
++			return new DeviceCompositeCompartmentEditPartCN(view);
+ 
+-			case NodeCompositeCompartmentEditPartCN.VISUAL_ID:
+-				return new NodeCompositeCompartmentEditPartCN(view);
++		case ExecutionEnvironmentCompositeCompartmentEditPartCN.VISUAL_ID:
++			return new ExecutionEnvironmentCompositeCompartmentEditPartCN(view);
+ 
+-			case ClassCompositeCompartmentEditPartCN.VISUAL_ID:
+-				return new ClassCompositeCompartmentEditPartCN(view);
++		case NodeCompositeCompartmentEditPartCN.VISUAL_ID:
++			return new NodeCompositeCompartmentEditPartCN(view);
+ 
+-			case CollaborationCompositeCompartmentEditPartCN.VISUAL_ID:
+-				return new CollaborationCompositeCompartmentEditPartCN(view);
++		case ClassCompositeCompartmentEditPartCN.VISUAL_ID:
++			return new ClassCompositeCompartmentEditPartCN(view);
+ 
+-			case InterfaceCompartmentEditPartCN.VISUAL_ID:
+-				return new InterfaceCompartmentEditPartCN(view);
++		case CollaborationCompositeCompartmentEditPartCN.VISUAL_ID:
++			return new CollaborationCompositeCompartmentEditPartCN(view);
+ 
+-			case ActivityCompositeCompartmentEditPart.VISUAL_ID:
+-				return new ActivityCompositeCompartmentEditPart(view);
++		case InterfaceCompartmentEditPartCN.VISUAL_ID:
++			return new InterfaceCompartmentEditPartCN(view);
+ 
+-			case InteractionCompositeCompartmentEditPart.VISUAL_ID:
+-				return new InteractionCompositeCompartmentEditPart(view);
++		case ActivityCompositeCompartmentEditPart.VISUAL_ID:
++			return new ActivityCompositeCompartmentEditPart(view);
+ 
+-			case ProtocolStateMachineCompositeCompartmentEditPart.VISUAL_ID:
+-				return new ProtocolStateMachineCompositeCompartmentEditPart(view);
++		case InteractionCompositeCompartmentEditPart.VISUAL_ID:
++			return new InteractionCompositeCompartmentEditPart(view);
+ 
+-			case StateMachineCompositeCompartmentEditPart.VISUAL_ID:
+-				return new StateMachineCompositeCompartmentEditPart(view);
++		case ProtocolStateMachineCompositeCompartmentEditPart.VISUAL_ID:
++			return new ProtocolStateMachineCompositeCompartmentEditPart(view);
+ 
+-			case FunctionBehaviorCompositeCompartmentEditPart.VISUAL_ID:
+-				return new FunctionBehaviorCompositeCompartmentEditPart(view);
++		case StateMachineCompositeCompartmentEditPart.VISUAL_ID:
++			return new StateMachineCompositeCompartmentEditPart(view);
+ 
+-			case OpaqueBehaviorCompositeCompartmentEditPart.VISUAL_ID:
+-				return new OpaqueBehaviorCompositeCompartmentEditPart(view);
++		case FunctionBehaviorCompositeCompartmentEditPart.VISUAL_ID:
++			return new FunctionBehaviorCompositeCompartmentEditPart(view);
+ 
+-			case ComponentCompositeCompartmentEditPart.VISUAL_ID:
+-				return new ComponentCompositeCompartmentEditPart(view);
++		case OpaqueBehaviorCompositeCompartmentEditPart.VISUAL_ID:
++			return new OpaqueBehaviorCompositeCompartmentEditPart(view);
+ 
+-			case DeviceCompositeCompartmentEditPart.VISUAL_ID:
+-				return new DeviceCompositeCompartmentEditPart(view);
++		case ComponentCompositeCompartmentEditPart.VISUAL_ID:
++			return new ComponentCompositeCompartmentEditPart(view);
+ 
+-			case ExecutionEnvironmentCompositeCompartmentEditPart.VISUAL_ID:
+-				return new ExecutionEnvironmentCompositeCompartmentEditPart(view);
++		case DeviceCompositeCompartmentEditPart.VISUAL_ID:
++			return new DeviceCompositeCompartmentEditPart(view);
+ 
+-			case NodeCompositeCompartmentEditPart.VISUAL_ID:
+-				return new NodeCompositeCompartmentEditPart(view);
++		case ExecutionEnvironmentCompositeCompartmentEditPart.VISUAL_ID:
++			return new ExecutionEnvironmentCompositeCompartmentEditPart(view);
+ 
+-			case ClassCompositeCompartmentEditPart.VISUAL_ID:
+-				return new ClassCompositeCompartmentEditPart(view);
++		case NodeCompositeCompartmentEditPart.VISUAL_ID:
++			return new NodeCompositeCompartmentEditPart(view);
+ 
+-			case CollaborationCompositeCompartmentEditPart.VISUAL_ID:
+-				return new CollaborationCompositeCompartmentEditPart(view);
++		case ClassCompositeCompartmentEditPart.VISUAL_ID:
++			return new ClassCompositeCompartmentEditPart(view);
+ 
+-			case InterfaceCompartmentEditPart.VISUAL_ID:
+-				return new InterfaceCompartmentEditPart(view);
++		case CollaborationCompositeCompartmentEditPart.VISUAL_ID:
++			return new CollaborationCompositeCompartmentEditPart(view);
+ 
+-			case PropertyPartCompartmentEditPartCN.VISUAL_ID:
+-				return new PropertyPartCompartmentEditPartCN(view);
++		case InterfaceCompartmentEditPart.VISUAL_ID:
++			return new InterfaceCompartmentEditPart(view);
+ 
+-			case LinkDescriptorEditPart.VISUAL_ID:
+-				return new LinkDescriptorEditPart(view);
++		case PropertyPartCompartmentEditPartCN.VISUAL_ID:
++			return new PropertyPartCompartmentEditPartCN(view);
+ 
++		case LinkDescriptorEditPart.VISUAL_ID:
++			return new LinkDescriptorEditPart(view);
+ 
+-			case CommentAnnotatedElementEditPart.VISUAL_ID:
+-				return new CommentAnnotatedElementEditPart(view);
+ 
++		case CommentAnnotatedElementEditPart.VISUAL_ID:
++			return new CommentAnnotatedElementEditPart(view);
+ 
+-			case ConstraintConstrainedElementEditPart.VISUAL_ID:
+-				return new ConstraintConstrainedElementEditPart(view);
+ 
++		case ConstraintConstrainedElementEditPart.VISUAL_ID:
++			return new ConstraintConstrainedElementEditPart(view);
+ 
+-			case ComponentRealizationEditPart.VISUAL_ID:
+-				return new ComponentRealizationEditPart(view);
+ 
+-			case ComponentRealizationNameEditPart.VISUAL_ID:
+-				return new ComponentRealizationNameEditPart(view);
++		case ComponentRealizationEditPart.VISUAL_ID:
++			return new ComponentRealizationEditPart(view);
+ 
+-			case ComponentRealizationAppliedStereotypeEditPart.VISUAL_ID:
+-				return new ComponentRealizationAppliedStereotypeEditPart(view);
++		case ComponentRealizationNameEditPart.VISUAL_ID:
++			return new ComponentRealizationNameEditPart(view);
+ 
++		case ComponentRealizationAppliedStereotypeEditPart.VISUAL_ID:
++			return new ComponentRealizationAppliedStereotypeEditPart(view);
+ 
+-			case InterfaceRealizationEditPart.VISUAL_ID:
+-				return new InterfaceRealizationEditPart(view);
+ 
+-			case InterfaceRealizationNameEditPart.VISUAL_ID:
+-				return new InterfaceRealizationNameEditPart(view);
++		case InterfaceRealizationEditPart.VISUAL_ID:
++			return new InterfaceRealizationEditPart(view);
+ 
+-			case InterfaceRealizationAppliedStereotypeEditPart.VISUAL_ID:
+-				return new InterfaceRealizationAppliedStereotypeEditPart(view);
++		case InterfaceRealizationNameEditPart.VISUAL_ID:
++			return new InterfaceRealizationNameEditPart(view);
+ 
++		case InterfaceRealizationAppliedStereotypeEditPart.VISUAL_ID:
++			return new InterfaceRealizationAppliedStereotypeEditPart(view);
+ 
+-			case SubstitutionEditPart.VISUAL_ID:
+-				return new SubstitutionEditPart(view);
+ 
+-			case SubstitutionNameEditPart.VISUAL_ID:
+-				return new SubstitutionNameEditPart(view);
++		case SubstitutionEditPart.VISUAL_ID:
++			return new SubstitutionEditPart(view);
+ 
+-			case SubstitutionAppliedStereotypeEditPart.VISUAL_ID:
+-				return new SubstitutionAppliedStereotypeEditPart(view);
++		case SubstitutionNameEditPart.VISUAL_ID:
++			return new SubstitutionNameEditPart(view);
+ 
++		case SubstitutionAppliedStereotypeEditPart.VISUAL_ID:
++			return new SubstitutionAppliedStereotypeEditPart(view);
+ 
+-			case RealizationEditPart.VISUAL_ID:
+-				return new RealizationEditPart(view);
+ 
+-			case RealizationNameEditPart.VISUAL_ID:
+-				return new RealizationNameEditPart(view);
++		case RealizationEditPart.VISUAL_ID:
++			return new RealizationEditPart(view);
+ 
+-			case RealizationAppliedStereotypeEditPart.VISUAL_ID:
+-				return new RealizationAppliedStereotypeEditPart(view);
++		case RealizationNameEditPart.VISUAL_ID:
++			return new RealizationNameEditPart(view);
+ 
++		case RealizationAppliedStereotypeEditPart.VISUAL_ID:
++			return new RealizationAppliedStereotypeEditPart(view);
+ 
+-			case ManifestationEditPart.VISUAL_ID:
+-				return new ManifestationEditPart(view);
+ 
+-			case ManifestationNameEditPart.VISUAL_ID:
+-				return new ManifestationNameEditPart(view);
++		case ManifestationEditPart.VISUAL_ID:
++			return new ManifestationEditPart(view);
+ 
+-			case ManifestationAppliedStereotypeEditPart.VISUAL_ID:
+-				return new ManifestationAppliedStereotypeEditPart(view);
++		case ManifestationNameEditPart.VISUAL_ID:
++			return new ManifestationNameEditPart(view);
+ 
++		case ManifestationAppliedStereotypeEditPart.VISUAL_ID:
++			return new ManifestationAppliedStereotypeEditPart(view);
+ 
+-			case AbstractionEditPart.VISUAL_ID:
+-				return new AbstractionEditPart(view);
+ 
+-			case AbstractionNameEditPart.VISUAL_ID:
+-				return new AbstractionNameEditPart(view);
++		case AbstractionEditPart.VISUAL_ID:
++			return new AbstractionEditPart(view);
+ 
+-			case AbstractionAppliedStereotypeEditPart.VISUAL_ID:
+-				return new AbstractionAppliedStereotypeEditPart(view);
++		case AbstractionNameEditPart.VISUAL_ID:
++			return new AbstractionNameEditPart(view);
+ 
++		case AbstractionAppliedStereotypeEditPart.VISUAL_ID:
++			return new AbstractionAppliedStereotypeEditPart(view);
+ 
+-			case UsageEditPart.VISUAL_ID:
+-				return new UsageEditPart(view);
+ 
+-			case UsageNameEditPart.VISUAL_ID:
+-				return new UsageNameEditPart(view);
++		case UsageEditPart.VISUAL_ID:
++			return new UsageEditPart(view);
+ 
+-			case UsageAppliedStereotypeEditPart.VISUAL_ID:
+-				return new UsageAppliedStereotypeEditPart(view);
++		case UsageNameEditPart.VISUAL_ID:
++			return new UsageNameEditPart(view);
+ 
++		case UsageAppliedStereotypeEditPart.VISUAL_ID:
++			return new UsageAppliedStereotypeEditPart(view);
+ 
+-			case DeploymentEditPart.VISUAL_ID:
+-				return new DeploymentEditPart(view);
+ 
+-			case DeploymentNameEditPart.VISUAL_ID:
+-				return new DeploymentNameEditPart(view);
++		case DeploymentEditPart.VISUAL_ID:
++			return new DeploymentEditPart(view);
+ 
+-			case DeploymentAppliedStereotypeEditPart.VISUAL_ID:
+-				return new DeploymentAppliedStereotypeEditPart(view);
++		case DeploymentNameEditPart.VISUAL_ID:
++			return new DeploymentNameEditPart(view);
+ 
++		case DeploymentAppliedStereotypeEditPart.VISUAL_ID:
++			return new DeploymentAppliedStereotypeEditPart(view);
+ 
+-			case RoleBindingEditPart.VISUAL_ID:
+-				return new RoleBindingEditPart(view);
+ 
+-			case RoleBindingRoleNameEditPart.VISUAL_ID:
+-				return new RoleBindingRoleNameEditPart(view);
++		case RoleBindingEditPart.VISUAL_ID:
++			return new RoleBindingEditPart(view);
+ 
+-			case RoleBindingAppliedStereotypeEditPart.VISUAL_ID:
+-				return new RoleBindingAppliedStereotypeEditPart(view);
++		case RoleBindingRoleNameEditPart.VISUAL_ID:
++			return new RoleBindingRoleNameEditPart(view);
+ 
++		case RoleBindingAppliedStereotypeEditPart.VISUAL_ID:
++			return new RoleBindingAppliedStereotypeEditPart(view);
+ 
+-			case DependencyEditPart.VISUAL_ID:
+-				return new DependencyEditPart(view);
+ 
+-			case DependencyNameEditPart.VISUAL_ID:
+-				return new DependencyNameEditPart(view);
++		case DependencyEditPart.VISUAL_ID:
++			return new DependencyEditPart(view);
+ 
+-			case DependencyAppliedStereotypeEditPart.VISUAL_ID:
+-				return new DependencyAppliedStereotypeEditPart(view);
++		case DependencyNameEditPart.VISUAL_ID:
++			return new DependencyNameEditPart(view);
+ 
++		case DependencyAppliedStereotypeEditPart.VISUAL_ID:
++			return new DependencyAppliedStereotypeEditPart(view);
+ 
+-			case ConnectorEditPart.VISUAL_ID:
+-				return new ConnectorEditPart(view);
+ 
+-			case ConnectorAppliedStereotypeEditPart.VISUAL_ID:
+-				return new ConnectorAppliedStereotypeEditPart(view);
++		case ConnectorEditPart.VISUAL_ID:
++			return new ConnectorEditPart(view);
+ 
++		case ConnectorAppliedStereotypeEditPart.VISUAL_ID:
++			return new ConnectorAppliedStereotypeEditPart(view);
+ 
+-			case GeneralizationEditPart.VISUAL_ID:
+-				return new GeneralizationEditPart(view);
+ 
+-			case GeneralizationAppliedStereotypeEditPart.VISUAL_ID:
+-				return new GeneralizationAppliedStereotypeEditPart(view);
++		case GeneralizationEditPart.VISUAL_ID:
++			return new GeneralizationEditPart(view);
+ 
++		case GeneralizationAppliedStereotypeEditPart.VISUAL_ID:
++			return new GeneralizationAppliedStereotypeEditPart(view);
+ 
+-			case ConnectorTimeObservationEditPart.VISUAL_ID:
+-				return new ConnectorTimeObservationEditPart(view);
+ 
++		case ConnectorTimeObservationEditPart.VISUAL_ID:
++			return new ConnectorTimeObservationEditPart(view);
+ 
+-			case ConnectorDurationObservationEditPart.VISUAL_ID:
+-				return new ConnectorDurationObservationEditPart(view);
+ 
++		case ConnectorDurationObservationEditPart.VISUAL_ID:
++			return new ConnectorDurationObservationEditPart(view);
+ 
+-			case RepresentationEditPart.VISUAL_ID:
+-				return new RepresentationEditPart(view);
+ 
+-			case RepresentationTagLabelEditPart.VISUAL_ID:
+-				return new RepresentationTagLabelEditPart(view);
++		case RepresentationEditPart.VISUAL_ID:
++			return new RepresentationEditPart(view);
+ 
++		case RepresentationTagLabelEditPart.VISUAL_ID:
++			return new RepresentationTagLabelEditPart(view);
+ 
+-			case InformationFlowEditPart.VISUAL_ID:
+-				return new InformationFlowEditPart(view);
+ 
+-			case InformationFlowConveyedLabelEditPart.VISUAL_ID:
+-				return new InformationFlowConveyedLabelEditPart(view);
++		case InformationFlowEditPart.VISUAL_ID:
++			return new InformationFlowEditPart(view);
+ 
+-			case InformationFlowAppliedStereotypeEditPart.VISUAL_ID:
+-				return new InformationFlowAppliedStereotypeEditPart(view);
++		case InformationFlowConveyedLabelEditPart.VISUAL_ID:
++			return new InformationFlowConveyedLabelEditPart(view);
+ 
+-			}
++		case InformationFlowAppliedStereotypeEditPart.VISUAL_ID:
++			return new InformationFlowAppliedStereotypeEditPart(view);
++
+ 		}
+-		return createUnrecognizedEditPart(context, model);
++		return createUnrecognizedEditPart(context, view);
++
+ 	}
+ 
+ 	/**
+Index: src/org/eclipse/papyrus/diagram/composite/providers/UMLViewProvider.java
+===================================================================
+--- src/org/eclipse/papyrus/diagram/composite/providers/UMLViewProvider.java	(revision 1460)
++++ src/org/eclipse/papyrus/diagram/composite/providers/UMLViewProvider.java	(working copy)
+@@ -278,7 +278,7 @@
+ 	public Diagram createDiagram(IAdaptable semanticAdapter, String diagramKind, PreferencesHint preferencesHint) {
+ 		Diagram diagram = NotationFactory.eINSTANCE.createDiagram();
+ 		diagram.getStyles().add(NotationFactory.eINSTANCE.createDiagramStyle());
+-		diagram.setType(PackageEditPart.MODEL_ID);
++		diagram.setType(diagramKind);
+ 		diagram.setElement(getSemanticElement(semanticAdapter));
+ 		diagram.setMeasurementUnit(MeasurementUnit.PIXEL_LITERAL);
+ 		return diagram;
+@@ -3631,19 +3631,17 @@
+ 	 * @generated
+ 	 */
+ 	private void stampShortcut(View containerView, Node target) {
+-		if(!PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(containerView))) {
+-			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+-			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
+-			shortcutAnnotation.getDetails().put("modelID", PackageEditPart.MODEL_ID); //$NON-NLS-1$
+-			target.getEAnnotations().add(shortcutAnnotation);
+-		}
++		EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
++		shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
++		shortcutAnnotation.getDetails().put("modelID", containerView.getDiagram().getType()); //$NON-NLS-1$
++		target.getEAnnotations().add(shortcutAnnotation);
+ 	}
+ 
+ 
+ 	/**
+ 	 * @generated
+ 	 */
+-	private Node createLabel(View owner, String hint) {
++	protected Node createLabel(View owner, String hint) {
+ 		DecorationNode rv = NotationFactory.eINSTANCE.createDecorationNode();
+ 		rv.setType(hint);
+ 		ViewUtil.insertChildView(owner, rv, ViewUtil.APPEND, true);
+@@ -3654,7 +3652,7 @@
+ 	/**
+ 	 * @generated
+ 	 */
+-	private Node createCompartment(View owner, String hint, boolean canCollapse, boolean hasTitle, boolean canSort, boolean canFilter) {
++	protected Node createCompartment(View owner, String hint, boolean canCollapse, boolean hasTitle, boolean canSort, boolean canFilter) {
+ 		//SemanticListCompartment rv = NotationFactory.eINSTANCE.createSemanticListCompartment();
+ 		//rv.setShowTitle(showTitle);
+ 		//rv.setCollapsed(isCollapsed);
+@@ -3685,7 +3683,7 @@
+ 	/**
+ 	 * @generated
+ 	 */
+-	private EObject getSemanticElement(IAdaptable semanticAdapter) {
++	protected EObject getSemanticElement(IAdaptable semanticAdapter) {
+ 		if(semanticAdapter == null) {
+ 			return null;
+ 		}
+@@ -3700,7 +3698,7 @@
+ 	/**
+ 	 * @generated
+ 	 */
+-	private IElementType getSemanticElementType(IAdaptable semanticAdapter) {
++	protected IElementType getSemanticElementType(IAdaptable semanticAdapter) {
+ 		if(semanticAdapter == null) {
+ 			return null;
+ 		}
+Index: plugin.xml
+===================================================================
+--- plugin.xml	(revision 1460)
++++ plugin.xml	(working copy)
+@@ -1638,14 +1638,9 @@
+                   style="push"
+                   tooltip="Create a new Composite Diagram">
+ 					<visibleWhen>
+-						<and>
+ 						<with variable="activeEditorId">
+ 							<equals value="org.eclipse.papyrus.core.papyrusEditor" />
+ 						</with>
+-						<with variable="activeWorkbenchWindow.activePerspective">
+-							<equals value="org.eclipse.papyrus.core.perspective" />
+-						</with>
+-						</and>
+ 					</visibleWhen>
+             </command>
+          </toolbar>
