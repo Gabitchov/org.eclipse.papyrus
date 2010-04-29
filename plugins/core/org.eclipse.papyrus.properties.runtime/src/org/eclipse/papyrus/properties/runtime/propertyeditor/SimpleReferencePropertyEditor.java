@@ -249,6 +249,7 @@ public class SimpleReferencePropertyEditor extends AbstractPropertyEditor {
 		if(!isValid(referenceArea)) {
 			return;
 		}
+		currentValue = valueToEdit;
 
 		// check if the model handler is able to give an improved text provider (for example, binding messages)
 		if(valueToEdit != null) {
