@@ -11,12 +11,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.propertyeditor;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.controller.IBoundedValuesController;
 import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorController;
+import org.eclipse.papyrus.properties.runtime.dialogs.PropertyDialog;
 import org.eclipse.papyrus.properties.runtime.dialogs.ReferenceExplorerDialog;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 import org.eclipse.swt.SWT;
@@ -29,6 +34,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
 
@@ -77,6 +83,25 @@ public class SimpleReferencePropertyEditor extends AbstractPropertyEditor {
 		referenceArea = getWidgetFactory().createCLabel(composite, "", SWT.BORDER);
 		data = new GridData(SWT.FILL, SWT.CENTER, true, false);
 		referenceArea.setLayoutData(data);
+		referenceArea.addMouseListener(new MouseListener() {
+
+			public void mouseUp(MouseEvent e) {
+				// nothing to do here
+			}
+
+			public void mouseDown(MouseEvent e) {
+				// nothing to do here
+			}
+
+			public void mouseDoubleClick(MouseEvent e) {
+				// open property dialog on the current object
+				List<Object> objectsToEdit = Arrays.asList(getValue());
+
+
+				PropertyDialog dialog = new PropertyDialog(getShell(), new ArrayList<String>(), objectsToEdit, getWidgetFactory());
+				dialog.open();
+			}
+		});
 
 		addButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
 		addButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Add.gif")));
@@ -89,12 +114,8 @@ public class SimpleReferencePropertyEditor extends AbstractPropertyEditor {
 			 */
 			public void mouseUp(MouseEvent e) {
 				// pops up a window to ask for a new reference
-				Display display = Display.getCurrent();
-				if(display == null && PlatformUI.isWorkbenchRunning()) {
-					display = PlatformUI.getWorkbench().getDisplay();
-				}
-				display = (display != null) ? display : Display.getDefault();
-				ReferenceExplorerDialog dialog = new ReferenceExplorerDialog(display.getActiveShell(), (IBoundedValuesController)getController(), false);
+				Shell currentShell = getShell();
+				ReferenceExplorerDialog dialog = new ReferenceExplorerDialog(currentShell, (IBoundedValuesController)getController(), false);
 				// should select the current value by default
 				if(Dialog.OK == dialog.open()) {
 					currentValue = dialog.getFirstResult();
@@ -151,6 +172,20 @@ public class SimpleReferencePropertyEditor extends AbstractPropertyEditor {
 		}
 
 		return composite;
+	}
+
+	/**
+	 * Returns a shell where dialogs can be displayed
+	 * 
+	 * @return a shell where dialogs can be displayed
+	 */
+	protected Shell getShell() {
+		Display display = Display.getCurrent();
+		if(display == null && PlatformUI.isWorkbenchRunning()) {
+			display = PlatformUI.getWorkbench().getDisplay();
+		}
+		display = (display != null) ? display : Display.getDefault();
+		return display.getActiveShell();
 	}
 
 	/**

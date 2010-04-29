@@ -1,8 +1,8 @@
 <!--UML Basic properties view-->
 <propertyTabView>
 	<!--  tab descriptors definition -->
-	<tab label="basic" category="UML" id="basicTab"/>
-	<tab label="advanced" category="UML" id="advancedTab"/>
+	<tab label="Basic" category="UML" id="basicTab"/>
+	<tab label="Advanced" category="UML" id="advancedTab"/>
 	
 	<!-- section description -->
 	<sectionSet name="Section Set for single NameElement">

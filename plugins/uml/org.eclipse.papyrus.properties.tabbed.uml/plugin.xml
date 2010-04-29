@@ -54,5 +54,20 @@
       
    </propertyEditorControllerProvider>
 </extension>
+<extension
+      point="org.eclipse.papyrus.properties.runtime.propertyViewProvider">
+   <propertyViewProvider
+         class="org.eclipse.papyrus.properties.runtime.view.XMLPropertyViewProvider">
+      <Priority
+            name="Lowest">
+      </Priority>
+      <PropertyViewContribution
+            description="Basic configuration for UML property dialogs"
+            icon="icons/UMLDialogs.gif"
+            name="UML Dialogs"
+            path="resources/uml_generic_dialogs.xml">
+      </PropertyViewContribution>
+   </propertyViewProvider>
+</extension>
 
 </plugin>

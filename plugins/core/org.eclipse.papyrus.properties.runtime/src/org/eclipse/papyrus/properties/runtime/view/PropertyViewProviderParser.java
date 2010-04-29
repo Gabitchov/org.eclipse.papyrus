@@ -35,6 +35,12 @@ import org.w3c.dom.NodeList;
  */
 public class PropertyViewProviderParser {
 
+	/** node name for dialogs */
+	protected static final String DIALOGS_NODE_NAME = "dialogs";
+
+	/** node name for views */
+	protected static final String NODE_NAME_VIEWS = "views";
+
 	/** node name for tab */
 	protected static final String NODE_NAME_TAB = "tab";
 
@@ -47,11 +53,20 @@ public class PropertyViewProviderParser {
 	/** key for the value: path to the xml file */
 	protected static final String XML_PATH = "path";
 
+	/** node name for dialog */
+	protected static final String NODE_NAME_DIALOG = "dialog";
+
+	/** ATTRIBUTE_PREDEFINED_ID */
+	protected static final String ATTRIBUTE_PREDEFINED_ID = "predefinedId";
+
 	/** reference to the map containing predefined Views */
 	protected Map<String, ViewDescriptor> predefinedViews;
 
 	/** stores the reference to the bundle, so the bundle class loader can be used to load classes */
 	protected Bundle bundle;
+
+	/** reference to the map containing predefined dialogs */
+	protected Map<String, DialogDescriptor> predefinedDialogs;
 
 	/**
 	 * Parses the view node
@@ -181,20 +196,106 @@ public class PropertyViewProviderParser {
 	 * Parses the content of the xml file
 	 * 
 	 * @param views
+	 *        the list of root views nodes
 	 * @param predefinedViews
+	 *        the list of predefined views, which will be completed during this parsing
 	 * @throws XMLParseException
 	 *         parsing failed
 	 */
-	public void parseXMLfile(NodeList views, Map<String, ViewDescriptor> predefinedViews, Bundle bundle) throws XMLParseException {
+	public void parseXMLfile(NodeList views, Map<String, ViewDescriptor> predefinedViews, Map<String, DialogDescriptor> predefinedDialogs, Bundle bundle) throws XMLParseException {
 		this.predefinedViews = predefinedViews;
+		this.predefinedDialogs = predefinedDialogs;
 		this.bundle = bundle;
 		for(int i = 0; i < views.getLength(); i++) {
 			Node propertyViewNode = views.item(i);
 			// check this is a "views" node, not a comment or a text format node.
-			if("views".equals(propertyViewNode.getNodeName())) {
+			final String propertyViewNodeName = propertyViewNode.getNodeName();
+			if(NODE_NAME_VIEWS.equals(propertyViewNodeName)) {
 				parseViewsNode(propertyViewNode);
+			} else if(DIALOGS_NODE_NAME.equals(propertyViewNodeName)) {
+				parseDialogsNode(propertyViewNode);
 			}
 		}
+	}
+
+	/**
+	 * Parses the dialogs node and adds a dialog Descriptor to the list of dialog descriptors maintained by this provider
+	 * 
+	 * @param propertyViewNode
+	 *        the node to parse
+	 */
+	protected void parseDialogsNode(Node propertyViewNode) throws XMLParseException {
+		// retrieve each child node which is a dialog
+		NodeList children = propertyViewNode.getChildNodes();
+		for(int i = 0; i < children.getLength(); i++) {
+			// check this is a dialog node (not a comment or a formatting children)
+
+			Node childNode = children.item(i);
+			String childNodeName = childNode.getNodeName();
+			if(NODE_NAME_DIALOG.equals(childNodeName)) {
+				DialogDescriptor dialogDescriptor = parseDialogNode(childNode);
+				if(dialogDescriptor != null) {
+					predefinedDialogs.put(dialogDescriptor.getId(), dialogDescriptor);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Parses the dialog node and returns a dialog descriptor from this configuration
+	 * 
+	 * @param dialogNode
+	 *        the node corresponding to the dialog
+	 * @return the new {@link DialogDescriptor}
+	 * @throws XMLParseException
+	 *         parsing failed
+	 */
+	protected DialogDescriptor parseDialogNode(Node dialogNode) throws XMLParseException {
+		// the view node is divided into 2 parts: 
+		// the first one describes the context for the view to be displayed,
+		// the second one describes the content of the view itself
+
+		// retrieve ID of the view (to be reused as a predefined view)
+		NamedNodeMap attributes = dialogNode.getAttributes();
+		String id;
+		if(attributes != null) {
+			Node idNode = attributes.getNamedItem("id");
+			if(idNode != null) {
+				id = idNode.getNodeValue();
+			} else {
+				throw new XMLParseException("Impossible to find ID for dialog " + dialogNode);
+			}
+		} else {
+			throw new XMLParseException("Impossible to find ID for dialog " + dialogNode);
+		}
+
+		NodeList children = dialogNode.getChildNodes();
+		Node contextNode = null;
+		Node contentNode = null;
+
+		for(int i = 0; i < children.getLength(); i++) {
+			Node child = children.item(i);
+			final String childNodeName = child.getNodeName();
+			if("context".equals(childNodeName)) {
+				// this is the context of the dialog
+				// store this node.
+				contextNode = child;
+			} else if("content".equals(childNodeName)) {
+				contentNode = child;
+			}
+		}
+
+		// 2 nodes should have been found
+		if(contextNode == null || contentNode == null) {
+			Activator.log.error("Impossible to parse configuration for " + dialogNode, null);
+			return null;
+		}
+
+		// parses constraints that will be given to each section
+		List<IConstraintDescriptor> constraints = parseConstraints(contextNode);
+
+		// do not parse currently the content node, will be done later, as the view is used
+		return new DialogDescriptor(id, constraints, contentNode, this);
 	}
 
 	/**
@@ -215,7 +316,9 @@ public class PropertyViewProviderParser {
 			String childNodeName = childNode.getNodeName();
 			if(NODE_NAME_VIEW.equals(childNodeName)) {
 				ViewDescriptor viewDescriptor = parseView(childNode);
-				predefinedViews.put(viewDescriptor.getId(), viewDescriptor);
+				if(viewDescriptor != null) {
+					predefinedViews.put(viewDescriptor.getId(), viewDescriptor);
+				}
 			}
 		}
 	}
@@ -227,7 +330,7 @@ public class PropertyViewProviderParser {
 	 *        the node to parse
 	 * @return the new configuration for the section
 	 */
-	protected List<ContainerDescriptor> parseContentNode(Node unparsedContentNode) throws XMLParseException {
+	public List<ContainerDescriptor> parseViewContentNode(Node unparsedContentNode) throws XMLParseException {
 		ArrayList<ContainerDescriptor> containerDescriptors = new ArrayList<ContainerDescriptor>();
 		NodeList children = unparsedContentNode.getChildNodes();
 		for(int i = 0; i < children.getLength(); i++) {
@@ -342,5 +445,53 @@ public class PropertyViewProviderParser {
 			layout = new GridLayout(columnNu, sameSize);
 		}
 		return layout;
+	}
+
+	/**
+	 * Parses the node of the content for a dialog configuration
+	 * 
+	 * @param contentNode
+	 *        the content node to parse
+	 * @return the list of identifier of view descriptors referenced by this content node
+	 */
+	public List<String> parseDialogContentNode(Node contentNode) throws XMLParseException {
+		List<String> viewsId = new ArrayList<String>();
+		try {
+			NodeList children = contentNode.getChildNodes();
+			for(int i = 0; i < children.getLength(); i++) {
+				Node childNode = children.item(i);
+				if(NODE_NAME_VIEW.equals(childNode.getNodeName())) {
+					String viewId = parseViewOrPredefinedView(childNode);
+					viewsId.add(viewId);
+				}
+			}
+		} catch (XMLParseException e) {
+			Activator.log.error("Problem during parsing of replaced sections for node " + contentNode, e);
+		}
+		return viewsId;
+	}
+
+	/**
+	 * Parses a view node, either a predefined node or a locally defined node
+	 * 
+	 * @param viewNode
+	 *        the node to parse
+	 */
+	protected String parseViewOrPredefinedView(Node viewNode) throws XMLParseException {
+		NamedNodeMap attributes = viewNode.getAttributes();
+		if(attributes != null) {
+			Node attribute = attributes.getNamedItem(ATTRIBUTE_PREDEFINED_ID);
+			if(attribute != null) {
+				return attribute.getNodeValue();
+			}
+		}
+
+		// this is a locally defined view.
+		// parse it as it was a predefinition of view
+		ViewDescriptor viewDescriptor;
+
+		viewDescriptor = parseView(viewNode);
+		predefinedViews.put(viewDescriptor.getId(), viewDescriptor);
+		return viewDescriptor.getId();
 	}
 }

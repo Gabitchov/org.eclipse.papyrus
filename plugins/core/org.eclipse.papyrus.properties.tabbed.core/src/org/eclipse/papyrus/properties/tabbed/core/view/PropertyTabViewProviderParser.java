@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.papyrus.properties.runtime.Activator;
+import org.eclipse.papyrus.properties.runtime.view.DialogDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.PropertyViewProviderParser;
 import org.eclipse.papyrus.properties.runtime.view.ViewDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.XMLParseException;
@@ -41,9 +42,6 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 
 	/** name of the property tab node */
 	protected static final Object NODE_NAME_PROPERTY_TAB_VIEW = "propertyTabView";
-
-	/** ATTRIBUTE_PREDEFINED_ID */
-	protected static final String ATTRIBUTE_PREDEFINED_ID = "predefinedId";
 
 	/** key for the id attribute */
 	protected static final String ID = "id";
@@ -97,8 +95,9 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void parseXMLfile(NodeList views, Map<String, ViewDescriptor> predefinedViews, Bundle bundle) throws XMLParseException {
+	public void parseXMLfile(NodeList views, Map<String, ViewDescriptor> predefinedViews, Map<String, DialogDescriptor> predefinedDialogs, Bundle bundle) throws XMLParseException {
 		this.predefinedViews = predefinedViews;
+		this.predefinedDialogs = predefinedDialogs;
 		this.bundle = bundle;
 		for(int i = 0; i < views.getLength(); i++) {
 			Node propertyViewNode = views.item(i);

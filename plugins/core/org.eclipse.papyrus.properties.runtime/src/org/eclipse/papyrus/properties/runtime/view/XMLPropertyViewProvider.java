@@ -96,6 +96,9 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 	/** list of predefined views */
 	protected final Map<String, ViewDescriptor> predefinedViews = new HashMap<String, ViewDescriptor>();
 
+	/** list of predefined dialogs */
+	protected final Map<String, DialogDescriptor> predefinedDialogs = new HashMap<String, DialogDescriptor>();
+
 	/**
 	 * Returns the parser for the xml configuration file
 	 * 
@@ -193,7 +196,7 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 					} else {
 						Document document = documentBuilder.parse(file);
 						NodeList viewNodes = document.getChildNodes();
-						getParser().parseXMLfile(viewNodes, this.predefinedViews, bundle);
+						getParser().parseXMLfile(viewNodes, this.predefinedViews, this.predefinedDialogs, bundle);
 					}
 				} catch (ParserConfigurationException e) {
 					Activator.log.error(e);

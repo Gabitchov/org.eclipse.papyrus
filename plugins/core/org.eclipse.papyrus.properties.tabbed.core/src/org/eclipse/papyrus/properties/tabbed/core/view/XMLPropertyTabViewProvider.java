@@ -108,7 +108,7 @@ public class XMLPropertyTabViewProvider extends XMLPropertyViewProvider implemen
 					} else {
 						Document document = documentBuilder.parse(file);
 						NodeList viewNodes = document.getChildNodes();
-						getParser().parseXMLfile(viewNodes, this.predefinedViews, bundle);
+						getParser().parseXMLfile(viewNodes, this.predefinedViews, this.predefinedDialogs, bundle);
 					}
 				} catch (ParserConfigurationException e) {
 					Activator.log.error(e);
@@ -122,44 +122,4 @@ public class XMLPropertyTabViewProvider extends XMLPropertyViewProvider implemen
 			}
 		}
 	}
-
-
-	//	/**
-	//	 * Reads the xml configuration file and constructs the ViewDescriptors
-	//	 */
-	//	protected void readXMLConfiguration(IConfigurationElement child) {
-	//		DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-	//		documentBuilderFactory.setNamespaceAware(true);
-	//		
-	//		try {
-	//			DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-	//
-	//			// retrieve xml file from path
-	//			String path = child.getAttribute(XML_PATH);
-	//			File file = getXmlFile(child, path, bundle);
-	//			// the file should never be null in this implementation, but sub-classes could return null
-	//			if(file == null) {
-	//				throw new IOException("Impossible to load file: " + path);
-	//			} else if(!file.exists()) {
-	//				throw new IOException("Impossible to load file: " + file);
-	//			} else {
-	//				Document document = documentBuilder.parse(file);
-	//				NodeList views = document.getChildNodes();
-	//				parser.parseXMLfile(views, this.predefinedViews, bundle);
-	//				// retrieve the result for the parser
-	//
-	//			}
-	//		} catch (ParserConfigurationException e) {
-	//			Activator.log.error(e);
-	//		} catch (IOException e) {
-	//			Activator.log.error(e);
-	//		} catch (SAXException e) {
-	//			Activator.log.error(e);
-	//		} catch (XMLParseException e) {
-	//			Activator.log.error(e);
-	//		}
-	//
-	//	}
-
-
 }

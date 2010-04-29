@@ -19,44 +19,42 @@ import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescri
 import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptor;
 import org.w3c.dom.Node;
 
-
 /**
- * descriptor for views
+ * Descriptor for dialogs
  */
-public class ViewDescriptor extends AbstractConstrainedDescriptor {
+public class DialogDescriptor extends AbstractConstrainedDescriptor {
 
-	/** list of containers created by this dialog */
-	protected List<ContainerDescriptor> descriptors;
+	/** list of ViewDescriptor created by this dialog */
+	protected List<String> viewDescriptorsIds;
 
 	/**
-	 * Creates a new ViewDescriptor.
+	 * Creates a new DialogDescriptor.
 	 */
-	public ViewDescriptor(String id, List<IConstraintDescriptor> constraints, List<ContainerDescriptor> descriptors) {
+	public DialogDescriptor(String id, List<IConstraintDescriptor> constraints, List<ContainerDescriptor> descriptors) {
 		super(id, constraints);
-		this.descriptors = descriptors;
 	}
 
 	/**
-	 * Creates a new ViewDescriptor.
+	 * Creates a new DialogDescriptor.
 	 */
-	public ViewDescriptor(String id, List<IConstraintDescriptor> constraints, Node contentNode, PropertyViewProviderParser parser) {
+	public DialogDescriptor(String id, List<IConstraintDescriptor> constraints, Node contentNode, PropertyViewProviderParser parser) {
 		super(id, constraints, contentNode, parser);
 	}
 
 	/**
-	 * Returns the list of containers descriptors
+	 * Returns the list of identifier of view descriptors
 	 * 
-	 * @return the list of containers descriptors
+	 * @return the list of identifier of view descriptors
 	 */
-	public List<ContainerDescriptor> getContainerDescriptors() {
-		if(unparsed && !parseFailed) {
+	public List<String> getContainerDescriptors() {
+		if(unparsed) {
 			if(parser == null) {
-				descriptors = Collections.emptyList();
+				viewDescriptorsIds = Collections.emptyList();
 				Activator.log.error("No parser was given to the view descriptor " + id, null);
 				parseFailed = true;
 			} else {
 				try {
-					descriptors = parser.parseViewContentNode(contentNode);
+					viewDescriptorsIds = parser.parseDialogContentNode(contentNode);
 					parseFailed = false;
 				} catch (XMLParseException e) {
 					Activator.log.error(e);
@@ -64,7 +62,6 @@ public class ViewDescriptor extends AbstractConstrainedDescriptor {
 				}
 			}
 		}
-		return descriptors;
+		return viewDescriptorsIds;
 	}
-
 }
