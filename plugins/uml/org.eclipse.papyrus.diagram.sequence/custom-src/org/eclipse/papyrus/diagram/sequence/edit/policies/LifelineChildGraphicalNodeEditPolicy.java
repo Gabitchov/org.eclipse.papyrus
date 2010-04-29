@@ -14,11 +14,14 @@
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.Polyline;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -107,7 +110,8 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 		LifelineEditPart lifelinePart = SequenceUtil.getParentLifelinePart(node);
 		MessageEnd event = getMessageEndEvent(request);
 		if(lifelinePart != null && event instanceof MessageOccurrenceSpecification) {
-			Command cmdMove = SequenceUtil.getTimeRelatedElementsMoveCommands(lifelinePart, (OccurrenceSpecification)event, request.getLocation(), notToMoveEditPartList);
+			Map<IBorderItemEditPart, Rectangle> updatedBounds = new HashMap<IBorderItemEditPart, Rectangle>();
+			Command cmdMove = SequenceUtil.getTimeRelatedElementsMoveCommands(lifelinePart, (OccurrenceSpecification)event, request.getLocation(), notToMoveEditPartList, updatedBounds);
 			command = command.chain(cmdMove);
 		}
 		return command;

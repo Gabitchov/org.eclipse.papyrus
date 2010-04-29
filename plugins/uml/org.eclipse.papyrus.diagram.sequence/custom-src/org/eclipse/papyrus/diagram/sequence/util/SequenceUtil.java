@@ -393,6 +393,7 @@ public class SequenceUtil {
 
 	/**
 	 * Get commands to move time/duration constraints/observation associated to a given element.
+	 * The updatedBounds attribute enable to avoid erasing a previous set bounds command. Resizes on a same node are combined.
 	 * 
 	 * @param lifelinePart
 	 *        the edit part of the covered lifeline graphically containing time elements
@@ -402,9 +403,11 @@ public class SequenceUtil {
 	 *        the point where the event is moved (in absolute)
 	 * @param editPartsNotToMove
 	 *        the list of time elements edit parts which must not be moved
+	 * @param updatedBounds
+	 *        the map containing the new bounds for the nodes which bounds are to be changed
 	 * @return the command or null
 	 */
-	public static Command getTimeRelatedElementsMoveCommands(LifelineEditPart lifelinePart, OccurrenceSpecification event, Point referencePoint, List<IBorderItemEditPart> editPartsNotToMove) {
+	public static Command getTimeRelatedElementsMoveCommands(LifelineEditPart lifelinePart, OccurrenceSpecification event, Point referencePoint, List<IBorderItemEditPart> editPartsNotToMove, Map<IBorderItemEditPart, Rectangle> updatedBounds) {
 		CompoundCommand command = new CompoundCommand();
 		referencePoint = referencePoint.getCopy();
 		IFigure parentFigure = lifelinePart.getFigure();
@@ -418,8 +421,17 @@ public class SequenceUtil {
 				if(position != PositionConstants.NONE) {
 					referencePoint.x = timePart.getFigure().getBounds().getLocation().x;
 					// Get old bounds information
-					int oldY = timePart.getFigure().getBounds().getLocation().y - parentFigure.getBounds().getLocation().y;
-					int oldHeight = timePart.getFigure().getSize().height;
+					int oldY = 0;
+					int oldHeight = 0;
+					if(!updatedBounds.containsKey(timePart) || updatedBounds.get(timePart) == null) {
+						// consult old figure
+						oldY = timePart.getFigure().getBounds().getLocation().y - parentFigure.getBounds().getLocation().y;
+						oldHeight = timePart.getFigure().getSize().height;
+					} else {
+						// take updated bounds rather than obsolete information
+						oldY = updatedBounds.get(timePart).y;
+						oldHeight = updatedBounds.get(timePart).height;
+					}
 					// Compute new bounds of the time element
 					Rectangle newBounds = null;
 					if(position == PositionConstants.CENTER) {
@@ -440,6 +452,7 @@ public class SequenceUtil {
 						}
 					}
 					if(newBounds != null) {
+						updatedBounds.put(timePart, newBounds);
 						TransactionalEditingDomain editingDomain = timePart.getEditingDomain();
 						// chain the resize command
 						ICommandProxy resize = new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, new EObjectAdapter((View)timePart.getModel()), newBounds));

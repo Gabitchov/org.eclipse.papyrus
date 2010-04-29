@@ -76,6 +76,8 @@ public class TimeRelatedSelectionEditPolicy extends BorderItemSelectionEditPolic
 				} else if(timeElement instanceof DurationConstraint) {
 					events = ((DurationConstraint)timeElement).getConstrainedElements();
 				}
+				// firstResizeReq allow to know if an execution node has already been resized to avoid a resize request erasing the previous one
+				ChangeBoundsRequest firstResizeReq = null;
 				for(Element event : events) {
 					if(event instanceof ExecutionOccurrenceSpecification) {
 						// execution linked to the event must be resized
@@ -87,8 +89,19 @@ public class TimeRelatedSelectionEditPolicy extends BorderItemSelectionEditPolic
 								boolean isStart = event.equals(((ExecutionSpecification)execution).getStart());
 								Point location = getLocation(bounds, whereEventIsLinked((OccurrenceSpecification)event));
 								if(location != null) {
-									Command resize = lifelinePart.getCommand(makeResizeRequest((GraphicalEditPart)node, isStart, location));
-									command = command.chain(resize);
+									if(firstResizeReq != null && firstResizeReq.getEditParts().contains(node)) {
+										// this execution node has already been resized combine the two requests
+										ChangeBoundsRequest secondResizeReq = makeResizeRequest((GraphicalEditPart)node, isStart, location);
+										secondResizeReq.getMoveDelta().translate(firstResizeReq.getMoveDelta());
+										secondResizeReq.getSizeDelta().expand(firstResizeReq.getSizeDelta());
+										Command resize = lifelinePart.getCommand(secondResizeReq);
+										command = command.chain(resize);
+									} else {
+										// normal case, resize the execution node
+										firstResizeReq = makeResizeRequest((GraphicalEditPart)node, isStart, location);
+										Command resize = lifelinePart.getCommand(firstResizeReq);
+										command = command.chain(resize);
+									}
 								}
 							}
 						}
@@ -160,7 +173,7 @@ public class TimeRelatedSelectionEditPolicy extends BorderItemSelectionEditPolic
 	 *        location on the new border
 	 * @return the request
 	 */
-	private Request makeResizeRequest(GraphicalEditPart node, boolean isStart, Point location) {
+	private ChangeBoundsRequest makeResizeRequest(GraphicalEditPart node, boolean isStart, Point location) {
 		// Create and set the properties of the request
 		ChangeBoundsRequest resizeReq = new ChangeBoundsRequest(REQ_RESIZE_CHILDREN);
 		IFigure parentFig = node.getFigure().getParent();

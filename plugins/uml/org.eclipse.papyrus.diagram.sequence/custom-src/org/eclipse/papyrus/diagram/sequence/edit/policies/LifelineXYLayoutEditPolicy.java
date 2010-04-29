@@ -15,7 +15,9 @@ package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.IFigure;
@@ -731,14 +733,15 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			// move start event
 			OccurrenceSpecification start = ((ExecutionSpecification)execSpec).getStart();
 			Point startPoint = newBounds.getTop();
-			Command cmdStart = SequenceUtil.getTimeRelatedElementsMoveCommands(parent, start, startPoint, notToMoveEditPartList);
+			Map<IBorderItemEditPart, Rectangle> updatedBounds = new HashMap<IBorderItemEditPart, Rectangle>();
+			Command cmdStart = SequenceUtil.getTimeRelatedElementsMoveCommands(parent, start, startPoint, notToMoveEditPartList, updatedBounds);
 			if(cmdStart != null) {
 				cmd.add(cmdStart);
 			}
 			// move finish event
 			OccurrenceSpecification finish = ((ExecutionSpecification)execSpec).getFinish();
 			Point finishPoint = newBounds.getBottom();
-			Command cmdFinish = SequenceUtil.getTimeRelatedElementsMoveCommands(parent, finish, finishPoint, notToMoveEditPartList);
+			Command cmdFinish = SequenceUtil.getTimeRelatedElementsMoveCommands(parent, finish, finishPoint, notToMoveEditPartList, updatedBounds);
 			if(cmdFinish != null) {
 				cmd.add(cmdFinish);
 			}
