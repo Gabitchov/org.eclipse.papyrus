@@ -1,7 +1,7 @@
 <!--UML Basic properties view-->
 <propertyTabView>
 	<!--  tab descriptors definition -->
-	<tab label="Basic" category="UML" id="basicTab"/>
+	<tab label="UML" category="UML" id="basicTab"/>
 	<tab label="Advanced" category="UML" id="advancedTab"/>
 	
 	<!-- section description -->
