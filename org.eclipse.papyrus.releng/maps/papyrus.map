@@ -35,6 +35,7 @@ plugin@org.eclipse.papyrus.preferences=SVN,,svn://dev.eclipse.org/svnroot/modeli
 plugin@org.eclipse.papyrus.sasheditor=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core,,org.eclipse.papyrus.sasheditor
 plugin@org.eclipse.papyrus.sasheditor.di=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core,,org.eclipse.papyrus.sasheditor.di
 plugin@org.eclipse.papyrus.tabbedproperties.core=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core,,org.eclipse.papyrus.tabbedproperties.core
+plugin@org.eclipse.papyrus.ui.perspectiveconfiguration=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core,,org.eclipse.papyrus.ui.perspectiveconfiguration
 plugin@org.eclipse.papyrus.wizards=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core,,org.eclipse.papyrus.wizards
 
 # developer
@@ -81,7 +82,7 @@ plugin@org.eclipse.papyrus.tabbedproperties.appearance=SVN,,svn://dev.eclipse.or
 plugin@org.eclipse.papyrus.tabbedproperties.uml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.tabbedproperties.uml
 plugin@org.eclipse.papyrus.ui.toolbox=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.ui.toolbox
 plugin@org.eclipse.papyrus.uml.modelexplorer=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.uml.modelexplorer
-plugin@org.eclipse.papyrus.uml.perspective.configuration=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.uml.perspective.configuration
+plugin@org.eclipse.papyrus.uml.ui.perspectiveconfiguration=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.uml.ui.perspectiveconfiguration
 plugin@org.eclipse.papyrus.uml.standard=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.uml.standard
 plugin@org.eclipse.papyrus.uml.standard.edit=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.uml.standard.edit
 plugin@org.eclipse.papyrus.umlutils=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.umlutils
