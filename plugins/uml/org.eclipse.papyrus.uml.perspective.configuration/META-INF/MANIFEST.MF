@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Perspective configuration for UML (Papyrus)
-Bundle-SymbolicName: org.eclipse.papyrus.uml.perspective.configuration;singleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.ui.perspectiveconfiguration;singleton:=true
 Bundle-Version: 0.7.0.qualifier
-Bundle-Activator: org.eclipse.papyrus.uml.perspective.configuration.Activator
+Bundle-Activator: org.eclipse.papyrus.uml.ui.perspectiveconfiguration.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.ui.perspectiveconfiguration;bundle-version="0.7.0",

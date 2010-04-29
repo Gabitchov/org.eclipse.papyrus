@@ -1,4 +1,4 @@
-package org.eclipse.papyrus.uml.perspective.configuration;
+package org.eclipse.papyrus.uml.ui.perspectiveconfiguration;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
