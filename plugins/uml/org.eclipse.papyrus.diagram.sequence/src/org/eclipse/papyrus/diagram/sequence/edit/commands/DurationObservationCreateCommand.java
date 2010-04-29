@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.helper.DurationConstraintHelper;
+import org.eclipse.papyrus.diagram.common.helper.DurationObservationHelper;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.uml2.uml.DurationObservation;
@@ -114,7 +114,7 @@ public class DurationObservationCreateCommand extends EditElementCommand {
 			return false;
 		}
 		// enable duration observation only on a message
-		return DurationConstraintHelper.endsOfSameMessage((OccurrenceSpecification)occurrence, (OccurrenceSpecification)occurrence2);
+		return DurationObservationHelper.endsOfSameMessage((OccurrenceSpecification)occurrence, (OccurrenceSpecification)occurrence2);
 	}
 
 	/**

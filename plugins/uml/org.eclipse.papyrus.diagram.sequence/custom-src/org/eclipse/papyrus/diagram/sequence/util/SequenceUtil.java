@@ -109,6 +109,114 @@ public class SequenceUtil {
 	}
 
 	/**
+	 * Find the location on the lifeline of an occurrence specification
+	 * 
+	 * @param lifelineEditPart
+	 *        the lifeline edit part
+	 * @param event
+	 *        the occurrence specification
+	 * @return the absolute location or null
+	 */
+	public static Point findLocationOfEvent(LifelineEditPart lifelineEditPart, OccurrenceSpecification event) {
+		if(lifelineEditPart == null) {
+			return null;
+		}
+		// search on graphical children of the lifeline
+		List<?> children = lifelineEditPart.getChildren();
+		for(Object child : children) {
+			// check destruction event
+			if(child instanceof DestructionEventEditPart) {
+				EObject destructionEvent = ((GraphicalEditPart)child).resolveSemanticElement();
+				EObject lifeline = lifelineEditPart.resolveSemanticElement();
+				if(destructionEvent instanceof DestructionEvent && lifeline instanceof Lifeline) {
+					if(event.equals(destructionEvent)) {
+						Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
+						lifelineEditPart.getFigure().translateToAbsolute(bounds);
+						return bounds.getCenter();
+					}
+				}
+			}
+			// check in children executions
+			if(child instanceof ActionExecutionSpecificationEditPart || child instanceof BehaviorExecutionSpecificationEditPart) {
+				if(event instanceof ExecutionOccurrenceSpecification) {
+					// check start and finish events of the execution
+					EObject element = ((GraphicalEditPart)child).resolveSemanticElement();
+					if(element instanceof ExecutionSpecification) {
+						if(event.equals(((ExecutionSpecification)element).getStart())) {
+							Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
+							lifelineEditPart.getFigure().translateToAbsolute(bounds);
+							return bounds.getTop();
+						} else if(event.equals(((ExecutionSpecification)element).getFinish())) {
+							Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
+							lifelineEditPart.getFigure().translateToAbsolute(bounds);
+							return bounds.getBottom();
+						}
+					}
+				} else if(event instanceof MessageOccurrenceSpecification) {
+					// check messages to and from the execution
+					Point loc = findLocationOfMessageOccurrence((GraphicalEditPart)child, (MessageOccurrenceSpecification)event);
+					if(loc != null) {
+						return loc;
+					}
+				}
+			}
+		}
+		if(event instanceof MessageOccurrenceSpecification) {
+			// check messages to and from the lifeline
+			Point loc = findLocationOfMessageOccurrence(lifelineEditPart, (MessageOccurrenceSpecification)event);
+			if(loc != null) {
+				return loc;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Find the location on a node of a message occurrence specification
+	 * 
+	 * @param nodeEditPart
+	 *        the node edit part which to check incoming and outgoing messages
+	 * @param event
+	 *        the message occurrence specification
+	 * @return the absolute location or null
+	 */
+	private static Point findLocationOfMessageOccurrence(GraphicalEditPart nodeEditPart, MessageOccurrenceSpecification event) {
+		// messages to the node
+		List<?> targetConnections = nodeEditPart.getTargetConnections();
+		for(Object conn : targetConnections) {
+			if(conn instanceof ConnectionNodeEditPart) {
+				EObject element = ((ConnectionNodeEditPart)conn).resolveSemanticElement();
+				if(element instanceof Message && event.equals(((Message)element).getReceiveEvent())) {
+					// finish event of the message
+					IFigure figure = ((ConnectionNodeEditPart)conn).getFigure();
+					if(figure instanceof AbstractPointListShape) {
+						Point end = ((AbstractPointListShape)figure).getEnd().getCopy();
+						((AbstractPointListShape)figure).getParent().translateToAbsolute(end);
+						return end;
+					}
+				}
+			}
+		}
+		// messages from the node
+		List<?> sourceConnections = nodeEditPart.getSourceConnections();
+		for(Object conn : sourceConnections) {
+			if(conn instanceof ConnectionNodeEditPart) {
+				EObject element = ((ConnectionNodeEditPart)conn).resolveSemanticElement();
+				if(element instanceof Message && event.equals(((Message)element).getSendEvent())) {
+					// start event of the message
+					IFigure figure = ((ConnectionNodeEditPart)conn).getFigure();
+					if(figure instanceof AbstractPointListShape) {
+						Point start = ((AbstractPointListShape)figure).getStart().getCopy();
+						((AbstractPointListShape)figure).getParent().translateToAbsolute(start);
+						return start;
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
 	 * Find the occurrence specification covering the lifeline near the given location.
 	 * If none is close enough, null is returned.
 	 * 

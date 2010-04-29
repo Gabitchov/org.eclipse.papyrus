@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.helper.DurationConstraintHelper;
+import org.eclipse.papyrus.diagram.common.helper.DurationObservationHelper;
 import org.eclipse.papyrus.diagram.common.providers.BaseViewInfo;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
@@ -301,7 +302,7 @@ public class UMLVisualIDRegistry {
 			) {
 				List<NamedElement> occurrences = ((DurationObservation)domainElement).getEvents();
 				if(occurrences.size() >= 2 && occurrences.get(0) instanceof OccurrenceSpecification && occurrences.get(1) instanceof OccurrenceSpecification) {
-					if(DurationConstraintHelper.endsOfSameMessage((OccurrenceSpecification)occurrences.get(0), (OccurrenceSpecification)occurrences.get(1))) {
+					if(DurationObservationHelper.endsOfSameMessage((OccurrenceSpecification)occurrences.get(0), (OccurrenceSpecification)occurrences.get(1))) {
 						return DurationObservationEditPart.VISUAL_ID;
 					}
 				}

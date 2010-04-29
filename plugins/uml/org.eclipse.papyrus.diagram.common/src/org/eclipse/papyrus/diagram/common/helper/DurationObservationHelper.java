@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -70,5 +71,18 @@ public class DurationObservationHelper {
 	 */
 	public static String getLabelString(DurationObservation observation) {
 		return String.format(DURATION_OBSERVATION_LABEL_FORMAT, observation.getName());
+	}
+
+	/**
+	 * Check whether two occurrences are ends of the same message for enabling duration constraint creation
+	 * 
+	 * @param occurrence
+	 *        first occurrence specification
+	 * @param occurrence2
+	 *        second occurrence specification
+	 * @return true if occurrences are ends of the same message
+	 */
+	public static boolean endsOfSameMessage(OccurrenceSpecification occurrence, OccurrenceSpecification occurrence2) {
+		return DurationConstraintHelper.endsOfSameMessage(occurrence, occurrence2);
 	}
 }
