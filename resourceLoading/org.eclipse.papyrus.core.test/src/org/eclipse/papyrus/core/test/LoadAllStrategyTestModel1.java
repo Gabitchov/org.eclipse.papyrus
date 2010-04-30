@@ -19,7 +19,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.papyrus.core.resourceloading.ProxyManager;
+import org.eclipse.papyrus.core.preferences.StrategyChooser;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.sashwindows.di.PageRef;
 import org.eclipse.papyrus.sashwindows.di.SashWindowsMngr;
@@ -34,7 +34,7 @@ public class LoadAllStrategyTestModel1 extends TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		ProxyManager.setCurrentStrategy(0);
+		StrategyChooser.setCurrentStrategy(0);
 		diResourceSet = new DiResourceSet();
 		String path = resourceUri + "model1";
 		URI diUri = URI.createPlatformPluginURI(path + ".di", false);
@@ -77,7 +77,6 @@ public class LoadAllStrategyTestModel1 extends TestCase {
 				SashWindowsMngr sashWindowMngr = (SashWindowsMngr)eObject;
 				for (PageRef pageRef : sashWindowMngr.getPageList().getAvailablePage()) {
 					if (pageRef.getEmfPageIdentifier() != null && pageRef.getEmfPageIdentifier().toString().endsWith(fragment)) {
-//						URI uriDiagram2 = URI.createPlatformPluginURI(pageRef.getEmfPageIdentifier().toString(), false);
 						assertEquals("Load diagram from page ref", diagram, pageRef.getEmfPageIdentifier());
 					}
 				}
