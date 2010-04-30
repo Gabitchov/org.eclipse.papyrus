@@ -41,50 +41,50 @@ public class UMLProfileStrategyExtension implements ILoadingStrategyExtension {
 	 */
 	public boolean loadResource(DiResourceSet diResourceSet, URI uri) {
 		Resource modelResource = diResourceSet.getModelResource();
-		if(modelResource != null) {
-			if(!UMLResource.FILE_EXTENSION.equals(modelResource.getURI().fileExtension()))
-				return false;
-		}
-		TypeCacheAdapter adapter = null;
-		for(Adapter a : diResourceSet.eAdapters()) {
-			if(a instanceof TypeCacheAdapter) {
-				adapter = (TypeCacheAdapter)a;
-				break;
-			}
-		}
-		if(adapter == null) {
-			// throw ...
-		}
-		if(modelResource != null && !modelResource.getContents().isEmpty()) {
-			if(adapter != null) {
-				Collection<EObject> applications = null;
-				if(!adapter.isAlreadyComputed(UMLPackage.Literals.PROFILE_APPLICATION)) {
-					applications = new LinkedList<EObject>();
-					// a profile application can only be stored in a package
-					for(int i = 0; i < diResourceSet.getResources().size(); i++) {
-						for(TreeIterator<EObject> j = EcoreUtil.getAllProperContents(diResourceSet.getResources().get(i), false); j.hasNext();) {
-							EObject e = j.next();
-							if(e instanceof Package) {
-								applications.addAll(((Package)e).getProfileApplications());
-							} else {
-								j.prune();
-							}
-						}
-					}
-					adapter.fillFirstEntryCache(UMLPackage.Literals.PROFILE_APPLICATION, applications);
-				} else {
-					applications = adapter.getReachableObjectsOfType(modelResource.getContents().get(0), UMLPackage.Literals.PROFILE_APPLICATION);
+		if(modelResource != null && UMLResource.FILE_EXTENSION.equals(modelResource.getURI().fileExtension())) {
+			TypeCacheAdapter adapter = null;
+			for(Adapter a : diResourceSet.eAdapters()) {
+				if(a instanceof TypeCacheAdapter) {
+					adapter = (TypeCacheAdapter)a;
+					break;
 				}
-				if(applications != null) {
-					for(EObject profileApp : applications) {
-						EObject proxy = (EObject)profileApp.eGet(UMLPackage.Literals.PROFILE_APPLICATION__APPLIED_PROFILE, false);
-						if(proxy != null && proxy.eIsProxy()) {
-							InternalEObject internal = (InternalEObject)proxy;
-							if(uri.trimFragment().equals(internal.eProxyURI().trimFragment())) {
-								return true;
+			}
+			if(!modelResource.getContents().isEmpty()) {
+				if(adapter != null) {
+					Collection<EObject> applications = null;
+					if(!adapter.isAlreadyComputed(UMLPackage.Literals.PROFILE_APPLICATION)) {
+						// set the profile applications in the cache at the first time
+						applications = new LinkedList<EObject>();
+						// a profile application can only be stored in a package
+						for(int i = 0; i < diResourceSet.getResources().size(); i++) {
+							for(TreeIterator<EObject> j = EcoreUtil.getAllProperContents(diResourceSet.getResources().get(i), false); j.hasNext();) {
+								EObject e = j.next();
+								if(e instanceof Package) {
+									applications.addAll(((Package)e).getProfileApplications());
+								} else {
+									j.prune();
+								}
+							}
+						}
+						adapter.fillFirstEntryCache(UMLPackage.Literals.PROFILE_APPLICATION, applications);
+					} else {
+						// get the profile applications in the cache
+						applications = adapter.getReachableObjectsOfType(modelResource.getContents().get(0), UMLPackage.Literals.PROFILE_APPLICATION);
+					}
+					if(applications != null) {
+						// compare profile applications with the specified uri
+						for(EObject profileApp : applications) {
+							EObject proxy = (EObject)profileApp.eGet(UMLPackage.Literals.PROFILE_APPLICATION__APPLIED_PROFILE, false);
+							if(proxy != null && proxy.eIsProxy()) {
+								InternalEObject internal = (InternalEObject)proxy;
+								if(uri.trimFragment().equals(internal.eProxyURI().trimFragment())) {
+									return true;
+								}
 							}
 						}
 					}
+				} else {
+					// throw new Exception("Problem loading resource " + uri.toString() + ": no cache adapter found");
 				}
 			}
 		}
