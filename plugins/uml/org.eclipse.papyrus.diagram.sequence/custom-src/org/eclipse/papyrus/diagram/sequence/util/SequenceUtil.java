@@ -509,6 +509,9 @@ public class SequenceUtil {
 		if(event instanceof MessageOccurrenceSpecification) {
 			// get parts representing the message linked with the event
 			Message message = ((MessageOccurrenceSpecification)event).getMessage();
+			if(message == null) {
+				return null;
+			}
 			Collection<Setting> settings = CacheAdapter.INSTANCE.getNonNavigableInverseReferences(message);
 			for(Setting ref : settings) {
 				if(NotationPackage.eINSTANCE.getView_Element().equals(ref.getEStructuralFeature())) {
@@ -532,6 +535,9 @@ public class SequenceUtil {
 		} else if(event instanceof ExecutionOccurrenceSpecification) {
 			// get parts representing the execution linked with the event
 			ExecutionSpecification execution = ((ExecutionOccurrenceSpecification)event).getExecution();
+			if(execution == null) {
+				return null;
+			}
 			Collection<Setting> settings = CacheAdapter.INSTANCE.getNonNavigableInverseReferences(execution);
 			for(Setting ref : settings) {
 				if(NotationPackage.eINSTANCE.getView_Element().equals(ref.getEStructuralFeature())) {
