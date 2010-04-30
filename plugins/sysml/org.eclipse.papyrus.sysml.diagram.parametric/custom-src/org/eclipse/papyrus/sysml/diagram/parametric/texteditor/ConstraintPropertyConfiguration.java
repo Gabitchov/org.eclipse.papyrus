@@ -16,7 +16,6 @@ package org.eclipse.papyrus.sysml.diagram.parametric.texteditor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.text.source.SourceViewerConfiguration;
-import org.eclipse.papyrus.diagramprofile.utils.StereotypeUtils;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.DefaultDirectEditorConfiguration;
 import org.eclipse.papyrus.parsers.modelgenerator.PropertyGenerator;
 import org.eclipse.papyrus.parsers.texteditor.CompletionFilterSourceViewerConfiguration.ICompletionFilter;
@@ -43,12 +42,14 @@ public class ConstraintPropertyConfiguration extends DefaultDirectEditorConfigur
 		configuration = new PropertyLabelSourceViewerConfiguration(new ICompletionFilter() {
 
 			public boolean filter(int context, EObject e) {
-				switch (context) {
+				switch(context) {
 				case IContext.AFTER_COLON:
-					if (e instanceof Element
-							&& StereotypeUtils.isStereotypeApplied("SysML::Constraints::ConstraintBlock", (Element) e)) {
-						return false;
+					if(e instanceof Element) {
+						if(((Element)e).getAppliedStereotype("SysML::Constraints::ConstraintBlock") != null) {
+							return false;
+						}
 					}
+
 					return true;
 				default:
 					return false;
@@ -68,8 +69,8 @@ public class ConstraintPropertyConfiguration extends DefaultDirectEditorConfigur
 	 * {@inheritDoc}
 	 */
 	public String getTextToEdit(Object editedObject) {
-		if (editedObject instanceof ConstraintProperty) {
-			Property property = ((ConstraintProperty) editedObject).getBase_Property();
+		if(editedObject instanceof ConstraintProperty) {
+			Property property = ((ConstraintProperty)editedObject).getBase_Property();
 			return PropertyUtil.getLabel(property);
 		}
 		return "not a Constraint Property";
@@ -80,8 +81,8 @@ public class ConstraintPropertyConfiguration extends DefaultDirectEditorConfigur
 	 */
 	@Override
 	public Object preEditAction(Object objectToEdit) {
-		if (objectToEdit instanceof ConstraintProperty) {
-			Property property = ((ConstraintProperty) objectToEdit).getBase_Property();
+		if(objectToEdit instanceof ConstraintProperty) {
+			Property property = ((ConstraintProperty)objectToEdit).getBase_Property();
 			configuration.setProperty(property);
 		}
 		return super.preEditAction(objectToEdit);
@@ -91,8 +92,8 @@ public class ConstraintPropertyConfiguration extends DefaultDirectEditorConfigur
 	 * {@inheritDoc}
 	 */
 	public Object postEditAction(Object editedObject, String text) {
-		if (editedObject instanceof ConstraintProperty) {
-			Property property = ((ConstraintProperty) editedObject).getBase_Property();
+		if(editedObject instanceof ConstraintProperty) {
+			Property property = ((ConstraintProperty)editedObject).getBase_Property();
 			PropertyGenerator generator = new PropertyGenerator(property);
 			generator.parseAndModifyProperty(text);
 		}
@@ -107,8 +108,8 @@ public class ConstraintPropertyConfiguration extends DefaultDirectEditorConfigur
 		return new IInputValidator() {
 
 			public String isValid(String newText) {
-				if (getObjectToEdit() instanceof ConstraintProperty) {
-					Property property = ((ConstraintProperty) getObjectToEdit()).getBase_Property();
+				if(getObjectToEdit() instanceof ConstraintProperty) {
+					Property property = ((ConstraintProperty)getObjectToEdit()).getBase_Property();
 					PropertyGenerator generator = new PropertyGenerator(property);
 					return generator.parseAndValidateProperty(newText);
 				}
@@ -122,8 +123,8 @@ public class ConstraintPropertyConfiguration extends DefaultDirectEditorConfigur
 	 */
 	@Override
 	public Selection getTextSelection(String value, Object editedObject) {
-		if (editedObject instanceof ConstraintProperty) {
-			Property property = ((ConstraintProperty) editedObject).getBase_Property();
+		if(editedObject instanceof ConstraintProperty) {
+			Property property = ((ConstraintProperty)editedObject).getBase_Property();
 			return new PropertyConfigurationForUML().getTextSelection(value, property);
 		}
 		return super.getTextSelection(value, editedObject);

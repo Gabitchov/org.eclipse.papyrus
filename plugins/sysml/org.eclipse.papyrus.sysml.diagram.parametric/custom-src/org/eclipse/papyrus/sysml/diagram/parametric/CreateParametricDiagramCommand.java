@@ -17,6 +17,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -29,9 +30,10 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.diagramprofile.utils.StereotypeUtils;
 import org.eclipse.papyrus.sysml.diagram.parametric.edit.parts.ParametricEditPart;
 import org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorPlugin;
+import org.eclipse.papyrus.sysml.util.SysmlResource;
+import org.eclipse.papyrus.umlutils.PackageUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
@@ -66,21 +68,22 @@ public class CreateParametricDiagramCommand extends AbstractPapyrusGmfCreateDiag
 	@Override
 	protected void initializeModel(EObject owner) {
 		EObject eObject = getSelectedElement();
-		if (eObject == null) {
+		if(eObject == null) {
 			eObject = owner;
 		}
 
-		if (eObject instanceof Class) {
-			this.selectedElement = (Class) eObject;
+		if(eObject instanceof Class) {
+			this.selectedElement = (Class)eObject;
 		}
 	}
 
 	@Override
 	protected void initializeDiagram(EObject diagram) {
-		if (diagram instanceof Diagram) {
-			Diagram diag = (Diagram) diagram;
+		if(diagram instanceof Diagram) {
+			Diagram diag = (Diagram)diagram;
 			// test if the selected class is a block
-			if (selectedElement != null && StereotypeUtils.isStereotypeApplied("SysML::Blocks::Block", selectedElement)) {
+			if(selectedElement != null && selectedElement.getAppliedStereotype("SysML::Blocks::Block") != null) {
+				// YT : Not sure to understand why the selected element is tested to be a Block instead of Block || BlockConstraint
 				diag.setElement(selectedElement);
 				createParametricGraph(selectedElement, diag);
 			}
@@ -90,23 +93,23 @@ public class CreateParametricDiagramCommand extends AbstractPapyrusGmfCreateDiag
 	@Override
 	protected Diagram createDiagram(Resource diagramResource, EObject owner, String name) {
 		Diagram diagram = null;
-		if (owner instanceof Model) {
-			Model model = (Model) owner;
-			Profile sysmlProfile = StereotypeUtils.loadProfile(StereotypeUtils.SYSML_URI, model.eResource().getResourceSet());
-			if (!StereotypeUtils.isProfileApplied("SysML", model)) {
-				model.applyProfile(sysmlProfile);
+
+		// FIXME : Dead code below, owner cannot be a Model due to ParametricDiagramCondition 
+		// which restricts possible owner to Class only (Block or ConstraintBlock).
+		if(owner instanceof Model) {
+			Model model = (Model)owner;
+
+			if((model.getAppliedProfile("SysML", true) == null) || (model.getAppliedProfile("SysML::Blocks", true) == null)) {
+				// Retrieve SysML profile and apply with sub-profiles
+				Profile sysml = (Profile)PackageUtil.loadPackage(URI.createURI(SysmlResource.SYSML_PROFILE_URI), model.eResource().getResourceSet());
+				PackageUtil.applyProfile(model, sysml, true);
 			}
-			
+
 			Class ownedClass = model.createOwnedClass("Parametric", false);
-			Profile blockProfile = (Profile) sysmlProfile.getOwnedMember("Blocks");
-			if (blockProfile != null) {
-				if (!model.isProfileApplied(blockProfile)) {
-					model.applyProfile(blockProfile);					
-				}
-				ownedClass.applyStereotype(blockProfile.getOwnedStereotype("Block"));				
-				diagram = super.createDiagram(diagramResource, ownedClass, name);
-			}
-		} else if (owner instanceof Class) {
+			ownedClass.applyStereotype(ownedClass.getApplicableStereotype("SysML::Blocks::Block"));
+			diagram = super.createDiagram(diagramResource, ownedClass, name);
+
+		} else if(owner instanceof Class) {
 			diagram = super.createDiagram(diagramResource, owner, name);
 		}
 		return diagram;
@@ -116,9 +119,9 @@ public class CreateParametricDiagramCommand extends AbstractPapyrusGmfCreateDiag
 	 * Complete a Parametric diagram with required graphical elements.
 	 * 
 	 * @param element
-	 *            the element to which the diagram is associated
+	 *        the element to which the diagram is associated
 	 * @param diagram
-	 *            the diagram to complete
+	 *        the diagram to complete
 	 */
 	private void createParametricGraph(Element element, Diagram diagram) {
 		/*
@@ -127,8 +130,7 @@ public class CreateParametricDiagramCommand extends AbstractPapyrusGmfCreateDiag
 		 */
 		TransactionalEditingDomain editingdomain = EditorUtils.getTransactionalEditingDomain();
 		IAdaptable elementAdapter = new EObjectAdapter(element);
-		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, null, ViewUtil.APPEND, false,
-				SysmlDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, null, ViewUtil.APPEND, false, SysmlDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 
 		CreateCommand nodeCreationCommand = new CreateCommand(editingdomain, descriptor, diagram);
 

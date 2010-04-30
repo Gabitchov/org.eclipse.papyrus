@@ -15,8 +15,8 @@ package org.eclipse.papyrus.sysml.diagram.parametric;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.core.extension.commands.PerspectiveContextDependence;
-import org.eclipse.papyrus.diagramprofile.utils.StereotypeUtils;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Package;
 
 /**
  * ParametricDiagramCondition to set conditions for the diagram creation
@@ -30,13 +30,14 @@ public class ParametricDiagramCondition extends PerspectiveContextDependence {
 		if(super.create(selectedElement)) {
 			if(selectedElement instanceof Element) {
 				Element element = (Element)selectedElement;
-				boolean isProfileApplied = StereotypeUtils.isProfileApplied("SysML::Blocks", element);
-				if(isProfileApplied) {
-					return StereotypeUtils.isStereotypeApplied("SysML::Blocks::Block", element) || StereotypeUtils.isStereotypeApplied("SysML::Blocks::ConstraintBlock", element);
+				Package pack = element.getNearestPackage();
+				if((pack.getAppliedProfile("SysML::Blocks", true) != null) && (pack.getAppliedProfile("SysML::Constraints", true) != null)) {
+					if((element.getAppliedStereotype("SysML::Constraints::ConstraintBlock") != null) || (element.getAppliedStereotype("SysML::Blocks::Block") != null)) {
+						return true;
+					}
 				}
 			}
 		}
 		return false;
 	}
-
 }

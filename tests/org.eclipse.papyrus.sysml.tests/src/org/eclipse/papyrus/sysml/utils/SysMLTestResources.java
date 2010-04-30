@@ -18,30 +18,23 @@ import java.util.Iterator;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.papyrus.umlutils.PackageUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.UMLFactory;
-import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class SysMLTestResources {
 
 	protected static final ResourceSet RESOURCE_SET = new ResourceSetImpl();
-
-	/**
-	 * Profile URI
-	 */
-	public static String SYSML_PROFILE_URI = "pathmap://SysML_PROFILES/SysML.profile.uml";
 
 	/**
 	 * Creates a model with SysML profile applied for JUnit test
@@ -61,46 +54,17 @@ public class SysMLTestResources {
 
 		// Apply UML Standard profile
 		// Retrieve standard profile
-		Profile umlStdProfile = (Profile)load(URI.createURI(UMLResource.STANDARD_PROFILE_URI));
+		Profile umlStdProfile = (Profile)PackageUtil.loadPackage(URI.createURI(UMLResource.STANDARD_PROFILE_URI), RESOURCE_SET);
 		// Apply to new model
 		model.applyProfile(umlStdProfile);
 
-		// Retrieve SysML profile
-		Profile sysml = (Profile)load(URI.createURI(SYSML_PROFILE_URI));
-
-		// Apply SysML profile and its nested profiles to new model
+		// Retrieve SysML profile and apply with subprofile
+		Profile sysml = (Profile)PackageUtil.loadPackage(URI.createURI(SysmlResource.SYSML_PROFILE_URI), RESOURCE_SET);
 		if(sysml != null) {
-
-			model.applyProfile(sysml);
-
-			Iterator<Profile> profiles = PackageUtil.getSubProfiles(sysml).iterator();
-			while(profiles.hasNext()) {
-				Profile current = profiles.next();
-				model.applyProfile(current);
-			}
-
-		} else {
-			// model is null
+			PackageUtil.applyProfile(model, sysml, true);
 		}
 
 		return model;
-	}
-
-	protected static org.eclipse.uml2.uml.Package load(URI uri) {
-		org.eclipse.uml2.uml.Package package_ = null;
-
-		try {
-
-			Resource resource = RESOURCE_SET.getResource(uri, true);
-
-			package_ = (org.eclipse.uml2.uml.Package)EcoreUtil.getObjectByType(resource.getContents(), UMLPackage.Literals.PACKAGE);
-
-		} catch (WrappedException we) {
-			// null package
-		}
-
-		return package_;
-
 	}
 
 	protected static void registerPathmaps(URI uri) {

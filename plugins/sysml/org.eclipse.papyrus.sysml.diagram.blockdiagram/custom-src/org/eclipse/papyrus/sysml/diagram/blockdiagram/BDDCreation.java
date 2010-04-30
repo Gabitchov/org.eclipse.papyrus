@@ -13,13 +13,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdiagram;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
-import org.eclipse.papyrus.diagramprofile.utils.StereotypeUtils;
 import org.eclipse.papyrus.sysml.diagram.blockdiagram.part.SysmlDiagramEditorPlugin;
+import org.eclipse.papyrus.sysml.util.SysmlResource;
+import org.eclipse.papyrus.umlutils.PackageUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.UMLFactory;
 
 
@@ -70,11 +73,12 @@ public class BDDCreation extends AbstractPapyrusGmfCreateDiagramCommandHandler {
 	protected void initializeModel(EObject owner) {
 		if(owner instanceof Element) {
 			Element element = (Element)owner;
-			if(!(StereotypeUtils.isProfileApplied("SysML::Blocks", element) && StereotypeUtils.isProfileApplied("SysML::PortAndFlows", element))) {
-				Package pack = element.getNearestPackage();
-				if(pack != null) {
-					StereotypeUtils.applySysMLProfile(pack);
-				}
+			Package pack = element.getNearestPackage();
+
+			if((pack.getAppliedProfile("SysML::Blocks", true) == null) || (pack.getAppliedProfile("SysML::PortAndFlows", true) == null)) {
+				// Retrieve SysML profile and apply with sub-profiles
+				Profile sysml = (Profile)PackageUtil.loadPackage(URI.createURI(SysmlResource.SYSML_PROFILE_URI), pack.eResource().getResourceSet());
+				PackageUtil.applyProfile(pack, sysml, true);
 			}
 		}
 		super.initializeModel(owner);

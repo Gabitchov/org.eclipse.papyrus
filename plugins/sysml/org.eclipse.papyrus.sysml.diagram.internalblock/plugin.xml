@@ -458,6 +458,7 @@
          defaultHandler="org.eclipse.papyrus.sysml.diagram.internalblock.part.LoadResourceAction"/>
       <command
             description="Create Internal Block Diagram"
+            categoryId="org.eclipse.papyrus.editor.category"
             id="org.eclipse.papyrus.sysml.diagram.internalblock.creationCommand"
             name="Create Internal Block Diagram">
       </command>

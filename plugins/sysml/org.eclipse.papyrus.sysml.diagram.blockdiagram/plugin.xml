@@ -589,16 +589,40 @@
       <command id="org.eclipse.papyrus.sysml.diagram.blockdiagram.LoadResourceAction"
          name="Load Resource"
          categoryId="org.eclipse.papyrus.sysml.diagram.blockdiagram.part.SysmlDiagramEditorID"
-         defaultHandler="org.eclipse.papyrus.sysml.diagram.blockdiagram.part.LoadResourceAction"/>
+         defaultHandler="org.eclipse.papyrus.sysml.diagram.blockdiagram.part.LoadResourceAction"/>        
    </extension>
 
-   <extension point="org.eclipse.ui.handlers" id="menu-handlers">
-      <?gmfgen generated="true"?>
+    <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            description="Create a new Block Definition Diagram"
+            id="org.eclipse.papyrus.sysml.diagram.blockdiagram.creationCommand"
+            name="Create a new Block Definition Diagram">
+      </command>
    </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.papyrus.sysml.diagram.blockdiagram.BDDCreation"
+            commandId="org.eclipse.papyrus.sysml.diagram.blockdiagram.creationCommand">
+         <activeWhen>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.core.papyrusEditor">
+                  </equals>
+               </with>
+         </activeWhen>
+      </handler>
+   </extension>
+   
    <extension
          point="org.eclipse.papyrus.core.papyrusDiagram">
       <editorDiagram
-            factoryClass="org.eclipse.papyrus.sysml.diagram.blockdiagram.BDDEditorFactory">
+            actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"      
+            factoryClass="org.eclipse.papyrus.sysml.diagram.blockdiagram.BDDEditorFactory"
+			contextId="com.cea.papyrus.gmf.editor.context">
       </editorDiagram>
       <creationCommand
             creationCommandClass="org.eclipse.papyrus.sysml.diagram.blockdiagram.BDDCreation"

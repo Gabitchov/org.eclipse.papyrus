@@ -584,13 +584,10 @@
          categoryId="org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorID"
          defaultHandler="org.eclipse.papyrus.sysml.diagram.parametric.part.LoadResourceAction"/>
    </extension>
-
-   <extension point="org.eclipse.ui.handlers" id="menu-handlers">
-      <?gmfgen generated="true"?>
-   </extension>
-   
+  
    <extension point="org.eclipse.ui.commands">
 		<command description="Create a new Parametric Diagram"
+			categoryId="org.eclipse.papyrus.editor.category"
 			id="org.eclipse.papyrus.sysml.diagram.parametric.CreateParametricDiagramCommand"
 			name="Create Parametric Diagram">
 		</command>
@@ -600,11 +597,9 @@
 		<handler class="org.eclipse.papyrus.sysml.diagram.parametric.CreateParametricDiagramCommand"
 			commandId="org.eclipse.papyrus.sysml.diagram.parametric.CreateParametricDiagramCommand">
 			<activeWhen>
-				<or>
 					<with variable="activeEditorId">
 						<equals value="org.eclipse.papyrus.core.papyrusEditor"></equals>
 					</with>
-				</or>
 			</activeWhen>
 		</handler>
 	</extension>

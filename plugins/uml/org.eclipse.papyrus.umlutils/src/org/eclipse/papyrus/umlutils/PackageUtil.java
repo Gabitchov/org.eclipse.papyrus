@@ -14,6 +14,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.umlutils;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -26,10 +27,12 @@ import java.util.TreeSet;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
@@ -40,6 +43,7 @@ import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.ProfileApplication;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Utility class for <code>org.eclipse.uml2.uml.Package</code><BR>
@@ -56,8 +60,7 @@ public class PackageUtil {
 	 * @param withSubProfiles
 	 *        true if subprofiles must be automatically imported
 	 */
-	public static boolean applyProfile(org.eclipse.uml2.uml.Package package_,
-			org.eclipse.uml2.uml.Profile profileToApply, boolean withSubProfiles) {
+	public static boolean applyProfile(org.eclipse.uml2.uml.Package package_, org.eclipse.uml2.uml.Profile profileToApply, boolean withSubProfiles) {
 
 		// Returns true if the model was modified
 		boolean isChanged = false;
@@ -478,8 +481,7 @@ public class PackageUtil {
 		// Recursive call on parents
 		if((pack.getOwner() != null) && (pack.getOwner() instanceof Package)) {
 
-			Iterator<Collaboration> itParent = PackageUtil.getAccessibleCollaborations(pack.getNestingPackage())
-					.iterator();
+			Iterator<Collaboration> itParent = PackageUtil.getAccessibleCollaborations(pack.getNestingPackage()).iterator();
 
 			while(itParent.hasNext()) {
 				set.add(itParent.next());
@@ -512,6 +514,30 @@ public class PackageUtil {
 			}
 		}
 		return nestedElements;
+	}
+
+	/**
+	 * Load Package from a specified URI
+	 * 
+	 * @param uri
+	 *        URI of the file to load
+	 * @param set
+	 *        ResourceSet
+	 * @return the root Package
+	 */
+	public static org.eclipse.uml2.uml.Package loadPackage(URI uri, ResourceSet set) {
+
+		org.eclipse.uml2.uml.Package package_ = null;
+		Resource resource = set.getResource(uri, true);
+
+		if(resource != null) {
+			package_ = (org.eclipse.uml2.uml.Package)EcoreUtil.getObjectByType(resource.getContents(), UMLPackage.Literals.PACKAGE);
+		} else {
+			Activator.logException(new FileNotFoundException("Could not retrieve resource from URI : " + uri + "."));
+		}
+
+		return package_;
+
 	}
 
 	/**
