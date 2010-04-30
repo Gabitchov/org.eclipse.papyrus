@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.papyrus.properties.runtime.Activator;
+import org.eclipse.papyrus.properties.runtime.dialogs.EMFFeatureBindingLabelProviderDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.AppliedStereotypeConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.ObjectTypeConstraintDescriptor;
@@ -272,6 +273,8 @@ public class PropertyViewProviderParser {
 		NodeList children = dialogNode.getChildNodes();
 		Node contextNode = null;
 		Node contentNode = null;
+		Node titleNode = null;
+		Node messageNode = null;
 
 		for(int i = 0; i < children.getLength(); i++) {
 			Node child = children.item(i);
@@ -282,11 +285,15 @@ public class PropertyViewProviderParser {
 				contextNode = child;
 			} else if("content".equals(childNodeName)) {
 				contentNode = child;
+			} else if("title".equals(childNodeName)) {
+				titleNode = child;
+			} else if("message".equals(childNodeName)) {
+				messageNode = child;
 			}
 		}
 
 		// 2 nodes should have been found
-		if(contextNode == null || contentNode == null) {
+		if(contextNode == null || contentNode == null || titleNode == null || messageNode == null) {
 			Activator.log.error("Impossible to parse configuration for " + dialogNode, null);
 			return null;
 		}
@@ -294,8 +301,96 @@ public class PropertyViewProviderParser {
 		// parses constraints that will be given to each section
 		List<IConstraintDescriptor> constraints = parseConstraints(contextNode);
 
+		Object message = parseStringNode(messageNode);
+
+		Object title = parseStringNode(titleNode);
+
 		// do not parse currently the content node, will be done later, as the view is used
-		return new DialogDescriptor(id, constraints, contentNode, this);
+		return new DialogDescriptor(id, constraints, contentNode, title, message, this);
+	}
+
+	/**
+	 * Parses the title node
+	 * 
+	 * @param titleNode
+	 *        the node to parse
+	 * @return the result of the parsing
+	 */
+	protected Object parseStringNode(Node titleNode) {
+		// two possibilities currently: only a simple string, a second one usgin a message binding
+		NodeList children = titleNode.getChildNodes();
+		for(int i = 0; i < children.getLength(); i++) {
+			Node child = children.item(i);
+			String childNodeName = child.getNodeName();
+			if("string".equals(childNodeName)) {
+				// there should be a value attribute
+				NamedNodeMap attributes = child.getAttributes();
+				if(attributes != null) {
+					Node valueNode = attributes.getNamedItem("value");
+					return (valueNode != null) ? valueNode.getNodeValue() : "";
+				} else {
+					Activator.log.warn("no attribute for title Node: " + titleNode);
+				}
+			} else if("emfMessageBinding".equals(childNodeName)) {
+				return parseEMFBindingNode(child);
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Parses the message binding node
+	 * 
+	 * @param messageBindingNode
+	 *        the node to parse
+	 * @return the result of the parsing
+	 */
+	protected Object parseEMFBindingNode(Node messageBindingNode) {
+		String message = null;
+		List<String> featureNames = new ArrayList<String>();
+
+		// retrieve attribute message 
+		NamedNodeMap attributes = messageBindingNode.getAttributes();
+		if(attributes != null) {
+			Node valueNode = attributes.getNamedItem("message");
+			if(valueNode != null) {
+				message = valueNode.getNodeValue();
+			} else {
+				Activator.log.warn("ParseBindingNode: No value for message node : " + messageBindingNode);
+				return null;
+			}
+		} else {
+			Activator.log.warn("ParseBindingNode: No attributes for node: " + messageBindingNode);
+			return null;
+		}
+
+		NodeList childNodes = messageBindingNode.getChildNodes();
+		for(int i = 0; i < childNodes.getLength(); i++) {
+			Node child = childNodes.item(i);
+			String childNodeName = child.getNodeName();
+
+			if("binding".equals(childNodeName)) {
+				// look feature sub nodes
+				NodeList featureNodes = child.getChildNodes();
+				for(int j = 0; j < featureNodes.getLength(); j++) {
+					Node featureNode = featureNodes.item(j);
+					if("feature".equals(featureNode.getNodeName())) {
+						attributes = featureNode.getAttributes();
+						if(attributes != null) {
+							Node valueNode = attributes.getNamedItem("name");
+							if(valueNode != null) {
+								featureNames.add(valueNode.getNodeValue());
+							}
+						} else {
+							Activator.log.warn("ParseBindingNode: No attributes for feature node: " + featureNode);
+						}
+					}
+				}
+			}
+		}
+		// FIXME here, we should not know that we work using  EMF features...
+		return new EMFFeatureBindingLabelProviderDescriptor(message, featureNames.toArray(new String[]{}));
+
 	}
 
 	/**

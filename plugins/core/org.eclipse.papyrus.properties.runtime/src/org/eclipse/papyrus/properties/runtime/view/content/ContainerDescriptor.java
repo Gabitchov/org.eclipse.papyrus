@@ -24,7 +24,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Layout;
-import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
+import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -84,10 +84,10 @@ public class ContainerDescriptor extends AbstractContainerDescriptor {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<PropertyEditorController> createContent(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage, List<Object> objectsToEdit) {
+	public List<PropertyEditorController> createContent(Composite parent, TabbedPropertySheetWidgetFactory widgetFactory, List<Object> objectsToEdit) {
 		this.objectsToEdit = objectsToEdit;
 		if(getDescribedComposite() == null || getDescribedComposite().isDisposed()) {
-			setDescribedComposite(tabbedPropertySheetPage.getWidgetFactory().createComposite(parent));
+			setDescribedComposite(widgetFactory.createComposite(parent));
 			// creates the layout
 			getDescribedComposite().setLayout(layout);
 			getDescribedComposite().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));

@@ -78,14 +78,13 @@ public class PropertyEditorService extends Service {
 	 * Creates the property editor descriptor
 	 * 
 	 * @param editorID
-	 * 		  id of the editor described by this element
+	 *        id of the editor described by this element
 	 * @param editorNode
 	 *        the configuration node of the editor
 	 * @return the configuration descriptor for the property editor
 	 */
 	public IPropertyEditorDescriptor createPropertyEditorDescriptor(String editorID, Node editorNode) {
 		return (IPropertyEditorDescriptor)executeUnique(ExecutionStrategy.REVERSE, new CreatePropertyEditorDescriptorOperation(editorID, editorNode));
-
 	}
 
 	/**

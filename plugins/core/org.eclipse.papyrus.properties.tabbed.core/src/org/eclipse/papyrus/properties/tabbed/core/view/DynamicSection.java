@@ -130,7 +130,7 @@ public class DynamicSection extends AbstractPropertySection {
 			// generate the content of the section, given the configuration
 			for(ViewDescriptor viewDescriptor : viewDescriptors) {
 				for(AbstractContainerDescriptor descriptor : viewDescriptor.getContainerDescriptors()) {
-					descriptor.createContent(this.parent, this.tabbedPropertySheetPage, objectsToEdit);
+					descriptor.createContent(this.parent, this.tabbedPropertySheetPage.getWidgetFactory(), objectsToEdit);
 					containers.add(descriptor);
 				}
 			}

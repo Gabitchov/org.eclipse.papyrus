@@ -9,7 +9,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.properties.runtime.controller.descriptor;
+package org.eclipse.papyrus.properties.runtime.dialogs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,43 +18,32 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.properties.runtime.Activator;
-import org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandler;
-import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
+import org.eclipse.papyrus.properties.runtime.controller.descriptor.IBindingLabelProviderDescriptor;
 import org.eclipse.uml2.uml.StructuralFeature;
 
 /**
- * Basic configuration for property editor controllers
+ * Descriptor used for message binding on features
  */
-public class EMFTBindingPropertyEditorControllerDescriptor extends EMFTPropertyEditorControllerDescriptor implements IBindingLabelProviderDescriptor {
+public class EMFFeatureBindingLabelProviderDescriptor implements IBindingLabelProviderDescriptor {
 
 	/** message to bind */
-	private String message;
+	private final String message;
 
-	/** name of the features to bind */
-	private String[] featuresName;
+	/** name of features used to bind message */
+	private String[] featuresNameToEdit;
 
 	/**
-	 * Creates a new EMFTBindingPropertyEditorControllerDescriptor.
+	 * Creates a new EMFFeatureBindingLabelProviderDescriptor.
 	 * 
-	 * @param controllerID
-	 *        the id of the controller
-	 * @param multiSelection
-	 *        indicates if the controller accepts multi-selection
-	 * @param featureNameToEdit
-	 *        name of the features to edit
-	 * @param handler
-	 *        model handler used to interact with the model
-	 * @param editorDescriptor
-	 *        descriptor of the editor
 	 * @param message
-	 *        message to bind
-	 * @param featuresName
-	 *        names of the features to bind
+	 *        the message to bind
+	 * @param featuresNameToEdit
+	 *        the name of features binded
+	 * 
 	 */
-	public EMFTBindingPropertyEditorControllerDescriptor(String controllerID, boolean multiSelection, String featureNameToEdit, IEMFModelHandler handler, IPropertyEditorDescriptor editorDescriptor, String message, String[] featuresName) {
-		super(controllerID, multiSelection, featureNameToEdit, handler, editorDescriptor);
+	public EMFFeatureBindingLabelProviderDescriptor(String message, String[] featuresNameToEdit) {
 		this.message = message;
-		this.featuresName = featuresName;
+		this.featuresNameToEdit = featuresNameToEdit;
 	}
 
 	/**
@@ -68,7 +57,7 @@ public class EMFTBindingPropertyEditorControllerDescriptor extends EMFTPropertyE
 	 * {@inheritDoc}
 	 */
 	public String[] getFeaturesNameToBind() {
-		return featuresName;
+		return featuresNameToEdit;
 	}
 
 	/**

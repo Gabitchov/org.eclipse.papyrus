@@ -6,6 +6,14 @@
 				name="org.eclipse.uml2.uml.NamedElement">
 			</elementClass>
 		</context>
+		<title>
+			<string value="Edit Element"/>
+		</title>
+		<message>
+			<emfMessageBinding message="Edit properties of element {0}">
+				<feature name="name"/>
+			</emfMessageBinding>
+		</message>
 		<content>
 			<view predefinedId="view_single_NamedElement"/>
 		</content>

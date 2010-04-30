@@ -11,7 +11,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.propertyeditor;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,6 +23,8 @@ import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorControlle
 import org.eclipse.papyrus.properties.runtime.dialogs.PropertyDialog;
 import org.eclipse.papyrus.properties.runtime.dialogs.ReferenceExplorerDialog;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.DialogDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.MouseEvent;
@@ -97,8 +98,11 @@ public class SimpleReferencePropertyEditor extends AbstractPropertyEditor {
 				// open property dialog on the current object
 				List<Object> objectsToEdit = Arrays.asList(getValue());
 
+				// find editor descriptor...
+				DialogDescriptor descriptor = PropertyViewService.getInstance().getDialogDescriptor("dialog_single_NamedElement");
 
-				PropertyDialog dialog = new PropertyDialog(getShell(), new ArrayList<String>(), objectsToEdit, getWidgetFactory());
+				// retrieve editor descriptor for the elements to edit
+				PropertyDialog dialog = new PropertyDialog(getShell(), descriptor, objectsToEdit, getWidgetFactory());
 				dialog.open();
 			}
 		});

@@ -93,7 +93,7 @@ public class DynamicSubFeatureSection extends DynamicSection {
 					// generate the content of the section, given the configuration
 					for(ViewDescriptor viewDescriptor : viewDescriptors) {
 						for(AbstractContainerDescriptor descriptor : viewDescriptor.getContainerDescriptors()) {
-							descriptor.createContent(mainComposite, this.tabbedPropertySheetPage, Arrays.asList(subElement));
+							descriptor.createContent(mainComposite, this.tabbedPropertySheetPage.getWidgetFactory(), Arrays.asList(subElement));
 							containers.add(descriptor);
 						}
 					}

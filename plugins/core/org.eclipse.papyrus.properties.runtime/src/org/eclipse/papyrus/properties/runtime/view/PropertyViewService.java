@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.common.ui.services.util.ActivityFilterProviderDes
 import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorController;
 import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorControllerService;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
+import org.eclipse.papyrus.properties.runtime.dialogs.GetDialogDescriptorOperation;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -75,6 +76,18 @@ public class PropertyViewService extends Service {
 			controller.createPropertyEditor(controllerDescriptor.getEditorDescriptor());
 		}
 		return controller;
+	}
+
+	/**
+	 * Returns the dialog descriptor given the id of this dialog
+	 * 
+	 * @param dialogID
+	 *        id of the dialog described by this element
+	 * @return the configuration descriptor for the dialog
+	 */
+	public DialogDescriptor getDialogDescriptor(String dialogID) {
+		DialogDescriptor descriptor = (DialogDescriptor)executeUnique(ExecutionStrategy.REVERSE, new GetDialogDescriptorOperation(dialogID));
+		return descriptor;
 	}
 
 	/**

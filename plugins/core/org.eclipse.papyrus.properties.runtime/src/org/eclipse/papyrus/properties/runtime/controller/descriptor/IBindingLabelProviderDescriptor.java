@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.properties.runtime.controller.descriptor;
 
 
+
 /**
  * Descriptors for controllers that provides message binding facilities
  */
@@ -30,5 +31,14 @@ public interface IBindingLabelProviderDescriptor {
 	 * @return the ordered list of feature names that are binded
 	 */
 	public String[] getFeaturesNameToBind();
+
+	/**
+	 * Computes the result of the binding for the given set of objects
+	 * 
+	 * @param objectToEdit
+	 *        the object to edit
+	 * @return the string result of the binding
+	 */
+	public String computeBindings(Object objectToEdit);
 
 }

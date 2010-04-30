@@ -11,19 +11,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IBindingLabelProviderDescriptor;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.uml2.uml.StructuralFeature;
 
 
 /**
@@ -102,8 +95,6 @@ public class EMFTBindingEReferenceController extends EMFTEReferenceController {
 		public String getText(Object element) {
 
 			if(getDescriptor() instanceof IBindingLabelProviderDescriptor) {
-				String message = ((IBindingLabelProviderDescriptor)getDescriptor()).getMessage();
-
 				// retrieve message to display
 				// the features are the features of the element referenced by the structural feature => has to compute this value
 				if(element instanceof EObject) {
@@ -111,54 +102,10 @@ public class EMFTBindingEReferenceController extends EMFTEReferenceController {
 						return "Proxy - " + element;
 					}
 
-					Object[] bindings = computeBindings((EObject)element, (IBindingLabelProviderDescriptor)getDescriptor());
-
-					// binds
-					return NLS.bind(message, bindings);
+					return ((IBindingLabelProviderDescriptor)getDescriptor()).computeBindings((EObject)element);
 				}
 			}
 			return referenceLabelProvider.getText(element);
-		}
-
-		/**
-		 * computes bindings from the given descriptor
-		 * 
-		 * @param objectToEdit
-		 *        the object edited
-		 * @param descriptor
-		 *        the descriptor which contributes to bindings
-		 * @return the list of values to bind
-		 */
-		protected Object[] computeBindings(EObject objectToEdit, IBindingLabelProviderDescriptor descriptor) {
-			List<Object> bindings = new ArrayList<Object>();
-			for(String name : descriptor.getFeaturesNameToBind()) {
-				EStructuralFeature feature = getFeatureByName(objectToEdit, name);
-				if(feature != null) {
-					Object value = objectToEdit.eGet(feature);
-					bindings.add(value);
-				} else {
-					Activator.log.error("impossible to find the feature with name : " + name, null);
-				}
-			}
-
-			return bindings.toArray();
-		}
-
-		/**
-		 * Returns the feature given its name
-		 * 
-		 * @param objectToEdit
-		 *        the object to edit
-		 * @param name
-		 *        the name of the feature to find
-		 * @return the {@link StructuralFeature} found
-		 */
-		protected EStructuralFeature getFeatureByName(EObject objectToEdit, String name) {
-			EStructuralFeature feature = objectToEdit.eClass().getEStructuralFeature(name);
-			if(feature != null) {
-				return feature;
-			}
-			return null;
 		}
 	}
 }

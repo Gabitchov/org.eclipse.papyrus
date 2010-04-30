@@ -15,6 +15,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.papyrus.properties.runtime.Activator;
+import org.eclipse.papyrus.properties.runtime.controller.descriptor.IBindingLabelProviderDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptor;
 import org.w3c.dom.Node;
@@ -27,6 +28,12 @@ public class DialogDescriptor extends AbstractConstrainedDescriptor {
 	/** list of ViewDescriptor created by this dialog */
 	protected List<String> viewDescriptorsIds;
 
+	/** title for the dialog */
+	protected Object title;
+
+	/** message for the dialog */
+	protected Object message;
+
 	/**
 	 * Creates a new DialogDescriptor.
 	 */
@@ -37,8 +44,10 @@ public class DialogDescriptor extends AbstractConstrainedDescriptor {
 	/**
 	 * Creates a new DialogDescriptor.
 	 */
-	public DialogDescriptor(String id, List<IConstraintDescriptor> constraints, Node contentNode, PropertyViewProviderParser parser) {
+	public DialogDescriptor(String id, List<IConstraintDescriptor> constraints, Node contentNode, Object title, Object message, PropertyViewProviderParser parser) {
 		super(id, constraints, contentNode, parser);
+		this.title = title;
+		this.message = message;
 	}
 
 	/**
@@ -63,5 +72,25 @@ public class DialogDescriptor extends AbstractConstrainedDescriptor {
 			}
 		}
 		return viewDescriptorsIds;
+	}
+
+	/**
+	 * 
+	 * Returns the title object, either a {@link String} or a {@link IBindingLabelProviderDescriptor}
+	 * 
+	 * @return the title object, either a string or a message binding descriptor
+	 */
+	public Object getTitle() {
+		return title;
+	}
+
+	/**
+	 * 
+	 * Returns the message object, either a {@link String} or a {@link IBindingLabelProviderDescriptor}
+	 * 
+	 * @return the message object, either a string or a message binding descriptor
+	 */
+	public Object getMessage() {
+		return message;
 	}
 }

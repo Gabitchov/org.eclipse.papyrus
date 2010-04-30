@@ -47,4 +47,23 @@ public interface IPropertyViewProvider extends IProvider {
 	 */
 	public boolean managesViewDescriptor(String descriptorId);
 
+	/**
+	 * Returns the dialog descriptor, given its ID
+	 * 
+	 * @param descriptorID
+	 *        the id of the descriptor to retrieve
+	 * @return the found dialog descriptor or <code>null</code>
+	 */
+	public DialogDescriptor getDialogDescriptor(String descriptorID);
+
+	/**
+	 * returns <code>true</code> if this provider can handle the dialog descriptor specified by its identifier
+	 * 
+	 * @param descriptorId
+	 *        the id of the descriptor
+	 * @return <code>true</code> if the provider can handle this dialog provider
+	 */
+	public boolean managesDialogDescriptor(String descriptorId);
+
+
 }

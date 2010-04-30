@@ -28,6 +28,7 @@ import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.properties.runtime.Activator;
+import org.eclipse.papyrus.properties.runtime.dialogs.GetDialogDescriptorOperation;
 import org.osgi.framework.Bundle;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
@@ -126,6 +127,9 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 	public boolean provides(IOperation operation) {
 		if(operation instanceof GetPropertyViewDescriptorOperation) {
 			return managesViewDescriptor(((GetPropertyViewDescriptorOperation)operation).getDescriptorID());
+		} else if(operation instanceof GetDialogDescriptorOperation) {
+			System.err.println(operation);
+			return managesDialogDescriptor(((GetDialogDescriptorOperation)operation).getDescriptorID());
 		}
 		return false;
 	}
@@ -237,6 +241,20 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 	 */
 	public boolean managesViewDescriptor(String descriptorId) {
 		return predefinedViews.containsKey(descriptorId);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public DialogDescriptor getDialogDescriptor(String descriptorID) {
+		return predefinedDialogs.get(descriptorID);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean managesDialogDescriptor(String descriptorId) {
+		return predefinedDialogs.containsKey(descriptorId);
 	}
 
 }

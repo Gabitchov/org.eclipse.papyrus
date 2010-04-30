@@ -20,7 +20,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Layout;
 import org.eclipse.ui.forms.widgets.ExpandableComposite;
 import org.eclipse.ui.forms.widgets.Section;
-import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
+import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.w3c.dom.Node;
 
 /**
@@ -55,17 +55,17 @@ public class ExpandableContainerDescriptor extends ContainerDescriptor {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<PropertyEditorController> createContent(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage, List<Object> objectsToEdit) {
+	public List<PropertyEditorController> createContent(Composite parent, TabbedPropertySheetWidgetFactory widgetFactory, List<Object> objectsToEdit) {
 		this.objectsToEdit = objectsToEdit;
 		if(getDescribedComposite() == null || getDescribedComposite().isDisposed()) {
-			setDescribedComposite(tabbedPropertySheetPage.getWidgetFactory().createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED));
+			setDescribedComposite(widgetFactory.createSection(parent, Section.TITLE_BAR | Section.TWISTIE | Section.EXPANDED));
 			getDescribedComposite().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 
-			expandableContainer = tabbedPropertySheetPage.getWidgetFactory().createComposite(getDescribedComposite());
+			expandableContainer = widgetFactory.createComposite(getDescribedComposite());
 			expandableContainer.setLayout(layout);
 			getDescribedComposite().setText(label);
 
-			tabbedPropertySheetPage.getWidgetFactory().paintBordersFor(expandableContainer);
+			widgetFactory.paintBordersFor(expandableContainer);
 			getDescribedComposite().setClient(expandableContainer);
 		}
 

@@ -18,7 +18,7 @@ import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEdi
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Layout;
 import org.eclipse.ui.services.IDisposable;
-import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
+import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.w3c.dom.Node;
 
 
@@ -49,11 +49,11 @@ public abstract class AbstractContainerDescriptor implements IDisposable {
 	 * 
 	 * @param parent
 	 *        the composite parent of the created Composite
-	 * @param tabbedPropertySheetPage
+	 * @param tabbedPropertySheetWidgetFactory
 	 *        the tabbed property sheet page in which element are created
 	 * @return the list of created controllers for the content of this composite
 	 */
-	public abstract List<PropertyEditorController> createContent(Composite parent, TabbedPropertySheetPage tabbedPropertySheetPage, List<Object> objectsToEdit);
+	public abstract List<PropertyEditorController> createContent(Composite parent, TabbedPropertySheetWidgetFactory tabbedPropertySheetWidgetFactory, List<Object> objectsToEdit);
 
 
 	/**
