@@ -51,7 +51,6 @@ plugin@org.eclipse.papyrus.profile=SVN,,svn://dev.eclipse.org/svnroot/modeling/o
 plugin@org.eclipse.papyrus.outline=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/others,,org.eclipse.papyrus.outline
 
 # profile-tool
-plugin@org.eclipse.papyrus.diagramprofile=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/profile-tool,,org.eclipse.papyrus.diagramprofile
 plugin@org.eclipse.papyrus.resource=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/profile-tool,,org.eclipse.papyrus.resource
 plugin@org.eclipse.papyrus.resource.edit=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/profile-tool,,org.eclipse.papyrus.resource.edit
 plugin@org.eclipse.papyrus.resource.migration=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/profile-tool,,org.eclipse.papyrus.resource.migration
