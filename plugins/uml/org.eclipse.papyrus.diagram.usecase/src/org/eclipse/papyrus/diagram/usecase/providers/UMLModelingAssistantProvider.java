@@ -66,7 +66,7 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 
 	/**
-	 * @generated
+	 * @generated NOT tmp remove use and actor as class view
 	 */
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart)host.getAdapter(IGraphicalEditPart.class);
@@ -140,9 +140,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(editPart instanceof UseCaseDiagramEditPart) {
 			ArrayList types = new ArrayList(9);
 			types.add(UMLElementTypes.Actor_2011);
-			types.add(UMLElementTypes.Actor_2012);
+			//types.add(UMLElementTypes.Actor_2012);
 			types.add(UMLElementTypes.UseCase_2013);
-			types.add(UMLElementTypes.UseCase_2014);
+			//types.add(UMLElementTypes.UseCase_2014);
 			types.add(UMLElementTypes.Component_2015);
 			types.add(UMLElementTypes.Package_2016);
 			types.add(UMLElementTypes.Constraint_2017);
