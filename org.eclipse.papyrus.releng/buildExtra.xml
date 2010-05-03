@@ -10,7 +10,7 @@
 
 	<target name="postProcess">
 		<echo>generating javadoc</echo>
-		<ant target="javadoc" antfile="javadoc.xml" dir="${buildDirectory}/plugins/org.eclipse.gmt.modisco.infra.doc/" />
+		<!--<ant target="javadoc" antfile="javadoc.xml" dir="${buildDirectory}/plugins/org.eclipse.gmt.modisco.infra.doc/" />-->
 	</target>
 
 	<target name="extraPackaging">
