@@ -78,7 +78,7 @@ public class OrphanViewPolicy extends AbstractEditPolicy implements Notification
 	private ArrayList<Integer> notOrphanList = new ArrayList<Integer>();
 
 	/** the pattern that checks visual ids are valid integers */
-	private static Pattern digit = Pattern.compile("\\d*");
+	private static Pattern digit = Pattern.compile("\\d+");
 
 	/** list of element to listen */
 	protected HashMap<EObject, List<View>> additionalParentToListen = new HashMap<EObject, List<View>>();
