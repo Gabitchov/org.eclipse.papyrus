@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site pack200="true">
    <feature url="features/org.eclipse.papyrus.backbone_${org.eclipse.papyrus.backbone.version}.jar" id="org.eclipse.papyrus.backbone" version="${org.eclipse.papyrus.backbone.version}">
-      <category name="Papyrus Backbone (Required)"/>
+      <category name="Papyrus Runtime"/>
    </feature>
    <feature url="features/org.eclipse.papyrus_${org.eclipse.papyrus.version}.jar" id="org.eclipse.papyrus" version="${org.eclipse.papyrus.version}">
-      <category name="Papyrus Backbone (Required)"/>
+      <category name="Papyrus Runtime"/>
    </feature>
    <feature url="features/org.eclipse.papyrus.uml_${org.eclipse.papyrus.uml.version}.jar" id="org.eclipse.papyrus.uml" version="${org.eclipse.papyrus.uml.version}">
       <category name="Papyrus UML"/>
@@ -42,11 +42,10 @@
    <feature url="features/org.eclipse.papyrus.diagram.parametric_${org.eclipse.papyrus.diagram.parametric.version}.jar" id="org.eclipse.papyrus.diagram.parametric" version="${org.eclipse.papyrus.diagram.parametric.version}">
       <category name="Papyrus SysML"/>
    </feature>
-   
    <feature url="features/org.eclipse.papyrus.layouttool_${org.eclipse.papyrus.layouttool.version}.jar" id="org.eclipse.papyrus.layouttool" version="${org.eclipse.papyrus.layouttool.version}">
-      <category name="Papyrus extra-plugins"/>
+      <category name="Papyrus Third-Party"/>
    </feature>
-   <category-def name="Papyrus Backbone" label="Papyrus Backbone">
+   <category-def name="Papyrus Runtime" label="Papyrus Runtime">
       <description>
          This feature is the basic infrastructure for Papyrus Model editors.
       </description>
@@ -61,7 +60,7 @@
          SysML Diagram Editors (experimental).
       </description>
    </category-def>
-   <category-def name="Papyrus extra-plugins" label="Papyrus extra-plugins">
+   <category-def name="Papyrus Third-Party" label="Papyrus Third-Party">
       <description>
          Additional content for Papyrus (Automatic layout tools, etc.) (experimental).
       </description>
