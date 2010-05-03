@@ -9,10 +9,10 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends AbstractUIPlugin {
 
-	// The plug-in ID
+	/** identifier of the plugin */
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.properties.tabbed.core"; //$NON-NLS-1$
 
-	// The shared instance
+	/** singleton instance of this plugin */
 	private static Activator plugin;
 
 	/** Logging helper */

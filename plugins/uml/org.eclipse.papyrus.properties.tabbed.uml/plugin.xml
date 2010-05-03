@@ -20,7 +20,7 @@
             description="This is the generic view for uml tabbed properties"
             icon="icons/tool.gif"
             name="UML"
-            path="resources/uml_generic.xml">
+            path="resources/uml_generic_sections.xml">
       </PropertyViewContribution>
    </propertyViewProvider>
 </extension>
@@ -35,7 +35,7 @@
             description="These are generic views for uml elements"
             icon="icons/tool.gif"
             name="UML Views"
-            path="resources/uml_view.xml">
+            path="resources/uml_predefined_views.xml">
       </PropertyViewContribution>
    </propertyViewProvider>
 </extension>
@@ -49,7 +49,7 @@
       <PredefinedControllers
             id="org.eclipse.papyrus.properties.tabbed.uml.structuralFeaturesEMFTPredefinedControllers"
             name="UML Predefined Controllers for Structural Features"
-            path="resources/content.xml">
+            path="resources/uml_predefined_controllers.xml">
       </PredefinedControllers>
       
    </propertyEditorControllerProvider>

@@ -128,7 +128,6 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 		if(operation instanceof GetPropertyViewDescriptorOperation) {
 			return managesViewDescriptor(((GetPropertyViewDescriptorOperation)operation).getDescriptorID());
 		} else if(operation instanceof GetDialogDescriptorOperation) {
-			System.err.println(operation);
 			return managesDialogDescriptor(((GetDialogDescriptorOperation)operation).getDescriptorID());
 		}
 		return false;

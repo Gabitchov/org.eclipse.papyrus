@@ -45,7 +45,6 @@ public class GetDialogDescriptorOperation implements IPropertyViewOperation {
 	 * {@inheritDoc}
 	 */
 	public DialogDescriptor execute(IProvider provider) {
-		System.err.println(provider);
 		if(provider instanceof IPropertyViewProvider) {
 			return ((IPropertyViewProvider)provider).getDialogDescriptor(descriptorID);
 		}

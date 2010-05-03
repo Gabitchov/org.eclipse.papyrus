@@ -14,6 +14,7 @@ package org.eclipse.papyrus.properties.runtime.dialogs;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.StatusDialog;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IBindingLabelProviderDescriptor;
@@ -22,7 +23,11 @@ import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
 import org.eclipse.papyrus.properties.runtime.view.ViewDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.AbstractContainerDescriptor;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -44,6 +49,9 @@ public class PropertyDialog extends StatusDialog {
 	/** widget factory */
 	private final TabbedPropertySheetWidgetFactory widgetFactory;
 
+	/** ok button */
+	protected Button okButton;
+
 	/**
 	 * Creates a new PropertyDialog.
 	 * 
@@ -55,7 +63,27 @@ public class PropertyDialog extends StatusDialog {
 		this.descriptor = descriptor;
 		this.objectsToEdit = objectsToEdit;
 		this.widgetFactory = widgetFactory;
-		setTitle(getTitle());
+		// adding resize, close and trim abilities
+		setShellStyle(getShellStyle() | SWT.SHELL_TRIM);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void createButtonsForButtonBar(Composite parent) {
+		okButton = createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, true);
+		//no cancel button
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void configureShell(Shell shell) {
+		super.configureShell(shell);
+		shell.setSize(640, 480);
+		shell.setText(getTitle());
 	}
 
 	/**
@@ -108,20 +136,42 @@ public class PropertyDialog extends StatusDialog {
 	protected Control createDialogArea(Composite parent) {
 		Composite composite = (Composite)super.createDialogArea(parent);
 
+		getWidgetFactory().setBackground(composite.getBackground());
+
 		// creates the content, given the configuration
-		Label messageLabel = new Label(composite, SWT.NONE);
-		messageLabel.setText(getMessage());
+		Label messageLabel = getWidgetFactory().createLabel(composite, getMessage(), SWT.NONE);
 		GridData data = new GridData(SWT.FILL, SWT.FILL, true, false);
 		messageLabel.setLayoutData(data);
 
-		Label separator = new Label(composite, SWT.SEPARATOR | SWT.HORIZONTAL);
+		Label separator = getWidgetFactory().createSeparator(composite, SWT.HORIZONTAL);
 		separator.setLayoutData(data);
+
+		Color defaultColor = getShell().getDisplay().getSystemColor(SWT.COLOR_LIST_BACKGROUND);
+		getWidgetFactory().setBackground(defaultColor);
+		ScrolledComposite scrolledComposite = getWidgetFactory().createScrolledComposite(composite, SWT.BORDER);
+		scrolledComposite.setAlwaysShowScrollBars(false);
+		GridLayout layout = new GridLayout(1, false);
+		layout.marginHeight = 0;
+		layout.marginWidth = 0;
+		scrolledComposite.setLayout(layout);
+		data = new GridData(SWT.FILL, SWT.FILL, true, true);
+		scrolledComposite.setLayoutData(data);
+
+		Composite containerComposite = getWidgetFactory().createComposite(scrolledComposite);
+		layout = new GridLayout(1, false);
+		layout.marginHeight = 0;
+		layout.marginWidth = 0;
+		containerComposite.setLayout(layout);
+		scrolledComposite.setLayout(layout);
+		scrolledComposite.setContent(containerComposite);
+		scrolledComposite.setExpandVertical(true);
+		scrolledComposite.setExpandHorizontal(true);
 
 		List<AbstractContainerDescriptor> containers = new ArrayList<AbstractContainerDescriptor>();
 		for(String viewId : getViewsId()) {
 			ViewDescriptor viewDescriptor = PropertyViewService.getInstance().getViewDescriptor(viewId);
 			for(AbstractContainerDescriptor descriptor : viewDescriptor.getContainerDescriptors()) {
-				descriptor.createContent(composite, getWidgetFactory(), objectsToEdit);
+				descriptor.createContent(containerComposite, getWidgetFactory(), objectsToEdit);
 				containers.add(descriptor);
 			}
 

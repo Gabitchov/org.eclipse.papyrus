@@ -16,6 +16,7 @@
 		</message>
 		<content>
 			<view predefinedId="view_single_NamedElement"/>
+			<view predefinedId="view_single_Classifier"/>
 		</content>
 	</dialog>
 </dialogs>

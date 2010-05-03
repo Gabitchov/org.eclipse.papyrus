@@ -369,22 +369,15 @@ public class PropertyViewProviderParser {
 			Node child = childNodes.item(i);
 			String childNodeName = child.getNodeName();
 
-			if("binding".equals(childNodeName)) {
-				// look feature sub nodes
-				NodeList featureNodes = child.getChildNodes();
-				for(int j = 0; j < featureNodes.getLength(); j++) {
-					Node featureNode = featureNodes.item(j);
-					if("feature".equals(featureNode.getNodeName())) {
-						attributes = featureNode.getAttributes();
-						if(attributes != null) {
-							Node valueNode = attributes.getNamedItem("name");
-							if(valueNode != null) {
-								featureNames.add(valueNode.getNodeValue());
-							}
-						} else {
-							Activator.log.warn("ParseBindingNode: No attributes for feature node: " + featureNode);
-						}
+			if("feature".equals(childNodeName)) {
+				attributes = child.getAttributes();
+				if(attributes != null) {
+					Node valueNode = attributes.getNamedItem("name");
+					if(valueNode != null) {
+						featureNames.add(valueNode.getNodeValue());
 					}
+				} else {
+					Activator.log.warn("ParseBindingNode: No attributes for feature node: " + child);
 				}
 			}
 		}

@@ -102,7 +102,8 @@ public class SimpleReferencePropertyEditor extends AbstractPropertyEditor {
 				DialogDescriptor descriptor = PropertyViewService.getInstance().getDialogDescriptor("dialog_single_NamedElement");
 
 				// retrieve editor descriptor for the elements to edit
-				PropertyDialog dialog = new PropertyDialog(getShell(), descriptor, objectsToEdit, getWidgetFactory());
+				Shell parentShell = getShell();
+				PropertyDialog dialog = new PropertyDialog(parentShell, descriptor, objectsToEdit, getWidgetFactory());
 				dialog.open();
 			}
 		});
