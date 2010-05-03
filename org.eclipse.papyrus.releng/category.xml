@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site pack200="true">
+   <feature url="features/org.eclipse.gmt.modisco.examples_${org.eclipse.gmt.modisco.examples.version}.jar" id="org.eclipse.gmt.modisco.examples" version="${org.eclipse.gmt.modisco.examples.version}">
+      <category name="MoDisco Examples"/>
+   </feature>
+   <feature url="features/org.eclipse.gmt.modisco.java.discoverer.benchmark_${org.eclipse.gmt.modisco.java.discoverer.benchmark.version}.jar" id="org.eclipse.gmt.modisco.java.discoverer.benchmark" version="${org.eclipse.gmt.modisco.java.discoverer.benchmark.version}">
+      <category name="Only for MoDisco developers"/>
+   </feature>
+   <feature url="features/org.eclipse.gmt.modisco.infrastructure_${org.eclipse.gmt.modisco.infrastructure.version}.jar" id="org.eclipse.gmt.modisco.infrastructure" version="${org.eclipse.gmt.modisco.infrastructure.version}">
+      <category name="MoDisco Infrastructure"/>
+   </feature>
+   <feature url="features/org.eclipse.gmt.modisco.workflow.driver.acceleo_${org.eclipse.gmt.modisco.workflow.driver.acceleo.version}.jar" id="org.eclipse.gmt.modisco.workflow.driver.acceleo" version="${org.eclipse.gmt.modisco.workflow.driver.acceleo.version}">
+      <category name="MoDisco Infrastructure"/>
+   </feature>
+   <feature url="features/org.eclipse.gmt.modisco.workflow.driver.atl_${org.eclipse.gmt.modisco.workflow.driver.atl.version}.jar" id="org.eclipse.gmt.modisco.workflow.driver.atl" version="${org.eclipse.gmt.modisco.workflow.driver.atl.version}">
+      <category name="MoDisco Infrastructure"/>
+   </feature>
+   <feature url="features/org.eclipse.gmt.modisco.infra.cdo.derby_${org.eclipse.gmt.modisco.infra.cdo.derby.version}.jar" id="org.eclipse.gmt.modisco.infra.cdo.derby" version="${org.eclipse.gmt.modisco.infra.cdo.derby.version}">
+      <category name="MoDisco Infrastructure"/>
+   </feature>
+   <feature url="features/org.eclipse.gmt.modisco.xml_${org.eclipse.gmt.modisco.xml.version}.jar" id="org.eclipse.gmt.modisco.xml" version="${org.eclipse.gmt.modisco.xml.version}">
+      <category name="MoDisco Technology"/>
+   </feature>
+   <feature url="features/org.eclipse.gmt.modisco.java_${org.eclipse.gmt.modisco.java.version}.jar" id="org.eclipse.gmt.modisco.java" version="${org.eclipse.gmt.modisco.java.version}">
+      <category name="MoDisco Technology"/>
+   </feature>
+   <feature url="features/org.eclipse.gmt.modisco.java.cdo_${org.eclipse.gmt.modisco.java.cdo.version}.jar" id="org.eclipse.gmt.modisco.java.cdo" version="${org.eclipse.gmt.modisco.java.cdo.version}">
+      <category name="MoDisco Technology"/>
+   </feature>
+   <category-def name="Only for MoDisco developers" label="Only for MoDisco developers">
+      <description>
+         This feature is useful if you want to work on MoDisco itself (as opposed to merely using it).
+      </description>
+   </category-def>
+   <category-def name="MoDisco Infrastructure" label="MoDisco Infrastructure">
+      <description>
+         MoDisco infrastructure layer features
+      </description>
+   </category-def>
+   <category-def name="MoDisco Examples" label="MoDisco Examples">
+      <description>
+         MoDisco examples features
+      </description>
+   </category-def>
+   <category-def name="MoDisco Technology" label="MoDisco Technology">
+      <description>
+         MoDisco Technology layer features
+      </description>
+   </category-def>
+</site>
