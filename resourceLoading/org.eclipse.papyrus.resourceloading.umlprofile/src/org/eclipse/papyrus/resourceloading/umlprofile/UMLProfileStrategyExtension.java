@@ -27,6 +27,7 @@ import org.eclipse.papyrus.core.resourceloading.ILoadingStrategyExtension;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.caches.TypeCacheAdapter;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
@@ -74,11 +75,18 @@ public class UMLProfileStrategyExtension implements ILoadingStrategyExtension {
 					if(applications != null) {
 						// compare profile applications with the specified uri
 						for(EObject profileApp : applications) {
-							EObject proxy = (EObject)profileApp.eGet(UMLPackage.Literals.PROFILE_APPLICATION__APPLIED_PROFILE, false);
-							if(proxy != null && proxy.eIsProxy()) {
-								InternalEObject internal = (InternalEObject)proxy;
-								if(uri.trimFragment().equals(internal.eProxyURI().trimFragment())) {
-									return true;
+							EObject profile = (EObject)profileApp.eGet(UMLPackage.Literals.PROFILE_APPLICATION__APPLIED_PROFILE, false);
+							if(profile != null) {
+								URI trimFragment = uri.trimFragment();
+								if (profile.eIsProxy()) {
+									InternalEObject internal = (InternalEObject)profile;
+									if(trimFragment.equals(internal.eProxyURI().trimFragment())) {
+										return true;
+									}									
+								} else if (profile instanceof Profile) {
+									if (trimFragment.equals(((Profile) profile).eResource().getURI().trimFragment())) {
+										return true;										
+									}
 								}
 							}
 						}
