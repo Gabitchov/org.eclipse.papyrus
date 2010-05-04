@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<site associateSitesURL="http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/associates.xml" pack200="true">
+<site associateSitesURL="http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/associateSites.xml" pack200="true">
    <feature url="features/org.eclipse.papyrus.backbone_${org.eclipse.papyrus.backbone.version}.jar" id="org.eclipse.papyrus.backbone" version="${org.eclipse.papyrus.backbone.version}">
       <category name="Papyrus Runtime"/>
    </feature>
