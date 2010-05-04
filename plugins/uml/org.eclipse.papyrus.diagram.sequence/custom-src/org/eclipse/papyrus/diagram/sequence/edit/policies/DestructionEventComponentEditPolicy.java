@@ -24,7 +24,7 @@ import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
 /**
  * This edit policy also deletes time/duration edit parts which are linked with the deleted edit part.
  */
-public class ExecutionSpecificationComponentEditPolicy extends ComponentEditPolicy {
+public class DestructionEventComponentEditPolicy extends ComponentEditPolicy {
 
 	/**
 	 * {@inheritDoc}
@@ -36,7 +36,7 @@ public class ExecutionSpecificationComponentEditPolicy extends ComponentEditPoli
 		deleteViewsCommand.add(deleteViewCommand);
 		if(getHost() instanceof ShapeNodeEditPart) {
 			TransactionalEditingDomain editingDomain = ((ShapeNodeEditPart)getHost()).getEditingDomain();
-			SequenceUtil.completeDeleteExecutionSpecificationViewCommand(deleteViewsCommand, editingDomain, getHost());
+			SequenceUtil.completeDeleteDestructionEventViewCommand(deleteViewsCommand, editingDomain, getHost());
 		}
 		return deleteViewsCommand;
 	}

@@ -783,6 +783,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.SEMANTIC_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.sequence.edit.policies.DestructionEventCompleteItemSemanticEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicy.COMPONENT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.sequence.edit.policies.DestructionEventComponentEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/DestructionEvent"/>

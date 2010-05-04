@@ -300,11 +300,11 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 				return SequenceUtil.getLinkedEditPart(lifeline, (OccurrenceSpecification)occs.get(0)) == null;
 			}
 			return true;
-		} else if(getHost() instanceof DurationConstraintEditPart && hostSemanticElement instanceof TimeConstraint) {
+		} else if(getHost() instanceof DurationConstraintEditPart && hostSemanticElement instanceof DurationConstraint) {
 			LifelineEditPart lifeline = SequenceUtil.getParentLifelinePart(getHost());
-			List<Element> occs = ((TimeConstraint)hostSemanticElement).getConstrainedElements();
+			List<Element> occs = ((DurationConstraint)hostSemanticElement).getConstrainedElements();
 			if(occs.size() >= 2 && occs.get(0) instanceof OccurrenceSpecification && occs.get(1) instanceof OccurrenceSpecification) {
-				return SequenceUtil.getLinkedEditPart(lifeline, (OccurrenceSpecification)occs.get(0)) == null && SequenceUtil.getLinkedEditPart(lifeline, (OccurrenceSpecification)occs.get(1)) == null;
+				return SequenceUtil.getLinkedEditPart(lifeline, (OccurrenceSpecification)occs.get(0)) == null || SequenceUtil.getLinkedEditPart(lifeline, (OccurrenceSpecification)occs.get(1)) == null;
 			}
 			return true;
 		}

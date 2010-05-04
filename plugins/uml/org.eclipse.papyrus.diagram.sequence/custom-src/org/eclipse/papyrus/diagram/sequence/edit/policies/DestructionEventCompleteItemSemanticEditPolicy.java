@@ -13,7 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -21,13 +23,26 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.helper.DurationConstraintHelper;
+import org.eclipse.papyrus.diagram.common.helper.DurationObservationHelper;
+import org.eclipse.papyrus.diagram.common.helper.TimeConstraintHelper;
+import org.eclipse.papyrus.diagram.common.helper.TimeObservationHelper;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.DestructionEvent;
+import org.eclipse.uml2.uml.DurationConstraint;
+import org.eclipse.uml2.uml.DurationObservation;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
+import org.eclipse.uml2.uml.TimeConstraint;
+import org.eclipse.uml2.uml.TimeObservation;
 
 
 /**
@@ -69,8 +84,23 @@ public class DestructionEventCompleteItemSemanticEditPolicy extends DestructionE
 					// In case it is an OccurrenceSpecification, add a DestroyElement command.
 					// An OccurrenceSpecification must have an event
 					if(settingEObj instanceof OccurrenceSpecification) {
-						DestroyElementRequest r = new DestroyElementRequest((OccurrenceSpecification)settingEObj, false);
+						OccurrenceSpecification event = (OccurrenceSpecification)settingEObj;
+						DestroyElementRequest r = new DestroyElementRequest(event, false);
 						cmd.add(new DestroyElementCommand(r));
+
+						// delete linked time elements
+						List<TimeObservation> timeObs = TimeObservationHelper.getTimeObservations(event);
+						List<TimeConstraint> timeCst = TimeConstraintHelper.getTimeConstraintsOn(event);
+						List<DurationObservation> durObs = DurationObservationHelper.getDurationObservationsOn(event);
+						List<DurationConstraint> durCst = DurationConstraintHelper.getDurationConstraintsOn(event);
+						List<NamedElement> timeElements = new ArrayList<NamedElement>(timeObs.size() + durObs.size() + timeCst.size() + durCst.size());
+						timeElements.addAll(timeObs);
+						timeElements.addAll(timeCst);
+						timeElements.addAll(durObs);
+						timeElements.addAll(durCst);
+						for(NamedElement elt : timeElements) {
+							cmd.add(new DestroyElementCommand(new DestroyElementRequest(elt, false)));
+						}
 					}
 				}
 			}
@@ -92,5 +122,20 @@ public class DestructionEventCompleteItemSemanticEditPolicy extends DestructionE
 			collection = EcoreUtil.UsageCrossReferencer.find(source, r);
 		}
 		return collection;
+	}
+
+	/**
+	 * This method has been overridden to also delete linked time/duration views
+	 */
+	protected Command addDeleteViewCommand(Command mainCommand, DestroyRequest completedRequest) {
+		CompoundCommand deleteViewsCommand = new CompoundCommand();
+		Command deleteViewCommand = getGEFWrapper(new DeleteCommand(getEditingDomain(), (View)getHost().getModel()));
+		deleteViewsCommand.add(deleteViewCommand);
+		SequenceUtil.completeDeleteDestructionEventViewCommand(deleteViewsCommand, getEditingDomain(), getHost());
+		if(mainCommand == null) {
+			return deleteViewsCommand;
+		} else {
+			return mainCommand.chain(deleteViewsCommand);
+		}
 	}
 }
