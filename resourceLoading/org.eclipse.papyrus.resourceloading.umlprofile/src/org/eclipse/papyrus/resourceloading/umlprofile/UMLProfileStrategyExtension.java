@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.resourceloading.umlprofile;
 
 import java.util.Collection;
-import java.util.LinkedList;
+import java.util.HashSet;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -55,7 +55,7 @@ public class UMLProfileStrategyExtension implements ILoadingStrategyExtension {
 					Collection<EObject> applications = null;
 					if(!adapter.isAlreadyComputed(UMLPackage.Literals.PROFILE_APPLICATION)) {
 						// set the profile applications in the cache at the first time
-						applications = new LinkedList<EObject>();
+						applications = new HashSet<EObject>();
 						// a profile application can only be stored in a package
 						for(int i = 0; i < diResourceSet.getResources().size(); i++) {
 							for(TreeIterator<EObject> j = EcoreUtil.getAllProperContents(diResourceSet.getResources().get(i), false); j.hasNext();) {
@@ -67,7 +67,7 @@ public class UMLProfileStrategyExtension implements ILoadingStrategyExtension {
 								}
 							}
 						}
-						adapter.fillFirstEntryCache(UMLPackage.Literals.PROFILE_APPLICATION, applications);
+						adapter.fillFirstEntryCache(UMLPackage.Literals.PROFILE_APPLICATION, (HashSet<EObject>)applications);
 					} else {
 						// get the profile applications in the cache
 						applications = adapter.getReachableObjectsOfType(modelResource.getContents().get(0), UMLPackage.Literals.PROFILE_APPLICATION);
