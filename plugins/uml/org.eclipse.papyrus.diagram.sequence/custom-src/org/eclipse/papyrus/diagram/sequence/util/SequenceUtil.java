@@ -375,11 +375,26 @@ public class SequenceUtil {
 			}
 		} else if(timeElement instanceof DurationConstraint) {
 			if(((DurationConstraint)timeElement).getConstrainedElements().contains(event)) {
-				// TODO find a good way to distinguish top from bottom
-				if(event.equals(((DurationConstraint)timeElement).getConstrainedElements().get(0))) {
-					return PositionConstants.TOP;
-				} else {
-					return PositionConstants.BOTTOM;
+				List<Element> events = ((DurationConstraint)timeElement).getConstrainedElements();
+				LifelineEditPart lifelinePart = getParentLifelinePart(timeElementPart);
+				if(lifelinePart != null && events.size() >= 2) {
+					OccurrenceSpecification otherEvent = null;
+					if(!event.equals(events.get(0)) && events.get(0) instanceof OccurrenceSpecification) {
+						otherEvent = (OccurrenceSpecification)events.get(0);
+					} else if(!event.equals(events.get(1)) && events.get(1) instanceof OccurrenceSpecification) {
+						otherEvent = (OccurrenceSpecification)events.get(1);
+					}
+					if(otherEvent != null) {
+						Point otherLoc = findLocationOfEvent(lifelinePart, otherEvent);
+						Point thisLoc = findLocationOfEvent(lifelinePart, event);
+						if(otherLoc != null && thisLoc != null) {
+							if(otherLoc.y > thisLoc.y) {
+								return PositionConstants.TOP;
+							} else {
+								return PositionConstants.BOTTOM;
+							}
+						}
+					}
 				}
 			} else {
 				return PositionConstants.NONE;
@@ -452,20 +467,35 @@ public class SequenceUtil {
 					Rectangle newBounds = null;
 					if(position == PositionConstants.CENTER) {
 						newBounds = new Rectangle(referencePoint.x, referencePoint.y - oldHeight / 2, -1, oldHeight);
-					} else if(position == PositionConstants.TOP) {
-						int newHeight = oldHeight + oldY - referencePoint.y;
-						if(newHeight > 0) {
-							newBounds = new Rectangle(referencePoint.x, referencePoint.y, -1, newHeight);
-						} else {
-							newBounds = new Rectangle(referencePoint.x, referencePoint.y + newHeight, -1, -newHeight);
+					} else if(position == PositionConstants.TOP || position == PositionConstants.BOTTOM) {
+						int top = oldY;
+						int bottom = oldY + oldHeight;
+						EObject timeElement = timePart.resolveSemanticElement();
+						if(!updatedBounds.containsKey(timePart) || updatedBounds.get(timePart) == null) {
+							// bound is complex as it is based on two events. Recompute it in a better way
+							if(timeElement instanceof DurationConstraint) {
+								List<Element> contraineds = ((DurationConstraint)timeElement).getConstrainedElements();
+								IFigure parentFig = lifelinePart.getFigure();
+								if(contraineds.size() >= 2 && contraineds.get(0) instanceof OccurrenceSpecification && contraineds.get(1) instanceof OccurrenceSpecification) {
+									OccurrenceSpecification event1 = (OccurrenceSpecification)contraineds.get(0);
+									OccurrenceSpecification event2 = (OccurrenceSpecification)contraineds.get(1);
+									Point loc1 = findLocationOfEvent(lifelinePart, event1);
+									parentFig.translateToRelative(loc1);
+									loc1.translate(parentFig.getBounds().getLocation().getNegated());
+									Point loc2 = findLocationOfEvent(lifelinePart, event2);
+									parentFig.translateToRelative(loc2);
+									loc2.translate(parentFig.getBounds().getLocation().getNegated());
+									top = Math.min(loc1.y, loc2.y);
+									bottom = Math.max(loc1.y, loc2.y);
+								}
+							}
 						}
-					} else if(position == PositionConstants.BOTTOM) {
-						int newHeight = referencePoint.y - oldY;
-						if(newHeight > 0) {
-							newBounds = new Rectangle(referencePoint.x, oldY, -1, newHeight);
+						if(position == PositionConstants.TOP) {
+							top = referencePoint.y;
 						} else {
-							newBounds = new Rectangle(referencePoint.x, oldY + newHeight, -1, -newHeight);
+							bottom = referencePoint.y;
 						}
+						newBounds = new Rectangle(referencePoint.x, Math.min(top, bottom), -1, Math.abs(bottom - top));
 					}
 					if(newBounds != null) {
 						updatedBounds.put(timePart, newBounds);
