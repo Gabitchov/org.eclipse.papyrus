@@ -155,55 +155,10 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 	@Override
 	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID, int linkVISUALID) {
-		if(nodeVISUALID == -1 && linkVISUALID == -1) {
-			// detect duration observation on a message
-			if(semanticLink instanceof DurationObservation) {
-				List<NamedElement> events = ((DurationObservation)semanticLink).getEvents();
-				if(events.size() >= 2) {
-					NamedElement occ1 = events.get(0);
-					NamedElement occ2 = events.get(1);
-					if(occ1 instanceof MessageOccurrenceSpecification && occ2 instanceof MessageOccurrenceSpecification) {
-						if(!occ1.equals(occ2) && DurationObservationHelper.endsOfSameMessage((OccurrenceSpecification)occ1, (OccurrenceSpecification)occ2)) {
-							Message message = ((MessageOccurrenceSpecification)occ1).getMessage();
-							// search a connection which matches the possessing message
-							DiagramEditPart diag = DiagramEditPartsUtil.getDiagramEditPart(getHost());
-							for(Object conn : diag.getConnections()) {
-								if(conn instanceof ConnectionNodeEditPart) {
-									EObject connElt = ((ConnectionNodeEditPart)conn).resolveSemanticElement();
-									if(message.equals(connElt)) {
-										return dropMessageLabelNode((DurationObservation)semanticLink, (ConnectionNodeEditPart)conn, DurationObservationEditPart.VISUAL_ID);
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		if((nodeVISUALID == -1 || nodeVISUALID == ConstraintEditPart.VISUAL_ID || nodeVISUALID == DurationConstraintEditPart.VISUAL_ID || nodeVISUALID == DurationConstraintInMessageEditPart.VISUAL_ID) && linkVISUALID == -1) {
-			// detect duration constraint on a message
-			if(semanticLink instanceof DurationConstraint) {
-				List<Element> events = ((DurationConstraint)semanticLink).getConstrainedElements();
-				if(events.size() >= 2) {
-					Element occ1 = events.get(0);
-					Element occ2 = events.get(1);
-					if(occ1 instanceof MessageOccurrenceSpecification && occ2 instanceof MessageOccurrenceSpecification) {
-						if(!occ1.equals(occ2) && DurationConstraintHelper.endsOfSameMessage((OccurrenceSpecification)occ1, (OccurrenceSpecification)occ2)) {
-							Message message = ((MessageOccurrenceSpecification)occ1).getMessage();
-							// search a connection which matches the possessing message
-							DiagramEditPart diag = DiagramEditPartsUtil.getDiagramEditPart(getHost());
-							for(Object conn : diag.getConnections()) {
-								if(conn instanceof ConnectionNodeEditPart) {
-									EObject connElt = ((ConnectionNodeEditPart)conn).resolveSemanticElement();
-									if(message.equals(connElt)) {
-										return dropMessageLabelNode((DurationConstraint)semanticLink, (ConnectionNodeEditPart)conn, DurationConstraintInMessageEditPart.VISUAL_ID);
-									}
-								}
-							}
-						}
-					}
-				}
-			}
+		// handle specifically the case when node is a label on a message
+		Command cmd = handleMessageLabelNode(semanticLink, nodeVISUALID, linkVISUALID);
+		if(cmd != null) {
+			return cmd;
 		}
 
 		if(nodeVISUALID != -1) {
@@ -241,6 +196,96 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			}
 		}
 		return UnexecutableCommand.INSTANCE;
+	}
+
+	/**
+	 * Get the drop command in case the element can be handled as a label on a message
+	 * 
+	 * @param semanticElement
+	 *        the element being dropped from the model
+	 * @param nodeVISUALID
+	 *        node visual id or -1
+	 * @param linkVISUALID
+	 *        link visual id or -1
+	 * @return the drop command if the elemnet can be dropped as a message label node, or null otherwise
+	 */
+	private Command handleMessageLabelNode(Element semanticElement, int nodeVISUALID, int linkVISUALID) {
+
+		if(nodeVISUALID == -1 && linkVISUALID == -1) {
+			// detect duration observation on a message
+			if(semanticElement instanceof DurationObservation) {
+				List<NamedElement> events = ((DurationObservation)semanticElement).getEvents();
+				if(events.size() >= 2) {
+					return dropMessageLabelNodeBetweenEvents(semanticElement, events.get(0), events.get(1));
+				}
+			}
+		}
+		if(isDurationConstraintHint(nodeVISUALID, linkVISUALID)) {
+			// detect duration constraint on a message
+			if(semanticElement instanceof DurationConstraint) {
+				List<Element> events = ((DurationConstraint)semanticElement).getConstrainedElements();
+				if(events.size() >= 2) {
+					return dropMessageLabelNodeBetweenEvents(semanticElement, events.get(0), events.get(1));
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Get the command to drop an element between two events in order to create a message label
+	 * 
+	 * @param droppedElement
+	 *        the dropped element
+	 * @param event1
+	 *        first event (of type MessageOccurrenceSpecification)
+	 * @param event2
+	 *        second event (of type MessageOccurrenceSpecification)
+	 * @param element
+	 * @return the command or false if the elements can not be dropped as message label
+	 */
+	private Command dropMessageLabelNodeBetweenEvents(Element droppedElement, Element event1, Element event2) {
+		if(event1 instanceof MessageOccurrenceSpecification && event2 instanceof MessageOccurrenceSpecification) {
+			if(!event1.equals(event2)) {
+				boolean endsOfSameMessage = false;
+				if(droppedElement instanceof DurationConstraint) {
+					endsOfSameMessage = DurationConstraintHelper.endsOfSameMessage((OccurrenceSpecification)event1, (OccurrenceSpecification)event2);
+				} else if(droppedElement instanceof DurationObservation) {
+					endsOfSameMessage = DurationObservationHelper.endsOfSameMessage((OccurrenceSpecification)event1, (OccurrenceSpecification)event2);
+				}
+				if(endsOfSameMessage) {
+					Message message = ((MessageOccurrenceSpecification)event1).getMessage();
+					// search a connection which matches the possessing message
+					DiagramEditPart diag = DiagramEditPartsUtil.getDiagramEditPart(getHost());
+					for(Object conn : diag.getConnections()) {
+						if(conn instanceof ConnectionNodeEditPart) {
+							EObject connElt = ((ConnectionNodeEditPart)conn).resolveSemanticElement();
+							if(message.equals(connElt)) {
+								return dropMessageLabelNode((PackageableElement)droppedElement, (ConnectionNodeEditPart)conn, DurationConstraintInMessageEditPart.VISUAL_ID);
+							}
+						}
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Test whether visual ids are compatible with a duration constraint element
+	 * 
+	 * @param nodeVISUALID
+	 *        the detected node visual id
+	 * @param linkVISUALID
+	 *        the detected link visual id
+	 * @return true if element may be a duration constraint
+	 */
+	private boolean isDurationConstraintHint(int nodeVISUALID, int linkVISUALID) {
+		if(linkVISUALID != -1) {
+			return false;
+		} else {
+			return nodeVISUALID == -1 || nodeVISUALID == ConstraintEditPart.VISUAL_ID || nodeVISUALID == DurationConstraintEditPart.VISUAL_ID || nodeVISUALID == DurationConstraintInMessageEditPart.VISUAL_ID;
+		}
 	}
 
 	/**
