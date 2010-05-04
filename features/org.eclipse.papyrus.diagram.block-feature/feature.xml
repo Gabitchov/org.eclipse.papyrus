@@ -67,7 +67,6 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.papyrus.core.adaptor.gmf" version="0.7.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.papyrus.diagram.clazz" version="0.7.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.gmf.runtime.draw2d.ui"/>
-      <import plugin="org.eclipse.papyrus.diagramprofile" version="0.7.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin

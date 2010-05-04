@@ -66,7 +66,6 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.papyrus.core.adaptor.gmf"/>
       <import plugin="org.eclipse.papyrus.uml.standard"/>
       <import plugin="org.eclipse.papyrus.uml.standard.edit"/>
-      <import plugin="org.eclipse.papyrus.diagramprofile"/>
       <import plugin="org.eclipse.gmf.runtime.draw2d.ui"/>
       <import plugin="org.eclipse.papyrus.parsers"/>
       <import plugin="org.eclipse.ocl.ecore"/>
