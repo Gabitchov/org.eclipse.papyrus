@@ -25,6 +25,7 @@ import java.util.Set;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -39,7 +40,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 /**
  * This cache creates a map associating EClasses to all the corresponding instances
  * 
- * @author tfaure
+ * @author Tristan Faure
  */
 public class TypeCacheAdapter implements ITypeCacheAdapter, Adapter.Internal {
 
@@ -54,10 +55,9 @@ public class TypeCacheAdapter implements ITypeCacheAdapter, Adapter.Internal {
 	 */
 	private static SimpleTypeCacheAdapter simpleCacheAdapter = new SimpleTypeCacheAdapter();
 
-	/** This flag avoid resource browsing at resource loading */
-	private boolean flagGetReachableObjectsOfType = false;
-
 	protected Set<Resource> unloadedResources = new HashSet<Resource>();
+
+	protected Set<URI> alreadyLoadedURIs = new HashSet<URI>();
 
 	protected Map<EObject, Resource> unloadedEObjects = new HashMap<EObject, Resource>();
 
@@ -102,33 +102,16 @@ public class TypeCacheAdapter implements ITypeCacheAdapter, Adapter.Internal {
 	}
 
 	protected void addAdapter(Notifier notifier) {
+		if(notifier instanceof EObject) {
+			EObject eobject = (EObject)notifier;
+			addObjectInCache(eobject);
+		}
 		List<Adapter> eAdapters = notifier.eAdapters();
 		if(!eAdapters.contains(this)) {
 			eAdapters.add(this);
 		}
-		if(notifier != null) {
-			if(flagGetReachableObjectsOfType) {
-				if(notifier instanceof EObject && (((EObject)notifier).eResource() != null) && (!((EObject)notifier).eResource().getContents().isEmpty()) && ((EObject)notifier).eResource().getContents().contains(notifier)) {
-					Resource r = (Resource)((EObject)notifier).eResource();
-					addResourceInCache(r);
-				}
-			}
-		}
 	}
 
-	/**
-	 * Adds the elements in the resource in the cache
-	 * 
-	 * @param r
-	 */
-	protected void addResourceInCache(Resource r) {
-		for(Iterator<EObject> i = EcoreUtil.getAllProperContents(r, false); i.hasNext();) {
-			EObject next = i.next();
-			if(next.eResource() == r) {
-				addObjectInCache(next);
-			}
-		}
-	}
 
 	protected void handleContainment(Notification notification) {
 		Object notifier = notification.getNotifier();
@@ -212,12 +195,9 @@ public class TypeCacheAdapter implements ITypeCacheAdapter, Adapter.Internal {
 	}
 
 	private void putObjectInCache(EClassifier eClassifier, EObject newObj) {
-		if(cache.containsKey(eClassifier)) {
-			Collection<EObject> listOfClassifiers = cache.get(eClassifier);
-			if(!listOfClassifiers.contains(newObj)) {
-				listOfClassifiers.add(newObj);
-			}
-			cache.put(eClassifier, listOfClassifiers);
+		Collection<EObject> listOfClassifiers = cache.get(eClassifier);
+		if(listOfClassifiers != null) {
+			listOfClassifiers.add(newObj);
 		}
 	}
 
@@ -230,10 +210,9 @@ public class TypeCacheAdapter implements ITypeCacheAdapter, Adapter.Internal {
 	}
 
 	private void removeObjectFromCache(EClassifier eClassifier, EObject newObj) {
-		if(cache.containsKey(eClassifier)) {
-			Collection<EObject> listOfClassifiers = cache.get(eClassifier);
+		Collection<EObject> listOfClassifiers = cache.get(eClassifier);
+		if(listOfClassifiers != null) {
 			listOfClassifiers.remove(newObj);
-			cache.put(eClassifier, listOfClassifiers);
 		}
 	}
 
@@ -245,11 +224,8 @@ public class TypeCacheAdapter implements ITypeCacheAdapter, Adapter.Internal {
 	}
 
 	public Collection<EObject> getReachableObjectsOfType(EObject object, EClassifier type) {
-		if(!flagGetReachableObjectsOfType) {
-			flagGetReachableObjectsOfType = true;
-		}
 		if(!cache.containsKey(type)) {
-			cache.put(type, ItemPropertyDescriptor.getReachableObjectsOfType(object, type));
+			cache.put(type, new HashSet<EObject>(ItemPropertyDescriptor.getReachableObjectsOfType(object, type)));
 		}
 		return cache.get(type);
 	}
@@ -463,7 +439,13 @@ public class TypeCacheAdapter implements ITypeCacheAdapter, Adapter.Internal {
 		return true;
 	}
 
-	public void fillFirstEntryCache(EClassifier type, Collection<EObject> list) {
+	/**
+	 * This method provides a way for user to force first entries in the cache. The list of element must be a HashSet to optimize the performances
+	 * 
+	 * @param type
+	 * @param list
+	 */
+	public void fillFirstEntryCache(EClassifier type, HashSet<EObject> list) {
 		cache.put(type, list);
 	}
 
@@ -487,6 +469,5 @@ public class TypeCacheAdapter implements ITypeCacheAdapter, Adapter.Internal {
 			return ItemPropertyDescriptor.getReachableObjectsOfType(object, type);
 		}
 	}
-
 
 }
