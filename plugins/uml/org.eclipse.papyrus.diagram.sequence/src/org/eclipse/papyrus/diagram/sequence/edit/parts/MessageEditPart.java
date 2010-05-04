@@ -21,6 +21,7 @@ import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
@@ -33,6 +34,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.CreationOnMessageEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.MessageConnectionEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.MessageItemSemanticEditPolicy;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
@@ -82,6 +84,7 @@ implements ITreeBranchEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new MessageItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationOnMessageEditPolicy());
+		installEditPolicy(EditPolicy.CONNECTION_ROLE, new MessageConnectionEditPolicy());
 	}
 
 	/**

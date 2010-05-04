@@ -244,7 +244,9 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 			NamedElement occ = ((TimeObservation)hostSemanticElement).getEvent();
 			if(occ instanceof OccurrenceSpecification) {
 				EditPart part = SequenceUtil.getLinkedEditPart(lifeline, (OccurrenceSpecification)occ);
-				return Collections.singletonList((View)part.getModel());
+				if(part != null) {
+					return Collections.singletonList((View)part.getModel());
+				}
 			}
 			return Collections.emptyList();
 		} else if(getHost() instanceof TimeConstraintEditPart && hostSemanticElement instanceof TimeConstraint) {
@@ -252,7 +254,9 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 			List<Element> occs = ((TimeConstraint)hostSemanticElement).getConstrainedElements();
 			if(occs.size() > 0 & occs.get(0) instanceof OccurrenceSpecification) {
 				EditPart part = SequenceUtil.getLinkedEditPart(lifeline, (OccurrenceSpecification)occs.get(0));
-				return Collections.singletonList((View)part.getModel());
+				if(part != null) {
+					return Collections.singletonList((View)part.getModel());
+				}
 			}
 			return Collections.emptyList();
 		} else if(getHost() instanceof DurationConstraintEditPart && hostSemanticElement instanceof TimeConstraint) {
@@ -262,8 +266,12 @@ public class DeleteTimeElementWithoutEventPolicy extends AbstractEditPolicy impl
 				EditPart part1 = SequenceUtil.getLinkedEditPart(lifeline, (OccurrenceSpecification)occs.get(0));
 				EditPart part2 = SequenceUtil.getLinkedEditPart(lifeline, (OccurrenceSpecification)occs.get(1));
 				List<View> list = new ArrayList<View>(2);
-				list.add((View)part1.getModel());
-				list.add((View)part2.getModel());
+				if(part1 != null) {
+					list.add((View)part1.getModel());
+				}
+				if(part2 != null) {
+					list.add((View)part2.getModel());
+				}
 				return list;
 			}
 			return Collections.emptyList();

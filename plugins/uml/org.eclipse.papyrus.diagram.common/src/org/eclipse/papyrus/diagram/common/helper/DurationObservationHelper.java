@@ -42,23 +42,30 @@ public class DurationObservationHelper {
 	 * @return list of DurationObservation
 	 */
 	public static List<DurationObservation> getDurationObservationsBetween(NamedElement element1, NamedElement element2) {
-		Collection<Setting> inverseReferences = CacheAdapter.INSTANCE.getNonNavigableInverseReferences(element1);
 		// DurationObservation referencing element1
+		List<DurationObservation> referencing1 = getDurationObservationsOn(element1);
+		// DurationObservation referencing element2
+		List<DurationObservation> referencing2 = getDurationObservationsOn(element2);
+		referencing1.retainAll(referencing2);
+		return referencing1;
+	}
+
+	/**
+	 * Get the list of all DurationObservation observing duration from or to an element
+	 * 
+	 * @param element
+	 *        the observed element
+	 * @return list of DurationObservation
+	 */
+	public static List<DurationObservation> getDurationObservationsOn(NamedElement element) {
+		Collection<Setting> inverseReferences = CacheAdapter.INSTANCE.getNonNavigableInverseReferences(element);
+		// DurationObservation referencing element
 		List<DurationObservation> referencing1 = new LinkedList<DurationObservation>();
 		for(Setting ref : inverseReferences) {
 			if(UMLPackage.eINSTANCE.getDurationObservation_Event().equals(ref.getEStructuralFeature()) && ref.getEObject().eContainer() != null) {
 				referencing1.add((DurationObservation)ref.getEObject());
 			}
 		}
-		inverseReferences = CacheAdapter.INSTANCE.getNonNavigableInverseReferences(element2);
-		// DurationObservation referencing element2
-		List<DurationObservation> referencing2 = new LinkedList<DurationObservation>();
-		for(Setting ref : inverseReferences) {
-			if(UMLPackage.eINSTANCE.getDurationObservation_Event().equals(ref.getEStructuralFeature()) && ref.getEObject().eContainer() != null) {
-				referencing2.add((DurationObservation)ref.getEObject());
-			}
-		}
-		referencing1.retainAll(referencing2);
 		return referencing1;
 	}
 
