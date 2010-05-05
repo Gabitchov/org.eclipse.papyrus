@@ -36,6 +36,9 @@ import org.eclipse.papyrus.properties.runtime.Activator;
  */
 public class EMFTEReferenceController extends EMFTStructuralFeatureController implements IBoundedValuesController {
 
+	/** identifier for this controller */
+	public final static String ID = "emftEReferenceController";
+
 	/** factory used by EMF objects */
 	protected AdapterFactory factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 

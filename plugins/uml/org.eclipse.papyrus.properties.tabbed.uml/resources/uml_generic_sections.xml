@@ -29,7 +29,7 @@
 			<elementClass name="org.eclipse.uml2.uml.Class"/>
 		</context>
 		<section id="singleClassifierSection" tabId="basicTab" adapterId="Semantic">
-			<view id="view_single_Classifier">	<!-- view for UML Classifier -->
+			<view id="view_single_Classifier2">	<!-- view for UML Classifier -->
 				<context enablesFor="1">
 					<elementClass name="org.eclipse.uml2.uml.Classifier"></elementClass>
 				</context>

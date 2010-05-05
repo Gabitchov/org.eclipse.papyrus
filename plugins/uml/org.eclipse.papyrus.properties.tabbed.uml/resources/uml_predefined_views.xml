@@ -8,10 +8,10 @@
 			<container layout="Grid" columns="2" sameSize="false">
 				<controller predefinedId="UML_NamedElement_name"/>
 				<controller predefinedId="UML_NamedElement_visibility"/>
-				<controller id="emftStructuralFeatureController">
+				<!-- <controller id="emftStructuralFeatureController">
 					<feature name="qualifiedName" handlerID="String"/>
 					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Qualified Name:" labelPosition="16384"/>
-				</controller>
+				</controller> -->
 			</container>
 		</content>
 	</view>
@@ -30,38 +30,36 @@
 			<elementClass name="org.eclipse.uml2.uml.Property"></elementClass>
 		</context>
 		<content>
-			<expandableContainer label="Type" layout="Grid" columns="2" sameSize="false">
-					<controller id="emftBindingReferenceController">
-						<feature name="type" handlerID="Reference"/>
-						<binding message="{0} - ({1})">
-							<feature name="name"/>
-							<feature name="qualifiedName"/>
-						</binding>
-						<editor id="org.eclipse.papyrus.properties.runtime.simpleReferencePropertyEditor" label="Type:" labelPosition="16384">
-							<icon pluginID="org.eclipse.papyrus.properties.tabbed.uml" path="/icons/type.gif"/>
-						</editor>
-					</controller>
-				</expandableContainer>
-				<expandableContainer label="Redefinition And Subset" layout="Grid" columns="2" sameSize="false">
-					<controller id="emftBindingReferenceController">
-						<feature name="redefinedProperty" handlerID="Reference"/>
-						<binding message="{0} - ({1})">
-							<feature name="name"/>
-							<feature name="qualifiedName"/>
-						</binding>
-						<editor id="org.eclipse.papyrus.properties.runtime.multipleReferencePropertyEditor" label="Redefines:" labelPosition="16384">
-						</editor>
-					</controller>
-					<controller id="emftBindingReferenceController">
-						<feature name="subsettedProperty" handlerID="Reference"/>
-						<binding message="{0} - ({1})">
-							<feature name="name"/>
-							<feature name="qualifiedName"/>
-						</binding>
-						<editor id="org.eclipse.papyrus.properties.runtime.multipleReferencePropertyEditor" label="Subsets:" labelPosition="16384">
-						</editor>
-					</controller>
-				</expandableContainer>
+			<expandableContainer label="Type" layout="Grid" columns="1" sameSize="false">
+					<controller predefinedId="UML_TypedElement_type"/>
+					<controller predefinedId="UML_Property_defaultValue"/>
+			</expandableContainer>
+			<expandableContainer label="Redefinition And Subset" layout="Grid" columns="2" sameSize="false">
+				<controller predefinedId="UML_Property_redefinedProperty"/>
+				<controller  predefinedId="UML_Property_subsettedProperty"/>
+			</expandableContainer>
+		</content>
+	</view>
+	<view id="view_single_Classifier">	<!-- view for UML Classifier -->
+		<context enablesFor="1">
+			<elementClass name="org.eclipse.uml2.uml.StructuredClassifier"></elementClass>
+		</context>
+		<content>
+			<container layout="Grid" columns="2" sameSize="false">
+				 <controller predefinedId="UML_Classifier_isAbstract"/>
+			</container>
+			<expandableContainer label="Features" layout="Grid" columns="2" sameSize="false">
+				<controller predefinedId="UML_StructuredClassifier_ownedAttribute"/>
+				<controller predefinedId="UML_Class_ownedOperation"/>
+			</expandableContainer>
+			<groupContainer label="MyGroup" layout="Grid" columns="1" sameSize="false">
+				<controller id="emftStructuralFeatureController">
+					<feature name="qualifiedName" handlerID="String"/>
+					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Qualified Name:" labelPosition="16384">
+						<icon pluginID="org.eclipse.papyrus.properties.tabbed.uml" path="/icons/tool.gif"/>
+					</editor>
+				</controller>
+			</groupContainer>
 		</content>
 	</view>
 </views>

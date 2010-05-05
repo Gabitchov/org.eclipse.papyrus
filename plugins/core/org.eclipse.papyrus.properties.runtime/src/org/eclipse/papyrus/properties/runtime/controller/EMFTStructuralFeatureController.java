@@ -116,7 +116,7 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 	}
 
 	/**
-	 *  {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	protected void addListenersToModel() {
@@ -126,7 +126,7 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 	}
 
 	/**
-	 *  {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	protected String getDefaultLabel() {

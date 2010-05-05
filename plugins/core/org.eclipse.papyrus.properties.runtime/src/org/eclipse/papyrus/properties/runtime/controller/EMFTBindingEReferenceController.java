@@ -24,9 +24,11 @@ import org.eclipse.swt.graphics.Image;
  */
 public class EMFTBindingEReferenceController extends EMFTEReferenceController {
 
+	/** identifier for this controller */
+	public final static String ID = "emftBindingEReferenceController";
+
 	/** editor label provider for EMF objects */
 	protected ILabelProvider editorLabelProvider = new BindingLabelProvider(labelProvider);
-
 
 	/**
 	 * {@inheritDoc}

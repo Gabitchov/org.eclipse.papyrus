@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- generated controller from uml Package - 2010/03/12 - 00:37 -->
+<predefinedControllers>
+	<!--predefined controller for Comment#body -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Comment_body">
+		<feature handlerID="String" name="body" />
+		<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Body:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for NamedElement#name -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_NamedElement_name">
+		<feature handlerID="String" name="name" />
+		<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Name:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for NamedElement#visibility -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_NamedElement_visibility">
+		<feature handlerID="Enumeration" name="visibility" />
+		<editor id="org.eclipse.papyrus.properties.runtime.comboPropertyEditor" label="Visibility:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for ElementImport#visibility -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_ElementImport_visibility">
+		<feature handlerID="Enumeration" name="visibility" />
+		<editor id="org.eclipse.papyrus.properties.runtime.comboPropertyEditor" label="Visibility:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for ElementImport#alias -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_ElementImport_alias">
+		<feature handlerID="String" name="alias" />
+		<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Alias:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for PackageImport#visibility -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_PackageImport_visibility">
+		<feature handlerID="Enumeration" name="visibility" />
+		<editor id="org.eclipse.papyrus.properties.runtime.comboPropertyEditor" label="Visibility:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Association#isDerived -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Association_isDerived">
+		<feature handlerID="Boolean" name="isDerived" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Derived:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Classifier#isAbstract -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Classifier_isAbstract">
+		<feature handlerID="Boolean" name="isAbstract" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Abstract:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for RedefinableElement#isLeaf -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_RedefinableElement_isLeaf">
+		<feature handlerID="Boolean" name="isLeaf" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Leaf:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Generalization#isSubstitutable -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Generalization_isSubstitutable">
+		<feature handlerID="Boolean" name="isSubstitutable" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Substitutable:"
+			labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for GeneralizationSet#isCovering -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_GeneralizationSet_isCovering">
+		<feature handlerID="Boolean" name="isCovering" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Covering:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for GeneralizationSet#isDisjoint -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_GeneralizationSet_isDisjoint">
+		<feature handlerID="Boolean" name="isDisjoint" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Disjoint:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Feature#isStatic -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Feature_isStatic">
+		<feature handlerID="Boolean" name="isStatic" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Static:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for OpaqueExpression#body -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_OpaqueExpression_body">
+		<feature handlerID="String" name="body" />
+		<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Body:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for OpaqueExpression#language -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_OpaqueExpression_language">
+		<feature handlerID="String" name="language" />
+		<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Language:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Parameter#direction -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Parameter_direction">
+		<feature handlerID="Enumeration" name="direction" />
+		<editor id="org.eclipse.papyrus.properties.runtime.comboPropertyEditor" label="Direction:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Parameter#isException -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Parameter_isException">
+		<feature handlerID="Boolean" name="isException" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Exception:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Parameter#isStream -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Parameter_isStream">
+		<feature handlerID="Boolean" name="isStream" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Stream:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Parameter#effect -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Parameter_effect">
+		<feature handlerID="Enumeration" name="effect" />
+		<editor id="org.eclipse.papyrus.properties.runtime.comboPropertyEditor" label="Effect:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for MultiplicityElement#isOrdered -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_MultiplicityElement_isOrdered">
+		<feature handlerID="Boolean" name="isOrdered" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Ordered:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for MultiplicityElement#isUnique -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_MultiplicityElement_isUnique">
+		<feature handlerID="Boolean" name="isUnique" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Unique:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Property#isDerived -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Property_isDerived">
+		<feature handlerID="Boolean" name="isDerived" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Derived:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Property#isDerivedUnion -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Property_isDerivedUnion">
+		<feature handlerID="Boolean" name="isDerivedUnion" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Derived Union:"
+			labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Property#aggregation -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Property_aggregation">
+		<feature handlerID="Enumeration" name="aggregation" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Aggregation:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for DeploymentSpecification#deploymentLocation -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_DeploymentSpecification_deploymentLocation">
+		<feature handlerID="String" name="deploymentLocation" />
+		<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Deployment Location:"
+			labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for DeploymentSpecification#executionLocation -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_DeploymentSpecification_executionLocation">
+		<feature handlerID="String" name="executionLocation" />
+		<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Execution Location:"
+			labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Artifact#fileName -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Artifact_fileName">
+		<feature handlerID="String" name="fileName" />
+		<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="File Name:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Operation#isQuery -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Operation_isQuery">
+		<feature handlerID="Boolean" name="isQuery" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Query:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for BehavioralFeature#isAbstract -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_BehavioralFeature_isAbstract">
+		<feature handlerID="Boolean" name="isAbstract" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Abstract:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for BehavioralFeature#concurrency -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_BehavioralFeature_concurrency">
+		<feature handlerID="Enumeration" name="concurrency" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Concurrency:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Behavior#isReentrant -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Behavior_isReentrant">
+		<feature handlerID="Boolean" name="isReentrant" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Reentrant:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Class#isActive -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Class_isActive">
+		<feature handlerID="Boolean" name="isActive" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Active:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Transition#kind -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Transition_kind">
+		<feature handlerID="Enumeration" name="kind" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Kind:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Port#isBehavior -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Port_isBehavior">
+		<feature handlerID="Boolean" name="isBehavior" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Behavior:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Port#isService -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Port_isService">
+		<feature handlerID="Boolean" name="isService" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Service:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Pseudostate#kind -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Pseudostate_kind">
+		<feature handlerID="Enumeration" name="kind" />
+		<editor id="org.eclipse.papyrus.properties.runtime.comboPropertyEditor" label="Kind:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Connector#kind -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Connector_kind">
+		<feature handlerID="Enumeration" name="kind" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Kind:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Image#content -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Image_content">
+		<feature handlerID="String" name="content" />
+		<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Content:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Image#location -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Image_location">
+		<feature handlerID="String" name="location" />
+		<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Location:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Image#format -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Image_format">
+		<feature handlerID="String" name="format" />
+		<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Format:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Model#viewpoint -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Model_viewpoint">
+		<feature handlerID="String" name="viewpoint" />
+		<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Viewpoint:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for StructuralFeature#isReadOnly -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_StructuralFeature_isReadOnly">
+		<feature handlerID="Boolean" name="isReadOnly" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Read Only:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for ClassifierTemplateParameter#allowSubstitutable -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_ClassifierTemplateParameter_allowSubstitutable">
+		<feature handlerID="Boolean" name="allowSubstitutable" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Allow Substitutable:"
+			labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Expression#symbol -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Expression_symbol">
+		<feature handlerID="String" name="symbol" />
+		<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Symbol:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for ProfileApplication#isStrict -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_ProfileApplication_isStrict">
+		<feature handlerID="Boolean" name="isStrict" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Strict:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for LiteralInteger#value -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_LiteralInteger_value">
+		<feature handlerID="String" name="value" />
+		<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Value:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for LiteralString#value -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_LiteralString_value">
+		<feature handlerID="String" name="value" />
+		<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Value:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for LiteralBoolean#value -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_LiteralBoolean_value">
+		<feature handlerID="Boolean" name="value" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Value:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for LiteralUnlimitedNatural#value -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_LiteralUnlimitedNatural_value">
+		<feature handlerID="String" name="value" />
+		<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Value:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for OpaqueBehavior#body -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_OpaqueBehavior_body">
+		<feature handlerID="String" name="body" />
+		<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Body:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for OpaqueBehavior#language -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_OpaqueBehavior_language">
+		<feature handlerID="String" name="language" />
+		<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Language:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for OpaqueAction#body -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_OpaqueAction_body">
+		<feature handlerID="String" name="body" />
+		<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Body:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for OpaqueAction#language -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_OpaqueAction_language">
+		<feature handlerID="String" name="language" />
+		<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Language:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for StructuredActivityNode#mustIsolate -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_StructuredActivityNode_mustIsolate">
+		<feature handlerID="Boolean" name="mustIsolate" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Must Isolate:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Activity#isReadOnly -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Activity_isReadOnly">
+		<feature handlerID="Boolean" name="isReadOnly" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Read Only:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Activity#isSingleExecution -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Activity_isSingleExecution">
+		<feature handlerID="Boolean" name="isSingleExecution" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Single Execution:"
+			labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for ActivityPartition#isDimension -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_ActivityPartition_isDimension">
+		<feature handlerID="Boolean" name="isDimension" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Dimension:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for ActivityPartition#isExternal -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_ActivityPartition_isExternal">
+		<feature handlerID="Boolean" name="isExternal" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is External:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for ObjectNode#ordering -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_ObjectNode_ordering">
+		<feature handlerID="Enumeration" name="ordering" />
+		<editor id="org.eclipse.papyrus.properties.runtime.comboPropertyEditor" label="Ordering:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for ObjectNode#isControlType -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_ObjectNode_isControlType">
+		<feature handlerID="Boolean" name="isControlType" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Control Type:"
+			labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Pin#isControl -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Pin_isControl">
+		<feature handlerID="Boolean" name="isControl" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Control:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for CallAction#isSynchronous -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_CallAction_isSynchronous">
+		<feature handlerID="Boolean" name="isSynchronous" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Synchronous:"
+			labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Message#messageSort -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Message_messageSort">
+		<feature handlerID="Enumeration" name="messageSort" />
+		<editor id="org.eclipse.papyrus.properties.runtime.comboPropertyEditor" label="Message Sort:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for ObjectFlow#isMulticast -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_ObjectFlow_isMulticast">
+		<feature handlerID="Boolean" name="isMulticast" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Multicast:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for ObjectFlow#isMultireceive -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_ObjectFlow_isMultireceive">
+		<feature handlerID="Boolean" name="isMultireceive" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Multireceive:"
+			labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Component#isIndirectlyInstantiated -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Component_isIndirectlyInstantiated">
+		<feature handlerID="Boolean" name="isIndirectlyInstantiated" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Indirectly Instantiated:"
+			labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for CombinedFragment#interactionOperator -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_CombinedFragment_interactionOperator">
+		<feature handlerID="Enumeration" name="interactionOperator" />
+		<editor id="org.eclipse.papyrus.properties.runtime.comboPropertyEditor" label="Interaction Operator:"
+			labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for Continuation#setting -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_Continuation_setting">
+		<feature handlerID="Boolean" name="setting" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Setting:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for DestroyObjectAction#isDestroyLinks -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_DestroyObjectAction_isDestroyLinks">
+		<feature handlerID="Boolean" name="isDestroyLinks" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Destroy Links:"
+			labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for DestroyObjectAction#isDestroyOwnedObjects -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_DestroyObjectAction_isDestroyOwnedObjects">
+		<feature handlerID="Boolean" name="isDestroyOwnedObjects" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Destroy Owned Objects:"
+			labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for RemoveStructuralFeatureValueAction#isRemoveDuplicates -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_RemoveStructuralFeatureValueAction_isRemoveDuplicates">
+		<feature handlerID="Boolean" name="isRemoveDuplicates" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Remove Duplicates:"
+			labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for AddStructuralFeatureValueAction#isReplaceAll -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_AddStructuralFeatureValueAction_isReplaceAll">
+		<feature handlerID="Boolean" name="isReplaceAll" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Replace All:"
+			labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for LinkEndCreationData#isReplaceAll -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_LinkEndCreationData_isReplaceAll">
+		<feature handlerID="Boolean" name="isReplaceAll" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Replace All:"
+			labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for LinkEndDestructionData#isDestroyDuplicates -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_LinkEndDestructionData_isDestroyDuplicates">
+		<feature handlerID="Boolean" name="isDestroyDuplicates" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Destroy Duplicates:"
+			labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for TimeConstraint#firstEvent -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_TimeConstraint_firstEvent">
+		<feature handlerID="Boolean" name="firstEvent" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="First Event:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for DurationConstraint#firstEvent -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_DurationConstraint_firstEvent">
+		<feature handlerID="Boolean" name="firstEvent" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="First Event:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for TimeObservation#firstEvent -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_TimeObservation_firstEvent">
+		<feature handlerID="Boolean" name="firstEvent" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="First Event:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for DurationObservation#firstEvent -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_DurationObservation_firstEvent">
+		<feature handlerID="Boolean" name="firstEvent" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="First Event:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for TimeEvent#isRelative -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_TimeEvent_isRelative">
+		<feature handlerID="Boolean" name="isRelative" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Relative:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for AddVariableValueAction#isReplaceAll -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_AddVariableValueAction_isReplaceAll">
+		<feature handlerID="Boolean" name="isReplaceAll" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Replace All:"
+			labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for RemoveVariableValueAction#isRemoveDuplicates -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_RemoveVariableValueAction_isRemoveDuplicates">
+		<feature handlerID="Boolean" name="isRemoveDuplicates" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Remove Duplicates:"
+			labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for ReclassifyObjectAction#isReplaceAll -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_ReclassifyObjectAction_isReplaceAll">
+		<feature handlerID="Boolean" name="isReplaceAll" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Replace All:"
+			labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for ReadIsClassifiedObjectAction#isDirect -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_ReadIsClassifiedObjectAction_isDirect">
+		<feature handlerID="Boolean" name="isDirect" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Direct:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for AcceptEventAction#isUnmarshall -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_AcceptEventAction_isUnmarshall">
+		<feature handlerID="Boolean" name="isUnmarshall" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Unmarshall:"
+			labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for ReduceAction#isOrdered -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_ReduceAction_isOrdered">
+		<feature handlerID="Boolean" name="isOrdered" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Ordered:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for JoinNode#isCombineDuplicate -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_JoinNode_isCombineDuplicate">
+		<feature handlerID="Boolean" name="isCombineDuplicate" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Combine Duplicate:"
+			labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for ConditionalNode#isDeterminate -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_ConditionalNode_isDeterminate">
+		<feature handlerID="Boolean" name="isDeterminate" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Determinate:"
+			labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for ConditionalNode#isAssured -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_ConditionalNode_isAssured">
+		<feature handlerID="Boolean" name="isAssured" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Assured:" labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for LoopNode#isTestedFirst -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_LoopNode_isTestedFirst">
+		<feature handlerID="Boolean" name="isTestedFirst" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Is Tested First:"
+			labelPosition="16384" />
+	</predefinedController>
+	<!--predefined controller for ExpansionRegion#mode -->
+	<predefinedController id="emftStructuralFeatureController" predefinedId="UML_ExpansionRegion_mode">
+		<feature handlerID="Enumeration" name="mode" />
+		<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Mode:" labelPosition="16384" />
+	</predefinedController>
+</predefinedControllers>
