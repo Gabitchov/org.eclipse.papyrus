@@ -111,7 +111,7 @@ public class GradientPreferenceConverter {
 	/**
 	 * Get the transparency of the gradient
 	 * 
-	 * @return
+	 * @return the transparency
 	 */
 	public int getTransparency() {
 		return fTransparency;
@@ -120,7 +120,7 @@ public class GradientPreferenceConverter {
 	/**
 	 * Get the gradientData of the gradient
 	 * 
-	 * @return
+	 * @return the gradientData
 	 */
 	public GradientData getGradientData() {
 		GradientData gd = GradientData.getDefaultGradientData();
@@ -133,7 +133,7 @@ public class GradientPreferenceConverter {
 	/**
 	 * Get the first color used for the gradient.
 	 * 
-	 * @return
+	 * @return the RGB
 	 */
 	public RGB getColor1() {
 		RGB color;
@@ -148,7 +148,7 @@ public class GradientPreferenceConverter {
 	/**
 	 * Get the second color used for the gradient.
 	 * 
-	 * @return
+	 * @return the RGB
 	 */
 	// @unused
 	public RGB getColor2() {

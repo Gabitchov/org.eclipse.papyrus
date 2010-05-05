@@ -22,6 +22,11 @@ package «getDiagram().preferencesPackageName»;
 «EXPAND xpt::Common::generatedClassComment»
 public class «EXPAND className» extends org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage {
 
+«EXPAND xpt::Common::generatedClassComment»
+	public «EXPAND className»() {
+		super();
+		setPreferenceKey( «getDiagram().editPartsPackageName».«getDiagram().editPartClassName».MODEL_ID+"_«elementType.displayName»");
+	}
 	«EXPAND xpt::Common::generatedClassComment»
 	@Override
 	protected String getBundleId() {

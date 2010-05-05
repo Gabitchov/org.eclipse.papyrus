@@ -16,6 +16,8 @@ package org.eclipse.papyrus.preferences.ui;
 
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.jface.preference.BooleanFieldEditor;
+import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.papyrus.preferences.Messages;
 import org.eclipse.papyrus.preferences.jface.preference.GradientFieldEditor;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
@@ -35,13 +37,13 @@ public class BackgroundColor extends AbstractGroup {
 	 * 
 	 * @param parent
 	 *        the parent of the composite
-	 * @param String
-	 *        the title of the page
+	 * @param key
+	 *        the key of the preference
 	 * @param dialogPage
 	 *        to set the page in field editor
 	 **/
-	public BackgroundColor(Composite parent, String title, DialogPage dialogPage) {
-		super(parent, title, dialogPage);
+	public BackgroundColor(Composite parent, String key, DialogPage dialogPage) {
+		super(parent, key, dialogPage);
 		createContent(parent);
 	}
 
@@ -75,15 +77,30 @@ public class BackgroundColor extends AbstractGroup {
 		Composite useGradientFillEditorCompo = getEncapsulatedCompo(useGradientCompo);
 		useGradientFillEditor = new BooleanFieldEditor(getPreferenceConstant(PreferenceConstantHelper.GRADIENT_POLICY), "", useGradientFillEditorCompo); //$NON-NLS-1$
 		useGradientFillEditor.setPage(dialogPage);
-
+		
 		addFieldEditor(useGradientFillEditor);
 
-		Composite gradientFillEditorCompo = getEncapsulatedCompo(fillColorGroup);
+		 Composite gradientFillEditorCompo = getEncapsulatedCompo(fillColorGroup);
 		gradientFillEditor = new GradientFieldEditor(getPreferenceConstant(PreferenceConstantHelper.COLOR_GRADIENT),
 				gradientFillEditorCompo);
 		gradientFillEditor.setPage(dialogPage);
+		gradientFillEditor.setEnabled(useGradientFillEditor.getBooleanValue());
 
 		addFieldEditor(gradientFillEditor);
+		useGradientFillEditor.setPropertyChangeListener(new IPropertyChangeListener() {
+			
+			public void propertyChange(PropertyChangeEvent event) {
+				
+					gradientFillEditor.setEnabled(useGradientFillEditor.getBooleanValue());
+				
+				
+			}
+		});
 	}
 
+	@Override
+	public void load() {
+		super.load();
+		gradientFillEditor.setEnabled(useGradientFillEditor.getBooleanValue());
+	}
 }

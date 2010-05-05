@@ -15,6 +15,8 @@ public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.preferences.messages"; //$NON-NLS-1$
 
+
+
 	public static String AbstractPapyrusElementPreferencePage_Colors;
 
 	public static String AbstractPapyrusElementPreferencePage_Font;
@@ -78,6 +80,9 @@ public class Messages extends NLS {
 	public static String GradientFieldEditor_Transparency;
 
 	public static String GradientFieldEditor_Vertical;
+	public static String DecorationGroup_Name;
+	
+	public static String DimensionGroupName ;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

@@ -161,7 +161,7 @@ public class ColorFieldEditor extends FieldEditor {
 		/**
 		 * Creates a new color menu image descriptor
 		 * 
-		 * @param basicIcon
+		 * @param basicImgData
 		 *        The basic Image data
 		 * @param rgb
 		 *        The color bar RGB value

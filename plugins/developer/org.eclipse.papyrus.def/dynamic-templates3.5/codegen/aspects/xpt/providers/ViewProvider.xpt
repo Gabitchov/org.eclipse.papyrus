@@ -255,7 +255,7 @@ public class «notationViewProviderClassName»«EXPAND xpt::providers::ViewProvi
 «IF viewmap.canUseShapeStyle()-»
 		org.eclipse.gmf.runtime.notation.Shape node = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createShape();
 «ELSE-»
-		org.eclipse.gmf.runtime.notation.Node node = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createNode();
+		org.eclipse.gmf.runtime.notation.Node node = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createShape();
 		node.getStyles().add(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createDescriptionStyle());«REM»FIXME Contionally add this style, whether toolsmith needs Notes or not«ENDREM»
 		«EXPAND xpt::diagram::views::Utils::addFontLineFillStylesConditionally('node.getStyles()') FOR viewmap-»
 «ENDIF-»
@@ -281,17 +281,17 @@ public class «notationViewProviderClassName»«EXPAND xpt::providers::ViewProvi
 «DEFINE createNodeMethod FOR gmfgen::GenChildLabelNode-»
 	«EXPAND xpt::Common::generatedMemberComment»
 	public org.eclipse.gmf.runtime.notation.Node create«getUniqueIdentifier()»(org.eclipse.emf.ecore.EObject domainElement, org.eclipse.gmf.runtime.notation.View containerView, int index, boolean persisted, org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint preferencesHint) {
-		org.eclipse.gmf.runtime.notation.Node node = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createNode();
+		org.eclipse.gmf.runtime.notation.Node node = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createLocation());«REM»[artem] XXX not sure, why LabelNode needs location«ENDREM»
 		«EXPAND xpt::diagram::views::Utils::addLinkedDiagramStyle('node.getStyles()')-»
 		«EXPAND xpt::diagram::views::Utils::addCustomStyles('node.getStyles()')-»
 		node.setType(«EXPAND xpt::editor::VisualIDRegistry::typeMethodCall»);
 		org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-«IF styles->notEmpty()-»
+		
 		final org.eclipse.jface.preference.IPreferenceStore prefStore = (org.eclipse.jface.preference.IPreferenceStore) preferencesHint.getPreferenceStore();
-		«EXPAND initializeStyles('node', 'prefStore', false, false, false)-»
-«ENDIF-»
+		«EXPAND initFontFromPrefs('node', 'prefStore')-»
+		«EXPAND initForegroundFromPrefs('node', 'prefStore')-»
 		return node;
 	}
 «ENDDEFINE»
@@ -401,10 +401,11 @@ public class «notationViewProviderClassName»«EXPAND xpt::providers::ViewProvi
 		// initializePreferences
 		final org.eclipse.jface.preference.IPreferenceStore prefStore = (org.eclipse.jface.preference.IPreferenceStore) preferencesHint.getPreferenceStore();
 		«EXPAND initializeStyles('edge', 'prefStore', not viewmap.isFixedForeground(), false, not viewmap.isFixedFont())-»
-		org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
-		if (routing != null) {
-			org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
-		}
+		//org.eclipse.gmf.runtime.notation.Routing routing = org.eclipse.gmf.runtime.notation.Routing.get(prefStore.getInt(org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants.PREF_LINE_STYLE));
+		//if (routing != null) {
+		//	org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.setStructuralFeatureValue(edge, org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getRoutingStyle_Routing(), routing);
+		//}
+		«EXPAND initRountingFromPrefs('edge', 'prefStore')-»
 «EXPAND initLabel('edge', 'prefStore') FOREACH labels-»
 		return edge;
 	}
@@ -508,20 +509,26 @@ private org.eclipse.gmf.runtime.emf.type.core.IElementType getSemanticElementTyp
 
 «DEFINE specificInitFontFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenNode-»
 	«IF "UNDEFINED" <> elementType.displayName.toUpper()»
-		initFontStyleFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
+		org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper.initFontStyleFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
 	«ENDIF»
 «ENDDEFINE»
 
 «DEFINE specificInitFontFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenChildNode-»
+«IF "UNDEFINED" <> elementType.displayName.toUpper()»
+		org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper.initFontStyleFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
+	«ENDIF»
 «ENDDEFINE»
 
 «DEFINE specificInitFontFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenLink-»
 	«IF "UNDEFINED" <> elementType.displayName.toUpper()»
-		initFontStyleFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
+		org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper.initFontStyleFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
 	«ENDIF»
 «ENDDEFINE»
 
 «DEFINE specificInitFontFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenCommonBase-»
+«IF "UNDEFINED" <> elementType.displayName.toUpper()»
+		org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper.initFontStyleFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
+	«ENDIF»
 «ENDDEFINE»
 
 
@@ -532,19 +539,19 @@ private org.eclipse.gmf.runtime.emf.type.core.IElementType getSemanticElementTyp
 
 «DEFINE specificInitForegroundFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenNode-»	
 	«IF "UNDEFINED" <> elementType.displayName.toUpper()»
-		initForegroundFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
+		org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper.initForegroundFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
 	«ENDIF»
 «ENDDEFINE»
 
 «DEFINE specificInitForegroundFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenChildNode-»
 	«IF "UNDEFINED" <> elementType.displayName.toUpper()»
-		initForegroundFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
+		org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper.initForegroundFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
 	«ENDIF»
 «ENDDEFINE»
 
 «DEFINE specificInitForegroundFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenLink-»
 	«IF "UNDEFINED" <> elementType.displayName.toUpper()»
-		initForegroundFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
+		org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper.initForegroundFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
 	«ENDIF»
 «ENDDEFINE»
 
@@ -554,28 +561,54 @@ private org.eclipse.gmf.runtime.emf.type.core.IElementType getSemanticElementTyp
 
 
 
-
+	
 «AROUND initBackgroundFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenCommonBase-»
  	«EXPAND specificInitBackgroundFromPrefs(viewVar, prefStoreVar) FOR self-»
 «ENDAROUND»
 
 «DEFINE specificInitBackgroundFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenNode»
 	«IF "UNDEFINED" <> elementType.displayName.toUpper()»
-		initBackgroundFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
+	org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper.initBackgroundFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
 	«ENDIF»
 «ENDDEFINE»
 
 «DEFINE specificInitBackgroundFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenChildNode»
 	«IF "UNDEFINED" <> elementType.displayName.toUpper()»
-		initBackgroundFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
+		org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper.initBackgroundFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
 	«ENDIF»
 «ENDDEFINE»
 
 «DEFINE specificInitBackgroundFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenLink»
 	«IF "UNDEFINED" <> elementType.displayName.toUpper()»
-		initBackgroundFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
+		org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper.initBackgroundFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
 	«ENDIF»
 «ENDDEFINE»
 
 «DEFINE specificInitBackgroundFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenCommonBase»
+«ENDDEFINE»
+
+
+«DEFINE initRountingFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenCommonBase-»
+ 	«EXPAND specificInitRountingFromPrefs(viewVar, prefStoreVar) FOR self-»
+«ENDDEFINE»
+
+«DEFINE specificInitRountingFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenNode»
+	«IF "UNDEFINED" <> elementType.displayName.toUpper()»
+	org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper.initRountingFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
+	«ENDIF»
+«ENDDEFINE»
+
+«DEFINE specificInitRountingFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenChildNode»
+	«IF "UNDEFINED" <> elementType.displayName.toUpper()»
+		org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper.initRountingFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
+	«ENDIF»
+«ENDDEFINE»
+
+«DEFINE specificInitRountingFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenLink»
+	«IF "UNDEFINED" <> elementType.displayName.toUpper()»
+		org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper.initRountingFromPrefs(«viewVar», «prefStoreVar», "«elementType.displayName»");
+	«ENDIF»
+«ENDDEFINE»
+
+«DEFINE specificInitRountingFromPrefs(String viewVar, String prefStoreVar) FOR gmfgen::GenCommonBase»
 «ENDDEFINE»

@@ -6,11 +6,11 @@
       <page
             class="org.eclipse.papyrus.preferences.pages.internal.PapyrusUML2PreferencePage"
             id="org.eclipse.papyrus.preferences.generalcategory"
-            name="Papyrus UML2">
+            name="Papyrus">
       </page>
       <page
             category="org.eclipse.papyrus.preferences.generalcategory"
-            class="org.eclipse.papyrus.preferences.pages.internal.PapyrusDiagramsPreferencePage"
+            class="org.eclipse.papyrus.preferences.pages.PapyrusAllDiagramsPreferencePage"
             id="org.eclipse.papyrus.preferences.diagrams"
             name="Diagrams">
       </page>
@@ -38,7 +38,7 @@
       <page
             class="org.eclipse.papyrus.preferences.pages.internal.PapyrusUML2PreferencePage"
             id="org.eclipse.papyrus.preferences.properties.generalcategory"
-            name="Papyrus UML2">
+            name="Papyrus">
          <enabledWhen>
             <adapt
                   type="org.eclipse.core.resources.IProject">
@@ -48,7 +48,7 @@
       <page
             category="org.eclipse.papyrus.preferences.properties.generalcategory"
             class="org.eclipse.papyrus.preferences.pages.internal.PapyrusDiagramsPreferencePage"
-            id="org.eclipse.papyrus.preferences.properties.diagrams"
+            id="org.eclipse.papyrus.preferences.pages.internal.PapyrusAllDiagramsPreferencePage"
             name="Diagrams">
          <enabledWhen>
             <adapt
@@ -89,6 +89,12 @@
             </adapt>
          </enabledWhen>
       </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.eclipse.papyrus.preferences.PapyrusPreferenceInitializer">
+      </initializer>
    </extension>
 
 </plugin>

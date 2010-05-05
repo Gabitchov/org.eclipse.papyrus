@@ -22,7 +22,11 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferencePage;
+import org.eclipse.papyrus.preferences.Activator;
+import org.eclipse.papyrus.preferences.PapyrusPreferenceStore;
+import org.eclipse.papyrus.preferences.pages.internal.VisiblePageSingleton;
 import org.eclipse.papyrus.preferences.ui.AbstractGroup;
+import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -47,11 +51,13 @@ import org.eclipse.ui.preferences.ScopedPreferenceStore;
  * </p>
  */
 public abstract class AbstractPapyrusPreferencePage extends PreferencePage implements IWorkbenchPreferencePage,
-		IWorkbenchPropertyPage {
+IWorkbenchPropertyPage {
 
 	private IProject project;
 
 	private Set<AbstractGroup> groupSet;
+
+	private String key;
 
 	/**
 	 * @see org.eclipse.ui.IWorkbenchPropertyPage#getElement()
@@ -59,7 +65,16 @@ public abstract class AbstractPapyrusPreferencePage extends PreferencePage imple
 	public IAdaptable getElement() {
 		return project;
 	}
+	protected void setPreferenceKey(String aKey){
+		this.key=aKey;
+	}
+	protected String getPreferenceKey(){
+		return this.key;
+	}
 
+	public IPreferenceStore getPreferenceStore() {
+		return Activator.getDefault().getPreferenceStore();
+	}
 	/**
 	 * @see org.eclipse.ui.IWorkbenchPropertyPage#setElement(org.eclipse.core.runtime.IAdaptable)
 	 */
@@ -135,28 +150,27 @@ public abstract class AbstractPapyrusPreferencePage extends PreferencePage imple
 		groupSet.add(fe);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.jface.preference.IPreferencePage#performOk()
-	 */
-	@Override
 	public boolean performOk() {
-		storePreferences();
+		VisiblePageSingleton.getInstance().store();
 		return super.performOk();
 	}
-
 	/**
 	 * Stores the values of the fields contained in this page into the preference store.
 	 */
-	private void storePreferences() {
+	protected void storePreferences() {
 		if(groupSet != null) {
 			for(AbstractGroup gs : groupSet) {
 				gs.storePreferences();
 			}
 		}
 	}
+	/**
+	 * Store all preferences
+	 */
+	public void storeAllPreferences() {
+		storePreferences();
 
+	}
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -200,8 +214,18 @@ public abstract class AbstractPapyrusPreferencePage extends PreferencePage imple
 			}
 		}
 
-	}
 
+	}
+	@Override
+	public void setVisible(boolean visible) {
+		// TODO Auto-generated method stub
+		if(visible==true){
+			VisiblePageSingleton.getInstance().setVisiblePage(this);
+			initGroup();
+		}
+		super.setVisible(visible);
+
+	}
 	/**
 	 * The bundle ID used to defined the preference store
 	 * 

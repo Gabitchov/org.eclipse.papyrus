@@ -36,10 +36,10 @@
 «ENDDEFINE»
 
 «DEFINE behaviour FOR gmfgen::CustomBehaviour-»
-«IF editPolicyQualifiedClassName = null or editPolicyQualifiedClassName.trim().xpandLength() = 0-»
-	removeEditPolicy(«key»); «IF key.xpandStartsWith('\"') and key.xpandEndsWith('\"')»«EXPAND xpt::Common::nonNLS»«ENDIF»
+«IF editPolicyQualifiedClassName = null or editPolicyQualifiedClassName.trim().length() = 0-»
+	removeEditPolicy(«key»); «IF key.startsWith('\"') and key.xpandEndsWith('\"')»«EXPAND xpt::Common::nonNLS»«ENDIF»
 «ELSE-»
-	installEditPolicy(«key», new «getEditPolicyQualifiedClassName()»()); «IF key.xpandStartsWith('\"') and key.xpandEndsWith('\"')»«EXPAND xpt::Common::nonNLS»«ENDIF»
+	installEditPolicy(«key», new «getEditPolicyQualifiedClassName()»()); «IF key.startsWith('\"') and key.endsWith('\"')»«EXPAND xpt::Common::nonNLS»«ENDIF»
 «ENDIF-»
 «ENDDEFINE»
 

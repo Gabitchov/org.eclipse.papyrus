@@ -41,6 +41,21 @@ package org.eclipse.papyrus.preferences.utils;
  */
 public class PreferenceConstantHelper {
 
+	/**
+	 * Prefix for preference for Papyrus Level editor
+	 */
+	public static String PAPYRUS_EDITOR_PREFERENCE_PREFIX="PAPYRUS_EDITOR";
+
+	/**
+	 * Prefix for preference for Diagram Level 
+	 */
+	public static String DIAGRAM_PREFERENCE_PREFIX="DIAGRAM_";
+
+	/**
+	 * Prefix for preference for element Level 
+	 */
+	public static String DIAGRAM_ELEMENT="ELEMENT_";
+	
 	private final static String COLOR = "color."; //$NON-NLS-1$
 
 	private final static String GRADIENT = "gradient"; //$NON-NLS-1$
@@ -78,6 +93,17 @@ public class PreferenceConstantHelper {
 	private final static String ROUTING_STYLE_CONSTANT = ROUTING + ".style"; //$NON-NLS-1$
 
 	private final static String SMOOTHNESS_CONSTANT = "smoothness"; //$NON-NLS-1$
+	
+	private final static String SHADOW_CONSTANT = "shadow"; //$NON-NLS-1$
+	
+	private final static String ELEMENTICON_CONSTANT = "elementicon"; //$NON-NLS-1$
+	
+	private final static String QUALIFIEDNAME_CONSTANT = "qualifiedname"; //$NON-NLS-1$
+
+	
+	private final static String HEIGHT_CONSTANT = "height";//$NON-NLS-1$
+
+	private final static String WIDTH_CONSTANT = "width"; //$NON-NLS-1$
 
 	/**
 	 * A preference of type COLOR FILL
@@ -143,6 +169,33 @@ public class PreferenceConstantHelper {
 	 * A preference of type SMOOTHNESS
 	 */
 	public final static int SMOOTHNESS = ROUTING_STYLE + 1;
+	
+	/**
+	 * A preference of type Shadow
+	 */
+	public final static int SHADOW = SMOOTHNESS + 1;
+
+	/**
+	 * A preference of type elementIcon
+	 */
+	public final static int ELEMENTICON = SHADOW + 1;
+	
+	/**
+	 * A preference of type QualifiedName
+	 */
+	public final static int QUALIFIEDNAME = ELEMENTICON + 1;
+
+	/**
+	 * A preference of type height
+	 */
+	public static final int HEIGHT = QUALIFIEDNAME+1;
+
+	/**
+	 * A preference of type width
+	 */
+	public static final int WIDTH = HEIGHT+1;
+
+
 
 	/**
 	 * Get the preference constant used to store the preference of an element.
@@ -153,7 +206,7 @@ public class PreferenceConstantHelper {
 	 *        the type of preference to store. It must be a value defined in {@link PreferenceConstantHelper}
 	 * @return the constant used.
 	 */
-	public static String getElementConstant(String elementName, int preferenceType) {
+	public static String getConstant(String elementName, int preferenceType) {
 		StringBuffer sb = new StringBuffer();
 		sb.append(elementName);
 		sb.append("."); //$NON-NLS-1$
@@ -198,12 +251,53 @@ public class PreferenceConstantHelper {
 		case SMOOTHNESS:
 			sb.append(SMOOTHNESS_CONSTANT);
 			break;
-
+		case SHADOW:
+			sb.append(SHADOW_CONSTANT);
+			break;
+		case ELEMENTICON:
+			sb.append(ELEMENTICON_CONSTANT);
+			break;
+		case QUALIFIEDNAME:
+			sb.append(QUALIFIEDNAME_CONSTANT);
+			break;
+		case HEIGHT:
+			sb.append(HEIGHT_CONSTANT);
+			break;
+		case WIDTH:
+			sb.append(WIDTH_CONSTANT);
+			break;
 		default:
 			break;
 		}
 
 		return sb.toString();
+	}
+	
+	/**
+	 *  
+	 * @param elementName diagramKind+'_'+element
+	 * @param preferenceType  the type of preference to store. It must be a value defined in {@link PreferenceConstantHelper}
+	 * @return the key for the element of a diagram
+	 */
+	public static String getElementConstant(String elementName, int preferenceType) {
+		return DIAGRAM_ELEMENT+getConstant(elementName, preferenceType);
+	}
+	/**
+	 * 
+	 * @param preferenceType  the type of preference to store. It must be a value defined in {@link PreferenceConstantHelper}
+	 * @return get the preference key at the papyrus editor level
+	 */
+	public static String getPapyrusEditorConstant( int preferenceType) {
+		return getConstant(PAPYRUS_EDITOR_PREFERENCE_PREFIX, preferenceType);
+	}
+	/**
+	 * 
+	 * @param diagramKind the kind of diagram.
+	 * @param preferenceType  the type of preference to store. It must be a value defined in {@link PreferenceConstantHelper}
+	 * @return the preference key at the diagram level
+	 */
+	public static String getDiagramConstant(String diagramKind, int preferenceType) {
+		return DIAGRAM_PREFERENCE_PREFIX+getConstant(diagramKind, preferenceType);
 	}
 
 }

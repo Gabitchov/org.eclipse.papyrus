@@ -13,6 +13,7 @@
 package org.eclipse.papyrus.preferences.pages;
 
 import org.eclipse.papyrus.preferences.ui.BackgroundColor;
+import org.eclipse.papyrus.preferences.ui.DecorationGroup;
 import org.eclipse.papyrus.preferences.ui.NodeColorGroup;
 import org.eclipse.swt.widgets.Composite;
 
@@ -29,10 +30,13 @@ public abstract class AbstractPapyrusNodePreferencePage extends AbstractPapyrusE
 	@Override
 	protected void createPageContents(Composite parent) {
 		super.createPageContents(parent);
-		NodeColorGroup colorGroupForNodeComposite = new NodeColorGroup(parent, getTitle(), this);
+		NodeColorGroup colorGroupForNodeComposite = new NodeColorGroup(parent, getPreferenceKey(), this);
 		addAbstractGroup(colorGroupForNodeComposite);
-		BackgroundColor backgroundColorGroup = new BackgroundColor(parent, getTitle(), this);
+		BackgroundColor backgroundColorGroup = new BackgroundColor(parent, getPreferenceKey(), this);
 		addAbstractGroup(backgroundColorGroup);
+		DecorationGroup decorationGroup= new DecorationGroup(parent, getPreferenceKey(), this);
+		addAbstractGroup(decorationGroup);
 	}
+	
 
 }

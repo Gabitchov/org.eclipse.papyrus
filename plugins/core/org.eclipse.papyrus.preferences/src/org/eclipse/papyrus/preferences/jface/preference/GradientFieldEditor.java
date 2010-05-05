@@ -8,6 +8,7 @@
  *
  * Contributors:
  *		Thibault Landre (Atos Origin) - Initial API and implementation
+ *		Patrick Tessier (CEA LIST) modification
  *
  *****************************************************************************/
 package org.eclipse.papyrus.preferences.jface.preference;
@@ -67,7 +68,11 @@ public class GradientFieldEditor extends FieldEditor {
 	private int transparency = 0;
 
 	private int style = GradientStyle.HORIZONTAL;
-
+/**
+ * create a field to display gradient preference
+ * @param gradientPreferenceName the name of the gradient field
+ * @param parent  the parent composite
+ */
 	public GradientFieldEditor(String gradientPreferenceName, Composite parent) {
 		super(gradientPreferenceName, "", parent); //$NON-NLS-1$
 	}
@@ -94,7 +99,6 @@ public class GradientFieldEditor extends FieldEditor {
 
 		Composite gradientComposite = new Composite(parent, SWT.NULL);
 		gradientComposite.setLayout(new GridLayout(2, false));
-
 		Label colorLabel = new Label(gradientComposite, SWT.NULL);
 		colorLabel.setText(Messages.GradientFieldEditor_Color);
 
@@ -259,6 +263,17 @@ public class GradientFieldEditor extends FieldEditor {
 		RGB rgb = popup.getSelectedColor();
 		setButtonImage(rgb);
 		return rgb;
+	}
+	
+	/**
+	 * used to set disable this field editor
+	 * @param enabled a boolean, ture to edit the field
+	 */
+	public void setEnabled(boolean  enabled){
+		colorButton.setEnabled(enabled);
+		horizontalStyleButton.setEnabled(enabled);
+		transparencyValueSpinner.setEnabled(enabled);
+		verticalStyleButton.setEnabled(enabled);
 	}
 
 }

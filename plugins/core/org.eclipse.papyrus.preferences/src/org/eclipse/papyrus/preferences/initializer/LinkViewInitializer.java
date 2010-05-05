@@ -82,7 +82,7 @@ public class LinkViewInitializer extends AbstractViewInitializer {
 	 * Initialize the {@link org.eclipse.gmf.runtime.notation.RoutingStyle#isAvoidObstructions
 	 * <em>Avoid Obstructions</em>}
 	 * 
-	 * @param preferenceFontName
+	 * @param preferenceRoutingJumpName
 	 *        the name of the preference where is stored the value.
 	 */
 	// @unused

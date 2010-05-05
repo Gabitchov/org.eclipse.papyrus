@@ -39,11 +39,11 @@ public abstract class AbstractPapyrusLinkPreferencePage extends AbstractPapyrusE
 	protected void createPageContents(Composite parent) {
 		super.createPageContents(parent);
 		// color pref for links
-		LinkColorGroup colorGroupComposite = new LinkColorGroup(parent, getTitle(), this);
+		LinkColorGroup colorGroupComposite = new LinkColorGroup(parent, getPreferenceKey(), this);
 		addAbstractGroup(colorGroupComposite);
 
 		// router for links
-		ConnectionGroup connectionGroupComposite = new ConnectionGroup(parent, getTitle(), this);
+		ConnectionGroup connectionGroupComposite = new ConnectionGroup(parent, getPreferenceKey(), this);
 		addAbstractGroup(connectionGroupComposite);
 
 	}

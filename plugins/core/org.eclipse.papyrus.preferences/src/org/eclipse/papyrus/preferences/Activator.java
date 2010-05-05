@@ -12,6 +12,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.preferences;
 
+import org.eclipse.core.runtime.preferences.InstanceScope;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.resource.ImageRegistry;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -32,6 +37,10 @@ public class Activator extends AbstractUIPlugin {
 	public Activator() {
 	}
 
+	 /**
+     * Storage for preferences.
+     */
+    protected IPreferenceStore papyrusPreferenceStore;
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -42,6 +51,14 @@ public class Activator extends AbstractUIPlugin {
 		plugin = this;
 	}
 
+	 public IPreferenceStore getPreferenceStore() {
+	        // Create the preference store lazily.
+	        if (papyrusPreferenceStore == null) {
+	        	papyrusPreferenceStore = new PapyrusPreferenceStore(new InstanceScope(),getBundle().getSymbolicName());
+
+	        }
+	        return papyrusPreferenceStore;
+	    }
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -61,4 +78,21 @@ public class Activator extends AbstractUIPlugin {
 		return plugin;
 	}
 
+	public static Image getPluginIconImage(String pluginId, String iconPath) {
+		String key = pluginId + iconPath;
+		ImageRegistry registry = getDefault().getImageRegistry();
+		Image image = registry.get(key);
+
+		if(image == null) {
+
+			ImageDescriptor desc = AbstractUIPlugin.imageDescriptorFromPlugin(pluginId, iconPath);
+
+			registry.put(key, desc);
+			image = registry.get(key);
+
+		}
+		
+
+		return image;
+	}
 }

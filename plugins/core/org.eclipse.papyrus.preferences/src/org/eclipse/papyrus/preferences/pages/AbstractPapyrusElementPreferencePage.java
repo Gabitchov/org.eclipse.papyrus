@@ -55,7 +55,7 @@ public abstract class AbstractPapyrusElementPreferencePage extends AbstractPapyr
 
 	@Override
 	protected void createPageContents(Composite parent) {
-		FontGroup fontGroupComposite = new FontGroup(parent, getTitle(), this);
+		FontGroup fontGroupComposite = new FontGroup(parent, getPreferenceKey(), this);
 		addAbstractGroup(fontGroupComposite);
 
 	}

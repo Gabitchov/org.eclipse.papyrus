@@ -18,6 +18,7 @@ import org.eclipse.papyrus.preferences.Messages;
 import org.eclipse.papyrus.preferences.jface.preference.FontFieldEditor;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
@@ -38,13 +39,13 @@ public class FontGroup extends AbstractGroup {
 	 * 
 	 * @param parent
 	 *        the parent of the composite
-	 * @param String
-	 *        the title of the page
+	 * @param key
+	 *        the key of the preference
 	 * @param dialogPage
 	 *        to set the page in field editor
 	 **/
-	public FontGroup(Composite parent, String title, DialogPage dialogPage) {
-		super(parent, title, dialogPage);
+	public FontGroup(Composite parent, String key, DialogPage dialogPage) {
+		super(parent, key, dialogPage);
 		createContent(parent);
 	}
 
@@ -58,8 +59,7 @@ public class FontGroup extends AbstractGroup {
 		Group fontGroup = new Group(parent, SWT.SHADOW_NONE);
 		fontGroup.setLayout(new GridLayout(1, true));
 		fontGroup.setText(FONT_GROUPBOX_LABEL);
-		fontFieldEditor = new FontFieldEditor(PreferenceConstantHelper.getElementConstant(getTitle(),
-				PreferenceConstantHelper.FONT), fontGroup);
+		fontFieldEditor = new FontFieldEditor(getPreferenceConstant(PreferenceConstantHelper.FONT), fontGroup);
 
 		addFieldEditor(fontFieldEditor);
 	}

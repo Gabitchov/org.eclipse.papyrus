@@ -29,8 +29,8 @@ import org.eclipse.swt.widgets.Composite;
  */
 public abstract class AbstractGroup extends Composite {
 
-	/** The title that comes from the page */
-	private String title;
+	/** The key to find preference */
+	private String key;
 
 	/**
 	 * The fieldsEditor : a set that will contain all editor in the composite. It is in charge of
@@ -56,8 +56,8 @@ public abstract class AbstractGroup extends Composite {
 	 * 
 	 * @return the title
 	 */
-	public String getTitle() {
-		return title;
+	public String getKey() {
+		return key;
 	}
 
 	/**
@@ -66,8 +66,8 @@ public abstract class AbstractGroup extends Composite {
 	 * @param title
 	 *        the title to set
 	 */
-	protected void setTitle(String title) {
-		this.title = title;
+	protected void setKey(String title) {
+		this.key = title;
 	}
 
 	/**
@@ -80,9 +80,9 @@ public abstract class AbstractGroup extends Composite {
 	 * @param dialogPage
 	 *        to set the page in field editor
 	 */
-	public AbstractGroup(Composite parent, String title, DialogPage dialogPage) {
+	public AbstractGroup(Composite parent, String key, DialogPage dialogPage) {
 		super(parent, SWT.None);
-		this.title = title;
+		this.key = key;
 		this.dialogPage = dialogPage;
 		this.setLayout(new GridLayout());
 		fieldsEditor = new HashSet<FieldEditor>();
@@ -97,7 +97,7 @@ public abstract class AbstractGroup extends Composite {
 	 * @return the preference constant used to store the given preference type.
 	 */
 	protected String getPreferenceConstant(int preferenceType) {
-		return PreferenceConstantHelper.getElementConstant(title, preferenceType);
+		return PreferenceConstantHelper.getElementConstant(key, preferenceType);
 	}
 
 	/**
@@ -131,7 +131,7 @@ public abstract class AbstractGroup extends Composite {
 	 * 
 	 * @see org.eclipse.papyrus.preferences.ui.AbstractGroup#addFieldEditor(FieldEditor)
 	 */
-	public final void load() {
+	public  void load() {
 		for(FieldEditor fe : fieldsEditor) {
 			fe.load();
 		}

@@ -184,26 +184,42 @@
 <extension point="org.eclipse.ui.preferencePages">
 
 «REM»Generate Nodes Preference Pages«ENDREM»
-«FOREACH getAllNodes().elementType.displayName->asSet() AS string -»
-	«IF "UNDEFINED" <> string.toUpper()»
-		«EXPAND preferencePageExtension(self) FOR string-»
-	«ENDIF»
+«FOREACH getAllNodes().elementType.displayName->asSet() AS node  -»
+		«EXPAND preferencePageNodeExtension(self) FOR node-»
 «ENDFOREACH»
 «REM»Generate Links Preference Pages«ENDREM»
-«FOREACH links.elementType.displayName->asSet() AS string -»
-	«IF "UNDEFINED" <> string.toUpper()»
-		«EXPAND preferencePageExtension(self) FOR string-»
-	«ENDIF»
+«FOREACH links.elementType.displayName->asSet()  AS link -»
+		«EXPAND preferencePageLinkExtension(self) FOR link-»
 «ENDFOREACH»
 </extension>
 «ENDDEFINE»
 
-«DEFINE preferencePageExtension(gmfgen::GenDiagram diagram) FOR String-»
+«DEFINE preferencePageNodeExtension(gmfgen::GenDiagram diagram) FOR String-»
+«IF "UNDEFINED" <> self.toUpper()»
 	«EXPAND xpt::Common::xmlGeneratedTag»
 	<page  	category="«EXPAND category FOR diagram»"
 			class="«diagram.preferencesPackageName».«self»«getPreferencePageSuffix()»"
             id="«diagram.preferencesPackageName».«self»«getPreferencePageSuffix()»"
-            name="«self»" />	
+            name="«self» Node" />
+«ENDIF»	
+«ENDDEFINE»
+«DEFINE preferencePageLinkExtension(gmfgen::GenDiagram diagram) FOR String-»
+«IF "UNDEFINED" <>  self.toUpper()»
+	«EXPAND xpt::Common::xmlGeneratedTag»
+	<page  	category="«EXPAND category FOR diagram»"
+			class="«diagram.preferencesPackageName».«self»«getPreferencePageSuffix()»"
+            id="«diagram.preferencesPackageName».«self»«getPreferencePageSuffix()»"
+            name="«self» Link" />
+«ENDIF»		
+«ENDDEFINE»
+«DEFINE preferencePageExtension(gmfgen::GenDiagram diagram) FOR gmfgen::GenLink-»
+«IF "UNDEFINED" <> self.elementType.displayName.toUpper()»
+	«EXPAND xpt::Common::xmlGeneratedTag»
+	<page  	category="«EXPAND category FOR diagram»"
+			class="«diagram.preferencesPackageName».«self»«getPreferencePageSuffix()»"
+            id="«diagram.preferencesPackageName».«self»«getPreferencePageSuffix()»"
+            name="«self.elementType.displayName» Link" />
+«ENDIF»		
 «ENDDEFINE»
 
 «REM»RS: redefine palette generation, using predefined entries«ENDREM»

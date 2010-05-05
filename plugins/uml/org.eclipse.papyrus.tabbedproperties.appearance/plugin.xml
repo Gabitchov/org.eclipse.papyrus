@@ -19,7 +19,7 @@
          </propertySection>
          <propertySection
                class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ShapeColorsAndFontsPropertySection"
-               filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ShapeEditPartPropertySectionFilter"
+               filter="org.eclipse.papyrus.tabbedproperties.appearance.IPrimaryEditPartFilter"
                id="org.eclipse.papyrus.tabbedproperties.appearance.ShapeColorAndFontPropertySection"
                tab="org.eclipse.papyrus.tabbedproperties.appearance.appearancetab">
          </propertySection>

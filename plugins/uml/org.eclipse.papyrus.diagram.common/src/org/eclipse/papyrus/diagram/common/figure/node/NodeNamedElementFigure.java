@@ -323,6 +323,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * 
 	 * @param qualifiedName
 	 *        the qualified name
+	 *        can return null
 	 */
 	public String getQualifiedName(String qualifiedName, int depth) {
 		int n = -1;
@@ -518,11 +519,10 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 */
 	public void setQualifiedName(String qualifiedName) {
 		String tmpQualifiedName = getQualifiedName(qualifiedName, depth);
-
 		// two raisons to remove label!
 		// null
 		// or the qualified name is equal to 1
-		if(qualifiedName == null || !tmpQualifiedName.contains("::")) { // Remove
+		if(qualifiedName == null ||tmpQualifiedName==null|| !tmpQualifiedName.contains("::")) { // Remove
 			// label
 			// if
 			// any
