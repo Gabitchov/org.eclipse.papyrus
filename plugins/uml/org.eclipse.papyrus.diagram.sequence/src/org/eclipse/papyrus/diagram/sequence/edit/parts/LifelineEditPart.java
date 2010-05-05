@@ -2004,16 +2004,8 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 		if(connEditPart instanceof Message4EditPart) {
 			// Create message
 			return new LifelineAnchor(getPrimaryShape().getFigureLifelineNameContainerFigure());
-		} else if(connEditPart instanceof Message5EditPart) {
-			// Delete message
-			AbstractConnectionAnchor anchor = (AbstractConnectionAnchor)super.getTargetConnectionAnchor(connEditPart);
-			//TODO Get the DestructionEventFigure
-			//anchor.setOwner();
-			return anchor;
-		} else {
-			return super.getTargetConnectionAnchor(connEditPart);
 		}
-
+		return super.getTargetConnectionAnchor(connEditPart);
 	}
 
 	/**
@@ -2028,12 +2020,6 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 				if(UMLElementTypes.Message_4006.equals(obj)) {
 					// Create Message
 					return new LifelineAnchor(getPrimaryShape().getFigureLifelineNameContainerFigure());
-				} else if(UMLElementTypes.Message_4007.equals(obj)) {
-					// Delete Message
-					AbstractConnectionAnchor anchor = (AbstractConnectionAnchor)super.getTargetConnectionAnchor(request);
-					//TODO Get the DestructionEventFigure
-					//anchor.setOwner();
-					return anchor;
 				}
 			}
 		} else if(request instanceof ReconnectRequest) {
@@ -2042,12 +2028,6 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 			if(connectionEditPart instanceof Message4EditPart) {
 				// Create
 				return new LifelineAnchor(getPrimaryShape().getFigureLifelineNameContainerFigure());
-			} else if(connectionEditPart instanceof Message5EditPart) {
-				// Delete
-				AbstractConnectionAnchor anchor = (AbstractConnectionAnchor)super.getTargetConnectionAnchor(request);
-				//TODO Get the DestructionEventFigure
-				//anchor.setOwner();
-				return anchor;
 			}
 		}
 

@@ -16,11 +16,13 @@ package org.eclipse.papyrus.diagram.sequence.edit.parts;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -29,9 +31,11 @@ import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.editpolicies.ResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -41,6 +45,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.common.draw2d.anchors.CenterAnchor;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.DestructionEventCompleteItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.DestructionEventComponentEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.DestructionEventItemSemanticEditPolicy;
@@ -1437,4 +1442,44 @@ AbstractBorderItemEditPart {
 		}
 		super.eraseSourceFeedback(request);
 	}
+
+	/**
+	 * Create specific anchor to handle connection on center of the DestructionEvent figure
+	 */
+	@Override
+	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
+		if(request instanceof CreateUnspecifiedTypeConnectionRequest) {
+			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest)request;
+			List<?> relationshipTypes = createRequest.getElementTypes();
+			for(Object obj : relationshipTypes) {
+				if(UMLElementTypes.Message_4007.equals(obj)) {
+					// Delete Message
+					return new CenterAnchor(getPrimaryShape());
+				}
+			}
+		} else if(request instanceof ReconnectRequest) {
+			ReconnectRequest reconnectRequest = (ReconnectRequest)request;
+			ConnectionEditPart connectionEditPart = reconnectRequest.getConnectionEditPart();
+			if(connectionEditPart instanceof Message5EditPart) {
+				// Delete Message
+				return new CenterAnchor(getPrimaryShape());
+			}
+		}
+
+		return super.getTargetConnectionAnchor(request);
+	}
+
+	/**
+	 * Create specific anchor to handle connection on center of the DestructionEvent figure
+	 */
+	@Override
+	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connEditPart) {
+		if(connEditPart instanceof Message5EditPart) {
+			return new CenterAnchor(getPrimaryShape());
+		}
+		return super.getTargetConnectionAnchor(connEditPart);
+
+
+	}
+
 }
