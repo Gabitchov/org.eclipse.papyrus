@@ -60,6 +60,7 @@
          <choice>
             <element ref="advancededitor"/>
             <element ref="simpleeditor"/>
+            <element ref="popupeditor"/>
          </choice>
          <attribute name="language" type="string" use="required">
             <annotation>
@@ -119,6 +120,26 @@
                </documentation>
                <appInfo>
                   <meta.attribute kind="java" basedOn="org.eclipse.jface.dialogs.Dialog:"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="popupeditor">
+      <annotation>
+         <documentation>
+            This extension point can be used to register a popup editor
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="editorConfiguration" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorConfiguration"/>
                </appInfo>
             </annotation>
          </attribute>

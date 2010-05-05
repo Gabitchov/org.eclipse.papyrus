@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -22,6 +22,7 @@ import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.DefaultDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.swt.graphics.Image;
 
@@ -166,7 +167,12 @@ public class DirectEditorExtensionPoint {
 		if(directEditorConfiguration == null) {
 			directEditorConfiguration = getAdvancedDirectEditorConfigurationClass(configElt);
 		}
+		// Block added for the case of popup editors		
+		if(directEditorConfiguration == null) {
+			directEditorConfiguration = getPopupDirectEditorConfigurationClass(configElt) ;
+		}
 		directEditorConfiguration.setLanguage(language);
+
 
 		// retrieve the bundle loader of the plugin that declares the extension
 		try {
@@ -215,6 +221,28 @@ public class DirectEditorExtensionPoint {
 		return configuration;
 	}
 
+///////////////////////////////// TODO:(done) Method added for the case of popup editors
+	protected static IPopupEditorConfiguration getPopupDirectEditorConfigurationClass(IConfigurationElement configElement) {
+		IPopupEditorConfiguration configuration = null;
+		try {
+			for(IConfigurationElement childConfigElement : configElement.getChildren(IDirectEditorConfigurationIds.TAG_POPUP_EDITOR)) {
+				for(String attname : childConfigElement.getAttributeNames()) {
+					System.err.println(attname);
+				}
+
+				Object config = childConfigElement.createExecutableExtension(IDirectEditorConfigurationIds.ATT_EDITOR_CONFIGURATION);
+				if(config instanceof IPopupEditorConfiguration) {
+					configuration = (IPopupEditorConfiguration)config;
+				}
+			}
+
+		} catch (CoreException e) {
+			Activator.log(e);
+			configuration = null;
+		}
+		return configuration;
+	}
+/////////////////////////////////////
 
 	/**
 	 * Returns the value of the attribute that has the given name, for the given configuration

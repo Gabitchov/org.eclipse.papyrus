@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -8,8 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Remi Schnekenburger (CEA LIST) Remi.Schnekenburger@cea.fr - Initial API and implementation
- *
+ *  CEA LIST - initial API and implementation
  *****************************************************************************/
 
 package org.eclipse.papyrus.extensionpoints.editors.definition;
@@ -39,4 +38,7 @@ public interface IDirectEditorConfigurationIds {
 
 	/** id of the direct editor advanced configuration tag */
 	public static final String TAG_ADVANCED_EDITOR = "advancededitor";
+	
+	/** id of the direct editor popup configuration tag */
+	public static final String TAG_POPUP_EDITOR = "popupeditor";
 }
