@@ -195,7 +195,7 @@ public class PapyrusPreferenceStore extends PapyrusScopedPreferenceStore {
 	 */
 	protected String internalGet(String key) {
 		String newKey= findKeyWithAValue(key);
-		System.err.println("-->Initial Key "+key+"--> "+ newKey);
+		//System.err.println("-->Initial Key "+key+"--> "+ newKey);
 		return Platform.getPreferencesService().get(newKey, null,
 				getPreferenceNodes(true));
 	}
