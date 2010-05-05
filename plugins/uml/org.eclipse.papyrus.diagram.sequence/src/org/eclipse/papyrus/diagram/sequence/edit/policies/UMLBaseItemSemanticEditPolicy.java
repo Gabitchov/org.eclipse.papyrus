@@ -618,7 +618,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 				}
 				if(Message_4007_TargetExpression == null) {
 					Map env = Collections.singletonMap(OPPOSITE_END_VAR, UMLPackage.eINSTANCE.getElement());
-					Message_4007_TargetExpression = UMLOCLFactory.getExpression("self.oclIsKindOf(uml::Lifeline)", UMLPackage.eINSTANCE.getElement(), env); //$NON-NLS-1$
+					Message_4007_TargetExpression = UMLOCLFactory.getExpression("self.oclIsKindOf(uml::DestructionEvent)", UMLPackage.eINSTANCE.getElement(), env); //$NON-NLS-1$
 				}
 				Object targetVal = Message_4007_TargetExpression.evaluate(target, Collections.singletonMap(OPPOSITE_END_VAR, source));
 				if(false == targetVal instanceof Boolean || !((Boolean)targetVal).booleanValue()) {

@@ -805,7 +805,7 @@
       <sourceEnd
           body="self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)"/>
       <targetEnd
-          body="self.oclIsKindOf(uml::Lifeline)"/>
+          body="self.oclIsKindOf(uml::DestructionEvent)"/>
     </creationConstraints>
   </links>
   <links

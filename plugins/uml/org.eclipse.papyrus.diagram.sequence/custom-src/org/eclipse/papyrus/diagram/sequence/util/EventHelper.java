@@ -18,7 +18,6 @@ import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.uml2.uml.CallEvent;
 import org.eclipse.uml2.uml.CreationEvent;
 import org.eclipse.uml2.uml.DestructionEvent;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Event;
 import org.eclipse.uml2.uml.ExecutionEvent;
 import org.eclipse.uml2.uml.Interaction;
@@ -176,7 +175,7 @@ public class EventHelper {
 	 * @return the created receive event or null
 	 */
 	public static Event doCreateReceiveEvent(MessageSort messageSort, Interaction interaction, NamedElement signature) {
-		Package eventContainer = getEventContainer(interaction);
+		Package eventContainer = interaction.getNearestPackage();
 		Event event = null;
 
 		switch(messageSort) {
@@ -215,7 +214,7 @@ public class EventHelper {
 	 * @return the created send event or null
 	 */
 	public static Event doCreateSendEvent(MessageSort messageSort, Interaction interaction, NamedElement signature) {
-		Package eventContainer = getEventContainer(interaction);
+		Package eventContainer = interaction.getNearestPackage();
 		Event event = null;
 		switch(messageSort) {
 		case ASYNCH_SIGNAL_LITERAL:
@@ -235,20 +234,4 @@ public class EventHelper {
 		return event;
 	}
 
-	/**
-	 * Retrieve the event container. A recursive method that test if a given element is a Package.
-	 * 
-	 * @param element
-	 *        the element
-	 * @return the first package found in the hierarchy or null if nothing has been found
-	 */
-	public static Package getEventContainer(Element element) {
-		Package container = null;
-		if(element instanceof Package) {
-			container = (Package)element;
-		} else if(element != null) {
-			container = getEventContainer(element.getOwner());
-		}
-		return container;
-	}
 }

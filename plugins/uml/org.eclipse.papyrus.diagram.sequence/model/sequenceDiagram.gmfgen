@@ -473,6 +473,7 @@
           visualID="3017"
           editPartClassName="StateInvariantEditPart"
           itemSemanticEditPolicyClassName="StateInvariantItemSemanticEditPolicy"
+          notationViewFactoryClassName="StateInvariantViewFactory"
           canonicalEditPolicyClassName="StateInvariantCanonicalEditPolicy"
           graphicalNodeEditPolicyClassName="StateInvariantGraphicalNodeEditPolicy"
           createCommandClassName="StateInvariantCreateCommand"
@@ -507,6 +508,7 @@
             visualID="5008"
             editPartClassName="StateInvariantNameEditPart"
             itemSemanticEditPolicyClassName="StateInvariantNameItemSemanticEditPolicy"
+            notationViewFactoryClassName="StateInvariantNameViewFactory"
             elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -5902,7 +5904,7 @@
             body="self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="self.oclIsKindOf(uml::Lifeline)"/>
+            body="self.oclIsKindOf(uml::DestructionEvent)"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="self.receiveEvent=null"/>
@@ -5938,7 +5940,7 @@
           qualifiedName=" org.eclipse.papyrus.diagram.sequence.parser.custom.InteractionUseCustomParsers"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet"
+          uses="/0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet"
           qualifiedName=" org.eclipse.papyrus.diagram.sequence.parser.custom.MessageCustomParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -5950,7 +5952,7 @@
           qualifiedName="org.eclipse.papyrus.diagram.sequence.parser.custom.DurationObservationParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.16/@labelModelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet"
+          uses="/0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@childNodes.16/@labelModelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.sequence.parser.custom.TimeConstraintParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"

@@ -13,10 +13,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.commands;
 
+import java.util.Collection;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -24,14 +28,21 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.papyrus.diagram.common.commands.EObjectInheritanceCopyCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
+import org.eclipse.uml2.uml.DestructionEvent;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
+import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.MessageSort;
+import org.eclipse.uml2.uml.OccurrenceSpecification;
+import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * @generated
@@ -107,8 +118,21 @@ public class Message5CreateCommand extends EditElementCommand {
 
 		InteractionFragment sourceContainer = (InteractionFragment)getRequest().getParameters().get(SequenceRequestConstant.SOURCE_MODEL_CONTAINER);
 		InteractionFragment targetContainer = (InteractionFragment)getRequest().getParameters().get(SequenceRequestConstant.TARGET_MODEL_CONTAINER);
+		Lifeline lifeline = null;
 
-		Message message = CommandHelper.doCreateMessage(container, MessageSort.DELETE_MESSAGE_LITERAL, getSource(), getTarget(), sourceContainer, targetContainer);
+		// the Receive Message End
+		MessageOccurrenceSpecification receiveMessageEnd = null;
+
+		if(getTarget() instanceof DestructionEvent) {
+			receiveMessageEnd = getReceiveMessageEnd();
+			lifeline = receiveMessageEnd.getCovereds().get(0);
+		} else {
+			lifeline = (Lifeline)getTarget();
+		}
+
+		// Create the message
+		Message message = CommandHelper.doCreateMessage(container, MessageSort.DELETE_MESSAGE_LITERAL, getSource(), lifeline, sourceContainer, targetContainer, null, receiveMessageEnd);
+
 		if(message != null) {
 			doConfigure(message, monitor, info);
 			((CreateElementRequest)getRequest()).setNewElement(message);
@@ -116,6 +140,42 @@ public class Message5CreateCommand extends EditElementCommand {
 		}
 
 		return CommandResult.newErrorCommandResult("There is now valid container for events"); //$NON-NLS-1$
+	}
+
+	/**
+	 * Get a messageOccurrenceSpecification associated with the existing DestructionEvent :
+	 * -> Retrieve the associated occurrenceSpecification
+	 * -> Transform it into a mos
+	 * 
+	 * @return the mos
+	 * @throws ExecutionException
+	 */
+	private MessageOccurrenceSpecification getReceiveMessageEnd() throws ExecutionException {
+		MessageOccurrenceSpecification mosResult = null;
+		OccurrenceSpecification os = null;
+
+		// Get the occurrence specification associated with the destructionEvent
+		Collection<Setting> settings = UMLUtil.getInverseReferences(getTarget());
+		for(Setting setting : settings) {
+			if(setting.getEObject() instanceof OccurrenceSpecification) {
+				os = (OccurrenceSpecification)setting.getEObject();
+			}
+		}
+
+		if(os != null) {
+			// Transform the occurrenceSpecification into a mos (conserving its properties).
+			EObjectInheritanceCopyCommand cmd = new EObjectInheritanceCopyCommand(os, UMLPackage.eINSTANCE.getMessageOccurrenceSpecification(), getEditingDomain());
+			if(cmd.canExecute()) {
+				IStatus status = cmd.execute(null, null);
+				if(status.isOK()) {
+					// Destroy the old os
+					os.destroy();
+					// Get the result MessageOccurrenceSpecification
+					mosResult = (MessageOccurrenceSpecification)cmd.getResultEobject();
+				}
+			}
+		}
+		return mosResult;
 	}
 
 	/**

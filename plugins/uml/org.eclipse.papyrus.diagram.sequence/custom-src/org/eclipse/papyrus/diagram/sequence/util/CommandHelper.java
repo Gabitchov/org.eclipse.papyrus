@@ -612,7 +612,7 @@ public class CommandHelper {
 		// Get the covered lifeline
 		es.getCovereds().add(lifeline);
 
-		org.eclipse.uml2.uml.Package eventContainer = EventHelper.getEventContainer(interactionFragment);
+		org.eclipse.uml2.uml.Package eventContainer = interactionFragment.getNearestPackage();
 
 		ExecutionEvent startingExecutionEvent = EventHelper.doCreateExecutionEvent(eventContainer);
 		ExecutionEvent finishingExecutionEvent = EventHelper.doCreateExecutionEvent(eventContainer);
@@ -741,6 +741,25 @@ public class CommandHelper {
 	 * @return the created message
 	 */
 	public static Message doCreateMessage(Interaction container, MessageSort messageSort, Element source, Element target, InteractionFragment sourceContainer, InteractionFragment targetContainer) {
+		return doCreateMessage(container, messageSort, source, target, sourceContainer, targetContainer, null, null);
+	}
+		
+	/**
+	 * Create a message. It also creates its message end (if not provided), their corresponding events and updates the signature of the message.
+	 * 
+	 * @param container
+	 *        the interaction containing the message.
+	 * @param messageSort
+	 *        the messageSort of the message, it can be null
+	 * @param source
+	 *        the source of the message, it can be null
+	 * @param target
+	 *        the target of the message, it can be null
+	 * @param sendMessageEnd the existing Send MessageEnd of the message
+	 * @param receiveMessageEnd the existing Receive MessageEnd of the message
+	 * @return the created message
+	 */
+	public static Message doCreateMessage(Interaction container, MessageSort messageSort, Element source, Element target, InteractionFragment sourceContainer, InteractionFragment targetContainer, MessageEnd sendMessageEnd, MessageEnd receiveMessageEnd) {
 
 		List<NamedElement> signatures = getSignature(container.getModel(), source, target, messageSort);
 
@@ -760,14 +779,11 @@ public class CommandHelper {
 		// Create the message
 		Message message = doCreateMessage(container, messageSort);
 
-		MessageEnd sendMessageEnd = null;
-		MessageEnd receiveMessageEnd = null;
-
 		// Create the two message ends
-		if(source != null) {
+		if(sendMessageEnd == null && source != null) {
 			sendMessageEnd = createMessageEnd(sourceContainer, EventHelper.doCreateSendEvent(messageSort, container, signature), source, MessageDirection.OUT);
 		}
-		if(target != null) {
+		if(receiveMessageEnd == null && target != null) {
 			receiveMessageEnd = createMessageEnd(targetContainer, EventHelper.doCreateReceiveEvent(messageSort, container, signature), target, MessageDirection.IN);
 		}
 

@@ -27,17 +27,12 @@ public class LifelineDotLineFigure extends Shape {
 
 	// Attributes
 
-	/** The cross at end. */
-	private boolean crossAtEnd = false;
-
 	/** The SOLI d_ size. */
 	private final int SOLID_SIZE = 6;
 
 	/** The DASHE d_ size. */
 	private final int DASHED_SIZE = 10;
 
-	/** The central point of the cross at end */
-	private RectangleFigure crossAtEndRectangle;
 
 	/** The DashLine figure where elements will be attached */
 	private NodeFigure dashLineRectangle;
@@ -54,21 +49,8 @@ public class LifelineDotLineFigure extends Shape {
 		dashLineRectangle = new NodeFigure();
 		dashLineRectangle.setParent(this);
 
-		// Init crossAtEnd rectangle figure
-		crossAtEndRectangle = new RectangleFigure();
-		crossAtEndRectangle.setParent(this);
-		crossAtEndRectangle.setSize(1, 1);
 	}
 
-	/**
-	 * Sets the cross at end.
-	 * 
-	 * @param setCross
-	 *        the new cross at end
-	 */
-	public void setCrossAtEnd(boolean setCross) {
-		crossAtEnd = setCross;
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -119,18 +101,11 @@ public class LifelineDotLineFigure extends Shape {
 
 		int pixels = 10;
 
-		// Update the position of the crossAtEndRectangle
-		crossAtEndRectangle.setLocation(new Point(pEnd.x, pEnd.y - pixels));
 
 		// Update the size and the location of the rectangle representing the dash line
 		dashLineRectangle.setSize(1, pEnd.y - pStart.y);
 		dashLineRectangle.setLocation(pStart);
 
-
-		// Create a cross at the end of the Figure
-		if(crossAtEnd) {
-			drawCrossAtEnd(graphics, pEnd, pixels);
-		}
 	}
 
 	/**
@@ -167,14 +142,6 @@ public class LifelineDotLineFigure extends Shape {
 
 		graphics.drawLine(p1Start, p1End);
 		graphics.drawLine(p2Start, p2End);
-	}
-
-
-	/**
-	 * Get a rectangleFigure representing the central point of the cross
-	 */
-	public RectangleFigure getCrossAtEndRectangle() {
-		return crossAtEndRectangle;
 	}
 
 	/**
