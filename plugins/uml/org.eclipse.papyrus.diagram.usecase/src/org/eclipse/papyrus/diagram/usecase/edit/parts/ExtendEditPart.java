@@ -23,8 +23,9 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.figure.edge.UMLEdgeFigure;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.ExtendItemSemanticEditPolicy;
 
 /**
@@ -50,12 +51,17 @@ public class ExtendEditPart extends ConnectionNodeEditPart implements ITreeBranc
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ExtendItemSemanticEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
+		if(childEditPart instanceof ExtendAppliedStereotypeEditPart) {
+			((ExtendAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
+			return true;
+		}
 		return false;
 	}
 
@@ -73,6 +79,9 @@ public class ExtendEditPart extends ConnectionNodeEditPart implements ITreeBranc
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
+		if(childEditPart instanceof ExtendAppliedStereotypeEditPart) {
+			return true;
+		}
 		return false;
 	}
 
@@ -107,9 +116,9 @@ public class ExtendEditPart extends ConnectionNodeEditPart implements ITreeBranc
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT extends UMLEdgeFifure
 	 */
-	public class UseCases_WithArrow_Polyline extends PolylineConnectionEx {
+	public class UseCases_WithArrow_Polyline extends UMLEdgeFigure {
 
 		/**
 		 * @generated

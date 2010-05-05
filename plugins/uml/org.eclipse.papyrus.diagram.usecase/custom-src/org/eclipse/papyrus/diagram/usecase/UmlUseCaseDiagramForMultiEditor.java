@@ -58,7 +58,6 @@ public class UmlUseCaseDiagramForMultiEditor extends UMLDiagramEditor {
 	 * @throws BackboneException
 	 * @throws ServiceException
 	 * 
-	 * @generated NOT
 	 */
 	public UmlUseCaseDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws BackboneException, ServiceException {
 		super(servicesRegistry, diagram);

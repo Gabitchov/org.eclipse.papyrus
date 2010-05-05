@@ -35,6 +35,9 @@
           xsi:type="gmfgraph:Label"
           name="ExtendsLink_fixed"
           text="\u00ABextend\u00BB"/>
+      <accessors
+          accessor="getExtendsAppliedStereotypeLabel"
+          figure="//@figures.0/@descriptors.1/@actualFigure"/>
     </descriptors>
     <descriptors
         name="IncludeLink_fixed">
@@ -42,6 +45,9 @@
           xsi:type="gmfgraph:Label"
           name="IncludeLink_fixed"
           text="\u00ABinclude\u00BB"/>
+      <accessors
+          accessor="getIncludeAppliedStereotypeLabel"
+          figure="//@figures.0/@descriptors.2/@actualFigure"/>
     </descriptors>
     <descriptors
         name="ActorFigure">
@@ -259,6 +265,13 @@
           xsi:type="gmfgraph:Label"
           name="SharedPureGraphLabel"/>
     </descriptors>
+    <descriptors
+        name="AppliedStereotypeWrappingLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="AppliedStereotypeWrappingLabel"
+          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure"/>
+    </descriptors>
   </figures>
   <nodes
       name="UseCaseNode"
@@ -380,6 +393,26 @@
       name="AuxiliaryPureLabel"
       figure="SharedPureGraphLabel"
       elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
+  <labels
+      name="AppliedStereotypeExternalLabel"
+      figure="AppliedStereotypeWrappingLabelFigure"/>
+  <labels
+      name="ExtendsAppliedStereotypeDiagramLabel"
+      figure="ExtendsLink_fixed"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.1/@accessors.0">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+  </labels>
+  <labels
+      name="IncludeAppliedStereotypeDiagramLabel"
+      figure="IncludeLink_fixed"
+      accessor="//@figures.0/@descriptors.2/@accessors.0">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
         alignment="CENTER"/>

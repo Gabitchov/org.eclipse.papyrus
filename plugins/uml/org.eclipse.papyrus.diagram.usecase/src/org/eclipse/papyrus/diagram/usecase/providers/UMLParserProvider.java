@@ -31,30 +31,39 @@ import org.eclipse.papyrus.diagram.common.parser.CommentParser;
 import org.eclipse.papyrus.diagram.common.parser.packageimport.PackageImportVisibilityParser;
 import org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AbstractionNameEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorName2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorName3EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorName4EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorAppliedStereotypeEditPartTN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorAsRectangleNameEditPartTN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorInComponentAppliedStereotypeEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorInComponentNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorInPackageAppliedStereotypeEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorInPackageNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorNameEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AppliedStereotypeAbstractionEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.AppliedStereotypePackageImportEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AppliedStereotypePackageMergeEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.AppliedStereotypeRealizationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AppliedStereotypeUsageEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationNameEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentBody2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentBodyEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentName2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentName3EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentNameEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintName2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintName3EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentBodyEditPartCN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentBodyEditPartTN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentInComponentNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentInPackageNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentNameEditPartTN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintInComponentNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintInPackageNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintNameEditPartTN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.DiagramNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtendAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPoint2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.GeneralizationAppliedStereotypeEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.IncludeAppliedStereotypeEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageImportAppliedStereotypeEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageImportVisibilityEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageNameEditPartCN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageNameEditPartTN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseName2EditPart;
@@ -85,6 +94,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			actorName_5014Parser = parser;
 		}
 		return actorName_5014Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser actorLabel_6029Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getActorLabel_6029Parser() {
+		if(actorLabel_6029Parser == null) {
+			actorLabel_6029Parser = new AppliedStereotypeParser();
+		}
+		return actorLabel_6029Parser;
 	}
 
 	/**
@@ -341,6 +365,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private AppliedStereotypeParser actorLabel_6027Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getActorLabel_6027Parser() {
+		if(actorLabel_6027Parser == null) {
+			actorLabel_6027Parser = new AppliedStereotypeParser();
+		}
+		return actorLabel_6027Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser constraintName_5020Parser;
 
 	/**
@@ -370,6 +409,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			actorName_5021Parser = parser;
 		}
 		return actorName_5021Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser actorLabel_6028Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getActorLabel_6028Parser() {
+		if(actorLabel_6028Parser == null) {
+			actorLabel_6028Parser = new AppliedStereotypeParser();
+		}
+		return actorLabel_6028Parser;
 	}
 
 	/**
@@ -426,6 +480,51 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private AppliedStereotypeParser includeLabel_6030Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getIncludeLabel_6030Parser() {
+		if(includeLabel_6030Parser == null) {
+			includeLabel_6030Parser = new AppliedStereotypeParser();
+		}
+		return includeLabel_6030Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser extendLabel_6031Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getExtendLabel_6031Parser() {
+		if(extendLabel_6031Parser == null) {
+			extendLabel_6031Parser = new AppliedStereotypeParser();
+		}
+		return extendLabel_6031Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser generalizationLabel_6032Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getGeneralizationLabel_6032Parser() {
+		if(generalizationLabel_6032Parser == null) {
+			generalizationLabel_6032Parser = new AppliedStereotypeParser();
+		}
+		return generalizationLabel_6032Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser associationName_6008Parser;
 
 	/**
@@ -438,6 +537,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			associationName_6008Parser = parser;
 		}
 		return associationName_6008Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser associationLabel_6033Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getAssociationLabel_6033Parser() {
+		if(associationLabel_6033Parser == null) {
+			associationLabel_6033Parser = new AppliedStereotypeParser();
+		}
+		return associationLabel_6033Parser;
 	}
 
 	/**
@@ -460,6 +574,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private AppliedStereotypeParser dependencyLabel_6034Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDependencyLabel_6034Parser() {
+		if(dependencyLabel_6034Parser == null) {
+			dependencyLabel_6034Parser = new AppliedStereotypeParser();
+		}
+		return dependencyLabel_6034Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser abstractionName_6011Parser;
 
 	/**
@@ -477,16 +606,16 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser abstractionName_6014Parser;
+	private AppliedStereotypeParser abstractionLabel_6014Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getAbstractionName_6014Parser() {
-		if(abstractionName_6014Parser == null) {
-			abstractionName_6014Parser = new AppliedStereotypeParser();
+	private IParser getAbstractionLabel_6014Parser() {
+		if(abstractionLabel_6014Parser == null) {
+			abstractionLabel_6014Parser = new AppliedStereotypeParser();
 		}
-		return abstractionName_6014Parser;
+		return abstractionLabel_6014Parser;
 	}
 
 	/**
@@ -509,16 +638,16 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser usageName_6013Parser;
+	private AppliedStereotypeParser usageLabel_6013Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getUsageName_6013Parser() {
-		if(usageName_6013Parser == null) {
-			usageName_6013Parser = new AppliedStereotypeParser();
+	private IParser getUsageLabel_6013Parser() {
+		if(usageLabel_6013Parser == null) {
+			usageLabel_6013Parser = new AppliedStereotypeParser();
 		}
-		return usageName_6013Parser;
+		return usageLabel_6013Parser;
 	}
 
 	/**
@@ -541,16 +670,16 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser realizationName_6016Parser;
+	private AppliedStereotypeParser realizationLabel_6035Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getRealizationName_6016Parser() {
-		if(realizationName_6016Parser == null) {
-			realizationName_6016Parser = new AppliedStereotypeParser();
+	private IParser getRealizationLabel_6035Parser() {
+		if(realizationLabel_6035Parser == null) {
+			realizationLabel_6035Parser = new AppliedStereotypeParser();
 		}
-		return realizationName_6016Parser;
+		return realizationLabel_6035Parser;
 	}
 
 	/**
@@ -586,23 +715,40 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private AppliedStereotypeParser packageImportLabel_6036Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getPackageImportLabel_6036Parser() {
+		if(packageImportLabel_6036Parser == null) {
+			packageImportLabel_6036Parser = new AppliedStereotypeParser();
+		}
+		return packageImportLabel_6036Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch(visualID) {
-		case ActorNameEditPart.VISUAL_ID:
+		case ActorNameEditPartTN.VISUAL_ID:
 			return getActorName_5014Parser();
-		case ActorName2EditPart.VISUAL_ID:
+		case ActorAppliedStereotypeEditPartTN.VISUAL_ID:
+			return getActorLabel_6029Parser();
+		case ActorAsRectangleNameEditPartTN.VISUAL_ID:
 			return getActorName_5015Parser();
 		case UseCaseNameEditPart.VISUAL_ID:
 			return getUseCaseName_5016Parser();
 		case UseCaseName2EditPart.VISUAL_ID:
 			return getUseCaseName_5017Parser();
-		case ComponentNameEditPart.VISUAL_ID:
+		case ComponentNameEditPartTN.VISUAL_ID:
 			return getComponentName_5019Parser();
 		case PackageNameEditPartTN.VISUAL_ID:
 			return getPackageName_5025Parser();
-		case ConstraintNameEditPart.VISUAL_ID:
+		case ConstraintNameEditPartTN.VISUAL_ID:
 			return getConstraintName_5026Parser();
-		case CommentBodyEditPart.VISUAL_ID:
+		case CommentBodyEditPartTN.VISUAL_ID:
 			return getCommentBody_5027Parser();
 		case DiagramNameEditPart.VISUAL_ID:
 			return getDiagramName_5032Parser();
@@ -612,44 +758,60 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getExtensionPoint_3008Parser();
 		case UseCaseName3EditPart.VISUAL_ID:
 			return getUseCaseName_5018Parser();
-		case ComponentName2EditPart.VISUAL_ID:
+		case ComponentInComponentNameEditPart.VISUAL_ID:
 			return getComponentName_5030Parser();
-		case CommentBody2EditPart.VISUAL_ID:
+		case CommentBodyEditPartCN.VISUAL_ID:
 			return getCommentBody_5028Parser();
-		case ConstraintName2EditPart.VISUAL_ID:
+		case ConstraintInComponentNameEditPart.VISUAL_ID:
 			return getConstraintName_5029Parser();
-		case ActorName4EditPart.VISUAL_ID:
+		case ActorInComponentNameEditPart.VISUAL_ID:
 			return getActorName_5031Parser();
-		case ConstraintName3EditPart.VISUAL_ID:
+		case ActorInComponentAppliedStereotypeEditPart.VISUAL_ID:
+			return getActorLabel_6027Parser();
+		case ConstraintInPackageNameEditPart.VISUAL_ID:
 			return getConstraintName_5020Parser();
-		case ActorName3EditPart.VISUAL_ID:
+		case ActorInPackageNameEditPart.VISUAL_ID:
 			return getActorName_5021Parser();
+		case ActorInPackageAppliedStereotypeEditPart.VISUAL_ID:
+			return getActorLabel_6028Parser();
 		case UseCaseName4EditPart.VISUAL_ID:
 			return getUseCaseName_5022Parser();
-		case ComponentName3EditPart.VISUAL_ID:
+		case ComponentInPackageNameEditPart.VISUAL_ID:
 			return getComponentName_5023Parser();
 		case PackageNameEditPartCN.VISUAL_ID:
 			return getPackageName_5024Parser();
+		case IncludeAppliedStereotypeEditPart.VISUAL_ID:
+			return getIncludeLabel_6030Parser();
+		case ExtendAppliedStereotypeEditPart.VISUAL_ID:
+			return getExtendLabel_6031Parser();
+		case GeneralizationAppliedStereotypeEditPart.VISUAL_ID:
+			return getGeneralizationLabel_6032Parser();
 		case AssociationNameEditPart.VISUAL_ID:
 			return getAssociationName_6008Parser();
+		case AssociationAppliedStereotypeEditPart.VISUAL_ID:
+			return getAssociationLabel_6033Parser();
 		case DependencyNameEditPart.VISUAL_ID:
 			return getDependencyName_6010Parser();
+		case DependencyAppliedStereotypeEditPart.VISUAL_ID:
+			return getDependencyLabel_6034Parser();
 		case AbstractionNameEditPart.VISUAL_ID:
 			return getAbstractionName_6011Parser();
 		case AppliedStereotypeAbstractionEditPart.VISUAL_ID:
-			return getAbstractionName_6014Parser();
+			return getAbstractionLabel_6014Parser();
 		case UsageNameEditPart.VISUAL_ID:
 			return getUsageName_6012Parser();
 		case AppliedStereotypeUsageEditPart.VISUAL_ID:
-			return getUsageName_6013Parser();
+			return getUsageLabel_6013Parser();
 		case RealizationNameEditPart.VISUAL_ID:
 			return getRealizationName_6015Parser();
-		case AppliedStereotypeRealizationEditPart.VISUAL_ID:
-			return getRealizationName_6016Parser();
+		case RealizationAppliedStereotypeEditPart.VISUAL_ID:
+			return getRealizationLabel_6035Parser();
 		case AppliedStereotypePackageMergeEditPart.VISUAL_ID:
 			return getPackageMergeLabel_0Parser();
-		case AppliedStereotypePackageImportEditPart.VISUAL_ID:
+		case PackageImportVisibilityEditPart.VISUAL_ID:
 			return getPackageImportVisibility_6017Parser();
+		case PackageImportAppliedStereotypeEditPart.VISUAL_ID:
+			return getPackageImportLabel_6036Parser();
 		}
 		return null;
 	}

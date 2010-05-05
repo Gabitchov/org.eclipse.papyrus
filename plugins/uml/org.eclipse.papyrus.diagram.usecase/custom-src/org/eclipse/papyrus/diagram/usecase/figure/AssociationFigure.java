@@ -17,23 +17,20 @@ package org.eclipse.papyrus.diagram.usecase.figure;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.PolylineDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.papyrus.diagram.common.figure.edge.UMLEdgeFigure;
 import org.eclipse.swt.SWT;
 
 /**
  * this is the figure to display a association figure.
  */
-public class AssociationFigure extends PolylineConnectionEx {
+public class AssociationFigure extends UMLEdgeFigure {
 
 	/** the end of the association is navigable so this is an arrow. */
 	public static final int navigable = 1;
 
 	/** the end of contained the property. */
 	public static final int owned = 8;
-
-	/** The applied stereotype association label. */
-	private WrappingLabel fAppliedStereotypeAssociationLabel;
 
 	/** The association name label. */
 	private WrappingLabel fAssociationNameLabel;
@@ -73,15 +70,12 @@ public class AssociationFigure extends PolylineConnectionEx {
 	/**
 	 * Creates the contents of the association
 	 */
-	private void createContents() {
+	protected void createContents() {
+		super.createContents();
 
 		fAssociationNameLabel = new WrappingLabel();
 		fAssociationNameLabel.setText("");
 		this.add(fAssociationNameLabel);
-
-		fAppliedStereotypeAssociationLabel = new WrappingLabel();
-		fAppliedStereotypeAssociationLabel.setText("");
-		this.add(fAppliedStereotypeAssociationLabel);
 
 		fMultiplicitySourceLabel = new WrappingLabel();
 		fMultiplicitySourceLabel.setText("");
@@ -150,13 +144,6 @@ public class AssociationFigure extends PolylineConnectionEx {
 	public void setEnd(int sourceType, int targetType) {
 		this.setSourceDecoration(getDecoration(sourceType));
 		this.setTargetDecoration(getDecoration(targetType));
-	}
-
-	/**
-	 * @generated
-	 */
-	public WrappingLabel getAppliedStereotypeAssociationLabel() {
-		return fAppliedStereotypeAssociationLabel;
 	}
 
 	/**

@@ -26,48 +26,49 @@ import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.ViewerLabel;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AbstractionNameEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor3EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor4EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorName2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorName3EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorName4EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorNameEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.AppliedStereotypePackageImportEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorAsRectangleEditPartTN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorAsRectangleNameEditPartTN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorEditPartTN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorInComponentEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorInComponentNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorInPackageEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorInPackageNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorNameEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AppliedStereotypePackageMergeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationNameEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.Comment2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentAnnotatedElementEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentBody2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentBodyEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.Component2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.Component3EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentName2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentName3EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentNameEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.Constraint2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.Constraint3EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentBodyEditPartCN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentBodyEditPartTN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentEditPartCN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentEditPartTN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentEditPartTN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentInComponentEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentInComponentNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentInPackageEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentInPackageNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentNameEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintConstrainedElementEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintName2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintName3EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintEditPartTN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintInComponentEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintInComponentNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintInPackageEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintInPackageNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintNameEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtendEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtendsLink_fixedEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPoint2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.GeneralizationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.IncludeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.IncludeLink_fixedEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageImportEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageImportVisibilityEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageMergeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageNameEditPartCN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageNameEditPartTN;
@@ -92,7 +93,6 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonLabelProvider;
-import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Package;
 
 /**
@@ -137,6 +137,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getImage(navigatorItem.getView());
 		}
 
+
 		return super.getImage(element);
 	}
 
@@ -147,21 +148,21 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
 		case UseCaseDiagramEditPart.VISUAL_ID:
 			return getImage("Navigator?Diagram?http://www.eclipse.org/uml2/3.0.0/UML?Package", UMLElementTypes.Package_1000); //$NON-NLS-1$
-		case ActorEditPart.VISUAL_ID:
+		case ActorEditPartTN.VISUAL_ID:
 			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/3.0.0/UML?Actor", UMLElementTypes.Actor_2011); //$NON-NLS-1$
-		case Actor2EditPart.VISUAL_ID:
+		case ActorAsRectangleEditPartTN.VISUAL_ID:
 			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/3.0.0/UML?Actor", UMLElementTypes.Actor_2012); //$NON-NLS-1$
 		case UseCaseEditPart.VISUAL_ID:
 			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/3.0.0/UML?UseCase", UMLElementTypes.UseCase_2013); //$NON-NLS-1$
 		case UseCase2EditPart.VISUAL_ID:
 			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/3.0.0/UML?UseCase", UMLElementTypes.UseCase_2014); //$NON-NLS-1$
-		case ComponentEditPart.VISUAL_ID:
+		case ComponentEditPartTN.VISUAL_ID:
 			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/3.0.0/UML?Component", UMLElementTypes.Component_2015); //$NON-NLS-1$
 		case PackageEditPartTN.VISUAL_ID:
 			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/3.0.0/UML?Package", UMLElementTypes.Package_2016); //$NON-NLS-1$
-		case ConstraintEditPart.VISUAL_ID:
+		case ConstraintEditPartTN.VISUAL_ID:
 			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/3.0.0/UML?Constraint", UMLElementTypes.Constraint_2017); //$NON-NLS-1$
-		case CommentEditPart.VISUAL_ID:
+		case CommentEditPartTN.VISUAL_ID:
 			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/3.0.0/UML?Comment", UMLElementTypes.Comment_2018); //$NON-NLS-1$
 		case ExtensionPointEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ExtensionPoint", UMLElementTypes.ExtensionPoint_3007); //$NON-NLS-1$
@@ -169,21 +170,21 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ExtensionPoint", UMLElementTypes.ExtensionPoint_3008); //$NON-NLS-1$
 		case UseCase3EditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?UseCase", UMLElementTypes.UseCase_3009); //$NON-NLS-1$
-		case Component2EditPart.VISUAL_ID:
+		case ComponentInComponentEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Component", UMLElementTypes.Component_3016); //$NON-NLS-1$
-		case Comment2EditPart.VISUAL_ID:
+		case CommentEditPartCN.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Comment", UMLElementTypes.Comment_3015); //$NON-NLS-1$
-		case Constraint2EditPart.VISUAL_ID:
+		case ConstraintInComponentEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Constraint", UMLElementTypes.Constraint_3017); //$NON-NLS-1$
-		case Actor4EditPart.VISUAL_ID:
+		case ActorInComponentEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Actor", UMLElementTypes.Actor_3018); //$NON-NLS-1$
-		case Constraint3EditPart.VISUAL_ID:
+		case ConstraintInPackageEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Constraint", UMLElementTypes.Constraint_3010); //$NON-NLS-1$
-		case Actor3EditPart.VISUAL_ID:
+		case ActorInPackageEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Actor", UMLElementTypes.Actor_3011); //$NON-NLS-1$
 		case UseCase4EditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?UseCase", UMLElementTypes.UseCase_3012); //$NON-NLS-1$
-		case Component3EditPart.VISUAL_ID:
+		case ComponentInPackageEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Component", UMLElementTypes.Component_3013); //$NON-NLS-1$
 		case PackageEditPartCN.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Package", UMLElementTypes.Package_3014); //$NON-NLS-1$
@@ -250,6 +251,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getText(navigatorItem.getView());
 		}
 
+
 		return super.getText(element);
 	}
 
@@ -263,21 +265,21 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
 		case UseCaseDiagramEditPart.VISUAL_ID:
 			return getPackage_1000Text(view);
-		case ActorEditPart.VISUAL_ID:
+		case ActorEditPartTN.VISUAL_ID:
 			return getActor_2011Text(view);
-		case Actor2EditPart.VISUAL_ID:
+		case ActorAsRectangleEditPartTN.VISUAL_ID:
 			return getActor_2012Text(view);
 		case UseCaseEditPart.VISUAL_ID:
 			return getUseCase_2013Text(view);
 		case UseCase2EditPart.VISUAL_ID:
 			return getUseCase_2014Text(view);
-		case ComponentEditPart.VISUAL_ID:
+		case ComponentEditPartTN.VISUAL_ID:
 			return getComponent_2015Text(view);
 		case PackageEditPartTN.VISUAL_ID:
 			return getPackage_2016Text(view);
-		case ConstraintEditPart.VISUAL_ID:
+		case ConstraintEditPartTN.VISUAL_ID:
 			return getConstraint_2017Text(view);
-		case CommentEditPart.VISUAL_ID:
+		case CommentEditPartTN.VISUAL_ID:
 			return getComment_2018Text(view);
 		case ExtensionPointEditPart.VISUAL_ID:
 			return getExtensionPoint_3007Text(view);
@@ -285,21 +287,21 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getExtensionPoint_3008Text(view);
 		case UseCase3EditPart.VISUAL_ID:
 			return getUseCase_3009Text(view);
-		case Component2EditPart.VISUAL_ID:
+		case ComponentInComponentEditPart.VISUAL_ID:
 			return getComponent_3016Text(view);
-		case Comment2EditPart.VISUAL_ID:
+		case CommentEditPartCN.VISUAL_ID:
 			return getComment_3015Text(view);
-		case Constraint2EditPart.VISUAL_ID:
+		case ConstraintInComponentEditPart.VISUAL_ID:
 			return getConstraint_3017Text(view);
-		case Actor4EditPart.VISUAL_ID:
+		case ActorInComponentEditPart.VISUAL_ID:
 			return getActor_3018Text(view);
-		case Constraint3EditPart.VISUAL_ID:
+		case ConstraintInPackageEditPart.VISUAL_ID:
 			return getConstraint_3010Text(view);
-		case Actor3EditPart.VISUAL_ID:
+		case ActorInPackageEditPart.VISUAL_ID:
 			return getActor_3011Text(view);
 		case UseCase4EditPart.VISUAL_ID:
 			return getUseCase_3012Text(view);
-		case Component3EditPart.VISUAL_ID:
+		case ComponentInPackageEditPart.VISUAL_ID:
 			return getComponent_3013Text(view);
 		case PackageEditPartCN.VISUAL_ID:
 			return getPackage_3014Text(view);
@@ -348,7 +350,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getActor_2011Text(View view) {
-		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Actor_2011, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ActorNameEditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Actor_2011, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ActorNameEditPartTN.VISUAL_ID));
 		if(parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
@@ -361,7 +363,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getActor_2012Text(View view) {
-		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Actor_2012, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ActorName2EditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Actor_2012, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ActorAsRectangleNameEditPartTN.VISUAL_ID));
 		if(parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
@@ -400,7 +402,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getComponent_2015Text(View view) {
-		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Component_2015, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ComponentNameEditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Component_2015, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ComponentNameEditPartTN.VISUAL_ID));
 		if(parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
@@ -426,7 +428,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getConstraint_2017Text(View view) {
-		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Constraint_2017, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ConstraintNameEditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Constraint_2017, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ConstraintNameEditPartTN.VISUAL_ID));
 		if(parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
@@ -439,7 +441,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getComment_2018Text(View view) {
-		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Comment_2018, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(CommentBodyEditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Comment_2018, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(CommentBodyEditPartTN.VISUAL_ID));
 		if(parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
@@ -491,7 +493,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getComponent_3016Text(View view) {
-		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Component_3016, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ComponentName2EditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Component_3016, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ComponentInComponentNameEditPart.VISUAL_ID));
 		if(parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
@@ -504,7 +506,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getComment_3015Text(View view) {
-		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Comment_3015, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(CommentBody2EditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Comment_3015, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(CommentBodyEditPartCN.VISUAL_ID));
 		if(parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
@@ -517,7 +519,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getConstraint_3017Text(View view) {
-		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Constraint_3017, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ConstraintName2EditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Constraint_3017, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ConstraintInComponentNameEditPart.VISUAL_ID));
 		if(parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
@@ -530,7 +532,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getActor_3018Text(View view) {
-		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Actor_3018, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ActorName4EditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Actor_3018, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ActorInComponentNameEditPart.VISUAL_ID));
 		if(parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
@@ -543,7 +545,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getConstraint_3010Text(View view) {
-		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Constraint_3010, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ConstraintName3EditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Constraint_3010, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ConstraintInPackageNameEditPart.VISUAL_ID));
 		if(parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
@@ -556,7 +558,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getActor_3011Text(View view) {
-		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Actor_3011, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ActorName3EditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Actor_3011, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ActorInPackageNameEditPart.VISUAL_ID));
 		if(parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
@@ -582,7 +584,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getComponent_3013Text(View view) {
-		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Component_3013, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ComponentName3EditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Component_3013, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ComponentInPackageNameEditPart.VISUAL_ID));
 		if(parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
@@ -634,11 +636,11 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getGeneralization_4010Text(View view) {
-		Generalization domainModelElement = (Generalization)view.getElement();
-		if(domainModelElement != null) {
-			return String.valueOf(domainModelElement.isSubstitutable());
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.Generalization_4010, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(GeneralizationAppliedStereotypeEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
-			UMLDiagramEditorPlugin.getInstance().logError("No domain element for view with visualID = " + 4010); //$NON-NLS-1$
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 6032); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -739,7 +741,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getPackageImport_4019Text(View view) {
-		IParser parser = UMLParserProvider.getParser(UMLElementTypes.PackageImport_4019, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(AppliedStereotypePackageImportEditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.PackageImport_4019, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(PackageImportVisibilityEditPart.VISUAL_ID));
 		if(parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {

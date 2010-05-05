@@ -29,21 +29,21 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AbstractionEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor3EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.Actor4EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorAsRectangleEditPartTN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorEditPartTN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorInComponentEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorInPackageEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.Comment2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentAnnotatedElementEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.Component2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.Component3EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.Constraint2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.Constraint3EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentEditPartCN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentEditPartTN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentEditPartTN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentInComponentEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentInPackageEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintConstrainedElementEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintEditPartTN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintInComponentEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintInPackageEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtendEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPoint2EditPart;
@@ -370,69 +370,100 @@ public class UMLElementTypes extends ElementInitializers {
 
 			elements.put(Package_1000, UMLPackage.eINSTANCE.getPackage());
 
+
 			elements.put(Actor_2011, UMLPackage.eINSTANCE.getActor());
+
 
 			elements.put(Actor_2012, UMLPackage.eINSTANCE.getActor());
 
+
 			elements.put(UseCase_2013, UMLPackage.eINSTANCE.getUseCase());
+
 
 			elements.put(UseCase_2014, UMLPackage.eINSTANCE.getUseCase());
 
+
 			elements.put(Component_2015, UMLPackage.eINSTANCE.getComponent());
+
 
 			elements.put(Package_2016, UMLPackage.eINSTANCE.getPackage());
 
+
 			elements.put(Constraint_2017, UMLPackage.eINSTANCE.getConstraint());
+
 
 			elements.put(Comment_2018, UMLPackage.eINSTANCE.getComment());
 
+
 			elements.put(Diagram_2019, NotationPackage.eINSTANCE.getDiagram());
+
 
 			elements.put(ExtensionPoint_3007, UMLPackage.eINSTANCE.getExtensionPoint());
 
+
 			elements.put(ExtensionPoint_3008, UMLPackage.eINSTANCE.getExtensionPoint());
+
 
 			elements.put(UseCase_3009, UMLPackage.eINSTANCE.getUseCase());
 
+
 			elements.put(Component_3016, UMLPackage.eINSTANCE.getComponent());
+
 
 			elements.put(Comment_3015, UMLPackage.eINSTANCE.getComment());
 
+
 			elements.put(Constraint_3017, UMLPackage.eINSTANCE.getConstraint());
+
 
 			elements.put(Actor_3018, UMLPackage.eINSTANCE.getActor());
 
+
 			elements.put(Constraint_3010, UMLPackage.eINSTANCE.getConstraint());
+
 
 			elements.put(Actor_3011, UMLPackage.eINSTANCE.getActor());
 
+
 			elements.put(UseCase_3012, UMLPackage.eINSTANCE.getUseCase());
+
 
 			elements.put(Component_3013, UMLPackage.eINSTANCE.getComponent());
 
+
 			elements.put(Package_3014, UMLPackage.eINSTANCE.getPackage());
+
 
 			elements.put(Include_4008, UMLPackage.eINSTANCE.getInclude());
 
+
 			elements.put(Extend_4009, UMLPackage.eINSTANCE.getExtend());
 
+
 			elements.put(Generalization_4010, UMLPackage.eINSTANCE.getGeneralization());
+
 
 			elements.put(Association_4011, UMLPackage.eINSTANCE.getAssociation());
 
 			elements.put(ConstraintConstrainedElement_4012, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
 
+
 			elements.put(Dependency_4013, UMLPackage.eINSTANCE.getDependency());
 
 			elements.put(CommentAnnotatedElement_4014, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
 
+
 			elements.put(Abstraction_4015, UMLPackage.eINSTANCE.getAbstraction());
+
 
 			elements.put(Usage_4016, UMLPackage.eINSTANCE.getUsage());
 
+
 			elements.put(Realization_4017, UMLPackage.eINSTANCE.getRealization());
 
+
 			elements.put(PackageMerge_4018, UMLPackage.eINSTANCE.getPackageMerge());
+
 
 			elements.put(PackageImport_4019, UMLPackage.eINSTANCE.getPackageImport());
 		}
@@ -497,21 +528,21 @@ public class UMLElementTypes extends ElementInitializers {
 		switch(visualID) {
 		case UseCaseDiagramEditPart.VISUAL_ID:
 			return Package_1000;
-		case ActorEditPart.VISUAL_ID:
+		case ActorEditPartTN.VISUAL_ID:
 			return Actor_2011;
-		case Actor2EditPart.VISUAL_ID:
+		case ActorAsRectangleEditPartTN.VISUAL_ID:
 			return Actor_2012;
 		case UseCaseEditPart.VISUAL_ID:
 			return UseCase_2013;
 		case UseCase2EditPart.VISUAL_ID:
 			return UseCase_2014;
-		case ComponentEditPart.VISUAL_ID:
+		case ComponentEditPartTN.VISUAL_ID:
 			return Component_2015;
 		case PackageEditPartTN.VISUAL_ID:
 			return Package_2016;
-		case ConstraintEditPart.VISUAL_ID:
+		case ConstraintEditPartTN.VISUAL_ID:
 			return Constraint_2017;
-		case CommentEditPart.VISUAL_ID:
+		case CommentEditPartTN.VISUAL_ID:
 			return Comment_2018;
 		case ShortCutDiagramEditPart.VISUAL_ID:
 			return Diagram_2019;
@@ -521,21 +552,21 @@ public class UMLElementTypes extends ElementInitializers {
 			return ExtensionPoint_3008;
 		case UseCase3EditPart.VISUAL_ID:
 			return UseCase_3009;
-		case Component2EditPart.VISUAL_ID:
+		case ComponentInComponentEditPart.VISUAL_ID:
 			return Component_3016;
-		case Comment2EditPart.VISUAL_ID:
+		case CommentEditPartCN.VISUAL_ID:
 			return Comment_3015;
-		case Constraint2EditPart.VISUAL_ID:
+		case ConstraintInComponentEditPart.VISUAL_ID:
 			return Constraint_3017;
-		case Actor4EditPart.VISUAL_ID:
+		case ActorInComponentEditPart.VISUAL_ID:
 			return Actor_3018;
-		case Constraint3EditPart.VISUAL_ID:
+		case ConstraintInPackageEditPart.VISUAL_ID:
 			return Constraint_3010;
-		case Actor3EditPart.VISUAL_ID:
+		case ActorInPackageEditPart.VISUAL_ID:
 			return Actor_3011;
 		case UseCase4EditPart.VISUAL_ID:
 			return UseCase_3012;
-		case Component3EditPart.VISUAL_ID:
+		case ComponentInPackageEditPart.VISUAL_ID:
 			return Component_3013;
 		case PackageEditPartCN.VISUAL_ID:
 			return Package_3014;

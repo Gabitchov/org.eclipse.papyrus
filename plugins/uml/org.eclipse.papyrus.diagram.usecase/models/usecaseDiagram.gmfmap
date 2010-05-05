@@ -32,6 +32,11 @@
         <features
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
       </labelMappings>
+      <labelMappings
+          readOnly="true">
+        <diagramLabel
+            href="usecaseDiagram.gmfgraph#AppliedStereotypeExternalLabel"/>
+      </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
           href="usecaseDiagram.gmftool#//@palette/@tools.0/@tools.1"/>
@@ -324,6 +329,11 @@
         <features
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
       </labelMappings>
+      <labelMappings
+          readOnly="true">
+        <diagramLabel
+            href="../../org.eclipse.papyrus.diagram.common/model/PackageElement.gmfgraph#PackageStereotypesDiagramLabel"/>
+      </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
           href="usecaseDiagram.gmftool#//@palette/@tools.0/@tools.3"/>
@@ -467,6 +477,11 @@
       <diagramLabel
           href="usecaseDiagram.gmfgraph#IncludeLink_FixedLabel"/>
     </labelMappings>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="usecaseDiagram.gmfgraph#IncludeAppliedStereotypeDiagramLabel"/>
+    </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//UseCase/include"/>
     <tool
@@ -489,6 +504,11 @@
       <diagramLabel
           href="usecaseDiagram.gmfgraph#ExtendsLink_FixedLabel"/>
     </labelMappings>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="usecaseDiagram.gmfgraph#ExtendsAppliedStereotypeDiagramLabel"/>
+    </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//UseCase/extend"/>
     <tool
@@ -506,6 +526,11 @@
   <links>
     <domainMetaElement
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Generalization"/>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="../../org.eclipse.papyrus.diagram.common/model/Generalization.gmfgraph#GeneralizationAppliedStereotypeDiagramLabel"/>
+    </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier/generalization"/>
     <tool
@@ -548,6 +573,11 @@
           href="../../org.eclipse.papyrus.diagram.common/model/Association.gmfgraph#AssociationNameDiagramLabel"/>
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+    </labelMappings>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="../../org.eclipse.papyrus.diagram.common/model/Association.gmfgraph#AppliedStereotypeAssociationDiagramLabel"/>
     </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package/packagedElement"/>
@@ -603,6 +633,11 @@
           href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyNameDiagramLabel"/>
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+    </labelMappings>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyAppliedStereotypeDiagramLabel"/>
     </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package/packagedElement"/>
@@ -669,6 +704,11 @@
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
     </labelMappings>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyAppliedStereotypeDiagramLabel"/>
+    </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package/packagedElement"/>
     <tool
@@ -718,6 +758,11 @@
           href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyAppliedStereotypeDiagramLabel"/>
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+    </labelMappings>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyAppliedStereotypeDiagramLabel"/>
     </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package/packagedElement"/>
@@ -769,6 +814,11 @@
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
     </labelMappings>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="../../org.eclipse.papyrus.diagram.common/model/InterfaceRealization.gmfgraph#InterfaceRealizationAppliedStereotypeDiagramLabel"/>
+    </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Package/packagedElement"/>
     <tool
@@ -815,6 +865,11 @@
           href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyAppliedStereotypeDiagramLabel"/>
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//PackageImport/visibility"/>
+    </labelMappings>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="../../org.eclipse.papyrus.diagram.common/model/Dependency.gmfgraph#DependencyAppliedStereotypeDiagramLabel"/>
     </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Namespace/packageImport"/>

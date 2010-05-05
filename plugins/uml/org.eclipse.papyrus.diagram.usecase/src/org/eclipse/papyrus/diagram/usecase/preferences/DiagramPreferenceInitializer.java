@@ -30,39 +30,60 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		CommentPreferencePage.initDefaults(store);
 
+
 		ComponentPreferencePage.initDefaults(store);
+
 
 		ConstraintPreferencePage.initDefaults(store);
 
+
 		PackagePreferencePage.initDefaults(store);
+
 
 		ActorPreferencePage.initDefaults(store);
 
+
 		ExtensionPointPreferencePage.initDefaults(store);
+
 
 		UseCasePreferencePage.initDefaults(store);
 
+
 		ShortCutDiagramPreferencePage.initDefaults(store);
+
+
+
 
 		DependencyPreferencePage.initDefaults(store);
 
+
 		GeneralizationPreferencePage.initDefaults(store);
+
 
 		UsagePreferencePage.initDefaults(store);
 
+
 		AssociationPreferencePage.initDefaults(store);
+
 
 		PackageImportPreferencePage.initDefaults(store);
 
+
 		PackageMergePreferencePage.initDefaults(store);
+
 
 		AbstractionPreferencePage.initDefaults(store);
 
+
 		ExtendPreferencePage.initDefaults(store);
+
+
 
 		RealizationPreferencePage.initDefaults(store);
 
+
 		IncludePreferencePage.initDefaults(store);
+
 
 	}
 

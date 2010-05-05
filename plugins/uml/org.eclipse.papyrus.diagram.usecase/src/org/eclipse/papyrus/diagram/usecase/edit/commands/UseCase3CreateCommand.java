@@ -75,6 +75,7 @@ public class UseCase3CreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -90,7 +91,10 @@ public class UseCase3CreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
+
 		return true;
+
+
 
 	}
 
@@ -99,12 +103,15 @@ public class UseCase3CreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		UseCase newElement = UMLFactory.eINSTANCE.createUseCase();
 
 		Classifier owner = (Classifier)getElementToEdit();
 		owner.getOwnedUseCases().add(newElement);
 		Classifier childHolder = (Classifier)getElementToEdit();
 		childHolder.getUseCases().add(newElement);
+
 
 		UMLElementTypes.init_UseCase_3009(newElement);
 

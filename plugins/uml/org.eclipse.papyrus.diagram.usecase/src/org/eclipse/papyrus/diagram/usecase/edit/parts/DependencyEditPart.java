@@ -19,6 +19,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.DependencyItemSemanticEditPolicy;
 
@@ -45,6 +46,7 @@ public class DependencyEditPart extends ConnectionNodeEditPart implements ITreeB
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DependencyItemSemanticEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
@@ -53,6 +55,10 @@ public class DependencyEditPart extends ConnectionNodeEditPart implements ITreeB
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof DependencyNameEditPart) {
 			((DependencyNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+			return true;
+		}
+		if(childEditPart instanceof DependencyAppliedStereotypeEditPart) {
+			((DependencyAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 			return true;
 		}
 		return false;
@@ -73,6 +79,9 @@ public class DependencyEditPart extends ConnectionNodeEditPart implements ITreeB
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof DependencyNameEditPart) {
+			return true;
+		}
+		if(childEditPart instanceof DependencyAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;

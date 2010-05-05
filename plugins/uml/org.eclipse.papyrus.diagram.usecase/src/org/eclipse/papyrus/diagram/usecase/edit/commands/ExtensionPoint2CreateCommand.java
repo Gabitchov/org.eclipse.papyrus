@@ -75,6 +75,7 @@ public class ExtensionPoint2CreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -90,7 +91,10 @@ public class ExtensionPoint2CreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
+
 		return true;
+
+
 
 	}
 
@@ -99,10 +103,13 @@ public class ExtensionPoint2CreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		ExtensionPoint newElement = UMLFactory.eINSTANCE.createExtensionPoint();
 
 		UseCase owner = (UseCase)getElementToEdit();
 		owner.getExtensionPoints().add(newElement);
+
 
 		UMLElementTypes.init_ExtensionPoint_3008(newElement);
 
