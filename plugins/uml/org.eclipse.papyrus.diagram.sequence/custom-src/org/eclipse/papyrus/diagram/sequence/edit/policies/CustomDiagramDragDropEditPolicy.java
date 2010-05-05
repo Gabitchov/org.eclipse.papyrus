@@ -437,6 +437,20 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			if(lifeline.equals(getHostObject())) {
 				return getCreateCommand(stateInvariant, nodeVISUALID);
 			}
+		}else{
+			CompositeCommand cc = new CompositeCommand("Moving a StateInvariant");
+
+			// Add the view to the new container
+			AddCommand addCommand = new AddCommand(getEditingDomain(), new EObjectAdapter((View)getHost().getModel()), new EObjectAdapter(existingViews.get(0)));
+			cc.add(addCommand);
+
+			Lifeline oldCoveredLifeline = (Lifeline)ViewUtil.resolveSemanticElement((View)existingViews.get(0).eContainer());
+
+			// Update the ES covered lifeline
+			updateCoveredLifeline(stateInvariant, cc, oldCoveredLifeline);
+
+
+			return new ICommandProxy(cc);
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
