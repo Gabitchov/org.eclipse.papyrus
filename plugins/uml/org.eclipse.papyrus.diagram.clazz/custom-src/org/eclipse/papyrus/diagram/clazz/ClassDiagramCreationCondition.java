@@ -13,17 +13,18 @@ package org.eclipse.papyrus.diagram.clazz;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.core.extension.commands.PerspectiveContextDependence;
 import org.eclipse.uml2.uml.Element;
+
 /**
  * ClassDiagramCreationCondition class allows to check if a Class diagram can be added to the
  * selected element.
  */
-public class ClassDiagramCreationCondition  extends PerspectiveContextDependence {
+public class ClassDiagramCreationCondition extends PerspectiveContextDependence {
 
 	/**
 	 * @return whether the diagram can be created.
 	 */
 	public boolean create(EObject selectedElement) {
-		if(super.create(selectedElement)){
+		if(super.create(selectedElement)) {
 			// TODO : to specify according to the spec
 			return selectedElement instanceof Element;
 		}

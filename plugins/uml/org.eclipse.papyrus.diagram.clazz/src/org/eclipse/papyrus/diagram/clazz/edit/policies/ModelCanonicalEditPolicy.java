@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.edit.policies;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -25,17 +26,23 @@ import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.DeferredLayoutCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.commands.SetViewMutabilityCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalConnectionEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
@@ -100,21 +107,23 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
+public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	Set myFeaturesToSynchronize;
+	Set<EStructuralFeature> myFeaturesToSynchronize;
 
 	/**
 	 * @generated
 	 */
 	protected List getSemanticChildrenList() {
 		View viewObject = (View)getHost().getModel();
-		List result = new LinkedList();
-		for(Iterator it = UMLDiagramUpdater.getPackage_1000SemanticChildren(viewObject).iterator(); it.hasNext();) {
-			result.add(((UMLNodeDescriptor)it.next()).getModelElement());
+		LinkedList<EObject> result = new LinkedList<EObject>();
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getPackage_1000SemanticChildren(viewObject);
+		for(Iterator<UMLNodeDescriptor> it = childDescriptors.iterator(); it.hasNext();) {
+			UMLNodeDescriptor d = it.next();
+			result.add(d.getModelElement());
 		}
 		return result;
 	}
@@ -160,16 +169,9 @@ public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected String getDefaultFactoryHint() {
-		return null;
-	}
-
-	/**
-	 * @generated
-	 */
 	protected Set getFeaturesToSynchronize() {
 		if(myFeaturesToSynchronize == null) {
-			myFeaturesToSynchronize = new HashSet();
+			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getPackage_PackagedElement());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getElement_OwnedComment());
 		}
@@ -179,40 +181,47 @@ public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected List getSemanticConnectionsList() {
-		return Collections.EMPTY_LIST;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected EObject getSourceElement(EObject relationship) {
-		return null;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected EObject getTargetElement(EObject relationship) {
-		return null;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected boolean shouldIncludeConnection(Edge connector, Collection children) {
-		return false;
-	}
-
-	/**
-	 * @generated
-	 */
 	protected void refreshSemantic() {
-		List createdViews = new LinkedList();
-		createdViews.addAll(refreshSemanticChildren());
-		List createdConnectionViews = new LinkedList();
-		createdConnectionViews.addAll(refreshSemanticConnections());
-		createdConnectionViews.addAll(refreshConnections());
+		if(resolveSemanticElement() == null) {
+			return;
+		}
+		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
+		// refreshSemanticChildren() alternative
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getPackage_1000SemanticChildren((View)getHost().getModel());
+		ArrayList<EObject> semanticChildren = new ArrayList<EObject>(childDescriptors.size());
+		for(Iterator<UMLNodeDescriptor> it = childDescriptors.iterator(); it.hasNext();) {
+			UMLNodeDescriptor next = it.next();
+			semanticChildren.add(next.getModelElement());
+		}
+		List<View> orphaned = cleanCanonicalSemanticChildren(getViewChildren(), semanticChildren);
+		boolean changed = deleteViews(orphaned.iterator());
+		// leave descriptors that reference survived semanticChildren.
+		// NOTE, we may want to stop using cleanCanonicalSemanticChildren() here, replacing with own code, that respects NodeDescriptors 
+		for(Iterator<UMLNodeDescriptor> it = childDescriptors.iterator(); it.hasNext();) {
+			UMLNodeDescriptor next = it.next();
+			if(!semanticChildren.contains(next.getModelElement())) {
+				it.remove();
+			}
+		}
+		ArrayList<CreateViewRequest.ViewDescriptor> viewDescriptors = new ArrayList<CreateViewRequest.ViewDescriptor>(childDescriptors.size());
+		for(Iterator<UMLNodeDescriptor> it = childDescriptors.iterator(); it.hasNext();) {
+			UMLNodeDescriptor next = it.next();
+			String hint = UMLVisualIDRegistry.getType(next.getVisualID());
+			IAdaptable elementAdapter = new CanonicalElementAdapter(next.getModelElement(), hint);
+			viewDescriptors.add(new CreateViewRequest.ViewDescriptor(elementAdapter, Node.class, hint, ViewUtil.APPEND, false, host().getDiagramPreferencesHint()));
+		}
+		//
+		CreateViewRequest request = getCreateViewRequest(viewDescriptors);
+		Command cmd = getCreateViewCommand(request);
+		if(cmd != null && cmd.canExecute()) {
+			SetViewMutabilityCommand.makeMutable(new EObjectAdapter(host().getNotationView())).execute();
+			executeCommand(cmd);
+			createdViews.addAll((List<IAdaptable>)request.getNewObject());
+		}
+		if(changed || createdViews.size() > 0) {
+			postProcessRefreshSemantic(createdViews);
+		}
+		Collection<IAdaptable> createdConnectionViews = refreshConnections();
 
 		if(createdViews.size() > 1) {
 			// perform a layout of the container
@@ -234,9 +243,9 @@ public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 	/**
 	 * @generated
 	 */
-	private Collection refreshConnections() {
-		Map domain2NotationMap = new HashMap();
-		Collection linkDescriptors = collectAllLinks(getDiagram(), domain2NotationMap);
+	private Collection<IAdaptable> refreshConnections() {
+		Map<EObject, View> domain2NotationMap = new HashMap<EObject, View>();
+		Collection<UMLLinkDescriptor> linkDescriptors = collectAllLinks(getDiagram(), domain2NotationMap);
 		Collection existingLinks = new LinkedList(getDiagram().getEdges());
 		for(Iterator linksIterator = existingLinks.iterator(); linksIterator.hasNext();) {
 			Edge nextDiagramLink = (Edge)linksIterator.next();
@@ -250,8 +259,8 @@ public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 			EObject diagramLinkObject = nextDiagramLink.getElement();
 			EObject diagramLinkSrc = nextDiagramLink.getSource().getElement();
 			EObject diagramLinkDst = nextDiagramLink.getTarget().getElement();
-			for(Iterator linkDescriptorsIterator = linkDescriptors.iterator(); linkDescriptorsIterator.hasNext();) {
-				UMLLinkDescriptor nextLinkDescriptor = (UMLLinkDescriptor)linkDescriptorsIterator.next();
+			for(Iterator<UMLLinkDescriptor> linkDescriptorsIterator = linkDescriptors.iterator(); linkDescriptorsIterator.hasNext();) {
+				UMLLinkDescriptor nextLinkDescriptor = linkDescriptorsIterator.next();
 				if(diagramLinkObject == nextLinkDescriptor.getModelElement() && diagramLinkSrc == nextLinkDescriptor.getSource() && diagramLinkDst == nextLinkDescriptor.getDestination() && diagramLinkVisualID == nextLinkDescriptor.getVisualID()) {
 					linksIterator.remove();
 					linkDescriptorsIterator.remove();
@@ -266,11 +275,11 @@ public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 	/**
 	 * @generated
 	 */
-	private Collection collectAllLinks(View view, Map domain2NotationMap) {
+	private Collection<UMLLinkDescriptor> collectAllLinks(View view, Map<EObject, View> domain2NotationMap) {
 		if(!ModelEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(view))) {
-			return Collections.EMPTY_LIST;
+			return Collections.emptyList();
 		}
-		Collection result = new LinkedList();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
 		case ModelEditPart.VISUAL_ID:
 		{
@@ -795,10 +804,10 @@ public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 	/**
 	 * @generated
 	 */
-	private Collection createConnections(Collection linkDescriptors, Map domain2NotationMap) {
-		List adapters = new LinkedList();
-		for(Iterator linkDescriptorsIterator = linkDescriptors.iterator(); linkDescriptorsIterator.hasNext();) {
-			final UMLLinkDescriptor nextLinkDescriptor = (UMLLinkDescriptor)linkDescriptorsIterator.next();
+	private Collection<IAdaptable> createConnections(Collection<UMLLinkDescriptor> linkDescriptors, Map<EObject, View> domain2NotationMap) {
+		LinkedList<IAdaptable> adapters = new LinkedList<IAdaptable>();
+		for(Iterator<UMLLinkDescriptor> it = linkDescriptors.iterator(); it.hasNext();) {
+			UMLLinkDescriptor nextLinkDescriptor = it.next();
 			EditPart sourceEditPart = getEditPart(nextLinkDescriptor.getSource(), domain2NotationMap);
 			EditPart targetEditPart = getEditPart(nextLinkDescriptor.getDestination(), domain2NotationMap);
 			if(sourceEditPart == null || targetEditPart == null) {
@@ -826,7 +835,7 @@ public class ModelCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 	/**
 	 * @generated
 	 */
-	private EditPart getEditPart(EObject domainModelElement, Map domain2NotationMap) {
+	private EditPart getEditPart(EObject domainModelElement, Map<EObject, View> domain2NotationMap) {
 		View view = (View)domain2NotationMap.get(domainModelElement);
 		if(view != null) {
 			return (EditPart)getHost().getViewer().getEditPartRegistry().get(view);

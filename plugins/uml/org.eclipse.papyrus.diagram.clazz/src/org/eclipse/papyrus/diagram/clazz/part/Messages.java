@@ -27,16 +27,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Abstraction1CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Abstraction1CreationTool_title;
-
-	/**
-	 * @generated
-	 */
 	public static String AbstractParser_UnexpectedValueType;
 
 	/**
@@ -67,216 +57,6 @@ public class Messages extends NLS {
 
 	/** Label to be displayed on {@link org.eclipse.uml2.uml.Usage} links */
 	public static String AppliedStereotypeLabel_UsageTag;
-
-	/**
-	 * @generated
-	 */
-	public static String Association2CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Association2CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String AssociationBranch3CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String AssociationBranch3CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String AssociationClass4CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String ContainmentLink5CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String ContainmentLink5CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Dependency6CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Dependency6CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String DependencyBranch7CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String DependencyBranch7CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String ElementImport8CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String ElementImport8CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Generalization9CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Generalization9CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String GeneralizationSet10CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String GeneralizationSet10CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String InstanceSpecificationLinkCreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String InstanceSpecificationLinkCreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String InterfaceRealization12CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String InterfaceRealization12CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Link13CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Link13CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String PackageImport14CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String PackageImport14CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String PackageMerge15CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String PackageMerge15CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String ProfileApplication16CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String ProfileApplication16CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Realization17CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Realization17CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Substitution18CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Substitution18CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Usage19CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Usage19CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String TemplateBinding20CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String TemplateBinding20CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Class1CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Class1CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String ClassifierTemplateParameter2CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String ClassifierTemplateParameter2CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String AssociationClass4CreationTool_title;
 
 	/**
 	 * @generated
@@ -317,206 +97,6 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String CommandName_OpenDiagram;
-
-	/**
-	 * @generated
-	 */
-	public static String Comment5CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Component4CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Component4CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Constraint5CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Constraint5CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String DataType6CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String DataType6CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String DurationObservation7CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String DurationObservation7CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Enumeration8CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Enumeration8CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Enumerationliteral9CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Enumerationliteral9CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Interface10CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Interface10CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String InstanceSpecification11CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String InstanceSpecification11CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String PrimitiveType12CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String PrimitiveType12CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Model13CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Model13CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Operation14CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Operation14CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Package15CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Package15CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Property16CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Property16CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Reception17CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Reception17CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String RedefinableTemplateSignature18CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String RedefinableTemplateSignature18CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Signal19CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Signal19CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Slot20CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String Slot20CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String TemplateParameter21CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String TemplateParameter21CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String TimeObservation22CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String TimeObservation22CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String Comment5CreationTool_title;
 
 	/**
 	 * @generated
@@ -896,22 +476,442 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Edges1Group_title;
+	public static String createEdges1Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Edges1Group_desc;
+	public static String createEdges1Group_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Nodes2Group_title;
+	public static String createNodes2Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Nodes2Group_desc;
+	public static String createNodes2Group_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createAbstraction1CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createAbstraction1CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createAssociation2CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createAssociation2CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createAssociationBranch3CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createAssociationBranch3CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createAssociationClass4CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createAssociationClass4CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createContainmentLink5CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createContainmentLink5CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createDependency6CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createDependency6CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createDependencyBranch7CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createDependencyBranch7CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createElementImport8CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createElementImport8CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createGeneralization9CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createGeneralization9CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createGeneralizationSet10CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createGeneralizationSet10CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createInstanceSpecificationLinkCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createInstanceSpecificationLinkCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createInterfaceRealization12CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createInterfaceRealization12CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createLink13CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createLink13CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createPackageImport14CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createPackageImport14CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createPackageMerge15CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createPackageMerge15CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createProfileApplication16CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createProfileApplication16CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createRealization17CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createRealization17CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createSubstitution18CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createSubstitution18CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createUsage19CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createUsage19CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createTemplateBinding20CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createTemplateBinding20CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createClass1CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createClass1CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createClassifierTemplateParameter2CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createClassifierTemplateParameter2CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createComment5CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createComment5CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createComponent4CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createComponent4CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createConstraint5CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createConstraint5CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createDataType6CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createDataType6CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createDurationObservation7CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createDurationObservation7CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createEnumeration8CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createEnumeration8CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createEnumerationliteral9CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createEnumerationliteral9CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createInterface10CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createInterface10CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createInstanceSpecification11CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createInstanceSpecification11CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createPrimitiveType12CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createPrimitiveType12CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createModel13CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createModel13CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createOperation14CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createOperation14CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createPackage15CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createPackage15CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createProperty16CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createProperty16CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createReception17CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createReception17CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createRedefinableTemplateSignature18CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createRedefinableTemplateSignature18CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createSignal19CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createSignal19CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createSlot20CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createSlot20CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createTemplateParameter21CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createTemplateParameter21CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createTimeObservation22CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createTimeObservation22CreationTool_desc;
 
 	/**
 	 * @generated

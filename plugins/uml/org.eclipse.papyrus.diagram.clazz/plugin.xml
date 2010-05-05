@@ -164,7 +164,7 @@
          </propertySection>
       </propertySections>
    </extension>
-<extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
+<extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
       <?gmfgen generated="true"?>
       <viewProvider class="org.eclipse.papyrus.diagram.clazz.providers.UMLViewProvider">
          <Priority name="Lowest"/>
@@ -1583,309 +1583,309 @@
    </extension><extension point="org.eclipse.ui.preferencePages">
 
 
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.OperationPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.OperationPreferencePage"
-            name="Operation" />	
+            name="Operation Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.DataTypePreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.DataTypePreferencePage"
-            name="DataType" />	
+            name="DataType Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.ModelPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.ModelPreferencePage"
-            name="Model" />	
+            name="Model Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.ShortCutDiagramPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.ShortCutDiagramPreferencePage"
-            name="ShortCutDiagram" />	
+            name="ShortCutDiagram Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.InstanceSpecificationPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.InstanceSpecificationPreferencePage"
-            name="InstanceSpecification" />	
+            name="InstanceSpecification Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.PropertyPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.PropertyPreferencePage"
-            name="Property" />	
+            name="Property Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.DependencyPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.DependencyPreferencePage"
-            name="Dependency" />	
+            name="Dependency Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.SlotPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.SlotPreferencePage"
-            name="Slot" />	
+            name="Slot Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.ComponentPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.ComponentPreferencePage"
-            name="Component" />	
+            name="Component Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.TemplateParameterPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.TemplateParameterPreferencePage"
-            name="TemplateParameter" />	
+            name="TemplateParameter Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.SignalPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.SignalPreferencePage"
-            name="Signal" />	
+            name="Signal Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.CommentPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.CommentPreferencePage"
-            name="Comment" />	
+            name="Comment Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.DurationObservationPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.DurationObservationPreferencePage"
-            name="DurationObservation" />	
+            name="DurationObservation Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.InterfacePreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.InterfacePreferencePage"
-            name="Interface" />	
+            name="Interface Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.PortPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.PortPreferencePage"
-            name="Port" />	
+            name="Port Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.ClassPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.ClassPreferencePage"
-            name="Class" />	
+            name="Class Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.TimeObservationPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.TimeObservationPreferencePage"
-            name="TimeObservation" />	
+            name="TimeObservation Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.AssociationPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.AssociationPreferencePage"
-            name="Association" />	
+            name="Association Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.ConstraintPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.ConstraintPreferencePage"
-            name="Constraint" />	
+            name="Constraint Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.EnumerationLiteralPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.EnumerationLiteralPreferencePage"
-            name="EnumerationLiteral" />	
+            name="EnumerationLiteral Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.PrimitiveTypePreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.PrimitiveTypePreferencePage"
-            name="PrimitiveType" />	
+            name="PrimitiveType Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.AssociationClassPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.AssociationClassPreferencePage"
-            name="AssociationClass" />	
+            name="AssociationClass Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.PackagePreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.PackagePreferencePage"
-            name="Package" />	
+            name="Package Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.EnumerationPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.EnumerationPreferencePage"
-            name="Enumeration" />	
+            name="Enumeration Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.ReceptionPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.ReceptionPreferencePage"
-            name="Reception" />	
+            name="Reception Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.ClassifierTemplateParameterPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.ClassifierTemplateParameterPreferencePage"
-            name="ClassifierTemplateParameter" />	
+            name="ClassifierTemplateParameter Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.RedefinableTemplateSignaturePreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.RedefinableTemplateSignaturePreferencePage"
-            name="RedefinableTemplateSignature" />	
+            name="RedefinableTemplateSignature Node" />
 	
 
 
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.PackageMergePreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.PackageMergePreferencePage"
-            name="PackageMerge" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="PackageMerge Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.AssociationPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.AssociationPreferencePage"
-            name="Association" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="Association Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.GeneralizationPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.GeneralizationPreferencePage"
-            name="Generalization" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="Generalization Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.DependencyPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.DependencyPreferencePage"
-            name="Dependency" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="Dependency Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.RealizationPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.RealizationPreferencePage"
-            name="Realization" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="Realization Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.UsagePreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.UsagePreferencePage"
-            name="Usage" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="Usage Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.TemplateBindingPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.TemplateBindingPreferencePage"
-            name="TemplateBinding" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="TemplateBinding Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.PackageImportPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.PackageImportPreferencePage"
-            name="PackageImport" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="PackageImport Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.AssociationClassPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.AssociationClassPreferencePage"
-            name="AssociationClass" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="AssociationClass Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.AbstractionPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.AbstractionPreferencePage"
-            name="Abstraction" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="Abstraction Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.GeneralizationSetPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.GeneralizationSetPreferencePage"
-            name="GeneralizationSet" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="GeneralizationSet Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.ElementImportPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.ElementImportPreferencePage"
-            name="ElementImport" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="ElementImport Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.InterfaceRealizationPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.InterfaceRealizationPreferencePage"
-            name="InterfaceRealization" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="InterfaceRealization Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.SubstitutionPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.SubstitutionPreferencePage"
-            name="Substitution" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="Substitution Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.ProfileApplicationPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.ProfileApplicationPreferencePage"
-            name="ProfileApplication" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="ProfileApplication Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.UndefinedPreferencePage"
             id="org.eclipse.papyrus.diagram.clazz.preferences.UndefinedPreferencePage"
-            name="Undefined" />	
-	
+            name="Undefined Link" />
+		
 
 </extension>
 

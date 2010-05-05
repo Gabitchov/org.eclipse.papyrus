@@ -20,6 +20,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
@@ -37,16 +39,18 @@ public class ClassCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
-	Set myFeaturesToSynchronize;
+	Set<EStructuralFeature> myFeaturesToSynchronize;
 
 	/**
 	 * @generated
 	 */
 	protected List getSemanticChildrenList() {
 		View viewObject = (View)getHost().getModel();
-		List result = new LinkedList();
-		for(Iterator it = UMLDiagramUpdater.getClass_2008SemanticChildren(viewObject).iterator(); it.hasNext();) {
-			result.add(((UMLNodeDescriptor)it.next()).getModelElement());
+		LinkedList<EObject> result = new LinkedList<EObject>();
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getClass_2008SemanticChildren(viewObject);
+		for(Iterator<UMLNodeDescriptor> it = childDescriptors.iterator(); it.hasNext();) {
+			UMLNodeDescriptor d = it.next();
+			result.add(d.getModelElement());
 		}
 		return result;
 	}
@@ -69,16 +73,9 @@ public class ClassCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected String getDefaultFactoryHint() {
-		return null;
-	}
-
-	/**
-	 * @generated
-	 */
 	protected Set getFeaturesToSynchronize() {
 		if(myFeaturesToSynchronize == null) {
-			myFeaturesToSynchronize = new HashSet();
+			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getTemplateableElement_OwnedTemplateSignature());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getEncapsulatedClassifier_OwnedPort());
 		}

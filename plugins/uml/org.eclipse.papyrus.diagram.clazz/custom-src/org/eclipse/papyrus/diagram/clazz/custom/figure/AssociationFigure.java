@@ -271,7 +271,7 @@ public class AssociationFigure extends UMLEdgeFigure {
 		decorationPointList.addPoint(-3, -2);
 		decoration.setTemplate(decorationPointList);
 		decoration.setBackgroundColor(org.eclipse.draw2d.ColorConstants.white);
-		decoration.setScale(3,2 );
+		decoration.setScale(3, 2);
 		return decoration;
 	}
 

@@ -82,202 +82,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart)host.getAdapter(IGraphicalEditPart.class);
-		if(editPart instanceof AssociationClassEditPart) {
-			ArrayList types = new ArrayList(3);
-			types.add(UMLElementTypes.Property_3002);
-			types.add(UMLElementTypes.Operation_3003);
-			types.add(UMLElementTypes.Class_3004);
-			return types;
-		}
-		if(editPart instanceof InstanceSpecificationEditPart) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.Slot_3030);
-			return types;
-		}
-		if(editPart instanceof ComponentEditPart) {
-			ArrayList types = new ArrayList(4);
-			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
-			types.add(UMLElementTypes.Property_3002);
-			types.add(UMLElementTypes.Operation_3003);
-			types.add(UMLElementTypes.Class_3004);
-			return types;
-		}
-		if(editPart instanceof SignalEditPart) {
-			ArrayList types = new ArrayList(2);
-			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
-			types.add(UMLElementTypes.Property_3005);
-			return types;
-		}
-		if(editPart instanceof InterfaceEditPart) {
-			ArrayList types = new ArrayList(4);
-			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
-			types.add(UMLElementTypes.Property_3006);
-			types.add(UMLElementTypes.Operation_3007);
-			types.add(UMLElementTypes.Class_3008);
-			return types;
-		}
-		if(editPart instanceof ModelEditPartTN) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
-			return types;
-		}
-		if(editPart instanceof EnumerationEditPart) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.EnumerationLiteral_3017);
-			return types;
-		}
-		if(editPart instanceof PackageEditPart) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
-			return types;
-		}
-		if(editPart instanceof ClassEditPart) {
-			ArrayList types = new ArrayList(6);
-			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
-			types.add(UMLElementTypes.Port_3032);
-			types.add(UMLElementTypes.Property_3012);
-			types.add(UMLElementTypes.Reception_3011);
-			types.add(UMLElementTypes.Operation_3013);
-			types.add(UMLElementTypes.Class_3014);
-			return types;
-		}
-		if(editPart instanceof DataTypeEditPart) {
-			ArrayList types = new ArrayList(3);
-			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
-			types.add(UMLElementTypes.Property_3018);
-			types.add(UMLElementTypes.Operation_3019);
-			return types;
-		}
-		if(editPart instanceof RedefinableTemplateSignatureEditPart) {
-			ArrayList types = new ArrayList(2);
-			types.add(UMLElementTypes.ClassifierTemplateParameter_3031);
-			types.add(UMLElementTypes.TemplateParameter_3016);
-			return types;
-		}
-		if(editPart instanceof InstanceSpecificationEditPartCN) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.Slot_3030);
-			return types;
-		}
-		if(editPart instanceof ComponentEditPartCN) {
-			ArrayList types = new ArrayList(4);
-			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
-			types.add(UMLElementTypes.Property_3002);
-			types.add(UMLElementTypes.Operation_3003);
-			types.add(UMLElementTypes.Class_3004);
-			return types;
-		}
-		if(editPart instanceof SignalEditPartCN) {
-			ArrayList types = new ArrayList(2);
-			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
-			types.add(UMLElementTypes.Property_3005);
-			return types;
-		}
-		if(editPart instanceof InterfaceEditPartCN) {
-			ArrayList types = new ArrayList(4);
-			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
-			types.add(UMLElementTypes.Property_3006);
-			types.add(UMLElementTypes.Operation_3007);
-			types.add(UMLElementTypes.Class_3008);
-			return types;
-		}
-		if(editPart instanceof ModelEditPartCN) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
-			return types;
-		}
-		if(editPart instanceof EnumerationEditPartCN) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.EnumerationLiteral_3017);
-			return types;
-		}
-		if(editPart instanceof PackageEditPartCN) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
-			return types;
-		}
-		if(editPart instanceof ClassEditPartCN) {
-			ArrayList types = new ArrayList(5);
-			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
-			types.add(UMLElementTypes.Property_3012);
-			types.add(UMLElementTypes.Reception_3011);
-			types.add(UMLElementTypes.Operation_3013);
-			types.add(UMLElementTypes.Class_3014);
-			return types;
-		}
-		if(editPart instanceof DataTypeEditPartCN) {
-			ArrayList types = new ArrayList(3);
-			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
-			types.add(UMLElementTypes.Property_3018);
-			types.add(UMLElementTypes.Operation_3019);
-			return types;
-		}
-		if(editPart instanceof ModelPackageableElementCompartmentEditPart) {
-			ArrayList types = new ArrayList(12);
-			types.add(UMLElementTypes.InstanceSpecification_3020);
-			types.add(UMLElementTypes.Component_3021);
-			types.add(UMLElementTypes.Signal_3022);
-			types.add(UMLElementTypes.Interface_3023);
-			types.add(UMLElementTypes.Model_3024);
-			types.add(UMLElementTypes.Enumeration_3025);
-			types.add(UMLElementTypes.Package_3009);
-			types.add(UMLElementTypes.Class_3010);
-			types.add(UMLElementTypes.PrimitiveType_3026);
-			types.add(UMLElementTypes.DataType_3027);
-			types.add(UMLElementTypes.Comment_3028);
-			types.add(UMLElementTypes.Constraint_3029);
-			return types;
-		}
-		if(editPart instanceof ModelPackageableElementCompartment2EditPart) {
-			ArrayList types = new ArrayList(12);
-			types.add(UMLElementTypes.InstanceSpecification_3020);
-			types.add(UMLElementTypes.Component_3021);
-			types.add(UMLElementTypes.Signal_3022);
-			types.add(UMLElementTypes.Interface_3023);
-			types.add(UMLElementTypes.Model_3024);
-			types.add(UMLElementTypes.Enumeration_3025);
-			types.add(UMLElementTypes.Package_3009);
-			types.add(UMLElementTypes.Class_3010);
-			types.add(UMLElementTypes.PrimitiveType_3026);
-			types.add(UMLElementTypes.DataType_3027);
-			types.add(UMLElementTypes.Comment_3028);
-			types.add(UMLElementTypes.Constraint_3029);
-			return types;
-		}
-		if(editPart instanceof PackagePackageableElementCompartmentEditPart) {
-			ArrayList types = new ArrayList(12);
-			types.add(UMLElementTypes.InstanceSpecification_3020);
-			types.add(UMLElementTypes.Component_3021);
-			types.add(UMLElementTypes.Signal_3022);
-			types.add(UMLElementTypes.Interface_3023);
-			types.add(UMLElementTypes.Model_3024);
-			types.add(UMLElementTypes.Enumeration_3025);
-			types.add(UMLElementTypes.Package_3009);
-			types.add(UMLElementTypes.Class_3010);
-			types.add(UMLElementTypes.PrimitiveType_3026);
-			types.add(UMLElementTypes.DataType_3027);
-			types.add(UMLElementTypes.Comment_3028);
-			types.add(UMLElementTypes.Constraint_3029);
-			return types;
-		}
-		if(editPart instanceof PackagePackageableElementCompartment2EditPart) {
-			ArrayList types = new ArrayList(12);
-			types.add(UMLElementTypes.InstanceSpecification_3020);
-			types.add(UMLElementTypes.Component_3021);
-			types.add(UMLElementTypes.Signal_3022);
-			types.add(UMLElementTypes.Interface_3023);
-			types.add(UMLElementTypes.Model_3024);
-			types.add(UMLElementTypes.Enumeration_3025);
-			types.add(UMLElementTypes.Package_3009);
-			types.add(UMLElementTypes.Class_3010);
-			types.add(UMLElementTypes.PrimitiveType_3026);
-			types.add(UMLElementTypes.DataType_3027);
-			types.add(UMLElementTypes.Comment_3028);
-			types.add(UMLElementTypes.Constraint_3029);
-			return types;
-		}
 		if(editPart instanceof ModelEditPart) {
-			ArrayList types = new ArrayList(18);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(18);
 			types.add(UMLElementTypes.Dependency_2014);
 			types.add(UMLElementTypes.AssociationClass_2013);
 			types.add(UMLElementTypes.Association_2015);
@@ -296,6 +102,200 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Diagram_2016);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			return types;
+		}
+		if(editPart instanceof AssociationClassEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(3);
+			types.add(UMLElementTypes.Property_3002);
+			types.add(UMLElementTypes.Operation_3003);
+			types.add(UMLElementTypes.Class_3004);
+			return types;
+		}
+		if(editPart instanceof InstanceSpecificationEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.Slot_3030);
+			return types;
+		}
+		if(editPart instanceof ComponentEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(4);
+			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
+			types.add(UMLElementTypes.Property_3002);
+			types.add(UMLElementTypes.Operation_3003);
+			types.add(UMLElementTypes.Class_3004);
+			return types;
+		}
+		if(editPart instanceof SignalEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
+			types.add(UMLElementTypes.Property_3005);
+			return types;
+		}
+		if(editPart instanceof InterfaceEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(4);
+			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
+			types.add(UMLElementTypes.Property_3006);
+			types.add(UMLElementTypes.Operation_3007);
+			types.add(UMLElementTypes.Class_3008);
+			return types;
+		}
+		if(editPart instanceof ModelEditPartTN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
+			return types;
+		}
+		if(editPart instanceof EnumerationEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.EnumerationLiteral_3017);
+			return types;
+		}
+		if(editPart instanceof PackageEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
+			return types;
+		}
+		if(editPart instanceof ClassEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(6);
+			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
+			types.add(UMLElementTypes.Port_3032);
+			types.add(UMLElementTypes.Property_3012);
+			types.add(UMLElementTypes.Reception_3011);
+			types.add(UMLElementTypes.Operation_3013);
+			types.add(UMLElementTypes.Class_3014);
+			return types;
+		}
+		if(editPart instanceof DataTypeEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(3);
+			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
+			types.add(UMLElementTypes.Property_3018);
+			types.add(UMLElementTypes.Operation_3019);
+			return types;
+		}
+		if(editPart instanceof RedefinableTemplateSignatureEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+			types.add(UMLElementTypes.ClassifierTemplateParameter_3031);
+			types.add(UMLElementTypes.TemplateParameter_3016);
+			return types;
+		}
+		if(editPart instanceof InstanceSpecificationEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.Slot_3030);
+			return types;
+		}
+		if(editPart instanceof ComponentEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(4);
+			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
+			types.add(UMLElementTypes.Property_3002);
+			types.add(UMLElementTypes.Operation_3003);
+			types.add(UMLElementTypes.Class_3004);
+			return types;
+		}
+		if(editPart instanceof SignalEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
+			types.add(UMLElementTypes.Property_3005);
+			return types;
+		}
+		if(editPart instanceof InterfaceEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(4);
+			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
+			types.add(UMLElementTypes.Property_3006);
+			types.add(UMLElementTypes.Operation_3007);
+			types.add(UMLElementTypes.Class_3008);
+			return types;
+		}
+		if(editPart instanceof ModelEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
+			return types;
+		}
+		if(editPart instanceof EnumerationEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.EnumerationLiteral_3017);
+			return types;
+		}
+		if(editPart instanceof PackageEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
+			return types;
+		}
+		if(editPart instanceof ClassEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(5);
+			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
+			types.add(UMLElementTypes.Property_3012);
+			types.add(UMLElementTypes.Reception_3011);
+			types.add(UMLElementTypes.Operation_3013);
+			types.add(UMLElementTypes.Class_3014);
+			return types;
+		}
+		if(editPart instanceof DataTypeEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(3);
+			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
+			types.add(UMLElementTypes.Property_3018);
+			types.add(UMLElementTypes.Operation_3019);
+			return types;
+		}
+		if(editPart instanceof ModelPackageableElementCompartmentEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(12);
+			types.add(UMLElementTypes.InstanceSpecification_3020);
+			types.add(UMLElementTypes.Component_3021);
+			types.add(UMLElementTypes.Signal_3022);
+			types.add(UMLElementTypes.Interface_3023);
+			types.add(UMLElementTypes.Model_3024);
+			types.add(UMLElementTypes.Enumeration_3025);
+			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.Class_3010);
+			types.add(UMLElementTypes.PrimitiveType_3026);
+			types.add(UMLElementTypes.DataType_3027);
+			types.add(UMLElementTypes.Comment_3028);
+			types.add(UMLElementTypes.Constraint_3029);
+			return types;
+		}
+		if(editPart instanceof ModelPackageableElementCompartment2EditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(12);
+			types.add(UMLElementTypes.InstanceSpecification_3020);
+			types.add(UMLElementTypes.Component_3021);
+			types.add(UMLElementTypes.Signal_3022);
+			types.add(UMLElementTypes.Interface_3023);
+			types.add(UMLElementTypes.Model_3024);
+			types.add(UMLElementTypes.Enumeration_3025);
+			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.Class_3010);
+			types.add(UMLElementTypes.PrimitiveType_3026);
+			types.add(UMLElementTypes.DataType_3027);
+			types.add(UMLElementTypes.Comment_3028);
+			types.add(UMLElementTypes.Constraint_3029);
+			return types;
+		}
+		if(editPart instanceof PackagePackageableElementCompartmentEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(12);
+			types.add(UMLElementTypes.InstanceSpecification_3020);
+			types.add(UMLElementTypes.Component_3021);
+			types.add(UMLElementTypes.Signal_3022);
+			types.add(UMLElementTypes.Interface_3023);
+			types.add(UMLElementTypes.Model_3024);
+			types.add(UMLElementTypes.Enumeration_3025);
+			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.Class_3010);
+			types.add(UMLElementTypes.PrimitiveType_3026);
+			types.add(UMLElementTypes.DataType_3027);
+			types.add(UMLElementTypes.Comment_3028);
+			types.add(UMLElementTypes.Constraint_3029);
+			return types;
+		}
+		if(editPart instanceof PackagePackageableElementCompartment2EditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(12);
+			types.add(UMLElementTypes.InstanceSpecification_3020);
+			types.add(UMLElementTypes.Component_3021);
+			types.add(UMLElementTypes.Signal_3022);
+			types.add(UMLElementTypes.Interface_3023);
+			types.add(UMLElementTypes.Model_3024);
+			types.add(UMLElementTypes.Enumeration_3025);
+			types.add(UMLElementTypes.Package_3009);
+			types.add(UMLElementTypes.Class_3010);
+			types.add(UMLElementTypes.PrimitiveType_3026);
+			types.add(UMLElementTypes.DataType_3027);
+			types.add(UMLElementTypes.Comment_3028);
+			types.add(UMLElementTypes.Constraint_3029);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -833,9 +833,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return null;
 		}
 		Diagram diagram = (Diagram)editPart.getRoot().getContents().getModel();
-		Collection elements = new HashSet();
-		for(Iterator it = diagram.getElement().eAllContents(); it.hasNext();) {
-			EObject element = (EObject)it.next();
+		HashSet<EObject> elements = new HashSet<EObject>();
+		for(Iterator<EObject> it = diagram.getElement().eAllContents(); it.hasNext();) {
+			EObject element = it.next();
 			if(isApplicableElement(element, types)) {
 				elements.add(element);
 			}

@@ -79,14 +79,14 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 	public ClassDiagramDragDropEditPolicy() {
 		super(ClassLinkMappingHelper.getInstance());
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected Set<Integer> getDroppableElementVisualId() {
 		Set<Integer> droppableElementsVisualID = new HashSet<Integer>();
-		
+
 		droppableElementsVisualID.add(Dependency2EditPart.VISUAL_ID);
 		droppableElementsVisualID.add(AssociationClassEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(AssociationNodeEditPart.VISUAL_ID);
@@ -96,10 +96,10 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 		droppableElementsVisualID.add(PackageEditPartCN.VISUAL_ID);
 		droppableElementsVisualID.add(Class5EditPart.VISUAL_ID);
 		droppableElementsVisualID.add(ModelEditPartCN.VISUAL_ID);
-		
+
 		return droppableElementsVisualID;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -347,6 +347,6 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 		}
 	}
 
-	
+
 
 }
