@@ -29,8 +29,10 @@ import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.log.LogHelper;
+import org.eclipse.papyrus.preferences.Activator;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
@@ -103,6 +105,14 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 */
 	public static UMLDiagramEditorPlugin getInstance() {
 		return instance;
+	}
+
+	/**
+	 * @generated
+	 */
+	public IPreferenceStore getPreferenceStore() {
+		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		return store;
 	}
 
 	/**

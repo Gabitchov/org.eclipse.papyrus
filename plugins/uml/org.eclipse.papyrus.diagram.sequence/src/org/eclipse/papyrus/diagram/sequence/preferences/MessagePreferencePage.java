@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.sequence.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage;
 
@@ -21,6 +22,14 @@ import org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage;
  * @generated
  */
 public class MessagePreferencePage extends AbstractPapyrusLinkPreferencePage {
+
+	/**
+	 * @generated
+	 */
+	public MessagePreferencePage() {
+		super();
+		setPreferenceKey(PackageEditPart.MODEL_ID + "_Message");
+	}
 
 	/**
 	 * @generated

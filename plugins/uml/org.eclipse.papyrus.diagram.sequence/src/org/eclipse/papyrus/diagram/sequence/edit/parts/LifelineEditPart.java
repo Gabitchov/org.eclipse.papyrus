@@ -16,7 +16,6 @@ package org.eclipse.papyrus.diagram.sequence.edit.parts;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.draw2d.AbstractConnectionAnchor;
 import org.eclipse.draw2d.BorderLayout;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
