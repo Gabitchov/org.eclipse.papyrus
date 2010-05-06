@@ -124,6 +124,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		elementsVisualId.add(DurationConstraintInMessageEditPart.VISUAL_ID);
 		elementsVisualId.add(TimeObservationEditPart.VISUAL_ID);
 		elementsVisualId.add(DurationObservationEditPart.VISUAL_ID);
+		elementsVisualId.add(LifelineEditPart.VISUAL_ID);
 		// handle nodes on messages (no visual ID detected for them)
 		elementsVisualId.add(-1);
 		return elementsVisualId;
@@ -175,6 +176,8 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 				return dropIntervalConstraintInLifeline((IntervalConstraint)semanticLink, nodeVISUALID);
 			case TimeObservationEditPart.VISUAL_ID:
 				return dropTimeObservationInLifeline((TimeObservation)semanticLink, nodeVISUALID);
+			case LifelineEditPart.VISUAL_ID:
+				return dropLifeline((Lifeline)semanticLink, nodeVISUALID);
 			default:
 				return UnexecutableCommand.INSTANCE;
 			}
@@ -199,6 +202,25 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	}
 
 	/**
+	 * Get the drop command for the lifeline
+	 * 
+	 * @param lifeline
+	 *        the lifeline
+	 * @param nodeVISUALID
+	 *        the node visual id
+	 * @return the drop command if the lifeline can be dropped
+	 */
+	private Command dropLifeline(Lifeline lifeline, int nodeVISUALID) {
+		if(getHostObject().equals(lifeline.getOwner())) {
+			List<View> existingViews = DiagramEditPartsUtil.findViews(lifeline, getViewer());
+			if(existingViews.isEmpty()) {
+				return getCreateCommand(lifeline, nodeVISUALID);
+			}
+		}
+		return UnexecutableCommand.INSTANCE;
+	}
+
+	/**
 	 * Get the drop command in case the element can be handled as a label on a message
 	 * 
 	 * @param semanticElement
@@ -207,7 +229,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *        node visual id or -1
 	 * @param linkVISUALID
 	 *        link visual id or -1
-	 * @return the drop command if the elemnet can be dropped as a message label node, or null otherwise
+	 * @return the drop command if the element can be dropped as a message label node, or null otherwise
 	 */
 	private Command handleMessageLabelNode(Element semanticElement, int nodeVISUALID, int linkVISUALID) {
 
