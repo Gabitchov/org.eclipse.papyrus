@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Uml
+Bundle-SymbolicName: org.eclipse.papyrus.icons.uml
+Bundle-Version: 0.7.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.icons.uml.Activator
+Bundle-Vendor: CEA LIST
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
