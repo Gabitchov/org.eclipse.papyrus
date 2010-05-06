@@ -441,7 +441,12 @@
 			} else {
 				configuration.preEditAction(resolveSemanticElement());
 				org.eclipse.jface.dialogs.Dialog dialog = null;
-				if(configuration instanceof org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration) {
+				if (configuration instanceof org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorConfiguration) {
+					org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper helper = ((org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorConfiguration)configuration).createPopupEditorHelper(this) ;
+					helper.showEditor() ;
+					return ;
+				}
+				else if(configuration instanceof org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration) {
 					dialog = ((org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration)configuration).createDialog(org.eclipse.ui.PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()));
 				} else if(configuration instanceof org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration) {
 					dialog = new org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), ((org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration)configuration).getTextToEdit(resolveSemanticElement()), (org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration)configuration);
