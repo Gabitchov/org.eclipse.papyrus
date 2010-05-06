@@ -11,6 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.view;
 
+import java.util.List;
+
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.gmf.runtime.common.core.service.IProvider;
 
@@ -55,6 +57,15 @@ public interface IPropertyViewProvider extends IProvider {
 	 * @return the found dialog descriptor or <code>null</code>
 	 */
 	public DialogDescriptor getDialogDescriptor(String descriptorID);
+
+	/**
+	 * Returns the list of dialog descriptors, valid for the list of given objects
+	 * 
+	 * @param objectsToEdit
+	 *        list of objects to edit
+	 * @return the found dialog descriptors or <code>null</code>
+	 */
+	public List<DialogDescriptor> getDialogDescriptor(List<Object> objectsToEdit);
 
 	/**
 	 * returns <code>true</code> if this provider can handle the dialog descriptor specified by its identifier

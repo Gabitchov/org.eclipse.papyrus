@@ -17,7 +17,6 @@ import java.util.List;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IBindingLabelProviderDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
-import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptor;
 import org.w3c.dom.Node;
 
 /**
@@ -34,18 +33,37 @@ public class DialogDescriptor extends AbstractConstrainedDescriptor {
 	/** message for the dialog */
 	protected Object message;
 
-	/**
-	 * Creates a new DialogDescriptor.
-	 */
-	public DialogDescriptor(String id, List<IConstraintDescriptor> constraints, List<ContainerDescriptor> descriptors) {
-		super(id, constraints);
-	}
+	/** list of identifier of replaced dialogs */
+	protected List<String> replacedDialogIds;
+
+	//	/**
+	//	 * Creates a new DialogDescriptor.
+	//	 */
+	//	public DialogDescriptor(String id, List<IConstraintDescriptor> constraints, List<ContainerDescriptor> descriptors) {
+	//		super(id, constraints);
+	//	}
 
 	/**
 	 * Creates a new DialogDescriptor.
+	 * 
+	 * @param id
+	 *        identifier of this dialog descriptor
+	 * @param constraints
+	 *        the list of constraints for this dialog
+	 * @param contentNode
+	 *        the unparsed node descirbing the content of the dialog
+	 * @param replacedDialogIds
+	 *        the list of replaced ids for the dialog
+	 * @param title
+	 *        the title of the dialog (either a simple String or a {@link IBindingLabelProviderDescriptor}
+	 * @param message
+	 *        the message of the dialog (either a simple String or a {@link IBindingLabelProviderDescriptor}
+	 * @param parser
+	 *        the parser used to parse the content node
 	 */
-	public DialogDescriptor(String id, List<IConstraintDescriptor> constraints, Node contentNode, Object title, Object message, PropertyViewProviderParser parser) {
+	public DialogDescriptor(String id, List<IConstraintDescriptor> constraints, Node contentNode, List<String> replacedDialogIds, Object title, Object message, PropertyViewProviderParser parser) {
 		super(id, constraints, contentNode, parser);
+		this.replacedDialogIds = replacedDialogIds;
 		this.title = title;
 		this.message = message;
 	}
@@ -92,5 +110,14 @@ public class DialogDescriptor extends AbstractConstrainedDescriptor {
 	 */
 	public Object getMessage() {
 		return message;
+	}
+
+	/**
+	 * Returns the identifier of replaced dialogs
+	 * 
+	 * @return the identifier of replaced dialogs
+	 */
+	public List<String> getReplacedDialogIds() {
+		return replacedDialogIds;
 	}
 }

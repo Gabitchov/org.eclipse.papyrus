@@ -14,7 +14,9 @@ package org.eclipse.papyrus.properties.runtime.view;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -29,6 +31,8 @@ import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.dialogs.GetDialogDescriptorOperation;
+import org.eclipse.papyrus.properties.runtime.dialogs.GetDialogDescriptorOperationById;
+import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.osgi.framework.Bundle;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
@@ -127,8 +131,10 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 	public boolean provides(IOperation operation) {
 		if(operation instanceof GetPropertyViewDescriptorOperation) {
 			return managesViewDescriptor(((GetPropertyViewDescriptorOperation)operation).getDescriptorID());
+		} else if(operation instanceof GetDialogDescriptorOperationById) {
+			return managesDialogDescriptor(((GetDialogDescriptorOperationById)operation).getDescriptorID());
 		} else if(operation instanceof GetDialogDescriptorOperation) {
-			return managesDialogDescriptor(((GetDialogDescriptorOperation)operation).getDescriptorID());
+			return true; // ?
 		}
 		return false;
 	}
@@ -224,6 +230,13 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 		urlFile = FileLocator.toFileURL(urlFile);
 		if("file".equals(urlFile.getProtocol())) { //$NON-NLS-1$
 			return new File(urlFile.getFile());
+		} else if("jar".equals(urlFile.getProtocol())) { //$NON-NLS-1$
+			String filePath = urlFile.getPath();
+			if(filePath.startsWith("file:")) {
+				// strip off the file: and the !/
+				filePath = filePath.substring(5, path.length() - 2);
+				return new File(filePath);
+			}
 		}
 		return null;
 	}
@@ -247,6 +260,45 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 	 */
 	public DialogDescriptor getDialogDescriptor(String descriptorID) {
 		return predefinedDialogs.get(descriptorID);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public List<DialogDescriptor> getDialogDescriptor(List<Object> objectsToEdit) {
+		// iterate for each dialog on the predefined dialogs
+		List<DialogDescriptor> validDescriptors = new ArrayList<DialogDescriptor>();
+		for(DialogDescriptor descriptor : predefinedDialogs.values()) {
+			// check this dialog validity
+			// for each constraint, test if it is valid for the list of object
+			if(isValid(descriptor, objectsToEdit)) {
+				validDescriptors.add(descriptor);
+			}
+		}
+		return validDescriptors;
+	}
+
+	/**
+	 * Tests if the descriptor is valid for the given list of objects
+	 * 
+	 * @param descriptor
+	 *        the descriptor to test
+	 * @param objectsToEdit
+	 *        the list of objects to display in the dialog
+	 * @return <code>true</code> if the descriptors can display the list of objects to edit
+	 */
+	protected boolean isValid(DialogDescriptor descriptor, List<Object> objectsToEdit) {
+		// for each object, test each constraint
+		for(IConstraintDescriptor constraintDescriptor : descriptor.getConstraintDescriptors()) {
+			for(Object objectToEdit : objectsToEdit) {
+				boolean isValid = constraintDescriptor.select(objectToEdit);
+				if(!isValid) {
+					// constraint is not valid for this object: return false
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	/**

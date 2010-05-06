@@ -174,7 +174,6 @@ public class PropertyDialog extends StatusDialog {
 				descriptor.createContent(containerComposite, getWidgetFactory(), objectsToEdit);
 				containers.add(descriptor);
 			}
-
 		}
 
 		return composite;

@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.view;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -23,6 +24,7 @@ import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorControlle
 import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorControllerService;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
 import org.eclipse.papyrus.properties.runtime.dialogs.GetDialogDescriptorOperation;
+import org.eclipse.papyrus.properties.runtime.dialogs.GetDialogDescriptorOperationById;
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -86,8 +88,68 @@ public class PropertyViewService extends Service {
 	 * @return the configuration descriptor for the dialog
 	 */
 	public DialogDescriptor getDialogDescriptor(String dialogID) {
-		DialogDescriptor descriptor = (DialogDescriptor)executeUnique(ExecutionStrategy.REVERSE, new GetDialogDescriptorOperation(dialogID));
+		DialogDescriptor descriptor = (DialogDescriptor)executeUnique(ExecutionStrategy.REVERSE, new GetDialogDescriptorOperationById(dialogID));
 		return descriptor;
+	}
+
+	/**
+	 * Returns the dialog descriptor that fits best to the list of given objects
+	 * 
+	 * @param objectsToEdit
+	 *        the list of objects to edit
+	 * @return the best dialog found
+	 */
+	@SuppressWarnings("unchecked")
+	public DialogDescriptor getDialogDescriptor(List<Object> objectsToEdit) {
+		List<List<DialogDescriptor>> validDescriptors = (List<List<DialogDescriptor>>)execute(ExecutionStrategy.REVERSE, new GetDialogDescriptorOperation(objectsToEdit));
+		List<DialogDescriptor> filteredDescriptors = new ArrayList<DialogDescriptor>();
+
+		// filter this list using the replaced descriptors
+		List<DialogDescriptor> subList = flattenList(validDescriptors);
+		// check sub list is not empty
+		if(subList.isEmpty()) {
+			return null;
+		}
+
+		// the list of available descriptors is now available, now remove from the list the section descriptors which are erased by others
+		for(DialogDescriptor currentDescriptor : subList) {
+			boolean isRemoved = false;
+			String currentId = currentDescriptor.getId();
+			// is this descriptor removed by another one ?
+			for(DialogDescriptor descriptor : subList) {
+				if(descriptor.getReplacedDialogIds().contains(currentId)) {
+					isRemoved = true;
+				}
+			}
+
+			if(!isRemoved) {
+				filteredDescriptors.add(currentDescriptor);
+			}
+		}
+
+		// check the filtered descriptors is not an empty list.
+		// Otherwise, it should take the first one from the available list as default
+		// if the list has more that one available editors, take the first one also
+		if(filteredDescriptors.isEmpty()) {
+			return subList.get(0); // not empty because it has been checked before
+		} else {
+			return filteredDescriptors.get(0);
+		}
+	}
+
+	/**
+	 * Flattens the list, i.e. creates a list from the list of list
+	 * 
+	 * @param validDescriptors
+	 *        the list of list to flatten
+	 * @return a list of descriptors
+	 */
+	public List<DialogDescriptor> flattenList(List<List<DialogDescriptor>> validDescriptors) {
+		List<DialogDescriptor> flattenList = new ArrayList<DialogDescriptor>();
+		for(List<DialogDescriptor> list : validDescriptors) {
+			flattenList.addAll(list);
+		}
+		return flattenList;
 	}
 
 	/**

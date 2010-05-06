@@ -126,6 +126,41 @@ public class PropertyViewProviderParser {
 	}
 
 	/**
+	 * Parses the specified node and returns the list of replaced dialogs
+	 * 
+	 * @param contextNode
+	 *        the node to parse
+	 * @return the list of replaced ids or an empty list if none
+	 */
+	protected List<String> parseReplacedDialogs(Node contextNode) {
+		List<String> replacedDialogIds = new ArrayList<String>();
+		// retrieve "replacedDialogs" node
+
+		NodeList childrenNodes = contextNode.getChildNodes();
+		for(int i = 0; i < childrenNodes.getLength(); i++) {
+			Node childNode = childrenNodes.item(i);
+			String childNodeName = childNode.getNodeName();
+			if("replacedDialogs".equals(childNodeName)) {
+				NodeList replacedDialogNodes = childNode.getChildNodes();
+				for(int j = 0; j < replacedDialogNodes.getLength(); j++) {
+					Node replacedDialogNode = replacedDialogNodes.item(j);
+					if("replacedDialog".equals(replacedDialogNode.getNodeName())) {
+						// this is a replaced dialog node, try to find attribute id
+						NamedNodeMap attributes = replacedDialogNode.getAttributes();
+						if(attributes != null) {
+							Node idNode = attributes.getNamedItem(NODE_NAME_ID);
+							if(idNode != null) {
+								replacedDialogIds.add(idNode.getNodeValue());
+							}
+						}
+					}
+				}
+			}
+		}
+		return replacedDialogIds;
+	}
+
+	/**
 	 * Parses the size the selection should be
 	 * 
 	 * @param contextNode
@@ -301,12 +336,15 @@ public class PropertyViewProviderParser {
 		// parses constraints that will be given to each section
 		List<IConstraintDescriptor> constraints = parseConstraints(contextNode);
 
+		// parses the list of replaced dialogs
+		List<String> replacedDialogIds = parseReplacedDialogs(contextNode);
+
 		Object message = parseStringNode(messageNode);
 
 		Object title = parseStringNode(titleNode);
 
 		// do not parse currently the content node, will be done later, as the view is used
-		return new DialogDescriptor(id, constraints, contentNode, title, message, this);
+		return new DialogDescriptor(id, constraints, contentNode, replacedDialogIds, title, message, this);
 	}
 
 	/**
