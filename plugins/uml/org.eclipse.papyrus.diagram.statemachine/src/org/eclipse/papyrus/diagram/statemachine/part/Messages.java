@@ -243,32 +243,92 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NodesGroup_title;
+	public static String createNodesGroup_title;
 
 	/**
 	 * @generated
 	 */
-	public static String NodesGroup_desc;
+	public static String createNodesGroup_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String StateMachineCreationTool_title;
+	public static String createPseudoStates2Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String StateMachineCreationTool_desc;
+	public static String createPseudoStates2Group_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String RegionCreationTool_title;
+	public static String createEdges3Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String RegionCreationTool_desc;
+	public static String createEdges3Group_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createStateMachineCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createStateMachineCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createRegionCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createRegionCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createState3CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createState3CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createFinalState4CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createFinalState4CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createPseudoState1CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createPseudoState1CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createTransition1CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createTransition1CreationTool_desc;
 
 	/**
 	 * @generated

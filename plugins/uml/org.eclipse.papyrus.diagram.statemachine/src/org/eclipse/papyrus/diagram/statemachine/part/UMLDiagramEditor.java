@@ -361,9 +361,8 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements
 				// palette template entries whose template is a creation tool.
 				// This will enable drag and drop of the palette shape creation
 				// tools.
-				viewer
-						.addDragSourceListener(new PaletteToolTransferDragSourceListener(
-								viewer));
+				viewer.addDragSourceListener(new PaletteToolTransferDragSourceListener(
+						viewer));
 				viewer.setCustomizer(createPaletteCustomizer());
 			}
 

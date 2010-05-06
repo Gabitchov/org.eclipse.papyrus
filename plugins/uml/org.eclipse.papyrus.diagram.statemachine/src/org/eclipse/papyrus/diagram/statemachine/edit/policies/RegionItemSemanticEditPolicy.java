@@ -9,9 +9,14 @@ import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateNodeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudoStateNodeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateNodeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionEditPartEditPart;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
 
@@ -61,6 +66,99 @@ public class RegionItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy 
 						.hasNext();) {
 					Node cnode = (Node) cit.next();
 					switch (UMLVisualIDRegistry.getVisualID(cnode)) {
+					case PseudoStateNodeEditPart.VISUAL_ID:
+						for (Iterator it = cnode.getTargetEdges().iterator(); it
+								.hasNext();) {
+							Edge incomingLink = (Edge) it.next();
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == TransitionEditPartEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(
+										incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										incomingLink));
+								continue;
+							}
+						}
+						for (Iterator it = cnode.getSourceEdges().iterator(); it
+								.hasNext();) {
+							Edge outgoingLink = (Edge) it.next();
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == TransitionEditPartEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(
+										outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										outgoingLink));
+								continue;
+							}
+						}
+						cmd.add(new DestroyElementCommand(
+								new DestroyElementRequest(getEditingDomain(),
+										cnode.getElement(), false))); // directlyOwned: true
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					case FinalStateNodeEditPart.VISUAL_ID:
+						for (Iterator it = cnode.getTargetEdges().iterator(); it
+								.hasNext();) {
+							Edge incomingLink = (Edge) it.next();
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == TransitionEditPartEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(
+										incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										incomingLink));
+								continue;
+							}
+						}
+						for (Iterator it = cnode.getSourceEdges().iterator(); it
+								.hasNext();) {
+							Edge outgoingLink = (Edge) it.next();
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == TransitionEditPartEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(
+										outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										outgoingLink));
+								continue;
+							}
+						}
+						cmd.add(new DestroyElementCommand(
+								new DestroyElementRequest(getEditingDomain(),
+										cnode.getElement(), false))); // directlyOwned: true
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
+					case StateNodeEditPart.VISUAL_ID:
+						for (Iterator it = cnode.getTargetEdges().iterator(); it
+								.hasNext();) {
+							Edge incomingLink = (Edge) it.next();
+							if (UMLVisualIDRegistry.getVisualID(incomingLink) == TransitionEditPartEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(
+										incomingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										incomingLink));
+								continue;
+							}
+						}
+						for (Iterator it = cnode.getSourceEdges().iterator(); it
+								.hasNext();) {
+							Edge outgoingLink = (Edge) it.next();
+							if (UMLVisualIDRegistry.getVisualID(outgoingLink) == TransitionEditPartEditPart.VISUAL_ID) {
+								DestroyElementRequest r = new DestroyElementRequest(
+										outgoingLink.getElement(), false);
+								cmd.add(new DestroyElementCommand(r));
+								cmd.add(new DeleteCommand(getEditingDomain(),
+										outgoingLink));
+								continue;
+							}
+						}
+						cmd.add(new DestroyElementCommand(
+								new DestroyElementRequest(getEditingDomain(),
+										cnode.getElement(), false))); // directlyOwned: true
+						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
+						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
+						break;
 					}
 				}
 				break;

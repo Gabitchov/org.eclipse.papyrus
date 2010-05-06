@@ -132,9 +132,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 		Collection connectedViews = getChildrenByType(Collections
 				.singleton(view), UMLVisualIDRegistry
 				.getType(StateMachineEditPart.VISUAL_ID));
-		result
-				.addAll(createNavigatorItems(connectedViews, parentElement,
-						false));
+		result.addAll(createNavigatorItems(connectedViews, parentElement, false));
 		return result.toArray();
 	}
 
@@ -152,9 +150,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 				.getType(StateMachineCompartmentEditPart.VISUAL_ID));
 		connectedViews = getChildrenByType(connectedViews, UMLVisualIDRegistry
 				.getType(RegionEditPart.VISUAL_ID));
-		result
-				.addAll(createNavigatorItems(connectedViews, parentElement,
-						false));
+		result.addAll(createNavigatorItems(connectedViews, parentElement, false));
 		return result.toArray();
 	}
 
@@ -244,17 +240,17 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	private Object[] getViewChildren(View view, Object parentElement) {
 		switch (UMLVisualIDRegistry.getVisualID(view)) {
 
-		case PackageEditPart.VISUAL_ID: {
-
-			//modification of the template to avoid mistake of 65kb.
-			return getViewChildrenForPackageEditPart(view, parentElement);
-
-		}
-
 		case StateMachineEditPart.VISUAL_ID: {
 
 			//modification of the template to avoid mistake of 65kb.
 			return getViewChildrenForStateMachineEditPart(view, parentElement);
+
+		}
+
+		case PackageEditPart.VISUAL_ID: {
+
+			//modification of the template to avoid mistake of 65kb.
+			return getViewChildrenForPackageEditPart(view, parentElement);
 
 		}
 

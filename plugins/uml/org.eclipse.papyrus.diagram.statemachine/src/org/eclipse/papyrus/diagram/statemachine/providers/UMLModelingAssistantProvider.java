@@ -17,8 +17,12 @@ import org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.ModelingAssista
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateNodeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudoStateNodeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateNodeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.part.Messages;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
@@ -36,14 +40,21 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host
 				.getAdapter(IGraphicalEditPart.class);
-		if (editPart instanceof StateMachineCompartmentEditPart) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.Region_3000);
+		if (editPart instanceof PackageEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.StateMachine_2000);
 			return types;
 		}
-		if (editPart instanceof PackageEditPart) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.StateMachine_2000);
+		if (editPart instanceof RegionCompartmentEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(3);
+			types.add(UMLElementTypes.Pseudostate_3004);
+			types.add(UMLElementTypes.FinalState_3005);
+			types.add(UMLElementTypes.State_3006);
+			return types;
+		}
+		if (editPart instanceof StateMachineCompartmentEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.Region_3000);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -55,6 +66,17 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getRelTypesOnSource(IAdaptable source) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
 				.getAdapter(IGraphicalEditPart.class);
+		if (sourceEditPart instanceof PseudoStateNodeEditPart) {
+			return ((PseudoStateNodeEditPart) sourceEditPart)
+					.getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof FinalStateNodeEditPart) {
+			return ((FinalStateNodeEditPart) sourceEditPart)
+					.getMARelTypesOnSource();
+		}
+		if (sourceEditPart instanceof StateNodeEditPart) {
+			return ((StateNodeEditPart) sourceEditPart).getMARelTypesOnSource();
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -64,6 +86,17 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getRelTypesOnTarget(IAdaptable target) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
+		if (targetEditPart instanceof PseudoStateNodeEditPart) {
+			return ((PseudoStateNodeEditPart) targetEditPart)
+					.getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof FinalStateNodeEditPart) {
+			return ((FinalStateNodeEditPart) targetEditPart)
+					.getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof StateNodeEditPart) {
+			return ((StateNodeEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -76,6 +109,18 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 				.getAdapter(IGraphicalEditPart.class);
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
+		if (sourceEditPart instanceof PseudoStateNodeEditPart) {
+			return ((PseudoStateNodeEditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if (sourceEditPart instanceof FinalStateNodeEditPart) {
+			return ((FinalStateNodeEditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if (sourceEditPart instanceof StateNodeEditPart) {
+			return ((StateNodeEditPart) sourceEditPart)
+					.getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -86,6 +131,18 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			IElementType relationshipType) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
+		if (targetEditPart instanceof PseudoStateNodeEditPart) {
+			return ((PseudoStateNodeEditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof FinalStateNodeEditPart) {
+			return ((FinalStateNodeEditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
+		if (targetEditPart instanceof StateNodeEditPart) {
+			return ((StateNodeEditPart) targetEditPart)
+					.getMATypesForSource(relationshipType);
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -96,6 +153,18 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			IElementType relationshipType) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
 				.getAdapter(IGraphicalEditPart.class);
+		if (sourceEditPart instanceof PseudoStateNodeEditPart) {
+			return ((PseudoStateNodeEditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof FinalStateNodeEditPart) {
+			return ((FinalStateNodeEditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
+		if (sourceEditPart instanceof StateNodeEditPart) {
+			return ((StateNodeEditPart) sourceEditPart)
+					.getMATypesForTarget(relationshipType);
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -130,9 +199,10 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return null;
 		}
 		Diagram diagram = (Diagram) editPart.getRoot().getContents().getModel();
-		Collection elements = new HashSet();
-		for (Iterator it = diagram.getElement().eAllContents(); it.hasNext();) {
-			EObject element = (EObject) it.next();
+		HashSet<EObject> elements = new HashSet<EObject>();
+		for (Iterator<EObject> it = diagram.getElement().eAllContents(); it
+				.hasNext();) {
+			EObject element = it.next();
 			if (isApplicableElement(element, types)) {
 				elements.add(element);
 			}

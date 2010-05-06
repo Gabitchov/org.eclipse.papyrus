@@ -6,6 +6,7 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.diagram.common.util.MDTUtil;
 import org.eclipse.papyrus.diagram.statemachine.custom.policies.CustomPackageCreationEditPolicy;
@@ -42,6 +43,9 @@ public class PackageEditPart extends DiagramEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
+		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE,
+				new DuplicatePasteEditPolicy());
+
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
 				new PackageItemSemanticEditPolicy());
 

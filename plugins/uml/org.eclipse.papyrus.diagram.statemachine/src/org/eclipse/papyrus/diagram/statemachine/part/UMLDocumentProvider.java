@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -72,12 +73,11 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements
 							IStatus.ERROR,
 							UMLDiagramEditorPlugin.ID,
 							0,
-							NLS
-									.bind(
-											Messages.UMLDocumentProvider_IncorrectInputError,
-											new Object[] {
-													element,
-													"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+							NLS.bind(
+									Messages.UMLDocumentProvider_IncorrectInputError,
+									new Object[] {
+											element,
+											"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
 							null));
 		}
 		IEditorInput editorInput = (IEditorInput) element;
@@ -100,12 +100,11 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements
 							IStatus.ERROR,
 							UMLDiagramEditorPlugin.ID,
 							0,
-							NLS
-									.bind(
-											Messages.UMLDocumentProvider_IncorrectInputError,
-											new Object[] {
-													element,
-													"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+							NLS.bind(
+									Messages.UMLDocumentProvider_IncorrectInputError,
+									new Object[] {
+											element,
+											"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
 							null));
 		}
 		IDocument document = createEmptyDocument();
@@ -132,9 +131,9 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements
 	 */
 	private long computeModificationStamp(ResourceSetInfo info) {
 		int result = 0;
-		for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-				.getLoadedResourcesIterator(); it.hasNext();) {
-			Resource nextResource = (Resource) it.next();
+		for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
+				.hasNext();) {
+			Resource nextResource = it.next();
 			IFile file = WorkspaceSynchronizer.getFile(nextResource);
 			if (file != null) {
 				if (file.getLocation() != null) {
@@ -276,12 +275,11 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements
 							IStatus.ERROR,
 							UMLDiagramEditorPlugin.ID,
 							0,
-							NLS
-									.bind(
-											Messages.UMLDocumentProvider_IncorrectInputError,
-											new Object[] {
-													element,
-													"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+							NLS.bind(
+									Messages.UMLDocumentProvider_IncorrectInputError,
+									new Object[] {
+											element,
+											"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
 							null));
 		}
 	}
@@ -338,10 +336,10 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements
 			throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/*<org.eclipse.core.resources.IFile>*/files2Validate = new ArrayList/*<org.eclipse.core.resources.IFile>*/();
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-					.getLoadedResourcesIterator(); it.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+			LinkedList<IFile> files2Validate = new LinkedList<IFile>();
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
+					.hasNext();) {
+				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null && file.isReadOnly()) {
 					files2Validate.add(file);
@@ -407,9 +405,9 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements
 	protected void updateCache(Object element) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-					.getLoadedResourcesIterator(); it.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
+					.hasNext();) {
+				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null && file.isReadOnly()) {
 					info.setReadOnly(true);
@@ -451,10 +449,10 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements
 	protected ISchedulingRule getResetRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/rules = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-					.getLoadedResourcesIterator(); it.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+			LinkedList<ISchedulingRule> rules = new LinkedList<ISchedulingRule>();
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
+					.hasNext();) {
+				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null) {
 					rules.add(ResourcesPlugin.getWorkspace().getRuleFactory()
@@ -473,10 +471,10 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements
 	protected ISchedulingRule getSaveRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/rules = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-					.getLoadedResourcesIterator(); it.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+			LinkedList<ISchedulingRule> rules = new LinkedList<ISchedulingRule>();
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
+					.hasNext();) {
+				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null) {
 					rules.add(computeSchedulingRule(file));
@@ -494,10 +492,10 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements
 	protected ISchedulingRule getSynchronizeRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/rules = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-					.getLoadedResourcesIterator(); it.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+			LinkedList<ISchedulingRule> rules = new LinkedList<ISchedulingRule>();
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
+					.hasNext();) {
+				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null) {
 					rules.add(ResourcesPlugin.getWorkspace().getRuleFactory()
@@ -516,10 +514,10 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements
 	protected ISchedulingRule getValidateStateRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/files = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-					.getLoadedResourcesIterator(); it.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+			LinkedList<ISchedulingRule> files = new LinkedList<ISchedulingRule>();
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
+					.hasNext();) {
+				Resource nextResource = it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null) {
 					files.add(file);
@@ -563,9 +561,9 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements
 			throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-					.getLoadedResourcesIterator(); it.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
+					.hasNext();) {
+				Resource nextResource = it.next();
 				handleElementChanged(info, nextResource, monitor);
 			}
 			return;
@@ -594,9 +592,9 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements
 			try {
 				monitor.beginTask(Messages.UMLDocumentProvider_SaveDiagramTask,
 						info.getResourceSet().getResources().size() + 1); //"Saving diagram"
-				for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-						.getLoadedResourcesIterator(); it.hasNext();) {
-					Resource nextResource = (Resource) it.next();
+				for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
+						.hasNext();) {
+					Resource nextResource = it.next();
 					monitor.setTaskName(NLS.bind(
 							Messages.UMLDocumentProvider_SaveNextResourceTask,
 							nextResource.getURI()));
@@ -626,7 +624,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements
 			}
 		} else {
 			URI newResoruceURI;
-			List affectedFiles = null;
+			List<IFile> affectedFiles = null;
 			if (element instanceof FileEditorInput) {
 				IFile newFile = ((FileEditorInput) element).getFile();
 				affectedFiles = Collections.singletonList(newFile);
@@ -641,12 +639,11 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements
 								IStatus.ERROR,
 								UMLDiagramEditorPlugin.ID,
 								0,
-								NLS
-										.bind(
-												Messages.UMLDocumentProvider_IncorrectInputError,
-												new Object[] {
-														element,
-														"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+								NLS.bind(
+										Messages.UMLDocumentProvider_IncorrectInputError,
+										new Object[] {
+												element,
+												"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
 								null));
 			}
 			if (false == document instanceof IDiagramDocument) {
@@ -785,7 +782,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements
 		/**
 		 * @generated
 		 */
-		private Collection myUnSynchronizedResources = new ArrayList();
+		private LinkedList<Resource> myUnSynchronizedResources = new LinkedList<Resource>();
 
 		/**
 		 * @generated
@@ -861,9 +858,9 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements
 		/**
 		 * @generated
 		 */
-		public Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/getLoadedResourcesIterator() {
-			return new ArrayList/*<org.eclipse.emf.ecore.resource.Resource>*/(
-					getResourceSet().getResources()).iterator();
+		public Iterator<Resource> getLoadedResourcesIterator() {
+			return new ArrayList<Resource>(getResourceSet().getResources())
+					.iterator();
 		}
 
 		/**
@@ -879,9 +876,9 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements
 		public void dispose() {
 			stopResourceListening();
 			getResourceSet().eAdapters().remove(myResourceSetListener);
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = getLoadedResourcesIterator(); it
+			for (Iterator<Resource> it = getLoadedResourcesIterator(); it
 					.hasNext();) {
-				Resource resource = (Resource) it.next();
+				Resource resource = it.next();
 				resource.unload();
 			}
 			getEditingDomain().dispose();
@@ -1108,8 +1105,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements
 									.getEditorInput(), modified);
 
 							if (!modified) {
-								myInfo
-										.setModificationStamp(computeModificationStamp(myInfo));
+								myInfo.setModificationStamp(computeModificationStamp(myInfo));
 							}
 						}
 					}

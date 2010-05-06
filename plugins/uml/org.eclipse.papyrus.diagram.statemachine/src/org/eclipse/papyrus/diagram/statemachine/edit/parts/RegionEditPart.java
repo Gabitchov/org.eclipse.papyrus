@@ -79,7 +79,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-		LayoutEditPolicy lep = new LayoutEditPolicy() {
+		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child
@@ -137,9 +137,7 @@ ShapeNodeEditPart {
 		if (childEditPart instanceof RegionCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getRegionCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane
-					.remove(((RegionCompartmentEditPart) childEditPart)
-							.getFigure());
+			pane.remove(((RegionCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;

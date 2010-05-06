@@ -12,7 +12,15 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser;
+import org.eclipse.papyrus.diagram.statemachine.custom.parsers.TransitionPropertiesParser;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateNameLabelEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudoStateNodeLabelEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudoStateNodeStereotypeLabelEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineNameEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateNameLabelEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionGuardLabelEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionNameLabelEditPart;
 import org.eclipse.papyrus.diagram.statemachine.parsers.MessageFormatParser;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -44,10 +52,124 @@ public class UMLParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
+	private IParser pseudostateName_4002Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getPseudostateName_4002Parser() {
+		if (pseudostateName_4002Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
+					.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			pseudostateName_4002Parser = parser;
+		}
+		return pseudostateName_4002Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser pseudostateName_4003Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getPseudostateName_4003Parser() {
+		if (pseudostateName_4003Parser == null) {
+			pseudostateName_4003Parser = new AppliedStereotypeParser();
+		}
+		return pseudostateName_4003Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser finalStateName_4005Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getFinalStateName_4005Parser() {
+		if (finalStateName_4005Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
+					.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			finalStateName_4005Parser = parser;
+		}
+		return finalStateName_4005Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser stateName_4004Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getStateName_4004Parser() {
+		if (stateName_4004Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
+					.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			stateName_4004Parser = parser;
+		}
+		return stateName_4004Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser transitionName_6000Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTransitionName_6000Parser() {
+		if (transitionName_6000Parser == null) {
+			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
+					.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			transitionName_6000Parser = parser;
+		}
+		return transitionName_6000Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private TransitionPropertiesParser transitionGuard_6001Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTransitionGuard_6001Parser() {
+		if (transitionGuard_6001Parser == null) {
+			transitionGuard_6001Parser = new TransitionPropertiesParser();
+		}
+		return transitionGuard_6001Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case StateMachineNameEditPart.VISUAL_ID:
 			return getStateMachineName_2001Parser();
+		case PseudoStateNodeLabelEditPart.VISUAL_ID:
+			return getPseudostateName_4002Parser();
+		case PseudoStateNodeStereotypeLabelEditPart.VISUAL_ID:
+			return getPseudostateName_4003Parser();
+		case FinalStateNameLabelEditPart.VISUAL_ID:
+			return getFinalStateName_4005Parser();
+		case StateNameLabelEditPart.VISUAL_ID:
+			return getStateName_4004Parser();
+		case TransitionNameLabelEditPart.VISUAL_ID:
+			return getTransitionName_6000Parser();
+		case TransitionGuardLabelEditPart.VISUAL_ID:
+			return getTransitionGuard_6001Parser();
 		}
 		return null;
 	}

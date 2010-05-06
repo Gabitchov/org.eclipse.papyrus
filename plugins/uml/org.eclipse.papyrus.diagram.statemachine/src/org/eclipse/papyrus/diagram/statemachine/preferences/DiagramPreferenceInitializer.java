@@ -19,6 +19,14 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		StateMachinePreferencePage.initDefaults(store);
 
+		StateNodePreferencePage.initDefaults(store);
+
+		FinalStateNodePreferencePage.initDefaults(store);
+
+		ShallowHistoryStateNodePreferencePage.initDefaults(store);
+
+		TransitionEditPartPreferencePage.initDefaults(store);
+
 	}
 
 	/**

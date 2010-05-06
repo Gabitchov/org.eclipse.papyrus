@@ -2,16 +2,20 @@ package org.eclipse.papyrus.diagram.statemachine.custom.factory;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CPseudoStateNodeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CStateNodeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomRegionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomRegionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomStateMachineCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomStateMachineEditPart;
 import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomStateMachineNameEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudoStateNodeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineNameEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateNodeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.UMLEditPartFactory;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
 
@@ -32,9 +36,15 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 				return new CustomRegionCompartmentEditPart(view);
 			case RegionEditPart.VISUAL_ID:
 				return new CustomRegionEditPart(view);
+			case PseudoStateNodeEditPart.VISUAL_ID:
+				return new CPseudoStateNodeEditPart(view);
+			case StateNodeEditPart.VISUAL_ID:
+				return new CStateNodeEditPart(view);
 			}
+			
 		}
 		return super.createEditPart(context, model);
 	}
 
 }
+

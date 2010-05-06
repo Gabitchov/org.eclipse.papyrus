@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.MetamodelType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.statemachine.custom.commands.CustomRegionCreateElementCommand;
@@ -37,6 +38,7 @@ import org.eclipse.papyrus.diagram.statemachine.custom.figures.RegionFigure;
 import org.eclipse.papyrus.diagram.statemachine.custom.helpers.Zone;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 
 public class CustomRegionCompartmentCreationEditPolicy extends CreationEditPolicy {
 
@@ -117,7 +119,9 @@ public class CustomRegionCompartmentCreationEditPolicy extends CreationEditPolic
 				for (Iterator iter = unspecReq.getElementTypes().iterator(); iter.hasNext();) {
 					IElementType elementType = (IElementType) iter.next();
 					CreateRequest createRequest = unspecReq.getRequestForType(elementType);
-
+					
+					if (((IHintedType) elementType).getSemanticHint().equals(((IHintedType)UMLElementTypes.Region_3000).getSemanticHint())){
+						
 					// starting point is the existing region compartment on which mouse was moving
 					View existingRegionCompartmentView = (View) getHost().getModel();
 					// the existing region view
@@ -133,8 +137,9 @@ public class CustomRegionCompartmentCreationEditPolicy extends CreationEditPolic
 							dropLocation);
 
 					cc.compose(createNewRegion);
-
+					
 					return new ICommandProxy(cc.reduce());
+				}
 				}
 			} else if (request instanceof ChangeBoundsRequest) {
 				ChangeBoundsRequest changeBoundsRequest = (ChangeBoundsRequest) request;

@@ -7,6 +7,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.commands.DuplicateEObjectsComma
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.diagram.common.commands.DuplicateNamedElementCommand;
 import org.eclipse.papyrus.diagram.statemachine.edit.commands.StateMachineCreateCommand;
 import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
 
@@ -52,7 +53,7 @@ public class PackageItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	private static class DuplicateAnythingCommand extends
-			DuplicateEObjectsCommand {
+			DuplicateNamedElementCommand {
 		private Diagram diagram;
 
 		/**
@@ -63,7 +64,7 @@ public class PackageItemSemanticEditPolicy extends
 				DuplicateElementsRequest req, Diagram currentDiagram) {
 			super(editingDomain, req.getLabel(), req
 					.getElementsToBeDuplicated(), req
-					.getAllDuplicatedElementsMap());
+					.getAllDuplicatedElementsMap(), currentDiagram);
 			this.diagram = currentDiagram;
 		}
 	}

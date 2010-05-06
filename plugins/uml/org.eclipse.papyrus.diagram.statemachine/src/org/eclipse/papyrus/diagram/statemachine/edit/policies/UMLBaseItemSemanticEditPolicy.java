@@ -34,6 +34,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.statemachine.edit.helpers.UMLBaseEditHelper;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.Region;
+import org.eclipse.uml2.uml.Vertex;
 
 /**
  * @generated
@@ -123,9 +125,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy) editPolicyCommand)
 					.getICommand()
 					: new CommandProxy(editPolicyCommand);
-			request
-					.setParameter(UMLBaseEditHelper.EDIT_POLICY_COMMAND,
-							command);
+			request.setParameter(UMLBaseEditHelper.EDIT_POLICY_COMMAND, command);
 		}
 		IElementType requestContextElementType = getContextElementType(request);
 		request.setParameter(UMLBaseEditHelper.CONTEXT_ELEMENT_TYPE,
@@ -303,6 +303,22 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 * @generated
 		 */
 		private static final String OPPOSITE_END_VAR = "oppositeEnd"; //$NON-NLS-1$
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateTransition_5000(Region container,
+				Vertex source, Vertex target) {
+			return canExistTransition_5000(container, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistTransition_5000(Region container,
+				Vertex source, Vertex target) {
+			return true;
+		}
 
 	}
 }

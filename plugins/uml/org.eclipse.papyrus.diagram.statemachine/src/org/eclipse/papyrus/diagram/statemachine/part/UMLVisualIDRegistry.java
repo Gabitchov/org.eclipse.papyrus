@@ -7,12 +7,22 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.providers.BaseViewInfo;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateNameLabelEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateNodeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudoStateNodeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudoStateNodeLabelEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudoStateNodeStereotypeLabelEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineNameEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateNameLabelEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateNodeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionEditPartEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionGuardLabelEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionNameLabelEditPart;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -124,20 +134,40 @@ public class UMLVisualIDRegistry {
 			}
 		}
 		switch (containerVisualID) {
-		case StateMachineCompartmentEditPart.VISUAL_ID:
-			if (UMLPackage.eINSTANCE.getRegion().isSuperTypeOf(
-					domainElement.eClass())
-
-			) {
-				return RegionEditPart.VISUAL_ID;
-			}
-			break;
 		case PackageEditPart.VISUAL_ID:
 			if (UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(
 					domainElement.eClass())
 
 			) {
 				return StateMachineEditPart.VISUAL_ID;
+			}
+			break;
+		case RegionCompartmentEditPart.VISUAL_ID:
+			if (UMLPackage.eINSTANCE.getPseudostate().isSuperTypeOf(
+					domainElement.eClass())
+
+			) {
+				return PseudoStateNodeEditPart.VISUAL_ID;
+			}
+			if (UMLPackage.eINSTANCE.getFinalState().isSuperTypeOf(
+					domainElement.eClass())
+
+			) {
+				return FinalStateNodeEditPart.VISUAL_ID;
+			}
+			if (UMLPackage.eINSTANCE.getState().isSuperTypeOf(
+					domainElement.eClass())
+
+			) {
+				return StateNodeEditPart.VISUAL_ID;
+			}
+			break;
+		case StateMachineCompartmentEditPart.VISUAL_ID:
+			if (UMLPackage.eINSTANCE.getRegion().isSuperTypeOf(
+					domainElement.eClass())
+
+			) {
+				return RegionEditPart.VISUAL_ID;
 			}
 			break;
 		}
@@ -165,6 +195,11 @@ public class UMLVisualIDRegistry {
 			}
 		}
 		switch (containerVisualID) {
+		case PackageEditPart.VISUAL_ID:
+			if (StateMachineEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case StateMachineEditPart.VISUAL_ID:
 			if (StateMachineNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -178,13 +213,45 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
+		case PseudoStateNodeEditPart.VISUAL_ID:
+			if (PseudoStateNodeLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (PseudoStateNodeStereotypeLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case FinalStateNodeEditPart.VISUAL_ID:
+			if (FinalStateNameLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case StateNodeEditPart.VISUAL_ID:
+			if (StateNameLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case RegionCompartmentEditPart.VISUAL_ID:
+			if (PseudoStateNodeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (FinalStateNodeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (StateNodeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case StateMachineCompartmentEditPart.VISUAL_ID:
 			if (RegionEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case PackageEditPart.VISUAL_ID:
-			if (StateMachineEditPart.VISUAL_ID == nodeVisualID) {
+		case TransitionEditPartEditPart.VISUAL_ID:
+			if (TransitionNameLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (TransitionGuardLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -198,6 +265,12 @@ public class UMLVisualIDRegistry {
 	public static int getLinkWithClassVisualID(EObject domainElement) {
 		if (domainElement == null) {
 			return -1;
+		}
+		if (UMLPackage.eINSTANCE.getTransition().isSuperTypeOf(
+				domainElement.eClass())
+
+		) {
+			return TransitionEditPartEditPart.VISUAL_ID;
 		}
 		return -1;
 	}
@@ -238,9 +311,30 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(2000, ViewInfo.Node, "StateMachine");
 		root.addNode(1000, viewInfo);
 
+		viewInfo = new BaseViewInfo(5000, ViewInfo.Edge, "");
+		root.addNode(1000, viewInfo);
+
+		labelInfo = new BaseViewInfo(6000, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+		labelInfo = new BaseViewInfo(6001, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
 		viewInfo = new BaseViewInfo(3000, ViewInfo.Node, "Region");
 
 		root.addNode(2002, viewInfo);
+
+		viewInfo = new BaseViewInfo(3004, ViewInfo.Node, "Pseudostate");
+
+		root.addNode(3002, viewInfo);
+
+		viewInfo = new BaseViewInfo(3005, ViewInfo.Node, "FinalState");
+
+		root.addNode(3002, viewInfo);
+
+		viewInfo = new BaseViewInfo(3006, ViewInfo.Node, "State");
+
+		root.addNode(3002, viewInfo);
 
 		return root;
 	}
