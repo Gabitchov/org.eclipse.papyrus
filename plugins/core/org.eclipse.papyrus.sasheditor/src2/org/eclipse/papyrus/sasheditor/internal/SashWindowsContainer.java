@@ -345,6 +345,22 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	}
 
 	/**
+	 * Refresh the tab of the page, (i.e the name and icon in the page's tab).
+	 * 
+	 * @param page The page for which the name and icon should be refreshed.
+	 */
+	public void refreshPageTab(IPage page) {
+		if( page instanceof PagePart)
+		{
+			((PagePart)page).refreshTab();
+		}
+		else
+		{
+			// TODO : lookup for the corresponding PagePart, and call refresh.
+			
+		}
+	}
+	/**
 	 * Real implementation of refreshTab.
 	 * 
 	 * @see org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer#refreshTabs()
@@ -430,6 +446,22 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 	public IPage lookupModelPage(Object rawModel) {
 		// Use a visitor to lookup the first IPage
 		LookupModelPageVisitor visitor = new LookupModelPageVisitor(rawModel);
+		rootPart.visit(visitor);
+		return visitor.result();
+	}
+
+	/**
+	 * Lookup the {@link IPage} used to render the specified IEditorPart.
+	 * 
+	 * @param editor
+	 *        The IEditorPart for which the IPage is requested.
+	 *        If the IEditorPart is not rendered, return null;
+	 * 
+	 * @return The corresponding IPage or null if not found.
+	 */
+	public IPage lookupIPageByIEditorPart(IEditorPart editor) {
+		// Use a visitor to lookup the first IPage
+		LookupIPageByIEditorPartVisitor visitor = new LookupIPageByIEditorPartVisitor(editor);
 		rootPart.visit(visitor);
 		return visitor.result();
 	}

@@ -36,7 +36,6 @@ public class CloseOtherDiagramsCommand extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		System.out.println("call to CloseDiagramCommand.execute");
 		try {
 			IEditorPart part = HandlerUtil.getActiveEditor(event);
 			IPageMngr pageMngr = (IPageMngr)part.getAdapter(IPageMngr.class);

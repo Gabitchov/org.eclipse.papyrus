@@ -90,7 +90,7 @@ public class TabItemPart {
 	/**
 	 * Set the tab decorations: label, icon.
 	 */
-	private void refreshTabDecorations() {
+	public void refreshTabDecorations() {
 		setTabText(childPart.getPageTitle());
 		setTabImage(childPart.getPageIcon());
 	}

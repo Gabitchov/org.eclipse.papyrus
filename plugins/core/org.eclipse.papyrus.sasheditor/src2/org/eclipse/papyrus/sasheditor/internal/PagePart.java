@@ -175,6 +175,12 @@ public abstract class PagePart extends AbstractPart implements IPage {
 	}
 
 	/**
+	 * Refresh the tab of this page (I.e the name and icon in the tab).
+	 */
+	public void refreshTab() {
+		getParent().refreshPageTab(this);
+	}
+	/**
 	 * Set focus on the SWT control associated to this PagePart.
 	 * Used by the ActivePageTracker.
 	 */

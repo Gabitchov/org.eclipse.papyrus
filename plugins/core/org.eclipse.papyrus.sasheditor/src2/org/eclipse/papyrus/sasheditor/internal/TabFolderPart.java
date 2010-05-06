@@ -685,6 +685,19 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	}
 
 	/**
+	 * Refresh the tab of this page (I.e the name and icon in the tab).
+	 * 
+	 * @param page The page to be refreshed
+	 */
+	public void refreshPageTab( PagePart page) {
+		TabItemPart itemPart = currentTabItems.getByPagePart(page);
+		if(itemPart==null)
+			return;
+		
+		itemPart.refreshTabDecorations();
+	}
+	
+	/**
 	 * Synchronize the TabFolder with the models.
 	 * The Tabs order is fixed and can't be moved. So, we move the associated ITilepart if needed.
 	 * For each existing Tab, compare its model and the requested model. Synchronize if necessary.
@@ -1045,6 +1058,16 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		 */
 		public TabItemPart getByModel(Object model) {
 			return get(indexOfModel(model));
+		}
+
+		/**
+		 * Get the TabPart by its PagePart.
+		 * 
+		 * @param page
+		 * @return
+		 */
+		public TabItemPart getByPagePart(PagePart page) {
+			return get(indexOfModel(page.getRawModel()));
 		}
 
 	}

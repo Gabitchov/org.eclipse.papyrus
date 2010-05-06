@@ -44,6 +44,11 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	private SashWindowsContainer sashContainer;
 
 	/**
+	 * Synchronizer in charge of synchronizing tab names with IEditorPart title.
+	 */
+	private SashTabDecorationSynchronizer tabsSynchronizer;
+
+	/**
 	 * get the contentProvider. Create it if necessary.
 	 * 
 	 * @return
@@ -133,6 +138,7 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	 */
 	protected void activate() {
 
+		tabsSynchronizer = new SashTabDecorationSynchronizer(sashContainer);
 	}
 
 	/**
@@ -142,6 +148,7 @@ public abstract class AbstractMultiPageSashEditor extends EditorPart implements 
 	 */
 	protected void deactivate() {
 
+		tabsSynchronizer.dispose();
 	}
 
 	/**
