@@ -19,6 +19,7 @@ import java.util.List;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Platform;
@@ -32,7 +33,6 @@ import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.emf.edit.ui.action.ControlAction;
-import org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
@@ -95,9 +95,8 @@ public class PapyrusControlAction extends ControlAction {
 
 		if(selection.size() == 1) {
 			Object object = AdapterFactoryEditingDomain.unwrap(selection.getFirstElement());
-			if(object instanceof ModelElementItem) {
-				ModelElementItem eltItem = (ModelElementItem)object;
-				object = eltItem.getEObject();
+			if(object instanceof IAdaptable) {
+				object = (EObject)((IAdaptable)object).getAdapter(EObject.class);
 			}
 			// Check whether the selected object is controllable
 			result = domain.isControllable(object);

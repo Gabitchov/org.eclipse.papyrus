@@ -7,7 +7,7 @@ Bundle-Activator: org.eclipse.papyrus.modelexplorer.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui.navigator;bundle-version="3.4.0",
- org.eclipse.gmt.modisco.infra.browser.uicore;bundle-version="0.8.0";visibility:=reexport,
+ org.eclipse.gmt.modisco.infra.browser.uicore;bundle-version="0.8.0",
  org.eclipse.gmt.modisco.infra.browser.custom;bundle-version="0.8.0",
  org.eclipse.gmt.modisco.infra.browser.custom.core;bundle-version="0.8.0",
  org.eclipse.papyrus.core;bundle-version="0.7.0",
