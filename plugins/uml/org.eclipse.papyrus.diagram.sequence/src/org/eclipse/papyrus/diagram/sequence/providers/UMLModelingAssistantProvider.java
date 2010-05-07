@@ -33,7 +33,6 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragment2EditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConsiderIgnoreFragmentEditPart;
@@ -72,6 +71,11 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.DurationObservation_3024);
 			return types;
 		}
+		if(editPart instanceof CombinedFragmentEditPart) {
+			ArrayList types = new ArrayList(1);
+			types.add(UMLElementTypes.InteractionOperand_3005);
+			return types;
+		}
 		if(editPart instanceof InteractionOperandEditPart) {
 			ArrayList types = new ArrayList(4);
 			types.add(UMLElementTypes.InteractionUse_3002);
@@ -100,11 +104,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.InteractionUse_3002);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
-			return types;
-		}
-		if(editPart instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.InteractionOperand_3005);
 			return types;
 		}
 		if(editPart instanceof PackageEditPart) {

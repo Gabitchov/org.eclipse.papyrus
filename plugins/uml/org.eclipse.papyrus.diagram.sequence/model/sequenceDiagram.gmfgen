@@ -1735,8 +1735,7 @@
           title="CombinedFragmentCompartment"
           canCollapse="false"
           needsTitle="false"
-          node="/0/@diagram/@childNodes.1"
-          listLayout="false">
+          node="/0/@diagram/@childNodes.1">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap

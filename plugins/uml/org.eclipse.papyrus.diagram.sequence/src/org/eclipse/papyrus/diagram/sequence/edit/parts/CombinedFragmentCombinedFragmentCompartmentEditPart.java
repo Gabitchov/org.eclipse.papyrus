@@ -24,7 +24,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
@@ -39,7 +39,7 @@ import org.eclipse.papyrus.diagram.sequence.part.Messages;
 /**
  * @generated
  */
-public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ShapeCompartmentEditPart {
+public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCompartmentEditPart {
 
 	/**
 	 * Children string for notification event type.
@@ -56,6 +56,13 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ShapeCo
 	 */
 	public CombinedFragmentCombinedFragmentCompartmentEditPart(View view) {
 		super(view);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean hasModelChildrenChanged(Notification evt) {
+		return false;
 	}
 
 	/**
