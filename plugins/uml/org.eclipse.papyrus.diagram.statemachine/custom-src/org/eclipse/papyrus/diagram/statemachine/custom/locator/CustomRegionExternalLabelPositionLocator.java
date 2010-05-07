@@ -126,7 +126,6 @@ public class CustomRegionExternalLabelPositionLocator implements IBorderItemLoca
 		target.setBounds(proposedBounds);
 	}
 
-	@Override
 	public void setConstraint(Rectangle constraint) {
 		this.constraint=constraint;
 

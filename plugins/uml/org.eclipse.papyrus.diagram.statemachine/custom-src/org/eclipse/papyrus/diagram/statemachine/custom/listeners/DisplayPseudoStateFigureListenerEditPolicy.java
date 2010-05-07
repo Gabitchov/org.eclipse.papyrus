@@ -7,7 +7,6 @@ import org.eclipse.papyrus.core.listenerservice.IPapyrusListener;
 
 public class DisplayPseudoStateFigureListenerEditPolicy extends AbstractEditPolicy implements NotificationListener, IPapyrusListener{
 
-	@Override
 	public void notifyChanged(Notification notification) {
 		int i = 0;
 	}
