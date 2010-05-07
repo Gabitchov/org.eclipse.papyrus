@@ -198,8 +198,8 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 		// Check if edit domain exist
 		if(sharedEditingDomain != null) { // Already initialized
 			editingDomain = sharedEditingDomain;
-			System.out.println(this.getClass().getSimpleName()
-					+ ".createEditingDomain() - got EditingDomain from previous call (" + editingDomain + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+//			System.out.println(this.getClass().getSimpleName()
+//					+ ".createEditingDomain() - got EditingDomain from previous call (" + editingDomain + ")"); //$NON-NLS-1$ //$NON-NLS-2$
 			return editingDomain;
 		}
 

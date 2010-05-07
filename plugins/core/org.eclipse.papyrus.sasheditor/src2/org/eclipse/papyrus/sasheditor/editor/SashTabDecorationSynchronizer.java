@@ -122,7 +122,6 @@ public class SashTabDecorationSynchronizer {
 	protected void attachPage(IPage page) {
 		if( page instanceof IEditorPage )
 		{
-			System.out.println("attachPage( " + page + " )");
 			log.fine("attachPage( " + page + " )");
 			IEditorPage editorPage = (IEditorPage)page;
 			editorPage.getIEditorPart().addPropertyListener(editorPartPropertyListener);
@@ -137,7 +136,6 @@ public class SashTabDecorationSynchronizer {
 	protected void detachPage(IPage page) {
 		if( page instanceof IEditorPage )
 		{
-			System.out.println("detachPage( " + page + " )");
 			log.fine("attachPage( " + page + " )");
 			IEditorPage editorPage = (IEditorPage)page;
 			editorPage.getIEditorPart().removePropertyListener(editorPartPropertyListener);
@@ -146,8 +144,6 @@ public class SashTabDecorationSynchronizer {
 
 	protected void refreshContainerTabForPage(IEditorPart source) {
 		// lookup page
-		// TODO
-		System.out.println("call to container.refreshTabs(source='"+ source.getTitle() +"');");
 		IPage page = container.lookupIPageByIEditorPart(source);
 		refreshContainerTabForPage(page);
 		
@@ -158,7 +154,6 @@ public class SashTabDecorationSynchronizer {
 	 * @param page
 	 */
 	protected void refreshContainerTabForPage( IPage page ) {
-		System.out.println("call to container.refreshTabs(page);");
 		container.refreshPageTab(page);
 	}
 	
