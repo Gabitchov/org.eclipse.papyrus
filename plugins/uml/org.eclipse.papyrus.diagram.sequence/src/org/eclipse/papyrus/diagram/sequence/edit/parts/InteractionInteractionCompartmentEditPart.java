@@ -29,10 +29,10 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.InteractionCompartmentXYLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.InteractionInteractionCompartmentItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.diagram.sequence.part.Messages;
 
 /**
@@ -83,7 +83,7 @@ public class InteractionInteractionCompartmentEditPart extends ShapeCompartmentE
 		// org.eclipse.papyrus.diagram.sequence.edit.policies.InteractionInteractionCompartmentCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new InteractionCompartmentXYLayoutEditPolicy());
-		installEditPolicy("RemoveOrphanView", new OrphanViewPolicy()); //$NON-NLS-1$
+		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 
 		removeEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE);

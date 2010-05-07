@@ -27,7 +27,7 @@
       <behaviour
           xsi:type="gmfgen:CustomBehaviour"
           key="&quot;RemoveOrphanView&quot;"
-          editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy"/>
+          editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.sequence.edit.policies.RemoveOrphanViewPolicy"/>
       <behaviour
           xsi:type="gmfgen:CustomBehaviour"
           key="EditPolicyRoles.DRAG_DROP_ROLE"
@@ -338,7 +338,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.sequence.edit.policies.RemoveOrphanViewPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Lifeline"/>
@@ -1719,7 +1719,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.sequence.edit.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.DRAG_DROP_ROLE"

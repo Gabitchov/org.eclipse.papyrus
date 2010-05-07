@@ -66,13 +66,13 @@ import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
-import org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy;
 import org.eclipse.papyrus.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineChildGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineCreationEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.diagram.sequence.figures.LifelineAnchor;
 import org.eclipse.papyrus.diagram.sequence.figures.LifelineDotLineCustomFigure;
 import org.eclipse.papyrus.diagram.sequence.locator.CenterLocator;
@@ -170,7 +170,7 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new LifelineCreationEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new LifelineChildGraphicalNodeEditPolicy());
-		installEditPolicy("RemoveOrphanView", new OrphanViewPolicy()); //$NON-NLS-1$
+		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
