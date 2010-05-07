@@ -417,5 +417,103 @@
          adapterFactoryClass="org.eclipse.papyrus.diagram.common.providers.UMLComposedAdapterFactory">
    </providerAdapterFactory>
 </extension>
+<extension
+      point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+   <contributionItemProvider
+         checkPluginLoaded="true"
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider">
+      <Priority
+            name="High">
+      </Priority>
+      <partContribution
+            class="org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart">
+         <partPredefinedItem
+               id="org.eclipse.gef.align_left"
+               menubarPath="/diagramMenu/alignMenu/alignHorizontalGroup"
+               removeFromMenubar="true"
+               removeFromToolbar="true"
+               toolbarPath="/alignMenu/alignHorizontalGroup">
+         </partPredefinedItem>
+         <partPredefinedItem
+               id="org.eclipse.gef.align_center"
+               menubarPath="/diagramMenu/alignMenu/alignHorizontalGroup"
+               removeFromMenubar="true"
+               removeFromToolbar="true"
+               toolbarPath="/alignMenu/alignHorizontalGroup">
+         </partPredefinedItem>
+         <partPredefinedItem
+               id="org.eclipse.gef.align_right"
+               menubarPath="/diagramMenu/alignMenu/alignHorizontalGroup"
+               removeFromMenubar="true"
+               removeFromToolbar="true"
+               toolbarPath="/alignMenu/alignHorizontalGroup">
+         </partPredefinedItem>
+         <partPredefinedItem
+               id="org.eclipse.gef.align_bottom"
+               menubarPath="/diagramMenu/alignMenu/alignVerticalGroup"
+               removeFromMenubar="true"
+               removeFromToolbar="true"
+               toolbarPath="/alignMenu/alignVerticalGroup">
+         </partPredefinedItem>
+         <partPredefinedItem
+               id="org.eclipse.gef.align_middle"
+               menubarPath="/diagramMenu/alignMenu/alignVerticalGroup"
+               removeFromMenubar="true"
+               removeFromToolbar="true"
+               toolbarPath="/alignMenu/alignVerticalGroup">
+         </partPredefinedItem>
+         <partPredefinedItem
+               id="org.eclipse.gef.align_top"
+               menubarPath="/diagramMenu/alignMenu/alignVerticalGroup"
+               removeFromMenubar="true"
+               removeFromToolbar="true"
+               toolbarPath="/alignMenu/alignVerticalGroup">
+         </partPredefinedItem>
+      </partContribution>
+   </contributionItemProvider>
+</extension>
+<extension
+      point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+   <contributionItemProvider
+         checkPluginLoaded="true"
+         class="org.eclipse.papyrus.diagram.common.actions.LayoutContributionItemProvider">
+      <Priority
+            name="Medium">
+      </Priority>
+      <partContribution
+            class="org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart">
+         <partAction
+               id="org.eclipse.gef.align_left"
+               menubarPath="/diagramMenu/alignMenu/alignHorizontalGroup"
+               toolbarPath="/alignMenu/alignHorizontalGroup">
+         </partAction>
+         <partAction
+               id="org.eclipse.gef.align_center"
+               menubarPath="/diagramMenu/alignMenu/alignHorizontalGroup"
+               toolbarPath="/alignMenu/alignHorizontalGroup">
+         </partAction>
+         <partAction
+               id="org.eclipse.gef.align_right"
+               menubarPath="/diagramMenu/alignMenu/alignHorizontalGroup"
+               toolbarPath="/alignMenu/alignHorizontalGroup">
+         </partAction>
+         <partAction
+               id="org.eclipse.gef.align_bottom"
+               menubarPath="/diagramMenu/alignMenu/alignVerticalGroup"
+               toolbarPath="/alignMenu/alignVerticalGroup">
+         </partAction>
+         <partAction
+               id="org.eclipse.gef.align_middle"
+               menubarPath="/diagramMenu/alignMenu/alignVerticalGroup"
+               toolbarPath="/alignMenu/alignVerticalGroup">
+         </partAction>
+         <partAction
+               id="org.eclipse.gef.align_top"
+               menubarPath="/diagramMenu/alignMenu/alignVerticalGroup"
+               toolbarPath="/alignMenu/alignVerticalGroup">
+         </partAction>
+      </partContribution>
+   </contributionItemProvider>
+</extension>
 
 </plugin>
