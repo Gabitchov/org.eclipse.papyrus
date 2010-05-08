@@ -21,17 +21,17 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
-import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.requirements.RequirementRelated;
 import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
 import org.eclipse.papyrus.sysml.requirements.Satisfy;
 import org.eclipse.papyrus.sysml.requirements.Verify;
+import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.papyrus.uml.standard.Refine;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 import org.eclipse.papyrus.uml.standard.Trace;
-import org.eclipse.papyrus.umlutils.ElementUtil;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.NamedElement;
@@ -51,7 +51,7 @@ import org.eclipse.uml2.uml.NamedElement;
  * 
  * @generated
  */
-public class RequirementRelatedImpl extends ResourceEObjectImpl implements RequirementRelated {
+public class RequirementRelatedImpl extends EObjectImpl implements RequirementRelated {
 
 	/**
 	 * The cached value of the '{@link #getBase_NamedElement() <em>Base Named Element</em>}' reference.
@@ -132,7 +132,6 @@ public class RequirementRelatedImpl extends ResourceEObjectImpl implements Requi
 	 * 
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch(featureID) {

@@ -17,10 +17,11 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowProperty;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
+import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.Image;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
@@ -38,7 +39,7 @@ import org.eclipse.uml2.uml.Stereotype;
  * 
  * @generated
  */
-public class FlowPropertyImpl extends ResourceEObjectImpl implements FlowProperty {
+public class FlowPropertyImpl extends EObjectImpl implements FlowProperty {
 
 	/**
 	 * The cached value of the '{@link #getBase_Property() <em>Base Property</em>}' reference. <!--
@@ -201,11 +202,10 @@ public class FlowPropertyImpl extends ResourceEObjectImpl implements FlowPropert
 	 */
 	public Image getIcon() {
 
-		String FLOWPROPERTY_ID = "SysML::PortAndFlows::FlowProperty";
 		Image ImageNotFound = null;
 
 		if(getBase_Property() != null) {
-			Stereotype st = getBase_Property().getAppliedStereotype(FLOWPROPERTY_ID);
+			Stereotype st = getBase_Property().getAppliedStereotype(SysmlResource.FLOW_PROPERTY_ID);
 
 			Image defaultImage = st.getIcons().get(0);
 			Image image = null;

@@ -20,8 +20,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EDataTypeEList;
-import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage;
 import org.eclipse.papyrus.sysml.modelelements.ViewPoint;
 
@@ -42,7 +42,7 @@ import org.eclipse.papyrus.sysml.modelelements.ViewPoint;
  * 
  * @generated
  */
-public class ViewPointImpl extends ResourceEObjectImpl implements ViewPoint {
+public class ViewPointImpl extends EObjectImpl implements ViewPoint {
 
 	/**
 	 * The cached value of the '{@link #getBase_Class() <em>Base Class</em>}' reference. <!--

@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.papyrus.uml.standard.Implement;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 import org.eclipse.uml2.uml.Component;
@@ -34,7 +34,7 @@ import org.eclipse.uml2.uml.Component;
  * 
  * @generated
  */
-public class ImplementImpl extends ResourceEObjectImpl implements Implement {
+public class ImplementImpl extends EObjectImpl implements Implement {
 
 	/**
 	 * The cached value of the '{@link #getBase_Component() <em>Base Component</em>}' reference.

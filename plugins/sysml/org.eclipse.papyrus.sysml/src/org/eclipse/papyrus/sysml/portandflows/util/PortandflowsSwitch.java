@@ -17,7 +17,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.sysml.portandflows.FlowProperty;
 import org.eclipse.papyrus.sysml.portandflows.FlowSpecification;
@@ -118,23 +117,6 @@ public class PortandflowsSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseResourceEObject(ResourceEObject object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'. <!--
 	 * begin-user-doc --> This implementation returns null; returning a non-null result will
 	 * terminate the switch, but this is the last case anyway. <!-- end-user-doc -->
@@ -190,8 +172,6 @@ public class PortandflowsSwitch<T> {
 			FlowPort flowPort = (FlowPort)theEObject;
 			T result = caseFlowPort(flowPort);
 			if(result == null)
-				result = caseResourceEObject(flowPort);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -199,8 +179,6 @@ public class PortandflowsSwitch<T> {
 		{
 			FlowProperty flowProperty = (FlowProperty)theEObject;
 			T result = caseFlowProperty(flowProperty);
-			if(result == null)
-				result = caseResourceEObject(flowProperty);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -210,8 +188,6 @@ public class PortandflowsSwitch<T> {
 			FlowSpecification flowSpecification = (FlowSpecification)theEObject;
 			T result = caseFlowSpecification(flowSpecification);
 			if(result == null)
-				result = caseResourceEObject(flowSpecification);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -219,8 +195,6 @@ public class PortandflowsSwitch<T> {
 		{
 			ItemFlow itemFlow = (ItemFlow)theEObject;
 			T result = caseItemFlow(itemFlow);
-			if(result == null)
-				result = caseResourceEObject(itemFlow);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;

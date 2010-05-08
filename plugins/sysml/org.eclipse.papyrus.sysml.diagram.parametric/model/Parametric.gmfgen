@@ -82,7 +82,7 @@
             xsi:type="gmfgen:GenDomainElementTarget"
             contextSelector="/0/@audits/@clientContexts.0">
           <element
-              href="../../org.eclipse.papyrus.sysml/model/sysml.genmodel#//sysml/blocks/NestedConnectorEnd"/>
+              href="../../org.eclipse.papyrus.sysml.converted/model/sysml.genmodel#//sysml/blocks/NestedConnectorEnd"/>
         </target>
       </rules>
       <clientContexts
@@ -149,7 +149,7 @@
           <containmentMetaFeature
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/StructuredClassifier/ownedAttribute"/>
           <childMetaFeature
-              href="../../org.eclipse.papyrus.sysml/model/sysml.genmodel#//sysml/constraints/ConstraintProperty/base_Property"/>
+              href="../../org.eclipse.papyrus.sysml.converted/model/sysml.genmodel#//sysml/constraints/ConstraintProperty/base_Property"/>
         </modelFacet>
         <labels
             xsi:type="gmfgen:GenExternalNodeLabel"
@@ -202,7 +202,7 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.sysml.diagram.parametric.edit.policies.CreateParameterEditPolicy"/>
         <modelFacet>
           <metaClass
-              href="../../org.eclipse.papyrus.sysml/model/sysml.genmodel#//sysml/constraints/ConstraintProperty"/>
+              href="../../org.eclipse.papyrus.sysml.converted/model/sysml.genmodel#//sysml/constraints/ConstraintProperty"/>
           <containmentMetaFeature
               href="../../../plugin/org.eclipse.papyrus.resource/model/resource.genmodel#//resource/Resource/eobjects"/>
           <childMetaFeature
@@ -490,7 +490,7 @@
       </tabs>
     </propertySheet>
     <domainGenModel
-        href="../../org.eclipse.papyrus.sysml/model/sysml.genmodel#/"/>
+        href="../../org.eclipse.papyrus.sysml.converted/model/sysml.genmodel#/"/>
     <expressionProviders>
       <providers
           xsi:type="gmfgen:GenJavaExpressionProvider"

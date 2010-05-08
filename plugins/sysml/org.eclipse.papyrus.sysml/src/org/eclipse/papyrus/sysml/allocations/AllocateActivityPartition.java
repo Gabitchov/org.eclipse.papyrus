@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.allocations;
 
-import org.eclipse.papyrus.resource.ResourceEObject;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.ActivityPartition;
 
 /**
@@ -30,7 +30,7 @@ import org.eclipse.uml2.uml.ActivityPartition;
  * @model
  * @generated
  */
-public interface AllocateActivityPartition extends ResourceEObject {
+public interface AllocateActivityPartition extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Base Activity Partition</b></em>' reference. <!--

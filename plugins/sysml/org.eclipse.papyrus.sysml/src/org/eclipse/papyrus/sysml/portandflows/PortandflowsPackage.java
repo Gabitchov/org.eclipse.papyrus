@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.papyrus.resource.ResourcePackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains accessors for the meta
@@ -226,7 +225,7 @@ public interface PortandflowsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW_PORT__BASE_PORT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int FLOW_PORT__BASE_PORT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Is Atomic</b></em>' attribute.
@@ -236,7 +235,7 @@ public interface PortandflowsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW_PORT__IS_ATOMIC = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int FLOW_PORT__IS_ATOMIC = 1;
 
 	/**
 	 * The feature id for the '<em><b>Is Conjugated</b></em>' attribute.
@@ -246,7 +245,7 @@ public interface PortandflowsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW_PORT__IS_CONJUGATED = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 2;
+	int FLOW_PORT__IS_CONJUGATED = 2;
 
 	/**
 	 * The feature id for the '<em><b>Direction</b></em>' attribute.
@@ -256,7 +255,7 @@ public interface PortandflowsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW_PORT__DIRECTION = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 3;
+	int FLOW_PORT__DIRECTION = 3;
 
 	/**
 	 * The number of structural features of the '<em>Flow Port</em>' class.
@@ -266,7 +265,7 @@ public interface PortandflowsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW_PORT_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 4;
+	int FLOW_PORT_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowPropertyImpl <em>Flow Property</em>}' class.
@@ -286,7 +285,7 @@ public interface PortandflowsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW_PROPERTY__BASE_PROPERTY = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int FLOW_PROPERTY__BASE_PROPERTY = 0;
 
 	/**
 	 * The feature id for the '<em><b>Direction</b></em>' attribute.
@@ -296,7 +295,7 @@ public interface PortandflowsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW_PROPERTY__DIRECTION = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int FLOW_PROPERTY__DIRECTION = 1;
 
 	/**
 	 * The number of structural features of the '<em>Flow Property</em>' class.
@@ -306,7 +305,7 @@ public interface PortandflowsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW_PROPERTY_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 2;
+	int FLOW_PROPERTY_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.portandflows.impl.FlowSpecificationImpl <em>Flow Specification</em>}' class.
@@ -326,7 +325,7 @@ public interface PortandflowsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW_SPECIFICATION__BASE_INTERFACE = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int FLOW_SPECIFICATION__BASE_INTERFACE = 0;
 
 	/**
 	 * The number of structural features of the '<em>Flow Specification</em>' class. <!--
@@ -335,7 +334,7 @@ public interface PortandflowsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOW_SPECIFICATION_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int FLOW_SPECIFICATION_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.portandflows.impl.ItemFlowImpl <em>Item Flow</em>}' class.
@@ -355,7 +354,7 @@ public interface PortandflowsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__BASE_INFORMATION_FLOW = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int ITEM_FLOW__BASE_INFORMATION_FLOW = 0;
 
 	/**
 	 * The feature id for the '<em><b>Item Property</b></em>' reference.
@@ -365,7 +364,7 @@ public interface PortandflowsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW__ITEM_PROPERTY = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int ITEM_FLOW__ITEM_PROPERTY = 1;
 
 	/**
 	 * The number of structural features of the '<em>Item Flow</em>' class.
@@ -375,7 +374,7 @@ public interface PortandflowsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITEM_FLOW_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 2;
+	int ITEM_FLOW_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.portandflows.FlowDirection <em>Flow Direction</em>}' enum.

@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.blocks;
 
-import org.eclipse.papyrus.resource.ResourceEObject;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Property;
 
@@ -32,7 +32,7 @@ import org.eclipse.uml2.uml.Property;
  * @model
  * @generated
  */
-public interface ConnectorProperty extends ResourceEObject {
+public interface ConnectorProperty extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Base Property</b></em>' reference.

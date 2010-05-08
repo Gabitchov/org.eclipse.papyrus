@@ -7,7 +7,7 @@
     editorPluginClass="org.eclipse.papyrus.sysml.presentation.SysmlEditorPlugin" codeFormatting="true"
     testSuiteClass="org.eclipse.papyrus.sysml.tests.SysmlAllTests" importerID="org.eclipse.emf.importer.ecore"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.sysml.edit"
-    editorPluginID="org.eclipse.papyrus.sysml.editor" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.papyrus.uml.standard/model/standard.genmodel#//standard platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml platform:/plugin/org.eclipse.papyrus.resource/model/resource.genmodel#//resource">
+    editorPluginID="org.eclipse.papyrus.sysml.editor" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.papyrus.uml.standard/model/standard.genmodel#//standard platform:/plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml">
   <foreignModel>sysml.ecore</foreignModel>
   <genPackages prefix="Sysml" basePackage="org.eclipse.papyrus" resource="XML" disposableProviderFactory="true"
       generateExampleClass="false" ecorePackage="sysml.ecore#/">
@@ -143,9 +143,9 @@
     <nestedGenPackages prefix="Activities" basePackage="org.eclipse.papyrus.sysml"
         resource="XML" disposableProviderFactory="true" generateExampleClass="false"
         ecorePackage="sysml.ecore#//activities">
-      <genClasses ecoreClass="sysml.ecore#//activities/Optional">
+      <genClasses ecoreClass="sysml.ecore#//activities/Optionnal">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference sysml.ecore#//activities/Optional/base_Parameter"/>
+            ecoreFeature="ecore:EReference sysml.ecore#//activities/Optionnal/base_Parameter"/>
       </genClasses>
       <genClasses ecoreClass="sysml.ecore#//activities/Rate">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"

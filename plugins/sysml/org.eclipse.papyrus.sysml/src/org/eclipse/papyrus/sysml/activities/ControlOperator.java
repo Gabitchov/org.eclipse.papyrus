@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.activities;
 
-import org.eclipse.papyrus.resource.ResourceEObject;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Operation;
 
@@ -33,7 +33,7 @@ import org.eclipse.uml2.uml.Operation;
  * @model
  * @generated
  */
-public interface ControlOperator extends ResourceEObject {
+public interface ControlOperator extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Base Behavior</b></em>' reference.

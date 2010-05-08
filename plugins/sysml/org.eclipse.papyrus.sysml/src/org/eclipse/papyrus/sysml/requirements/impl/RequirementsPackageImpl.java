@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.papyrus.resource.ResourcePackage;
 import org.eclipse.papyrus.sysml.SysmlPackage;
 import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.activities.impl.ActivitiesPackageImpl;
@@ -515,7 +514,6 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 
 		// Obtain other dependent packages
 		StandardPackage theStandardPackage = (StandardPackage)EPackage.Registry.INSTANCE.getEPackage(StandardPackage.eNS_URI);
-		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 		UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
 
 		// Create type parameters
@@ -524,16 +522,9 @@ public class RequirementsPackageImpl extends EPackageImpl implements Requirement
 
 		// Add supertypes to classes
 		deriveReqtEClass.getESuperTypes().add(theStandardPackage.getTrace());
-		deriveReqtEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
 		verifyEClass.getESuperTypes().add(theStandardPackage.getTrace());
-		verifyEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
 		copyEClass.getESuperTypes().add(theStandardPackage.getTrace());
-		copyEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
 		satisfyEClass.getESuperTypes().add(theStandardPackage.getTrace());
-		satisfyEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		testCaseEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		requirementEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		requirementRelatedEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(deriveReqtEClass, DeriveReqt.class, "DeriveReqt", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -17,12 +17,13 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.sysml.portandflows.FlowSpecification;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
-import org.eclipse.papyrus.umlutils.ElementUtil;
+import org.eclipse.papyrus.sysml.util.ElementUtil;
+import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.Image;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Port;
@@ -44,7 +45,7 @@ import org.eclipse.uml2.uml.Type;
  * 
  * @generated
  */
-public class FlowPortImpl extends ResourceEObjectImpl implements FlowPort {
+public class FlowPortImpl extends EObjectImpl implements FlowPort {
 
 	/**
 	 * The cached value of the '{@link #getBase_Port() <em>Base Port</em>}' reference. <!--
@@ -251,11 +252,10 @@ public class FlowPortImpl extends ResourceEObjectImpl implements FlowPort {
 	 */
 	public Image getIcon() {
 
-		String FLOWPORT_ID = "SysML::PortAndFlows::FlowPort";
 		Image ImageNotFound = null;
 
 		if(getBase_Port() != null) {
-			Stereotype st = getBase_Port().getAppliedStereotype(FLOWPORT_ID);
+			Stereotype st = getBase_Port().getAppliedStereotype(SysmlResource.FLOW_PORT_ID);
 
 			Image defaultImage = st.getIcons().get(0);
 			Image image = null;

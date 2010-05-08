@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.activities.Optional;
 import org.eclipse.uml2.uml.Parameter;
@@ -35,7 +35,7 @@ import org.eclipse.uml2.uml.Parameter;
  * 
  * @generated
  */
-public class OptionalImpl extends ResourceEObjectImpl implements Optional {
+public class OptionalImpl extends EObjectImpl implements Optional {
 
 	/**
 	 * The cached value of the '{@link #getBase_Parameter() <em>Base Parameter</em>}' reference.

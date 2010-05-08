@@ -9,7 +9,7 @@
         href="../../../plugin/org.eclipse.papyrus.resource/model/resource.ecore#//Resource/eobjects"/>
     <ownedChild>
       <domainMetaElement
-          href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//portandflows/FlowPort"/>
+          href="../../org.eclipse.papyrus.sysml.converted/model/sysml.ecore#//portandflows/FlowPort"/>
       <tool
           xsi:type="gmftool:CreationTool"
           href="ibd.gmftool#//@palette/@tools.0/@tools.0"/>
@@ -21,7 +21,7 @@
     <diagramCanvas
         href="ibd.gmfgraph#sysml"/>
     <domainModel
-        href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#/"/>
+        href="../../org.eclipse.papyrus.sysml.converted/model/sysml.ecore#/"/>
     <domainMetaElement
         href="../../../plugin/org.eclipse.papyrus.resource/model/resource.ecore#//Resource"/>
     <palette

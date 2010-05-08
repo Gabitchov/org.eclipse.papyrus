@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.papyrus.resource.ResourcePackage;
 import org.eclipse.papyrus.sysml.SysmlPackage;
 import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.activities.impl.ActivitiesPackageImpl;
@@ -406,7 +405,6 @@ public class ModelelementsPackageImpl extends EPackageImpl implements Modeleleme
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 		UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
 
 		// Create type parameters
@@ -414,11 +412,6 @@ public class ModelelementsPackageImpl extends EPackageImpl implements Modeleleme
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		conformEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		viewEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		viewPointEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		rationaleEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		problemEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(conformEClass, Conform.class, "Conform", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

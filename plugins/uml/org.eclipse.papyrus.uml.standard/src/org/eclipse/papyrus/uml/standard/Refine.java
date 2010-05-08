@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.standard;
 
-import org.eclipse.papyrus.resource.ResourceEObject;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Abstraction;
 
 /**
@@ -31,11 +31,10 @@ import org.eclipse.uml2.uml.Abstraction;
  * @model
  * @generated
  */
-public interface Refine extends ResourceEObject {
+public interface Refine extends EObject {
 
 	/**
-	 * Returns the value of the '<em><b>Base Abstraction</b></em>' reference.
-	 * <!-- begin-user-doc
+	 * Returns the value of the '<em><b>Base Abstraction</b></em>' reference. <!-- begin-user-doc
 	 * -->
 	 * <p>
 	 * If the meaning of the '<em>Base Abstraction</em>' reference isn't clear, there really should be more of a description here...
@@ -51,8 +50,8 @@ public interface Refine extends ResourceEObject {
 	Abstraction getBase_Abstraction();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.uml.standard.Refine#getBase_Abstraction <em>Base Abstraction</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.uml.standard.Refine#getBase_Abstraction
+	 * <em>Base Abstraction</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Abstraction</em>' reference.

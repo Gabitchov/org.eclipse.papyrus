@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.papyrus.resource.ResourcePackage;
 import org.eclipse.papyrus.sysml.SysmlPackage;
 import org.eclipse.papyrus.sysml.activities.ActivitiesFactory;
 import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
@@ -465,7 +464,6 @@ public class ActivitiesPackageImpl extends EPackageImpl implements ActivitiesPac
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 		UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
 
 		// Create type parameters
@@ -473,14 +471,8 @@ public class ActivitiesPackageImpl extends EPackageImpl implements ActivitiesPac
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		optionalEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		rateEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		probabilityEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
 		continuousEClass.getESuperTypes().add(this.getRate());
 		discreteEClass.getESuperTypes().add(this.getRate());
-		controlOperatorEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		noBufferEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		overwriteEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(optionalEClass, Optional.class, "Optional", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

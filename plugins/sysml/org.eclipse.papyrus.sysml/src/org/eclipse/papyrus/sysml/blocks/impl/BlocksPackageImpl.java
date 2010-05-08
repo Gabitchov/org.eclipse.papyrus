@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.papyrus.resource.ResourcePackage;
 import org.eclipse.papyrus.sysml.SysmlPackage;
 import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.activities.impl.ActivitiesPackageImpl;
@@ -561,7 +560,6 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 		UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
 
 		// Create type parameters
@@ -569,16 +567,6 @@ public class BlocksPackageImpl extends EPackageImpl implements BlocksPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		blockEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		distributedPropertyEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		dimensionEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		unitEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		valueTypeEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		nestedConnectorEndEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		participantPropertyEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		connectorPropertyEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		bindingConnectorEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		propertySpecificTypeEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

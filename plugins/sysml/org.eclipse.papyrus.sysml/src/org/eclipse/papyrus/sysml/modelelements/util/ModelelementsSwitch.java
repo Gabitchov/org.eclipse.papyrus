@@ -17,7 +17,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.papyrus.sysml.modelelements.Conform;
 import org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage;
 import org.eclipse.papyrus.sysml.modelelements.Problem;
@@ -84,23 +83,6 @@ public class ModelelementsSwitch<T> {
 	 * @generated
 	 */
 	public T caseProblem(Problem object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseResourceEObject(ResourceEObject object) {
 		return null;
 	}
 
@@ -205,8 +187,6 @@ public class ModelelementsSwitch<T> {
 			Conform conform = (Conform)theEObject;
 			T result = caseConform(conform);
 			if(result == null)
-				result = caseResourceEObject(conform);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -214,8 +194,6 @@ public class ModelelementsSwitch<T> {
 		{
 			View view = (View)theEObject;
 			T result = caseView(view);
-			if(result == null)
-				result = caseResourceEObject(view);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -225,8 +203,6 @@ public class ModelelementsSwitch<T> {
 			ViewPoint viewPoint = (ViewPoint)theEObject;
 			T result = caseViewPoint(viewPoint);
 			if(result == null)
-				result = caseResourceEObject(viewPoint);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -235,8 +211,6 @@ public class ModelelementsSwitch<T> {
 			Rationale rationale = (Rationale)theEObject;
 			T result = caseRationale(rationale);
 			if(result == null)
-				result = caseResourceEObject(rationale);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -244,8 +218,6 @@ public class ModelelementsSwitch<T> {
 		{
 			Problem problem = (Problem)theEObject;
 			T result = caseProblem(problem);
-			if(result == null)
-				result = caseResourceEObject(problem);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;

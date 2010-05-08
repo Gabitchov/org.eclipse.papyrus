@@ -21,8 +21,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
-import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.requirements.Copy;
 import org.eclipse.papyrus.sysml.requirements.DeriveReqt;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
@@ -30,10 +30,10 @@ import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
 import org.eclipse.papyrus.sysml.requirements.Satisfy;
 import org.eclipse.papyrus.sysml.requirements.TestCase;
 import org.eclipse.papyrus.sysml.requirements.Verify;
+import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.papyrus.uml.standard.Refine;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 import org.eclipse.papyrus.uml.standard.Trace;
-import org.eclipse.papyrus.umlutils.ElementUtil;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.NamedElement;
@@ -59,7 +59,7 @@ import org.eclipse.uml2.uml.NamedElement;
  * 
  * @generated
  */
-public class RequirementImpl extends ResourceEObjectImpl implements Requirement {
+public class RequirementImpl extends EObjectImpl implements Requirement {
 
 	/**
 	 * The default value of the '{@link #getText() <em>Text</em>}' attribute.
@@ -241,7 +241,6 @@ public class RequirementImpl extends ResourceEObjectImpl implements Requirement 
 	 * 
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch(featureID) {

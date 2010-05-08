@@ -110,7 +110,7 @@
       </viewmap>
       <modelFacet>
         <metaClass
-            href="../../org.eclipse.papyrus.sysml/model/sysml.genmodel#//sysml/blocks/Block"/>
+            href="../../org.eclipse.papyrus.sysml.converted/model/sysml.genmodel#//sysml/blocks/Block"/>
         <containmentMetaFeature
             href="../../../plugin/org.eclipse.papyrus.resource/model/resource.genmodel#//resource/Resource/eobjects"/>
         <childMetaFeature
@@ -267,7 +267,7 @@
     </tabs>
   </propertySheet>
   <domainGenModel
-      href="../../org.eclipse.papyrus.sysml/model/sysml.genmodel#/"/>
+      href="../../org.eclipse.papyrus.sysml.converted/model/sysml.genmodel#/"/>
   <contextMenus
       context="//@diagram">
     <items

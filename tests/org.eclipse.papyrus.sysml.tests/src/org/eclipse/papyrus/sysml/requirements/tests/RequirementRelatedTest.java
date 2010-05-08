@@ -21,10 +21,11 @@ import org.eclipse.papyrus.sysml.requirements.RequirementRelated;
 import org.eclipse.papyrus.sysml.requirements.RequirementsFactory;
 import org.eclipse.papyrus.sysml.requirements.Satisfy;
 import org.eclipse.papyrus.sysml.requirements.Verify;
-import org.eclipse.papyrus.sysml.utils.StdResource;
+import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.papyrus.sysml.utils.SysMLTestResources;
 import org.eclipse.papyrus.uml.standard.Refine;
 import org.eclipse.papyrus.uml.standard.Trace;
+import org.eclipse.papyrus.uml.standard.util.StandardResource;
 import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
@@ -47,22 +48,6 @@ import org.eclipse.uml2.uml.UMLFactory;
  * @generated
  */
 public class RequirementRelatedTest extends TestCase {
-
-	/**
-	 * The fixture for this Requirement Related test case. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @generated NOT
-	 */
-	public static String SATISFY_ID = "SysML::Requirements::Satisfy";
-
-	public static String VERIFY_ID = "SysML::Requirements::Verify";
-
-	public static String TESTCASE_ID = "SysML::Requirements::TestCase";
-
-	public static String REQUIREMENT_ID = "SysML::Requirements::Requirement";
-
-	public static String REQUIREMENT_RELATED_ID = "SysML::Requirements::RequirementRelated";
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -169,19 +154,19 @@ public class RequirementRelatedTest extends TestCase {
 		Class defaultClass = model.createOwnedClass("defaultClass", false);
 
 		// Add Requirement stereotypes
-		default_reqR = (RequirementRelated)defaultClass.applyStereotype(defaultClass.getApplicableStereotype(REQUIREMENT_RELATED_ID));
+		default_reqR = (RequirementRelated)defaultClass.applyStereotype(defaultClass.getApplicableStereotype(SysmlResource.REQUIREMENT_RELATED_ID));
 
 		// ////////////////////////////////////////////////////////////////////
 		// Prepare getTracedFrom test elements
 		// ////////////////////////////////////////////////////////////////////
 
 		Class traced = model.createOwnedClass("traced", false);
-		traced_reqR = (RequirementRelated)traced.applyStereotype(traced.getApplicableStereotype(REQUIREMENT_RELATED_ID));
+		traced_reqR = (RequirementRelated)traced.applyStereotype(traced.getApplicableStereotype(SysmlResource.REQUIREMENT_RELATED_ID));
 
 		Class trace1 = model.createOwnedClass("trace1", false);
-		trace1_req = (Requirement)trace1.applyStereotype(trace1.getApplicableStereotype(REQUIREMENT_ID));
+		trace1_req = (Requirement)trace1.applyStereotype(trace1.getApplicableStereotype(SysmlResource.REQUIREMENT_ID));
 		Class trace2 = model.createOwnedClass("trace2", false);
-		trace2_req = (Requirement)trace2.applyStereotype(trace2.getApplicableStereotype(REQUIREMENT_ID));
+		trace2_req = (Requirement)trace2.applyStereotype(trace2.getApplicableStereotype(SysmlResource.REQUIREMENT_ID));
 
 		// Add "Trace" (Abstraction)
 		// trace1, trace2 -> traced
@@ -190,14 +175,14 @@ public class RequirementRelatedTest extends TestCase {
 		t11.getSuppliers().add(traced);
 		model.getPackagedElements().add(t11);
 		@SuppressWarnings("unused")
-		Trace t_t11 = (Trace)t11.applyStereotype(t11.getApplicableStereotype(StdResource.TRACE_ID));
+		Trace t_t11 = (Trace)t11.applyStereotype(t11.getApplicableStereotype(StandardResource.TRACE_ID));
 
 		Abstraction t12 = UMLFactory.eINSTANCE.createAbstraction();
 		t12.getClients().add(trace2);
 		t12.getSuppliers().add(traced);
 		model.getPackagedElements().add(t12);
 		@SuppressWarnings("unused")
-		Trace t_t12 = (Trace)t12.applyStereotype(t12.getApplicableStereotype(StdResource.TRACE_ID));
+		Trace t_t12 = (Trace)t12.applyStereotype(t12.getApplicableStereotype(StandardResource.TRACE_ID));
 
 		// ////////////////////////////////////////////////////////////////////
 
@@ -206,12 +191,12 @@ public class RequirementRelatedTest extends TestCase {
 		// ////////////////////////////////////////////////////////////////////
 
 		Class satisfying = model.createOwnedClass("satisfying", false);
-		satisfying_reqR = (RequirementRelated)satisfying.applyStereotype(satisfying.getApplicableStereotype(REQUIREMENT_RELATED_ID));
+		satisfying_reqR = (RequirementRelated)satisfying.applyStereotype(satisfying.getApplicableStereotype(SysmlResource.REQUIREMENT_RELATED_ID));
 
 		Class satisfied1 = model.createOwnedClass("satisfied1", false);
-		satisfied1_req = (Requirement)satisfied1.applyStereotype(satisfied1.getApplicableStereotype(REQUIREMENT_ID));
+		satisfied1_req = (Requirement)satisfied1.applyStereotype(satisfied1.getApplicableStereotype(SysmlResource.REQUIREMENT_ID));
 		Class satisfied2 = model.createOwnedClass("satisfied2", false);
-		satisfied2_req = (Requirement)satisfied2.applyStereotype(satisfied2.getApplicableStereotype(REQUIREMENT_ID));
+		satisfied2_req = (Requirement)satisfied2.applyStereotype(satisfied2.getApplicableStereotype(SysmlResource.REQUIREMENT_ID));
 
 		// Add "Satisfy" (Realization)
 		// satisfying_reqR -> satisfied1_req, satisfied2_req
@@ -220,14 +205,14 @@ public class RequirementRelatedTest extends TestCase {
 		s1.getSuppliers().add(satisfied1);
 		model.getPackagedElements().add(s1);
 		@SuppressWarnings("unused")
-		Satisfy s_s1 = (Satisfy)s1.applyStereotype(s1.getApplicableStereotype(SATISFY_ID));
+		Satisfy s_s1 = (Satisfy)s1.applyStereotype(s1.getApplicableStereotype(SysmlResource.SATISFY_ID));
 
 		Realization s2 = UMLFactory.eINSTANCE.createRealization();
 		s2.getClients().add(satisfying);
 		s2.getSuppliers().add(satisfied2);
 		model.getPackagedElements().add(s2);
 		@SuppressWarnings("unused")
-		Satisfy s_s2 = (Satisfy)s2.applyStereotype(s2.getApplicableStereotype(SATISFY_ID));
+		Satisfy s_s2 = (Satisfy)s2.applyStereotype(s2.getApplicableStereotype(SysmlResource.SATISFY_ID));
 
 		// ////////////////////////////////////////////////////////////////////
 
@@ -236,12 +221,12 @@ public class RequirementRelatedTest extends TestCase {
 		// ////////////////////////////////////////////////////////////////////
 
 		Class verifying = model.createOwnedClass("verifying", false);
-		verifying_reqR = (RequirementRelated)verifying.applyStereotype(verifying.getApplicableStereotype(REQUIREMENT_RELATED_ID));
+		verifying_reqR = (RequirementRelated)verifying.applyStereotype(verifying.getApplicableStereotype(SysmlResource.REQUIREMENT_RELATED_ID));
 
 		Class verified1 = model.createOwnedClass("verified1", false);
-		verified1_req = (Requirement)verified1.applyStereotype(verified1.getApplicableStereotype(REQUIREMENT_ID));
+		verified1_req = (Requirement)verified1.applyStereotype(verified1.getApplicableStereotype(SysmlResource.REQUIREMENT_ID));
 		Class verified2 = model.createOwnedClass("verified2", false);
-		verified2_req = (Requirement)verified2.applyStereotype(verified2.getApplicableStereotype(REQUIREMENT_ID));
+		verified2_req = (Requirement)verified2.applyStereotype(verified2.getApplicableStereotype(SysmlResource.REQUIREMENT_ID));
 
 		// Add "Verify" (Realization)
 		// verifying_reqR -> verified1_req, verified2_req
@@ -250,14 +235,14 @@ public class RequirementRelatedTest extends TestCase {
 		v1.getSuppliers().add(verified1);
 		model.getPackagedElements().add(v1);
 		@SuppressWarnings("unused")
-		Verify v_v1 = (Verify)v1.applyStereotype(v1.getApplicableStereotype(VERIFY_ID));
+		Verify v_v1 = (Verify)v1.applyStereotype(v1.getApplicableStereotype(SysmlResource.VERIFY_ID));
 
 		Realization v2 = UMLFactory.eINSTANCE.createRealization();
 		v2.getClients().add(verifying);
 		v2.getSuppliers().add(verified2);
 		model.getPackagedElements().add(v2);
 		@SuppressWarnings("unused")
-		Verify v_v2 = (Verify)v2.applyStereotype(v2.getApplicableStereotype(VERIFY_ID));
+		Verify v_v2 = (Verify)v2.applyStereotype(v2.getApplicableStereotype(SysmlResource.VERIFY_ID));
 
 		// ////////////////////////////////////////////////////////////////////
 
@@ -266,12 +251,12 @@ public class RequirementRelatedTest extends TestCase {
 		// ////////////////////////////////////////////////////////////////////
 
 		Class refining = model.createOwnedClass("refining", false);
-		refining_reqR = (RequirementRelated)refining.applyStereotype(refining.getApplicableStereotype(REQUIREMENT_RELATED_ID));
+		refining_reqR = (RequirementRelated)refining.applyStereotype(refining.getApplicableStereotype(SysmlResource.REQUIREMENT_RELATED_ID));
 
 		Class refined1 = model.createOwnedClass("refined1", false);
-		refined1_req = (Requirement)refined1.applyStereotype(refined1.getApplicableStereotype(REQUIREMENT_ID));
+		refined1_req = (Requirement)refined1.applyStereotype(refined1.getApplicableStereotype(SysmlResource.REQUIREMENT_ID));
 		Class refined2 = model.createOwnedClass("refined2", false);
-		refined2_req = (Requirement)refined2.applyStereotype(refined2.getApplicableStereotype(REQUIREMENT_ID));
+		refined2_req = (Requirement)refined2.applyStereotype(refined2.getApplicableStereotype(SysmlResource.REQUIREMENT_ID));
 
 		// Add "Refine" (Abstraction)
 		// refining_reqR -> refined1_req, refined2_req
@@ -280,14 +265,14 @@ public class RequirementRelatedTest extends TestCase {
 		r1.getSuppliers().add(refined1);
 		model.getPackagedElements().add(r1);
 		@SuppressWarnings("unused")
-		Refine r_r1 = (Refine)r1.applyStereotype(r1.getApplicableStereotype(StdResource.REFINE_ID));
+		Refine r_r1 = (Refine)r1.applyStereotype(r1.getApplicableStereotype(StandardResource.REFINE_ID));
 
 		Abstraction r2 = UMLFactory.eINSTANCE.createAbstraction();
 		r2.getClients().add(refining);
 		r2.getSuppliers().add(refined2);
 		model.getPackagedElements().add(r2);
 		@SuppressWarnings("unused")
-		Refine r_r2 = (Refine)r2.applyStereotype(r2.getApplicableStereotype(StdResource.REFINE_ID));
+		Refine r_r2 = (Refine)r2.applyStereotype(r2.getApplicableStereotype(StandardResource.REFINE_ID));
 
 		// ////////////////////////////////////////////////////////////////////
 	}

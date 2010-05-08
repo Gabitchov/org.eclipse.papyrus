@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.activities;
 
-import org.eclipse.papyrus.resource.ResourceEObject;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.ObjectNode;
 
 /**
@@ -31,7 +31,7 @@ import org.eclipse.uml2.uml.ObjectNode;
  * @model
  * @generated
  */
-public interface NoBuffer extends ResourceEObject {
+public interface NoBuffer extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Base Object Node</b></em>' reference.

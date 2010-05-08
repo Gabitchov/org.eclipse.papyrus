@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.papyrus.sysml.portandflows.FlowSpecification;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.uml2.uml.Interface;
@@ -33,7 +33,7 @@ import org.eclipse.uml2.uml.Interface;
  * 
  * @generated
  */
-public class FlowSpecificationImpl extends ResourceEObjectImpl implements FlowSpecification {
+public class FlowSpecificationImpl extends EObjectImpl implements FlowSpecification {
 
 	/**
 	 * The cached value of the '{@link #getBase_Interface() <em>Base Interface</em>}' reference.

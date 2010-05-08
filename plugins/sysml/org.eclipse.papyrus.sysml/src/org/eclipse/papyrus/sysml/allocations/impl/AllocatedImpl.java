@@ -21,12 +21,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
-import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.allocations.Allocate;
 import org.eclipse.papyrus.sysml.allocations.Allocated;
 import org.eclipse.papyrus.sysml.allocations.AllocationsPackage;
-import org.eclipse.papyrus.umlutils.ElementUtil;
+import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.Element;
@@ -46,7 +46,7 @@ import org.eclipse.uml2.uml.NamedElement;
  * 
  * @generated
  */
-public class AllocatedImpl extends ResourceEObjectImpl implements Allocated {
+public class AllocatedImpl extends EObjectImpl implements Allocated {
 
 	/**
 	 * The cached value of the '{@link #getBase_NamedElement() <em>Base Named Element</em>}' reference.
@@ -119,7 +119,6 @@ public class AllocatedImpl extends ResourceEObjectImpl implements Allocated {
 	 * 
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch(featureID) {

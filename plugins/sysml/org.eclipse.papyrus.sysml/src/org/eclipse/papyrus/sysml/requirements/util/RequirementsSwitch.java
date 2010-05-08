@@ -17,7 +17,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.papyrus.sysml.requirements.Copy;
 import org.eclipse.papyrus.sysml.requirements.DeriveReqt;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
@@ -118,23 +117,6 @@ public class RequirementsSwitch<T> {
 	 * @generated
 	 */
 	public T caseRequirementRelated(RequirementRelated object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseResourceEObject(ResourceEObject object) {
 		return null;
 	}
 
@@ -256,8 +238,6 @@ public class RequirementsSwitch<T> {
 			if(result == null)
 				result = caseTrace(deriveReqt);
 			if(result == null)
-				result = caseResourceEObject(deriveReqt);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -267,8 +247,6 @@ public class RequirementsSwitch<T> {
 			T result = caseVerify(verify);
 			if(result == null)
 				result = caseTrace(verify);
-			if(result == null)
-				result = caseResourceEObject(verify);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -280,8 +258,6 @@ public class RequirementsSwitch<T> {
 			if(result == null)
 				result = caseTrace(copy);
 			if(result == null)
-				result = caseResourceEObject(copy);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -292,8 +268,6 @@ public class RequirementsSwitch<T> {
 			if(result == null)
 				result = caseTrace(satisfy);
 			if(result == null)
-				result = caseResourceEObject(satisfy);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -301,8 +275,6 @@ public class RequirementsSwitch<T> {
 		{
 			TestCase testCase = (TestCase)theEObject;
 			T result = caseTestCase(testCase);
-			if(result == null)
-				result = caseResourceEObject(testCase);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -312,8 +284,6 @@ public class RequirementsSwitch<T> {
 			Requirement requirement = (Requirement)theEObject;
 			T result = caseRequirement(requirement);
 			if(result == null)
-				result = caseResourceEObject(requirement);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -321,8 +291,6 @@ public class RequirementsSwitch<T> {
 		{
 			RequirementRelated requirementRelated = (RequirementRelated)theEObject;
 			T result = caseRequirementRelated(requirementRelated);
-			if(result == null)
-				result = caseResourceEObject(requirementRelated);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;

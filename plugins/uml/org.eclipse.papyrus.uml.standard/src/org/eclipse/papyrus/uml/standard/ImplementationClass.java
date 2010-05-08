@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.standard;
 
-import org.eclipse.papyrus.resource.ResourceEObject;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Implementation Class</b></em>'. <!-- end-user-doc -->
@@ -21,7 +21,7 @@ import org.eclipse.papyrus.resource.ResourceEObject;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.standard.ImplementationClass#getBase_Class <em>Base Class</em>}</li>
+ * <li>{@link org.eclipse.papyrus.uml.standard.ImplementationClass#getBase_Class <em>Base Class </em>}</li>
  * </ul>
  * </p>
  * 
@@ -29,11 +29,10 @@ import org.eclipse.papyrus.resource.ResourceEObject;
  * @model
  * @generated
  */
-public interface ImplementationClass extends ResourceEObject {
+public interface ImplementationClass extends EObject {
 
 	/**
-	 * Returns the value of the '<em><b>Base Class</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Class</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Class</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -48,8 +47,8 @@ public interface ImplementationClass extends ResourceEObject {
 	org.eclipse.uml2.uml.Class getBase_Class();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.uml.standard.ImplementationClass#getBase_Class <em>Base Class</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the ' {@link org.eclipse.papyrus.uml.standard.ImplementationClass#getBase_Class
+	 * <em>Base Class</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Class</em>' reference.

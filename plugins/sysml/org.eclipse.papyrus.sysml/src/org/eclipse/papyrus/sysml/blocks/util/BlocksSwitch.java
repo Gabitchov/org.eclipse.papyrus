@@ -17,7 +17,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.papyrus.sysml.blocks.BindingConnector;
 import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
@@ -188,23 +187,6 @@ public class BlocksSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseResourceEObject(ResourceEObject object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Unit</em>'. <!--
 	 * begin-user-doc --> This implementation returns null; returning a non-null result will
 	 * terminate the switch. <!-- end-user-doc -->
@@ -290,8 +272,6 @@ public class BlocksSwitch<T> {
 			Block block = (Block)theEObject;
 			T result = caseBlock(block);
 			if(result == null)
-				result = caseResourceEObject(block);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -299,8 +279,6 @@ public class BlocksSwitch<T> {
 		{
 			DistributedProperty distributedProperty = (DistributedProperty)theEObject;
 			T result = caseDistributedProperty(distributedProperty);
-			if(result == null)
-				result = caseResourceEObject(distributedProperty);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -310,8 +288,6 @@ public class BlocksSwitch<T> {
 			Dimension dimension = (Dimension)theEObject;
 			T result = caseDimension(dimension);
 			if(result == null)
-				result = caseResourceEObject(dimension);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -319,8 +295,6 @@ public class BlocksSwitch<T> {
 		{
 			Unit unit = (Unit)theEObject;
 			T result = caseUnit(unit);
-			if(result == null)
-				result = caseResourceEObject(unit);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -330,8 +304,6 @@ public class BlocksSwitch<T> {
 			ValueType valueType = (ValueType)theEObject;
 			T result = caseValueType(valueType);
 			if(result == null)
-				result = caseResourceEObject(valueType);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -339,8 +311,6 @@ public class BlocksSwitch<T> {
 		{
 			NestedConnectorEnd nestedConnectorEnd = (NestedConnectorEnd)theEObject;
 			T result = caseNestedConnectorEnd(nestedConnectorEnd);
-			if(result == null)
-				result = caseResourceEObject(nestedConnectorEnd);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -350,8 +320,6 @@ public class BlocksSwitch<T> {
 			ParticipantProperty participantProperty = (ParticipantProperty)theEObject;
 			T result = caseParticipantProperty(participantProperty);
 			if(result == null)
-				result = caseResourceEObject(participantProperty);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -359,8 +327,6 @@ public class BlocksSwitch<T> {
 		{
 			ConnectorProperty connectorProperty = (ConnectorProperty)theEObject;
 			T result = caseConnectorProperty(connectorProperty);
-			if(result == null)
-				result = caseResourceEObject(connectorProperty);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -370,8 +336,6 @@ public class BlocksSwitch<T> {
 			BindingConnector bindingConnector = (BindingConnector)theEObject;
 			T result = caseBindingConnector(bindingConnector);
 			if(result == null)
-				result = caseResourceEObject(bindingConnector);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -379,8 +343,6 @@ public class BlocksSwitch<T> {
 		{
 			PropertySpecificType propertySpecificType = (PropertySpecificType)theEObject;
 			T result = casePropertySpecificType(propertySpecificType);
-			if(result == null)
-				result = caseResourceEObject(propertySpecificType);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;

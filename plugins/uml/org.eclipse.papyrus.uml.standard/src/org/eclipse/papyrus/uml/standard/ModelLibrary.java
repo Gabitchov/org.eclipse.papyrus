@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.standard;
 
-import org.eclipse.papyrus.resource.ResourceEObject;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Model Library</b></em>'.
@@ -30,11 +30,10 @@ import org.eclipse.papyrus.resource.ResourceEObject;
  * @model
  * @generated
  */
-public interface ModelLibrary extends ResourceEObject {
+public interface ModelLibrary extends EObject {
 
 	/**
-	 * Returns the value of the '<em><b>Base Package</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Package</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Package</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -49,8 +48,8 @@ public interface ModelLibrary extends ResourceEObject {
 	org.eclipse.uml2.uml.Package getBase_Package();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.uml.standard.ModelLibrary#getBase_Package <em>Base Package</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.uml.standard.ModelLibrary#getBase_Package
+	 * <em>Base Package</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Package</em>' reference.

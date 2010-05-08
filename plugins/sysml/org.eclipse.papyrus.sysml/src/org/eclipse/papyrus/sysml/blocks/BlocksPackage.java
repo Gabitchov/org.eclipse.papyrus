@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.papyrus.resource.ResourcePackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains accessors for the meta
@@ -341,7 +340,7 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK__IS_ENCAPSULATED = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int BLOCK__IS_ENCAPSULATED = 0;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -351,7 +350,7 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK__BASE_CLASS = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int BLOCK__BASE_CLASS = 1;
 
 	/**
 	 * The number of structural features of the '<em>Block</em>' class.
@@ -361,7 +360,7 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 2;
+	int BLOCK_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.blocks.impl.DistributedPropertyImpl <em>Distributed Property</em>}' class.
@@ -381,7 +380,7 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DISTRIBUTED_PROPERTY__BASE_PROPERTY = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int DISTRIBUTED_PROPERTY__BASE_PROPERTY = 0;
 
 	/**
 	 * The number of structural features of the '<em>Distributed Property</em>' class. <!--
@@ -390,7 +389,7 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DISTRIBUTED_PROPERTY_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int DISTRIBUTED_PROPERTY_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.blocks.impl.DimensionImpl <em>Dimension</em>}' class.
@@ -409,7 +408,7 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DIMENSION__BASE_INSTANCE_SPECIFICATION = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int DIMENSION__BASE_INSTANCE_SPECIFICATION = 0;
 
 	/**
 	 * The number of structural features of the '<em>Dimension</em>' class.
@@ -419,7 +418,7 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DIMENSION_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int DIMENSION_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.blocks.impl.UnitImpl <em>Unit</em>}' class.
@@ -438,7 +437,7 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNIT__BASE_INSTANCE_SPECIFICATION = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int UNIT__BASE_INSTANCE_SPECIFICATION = 0;
 
 	/**
 	 * The feature id for the '<em><b>Dimension</b></em>' reference.
@@ -448,7 +447,7 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNIT__DIMENSION = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int UNIT__DIMENSION = 1;
 
 	/**
 	 * The number of structural features of the '<em>Unit</em>' class.
@@ -458,7 +457,7 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int UNIT_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 2;
+	int UNIT_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.blocks.impl.ValueTypeImpl <em>Value Type</em>}' class.
@@ -478,7 +477,7 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_TYPE__BASE_DATA_TYPE = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int VALUE_TYPE__BASE_DATA_TYPE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Unit</b></em>' reference.
@@ -488,7 +487,7 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_TYPE__UNIT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int VALUE_TYPE__UNIT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Dimension</b></em>' reference.
@@ -498,7 +497,7 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_TYPE__DIMENSION = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 2;
+	int VALUE_TYPE__DIMENSION = 2;
 
 	/**
 	 * The number of structural features of the '<em>Value Type</em>' class.
@@ -508,7 +507,7 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_TYPE_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 3;
+	int VALUE_TYPE_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.blocks.impl.NestedConnectorEndImpl <em>Nested Connector End</em>}' class.
@@ -528,7 +527,7 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_CONNECTOR_END__PROPERTY_PATH = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int NESTED_CONNECTOR_END__PROPERTY_PATH = 0;
 
 	/**
 	 * The feature id for the '<em><b>Base Connector End</b></em>' reference.
@@ -538,7 +537,7 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_CONNECTOR_END__BASE_CONNECTOR_END = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int NESTED_CONNECTOR_END__BASE_CONNECTOR_END = 1;
 
 	/**
 	 * The number of structural features of the '<em>Nested Connector End</em>' class. <!--
@@ -547,7 +546,7 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NESTED_CONNECTOR_END_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 2;
+	int NESTED_CONNECTOR_END_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.blocks.impl.ParticipantPropertyImpl <em>Participant Property</em>}' class.
@@ -567,7 +566,7 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARTICIPANT_PROPERTY__BASE_PROPERTY = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int PARTICIPANT_PROPERTY__BASE_PROPERTY = 0;
 
 	/**
 	 * The feature id for the '<em><b>End</b></em>' reference.
@@ -577,7 +576,7 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARTICIPANT_PROPERTY__END = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int PARTICIPANT_PROPERTY__END = 1;
 
 	/**
 	 * The number of structural features of the '<em>Participant Property</em>' class. <!--
@@ -586,7 +585,7 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARTICIPANT_PROPERTY_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 2;
+	int PARTICIPANT_PROPERTY_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.blocks.impl.ConnectorPropertyImpl <em>Connector Property</em>}' class.
@@ -606,7 +605,7 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR_PROPERTY__BASE_PROPERTY = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int CONNECTOR_PROPERTY__BASE_PROPERTY = 0;
 
 	/**
 	 * The feature id for the '<em><b>Connector</b></em>' reference.
@@ -616,7 +615,7 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR_PROPERTY__CONNECTOR = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int CONNECTOR_PROPERTY__CONNECTOR = 1;
 
 	/**
 	 * The number of structural features of the '<em>Connector Property</em>' class. <!--
@@ -625,7 +624,7 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTOR_PROPERTY_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 2;
+	int CONNECTOR_PROPERTY_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the ' {@link org.eclipse.papyrus.sysml.blocks.impl.BindingConnectorImpl <em>Binding Connector</em>} ' class. <!--
@@ -645,7 +644,7 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINDING_CONNECTOR__BASE_CONNECTOR = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int BINDING_CONNECTOR__BASE_CONNECTOR = 0;
 
 	/**
 	 * The number of structural features of the '<em>Binding Connector</em>' class. <!--
@@ -654,7 +653,7 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINDING_CONNECTOR_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int BINDING_CONNECTOR_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.blocks.impl.PropertySpecificTypeImpl <em>Property Specific Type</em>}' class.
@@ -674,7 +673,7 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_SPECIFIC_TYPE__BASE_CLASSIFIER = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int PROPERTY_SPECIFIC_TYPE__BASE_CLASSIFIER = 0;
 
 	/**
 	 * The number of structural features of the '<em>Property Specific Type</em>' class. <!--
@@ -683,7 +682,7 @@ public interface BlocksPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_SPECIFIC_TYPE_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int PROPERTY_SPECIFIC_TYPE_FEATURE_COUNT = 1;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.blocks.BindingConnector <em>Binding Connector</em>}'.

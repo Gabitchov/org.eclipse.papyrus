@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.sysml.allocations;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.papyrus.resource.ResourceEObject;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
@@ -34,7 +34,7 @@ import org.eclipse.uml2.uml.NamedElement;
  * @model
  * @generated
  */
-public interface Allocated extends ResourceEObject {
+public interface Allocated extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Allocated From</b></em>' reference list.

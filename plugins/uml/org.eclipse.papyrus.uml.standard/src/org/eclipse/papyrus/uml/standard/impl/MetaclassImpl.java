@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.papyrus.uml.standard.Metaclass;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 
@@ -33,7 +33,7 @@ import org.eclipse.papyrus.uml.standard.StandardPackage;
  * 
  * @generated
  */
-public class MetaclassImpl extends ResourceEObjectImpl implements Metaclass {
+public class MetaclassImpl extends EObjectImpl implements Metaclass {
 
 	/**
 	 * The cached value of the '{@link #getBase_Class() <em>Base Class</em>}' reference. <!--

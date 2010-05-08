@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.standard;
 
-import org.eclipse.papyrus.resource.ResourceEObject;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.BehavioralFeature;
 
 /**
@@ -31,7 +31,7 @@ import org.eclipse.uml2.uml.BehavioralFeature;
  * @model
  * @generated
  */
-public interface Destroy extends ResourceEObject {
+public interface Destroy extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Base Behavioral Feature</b></em>' reference. <!--
@@ -50,8 +50,8 @@ public interface Destroy extends ResourceEObject {
 	BehavioralFeature getBase_BehavioralFeature();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.uml.standard.Destroy#getBase_BehavioralFeature <em>Base Behavioral Feature</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the ' {@link org.eclipse.papyrus.uml.standard.Destroy#getBase_BehavioralFeature
+	 * <em>Base Behavioral Feature</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Behavioral Feature</em>' reference.

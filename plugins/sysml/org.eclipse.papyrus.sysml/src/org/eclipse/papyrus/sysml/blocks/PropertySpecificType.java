@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.blocks;
 
-import org.eclipse.papyrus.resource.ResourceEObject;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Classifier;
 
 /**
@@ -30,7 +30,7 @@ import org.eclipse.uml2.uml.Classifier;
  * @model
  * @generated
  */
-public interface PropertySpecificType extends ResourceEObject {
+public interface PropertySpecificType extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Base Classifier</b></em>' reference.

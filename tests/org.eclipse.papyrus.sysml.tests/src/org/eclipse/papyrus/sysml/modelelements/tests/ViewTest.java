@@ -20,6 +20,7 @@ import org.eclipse.papyrus.sysml.modelelements.Conform;
 import org.eclipse.papyrus.sysml.modelelements.ModelelementsFactory;
 import org.eclipse.papyrus.sysml.modelelements.View;
 import org.eclipse.papyrus.sysml.modelelements.ViewPoint;
+import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.papyrus.sysml.utils.SysMLTestResources;
 import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.Class;
@@ -40,17 +41,6 @@ import org.eclipse.uml2.uml.UMLFactory;
  * @generated
  */
 public class ViewTest extends TestCase {
-
-	/**
-	 * The fixture for this View test case. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
-	public static String CONFORM_ID = "SysML::ModelElements::Conform";
-
-	public static String VIEW_ID = "SysML::ModelElements::View";
-
-	public static String VIEWPOINT_ID = "SysML::ModelElements::ViewPoint";
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -136,11 +126,11 @@ public class ViewTest extends TestCase {
 		c1 = model.createOwnedClass("c1", false);
 
 		// Add View stereotype
-		v0 = (View)p0.applyStereotype(p0.getApplicableStereotype(VIEW_ID));
-		v1 = (View)p1.applyStereotype(p1.getApplicableStereotype(VIEW_ID));
+		v0 = (View)p0.applyStereotype(p0.getApplicableStereotype(SysmlResource.VIEW_ID));
+		v1 = (View)p1.applyStereotype(p1.getApplicableStereotype(SysmlResource.VIEW_ID));
 
 		// Add ViewPoint stereotype
-		vp1 = (ViewPoint)c1.applyStereotype(c1.getApplicableStereotype(VIEWPOINT_ID));
+		vp1 = (ViewPoint)c1.applyStereotype(c1.getApplicableStereotype(SysmlResource.VIEWPOINT_ID));
 
 		// Add Abstractions with allocate stereotype
 		// v1 (p1) -> vp1 (c1)
@@ -149,7 +139,7 @@ public class ViewTest extends TestCase {
 		v1_vp1.getSuppliers().add(c1);
 		model.getPackagedElements().add(v1_vp1);
 		@SuppressWarnings("unused")
-		Conform c_v1_vp1 = (Conform)v1_vp1.applyStereotype(v1_vp1.getApplicableStereotype(CONFORM_ID));
+		Conform c_v1_vp1 = (Conform)v1_vp1.applyStereotype(v1_vp1.getApplicableStereotype(SysmlResource.CONFORM_ID));
 
 	}
 

@@ -20,8 +20,8 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 import org.eclipse.papyrus.sysml.blocks.NestedConnectorEnd;
 import org.eclipse.uml2.uml.ConnectorEnd;
@@ -39,7 +39,7 @@ import org.eclipse.uml2.uml.Property;
  * 
  * @generated
  */
-public class NestedConnectorEndImpl extends ResourceEObjectImpl implements NestedConnectorEnd {
+public class NestedConnectorEndImpl extends EObjectImpl implements NestedConnectorEnd {
 
 	/**
 	 * The cached value of the '{@link #getPropertyPath() <em>Property Path</em>}' reference list.

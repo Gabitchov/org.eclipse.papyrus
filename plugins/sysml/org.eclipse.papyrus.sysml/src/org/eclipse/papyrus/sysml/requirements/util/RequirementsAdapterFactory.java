@@ -17,7 +17,6 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.papyrus.sysml.requirements.Copy;
 import org.eclipse.papyrus.sysml.requirements.DeriveReqt;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
@@ -87,11 +86,6 @@ public class RequirementsAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseRequirementRelated(RequirementRelated object) {
 			return createRequirementRelatedAdapter();
-		}
-
-		@Override
-		public Adapter caseResourceEObject(ResourceEObject object) {
-			return createResourceEObjectAdapter();
 		}
 
 		@Override
@@ -196,21 +190,6 @@ public class RequirementsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRequirementRelatedAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.resource.ResourceEObject <em>EObject</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see org.eclipse.papyrus.resource.ResourceEObject
-	 * @generated
-	 */
-	public Adapter createResourceEObjectAdapter() {
 		return null;
 	}
 

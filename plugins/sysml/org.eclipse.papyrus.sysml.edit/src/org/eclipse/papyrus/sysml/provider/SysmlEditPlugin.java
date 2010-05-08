@@ -16,7 +16,6 @@ package org.eclipse.papyrus.sysml.provider;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-import org.eclipse.papyrus.resource.provider.ResourceEditPlugin;
 import org.eclipse.papyrus.uml.standard.provider.standardEditPlugin;
 import org.eclipse.uml2.uml.edit.UMLEditPlugin;
 
@@ -52,7 +51,7 @@ public final class SysmlEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public SysmlEditPlugin() {
-		super(new ResourceLocator[]{ EcoreEditPlugin.INSTANCE, standardEditPlugin.INSTANCE, UMLEditPlugin.INSTANCE, ResourceEditPlugin.INSTANCE, });
+		super(new ResourceLocator[]{ EcoreEditPlugin.INSTANCE, standardEditPlugin.INSTANCE, UMLEditPlugin.INSTANCE, });
 	}
 
 	/**

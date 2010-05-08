@@ -10,7 +10,7 @@
         href="../../../plugin/org.eclipse.papyrus.resource/model/resource.ecore#//Resource/eobjects"/>
     <ownedChild>
       <domainMetaElement
-          href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//constraints/ConstraintProperty"/>
+          href="../../org.eclipse.papyrus.sysml.converted/model/sysml.ecore#//constraints/ConstraintProperty"/>
       <labelMappings>
         <diagramLabel
             href="Parametric.gmfgraph#ConstraintProperty"/>
@@ -29,7 +29,7 @@
         <containmentFeature
             href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//StructuredClassifier/ownedAttribute"/>
         <childrenFeature
-            href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//constraints/ConstraintProperty/base_Property"/>
+            href="../../org.eclipse.papyrus.sysml.converted/model/sysml.ecore#//constraints/ConstraintProperty/base_Property"/>
         <ownedChild
             relatedDiagrams="//@diagram">
           <domainMetaElement
@@ -99,7 +99,7 @@
     <diagramCanvas
         href="Parametric.gmfgraph#sysml"/>
     <domainModel
-        href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//blocks"/>
+        href="../../org.eclipse.papyrus.sysml.converted/model/sysml.ecore#//blocks"/>
     <domainMetaElement
         href="../../../plugin/org.eclipse.papyrus.resource/model/resource.ecore#//Resource"/>
     <palette
@@ -174,7 +174,7 @@
         <target
             xsi:type="gmfmap:DomainElementTarget">
           <element
-              href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//blocks/NestedConnectorEnd"/>
+              href="../../org.eclipse.papyrus.sysml.converted/model/sysml.ecore#//blocks/NestedConnectorEnd"/>
         </target>
       </audits>
     </childContainers>

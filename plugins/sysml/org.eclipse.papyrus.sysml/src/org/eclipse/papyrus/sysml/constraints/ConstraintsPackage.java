@@ -16,7 +16,6 @@ package org.eclipse.papyrus.sysml.constraints;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.papyrus.resource.ResourcePackage;
 import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
 
 /**
@@ -170,7 +169,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_PROPERTY__BASE_PROPERTY = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int CONSTRAINT_PROPERTY__BASE_PROPERTY = 0;
 
 	/**
 	 * The number of structural features of the '<em>Constraint Property</em>' class. <!--
@@ -179,7 +178,7 @@ public interface ConstraintsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_PROPERTY_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int CONSTRAINT_PROPERTY_FEATURE_COUNT = 1;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.constraints.ConstraintBlock <em>Constraint Block</em>}'.

@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.activities;
 
-import org.eclipse.papyrus.resource.ResourceEObject;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Parameter;
 
 /**
@@ -32,7 +32,7 @@ import org.eclipse.uml2.uml.Parameter;
  * @model
  * @generated
  */
-public interface Optional extends ResourceEObject {
+public interface Optional extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Base Parameter</b></em>' reference.

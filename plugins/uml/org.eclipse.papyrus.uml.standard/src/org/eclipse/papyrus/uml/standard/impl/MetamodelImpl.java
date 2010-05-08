@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.papyrus.uml.standard.Metamodel;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 import org.eclipse.uml2.uml.Model;
@@ -34,7 +34,7 @@ import org.eclipse.uml2.uml.Model;
  * 
  * @generated
  */
-public class MetamodelImpl extends ResourceEObjectImpl implements Metamodel {
+public class MetamodelImpl extends EObjectImpl implements Metamodel {
 
 	/**
 	 * The cached value of the '{@link #getBase_Model() <em>Base Model</em>}' reference. <!--

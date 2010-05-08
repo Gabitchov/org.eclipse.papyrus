@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.papyrus.resource.ResourcePackage;
 import org.eclipse.papyrus.uml.standard.Auxiliary;
 import org.eclipse.papyrus.uml.standard.BuildComponent;
 import org.eclipse.papyrus.uml.standard.Call;
@@ -294,11 +293,12 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
-	 * package
-	 * package URI value.
+	 * package package URI
+	 * value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
-	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Note: the correct way to create the package is via the static factory method {@link #init
+	 * init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.uml.standard.StandardPackage#eNS_URI
@@ -317,7 +317,8 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others
+	 * upon which it depends.
 	 * 
 	 * <p>
 	 * This method is used to initialize {@link StandardPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly.
@@ -339,7 +340,6 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 
 		// Initialize simple dependencies
 		UMLPackage.eINSTANCE.eClass();
-		ResourcePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theStandardPackage.createPackageContents();
@@ -349,7 +349,6 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 
 		// Mark meta-data to indicate it can't be changed
 		theStandardPackage.freeze();
-
 
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(StandardPackage.eNS_URI, theStandardPackage);
@@ -976,9 +975,8 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the meta-model objects for the package. This method is guarded to have no affect on
+	 * any invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -1097,9 +1095,8 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This
-	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Complete the initialization of the package and its meta-model. This method is guarded to have
+	 * no affect on any invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -1114,7 +1111,6 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 		UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
 
 		// Create type parameters
@@ -1122,39 +1118,6 @@ public class StandardPackageImpl extends EPackageImpl implements StandardPackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		auxiliaryEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		buildComponentEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		createEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		callEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		deriveEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		destroyEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		focusEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		frameworkEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		implementEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		implementationClassEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		instantiateEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		metaclassEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		modelLibraryEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		refineEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		responsibilityEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		scriptEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		sendEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		traceEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		typeEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		utilityEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		documentEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		entityEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		executableEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		fileEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		libraryEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		processEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		realizationEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		serviceEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		sourceEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		specificationEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		subsystemEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		metamodelEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		systemModelEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(auxiliaryEClass, Auxiliary.class, "Auxiliary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.modelelements;
 
-import org.eclipse.papyrus.resource.ResourceEObject;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Dependency;
 
 /**
@@ -31,7 +31,7 @@ import org.eclipse.uml2.uml.Dependency;
  * @model
  * @generated
  */
-public interface Conform extends ResourceEObject {
+public interface Conform extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Base Dependency</b></em>' reference.

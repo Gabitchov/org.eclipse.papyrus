@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.modelelements;
 
-import org.eclipse.papyrus.resource.ResourceEObject;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>View</b></em>'. <!--
@@ -31,7 +31,7 @@ import org.eclipse.papyrus.resource.ResourceEObject;
  * @model
  * @generated
  */
-public interface View extends ResourceEObject {
+public interface View extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Base Package</b></em>' reference.

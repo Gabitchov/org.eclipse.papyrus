@@ -17,7 +17,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.papyrus.sysml.allocations.Allocate;
 import org.eclipse.papyrus.sysml.allocations.AllocateActivityPartition;
 import org.eclipse.papyrus.sysml.allocations.Allocated;
@@ -83,23 +82,6 @@ public class AllocationsSwitch<T> {
 	 * @generated
 	 */
 	public T caseAllocateActivityPartition(AllocateActivityPartition object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseResourceEObject(ResourceEObject object) {
 		return null;
 	}
 
@@ -174,8 +156,6 @@ public class AllocationsSwitch<T> {
 			Allocate allocate = (Allocate)theEObject;
 			T result = caseAllocate(allocate);
 			if(result == null)
-				result = caseResourceEObject(allocate);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -184,8 +164,6 @@ public class AllocationsSwitch<T> {
 			Allocated allocated = (Allocated)theEObject;
 			T result = caseAllocated(allocated);
 			if(result == null)
-				result = caseResourceEObject(allocated);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -193,8 +171,6 @@ public class AllocationsSwitch<T> {
 		{
 			AllocateActivityPartition allocateActivityPartition = (AllocateActivityPartition)theEObject;
 			T result = caseAllocateActivityPartition(allocateActivityPartition);
-			if(result == null)
-				result = caseResourceEObject(allocateActivityPartition);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;

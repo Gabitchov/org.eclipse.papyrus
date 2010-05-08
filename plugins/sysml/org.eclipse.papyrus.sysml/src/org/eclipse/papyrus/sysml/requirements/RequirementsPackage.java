@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.papyrus.resource.ResourcePackage;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 
 /**
@@ -438,7 +437,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CASE__BASE_BEHAVIOR = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int TEST_CASE__BASE_BEHAVIOR = 0;
 
 	/**
 	 * The feature id for the '<em><b>Base Operation</b></em>' reference.
@@ -448,7 +447,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CASE__BASE_OPERATION = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int TEST_CASE__BASE_OPERATION = 1;
 
 	/**
 	 * The feature id for the '<em><b>Verifies</b></em>' reference list.
@@ -458,7 +457,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CASE__VERIFIES = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 2;
+	int TEST_CASE__VERIFIES = 2;
 
 	/**
 	 * The number of structural features of the '<em>Test Case</em>' class.
@@ -468,7 +467,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_CASE_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 3;
+	int TEST_CASE_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementImpl <em>Requirement</em>}' class.
@@ -488,7 +487,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT__TEXT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int REQUIREMENT__TEXT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -498,7 +497,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT__ID = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int REQUIREMENT__ID = 1;
 
 	/**
 	 * The feature id for the '<em><b>Derived</b></em>' reference list.
@@ -508,7 +507,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT__DERIVED = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 2;
+	int REQUIREMENT__DERIVED = 2;
 
 	/**
 	 * The feature id for the '<em><b>Derived From</b></em>' reference list.
@@ -518,7 +517,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT__DERIVED_FROM = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 3;
+	int REQUIREMENT__DERIVED_FROM = 3;
 
 	/**
 	 * The feature id for the '<em><b>Satisfied By</b></em>' reference list.
@@ -528,7 +527,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT__SATISFIED_BY = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 4;
+	int REQUIREMENT__SATISFIED_BY = 4;
 
 	/**
 	 * The feature id for the '<em><b>Refined By</b></em>' reference list.
@@ -538,7 +537,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT__REFINED_BY = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 5;
+	int REQUIREMENT__REFINED_BY = 5;
 
 	/**
 	 * The feature id for the '<em><b>Traced To</b></em>' reference list.
@@ -548,7 +547,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT__TRACED_TO = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 6;
+	int REQUIREMENT__TRACED_TO = 6;
 
 	/**
 	 * The feature id for the '<em><b>Verified By</b></em>' reference list.
@@ -558,7 +557,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT__VERIFIED_BY = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 7;
+	int REQUIREMENT__VERIFIED_BY = 7;
 
 	/**
 	 * The feature id for the '<em><b>Master</b></em>' reference.
@@ -568,7 +567,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT__MASTER = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 8;
+	int REQUIREMENT__MASTER = 8;
 
 	/**
 	 * The feature id for the '<em><b>Base Class</b></em>' reference.
@@ -578,7 +577,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT__BASE_CLASS = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 9;
+	int REQUIREMENT__BASE_CLASS = 9;
 
 	/**
 	 * The number of structural features of the '<em>Requirement</em>' class.
@@ -588,7 +587,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 10;
+	int REQUIREMENT_FEATURE_COUNT = 10;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.requirements.impl.RequirementRelatedImpl <em>Requirement Related</em>}' class.
@@ -608,7 +607,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_RELATED__BASE_NAMED_ELEMENT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int REQUIREMENT_RELATED__BASE_NAMED_ELEMENT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Traced From</b></em>' reference list.
@@ -618,7 +617,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_RELATED__TRACED_FROM = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int REQUIREMENT_RELATED__TRACED_FROM = 1;
 
 	/**
 	 * The feature id for the '<em><b>Satisfies</b></em>' reference list.
@@ -628,7 +627,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_RELATED__SATISFIES = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 2;
+	int REQUIREMENT_RELATED__SATISFIES = 2;
 
 	/**
 	 * The feature id for the '<em><b>Refines</b></em>' reference list.
@@ -638,7 +637,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_RELATED__REFINES = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 3;
+	int REQUIREMENT_RELATED__REFINES = 3;
 
 	/**
 	 * The feature id for the '<em><b>Verifies</b></em>' reference list.
@@ -648,7 +647,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_RELATED__VERIFIES = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 4;
+	int REQUIREMENT_RELATED__VERIFIES = 4;
 
 	/**
 	 * The number of structural features of the '<em>Requirement Related</em>' class. <!--
@@ -657,7 +656,7 @@ public interface RequirementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUIREMENT_RELATED_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 5;
+	int REQUIREMENT_RELATED_FEATURE_COUNT = 5;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.requirements.Copy <em>Copy</em>}'.

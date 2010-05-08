@@ -82,7 +82,7 @@ public class CreateParametricDiagramCommand extends AbstractPapyrusGmfCreateDiag
 		if(diagram instanceof Diagram) {
 			Diagram diag = (Diagram)diagram;
 			// test if the selected class is a block
-			if(selectedElement != null && selectedElement.getAppliedStereotype("SysML::Blocks::Block") != null) {
+			if(selectedElement != null && selectedElement.getAppliedStereotype(SysmlResource.BLOCK_ID) != null) {
 				// YT : Not sure to understand why the selected element is tested to be a Block instead of Block || BlockConstraint
 				diag.setElement(selectedElement);
 				createParametricGraph(selectedElement, diag);
@@ -99,14 +99,14 @@ public class CreateParametricDiagramCommand extends AbstractPapyrusGmfCreateDiag
 		if(owner instanceof Model) {
 			Model model = (Model)owner;
 
-			if((model.getAppliedProfile("SysML", true) == null) || (model.getAppliedProfile("SysML::Blocks", true) == null)) {
+			if((model.getAppliedProfile(SysmlResource.SYSML_ID, true) == null) || (model.getAppliedProfile(SysmlResource.BLOCKS_ID, true) == null)) {
 				// Retrieve SysML profile and apply with sub-profiles
 				Profile sysml = (Profile)PackageUtil.loadPackage(URI.createURI(SysmlResource.SYSML_PROFILE_URI), model.eResource().getResourceSet());
 				PackageUtil.applyProfile(model, sysml, true);
 			}
 
 			Class ownedClass = model.createOwnedClass("Parametric", false);
-			ownedClass.applyStereotype(ownedClass.getApplicableStereotype("SysML::Blocks::Block"));
+			ownedClass.applyStereotype(ownedClass.getApplicableStereotype(SysmlResource.BLOCK_ID));
 			diagram = super.createDiagram(diagramResource, ownedClass, name);
 
 		} else if(owner instanceof Class) {

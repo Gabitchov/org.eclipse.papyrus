@@ -61,8 +61,7 @@ import org.eclipse.papyrus.uml.standard.Utility;
 public class StandardFactoryImpl extends EFactoryImpl implements StandardFactory {
 
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -79,8 +78,7 @@ public class StandardFactoryImpl extends EFactoryImpl implements StandardFactory
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

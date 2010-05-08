@@ -19,12 +19,12 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.papyrus.sysml.modelelements.Conform;
 import org.eclipse.papyrus.sysml.modelelements.ModelelementsPackage;
 import org.eclipse.papyrus.sysml.modelelements.View;
 import org.eclipse.papyrus.sysml.modelelements.ViewPoint;
-import org.eclipse.papyrus.umlutils.ElementUtil;
+import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
 
@@ -41,7 +41,7 @@ import org.eclipse.uml2.uml.Element;
  * 
  * @generated
  */
-public class ViewImpl extends ResourceEObjectImpl implements View {
+public class ViewImpl extends EObjectImpl implements View {
 
 	/**
 	 * The cached value of the '{@link #getBase_Package() <em>Base Package</em>}' reference. <!--

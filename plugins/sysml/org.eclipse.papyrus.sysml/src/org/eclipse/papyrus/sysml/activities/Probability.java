@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.activities;
 
-import org.eclipse.papyrus.resource.ResourceEObject;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.ParameterSet;
 import org.eclipse.uml2.uml.ValueSpecification;
@@ -35,7 +35,7 @@ import org.eclipse.uml2.uml.ValueSpecification;
  * @model
  * @generated
  */
-public interface Probability extends ResourceEObject {
+public interface Probability extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Base Activity Edge</b></em>' reference.

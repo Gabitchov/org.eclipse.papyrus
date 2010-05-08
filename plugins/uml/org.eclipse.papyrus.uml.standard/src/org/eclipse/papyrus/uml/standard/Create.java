@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.standard;
 
-import org.eclipse.papyrus.resource.ResourceEObject;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.BehavioralFeature;
 import org.eclipse.uml2.uml.Usage;
 
@@ -33,7 +33,7 @@ import org.eclipse.uml2.uml.Usage;
  * @model
  * @generated
  */
-public interface Create extends ResourceEObject {
+public interface Create extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Base Behavioral Feature</b></em>' reference. <!--
@@ -52,8 +52,8 @@ public interface Create extends ResourceEObject {
 	BehavioralFeature getBase_BehavioralFeature();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.uml.standard.Create#getBase_BehavioralFeature <em>Base Behavioral Feature</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the ' {@link org.eclipse.papyrus.uml.standard.Create#getBase_BehavioralFeature
+	 * <em>Base Behavioral Feature</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Behavioral Feature</em>' reference.
@@ -63,8 +63,7 @@ public interface Create extends ResourceEObject {
 	void setBase_BehavioralFeature(BehavioralFeature value);
 
 	/**
-	 * Returns the value of the '<em><b>Base Usage</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Usage</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Usage</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -79,8 +78,8 @@ public interface Create extends ResourceEObject {
 	Usage getBase_Usage();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.uml.standard.Create#getBase_Usage <em>Base Usage</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.uml.standard.Create#getBase_Usage
+	 * <em>Base Usage</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Usage</em>' reference.

@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.sysml.requirements;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.papyrus.resource.ResourceEObject;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.NamedElement;
 
 /**
@@ -35,7 +35,7 @@ import org.eclipse.uml2.uml.NamedElement;
  * @model
  * @generated
  */
-public interface RequirementRelated extends ResourceEObject {
+public interface RequirementRelated extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Base Named Element</b></em>' reference.

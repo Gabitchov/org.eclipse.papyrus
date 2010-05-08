@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.papyrus.resource.ResourcePackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains accessors for the meta
@@ -242,7 +241,7 @@ public interface ModelelementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONFORM__BASE_DEPENDENCY = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int CONFORM__BASE_DEPENDENCY = 0;
 
 	/**
 	 * The number of structural features of the '<em>Conform</em>' class.
@@ -252,7 +251,7 @@ public interface ModelelementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONFORM_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int CONFORM_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewImpl <em>View</em>}' class.
@@ -272,7 +271,7 @@ public interface ModelelementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW__VIEW_POINT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int VIEW__VIEW_POINT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Base Package</b></em>' reference.
@@ -282,7 +281,7 @@ public interface ModelelementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW__BASE_PACKAGE = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int VIEW__BASE_PACKAGE = 1;
 
 	/**
 	 * The number of structural features of the '<em>View</em>' class.
@@ -292,7 +291,7 @@ public interface ModelelementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 2;
+	int VIEW_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.modelelements.impl.ViewPointImpl <em>View Point</em>}' class.
@@ -312,7 +311,7 @@ public interface ModelelementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW_POINT__BASE_CLASS = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int VIEW_POINT__BASE_CLASS = 0;
 
 	/**
 	 * The feature id for the '<em><b>Stake Holders</b></em>' attribute list.
@@ -322,7 +321,7 @@ public interface ModelelementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW_POINT__STAKE_HOLDERS = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int VIEW_POINT__STAKE_HOLDERS = 1;
 
 	/**
 	 * The feature id for the '<em><b>Purpose</b></em>' attribute.
@@ -332,7 +331,7 @@ public interface ModelelementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW_POINT__PURPOSE = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 2;
+	int VIEW_POINT__PURPOSE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Concerns</b></em>' attribute list.
@@ -342,7 +341,7 @@ public interface ModelelementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW_POINT__CONCERNS = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 3;
+	int VIEW_POINT__CONCERNS = 3;
 
 	/**
 	 * The feature id for the '<em><b>Languages</b></em>' attribute list.
@@ -352,7 +351,7 @@ public interface ModelelementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW_POINT__LANGUAGES = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 4;
+	int VIEW_POINT__LANGUAGES = 4;
 
 	/**
 	 * The feature id for the '<em><b>Methods</b></em>' attribute list.
@@ -362,7 +361,7 @@ public interface ModelelementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW_POINT__METHODS = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 5;
+	int VIEW_POINT__METHODS = 5;
 
 	/**
 	 * The number of structural features of the '<em>View Point</em>' class.
@@ -372,7 +371,7 @@ public interface ModelelementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VIEW_POINT_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 6;
+	int VIEW_POINT_FEATURE_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.modelelements.impl.RationaleImpl <em>Rationale</em>}' class.
@@ -392,7 +391,7 @@ public interface ModelelementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RATIONALE__BASE_COMMENT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int RATIONALE__BASE_COMMENT = 0;
 
 	/**
 	 * The number of structural features of the '<em>Rationale</em>' class.
@@ -402,7 +401,7 @@ public interface ModelelementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RATIONALE_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int RATIONALE_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.modelelements.impl.ProblemImpl <em>Problem</em>}' class.
@@ -422,7 +421,7 @@ public interface ModelelementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROBLEM__BASE_COMMENT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int PROBLEM__BASE_COMMENT = 0;
 
 	/**
 	 * The number of structural features of the '<em>Problem</em>' class.
@@ -432,7 +431,7 @@ public interface ModelelementsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROBLEM_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int PROBLEM_FEATURE_COUNT = 1;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.modelelements.Conform <em>Conform</em>}'.

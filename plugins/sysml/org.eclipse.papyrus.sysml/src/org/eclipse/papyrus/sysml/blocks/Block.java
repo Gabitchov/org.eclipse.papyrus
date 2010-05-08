@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.blocks;
 
-import org.eclipse.papyrus.resource.ResourceEObject;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Block</b></em>'. <!--
@@ -31,7 +31,7 @@ import org.eclipse.papyrus.resource.ResourceEObject;
  * @model
  * @generated
  */
-public interface Block extends ResourceEObject {
+public interface Block extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Base Class</b></em>' reference.

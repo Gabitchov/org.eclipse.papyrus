@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.papyrus.sysml.portandflows.ItemFlow;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.uml2.uml.InformationFlow;
@@ -36,7 +36,7 @@ import org.eclipse.uml2.uml.Property;
  * 
  * @generated
  */
-public class ItemFlowImpl extends ResourceEObjectImpl implements ItemFlow {
+public class ItemFlowImpl extends EObjectImpl implements ItemFlow {
 
 	/**
 	 * The cached value of the '{@link #getBase_InformationFlow() <em>Base Information Flow</em>}' reference.

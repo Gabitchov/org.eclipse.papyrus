@@ -40,7 +40,7 @@
           figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
       <modelFacet>
         <metaClass
-            href="../../org.eclipse.papyrus.sysml/model/sysml.genmodel#//sysml/portandflows/FlowPort"/>
+            href="../../org.eclipse.papyrus.sysml.converted/model/sysml.genmodel#//sysml/portandflows/FlowPort"/>
         <containmentMetaFeature
             href="../../../plugin/org.eclipse.papyrus.resource/model/resource.genmodel#//resource/Resource/eobjects"/>
         <childMetaFeature
@@ -118,7 +118,7 @@
     </tabs>
   </propertySheet>
   <domainGenModel
-      href="../../org.eclipse.papyrus.sysml/model/sysml.genmodel#/"/>
+      href="../../org.eclipse.papyrus.sysml.converted/model/sysml.genmodel#/"/>
   <contextMenus
       context="//@diagram">
     <items

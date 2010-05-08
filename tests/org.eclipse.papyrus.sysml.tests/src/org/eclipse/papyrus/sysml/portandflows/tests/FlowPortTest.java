@@ -20,6 +20,7 @@ import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.sysml.portandflows.FlowSpecification;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsFactory;
+import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.papyrus.sysml.utils.SysMLTestResources;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Image;
@@ -48,15 +49,6 @@ import org.eclipse.uml2.uml.Stereotype;
  * @generated
  */
 public class FlowPortTest extends TestCase {
-
-	/**
-	 * The fixture for this Flow Port test case. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
-	public static String FLOWPORT_ID = "SysML::PortAndFlows::FlowPort";
-
-	public static String FLOWSPECIFICATION_ID = "SysML::PortAndFlows::FlowSpecification";
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -153,15 +145,15 @@ public class FlowPortTest extends TestCase {
 		p2 = c0.createOwnedPort("p2", i2);
 
 		// Add FlowPort stereotypes
-		fp0 = (FlowPort)p0.applyStereotype(p0.getApplicableStereotype(FLOWPORT_ID));
-		fp1 = (FlowPort)p1.applyStereotype(p1.getApplicableStereotype(FLOWPORT_ID));
+		fp0 = (FlowPort)p0.applyStereotype(p0.getApplicableStereotype(SysmlResource.FLOW_PORT_ID));
+		fp1 = (FlowPort)p1.applyStereotype(p1.getApplicableStereotype(SysmlResource.FLOW_PORT_ID));
 		fp1.setDirection(FlowDirection.OUT);
-		fp2 = (FlowPort)p2.applyStereotype(p2.getApplicableStereotype(FLOWPORT_ID));
+		fp2 = (FlowPort)p2.applyStereotype(p2.getApplicableStereotype(SysmlResource.FLOW_PORT_ID));
 		fp2.setDirection(FlowDirection.IN);
 		fp2.setIsConjugated(true);
 
 		// Add FlowSpecification
-		fsp2 = (FlowSpecification)i2.applyStereotype(i2.getApplicableStereotype(FLOWSPECIFICATION_ID));
+		fsp2 = (FlowSpecification)i2.applyStereotype(i2.getApplicableStereotype(SysmlResource.FLOW_SPECIFICATION_ID));
 	}
 
 	/**
@@ -186,7 +178,7 @@ public class FlowPortTest extends TestCase {
 
 		// Retrieve Stereotype
 		Port p = fp0.getBase_Port();
-		Stereotype s = p.getAppliedStereotype(FLOWPORT_ID);
+		Stereotype s = p.getAppliedStereotype(SysmlResource.FLOW_PORT_ID);
 
 		// A = Atomic - NA = Not Atomic - NC = Not conjugated - C = Conjugated
 		// Image i0 = s.getIcons().get(0); // A_IN

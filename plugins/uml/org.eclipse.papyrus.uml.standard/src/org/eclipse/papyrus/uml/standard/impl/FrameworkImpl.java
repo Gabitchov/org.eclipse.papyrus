@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.papyrus.uml.standard.Framework;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 
@@ -27,13 +27,13 @@ import org.eclipse.papyrus.uml.standard.StandardPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.standard.impl.FrameworkImpl#getBase_Package <em>Base Package</em>}</li>
+ * <li>{@link org.eclipse.papyrus.uml.standard.impl.FrameworkImpl#getBase_Package <em>Base Package </em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class FrameworkImpl extends ResourceEObjectImpl implements Framework {
+public class FrameworkImpl extends EObjectImpl implements Framework {
 
 	/**
 	 * The cached value of the '{@link #getBase_Package() <em>Base Package</em>}' reference. <!--

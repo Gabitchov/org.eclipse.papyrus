@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.portandflows;
 
-import org.eclipse.papyrus.resource.ResourceEObject;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Interface;
 
 /**
@@ -30,7 +30,7 @@ import org.eclipse.uml2.uml.Interface;
  * @model
  * @generated
  */
-public interface FlowSpecification extends ResourceEObject {
+public interface FlowSpecification extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Base Interface</b></em>' reference.

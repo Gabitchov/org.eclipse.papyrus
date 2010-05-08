@@ -16,13 +16,7 @@ Export-Package: org.eclipse.papyrus.sysml.activities.provider,
  org.eclipse.papyrus.sysml.portandflows.provider,
  org.eclipse.papyrus.sysml.provider,
  org.eclipse.papyrus.sysml.requirements.provider
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.papyrus.sysml;visibility:=reexport,
- org.eclipse.emf.edit;visibility:=reexport,
- org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.emf.ecore.edit;visibility:=reexport,
- org.eclipse.papyrus.uml.standard;visibility:=reexport,
+Require-Bundle: org.eclipse.papyrus.sysml;visibility:=reexport,
  org.eclipse.papyrus.uml.standard.edit;visibility:=reexport,
- org.eclipse.uml2.uml;visibility:=reexport,
- org.eclipse.uml2.uml.edit;visibility:=reexport
+ org.eclipse.core.runtime;bundle-version="3.6.0"
 Bundle-ActivationPolicy: lazy

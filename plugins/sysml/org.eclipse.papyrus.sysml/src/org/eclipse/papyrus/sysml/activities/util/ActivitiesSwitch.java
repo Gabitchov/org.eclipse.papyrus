@@ -17,7 +17,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.activities.Continuous;
 import org.eclipse.papyrus.sysml.activities.ControlOperator;
@@ -136,23 +135,6 @@ public class ActivitiesSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseResourceEObject(ResourceEObject object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Probability</em>'. <!--
 	 * begin-user-doc --> This implementation returns null; returning a non-null result will
 	 * terminate the switch. <!-- end-user-doc -->
@@ -238,8 +220,6 @@ public class ActivitiesSwitch<T> {
 			Optional optional = (Optional)theEObject;
 			T result = caseOptional(optional);
 			if(result == null)
-				result = caseResourceEObject(optional);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -248,8 +228,6 @@ public class ActivitiesSwitch<T> {
 			Rate rate = (Rate)theEObject;
 			T result = caseRate(rate);
 			if(result == null)
-				result = caseResourceEObject(rate);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -257,8 +235,6 @@ public class ActivitiesSwitch<T> {
 		{
 			Probability probability = (Probability)theEObject;
 			T result = caseProbability(probability);
-			if(result == null)
-				result = caseResourceEObject(probability);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -270,8 +246,6 @@ public class ActivitiesSwitch<T> {
 			if(result == null)
 				result = caseRate(continuous);
 			if(result == null)
-				result = caseResourceEObject(continuous);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -282,8 +256,6 @@ public class ActivitiesSwitch<T> {
 			if(result == null)
 				result = caseRate(discrete);
 			if(result == null)
-				result = caseResourceEObject(discrete);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -291,8 +263,6 @@ public class ActivitiesSwitch<T> {
 		{
 			ControlOperator controlOperator = (ControlOperator)theEObject;
 			T result = caseControlOperator(controlOperator);
-			if(result == null)
-				result = caseResourceEObject(controlOperator);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -302,8 +272,6 @@ public class ActivitiesSwitch<T> {
 			NoBuffer noBuffer = (NoBuffer)theEObject;
 			T result = caseNoBuffer(noBuffer);
 			if(result == null)
-				result = caseResourceEObject(noBuffer);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -311,8 +279,6 @@ public class ActivitiesSwitch<T> {
 		{
 			Overwrite overwrite = (Overwrite)theEObject;
 			T result = caseOverwrite(overwrite);
-			if(result == null)
-				result = caseResourceEObject(overwrite);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;

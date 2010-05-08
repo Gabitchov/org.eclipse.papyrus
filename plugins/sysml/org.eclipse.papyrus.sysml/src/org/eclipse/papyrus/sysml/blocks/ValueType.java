@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.blocks;
 
-import org.eclipse.papyrus.resource.ResourceEObject;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.DataType;
 
 /**
@@ -33,7 +33,7 @@ import org.eclipse.uml2.uml.DataType;
  * @model
  * @generated
  */
-public interface ValueType extends ResourceEObject {
+public interface ValueType extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Base Data Type</b></em>' reference.

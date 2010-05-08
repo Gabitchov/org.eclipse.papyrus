@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.sysml.modelelements;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.papyrus.resource.ResourceEObject;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>View Point</b></em>'. <!--
@@ -36,7 +36,7 @@ import org.eclipse.papyrus.resource.ResourceEObject;
  * @model
  * @generated
  */
-public interface ViewPoint extends ResourceEObject {
+public interface ViewPoint extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Base Class</b></em>' reference.

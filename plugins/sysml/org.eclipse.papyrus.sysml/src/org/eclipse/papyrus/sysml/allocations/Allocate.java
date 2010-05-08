@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.allocations;
 
-import org.eclipse.papyrus.resource.ResourceEObject;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Abstraction;
 
 /**
@@ -31,7 +31,7 @@ import org.eclipse.uml2.uml.Abstraction;
  * @model
  * @generated
  */
-public interface Allocate extends ResourceEObject {
+public interface Allocate extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Base Abstraction</b></em>' reference.

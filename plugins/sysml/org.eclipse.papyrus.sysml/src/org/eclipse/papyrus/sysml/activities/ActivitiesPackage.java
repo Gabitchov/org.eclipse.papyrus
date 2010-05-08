@@ -16,7 +16,6 @@ package org.eclipse.papyrus.sysml.activities;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.papyrus.resource.ResourcePackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains accessors for the meta
@@ -51,8 +50,7 @@ public interface ActivitiesPackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.sysml.activities.impl.OptionalImpl <em>Optional</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.eclipse.papyrus.sysml.activities.impl.OptionalImpl
 		 * @see org.eclipse.papyrus.sysml.activities.impl.ActivitiesPackageImpl#getOptional()
@@ -61,9 +59,8 @@ public interface ActivitiesPackage extends EPackage {
 		EClass OPTIONAL = eINSTANCE.getOptional();
 
 		/**
-		 * The meta object literal for the '<em><b>Base Parameter</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Base Parameter</b></em>' reference feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
@@ -272,7 +269,7 @@ public interface ActivitiesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPTIONAL__BASE_PARAMETER = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int OPTIONAL__BASE_PARAMETER = 0;
 
 	/**
 	 * The number of structural features of the '<em>Optional</em>' class.
@@ -282,7 +279,7 @@ public interface ActivitiesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPTIONAL_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int OPTIONAL_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.activities.impl.RateImpl <em>Rate</em>}' class.
@@ -302,7 +299,7 @@ public interface ActivitiesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RATE__BASE_PARAMETER = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int RATE__BASE_PARAMETER = 0;
 
 	/**
 	 * The feature id for the '<em><b>Base Activity Edge</b></em>' reference.
@@ -312,7 +309,7 @@ public interface ActivitiesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RATE__BASE_ACTIVITY_EDGE = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int RATE__BASE_ACTIVITY_EDGE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Rate</b></em>' reference.
@@ -322,7 +319,7 @@ public interface ActivitiesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RATE__RATE = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 2;
+	int RATE__RATE = 2;
 
 	/**
 	 * The number of structural features of the '<em>Rate</em>' class.
@@ -332,7 +329,7 @@ public interface ActivitiesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RATE_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 3;
+	int RATE_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.activities.impl.ProbabilityImpl <em>Probability</em>}' class.
@@ -352,7 +349,7 @@ public interface ActivitiesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROBABILITY__BASE_ACTIVITY_EDGE = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int PROBABILITY__BASE_ACTIVITY_EDGE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Base Parameter Set</b></em>' reference.
@@ -362,7 +359,7 @@ public interface ActivitiesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROBABILITY__BASE_PARAMETER_SET = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int PROBABILITY__BASE_PARAMETER_SET = 1;
 
 	/**
 	 * The feature id for the '<em><b>Probability</b></em>' reference.
@@ -372,7 +369,7 @@ public interface ActivitiesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROBABILITY__PROBABILITY = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 2;
+	int PROBABILITY__PROBABILITY = 2;
 
 	/**
 	 * The number of structural features of the '<em>Probability</em>' class.
@@ -382,7 +379,7 @@ public interface ActivitiesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROBABILITY_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 3;
+	int PROBABILITY_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.activities.impl.ContinuousImpl <em>Continuous</em>}' class.
@@ -502,7 +499,7 @@ public interface ActivitiesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROL_OPERATOR__BASE_OPERATION = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int CONTROL_OPERATOR__BASE_OPERATION = 0;
 
 	/**
 	 * The feature id for the '<em><b>Base Behavior</b></em>' reference.
@@ -512,7 +509,7 @@ public interface ActivitiesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROL_OPERATOR__BASE_BEHAVIOR = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int CONTROL_OPERATOR__BASE_BEHAVIOR = 1;
 
 	/**
 	 * The number of structural features of the '<em>Control Operator</em>' class. <!--
@@ -521,7 +518,7 @@ public interface ActivitiesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROL_OPERATOR_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 2;
+	int CONTROL_OPERATOR_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.activities.impl.NoBufferImpl <em>No Buffer</em>}' class.
@@ -541,7 +538,7 @@ public interface ActivitiesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NO_BUFFER__BASE_OBJECT_NODE = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int NO_BUFFER__BASE_OBJECT_NODE = 0;
 
 	/**
 	 * The number of structural features of the '<em>No Buffer</em>' class.
@@ -551,7 +548,7 @@ public interface ActivitiesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NO_BUFFER_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
+	int NO_BUFFER_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.sysml.activities.impl.OverwriteImpl <em>Overwrite</em>}' class.
@@ -571,7 +568,7 @@ public interface ActivitiesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OVERWRITE__BASE_OBJECT_NODE = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 0;
+	int OVERWRITE__BASE_OBJECT_NODE = 0;
 
 	/**
 	 * The number of structural features of the '<em>Overwrite</em>' class.
@@ -581,30 +578,7 @@ public interface ActivitiesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OVERWRITE_FEATURE_COUNT = ResourcePackage.RESOURCE_EOBJECT_FEATURE_COUNT + 1;
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.activities.Optional <em>Optional</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for class '<em>Optional</em>'.
-	 * @see org.eclipse.papyrus.sysml.activities.Optional
-	 * @generated
-	 */
-	EClass getOptional();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.sysml.activities.Optional#getBase_Parameter <em>Base Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the reference '<em>Base Parameter</em>'.
-	 * @see org.eclipse.papyrus.sysml.activities.Optional#getBase_Parameter()
-	 * @see #getOptional()
-	 * @generated
-	 */
-	EReference getOptional_Base_Parameter();
+	int OVERWRITE_FEATURE_COUNT = 1;
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -690,6 +664,28 @@ public interface ActivitiesPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getNoBuffer_Base_ObjectNode();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.activities.Optional <em>Optional</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Optional</em>'.
+	 * @see org.eclipse.papyrus.sysml.activities.Optional
+	 * @generated
+	 */
+	EClass getOptional();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.sysml.activities.Optional#getBase_Parameter <em>Base Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference '<em>Base Parameter</em>'.
+	 * @see org.eclipse.papyrus.sysml.activities.Optional#getBase_Parameter()
+	 * @see #getOptional()
+	 * @generated
+	 */
+	EReference getOptional_Base_Parameter();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.sysml.activities.Overwrite <em>Overwrite</em>}'.

@@ -21,13 +21,13 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
-import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.requirements.RequirementsPackage;
 import org.eclipse.papyrus.sysml.requirements.TestCase;
 import org.eclipse.papyrus.sysml.requirements.Verify;
-import org.eclipse.papyrus.umlutils.ElementUtil;
+import org.eclipse.papyrus.sysml.util.ElementUtil;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.NamedElement;
@@ -47,7 +47,7 @@ import org.eclipse.uml2.uml.Operation;
  * 
  * @generated
  */
-public class TestCaseImpl extends ResourceEObjectImpl implements TestCase {
+public class TestCaseImpl extends EObjectImpl implements TestCase {
 
 	/**
 	 * The cached value of the '{@link #getBase_Behavior() <em>Base Behavior</em>}' reference. <!--
@@ -141,7 +141,6 @@ public class TestCaseImpl extends ResourceEObjectImpl implements TestCase {
 	 * 
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch(featureID) {

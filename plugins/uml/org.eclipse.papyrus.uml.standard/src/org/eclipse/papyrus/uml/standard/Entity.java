@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.standard;
 
-import org.eclipse.papyrus.resource.ResourceEObject;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Component;
 
 /**
@@ -31,11 +31,10 @@ import org.eclipse.uml2.uml.Component;
  * @model
  * @generated
  */
-public interface Entity extends ResourceEObject {
+public interface Entity extends EObject {
 
 	/**
-	 * Returns the value of the '<em><b>Base Component</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Component</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Component</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -50,8 +49,8 @@ public interface Entity extends ResourceEObject {
 	Component getBase_Component();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.uml.standard.Entity#getBase_Component <em>Base Component</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.uml.standard.Entity#getBase_Component
+	 * <em>Base Component</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Component</em>' reference.

@@ -21,8 +21,7 @@ import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 
 /**
- * This class contains helper methods to serialize and deserialize XML documents
- * <!-- begin-user-doc
+ * This class contains helper methods to serialize and deserialize XML documents <!-- begin-user-doc
  * --> <!-- end-user-doc -->
  * 
  * @generated
@@ -30,8 +29,7 @@ import org.eclipse.papyrus.uml.standard.StandardPackage;
 public class StandardXMLProcessor extends XMLProcessor {
 
 	/**
-	 * Public constructor to instantiate the helper.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Public constructor to instantiate the helper. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

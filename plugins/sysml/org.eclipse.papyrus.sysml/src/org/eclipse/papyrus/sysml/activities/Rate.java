@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.activities;
 
-import org.eclipse.papyrus.resource.ResourceEObject;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Parameter;
@@ -35,7 +35,7 @@ import org.eclipse.uml2.uml.Parameter;
  * @model
  * @generated
  */
-public interface Rate extends ResourceEObject {
+public interface Rate extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Base Activity Edge</b></em>' reference.

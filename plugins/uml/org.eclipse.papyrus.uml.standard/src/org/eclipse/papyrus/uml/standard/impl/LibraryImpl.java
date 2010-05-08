@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.papyrus.uml.standard.Library;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 import org.eclipse.uml2.uml.Artifact;
@@ -28,13 +28,13 @@ import org.eclipse.uml2.uml.Artifact;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.standard.impl.LibraryImpl#getBase_Artifact <em>Base Artifact</em>}</li>
+ * <li>{@link org.eclipse.papyrus.uml.standard.impl.LibraryImpl#getBase_Artifact <em>Base Artifact </em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class LibraryImpl extends ResourceEObjectImpl implements Library {
+public class LibraryImpl extends EObjectImpl implements Library {
 
 	/**
 	 * The cached value of the '{@link #getBase_Artifact() <em>Base Artifact</em>}' reference. <!--

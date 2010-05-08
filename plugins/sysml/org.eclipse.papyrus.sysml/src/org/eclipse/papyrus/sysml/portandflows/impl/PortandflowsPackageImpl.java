@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.papyrus.resource.ResourcePackage;
 import org.eclipse.papyrus.sysml.SysmlPackage;
 import org.eclipse.papyrus.sysml.activities.ActivitiesPackage;
 import org.eclipse.papyrus.sysml.activities.impl.ActivitiesPackageImpl;
@@ -388,7 +387,6 @@ public class PortandflowsPackageImpl extends EPackageImpl implements Portandflow
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ResourcePackage theResourcePackage = (ResourcePackage)EPackage.Registry.INSTANCE.getEPackage(ResourcePackage.eNS_URI);
 		UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
 
 		// Create type parameters
@@ -396,10 +394,6 @@ public class PortandflowsPackageImpl extends EPackageImpl implements Portandflow
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		flowPortEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		flowPropertyEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		flowSpecificationEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
-		itemFlowEClass.getESuperTypes().add(theResourcePackage.getResourceEObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(flowPortEClass, FlowPort.class, "FlowPort", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

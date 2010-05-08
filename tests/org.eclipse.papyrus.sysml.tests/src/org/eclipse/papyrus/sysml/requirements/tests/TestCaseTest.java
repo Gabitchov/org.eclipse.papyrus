@@ -19,6 +19,7 @@ import junit.textui.TestRunner;
 import org.eclipse.papyrus.sysml.requirements.Requirement;
 import org.eclipse.papyrus.sysml.requirements.RequirementsFactory;
 import org.eclipse.papyrus.sysml.requirements.Verify;
+import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.papyrus.sysml.utils.SysMLTestResources;
 import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.Class;
@@ -39,17 +40,6 @@ import org.eclipse.uml2.uml.UMLFactory;
  * @generated
  */
 public class TestCaseTest extends TestCase {
-
-	/**
-	 * The fixture for this Test Case test case. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
-	public static String VERIFY_ID = "SysML::Requirements::Verify";
-
-	public static String TESTCASE_ID = "SysML::Requirements::TestCase";
-
-	public static String REQUIREMENT_ID = "SysML::Requirements::Requirement";
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -133,19 +123,19 @@ public class TestCaseTest extends TestCase {
 		// ////////////////////////////////////////////////////////////////////
 
 		Class verified1 = model.createOwnedClass("verified1", false);
-		verified1_req = (Requirement)verified1.applyStereotype(verified1.getApplicableStereotype(REQUIREMENT_ID));
+		verified1_req = (Requirement)verified1.applyStereotype(verified1.getApplicableStereotype(SysmlResource.REQUIREMENT_ID));
 
 		Class verified2 = model.createOwnedClass("verified2", false);
-		verified2_req = (Requirement)verified2.applyStereotype(verified2.getApplicableStereotype(REQUIREMENT_ID));
+		verified2_req = (Requirement)verified2.applyStereotype(verified2.getApplicableStereotype(SysmlResource.REQUIREMENT_ID));
 
 		Class testClass = model.createOwnedClass("testClass", false);
 		Operation op0 = testClass.createOwnedOperation("op0", null, null, null);
 		Operation op1 = testClass.createOwnedOperation("op1", null, null, null);
 		Operation op2 = testClass.createOwnedOperation("op2", null, null, null);
 
-		testCase0 = (org.eclipse.papyrus.sysml.requirements.TestCase)op0.applyStereotype(op0.getApplicableStereotype(TESTCASE_ID));
-		testCase1 = (org.eclipse.papyrus.sysml.requirements.TestCase)op1.applyStereotype(op1.getApplicableStereotype(TESTCASE_ID));
-		testCase2 = (org.eclipse.papyrus.sysml.requirements.TestCase)op2.applyStereotype(op2.getApplicableStereotype(TESTCASE_ID));
+		testCase0 = (org.eclipse.papyrus.sysml.requirements.TestCase)op0.applyStereotype(op0.getApplicableStereotype(SysmlResource.TEST_CASE_ID));
+		testCase1 = (org.eclipse.papyrus.sysml.requirements.TestCase)op1.applyStereotype(op1.getApplicableStereotype(SysmlResource.TEST_CASE_ID));
+		testCase2 = (org.eclipse.papyrus.sysml.requirements.TestCase)op2.applyStereotype(op2.getApplicableStereotype(SysmlResource.TEST_CASE_ID));
 
 		// Add "Verify" (Abstraction)
 		// testCase1, testCase2 -> verified1
@@ -155,21 +145,21 @@ public class TestCaseTest extends TestCase {
 		t1_v1.getSuppliers().add(verified1);
 		model.getPackagedElements().add(t1_v1);
 		@SuppressWarnings("unused")
-		Verify v_t1_v1 = (Verify)t1_v1.applyStereotype(t1_v1.getApplicableStereotype(VERIFY_ID));
+		Verify v_t1_v1 = (Verify)t1_v1.applyStereotype(t1_v1.getApplicableStereotype(SysmlResource.VERIFY_ID));
 
 		Abstraction t1_v2 = UMLFactory.eINSTANCE.createAbstraction();
 		t1_v2.getClients().add(op1);
 		t1_v2.getSuppliers().add(verified2);
 		model.getPackagedElements().add(t1_v2);
 		@SuppressWarnings("unused")
-		Verify v_t1_v2 = (Verify)t1_v2.applyStereotype(t1_v2.getApplicableStereotype(VERIFY_ID));
+		Verify v_t1_v2 = (Verify)t1_v2.applyStereotype(t1_v2.getApplicableStereotype(SysmlResource.VERIFY_ID));
 
 		Abstraction t2_v2 = UMLFactory.eINSTANCE.createAbstraction();
 		t2_v2.getClients().add(op2);
 		t2_v2.getSuppliers().add(verified2);
 		model.getPackagedElements().add(t2_v2);
 		@SuppressWarnings("unused")
-		Verify v_t2_v2 = (Verify)t2_v2.applyStereotype(t2_v2.getApplicableStereotype(VERIFY_ID));
+		Verify v_t2_v2 = (Verify)t2_v2.applyStereotype(t2_v2.getApplicableStereotype(SysmlResource.VERIFY_ID));
 
 		// ////////////////////////////////////////////////////////////////////
 	}

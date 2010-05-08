@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.papyrus.uml.standard.Call;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 import org.eclipse.uml2.uml.Usage;
@@ -34,7 +34,7 @@ import org.eclipse.uml2.uml.Usage;
  * 
  * @generated
  */
-public class CallImpl extends ResourceEObjectImpl implements Call {
+public class CallImpl extends EObjectImpl implements Call {
 
 	/**
 	 * The cached value of the '{@link #getBase_Usage() <em>Base Usage</em>}' reference. <!--

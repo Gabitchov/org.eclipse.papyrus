@@ -17,7 +17,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.resource.ResourceEObject;
 import org.eclipse.papyrus.uml.standard.Auxiliary;
 import org.eclipse.papyrus.uml.standard.BuildComponent;
 import org.eclipse.papyrus.uml.standard.Call;
@@ -65,16 +64,14 @@ import org.eclipse.papyrus.uml.standard.Utility;
 public class StandardSwitch<T> {
 
 	/**
-	 * The cached model package
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached model package <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected static StandardPackage modelPackage;
 
 	/**
-	 * Creates an instance of the switch.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the switch. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -85,8 +82,8 @@ public class StandardSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result;
+	 * it yields that result. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
@@ -96,8 +93,8 @@ public class StandardSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result;
+	 * it yields that result. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
@@ -112,8 +109,8 @@ public class StandardSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result;
+	 * it yields that result. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
@@ -125,8 +122,6 @@ public class StandardSwitch<T> {
 			Auxiliary auxiliary = (Auxiliary)theEObject;
 			T result = caseAuxiliary(auxiliary);
 			if(result == null)
-				result = caseResourceEObject(auxiliary);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -134,8 +129,6 @@ public class StandardSwitch<T> {
 		{
 			BuildComponent buildComponent = (BuildComponent)theEObject;
 			T result = caseBuildComponent(buildComponent);
-			if(result == null)
-				result = caseResourceEObject(buildComponent);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -145,8 +138,6 @@ public class StandardSwitch<T> {
 			Create create = (Create)theEObject;
 			T result = caseCreate(create);
 			if(result == null)
-				result = caseResourceEObject(create);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -154,8 +145,6 @@ public class StandardSwitch<T> {
 		{
 			Call call = (Call)theEObject;
 			T result = caseCall(call);
-			if(result == null)
-				result = caseResourceEObject(call);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -165,8 +154,6 @@ public class StandardSwitch<T> {
 			Derive derive = (Derive)theEObject;
 			T result = caseDerive(derive);
 			if(result == null)
-				result = caseResourceEObject(derive);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -174,8 +161,6 @@ public class StandardSwitch<T> {
 		{
 			Destroy destroy = (Destroy)theEObject;
 			T result = caseDestroy(destroy);
-			if(result == null)
-				result = caseResourceEObject(destroy);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -185,8 +170,6 @@ public class StandardSwitch<T> {
 			Focus focus = (Focus)theEObject;
 			T result = caseFocus(focus);
 			if(result == null)
-				result = caseResourceEObject(focus);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -194,8 +177,6 @@ public class StandardSwitch<T> {
 		{
 			Framework framework = (Framework)theEObject;
 			T result = caseFramework(framework);
-			if(result == null)
-				result = caseResourceEObject(framework);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -205,8 +186,6 @@ public class StandardSwitch<T> {
 			Implement implement = (Implement)theEObject;
 			T result = caseImplement(implement);
 			if(result == null)
-				result = caseResourceEObject(implement);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -214,8 +193,6 @@ public class StandardSwitch<T> {
 		{
 			ImplementationClass implementationClass = (ImplementationClass)theEObject;
 			T result = caseImplementationClass(implementationClass);
-			if(result == null)
-				result = caseResourceEObject(implementationClass);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -225,8 +202,6 @@ public class StandardSwitch<T> {
 			Instantiate instantiate = (Instantiate)theEObject;
 			T result = caseInstantiate(instantiate);
 			if(result == null)
-				result = caseResourceEObject(instantiate);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -234,8 +209,6 @@ public class StandardSwitch<T> {
 		{
 			Metaclass metaclass = (Metaclass)theEObject;
 			T result = caseMetaclass(metaclass);
-			if(result == null)
-				result = caseResourceEObject(metaclass);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -245,8 +218,6 @@ public class StandardSwitch<T> {
 			ModelLibrary modelLibrary = (ModelLibrary)theEObject;
 			T result = caseModelLibrary(modelLibrary);
 			if(result == null)
-				result = caseResourceEObject(modelLibrary);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -254,8 +225,6 @@ public class StandardSwitch<T> {
 		{
 			Refine refine = (Refine)theEObject;
 			T result = caseRefine(refine);
-			if(result == null)
-				result = caseResourceEObject(refine);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -265,8 +234,6 @@ public class StandardSwitch<T> {
 			Responsibility responsibility = (Responsibility)theEObject;
 			T result = caseResponsibility(responsibility);
 			if(result == null)
-				result = caseResourceEObject(responsibility);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -274,8 +241,6 @@ public class StandardSwitch<T> {
 		{
 			Script script = (Script)theEObject;
 			T result = caseScript(script);
-			if(result == null)
-				result = caseResourceEObject(script);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -285,8 +250,6 @@ public class StandardSwitch<T> {
 			Send send = (Send)theEObject;
 			T result = caseSend(send);
 			if(result == null)
-				result = caseResourceEObject(send);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -294,8 +257,6 @@ public class StandardSwitch<T> {
 		{
 			Trace trace = (Trace)theEObject;
 			T result = caseTrace(trace);
-			if(result == null)
-				result = caseResourceEObject(trace);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -305,8 +266,6 @@ public class StandardSwitch<T> {
 			Type type = (Type)theEObject;
 			T result = caseType(type);
 			if(result == null)
-				result = caseResourceEObject(type);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -314,8 +273,6 @@ public class StandardSwitch<T> {
 		{
 			Utility utility = (Utility)theEObject;
 			T result = caseUtility(utility);
-			if(result == null)
-				result = caseResourceEObject(utility);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -325,8 +282,6 @@ public class StandardSwitch<T> {
 			Document document = (Document)theEObject;
 			T result = caseDocument(document);
 			if(result == null)
-				result = caseResourceEObject(document);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -334,8 +289,6 @@ public class StandardSwitch<T> {
 		{
 			Entity entity = (Entity)theEObject;
 			T result = caseEntity(entity);
-			if(result == null)
-				result = caseResourceEObject(entity);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -345,8 +298,6 @@ public class StandardSwitch<T> {
 			Executable executable = (Executable)theEObject;
 			T result = caseExecutable(executable);
 			if(result == null)
-				result = caseResourceEObject(executable);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -354,8 +305,6 @@ public class StandardSwitch<T> {
 		{
 			File file = (File)theEObject;
 			T result = caseFile(file);
-			if(result == null)
-				result = caseResourceEObject(file);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -365,8 +314,6 @@ public class StandardSwitch<T> {
 			Library library = (Library)theEObject;
 			T result = caseLibrary(library);
 			if(result == null)
-				result = caseResourceEObject(library);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -374,8 +321,6 @@ public class StandardSwitch<T> {
 		{
 			org.eclipse.papyrus.uml.standard.Process process = (org.eclipse.papyrus.uml.standard.Process)theEObject;
 			T result = caseProcess(process);
-			if(result == null)
-				result = caseResourceEObject(process);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -385,8 +330,6 @@ public class StandardSwitch<T> {
 			Realization realization = (Realization)theEObject;
 			T result = caseRealization(realization);
 			if(result == null)
-				result = caseResourceEObject(realization);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -394,8 +337,6 @@ public class StandardSwitch<T> {
 		{
 			Service service = (Service)theEObject;
 			T result = caseService(service);
-			if(result == null)
-				result = caseResourceEObject(service);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -405,8 +346,6 @@ public class StandardSwitch<T> {
 			Source source = (Source)theEObject;
 			T result = caseSource(source);
 			if(result == null)
-				result = caseResourceEObject(source);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -414,8 +353,6 @@ public class StandardSwitch<T> {
 		{
 			Specification specification = (Specification)theEObject;
 			T result = caseSpecification(specification);
-			if(result == null)
-				result = caseResourceEObject(specification);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -425,8 +362,6 @@ public class StandardSwitch<T> {
 			Subsystem subsystem = (Subsystem)theEObject;
 			T result = caseSubsystem(subsystem);
 			if(result == null)
-				result = caseResourceEObject(subsystem);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -435,8 +370,6 @@ public class StandardSwitch<T> {
 			Metamodel metamodel = (Metamodel)theEObject;
 			T result = caseMetamodel(metamodel);
 			if(result == null)
-				result = caseResourceEObject(metamodel);
-			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -444,8 +377,6 @@ public class StandardSwitch<T> {
 		{
 			SystemModel systemModel = (SystemModel)theEObject;
 			T result = caseSystemModel(systemModel);
-			if(result == null)
-				result = caseResourceEObject(systemModel);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -591,14 +522,13 @@ public class StandardSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Implementation Class</em>'.
-	 * <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of ' <em>Implementation Class</em>'. <!-- begin-user-doc --> This implementation
 	 * returns null;
 	 * returning a non-null result will terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
 	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Implementation Class</em>'.
+	 * @return the result of interpreting the object as an instance of ' <em>Implementation Class</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
@@ -948,23 +878,6 @@ public class StandardSwitch<T> {
 	 * @generated
 	 */
 	public T caseSystemModel(SystemModel object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseResourceEObject(ResourceEObject object) {
 		return null;
 	}
 

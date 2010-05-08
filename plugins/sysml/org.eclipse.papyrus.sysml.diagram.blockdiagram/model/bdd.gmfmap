@@ -9,7 +9,7 @@
         href="../../../plugin/org.eclipse.papyrus.resource/model/resource.ecore#//Resource/eobjects"/>
     <ownedChild>
       <domainMetaElement
-          href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//blocks/Block"/>
+          href="../../org.eclipse.papyrus.sysml.converted/model/sysml.ecore#//blocks/Block"/>
       <tool
           xsi:type="gmftool:CreationTool"
           href="bdd.gmftool#//@palette/@tools.0/@tools.0"/>
@@ -59,7 +59,7 @@
     <diagramCanvas
         href="bdd.gmfgraph#bddCanvas"/>
     <domainModel
-        href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#/"/>
+        href="../../org.eclipse.papyrus.sysml.converted/model/sysml.ecore#/"/>
     <domainMetaElement
         href="../../../plugin/org.eclipse.papyrus.resource/model/resource.ecore#//Resource"/>
     <palette

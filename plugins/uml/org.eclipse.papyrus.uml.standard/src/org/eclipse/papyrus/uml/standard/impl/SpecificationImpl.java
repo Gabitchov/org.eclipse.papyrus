@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.papyrus.resource.impl.ResourceEObjectImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.papyrus.uml.standard.Specification;
 import org.eclipse.papyrus.uml.standard.StandardPackage;
 import org.eclipse.uml2.uml.Classifier;
@@ -34,7 +34,7 @@ import org.eclipse.uml2.uml.Classifier;
  * 
  * @generated
  */
-public class SpecificationImpl extends ResourceEObjectImpl implements Specification {
+public class SpecificationImpl extends EObjectImpl implements Specification {
 
 	/**
 	 * The cached value of the '{@link #getBase_Classifier() <em>Base Classifier</em>}' reference.
