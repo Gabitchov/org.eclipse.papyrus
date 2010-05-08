@@ -25,7 +25,8 @@ import org.eclipse.emf.ecore.EFactory;
 public interface StandardFactory extends EFactory {
 
 	/**
-	 * The singleton instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -41,7 +42,8 @@ public interface StandardFactory extends EFactory {
 	Auxiliary createAuxiliary();
 
 	/**
-	 * Returns a new object of class '<em>Build Component</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>Build Component</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Build Component</em>'.
@@ -59,7 +61,8 @@ public interface StandardFactory extends EFactory {
 	Create createCreate();
 
 	/**
-	 * Returns a new object of class '<em>Call</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns a new object of class '<em>Call</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Call</em>'.
 	 * @generated
@@ -85,7 +88,8 @@ public interface StandardFactory extends EFactory {
 	Destroy createDestroy();
 
 	/**
-	 * Returns a new object of class '<em>Focus</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns a new object of class '<em>Focus</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Focus</em>'.
 	 * @generated
@@ -111,7 +115,8 @@ public interface StandardFactory extends EFactory {
 	Implement createImplement();
 
 	/**
-	 * Returns a new object of class '<em>Implementation Class</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>Implementation Class</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Implementation Class</em>'.
@@ -120,7 +125,8 @@ public interface StandardFactory extends EFactory {
 	ImplementationClass createImplementationClass();
 
 	/**
-	 * Returns a new object of class '<em>Instantiate</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>Instantiate</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Instantiate</em>'.
@@ -138,7 +144,8 @@ public interface StandardFactory extends EFactory {
 	Metaclass createMetaclass();
 
 	/**
-	 * Returns a new object of class '<em>Model Library</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>Model Library</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Model Library</em>'.
@@ -156,7 +163,8 @@ public interface StandardFactory extends EFactory {
 	Refine createRefine();
 
 	/**
-	 * Returns a new object of class '<em>Responsibility</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>Responsibility</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Responsibility</em>'.
@@ -174,7 +182,8 @@ public interface StandardFactory extends EFactory {
 	Script createScript();
 
 	/**
-	 * Returns a new object of class '<em>Send</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns a new object of class '<em>Send</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Send</em>'.
 	 * @generated
@@ -182,7 +191,8 @@ public interface StandardFactory extends EFactory {
 	Send createSend();
 
 	/**
-	 * Returns a new object of class '<em>Trace</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns a new object of class '<em>Trace</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Trace</em>'.
 	 * @generated
@@ -190,7 +200,8 @@ public interface StandardFactory extends EFactory {
 	Trace createTrace();
 
 	/**
-	 * Returns a new object of class '<em>Type</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns a new object of class '<em>Type</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Type</em>'.
 	 * @generated
@@ -225,7 +236,8 @@ public interface StandardFactory extends EFactory {
 	Entity createEntity();
 
 	/**
-	 * Returns a new object of class '<em>Executable</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>Executable</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Executable</em>'.
@@ -234,7 +246,8 @@ public interface StandardFactory extends EFactory {
 	Executable createExecutable();
 
 	/**
-	 * Returns a new object of class '<em>File</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns a new object of class '<em>File</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>File</em>'.
 	 * @generated
@@ -260,7 +273,8 @@ public interface StandardFactory extends EFactory {
 	Process createProcess();
 
 	/**
-	 * Returns a new object of class '<em>Realization</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>Realization</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Realization</em>'.
@@ -287,7 +301,8 @@ public interface StandardFactory extends EFactory {
 	Source createSource();
 
 	/**
-	 * Returns a new object of class '<em>Specification</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>Specification</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Specification</em>'.
@@ -314,7 +329,8 @@ public interface StandardFactory extends EFactory {
 	Metamodel createMetamodel();
 
 	/**
-	 * Returns a new object of class '<em>System Model</em>'. <!-- begin-user-doc --> <!--
+	 * Returns a new object of class '<em>System Model</em>'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>System Model</em>'.
@@ -323,7 +339,8 @@ public interface StandardFactory extends EFactory {
 	SystemModel createSystemModel();
 
 	/**
-	 * Returns the package supported by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the package supported by this factory.
 	 * @generated

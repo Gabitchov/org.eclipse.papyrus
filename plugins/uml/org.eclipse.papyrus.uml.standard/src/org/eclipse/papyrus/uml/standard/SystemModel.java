@@ -34,7 +34,8 @@ import org.eclipse.uml2.uml.Model;
 public interface SystemModel extends EObject {
 
 	/**
-	 * Returns the value of the '<em><b>Base Model</b></em>' reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Model</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Model</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -49,8 +50,8 @@ public interface SystemModel extends EObject {
 	Model getBase_Model();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.uml.standard.SystemModel#getBase_Model
-	 * <em>Base Model</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.uml.standard.SystemModel#getBase_Model <em>Base Model</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Model</em>' reference.

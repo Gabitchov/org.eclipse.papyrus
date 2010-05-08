@@ -37,8 +37,8 @@ import org.eclipse.uml2.uml.BehavioralFeature;
 public class DestroyImpl extends EObjectImpl implements Destroy {
 
 	/**
-	 * The cached value of the '{@link #getBase_BehavioralFeature()
-	 * <em>Base Behavioral Feature</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getBase_BehavioralFeature() <em>Base Behavioral Feature</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #getBase_BehavioralFeature()
 	 * @generated

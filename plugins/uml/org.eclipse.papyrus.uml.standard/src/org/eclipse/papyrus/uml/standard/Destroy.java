@@ -50,8 +50,8 @@ public interface Destroy extends EObject {
 	BehavioralFeature getBase_BehavioralFeature();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.uml.standard.Destroy#getBase_BehavioralFeature
-	 * <em>Base Behavioral Feature</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.uml.standard.Destroy#getBase_BehavioralFeature <em>Base Behavioral Feature</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Behavioral Feature</em>' reference.

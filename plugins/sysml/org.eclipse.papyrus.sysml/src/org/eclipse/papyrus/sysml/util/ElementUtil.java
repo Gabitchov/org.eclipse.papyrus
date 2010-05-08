@@ -8,8 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Yann TANGUY (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- *  
+ *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.util;
 

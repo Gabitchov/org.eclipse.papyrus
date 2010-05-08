@@ -28,7 +28,7 @@ import org.eclipse.uml2.uml.Component;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.standard.impl.ServiceImpl#getBase_Component <em>Base Component </em>}</li>
+ * <li>{@link org.eclipse.papyrus.uml.standard.impl.ServiceImpl#getBase_Component <em>Base Component</em>}</li>
  * </ul>
  * </p>
  * 

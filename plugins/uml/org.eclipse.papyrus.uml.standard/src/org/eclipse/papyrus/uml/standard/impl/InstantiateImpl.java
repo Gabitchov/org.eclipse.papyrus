@@ -28,7 +28,7 @@ import org.eclipse.uml2.uml.Usage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.standard.impl.InstantiateImpl#getBase_Usage <em>Base Usage </em>}</li>
+ * <li>{@link org.eclipse.papyrus.uml.standard.impl.InstantiateImpl#getBase_Usage <em>Base Usage</em>}</li>
  * </ul>
  * </p>
  * 

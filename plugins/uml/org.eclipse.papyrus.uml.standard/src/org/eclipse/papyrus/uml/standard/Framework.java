@@ -33,7 +33,8 @@ import org.eclipse.emf.ecore.EObject;
 public interface Framework extends EObject {
 
 	/**
-	 * Returns the value of the '<em><b>Base Package</b></em>' reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Package</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Package</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -48,8 +49,8 @@ public interface Framework extends EObject {
 	org.eclipse.uml2.uml.Package getBase_Package();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.uml.standard.Framework#getBase_Package
-	 * <em>Base Package</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.uml.standard.Framework#getBase_Package <em>Base Package</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Package</em>' reference.

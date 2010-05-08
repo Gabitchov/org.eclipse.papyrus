@@ -64,14 +64,16 @@ import org.eclipse.papyrus.uml.standard.Utility;
 public class StandardSwitch<T> {
 
 	/**
-	 * The cached model package <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached model package
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	protected static StandardPackage modelPackage;
 
 	/**
-	 * Creates an instance of the switch. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the switch.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -82,8 +84,8 @@ public class StandardSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result;
-	 * it yields that result. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
@@ -93,8 +95,8 @@ public class StandardSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result;
-	 * it yields that result. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
@@ -109,8 +111,8 @@ public class StandardSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result;
-	 * it yields that result. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
@@ -522,13 +524,14 @@ public class StandardSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of ' <em>Implementation Class</em>'. <!-- begin-user-doc --> This implementation
+	 * Returns the result of interpreting the object as an instance of '<em>Implementation Class</em>'.
+	 * <!-- begin-user-doc --> This implementation
 	 * returns null;
 	 * returning a non-null result will terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object
 	 *        the target of the switch.
-	 * @return the result of interpreting the object as an instance of ' <em>Implementation Class</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Implementation Class</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */

@@ -23,7 +23,7 @@ import org.eclipse.uml2.uml.Component;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.standard.BuildComponent#getBase_Component <em>Base Component </em>}</li>
+ * <li>{@link org.eclipse.papyrus.uml.standard.BuildComponent#getBase_Component <em>Base Component</em>}</li>
  * </ul>
  * </p>
  * 
@@ -34,7 +34,8 @@ import org.eclipse.uml2.uml.Component;
 public interface BuildComponent extends EObject {
 
 	/**
-	 * Returns the value of the '<em><b>Base Component</b></em>' reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Component</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Component</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -49,8 +50,8 @@ public interface BuildComponent extends EObject {
 	Component getBase_Component();
 
 	/**
-	 * Sets the value of the ' {@link org.eclipse.papyrus.uml.standard.BuildComponent#getBase_Component
-	 * <em>Base Component</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.uml.standard.BuildComponent#getBase_Component <em>Base Component</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Component</em>' reference.

@@ -33,7 +33,8 @@ import org.eclipse.emf.ecore.EObject;
 public interface Type extends EObject {
 
 	/**
-	 * Returns the value of the '<em><b>Base Class</b></em>' reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Base Class</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Base Class</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
@@ -48,8 +49,8 @@ public interface Type extends EObject {
 	org.eclipse.uml2.uml.Class getBase_Class();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.uml.standard.Type#getBase_Class
-	 * <em>Base Class</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.uml.standard.Type#getBase_Class <em>Base Class</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Class</em>' reference.

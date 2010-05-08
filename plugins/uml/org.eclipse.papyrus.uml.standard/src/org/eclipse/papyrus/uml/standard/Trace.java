@@ -34,7 +34,8 @@ import org.eclipse.uml2.uml.Abstraction;
 public interface Trace extends EObject {
 
 	/**
-	 * Returns the value of the '<em><b>Base Abstraction</b></em>' reference. <!-- begin-user-doc
+	 * Returns the value of the '<em><b>Base Abstraction</b></em>' reference.
+	 * <!-- begin-user-doc
 	 * -->
 	 * <p>
 	 * If the meaning of the '<em>Base Abstraction</em>' reference isn't clear, there really should be more of a description here...
@@ -50,8 +51,8 @@ public interface Trace extends EObject {
 	Abstraction getBase_Abstraction();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.uml.standard.Trace#getBase_Abstraction
-	 * <em>Base Abstraction</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.papyrus.uml.standard.Trace#getBase_Abstraction <em>Base Abstraction</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value
 	 *        the new value of the '<em>Base Abstraction</em>' reference.

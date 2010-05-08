@@ -27,7 +27,7 @@ import org.eclipse.papyrus.uml.standard.StandardPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.standard.impl.FrameworkImpl#getBase_Package <em>Base Package </em>}</li>
+ * <li>{@link org.eclipse.papyrus.uml.standard.impl.FrameworkImpl#getBase_Package <em>Base Package</em>}</li>
  * </ul>
  * </p>
  * 

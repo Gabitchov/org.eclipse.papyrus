@@ -28,7 +28,7 @@ import org.eclipse.uml2.uml.Model;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.standard.impl.SystemModelImpl#getBase_Model <em>Base Model </em>}</li>
+ * <li>{@link org.eclipse.papyrus.uml.standard.impl.SystemModelImpl#getBase_Model <em>Base Model</em>}</li>
  * </ul>
  * </p>
  * 
