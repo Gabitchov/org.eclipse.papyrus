@@ -15,7 +15,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 
 
@@ -68,19 +67,14 @@ public abstract class EMFFeatureModelHandler implements IEMFModelHandler {
 	}
 
 	/**
-	 * Retrieve a {@link EStructuralFeature} by its name
+	 * Retrieve the main {@link EStructuralFeature} of this model handler
 	 * 
 	 * @param objectToEdit
 	 *        the object being edited
 	 * @return the feature found <code>null</code> if not found
 	 */
 	public EStructuralFeature getFeatureByName(EObject objectToEdit) {
-		EStructuralFeature feature = objectToEdit.eClass().getEStructuralFeature(featureName);
-		if(feature != null) {
-			return feature;
-		}
-		Activator.log.error("impossible to find feature " + featureName + " for object " + objectToEdit, null);
-		return null;
+		return EMFUtils.getFeatureByName(objectToEdit, featureName);
 	}
 
 	/**

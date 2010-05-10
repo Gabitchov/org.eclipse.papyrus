@@ -94,7 +94,7 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 
 		// create Button area
 		addButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
-		addButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Add.gif")));
+		addButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Add_12x12.gif")));
 		data = new GridData(SWT.FILL, SWT.CENTER, false, false);
 		addButton.setLayoutData(data);
 		addButton.addMouseListener(new MouseListener() {
@@ -159,7 +159,7 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 		});
 
 		removeButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
-		removeButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Delete.gif")));
+		removeButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Delete_12x12.gif")));
 		data = new GridData(SWT.FILL, SWT.CENTER, false, false);
 		removeButton.setLayoutData(data);
 		removeButton.addMouseListener(new MouseListener() {
@@ -188,7 +188,7 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 		});
 
 		Button upButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
-		upButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Up.gif")));
+		upButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Up_12x12.gif")));
 		data = new GridData(SWT.FILL, SWT.CENTER, false, false);
 		upButton.setLayoutData(data);
 		upButton.addMouseListener(new MouseListener() {
@@ -214,7 +214,7 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 		});
 
 		Button downButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
-		downButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Down.gif")));
+		downButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Down_12x12.gif")));
 		data = new GridData(SWT.FILL, SWT.CENTER, false, false);
 		downButton.setLayoutData(data);
 		downButton.addMouseListener(new MouseListener() {

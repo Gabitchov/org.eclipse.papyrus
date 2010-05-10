@@ -109,8 +109,8 @@ public class SimpleReferencePropertyEditor extends AbstractPropertyEditor {
 			}
 		});
 
-		addButton = getWidgetFactory().createButton(composite, "+", SWT.NONE);
-		// addButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Add.gif")));
+		addButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
+		addButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Add_12x12.gif")));
 		data = new GridData(SWT.FILL, SWT.CENTER, false, false);
 		addButton.setLayoutData(data);
 		addButton.addMouseListener(new MouseListener() {
@@ -142,8 +142,8 @@ public class SimpleReferencePropertyEditor extends AbstractPropertyEditor {
 			}
 		});
 
-		removeButton = getWidgetFactory().createButton(composite, "X", SWT.NONE);
-		// removeButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Delete.gif")));
+		removeButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
+		removeButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Delete_12x12.gif")));
 		data = new GridData(SWT.FILL, SWT.CENTER, false, false);
 		removeButton.setLayoutData(data);
 		removeButton.addMouseListener(new MouseListener() {

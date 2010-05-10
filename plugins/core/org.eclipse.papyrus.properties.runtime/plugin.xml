@@ -4,6 +4,7 @@
    <extension-point id="propertyEditorProvider" name="propertyEditorProvider" schema="schema/propertyEditorProvider.exsd"/>
    <extension-point id="propertyEditorControllerProvider" name="propertyEditorControllerProvider" schema="schema/propertyEditorControllerProvider.exsd"/>
    <extension-point id="propertyViewProvider" name="propertyViewProvider" schema="schema/propertyViewProvider.exsd"/>
+   <extension-point id="propertyModelHandler" name="propertyModelHandler" schema="schema/propertyModelHandler.exsd"/>
 <extension
       point="org.eclipse.papyrus.properties.runtime.propertyEditorProvider">
    <propertyEditorProvider
@@ -103,5 +104,56 @@
             id="emftLabelProviderStructuralFeatureController">
       </PropertyEditorController>
       </propertyEditorControllerProvider>
+</extension>
+<extension
+      point="org.eclipse.papyrus.properties.runtime.propertyModelHandler">
+   <propertyModelHandler
+         class="org.eclipse.papyrus.properties.runtime.modelhandler.emf.BooleanEMFModelHandlerFactory"
+         description="this is the standard model controller for EMF boolean-typed features"
+         id="Boolean"
+         name="Boolean EMF Model Handler">
+   </propertyModelHandler>
+   <propertyModelHandler
+         class="org.eclipse.papyrus.properties.runtime.modelhandler.emf.StringEMFModelHandlerFactory"
+         description="this is the standard model controller for EMF String-typed features"
+         id="String"
+         name="String EMF Model Handler">
+   </propertyModelHandler>
+   <propertyModelHandler
+         class="org.eclipse.papyrus.properties.runtime.modelhandler.emf.EnumerationEMFModelHandlerFactory"
+         description="this is the standard model controller for EMF enumeration-typed features"
+         id="Enumeration"
+         name="Enumeration EMF Model Handler">
+   </propertyModelHandler>
+   <propertyModelHandler
+         class="org.eclipse.papyrus.properties.runtime.modelhandler.emf.ReferenceEMFModelHandlerFactory"
+         description="this is the standard model controller for EMF references"
+         id="Reference"
+         name="Reference EMF Model Handler">
+   </propertyModelHandler>
+    <propertyModelHandler
+         class="org.eclipse.papyrus.properties.runtime.modelhandler.emf.BooleanStereotypeModelHandlerFactory"
+         description="this is the standard model controller for EMF boolean-typed stereotype features"
+         id="BooleanStereotype"
+         name="Boolean Stereotype Model Handler">
+   </propertyModelHandler>
+   <propertyModelHandler
+         class="org.eclipse.papyrus.properties.runtime.modelhandler.emf.StringStereotypeModelHandlerFactory"
+         description="this is the standard model controller for EMF String-typed stereotype features"
+         id="StringStereotype"
+         name="String Stereotype Model Handler">
+   </propertyModelHandler>
+   <propertyModelHandler
+         class="org.eclipse.papyrus.properties.runtime.modelhandler.emf.EnumerationStereotypeModelHandlerFactory"
+         description="this is the standard model controller for EMF enumeration-typed stereotype features"
+         id="EnumerationStereotype"
+         name="Enumeration Stereotype Model Handler">
+   </propertyModelHandler>
+   <propertyModelHandler
+         class="org.eclipse.papyrus.properties.runtime.modelhandler.emf.ReferenceStereotypeModelHandlerFactory"
+         description="this is the standard model controller for EMF stereotype references"
+         id="ReferenceStereotype"
+         name="Reference Stereotype Model Handler">
+   </propertyModelHandler>
 </extension>
 </plugin>

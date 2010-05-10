@@ -32,42 +32,11 @@
             name="Lowest">
       </Priority>
       <PropertyViewContribution
-            description="These are generic views for uml elements"
-            icon="icons/tool.gif"
-            name="UML Views"
-            path="resources/uml_predefined_views.xml">
-      </PropertyViewContribution>
-   </propertyViewProvider>
-</extension>
-<extension
-      point="org.eclipse.papyrus.properties.runtime.propertyEditorControllerProvider">
-   <propertyEditorControllerProvider
-         class="org.eclipse.papyrus.properties.runtime.controller.predefined.PredefinedPropertyControllerProvider"
-         description="this is the basic provider for UML features"
-            id="org.eclipse.papyrus.properties.tabbed.uml.structuralFeaturesEMFTPredefinedControllers">
-      <Priority name="Lowest"/>
-      <PredefinedControllers
-            id="org.eclipse.papyrus.properties.tabbed.uml.structuralFeaturesEMFTPredefinedControllers"
-            name="UML Predefined Controllers for Structural Features"
-            path="resources/uml_predefined_controllers.xml">
-      </PredefinedControllers>
-      
-   </propertyEditorControllerProvider>
-</extension>
-<extension
-      point="org.eclipse.papyrus.properties.runtime.propertyViewProvider">
-   <propertyViewProvider
-         class="org.eclipse.papyrus.properties.runtime.view.XMLPropertyViewProvider">
-      <Priority
-            name="Lowest">
-      </Priority>
-      <PropertyViewContribution
-            description="Basic configuration for UML property dialogs"
+            description="Test configuration for UML property dialogs"
             icon="icons/UMLDialogs.gif"
             name="UML Dialogs"
-            path="resources/uml_generic_dialogs.xml">
+            path="resources/uml_generic_dialogs_test.xml">
       </PropertyViewContribution>
    </propertyViewProvider>
 </extension>
-
 </plugin>

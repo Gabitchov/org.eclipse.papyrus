@@ -95,6 +95,15 @@
 							</editor>
 						</controller>
 						<controller predefinedId="UML_Property_aggregation"/>
+						<controller id="emftStructuralFeatureController">
+							<feature handlerID="Multiplicity">
+								<availableValue value="0..1"/>
+								<availableValue value="1..1"/>
+								<availableValue value="0..*"/>
+								<availableValue value="1..*"/>
+							</feature>
+							<editor id="org.eclipse.papyrus.properties.runtime.uml.multiplicityPropertyEditor" label="Multiplicity:" labelPosition="16384"/>
+						</controller>
 					</groupContainer>
 				</content>
 			</view>
