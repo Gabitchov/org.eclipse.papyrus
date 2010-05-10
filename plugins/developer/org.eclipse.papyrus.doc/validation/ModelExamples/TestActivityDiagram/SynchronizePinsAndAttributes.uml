@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_iaEBIFwwEd-ekNyaiuUmbg" name="SynchronizePinsAndAttributes">
+  <packagedElement xmi:type="uml:Activity" xmi:id="_kL6ZQlwwEd-ekNyaiuUmbg" name="ActivityDiagram"/>
+  <packagedElement xmi:type="uml:Signal" xmi:id="_pmDtwFwwEd-ekNyaiuUmbg" name="Signal1">
+    <ownedAttribute xmi:id="_mbVowFwxEd-ekNyaiuUmbg" name="Property1" type="_iewecFwxEd-ekNyaiuUmbg" isOrdered="true" isUnique="false"/>
+    <ownedAttribute xmi:id="_qiMJYFwxEd-ekNyaiuUmbg" name="Property2" type="_nMD7EFwxEd-ekNyaiuUmbg">
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2V0vgFwxEd-ekNyaiuUmbg" value="6"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_1rqYMFwxEd-ekNyaiuUmbg" value="3"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Activity" xmi:id="_3mdGYFwwEd-ekNyaiuUmbg" name="Activity2">
+    <node xmi:type="uml:SendSignalAction" xmi:id="_HicB8FwxEd-ekNyaiuUmbg" name="SendSignal1NotDrawn" signal="_pmDtwFwwEd-ekNyaiuUmbg">
+      <argument xmi:id="_mbxtoFwxEd-ekNyaiuUmbg" name="Property1" type="_iewecFwxEd-ekNyaiuUmbg" isOrdered="true" isUnique="false"/>
+      <argument xmi:id="_qiymUFwxEd-ekNyaiuUmbg" name="Property2" type="_nMD7EFwxEd-ekNyaiuUmbg">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2fqoAFwxEd-ekNyaiuUmbg" value="6"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_13RyUFwxEd-ekNyaiuUmbg" value="3"/>
+      </argument>
+      <target xmi:id="_HicB8VwxEd-ekNyaiuUmbg" name="target"/>
+    </node>
+    <node xmi:type="uml:AcceptEventAction" xmi:id="_rF_dMFw1Ed-ekNyaiuUmbg" name="AcceptEventAction1NotDrawn" isUnmarshall="true">
+      <result xmi:id="_iE2lIFw7Ed-ekNyaiuUmbg" name="Property1" type="_iewecFwxEd-ekNyaiuUmbg" isOrdered="true" isUnique="false"/>
+      <result xmi:id="_zsH90Fw7Ed-ekNyaiuUmbg" name="Property2" type="_nMD7EFwxEd-ekNyaiuUmbg">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8SNC0Fw7Ed-ekNyaiuUmbg" value="6"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9CLuQFw7Ed-ekNyaiuUmbg" value="3"/>
+      </result>
+      <trigger xmi:id="_v8FpcFw1Ed-ekNyaiuUmbg" name="TriggerOnSignal1" event="_02WkAFw1Ed-ekNyaiuUmbg"/>
+    </node>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_iewecFwxEd-ekNyaiuUmbg" name="ClassA"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_nMD7EFwxEd-ekNyaiuUmbg" name="ClassB"/>
+  <packagedElement xmi:type="uml:SignalEvent" xmi:id="_02WkAFw1Ed-ekNyaiuUmbg" name="SignalEvent1" signal="_pmDtwFwwEd-ekNyaiuUmbg"/>
+</uml:Model>
