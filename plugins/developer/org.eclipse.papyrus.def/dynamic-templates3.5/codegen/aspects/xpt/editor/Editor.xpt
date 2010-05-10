@@ -14,10 +14,65 @@
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
 «EXTENSION xpt::editor::Utils»
 
-«AROUND attributes FOR gmfgen::GenEditorView-»
-	«REM»old code«ENDREM»
-	«targetDef.proceed()»
-	«REM»end of old code«ENDREM»
+
+«AROUND Editor FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::copyright FOR editorGen-»
+package «packageName»;
+
+	«EXPAND xpt::Common::generatedClassComment»
+public class «className»  extends org.eclipse.papyrus.diagram.common.part.UmlGmfDiagramEditor«EXPAND implementsList FOR getEditorImplementsList(self)» {
+
+	«EXPAND attributes-»
+	
+	«EXPAND _constructor-»
+	
+	«EXPAND getContextID-»
+	«EXPAND createPaletteRoot FOR editorGen.diagram.palette-»
+	
+	«EXPAND getPreferencesHint-»
+	
+	«EXPAND getContributorId-»
+	«EXPAND getAdapter-»
+	
+	«EXPAND getDocumentProvider-»
+	
+	«EXPAND getEditingDomain-»
+	
+	«EXPAND setDocumentProvider-»
+	«IF isIDEMode(self)-»
+	
+		«EXPAND gotoMarker-»
+		
+		«EXPAND isSaveAsAllowed-»
+		
+		«EXPAND doSaveAs-»
+		
+		«EXPAND performSaveAs-»
+		
+		«EXPAND getShowInContext-»
+		«EXPAND getNavigatorSelection FOR editorGen.navigator-»
+	«ENDIF-»
+
+	«EXPAND configureGraphicalViewer-»
+
+	«IF editorGen.diagram.generateCreateShortcutAction()-»
+	
+		«EXPAND initializeGraphicalViewer-»
+		
+		«EXPAND DropTargetListener-»
+	«ENDIF-»
+
+	«EXPAND additions-»
+}
+«ENDAROUND»
+
+«DEFINE attributes FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+public static final String ID = "«iD»"; «EXPAND xpt::Common::nonNLS»
+	
+	«EXPAND xpt::Common::generatedMemberComment»
+public static final String CONTEXT_ID = "«contextID»"; «EXPAND xpt::Common::nonNLS»
+
 	
 	«REM»Documentation. adds listener for papyrus editors«ENDREM»
 	«EXPAND xpt::Common::generatedMemberComment»
@@ -36,17 +91,14 @@
 	«EXPAND xpt::Common::generatedMemberComment»
     private org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider documentProvider;
     	
-    «EXPAND xpt::Common::generatedMemberComment»
-	private org.eclipse.gmf.runtime.notation.Diagram diagram;
 	
 	«REM»«ENDREM»
-«ENDAROUND»
+«ENDDEFINE»
 
-«AROUND _constructor FOR gmfgen::GenEditorView-»
+«DEFINE _constructor FOR gmfgen::GenEditorView-»
 	«EXPAND xpt::Common::generatedMemberComment»
 	public «className»(org.eclipse.papyrus.core.services.ServicesRegistry servicesRegistry, org.eclipse.gmf.runtime.notation.Diagram diagram) throws org.eclipse.papyrus.core.services.ServiceException{
-	super(«null <> editorGen.diagram.palette and editorGen.diagram.palette.flyout»);
-	this.diagram = diagram;
+	super(servicesRegistry, diagram);
 
 	«REM»Documentation. adds listener for papyrus palette service«ENDREM»
 	// adds a listener to the palette service, which reacts to palette customizations
@@ -62,9 +114,9 @@
 	
 	«REM»end of listeners addition«ENDREM»
 	}
-«ENDAROUND»
+«ENDDEFINE»
 
-«AROUND createPaletteRoot FOR gmfgen::Palette-»
+«DEFINE createPaletteRoot FOR gmfgen::Palette-»
 	«EXPAND xpt::Common::generatedMemberComment»
 	protected org.eclipse.gef.palette.PaletteRoot createPaletteRoot(org.eclipse.gef.palette.PaletteRoot existingPaletteRoot) {
 		org.eclipse.gef.palette.PaletteRoot paletteRoot;
@@ -77,7 +129,7 @@
 		applyCustomizationsToPalette(paletteRoot);
 		return paletteRoot;
 	}
-«ENDAROUND»
+«ENDDEFINE»
 
 «DEFINE createPaletteCustomizer FOR gmfgen::GenEditorView-»
 	«EXPAND xpt::Common::generatedMemberComment»
@@ -86,10 +138,7 @@
 	}
 «ENDDEFINE»
 
-«AROUND additions FOR gmfgen::GenEditorView-»
-	«REM»old code«ENDREM»
-	«targetDef.proceed()»
-	«REM»end of old code«ENDREM»
+«DEFINE additions FOR gmfgen::GenEditorView-»
 	
 	«EXPAND createEditingDomain-»
 	
@@ -116,14 +165,10 @@
 	
 	«EXPAND getGraphicalViewer-»
 	
-	«EXPAND getDiagram-»
-	
-	«EXPAND setDiagram-»
-	
 	«EXPAND initializeGraphicalViewer-»
 	
 	«EXPAND selectionChanged-»
-«ENDAROUND»
+«ENDDEFINE»
 
 «DEFINE handlePaletteChange FOR gmfgen::GenEditorView-»
 	«EXPAND xpt::Common::generatedMemberComment»
@@ -161,10 +206,10 @@
 	}
 «ENDDEFINE»	
 	
-«AROUND implementsList FOR Sequence(String)-»
+«DEFINE implementsList FOR Sequence(String)-»
  implements org.eclipse.gmf.runtime.common.core.service.IProviderChangeListener
 «IF not self->isEmpty()», «EXPAND implementsListEntry FOREACH self SEPARATOR ', '»«ENDIF-»
-«ENDAROUND»
+«ENDDEFINE»
 
 «DEFINE implementsListEntry FOR String»«self»«ENDDEFINE»
 
@@ -313,20 +358,20 @@ protected org.eclipse.gef.ui.palette.PaletteViewerProvider createPaletteViewerPr
 «ENDDEFINE»
 
 «REM»Not used«ENDREM»
-«AROUND performSaveAs FOR gmfgen::GenEditorView-»
+«DEFINE performSaveAs FOR gmfgen::GenEditorView-»
 	«EXPAND xpt::Common::generatedMemberComment»
 protected void performSaveAs(org.eclipse.core.runtime.IProgressMonitor progressMonitor) {
   // Nothing
 }
-«ENDAROUND»
+«ENDDEFINE»
 
 «REM»Share the same editing domain«ENDREM»
-«AROUND getEditingDomain FOR gmfgen::GenEditorView-»
+«DEFINE getEditingDomain FOR gmfgen::GenEditorView-»
 	«EXPAND xpt::Common::generatedMemberComment»
     public org.eclipse.emf.transaction.TransactionalEditingDomain getEditingDomain() {
     	return editingDomain;
     }	
-«ENDAROUND»
+«ENDDEFINE»
 
 «DEFINE createEditingDomain FOR gmfgen::GenEditorView-»
 «EXPAND xpt::Common::generatedMemberComment»
@@ -368,19 +413,19 @@ protected void performSaveAs(org.eclipse.core.runtime.IProgressMonitor progressM
 «ENDDEFINE»
 
 «REM»Code refactoring moved in UMLDiagramEditor«ENDREM»
-«AROUND getDocumentProvider FOR gmfgen::GenEditorView-»
+«DEFINE getDocumentProvider FOR gmfgen::GenEditorView-»
 	«EXPAND xpt::Common::generatedMemberComment»
 	protected final org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider getDocumentProvider(org.eclipse.ui.IEditorInput input) {
 		return documentProvider;
 	}
-«ENDAROUND»
+«ENDDEFINE»
 
-«AROUND setDocumentProvider FOR gmfgen::GenEditorView-»
+«DEFINE setDocumentProvider FOR gmfgen::GenEditorView-»
 	«EXPAND xpt::Common::generatedMemberComment»
 	protected final void setDocumentProvider(org.eclipse.ui.IEditorInput input) {
 		// Already set in the constructor
 	}
-«ENDAROUND»
+«ENDDEFINE»
 
 «DEFINE getGraphicalViewer FOR gmfgen::GenEditorView-»
 «EXPAND xpt::Common::generatedMemberComment»
@@ -390,19 +435,6 @@ protected void performSaveAs(org.eclipse.core.runtime.IProgressMonitor progressM
 	}
 «ENDDEFINE»
 
-«DEFINE getDiagram FOR gmfgen::GenEditorView-»
-«EXPAND xpt::Common::generatedMemberComment»
-	public org.eclipse.gmf.runtime.notation.Diagram getDiagram() {
-		return diagram;
-	}
-«ENDDEFINE»
-
-«DEFINE setDiagram FOR gmfgen::GenEditorView-»
-«EXPAND xpt::Common::generatedMemberComment»
-	public void setDiagram(org.eclipse.gmf.runtime.notation.Diagram diagram) {
-		this.diagram = diagram;
-	}
-«ENDDEFINE»
 
 «DEFINE initializeGraphicalViewer FOR gmfgen::GenEditorView-»
 «EXPAND xpt::Common::generatedMemberComment»
@@ -451,4 +483,112 @@ protected void performSaveAs(org.eclipse.core.runtime.IProgressMonitor progressM
 			rebuildStatusLine();
 		}
 	}
+«ENDDEFINE»
+
+«DEFINE getContextID FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+protected String getContextID() {
+	return CONTEXT_ID;
+}
+«ENDDEFINE»
+
+«DEFINE getPreferencesHint FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+protected org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint getPreferencesHint() {
+«REM» 
+	XXX seems better we use preference store directly (in configureGraphicalViewer) instead all these indirect ids 
+«ENDREM»«-»
+	return «EXPAND xpt::plugin::Activator::preferenceHintAccess FOR editorGen»;
+}
+«ENDDEFINE»
+
+«DEFINE getContributorId FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+public String getContributorId() {
+	return «editorGen.plugin.getActivatorQualifiedClassName()».ID;
+}
+«ENDDEFINE»
+
+«DEFINE getAdapter FOR gmfgen::GenEditorView-»
+	«IF not hasPropertySheet(self) or hasNavigator(self)-»
+	
+	«EXPAND xpt::Common::generatedMemberComment»
+public Object getAdapter(Class type) {
+	«IF not hasPropertySheet(self)-»
+	if (type == org.eclipse.ui.views.properties.IPropertySheetPage.class) {
+		return null;
+	}
+	«ENDIF-»
+	«IF hasNavigator(self)-»
+	if (type == org.eclipse.ui.part.IShowInTargetList.class) {
+		return new org.eclipse.ui.part.IShowInTargetList() {
+			public String[] getShowInTargetIds() {
+				return new String[] { org.eclipse.ui.navigator.resources.ProjectExplorer.VIEW_ID };
+			}
+		};
+	}
+	«ENDIF-»
+	return super.getAdapter(type);
+}
+	«ENDIF-»
+«ENDDEFINE»
+
+«DEFINE gotoMarker FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+public void gotoMarker(org.eclipse.core.resources.IMarker marker) {
+	org.eclipse.gmf.runtime.common.ui.services.marker.MarkerNavigationService.getInstance().gotoMarker(this, marker);
+}
+«ENDDEFINE»
+
+«DEFINE isSaveAsAllowed FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+public boolean isSaveAsAllowed() {
+	return true;
+}
+«ENDDEFINE»
+
+«DEFINE doSaveAs FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+public void doSaveAs() {
+	performSaveAs(new org.eclipse.core.runtime.NullProgressMonitor());
+}
+«ENDDEFINE»
+
+«DEFINE getShowInContext FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+public org.eclipse.ui.part.ShowInContext getShowInContext() {
+	return new org.eclipse.ui.part.ShowInContext(getEditorInput(), «IF hasNavigator(self)»getNavigatorSelection()«ELSE»getGraphicalViewer().getSelection()«ENDIF»);
+}
+«ENDDEFINE»
+«DEFINE getNavigatorSelection FOR gmfgen::GenNavigator-»
+	
+	«EXPAND xpt::Common::generatedMemberComment»
+private org.eclipse.jface.viewers.ISelection getNavigatorSelection() {
+	org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument document = getDiagramDocument();
+	«EXPAND xpt::navigator::NavigatorLinkHelper::findSelectionBody-»
+}
+«ENDDEFINE»
+«DEFINE configureGraphicalViewer FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected void configureGraphicalViewer() {
+		super.configureGraphicalViewer();
+		«EXPAND xpt::editor::DiagramEditorContextMenuProvider::qualifiedClassName FOR editorGen.diagram» provider =
+				new «EXPAND xpt::editor::DiagramEditorContextMenuProvider::qualifiedClassName FOR editorGen.diagram»(this, getDiagramGraphicalViewer());
+		getDiagramGraphicalViewer().setContextMenu(provider);
+		getSite().registerContextMenu(org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU, provider, getDiagramGraphicalViewer());
+	}
+«ENDDEFINE»
+
+«DEFINE DropTargetListener FOR gmfgen::GenEditorView-»
+	«EXPAND xpt::Common::generatedClassComment»
+private abstract class DropTargetListener extends org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener {
+
+	«EXPAND DTL_constructor-»
+
+	«EXPAND DTL_getObjectsBeingDropped-»
+
+	«EXPAND DTL_getJavaObject-»
+
+	«EXPAND DTL_additions-»
+}
 «ENDDEFINE»
