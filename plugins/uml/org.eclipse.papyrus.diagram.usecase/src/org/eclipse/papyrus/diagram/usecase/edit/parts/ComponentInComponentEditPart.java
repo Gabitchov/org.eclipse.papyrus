@@ -16,6 +16,7 @@ package org.eclipse.papyrus.diagram.usecase.edit.parts;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.RectangleFigure;
@@ -35,6 +36,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -42,12 +44,15 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.diagram.common.draw2d.CenterLayout;
 import org.eclipse.papyrus.diagram.common.draw2d.PileLayout;
+import org.eclipse.papyrus.diagram.common.editparts.IPapyrusEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
+import org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel;
+import org.eclipse.papyrus.diagram.common.helper.StereotypeFigureHelper;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.ComponentInComponentItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.usecase.figure.AbstractSubjectFigure;
 import org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
@@ -58,11 +63,11 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
 
 /**
- * @generated
+ * @generated NOT implements IPapyrusEditPart
  */
 public class ComponentInComponentEditPart extends
 
-ShapeNodeEditPart {
+ShapeNodeEditPart implements IPapyrusEditPart {
 
 	/**
 	 * @generated
@@ -1159,9 +1164,9 @@ ShapeNodeEditPart {
 
 
 	/**
-	 * @generated
+	 * @generated NOT extends AbstractSubjectFigure to manage stereotype display
 	 */
-	public class UseCaseSubjectFigure extends RectangleFigure {
+	public class UseCaseSubjectFigure extends AbstractSubjectFigure {
 
 
 		/**
@@ -1174,66 +1179,63 @@ ShapeNodeEditPart {
 		 */
 		private WrappingLabel fUseCaseSubjectFigure_name;
 
+		/**
+		 * @generated NOT
+		 */
+		private RectangleFigure useCaseSubjectFigure_header0;
 
 		/**
-		 * @generated
+		 * @generated NOT
 		 */
 		public UseCaseSubjectFigure() {
-
-			PileLayout layoutThis = new PileLayout();
-
-
-
-
-			layoutThis.setStretchBottom(true);
-
-
-			this.setLayoutManager(layoutThis);
-
-			this.setLineWidth(1);
-			this.setBackgroundColor(THIS_BACK);
+			super();
 			createContents();
+			// use StereotypeFigureHelper
+			stereotypeHelper = new StereotypeFigureHelper(useCaseSubjectFigure_header0) {
+
+				@Override
+				public IMapMode getMapMode() {
+					return ComponentInComponentEditPart.this.getMapMode();
+				}
+
+				@Override
+				public Object getStereotypeRectangleConstraint() {
+					GridData constraintStereotypeRect0 = new GridData();
+					constraintStereotypeRect0.verticalAlignment = GridData.BEGINNING;
+					constraintStereotypeRect0.horizontalAlignment = GridData.FILL;
+					constraintStereotypeRect0.horizontalIndent = 0;
+					constraintStereotypeRect0.horizontalSpan = 1;
+					constraintStereotypeRect0.verticalSpan = 1;
+					constraintStereotypeRect0.grabExcessHorizontalSpace = false;
+					constraintStereotypeRect0.grabExcessVerticalSpace = false;
+					return constraintStereotypeRect0;
+				}
+			};
 		}
 
 		/**
-		 * @generated
+		 * @generated NOT
 		 */
 		private void createContents() {
 
-
-			RectangleFigure useCaseSubjectFigure_header0 = new RectangleFigure();
+			useCaseSubjectFigure_header0 = new RectangleFigure();
 			useCaseSubjectFigure_header0.setLineWidth(1);
-
 			this.add(useCaseSubjectFigure_header0);
 
-			CenterLayout layoutUseCaseSubjectFigure_header0 = new CenterLayout();
-
-
+			PileLayout layoutUseCaseSubjectFigure_header0 = new PileLayout();
+			layoutUseCaseSubjectFigure_header0.setNegativeGap(-10);
 			useCaseSubjectFigure_header0.setLayoutManager(layoutUseCaseSubjectFigure_header0);
 
-
-
-			fUseCaseSubjectFigure_name = new WrappingLabel();
+			fUseCaseSubjectFigure_name = new CenteredWrappedLabel();
 			fUseCaseSubjectFigure_name.setText("");
-
-			fUseCaseSubjectFigure_name.setFont(FUSECASESUBJECTFIGURE_NAME_FONT);
-
-
-
 			fUseCaseSubjectFigure_name.setBorder(new MarginBorder(getMapMode().DPtoLP(0), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
 
 			useCaseSubjectFigure_header0.add(fUseCaseSubjectFigure_name);
 
-
-
-
 			fUseCaseSubjectFigure_contents = new RectangleFigure();
 			fUseCaseSubjectFigure_contents.setLineWidth(1);
-
 			this.add(fUseCaseSubjectFigure_contents);
 			fUseCaseSubjectFigure_contents.setLayoutManager(new StackLayout());
-
-
 		}
 
 

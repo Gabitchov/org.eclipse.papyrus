@@ -943,7 +943,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		label6030.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6030 = (Location)label6030.getLayoutConstraint();
 		location6030.setX(0);
-		location6030.setY(60);
+		location6030.setY(-20);
 		return edge;
 	}
 
@@ -981,7 +981,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		label6031.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6031 = (Location)label6031.getLayoutConstraint();
 		location6031.setX(0);
-		location6031.setY(60);
+		location6031.setY(-20);
 		return edge;
 	}
 
@@ -1017,7 +1017,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		label6032.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6032 = (Location)label6032.getLayoutConstraint();
 		location6032.setX(0);
-		location6032.setY(60);
+		location6032.setY(-20);
 		return edge;
 	}
 
@@ -1050,12 +1050,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		label6008.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6008 = (Location)label6008.getLayoutConstraint();
 		location6008.setX(0);
-		location6008.setY(20);
+		location6008.setY(40);
 		Node label6033 = createLabel(edge, UMLVisualIDRegistry.getType(AssociationAppliedStereotypeEditPart.VISUAL_ID));
 		label6033.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6033 = (Location)label6033.getLayoutConstraint();
 		location6033.setX(0);
-		location6033.setY(60);
+		location6033.setY(-20);
 		return edge;
 	}
 
@@ -1127,7 +1127,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		label6034.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6034 = (Location)label6034.getLayoutConstraint();
 		location6034.setX(0);
-		location6034.setY(60);
+		location6034.setY(-20);
 		return edge;
 	}
 
@@ -1199,7 +1199,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		label6014.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6014 = (Location)label6014.getLayoutConstraint();
 		location6014.setX(0);
-		location6014.setY(60);
+		location6014.setY(-20);
 		return edge;
 	}
 
@@ -1240,7 +1240,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		label6013.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6013 = (Location)label6013.getLayoutConstraint();
 		location6013.setX(0);
-		location6013.setY(60);
+		location6013.setY(-20);
 		return edge;
 	}
 
@@ -1281,7 +1281,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		label6035.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6035 = (Location)label6035.getLayoutConstraint();
 		location6035.setX(0);
-		location6035.setY(60);
+		location6035.setY(-20);
 		return edge;
 	}
 
@@ -1317,7 +1317,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		label0.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location0 = (Location)label0.getLayoutConstraint();
 		location0.setX(0);
-		location0.setY(60);
+		location0.setY(-20);
 		return edge;
 	}
 
@@ -1358,7 +1358,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		label6036.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6036 = (Location)label6036.getLayoutConstraint();
 		location6036.setX(0);
-		location6036.setY(60);
+		location6036.setY(-20);
 		return edge;
 	}
 

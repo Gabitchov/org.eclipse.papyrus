@@ -116,7 +116,7 @@ public class AssociationNameEditPart extends LabelEditPart implements ITextAware
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationNameEditPart.VISUAL_ID), new Point(0, 20));
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.AssociationNameEditPart.VISUAL_ID), new Point(0, 40));
 	}
 
 	/**

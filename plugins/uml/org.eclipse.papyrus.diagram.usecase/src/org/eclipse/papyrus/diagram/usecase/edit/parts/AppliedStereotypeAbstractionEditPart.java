@@ -116,7 +116,7 @@ public class AppliedStereotypeAbstractionEditPart extends LabelEditPart implemen
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.AppliedStereotypeAbstractionEditPart.VISUAL_ID), new Point(0, 60));
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.AppliedStereotypeAbstractionEditPart.VISUAL_ID), new Point(0, -20));
 	}
 
 	/**

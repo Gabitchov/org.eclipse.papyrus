@@ -128,7 +128,7 @@ public class ExtendAppliedStereotypeEditPart extends LabelEditPart implements IT
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.ExtendAppliedStereotypeEditPart.VISUAL_ID), new Point(0, 60));
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.ExtendAppliedStereotypeEditPart.VISUAL_ID), new Point(0, -20));
 	}
 
 	/**
