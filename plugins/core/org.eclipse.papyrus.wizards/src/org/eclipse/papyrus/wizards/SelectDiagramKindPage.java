@@ -7,8 +7,12 @@
  * 
  * Contributors:
  *     Obeo - initial API and implementation
+ *     Tatiana Fesenko(CEA) - improved look&feel
  *******************************************************************************/
 package org.eclipse.papyrus.wizards;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.core.extension.NotFoundException;
@@ -18,16 +22,15 @@ import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
 import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 /**
@@ -35,10 +38,9 @@ import org.eclipse.swt.widgets.Text;
  * creationCommand attribute in PapyrusDiagram Eclipse extension.
  * 
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
+ * @author Tatiana Fesenko
  */
 public class SelectDiagramKindPage extends WizardPage {
-
-	private final static String DIAGRAM_KIND_ID = "diagramKindId";
 
 	/**
 	 * The previous page containing the model fileName
@@ -74,15 +76,11 @@ public class SelectDiagramKindPage extends WizardPage {
 		return creationCommand;
 	}
 
-	/**
-	 * The list containing all registered diagram kind
-	 */
-	private CCombo diagramList = null;
-
+    // TF get rid of  NewModelFilePage parameter as it isn't used in this class
 	protected SelectDiagramKindPage(String pageName, NewModelFilePage modelFilePage) {
 		super(pageName);
-		setTitle("Select a new Diagram");
-		setDescription("Select a new Diagram");
+		setTitle("Initialization information");
+		setDescription("Select name and kind of the diagram");
 		this.modelFilePage = modelFilePage;
 	}
 
@@ -90,57 +88,72 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * {@inheritDoc}
 	 */
 	public void createControl(Composite parent) {
-		Composite root = new Composite(parent, SWT.NONE);
+		Composite plate = new Composite(parent, SWT.NONE);
+		plate.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		GridLayout gridLayout = new GridLayout();
-		root.setLayout(gridLayout);
-		Group composite = new Group(root, 0);
-		composite.setText("Initialization information");
-
-		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		gridLayout = new GridLayout(2, false);
 		gridLayout.marginWidth = 10;
-		composite.setLayout(gridLayout);
-		createDialogArea(composite);
+		plate.setLayout(gridLayout);
+		setControl(plate);
 
-		setControl(root);
-	}
-
-	private void createDialogArea(Composite composite) {
-		createDiagramKindForm(composite);
-		createNameForm(composite);
+		createNameForm(plate);
+		createDiagramKindForm(plate);
 	}
 
 	private void createDiagramKindForm(Composite composite) {
-		// create label
-		Label label = new Label(composite, SWT.TRAIL);
-		GridData data = new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING);
-		label.setLayoutData(data);
-		label.setText("Select diagram kind:");
+		Group group = createGroup(composite, "Diagram Kind:");
+		final List<Button> buttons = new ArrayList<Button>();
 
-		// create list of diagrams kind
-		diagramList = new CCombo(composite, SWT.BORDER);
-		data = new GridData(SWT.FILL, SWT.FILL, true, false);
-		diagramList.setLayoutData(data);
-		fillList(diagramList);
-		diagramList.addSelectionListener(new SelectionListener() {
+		SelectionListener listener = new SelectionListener() {
+
+			public void widgetSelected(SelectionEvent e) {
+				for(Button button : buttons) {
+					button.setSelection(false);
+				}
+				((Button)e.widget).setSelection(true);
+				handleSelectionChanged((Button)e.widget);
+			}
+
+			private void handleSelectionChanged(Button selected) {
+				try {
+					SelectDiagramKindPage.this.creationCommand = getCreationCommandRegistry().getCommand((String)selected.getData());
+				} catch (NotFoundException e) {
+					PapyrusTrace.log(e);
+				}
+			}
 
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
+		};
 
-			public void widgetSelected(SelectionEvent e) {
-				handleListSelected();
-			}
-		});
+		for(CreationCommandDescriptor desc : getCreationCommandRegistry().getCommandDescriptors()) {
+			Button button = new Button(group, SWT.RADIO);
+			button.addSelectionListener(listener);
+			button.setText(desc.getLabel());
+			button.setData(desc.getCommandId());
+			buttons.add(button);
+		}
+		if(!buttons.isEmpty()) {
+			buttons.get(0).setSelection(true);
+		}
+	}
+
+	private Group createGroup(Composite parent, String name) {
+		Group group = new Group(parent, SWT.NONE);
+		group.setText(name);
+		GridLayout layout = new GridLayout(1, false);
+		layout.marginHeight = 5;
+		layout.marginWidth = 5;
+		group.setLayout(layout);
+		GridData data = new GridData(SWT.FILL, SWT.FILL, true, false);
+		group.setLayoutData(data);
+		return group;
 	}
 
 	private void createNameForm(Composite composite) {
-		Label label = new Label(composite, SWT.TRAIL);
-		GridData data = new GridData(GridData.VERTICAL_ALIGN_BEGINNING);
-		label.setLayoutData(data);
-		label.setText("Diagram Name:");
+		Group group = createGroup(composite, "Diagram Name:");
 
-		nameText = new Text(composite, SWT.BORDER);
-		data = new GridData(GridData.FILL_HORIZONTAL);
+		nameText = new Text(group, SWT.BORDER);
+		GridData data = new GridData(GridData.FILL_HORIZONTAL);
 		nameText.setLayoutData(data);
 		nameText.setText("NewDiagram");
 		nameText.addModifyListener(new ModifyListener() {
@@ -161,29 +174,6 @@ public class SelectDiagramKindPage extends WizardPage {
 			return;
 		}
 		updateStatus(null);
-	}
-
-	private void fillList(CCombo list) {
-		for(CreationCommandDescriptor desc : getCreationCommandRegistry().getCommandDescriptors()) {
-			list.add(desc.getLabel());
-			list.setData(DIAGRAM_KIND_ID + list.getItemCount(), desc.getCommandId());
-		}
-		if(diagramList.getItemCount() > 0) {
-			diagramList.select(0);
-			// Uncomment next if we always want a default diagram.
-			// Ensure that this is the ClassDiagram !!
-			// handleListSelected();
-		}
-	}
-
-	private void handleListSelected() {
-		int i = diagramList.getSelectionIndex();
-		String diagramKindId = (String)diagramList.getData(DIAGRAM_KIND_ID + (i + 1));
-		try {
-			this.creationCommand = getCreationCommandRegistry().getCommand(diagramKindId);
-		} catch (NotFoundException e) {
-			PapyrusTrace.log(e);
-		}
 	}
 
 	private ICreationCommandRegistry getCreationCommandRegistry() {

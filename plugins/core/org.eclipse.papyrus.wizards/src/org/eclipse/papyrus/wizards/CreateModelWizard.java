@@ -79,10 +79,12 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 	private DiResourceSet diResourceSet;
 
 	public CreateModelWizard() {
+		this(null);
 	}
 
 	public CreateModelWizard(URI domainModelURI) {
 		super();
+		setWindowTitle("New Papyrus Model");
 		this.domainModelURI = domainModelURI;
 	}
 
