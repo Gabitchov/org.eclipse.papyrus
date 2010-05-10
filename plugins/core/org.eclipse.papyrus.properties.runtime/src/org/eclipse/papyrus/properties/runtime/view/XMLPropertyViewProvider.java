@@ -56,8 +56,8 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 	/** node name for tab */
 	protected static final String NODE_NAME_TAB = "tab";
 
-	/** node name for view */
-	protected static final String NODE_NAME_VIEW = "view";
+	/** node name for fragment */
+	protected static final String NODE_NAME_FRAGMENT = "view";
 
 	/** node name for id */
 	protected static final String NODE_NAME_ID = "id";
@@ -98,8 +98,8 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 	/** parser for the configuration file */
 	protected PropertyViewProviderParser parser = null;
 
-	/** list of predefined views */
-	protected final Map<String, ViewDescriptor> predefinedViews = new HashMap<String, ViewDescriptor>();
+	/** list of predefined fragments */
+	protected final Map<String, FragmentDescriptor> predefinedFragments = new HashMap<String, FragmentDescriptor>();
 
 	/** list of predefined dialogs */
 	protected final Map<String, DialogDescriptor> predefinedDialogs = new HashMap<String, DialogDescriptor>();
@@ -129,8 +129,8 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 	 * {@inheritDoc}
 	 */
 	public boolean provides(IOperation operation) {
-		if(operation instanceof GetPropertyViewDescriptorOperation) {
-			return managesViewDescriptor(((GetPropertyViewDescriptorOperation)operation).getDescriptorID());
+		if(operation instanceof GetFragmentDescriptorOperation) {
+			return managesFragmentDescriptor(((GetFragmentDescriptorOperation)operation).getDescriptorID());
 		} else if(operation instanceof GetDialogDescriptorOperationById) {
 			return managesDialogDescriptor(((GetDialogDescriptorOperationById)operation).getDescriptorID());
 		} else if(operation instanceof GetDialogDescriptorOperation) {
@@ -205,7 +205,7 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 					} else {
 						Document document = documentBuilder.parse(file);
 						NodeList viewNodes = document.getChildNodes();
-						getParser().parseXMLfile(viewNodes, this.predefinedViews, this.predefinedDialogs, bundle);
+						getParser().parseXMLfile(viewNodes, this.predefinedFragments, this.predefinedDialogs, bundle);
 					}
 				} catch (ParserConfigurationException e) {
 					Activator.log.error(e);
@@ -244,15 +244,15 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 	/**
 	 * {@inheritDoc}
 	 */
-	public ViewDescriptor getViewDescriptor(String descriptorID) {
-		return predefinedViews.get(descriptorID);
+	public FragmentDescriptor getFragmentDescriptor(String descriptorID) {
+		return predefinedFragments.get(descriptorID);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean managesViewDescriptor(String descriptorId) {
-		return predefinedViews.containsKey(descriptorId);
+	public boolean managesFragmentDescriptor(String descriptorId) {
+		return predefinedFragments.containsKey(descriptorId);
 	}
 
 	/**

@@ -15,7 +15,7 @@
 			</emfMessageBinding>
 		</message>
 		<content>
-			<view predefinedId="view_single_NamedElement"/>
+			<fragment predefinedId="fragment_single_NamedElement"/>
 		</content>
 	</dialog>
 		<dialog id="dialog_single_Classifier"><!-- Dialog for single Classifier -->
@@ -36,8 +36,8 @@
 			</emfMessageBinding>
 		</message>
 		<content>
-			<view predefinedId="view_single_NamedElement"/>
-			<view predefinedId="view_single_Classifier"/>
+			<fragment predefinedId="fragment_single_NamedElement"/>
+			<fragment predefinedId="fragment_single_Classifier"/>
 		</content>
 	</dialog>
 	<dialog id="dialog_single_Classifier_EClass"><!-- Dialog for single Classifier stereotype EClass -->
@@ -61,8 +61,8 @@
 			</emfMessageBinding>
 		</message>
 		<content>
-			<view predefinedId="view_single_NamedElement"/>
-			<view predefinedId="view_single_Class_Eclass"/>
+			<fragment predefinedId="fragment_single_NamedElement"/>
+			<fragment predefinedId="fragment_single_Class_Eclass"/>
 		</content>
 	</dialog>
 </dialogs>

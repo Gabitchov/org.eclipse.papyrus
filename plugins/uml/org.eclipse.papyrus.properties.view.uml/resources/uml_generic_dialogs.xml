@@ -15,7 +15,7 @@
 			</emfMessageBinding>
 		</message>
 		<content>
-			<view predefinedId="view_single_NamedElement"/>
+			<fragment predefinedId="fragment_single_NamedElement"/>
 		</content>
 	</dialog>
 	<dialog id="dialog_single_Interface"><!-- Dialog for single Classifier -->
@@ -36,7 +36,7 @@
 			</emfMessageBinding>
 		</message>
 		<content>
-			<view predefinedId="view_single_NamedElement"/>
+			<fragment predefinedId="fragment_single_NamedElement"/>
 		</content>
 	</dialog>
 </dialogs>

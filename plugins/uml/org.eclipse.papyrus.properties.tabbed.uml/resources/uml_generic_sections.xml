@@ -13,7 +13,7 @@
 			<replacedSections>
 				<replacedSection id="multipleNamedElementsSection"/> 
 			</replacedSections>
-			<view predefinedId="view_single_NamedElement"/>
+			<fragment predefinedId="fragment_single_NamedElement"/>
 		</section>
 	</sectionSet>
 	<sectionSet name="Section Set for multiple NameElements">
@@ -21,7 +21,7 @@
 			<elementClass name="org.eclipse.uml2.uml.NamedElement"/>
 		</context>
 		<section id="multipleNamedElementsSection" tabId="basicTab" adapterId="Semantic">
-			<view predefinedId="view_multi_NamedElement"/>
+			<fragment predefinedId="fragment_multi_NamedElement"/>
 		</section>
 	</sectionSet>
 	<sectionSet name="Section Set for single Class">
@@ -29,7 +29,7 @@
 			<elementClass name="org.eclipse.uml2.uml.Class"/>
 		</context>
 		<section id="singleClassifierSection" tabId="basicTab" adapterId="Semantic">
-			<view id="view_single_Classifier2">	<!-- view for UML Classifier -->
+			<fragment id="fragment_single_Classifier2">	<!-- fragment for UML Classifier -->
 				<context enablesFor="1">
 					<elementClass name="org.eclipse.uml2.uml.Classifier"></elementClass>
 				</context>
@@ -58,7 +58,7 @@
 						</controller>
 					</groupContainer>
 				</content>
-			</view>
+			</fragment>
 		</section>
 	</sectionSet>
 	<sectionSet name="Section Set for single Property">
@@ -66,7 +66,7 @@
 			<elementClass name="org.eclipse.uml2.uml.Property"/>
 		</context>
 		<section id="singlePropertySection" tabId="basicTab" adapterId="Semantic">
-			<view predefinedId="view_single_Property"/>
+			<fragment predefinedId="fragment_single_Property"/>
 		</section>
 	</sectionSet>
 	<sectionSet name="Section Set for single Association">
@@ -77,7 +77,7 @@
 			<subFeatureDescriptor featureName="memberEnd">
 			</subFeatureDescriptor>
 			<subFeatureDescriptorContainer type="expandableContainer" label="member ends"/>
-			<view id="view_single_MemberEnd">	<!-- view for UML Property as a member end -->
+			<fragment id="fragment_single_MemberEnd">	<!-- fragment for UML Property as a member end -->
 				<context enablesFor="1">
 					<elementClass name="org.eclipse.uml2.uml.Property"></elementClass>
 				</context>
@@ -106,7 +106,7 @@
 						</controller>
 					</groupContainer>
 				</content>
-			</view>
+			</fragment>
 		</subFeatureSection>
 	</sectionSet>
 	<sectionSet name="Section Set for single Class stereotyped EClass">
@@ -120,7 +120,7 @@
 			<replacedSections>
 				<replacedSection id="singleClassifierSection"/> 
 			</replacedSections>
-			<view id="view_single_Class_Eclass">	<!-- view for UML Classifier -->
+			<fragment id="fragment_single_Class_Eclass">	<!-- fragment for UML Classifier -->
 				<context enablesFor="1">
 					<elementClass name="org.eclipse.uml2.uml.Class"></elementClass>
 				</context>
@@ -138,7 +138,7 @@
 						</controller>
 					</expandableContainer>
 				</content>
-			</view>
+			</fragment>
 		</section>
 	</sectionSet>
 	<sectionSet name="Section Set for single Property stereotyped EAttribute">
@@ -152,7 +152,7 @@
 			<replacedSections>
 				<replacedSection id="singlePropertySection"/> 
 			</replacedSections>
-			<view id="view_single_Property_EAttribute">	<!-- view for UML Property with stereotype Ecore::EAttribute -->
+			<fragment id="fragment_single_Property_EAttribute">	<!-- fragment for UML Property with stereotype Ecore::EAttribute -->
 				<context enablesFor="1">
 					<elementClass name="org.eclipse.uml2.uml.Property"></elementClass>
 				</context>
@@ -165,7 +165,7 @@
 						</controller>
 					</expandableContainer>
 				</content>
-			</view>
+			</fragment>
 		</section>
 	</sectionSet>
 	<sectionSet name="Section Set for single Property stereotyped SysML::Blocks::ConnectorProperty">
@@ -179,7 +179,7 @@
 			<replacedSections>
 				<replacedSection id="singlePropertySection"/> 
 			</replacedSections>
-			<view id="view_single_Property_ConnectorProperty">	<!-- view for UML Property with stereotype SysML::Blocks::ConnectorProperty -->
+			<fragment id="fragment_single_Property_ConnectorProperty">	<!-- fragment for UML Property with stereotype SysML::Blocks::ConnectorProperty -->
 				<context enablesFor="1">
 					<elementClass name="org.eclipse.uml2.uml.Property"></elementClass>
 				</context>
@@ -196,7 +196,7 @@
 						</controller>
 					</expandableContainer>
 				</content>
-			</view>
+			</fragment>
 		</section>
 	</sectionSet>
 </propertyTabView>

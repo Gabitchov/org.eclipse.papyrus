@@ -14,7 +14,7 @@ package org.eclipse.papyrus.properties.tabbed.core.view.subfeatures;
 import java.util.Arrays;
 import java.util.List;
 
-import org.eclipse.papyrus.properties.runtime.view.ViewDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.AbstractContainerDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.DynamicSection;
 import org.eclipse.swt.SWT;
@@ -49,10 +49,10 @@ public class DynamicSubFeatureSection extends DynamicSection {
 	/**
 	 * Creates a new DynamicSubFeatureSection.
 	 * 
-	 * @param viewDescriptors
+	 * @param fragmentDescriptors
 	 *        the list of view descriptors used by this section
 	 */
-	public DynamicSubFeatureSection(List<ViewDescriptor> viewDescriptors, SubFeatureDescriptor subFeatureDescriptor, int maxColumn, SubFeatureContainerDescriptor subFeatureContainerDescriptor) {
+	public DynamicSubFeatureSection(List<FragmentDescriptor> viewDescriptors, SubFeatureDescriptor subFeatureDescriptor, int maxColumn, SubFeatureContainerDescriptor subFeatureContainerDescriptor) {
 		super(viewDescriptors);
 		this.subFeatureDescriptor = subFeatureDescriptor;
 		this.maxColumn = maxColumn;
@@ -91,7 +91,7 @@ public class DynamicSubFeatureSection extends DynamicSection {
 
 				for(Object subElement : subElementsToEdit) {
 					// generate the content of the section, given the configuration
-					for(ViewDescriptor viewDescriptor : viewDescriptors) {
+					for(FragmentDescriptor viewDescriptor : fragmentDescriptors) {
 						for(AbstractContainerDescriptor descriptor : viewDescriptor.getContainerDescriptors()) {
 							descriptor.createContent(mainComposite, this.tabbedPropertySheetPage.getWidgetFactory(), Arrays.asList(subElement));
 							containers.add(descriptor);

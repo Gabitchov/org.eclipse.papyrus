@@ -153,14 +153,14 @@ public class PropertyViewService extends Service {
 	}
 
 	/**
-	 * Returns a view descriptor for its Id
+	 * Returns a fragment descriptor for its Id
 	 * 
 	 * @param id
-	 *        the id of the view descriptor to retrieve
-	 * @return the view descriptor found or <code>null</code>
+	 *        the id of the fragment descriptor to retrieve
+	 * @return the fragment descriptor found or <code>null</code>
 	 */
-	public ViewDescriptor getViewDescriptor(String id) {
-		ViewDescriptor result = (ViewDescriptor)executeUnique(ExecutionStrategy.REVERSE, new GetPropertyViewDescriptorOperation(id));
+	public FragmentDescriptor getFragmentDescriptor(String id) {
+		FragmentDescriptor result = (FragmentDescriptor)executeUnique(ExecutionStrategy.REVERSE, new GetFragmentDescriptorOperation(id));
 		return result;
 	}
 

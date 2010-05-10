@@ -31,23 +31,23 @@ public interface IPropertyViewProvider extends IProvider {
 	public void configure(IConfigurationElement element);
 
 	/**
-	 * Returns the view descriptor, given its ID
+	 * Returns the fragment descriptor, given its ID
 	 * 
 	 * @param descriptorID
 	 *        the id of the descriptor to retrieve
-	 * @return the found view descriptor or <code>null</code>
+	 * @return the found fragment descriptor or <code>null</code>
 	 */
-	public ViewDescriptor getViewDescriptor(String descriptorID);
+	public FragmentDescriptor getFragmentDescriptor(String descriptorID);
 
 
 	/**
-	 * returns <code>true</code> if this provider can handle the view descriptor specified by its identifier
+	 * returns <code>true</code> if this provider can handle the fragment descriptor specified by its identifier
 	 * 
 	 * @param descriptorId
 	 *        the id of the descriptor
-	 * @return <code>true</code> if the provider can handle this view provider
+	 * @return <code>true</code> if the provider can handle this fragment provider
 	 */
-	public boolean managesViewDescriptor(String descriptorId);
+	public boolean managesFragmentDescriptor(String descriptorId);
 
 	/**
 	 * Returns the dialog descriptor, given its ID

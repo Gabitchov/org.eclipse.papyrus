@@ -24,8 +24,8 @@ import org.w3c.dom.Node;
  */
 public class DialogDescriptor extends AbstractConstrainedDescriptor {
 
-	/** list of ViewDescriptor created by this dialog */
-	protected List<String> viewDescriptorsIds;
+	/** list of FragmentDescriptor created by this dialog */
+	protected List<String> fragmentDescriptorsIds;
 
 	/** title for the dialog */
 	protected Object title;
@@ -36,13 +36,6 @@ public class DialogDescriptor extends AbstractConstrainedDescriptor {
 	/** list of identifier of replaced dialogs */
 	protected List<String> replacedDialogIds;
 
-	//	/**
-	//	 * Creates a new DialogDescriptor.
-	//	 */
-	//	public DialogDescriptor(String id, List<IConstraintDescriptor> constraints, List<ContainerDescriptor> descriptors) {
-	//		super(id, constraints);
-	//	}
-
 	/**
 	 * Creates a new DialogDescriptor.
 	 * 
@@ -51,7 +44,7 @@ public class DialogDescriptor extends AbstractConstrainedDescriptor {
 	 * @param constraints
 	 *        the list of constraints for this dialog
 	 * @param contentNode
-	 *        the unparsed node descirbing the content of the dialog
+	 *        the unparsed node describing the content of the dialog
 	 * @param replacedDialogIds
 	 *        the list of replaced ids for the dialog
 	 * @param title
@@ -69,19 +62,19 @@ public class DialogDescriptor extends AbstractConstrainedDescriptor {
 	}
 
 	/**
-	 * Returns the list of identifier of view descriptors
+	 * Returns the list of identifier of fragment descriptors
 	 * 
-	 * @return the list of identifier of view descriptors
+	 * @return the list of identifier of fragment descriptors
 	 */
-	public List<String> getContainerDescriptors() {
+	public List<String> getFragmentDescriptors() {
 		if(unparsed) {
 			if(parser == null) {
-				viewDescriptorsIds = Collections.emptyList();
-				Activator.log.error("No parser was given to the view descriptor " + id, null);
+				fragmentDescriptorsIds = Collections.emptyList();
+				Activator.log.error("No parser was given to the fragment descriptor " + id, null);
 				parseFailed = true;
 			} else {
 				try {
-					viewDescriptorsIds = parser.parseDialogContentNode(contentNode);
+					fragmentDescriptorsIds = parser.parseDialogContentNode(contentNode);
 					parseFailed = false;
 				} catch (XMLParseException e) {
 					Activator.log.error(e);
@@ -89,7 +82,7 @@ public class DialogDescriptor extends AbstractConstrainedDescriptor {
 				}
 			}
 		}
-		return viewDescriptorsIds;
+		return fragmentDescriptorsIds;
 	}
 
 	/**

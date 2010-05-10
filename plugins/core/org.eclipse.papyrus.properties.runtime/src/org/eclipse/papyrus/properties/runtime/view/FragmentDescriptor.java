@@ -21,25 +21,25 @@ import org.w3c.dom.Node;
 
 
 /**
- * descriptor for views
+ * descriptor for fragments
  */
-public class ViewDescriptor extends AbstractConstrainedDescriptor {
+public class FragmentDescriptor extends AbstractConstrainedDescriptor {
 
 	/** list of containers created by this dialog */
 	protected List<ContainerDescriptor> descriptors;
 
 	/**
-	 * Creates a new ViewDescriptor.
+	 * Creates a new FragmentDescriptor.
 	 */
-	public ViewDescriptor(String id, List<IConstraintDescriptor> constraints, List<ContainerDescriptor> descriptors) {
+	public FragmentDescriptor(String id, List<IConstraintDescriptor> constraints, List<ContainerDescriptor> descriptors) {
 		super(id, constraints);
 		this.descriptors = descriptors;
 	}
 
 	/**
-	 * Creates a new ViewDescriptor.
+	 * Creates a new FragmentDescriptor.
 	 */
-	public ViewDescriptor(String id, List<IConstraintDescriptor> constraints, Node contentNode, PropertyViewProviderParser parser) {
+	public FragmentDescriptor(String id, List<IConstraintDescriptor> constraints, Node contentNode, PropertyViewProviderParser parser) {
 		super(id, constraints, contentNode, parser);
 	}
 
@@ -56,7 +56,7 @@ public class ViewDescriptor extends AbstractConstrainedDescriptor {
 				parseFailed = true;
 			} else {
 				try {
-					descriptors = parser.parseViewContentNode(contentNode);
+					descriptors = parser.parseFragmentContentNode(contentNode);
 					parseFailed = false;
 				} catch (XMLParseException e) {
 					Activator.log.error(e);

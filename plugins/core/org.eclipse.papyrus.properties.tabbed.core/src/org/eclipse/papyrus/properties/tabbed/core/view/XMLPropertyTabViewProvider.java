@@ -108,7 +108,7 @@ public class XMLPropertyTabViewProvider extends XMLPropertyViewProvider implemen
 					} else {
 						Document document = documentBuilder.parse(file);
 						NodeList viewNodes = document.getChildNodes();
-						getParser().parseXMLfile(viewNodes, this.predefinedViews, this.predefinedDialogs, bundle);
+						getParser().parseXMLfile(viewNodes, this.predefinedFragments, this.predefinedDialogs, bundle);
 					}
 				} catch (ParserConfigurationException e) {
 					Activator.log.error(e);

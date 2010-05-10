@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.properties.runtime.view.ViewDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.AbstractContainerDescriptor;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -30,7 +30,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 
 
 /**
- * section using controllers for content.
+ * Section using controllers for content.
  */
 public class DynamicSection extends AbstractPropertySection {
 
@@ -46,8 +46,8 @@ public class DynamicSection extends AbstractPropertySection {
 	/** tabbed property sheet page */
 	protected TabbedPropertySheetPage tabbedPropertySheetPage;
 
-	/** list of view descriptors that compose the section */
-	protected List<ViewDescriptor> viewDescriptors;
+	/** list of fragment descriptors that compose the section */
+	protected List<FragmentDescriptor> fragmentDescriptors;
 
 	/**
 	 * Creates a new DynamicSection.
@@ -56,8 +56,8 @@ public class DynamicSection extends AbstractPropertySection {
 	 *        the graphical configuration of the section
 	 * 
 	 */
-	public DynamicSection(List<ViewDescriptor> viewDescriptors) {
-		this.viewDescriptors = viewDescriptors;
+	public DynamicSection(List<FragmentDescriptor> fragmentDescriptors) {
+		this.fragmentDescriptors = fragmentDescriptors;
 		this.containers = new ArrayList<AbstractContainerDescriptor>();
 	}
 
@@ -128,7 +128,7 @@ public class DynamicSection extends AbstractPropertySection {
 			containers.clear();
 
 			// generate the content of the section, given the configuration
-			for(ViewDescriptor viewDescriptor : viewDescriptors) {
+			for(FragmentDescriptor viewDescriptor : fragmentDescriptors) {
 				for(AbstractContainerDescriptor descriptor : viewDescriptor.getContainerDescriptors()) {
 					descriptor.createContent(this.parent, this.tabbedPropertySheetPage.getWidgetFactory(), objectsToEdit);
 					containers.add(descriptor);

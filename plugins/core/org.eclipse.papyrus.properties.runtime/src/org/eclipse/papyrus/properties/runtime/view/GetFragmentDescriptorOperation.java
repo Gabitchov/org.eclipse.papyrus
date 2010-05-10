@@ -15,17 +15,17 @@ import org.eclipse.gmf.runtime.common.core.service.IProvider;
 
 
 /**
- * Operation to retrieve a view descriptor using its ID
+ * Operation to retrieve a fragment descriptor using its ID
  */
-public class GetPropertyViewDescriptorOperation implements IPropertyViewOperation {
+public class GetFragmentDescriptorOperation implements IPropertyViewOperation {
 
 	/** id of the view descriptor to retrieve */
 	protected final String descriptorID;
 
 	/**
-	 * Creates a new GetPropertyViewDescriptorOperation.
+	 * Creates a new GetFragmentDescriptorOperation.
 	 */
-	public GetPropertyViewDescriptorOperation(String descriptorID) {
+	public GetFragmentDescriptorOperation(String descriptorID) {
 		this.descriptorID = descriptorID;
 	}
 
@@ -43,7 +43,7 @@ public class GetPropertyViewDescriptorOperation implements IPropertyViewOperatio
 	 */
 	public Object execute(IProvider provider) {
 		if(provider instanceof IPropertyViewProvider) {
-			return ((IPropertyViewProvider)provider).getViewDescriptor(descriptorID);
+			return ((IPropertyViewProvider)provider).getFragmentDescriptor(descriptorID);
 		}
 		return null;
 	}

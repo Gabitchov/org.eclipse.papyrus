@@ -19,8 +19,8 @@ import org.eclipse.jface.dialogs.StatusDialog;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IBindingLabelProviderDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.DialogDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
-import org.eclipse.papyrus.properties.runtime.view.ViewDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.AbstractContainerDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
@@ -168,9 +168,9 @@ public class PropertyDialog extends StatusDialog {
 		scrolledComposite.setExpandHorizontal(true);
 
 		List<AbstractContainerDescriptor> containers = new ArrayList<AbstractContainerDescriptor>();
-		for(String viewId : getViewsId()) {
-			ViewDescriptor viewDescriptor = PropertyViewService.getInstance().getViewDescriptor(viewId);
-			for(AbstractContainerDescriptor descriptor : viewDescriptor.getContainerDescriptors()) {
+		for(String fragmentId : getFragmentsId()) {
+			FragmentDescriptor fragmentDescriptor = PropertyViewService.getInstance().getFragmentDescriptor(fragmentId);
+			for(AbstractContainerDescriptor descriptor : fragmentDescriptor.getContainerDescriptors()) {
 				descriptor.createContent(containerComposite, getWidgetFactory(), objectsToEdit);
 				containers.add(descriptor);
 			}
@@ -180,12 +180,12 @@ public class PropertyDialog extends StatusDialog {
 	}
 
 	/**
-	 * Returns the list of identifier of views for this dialog
+	 * Returns the list of identifier of fragments for this dialog
 	 * 
-	 * @return the list of identifier of views for this dialog
+	 * @return the list of identifier of fragments for this dialog
 	 */
-	protected List<String> getViewsId() {
-		return descriptor.getContainerDescriptors();
+	protected List<String> getFragmentsId() {
+		return descriptor.getFragmentDescriptors();
 	}
 
 	/**

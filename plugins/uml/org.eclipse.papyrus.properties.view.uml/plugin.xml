@@ -9,10 +9,10 @@
             name="Lowest">
       </Priority>
       <PropertyViewContribution
-            description="These are generic views for uml elements"
+            description="These are generic fragments for uml elements"
             icon="icons/tool.gif"
-            name="UML Views"
-            path="resources/uml_predefined_views.xml">
+            name="UML Fragments"
+            path="resources/uml_predefined_fragments.xml">
       </PropertyViewContribution>
    </propertyViewProvider>
 </extension>
