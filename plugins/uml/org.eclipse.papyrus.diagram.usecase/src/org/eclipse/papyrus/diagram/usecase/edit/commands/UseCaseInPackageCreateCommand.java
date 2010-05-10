@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2010 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -33,7 +33,7 @@ import org.eclipse.uml2.uml.UseCase;
 /**
  * @generated
  */
-public class UseCase2CreateCommand extends EditElementCommand {
+public class UseCaseInPackageCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -48,7 +48,7 @@ public class UseCase2CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public UseCase2CreateCommand(CreateElementRequest req, EObject eObject) {
+	public UseCaseInPackageCreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -57,14 +57,14 @@ public class UseCase2CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static UseCase2CreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new UseCase2CreateCommand(req, eObject);
+	public static UseCaseInPackageCreateCommand create(CreateElementRequest req, EObject eObject) {
+		return new UseCaseInPackageCreateCommand(req, eObject);
 	}
 
 	/**
 	 * @generated
 	 */
-	public UseCase2CreateCommand(CreateElementRequest req) {
+	public UseCaseInPackageCreateCommand(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 
@@ -111,13 +111,16 @@ public class UseCase2CreateCommand extends EditElementCommand {
 		owner.getPackagedElements().add(newElement);
 
 
-		UMLElementTypes.init_UseCase_2014(newElement);
+		UMLElementTypes.init_UseCase_3012(newElement);
 
 		doConfigure(newElement, monitor, info);
 
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
+
+
+
 
 	/**
 	 * @generated

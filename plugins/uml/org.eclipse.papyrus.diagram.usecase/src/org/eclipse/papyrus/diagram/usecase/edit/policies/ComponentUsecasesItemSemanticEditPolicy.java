@@ -19,7 +19,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.commands.ActorInComponentCreateC
 import org.eclipse.papyrus.diagram.usecase.edit.commands.CommentCreateCommandCN;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.ComponentInComponentCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.ConstraintInComponentCreateCommand;
-import org.eclipse.papyrus.diagram.usecase.edit.commands.UseCase3CreateCommand;
+import org.eclipse.papyrus.diagram.usecase.edit.commands.UseCaseInComponentCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 
 /**
@@ -39,7 +39,7 @@ public class ComponentUsecasesItemSemanticEditPolicy extends UMLBaseItemSemantic
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.UseCase_3009 == req.getElementType()) {
-			return getGEFWrapper(new UseCase3CreateCommand(req));
+			return getGEFWrapper(new UseCaseInComponentCreateCommand(req));
 		}
 		if(UMLElementTypes.Component_3016 == req.getElementType()) {
 			return getGEFWrapper(new ComponentInComponentCreateCommand(req));

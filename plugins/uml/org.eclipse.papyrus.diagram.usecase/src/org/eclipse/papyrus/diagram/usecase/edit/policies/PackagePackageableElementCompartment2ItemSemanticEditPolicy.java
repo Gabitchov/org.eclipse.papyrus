@@ -20,7 +20,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.commands.CommentCreateCommandCN;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.ComponentInPackageCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.ConstraintInPackageCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.PackageCreateCommandCN;
-import org.eclipse.papyrus.diagram.usecase.edit.commands.UseCase4CreateCommand;
+import org.eclipse.papyrus.diagram.usecase.edit.commands.UseCaseInPackageCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 
 /**
@@ -46,7 +46,7 @@ public class PackagePackageableElementCompartment2ItemSemanticEditPolicy extends
 			return getGEFWrapper(new ActorInPackageCreateCommand(req));
 		}
 		if(UMLElementTypes.UseCase_3012 == req.getElementType()) {
-			return getGEFWrapper(new UseCase4CreateCommand(req));
+			return getGEFWrapper(new UseCaseInPackageCreateCommand(req));
 		}
 		if(UMLElementTypes.Component_3013 == req.getElementType()) {
 			return getGEFWrapper(new ComponentInPackageCreateCommand(req));

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2010 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -64,21 +64,22 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.IncludeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageImportEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePoints2EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePoints3EditPart;
 import org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 
 /**
  * @generated
  */
-public class UseCase3ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class UseCaseInPackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public UseCase3ItemSemanticEditPolicy() {
-		super(UMLElementTypes.UseCase_3009);
+	public UseCaseInPackageItemSemanticEditPolicy() {
+		super(UMLElementTypes.UseCase_3012);
 	}
+
 
 	/**
 	 * @generated
@@ -228,7 +229,7 @@ public class UseCase3ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		for(Iterator nit = view.getChildren().iterator(); nit.hasNext();) {
 			Node node = (Node)nit.next();
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
-			case UseCasePoints2EditPart.VISUAL_ID:
+			case UseCasePoints3EditPart.VISUAL_ID:
 				for(Iterator cit = node.getChildren().iterator(); cit.hasNext();) {
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
@@ -333,8 +334,8 @@ public class UseCase3ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	}
 
 	/**
-	 * Returns command to reorient EClass based link. New link target or source should be the domain
-	 * model element associated with this node.
+	 * Returns command to reorient EClass based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */
@@ -363,8 +364,8 @@ public class UseCase3ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source should be the
-	 * domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */

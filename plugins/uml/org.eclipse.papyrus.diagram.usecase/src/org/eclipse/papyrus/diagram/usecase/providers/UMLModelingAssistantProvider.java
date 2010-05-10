@@ -49,11 +49,11 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackagePackageableElementCompartment2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackagePackageableElementCompartmentEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase3EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase4EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseAsRectangleEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPartTN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInComponentEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInPackageEditPart;
 import org.eclipse.papyrus.diagram.usecase.part.Messages;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
@@ -70,22 +70,22 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart)host.getAdapter(IGraphicalEditPart.class);
-		if(editPart instanceof UseCaseEditPart) {
+		if(editPart instanceof UseCaseEditPartTN) {
 			ArrayList types = new ArrayList(1);
 			types.add(UMLElementTypes.ExtensionPoint_3007);
 			return types;
 		}
-		if(editPart instanceof UseCase2EditPart) {
+		if(editPart instanceof UseCaseAsRectangleEditPartTN) {
 			ArrayList types = new ArrayList(1);
 			types.add(UMLElementTypes.ExtensionPoint_3008);
 			return types;
 		}
-		if(editPart instanceof UseCase3EditPart) {
+		if(editPart instanceof UseCaseInComponentEditPart) {
 			ArrayList types = new ArrayList(1);
 			types.add(UMLElementTypes.ExtensionPoint_3007);
 			return types;
 		}
-		if(editPart instanceof UseCase4EditPart) {
+		if(editPart instanceof UseCaseInPackageEditPart) {
 			ArrayList types = new ArrayList(1);
 			types.add(UMLElementTypes.ExtensionPoint_3007);
 			return types;
@@ -164,11 +164,11 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof ActorAsRectangleEditPartTN) {
 			return ((ActorAsRectangleEditPartTN)sourceEditPart).getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof UseCaseEditPart) {
-			return ((UseCaseEditPart)sourceEditPart).getMARelTypesOnSource();
+		if(sourceEditPart instanceof UseCaseEditPartTN) {
+			return ((UseCaseEditPartTN)sourceEditPart).getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof UseCase2EditPart) {
-			return ((UseCase2EditPart)sourceEditPart).getMARelTypesOnSource();
+		if(sourceEditPart instanceof UseCaseAsRectangleEditPartTN) {
+			return ((UseCaseAsRectangleEditPartTN)sourceEditPart).getMARelTypesOnSource();
 		}
 		if(sourceEditPart instanceof ComponentEditPartTN) {
 			return ((ComponentEditPartTN)sourceEditPart).getMARelTypesOnSource();
@@ -182,8 +182,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof CommentEditPartTN) {
 			return ((CommentEditPartTN)sourceEditPart).getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof UseCase3EditPart) {
-			return ((UseCase3EditPart)sourceEditPart).getMARelTypesOnSource();
+		if(sourceEditPart instanceof UseCaseInComponentEditPart) {
+			return ((UseCaseInComponentEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
 		if(sourceEditPart instanceof ComponentInComponentEditPart) {
 			return ((ComponentInComponentEditPart)sourceEditPart).getMARelTypesOnSource();
@@ -203,8 +203,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof ActorInPackageEditPart) {
 			return ((ActorInPackageEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof UseCase4EditPart) {
-			return ((UseCase4EditPart)sourceEditPart).getMARelTypesOnSource();
+		if(sourceEditPart instanceof UseCaseInPackageEditPart) {
+			return ((UseCaseInPackageEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
 		if(sourceEditPart instanceof ComponentInPackageEditPart) {
 			return ((ComponentInPackageEditPart)sourceEditPart).getMARelTypesOnSource();
@@ -226,11 +226,11 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof ActorAsRectangleEditPartTN) {
 			return ((ActorAsRectangleEditPartTN)targetEditPart).getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof UseCaseEditPart) {
-			return ((UseCaseEditPart)targetEditPart).getMARelTypesOnTarget();
+		if(targetEditPart instanceof UseCaseEditPartTN) {
+			return ((UseCaseEditPartTN)targetEditPart).getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof UseCase2EditPart) {
-			return ((UseCase2EditPart)targetEditPart).getMARelTypesOnTarget();
+		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
+			return ((UseCaseAsRectangleEditPartTN)targetEditPart).getMARelTypesOnTarget();
 		}
 		if(targetEditPart instanceof ComponentEditPartTN) {
 			return ((ComponentEditPartTN)targetEditPart).getMARelTypesOnTarget();
@@ -244,8 +244,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof CommentEditPartTN) {
 			return ((CommentEditPartTN)targetEditPart).getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof UseCase3EditPart) {
-			return ((UseCase3EditPart)targetEditPart).getMARelTypesOnTarget();
+		if(targetEditPart instanceof UseCaseInComponentEditPart) {
+			return ((UseCaseInComponentEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
 		if(targetEditPart instanceof ComponentInComponentEditPart) {
 			return ((ComponentInComponentEditPart)targetEditPart).getMARelTypesOnTarget();
@@ -265,8 +265,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof ActorInPackageEditPart) {
 			return ((ActorInPackageEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof UseCase4EditPart) {
-			return ((UseCase4EditPart)targetEditPart).getMARelTypesOnTarget();
+		if(targetEditPart instanceof UseCaseInPackageEditPart) {
+			return ((UseCaseInPackageEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
 		if(targetEditPart instanceof ComponentInPackageEditPart) {
 			return ((ComponentInPackageEditPart)targetEditPart).getMARelTypesOnTarget();
@@ -289,11 +289,11 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof ActorAsRectangleEditPartTN) {
 			return ((ActorAsRectangleEditPartTN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(sourceEditPart instanceof UseCaseEditPart) {
-			return ((UseCaseEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		if(sourceEditPart instanceof UseCaseEditPartTN) {
+			return ((UseCaseEditPartTN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(sourceEditPart instanceof UseCase2EditPart) {
-			return ((UseCase2EditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		if(sourceEditPart instanceof UseCaseAsRectangleEditPartTN) {
+			return ((UseCaseAsRectangleEditPartTN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof ComponentEditPartTN) {
 			return ((ComponentEditPartTN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
@@ -307,8 +307,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof CommentEditPartTN) {
 			return ((CommentEditPartTN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(sourceEditPart instanceof UseCase3EditPart) {
-			return ((UseCase3EditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		if(sourceEditPart instanceof UseCaseInComponentEditPart) {
+			return ((UseCaseInComponentEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof ComponentInComponentEditPart) {
 			return ((ComponentInComponentEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
@@ -328,8 +328,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof ActorInPackageEditPart) {
 			return ((ActorInPackageEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(sourceEditPart instanceof UseCase4EditPart) {
-			return ((UseCase4EditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		if(sourceEditPart instanceof UseCaseInPackageEditPart) {
+			return ((UseCaseInPackageEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof ComponentInPackageEditPart) {
 			return ((ComponentInPackageEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
@@ -351,11 +351,11 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof ActorAsRectangleEditPartTN) {
 			return ((ActorAsRectangleEditPartTN)targetEditPart).getMATypesForSource(relationshipType);
 		}
-		if(targetEditPart instanceof UseCaseEditPart) {
-			return ((UseCaseEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		if(targetEditPart instanceof UseCaseEditPartTN) {
+			return ((UseCaseEditPartTN)targetEditPart).getMATypesForSource(relationshipType);
 		}
-		if(targetEditPart instanceof UseCase2EditPart) {
-			return ((UseCase2EditPart)targetEditPart).getMATypesForSource(relationshipType);
+		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
+			return ((UseCaseAsRectangleEditPartTN)targetEditPart).getMATypesForSource(relationshipType);
 		}
 		if(targetEditPart instanceof ComponentEditPartTN) {
 			return ((ComponentEditPartTN)targetEditPart).getMATypesForSource(relationshipType);
@@ -369,8 +369,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof CommentEditPartTN) {
 			return ((CommentEditPartTN)targetEditPart).getMATypesForSource(relationshipType);
 		}
-		if(targetEditPart instanceof UseCase3EditPart) {
-			return ((UseCase3EditPart)targetEditPart).getMATypesForSource(relationshipType);
+		if(targetEditPart instanceof UseCaseInComponentEditPart) {
+			return ((UseCaseInComponentEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
 		if(targetEditPart instanceof ComponentInComponentEditPart) {
 			return ((ComponentInComponentEditPart)targetEditPart).getMATypesForSource(relationshipType);
@@ -390,8 +390,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof ActorInPackageEditPart) {
 			return ((ActorInPackageEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
-		if(targetEditPart instanceof UseCase4EditPart) {
-			return ((UseCase4EditPart)targetEditPart).getMATypesForSource(relationshipType);
+		if(targetEditPart instanceof UseCaseInPackageEditPart) {
+			return ((UseCaseInPackageEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
 		if(targetEditPart instanceof ComponentInPackageEditPart) {
 			return ((ComponentInPackageEditPart)targetEditPart).getMATypesForSource(relationshipType);
@@ -413,11 +413,11 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof ActorAsRectangleEditPartTN) {
 			return ((ActorAsRectangleEditPartTN)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
-		if(sourceEditPart instanceof UseCaseEditPart) {
-			return ((UseCaseEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		if(sourceEditPart instanceof UseCaseEditPartTN) {
+			return ((UseCaseEditPartTN)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
-		if(sourceEditPart instanceof UseCase2EditPart) {
-			return ((UseCase2EditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		if(sourceEditPart instanceof UseCaseAsRectangleEditPartTN) {
+			return ((UseCaseAsRectangleEditPartTN)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		if(sourceEditPart instanceof ComponentEditPartTN) {
 			return ((ComponentEditPartTN)sourceEditPart).getMATypesForTarget(relationshipType);
@@ -431,8 +431,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof CommentEditPartTN) {
 			return ((CommentEditPartTN)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
-		if(sourceEditPart instanceof UseCase3EditPart) {
-			return ((UseCase3EditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		if(sourceEditPart instanceof UseCaseInComponentEditPart) {
+			return ((UseCaseInComponentEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		if(sourceEditPart instanceof ComponentInComponentEditPart) {
 			return ((ComponentInComponentEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
@@ -452,8 +452,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof ActorInPackageEditPart) {
 			return ((ActorInPackageEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
-		if(sourceEditPart instanceof UseCase4EditPart) {
-			return ((UseCase4EditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		if(sourceEditPart instanceof UseCaseInPackageEditPart) {
+			return ((UseCaseInPackageEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		if(sourceEditPart instanceof ComponentInPackageEditPart) {
 			return ((ComponentInPackageEditPart)sourceEditPart).getMATypesForTarget(relationshipType);

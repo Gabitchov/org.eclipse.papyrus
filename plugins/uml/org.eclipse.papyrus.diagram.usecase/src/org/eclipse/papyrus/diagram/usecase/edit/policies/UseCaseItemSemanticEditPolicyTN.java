@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2010 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -71,14 +71,15 @@ import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class UseCaseItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class UseCaseItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public UseCaseItemSemanticEditPolicy() {
+	public UseCaseItemSemanticEditPolicyTN() {
 		super(UMLElementTypes.UseCase_2013);
 	}
+
 
 	/**
 	 * @generated
@@ -333,8 +334,8 @@ public class UseCaseItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 	}
 
 	/**
-	 * Returns command to reorient EClass based link. New link target or source should be the domain
-	 * model element associated with this node.
+	 * Returns command to reorient EClass based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */
@@ -363,8 +364,8 @@ public class UseCaseItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source should be the
-	 * domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */

@@ -296,10 +296,10 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof ActorAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4014);
 		}
-		if(targetEditPart instanceof UseCaseEditPart) {
+		if(targetEditPart instanceof UseCaseEditPartTN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4014);
 		}
-		if(targetEditPart instanceof UseCase2EditPart) {
+		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4014);
 		}
 		if(targetEditPart instanceof ComponentEditPartTN) {
@@ -314,7 +314,7 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof CommentEditPartTN) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4014);
 		}
-		if(targetEditPart instanceof UseCase3EditPart) {
+		if(targetEditPart instanceof UseCaseInComponentEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4014);
 		}
 		if(targetEditPart instanceof ComponentInComponentEditPart) {
@@ -335,7 +335,7 @@ ShapeNodeEditPart {
 		if(targetEditPart instanceof ActorInPackageEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4014);
 		}
-		if(targetEditPart instanceof UseCase4EditPart) {
+		if(targetEditPart instanceof UseCaseInPackageEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4014);
 		}
 		if(targetEditPart instanceof ComponentInPackageEditPart) {

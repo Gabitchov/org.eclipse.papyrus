@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2010 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -26,14 +26,14 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
-import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UseCase;
 
 /**
  * @generated
  */
-public class UseCase3CreateCommand extends EditElementCommand {
+public class UseCaseCreateCommandTN extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -48,7 +48,7 @@ public class UseCase3CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public UseCase3CreateCommand(CreateElementRequest req, EObject eObject) {
+	public UseCaseCreateCommandTN(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -57,14 +57,14 @@ public class UseCase3CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static UseCase3CreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new UseCase3CreateCommand(req, eObject);
+	public static UseCaseCreateCommandTN create(CreateElementRequest req, EObject eObject) {
+		return new UseCaseCreateCommandTN(req, eObject);
 	}
 
 	/**
 	 * @generated
 	 */
-	public UseCase3CreateCommand(CreateElementRequest req) {
+	public UseCaseCreateCommandTN(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 
@@ -107,19 +107,20 @@ public class UseCase3CreateCommand extends EditElementCommand {
 
 		UseCase newElement = UMLFactory.eINSTANCE.createUseCase();
 
-		Classifier owner = (Classifier)getElementToEdit();
-		owner.getOwnedUseCases().add(newElement);
-		Classifier childHolder = (Classifier)getElementToEdit();
-		childHolder.getUseCases().add(newElement);
+		Package owner = (Package)getElementToEdit();
+		owner.getPackagedElements().add(newElement);
 
 
-		UMLElementTypes.init_UseCase_3009(newElement);
+		UMLElementTypes.init_UseCase_2013(newElement);
 
 		doConfigure(newElement, monitor, info);
 
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
+
+
+
 
 	/**
 	 * @generated

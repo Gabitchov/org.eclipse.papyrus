@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2010 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -26,14 +26,14 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
-import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UseCase;
 
 /**
  * @generated
  */
-public class UseCaseCreateCommand extends EditElementCommand {
+public class UseCaseInComponentCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -48,7 +48,7 @@ public class UseCaseCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public UseCaseCreateCommand(CreateElementRequest req, EObject eObject) {
+	public UseCaseInComponentCreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -57,14 +57,14 @@ public class UseCaseCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static UseCaseCreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new UseCaseCreateCommand(req, eObject);
+	public static UseCaseInComponentCreateCommand create(CreateElementRequest req, EObject eObject) {
+		return new UseCaseInComponentCreateCommand(req, eObject);
 	}
 
 	/**
 	 * @generated
 	 */
-	public UseCaseCreateCommand(CreateElementRequest req) {
+	public UseCaseInComponentCreateCommand(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 
@@ -107,17 +107,22 @@ public class UseCaseCreateCommand extends EditElementCommand {
 
 		UseCase newElement = UMLFactory.eINSTANCE.createUseCase();
 
-		Package owner = (Package)getElementToEdit();
-		owner.getPackagedElements().add(newElement);
+		Classifier owner = (Classifier)getElementToEdit();
+		owner.getOwnedUseCases().add(newElement);
+		Classifier childHolder = (Classifier)getElementToEdit();
+		childHolder.getUseCases().add(newElement);
 
 
-		UMLElementTypes.init_UseCase_2013(newElement);
+		UMLElementTypes.init_UseCase_3009(newElement);
 
 		doConfigure(newElement, monitor, info);
 
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
+
+
+
 
 	/**
 	 * @generated

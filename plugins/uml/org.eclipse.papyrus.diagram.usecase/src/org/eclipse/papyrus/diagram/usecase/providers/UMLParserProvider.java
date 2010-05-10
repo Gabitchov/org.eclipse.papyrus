@@ -66,10 +66,10 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageNameEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageNameEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseName2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseName3EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseName4EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseAsRectangleNameEditPartTN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInComponentNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInPackageNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseNameEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.parsers.MessageFormatParser;
 import org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -738,9 +738,9 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getActorLabel_6029Parser();
 		case ActorAsRectangleNameEditPartTN.VISUAL_ID:
 			return getActorName_5015Parser();
-		case UseCaseNameEditPart.VISUAL_ID:
+		case UseCaseNameEditPartTN.VISUAL_ID:
 			return getUseCaseName_5016Parser();
-		case UseCaseName2EditPart.VISUAL_ID:
+		case UseCaseAsRectangleNameEditPartTN.VISUAL_ID:
 			return getUseCaseName_5017Parser();
 		case ComponentNameEditPartTN.VISUAL_ID:
 			return getComponentName_5019Parser();
@@ -756,7 +756,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getExtensionPoint_3007Parser();
 		case ExtensionPoint2EditPart.VISUAL_ID:
 			return getExtensionPoint_3008Parser();
-		case UseCaseName3EditPart.VISUAL_ID:
+		case UseCaseInComponentNameEditPart.VISUAL_ID:
 			return getUseCaseName_5018Parser();
 		case ComponentInComponentNameEditPart.VISUAL_ID:
 			return getComponentName_5030Parser();
@@ -774,7 +774,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getActorName_5021Parser();
 		case ActorInPackageAppliedStereotypeEditPart.VISUAL_ID:
 			return getActorLabel_6028Parser();
-		case UseCaseName4EditPart.VISUAL_ID:
+		case UseCaseInPackageNameEditPart.VISUAL_ID:
 			return getUseCaseName_5022Parser();
 		case ComponentInPackageNameEditPart.VISUAL_ID:
 			return getComponentName_5023Parser();

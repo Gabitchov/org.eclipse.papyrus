@@ -124,16 +124,16 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ShortCutDiagramEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageNameEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase3EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase4EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseAsRectangleEditPartTN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseAsRectangleNameEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseExtensionpointsEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseName2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseName3EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseName4EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInComponentEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInComponentNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInPackageEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInPackageNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseNameEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePoints2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePoints3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePointsEditPart;
@@ -223,24 +223,24 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 				switch(visualID) {
 				case ActorEditPartTN.VISUAL_ID:
-				case UseCaseEditPart.VISUAL_ID:
+				case UseCaseEditPartTN.VISUAL_ID:
 				case ComponentEditPartTN.VISUAL_ID:
 				case ShortCutDiagramEditPart.VISUAL_ID:
 				case ExtensionPointEditPart.VISUAL_ID:
 				case CommentEditPartCN.VISUAL_ID:
 				case ConstraintInComponentEditPart.VISUAL_ID:
 				case ActorAsRectangleEditPartTN.VISUAL_ID:
-				case UseCase2EditPart.VISUAL_ID:
+				case UseCaseAsRectangleEditPartTN.VISUAL_ID:
 				case PackageEditPartTN.VISUAL_ID:
 				case ConstraintEditPartTN.VISUAL_ID:
 				case CommentEditPartTN.VISUAL_ID:
 				case ExtensionPoint2EditPart.VISUAL_ID:
-				case UseCase3EditPart.VISUAL_ID:
+				case UseCaseInComponentEditPart.VISUAL_ID:
 				case ComponentInComponentEditPart.VISUAL_ID:
 				case ActorInComponentEditPart.VISUAL_ID:
 				case ConstraintInPackageEditPart.VISUAL_ID:
 				case ActorInPackageEditPart.VISUAL_ID:
-				case UseCase4EditPart.VISUAL_ID:
+				case UseCaseInPackageEditPart.VISUAL_ID:
 				case ComponentInPackageEditPart.VISUAL_ID:
 				case PackageEditPartCN.VISUAL_ID:
 					if(domainElement == null || visualID != UMLVisualIDRegistry.getNodeVisualID(op.getContainerView(), domainElement)) {
@@ -252,7 +252,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 			}
 		}
-		return ActorEditPartTN.VISUAL_ID == visualID || ActorAsRectangleEditPartTN.VISUAL_ID == visualID || UseCaseEditPart.VISUAL_ID == visualID || UseCase2EditPart.VISUAL_ID == visualID || ComponentEditPartTN.VISUAL_ID == visualID || PackageEditPartTN.VISUAL_ID == visualID || ConstraintEditPartTN.VISUAL_ID == visualID || CommentEditPartTN.VISUAL_ID == visualID || ShortCutDiagramEditPart.VISUAL_ID == visualID || ExtensionPointEditPart.VISUAL_ID == visualID || ExtensionPoint2EditPart.VISUAL_ID == visualID || UseCase3EditPart.VISUAL_ID == visualID || ComponentInComponentEditPart.VISUAL_ID == visualID || CommentEditPartCN.VISUAL_ID == visualID || ConstraintInComponentEditPart.VISUAL_ID == visualID || ActorInComponentEditPart.VISUAL_ID == visualID || ConstraintInPackageEditPart.VISUAL_ID == visualID || ActorInPackageEditPart.VISUAL_ID == visualID || UseCase4EditPart.VISUAL_ID == visualID || ComponentInPackageEditPart.VISUAL_ID == visualID || PackageEditPartCN.VISUAL_ID == visualID;
+		return ActorEditPartTN.VISUAL_ID == visualID || ActorAsRectangleEditPartTN.VISUAL_ID == visualID || UseCaseEditPartTN.VISUAL_ID == visualID || UseCaseAsRectangleEditPartTN.VISUAL_ID == visualID || ComponentEditPartTN.VISUAL_ID == visualID || PackageEditPartTN.VISUAL_ID == visualID || ConstraintEditPartTN.VISUAL_ID == visualID || CommentEditPartTN.VISUAL_ID == visualID || ShortCutDiagramEditPart.VISUAL_ID == visualID || ExtensionPointEditPart.VISUAL_ID == visualID || ExtensionPoint2EditPart.VISUAL_ID == visualID || UseCaseInComponentEditPart.VISUAL_ID == visualID || ComponentInComponentEditPart.VISUAL_ID == visualID || CommentEditPartCN.VISUAL_ID == visualID || ConstraintInComponentEditPart.VISUAL_ID == visualID || ActorInComponentEditPart.VISUAL_ID == visualID || ConstraintInPackageEditPart.VISUAL_ID == visualID || ActorInPackageEditPart.VISUAL_ID == visualID || UseCaseInPackageEditPart.VISUAL_ID == visualID || ComponentInPackageEditPart.VISUAL_ID == visualID || PackageEditPartCN.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -303,9 +303,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createActor_2011(domainElement, containerView, index, persisted, preferencesHint);
 		case ActorAsRectangleEditPartTN.VISUAL_ID:
 			return createActor_2012(domainElement, containerView, index, persisted, preferencesHint);
-		case UseCaseEditPart.VISUAL_ID:
+		case UseCaseEditPartTN.VISUAL_ID:
 			return createUseCase_2013(domainElement, containerView, index, persisted, preferencesHint);
-		case UseCase2EditPart.VISUAL_ID:
+		case UseCaseAsRectangleEditPartTN.VISUAL_ID:
 			return createUseCase_2014(domainElement, containerView, index, persisted, preferencesHint);
 		case ComponentEditPartTN.VISUAL_ID:
 			return createComponent_2015(domainElement, containerView, index, persisted, preferencesHint);
@@ -321,7 +321,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createExtensionPoint_3007(domainElement, containerView, index, persisted, preferencesHint);
 		case ExtensionPoint2EditPart.VISUAL_ID:
 			return createExtensionPoint_3008(domainElement, containerView, index, persisted, preferencesHint);
-		case UseCase3EditPart.VISUAL_ID:
+		case UseCaseInComponentEditPart.VISUAL_ID:
 			return createUseCase_3009(domainElement, containerView, index, persisted, preferencesHint);
 		case ComponentInComponentEditPart.VISUAL_ID:
 			return createComponent_3016(domainElement, containerView, index, persisted, preferencesHint);
@@ -335,7 +335,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createConstraint_3010(domainElement, containerView, index, persisted, preferencesHint);
 		case ActorInPackageEditPart.VISUAL_ID:
 			return createActor_3011(domainElement, containerView, index, persisted, preferencesHint);
-		case UseCase4EditPart.VISUAL_ID:
+		case UseCaseInPackageEditPart.VISUAL_ID:
 			return createUseCase_3012(domainElement, containerView, index, persisted, preferencesHint);
 		case ComponentInPackageEditPart.VISUAL_ID:
 			return createComponent_3013(domainElement, containerView, index, persisted, preferencesHint);
@@ -453,7 +453,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	public Node createUseCase_2013(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry.getType(UseCaseEditPart.VISUAL_ID));
+		node.setType(UMLVisualIDRegistry.getType(UseCaseEditPartTN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
@@ -470,7 +470,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		initBackgroundFromPrefs(node, prefStore, "UseCase");
 
-		Node label5016 = createLabel(node, UMLVisualIDRegistry.getType(UseCaseNameEditPart.VISUAL_ID));
+		Node label5016 = createLabel(node, UMLVisualIDRegistry.getType(UseCaseNameEditPartTN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(UseCasePointsEditPart.VISUAL_ID), false, false, true, true);
 		return node;
 	}
@@ -481,7 +481,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	public Node createUseCase_2014(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry.getType(UseCase2EditPart.VISUAL_ID));
+		node.setType(UMLVisualIDRegistry.getType(UseCaseAsRectangleEditPartTN.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
@@ -498,7 +498,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		initBackgroundFromPrefs(node, prefStore, "UseCase");
 
-		Node label5017 = createLabel(node, UMLVisualIDRegistry.getType(UseCaseName2EditPart.VISUAL_ID));
+		Node label5017 = createLabel(node, UMLVisualIDRegistry.getType(UseCaseAsRectangleNameEditPartTN.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(UseCaseExtensionpointsEditPart.VISUAL_ID), true, true, true, true);
 		return node;
 	}
@@ -670,7 +670,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	public Node createUseCase_3009(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry.getType(UseCase3EditPart.VISUAL_ID));
+		node.setType(UMLVisualIDRegistry.getType(UseCaseInComponentEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		// initializeFromPreferences 
@@ -683,7 +683,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		initBackgroundFromPrefs(node, prefStore, "UseCase");
 
-		Node label5018 = createLabel(node, UMLVisualIDRegistry.getType(UseCaseName3EditPart.VISUAL_ID));
+		Node label5018 = createLabel(node, UMLVisualIDRegistry.getType(UseCaseInComponentNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(UseCasePoints2EditPart.VISUAL_ID), false, false, true, true);
 		return node;
 	}
@@ -843,7 +843,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	public Node createUseCase_3012(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry.getType(UseCase4EditPart.VISUAL_ID));
+		node.setType(UMLVisualIDRegistry.getType(UseCaseInPackageEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		// initializeFromPreferences 
@@ -856,7 +856,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		initBackgroundFromPrefs(node, prefStore, "UseCase");
 
-		Node label5022 = createLabel(node, UMLVisualIDRegistry.getType(UseCaseName4EditPart.VISUAL_ID));
+		Node label5022 = createLabel(node, UMLVisualIDRegistry.getType(UseCaseInPackageNameEditPart.VISUAL_ID));
 		createCompartment(node, UMLVisualIDRegistry.getType(UseCasePoints3EditPart.VISUAL_ID), false, false, true, true);
 		return node;
 	}

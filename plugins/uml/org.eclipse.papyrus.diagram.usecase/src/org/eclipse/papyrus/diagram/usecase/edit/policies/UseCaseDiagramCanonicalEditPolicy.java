@@ -74,11 +74,11 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageMergeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ShortCutDiagramEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase3EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase4EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseAsRectangleEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPartTN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInComponentEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInPackageEditPart;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.usecase.part.UMLLinkDescriptor;
@@ -123,8 +123,8 @@ public class UseCaseDiagramCanonicalEditPolicy extends CanonicalConnectionEditPo
 		switch(visualID) {
 		case ActorEditPartTN.VISUAL_ID:
 		case ActorAsRectangleEditPartTN.VISUAL_ID:
-		case UseCaseEditPart.VISUAL_ID:
-		case UseCase2EditPart.VISUAL_ID:
+		case UseCaseEditPartTN.VISUAL_ID:
+		case UseCaseAsRectangleEditPartTN.VISUAL_ID:
 		case ComponentEditPartTN.VISUAL_ID:
 		case PackageEditPartTN.VISUAL_ID:
 		case ConstraintEditPartTN.VISUAL_ID:
@@ -324,7 +324,7 @@ public class UseCaseDiagramCanonicalEditPolicy extends CanonicalConnectionEditPo
 			}
 			break;
 		}
-		case UseCaseEditPart.VISUAL_ID:
+		case UseCaseEditPartTN.VISUAL_ID:
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getUseCase_2013ContainedLinks(view));
@@ -334,7 +334,7 @@ public class UseCaseDiagramCanonicalEditPolicy extends CanonicalConnectionEditPo
 			}
 			break;
 		}
-		case UseCase2EditPart.VISUAL_ID:
+		case UseCaseAsRectangleEditPartTN.VISUAL_ID:
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getUseCase_2014ContainedLinks(view));
@@ -394,7 +394,7 @@ public class UseCaseDiagramCanonicalEditPolicy extends CanonicalConnectionEditPo
 			}
 			break;
 		}
-		case UseCase3EditPart.VISUAL_ID:
+		case UseCaseInComponentEditPart.VISUAL_ID:
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getUseCase_3009ContainedLinks(view));
@@ -464,7 +464,7 @@ public class UseCaseDiagramCanonicalEditPolicy extends CanonicalConnectionEditPo
 			}
 			break;
 		}
-		case UseCase4EditPart.VISUAL_ID:
+		case UseCaseInPackageEditPart.VISUAL_ID:
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getUseCase_3012ContainedLinks(view));

@@ -27,8 +27,8 @@ import org.eclipse.papyrus.diagram.usecase.edit.commands.ComponentCreateCommandT
 import org.eclipse.papyrus.diagram.usecase.edit.commands.ConstraintCreateCommandTN;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.PackageCreateCommandTN;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.ShortCutDiagramCreateCommand;
-import org.eclipse.papyrus.diagram.usecase.edit.commands.UseCase2CreateCommand;
-import org.eclipse.papyrus.diagram.usecase.edit.commands.UseCaseCreateCommand;
+import org.eclipse.papyrus.diagram.usecase.edit.commands.UseCaseAsRectangleCreateCommandTN;
+import org.eclipse.papyrus.diagram.usecase.edit.commands.UseCaseCreateCommandTN;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 
 /**
@@ -54,10 +54,10 @@ public class UseCaseDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 			return getGEFWrapper(new ActorAsRectangleCreateCommandTN(req));
 		}
 		if(UMLElementTypes.UseCase_2013 == req.getElementType()) {
-			return getGEFWrapper(new UseCaseCreateCommand(req));
+			return getGEFWrapper(new UseCaseCreateCommandTN(req));
 		}
 		if(UMLElementTypes.UseCase_2014 == req.getElementType()) {
-			return getGEFWrapper(new UseCase2CreateCommand(req));
+			return getGEFWrapper(new UseCaseAsRectangleCreateCommandTN(req));
 		}
 		if(UMLElementTypes.Component_2015 == req.getElementType()) {
 			return getGEFWrapper(new ComponentCreateCommandTN(req));

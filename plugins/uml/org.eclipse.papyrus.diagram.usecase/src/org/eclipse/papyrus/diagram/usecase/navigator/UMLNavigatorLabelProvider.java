@@ -76,15 +76,15 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageNameEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase3EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase4EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseAsRectangleEditPartTN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseAsRectangleNameEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseName2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseName3EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseName4EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPartTN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInComponentEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInComponentNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInPackageEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInPackageNameEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseNameEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
@@ -152,9 +152,9 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/3.0.0/UML?Actor", UMLElementTypes.Actor_2011); //$NON-NLS-1$
 		case ActorAsRectangleEditPartTN.VISUAL_ID:
 			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/3.0.0/UML?Actor", UMLElementTypes.Actor_2012); //$NON-NLS-1$
-		case UseCaseEditPart.VISUAL_ID:
+		case UseCaseEditPartTN.VISUAL_ID:
 			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/3.0.0/UML?UseCase", UMLElementTypes.UseCase_2013); //$NON-NLS-1$
-		case UseCase2EditPart.VISUAL_ID:
+		case UseCaseAsRectangleEditPartTN.VISUAL_ID:
 			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/3.0.0/UML?UseCase", UMLElementTypes.UseCase_2014); //$NON-NLS-1$
 		case ComponentEditPartTN.VISUAL_ID:
 			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/3.0.0/UML?Component", UMLElementTypes.Component_2015); //$NON-NLS-1$
@@ -168,7 +168,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ExtensionPoint", UMLElementTypes.ExtensionPoint_3007); //$NON-NLS-1$
 		case ExtensionPoint2EditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ExtensionPoint", UMLElementTypes.ExtensionPoint_3008); //$NON-NLS-1$
-		case UseCase3EditPart.VISUAL_ID:
+		case UseCaseInComponentEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?UseCase", UMLElementTypes.UseCase_3009); //$NON-NLS-1$
 		case ComponentInComponentEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Component", UMLElementTypes.Component_3016); //$NON-NLS-1$
@@ -182,7 +182,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Constraint", UMLElementTypes.Constraint_3010); //$NON-NLS-1$
 		case ActorInPackageEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Actor", UMLElementTypes.Actor_3011); //$NON-NLS-1$
-		case UseCase4EditPart.VISUAL_ID:
+		case UseCaseInPackageEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?UseCase", UMLElementTypes.UseCase_3012); //$NON-NLS-1$
 		case ComponentInPackageEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Component", UMLElementTypes.Component_3013); //$NON-NLS-1$
@@ -269,9 +269,9 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getActor_2011Text(view);
 		case ActorAsRectangleEditPartTN.VISUAL_ID:
 			return getActor_2012Text(view);
-		case UseCaseEditPart.VISUAL_ID:
+		case UseCaseEditPartTN.VISUAL_ID:
 			return getUseCase_2013Text(view);
-		case UseCase2EditPart.VISUAL_ID:
+		case UseCaseAsRectangleEditPartTN.VISUAL_ID:
 			return getUseCase_2014Text(view);
 		case ComponentEditPartTN.VISUAL_ID:
 			return getComponent_2015Text(view);
@@ -285,7 +285,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getExtensionPoint_3007Text(view);
 		case ExtensionPoint2EditPart.VISUAL_ID:
 			return getExtensionPoint_3008Text(view);
-		case UseCase3EditPart.VISUAL_ID:
+		case UseCaseInComponentEditPart.VISUAL_ID:
 			return getUseCase_3009Text(view);
 		case ComponentInComponentEditPart.VISUAL_ID:
 			return getComponent_3016Text(view);
@@ -299,7 +299,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getConstraint_3010Text(view);
 		case ActorInPackageEditPart.VISUAL_ID:
 			return getActor_3011Text(view);
-		case UseCase4EditPart.VISUAL_ID:
+		case UseCaseInPackageEditPart.VISUAL_ID:
 			return getUseCase_3012Text(view);
 		case ComponentInPackageEditPart.VISUAL_ID:
 			return getComponent_3013Text(view);
@@ -376,7 +376,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getUseCase_2013Text(View view) {
-		IParser parser = UMLParserProvider.getParser(UMLElementTypes.UseCase_2013, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(UseCaseNameEditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.UseCase_2013, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(UseCaseNameEditPartTN.VISUAL_ID));
 		if(parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
@@ -389,7 +389,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getUseCase_2014Text(View view) {
-		IParser parser = UMLParserProvider.getParser(UMLElementTypes.UseCase_2014, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(UseCaseName2EditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.UseCase_2014, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(UseCaseAsRectangleNameEditPartTN.VISUAL_ID));
 		if(parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
@@ -480,7 +480,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getUseCase_3009Text(View view) {
-		IParser parser = UMLParserProvider.getParser(UMLElementTypes.UseCase_3009, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(UseCaseName3EditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.UseCase_3009, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(UseCaseInComponentNameEditPart.VISUAL_ID));
 		if(parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
@@ -571,7 +571,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getUseCase_3012Text(View view) {
-		IParser parser = UMLParserProvider.getParser(UMLElementTypes.UseCase_3012, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(UseCaseName4EditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.UseCase_3012, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(UseCaseInPackageNameEditPart.VISUAL_ID));
 		if(parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {

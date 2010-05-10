@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2010 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -85,12 +85,12 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class UseCaseName3EditPart extends CompartmentEditPart implements ITextAwareEditPart {
+public class UseCaseAsRectangleNameEditPartTN extends CompartmentEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5018;
+	public static final int VISUAL_ID = 5017;
 
 	/**
 	 * @generated
@@ -112,16 +112,28 @@ public class UseCaseName3EditPart extends CompartmentEditPart implements ITextAw
 	 */
 	private String defaultText;
 
-	/** direct edition mode (default, undefined, registered editor, etc.) */
+
+
+	/**
+	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * 
+	 * @generated
+	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
-	/** configuration from a registered edit dialog */
+	/**
+	 * configuration from a registered edit dialog
+	 * 
+	 * @generated
+	 */
 	protected IDirectEditorConfiguration configuration;
+
+
 
 	/**
 	 * @generated
 	 */
-	public UseCaseName3EditPart(View view) {
+	public UseCaseAsRectangleNameEditPartTN(View view) {
 		super(view);
 	}
 
@@ -352,7 +364,7 @@ public class UseCaseName3EditPart extends CompartmentEditPart implements ITextAw
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.UseCase_3009, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseName3EditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.UseCase_2014, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseAsRectangleNameEditPartTN.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -590,14 +602,15 @@ public class UseCaseName3EditPart extends CompartmentEditPart implements ITextAw
 	 * @generated
 	 */
 	private View getFontStyleOwnerView() {
-		return getPrimaryView();
+		return (View)getModel();
 	}
+
+
 
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
-	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
 	public int getDirectEditionType() {
@@ -654,11 +667,15 @@ public class UseCaseName3EditPart extends CompartmentEditPart implements ITextAw
 
 	/**
 	 * Updates the preference configuration
+	 * 
+	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-		if(languagePreferred != configuration.getLanguage()) {
+		if(languagePreferred != null && !languagePreferred.equals("") && languagePreferred != configuration.getLanguage()) {
 			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
+		} else if(IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
+			configuration = null;
 		}
 	}
 
@@ -667,6 +684,7 @@ public class UseCaseName3EditPart extends CompartmentEditPart implements ITextAw
 	 * 
 	 * @param theRequest
 	 *        the direct edit request that starts the direct edit system
+	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
@@ -692,6 +710,8 @@ public class UseCaseName3EditPart extends CompartmentEditPart implements ITextAw
 		}
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -707,6 +727,7 @@ public class UseCaseName3EditPart extends CompartmentEditPart implements ITextAw
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
+
 
 	/**
 	 * @generated
@@ -754,7 +775,13 @@ public class UseCaseName3EditPart extends CompartmentEditPart implements ITextAw
 		return null;
 	}
 
+
+
+	/**
+	 * @generated
+	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
+
 
 	/**
 	 * @generated
@@ -781,6 +808,7 @@ public class UseCaseName3EditPart extends CompartmentEditPart implements ITextAw
 
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -788,5 +816,6 @@ public class UseCaseName3EditPart extends CompartmentEditPart implements ITextAw
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
+
 
 }

@@ -26,7 +26,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.ActorInComponentEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentInComponentEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintInComponentEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase3EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInComponentEditPart;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.usecase.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry;
@@ -60,7 +60,7 @@ public class ComponentUsecasesCanonicalEditPolicy extends CanonicalEditPolicy {
 	protected boolean isOrphaned(Collection semanticChildren, final View view) {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
 		switch(visualID) {
-		case UseCase3EditPart.VISUAL_ID:
+		case UseCaseInComponentEditPart.VISUAL_ID:
 		case ComponentInComponentEditPart.VISUAL_ID:
 		case CommentEditPartCN.VISUAL_ID:
 		case ConstraintInComponentEditPart.VISUAL_ID:

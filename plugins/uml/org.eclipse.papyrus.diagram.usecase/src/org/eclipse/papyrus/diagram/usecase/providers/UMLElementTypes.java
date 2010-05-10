@@ -57,11 +57,11 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageMergeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ShortCutDiagramEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase3EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase4EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseAsRectangleEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPartTN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInComponentEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInPackageEditPart;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -532,9 +532,9 @@ public class UMLElementTypes extends ElementInitializers {
 			return Actor_2011;
 		case ActorAsRectangleEditPartTN.VISUAL_ID:
 			return Actor_2012;
-		case UseCaseEditPart.VISUAL_ID:
+		case UseCaseEditPartTN.VISUAL_ID:
 			return UseCase_2013;
-		case UseCase2EditPart.VISUAL_ID:
+		case UseCaseAsRectangleEditPartTN.VISUAL_ID:
 			return UseCase_2014;
 		case ComponentEditPartTN.VISUAL_ID:
 			return Component_2015;
@@ -550,7 +550,7 @@ public class UMLElementTypes extends ElementInitializers {
 			return ExtensionPoint_3007;
 		case ExtensionPoint2EditPart.VISUAL_ID:
 			return ExtensionPoint_3008;
-		case UseCase3EditPart.VISUAL_ID:
+		case UseCaseInComponentEditPart.VISUAL_ID:
 			return UseCase_3009;
 		case ComponentInComponentEditPart.VISUAL_ID:
 			return Component_3016;
@@ -564,7 +564,7 @@ public class UMLElementTypes extends ElementInitializers {
 			return Constraint_3010;
 		case ActorInPackageEditPart.VISUAL_ID:
 			return Actor_3011;
-		case UseCase4EditPart.VISUAL_ID:
+		case UseCaseInPackageEditPart.VISUAL_ID:
 			return UseCase_3012;
 		case ComponentInPackageEditPart.VISUAL_ID:
 			return Component_3013;

@@ -60,17 +60,17 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ActorAsRectangleNameEditPartTN.VISUAL_ID:
 				return new ActorAsRectangleNameEditPartTN(view);
 
-			case UseCaseEditPart.VISUAL_ID:
-				return new UseCaseEditPart(view);
+			case UseCaseEditPartTN.VISUAL_ID:
+				return new UseCaseEditPartTN(view);
 
-			case UseCaseNameEditPart.VISUAL_ID:
-				return new UseCaseNameEditPart(view);
+			case UseCaseNameEditPartTN.VISUAL_ID:
+				return new UseCaseNameEditPartTN(view);
 
-			case UseCase2EditPart.VISUAL_ID:
-				return new UseCase2EditPart(view);
+			case UseCaseAsRectangleEditPartTN.VISUAL_ID:
+				return new UseCaseAsRectangleEditPartTN(view);
 
-			case UseCaseName2EditPart.VISUAL_ID:
-				return new UseCaseName2EditPart(view);
+			case UseCaseAsRectangleNameEditPartTN.VISUAL_ID:
+				return new UseCaseAsRectangleNameEditPartTN(view);
 
 			case ComponentEditPartTN.VISUAL_ID:
 				return new ComponentEditPartTN(view);
@@ -108,11 +108,11 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ExtensionPoint2EditPart.VISUAL_ID:
 				return new ExtensionPoint2EditPart(view);
 
-			case UseCase3EditPart.VISUAL_ID:
-				return new UseCase3EditPart(view);
+			case UseCaseInComponentEditPart.VISUAL_ID:
+				return new UseCaseInComponentEditPart(view);
 
-			case UseCaseName3EditPart.VISUAL_ID:
-				return new UseCaseName3EditPart(view);
+			case UseCaseInComponentNameEditPart.VISUAL_ID:
+				return new UseCaseInComponentNameEditPart(view);
 
 			case ComponentInComponentEditPart.VISUAL_ID:
 				return new ComponentInComponentEditPart(view);
@@ -156,11 +156,11 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ActorInPackageAppliedStereotypeEditPart.VISUAL_ID:
 				return new ActorInPackageAppliedStereotypeEditPart(view);
 
-			case UseCase4EditPart.VISUAL_ID:
-				return new UseCase4EditPart(view);
+			case UseCaseInPackageEditPart.VISUAL_ID:
+				return new UseCaseInPackageEditPart(view);
 
-			case UseCaseName4EditPart.VISUAL_ID:
-				return new UseCaseName4EditPart(view);
+			case UseCaseInPackageNameEditPart.VISUAL_ID:
+				return new UseCaseInPackageNameEditPart(view);
 
 			case ComponentInPackageEditPart.VISUAL_ID:
 				return new ComponentInPackageEditPart(view);

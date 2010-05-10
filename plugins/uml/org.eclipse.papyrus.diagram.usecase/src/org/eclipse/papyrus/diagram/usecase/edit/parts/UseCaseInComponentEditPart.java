@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2010 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -41,8 +41,10 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
-import org.eclipse.papyrus.diagram.usecase.edit.policies.UseCaseItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.usecase.edit.policies.UseCaseInComponentItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.figure.UseCaseFigure;
 import org.eclipse.papyrus.diagram.usecase.figure.UseCaseNodeFigure;
 import org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry;
@@ -54,12 +56,14 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class UseCaseEditPart extends ShapeNodeEditPart {
+public class UseCaseInComponentEditPart extends
+
+ShapeNodeEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 2013;
+	public static final int VISUAL_ID = 3009;
 
 	/**
 	 * @generated
@@ -74,7 +78,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public UseCaseEditPart(View view) {
+	public UseCaseInComponentEditPart(View view) {
 		super(view);
 	}
 
@@ -84,12 +88,17 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	protected void createDefaultEditPolicies() {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new UseCaseItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new UseCaseInComponentItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
+
+
+
+
 
 	/**
 	 * @generated
@@ -134,33 +143,34 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof UseCaseNameEditPart) {
-			((UseCaseNameEditPart)childEditPart).setLabel(getPrimaryShape().getUseCaseFigure_name());
+		if(childEditPart instanceof UseCaseInComponentNameEditPart) {
+			((UseCaseInComponentNameEditPart)childEditPart).setLabel(getPrimaryShape().getUseCaseFigure_name());
 			return true;
 		}
 
 
-		if(childEditPart instanceof UseCasePointsEditPart) {
+		if(childEditPart instanceof UseCasePoints2EditPart) {
 			IFigure pane = getPrimaryShape().getUseCaseFigure_contents();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((UseCasePointsEditPart)childEditPart).getFigure());
+			pane.add(((UseCasePoints2EditPart)childEditPart).getFigure());
 			return true;
 		}
 
 		return false;
 	}
 
+
 	/**
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof UseCaseNameEditPart) {
+		if(childEditPart instanceof UseCaseInComponentNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof UseCasePointsEditPart) {
+		if(childEditPart instanceof UseCasePoints2EditPart) {
 			IFigure pane = getPrimaryShape().getUseCaseFigure_contents();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.remove(((UseCasePointsEditPart)childEditPart).getFigure());
+			pane.remove(((UseCasePoints2EditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -190,11 +200,12 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if(editPart instanceof UseCasePointsEditPart) {
+		if(editPart instanceof UseCasePoints2EditPart) {
 			return getPrimaryShape().getUseCaseFigure_contents();
 		}
 		return getContentPane();
 	}
+
 
 	/**
 	 * Use custom figure to return EllipseAnchors
@@ -207,11 +218,12 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		return ucFigure;
 	}
 
+
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model so you may safely remove
-	 * <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -225,8 +237,8 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane. Respects layout one may have set
-	 * for generated figure.
+	 * Default implementation treats passed figure as content pane.
+	 * Respects layout one may have set for generated figure.
 	 * 
 	 * @param nodeShape
 	 *        instance of generated figure class
@@ -282,7 +294,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(UseCaseNameEditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(UseCaseInComponentNameEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -307,28 +319,28 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	 */
 	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
 		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPart) {
+		if(targetEditPart instanceof UseCaseEditPartTN) {
 			types.add(UMLElementTypes.Include_4008);
 		}
-		if(targetEditPart instanceof UseCase2EditPart) {
+		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.Include_4008);
 		}
-		if(targetEditPart instanceof UseCase3EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInComponentEditPart) {
 			types.add(UMLElementTypes.Include_4008);
 		}
-		if(targetEditPart instanceof UseCase4EditPart) {
+		if(targetEditPart instanceof UseCaseInPackageEditPart) {
 			types.add(UMLElementTypes.Include_4008);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPart) {
+		if(targetEditPart instanceof UseCaseEditPartTN) {
 			types.add(UMLElementTypes.Extend_4009);
 		}
-		if(targetEditPart instanceof UseCase2EditPart) {
+		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.Extend_4009);
 		}
-		if(targetEditPart instanceof UseCase3EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInComponentEditPart) {
 			types.add(UMLElementTypes.Extend_4009);
 		}
-		if(targetEditPart instanceof UseCase4EditPart) {
+		if(targetEditPart instanceof UseCaseInPackageEditPart) {
 			types.add(UMLElementTypes.Extend_4009);
 		}
 		if(targetEditPart instanceof ActorEditPartTN) {
@@ -337,16 +349,16 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof ActorAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.Generalization_4010);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPart) {
+		if(targetEditPart instanceof UseCaseEditPartTN) {
 			types.add(UMLElementTypes.Generalization_4010);
 		}
-		if(targetEditPart instanceof UseCase2EditPart) {
+		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.Generalization_4010);
 		}
 		if(targetEditPart instanceof ComponentEditPartTN) {
 			types.add(UMLElementTypes.Generalization_4010);
 		}
-		if(targetEditPart instanceof UseCase3EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInComponentEditPart) {
 			types.add(UMLElementTypes.Generalization_4010);
 		}
 		if(targetEditPart instanceof ComponentInComponentEditPart) {
@@ -358,7 +370,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof ActorInPackageEditPart) {
 			types.add(UMLElementTypes.Generalization_4010);
 		}
-		if(targetEditPart instanceof UseCase4EditPart) {
+		if(targetEditPart instanceof UseCaseInPackageEditPart) {
 			types.add(UMLElementTypes.Generalization_4010);
 		}
 		if(targetEditPart instanceof ComponentInPackageEditPart) {
@@ -370,16 +382,16 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof ActorAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.Association_4011);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPart) {
+		if(targetEditPart instanceof UseCaseEditPartTN) {
 			types.add(UMLElementTypes.Association_4011);
 		}
-		if(targetEditPart instanceof UseCase2EditPart) {
+		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.Association_4011);
 		}
 		if(targetEditPart instanceof ComponentEditPartTN) {
 			types.add(UMLElementTypes.Association_4011);
 		}
-		if(targetEditPart instanceof UseCase3EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInComponentEditPart) {
 			types.add(UMLElementTypes.Association_4011);
 		}
 		if(targetEditPart instanceof ComponentInComponentEditPart) {
@@ -391,7 +403,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof ActorInPackageEditPart) {
 			types.add(UMLElementTypes.Association_4011);
 		}
-		if(targetEditPart instanceof UseCase4EditPart) {
+		if(targetEditPart instanceof UseCaseInPackageEditPart) {
 			types.add(UMLElementTypes.Association_4011);
 		}
 		if(targetEditPart instanceof ComponentInPackageEditPart) {
@@ -403,10 +415,10 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof ActorAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.Dependency_4013);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPart) {
+		if(targetEditPart instanceof UseCaseEditPartTN) {
 			types.add(UMLElementTypes.Dependency_4013);
 		}
-		if(targetEditPart instanceof UseCase2EditPart) {
+		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.Dependency_4013);
 		}
 		if(targetEditPart instanceof ComponentEditPartTN) {
@@ -418,7 +430,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof ConstraintEditPartTN) {
 			types.add(UMLElementTypes.Dependency_4013);
 		}
-		if(targetEditPart instanceof UseCase3EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInComponentEditPart) {
 			types.add(UMLElementTypes.Dependency_4013);
 		}
 		if(targetEditPart instanceof ComponentInComponentEditPart) {
@@ -436,7 +448,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof ActorInPackageEditPart) {
 			types.add(UMLElementTypes.Dependency_4013);
 		}
-		if(targetEditPart instanceof UseCase4EditPart) {
+		if(targetEditPart instanceof UseCaseInPackageEditPart) {
 			types.add(UMLElementTypes.Dependency_4013);
 		}
 		if(targetEditPart instanceof ComponentInPackageEditPart) {
@@ -451,10 +463,10 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof ActorAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.Abstraction_4015);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPart) {
+		if(targetEditPart instanceof UseCaseEditPartTN) {
 			types.add(UMLElementTypes.Abstraction_4015);
 		}
-		if(targetEditPart instanceof UseCase2EditPart) {
+		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.Abstraction_4015);
 		}
 		if(targetEditPart instanceof ComponentEditPartTN) {
@@ -466,7 +478,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof ConstraintEditPartTN) {
 			types.add(UMLElementTypes.Abstraction_4015);
 		}
-		if(targetEditPart instanceof UseCase3EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInComponentEditPart) {
 			types.add(UMLElementTypes.Abstraction_4015);
 		}
 		if(targetEditPart instanceof ComponentInComponentEditPart) {
@@ -484,7 +496,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof ActorInPackageEditPart) {
 			types.add(UMLElementTypes.Abstraction_4015);
 		}
-		if(targetEditPart instanceof UseCase4EditPart) {
+		if(targetEditPart instanceof UseCaseInPackageEditPart) {
 			types.add(UMLElementTypes.Abstraction_4015);
 		}
 		if(targetEditPart instanceof ComponentInPackageEditPart) {
@@ -499,10 +511,10 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof ActorAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.Usage_4016);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPart) {
+		if(targetEditPart instanceof UseCaseEditPartTN) {
 			types.add(UMLElementTypes.Usage_4016);
 		}
-		if(targetEditPart instanceof UseCase2EditPart) {
+		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.Usage_4016);
 		}
 		if(targetEditPart instanceof ComponentEditPartTN) {
@@ -514,7 +526,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof ConstraintEditPartTN) {
 			types.add(UMLElementTypes.Usage_4016);
 		}
-		if(targetEditPart instanceof UseCase3EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInComponentEditPart) {
 			types.add(UMLElementTypes.Usage_4016);
 		}
 		if(targetEditPart instanceof ComponentInComponentEditPart) {
@@ -532,7 +544,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof ActorInPackageEditPart) {
 			types.add(UMLElementTypes.Usage_4016);
 		}
-		if(targetEditPart instanceof UseCase4EditPart) {
+		if(targetEditPart instanceof UseCaseInPackageEditPart) {
 			types.add(UMLElementTypes.Usage_4016);
 		}
 		if(targetEditPart instanceof ComponentInPackageEditPart) {
@@ -547,10 +559,10 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof ActorAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.Realization_4017);
 		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPart) {
+		if(targetEditPart instanceof UseCaseEditPartTN) {
 			types.add(UMLElementTypes.Realization_4017);
 		}
-		if(targetEditPart instanceof UseCase2EditPart) {
+		if(targetEditPart instanceof UseCaseAsRectangleEditPartTN) {
 			types.add(UMLElementTypes.Realization_4017);
 		}
 		if(targetEditPart instanceof ComponentEditPartTN) {
@@ -562,7 +574,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof ConstraintEditPartTN) {
 			types.add(UMLElementTypes.Realization_4017);
 		}
-		if(targetEditPart instanceof UseCase3EditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInComponentEditPart) {
 			types.add(UMLElementTypes.Realization_4017);
 		}
 		if(targetEditPart instanceof ComponentInComponentEditPart) {
@@ -580,7 +592,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		if(targetEditPart instanceof ActorInPackageEditPart) {
 			types.add(UMLElementTypes.Realization_4017);
 		}
-		if(targetEditPart instanceof UseCase4EditPart) {
+		if(targetEditPart instanceof UseCaseInPackageEditPart) {
 			types.add(UMLElementTypes.Realization_4017);
 		}
 		if(targetEditPart instanceof ComponentInPackageEditPart) {
@@ -1217,6 +1229,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		return types;
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -1225,11 +1238,15 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
 			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
 			if(type == UMLElementTypes.ExtensionPoint_3007) {
-				return getChildBySemanticHint(UMLVisualIDRegistry.getType(UseCasePointsEditPart.VISUAL_ID));
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(UseCasePoints2EditPart.VISUAL_ID));
 			}
 		}
 		return super.getTargetEditPart(request);
 	}
+
+
+
+
 
 	/**
 	 * @generated
@@ -1264,5 +1281,4 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		}
 		return result;
 	}
-
 }

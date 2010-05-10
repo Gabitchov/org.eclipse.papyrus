@@ -127,13 +127,13 @@
       </childNodes>
       <childNodes
           visualID="3009"
-          editPartClassName="UseCase3EditPart"
-          itemSemanticEditPolicyClassName="UseCase3ItemSemanticEditPolicy"
+          editPartClassName="UseCaseInComponentEditPart"
+          itemSemanticEditPolicyClassName="UseCaseInComponentItemSemanticEditPolicy"
           notationViewFactoryClassName="UseCase3ViewFactory"
-          canonicalEditPolicyClassName="UseCase3CanonicalEditPolicy"
+          canonicalEditPolicyClassName="UseCaseInComponentCanonicalEditPolicy"
           compartments="/0/@diagram/@compartments.3"
-          graphicalNodeEditPolicyClassName="UseCase3GraphicalNodeEditPolicy"
-          createCommandClassName="UseCase3CreateCommand"
+          graphicalNodeEditPolicyClassName="UseCaseInComponentGraphicalNodeEditPolicy"
+          createCommandClassName="UseCaseInComponentCreateCommand"
           containers="/0/@diagram/@compartments.2 /0/@diagram/@compartments.4 /0/@diagram/@compartments.6">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -152,6 +152,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/UseCase"/>
@@ -171,8 +175,8 @@
         </modelFacet>
         <labels
             visualID="5018"
-            editPartClassName="UseCaseName3EditPart"
-            itemSemanticEditPolicyClassName="UseCaseName3ItemSemanticEditPolicy"
+            editPartClassName="UseCaseInComponentNameEditPart"
+            itemSemanticEditPolicyClassName="UseCaseInComponentNameItemSemanticEditPolicy"
             notationViewFactoryClassName="UseCaseName3ViewFactory"
             elementIcon="true">
           <diagramRunTimeClass
@@ -652,13 +656,13 @@
       </childNodes>
       <childNodes
           visualID="3012"
-          editPartClassName="UseCase4EditPart"
-          itemSemanticEditPolicyClassName="UseCase4ItemSemanticEditPolicy"
+          editPartClassName="UseCaseInPackageEditPart"
+          itemSemanticEditPolicyClassName="UseCaseInPackageItemSemanticEditPolicy"
           notationViewFactoryClassName="UseCase4ViewFactory"
-          canonicalEditPolicyClassName="UseCase4CanonicalEditPolicy"
+          canonicalEditPolicyClassName="UseCaseInPackageCanonicalEditPolicy"
           compartments="/0/@diagram/@compartments.5"
-          graphicalNodeEditPolicyClassName="UseCase4GraphicalNodeEditPolicy"
-          createCommandClassName="UseCase4CreateCommand"
+          graphicalNodeEditPolicyClassName="UseCaseInPackageGraphicalNodeEditPolicy"
+          createCommandClassName="UseCaseInPackageCreateCommand"
           containers="/0/@diagram/@compartments.7 /0/@diagram/@compartments.8">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -677,6 +681,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/UseCase"/>
@@ -696,8 +704,8 @@
         </modelFacet>
         <labels
             visualID="5022"
-            editPartClassName="UseCaseName4EditPart"
-            itemSemanticEditPolicyClassName="UseCaseName4ItemSemanticEditPolicy"
+            editPartClassName="UseCaseInPackageNameEditPart"
+            itemSemanticEditPolicyClassName="UseCaseInPackageNameItemSemanticEditPolicy"
             notationViewFactoryClassName="UseCaseName4ViewFactory"
             elementIcon="true">
           <diagramRunTimeClass
@@ -1014,13 +1022,13 @@
       </topLevelNodes>
       <topLevelNodes
           visualID="2013"
-          editPartClassName="UseCaseEditPart"
-          itemSemanticEditPolicyClassName="UseCaseItemSemanticEditPolicy"
+          editPartClassName="UseCaseEditPartTN"
+          itemSemanticEditPolicyClassName="UseCaseItemSemanticEditPolicyTN"
           notationViewFactoryClassName="UseCaseViewFactory"
-          canonicalEditPolicyClassName="UseCaseCanonicalEditPolicy"
+          canonicalEditPolicyClassName="UseCaseCanonicalEditPolicyTN"
           compartments="/0/@diagram/@compartments.0"
-          graphicalNodeEditPolicyClassName="UseCaseGraphicalNodeEditPolicy"
-          createCommandClassName="UseCaseCreateCommand">
+          graphicalNodeEditPolicyClassName="UseCaseGraphicalNodeEditPolicyTN"
+          createCommandClassName="UseCaseCreateCommandTN">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -1038,6 +1046,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/UseCase"/>
@@ -1057,8 +1069,8 @@
         </modelFacet>
         <labels
             visualID="5016"
-            editPartClassName="UseCaseNameEditPart"
-            itemSemanticEditPolicyClassName="UseCaseNameItemSemanticEditPolicy"
+            editPartClassName="UseCaseNameEditPartTN"
+            itemSemanticEditPolicyClassName="UseCaseNameItemSemanticEditPolicyTN"
             notationViewFactoryClassName="UseCaseNameViewFactory"
             elementIcon="true">
           <diagramRunTimeClass
@@ -1078,13 +1090,13 @@
       </topLevelNodes>
       <topLevelNodes
           visualID="2014"
-          editPartClassName="UseCase2EditPart"
-          itemSemanticEditPolicyClassName="UseCase2ItemSemanticEditPolicy"
+          editPartClassName="UseCaseAsRectangleEditPartTN"
+          itemSemanticEditPolicyClassName="UseCaseAsRectangleItemSemanticEditPolicyTN"
           notationViewFactoryClassName="UseCase2ViewFactory"
-          canonicalEditPolicyClassName="UseCase2CanonicalEditPolicy"
+          canonicalEditPolicyClassName="UseCaseAsRectangleCanonicalEditPolicyTN"
           compartments="/0/@diagram/@compartments.1"
-          graphicalNodeEditPolicyClassName="UseCase2GraphicalNodeEditPolicy"
-          createCommandClassName="UseCase2CreateCommand">
+          graphicalNodeEditPolicyClassName="UseCaseAsRectangleGraphicalNodeEditPolicyTN"
+          createCommandClassName="UseCaseAsRectangleCreateCommandTN">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
@@ -1123,8 +1135,8 @@
         </modelFacet>
         <labels
             visualID="5017"
-            editPartClassName="UseCaseName2EditPart"
-            itemSemanticEditPolicyClassName="UseCaseName2ItemSemanticEditPolicy"
+            editPartClassName="UseCaseAsRectangleNameEditPartTN"
+            itemSemanticEditPolicyClassName="UseCaseAsRectangleNameItemSemanticEditPolicyTN"
             notationViewFactoryClassName="UseCaseName2ViewFactory"
             elementIcon="true">
           <diagramRunTimeClass

@@ -27,7 +27,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentInPackageEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintInPackageEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartCN;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase4EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInPackageEditPart;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.usecase.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry;
@@ -63,7 +63,7 @@ public class PackagePackageableElementCompartment2CanonicalEditPolicy extends Ca
 		switch(visualID) {
 		case ConstraintInPackageEditPart.VISUAL_ID:
 		case ActorInPackageEditPart.VISUAL_ID:
-		case UseCase4EditPart.VISUAL_ID:
+		case UseCaseInPackageEditPart.VISUAL_ID:
 		case ComponentInPackageEditPart.VISUAL_ID:
 		case PackageEditPartCN.VISUAL_ID:
 		case CommentEditPartCN.VISUAL_ID:

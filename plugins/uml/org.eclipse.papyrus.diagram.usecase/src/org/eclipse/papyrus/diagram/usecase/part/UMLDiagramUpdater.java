@@ -59,12 +59,12 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.PackagePackageableElementC
 import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ShortCutDiagramEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase3EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase4EditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseAsRectangleEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseExtensionpointsEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInComponentEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInPackageEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePoints2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePoints3EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePointsEditPart;
@@ -192,7 +192,7 @@ public class UMLDiagramUpdater {
 		for(Iterator it = modelElement.getUseCases().iterator(); it.hasNext();) {
 			UseCase childElement = (UseCase)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == UseCase3EditPart.VISUAL_ID) {
+			if(visualID == UseCaseInComponentEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -272,7 +272,7 @@ public class UMLDiagramUpdater {
 		for(Iterator it = modelElement.getUseCases().iterator(); it.hasNext();) {
 			UseCase childElement = (UseCase)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == UseCase3EditPart.VISUAL_ID) {
+			if(visualID == UseCaseInComponentEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -340,7 +340,7 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == UseCase4EditPart.VISUAL_ID) {
+			if(visualID == UseCaseInPackageEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -408,7 +408,7 @@ public class UMLDiagramUpdater {
 		for(Iterator it = modelElement.getUseCases().iterator(); it.hasNext();) {
 			UseCase childElement = (UseCase)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == UseCase3EditPart.VISUAL_ID) {
+			if(visualID == UseCaseInComponentEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -476,7 +476,7 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == UseCase4EditPart.VISUAL_ID) {
+			if(visualID == UseCaseInPackageEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -524,11 +524,11 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == UseCaseEditPart.VISUAL_ID) {
+			if(visualID == UseCaseEditPartTN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == UseCase2EditPart.VISUAL_ID) {
+			if(visualID == UseCaseAsRectangleEditPartTN.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -589,9 +589,9 @@ public class UMLDiagramUpdater {
 			return getActor_2011ContainedLinks(view);
 		case ActorAsRectangleEditPartTN.VISUAL_ID:
 			return getActor_2012ContainedLinks(view);
-		case UseCaseEditPart.VISUAL_ID:
+		case UseCaseEditPartTN.VISUAL_ID:
 			return getUseCase_2013ContainedLinks(view);
-		case UseCase2EditPart.VISUAL_ID:
+		case UseCaseAsRectangleEditPartTN.VISUAL_ID:
 			return getUseCase_2014ContainedLinks(view);
 		case ComponentEditPartTN.VISUAL_ID:
 			return getComponent_2015ContainedLinks(view);
@@ -607,7 +607,7 @@ public class UMLDiagramUpdater {
 			return getExtensionPoint_3007ContainedLinks(view);
 		case ExtensionPoint2EditPart.VISUAL_ID:
 			return getExtensionPoint_3008ContainedLinks(view);
-		case UseCase3EditPart.VISUAL_ID:
+		case UseCaseInComponentEditPart.VISUAL_ID:
 			return getUseCase_3009ContainedLinks(view);
 		case ComponentInComponentEditPart.VISUAL_ID:
 			return getComponent_3016ContainedLinks(view);
@@ -621,7 +621,7 @@ public class UMLDiagramUpdater {
 			return getConstraint_3010ContainedLinks(view);
 		case ActorInPackageEditPart.VISUAL_ID:
 			return getActor_3011ContainedLinks(view);
-		case UseCase4EditPart.VISUAL_ID:
+		case UseCaseInPackageEditPart.VISUAL_ID:
 			return getUseCase_3012ContainedLinks(view);
 		case ComponentInPackageEditPart.VISUAL_ID:
 			return getComponent_3013ContainedLinks(view);
@@ -660,9 +660,9 @@ public class UMLDiagramUpdater {
 			return getActor_2011IncomingLinks(view);
 		case ActorAsRectangleEditPartTN.VISUAL_ID:
 			return getActor_2012IncomingLinks(view);
-		case UseCaseEditPart.VISUAL_ID:
+		case UseCaseEditPartTN.VISUAL_ID:
 			return getUseCase_2013IncomingLinks(view);
-		case UseCase2EditPart.VISUAL_ID:
+		case UseCaseAsRectangleEditPartTN.VISUAL_ID:
 			return getUseCase_2014IncomingLinks(view);
 		case ComponentEditPartTN.VISUAL_ID:
 			return getComponent_2015IncomingLinks(view);
@@ -678,7 +678,7 @@ public class UMLDiagramUpdater {
 			return getExtensionPoint_3007IncomingLinks(view);
 		case ExtensionPoint2EditPart.VISUAL_ID:
 			return getExtensionPoint_3008IncomingLinks(view);
-		case UseCase3EditPart.VISUAL_ID:
+		case UseCaseInComponentEditPart.VISUAL_ID:
 			return getUseCase_3009IncomingLinks(view);
 		case ComponentInComponentEditPart.VISUAL_ID:
 			return getComponent_3016IncomingLinks(view);
@@ -692,7 +692,7 @@ public class UMLDiagramUpdater {
 			return getConstraint_3010IncomingLinks(view);
 		case ActorInPackageEditPart.VISUAL_ID:
 			return getActor_3011IncomingLinks(view);
-		case UseCase4EditPart.VISUAL_ID:
+		case UseCaseInPackageEditPart.VISUAL_ID:
 			return getUseCase_3012IncomingLinks(view);
 		case ComponentInPackageEditPart.VISUAL_ID:
 			return getComponent_3013IncomingLinks(view);
@@ -731,9 +731,9 @@ public class UMLDiagramUpdater {
 			return getActor_2011OutgoingLinks(view);
 		case ActorAsRectangleEditPartTN.VISUAL_ID:
 			return getActor_2012OutgoingLinks(view);
-		case UseCaseEditPart.VISUAL_ID:
+		case UseCaseEditPartTN.VISUAL_ID:
 			return getUseCase_2013OutgoingLinks(view);
-		case UseCase2EditPart.VISUAL_ID:
+		case UseCaseAsRectangleEditPartTN.VISUAL_ID:
 			return getUseCase_2014OutgoingLinks(view);
 		case ComponentEditPartTN.VISUAL_ID:
 			return getComponent_2015OutgoingLinks(view);
@@ -749,7 +749,7 @@ public class UMLDiagramUpdater {
 			return getExtensionPoint_3007OutgoingLinks(view);
 		case ExtensionPoint2EditPart.VISUAL_ID:
 			return getExtensionPoint_3008OutgoingLinks(view);
-		case UseCase3EditPart.VISUAL_ID:
+		case UseCaseInComponentEditPart.VISUAL_ID:
 			return getUseCase_3009OutgoingLinks(view);
 		case ComponentInComponentEditPart.VISUAL_ID:
 			return getComponent_3016OutgoingLinks(view);
@@ -763,7 +763,7 @@ public class UMLDiagramUpdater {
 			return getConstraint_3010OutgoingLinks(view);
 		case ActorInPackageEditPart.VISUAL_ID:
 			return getActor_3011OutgoingLinks(view);
-		case UseCase4EditPart.VISUAL_ID:
+		case UseCaseInPackageEditPart.VISUAL_ID:
 			return getUseCase_3012OutgoingLinks(view);
 		case ComponentInPackageEditPart.VISUAL_ID:
 			return getComponent_3013OutgoingLinks(view);

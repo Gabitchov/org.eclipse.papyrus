@@ -298,8 +298,8 @@
          <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart" id="Package_1000"/>
          <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.ActorEditPartTN" id="Actor_2011"/>
          <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.ActorAsRectangleEditPartTN" id="Actor_2012"/>
-         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPart" id="UseCase_2013"/>
-         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.UseCase2EditPart" id="UseCase_2014"/>
+         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPartTN" id="UseCase_2013"/>
+         <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseAsRectangleEditPartTN" id="UseCase_2014"/>
          <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.ComponentEditPartTN" id="Component_2015"/>
          <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartTN" id="Package_2016"/>
          <object class="org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintEditPartTN" id="Constraint_2017"/>
