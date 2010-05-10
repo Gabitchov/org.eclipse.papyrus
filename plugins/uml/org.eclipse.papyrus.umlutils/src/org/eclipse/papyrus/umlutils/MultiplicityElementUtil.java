@@ -38,7 +38,7 @@ public class MultiplicityElementUtil {
 	 * 
 	 * @return the string representing the multiplicity, without square brackets
 	 */
-	private static String getMultiplicityAsStringWithoutSquareBrackets(MultiplicityElement element) {
+	public static String getMultiplicityAsStringWithoutSquareBrackets(MultiplicityElement element) {
 		StringBuffer buffer = new StringBuffer();
 		// special case for [1] and [*]
 		int lower = element.getLower();
