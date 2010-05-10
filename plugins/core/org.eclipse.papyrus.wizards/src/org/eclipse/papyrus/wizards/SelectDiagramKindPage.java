@@ -110,15 +110,7 @@ public class SelectDiagramKindPage extends WizardPage {
 					button.setSelection(false);
 				}
 				((Button)e.widget).setSelection(true);
-				handleSelectionChanged((Button)e.widget);
-			}
-
-			private void handleSelectionChanged(Button selected) {
-				try {
-					SelectDiagramKindPage.this.creationCommand = getCreationCommandRegistry().getCommand((String)selected.getData());
-				} catch (NotFoundException e) {
-					PapyrusTrace.log(e);
-				}
+				diagramKindButtonSelected((Button)e.widget);
 			}
 
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -132,8 +124,19 @@ public class SelectDiagramKindPage extends WizardPage {
 			button.setData(desc.getCommandId());
 			buttons.add(button);
 		}
+		// set default diagram kind
 		if(!buttons.isEmpty()) {
-			buttons.get(0).setSelection(true);
+			Button defaultKind = buttons.get(0);
+			defaultKind.setSelection(true);
+			diagramKindButtonSelected(defaultKind);
+		}
+	}
+
+	private void diagramKindButtonSelected(Button selected) {
+		try {
+			this.creationCommand = getCreationCommandRegistry().getCommand((String)selected.getData());
+		} catch (NotFoundException e) {
+			PapyrusTrace.log(e);
 		}
 	}
 
