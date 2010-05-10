@@ -24,6 +24,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -76,6 +78,16 @@ public class MultiplicityPropertyEditor extends AbstractPropertyEditor {
 			}
 
 			public void focusGained(FocusEvent e) {
+			}
+		});
+		combo.addSelectionListener(new SelectionListener() {
+
+			public void widgetSelected(SelectionEvent e) {
+				handleContentChanged();
+			}
+
+			public void widgetDefaultSelected(SelectionEvent e) {
+
 			}
 		});
 		combo.setEnabled(!getIsReadOnly());

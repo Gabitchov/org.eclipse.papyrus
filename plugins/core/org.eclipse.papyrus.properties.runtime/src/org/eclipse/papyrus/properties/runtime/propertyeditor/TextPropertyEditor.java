@@ -19,6 +19,8 @@ import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.Property
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -91,6 +93,19 @@ public class TextPropertyEditor extends AbstractPropertyEditor {
 			}
 
 			public void focusGained(FocusEvent e) {
+			}
+		});
+		text.addKeyListener(new KeyListener() {
+
+			public void keyReleased(KeyEvent e) {
+				// valid changement on Carriage return typed
+				if(SWT.CR == e.keyCode && e.stateMask == SWT.NONE) {
+					handleContentChanged();
+				}
+			}
+
+			public void keyPressed(KeyEvent e) {
+
 			}
 		});
 		text.setEnabled(!getIsReadOnly());
