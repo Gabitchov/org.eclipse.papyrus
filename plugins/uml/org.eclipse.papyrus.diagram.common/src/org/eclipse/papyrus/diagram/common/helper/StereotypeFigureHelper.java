@@ -11,7 +11,7 @@
  *   Atos Origin - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.activity.helper;
+package org.eclipse.papyrus.diagram.common.helper;
 
 import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.GridLayout;
@@ -21,7 +21,7 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
-import org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel;
+import org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 
@@ -111,7 +111,7 @@ public abstract class StereotypeFigureHelper {
 	protected void createStereotypeLabel() {
 		ensureStereotypeRectanglePrinted();
 		fActionStereotypeLabel = new CenteredWrappedLabel();
-		fActionStereotypeLabel.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
+		fActionStereotypeLabel.setBorder(new MarginBorder(getMapMode().DPtoLP(2), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
 		// layout data
 		GridData constraint = new GridData();
 		constraint.verticalAlignment = GridData.FILL;
@@ -143,7 +143,7 @@ public abstract class StereotypeFigureHelper {
 	protected void createStereotypePropertiesInBraceLabel() {
 		ensureStereotypeRectanglePrinted();
 		stereotypePropertiesInBraceContent = new CenteredWrappedLabel();
-		stereotypePropertiesInBraceContent.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
+		stereotypePropertiesInBraceContent.setBorder(new MarginBorder(getMapMode().DPtoLP(2), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
 		// layout data
 		GridData constraint = new GridData();
 		constraint.verticalAlignment = GridData.FILL;
@@ -179,7 +179,7 @@ public abstract class StereotypeFigureHelper {
 		stereotypePropertiesContent.setTextJustification(SWT.LEFT);
 		stereotypePropertiesContent.setTextAlignment(PositionConstants.LEFT);
 		stereotypePropertiesContent.setTextWrap(true);
-		stereotypePropertiesContent.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
+		stereotypePropertiesContent.setBorder(new MarginBorder(getMapMode().DPtoLP(2), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
 		// layout data
 		GridData constraint = new GridData();
 		constraint.verticalAlignment = GridData.FILL;

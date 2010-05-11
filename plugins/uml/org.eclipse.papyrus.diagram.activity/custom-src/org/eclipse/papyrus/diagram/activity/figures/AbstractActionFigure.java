@@ -19,8 +19,8 @@ import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
-import org.eclipse.papyrus.diagram.activity.helper.StereotypeFigureHelper;
 import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
+import org.eclipse.papyrus.diagram.common.helper.StereotypeFigureHelper;
 import org.eclipse.swt.graphics.Image;
 
 /**

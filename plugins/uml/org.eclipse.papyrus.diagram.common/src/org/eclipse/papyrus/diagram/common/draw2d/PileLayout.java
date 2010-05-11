@@ -27,6 +27,10 @@ public class PileLayout extends AbstractHintLayout {
 	public void setGap(int gap) {
 		myGap = gap > 0 ? gap : 0;
 	}
+	
+	public void setNegativeGap(int gap) {
+		myGap = gap;
+	}
 
 	/**
 	 * The last (bottom) figure should be stretched to cover the rest of the container client area.
