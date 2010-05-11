@@ -401,7 +401,7 @@
       point="org.eclipse.ui.newWizards">
    <wizard
          category="org.eclipse.ui.Basic"
-         class="org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard"
+         class="org.eclipse.papyrus.diagram.common.wizards.NewPapyrusProjectWizard"
          icon="icons/papyrus/PapyrusLogo16x16.gif"
          id="org.eclipse.ui.wizards.new.project"
          name="Papyrus Project"

@@ -27,7 +27,9 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 
 	protected boolean createFromSemanticModel;
 
-	private static final String DEFAULT_NAME = "model";
+	public static final String DEFAULT_NAME = "model";
+
+	public static final String DIAGRAM_EXTENSION = "di";
 
 	/**
 	 * Create a new wizard page instance.
@@ -53,7 +55,7 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	public void createControl(Composite parent) {
 		super.createControl(parent);
 		if(getFileName() == null || getFileName().length() == 0) {
-			setFileName(DEFAULT_NAME + fileCount + ".di");
+			setFileName(DEFAULT_NAME + fileCount + "." + DIAGRAM_EXTENSION);
 		}
 		setPageComplete(validatePage());
 	}

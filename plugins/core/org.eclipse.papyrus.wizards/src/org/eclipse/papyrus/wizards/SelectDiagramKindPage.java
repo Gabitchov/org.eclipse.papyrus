@@ -42,10 +42,6 @@ import org.eclipse.swt.widgets.Text;
  */
 public class SelectDiagramKindPage extends WizardPage {
 
-	/**
-	 * The previous page containing the model fileName
-	 */
-	NewModelFilePage modelFilePage;
 
 	/**
 	 * The creation command registry
@@ -62,28 +58,29 @@ public class SelectDiagramKindPage extends WizardPage {
 	 */
 	private Text nameText;
 
+	final List<Button> myDiagramKindButtons = new ArrayList<Button>();
+
 	/**
 	 * @return the new diagram name
 	 */
-	protected String getDiagramName() {
+	public String getDiagramName() {
 		return nameText.getText();
 	}
 
 	/**
 	 * @return the creation command
 	 */
-	protected ICreationCommand getCreationCommand() {
+	public ICreationCommand getCreationCommand() {
 		return creationCommand;
 	}
-
-    // TF get rid of  NewModelFilePage parameter as it isn't used in this class
-	protected SelectDiagramKindPage(String pageName, NewModelFilePage modelFilePage) {
+	
+	public SelectDiagramKindPage(String pageName) {
 		super(pageName);
+		setPageComplete(false);
 		setTitle("Initialization information");
 		setDescription("Select name and kind of the diagram");
-		this.modelFilePage = modelFilePage;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -97,20 +94,27 @@ public class SelectDiagramKindPage extends WizardPage {
 
 		createNameForm(plate);
 		createDiagramKindForm(plate);
+		
+//		if(!myDiagramKindButtons.isEmpty()) {
+//			Button defaultKind = myDiagramKindButtons.get(0);
+//			setDefaultDiagramKind((String)defaultKind.getData());
+//		}
+		setPageComplete(validatePage());
+
 	}
 
 	private void createDiagramKindForm(Composite composite) {
 		Group group = createGroup(composite, "Diagram Kind:");
-		final List<Button> buttons = new ArrayList<Button>();
 
 		SelectionListener listener = new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
-				for(Button button : buttons) {
+				for(Button button : myDiagramKindButtons) {
 					button.setSelection(false);
 				}
 				((Button)e.widget).setSelection(true);
-				diagramKindButtonSelected((Button)e.widget);
+				setDiagramCreationCommand((String)((Button)e.widget).getData());
+				setPageComplete(validatePage());
 			}
 
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -122,19 +126,29 @@ public class SelectDiagramKindPage extends WizardPage {
 			button.addSelectionListener(listener);
 			button.setText(desc.getLabel());
 			button.setData(desc.getCommandId());
-			buttons.add(button);
+			myDiagramKindButtons.add(button);
 		}
-		// set default diagram kind
-		if(!buttons.isEmpty()) {
-			Button defaultKind = buttons.get(0);
-			defaultKind.setSelection(true);
-			diagramKindButtonSelected(defaultKind);
+		
+	}
+	
+	private void setDefaultDiagramKind(String defaultKindCommandId) {
+		for(Button button : myDiagramKindButtons) {
+			if (defaultKindCommandId != null && defaultKindCommandId.equals(button.getData())) {
+				button.setSelection(true);
+			} else {
+				button.setSelection(false);
+			}
 		}
+		setDiagramCreationCommand(defaultKindCommandId);
 	}
 
-	private void diagramKindButtonSelected(Button selected) {
+	private void setDiagramCreationCommand(String commandId) {
+		if (commandId == null) {
+			this.creationCommand = null;
+			return;
+		}
 		try {
-			this.creationCommand = getCreationCommandRegistry().getCommand((String)selected.getData());
+			this.creationCommand = getCreationCommandRegistry().getCommand(commandId);
 		} catch (NotFoundException e) {
 			PapyrusTrace.log(e);
 		}
@@ -196,5 +210,9 @@ public class SelectDiagramKindPage extends WizardPage {
 		setErrorMessage(message);
 		setPageComplete(message == null);
 	}
-
+	
+	protected boolean validatePage() {
+		return false == "".equals(getDiagramName()) && getCreationCommand() != null;
+	}
+	
 }
