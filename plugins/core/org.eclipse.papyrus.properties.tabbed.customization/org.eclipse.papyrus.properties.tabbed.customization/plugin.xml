@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            defaultHandler="org.eclipse.papyrus.properties.tabbed.customization.handler.CustomizePropertyViewCommandHandler"
+            description="This command allows customization of the content of the properties view"
+            id="org.eclipse.papyrus.properties.tabbed.customize"
+            name="Customize properties view">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.views.PropertySheet">
+         <command
+               commandId="org.eclipse.papyrus.properties.tabbed.customize"
+               icon="icons/type.gif"
+               id="org.eclipse.papyrus.properties.tabbed.customizehandler"
+               label="Customize Property view"
+               mnemonic="C"
+               mode="FORCE_TEXT"
+               style="push"
+               tooltip="Customize the content of the Property View">
+         </command>
+      </menuContribution>
+   </extension>
+</plugin>
