@@ -33,13 +33,12 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-
 /**
- * Provider for the tabbed properties
+ * Provider for the tabbed properties view, based on an xml description of the content
  */
 public class XMLPropertyTabViewProvider extends XMLPropertyViewProvider implements IPropertyTabViewProvider {
 
-	/** tab descriptors */
+	/** list of tab descriptors provided by this provider */
 	protected List<ITabDescriptor> tabDescriptors = new ArrayList<ITabDescriptor>();
 
 	/**

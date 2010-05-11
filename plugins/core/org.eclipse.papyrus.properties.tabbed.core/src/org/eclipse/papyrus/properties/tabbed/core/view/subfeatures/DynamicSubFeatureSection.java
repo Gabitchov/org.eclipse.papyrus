@@ -40,15 +40,14 @@ public class DynamicSubFeatureSection extends DynamicSection {
 	/** number max of columns */
 	protected final int maxColumn;
 
-	/** main composite to hold all containers describing sub elements */
-	// protected Composite mainComposite;
-
 	/** main container for the sub feature section */
 	protected final SubFeatureContainerDescriptor subFeatureContainerDescriptor;
 
 	/**
 	 * Creates a new DynamicSubFeatureSection.
 	 * 
+	 * @param viewDescriptors
+	 *        the list of fragment descriptors contained by this section
 	 * @param fragmentDescriptors
 	 *        the list of view descriptors used by this section
 	 */
@@ -57,7 +56,6 @@ public class DynamicSubFeatureSection extends DynamicSection {
 		this.subFeatureDescriptor = subFeatureDescriptor;
 		this.maxColumn = maxColumn;
 		this.subFeatureContainerDescriptor = subFeatureContainerDescriptor;
-
 	}
 
 	/**

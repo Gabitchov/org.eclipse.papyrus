@@ -14,8 +14,8 @@ package org.eclipse.papyrus.properties.tabbed.core.view.subfeatures;
 import java.util.List;
 
 import org.eclipse.papyrus.properties.runtime.Activator;
-import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
 import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.DynamicSectionDescriptor;
 import org.eclipse.ui.views.properties.tabbed.ISection;
@@ -52,6 +52,7 @@ public class DynamicSubFeatureSectionDescriptor extends DynamicSectionDescriptor
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public ISection getSectionClass() {
 		// parses the configuration if required
 		if(unparsed) {

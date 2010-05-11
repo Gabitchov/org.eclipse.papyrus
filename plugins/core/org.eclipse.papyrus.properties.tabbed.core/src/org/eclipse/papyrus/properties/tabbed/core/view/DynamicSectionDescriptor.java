@@ -301,4 +301,14 @@ public class DynamicSectionDescriptor extends AbstractSectionDescriptor implemen
 		return replacedSectionIds;
 	}
 
+
+	/**
+	 * Returns the fragments identifier hold by this section
+	 * 
+	 * @return the fragments identifier hold by this section
+	 */
+	public List<String> getFragmentsId() {
+		return fragmentsId;
+	}
+
 }

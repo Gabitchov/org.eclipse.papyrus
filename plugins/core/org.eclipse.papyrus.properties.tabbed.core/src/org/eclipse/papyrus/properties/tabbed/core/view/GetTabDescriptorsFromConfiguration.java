@@ -20,7 +20,7 @@ import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
 
 
 /**
- * retrieve the list of tab descriptors for the papyrus property view
+ * Retrieves the list of tab descriptors for the papyrus property view
  */
 public class GetTabDescriptorsFromConfiguration implements IPropertyViewOperation {
 

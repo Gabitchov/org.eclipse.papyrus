@@ -24,14 +24,14 @@ import org.eclipse.papyrus.properties.runtime.Activator;
  */
 public class EMFSimpleSubFeatureDescriptor extends SubFeatureDescriptor {
 
+	/** name of the feature to edit */
 	protected final String featureNameToEdit;
-
 
 	/**
 	 * Creates a new EMFSimpleSubFeatureDescriptor.
 	 * 
 	 * @param featureName
-	 *        the nmae of the feature to edit
+	 *        the name of the feature to edit
 	 */
 	public EMFSimpleSubFeatureDescriptor(String featureName) {
 		this.featureNameToEdit = featureName;

@@ -87,6 +87,7 @@ public class DynamicSection extends AbstractPropertySection {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void setInput(IWorkbenchPart part, ISelection selection) {
 		super.setInput(part, selection);
 		if(!(selection instanceof IStructuredSelection) || !((part instanceof IEditingDomainProvider) || part.getAdapter(IEditingDomainProvider.class) != null)) {
@@ -138,7 +139,7 @@ public class DynamicSection extends AbstractPropertySection {
 	}
 
 	/**
-	 * Resolve semantic element
+	 * Resolve semantic element from a given object. The object tries to be adapted into a {@link EObject}, if possible.
 	 * 
 	 * @param object
 	 *        the object to resolve

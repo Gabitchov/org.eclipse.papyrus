@@ -67,9 +67,6 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 	/** node name for tab */
 	protected static final String NODE_NAME_TAB = "tab";
 
-	/** node name for fragment */
-	// protected static final String NODE_NAME_FRAGMENT = "fragment";
-
 	/** node name for id */
 	protected static final String NODE_NAME_ID = "id";
 
