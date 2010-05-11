@@ -21,6 +21,8 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
@@ -34,6 +36,8 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
+import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -102,6 +106,11 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 				protected void doExecute() {
 					// Create Model Resource, Notation Resource, DI Resource
 					diResourceSet.createModelResources(newFile, getModelContentType(), getModelFileExtension());
+					Resource modelResource = diResourceSet.getModelResource();
+					if(modelResource != null) {
+						IPath path = new Path(newFile.getName());
+						initializeModelResource(modelResource, path.removeFileExtension().toString());
+					}
 				}
 			};
 			diResourceSet.getTransactionalEditingDomain().getCommandStack().execute(command);
@@ -139,6 +148,17 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 			return false;
 		}
 		return true;
+	}
+
+	private void initializeModelResource(Resource resource, String rootElementName) {
+//		// fjcano #293135 :: support model templates
+//		if(!isInitializeFromTemplate()) {
+			Model model = UMLFactory.eINSTANCE.createModel();
+			model.setName(rootElementName);
+			resource.getContents().add(model);
+//		} else {
+//			super.initializeModelResource(resource, rootElementName);
+//		}
 	}
 
 	public void setInitialProjectName(String initialProjectName) {
