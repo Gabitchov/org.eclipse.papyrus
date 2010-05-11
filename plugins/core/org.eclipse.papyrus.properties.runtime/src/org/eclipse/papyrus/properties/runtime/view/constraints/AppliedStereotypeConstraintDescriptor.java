@@ -16,8 +16,6 @@ import java.util.List;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
-
-
 /**
  * Descriptor for constraints based on stereoype application
  */
@@ -27,7 +25,6 @@ public class AppliedStereotypeConstraintDescriptor implements IConstraintDescrip
 	private final List<String> stereotypeQualifiedNames;
 
 	/**
-	 * 
 	 * Creates a new AppliedStereotypeConstraintDescriptor.
 	 * 
 	 * @param stereotypeQualifiedNames
@@ -36,7 +33,6 @@ public class AppliedStereotypeConstraintDescriptor implements IConstraintDescrip
 	public AppliedStereotypeConstraintDescriptor(List<String> stereotypeQualifiedNames) {
 		this.stereotypeQualifiedNames = stereotypeQualifiedNames;
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -66,6 +62,5 @@ public class AppliedStereotypeConstraintDescriptor implements IConstraintDescrip
 	public List<String> getStereotypeQualifiedNames() {
 		return stereotypeQualifiedNames;
 	}
-
 
 }

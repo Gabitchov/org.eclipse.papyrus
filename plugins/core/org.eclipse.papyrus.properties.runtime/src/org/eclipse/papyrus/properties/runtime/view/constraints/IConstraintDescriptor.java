@@ -11,8 +11,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.view.constraints;
 
-
-
 /**
  * Descriptor for constraints on the sections
  */

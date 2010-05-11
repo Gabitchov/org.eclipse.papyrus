@@ -17,10 +17,12 @@ package org.eclipse.papyrus.properties.runtime.view.constraints;
  */
 public class ObjectTypeConstraintDescriptor implements IConstraintDescriptor {
 
+	/** class of the edited element */
 	protected final Class<?> elementClass;
 
 	/**
 	 * Creates a new ObjectTypeConstraintDescriptor.
+	 * @param elementClass class of the element to edit
 	 */
 	public ObjectTypeConstraintDescriptor(Class<?> elementClass) {
 		this.elementClass = elementClass;
@@ -37,7 +39,5 @@ public class ObjectTypeConstraintDescriptor implements IConstraintDescriptor {
 		}
 		return false;
 	}
-
-
 
 }
