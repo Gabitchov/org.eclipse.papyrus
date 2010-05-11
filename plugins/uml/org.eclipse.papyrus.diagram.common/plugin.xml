@@ -169,7 +169,20 @@
             class="org.eclipse.core.resources.IResource">
       </selection>
    </wizard>
+   <wizard
+         category="org.eclipse.ui.Basic"
+         class="org.eclipse.papyrus.diagram.common.wizards.NewPapyrusProjectWizard"
+         finalPerspective="org.eclipse.papyrus.core.perspective"
+         icon="icons/papyrus/PapyrusLogo16x16.gif"
+         id="org.eclipse.ui.wizards.new.project"
+         name="Papyrus Project"
+         project="true">
+      <description>
+         %NewWizards.project.description
+      </description>
+   </wizard>
 </extension>
+
 <extension
       point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders">
    <paletteProvider
@@ -396,20 +409,6 @@
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="CTRL+SHIFT+V">
    </key>
-</extension>
-<extension
-      point="org.eclipse.ui.newWizards">
-   <wizard
-         category="org.eclipse.ui.Basic"
-         class="org.eclipse.papyrus.diagram.common.wizards.NewPapyrusProjectWizard"
-         icon="icons/papyrus/PapyrusLogo16x16.gif"
-         id="org.eclipse.ui.wizards.new.project"
-         name="Papyrus Project"
-         project="true">
-      <description>
-         %NewWizards.project.description
-      </description>
-   </wizard>
 </extension>
 <extension
       point="org.eclipse.papyrus.navigator.providerAdapterFactory">

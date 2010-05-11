@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.wizards;
 
+import static org.eclipse.papyrus.diagram.common.Activator.log;
+
 import java.io.IOException;
 
 import org.eclipse.core.resources.IFile;
@@ -20,13 +22,10 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.gef.EditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.papyrus.wizards.NewModelFilePage;
 import org.eclipse.papyrus.wizards.SelectDiagramKindPage;
 import org.eclipse.ui.IWorkbench;
@@ -124,19 +123,19 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 				try {
 					diResourceSet.save(new NullProgressMonitor());
 				} catch (IOException e) {
-					PapyrusTrace.log(e);
+					log.error(e);
 					return false;
 				}
 
 				try {
 					IDE.openEditor(page, newFile, true);
 				} catch (PartInitException e) {
-					PapyrusTrace.log(e);
+					log.error(e);
 					return false;
 				}
 			}
 		} catch (Exception e) {
-			PapyrusTrace.log(e);
+			log.error(e);
 			return false;
 		}
 		return true;
