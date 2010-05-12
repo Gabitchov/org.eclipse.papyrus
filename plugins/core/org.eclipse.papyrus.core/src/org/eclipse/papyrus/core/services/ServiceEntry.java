@@ -27,6 +27,7 @@ public class ServiceEntry extends AbstractServiceEntry {
 	public ServiceEntry(ServiceDescriptor serviceDescriptor, ServicesRegistry registry) {
 		this.serviceDescriptor = serviceDescriptor;
 		this.registry = registry;
+		setState(ServiceState.registered);
 
 	}
 
@@ -43,46 +44,26 @@ public class ServiceEntry extends AbstractServiceEntry {
 	public ServiceEntry(ServiceDescriptor descriptor, IService serviceInstance) {
 		this.serviceDescriptor = descriptor;
 		this.serviceInstance = serviceInstance;
+		setState(ServiceState.registered);
 	}
 
 	/**
-	 * Start the service manually.
-	 * 
-	 * @throws ServiceException
-	 */
-	public void startService() throws ServiceException {
-		// Create the instance if needed
-		if(serviceInstance == null) {
-			serviceInstance = createService();
-		}
-		serviceInstance.startService();
-	}
-
-	/**
-	 * Get the service instance.
+	 * Get the service instance, even if it is not started.
+	 * The service should be created.
 	 * 
 	 * @return
 	 * @throws ServiceException
 	 *         If service can't be started.
 	 */
 	public Object getServiceInstance() throws ServiceException {
-		if(serviceInstance == null) {
-			startService();
-		}
-
+		
+		if( serviceInstance == null)
+			throw new BadStateException("Service is not created.", state, serviceDescriptor);
+		
 		return serviceInstance;
+			
 	}
 
-
-	/**
-	 * Dispose the service manually.
-	 */
-	public void disposeService() throws ServiceException {
-		if(serviceInstance == null)
-			return;
-
-		serviceInstance.disposeService();
-	}
 
 	/**
 	 * @see java.lang.Object#toString()
@@ -96,12 +77,86 @@ public class ServiceEntry extends AbstractServiceEntry {
 
 
 	/**
-	 * Return true if the service is instantiated. Return false otherwise.
+	 * Create the associated service if not a Lazy Service.
 	 * 
-	 * @return
+	 * @throws ServiceException
 	 */
-	public boolean isStarted() {
-		return serviceInstance != null;
+	public void createService() throws ServiceException {
+		checkState(ServiceState.registered);
+		// Exit if already  created.
+		if( serviceInstance != null)
+		{
+			setState(ServiceState.created);
+			return;
+		}
+		
+		// Create it
+		try {
+			// Create the instance
+			serviceInstance = (IService)instanciateService();
+		} catch (Exception e) {
+			setState(ServiceState.error);
+			throw new ServiceException(e);
+		}
+		setState(ServiceState.created);
+	}
+
+	/**
+	 * Start the associated service if not a Lazy Service.
+	 * 
+	 * @param servicesRegistry
+	 *        The servicesRegistry containing this service.
+	 * 
+	 * @throws ServiceException
+	 */
+	public void initService(ServicesRegistry servicesRegistry) throws ServiceException {
+		checkState(ServiceState.created);
+		try {
+			serviceInstance.init(servicesRegistry);
+		} catch (ServiceException e) {
+			setState(ServiceState.error);
+			throw e;
+		} catch (Exception e) {
+			setState(ServiceState.error);
+			throw new ServiceException(e);
+		}
+
+		setState(ServiceState.initialized);
+	}
+
+	/**
+	 * Start the associated service if not a Lazy Service.
+	 * 
+	 * @throws ServiceException
+	 */
+	public void startService() throws ServiceException {
+		
+		checkState(ServiceState.initialized);
+		setState(ServiceState.starting);
+		
+		try {
+			serviceInstance.startService();
+		} catch (ServiceException e) {
+			setState(ServiceState.error);
+			throw e;
+		} catch (Exception e) {
+			setState(ServiceState.error);
+			throw new ServiceException(e);
+		}
+		
+		setState(ServiceState.started);
+	}
+
+	/**
+	 * Dispose the service.
+	 */
+	public void disposeService() throws ServiceException {
+		if(serviceInstance == null)
+			return;
+
+		serviceInstance.disposeService();
+		serviceInstance = null;
+		setState(ServiceState.disposed);
 	}
 
 

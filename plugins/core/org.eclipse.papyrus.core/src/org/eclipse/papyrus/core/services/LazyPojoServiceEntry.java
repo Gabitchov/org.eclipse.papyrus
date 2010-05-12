@@ -5,9 +5,12 @@ package org.eclipse.papyrus.core.services;
 
 
 /**
+ * An ServiceEnry managing pojo service registered as lazy start.
+ * 
  * @author cedric dumoulin
+ *
  */
-public class PojoServiceEntry extends AbstractServiceEntry {
+public class LazyPojoServiceEntry extends AbstractServiceEntry {
 
 	/** Instance of the service, if started. */
 	private Object serviceInstance;
@@ -18,10 +21,11 @@ public class PojoServiceEntry extends AbstractServiceEntry {
 	 * @param serviceDescriptor
 	 * @param registry
 	 */
-	public PojoServiceEntry(ServiceDescriptor serviceDescriptor, ServicesRegistry registry) {
+	public LazyPojoServiceEntry(ServiceDescriptor serviceDescriptor, ServicesRegistry registry) {
 		this.serviceDescriptor = serviceDescriptor;
 		this.registry = registry;
 		setState(ServiceState.registered);
+
 	}
 
 
@@ -34,80 +38,86 @@ public class PojoServiceEntry extends AbstractServiceEntry {
 	 * @param serviceInstance
 	 *        The service Instance
 	 */
-	public PojoServiceEntry(ServiceDescriptor descriptor, Object serviceInstance) {
+	public LazyPojoServiceEntry(ServiceDescriptor descriptor, Object serviceInstance) {
 		this.serviceDescriptor = descriptor;
 		this.serviceInstance = serviceInstance;
 		setState(ServiceState.registered);
 	}
 
 	/**
-	 * Get the service instance.
-	 * 
+	 * @see org.eclipse.papyrus.core.services.AbstractServiceEntry#getServiceInstance()
+	 *
 	 * @return
 	 * @throws ServiceException
-	 *         If service can't be started.
 	 */
+	@Override
 	public Object getServiceInstance() throws ServiceException {
-		
-		if( serviceInstance == null)
-			throw new BadStateException("Service is not created.", state, serviceDescriptor);
+		if( state == ServiceState.registered )
+		{
+			lazyStart();
+		}
 		
 		return serviceInstance;
 	}
 
 	/**
-	 * Already created : do nothing.
-	 * 
-	 * @throws ServiceException
+	 * Lazily start the service. Do create, init and start
 	 */
-	public void createService() throws ServiceException {
-		checkState(ServiceState.registered);
-		// Exit if already  created.
-		if( serviceInstance != null)
-		{
-			setState(ServiceState.created);
-			return;
-		}
+	protected void lazyStart() throws ServiceException {
 		
-		// Create it
+		checkState(ServiceState.registered);
+
 		try {
 			// Create the instance
-			serviceInstance = (IService)instanciateService();
+			if( serviceInstance == null) {
+				serviceInstance = (IService)instanciateService();
+			}
 		} catch (Exception e) {
 			setState(ServiceState.error);
 			throw new ServiceException(e);
 		}
-		setState(ServiceState.created);
+		
+		setState(ServiceState.started);
+	}
+	
+	/**
+	 * Do nothing
+	 *
+	 * @throws ServiceException
+	 */
+	@Override
+	public void createService() throws ServiceException {
 	}
 
 	/**
-	 * Pojo : can't initialize the service. Do nothing.
+	 * Do nothing
 	 * 
 	 * @param servicesRegistry
-	 *        The servicesRegistry containing this service.
-	 * 
 	 * @throws ServiceException
 	 */
+	@Override
 	public void initService(ServicesRegistry servicesRegistry) throws ServiceException {
-		setState(ServiceState.initialized);
-	}
-
-	/**
-	 * Already started : do nothing.
-	 * 
-	 * @throws ServiceException
-	 */
-	public void startService() throws ServiceException {
-		setState(ServiceState.started);
 	}
 
 	/**
 	 * Do nothing.
+	 *
+	 * @throws ServiceException
 	 */
+	@Override
+	public void startService() throws ServiceException {
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.core.services.AbstractServiceEntry#disposeService()
+	 *
+	 * @throws ServiceException
+	 */
+	@Override
 	public void disposeService() throws ServiceException {
-		if( serviceInstance == null)
+		if(serviceInstance == null)
 			return;
-		
+
 		serviceInstance = null;
 		setState(ServiceState.disposed);
 	}

@@ -14,12 +14,21 @@ package org.eclipse.papyrus.core.services;
 public interface IService {
 
 	/**
+	 * Init the service and set its associated Registry.
+	 * The registry can be used to retrieve other services.
+	 * 
+	 * @param servicesRegistry
+	 */
+	public void init(ServicesRegistry servicesRegistry) throws ServiceException;
+
+	/**
 	 * Start the service. This method is called when the service is started.
 	 */
-	public void startService();
+	public void startService() throws ServiceException;
 
 	/**
 	 * Dispose the service.
 	 */
-	public void disposeService();
+	public void disposeService() throws ServiceException;
+
 }

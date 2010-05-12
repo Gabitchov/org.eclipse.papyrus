@@ -3,7 +3,9 @@
  */
 package org.eclipse.papyrus.core.services;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,7 +18,12 @@ import java.util.logging.Logger;
  * Services can be added using the Eclipse extension mechanism.
  * A Service is a class providing operations. A service is shared across the editors.
  * 
- * @author dumoulin
+ * <br>
+ * In this implementation, services should be added to the registry before the call to createServices(). 
+ * If a service is added after the call, it will not be started (except if it is a lazy service).
+ * 
+ * @author cedric dumoulin
+ * 
  * 
  */
 public class ServicesRegistry {
@@ -56,7 +63,13 @@ public class ServicesRegistry {
 		}
 
 		// Add the service
-		services.put(serviceDescriptor.getKey(), new ServiceEntry(serviceDescriptor, this));
+		AbstractServiceEntry serviceEntry;
+		if(serviceDescriptor.isStartAtStartup()) {
+			serviceEntry = new ServiceEntry(serviceDescriptor, this);
+		} else {
+			serviceEntry = new LazyServiceEntry(serviceDescriptor, this);
+		}
+		services.put(serviceDescriptor.getKey(), serviceEntry);
 	}
 
 	/**
@@ -71,6 +84,21 @@ public class ServicesRegistry {
 	 *        The instance of the service
 	 */
 	public void add(Object key, int priority, IService serviceInstance) {
+		add(key, priority, serviceInstance, ServiceStartKind.STARTUP);
+	}
+
+	/**
+	 * Add a service.
+	 * The descriptor will be created.
+	 * 
+	 * @param key
+	 *        Service key
+	 * @param priority
+	 *        service priority
+	 * @param serviceInstance
+	 *        The instance of the service
+	 */
+	public void add(Object key, int priority, IService serviceInstance, ServiceStartKind startKind) {
 		// Check if the service already exist.
 		AbstractServiceEntry service = services.get(key);
 		if(service != null) {
@@ -81,9 +109,12 @@ public class ServicesRegistry {
 		}
 
 		// Create descriptor and add service.
-		ServiceDescriptor descriptor = new ServiceDescriptor(key, serviceInstance.getClass().getName(), ServiceStartKind.STARTUP, priority);
-		services.put(key, new ServiceEntry(descriptor, serviceInstance));
+		ServiceDescriptor descriptor = new ServiceDescriptor(key, serviceInstance.getClass().getName(), startKind, priority);
 
+		if( startKind == ServiceStartKind.STARTUP)
+			services.put(key, new ServiceEntry(descriptor, serviceInstance));
+		else
+			services.put(key, new LazyServiceEntry(descriptor, serviceInstance));
 	}
 
 	/**
@@ -99,6 +130,24 @@ public class ServicesRegistry {
 	 *        The instance of the service
 	 */
 	public void add(Object key, int priority, Object serviceInstance) {
+		add(key, priority, serviceInstance, ServiceStartKind.STARTUP);
+	}
+
+	/**
+	 * Add an already instanciated pojo (Plain Old Java Object) as Service.
+	 * The descriptor will be created.
+	 * No life cycle methods are called on the service.
+	 * 
+	 * @param key
+	 *        Service key
+	 * @param priority
+	 *        service priority
+	 * @param serviceInstance
+	 *        The instance of the service
+	 * @param startKind
+	 * 
+	 */
+	public void add(Object key, int priority, Object serviceInstance, ServiceStartKind startKind) {
 		// Check if the service already exist.
 		AbstractServiceEntry service = services.get(key);
 		if(service != null) {
@@ -109,9 +158,13 @@ public class ServicesRegistry {
 		}
 
 		// Create descriptor and add service.
-		ServiceDescriptor descriptor = new ServiceDescriptor(key, serviceInstance.getClass().getName(), ServiceStartKind.STARTUP, priority);
-		services.put(key, new PojoServiceEntry(descriptor, serviceInstance));
+		ServiceDescriptor descriptor = new ServiceDescriptor(key, serviceInstance.getClass().getName(), startKind, priority);
 
+		if(startKind == ServiceStartKind.STARTUP)
+			services.put(key, new PojoServiceEntry(descriptor, serviceInstance));
+		else
+			services.put(key, new LazyPojoServiceEntry(descriptor, serviceInstance));
+			
 	}
 
 	/**
@@ -157,7 +210,7 @@ public class ServicesRegistry {
 	}
 
 	/**
-	 * Get the requested service by its class (the servce has to be registered by its class object).
+	 * Get the requested service by its class (the service has to be registered by its class object).
 	 * 
 	 * @param key
 	 *        The service class.
@@ -190,35 +243,176 @@ public class ServicesRegistry {
 	}
 
 	/**
+	 * Return the state of the specified service.
+	 * 
+	 * @return
+	 */
+	public ServiceState serviceState(Object key) throws ServiceNotFoundException {
+		AbstractServiceEntry service = services.get(key);
+		if(service == null) {
+			throw new ServiceNotFoundException("No service registered under '" + key + "'");
+		}
+
+		return service.getState();
+	}
+
+	/**
 	 * Start the registry.
 	 * Start all services marked as start = STARTUP are started.
-	 * Then, method start() is called on all IService.
-	 * Start services marked as start = STARTUP.
+	 * All services are first created, then initialized and finally started.
+	 * If an error occur on a service during one of this step, the service is removed from
+	 * the registry and and the error is logged.
 	 * 
 	 * @throws ServiceException
 	 *         If a service can't be started.
 	 */
 	public void startRegistry() {
-		for(AbstractServiceEntry serviceEntry : services.values()) {
-			try {
-				serviceEntry.startup();
-			} catch (ServiceException e) {
-				log.log(Level.SEVERE, "Can't init service '" + serviceEntry + "'", e);
-			}
-		}
+
+		createServices();
+		initServices();
+		startServices();
 	}
 
 	/**
 	 * Dispose all services.
 	 */
-	public void disposeService() {
-		for(AbstractServiceEntry serviceDesc : services.values()) {
+	public void disposeRegistry() {
+
+		disposeServices();
+	}
+
+	/**
+	 * Create all services marked as start = STARTUP.
+	 * 
+	 * @throws ServiceException
+	 *         If a service can't be started.
+	 */
+	private void createServices() {
+		// List of keys of service in error. 
+		List<Object> errors = null;
+
+		// Loop on all services
+		for(Map.Entry<Object, AbstractServiceEntry> mapEntry : services.entrySet()) {
+			AbstractServiceEntry serviceEntry = mapEntry.getValue();
 			try {
-				serviceDesc.disposeService();
+
+				serviceEntry.createService();
 			} catch (ServiceException e) {
-				log.log(Level.SEVERE, "Can't dispose service '" + serviceDesc + "'", e);
+				log.log(Level.SEVERE, "Can't create service '" + serviceEntry + "'", e);
+				if(errors == null)
+					errors = new ArrayList<Object>();
+				errors.add(mapEntry.getKey());
 			}
 		}
+
+		// Remove faulty services
+		if(errors != null) {
+			for(Object key : errors) {
+				services.remove(key);
+			}
+		}
+
 	}
+
+	/**
+	 * Init all services marked as start = STARTUP.
+	 * 
+	 * @throws ServiceException
+	 *         If a service can't be started.
+	 */
+	private void initServices() {
+
+		// List of keys of service in error. 
+		List<Object> errors = null;
+
+		// Loop on all services
+		for(Map.Entry<Object, AbstractServiceEntry> mapEntry : services.entrySet()) {
+			AbstractServiceEntry serviceEntry = mapEntry.getValue();
+			try {
+
+				serviceEntry.initService(this);
+			} catch (ServiceException e) {
+				log.log(Level.SEVERE, "Can't init service '" + serviceEntry + "'", e);
+				if(errors == null)
+					errors = new ArrayList<Object>();
+				errors.add(mapEntry.getKey());
+			}
+		}
+
+		// Remove faulty services
+		if(errors != null) {
+			for(Object key : errors) {
+				services.remove(key);
+			}
+		}
+
+	}
+
+	/**
+	 * Start all services marked as start = STARTUP.
+	 * 
+	 * @throws ServiceException
+	 *         If a service can't be started.
+	 */
+	private void startServices() {
+		// List of keys of service in error. 
+		List<Object> errors = null;
+
+		// Loop on all services
+		for(Map.Entry<Object, AbstractServiceEntry> mapEntry : services.entrySet()) {
+			AbstractServiceEntry serviceEntry = mapEntry.getValue();
+			try {
+
+				serviceEntry.startService();
+			} catch (ServiceException e) {
+				log.log(Level.SEVERE, "Can't start service '" + serviceEntry + "'", e);
+				if(errors == null)
+					errors = new ArrayList<Object>();
+				errors.add(mapEntry.getKey());
+			}
+		}
+
+		// Remove faulty services
+		if(errors != null) {
+			for(Object key : errors) {
+				services.remove(key);
+			}
+		}
+
+	}
+
+	/**
+	 * Dispose all started services.
+	 * 
+	 * @throws ServiceException
+	 *         If a service can't be started.
+	 */
+	private void disposeServices() {
+		// List of keys of service in error. 
+		List<Object> errors = null;
+
+		// Loop on all services
+		for(Map.Entry<Object, AbstractServiceEntry> mapEntry : services.entrySet()) {
+			AbstractServiceEntry serviceEntry = mapEntry.getValue();
+			try {
+
+				serviceEntry.disposeService();
+			} catch (ServiceException e) {
+				log.log(Level.SEVERE, "Can't dispose service '" + serviceEntry + "'", e);
+				if(errors == null)
+					errors = new ArrayList<Object>();
+				errors.add(mapEntry.getKey());
+			}
+		}
+
+		// Remove faulty services
+		if(errors != null) {
+			for(Object key : errors) {
+				services.remove(key);
+			}
+		}
+
+	}
+
 
 }

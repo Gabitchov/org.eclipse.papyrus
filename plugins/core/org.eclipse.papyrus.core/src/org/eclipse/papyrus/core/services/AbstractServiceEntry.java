@@ -18,6 +18,11 @@ import org.osgi.framework.Bundle;
  */
 public abstract class AbstractServiceEntry {
 
+	/**
+	 * Current state of the service.
+	 */
+	protected ServiceState state = ServiceState.registered;
+	
 	protected ServicesRegistry registry;
 
 	/**
@@ -27,19 +32,35 @@ public abstract class AbstractServiceEntry {
 
 
 	/**
-	 * Startup the services.
-	 * This method is called by the registry at the beginning in order to start
-	 * services marked as "STARTUP".
-	 * 
-	 * @throws ServiceException
-	 *         If service can't be started.
+	 * Change the state of the service.
+	 * @param newState
 	 */
-	public void startup() throws ServiceException {
-		// Start service if needed
-		if(serviceDescriptor.isStartAtStartup())
-			startService();
+	protected void setState( ServiceState newState ) {
+		state = newState;
+	}
+	
+	
+	/**
+	 * @return the state
+	 */
+	public ServiceState getState() {
+		return state;
 	}
 
+	/**
+	 * Check if the current state is the proposed state. 
+	 * Throws an exception if the state is different.
+	 * 
+	 * @param expectedState
+	 * @throws BadStateException
+	 */
+	protected void checkState( ServiceState expectedState) throws BadStateException {
+		if(expectedState!=state)
+		{
+			throw new BadStateException(expectedState, state, serviceDescriptor);
+		}
+	}
+	
 	/**
 	 * Get the descriptor of the service associated to this entry.
 	 * 
@@ -47,25 +68,6 @@ public abstract class AbstractServiceEntry {
 	 */
 	public ServiceDescriptor getDescriptor() {
 		return serviceDescriptor;
-	}
-
-	/**
-	 * Create the service.
-	 * 
-	 * @return the created service.
-	 * @throws ServiceException
-	 */
-	protected IService createService() throws ServiceException {
-
-		Object service = instanciateService();
-		// if(! (service instanceof IService) )
-		// {
-		// // Service is not of the right type. Provide a wrapper.
-		// return new ServiceWrapper(service);
-		// }
-
-		// Service is of the right type
-		return (IService)service;
 	}
 
 	/**
@@ -140,17 +142,45 @@ public abstract class AbstractServiceEntry {
 	}
 
 	/**
-	 * Dispose associated service
+	 * Return true if the service is started. Return false otherwise.
+	 * 
+	 * @return
 	 */
-	public void disposeService() throws ServiceException {
+	public boolean isStarted() {
+		return state == ServiceState.started;
 	}
 
+	/**
+	 * Get the service instance.
+	 * @return
+	 * @throws ServiceException
+	 */
 	abstract public Object getServiceInstance() throws ServiceException;
 
-	abstract public boolean isStarted();
+	/**
+	 * Create the associated service if not a Lazy Service.
+	 * @throws ServiceException
+	 */
+	abstract public void createService() throws ServiceException;
 
-	public void startService() throws ServiceException {
-	}
+	/**
+	 * Start the associated service if not a Lazy Service.
+	 * @param servicesRegistry The servicesRegistry containing this service.
+	 * 
+	 * @throws ServiceException
+	 */
+	abstract public void initService( ServicesRegistry servicesRegistry) throws ServiceException;
+
+	/**
+	 * Start the associated service if not a Lazy Service.
+	 * @throws ServiceException
+	 */
+	abstract public void startService() throws ServiceException;
+
+	/**
+	 * Dispose associated service.
+	 */
+	abstract public void disposeService() throws ServiceException;
 
 
 }

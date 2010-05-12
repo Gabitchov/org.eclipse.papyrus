@@ -145,6 +145,23 @@ public class EditorUtils {
 	}
 
 	/**
+	 * Get the service registry of the currently active main editor. <br>
+	 * WARNING - This method doesn't work during the initialization of the main editor. See note in class doc.
+	 * 
+	 * @return The {@link ServicesRegistry} or null if not found.
+	 * @throws ServiceException If an error occurs.
+	 */
+	static public ServicesRegistry getServiceRegistryChecked() throws ServiceException {
+		// Lookup ServiceRegistry
+		IMultiDiagramEditor editor = getMultiDiagramEditor();
+		if( editor == null ) {
+			throw new ServiceException("Can't get ServiceRegistry");
+		}
+		
+		return (ServicesRegistry)editor.getAdapter(ServicesRegistry.class);
+	}
+
+	/**
 	 * Get the ISashWindowsContentProvider from the main editor.
 	 * 
 	 * @return the ISashWindowsContentProvider from the main editor or null if not found.

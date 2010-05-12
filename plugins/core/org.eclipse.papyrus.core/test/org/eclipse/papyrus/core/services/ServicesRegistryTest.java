@@ -3,6 +3,8 @@
  */
 package org.eclipse.papyrus.core.services;
 
+import org.eclipse.papyrus.core.services.ServiceA.TraceKind;
+
 import junit.framework.TestCase;
 
 
@@ -70,6 +72,7 @@ public class ServicesRegistryTest extends TestCase {
 		try {
 			assertFalse("serviceA stopped", servicesRegistry.isStarted(serviceADesc.getKey()));
 			assertFalse("serviceB stopped", servicesRegistry.isStarted(serviceBDesc.getKey()));
+			assertEquals("serviceC state", ServiceState.started, servicesRegistry.serviceState(serviceCDesc.getKey()));
 			assertTrue("serviceC started", servicesRegistry.isStarted(serviceCDesc.getKey()));
 			assertFalse("servicePojoA stopped", servicesRegistry.isStarted(servicePojoADesc.getKey()));
 		} catch (ServiceNotFoundException e) {
@@ -91,6 +94,8 @@ public class ServicesRegistryTest extends TestCase {
 		servicesRegistry.add(servicePojoADesc);
 
 
+		servicesRegistry.startRegistry();
+		
 		// Test lazy service
 		Object serviceA = servicesRegistry.getService(serviceADesc.getKey());
 		assertNotNull("service created", serviceA);
@@ -136,6 +141,8 @@ public class ServicesRegistryTest extends TestCase {
 			fail("Service should exist.");
 		}
 
+		servicesRegistry.startRegistry();
+		
 		Object serviceA = servicesRegistry.getService(serviceADesc.getKey());
 
 		assertNotNull("Service created", serviceA);
@@ -169,6 +176,91 @@ public class ServicesRegistryTest extends TestCase {
 
 	}
 
+	/**
+	 * Test life cycle for directly registered services
+	 * @throws ServiceException
+	 */
+	public void testCallsOrder() throws ServiceException {
+		// Register services as STARTUP !
+		servicesRegistry.add(ServiceA.class, 1, new ServiceA() );
+		// Lazy - generate no trace
+		servicesRegistry.add(ServiceB.class, 1, new ServiceB(), ServiceStartKind.LAZY);
+		servicesRegistry.add(ServiceC.class, 1, new ServiceC());
+		servicesRegistry.add(ServicePojoA.class, 1, new ServicePojoA());
+		
+
+		ServiceA.resetTrace();
+		servicesRegistry.startRegistry();
+		
+		// Check orders
+		// 
+		int i=0;
+		assertEquals("service", TraceKind.init, ServiceA.getEvent(i++));
+		assertEquals("service", TraceKind.init, ServiceA.getEvent(i++));
+		assertEquals("service", TraceKind.init, ServiceA.getEvent(i++));
+//		assertEquals("service", TraceKind.init, ServiceA.getEvent(i++));
+		
+		assertEquals("service", TraceKind.start, ServiceA.getEvent(i++));
+		assertEquals("service", TraceKind.start, ServiceA.getEvent(i++));
+		assertEquals("service", TraceKind.start, ServiceA.getEvent(i++));
+//		assertEquals("service", TraceKind.start, ServiceA.getEvent(i++));
+		
+		// Now, start lazy service
+		ServiceB service = servicesRegistry.getService(ServiceB.class);
+		assertNotNull("service found", service);
+		assertEquals("service", TraceKind.init, ServiceA.getEvent(i++));
+		assertEquals("service", TraceKind.start, ServiceA.getEvent(i++));
+			
+		
+		// Check dispose
+		servicesRegistry.disposeRegistry();
+		assertEquals("service", TraceKind.dispose, ServiceA.getEvent(i++));
+		assertEquals("service", TraceKind.dispose, ServiceA.getEvent(i++));
+		assertEquals("service", TraceKind.dispose, ServiceA.getEvent(i++));
+//		assertEquals("service", TraceKind.dispose, ServiceA.getEvent(i++));
+		
+		// 
+	}
+	
+	/**
+	 * Test life cycle for   services registered wih descriptors
+	 * @throws ServiceException
+	 */
+	public void testCallsOrderForDescriptors() throws ServiceException {
+		// Register services as STARTUP !
+		// Lazy - generate no trace
+		servicesRegistry.add( new LazyServiceBDescriptor() );
+		servicesRegistry.add( new ServiceCDescriptor());
+		
+
+		ServiceA.resetTrace();
+		servicesRegistry.startRegistry();
+
+		// Check orders
+		// 
+		int i=0;
+		assertEquals("service", TraceKind.init, ServiceA.getEvent(i++));
+//		assertEquals("service", TraceKind.init, ServiceA.getEvent(i++));
+		
+		assertEquals("service", TraceKind.start, ServiceA.getEvent(i++));
+//		assertEquals("service", TraceKind.start, ServiceA.getEvent(i++));
+		
+		// Now, start lazy service
+		ServiceB service = (ServiceB)servicesRegistry.getService(ServiceB.class.getName());
+		assertNotNull("service found", service);
+		assertEquals("service", TraceKind.init, ServiceA.getEvent(i++));
+		assertEquals("service", TraceKind.start, ServiceA.getEvent(i++));
+			
+		
+		// Check dispose
+		servicesRegistry.disposeRegistry();
+		assertEquals("service", TraceKind.dispose, ServiceA.getEvent(i++));
+		assertEquals("service", TraceKind.dispose, ServiceA.getEvent(i++));
+//		assertEquals("service", TraceKind.dispose, ServiceA.getEvent(i++));
+		
+		// 
+	}
+	
 	/* **************************************** */
 
 
@@ -211,6 +303,14 @@ public class ServicesRegistryTest extends TestCase {
 
 		public LazyServicePojoADescriptor() {
 			super(ServicePojoA.class.getName(), ServiceStartKind.LAZY, 1);
+		}
+	}
+
+	public class PojoServiceDescriptor extends ServiceDescriptor {
+
+
+		public PojoServiceDescriptor() {
+			super(Object.class.getName(), ServiceStartKind.STARTUP, 1);
 		}
 	}
 

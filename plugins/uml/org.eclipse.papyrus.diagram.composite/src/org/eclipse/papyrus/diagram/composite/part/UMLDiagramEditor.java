@@ -45,6 +45,7 @@ import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.diagram.common.listeners.DropTargetListener;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteContextMenuProvider;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteViewer;
+import org.eclipse.papyrus.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.TransferData;
@@ -61,7 +62,7 @@ import org.eclipse.ui.part.ShowInContext;
 /**
  * @generated
  */
-public class UMLDiagramEditor extends DiagramDocumentEditor implements IProviderChangeListener, IGotoMarker {
+public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderChangeListener, IGotoMarker {
 
 
 	/**
@@ -114,7 +115,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	 * @generated
 	 */
 	public UMLDiagramEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws ServiceException {
-		super(true);
+		super(servicesRegistry, diagram);
 		this.diagram = diagram;
 
 
@@ -463,20 +464,6 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	@Override
 	public GraphicalViewer getGraphicalViewer() {
 		return super.getGraphicalViewer();
-	}
-
-	/**
-	 * @generated
-	 */
-	public Diagram getDiagram() {
-		return diagram;
-	}
-
-	/**
-	 * @generated
-	 */
-	public void setDiagram(Diagram diagram) {
-		this.diagram = diagram;
 	}
 
 	/**

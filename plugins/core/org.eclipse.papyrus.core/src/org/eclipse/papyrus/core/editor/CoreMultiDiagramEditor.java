@@ -575,7 +575,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 		// dispose available service
 		if(servicesRegistry != null) {
-			servicesRegistry.disposeService();
+			servicesRegistry.disposeRegistry();
 		}
 
 		super.dispose();
