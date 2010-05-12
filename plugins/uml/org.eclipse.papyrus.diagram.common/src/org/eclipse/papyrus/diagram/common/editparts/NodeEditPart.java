@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.editparts;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.FillStyle;
@@ -57,6 +58,24 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart impleme
 		return true;
 	}
 
+	/**
+	 * 
+	 * {@inheritDoc}
+	 */
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
+		// set the figure active when the feature of the of a class is true
+		if(resolveSemanticElement() != null) {
+			refreshShadow();
+			
+		}
+	}
+	protected void refreshVisuals() {
+		super.refreshVisuals();
+		refreshShadow();
+		
+	}
 	/**
 	 * Override to set the transparency to the correct figure
 	 */

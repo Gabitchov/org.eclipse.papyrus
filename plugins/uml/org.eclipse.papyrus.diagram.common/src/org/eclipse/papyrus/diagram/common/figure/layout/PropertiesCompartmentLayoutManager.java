@@ -47,9 +47,8 @@ public class PropertiesCompartmentLayoutManager extends AbstractLayout {
 			Rectangle bound = new Rectangle(((IFigure)childrenList.get(i)).getBounds());
 			bound.setSize(((IFigure)childrenList.get(i)).getPreferredSize());
 			if(i > 0) {
-				bound.y = ((IFigure)childrenList.get(i - 1)).getBounds().getBottomLeft().y - 1;
 				bound.x = container.getBounds().x;
-				bound.y = ((IFigure)childrenList.get(i - 1)).getBounds().getBottomLeft().x - 1;
+				bound.y = ((IFigure)childrenList.get(i - 1)).getBounds().getBottomLeft().y - 1;
 				bound.width = container.getBounds().width;
 
 			} else {

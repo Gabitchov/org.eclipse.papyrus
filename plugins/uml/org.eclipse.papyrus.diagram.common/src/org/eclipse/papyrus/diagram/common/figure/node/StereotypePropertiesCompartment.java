@@ -22,15 +22,26 @@ import org.eclipse.draw2d.RectangleFigure;
  */
 public class StereotypePropertiesCompartment extends RectangleFigure {
 
+	protected boolean upperLine=true;
+
 	/**
 	 * {@inheritDoc}
 	 */
 	public void paint(Graphics graphics) {
 		paintChildren(graphics);
 		graphics.setForegroundColor(getForegroundColor());
+		if (upperLine){
 		for(int i = 0; i < getChildren().size(); i++) {
 			graphics.drawLine(((IFigure)getChildren().get(i)).getBounds().getTopLeft(), ((IFigure)getChildren().get(i)).getBounds().getTopRight());
 		}
+		}
+	}
+	/**
+	 * used to display or not line upper the compartment stereotype
+	 * @param upperLine true if we want to display
+	 */
+	public void setUpperLine(boolean upperLine){
+		this.upperLine= upperLine;
 	}
 
 }

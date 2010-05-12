@@ -705,6 +705,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 				if(i > 0) {
 					bound.y = ((IFigure)childrenList.get(i - 1)).getBounds().getBottomLeft().y - 1;
 					bound.x = getBounds().x;
+					bound.y = ((IFigure)childrenList.get(i - 1)).getBounds().getBottomLeft().x - 1;
 					bound.width = container.getBounds().width;
 
 				} else {

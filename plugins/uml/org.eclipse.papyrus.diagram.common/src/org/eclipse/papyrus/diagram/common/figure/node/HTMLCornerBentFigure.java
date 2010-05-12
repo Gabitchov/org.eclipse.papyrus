@@ -17,10 +17,18 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
+import java.util.StringTokenizer;
 
+import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.LineBorder;
+import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.RectangleFigure;
+import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.text.BlockFlow;
 import org.eclipse.draw2d.text.FlowPage;
 import org.eclipse.gmf.runtime.common.ui.util.DisplayUtils;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.draw2d.ui.text.TextFlowEx;
 import org.eclipse.jface.resource.FontDescriptor;
 import org.eclipse.jface.resource.JFaceResources;
@@ -40,7 +48,7 @@ import org.w3c.dom.NodeList;
  * Corner bend figure able to display styled text formatted in html
  */
 public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigure {
-
+	
 	/** indicates if the figure should use local coordinates or not */
 	protected boolean useLocalCoordinates = false;
 
@@ -73,17 +81,27 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	 */
 	public HTMLCornerBentFigure() {
 		super();
-		// this.setForegroundColor(ColorConstants.black);
 		this.setBackgroundColor(THIS_BACK);
 		createContents();
+		
 	}
 
+	/**
+	 * return the label thath contains the icon.
+	 * 
+	 * @return the label that contains the icon
+	 */
+	public Label getIconLabel() {
+		return this.iconLabel;
+	}
+	
 	/**
 	 * Generates the basic contents for this figure
 	 */
 	protected void createContents() {
 		// simply creates a Flow page, that will contains BlockFlows representing the html content
 		page = new FlowPage();
+		page.setForegroundColor(getForegroundColor());
 		this.add(page);
 	}
 
@@ -112,7 +130,6 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	 */
 
 	public Image getIcon() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -123,7 +140,6 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	 */
 
 	public String getText() {
-		// TODO Auto-generated method stub
 		return "";
 	}
 
@@ -241,7 +257,7 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 		}
 
 	}
-
+	
 	/**
 	 * Generates code from a node representing an underlined text.
 	 * 

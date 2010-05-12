@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.figure.node;
 
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.LineBorder;
@@ -59,6 +60,7 @@ public class RectangularShadowBorder extends LineBorder {
 	 */
 	@Override
 	public void paint(IFigure figure, Graphics graphics, Insets insets) {
+		graphics.pushState();
 		// draw the normal line border
 		tempRect.setBounds(getPaintRectangle(figure, insets));
 
@@ -87,8 +89,13 @@ public class RectangularShadowBorder extends LineBorder {
 		plt.addPoint(tempRect.x + borderwidth, tempRect.y + tempRect.height + borderwidth);
 		plt.addPoint(tempRect.x + tempRect.width + borderwidth, tempRect.y + tempRect.height + borderwidth);
 		plt.addPoint(tempRect.x + tempRect.width + borderwidth, tempRect.y + borderwidth);
+		plt.addPoint(tempRect.x + tempRect.width, tempRect.y + borderwidth);
+		if(getColor()!=null){
 		graphics.setBackgroundColor(getColor());
+		}
+		else{graphics.setBackgroundColor(ColorConstants.black);}
 		graphics.fillPolygon(plt);
+		graphics.popState();
 	}
 
 }
