@@ -36,6 +36,7 @@ import org.eclipse.ui.internal.DragCursors;
 import org.eclipse.ui.internal.dnd.DragUtil;
 import org.eclipse.ui.internal.dnd.IDragOverListener;
 import org.eclipse.ui.internal.dnd.IDropTarget;
+import static org.eclipse.papyrus.sasheditor.Activator.log;
 
 
 /**
@@ -339,7 +340,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 				isRefreshing.set(false);
 			}
 		} else {
-			System.out.println("refresh inside refresh !");
+			log.warn("refresh inside refresh !");
 		}
 
 	}
@@ -579,7 +580,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 			// TODO move that and previous in the sender of drag event. Use a class containing both as draggedObject.
 			final int srcTabIndex = PTabFolder.getDraggedObjectTabIndex(draggedObject);
 
-			System.out.println("drag to position=" + position);
+//			System.out.println("drag to position=" + position);
 			Rectangle containerDisplayBounds = DragUtil.getDisplayBounds(container);
 			AbstractPanelPart targetPart = null;
 
@@ -614,7 +615,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 					} else {
 						// We are on the boarder, try to drop on the parent 
 						// Warning : the parent could be the rootPart
-						System.out.println("DropTarget near the border");
+//						System.out.println("DropTarget near the border");
 					}
 					//                     
 					if(distance > 30) {
@@ -638,7 +639,7 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 				}
 			} else {
 				// Cursor is outside the container
-				System.out.println("Outside container bounds");
+//				System.out.println("Outside container bounds");
 				// This will be used to create a new Window.
 				// We only allow dropping into a stack, not creating one
 				// if (differentWindows)
@@ -728,13 +729,13 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		 * @see org.eclipse.ui.internal.dnd.IDropTarget#getCursor()
 		 */
 		public Cursor getCursor() {
-			System.out.println(SashWindowsContainer.this.getClass().getSimpleName() + ".getCursor()-" + count++);
+//			System.out.println(SashWindowsContainer.this.getClass().getSimpleName() + ".getCursor()-" + count++);
 			return DragCursors.getCursor(DragCursors.positionToDragCursor(cursor));
 
 		}
 
 		public Rectangle getSnapRectangle() {
-			System.out.println(SashWindowsContainer.this.getClass().getSimpleName() + ".getSnapRectangle(" + "sourcePart=" + sourcePart + ", targetPart=" + targetPart + ", side=" + side);
+//			System.out.println(SashWindowsContainer.this.getClass().getSimpleName() + ".getSnapRectangle(" + "sourcePart=" + sourcePart + ", targetPart=" + targetPart + ", side=" + side);
 			Rectangle targetDisplayBounds;
 
 			if(targetPart != null) {

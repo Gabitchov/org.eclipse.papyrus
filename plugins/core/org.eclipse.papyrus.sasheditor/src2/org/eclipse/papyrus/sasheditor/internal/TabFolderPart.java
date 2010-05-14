@@ -97,7 +97,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 		 */
 		public IDropTarget drag(Control currentControl, Object draggedObject, Point position, Rectangle dragRectangle) {
 			// System.out.println(TabFolderPart.this.getClass().getSimpleName() + ".drag()");
-			System.out.println(this + ".drag()");
+//			System.out.println(this + ".drag()");
 			return null;
 		}
 	};
@@ -108,7 +108,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 	private PTabFolder.IPTabFolderListener cTabFolderEventListener = new PTabFolder.IPTabFolderListener() {
 
 		public void contextMenuDetectEvent(CTabItem tab, Event event) {
-			System.out.println("contextMenuDetect()");
+//			System.out.println("contextMenuDetect()");
 		}
 
 		/**
@@ -1140,7 +1140,7 @@ public class TabFolderPart extends AbstractTabFolderPart {
 			public void handleEvent(Event event) {
 				switch(event.type) {
 				case SWT.MouseUp:
-									//					System.out.println("MouseUp()" + count++);
+//					System.out.println("MouseUp()" + count++);
 					toolTipManager.disableToolTip();
 					break;
 				}
