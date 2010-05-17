@@ -1320,6 +1320,7 @@ BorderedBorderItemEditPart {
 		 */
 		private boolean myUseLocalCoordinates = true;
 
+
 		/**
 		 * @generated
 		 */
@@ -1333,8 +1334,6 @@ BorderedBorderItemEditPart {
 		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
 			myUseLocalCoordinates = useLocalCoordinates;
 		}
-
-
 
 		/**
 		 * @generated

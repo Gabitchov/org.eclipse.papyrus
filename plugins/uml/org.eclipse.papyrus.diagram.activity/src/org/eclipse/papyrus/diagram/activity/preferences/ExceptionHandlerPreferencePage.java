@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.activity.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityDiagramEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage;
 
@@ -21,6 +22,14 @@ import org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage;
  * @generated
  */
 public class ExceptionHandlerPreferencePage extends AbstractPapyrusLinkPreferencePage {
+
+	/**
+	 * @generated
+	 */
+	public ExceptionHandlerPreferencePage() {
+		super();
+		setPreferenceKey(ActivityDiagramEditPart.MODEL_ID + "_ExceptionHandler");
+	}
 
 	/**
 	 * @generated

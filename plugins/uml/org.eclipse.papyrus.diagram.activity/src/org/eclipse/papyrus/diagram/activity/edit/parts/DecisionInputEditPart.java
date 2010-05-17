@@ -848,6 +848,25 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 		}
 
 		/**
+		 * @generated
+		 */
+		private boolean myUseLocalCoordinates = true;
+
+		/**
+		 * @generated
+		 */
+		protected boolean useLocalCoordinates() {
+			return myUseLocalCoordinates;
+		}
+
+		/**
+		 * @generated
+		 */
+		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
+			myUseLocalCoordinates = useLocalCoordinates;
+		}
+
+		/**
 		 * @see org.eclipse.draw2d.Figure#setVisible(boolean)
 		 * @generated NOT report visibility on the link
 		 */
@@ -886,25 +905,6 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 					getLinkToBehaviorProperty().setStart(parentCenter);
 				}
 			}
-		}
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = true;
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
 		}
 
 		/**

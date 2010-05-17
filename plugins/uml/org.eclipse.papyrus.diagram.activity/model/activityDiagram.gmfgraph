@@ -975,11 +975,21 @@
   <labels
       name="ObjectFlowBehaviorSelection"
       figure="LinkAndCornerBentWithTextFigure"
-      elementIcon="false"/>
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        x="20"
+        y="40"/>
+  </labels>
   <labels
       name="ObjectFlowBehaviorTransformation"
       figure="LinkAndCornerBentWithTextFigure"
-      elementIcon="false"/>
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        x="-20"
+        y="-60"/>
+  </labels>
   <labels
       name="PinName"
       figure="CommonLabelFigure"
@@ -1001,13 +1011,20 @@
       elementIcon="false">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
   </labels>
   <labels
       name="EdgeWeight"
       figure="CommonLabelFigure"
       elementIcon="false">
     <facets
-        xsi:type="gmfgraph:AlignmentFacet"/>
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
   </labels>
   <labels
       name="JoinSpec"
@@ -1026,13 +1043,20 @@
       elementIcon="false">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="-20"/>
   </labels>
   <labels
       name="EdgeGuard"
       figure="CommonLabelFigure"
       elementIcon="false">
     <facets
-        xsi:type="gmfgraph:AlignmentFacet"/>
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="END"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
   </labels>
   <labels
       name="SendSignalActionName"
@@ -1078,6 +1102,9 @@
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
         alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="-20"/>
   </labels>
   <labels
       name="AppliedStereotypeExternalLabel"
@@ -1104,7 +1131,8 @@
       figure="CommonLabelFigure"
       elementIcon="false">
     <facets
-        xsi:type="gmfgraph:AlignmentFacet"/>
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
   </labels>
   <labels
       name="ObjectNodeName"

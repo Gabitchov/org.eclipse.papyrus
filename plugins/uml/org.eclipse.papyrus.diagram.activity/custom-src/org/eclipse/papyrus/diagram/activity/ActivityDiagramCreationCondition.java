@@ -11,7 +11,6 @@
 package org.eclipse.papyrus.diagram.activity;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.core.extension.commands.ICreationCondition;
 import org.eclipse.papyrus.core.extension.commands.PerspectiveContextDependence;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.BehavioredClassifier;

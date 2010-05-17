@@ -19,7 +19,7 @@ import java.util.List;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Polyline;
+import org.eclipse.draw2d.PolylineShape;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
@@ -49,7 +49,7 @@ import org.eclipse.gmf.runtime.notation.View;
 
 public class BehaviorPropertyNodeEditPolicy extends NonResizableEditPolicyEx {
 
-	private Polyline linkFeedback = null;
+	private PolylineShape linkFeedback = null;
 
 	/**
 	 * @see org.eclipse.gef.editpolicies.NonResizableEditPolicy#createSelectionHandles()
@@ -137,7 +137,7 @@ public class BehaviorPropertyNodeEditPolicy extends NonResizableEditPolicyEx {
 	 */
 	protected IFigure createDragSourceFeedbackFigure() {
 		IFigure feedback = super.createDragSourceFeedbackFigure();
-		linkFeedback = new Polyline();
+		linkFeedback = new PolylineShape();
 		linkFeedback.setLineWidth(1);
 		linkFeedback.setLineStyle(Graphics.LINE_DASHDOT);
 		linkFeedback.setForegroundColor(((IGraphicalEditPart)getHost()).getFigure().getForegroundColor());

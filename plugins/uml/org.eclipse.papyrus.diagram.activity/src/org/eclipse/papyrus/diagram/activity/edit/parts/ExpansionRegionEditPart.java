@@ -1750,6 +1750,7 @@ AbstractBorderedShapeEditPart {
 		 */
 		private boolean myUseLocalCoordinates = false;
 
+
 		/**
 		 * @generated
 		 */
@@ -1763,8 +1764,6 @@ AbstractBorderedShapeEditPart {
 		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
 			myUseLocalCoordinates = useLocalCoordinates;
 		}
-
-
 
 		/**
 		 * @generated

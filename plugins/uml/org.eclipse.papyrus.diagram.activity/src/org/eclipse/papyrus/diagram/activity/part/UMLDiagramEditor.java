@@ -37,7 +37,6 @@ import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
 import org.eclipse.gmf.runtime.diagram.ui.internal.parts.PaletteToolTransferDragSourceListener;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
-import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
@@ -50,6 +49,7 @@ import org.eclipse.papyrus.diagram.activity.navigator.UMLNavigatorItem;
 import org.eclipse.papyrus.diagram.common.listeners.DropTargetListener;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteContextMenuProvider;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteViewer;
+import org.eclipse.papyrus.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.TransferData;
@@ -68,7 +68,7 @@ import org.eclipse.ui.part.ShowInContext;
 /**
  * @generated
  */
-public class UMLDiagramEditor extends DiagramDocumentEditor implements IProviderChangeListener, IGotoMarker {
+public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderChangeListener, IGotoMarker {
 
 	/**
 	 * @generated
@@ -108,14 +108,8 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	/**
 	 * @generated
 	 */
-	private Diagram diagram;
-
-	/**
-	 * @generated
-	 */
 	public UMLDiagramEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws ServiceException {
-		super(true);
-		this.diagram = diagram;
+		super(servicesRegistry, diagram);
 
 
 		// adds a listener to the palette service, which reacts to palette customizations
@@ -488,20 +482,6 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	@Override
 	public GraphicalViewer getGraphicalViewer() {
 		return super.getGraphicalViewer();
-	}
-
-	/**
-	 * @generated
-	 */
-	public Diagram getDiagram() {
-		return diagram;
-	}
-
-	/**
-	 * @generated
-	 */
-	public void setDiagram(Diagram diagram) {
-		this.diagram = diagram;
 	}
 
 	/**

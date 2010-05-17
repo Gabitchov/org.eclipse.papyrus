@@ -1157,16 +1157,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Constraint_3002_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Constraint_3003_incominglinks;
-
-	/**
-	 * @generated
-	 */
 	public static String NavigatorGroupName_InitialNode_3004_incominglinks;
 
 	/**
@@ -1363,6 +1353,11 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_ActionInputPin_3026_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Constraint_3002_incominglinks;
 
 	/**
 	 * @generated
@@ -1573,6 +1568,11 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_ActivityParameterNode_3059_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Constraint_3003_incominglinks;
 
 	/**
 	 * @generated

@@ -13,11 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.preferences;
 
-import org.eclipse.gmf.runtime.diagram.ui.preferences.DiagramsPreferencePage;
 import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.preferences.pages.DiagramPreferencePage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -27,7 +27,7 @@ import org.eclipse.swt.widgets.Group;
 /**
  * @generated
  */
-public class DiagramGeneralPreferencePage extends DiagramsPreferencePage {
+public class DiagramGeneralPreferencePage extends DiagramPreferencePage {
 
 	/**
 	 * @generated NOT

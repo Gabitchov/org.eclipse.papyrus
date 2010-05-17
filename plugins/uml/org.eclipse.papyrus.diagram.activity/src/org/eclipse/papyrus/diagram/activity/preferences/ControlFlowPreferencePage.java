@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.activity.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityDiagramEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage;
 import org.eclipse.swt.widgets.Composite;
@@ -22,6 +23,14 @@ import org.eclipse.swt.widgets.Composite;
  * @generated
  */
 public class ControlFlowPreferencePage extends AbstractPapyrusLinkPreferencePage {
+
+	/**
+	 * @generated
+	 */
+	public ControlFlowPreferencePage() {
+		super();
+		setPreferenceKey(ActivityDiagramEditPart.MODEL_ID + "_ControlFlow");
+	}
 
 	/**
 	 * @generated

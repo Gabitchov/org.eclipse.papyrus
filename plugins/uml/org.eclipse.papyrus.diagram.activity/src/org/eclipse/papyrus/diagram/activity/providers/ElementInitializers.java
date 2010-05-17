@@ -60,6 +60,10 @@ import org.eclipse.uml2.uml.ValueSpecificationAction;
  */
 public class ElementInitializers {
 
+	protected ElementInitializers() {
+		// use #getInstance to access cached instance
+	}
+
 	/**
 	 * @generated
 	 */

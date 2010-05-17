@@ -1804,6 +1804,24 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		}
 
 		/**
+		 * @generated
+		 */
+		private final PointList myTemplate = new PointList();
+
+		/**
+		 * @generated
+		 */
+		private Rectangle myTemplateBounds;
+
+		/**
+		 * @generated
+		 */
+		public void addPoint(Point point) {
+			myTemplate.addPoint(point);
+			myTemplateBounds = null;
+		}
+
+		/**
 		 * Refresh the layout of the figure
 		 */
 		protected void refreshLayout() {
@@ -1858,24 +1876,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		}
 
 		/**
-		 * @generated
-		 */
-		private final PointList myTemplate = new PointList();
-
-		/**
-		 * @generated
-		 */
-		private Rectangle myTemplateBounds;
-
-		/**
-		 * @generated
-		 */
-		public void addPoint(Point point) {
-			myTemplate.addPoint(point);
-			myTemplateBounds = null;
-		}
-
-		/**
 		 * @generated NOT refresh relative margin
 		 */
 		protected void fillShape(Graphics graphics) {
@@ -1897,27 +1897,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			graphics.translate(bounds.x, bounds.y);
 			graphics.drawPolygon(scalePointList());
 			graphics.popState();
-		}
-
-		/**
-		 * @generated NOT
-		 */
-		private Insets scaleMargin() {
-			Rectangle pointsBounds = getTemplateBounds();
-			Rectangle actualBounds = getBounds();
-
-			float xScale = ((float)actualBounds.width) / pointsBounds.width;
-			float yScale = ((float)actualBounds.height) / pointsBounds.height;
-
-			if(xScale == 1 && yScale == 1) {
-				return marginTemplate;
-			}
-			Insets scaled = new Insets(marginTemplate);
-			scaled.top = (int)Math.floor(scaled.top * yScale);
-			scaled.left = (int)Math.floor(scaled.left * xScale);
-			scaled.bottom = (int)Math.floor(scaled.bottom * yScale);
-			scaled.right = (int)Math.floor(scaled.right * xScale);
-			return scaled;
 		}
 
 		/**
@@ -1955,6 +1934,27 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 				scaled[i] = (int)Math.floor(scaled[i] * xScale);
 				scaled[i + 1] = (int)Math.floor(scaled[i + 1] * yScale);
 			}
+			return scaled;
+		}
+
+		/**
+		 * @generated NOT
+		 */
+		private Insets scaleMargin() {
+			Rectangle pointsBounds = getTemplateBounds();
+			Rectangle actualBounds = getBounds();
+
+			float xScale = ((float)actualBounds.width) / pointsBounds.width;
+			float yScale = ((float)actualBounds.height) / pointsBounds.height;
+
+			if(xScale == 1 && yScale == 1) {
+				return marginTemplate;
+			}
+			Insets scaled = new Insets(marginTemplate);
+			scaled.top = (int)Math.floor(scaled.top * yScale);
+			scaled.left = (int)Math.floor(scaled.left * xScale);
+			scaled.bottom = (int)Math.floor(scaled.bottom * yScale);
+			scaled.right = (int)Math.floor(scaled.right * xScale);
 			return scaled;
 		}
 

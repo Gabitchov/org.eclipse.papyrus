@@ -16,8 +16,8 @@ package org.eclipse.papyrus.diagram.activity.helper;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.AbstractPointListShape;
 import org.eclipse.draw2d.Polygon;
-import org.eclipse.draw2d.Polyline;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
@@ -174,7 +174,7 @@ public class ActivityFigureDrawer {
 	 * @param parentDimension
 	 *        the dimension of the parent
 	 */
-	public static void redrawRake(Polyline rake, IMapMode iMapMode, Dimension parentDimension) {
+	public static void redrawRake(AbstractPointListShape rake, IMapMode iMapMode, Dimension parentDimension) {
 		rake.removeAllPoints();
 		Point translationPoint = new Point(RAKE_FIGURE_TRANSLATION);
 		translationPoint.translate(parentDimension);
@@ -198,7 +198,7 @@ public class ActivityFigureDrawer {
 	 *        the direction to which the arrow is directed : {@link PositionConstants#SOUTH}, {@link PositionConstants#NORTH},
 	 *        {@link PositionConstants#EAST}, {@link PositionConstants#WEST}
 	 */
-	public static void redrawPinArrow(Polyline arrow, IMapMode iMapMode, Dimension parentDimension, int direction) {
+	public static void redrawPinArrow(AbstractPointListShape arrow, IMapMode iMapMode, Dimension parentDimension, int direction) {
 		arrow.removeAllPoints();
 		List<Point> template;
 		switch(direction) {
@@ -231,7 +231,7 @@ public class ActivityFigureDrawer {
 	 * @param figure
 	 *        figure to undraw
 	 */
-	public static void undrawFigure(Polyline figure) {
+	public static void undrawFigure(AbstractPointListShape figure) {
 		figure.removeAllPoints();
 	}
 

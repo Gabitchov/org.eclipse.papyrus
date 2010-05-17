@@ -343,6 +343,7 @@ ShapeNodeEditPart {
 		 */
 		private boolean myUseLocalCoordinates = false;
 
+
 		/**
 		 * @generated
 		 */
@@ -350,13 +351,13 @@ ShapeNodeEditPart {
 			return myUseLocalCoordinates;
 		}
 
+
 		/**
 		 * @generated
 		 */
 		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
 			myUseLocalCoordinates = useLocalCoordinates;
 		}
-
 
 
 		/**

@@ -13,8 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.locator;
 
+import org.eclipse.draw2d.AbstractPointListShape;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Polyline;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
@@ -354,7 +354,7 @@ public class PinPositionLocator extends AdvancedBorderItemLocator {
 	 */
 	private void refreshPinDescriptorArrow(Object child, IMapMode mapMode, Dimension size) {
 		boolean arrowIn = false;
-		Polyline arrow = null;
+		AbstractPointListShape arrow = null;
 		if(child instanceof InputPinInOpaqueActEditPart.PinDescriptor) {
 			arrowIn = true;
 			arrow = ((InputPinInOpaqueActEditPart.PinDescriptor)child).getOptionalArrowFigure();

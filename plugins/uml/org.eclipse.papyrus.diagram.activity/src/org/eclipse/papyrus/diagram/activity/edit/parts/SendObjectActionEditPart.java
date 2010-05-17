@@ -1790,6 +1790,7 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		 */
 		private boolean myUseLocalCoordinates = true;
 
+
 		/**
 		 * @generated
 		 */
@@ -1803,8 +1804,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
 			myUseLocalCoordinates = useLocalCoordinates;
 		}
-
-
 
 		/**
 		 * @generated

@@ -107,6 +107,7 @@ public class UMLOCLFactory {
 		/**
 		 * @generated
 		 */
+		@SuppressWarnings("rawtypes")
 		protected Object doEvaluate(Object context, Map env) {
 			Query oclQuery = getQuery();
 			if(oclQuery == null) {

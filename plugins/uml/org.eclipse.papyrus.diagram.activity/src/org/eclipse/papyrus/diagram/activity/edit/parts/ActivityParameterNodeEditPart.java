@@ -1393,6 +1393,25 @@ AbstractBorderItemEditPart implements IPapyrusEditPart {
 		}
 
 		/**
+		 * @generated
+		 */
+		private boolean myUseLocalCoordinates = false;
+
+		/**
+		 * @generated
+		 */
+		protected boolean useLocalCoordinates() {
+			return myUseLocalCoordinates;
+		}
+
+		/**
+		 * @generated
+		 */
+		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
+			myUseLocalCoordinates = useLocalCoordinates;
+		}
+
+		/**
 		 * Refresh the layout of the figure
 		 */
 		protected void refreshLayout() {
@@ -1444,25 +1463,6 @@ AbstractBorderItemEditPart implements IPapyrusEditPart {
 		 */
 		public Label getStereotypesLabel() {
 			return null;//fActionStereotypeLabel;
-		}
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = false;
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
 		}
 
 		/**

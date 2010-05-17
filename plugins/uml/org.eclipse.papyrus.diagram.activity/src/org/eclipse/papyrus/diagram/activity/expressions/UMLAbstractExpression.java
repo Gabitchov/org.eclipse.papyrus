@@ -90,6 +90,7 @@ public abstract class UMLAbstractExpression {
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected abstract Object doEvaluate(Object context, Map env);
 
 	/**
@@ -102,6 +103,7 @@ public abstract class UMLAbstractExpression {
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	public Object evaluate(Object context, Map env) {
 		if(context().isInstance(context)) {
 			try {

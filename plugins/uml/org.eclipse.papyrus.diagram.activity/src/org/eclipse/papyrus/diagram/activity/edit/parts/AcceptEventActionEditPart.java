@@ -1794,6 +1794,24 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		}
 
 		/**
+		 * @generated
+		 */
+		private final PointList myTemplate = new PointList();
+
+		/**
+		 * @generated
+		 */
+		private Rectangle myTemplateBounds;
+
+		/**
+		 * @generated
+		 */
+		public void addPoint(Point point) {
+			myTemplate.addPoint(point);
+			myTemplateBounds = null;
+		}
+
+		/**
 		 * Refresh the layout of the figure
 		 */
 		protected void refreshLayout() {
@@ -1874,11 +1892,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 
 
 		/**
-		 * @generated
-		 */
-		private final PointList myTemplate = new PointList();
-
-		/**
 		 * @generated NOT
 		 */
 		private final PointList myTemplateTime = new PointList();
@@ -1927,22 +1940,9 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		}
 
 		/**
-		 * @generated
-		 */
-		private Rectangle myTemplateBounds;
-
-		/**
 		 * @generated NOT
 		 */
 		private Rectangle myTemplateTimeBounds;
-
-		/**
-		 * @generated
-		 */
-		public void addPoint(Point point) {
-			myTemplate.addPoint(point);
-			myTemplateBounds = null;
-		}
 
 		/**
 		 * @generated NOT
