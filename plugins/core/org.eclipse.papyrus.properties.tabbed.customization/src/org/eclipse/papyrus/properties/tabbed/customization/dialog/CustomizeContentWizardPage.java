@@ -58,7 +58,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 	 * @return the final content for this page
 	 */
 	public Document getFinalContent() {
-		return document;
+		return this.document;
 	}
 
 

@@ -66,7 +66,7 @@ public class CustomizePropertyViewWizard extends Wizard {
 	@Override
 	public boolean performFinish() {
 		final Document document = customizeContentPage.getFinalContent();
-		final File file = ResourcesPlugin.getWorkspace().getRoot().getRawLocation().append("test.xml").toFile();
+		final File file = ResourcesPlugin.getWorkspace().getRoot().getRawLocation().append("test/test.xml").toFile();
 		Job job = new Job("Saving XML File") {
 
 			/**

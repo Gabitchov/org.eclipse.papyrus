@@ -39,6 +39,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.w3c.dom.Comment;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -364,9 +365,12 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 			try {
 				documentBuilder = documentBuilderFactory.newDocumentBuilder();
 				Document document = documentBuilder.newDocument();
-				document.createComment("Defined using Papyrus Property View customization. Date: " + Calendar.getInstance().getTime());
+				Comment comment = document.createComment("Defined using Papyrus Property View customization. Date: " + Calendar.getInstance().getTime());
+				document.appendChild(comment);
+
 				Element rootNode = document.createElement("propertyTabView");
 				rootNode.setAttribute("pluginId", "org.eclipse.uml2.uml");
+				document.appendChild(rootNode);
 				return document;
 			} catch (ParserConfigurationException e) {
 				Activator.log.error(e);
@@ -473,9 +477,12 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 			try {
 				documentBuilder = documentBuilderFactory.newDocumentBuilder();
 				Document document = documentBuilder.newDocument();
-				document.createComment("Defined using Papyrus Property View customization. Date: " + Calendar.getInstance().getTime());
+				Comment comment = document.createComment("Defined using Papyrus Property View customization. Date: " + Calendar.getInstance().getTime());
+				document.appendChild(comment);
+
 				Element rootNode = document.createElement("propertyTabView");
 				rootNode.setAttribute("pluginId", "org.eclipse.uml2.uml");
+				document.appendChild(rootNode);
 				return document;
 			} catch (ParserConfigurationException e) {
 				Activator.log.error(e);
@@ -563,9 +570,12 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 			try {
 				documentBuilder = documentBuilderFactory.newDocumentBuilder();
 				Document document = documentBuilder.newDocument();
-				document.createComment("Defined using Papyrus Property View customization. Date: " + Calendar.getInstance().getTime());
+				Comment comment = document.createComment("Defined using Papyrus Property View customization. Date: " + Calendar.getInstance().getTime());
+				document.appendChild(comment);
+
 				Element rootNode = document.createElement("propertyTabView");
 				rootNode.setAttribute("pluginId", "org.eclipse.uml2.uml");
+				document.appendChild(rootNode);
 				return document;
 			} catch (ParserConfigurationException e) {
 				Activator.log.error(e);
