@@ -319,26 +319,7 @@ public static class «getLinkCreationConstraintsClassName()» {
 	«getLinkCreationConstraintsClassName()»() {«REM»package-local for the BaseItemSemanticEditPolicy to instantiate. Perhaps, protected is better (i.e. if someone subclasses it?)«ENDREM»
 		// use static method #getLinkConstraints() to access instance
 	}
-«REM»«IF null <> editorGen.expressionProviders-»
-	«EXPAND xpt::Common::generatedMemberComment»
-	private static final String OPPOSITE_END_VAR = "oppositeEnd"; «EXPAND xpt::Common::nonNLS»
-«ENDREM»«REM»[Papyrus Quick Fix] START«ENDREM»
-«REM»«IF not editorGen.expressionProviders.providers->select(ep | not ep.oclIsTypeOf(gmfgen::GenJavaExpressionProvider))->isEmpty()-»
-«ENDREM»«REM»[Papyrus Quick Fix] END  «ENDREM»
-«REM»«FOREACH getValidLinkConstraints(self) AS lc-»
-«IF lc.sourceEnd <> null-»
-	«EXPAND xpt::Common::generatedMemberComment»
-	private static «editorGen.expressionProviders.getAbstractExpressionQualifiedClassName()» «sourceConstraintFieldName(lc.link)»;
-«ENDIF-»
-«IF lc.targetEnd <> null-»
-	«EXPAND xpt::Common::generatedMemberComment»
-	private static «editorGen.expressionProviders.getAbstractExpressionQualifiedClassName()» «targetConstraintFieldName(lc.link)»;
-«ENDIF-»
-«ENDFOREACH»
-«ENDREM»«REM»[Papyrus Quick Fix] START«ENDREM»
-«REM»«ENDIF-»«ENDREM»
-«REM»[Papyrus Quick Fix] END  «ENDREM»
-«ENDIF-»
+
 	«EXPAND canCreate FOREACH links-»
 	«EXPAND canExist FOREACH links-»
 }
