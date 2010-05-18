@@ -105,8 +105,15 @@ public class TimeObservationCreateCommand extends EditElementCommand {
 
 		TimeObservation newElement = UMLFactory.eINSTANCE.createTimeObservation();
 
-		// get the Lifeline grand parent as owner
-		Package owner = (Package)getElementToEdit().eContainer().eContainer();
+		// get the parent package as owner
+		EObject container = getElementToEdit();
+		while(container != null && !(container instanceof Package)) {
+			container = container.eContainer();
+		}
+		if(container == null) {
+			return CommandResult.newCancelledCommandResult();
+		}
+		Package owner = (Package)container;
 		owner.getPackagedElements().add(newElement);
 
 
