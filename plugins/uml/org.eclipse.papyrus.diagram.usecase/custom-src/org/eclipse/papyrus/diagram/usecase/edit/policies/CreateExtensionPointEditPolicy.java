@@ -22,6 +22,7 @@ import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
@@ -42,16 +43,20 @@ public class CreateExtensionPointEditPolicy extends GraphicalNodeEditPolicy {
 	@Override
 	protected Command getConnectionCompleteCommand(CreateConnectionRequest request) {
 		Command command = super.getConnectionCompleteCommand(request);
-		if(command != null && command.canExecute()) {
-			CompoundCommand compound = new CompoundCommand();
-			compound.add(command);
-			INodeEditPart targetEP = getConnectionCompleteEditPart(request);
-			if(targetEP instanceof AbstractEditPart) {
-				IAdaptable adapter = getExtendViewAdapter(request);
-				EObject usecase = ViewUtil.resolveSemanticElement((View)getHost().getModel());
-				CreateExtensionPointCommand createExtensionPointCommand = new CreateExtensionPointCommand((IHintedType)UMLElementTypes.ExtensionPoint_3007, (AbstractEditPart)targetEP, usecase, adapter);				
-				compound.add(createExtensionPointCommand);
-				return compound;
+		if(request instanceof CreateConnectionViewRequest) {
+			if(getExtendHint().equals(((CreateConnectionViewRequest)request).getConnectionViewDescriptor().getSemanticHint())) {
+				if(command != null && command.canExecute()) {
+					CompoundCommand compound = new CompoundCommand();
+					compound.add(command);
+					INodeEditPart targetEP = getConnectionCompleteEditPart(request);
+					if(targetEP instanceof AbstractEditPart) {
+						IAdaptable adapter = getExtendViewAdapter(request);
+						EObject usecase = ViewUtil.resolveSemanticElement((View)getHost().getModel());
+						CreateExtensionPointCommand createExtensionPointCommand = new CreateExtensionPointCommand((IHintedType)UMLElementTypes.ExtensionPoint_3007, (AbstractEditPart)targetEP, usecase, adapter);
+						compound.add(createExtensionPointCommand);
+						return compound;
+					}
+				}
 			}
 		}
 		return command;
@@ -82,5 +87,15 @@ public class CreateExtensionPointEditPolicy extends GraphicalNodeEditPolicy {
 			}
 		};
 	}
-	
+
+	/**
+	 * Get the semantic hint for an extend element
+	 * 
+	 * @return semantic hint
+	 */
+	private static String getExtendHint() {
+		IHintedType extend = (IHintedType)UMLElementTypes.Extend_4009;
+		return extend.getSemanticHint();
+	}
+
 }
