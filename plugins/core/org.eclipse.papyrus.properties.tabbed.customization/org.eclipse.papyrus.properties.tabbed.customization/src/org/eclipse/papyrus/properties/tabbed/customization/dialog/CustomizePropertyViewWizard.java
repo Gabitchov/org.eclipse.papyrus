@@ -23,6 +23,8 @@ public class CustomizePropertyViewWizard extends Wizard {
 	/** page to select the xml file to edit */
 	protected SelectConfigurationFileWizardPage selectXmlFilePage = new SelectConfigurationFileWizardPage();
 
+	/** Customize the content of the page */
+	protected CustomizeContentWizardPage customizeContentPage = new CustomizeContentWizardPage();
 
 	/**
 	 * Creates a new CustomizePropertyViewWizard.
@@ -39,6 +41,7 @@ public class CustomizePropertyViewWizard extends Wizard {
 	@Override
 	public void addPages() {
 		addPage(selectXmlFilePage);
+		addPage(customizeContentPage);
 	}
 
 	/**
