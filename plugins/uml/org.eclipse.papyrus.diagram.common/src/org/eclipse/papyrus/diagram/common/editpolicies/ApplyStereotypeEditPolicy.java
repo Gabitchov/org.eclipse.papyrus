@@ -47,6 +47,7 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.util.EditPartUtil;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.commands.DefferedAppliedStereotypeToDisplayCommand;
@@ -172,7 +173,7 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
 		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(editingDomain, "Apply Stereotype");
 		final List<EObject> result = new ArrayList<EObject>();
-		final Element element = ((IUMLEditPart)getHost()).getUMLElement();
+		final Element element = (Element)(((View)getHost().getModel()).getElement());
 
 		// 1. apply stereotypes
 		cc.compose(new AbstractTransactionalCommand(editingDomain, "Apply Stereotype", null) {
@@ -181,7 +182,7 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 				// retrieves the edit part on which stereotype request is made
-				if(getHost() instanceof IUMLEditPart) {
+				if(getHost() instanceof IUMLEditPart||((getHost().getModel() instanceof View)&& (((View)getHost().getModel()).getElement()) instanceof Element)) {
 					if(element == null) {
 						return null;
 					}
@@ -213,7 +214,7 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 				protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 					// retrieves the edit part on which stereotype request is made
-					if(getHost() instanceof IUMLEditPart) {
+					if(getHost() instanceof IUMLEditPart||((getHost().getModel() instanceof View)&& (((View)getHost().getModel()).getElement()) instanceof Element)) {
 						if(!(element instanceof NamedElement)) {
 							return null;
 						}
