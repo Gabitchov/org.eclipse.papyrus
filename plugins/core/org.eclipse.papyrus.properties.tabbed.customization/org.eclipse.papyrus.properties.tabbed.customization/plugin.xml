@@ -25,6 +25,9 @@
                mode="FORCE_TEXT"
                style="push"
                tooltip="Customize the content of the Property View">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
          </command>
       </menuContribution>
    </extension>

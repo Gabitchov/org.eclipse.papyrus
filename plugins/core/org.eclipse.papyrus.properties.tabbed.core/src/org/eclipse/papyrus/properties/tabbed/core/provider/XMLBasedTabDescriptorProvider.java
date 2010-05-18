@@ -51,7 +51,7 @@ public class XMLBasedTabDescriptorProvider implements ITabDescriptorProvider {
 			// get all tab descriptors for the registered extension points
 			TabbedPropertyRegistry registry = TabbedPropertyRegistryFactory.getInstance().createRegistry((CoreMultiDiagramEditor)part);
 
-			// invoke dynamically on the tab registry, as method is private :/
+			// invoke dynamically on the tab registry, as method is private
 			// problem of implementation of tabbed properties tabbed registry. Either contribution using extension points, either a tabprovider
 			// both contribution can not exist together, the only solution is to make a workaround.
 			try {
@@ -74,7 +74,6 @@ public class XMLBasedTabDescriptorProvider implements ITabDescriptorProvider {
 			} catch (NoSuchMethodException e) {
 				Activator.log.error(e);
 			}
-
 
 			this.descriptors = descriptors.toArray(new ITabDescriptor[descriptors.size()]);
 		}

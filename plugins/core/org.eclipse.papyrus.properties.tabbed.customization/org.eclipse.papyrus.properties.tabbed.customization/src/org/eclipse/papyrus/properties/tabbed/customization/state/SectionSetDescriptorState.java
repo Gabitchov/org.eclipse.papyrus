@@ -11,13 +11,47 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.customization.state;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.papyrus.properties.tabbed.core.view.DynamicSectionDescriptor;
+import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptor;
+
 
 /**
- * state for section set descriptors
+ * State for section set descriptors
  */
 public class SectionSetDescriptorState {
 
-	// list of sections for this section set. No descriptors for the section set, so nothing to put as a state
+	/** list of sections for this section set */
+	protected final List<SectionDescriptorState> sectionDescriptorStates = new ArrayList<SectionDescriptorState>();
 
+	/** descriptor for section sets */
+	protected final SectionSetDescriptor sectionSetDescriptor;
+
+	/**
+	 * Creates a new SectionSetDescriptorState.
+	 * 
+	 * @param sectionSetDescriptor
+	 *        descriptor for section sets
+	 */
+	public SectionSetDescriptorState(SectionSetDescriptor sectionSetDescriptor) {
+		this.sectionSetDescriptor = sectionSetDescriptor;
+
+		// retrieve and build the states for the children sections
+		for(DynamicSectionDescriptor abstractSectionDescriptor : sectionSetDescriptor.getSectionDescriptors()) {
+			SectionDescriptorState sectionState = new SectionDescriptorState(abstractSectionDescriptor);
+			sectionDescriptorStates.add(sectionState);
+		}
+	}
+
+	/**
+	 * Returns the sectionSet Descriptor managed by this state
+	 * 
+	 * @return the sectionSet Descriptor managed by this state
+	 */
+	public SectionSetDescriptor getSectionSetDescriptor() {
+		return sectionSetDescriptor;
+	}
 
 }

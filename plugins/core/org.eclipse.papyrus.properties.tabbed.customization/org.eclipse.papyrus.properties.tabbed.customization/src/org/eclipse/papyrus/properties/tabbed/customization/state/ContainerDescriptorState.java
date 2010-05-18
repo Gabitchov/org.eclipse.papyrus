@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.customization.state;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
@@ -26,7 +27,7 @@ public class ContainerDescriptorState {
 	protected ContainerDescriptor descriptor;
 
 	/** list of controllers managed by this state */
-	protected List<ControllerDescriptorState> controllerDescriptorStates;
+	protected List<ControllerDescriptorState> controllerDescriptorStates = new ArrayList<ControllerDescriptorState>();
 
 	/**
 	 * Creates a new ContainerDescriptorState.

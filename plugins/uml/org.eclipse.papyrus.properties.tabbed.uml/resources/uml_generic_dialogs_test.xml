@@ -1,5 +1,5 @@
 <!-- Generic dialogs for UML elements -->
-<dialogs>
+<dialogs pluginId="org.eclipse.papyrus.properties.tabbed.uml">
 	<dialog id="dialog_single_Operation"><!-- Dialog for single NameElement -->
 		<context enablesFor="1">
 			<elementClass

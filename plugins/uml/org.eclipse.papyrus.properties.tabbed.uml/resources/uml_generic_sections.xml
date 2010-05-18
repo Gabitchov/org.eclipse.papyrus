@@ -1,5 +1,5 @@
 <!--UML Basic properties view-->
-<propertyTabView>
+<propertyTabView pluginId="org.eclipse.papyrus.properties.tabbed.uml">
 	<!--  tab descriptors definition -->
 	<tab label="UML" category="UML" id="basicTab"/>
 	<tab label="Advanced" category="UML" id="advancedTab"/>

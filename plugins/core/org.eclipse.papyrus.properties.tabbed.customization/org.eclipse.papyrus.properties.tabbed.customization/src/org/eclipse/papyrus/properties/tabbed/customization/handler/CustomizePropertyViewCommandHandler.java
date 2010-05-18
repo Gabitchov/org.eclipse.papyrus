@@ -14,9 +14,10 @@ package org.eclipse.papyrus.properties.tabbed.customization.handler;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.jface.window.Window;
+import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
-import org.eclipse.papyrus.properties.tabbed.customization.dialog.CustomizePropertyViewDialog;
+import org.eclipse.papyrus.properties.tabbed.customization.dialog.CustomizePropertyViewWizard;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
@@ -37,10 +38,22 @@ public class CustomizePropertyViewCommandHandler extends AbstractHandler {
 		Shell shell = current.getActiveShell();
 		if(shell != null) {
 
-			CustomizePropertyViewDialog dialog = new CustomizePropertyViewDialog(shell);
-			if(Window.OK == dialog.open()) {
-				// execute action at the end of the dialog
-			}
+			CustomizePropertyViewWizard wizard = new CustomizePropertyViewWizard();
+			WizardDialog wd = new WizardDialog(shell, wizard) {
+
+				/**
+				 * {@inheritDoc}
+				 */
+				@Override
+				protected void configureShell(Shell newShell) {
+					super.configureShell(newShell);
+					newShell.setText("Customize Property View");
+				}
+			};
+			wd.create();
+			// wd.getShell().setSize(640, 600);
+			int result = wd.open();
+
 		} else {
 			Activator.log.error("impossible to find a shell to open the message dialog", null);
 		}
@@ -48,4 +61,14 @@ public class CustomizePropertyViewCommandHandler extends AbstractHandler {
 		return null;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isEnabled() {
+		if(EditorUtils.getMultiDiagramEditor() == null) {
+			return false;
+		}
+		return super.isEnabled();
+	}
 }

@@ -40,4 +40,17 @@ public class ObjectTypeConstraintDescriptor implements IConstraintDescriptor {
 		return false;
 	}
 
+
+	/**
+	 * Returns the element class for this constraint descriptor, i.e the class that each object in the selection must be compliant (the same or
+	 * inherited one)
+	 * 
+	 * @return the element class for this constraint descriptor
+	 */
+	public Class<?> getElementClass() {
+		return elementClass;
+	}
+
+
+
 }

@@ -11,10 +11,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.customization.dialog;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.jface.dialogs.TrayDialog;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.properties.tabbed.customization.Activator;
 import org.eclipse.papyrus.properties.tabbed.customization.Messages;
+import org.eclipse.papyrus.umlutils.PackageUtil;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -23,12 +32,18 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Tree;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.UMLPackage;
 
 
 /**
  * Dialog that allows customization of the property views for Papyrus
  */
 public class CustomizePropertyViewDialog extends TrayDialog {
+
+	/** UML metamodel label for the metamodel selection combo */
+	protected static final String UML_METAMODEL = "UML";
 
 	/**
 	 * Creates a new CustomizePropertyViewDialog.
@@ -74,7 +89,6 @@ public class CustomizePropertyViewDialog extends TrayDialog {
 		createPreviewArea(configurationAreaSashForm);
 
 		configurationAreaSashForm.setWeights(new int[]{ 50, 50 });
-
 	}
 
 	/**
@@ -133,10 +147,60 @@ public class CustomizePropertyViewDialog extends TrayDialog {
 		Label contentLabel = new Label(mainContentAreaComposite, SWT.NONE);
 		contentLabel.setText("Content:");
 
+		CCombo metamodelSelectionCombo = new CCombo(mainContentAreaComposite, SWT.BORDER | SWT.READ_ONLY);
+		metamodelSelectionCombo.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		metamodelSelectionCombo.setItems(retrieveAvailableMetamodels());
+
 		// content tree and viewer on this tree
 		Tree contentTree = new Tree(mainContentAreaComposite, SWT.BORDER);
 		contentTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		TreeViewer contentViewer = new TreeViewer(contentTree);
+		contentViewer.setContentProvider(new MetamodelContentProvider());
+		contentViewer.setLabelProvider(new MetamodelLabelProvider());
+		contentViewer.setInput(UMLPackage.eINSTANCE.eContents());
+	}
+
+	/**
+	 * Returns the list of metamodels for which a configuration of property view could be done.
+	 * 
+	 * @return the list of metamodels, never <code>null</code>.
+	 */
+	protected String[] retrieveAvailableMetamodels() {
+		List<String> availableMetamodels = new ArrayList<String>();
+		// retrieve current editor, and current resources
+		DiagramEditor editor = EditorUtils.lookupActiveDiagramEditor();
+		if(editor == null) {
+			Activator.log.warn("Impossible to find the active diagram editor");
+			return new String[0];
+		}
+		EObject eObject = editor.getDiagram().getElement();
+		if(eObject == null) {
+			Activator.log.warn("Impossible to find the active diagram object");
+			return new String[0];
+		}
+
+		if(eObject instanceof Element) {
+			// retrieve the top package, and the applied profiles
+			availableMetamodels.add(UML_METAMODEL);
+
+			org.eclipse.uml2.uml.Package rootPackage = PackageUtil.getRootPackage(((Element)eObject));
+			List<Profile> profilesApplied = rootPackage.getAllAppliedProfiles();
+			for(Profile profile : profilesApplied) {
+				availableMetamodels.add(getProfileDisplayName(profile));
+			}
+		}
+		return availableMetamodels.toArray(new String[]{});
+	}
+
+	/**
+	 * Returns a human readable name for the given profile. This name will also be used to identify which currently selection has been done
+	 * 
+	 * @param profile
+	 *        the profile to display
+	 * @return the name of the profile
+	 */
+	protected String getProfileDisplayName(Profile profile) {
+		return profile.getQualifiedName();
 	}
 
 	/**
@@ -146,7 +210,7 @@ public class CustomizePropertyViewDialog extends TrayDialog {
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
 		newShell.setSize(640, 480);
-		newShell.setText(Messages.CustomizePropertyViewDialog_DialogTitle);
+		newShell.setText(Messages.CustomizePropertyViewDialog_Title);
 	}
 
 }

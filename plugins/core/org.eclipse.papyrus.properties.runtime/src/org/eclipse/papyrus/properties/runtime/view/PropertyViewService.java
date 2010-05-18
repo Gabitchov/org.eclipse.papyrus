@@ -172,9 +172,21 @@ public class PropertyViewService extends Service {
 	}
 
 	/**
+	 * returns all providers for this service. This is made to overpass the visibility of the final protected method {@link Service#getAllProviders()}
+	 * <P>
+	 * this method should not be used at runtime, it is available only for customization purpose.
+	 * </P>
+	 * 
+	 * @return the list of all providers contributing to this service
+	 */
+	public List<?> findAllProviders() {
+		return super.getAllProviders();
+	}
+
+	/**
 	 * A descriptor for property views providers defined by a configuration element.
 	 */
-	protected static class ProviderDescriptor extends ActivityFilterProviderDescriptor {
+	public static class ProviderDescriptor extends ActivityFilterProviderDescriptor {
 
 		/**
 		 * Constructs a <code>ISemanticProvider</code> descriptor for

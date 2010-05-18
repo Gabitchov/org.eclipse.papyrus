@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.dialogs.EMFFeatureBindingLabelProviderDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.AppliedStereotypeConstraintDescriptor;
@@ -196,8 +197,6 @@ public class PropertyViewProviderParser {
 					String elementClassName = child2.getAttributes().getNamedItem("name").getNodeValue();
 					// should retrieve java class corresponding to this class
 					try {
-						// should use the bundle defining the fragment and not this bundle to load the class
-						// to remove dependencies
 						elementClass = bundle.loadClass(elementClassName);
 						constraintDescriptors.add(new ObjectTypeConstraintDescriptor(elementClass));
 					} catch (ClassNotFoundException e) {
@@ -238,17 +237,17 @@ public class PropertyViewProviderParser {
 	 * @throws XMLParseException
 	 *         parsing failed
 	 */
-	public void parseXMLfile(NodeList roots, Map<String, FragmentDescriptor> predefinedFragments, Map<String, DialogDescriptor> predefinedDialogs, Bundle bundle) throws XMLParseException {
+	public void parseXMLfile(NodeList roots, Map<String, FragmentDescriptor> predefinedFragments, Map<String, DialogDescriptor> predefinedDialogs) throws XMLParseException {
 		this.predefinedFragments = predefinedFragments;
 		this.predefinedDialogs = predefinedDialogs;
-		this.bundle = bundle;
+		// this.bundle = bundle;
 		for(int i = 0; i < roots.getLength(); i++) {
 			Node fragmentsOrDialogsNode = roots.item(i);
 			// check this is a "fragments" or "dialogs" node, not a comment or a text format node.
-			final String propertyViewNodeName = fragmentsOrDialogsNode.getNodeName();
-			if(NODE_NAME_FRAGMENTS.equals(propertyViewNodeName)) {
+			final String topNodeName = fragmentsOrDialogsNode.getNodeName();
+			if(NODE_NAME_FRAGMENTS.equals(topNodeName)) {
 				parseFragmentsNode(fragmentsOrDialogsNode);
-			} else if(DIALOGS_NODE_NAME.equals(propertyViewNodeName)) {
+			} else if(DIALOGS_NODE_NAME.equals(topNodeName)) {
 				parseDialogsNode(fragmentsOrDialogsNode);
 			}
 		}
@@ -261,6 +260,9 @@ public class PropertyViewProviderParser {
 	 *        the node to parse
 	 */
 	protected void parseDialogsNode(Node dialogNode) throws XMLParseException {
+		String pluginId = getPluginIdFromTopNode(dialogNode);
+		bundle = Platform.getBundle(pluginId);
+
 		// retrieve each child node which is a dialog
 		NodeList children = dialogNode.getChildNodes();
 		for(int i = 0; i < children.getLength(); i++) {
@@ -429,6 +431,9 @@ public class PropertyViewProviderParser {
 	 *         parsing failed
 	 */
 	protected void parseFragmentsNode(Node fragmentNode) throws XMLParseException {
+		String pluginId = getPluginIdFromTopNode(fragmentNode);
+		bundle = Platform.getBundle(pluginId);
+
 		// retrieve each child node which is a fragment
 		NodeList children = fragmentNode.getChildNodes();
 		for(int i = 0; i < children.getLength(); i++) {
@@ -443,6 +448,24 @@ public class PropertyViewProviderParser {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Retrieves the value of the attribute pluginId
+	 * 
+	 * @param topNode
+	 *        the node to parse
+	 * @return the id of the plugin from which class loader is used
+	 */
+	protected String getPluginIdFromTopNode(Node topNode) throws XMLParseException {
+		NamedNodeMap attributes = topNode.getAttributes();
+		if(attributes != null) {
+			Node pluginIdNode = attributes.getNamedItem("pluginId");
+			if(pluginIdNode != null) {
+				return pluginIdNode.getNodeValue();
+			}
+		}
+		throw new XMLParseException("impossible to find plugin id for top node: " + topNode);
 	}
 
 	/**

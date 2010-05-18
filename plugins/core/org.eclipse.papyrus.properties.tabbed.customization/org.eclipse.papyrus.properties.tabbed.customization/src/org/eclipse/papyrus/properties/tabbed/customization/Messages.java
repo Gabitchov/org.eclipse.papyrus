@@ -21,7 +21,21 @@ public class Messages extends NLS {
 	/** name of the bundle */
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.properties.tabbed.customization.messages"; //$NON-NLS-1$
 
-	public static String CustomizePropertyViewDialog_DialogTitle;
+	public static String CustomizePropertyViewDialog_Title;
+
+	public static String SelectConfigurationFileWizardPage_CreateFromExistingConfiguration_Label;
+
+	public static String SelectConfigurationFileWizardPage_CreateFromExistingConfigurationSelectionButton_Label;
+
+	public static String SelectConfigurationFileWizardPage_CreateFromScratch_Label;
+
+	public static String SelectConfigurationFileWizardPage_ModifyExistingConfiguration_Label;
+
+	public static String SelectConfigurationFileWizardPage_ModifyExistingConfigurationSelectionButton_Label;
+
+	public static String SelectConfigurationFileWizardPage_PageName;
+
+	public static String SelectConfigurationFileWizardPage_Title;
 
 	static {
 		// initialize resource bundle

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.view.DialogDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptor;
@@ -29,7 +30,6 @@ import org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.SimpleContain
 import org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.SubFeatureContainerDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.SubFeatureDescriptor;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
-import org.osgi.framework.Bundle;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -76,13 +76,20 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 	/** node name for sub feature sections */
 	protected static final String NODE_NAME_SECTION_SUBFEATURE = "subFeatureSection";
 
-	/** list of generated tab descriptors */
+	/** link to the list of all available tab descriptors */
 	protected List<ITabDescriptor> tabDescriptors;
+
+	/** list of all tab descriptors provided specifically by this provider */
+	protected List<ITabDescriptor> providedTabDescriptors = new ArrayList<ITabDescriptor>();
+
+	/** list of provided section sets by the provider using this parser */
+	private List<SectionSetDescriptor> providedSectionSets = new ArrayList<SectionSetDescriptor>();
 
 	/**
 	 * Creates a new PropertyTabViewProviderParser.
 	 * 
-	 * @param tabDescriptors2
+	 * @param tabDescriptors
+	 *        list of already available tab descriptors
 	 */
 	public PropertyTabViewProviderParser(List<ITabDescriptor> tabDescriptors) {
 		this.tabDescriptors = tabDescriptors;
@@ -92,10 +99,9 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void parseXMLfile(NodeList views, Map<String, FragmentDescriptor> predefinedFragments, Map<String, DialogDescriptor> predefinedDialogs, Bundle bundle) throws XMLParseException {
+	public void parseXMLfile(NodeList views, Map<String, FragmentDescriptor> predefinedFragments, Map<String, DialogDescriptor> predefinedDialogs) throws XMLParseException {
 		this.predefinedFragments = predefinedFragments;
 		this.predefinedDialogs = predefinedDialogs;
-		this.bundle = bundle;
 		for(int i = 0; i < views.getLength(); i++) {
 			Node propertyViewNode = views.item(i);
 			// check this is a "propertyTabView" node, not a comment or a text format node.
@@ -114,6 +120,11 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 	 *         parsing failed
 	 */
 	protected void parsePropertyTabViewNode(Node propertyViewNode) throws XMLParseException {
+
+		// retrieve plugin id for this contribution, to get the bundle class loader
+		String pluginId = getPluginIdFromTopNode(propertyViewNode);
+		bundle = Platform.getBundle(pluginId);
+
 		// retrieve each child node which is a view
 		NodeList children = propertyViewNode.getChildNodes();
 		for(int i = 0; i < children.getLength(); i++) {
@@ -122,9 +133,12 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 			Node childNode = children.item(i);
 			String childNodeName = childNode.getNodeName();
 			if(NODE_NAME_SECTION_SET.equals(childNodeName)) {
-				parseSectionSetNode(childNode);
+				getProvidedSectionSets().add(parseSectionSetNode(childNode));
 			} else if(NODE_NAME_TAB.equals(childNodeName)) {
-				parseTab(childNode);
+				DynamicTabDescriptor tabDescriptor = parseTab(childNode);
+				providedTabDescriptors.add(tabDescriptor);
+				// make contribution to tab descriptors
+				tabDescriptors.add(tabDescriptor);
 			}
 		}
 	}
@@ -135,7 +149,7 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 	 * @param node
 	 *        the configuration node for the tab
 	 */
-	protected void parseTab(Node node) {
+	protected DynamicTabDescriptor parseTab(Node node) {
 		NamedNodeMap attributes = node.getAttributes();
 		String id = null;
 		String label = null;
@@ -161,8 +175,10 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 		}
 
 		if(label != null && id != null && category != null) {
-			tabDescriptors.add(new DynamicTabDescriptor(category, id, label));
+			DynamicTabDescriptor tabDescriptor = new DynamicTabDescriptor(category, id, label);
+			return tabDescriptor;
 		}
+		return null;
 	}
 
 	/**
@@ -171,7 +187,12 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 	 * @param sectionSetNode
 	 *        the section set node to parse
 	 */
-	protected void parseSectionSetNode(Node sectionSetNode) {
+	protected SectionSetDescriptor parseSectionSetNode(Node sectionSetNode) {
+
+		List<DynamicSectionDescriptor> sectionDescriptors = new ArrayList<DynamicSectionDescriptor>();
+		List<IConstraintDescriptor> constraintDescriptors = new ArrayList<IConstraintDescriptor>();
+		int selectionSize = 0;
+
 		// retrieve name
 		NamedNodeMap attributes = sectionSetNode.getAttributes();
 		String name = null;
@@ -201,19 +222,21 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 		// check both context node and list of sections
 		if(contextNode == null || sectionNodes.isEmpty()) {
 			Activator.log.error("impossible to find a context node or a list of sections for section set " + name, null);
-			return;
+			return null;
 		}
 
 		// parses constraints that will be given to each section
-		List<IConstraintDescriptor> constraints = parseConstraints(contextNode);
+		constraintDescriptors.addAll(parseConstraints(contextNode));
 
 		// parse size
-		int selectionSize = parseSelectionSize(contextNode);
+		selectionSize = parseSelectionSize(contextNode);
 
 		for(Node sectionNode : sectionNodes) {
-			parseSectionNode(sectionNode, constraints, selectionSize);
+			DynamicSectionDescriptor sectionDescriptor = parseSectionNode(sectionNode, constraintDescriptors, selectionSize);
+			sectionDescriptors.add(sectionDescriptor);
 		}
 
+		return new SectionSetDescriptor(sectionDescriptors, constraintDescriptors, selectionSize);
 	}
 
 	/**
@@ -223,7 +246,7 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 	 *        the section to parse
 	 */
 	@SuppressWarnings("unchecked")
-	protected void parseSectionNode(Node sectionNode, List<IConstraintDescriptor> constraints, int selectionSize) {
+	protected DynamicSectionDescriptor parseSectionNode(Node sectionNode, List<IConstraintDescriptor> constraints, int selectionSize) {
 
 		// Is this a subfeature section or a "standard one"
 		String nodeName = sectionNode.getNodeName();
@@ -303,6 +326,7 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 			for(ITabDescriptor tabDescriptor : tabDescriptors) {
 				if(tabDescriptor.getId().equals(tabId)) {
 					tabDescriptor.getSectionDescriptors().add(descriptor);
+					return descriptor;
 				}
 			}
 		} else {
@@ -313,9 +337,12 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 			for(ITabDescriptor tabDescriptor : tabDescriptors) {
 				if(tabDescriptor.getId().equals(tabId)) {
 					tabDescriptor.getSectionDescriptors().add(descriptor);
+					return descriptor;
 				}
 			}
 		}
+		// should never happen
+		return null;
 	}
 
 	/**
@@ -425,5 +452,23 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 	 */
 	protected List<ITabDescriptor> getResult() {
 		return tabDescriptors;
+	}
+
+	/**
+	 * Returns the provided section sets by this provider
+	 * 
+	 * @return the provided section sets by this provider
+	 */
+	public List<SectionSetDescriptor> getProvidedSectionSets() {
+		return providedSectionSets;
+	}
+
+	/**
+	 * Returns the provided TabDescriptors by this provider
+	 * 
+	 * @return the provided TabDescriptors by this provider
+	 */
+	public List<ITabDescriptor> getProvidedTabDescriptors() {
+		return providedTabDescriptors;
 	}
 }
