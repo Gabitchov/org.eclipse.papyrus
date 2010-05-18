@@ -15,12 +15,16 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.w3c.dom.Document;
 
 
 /**
  * Wizard page where user can customize the content of the property view
  */
 public class CustomizeContentWizardPage extends WizardPage {
+
+	/** initial content */
+	protected Document document;
 
 	/**
 	 * Creates a new CustomizeContentWizardPage.
@@ -37,5 +41,26 @@ public class CustomizeContentWizardPage extends WizardPage {
 		label.setText("hello");
 		setControl(label);
 	}
+
+	/**
+	 * Sets the initial content for this page
+	 * 
+	 * @param initialContent
+	 *        the initial content for this page, i.e. the document
+	 */
+	public void setInitialContent(Document document) {
+		this.document = document;
+	}
+
+	/**
+	 * Returns the final content for this page
+	 * 
+	 * @return the final content for this page
+	 */
+	public Document getFinalContent() {
+		return document;
+	}
+
+
 
 }

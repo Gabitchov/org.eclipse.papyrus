@@ -11,14 +11,20 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.customization.dialog;
 
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
 import org.eclipse.papyrus.properties.tabbed.customization.Messages;
@@ -33,6 +39,8 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 
 /**
@@ -153,6 +161,20 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 	}
 
 	/**
+	 * Returns the current selected configuration area
+	 * 
+	 * @return the current selected configuration area
+	 */
+	protected IConfigurationArea getEnableConfigurationArea() {
+		for(Button button : radioButtonsMapping.keySet()) {
+			if(button.getSelection()) {
+				return radioButtonsMapping.get(button);
+			}
+		}
+		return null;
+	}
+
+	/**
 	 * Checks if the specified control is valid.
 	 * 
 	 * @param control
@@ -161,6 +183,21 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 	 */
 	protected boolean isValid(Control control) {
 		return (control != null && !control.isDisposed());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public IWizardPage getNextPage() {
+		if(getWizard() instanceof CustomizePropertyViewWizard) {
+			CustomizeContentWizardPage newPage = ((CustomizePropertyViewWizard)getWizard()).customizeContentPage;
+			// newPage.setInitialContent();
+			Document initialDocument = getEnableConfigurationArea().generateInitialContent();
+			newPage.setInitialContent(initialDocument);
+			return newPage;
+		}
+		return null;
 	}
 
 	/**
@@ -213,6 +250,13 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 		 *        the enablement state for the elements in the composite
 		 */
 		public void setEnable(boolean enable);
+
+		/**
+		 * Generates the initial content from the given configuration
+		 * 
+		 * @return the initial content passed to the second page
+		 */
+		public Document generateInitialContent();
 
 		/**
 		 * Creates the content of the area
@@ -310,6 +354,25 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 			return createFromScratchComposite;
 		}
 
+		/**
+		 * {@inheritDoc}
+		 */
+		public Document generateInitialContent() {
+			DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+			documentBuilderFactory.setNamespaceAware(true);
+			DocumentBuilder documentBuilder;
+			try {
+				documentBuilder = documentBuilderFactory.newDocumentBuilder();
+				Document document = documentBuilder.newDocument();
+				document.createComment("Defined using Papyrus Property View customization. Date: " + Calendar.getInstance().getTime());
+				Element rootNode = document.createElement("propertyTabView");
+				rootNode.setAttribute("pluginId", "org.eclipse.uml2.uml");
+				return document;
+			} catch (ParserConfigurationException e) {
+				Activator.log.error(e);
+			}
+			return null;
+		}
 	}
 
 	/**
@@ -399,6 +462,27 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 			}
 		}
 
+		/**
+		 * {@inheritDoc}
+		 */
+		public Document generateInitialContent() {
+			//FIXME correct the xml file generation
+			DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+			documentBuilderFactory.setNamespaceAware(true);
+			DocumentBuilder documentBuilder;
+			try {
+				documentBuilder = documentBuilderFactory.newDocumentBuilder();
+				Document document = documentBuilder.newDocument();
+				document.createComment("Defined using Papyrus Property View customization. Date: " + Calendar.getInstance().getTime());
+				Element rootNode = document.createElement("propertyTabView");
+				rootNode.setAttribute("pluginId", "org.eclipse.uml2.uml");
+				return document;
+			} catch (ParserConfigurationException e) {
+				Activator.log.error(e);
+			}
+			return null;
+		}
+
 	}
 
 	/**
@@ -466,6 +550,27 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 				}
 			});
 			return modifyExistingConfigurationComposite;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public Document generateInitialContent() {
+			//FIXME correct the xml file generation
+			DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+			documentBuilderFactory.setNamespaceAware(true);
+			DocumentBuilder documentBuilder;
+			try {
+				documentBuilder = documentBuilderFactory.newDocumentBuilder();
+				Document document = documentBuilder.newDocument();
+				document.createComment("Defined using Papyrus Property View customization. Date: " + Calendar.getInstance().getTime());
+				Element rootNode = document.createElement("propertyTabView");
+				rootNode.setAttribute("pluginId", "org.eclipse.uml2.uml");
+				return document;
+			} catch (ParserConfigurationException e) {
+				Activator.log.error(e);
+			}
+			return null;
 		}
 	}
 }
