@@ -59,8 +59,8 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtendEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtendsLink_fixedEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPoint2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointInRectangleEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.GeneralizationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.IncludeEditPart;
@@ -166,7 +166,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/3.0.0/UML?Comment", UMLElementTypes.Comment_2018); //$NON-NLS-1$
 		case ExtensionPointEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ExtensionPoint", UMLElementTypes.ExtensionPoint_3007); //$NON-NLS-1$
-		case ExtensionPoint2EditPart.VISUAL_ID:
+		case ExtensionPointInRectangleEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ExtensionPoint", UMLElementTypes.ExtensionPoint_3008); //$NON-NLS-1$
 		case UseCaseInComponentEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?UseCase", UMLElementTypes.UseCase_3009); //$NON-NLS-1$
@@ -283,7 +283,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getComment_2018Text(view);
 		case ExtensionPointEditPart.VISUAL_ID:
 			return getExtensionPoint_3007Text(view);
-		case ExtensionPoint2EditPart.VISUAL_ID:
+		case ExtensionPointInRectangleEditPart.VISUAL_ID:
 			return getExtensionPoint_3008Text(view);
 		case UseCaseInComponentEditPart.VISUAL_ID:
 			return getUseCase_3009Text(view);
@@ -467,7 +467,7 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 * @generated
 	 */
 	private String getExtensionPoint_3008Text(View view) {
-		IParser parser = UMLParserProvider.getParser(UMLElementTypes.ExtensionPoint_3008, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ExtensionPoint2EditPart.VISUAL_ID));
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.ExtensionPoint_3008, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ExtensionPointInRectangleEditPart.VISUAL_ID));
 		if(parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {

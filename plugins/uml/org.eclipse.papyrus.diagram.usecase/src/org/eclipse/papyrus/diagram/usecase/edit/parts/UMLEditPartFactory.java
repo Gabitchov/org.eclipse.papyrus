@@ -105,8 +105,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ExtensionPointEditPart.VISUAL_ID:
 				return new ExtensionPointEditPart(view);
 
-			case ExtensionPoint2EditPart.VISUAL_ID:
-				return new ExtensionPoint2EditPart(view);
+			case ExtensionPointInRectangleEditPart.VISUAL_ID:
+				return new ExtensionPointInRectangleEditPart(view);
 
 			case UseCaseInComponentEditPart.VISUAL_ID:
 				return new UseCaseInComponentEditPart(view);
@@ -174,23 +174,23 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case PackageNameEditPartCN.VISUAL_ID:
 				return new PackageNameEditPartCN(view);
 
-			case UseCasePointsEditPart.VISUAL_ID:
-				return new UseCasePointsEditPart(view);
+			case UseCasePointsEditPartTN.VISUAL_ID:
+				return new UseCasePointsEditPartTN(view);
 
-			case UseCaseExtensionpointsEditPart.VISUAL_ID:
-				return new UseCaseExtensionpointsEditPart(view);
+			case UseCasePointsInRectangleEditPart.VISUAL_ID:
+				return new UseCasePointsInRectangleEditPart(view);
 
 			case ComponentUsecasesEditPart.VISUAL_ID:
 				return new ComponentUsecasesEditPart(view);
 
-			case UseCasePoints2EditPart.VISUAL_ID:
-				return new UseCasePoints2EditPart(view);
+			case UseCasePointsInComponentEditPart.VISUAL_ID:
+				return new UseCasePointsInComponentEditPart(view);
 
 			case ComponentUsecases2EditPart.VISUAL_ID:
 				return new ComponentUsecases2EditPart(view);
 
-			case UseCasePoints3EditPart.VISUAL_ID:
-				return new UseCasePoints3EditPart(view);
+			case UseCasePointsInPackageEditPart.VISUAL_ID:
+				return new UseCasePointsInPackageEditPart(view);
 
 			case ComponentUsecases3EditPart.VISUAL_ID:
 				return new ComponentUsecases3EditPart(view);

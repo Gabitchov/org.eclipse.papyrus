@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2010 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -15,27 +15,28 @@ package org.eclipse.papyrus.diagram.usecase.edit.policies;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.diagram.usecase.edit.commands.ExtensionPointCreateCommand;
+import org.eclipse.papyrus.diagram.usecase.edit.commands.ExtensionPointInRectangleCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 
 /**
  * @generated
  */
-public class UseCasePoints2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class UseCasePointsInRectangleItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public UseCasePoints2ItemSemanticEditPolicy() {
-		super(UMLElementTypes.UseCase_3009);
+	public UseCasePointsInRectangleItemSemanticEditPolicy() {
+		super(UMLElementTypes.UseCase_2014);
 	}
+
 
 	/**
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if(UMLElementTypes.ExtensionPoint_3007 == req.getElementType()) {
-			return getGEFWrapper(new ExtensionPointCreateCommand(req));
+		if(UMLElementTypes.ExtensionPoint_3008 == req.getElementType()) {
+			return getGEFWrapper(new ExtensionPointInRectangleCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

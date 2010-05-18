@@ -81,12 +81,12 @@
       <childNodes
           xsi:type="gmfgen:GenChildLabelNode"
           visualID="3008"
-          editPartClassName="ExtensionPoint2EditPart"
-          itemSemanticEditPolicyClassName="ExtensionPoint2ItemSemanticEditPolicy"
+          editPartClassName="ExtensionPointInRectangleEditPart"
+          itemSemanticEditPolicyClassName="ExtensionPointInRectangleItemSemanticEditPolicy"
           notationViewFactoryClassName="ExtensionPoint2ViewFactory"
-          canonicalEditPolicyClassName="ExtensionPoint2CanonicalEditPolicy"
-          graphicalNodeEditPolicyClassName="ExtensionPoint2GraphicalNodeEditPolicy"
-          createCommandClassName="ExtensionPoint2CreateCommand"
+          canonicalEditPolicyClassName="ExtensionPointInRectangleCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="ExtensionPointInRectangleGraphicalNodeEditPolicy"
+          createCommandClassName="ExtensionPointInRectangleCreateCommand"
           containers="/0/@diagram/@compartments.1">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -156,6 +156,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.usecase.edit.policies.CreateExtensionPointEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/UseCase"/>
@@ -685,6 +689,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.usecase.edit.policies.CreateExtensionPointEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/UseCase"/>
@@ -1050,6 +1058,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.usecase.edit.policies.CreateExtensionPointEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/UseCase"/>
@@ -2297,10 +2309,10 @@
       </links>
       <compartments
           visualID="7009"
-          editPartClassName="UseCasePointsEditPart"
-          itemSemanticEditPolicyClassName="UseCasePointsItemSemanticEditPolicy"
+          editPartClassName="UseCasePointsEditPartTN"
+          itemSemanticEditPolicyClassName="UseCasePointsItemSemanticEditPolicyTN"
           notationViewFactoryClassName="UseCasePointsViewFactory"
-          canonicalEditPolicyClassName="UseCasePointsCanonicalEditPolicy"
+          canonicalEditPolicyClassName="UseCasePointsCanonicalEditPolicyTN"
           childNodes="/0/@diagram/@childNodes.0"
           title="points"
           canCollapse="false"
@@ -2319,10 +2331,10 @@
       </compartments>
       <compartments
           visualID="7010"
-          editPartClassName="UseCaseExtensionpointsEditPart"
-          itemSemanticEditPolicyClassName="UseCaseExtensionpointsItemSemanticEditPolicy"
+          editPartClassName="UseCasePointsInRectangleEditPart"
+          itemSemanticEditPolicyClassName="UseCasePointsInRectangleItemSemanticEditPolicy"
           notationViewFactoryClassName="UseCaseExtensionpointsViewFactory"
-          canonicalEditPolicyClassName="UseCaseExtensionpointsCanonicalEditPolicy"
+          canonicalEditPolicyClassName="UseCasePointsInRectangleCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.1"
           title="extension points"
           node="/0/@diagram/@topLevelNodes.3">
@@ -2362,10 +2374,10 @@
       </compartments>
       <compartments
           visualID="7012"
-          editPartClassName="UseCasePoints2EditPart"
-          itemSemanticEditPolicyClassName="UseCasePoints2ItemSemanticEditPolicy"
+          editPartClassName="UseCasePointsInComponentEditPart"
+          itemSemanticEditPolicyClassName="UseCasePointsInComponentItemSemanticEditPolicy"
           notationViewFactoryClassName="UseCasePoints2ViewFactory"
-          canonicalEditPolicyClassName="UseCasePoints2CanonicalEditPolicy"
+          canonicalEditPolicyClassName="UseCasePointsInComponentCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.0"
           title="points"
           canCollapse="false"
@@ -2407,10 +2419,10 @@
       </compartments>
       <compartments
           visualID="7014"
-          editPartClassName="UseCasePoints3EditPart"
-          itemSemanticEditPolicyClassName="UseCasePoints3ItemSemanticEditPolicy"
+          editPartClassName="UseCasePointsInPackageEditPart"
+          itemSemanticEditPolicyClassName="UseCasePointsInPackageItemSemanticEditPolicy"
           notationViewFactoryClassName="UseCasePoints3ViewFactory"
-          canonicalEditPolicyClassName="UseCasePoints3CanonicalEditPolicy"
+          canonicalEditPolicyClassName="UseCasePointsInPackageCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.0"
           title="points"
           canCollapse="false"

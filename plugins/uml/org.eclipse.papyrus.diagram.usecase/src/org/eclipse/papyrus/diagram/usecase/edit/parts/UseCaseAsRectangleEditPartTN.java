@@ -149,10 +149,10 @@ ShapeNodeEditPart {
 		}
 
 
-		if(childEditPart instanceof UseCaseExtensionpointsEditPart) {
+		if(childEditPart instanceof UseCasePointsInRectangleEditPart) {
 			IFigure pane = getPrimaryShape().getUseCaseAsClass_points();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((UseCaseExtensionpointsEditPart)childEditPart).getFigure());
+			pane.add(((UseCasePointsInRectangleEditPart)childEditPart).getFigure());
 			return true;
 		}
 
@@ -167,10 +167,10 @@ ShapeNodeEditPart {
 		if(childEditPart instanceof UseCaseAsRectangleNameEditPartTN) {
 			return true;
 		}
-		if(childEditPart instanceof UseCaseExtensionpointsEditPart) {
+		if(childEditPart instanceof UseCasePointsInRectangleEditPart) {
 			IFigure pane = getPrimaryShape().getUseCaseAsClass_points();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.remove(((UseCaseExtensionpointsEditPart)childEditPart).getFigure());
+			pane.remove(((UseCasePointsInRectangleEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -200,7 +200,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if(editPart instanceof UseCaseExtensionpointsEditPart) {
+		if(editPart instanceof UseCasePointsInRectangleEditPart) {
 			return getPrimaryShape().getUseCaseAsClass_points();
 		}
 		return getContentPane();
@@ -1235,7 +1235,7 @@ ShapeNodeEditPart {
 			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
 			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
 			if(type == UMLElementTypes.ExtensionPoint_3008) {
-				return getChildBySemanticHint(UMLVisualIDRegistry.getType(UseCaseExtensionpointsEditPart.VISUAL_ID));
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(UseCasePointsInRectangleEditPart.VISUAL_ID));
 			}
 		}
 		return super.getTargetEditPart(request);

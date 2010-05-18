@@ -55,8 +55,8 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyAppliedStereotyp
 import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.DiagramNameEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtendAppliedStereotypeEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPoint2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointInRectangleEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.GeneralizationAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.IncludeAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageImportAppliedStereotypeEditPart;
@@ -754,7 +754,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getDiagramName_5032Parser();
 		case ExtensionPointEditPart.VISUAL_ID:
 			return getExtensionPoint_3007Parser();
-		case ExtensionPoint2EditPart.VISUAL_ID:
+		case ExtensionPointInRectangleEditPart.VISUAL_ID:
 			return getExtensionPoint_3008Parser();
 		case UseCaseInComponentNameEditPart.VISUAL_ID:
 			return getUseCaseName_5018Parser();

@@ -33,9 +33,9 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.usecase.edit.commands.ExtensionPointCreateCommand;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePoints2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePoints3EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePointsEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePointsEditPartTN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePointsInComponentEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePointsInPackageEditPart;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Extend;
 import org.eclipse.uml2.uml.ExtensionPoint;
@@ -168,13 +168,13 @@ public class CreateExtensionPointCommand extends Command {
 		viewsCreationCommand = new CompoundCommand();
 		IGraphicalEditPart useCasePointEP = null;
 		for(Object ep : compartment.getChildren()) {
-			if(ep instanceof UseCasePointsEditPart) {
+			if(ep instanceof UseCasePointsEditPartTN) {
 				useCasePointEP = (IGraphicalEditPart)ep;
 				break;
-			} else if(ep instanceof UseCasePoints2EditPart) {
+			} else if(ep instanceof UseCasePointsInComponentEditPart) {
 				useCasePointEP = (IGraphicalEditPart)ep;
 				break;
-			} else if(ep instanceof UseCasePoints3EditPart) {
+			} else if(ep instanceof UseCasePointsInPackageEditPart) {
 				useCasePointEP = (IGraphicalEditPart)ep;
 				break;
 			}

@@ -64,7 +64,7 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.IncludeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageImportEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePointsEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePointsEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 
@@ -229,7 +229,7 @@ public class UseCaseItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPoli
 		for(Iterator nit = view.getChildren().iterator(); nit.hasNext();) {
 			Node node = (Node)nit.next();
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
-			case UseCasePointsEditPart.VISUAL_ID:
+			case UseCasePointsEditPartTN.VISUAL_ID:
 				for(Iterator cit = node.getChildren().iterator(); cit.hasNext();) {
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {

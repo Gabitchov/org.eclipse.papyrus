@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2010 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -22,7 +22,7 @@ import java.util.Set;
 
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointInRectangleEditPart;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.usecase.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry;
@@ -31,7 +31,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class UseCasePoints2CanonicalEditPolicy extends CanonicalEditPolicy {
+public class UseCasePointsInRectangleCanonicalEditPolicy extends CanonicalEditPolicy {
+
 
 	/**
 	 * @generated
@@ -44,7 +45,7 @@ public class UseCasePoints2CanonicalEditPolicy extends CanonicalEditPolicy {
 	protected List getSemanticChildrenList() {
 		View viewObject = (View)getHost().getModel();
 		List result = new LinkedList();
-		for(Iterator it = UMLDiagramUpdater.getUseCasePoints_7012SemanticChildren(viewObject).iterator(); it.hasNext();) {
+		for(Iterator it = UMLDiagramUpdater.getUseCaseExtensionpoints_7010SemanticChildren(viewObject).iterator(); it.hasNext();) {
 			result.add(((UMLNodeDescriptor)it.next()).getModelElement());
 		}
 		return result;
@@ -56,7 +57,7 @@ public class UseCasePoints2CanonicalEditPolicy extends CanonicalEditPolicy {
 	protected boolean isOrphaned(Collection semanticChildren, final View view) {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
 		switch(visualID) {
-		case ExtensionPointEditPart.VISUAL_ID:
+		case ExtensionPointInRectangleEditPart.VISUAL_ID:
 			if(!semanticChildren.contains(view.getElement())) {
 				return true;
 			}

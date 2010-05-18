@@ -476,12 +476,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String UseCasePointsEditPart_title;
+	public static String UseCasePointsEditPartTN_title;
 
 	/**
 	 * @generated
 	 */
-	public static String UseCaseExtensionpointsEditPart_title;
+	public static String UseCasePointsInRectangleEditPart_title;
 
 	/**
 	 * @generated
@@ -491,7 +491,7 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String UseCasePoints2EditPart_title;
+	public static String UseCasePointsInComponentEditPart_title;
 
 	/**
 	 * @generated
@@ -501,12 +501,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String PackagePackageableElementCompartmentEditPart_title;
+	public static String UseCasePointsInPackageEditPart_title;
 
 	/**
 	 * @generated
 	 */
-	public static String UseCasePoints3EditPart_title;
+	public static String PackagePackageableElementCompartmentEditPart_title;
 
 	/**
 	 * @generated

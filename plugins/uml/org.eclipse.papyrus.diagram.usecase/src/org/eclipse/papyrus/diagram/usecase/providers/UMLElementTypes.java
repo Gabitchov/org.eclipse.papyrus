@@ -46,8 +46,8 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintInComponentEditP
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintInPackageEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtendEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPoint2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointInRectangleEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.IncludeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartCN;
@@ -548,7 +548,7 @@ public class UMLElementTypes extends ElementInitializers {
 			return Diagram_2019;
 		case ExtensionPointEditPart.VISUAL_ID:
 			return ExtensionPoint_3007;
-		case ExtensionPoint2EditPart.VISUAL_ID:
+		case ExtensionPointInRectangleEditPart.VISUAL_ID:
 			return ExtensionPoint_3008;
 		case UseCaseInComponentEditPart.VISUAL_ID:
 			return UseCase_3009;

@@ -44,6 +44,7 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
+import org.eclipse.papyrus.diagram.usecase.edit.policies.CreateExtensionPointEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.UseCaseInPackageItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.figure.UseCaseFigure;
 import org.eclipse.papyrus.diagram.usecase.figure.UseCaseNodeFigure;
@@ -92,6 +93,7 @@ ShapeNodeEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CreateExtensionPointEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -149,10 +151,10 @@ ShapeNodeEditPart {
 		}
 
 
-		if(childEditPart instanceof UseCasePoints3EditPart) {
+		if(childEditPart instanceof UseCasePointsInPackageEditPart) {
 			IFigure pane = getPrimaryShape().getUseCaseFigure_contents();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((UseCasePoints3EditPart)childEditPart).getFigure());
+			pane.add(((UseCasePointsInPackageEditPart)childEditPart).getFigure());
 			return true;
 		}
 
@@ -167,10 +169,10 @@ ShapeNodeEditPart {
 		if(childEditPart instanceof UseCaseInPackageNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof UseCasePoints3EditPart) {
+		if(childEditPart instanceof UseCasePointsInPackageEditPart) {
 			IFigure pane = getPrimaryShape().getUseCaseFigure_contents();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.remove(((UseCasePoints3EditPart)childEditPart).getFigure());
+			pane.remove(((UseCasePointsInPackageEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -200,7 +202,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if(editPart instanceof UseCasePoints3EditPart) {
+		if(editPart instanceof UseCasePointsInPackageEditPart) {
 			return getPrimaryShape().getUseCaseFigure_contents();
 		}
 		return getContentPane();
@@ -1238,7 +1240,7 @@ ShapeNodeEditPart {
 			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
 			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
 			if(type == UMLElementTypes.ExtensionPoint_3007) {
-				return getChildBySemanticHint(UMLVisualIDRegistry.getType(UseCasePoints3EditPart.VISUAL_ID));
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(UseCasePointsInPackageEditPart.VISUAL_ID));
 			}
 		}
 		return super.getTargetEditPart(request);

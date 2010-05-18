@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2010 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -13,39 +13,44 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.edit.parts;
 
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableCompartmentEditPolicy;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.CustomDiagramDragDropEditPolicy;
-import org.eclipse.papyrus.diagram.usecase.edit.policies.UseCasePoints3ItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.usecase.edit.policies.UseCasePointsInRectangleItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.part.Messages;
 
 /**
  * @generated
  */
-public class UseCasePoints3EditPart extends ListCompartmentEditPart {
+public class UseCasePointsInRectangleEditPart
+
+
+
+extends ListCompartmentEditPart
+
+{
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 7014;
+	public static final int VISUAL_ID = 7010;
 
 	/**
 	 * @generated
 	 */
-	public UseCasePoints3EditPart(View view) {
+	public UseCasePointsInRectangleEditPart(View view) {
 		super(view);
 	}
 
@@ -60,43 +65,40 @@ public class UseCasePoints3EditPart extends ListCompartmentEditPart {
 	 * @generated
 	 */
 	public String getCompartmentName() {
-		return Messages.UseCasePoints3EditPart_title;
+		return Messages.UseCasePointsInRectangleEditPart_title;
 	}
 
-	/**
-	 * @generated
-	 */
-	public IFigure createFigure() {
-		ResizableCompartmentFigure result = (ResizableCompartmentFigure)super.createFigure();
-		result.setTitleVisibility(false);
-		return result;
-	}
 
 	/**
 	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new UseCasePoints3ItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new ResizableCompartmentEditPolicy());
+		installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE, new UseCasePointsInRectangleItemSemanticEditPolicy());
+		installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
+		installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
 
 
 		//in Papyrus diagrams are not strongly synchronised
-		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.usecase.edit.policies.UseCasePoints3CanonicalEditPolicy());
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.usecase.edit.policies.UseCasePointsInRectangleCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 	}
+
+
+
 
 	/**
 	 * @generated
 	 */
 	protected void setRatio(Double ratio) {
-		if(getFigure().getParent().getLayoutManager() instanceof ConstrainedToolbarLayout) {
-			super.setRatio(ratio);
-		}
+		// nothing to do -- parent layout does not accept Double constraints as ratio
+		// super.setRatio(ratio); 
 	}
+
+
 
 	/**
 	 * @generated
@@ -129,5 +131,4 @@ public class UseCasePoints3EditPart extends ListCompartmentEditPart {
 		super.refreshVisuals();
 		refreshBounds();
 	}
-
 }

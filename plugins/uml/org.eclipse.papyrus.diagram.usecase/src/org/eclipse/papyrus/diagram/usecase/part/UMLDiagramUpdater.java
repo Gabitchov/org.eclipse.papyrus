@@ -46,8 +46,8 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintInComponentEditP
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ConstraintInPackageEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtendEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPoint2EditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointInRectangleEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.IncludeEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.PackageEditPartCN;
@@ -62,12 +62,12 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseAsRectangleEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPartTN;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseExtensionpointsEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInComponentEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseInPackageEditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePoints2EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePoints3EditPart;
-import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePointsEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePointsEditPartTN;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePointsInComponentEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePointsInPackageEditPart;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePointsInRectangleEditPart;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.Actor;
@@ -104,17 +104,17 @@ public class UMLDiagramUpdater {
 	 */
 	public static List getSemanticChildren(View view) {
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
-		case UseCasePointsEditPart.VISUAL_ID:
+		case UseCasePointsEditPartTN.VISUAL_ID:
 			return getUseCasePoints_7009SemanticChildren(view);
-		case UseCaseExtensionpointsEditPart.VISUAL_ID:
+		case UseCasePointsInRectangleEditPart.VISUAL_ID:
 			return getUseCaseExtensionpoints_7010SemanticChildren(view);
 		case ComponentUsecasesEditPart.VISUAL_ID:
 			return getComponentUsecases_7011SemanticChildren(view);
-		case UseCasePoints2EditPart.VISUAL_ID:
+		case UseCasePointsInComponentEditPart.VISUAL_ID:
 			return getUseCasePoints_7012SemanticChildren(view);
 		case ComponentUsecases2EditPart.VISUAL_ID:
 			return getComponentUsecases_7017SemanticChildren(view);
-		case UseCasePoints3EditPart.VISUAL_ID:
+		case UseCasePointsInPackageEditPart.VISUAL_ID:
 			return getUseCasePoints_7014SemanticChildren(view);
 		case ComponentUsecases3EditPart.VISUAL_ID:
 			return getComponentUsecases_7015SemanticChildren(view);
@@ -168,7 +168,7 @@ public class UMLDiagramUpdater {
 		for(Iterator it = modelElement.getExtensionPoints().iterator(); it.hasNext();) {
 			ExtensionPoint childElement = (ExtensionPoint)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == ExtensionPoint2EditPart.VISUAL_ID) {
+			if(visualID == ExtensionPointInRectangleEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -605,7 +605,7 @@ public class UMLDiagramUpdater {
 			return getDiagram_2019ContainedLinks(view);
 		case ExtensionPointEditPart.VISUAL_ID:
 			return getExtensionPoint_3007ContainedLinks(view);
-		case ExtensionPoint2EditPart.VISUAL_ID:
+		case ExtensionPointInRectangleEditPart.VISUAL_ID:
 			return getExtensionPoint_3008ContainedLinks(view);
 		case UseCaseInComponentEditPart.VISUAL_ID:
 			return getUseCase_3009ContainedLinks(view);
@@ -676,7 +676,7 @@ public class UMLDiagramUpdater {
 			return getDiagram_2019IncomingLinks(view);
 		case ExtensionPointEditPart.VISUAL_ID:
 			return getExtensionPoint_3007IncomingLinks(view);
-		case ExtensionPoint2EditPart.VISUAL_ID:
+		case ExtensionPointInRectangleEditPart.VISUAL_ID:
 			return getExtensionPoint_3008IncomingLinks(view);
 		case UseCaseInComponentEditPart.VISUAL_ID:
 			return getUseCase_3009IncomingLinks(view);
@@ -747,7 +747,7 @@ public class UMLDiagramUpdater {
 			return getDiagram_2019OutgoingLinks(view);
 		case ExtensionPointEditPart.VISUAL_ID:
 			return getExtensionPoint_3007OutgoingLinks(view);
-		case ExtensionPoint2EditPart.VISUAL_ID:
+		case ExtensionPointInRectangleEditPart.VISUAL_ID:
 			return getExtensionPoint_3008OutgoingLinks(view);
 		case UseCaseInComponentEditPart.VISUAL_ID:
 			return getUseCase_3009OutgoingLinks(view);

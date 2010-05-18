@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2010 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -29,23 +29,29 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.CustomDiagramDragDropEditPolicy;
-import org.eclipse.papyrus.diagram.usecase.edit.policies.UseCasePoints2ItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.usecase.edit.policies.UseCasePointsItemSemanticEditPolicyTN;
 import org.eclipse.papyrus.diagram.usecase.part.Messages;
 
 /**
  * @generated
  */
-public class UseCasePoints2EditPart extends ListCompartmentEditPart {
+public class UseCasePointsEditPartTN
+
+
+
+extends ListCompartmentEditPart
+
+{
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 7012;
+	public static final int VISUAL_ID = 7009;
 
 	/**
 	 * @generated
 	 */
-	public UseCasePoints2EditPart(View view) {
+	public UseCasePointsEditPartTN(View view) {
 		super(view);
 	}
 
@@ -60,7 +66,7 @@ public class UseCasePoints2EditPart extends ListCompartmentEditPart {
 	 * @generated
 	 */
 	public String getCompartmentName() {
-		return Messages.UseCasePoints2EditPart_title;
+		return Messages.UseCasePointsEditPartTN_title;
 	}
 
 	/**
@@ -77,17 +83,20 @@ public class UseCasePoints2EditPart extends ListCompartmentEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new UseCasePoints2ItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
+		installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE, new UseCasePointsItemSemanticEditPolicyTN());
+		installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
+		installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
 
 
 		//in Papyrus diagrams are not strongly synchronised
-		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.usecase.edit.policies.UseCasePoints2CanonicalEditPolicy());
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.usecase.edit.policies.UseCasePointsCanonicalEditPolicyTN());
 
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 	}
+
+
+
 
 	/**
 	 * @generated
@@ -97,6 +106,8 @@ public class UseCasePoints2EditPart extends ListCompartmentEditPart {
 			super.setRatio(ratio);
 		}
 	}
+
+
 
 	/**
 	 * @generated
@@ -129,5 +140,4 @@ public class UseCasePoints2EditPart extends ListCompartmentEditPart {
 		super.refreshVisuals();
 		refreshBounds();
 	}
-
 }

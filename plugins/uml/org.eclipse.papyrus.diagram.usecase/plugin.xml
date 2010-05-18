@@ -922,141 +922,141 @@
 <extension point="org.eclipse.ui.preferencePages">
 
 
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
 			class="org.eclipse.papyrus.diagram.usecase.preferences.CommentPreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.CommentPreferencePage"
-            name="Comment" />	
+            name="Comment Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
 			class="org.eclipse.papyrus.diagram.usecase.preferences.ComponentPreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.ComponentPreferencePage"
-            name="Component" />	
+            name="Component Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
 			class="org.eclipse.papyrus.diagram.usecase.preferences.ConstraintPreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.ConstraintPreferencePage"
-            name="Constraint" />	
+            name="Constraint Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
 			class="org.eclipse.papyrus.diagram.usecase.preferences.PackagePreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.PackagePreferencePage"
-            name="Package" />	
+            name="Package Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
 			class="org.eclipse.papyrus.diagram.usecase.preferences.ActorPreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.ActorPreferencePage"
-            name="Actor" />	
+            name="Actor Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
 			class="org.eclipse.papyrus.diagram.usecase.preferences.ExtensionPointPreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.ExtensionPointPreferencePage"
-            name="ExtensionPoint" />	
+            name="ExtensionPoint Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
 			class="org.eclipse.papyrus.diagram.usecase.preferences.UseCasePreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.UseCasePreferencePage"
-            name="UseCase" />	
+            name="UseCase Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
 			class="org.eclipse.papyrus.diagram.usecase.preferences.ShortCutDiagramPreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.ShortCutDiagramPreferencePage"
-            name="ShortCutDiagram" />	
+            name="ShortCutDiagram Node" />
 	
 
 
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
 			class="org.eclipse.papyrus.diagram.usecase.preferences.DependencyPreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.DependencyPreferencePage"
-            name="Dependency" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="Dependency Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
 			class="org.eclipse.papyrus.diagram.usecase.preferences.GeneralizationPreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.GeneralizationPreferencePage"
-            name="Generalization" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="Generalization Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
 			class="org.eclipse.papyrus.diagram.usecase.preferences.UsagePreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.UsagePreferencePage"
-            name="Usage" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="Usage Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
 			class="org.eclipse.papyrus.diagram.usecase.preferences.AssociationPreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.AssociationPreferencePage"
-            name="Association" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="Association Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
 			class="org.eclipse.papyrus.diagram.usecase.preferences.PackageImportPreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.PackageImportPreferencePage"
-            name="PackageImport" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="PackageImport Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
 			class="org.eclipse.papyrus.diagram.usecase.preferences.PackageMergePreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.PackageMergePreferencePage"
-            name="PackageMerge" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="PackageMerge Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
 			class="org.eclipse.papyrus.diagram.usecase.preferences.AbstractionPreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.AbstractionPreferencePage"
-            name="Abstraction" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="Abstraction Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
 			class="org.eclipse.papyrus.diagram.usecase.preferences.ExtendPreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.ExtendPreferencePage"
-            name="Extend" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="Extend Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
 			class="org.eclipse.papyrus.diagram.usecase.preferences.UndefinedPreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.UndefinedPreferencePage"
-            name="Undefined" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="Undefined Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
 			class="org.eclipse.papyrus.diagram.usecase.preferences.RealizationPreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.RealizationPreferencePage"
-            name="Realization" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="Realization Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.UseCase"
 			class="org.eclipse.papyrus.diagram.usecase.preferences.IncludePreferencePage"
             id="org.eclipse.papyrus.diagram.usecase.preferences.IncludePreferencePage"
-            name="Include" />	
-	
+            name="Include Link" />
+		
 
 </extension>
 <extension

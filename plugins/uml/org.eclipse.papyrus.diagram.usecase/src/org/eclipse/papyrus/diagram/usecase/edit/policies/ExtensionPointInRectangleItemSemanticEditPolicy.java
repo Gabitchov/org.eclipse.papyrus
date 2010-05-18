@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2010 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -25,14 +25,15 @@ import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class ExtensionPoint2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class ExtensionPointInRectangleItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public ExtensionPoint2ItemSemanticEditPolicy() {
+	public ExtensionPointInRectangleItemSemanticEditPolicy() {
 		super(UMLElementTypes.ExtensionPoint_3008);
 	}
+
 
 	/**
 	 * @generated

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2010 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -31,7 +31,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class UseCasePointsCanonicalEditPolicy extends CanonicalEditPolicy {
+public class UseCasePointsCanonicalEditPolicyTN extends CanonicalEditPolicy {
+
 
 	/**
 	 * @generated

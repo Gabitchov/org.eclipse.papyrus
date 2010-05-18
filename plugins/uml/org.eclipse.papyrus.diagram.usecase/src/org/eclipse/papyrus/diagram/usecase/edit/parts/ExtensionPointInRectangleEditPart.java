@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2010 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -37,6 +37,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
@@ -61,7 +62,7 @@ import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.AppliedStereotypeExtensionPointLabelDisplayEditPolicy;
-import org.eclipse.papyrus.diagram.usecase.edit.policies.ExtensionPoint2ItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.usecase.edit.policies.ExtensionPointInRectangleItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.UMLTextNonResizableEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry;
@@ -70,8 +71,10 @@ import org.eclipse.papyrus.diagram.usecase.providers.UMLParserProvider;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
+import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.swt.SWT;
@@ -84,7 +87,7 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class ExtensionPoint2EditPart extends CompartmentEditPart implements ITextAwareEditPart {
+public class ExtensionPointInRectangleEditPart extends CompartmentEditPart implements ITextAwareEditPart, IPrimaryEditPart {
 
 	/**
 	 * @generated
@@ -111,16 +114,28 @@ public class ExtensionPoint2EditPart extends CompartmentEditPart implements ITex
 	 */
 	private String defaultText;
 
-	/** direct edition mode (default, undefined, registered editor, etc.) */
+
+
+	/**
+	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * 
+	 * @generated
+	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
-	/** configuration from a registered edit dialog */
+	/**
+	 * configuration from a registered edit dialog
+	 * 
+	 * @generated
+	 */
 	protected IDirectEditorConfiguration configuration;
+
+
 
 	/**
 	 * @generated
 	 */
-	public ExtensionPoint2EditPart(View view) {
+	public ExtensionPointInRectangleEditPart(View view) {
 		super(view);
 	}
 
@@ -139,7 +154,7 @@ public class ExtensionPoint2EditPart extends CompartmentEditPart implements ITex
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ExtensionPoint2ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ExtensionPointInRectangleItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new UMLTextNonResizableEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ListItemComponentEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
@@ -335,7 +350,7 @@ public class ExtensionPoint2EditPart extends CompartmentEditPart implements ITex
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.ExtensionPoint_3008, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPoint2EditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.ExtensionPoint_3008, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.usecase.edit.parts.ExtensionPointInRectangleEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -405,7 +420,11 @@ public class ExtensionPoint2EditPart extends CompartmentEditPart implements ITex
 			} else {
 				configuration.preEditAction(resolveSemanticElement());
 				Dialog dialog = null;
-				if(configuration instanceof IAdvancedEditorConfiguration) {
+				if(configuration instanceof IPopupEditorConfiguration) {
+					IPopupEditorHelper helper = ((IPopupEditorConfiguration)configuration).createPopupEditorHelper(this);
+					helper.showEditor();
+					return;
+				} else if(configuration instanceof IAdvancedEditorConfiguration) {
 					dialog = ((IAdvancedEditorConfiguration)configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()));
 				} else if(configuration instanceof IDirectEditorConfiguration) {
 					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), ((IDirectEditorConfiguration)configuration).getTextToEdit(resolveSemanticElement()), (IDirectEditorConfiguration)configuration);
@@ -576,11 +595,12 @@ public class ExtensionPoint2EditPart extends CompartmentEditPart implements ITex
 		return getPrimaryView();
 	}
 
+
+
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
-	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
 	public int getDirectEditionType() {
@@ -637,11 +657,15 @@ public class ExtensionPoint2EditPart extends CompartmentEditPart implements ITex
 
 	/**
 	 * Updates the preference configuration
+	 * 
+	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
-		if(languagePreferred != configuration.getLanguage()) {
+		if(languagePreferred != null && !languagePreferred.equals("") && languagePreferred != configuration.getLanguage()) {
 			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
+		} else if(IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
+			configuration = null;
 		}
 	}
 
@@ -650,6 +674,7 @@ public class ExtensionPoint2EditPart extends CompartmentEditPart implements ITex
 	 * 
 	 * @param theRequest
 	 *        the direct edit request that starts the direct edit system
+	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
@@ -675,6 +700,8 @@ public class ExtensionPoint2EditPart extends CompartmentEditPart implements ITex
 		}
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -690,6 +717,8 @@ public class ExtensionPoint2EditPart extends CompartmentEditPart implements ITex
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
+
+
 
 	/**
 	 * @generated

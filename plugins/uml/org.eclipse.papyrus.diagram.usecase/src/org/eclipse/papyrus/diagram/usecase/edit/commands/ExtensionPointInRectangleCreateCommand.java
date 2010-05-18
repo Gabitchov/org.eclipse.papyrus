@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2010 Atos Origin.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -33,7 +33,7 @@ import org.eclipse.uml2.uml.UseCase;
 /**
  * @generated
  */
-public class ExtensionPoint2CreateCommand extends EditElementCommand {
+public class ExtensionPointInRectangleCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -48,7 +48,7 @@ public class ExtensionPoint2CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public ExtensionPoint2CreateCommand(CreateElementRequest req, EObject eObject) {
+	public ExtensionPointInRectangleCreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -57,14 +57,14 @@ public class ExtensionPoint2CreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static ExtensionPoint2CreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new ExtensionPoint2CreateCommand(req, eObject);
+	public static ExtensionPointInRectangleCreateCommand create(CreateElementRequest req, EObject eObject) {
+		return new ExtensionPointInRectangleCreateCommand(req, eObject);
 	}
 
 	/**
 	 * @generated
 	 */
-	public ExtensionPoint2CreateCommand(CreateElementRequest req) {
+	public ExtensionPointInRectangleCreateCommand(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 
@@ -118,6 +118,9 @@ public class ExtensionPoint2CreateCommand extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
+
+
+
 
 	/**
 	 * @generated

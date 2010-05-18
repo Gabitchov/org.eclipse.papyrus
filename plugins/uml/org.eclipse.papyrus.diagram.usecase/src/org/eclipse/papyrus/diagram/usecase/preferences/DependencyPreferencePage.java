@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.usecase.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage;
 
@@ -21,6 +22,14 @@ import org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage;
  * @generated
  */
 public class DependencyPreferencePage extends AbstractPapyrusLinkPreferencePage {
+
+	/**
+	 * @generated
+	 */
+	public DependencyPreferencePage() {
+		super();
+		setPreferenceKey(UseCaseDiagramEditPart.MODEL_ID + "_Dependency");
+	}
 
 	/**
 	 * @generated

@@ -13,13 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.preferences;
 
-import org.eclipse.gmf.runtime.diagram.ui.preferences.DiagramsPreferencePage;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin;
+import org.eclipse.papyrus.preferences.pages.DiagramPreferencePage;
 
 /**
  * @generated
  */
-public class DiagramGeneralPreferencePage extends DiagramsPreferencePage {
+public class DiagramGeneralPreferencePage extends DiagramPreferencePage {
 
 	/**
 	 * @generated
