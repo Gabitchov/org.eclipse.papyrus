@@ -10,7 +10,8 @@
  *    Dmitry Stadnik (Borland) - initial API and implementation
  *    Alexander Shatalin (Borland) - initial API and implementation
  */
-
+«REM»DOCUMENTATION: PapyrusGenCode«ENDREM»
+«REM»add in the addition codes in order to refresh the labels«ENDREM»
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
 «EXTENSION xpt::diagram::editparts::Utils»
 

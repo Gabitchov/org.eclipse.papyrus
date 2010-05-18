@@ -10,8 +10,11 @@
  *    Dmitry Stadnik (Borland) - initial API and implementation
  *    Alexander Shatalin (Borland) - initial API and implementation
  */
+ 
 
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
+«REM»DOCUMENTATION: PapyrusGencode«ENDREM»
+«REM»Dthis template changes only the define  implementsList line 64«ENDREM»
 
 «EXTENSION xpt::diagram::editparts::Utils»
 

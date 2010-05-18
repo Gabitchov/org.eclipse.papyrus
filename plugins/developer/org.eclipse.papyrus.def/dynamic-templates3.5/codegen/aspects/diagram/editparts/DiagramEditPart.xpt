@@ -16,6 +16,7 @@
 «REM»DOCUMENTATION: PapyrusGencode«ENDREM»
 «REM»This template has been modify to allow the drag and drop«ENDREM»
 «REM»and  install the mecanism of "filters views..." view for subelements«ENDREM»
+«REM»modification have been only done in the additions«ENDREM»
 
 «AROUND Main FOR gmfgen::GenDiagram-»
 «EXPAND xpt::Common::copyright FOR editorGen-»
@@ -31,6 +32,13 @@ public class «editPartClassName» «EXPAND extendsList» «EXPAND implementsLis
 	«EXPAND createDefaultEditPolicies-»
 	
 	«EXPAND impl::diagram::editparts::DiagramEditPart::createFigure-»
+«IF getAllNodes()->exists(n | n.labels->exists(not oclIsKindOf(gmfgen::GenExternalNodeLabel))) /*iow, NodeLabelEditPart template (GenNodeLabel target) will require this EditPolicy*/-»
+	«EXPAND impl::diagram::editparts::NodeLabelEditPart::nodeLabelDragPolicyClass»
+«ENDIF-»
+
+«IF links->exists(labels->notEmpty())-»
+	«EXPAND impl::diagram::editparts::LinkLabelEditPart::linkLabelDragPolicyClass»
+«ENDIF-»
 
 «REM»BEGIN: PapyrusGenCode«ENDREM»
 «REM»Call the good define additions«ENDREM»
@@ -57,15 +65,6 @@ public class «editPartClassName» «EXPAND extendsList» «EXPAND implementsLis
 	protected void createDefaultEditPolicies() {
 		«EXPAND impl::diagram::editparts::DiagramEditPart::createDefaultEditPoliciesBody-»
 	}
-«ENDDEFINE»
-
-«DEFINE definionName FOR gmfgen::GenDiagram-»
-«ENDDEFINE»
-
-«DEFINE definionName FOR gmfgen::GenDiagram-»
-«ENDDEFINE»
-
-«DEFINE definionName FOR gmfgen::GenDiagram-»
 «ENDDEFINE»
 
 «DEFINE definionName FOR gmfgen::GenDiagram-»

@@ -10,6 +10,8 @@
  *    Thibault Landre (Atos Origin) - initial API and implementation
  */
 
+«REM»DOCUMENTATION: PapyrusGencode«ENDREM»
+«REM»Overlaod only the method  handlenotificationEventBody«ENDREM»
 
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
 «EXTENSION xpt::diagram::ViewmapAttributesUtils»

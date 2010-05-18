@@ -11,6 +11,9 @@
  *    Alexander Shatalin (Borland) - initial API and implementation
  */
 
+
+«REM»DOCUMENTATION: PapyrusGenCode«ENDREM»
+«REM»Overload only the creation of editPolicies in order to add the paste edit policy«ENDREM»
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
 «EXTENSION xpt::diagram::editparts::Utils»
 

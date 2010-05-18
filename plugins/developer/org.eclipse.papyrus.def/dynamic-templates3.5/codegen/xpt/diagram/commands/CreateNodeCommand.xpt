@@ -186,6 +186,5 @@ return true;
 	«EXPAND MetaModel::modifyFeature('childHolder', childMetaFeature.genClass, varName) FOR childMetaFeature»
 «ENDIF-»
 «ENDDEFINE»
-«DEFINE initialize(node : gmfgen::GenNode, newElementVar : String) FOR gmfgen::TypeModelFacet»«IF modelElementInitializer <> null-»
-«node.getDiagram().getElementTypesQualifiedClassName()».init_«node.getUniqueIdentifier()»(«newElementVar»);
-«ENDIF»«ENDDEFINE»
+
+«DEFINE initialize(node : gmfgen::GenNode, newElementVar : String) FOR gmfgen::TypeModelFacet»«EXPAND xpt::providers::ElementInitializers::initMethodCall(self, newElementVar) FOR node»«ENDDEFINE»

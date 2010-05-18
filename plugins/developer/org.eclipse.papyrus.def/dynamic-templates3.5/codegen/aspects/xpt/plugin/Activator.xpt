@@ -35,6 +35,22 @@ public class «activatorClassName» extends org.eclipse.ui.plugin.AbstractUIPlug
 	«EXPAND xpt::Common::generatedMemberComment»
 	private «editorGen.diagram.getDocumentProviderQualifiedClassName()» documentProvider;
 
+«IF editorGen.diagram.links->exists(not sansDomain)-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	private «editorGen.diagram.getLinkCreationConstraintsQualifiedClassName()» linkConstraints;
+
+«ENDIF-»
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	private «editorGen.diagram.getElementInitializersPackageName()».«editorGen.diagram.getElementInitializersClassName()» initializers;
+
+«IF not editorGen.expressionProviders.oclIsUndefined() -»
+«FOREACH editorGen.expressionProviders.providers[gmfgen::GenExpressionInterpreter] AS p-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	private «p.getQualifiedClassName()» «p.language»Factory;
+«ENDFOREACH-»
+«ENDIF-»
+
 	«EXPAND xpt::Common::generatedMemberComment»
 	public «activatorClassName»() {
 	}
@@ -53,6 +69,15 @@ public class «activatorClassName» extends org.eclipse.ui.plugin.AbstractUIPlug
 	public void stop(org.osgi.framework.BundleContext context) throws Exception {
 		adapterFactory.dispose();
 		adapterFactory = null;
+«IF editorGen.diagram.links->exists(not sansDomain)-»
+		linkConstraints = null;
+«ENDIF-»
+		initializers = null;
+«IF not editorGen.expressionProviders.oclIsUndefined() -»
+«FOREACH editorGen.expressionProviders.providers[gmfgen::GenExpressionInterpreter] AS p-»
+		«p.language»Factory = null;
+«ENDFOREACH-»
+«ENDIF-»
 		instance = null;
 		super.stop(context);
 	}
@@ -69,13 +94,13 @@ public class «activatorClassName» extends org.eclipse.ui.plugin.AbstractUIPlug
 
 	«EXPAND xpt::Common::generatedMemberComment»
 	protected org.eclipse.emf.edit.provider.ComposedAdapterFactory createAdapterFactory() {
-		java.util.List factories = new java.util.ArrayList();
+		«EXPAND CodeStyle::newGenericInstance('factories', 'java.util.ArrayList', 'org.eclipse.emf.common.notify.AdapterFactory') FOR editorGen.diagram»();
 		fillItemProviderFactories(factories);
 		return new org.eclipse.emf.edit.provider.ComposedAdapterFactory(factories);
 	}
 
 	«EXPAND xpt::Common::generatedMemberComment»
-	protected void fillItemProviderFactories(java.util.List factories) {
+	protected void fillItemProviderFactories(«EXPAND CodeStyle::G('java.util.List', 'org.eclipse.emf.common.notify.AdapterFactory') FOR editorGen.diagram» factories) {
 «EXPAND MetaModel::PopulateItemProviderFactories('factories') FOR editorGen-»
 		factories.add(new org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory());
 		factories.add(new org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory());
@@ -163,6 +188,43 @@ public class «activatorClassName» extends org.eclipse.ui.plugin.AbstractUIPlug
 		}
 		return documentProvider;
 	}
+
+«IF editorGen.diagram.links->exists(not sansDomain) -»
+	«EXPAND xpt::Common::generatedMemberComment»
+	public «editorGen.diagram.getLinkCreationConstraintsQualifiedClassName()» getLinkConstraints() {
+		return linkConstraints;
+	}
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	public void setLinkConstraints(«editorGen.diagram.getLinkCreationConstraintsQualifiedClassName()» lc) {
+		this.linkConstraints = lc;
+	}
+
+«ENDIF-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	public «editorGen.diagram.getElementInitializersPackageName()».«editorGen.diagram.getElementInitializersClassName()» getElementInitializers() {
+		return initializers;
+	}
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	public void setElementInitializers(«editorGen.diagram.getElementInitializersPackageName()».«editorGen.diagram.getElementInitializersClassName()» i) {
+		this.initializers = i;
+	}
+
+«IF not editorGen.expressionProviders.oclIsUndefined() -»
+«FOREACH editorGen.expressionProviders.providers[gmfgen::GenExpressionInterpreter] AS p-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	public «p.getQualifiedClassName()» get«p.className»() {
+		return «p.language»Factory;
+	}
+	
+	«EXPAND xpt::Common::generatedMemberComment»
+	public void set«p.className»(«p.getQualifiedClassName()» f) {
+		this.«p.language»Factory = f;
+	}
+
+«ENDFOREACH-»
+«ENDIF-»
 
 	«EXPAND xpt::Common::generatedMemberComment»
 	public void logError(String error) {

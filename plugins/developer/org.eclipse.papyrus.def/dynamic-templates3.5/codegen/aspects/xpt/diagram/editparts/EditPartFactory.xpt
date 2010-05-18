@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2006, 2009 Borland Software Corporation
+ * Copyright (c) 2006, 2010 Borland Software Corporation and others
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,7 +9,8 @@
  * Contributors:
  *    Dmitry Stadnik (Borland) - initial API and implementation
  */
-
+«REM»DOCUMENTATION: PapyrusGencode«ENDREM»
+«REM»change to manage the figure of the comment«ENDREM»
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
 
 «DEFINE EditPartFactory FOR gmfgen::GenDiagram-»
@@ -109,13 +110,13 @@ public class «editPartFactoryClassName» implements org.eclipse.gef.EditPartFac
 			org.eclipse.swt.widgets.Text text = (org.eclipse.swt.widgets.Text) celleditor.getControl();
 			org.eclipse.draw2d.geometry.Rectangle rect = getWrapLabel().getTextBounds().getCopy();
 			getWrapLabel().translateToAbsolute(rect);
-			if (getWrapLabel().isTextWrapOn() && getWrapLabel().getText().length() > 0) {
-				rect.setSize(new org.eclipse.draw2d.geometry.Dimension(
-					text.computeSize(rect.width, org.eclipse.swt.SWT.DEFAULT)));
-			} else {
-				int avr = org.eclipse.draw2d.FigureUtilities.getFontMetrics(text.getFont()).getAverageCharWidth();
-				rect.setSize(new org.eclipse.draw2d.geometry.Dimension(
-					text.computeSize(org.eclipse.swt.SWT.DEFAULT, org.eclipse.swt.SWT.DEFAULT)).expand(avr * 2, 0));
+			if (!text.getFont().isDisposed()) {
+				if (getWrapLabel().isTextWrapOn() && getWrapLabel().getText().length() > 0) {
+					rect.setSize(new org.eclipse.draw2d.geometry.Dimension(text.computeSize(rect.width, org.eclipse.swt.SWT.DEFAULT)));
+				} else {
+					int avr = org.eclipse.draw2d.FigureUtilities.getFontMetrics(text.getFont()).getAverageCharWidth();
+					rect.setSize(new org.eclipse.draw2d.geometry.Dimension(text.computeSize(org.eclipse.swt.SWT.DEFAULT, org.eclipse.swt.SWT.DEFAULT)).expand(avr * 2, 0));
+				}
 			}
 			if (!rect.equals(new org.eclipse.draw2d.geometry.Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
@@ -144,9 +145,10 @@ public class «editPartFactoryClassName» implements org.eclipse.gef.EditPartFac
 			org.eclipse.swt.widgets.Text text = (org.eclipse.swt.widgets.Text) celleditor.getControl();
 			org.eclipse.draw2d.geometry.Rectangle rect = getLabel().getTextBounds().getCopy();
 			getLabel().translateToAbsolute(rect);
-			int avr = org.eclipse.draw2d.FigureUtilities.getFontMetrics(text.getFont()).getAverageCharWidth();
-			rect.setSize(new org.eclipse.draw2d.geometry.Dimension(
-				text.computeSize(org.eclipse.swt.SWT.DEFAULT, org.eclipse.swt.SWT.DEFAULT)).expand(avr * 2, 0));
+			if (!text.getFont().isDisposed()) {
+				int avr = org.eclipse.draw2d.FigureUtilities.getFontMetrics(text.getFont()).getAverageCharWidth();
+				rect.setSize(new org.eclipse.draw2d.geometry.Dimension(text.computeSize(org.eclipse.swt.SWT.DEFAULT, org.eclipse.swt.SWT.DEFAULT)).expand(avr * 2, 0));
+			}
 			if (!rect.equals(new org.eclipse.draw2d.geometry.Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
 			}

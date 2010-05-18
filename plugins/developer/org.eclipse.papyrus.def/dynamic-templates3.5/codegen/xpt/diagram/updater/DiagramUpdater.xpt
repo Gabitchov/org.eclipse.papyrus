@@ -26,6 +26,50 @@ if (visualID == «EXPAND xpt::editor::VisualIDRegistry::visualID») {
 «ENDIF-»
 }
 «ENDDEFINE»
+
+«REM»TEST «ENDREM»
+«DEFINE getSemanticChildrenOfView FOR gmfgen::GenContainerBase-»
+
+	«EXPAND xpt::Common::generatedMemberComment»
+public static «EXPAND CodeStyle::G('java.util.List', getDiagram().editorGen.diagramUpdater.getNodeDescriptorQualifiedClassName())» «EXPAND getSemanticChildrenMethodName»(org.eclipse.gmf.runtime.notation.View view) {
+	«IF getSemanticChildrenChildFeatures(self)->size() > 0 or self.getPhantomNodes()->size() > 0-»
+	«EXPAND defineModelElement-»
+	«EXPAND CodeStyle::newGenericInstance('result', 'java.util.LinkedList', getDiagram().editorGen.diagramUpdater.getNodeDescriptorQualifiedClassName())»();
+«REM»childMetaFeature can be null here!«ENDREM»«-»
+		«FOREACH getSemanticChildrenChildFeatures(self) AS childMetaFeature-»
+			«IF null = childMetaFeature-»
+	{ /*FIXME no containment/child feature found in the genmodel, toolsmith need to specify Class here manually*/ childElement = /*FIXME no containment/child feature found in the genmodel, toolsmith need to specify correct one here manually*/;
+			«ELSEIF isListType(childMetaFeature)-»
+	for («EXPAND CodeStyle::G('java.util.Iterator', '?')» it = «EXPAND MetaModel::getFeatureValue('modelElement', self.getModelElementType()) FOR childMetaFeature».iterator(); it.hasNext();) {
+		«EXPAND MetaModel::DeclareAndAssign('childElement', 'it.next()', true) FOR getTypeGenClassX(childMetaFeature)»
+			«ELSE-»
+	{ «EXPAND MetaModel::DeclareAndAssign('childElement', 'modelElement', self.getModelElementType(), childMetaFeature) FOR getTypeGenClassX(childMetaFeature)»
+			«ENDIF-»
+		int visualID = «EXPAND xpt::editor::VisualIDRegistry::getNodeVisualIDMethodCall FOR getDiagram()»(view, «EXPAND MetaModel::DowncastToEObject('childElement') FOR getTypeGenClassX(childMetaFeature)»);
+			«EXPAND checkChildElementVisualID(null <> childMetaFeature and isListType(childMetaFeature)) FOREACH getSemanticChildren(self, childMetaFeature)-»
+	}
+		«ENDFOREACH-»
+«IF self.getPhantomNodes()->notEmpty()-»
+	org.eclipse.emf.ecore.resource.Resource resource = modelElement.eResource();
+	for (java.util.Iterator semanticIterator = getPhantomNodesIterator(resource); semanticIterator.hasNext();) {
+			org.eclipse.emf.ecore.EObject childElement = (org.eclipse.emf.ecore.EObject) semanticIterator.next();
+									
+		if (childElement == modelElement) {
+			continue;
+		}
+		«EXPAND addNextIfPhantom FOREACH self.getPhantomNodes()-»
+	}
+«ENDIF-»		
+	return result;
+	«ELSE-»
+	return «EXPAND CodeStyle::emptyList»;
+	«ENDIF-»
+}
+«ENDDEFINE»
+«REM»FIN TEST «ENDREM»
+
+
+
 «REM»The EcoreSwitch that will navigate the proper features according to the canvas' EObject«ENDREM»
 «DEFINE createUpdaterSwitch FOR gmfgen::GenDiagram»
 «EXPAND xpt::Common::generatedMemberComment»

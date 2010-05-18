@@ -25,7 +25,7 @@
 	private org.eclipse.gmf.runtime.common.ui.services.parser.IParser parser;
 
 	«EXPAND xpt::Common::generatedMemberComment»
-	private java.util.List parserElements;
+	private «EXPAND CodeStyle::G('java.util.List', '?')» parserElements;
 
 	«EXPAND xpt::Common::generatedMemberComment»
 	private String defaultText;

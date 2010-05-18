@@ -58,7 +58,11 @@ public class «baseItemSemanticEditPolicyClassName» extends org.eclipse.gmf.run
 		return ((org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart) getHost()).getEditingDomain();
 	}
 	«EXPAND addDestroyShortcutsCommand-»
+
+«IF links->exists(not sansDomain) -»
 	«EXPAND linkConstraints-»
+«ENDIF-»
+
 	«EXPAND additions-»
 }
 «ENDDEFINE»
@@ -265,6 +269,30 @@ protected org.eclipse.gef.commands.Command getReorientRelationshipCommand(org.ec
 		return new org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy(cmd);
 	}
 «ENDDEFINE»
+
+«DEFINE _accessLinkConstraints FOR gmfgen::GenDiagram-»
+«getBaseItemSemanticEditPolicyQualifiedClassName()».getLinkConstraints()«-»
+«ENDDEFINE»
+
+«DEFINE canExistCall(gmfgen::GenLink link, String sourceVar, String targetVar) FOR gmfgen::FeatureLinkModelFacet-»
+«EXPAND _accessLinkConstraints FOR link.diagram».canExist«link.getUniqueIdentifier()»(«sourceVar», «targetVar»)«-»
+«ENDDEFINE»
+// NOTE, containerVar will be used only when link has other container than its source. It's safe to pass variable/method name that doesn't exist
+«DEFINE canExistCall(gmfgen::GenLink link, String containerVar, String linkVar, String sourceVar, String targetVar) FOR gmfgen::TypeLinkModelFacet-»
+«EXPAND _accessLinkConstraints FOR link.diagram».canExist«link.getUniqueIdentifier()»(«IF hasContainerOtherThanSource(self)»«containerVar», «ENDIF»«linkVar», «sourceVar», «targetVar»)«-»
+«ENDDEFINE»
+
+«DEFINE canCreateCall(gmfgen::GenLink link, String sourceVar, String targetVar) FOR gmfgen::FeatureLinkModelFacet-»
+«EXPAND _accessLinkConstraints FOR link.diagram».canCreate«link.getUniqueIdentifier()»(«sourceVar», «targetVar»)«-»
+«ENDDEFINE»
+// NOTE, containerVar will be used only when link has other container than its source. It's safe to pass variable/method name that doesn't exist
+// Yes, this is sorta hack, but no idea of better approach right now. Perhaps, CreateLinkUtils may always define getContainer() for TypeLinkModelFacet, and use getSource() by default? 
+«DEFINE canCreateCall(gmfgen::GenLink link, String containerVar, String sourceVar, String targetVar) FOR gmfgen::TypeLinkModelFacet-»
+«EXPAND _accessLinkConstraints FOR link.diagram».canCreate«link.getUniqueIdentifier()»(«IF hasContainerOtherThanSource(self)»«containerVar», «ENDIF»«sourceVar», «targetVar»)«-»
+«ENDDEFINE»
+
+
+
 «REM»
 		FIXME need to check constraint's provider to ensure we don't generate a field
 		for e.g. Java (or Literal, which is unlikely, though) expressions
@@ -273,6 +301,17 @@ protected org.eclipse.gef.commands.Command getReorientRelationshipCommand(org.ec
 		by a GenJavaExpressionProvider.
 «ENDREM»
 «DEFINE linkConstraints FOR gmfgen::GenDiagram-»
+
+	«EXPAND xpt::Common::generatedMemberComment»
+	public static «getLinkCreationConstraintsClassName()» getLinkConstraints() {
+		«getLinkCreationConstraintsClassName()» cached = «EXPAND plugin::Activator::instanceAccess FOR editorGen».getLinkConstraints();
+		if (cached == null) {
+			«EXPAND plugin::Activator::instanceAccess FOR editorGen».setLinkConstraints(cached = new «getLinkCreationConstraintsClassName()»());
+		}
+		return cached;
+	}
+
+
 «EXPAND xpt::Common::generatedClassComment»
 public static class «getLinkCreationConstraintsClassName()» {
 «IF null <> editorGen.expressionProviders-»
@@ -301,14 +340,16 @@ public static class «getLinkCreationConstraintsClassName()» {
 «ENDDEFINE»
 «DEFINE canCreate FOR gmfgen::GenLink»
 «EXPAND xpt::Common::generatedMemberComment»
-public static boolean canCreate«getUniqueIdentifier()»(«EXPAND canCreateParameters FOR modelFacet») {
+public boolean canCreate«getUniqueIdentifier()»(«EXPAND canCreateParameters FOR modelFacet») {
 	«EXPAND checkEMFConstraints FOR modelFacet-»
 	return canExist«getUniqueIdentifier()»(«EXPAND canCreateValues FOR modelFacet»);
 }
+
 «ENDDEFINE»
+
 «REM»
 		XXX for now, both constraints are injected into single method
-			which may nob be suitable for modification especially when mixing
+			which may not be suitable for modification especially when mixing
 			java and ocl constraints (former requires manual code).
 		Better approach would be:
 			if either is non-null and providers are not the same - introduce two methods, 
@@ -316,18 +357,18 @@ public static boolean canCreate«getUniqueIdentifier()»(«EXPAND canCreateParam
 «ENDREM»
 «DEFINE canExist FOR gmfgen::GenLink»
 	«EXPAND xpt::Common::generatedMemberComment»
-	public static boolean canExist«getUniqueIdentifier()»(«EXPAND canCreateParameters FOR modelFacet») {
+	public boolean canExist«getUniqueIdentifier()»(«EXPAND canExistParameters FOR modelFacet») {
 «IF creationConstraints <> null and (creationConstraints.isValid() and null <> getDiagram().editorGen.expressionProviders)-»
 		try {
 «IF null <> creationConstraints.sourceEnd-»
-			«EXPAND checkAdditionalConstraint(creationConstraints.sourceEnd, sourceConstraintFieldName(self), 'source', 'target', creationConstraints.getSourceEndContextClass(), creationConstraints.getTargetEndContextClass()) FOR creationConstraints.sourceEnd.provider-»
+			«EXPAND _checkAdditionalConstraint(creationConstraints.sourceEnd, 'source', 'target', creationConstraints.getSourceEndContextClass(), creationConstraints.getTargetEndContextClass()) FOR creationConstraints.sourceEnd.provider-»
 «ENDIF-»
 «IF null <> creationConstraints.targetEnd-»
-			«EXPAND checkAdditionalConstraint(creationConstraints.targetEnd, targetConstraintFieldName(self), 'target', 'source', creationConstraints.getTargetEndContextClass(), creationConstraints.getSourceEndContextClass()) FOR creationConstraints.targetEnd.provider-»
+			«EXPAND _checkAdditionalConstraint(creationConstraints.targetEnd, 'target', 'source', creationConstraints.getTargetEndContextClass(), creationConstraints.getSourceEndContextClass()) FOR creationConstraints.targetEnd.provider-»
 «ENDIF-»
 			return true;
 		} catch(Exception e) {	
-			«getDiagram().editorGen.plugin.getActivatorQualifiedClassName()».getInstance().logError("Link constraint evaluation error", e); «EXPAND xpt::Common::nonNLS»
+			«EXPAND plugin::Activator::instanceAccess FOR getDiagram().editorGen».logError("Link constraint evaluation error", e);«EXPAND xpt::Common::nonNLS»
 			return false;
 		}
 «ELSE-»
@@ -335,14 +376,23 @@ public static boolean canCreate«getUniqueIdentifier()»(«EXPAND canCreateParam
 «ENDIF-»
 	}
 «ENDDEFINE»
-«DEFINE canCreateParameters FOR gmfgen::LinkModelFacet»«EXPAND incorrectLinkModelFacet»«ENDDEFINE»
+
+// FIXME mark as private (_) and move to impl::<find proper place>::LinkConstraints.xpt
+«DEFINE canCreateParameters FOR gmfgen::LinkModelFacet»«EXPAND sourceTargetParameters»«ENDDEFINE»// source and target are reasonable defaults
 «DEFINE canCreateParameters FOR gmfgen::TypeLinkModelFacet»«IF hasContainerOtherThanSource(self)»«EXPAND MetaModel::QualifiedClassName FOR containmentMetaFeature.genClass» container, «ENDIF»«EXPAND sourceTargetParameters»«ENDDEFINE»
-«DEFINE canCreateParameters FOR gmfgen::FeatureLinkModelFacet»«EXPAND sourceTargetParameters»«ENDDEFINE»
+
+«DEFINE canExistParameters FOR gmfgen::LinkModelFacet»«EXPAND sourceTargetParameters»«ENDDEFINE»// source and target are reasonable defaults
+«DEFINE canExistParameters FOR gmfgen::TypeLinkModelFacet»«IF hasContainerOtherThanSource(self)»«EXPAND MetaModel::QualifiedClassName FOR containmentMetaFeature.genClass» container, «ENDIF»«EXPAND MetaModel::QualifiedClassName FOR metaClass» linkInstance, «EXPAND sourceTargetParameters»«ENDDEFINE»
+
 «DEFINE sourceTargetParameters FOR gmfgen::LinkModelFacet»«EXPAND MetaModel::QualifiedClassName FOR getSourceType()» source, «EXPAND MetaModel::QualifiedClassName FOR getTargetType()» target«ENDDEFINE»
-«DEFINE canCreateValues FOR gmfgen::LinkModelFacet»«EXPAND incorrectLinkModelFacet»«ENDDEFINE»
-«DEFINE canCreateValues FOR gmfgen::TypeLinkModelFacet»«IF hasContainerOtherThanSource(self)»container, «ENDIF»source, target«ENDDEFINE»
-«DEFINE canCreateValues FOR gmfgen::FeatureLinkModelFacet»source, target«ENDDEFINE»
-«DEFINE checkEMFConstraints FOR gmfgen::LinkModelFacet»«EXPAND incorrectLinkModelFacet»«ENDDEFINE»
+
+// these are in fact 'canExist' values
+«DEFINE canCreateValues FOR gmfgen::LinkModelFacet»source, target«ENDDEFINE» // defaults
+«DEFINE canCreateValues FOR gmfgen::TypeLinkModelFacet»«IF hasContainerOtherThanSource(self)»container, «ENDIF»null, source, target«ENDDEFINE»
+
+
+«DEFINE checkEMFConstraints FOR gmfgen::LinkModelFacet»«ERROR 'Unrecognized link model facet in checkEMFConstraints: ' + self.repr()»«ENDDEFINE»
+
 «DEFINE checkEMFConstraints FOR gmfgen::TypeLinkModelFacet-»
 	«LET childMetaFeature <> containmentMetaFeature and childMetaFeature.ecoreFeature.upperBound.oclAsType(Integer) > 0 AS checkChildFeatureUpperBound-»
 		«IF containmentMetaFeature.ecoreFeature.upperBound.oclAsType(Integer) > 0 or checkChildFeatureUpperBound-»
@@ -355,6 +405,7 @@ if («getContainerVariable(self)» != null) {
 		«ENDIF-»
 	«ENDLET-»
 «ENDDEFINE»
+
 «DEFINE checkEMFConstraints(modelFacet : gmfgen::TypeLinkModelFacet) FOR genmodel::GenFeature-»
 «IF ecoreFeature.upperBound.oclAsType(Integer) > 0-»
 if («EXPAND featureBoundComparator(getContainerVariable(modelFacet), modelFacet.getSourceType())») {
@@ -362,6 +413,7 @@ if («EXPAND featureBoundComparator(getContainerVariable(modelFacet), modelFacet
 }
 «ENDIF-»
 «ENDDEFINE»
+
 «DEFINE checkEMFConstraints FOR gmfgen::FeatureLinkModelFacet-»
 if (source != null) {
 	if («EXPAND featureBoundsConditionClause('source', getSourceType()) FOR metaFeature») {
@@ -379,6 +431,7 @@ if (target != null && («EXPAND featureBoundsConditionClause('target', getTarget
 }
 «ENDIF»
 «ENDDEFINE»
+
 «DEFINE featureBoundsConditionClause(targetVar : String, targetType : genmodel::GenClass) FOR genmodel::GenFeature-»
 «REM»Checking upper bounds if was specified in MM«ENDREM»«-»
 «IF ecoreFeature.upperBound.oclAsType(Integer) > 0»«EXPAND featureBoundComparator(targetVar, targetType)»«ENDIF-»
@@ -387,28 +440,31 @@ if (target != null && («EXPAND featureBoundsConditionClause('target', getTarget
 «REM»Checking uniqueness in if upper bounds > 1 or < 0«ENDREM»«-»
 «IF ecoreFeature.upperBound.oclAsType(Integer) <> 1»«EXPAND featureUniquenessComparator(targetVar, targetType)»«ENDIF»
 «ENDDEFINE»
+
 «DEFINE featureBoundComparator(featureVar : String, featureVarGenClass : genmodel::GenClass) FOR genmodel::GenFeature»«EXPAND MetaModel::getFeatureValue(featureVar, featureVarGenClass)»«IF ecoreFeature.upperBound.oclAsType(Integer) = 1» != null«ELSE».size() >= «ecoreFeature.upperBound.oclAsType(Integer)»«ENDIF»«ENDDEFINE»
 «DEFINE featureUniquenessComparator(featureVar : String, featureVarGenClass : genmodel::GenClass) FOR genmodel::GenFeature»«EXPAND MetaModel::getFeatureValue(featureVar, featureVarGenClass) FOR self».contains(target)«ENDDEFINE»
-«DEFINE checkAdditionalConstraint(valueExpr : gmfgen::ValueExpression, constraintFieldName : String, sourceEndVar : String, targetEndVar : String, context : genmodel::GenClass, oppositeEndContext : genmodel::GenClass) FOR gmfgen::GenExpressionProviderBase»
+
+
+«DEFINE _checkAdditionalConstraint(gmfgen::ValueExpression valueExpr, String sourceEndVar, String targetEndVar, genmodel::GenClass context, genmodel::GenClass oppositeEndContext) FOR gmfgen::GenExpressionProviderBase»
 «ERROR 'Have no idea what extra constraints to check for ' + self.repr()»
 «ENDDEFINE»
-«DEFINE checkAdditionalConstraint(valueExpr : gmfgen::ValueExpression, constraintFieldName : String, sourceEndVar : String, targetEndVar : String, context : genmodel::GenClass, oppositeEndContext : genmodel::GenClass) FOR gmfgen::GenExpressionInterpreter-»
+
+«DEFINE _checkAdditionalConstraint(gmfgen::ValueExpression valueExpr, String sourceEndVar, String targetEndVar, genmodel::GenClass context, genmodel::GenClass oppositeEndContext) FOR gmfgen::GenExpressionInterpreter-»
 	if («sourceEndVar» == null) {
 		return true;
+	} else {«REM»else is important here as it gives scope for the env variable«ENDREM»
+		java.util.Map«EXPAND CodeStyle::G2('String', 'org.eclipse.emf.ecore.EClassifier') FOR container.editorGen.diagram» env = java.util.Collections.«EXPAND CodeStyle::G2('String', 'org.eclipse.emf.ecore.EClassifier') FOR container.editorGen.diagram»singletonMap(«EXPAND oppositeEndVariableNameValue», «EXPAND MetaModel::MetaClass FOR oppositeEndContext»);«EXPAND xpt::Common::nonNLS»
+		Object «sourceEndVar»Val = «EXPAND xpt::expressions::getExpression::getExpression(valueExpr, context, 'env')».evaluate(«sourceEndVar», java.util.Collections.singletonMap(«EXPAND oppositeEndVariableNameValue», «targetEndVar»));«EXPAND xpt::Common::nonNLS»
+		if (false == «sourceEndVar»Val instanceof Boolean || !((Boolean) «sourceEndVar»Val).booleanValue()) {
+			return false;
+		} // else fall-through
 	}
-	if («constraintFieldName» == null) {
-		java.util.Map env = java.util.Collections.singletonMap(OPPOSITE_END_VAR, «EXPAND MetaModel::MetaClass FOR oppositeEndContext»);
-		«constraintFieldName» = «getQualifiedClassName()».«getExpressionAccessor(valueExpr)»(«valueExpr.getBodyString()», «EXPAND MetaModel::MetaClass FOR context», env); «EXPAND xpt::Common::nonNLS»
-	}
-	Object «sourceEndVar»Val = «constraintFieldName».evaluate(«sourceEndVar», java.util.Collections.singletonMap(OPPOSITE_END_VAR, «targetEndVar»));
-	if (false == «sourceEndVar»Val instanceof Boolean || !((Boolean) «sourceEndVar»Val).booleanValue()) {
-		return false;
-	} // else fall-through
 «ENDDEFINE»
-«DEFINE checkAdditionalConstraint(valueExpr : gmfgen::ValueExpression, constraintFieldName : String, sourceEndVar : String, targetEndVar : String, context : genmodel::GenClass, oppositeEndContext : genmodel::GenClass) FOR gmfgen::GenJavaExpressionProvider-»
-«IF injectExpressionBody and (valueExpr.body <> null and valueExpr.body.xpandLength() <> 0)-»
+
+«DEFINE _checkAdditionalConstraint(gmfgen::ValueExpression valueExpr, String sourceEndVar, String targetEndVar, genmodel::GenClass context, genmodel::GenClass oppositeEndContext) FOR gmfgen::GenJavaExpressionProvider-»
+«IF injectExpressionBody and (valueExpr.body <> null and valueExpr.body.size() <> 0)-»
 	«valueExpr.body»
-«ELSEIF throwException or (injectExpressionBody and (valueExpr.body = null or valueExpr.body.xpandLength() = 0))-»
+«ELSEIF throwException or (injectExpressionBody and (valueExpr.body = null or valueExpr.body.size() = 0))-»
 	// TODO: implement this method, using «sourceEndVar» and «targetEndVar» 
 	// to access link source and target, respectively
 	// Ensure that you remove @generated or mark it @generated NOT
@@ -421,14 +477,18 @@ if (target != null && («EXPAND featureBoundsConditionClause('target', getTarget
 	}
 «ENDIF-»
 «ENDDEFINE»
-«DEFINE incorrectLinkModelFacet FOR gmfgen::LinkModelFacet»«ERROR 'Unrecognized link model facet: ' + self.repr()»«ENDDEFINE»
+
+«DEFINE oppositeEndVariableNameValue FOR OclAny»"oppositeEnd"«ENDDEFINE»
+
 «DEFINE additions FOR gmfgen::GenDiagram»«ENDDEFINE»
+
 «DEFINE defaultConstructor FOR gmfgen::GenCommonBase-»
 	«EXPAND xpt::Common::generatedMemberComment»
 	public «itemSemanticEditPolicyClassName»() {
 		«EXPAND defaultConstructorBody-»
 	}
 «ENDDEFINE»
+
 «REM»
 	This method should be called only with diagram, node or link used as a parameter 
 	(then elementType != null)

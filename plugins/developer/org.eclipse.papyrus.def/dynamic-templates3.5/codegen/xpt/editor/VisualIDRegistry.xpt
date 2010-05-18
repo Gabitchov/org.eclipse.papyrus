@@ -153,10 +153,14 @@ public static int «EXPAND getVisualIdMethodName»(String type) {
 }
 «ENDDEFINE»
 
+«REM»
+	XXX getType may be optimized not to return new string each time, instead, cache known visual ids, e.g. with LinkedHashMap with removeEldestEntry?
+	However, even intern() seems too much, as in most usecases returned value is not kept, and unlikely to survive Eden (or whatever name it has) heap space 
+«ENDREM»
 «DEFINE getType FOR gmfgen::GenDiagram-»
 	«EXPAND xpt::Common::generatedMemberComment»
 public static String «EXPAND getTypeMethodName»(int visualID) {
-	return String.valueOf(visualID);
+	return Integer.toString(visualID);
 }
 «ENDDEFINE»
 

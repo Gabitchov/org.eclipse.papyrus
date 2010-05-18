@@ -27,7 +27,7 @@ package «providersPackageName»;
 public class «notationViewProviderClassName»«EXPAND xpt::providers::ViewProvider::extendsList»«EXPAND xpt::providers::ViewProvider::implementsList» {
 
 	«EXPAND xpt::Common::generatedMemberComment»
-	public boolean provides(org.eclipse.gmf.runtime.common.core.service.IOperation operation) {
+	public final boolean provides(org.eclipse.gmf.runtime.common.core.service.IOperation operation) {
 		if (operation instanceof org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation) {
 			return provides((org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation) operation);
 		}
@@ -390,7 +390,7 @@ public class «notationViewProviderClassName»«EXPAND xpt::providers::ViewProvi
 	«ENDIF-»
 		«EXPAND xpt::diagram::views::Utils::addCustomStyles('edge.getStyles()')-»
 		org.eclipse.gmf.runtime.notation.RelativeBendpoints bendpoints = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createRelativeBendpoints();
-		java.util.ArrayList points = new java.util.ArrayList(2);
+		«EXPAND CodeStyle::newGenericInstance('points', 'java.util.ArrayList', 'org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint')»(2);
 		points.add(new org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint());
 		points.add(new org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint());
 		bendpoints.setPoints(points);
