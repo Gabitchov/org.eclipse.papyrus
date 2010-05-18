@@ -61,7 +61,7 @@ public class «activatorClassName» extends org.eclipse.ui.plugin.AbstractUIPlug
 		instance = this;
 		org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT, getPreferenceStore());
 		adapterFactory = createAdapterFactory();
-		«self.editorGen.diagram.preferencesPackageName».DiagramPreferenceInitializer diagramPreferenceInitializer = new org.eclipse.papyrus.diagram.clazz.preferences.DiagramPreferenceInitializer();
+		«self.editorGen.diagram.preferencesPackageName».DiagramPreferenceInitializer diagramPreferenceInitializer = new «self.editorGen.diagram.preferencesPackageName».DiagramPreferenceInitializer();
 		diagramPreferenceInitializer.initializeDefaultPreferences();
 	}
 
