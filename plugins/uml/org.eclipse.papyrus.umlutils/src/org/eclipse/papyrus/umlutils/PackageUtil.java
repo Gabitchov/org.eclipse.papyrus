@@ -129,6 +129,27 @@ public class PackageUtil {
 	}
 
 	/**
+	 * Returns the top package of the specified element, i.e. the model or profile that is the root element
+	 * 
+	 * @return the top {@link Package} for the specified element
+	 */
+	public static Package getRootPackage(Element element) {
+		return getRootPackage(element.getNearestPackage());
+	}
+
+	/**
+	 * Returns the top package of the specified package, i.e. the model or profile that is the root element
+	 * 
+	 * @return the top {@link Package} for the specified element
+	 */
+	public static Package getRootPackage(Package package_) {
+		if(package_.getOwner() == null) {
+			return package_;
+		}
+		return getRootPackage((Package)package_.getOwner());
+	}
+
+	/**
 	 * Import public type contained in the profileToApply into pkg.
 	 * 
 	 * @param profileToApply
