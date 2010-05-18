@@ -211,31 +211,12 @@ implements ITreeBranchEditPart {
 			return fFigureMessageCreateLabelFigure;
 		}
 
-		/**
-		 * Block bend points
-		 */
-		@Override
-		public void setRoutingStyles(boolean closestDistance, boolean avoidObstacles) {
-			super.setRoutingStyles(true, avoidObstacles);
-		}
-
 	}
 
 	/**
 	 * @generated
 	 */
 	static final Font FFIGUREMESSAGECREATELABELFIGURE_FONT = new Font(Display.getCurrent(), "SANS", 9, SWT.NORMAL);
-
-	/**
-	 * Block bend point
-	 */
-	@Override
-	public Command getCommand(Request request) {
-		if(request.getType().equals(REQ_CREATE_BENDPOINT) || request.getType().equals(REQ_MOVE_BENDPOINT)) {
-			return UnexecutableCommand.INSTANCE;
-		}
-		return super.getCommand(request);
-	}
 
 	/**
 	 * Block message sort modification
