@@ -23,17 +23,63 @@ public class Messages extends NLS {
 
 	public static String CustomizePropertyViewDialog_Title;
 
+	public static String SelectConfigurationFileWizardPage_ErrorMessage_NoValidTextArea;
+
+	public static String SelectConfigurationFileWizardPage_ErrorMessage_notValidName;
+
+	public static String SelectConfigurationFileWizardPage_CreateAnEmptyConfig_Label;
+
+	public static String SelectConfigurationFileWizardPage_CreateAnEmptyConfigName_DefaultValue;
+
+	public static String SelectConfigurationFileWizardPage_CreateAnEmptyConfigName_Label;
+
+	public static String SelectConfigurationFileWizardPage_CreateAnEmptyConfigName_Tooltip;
+
+	public static String SelectConfigurationFileWizardPage_CreateAnEmptyConfigPluginId_DefaultValue;
+
+	public static String SelectConfigurationFileWizardPage_CreateAnEmptyConfigPluginId_Label;
+
+	public static String SelectConfigurationFileWizardPage_CreateAnEmptyConfigPluginId_Tooltip;
+
+	public static String SelectConfigurationFileWizardPage_CreateFromExistingConfigFile_Dialog_Message;
+
+	public static String SelectConfigurationFileWizardPage_CreateFromExistingConfigFile_Dialog_Title;
+
+	public static String SelectConfigurationFileWizardPage_CreateFromExistingConfigFile_Label;
+
+	public static String SelectConfigurationFileWizardPage_CreateFromExistingConfigName_DefaultValue;
+
+	public static String SelectConfigurationFileWizardPage_CreateFromExistingConfigName_Label;
+
+	public static String SelectConfigurationFileWizardPage_CreateFromExistingConfigName_Tooltip;
+
 	public static String SelectConfigurationFileWizardPage_CreateFromExistingConfiguration_Label;
 
 	public static String SelectConfigurationFileWizardPage_CreateFromExistingConfigurationSelectionButton_Label;
 
 	public static String SelectConfigurationFileWizardPage_CreateFromScratch_Label;
 
+	public static String SelectConfigurationFileWizardPage_DefaultConfigurationName;
+
+	public static String SelectConfigurationFileWizardPage_EmptyDocument_InitialComment;
+
+	public static String SelectConfigurationFileWizardPage_Error_NoAreaForWidget;
+
+	public static String SelectConfigurationFileWizardPage_ErrorMessage_NoValidExistingConfiguration;
+
+	public static String SelectConfigurationFileWizardPage_ErrorMessage_NoValidPluginIdentifier;
+
+	public static String SelectConfigurationFileWizardPage_ModifyExistingConfig_Dialog_Message;
+
+	public static String SelectConfigurationFileWizardPage_ModifyExistingConfig_Dialog_Title;
+
 	public static String SelectConfigurationFileWizardPage_ModifyExistingConfiguration_Label;
 
 	public static String SelectConfigurationFileWizardPage_ModifyExistingConfigurationSelectionButton_Label;
 
 	public static String SelectConfigurationFileWizardPage_PageName;
+
+	public static String SelectConfigurationFileWizardPage_SourceGroup_Label;
 
 	public static String SelectConfigurationFileWizardPage_Title;
 

@@ -26,6 +26,7 @@ import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescri
 import org.eclipse.papyrus.properties.runtime.view.constraints.ObjectTypeConstraintDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.DynamicSectionDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.IPropertyTabViewProvider;
+import org.eclipse.papyrus.properties.tabbed.customization.state.SectionSetDescriptorState;
 import org.eclipse.ui.views.properties.tabbed.ISectionDescriptor;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
 
@@ -34,6 +35,17 @@ import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
  * Content Provider for the metamodel viewer. It will display the metaclass elements, and the section sets that are available for these elements
  */
 public class MetamodelContentProvider implements ITreeContentProvider {
+
+	/** list of available section sets */
+	protected final List<SectionSetDescriptorState> availableSectionSets;
+
+	/**
+	 * Creates a new MetamodelContentProvider.
+	 * 
+	 */
+	public MetamodelContentProvider(List<SectionSetDescriptorState> availableSectionSets) {
+		this.availableSectionSets = availableSectionSets;
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -46,7 +58,8 @@ public class MetamodelContentProvider implements ITreeContentProvider {
 	 * {@inheritDoc}
 	 */
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		// nothing to do here
+
+
 	}
 
 	/**
@@ -80,7 +93,9 @@ public class MetamodelContentProvider implements ITreeContentProvider {
 			}
 
 			// populate the section sets
+			for(SectionSetDescriptorState descriptorState : availableSectionSets) {
 
+			}
 
 
 			// find actions sets valid for this instance class

@@ -81,6 +81,9 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 	/** content area for the modify exiting configuration */
 	protected ModifyExistingConfigurationArea modifyExistingConfigurationArea = new ModifyExistingConfigurationArea();
 
+	/** empty string */
+	protected static final String EMPTY_STRING = ""; //$NON-NLS-1$
+
 	/**
 	 * Creates a new SelectConfigurationFileWizardPage.
 	 */
@@ -115,7 +118,7 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 	protected void createContentArea(Composite composite) {
 
 		Group group = new Group(composite, SWT.NONE);
-		group.setText("Source");
+		group.setText(Messages.SelectConfigurationFileWizardPage_SourceGroup_Label);
 		GridLayout layout = new GridLayout(1, false);
 		group.setLayout(layout);
 		GridData groupData = new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1);
@@ -148,7 +151,7 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 			if(enabledConfigurationArea != null) {
 				enableConfigurationArea(enabledConfigurationArea);
 			} else {
-				Activator.log.warn("impossible to find the area for the widget " + e);
+				Activator.log.warn(Messages.SelectConfigurationFileWizardPage_Error_NoAreaForWidget + e);
 			}
 		}
 	}
@@ -208,14 +211,6 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 		return null;
 	}
 
-	//	/**
-	//	 * {@inheritDoc}
-	//	 */
-	//	@Override
-	//	public boolean isPageComplete() {
-	//		return getEnableConfigurationArea().isComplete();
-	//	}
-
 	/**
 	 * Listener added to the radio buttons.
 	 */
@@ -242,13 +237,16 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 	 */
 	protected class XMLFileViewerFilter extends ViewerFilter {
 
+		/** XML file extension */
+		protected static final String XML_FILE_EXTENSION = "xml"; //$NON-NLS-1$
+
 		/**
 		 * {@inheritDoc}
 		 */
 		public boolean select(Viewer viewer, Object parentElement, Object element) {
 			if(element instanceof IFile) {
 				IFile file = (IFile)element;
-				return "xml".equals(file.getFileExtension());
+				return XML_FILE_EXTENSION.equals(file.getFileExtension());
 			}
 			return true;
 		}
@@ -317,9 +315,9 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 			if(isValid(nameText)) {
 				return nameText.getText();
 			}
-			String generatedName = "Config" + System.currentTimeMillis();
+			String generatedName = Messages.bind(Messages.SelectConfigurationFileWizardPage_DefaultConfigurationName, System.currentTimeMillis());
 			// generate a default name
-			Activator.log.warn("the text area for the new name was disposed or null. A default name has been generated: " + generatedName);
+			Activator.log.warn(Messages.bind(Messages.SelectConfigurationFileWizardPage_ErrorMessage_NoValidTextArea, generatedName));
 			return generatedName;
 		}
 
@@ -327,12 +325,12 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 		 * {@inheritDoc}
 		 */
 		public void validatePage() {
-			if(nameText.getText() == null || nameText.getText().equals("")) {
+			if(nameText.getText() == null || nameText.getText().equals(EMPTY_STRING)) {
 				setPageComplete(false);
-				setMessage("Please enter a valid name for the configuration", ERROR);
+				setMessage(Messages.SelectConfigurationFileWizardPage_ErrorMessage_notValidName, ERROR);
 			} else {
 				setPageComplete(true);
-				setMessage("", NONE);
+				setMessage(EMPTY_STRING, NONE);
 			}
 
 		}
@@ -377,19 +375,19 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 			createFromScratchButton.addSelectionListener(selectionListener);
 			radioButtonsMapping.put(createFromScratchButton, this);
 			Label createFromScratchLabel = new Label(createFromScratchComposite, SWT.NONE);
-			createFromScratchLabel.setText("Create an empty configuration");
+			createFromScratchLabel.setText(Messages.SelectConfigurationFileWizardPage_CreateAnEmptyConfig_Label);
 			GridData labelData = new GridData(SWT.FILL, SWT.FILL, true, false, 3, 1);
 			createFromScratchLabel.setLayoutData(labelData);
 
 			// second line: name of the new configuration
 			Label nameLabel = new Label(createFromScratchComposite, SWT.NONE);
-			nameLabel.setText("Name:");
-			nameLabel.setToolTipText("Enter here the name of the new configuration");
+			nameLabel.setText(Messages.SelectConfigurationFileWizardPage_CreateAnEmptyConfigName_Label);
+			nameLabel.setToolTipText(Messages.SelectConfigurationFileWizardPage_CreateAnEmptyConfigName_Tooltip);
 			labelData = new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1);
 			nameLabel.setLayoutData(labelData);
 
 			nameText = new Text(createFromScratchComposite, SWT.BORDER);
-			nameText.setText("newConfiguration");
+			nameText.setText(Messages.SelectConfigurationFileWizardPage_CreateAnEmptyConfigName_DefaultValue);
 			GridData textData = new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1);
 			nameText.setLayoutData(textData);
 			nameText.addModifyListener(new ModifyListener() {
@@ -401,13 +399,13 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 
 			// third line: plugin required to load classes
 			Label pluginIdLabel = new Label(createFromScratchComposite, SWT.NONE);
-			pluginIdLabel.setText("Plugin Id:");
-			pluginIdLabel.setToolTipText("Enter here the plugin identifier required to load classes at runtime, for example: org.eclipse.uml2.uml");
+			pluginIdLabel.setText(Messages.SelectConfigurationFileWizardPage_CreateAnEmptyConfigPluginId_Label);
+			pluginIdLabel.setToolTipText(Messages.SelectConfigurationFileWizardPage_CreateAnEmptyConfigPluginId_Tooltip);
 			labelData = new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1);
 			pluginIdLabel.setLayoutData(labelData);
 
 			pluginIdText = new Text(createFromScratchComposite, SWT.BORDER);
-			pluginIdText.setText("org.eclipse.uml2.uml");
+			pluginIdText.setText(Messages.SelectConfigurationFileWizardPage_CreateAnEmptyConfigPluginId_DefaultValue);
 			pluginIdText.setLayoutData(textData);
 			pluginIdText.addModifyListener(new ModifyListener() {
 
@@ -429,11 +427,11 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 			try {
 				documentBuilder = documentBuilderFactory.newDocumentBuilder();
 				Document document = documentBuilder.newDocument();
-				Comment comment = document.createComment("Defined using Papyrus Property View customization. Date: " + Calendar.getInstance().getTime());
+				Comment comment = document.createComment(Messages.bind(Messages.SelectConfigurationFileWizardPage_EmptyDocument_InitialComment, Calendar.getInstance().getTime()));
 				document.appendChild(comment);
 
-				Element rootNode = document.createElement("propertyTabView");
-				rootNode.setAttribute("pluginId", pluginIdText.getText());
+				Element rootNode = document.createElement("propertyTabView");// $NON-NLS-1$
+				rootNode.setAttribute("pluginId", pluginIdText.getText()); // $NON-NLS-1$
 				document.appendChild(rootNode);
 				document.normalizeDocument();
 				return document;
@@ -448,9 +446,9 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 		 */
 		public void validatePage() {
 			if(isValid(nameText)) {
-				if(pluginIdText.getText() == null || pluginIdText.getText().equals("")) {
+				if(pluginIdText.getText() == null || pluginIdText.getText().equals(EMPTY_STRING)) {
 					setPageComplete(false);
-					setMessage("Please enter a valid plugin identifier for the configuration", ERROR);
+					setMessage(Messages.SelectConfigurationFileWizardPage_ErrorMessage_NoValidPluginIdentifier, ERROR);
 				} else {
 					super.validatePage();
 				}
@@ -491,7 +489,7 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 
 			// second line: browser to select existing configuration
 			Label createFromExistingConfigurationExistingLabel = new Label(mainComposite, SWT.NONE);
-			createFromExistingConfigurationExistingLabel.setText("File:");
+			createFromExistingConfigurationExistingLabel.setText(Messages.SelectConfigurationFileWizardPage_CreateFromExistingConfigFile_Label);
 			createFromExistingConfigurationExistingLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1));
 			createFromExistingConfigurationText = new Text(mainComposite, SWT.BORDER | SWT.READ_ONLY);
 			createFromExistingConfigurationText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -503,7 +501,7 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 				 */
 				public void widgetSelected(SelectionEvent e) {
 					// open a workspace dialog to choose the exiting configuration to update
-					IFile[] selectedFiles = WorkspaceResourceDialog.openFileSelection(getShell(), "Select the current configuration", "Please select an existing property view configuration.", false, new Object[0], Collections.singletonList(fileViewerFilter));
+					IFile[] selectedFiles = WorkspaceResourceDialog.openFileSelection(getShell(), Messages.SelectConfigurationFileWizardPage_CreateFromExistingConfigFile_Dialog_Title, Messages.SelectConfigurationFileWizardPage_CreateFromExistingConfigFile_Dialog_Message, false, new Object[0], Collections.singletonList(fileViewerFilter));
 					if(selectedFiles != null && selectedFiles.length == 1) {
 						IFile selectedFile = selectedFiles[0];
 						createFromExistingConfigurationText.setText(selectedFile.getFullPath().toString());
@@ -522,13 +520,13 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 
 			// third line: name of the new configuration
 			Label nameLabel = new Label(mainComposite, SWT.NONE);
-			nameLabel.setText("Name:");
-			nameLabel.setToolTipText("Enter here the name of the new configuration");
+			nameLabel.setText(Messages.SelectConfigurationFileWizardPage_CreateFromExistingConfigName_Label);
+			nameLabel.setToolTipText(Messages.SelectConfigurationFileWizardPage_CreateFromExistingConfigName_Tooltip);
 			GridData labelData = new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1);
 			nameLabel.setLayoutData(labelData);
 
 			nameText = new Text(mainComposite, SWT.BORDER);
-			nameText.setText("newConfiguration");
+			nameText.setText(Messages.SelectConfigurationFileWizardPage_CreateFromExistingConfigName_DefaultValue);
 			GridData textData = new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1);
 			nameText.setLayoutData(textData);
 			nameText.addModifyListener(new ModifyListener() {
@@ -562,9 +560,9 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 		 */
 		public void validatePage() {
 			if(isValid(nameText)) {
-				if(createFromExistingConfigurationText.getText() == null || createFromExistingConfigurationText.getText().equals("")) {
+				if(createFromExistingConfigurationText.getText() == null || createFromExistingConfigurationText.getText().equals(EMPTY_STRING)) {
 					setPageComplete(false);
-					setMessage("Please select an existing configuration", ERROR);
+					setMessage(Messages.SelectConfigurationFileWizardPage_ErrorMessage_NoValidExistingConfiguration, ERROR);
 				} else {
 					super.validatePage();
 				}
@@ -626,11 +624,11 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 		 */
 		public void validatePage() {
 			if(isValid(modifyExistingConfigurationText)) {
-				if(modifyExistingConfigurationText.getText() == null || modifyExistingConfigurationText.getText().equals("")) {
+				if(modifyExistingConfigurationText.getText() == null || modifyExistingConfigurationText.getText().equals(EMPTY_STRING)) {
 					setPageComplete(false);
-					setMessage("Please enter a valid configuration to edit", ERROR);
+					setMessage(Messages.SelectConfigurationFileWizardPage_ErrorMessage_NoValidExistingConfiguration, ERROR);
 				} else {
-					setMessage("", NONE);
+					setMessage(EMPTY_STRING, NONE);
 					setPageComplete(true);
 				}
 			}
@@ -661,7 +659,7 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 				 */
 				public void widgetSelected(SelectionEvent e) {
 					// open a workspace dialog to choose the exiting configuration to update
-					IFile[] selectedFiles = WorkspaceResourceDialog.openFileSelection(getShell(), "Select the current configuration", "Please select an existing property view configuration.", false, new Object[0], Collections.singletonList(fileViewerFilter));
+					IFile[] selectedFiles = WorkspaceResourceDialog.openFileSelection(getShell(), Messages.SelectConfigurationFileWizardPage_ModifyExistingConfig_Dialog_Title, Messages.SelectConfigurationFileWizardPage_ModifyExistingConfig_Dialog_Message, false, new Object[0], Collections.singletonList(fileViewerFilter));
 					if(selectedFiles != null && selectedFiles.length == 1) {
 						IFile selectedFile = selectedFiles[0];
 						modifyExistingConfigurationText.setText(selectedFile.getFullPath().toString());

@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.properties.tabbed.customization.dialog;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -177,7 +178,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 		Tree contentTree = new Tree(mainContentAreaComposite, SWT.BORDER);
 		contentTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		TreeViewer contentViewer = new TreeViewer(contentTree);
-		contentViewer.setContentProvider(new MetamodelContentProvider());
+		contentViewer.setContentProvider(new MetamodelContentProvider(Collections.EMPTY_LIST));
 		contentViewer.setLabelProvider(new MetamodelLabelProvider());
 		contentViewer.setInput(UMLPackage.eINSTANCE.eContents());
 	}
@@ -224,7 +225,4 @@ public class CustomizeContentWizardPage extends WizardPage {
 	protected String getProfileDisplayName(Profile profile) {
 		return profile.getQualifiedName();
 	}
-
-
-
 }
