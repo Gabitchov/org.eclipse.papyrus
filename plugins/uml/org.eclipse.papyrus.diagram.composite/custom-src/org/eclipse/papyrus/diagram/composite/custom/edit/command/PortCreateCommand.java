@@ -18,7 +18,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.composite.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
@@ -72,7 +72,7 @@ public class PortCreateCommand extends org.eclipse.papyrus.diagram.composite.edi
 		StructuredClassifier owner = (StructuredClassifier)((Property)getElementToEdit()).getType();
 		owner.getOwnedAttributes().add(newElement);
 
-		UMLElementTypes.init_Port_3069(newElement);
+		ElementInitializers.getInstance().init_Port_3069(newElement);
 
 		doConfigure(newElement, monitor, info);
 

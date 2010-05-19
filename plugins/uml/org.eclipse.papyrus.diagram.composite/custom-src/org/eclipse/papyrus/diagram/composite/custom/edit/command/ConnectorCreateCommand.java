@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.diagram.composite.custom.edit.policies.GraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.composite.custom.messages.Messages;
-import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.composite.providers.ElementInitializers;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.ConnectorEnd;
@@ -179,7 +179,7 @@ public class ConnectorCreateCommand extends org.eclipse.papyrus.diagram.composit
 		newElement.getEnds().add(end0);
 		newElement.getEnds().add(end1);
 
-		UMLElementTypes.init_Connector_4013(newElement);
+		ElementInitializers.getInstance().init_Connector_4013(newElement);
 
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);

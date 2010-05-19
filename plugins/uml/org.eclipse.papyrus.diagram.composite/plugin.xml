@@ -75,10 +75,10 @@
    <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders" id="global-actions">
       <?gmfgen generated="true"?>
       <GlobalActionHandlerProvider
-         class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
+         class="org.eclipse.papyrus.diagram.common.providers.PapyrusGlobalActionHandlerProvider"
          id="CompositeStructurePresentation">
-         <Priority name="Lowest"/>
-         <ViewId id="org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorID">
+         <Priority name="Highest"/>
+         <ViewId id="org.eclipse.papyrus.core.papyrusEditor">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
                <GlobalActionId actionId="delete"/>
             </ElementType>
@@ -90,18 +90,18 @@
       <GlobalActionHandlerProvider
          class="org.eclipse.gmf.runtime.diagram.ui.providers.ide.providers.DiagramIDEGlobalActionHandlerProvider"
          id="CompositeStructurePresentationIDE">
-         <Priority name="Lowest"/>
-         <ViewId id="org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorID">
+         <Priority name="Low"/>
+         <ViewId id="org.eclipse.papyrus.core.papyrusEditor">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
                <GlobalActionId actionId="bookmark"/>
             </ElementType>
          </ViewId>
       </GlobalActionHandlerProvider>
       <GlobalActionHandlerProvider
-            class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
+            class="org.eclipse.papyrus.diagram.common.providers.PapyrusGlobalActionHandlerProvider"
             id="CompositeStructureRender">
-         <Priority name="Lowest"/>
-         <ViewId id="org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorID">
+         <Priority name="Highest"/>
+         <ViewId id="org.eclipse.papyrus.core.papyrusEditor">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
                <GlobalActionId actionId="cut"/>
                <GlobalActionId actionId="copy"/>
@@ -1613,7 +1613,6 @@
          point="org.eclipse.papyrus.core.papyrusDiagram">
       <editorDiagram
             actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
-            contextId="com.cea.papyrus.gmf.editor.context"
             factoryClass="org.eclipse.papyrus.diagram.composite.CompositeDiagramEditorFactory"
             icon="icons/obj16/Diagram_CompositeStructureDiagram.gif">
       </editorDiagram>
@@ -1638,14 +1637,9 @@
                   style="push"
                   tooltip="Create a new Composite Diagram">
 					<visibleWhen>
-						<and>
 						<with variable="activeEditorId">
 							<equals value="org.eclipse.papyrus.core.papyrusEditor" />
 						</with>
-						<with variable="activeWorkbenchWindow.activePerspective">
-							<equals value="org.eclipse.papyrus.core.perspective" />
-						</with>
-						</and>
 					</visibleWhen>
             </command>
          </toolbar>
@@ -1735,527 +1729,533 @@
 <extension point="org.eclipse.ui.preferencePages">
 
 
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.ExecutionEnvironmentPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.ExecutionEnvironmentPreferencePage"
-            name="ExecutionEnvironment" />	
+            name="ExecutionEnvironment Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.DataTypePreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.DataTypePreferencePage"
-            name="DataType" />	
+            name="DataType Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.InformationItemPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.InformationItemPreferencePage"
-            name="InformationItem" />	
+            name="InformationItem Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.PropertyPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.PropertyPreferencePage"
-            name="Property" />	
+            name="Property Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.SendSignalEventPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.SendSignalEventPreferencePage"
-            name="SendSignalEvent" />	
+            name="SendSignalEvent Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.InstanceValuePreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.InstanceValuePreferencePage"
-            name="InstanceValue" />	
+            name="InstanceValue Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.OpaqueExpressionPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.OpaqueExpressionPreferencePage"
-            name="OpaqueExpression" />	
+            name="OpaqueExpression Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.SignalPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.SignalPreferencePage"
-            name="Signal" />	
+            name="Signal Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.CommentPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.CommentPreferencePage"
-            name="Comment" />	
+            name="Comment Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.DestructionEventPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.DestructionEventPreferencePage"
-            name="DestructionEvent" />	
+            name="DestructionEvent Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.PortPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.PortPreferencePage"
-            name="Port" />	
+            name="Port Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.ActivityPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.ActivityPreferencePage"
-            name="Activity" />	
+            name="Activity Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.NodePreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.NodePreferencePage"
-            name="Node" />	
+            name="Node Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.ClassPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.ClassPreferencePage"
-            name="Class" />	
+            name="Class Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.LiteralStringPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.LiteralStringPreferencePage"
-            name="LiteralString" />	
+            name="LiteralString Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.FunctionBehaviorPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.FunctionBehaviorPreferencePage"
-            name="FunctionBehavior" />	
+            name="FunctionBehavior Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.IntervalPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.IntervalPreferencePage"
-            name="Interval" />	
+            name="Interval Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.UseCasePreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.UseCasePreferencePage"
-            name="UseCase" />	
+            name="UseCase Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.SendOperationEventPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.SendOperationEventPreferencePage"
-            name="SendOperationEvent" />	
+            name="SendOperationEvent Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.ProtocolStateMachinePreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.ProtocolStateMachinePreferencePage"
-            name="ProtocolStateMachine" />	
+            name="ProtocolStateMachine Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.ConstraintPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.ConstraintPreferencePage"
-            name="Constraint" />	
+            name="Constraint Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.TimeIntervalPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.TimeIntervalPreferencePage"
-            name="TimeInterval" />	
+            name="TimeInterval Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.OpaqueBehaviorPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.OpaqueBehaviorPreferencePage"
-            name="OpaqueBehavior" />	
+            name="OpaqueBehavior Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.PrimitiveTypePreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.PrimitiveTypePreferencePage"
-            name="PrimitiveType" />	
+            name="PrimitiveType Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.IntervalConstraintPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.IntervalConstraintPreferencePage"
-            name="IntervalConstraint" />	
+            name="IntervalConstraint Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.ExpressionPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.ExpressionPreferencePage"
-            name="Expression" />	
+            name="Expression Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.TimeEventPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.TimeEventPreferencePage"
-            name="TimeEvent" />	
+            name="TimeEvent Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.ChangeEventPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.ChangeEventPreferencePage"
-            name="ChangeEvent" />	
+            name="ChangeEvent Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.DeploymentSpecificationPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.DeploymentSpecificationPreferencePage"
-            name="DeploymentSpecification" />	
+            name="DeploymentSpecification Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.ReceptionPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.ReceptionPreferencePage"
-            name="Reception" />	
+            name="Reception Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.SignalEventPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.SignalEventPreferencePage"
-            name="SignalEvent" />	
+            name="SignalEvent Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.OperationPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.OperationPreferencePage"
-            name="Operation" />	
+            name="Operation Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.TimeConstraintPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.TimeConstraintPreferencePage"
-            name="TimeConstraint" />	
+            name="TimeConstraint Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.ExecutionEventPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.ExecutionEventPreferencePage"
-            name="ExecutionEvent" />	
+            name="ExecutionEvent Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.ActorPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.ActorPreferencePage"
-            name="Actor" />	
+            name="Actor Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.ConnectableElementPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.ConnectableElementPreferencePage"
-            name="ConnectableElement" />	
+            name="ConnectableElement Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.ComponentPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.ComponentPreferencePage"
-            name="Component" />	
+            name="Component Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.LiteralBooleanPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.LiteralBooleanPreferencePage"
-            name="LiteralBoolean" />	
+            name="LiteralBoolean Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.InteractionPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.InteractionPreferencePage"
-            name="Interaction" />	
+            name="Interaction Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.LiteralIntegerPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.LiteralIntegerPreferencePage"
-            name="LiteralInteger" />	
+            name="LiteralInteger Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.CollaborationUsePreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.CollaborationUsePreferencePage"
-            name="CollaborationUse" />	
+            name="CollaborationUse Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.LiteralNullPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.LiteralNullPreferencePage"
-            name="LiteralNull" />	
+            name="LiteralNull Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.DurationConstraintPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.DurationConstraintPreferencePage"
-            name="DurationConstraint" />	
+            name="DurationConstraint Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.DurationObservationPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.DurationObservationPreferencePage"
-            name="DurationObservation" />	
+            name="DurationObservation Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.InterfacePreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.InterfacePreferencePage"
-            name="Interface" />	
+            name="Interface Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.ArtifactPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.ArtifactPreferencePage"
-            name="Artifact" />	
+            name="Artifact Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.StateMachinePreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.StateMachinePreferencePage"
-            name="StateMachine" />	
+            name="StateMachine Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.CollaborationPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.CollaborationPreferencePage"
-            name="Collaboration" />	
+            name="Collaboration Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.StringExpressionPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.StringExpressionPreferencePage"
-            name="StringExpression" />	
+            name="StringExpression Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.TimeObservationPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.TimeObservationPreferencePage"
-            name="TimeObservation" />	
+            name="TimeObservation Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.AnyReceiveEventPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.AnyReceiveEventPreferencePage"
-            name="AnyReceiveEvent" />	
+            name="AnyReceiveEvent Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.DevicePreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.DevicePreferencePage"
-            name="Device" />	
+            name="Device Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.CallEventPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.CallEventPreferencePage"
-            name="CallEvent" />	
+            name="CallEvent Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.EnumerationLiteralPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.EnumerationLiteralPreferencePage"
-            name="EnumerationLiteral" />	
+            name="EnumerationLiteral Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.InteractionConstraintPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.InteractionConstraintPreferencePage"
-            name="InteractionConstraint" />	
+            name="InteractionConstraint Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.DurationPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.DurationPreferencePage"
-            name="Duration" />	
+            name="Duration Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.ParameterPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.ParameterPreferencePage"
-            name="Parameter" />	
+            name="Parameter Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.DurationIntervalPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.DurationIntervalPreferencePage"
-            name="DurationInterval" />	
+            name="DurationInterval Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.LiteralUnlimitedNaturalPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.LiteralUnlimitedNaturalPreferencePage"
-            name="LiteralUnlimitedNatural" />	
+            name="LiteralUnlimitedNatural Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.CreationEventPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.CreationEventPreferencePage"
-            name="CreationEvent" />	
+            name="CreationEvent Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.EnumerationPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.EnumerationPreferencePage"
-            name="Enumeration" />	
+            name="Enumeration Node" />
 	
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.TimeExpressionPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.TimeExpressionPreferencePage"
-            name="TimeExpression" />	
+            name="TimeExpression Node" />
 	
 
 
-	
-			<?gmfgen generated="true"?>
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.AbstractionPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.AbstractionPreferencePage"
-            name="Abstraction" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="Abstraction Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.InformationFlowPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.InformationFlowPreferencePage"
-            name="InformationFlow" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="InformationFlow Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.GeneralizationPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.GeneralizationPreferencePage"
-            name="Generalization" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="Generalization Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.ConnectorPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.ConnectorPreferencePage"
-            name="Connector" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="Connector Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.ManifestationPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.ManifestationPreferencePage"
-            name="Manifestation" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="Manifestation Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.DependencyPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.DependencyPreferencePage"
-            name="Dependency" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="Dependency Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.RealizationPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.RealizationPreferencePage"
-            name="Realization" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="Realization Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.UsagePreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.UsagePreferencePage"
-            name="Usage" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="Usage Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.InterfaceRealizationPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.InterfaceRealizationPreferencePage"
-            name="InterfaceRealization" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="InterfaceRealization Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.ComponentRealizationPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.ComponentRealizationPreferencePage"
-            name="ComponentRealization" />	
-	
-	
-			<?gmfgen generated="true"?>
+            name="ComponentRealization Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.SubstitutionPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.SubstitutionPreferencePage"
-            name="Substitution" />	
-	
-	
-	
-			<?gmfgen generated="true"?>
+            name="Substitution Link" />
+		
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
+			class="org.eclipse.papyrus.diagram.composite.preferences.UndefinedPreferencePage"
+            id="org.eclipse.papyrus.diagram.composite.preferences.UndefinedPreferencePage"
+            name="Undefined Link" />
+		
+		
+	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.DeploymentPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.DeploymentPreferencePage"
-            name="Deployment" />	
-	
+            name="Deployment Link" />
+		
 
 </extension>
 
@@ -2749,45 +2749,7 @@
 			
 	</extension>
 
-   <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders" id="global-actions">
-      <?gmfgen generated="true"?>
-      <GlobalActionHandlerProvider
-         class="org.eclipse.papyrus.diagram.common.providers.PapyrusGlobalActionHandlerProvider"
-         id="CompositeStructurePresentation">
-         <Priority name="Highest"/>
-         <ViewId id="org.eclipse.papyrus.core.papyrusEditor">
-            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
-               <GlobalActionId actionId="delete"/>
-            </ElementType>
-            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart">
-               <GlobalActionId actionId="save"/>
-            </ElementType>
-         </ViewId>
-      </GlobalActionHandlerProvider>
-      <GlobalActionHandlerProvider
-         class="org.eclipse.gmf.runtime.diagram.ui.providers.ide.providers.DiagramIDEGlobalActionHandlerProvider"
-         id="CompositeStructurePresentationIDE">
-         <Priority name="Highest"/>
-         <ViewId id="org.eclipse.papyrus.core.papyrusEditor">
-            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
-               <GlobalActionId actionId="bookmark"/>
-            </ElementType>
-         </ViewId>
-      </GlobalActionHandlerProvider>
-      <GlobalActionHandlerProvider
-            class="org.eclipse.papyrus.diagram.common.providers.PapyrusGlobalActionHandlerProvider"
-            id="CompositeStructureRender">
-         <Priority name="Highest"/>
-         <ViewId id="org.eclipse.papyrus.core.papyrusEditor">
-            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
-               <GlobalActionId actionId="cut"/>
-               <GlobalActionId actionId="copy"/>
-               <GlobalActionId actionId="paste"/>
-            </ElementType>
-         </ViewId>
-      </GlobalActionHandlerProvider>
-   </extension>
-
+   
 
    
 </plugin>

@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.diagram.composite.edit.policies.UMLBaseItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.composite.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.StructuredClassifier;
@@ -82,7 +82,7 @@ public class ConnectorCreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateConnector_4013(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateConnector_4013(getContainer(), getSource(), getTarget());
 	}
 
 
@@ -98,7 +98,7 @@ public class ConnectorCreateCommand extends EditElementCommand {
 		getContainer().getOwnedConnectors().add(newElement);
 		newElement.getEnds().add(getSource());
 		newElement.getEnds().add(getTarget());
-		UMLElementTypes.init_Connector_4013(newElement);
+		ElementInitializers.getInstance().init_Connector_4013(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

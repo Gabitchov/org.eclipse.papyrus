@@ -34,7 +34,6 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
 import org.eclipse.gmf.runtime.diagram.ui.internal.parts.PaletteToolTransferDragSourceListener;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
-import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
@@ -64,7 +63,6 @@ import org.eclipse.ui.part.ShowInContext;
  */
 public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderChangeListener, IGotoMarker {
 
-
 	/**
 	 * @generated
 	 */
@@ -74,7 +72,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	 * @generated
 	 */
 	public static final String CONTEXT_ID = "org.eclipse.papyrus.diagram.composite.ui.diagramContext"; //$NON-NLS-1$
-
 
 
 
@@ -104,10 +101,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	 */
 	private IDocumentProvider documentProvider;
 
-	/**
-	 * @generated
-	 */
-	private Diagram diagram;
 
 
 
@@ -116,7 +109,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	 */
 	public UMLDiagramEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws ServiceException {
 		super(servicesRegistry, diagram);
-		this.diagram = diagram;
 
 
 		// adds a listener to the palette service, which reacts to palette customizations
@@ -234,8 +226,6 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 		getDiagramGraphicalViewer().setContextMenu(provider);
 		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU, provider, getDiagramGraphicalViewer());
 	}
-
-
 
 
 

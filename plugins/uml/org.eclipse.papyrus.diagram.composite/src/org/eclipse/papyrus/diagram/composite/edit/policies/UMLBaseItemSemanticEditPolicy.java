@@ -49,6 +49,7 @@ import org.eclipse.papyrus.diagram.composite.edit.helpers.UMLBaseEditHelper;
 import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ActivityPartition;
 import org.eclipse.uml2.uml.Actor;
@@ -58,23 +59,34 @@ import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.CollaborationUse;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Component;
+import org.eclipse.uml2.uml.ComponentRealization;
 import org.eclipse.uml2.uml.ConnectableElement;
+import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.ConnectorEnd;
 import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.Dependency;
+import org.eclipse.uml2.uml.Deployment;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Generalization;
+import org.eclipse.uml2.uml.InformationFlow;
 import org.eclipse.uml2.uml.InformationItem;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Interface;
+import org.eclipse.uml2.uml.InterfaceRealization;
+import org.eclipse.uml2.uml.Manifestation;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Node;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Realization;
 import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.StructuredClassifier;
+import org.eclipse.uml2.uml.Substitution;
 import org.eclipse.uml2.uml.TimeObservation;
+import org.eclipse.uml2.uml.Usage;
 import org.eclipse.uml2.uml.UseCase;
 
 /**
@@ -326,6 +338,19 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 	}
 
+
+	/**
+	 * @generated
+	 */
+	public static LinkConstraints getLinkConstraints() {
+		LinkConstraints cached = UMLDiagramEditorPlugin.getInstance().getLinkConstraints();
+		if(cached == null) {
+			UMLDiagramEditorPlugin.getInstance().setLinkConstraints(cached = new LinkConstraints());
+		}
+		return cached;
+	}
+
+
 	/**
 	 * @generated
 	 */
@@ -334,21 +359,23 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		private static final String OPPOSITE_END_VAR = "oppositeEnd"; //$NON-NLS-1$
-
+		LinkConstraints() {
+			// use static method #getLinkConstraints() to access instance
+		}
 
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateLink_4001() {
+		public boolean canCreateLink_4001() {
 			return canExistLink_4001();
 		}
 
+
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateCommentAnnotatedElement_4002(Comment source, Element target) {
+		public boolean canCreateCommentAnnotatedElement_4002(Comment source, Element target) {
 			if(source != null) {
 				if(source.getAnnotatedElements().contains(target)) {
 					return false;
@@ -358,10 +385,11 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistCommentAnnotatedElement_4002(source, target);
 		}
 
+
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateConstraintConstrainedElement_4003(Constraint source, Element target) {
+		public boolean canCreateConstraintConstrainedElement_4003(Constraint source, Element target) {
 			if(source != null) {
 				if(source.getConstrainedElements().contains(target)) {
 					return false;
@@ -371,94 +399,107 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistConstraintConstrainedElement_4003(source, target);
 		}
 
-		/**
-		 * @generated
-		 */
-		public static boolean canCreateComponentRealization_4004(Package container, NamedElement source, NamedElement target) {
-			return canExistComponentRealization_4004(container, source, target);
-		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateInterfaceRealization_4005(Package container, NamedElement source, NamedElement target) {
-			return canExistInterfaceRealization_4005(container, source, target);
+		public boolean canCreateComponentRealization_4004(Package container, NamedElement source, NamedElement target) {
+			return canExistComponentRealization_4004(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateSubstitution_4011(Package container, NamedElement source, NamedElement target) {
-			return canExistSubstitution_4011(container, source, target);
+		public boolean canCreateInterfaceRealization_4005(Package container, NamedElement source, NamedElement target) {
+			return canExistInterfaceRealization_4005(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateRealization_4006(Package container, NamedElement source, NamedElement target) {
-			return canExistRealization_4006(container, source, target);
+		public boolean canCreateSubstitution_4011(Package container, NamedElement source, NamedElement target) {
+			return canExistSubstitution_4011(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateManifestation_4012(Package container, NamedElement source, NamedElement target) {
-			return canExistManifestation_4012(container, source, target);
+		public boolean canCreateRealization_4006(Package container, NamedElement source, NamedElement target) {
+			return canExistRealization_4006(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateAbstraction_4007(Package container, NamedElement source, NamedElement target) {
-			return canExistAbstraction_4007(container, source, target);
+		public boolean canCreateManifestation_4012(Package container, NamedElement source, NamedElement target) {
+			return canExistManifestation_4012(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateUsage_4008(Package container, NamedElement source, NamedElement target) {
-			return canExistUsage_4008(container, source, target);
+		public boolean canCreateAbstraction_4007(Package container, NamedElement source, NamedElement target) {
+			return canExistAbstraction_4007(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateDeployment_4009(Package container, NamedElement source, NamedElement target) {
-			return canExistDeployment_4009(container, source, target);
+		public boolean canCreateUsage_4008(Package container, NamedElement source, NamedElement target) {
+			return canExistUsage_4008(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateDependency_4017(Package container, NamedElement source, NamedElement target) {
-			return canExistDependency_4017(container, source, target);
+		public boolean canCreateDeployment_4009(Package container, NamedElement source, NamedElement target) {
+			return canExistDeployment_4009(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateDependency_4010(Package container, NamedElement source, NamedElement target) {
-			return canExistDependency_4010(container, source, target);
+		public boolean canCreateDependency_4017(Package container, NamedElement source, NamedElement target) {
+			return canExistDependency_4017(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateConnector_4013(StructuredClassifier container, ConnectorEnd source, ConnectorEnd target) {
-			return canExistConnector_4013(container, source, target);
+		public boolean canCreateDependency_4010(Package container, NamedElement source, NamedElement target) {
+			return canExistDependency_4010(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateGeneralization_4015(Classifier container, Classifier source, Classifier target) {
-			return canExistGeneralization_4015(container, source, target);
+		public boolean canCreateConnector_4013(StructuredClassifier container, ConnectorEnd source, ConnectorEnd target) {
+			return canExistConnector_4013(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateTimeObservationEvent_4018(TimeObservation source, NamedElement target) {
+		public boolean canCreateGeneralization_4015(Classifier container, Classifier source, Classifier target) {
+			return canExistGeneralization_4015(container, null, source, target);
+		}
+
+
+		/**
+		 * @generated
+		 */
+		public boolean canCreateTimeObservationEvent_4018(TimeObservation source, NamedElement target) {
 			if(source != null) {
 				if(source.getEvent() != null) {
 					return false;
@@ -468,10 +509,11 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistTimeObservationEvent_4018(source, target);
 		}
 
+
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateDurationObservationEvent_4019(DurationObservation source, NamedElement target) {
+		public boolean canCreateDurationObservationEvent_4019(DurationObservation source, NamedElement target) {
 			if(source != null) {
 				if(source.getEvents().size() >= 2 || source.getEvents().contains(target)) {
 					return false;
@@ -481,10 +523,11 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistDurationObservationEvent_4019(source, target);
 		}
 
+
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateInformationItemRepresented_4020(InformationItem source, Classifier target) {
+		public boolean canCreateInformationItemRepresented_4020(InformationItem source, Classifier target) {
 			if(source != null) {
 				if(source.getRepresenteds().contains(target)) {
 					return false;
@@ -494,94 +537,96 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistInformationItemRepresented_4020(source, target);
 		}
 
-		/**
-		 * @generated
-		 */
-		public static boolean canCreateInformationFlow_4021(Package container, NamedElement source, NamedElement target) {
-			return canExistInformationFlow_4021(container, source, target);
-		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistLink_4001() {
+		public boolean canCreateInformationFlow_4021(Package container, NamedElement source, NamedElement target) {
+			return canExistInformationFlow_4021(container, null, source, target);
+		}
+
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistLink_4001() {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistCommentAnnotatedElement_4002(Comment source, Element target) {
+		public boolean canExistCommentAnnotatedElement_4002(Comment source, Element target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistConstraintConstrainedElement_4003(Constraint source, Element target) {
+		public boolean canExistConstraintConstrainedElement_4003(Constraint source, Element target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistComponentRealization_4004(Package container, NamedElement source, NamedElement target) {
+		public boolean canExistComponentRealization_4004(Package container, ComponentRealization linkInstance, NamedElement source, NamedElement target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistInterfaceRealization_4005(Package container, NamedElement source, NamedElement target) {
+		public boolean canExistInterfaceRealization_4005(Package container, InterfaceRealization linkInstance, NamedElement source, NamedElement target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistSubstitution_4011(Package container, NamedElement source, NamedElement target) {
+		public boolean canExistSubstitution_4011(Package container, Substitution linkInstance, NamedElement source, NamedElement target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistRealization_4006(Package container, NamedElement source, NamedElement target) {
+		public boolean canExistRealization_4006(Package container, Realization linkInstance, NamedElement source, NamedElement target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistManifestation_4012(Package container, NamedElement source, NamedElement target) {
+		public boolean canExistManifestation_4012(Package container, Manifestation linkInstance, NamedElement source, NamedElement target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistAbstraction_4007(Package container, NamedElement source, NamedElement target) {
+		public boolean canExistAbstraction_4007(Package container, Abstraction linkInstance, NamedElement source, NamedElement target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistUsage_4008(Package container, NamedElement source, NamedElement target) {
+		public boolean canExistUsage_4008(Package container, Usage linkInstance, NamedElement source, NamedElement target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistDeployment_4009(Package container, NamedElement source, NamedElement target) {
+		public boolean canExistDeployment_4009(Package container, Deployment linkInstance, NamedElement source, NamedElement target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistDependency_4017(Package container, NamedElement source, NamedElement target) {
+		public boolean canExistDependency_4017(Package container, Dependency linkInstance, NamedElement source, NamedElement target) {
 			try {
 				// RoleBinding source constraint
 				if((source != null) && !(source instanceof CollaborationUse)) {
@@ -609,42 +654,42 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistDependency_4010(Package container, NamedElement source, NamedElement target) {
+		public boolean canExistDependency_4010(Package container, Dependency linkInstance, NamedElement source, NamedElement target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistConnector_4013(StructuredClassifier container, ConnectorEnd source, ConnectorEnd target) {
+		public boolean canExistConnector_4013(StructuredClassifier container, Connector linkInstance, ConnectorEnd source, ConnectorEnd target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistGeneralization_4015(Classifier container, Classifier source, Classifier target) {
+		public boolean canExistGeneralization_4015(Classifier container, Generalization linkInstance, Classifier source, Classifier target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistTimeObservationEvent_4018(TimeObservation source, NamedElement target) {
+		public boolean canExistTimeObservationEvent_4018(TimeObservation source, NamedElement target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistDurationObservationEvent_4019(DurationObservation source, NamedElement target) {
+		public boolean canExistDurationObservationEvent_4019(DurationObservation source, NamedElement target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistInformationItemRepresented_4020(InformationItem source, Classifier target) {
+		public boolean canExistInformationItemRepresented_4020(InformationItem source, Classifier target) {
 			try {
 				// Represented InformationItem Target
 				if(target != null) {
@@ -662,7 +707,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistInformationFlow_4021(Package container, NamedElement source, NamedElement target) {
+		public boolean canExistInformationFlow_4021(Package container, InformationFlow linkInstance, NamedElement source, NamedElement target) {
 			try {
 				//Information Flow source constraint
 				if(source != null) {
@@ -703,4 +748,5 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			}
 		}
 	}
+
 }

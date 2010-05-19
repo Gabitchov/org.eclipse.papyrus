@@ -32,7 +32,7 @@ import org.eclipse.papyrus.diagram.composite.custom.messages.Messages;
 import org.eclipse.papyrus.diagram.composite.custom.ui.InformationItemElementTreeSelectionDialog;
 import org.eclipse.papyrus.diagram.composite.custom.ui.InformationItemValidator;
 import org.eclipse.papyrus.diagram.composite.custom.ui.NameLabelValidator;
-import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.composite.providers.ElementInitializers;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog;
@@ -108,7 +108,7 @@ public class InformationFlowCreateCommand extends org.eclipse.papyrus.diagram.co
 					newInformationFlow.getConveyeds().add((Classifier)conveyedClassified[i]);
 				}
 
-				UMLElementTypes.init_InformationFlow_4021(newInformationFlow);
+				ElementInitializers.getInstance().init_InformationFlow_4021(newInformationFlow);
 
 				((CreateElementRequest)getRequest()).setNewElement(newInformationFlow);
 				return CommandResult.newOKCommandResult(newInformationFlow);
@@ -137,7 +137,7 @@ public class InformationFlowCreateCommand extends org.eclipse.papyrus.diagram.co
 		// create the new InformationItem
 		InformationItem infoItem = UMLFactory.eINSTANCE.createInformationItem();
 		getContainer().getPackagedElements().add(infoItem);
-		UMLElementTypes.init_InformationItem_2080(infoItem);
+		ElementInitializers.getInstance().init_InformationItem_2080(infoItem);
 
 		// ask for the name of the new InformationItem
 		// Create the editor

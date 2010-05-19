@@ -84,7 +84,7 @@ public class ConnectorTimeObservationReorientCommand extends EditElementCommand 
 		if(!(oldEnd instanceof NamedElement && newEnd instanceof TimeObservation)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistTimeObservationEvent_4018(getNewSource(), getOldTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistTimeObservationEvent_4018(getNewSource(), getOldTarget());
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class ConnectorTimeObservationReorientCommand extends EditElementCommand 
 		if(!(oldEnd instanceof NamedElement && newEnd instanceof NamedElement)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistTimeObservationEvent_4018(getOldSource(), getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistTimeObservationEvent_4018(getOldSource(), getNewTarget());
 	}
 
 	/**

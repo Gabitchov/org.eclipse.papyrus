@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.composite.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -111,7 +111,7 @@ public class SignalCreateCommandCN extends EditElementCommand {
 		owner.getNestedClassifiers().add(newElement);
 
 
-		UMLElementTypes.init_Signal_3095(newElement);
+		ElementInitializers.getInstance().init_Signal_3095(newElement);
 
 		doConfigure(newElement, monitor, info);
 

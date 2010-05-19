@@ -65,7 +65,7 @@ public class RepresentationCreateCommand extends EditElementCommand {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateInformationItemRepresented_4020(getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateInformationItemRepresented_4020(getSource(), getTarget());
 	}
 
 

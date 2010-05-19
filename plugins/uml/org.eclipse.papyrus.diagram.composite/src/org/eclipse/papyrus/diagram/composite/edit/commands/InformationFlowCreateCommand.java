@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.diagram.composite.edit.policies.UMLBaseItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.composite.providers.ElementInitializers;
 import org.eclipse.uml2.uml.InformationFlow;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
@@ -82,7 +82,7 @@ public class InformationFlowCreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateInformationFlow_4021(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateInformationFlow_4021(getContainer(), getSource(), getTarget());
 	}
 
 
@@ -98,7 +98,7 @@ public class InformationFlowCreateCommand extends EditElementCommand {
 		getContainer().getPackagedElements().add(newElement);
 		newElement.getInformationSources().add(getSource());
 		newElement.getInformationTargets().add(getTarget());
-		UMLElementTypes.init_InformationFlow_4021(newElement);
+		ElementInitializers.getInstance().init_InformationFlow_4021(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

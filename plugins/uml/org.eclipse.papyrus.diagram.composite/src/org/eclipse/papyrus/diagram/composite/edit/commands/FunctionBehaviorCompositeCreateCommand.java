@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.composite.providers.ElementInitializers;
 import org.eclipse.uml2.uml.FunctionBehavior;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -113,7 +113,7 @@ public class FunctionBehaviorCompositeCreateCommand extends EditElementCommand {
 		owner.getPackagedElements().add(newElement);
 
 
-		UMLElementTypes.init_FunctionBehavior_2064(newElement);
+		ElementInitializers.getInstance().init_FunctionBehavior_2064(newElement);
 
 		doConfigure(newElement, monitor, info);
 

@@ -9862,9 +9862,9 @@
     </diagram>
     <plugin
         iD="org.eclipse.papyrus.diagram.composite"
-        name="PapyrusUMLCompositeDiagram"
-        provider="CEA LIST"
-        version="0.7.0.vqualifier">
+        name="Papyrus Composite Structure Diagram (Incubation)"
+        provider="Eclipse.org"
+        version="0.7.0.qualifier">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
       <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
     </plugin>

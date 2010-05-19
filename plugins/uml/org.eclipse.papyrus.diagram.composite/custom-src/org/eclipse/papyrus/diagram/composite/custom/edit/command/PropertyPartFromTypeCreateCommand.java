@@ -22,7 +22,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
-import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.composite.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.Type;
@@ -72,7 +72,7 @@ public class PropertyPartFromTypeCreateCommand extends EditElementCommand {
 		owner.getOwnedAttributes().add(newElement);
 		newElement.setType(type);
 
-		UMLElementTypes.init_Property_3070(newElement);
+		ElementInitializers.getInstance().init_Property_3070(newElement);
 
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 

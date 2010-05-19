@@ -81,7 +81,7 @@ public class RoleBindingCreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateDependency_4017(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateDependency_4017(getContainer(), getSource(), getTarget());
 	}
 
 

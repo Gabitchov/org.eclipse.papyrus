@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.composite.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -111,7 +111,7 @@ public class PropertyPartCreateCommandCN extends EditElementCommand {
 		owner.getOwnedAttributes().add(newElement);
 
 
-		UMLElementTypes.init_Property_3070(newElement);
+		ElementInitializers.getInstance().init_Property_3070(newElement);
 
 		doConfigure(newElement, monitor, info);
 

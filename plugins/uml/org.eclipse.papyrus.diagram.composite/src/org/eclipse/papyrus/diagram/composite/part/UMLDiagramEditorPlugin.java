@@ -29,7 +29,12 @@ import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.papyrus.diagram.composite.edit.policies.UMLBaseItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.composite.preferences.DiagramPreferenceInitializer;
+import org.eclipse.papyrus.diagram.composite.providers.ElementInitializers;
+import org.eclipse.papyrus.preferences.Activator;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
@@ -68,6 +73,18 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
+	private UMLBaseItemSemanticEditPolicy.LinkConstraints linkConstraints;
+
+
+	/**
+	 * @generated
+	 */
+	private ElementInitializers initializers;
+
+
+	/**
+	 * @generated
+	 */
 	public UMLDiagramEditorPlugin() {
 	}
 
@@ -79,6 +96,8 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 		instance = this;
 		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT, getPreferenceStore());
 		adapterFactory = createAdapterFactory();
+		DiagramPreferenceInitializer diagramPreferenceInitializer = new DiagramPreferenceInitializer();
+		diagramPreferenceInitializer.initializeDefaultPreferences();
 	}
 
 	/**
@@ -87,6 +106,8 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	public void stop(BundleContext context) throws Exception {
 		adapterFactory.dispose();
 		adapterFactory = null;
+		linkConstraints = null;
+		initializers = null;
 		instance = null;
 		super.stop(context);
 	}
@@ -101,8 +122,16 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
+	public IPreferenceStore getPreferenceStore() {
+		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		return store;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected ComposedAdapterFactory createAdapterFactory() {
-		List factories = new ArrayList();
+		ArrayList<AdapterFactory> factories = new ArrayList<AdapterFactory>();
 		fillItemProviderFactories(factories);
 		return new ComposedAdapterFactory(factories);
 	}
@@ -110,7 +139,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	protected void fillItemProviderFactories(List factories) {
+	protected void fillItemProviderFactories(List<AdapterFactory> factories) {
 		factories.add(new UMLItemProviderAdapterFactory());
 		factories.add(new EcoreItemProviderAdapterFactory());
 		factories.add(new ResourceItemProviderAdapterFactory());
@@ -203,6 +232,35 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 		}
 		return documentProvider;
 	}
+
+	/**
+	 * @generated
+	 */
+	public UMLBaseItemSemanticEditPolicy.LinkConstraints getLinkConstraints() {
+		return linkConstraints;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void setLinkConstraints(UMLBaseItemSemanticEditPolicy.LinkConstraints lc) {
+		this.linkConstraints = lc;
+	}
+
+	/**
+	 * @generated
+	 */
+	public ElementInitializers getElementInitializers() {
+		return initializers;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void setElementInitializers(ElementInitializers i) {
+		this.initializers = i;
+	}
+
 
 	/**
 	 * @generated

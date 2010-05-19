@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.composite.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.TimeConstraint;
@@ -114,7 +114,7 @@ public class TimeConstraintCreateCommand extends EditElementCommand {
 		owner.getOwnedRules().add(newElement);
 
 
-		UMLElementTypes.init_TimeConstraint_2111(newElement);
+		ElementInitializers.getInstance().init_TimeConstraint_2111(newElement);
 
 		doConfigure(newElement, monitor, info);
 

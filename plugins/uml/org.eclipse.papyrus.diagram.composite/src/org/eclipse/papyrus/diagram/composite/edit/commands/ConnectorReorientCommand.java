@@ -86,7 +86,7 @@ public class ConnectorReorientCommand extends EditElementCommand {
 			return false;
 		}
 		StructuredClassifier container = (StructuredClassifier)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistConnector_4013(container, getNewSource(), target);
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistConnector_4013(container, getLink(), getNewSource(), target);
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class ConnectorReorientCommand extends EditElementCommand {
 			return false;
 		}
 		StructuredClassifier container = (StructuredClassifier)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistConnector_4013(container, source, getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistConnector_4013(container, getLink(), source, getNewTarget());
 	}
 
 	/**

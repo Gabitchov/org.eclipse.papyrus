@@ -62,6 +62,16 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
+	private void createPackage_1000Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getPackage_1000SemanticChildren(view);
+		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
+			createNode(view, (UMLNodeDescriptor)it.next());
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	private void createActivity_2060Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
 		myLinkDescriptors.addAll(UMLDiagramUpdater.getActivity_2060OutgoingLinks(view));
@@ -1433,16 +1443,6 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createPropertyPropertyPartCompartmentCN_7077Children(View view) {
 		Collection childNodeDescriptors = UMLDiagramUpdater.getPropertyPropertyPartCompartmentCN_7077SemanticChildren(view);
-		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
-			createNode(view, (UMLNodeDescriptor)it.next());
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private void createPackage_1000Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getPackage_1000SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}

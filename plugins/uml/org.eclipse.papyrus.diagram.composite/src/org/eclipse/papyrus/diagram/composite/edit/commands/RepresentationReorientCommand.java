@@ -84,7 +84,7 @@ public class RepresentationReorientCommand extends EditElementCommand {
 		if(!(oldEnd instanceof Classifier && newEnd instanceof InformationItem)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistInformationItemRepresented_4020(getNewSource(), getOldTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistInformationItemRepresented_4020(getNewSource(), getOldTarget());
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class RepresentationReorientCommand extends EditElementCommand {
 		if(!(oldEnd instanceof Classifier && newEnd instanceof Classifier)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistInformationItemRepresented_4020(getOldSource(), getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistInformationItemRepresented_4020(getOldSource(), getNewTarget());
 	}
 
 	/**

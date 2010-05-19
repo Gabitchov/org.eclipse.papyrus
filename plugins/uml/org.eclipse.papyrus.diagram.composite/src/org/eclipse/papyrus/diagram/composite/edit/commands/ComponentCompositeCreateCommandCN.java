@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.composite.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -111,7 +111,7 @@ public class ComponentCompositeCreateCommandCN extends EditElementCommand {
 		owner.getNestedClassifiers().add(newElement);
 
 
-		UMLElementTypes.init_Component_3081(newElement);
+		ElementInitializers.getInstance().init_Component_3081(newElement);
 
 		doConfigure(newElement, monitor, info);
 

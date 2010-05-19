@@ -18,7 +18,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.composite.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -67,7 +67,7 @@ public class PropertyPartCreateCommand extends org.eclipse.papyrus.diagram.compo
 		StructuredClassifier owner = (StructuredClassifier)((Property)getElementToEdit()).getType();
 		owner.getOwnedAttributes().add(newElement);
 
-		UMLElementTypes.init_Property_3070(newElement);
+		ElementInitializers.getInstance().init_Property_3070(newElement);
 
 		doConfigure(newElement, monitor, info);
 

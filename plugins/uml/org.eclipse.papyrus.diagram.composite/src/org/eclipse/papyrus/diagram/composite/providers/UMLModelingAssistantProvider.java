@@ -47,871 +47,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart)host.getAdapter(IGraphicalEditPart.class);
-		if(editPart instanceof ActivityCompositeEditPart) {
-			ArrayList types = new ArrayList(2);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Parameter_3088);
-			return types;
-		}
-		if(editPart instanceof InteractionCompositeEditPart) {
-			ArrayList types = new ArrayList(2);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Parameter_3088);
-			return types;
-		}
-		if(editPart instanceof ProtocolStateMachineCompositeEditPart) {
-			ArrayList types = new ArrayList(2);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Parameter_3088);
-			return types;
-		}
-		if(editPart instanceof StateMachineCompositeEditPart) {
-			ArrayList types = new ArrayList(2);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Parameter_3088);
-			return types;
-		}
-		if(editPart instanceof FunctionBehaviorCompositeEditPart) {
-			ArrayList types = new ArrayList(2);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Parameter_3088);
-			return types;
-		}
-		if(editPart instanceof OpaqueBehaviorCompositeEditPart) {
-			ArrayList types = new ArrayList(2);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Parameter_3088);
-			return types;
-		}
-		if(editPart instanceof ComponentCompositeEditPart) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.Port_3069);
-			return types;
-		}
-		if(editPart instanceof DeviceCompositeEditPart) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.Port_3069);
-			return types;
-		}
-		if(editPart instanceof ExecutionEnvironmentCompositeEditPart) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.Port_3069);
-			return types;
-		}
-		if(editPart instanceof NodeCompositeEditPart) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.Port_3069);
-			return types;
-		}
-		if(editPart instanceof ClassCompositeEditPart) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.Port_3069);
-			return types;
-		}
-		if(editPart instanceof ClassClassifierEditPart) {
-			ArrayList types = new ArrayList(15);
-			types.add(UMLElementTypes.Property_3101);
-			types.add(UMLElementTypes.Reception_3100);
-			types.add(UMLElementTypes.Operation_3102);
-			types.add(UMLElementTypes.Activity_3103);
-			types.add(UMLElementTypes.Interaction_3104);
-			types.add(UMLElementTypes.ProtocolStateMachine_3105);
-			types.add(UMLElementTypes.StateMachine_3106);
-			types.add(UMLElementTypes.FunctionBehavior_3107);
-			types.add(UMLElementTypes.OpaqueBehavior_3108);
-			types.add(UMLElementTypes.Collaboration_3109);
-			types.add(UMLElementTypes.Interface_3110);
-			types.add(UMLElementTypes.Enumeration_3111);
-			types.add(UMLElementTypes.PrimitiveType_3112);
-			types.add(UMLElementTypes.DataType_3113);
-			types.add(UMLElementTypes.Class_3114);
-			return types;
-		}
-		if(editPart instanceof EnumerationEditPart) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.EnumerationLiteral_3066);
-			return types;
-		}
-		if(editPart instanceof DataTypeEditPart) {
-			ArrayList types = new ArrayList(2);
-			types.add(UMLElementTypes.Property_3101);
-			types.add(UMLElementTypes.Operation_3102);
-			return types;
-		}
-		if(editPart instanceof PropertyPartEditPartCN) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.Port_3069);
-			return types;
-		}
-		if(editPart instanceof ActivityCompositeEditPartCN) {
-			ArrayList types = new ArrayList(2);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Parameter_3088);
-			return types;
-		}
-		if(editPart instanceof InteractionCompositeEditPartCN) {
-			ArrayList types = new ArrayList(2);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Parameter_3088);
-			return types;
-		}
-		if(editPart instanceof ProtocolStateMachineCompositeEditPartCN) {
-			ArrayList types = new ArrayList(2);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Parameter_3088);
-			return types;
-		}
-		if(editPart instanceof StateMachineCompositeEditPartCN) {
-			ArrayList types = new ArrayList(2);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Parameter_3088);
-			return types;
-		}
-		if(editPart instanceof FunctionBehaviorCompositeEditPartCN) {
-			ArrayList types = new ArrayList(2);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Parameter_3088);
-			return types;
-		}
-		if(editPart instanceof OpaqueBehaviorCompositeEditPartCN) {
-			ArrayList types = new ArrayList(2);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Parameter_3088);
-			return types;
-		}
-		if(editPart instanceof ComponentCompositeEditPartCN) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.Port_3069);
-			return types;
-		}
-		if(editPart instanceof DeviceCompositeEditPartCN) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.Port_3069);
-			return types;
-		}
-		if(editPart instanceof ExecutionEnvironmentCompositeEditPartCN) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.Port_3069);
-			return types;
-		}
-		if(editPart instanceof NodeCompositeEditPartCN) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.Port_3069);
-			return types;
-		}
-		if(editPart instanceof ClassCompositeEditPartCN) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.Port_3069);
-			return types;
-		}
-		if(editPart instanceof EnumerationEditPartCN) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.EnumerationLiteral_3066);
-			return types;
-		}
-		if(editPart instanceof DataTypeEditPartCN) {
-			ArrayList types = new ArrayList(2);
-			types.add(UMLElementTypes.Property_3101);
-			types.add(UMLElementTypes.Operation_3102);
-			return types;
-		}
-		if(editPart instanceof ActivityCompositeCompartmentEditPartCN) {
-			ArrayList types = new ArrayList(27);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Parameter_3088);
-			types.add(UMLElementTypes.Property_3070);
-			types.add(UMLElementTypes.CollaborationUse_3071);
-			types.add(UMLElementTypes.Activity_3072);
-			types.add(UMLElementTypes.Interaction_3073);
-			types.add(UMLElementTypes.ProtocolStateMachine_3074);
-			types.add(UMLElementTypes.StateMachine_3075);
-			types.add(UMLElementTypes.FunctionBehavior_3076);
-			types.add(UMLElementTypes.OpaqueBehavior_3077);
-			types.add(UMLElementTypes.Component_3081);
-			types.add(UMLElementTypes.Device_3082);
-			types.add(UMLElementTypes.ExecutionEnvironment_3083);
-			types.add(UMLElementTypes.Node_3084);
-			types.add(UMLElementTypes.Class_3085);
-			types.add(UMLElementTypes.Collaboration_3086);
-			types.add(UMLElementTypes.Interface_3087);
-			types.add(UMLElementTypes.PrimitiveType_3078);
-			types.add(UMLElementTypes.Enumeration_3079);
-			types.add(UMLElementTypes.DataType_3080);
-			types.add(UMLElementTypes.Actor_3091);
-			types.add(UMLElementTypes.DeploymentSpecification_3092);
-			types.add(UMLElementTypes.Artifact_3093);
-			types.add(UMLElementTypes.InformationItem_3094);
-			types.add(UMLElementTypes.Signal_3095);
-			types.add(UMLElementTypes.UseCase_3096);
-			types.add(UMLElementTypes.Comment_3097);
-			return types;
-		}
-		if(editPart instanceof InteractionCompositeCompartmentEditPartCN) {
-			ArrayList types = new ArrayList(27);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Parameter_3088);
-			types.add(UMLElementTypes.Property_3070);
-			types.add(UMLElementTypes.CollaborationUse_3071);
-			types.add(UMLElementTypes.Activity_3072);
-			types.add(UMLElementTypes.Interaction_3073);
-			types.add(UMLElementTypes.ProtocolStateMachine_3074);
-			types.add(UMLElementTypes.StateMachine_3075);
-			types.add(UMLElementTypes.FunctionBehavior_3076);
-			types.add(UMLElementTypes.OpaqueBehavior_3077);
-			types.add(UMLElementTypes.Component_3081);
-			types.add(UMLElementTypes.Device_3082);
-			types.add(UMLElementTypes.ExecutionEnvironment_3083);
-			types.add(UMLElementTypes.Node_3084);
-			types.add(UMLElementTypes.Class_3085);
-			types.add(UMLElementTypes.Collaboration_3086);
-			types.add(UMLElementTypes.Interface_3087);
-			types.add(UMLElementTypes.PrimitiveType_3078);
-			types.add(UMLElementTypes.Enumeration_3079);
-			types.add(UMLElementTypes.DataType_3080);
-			types.add(UMLElementTypes.Actor_3091);
-			types.add(UMLElementTypes.DeploymentSpecification_3092);
-			types.add(UMLElementTypes.Artifact_3093);
-			types.add(UMLElementTypes.InformationItem_3094);
-			types.add(UMLElementTypes.Signal_3095);
-			types.add(UMLElementTypes.UseCase_3096);
-			types.add(UMLElementTypes.Comment_3097);
-			return types;
-		}
-		if(editPart instanceof ProtocolStateMachineCompositeCompartmentEditPartCN) {
-			ArrayList types = new ArrayList(27);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Parameter_3088);
-			types.add(UMLElementTypes.Property_3070);
-			types.add(UMLElementTypes.CollaborationUse_3071);
-			types.add(UMLElementTypes.Activity_3072);
-			types.add(UMLElementTypes.Interaction_3073);
-			types.add(UMLElementTypes.ProtocolStateMachine_3074);
-			types.add(UMLElementTypes.StateMachine_3075);
-			types.add(UMLElementTypes.FunctionBehavior_3076);
-			types.add(UMLElementTypes.OpaqueBehavior_3077);
-			types.add(UMLElementTypes.Component_3081);
-			types.add(UMLElementTypes.Device_3082);
-			types.add(UMLElementTypes.ExecutionEnvironment_3083);
-			types.add(UMLElementTypes.Node_3084);
-			types.add(UMLElementTypes.Class_3085);
-			types.add(UMLElementTypes.Collaboration_3086);
-			types.add(UMLElementTypes.Interface_3087);
-			types.add(UMLElementTypes.PrimitiveType_3078);
-			types.add(UMLElementTypes.Enumeration_3079);
-			types.add(UMLElementTypes.DataType_3080);
-			types.add(UMLElementTypes.Actor_3091);
-			types.add(UMLElementTypes.DeploymentSpecification_3092);
-			types.add(UMLElementTypes.Artifact_3093);
-			types.add(UMLElementTypes.InformationItem_3094);
-			types.add(UMLElementTypes.Signal_3095);
-			types.add(UMLElementTypes.UseCase_3096);
-			types.add(UMLElementTypes.Comment_3097);
-			return types;
-		}
-		if(editPart instanceof StateMachineCompositeCompartmentEditPartCN) {
-			ArrayList types = new ArrayList(27);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Parameter_3088);
-			types.add(UMLElementTypes.Property_3070);
-			types.add(UMLElementTypes.CollaborationUse_3071);
-			types.add(UMLElementTypes.Activity_3072);
-			types.add(UMLElementTypes.Interaction_3073);
-			types.add(UMLElementTypes.ProtocolStateMachine_3074);
-			types.add(UMLElementTypes.StateMachine_3075);
-			types.add(UMLElementTypes.FunctionBehavior_3076);
-			types.add(UMLElementTypes.OpaqueBehavior_3077);
-			types.add(UMLElementTypes.Component_3081);
-			types.add(UMLElementTypes.Device_3082);
-			types.add(UMLElementTypes.ExecutionEnvironment_3083);
-			types.add(UMLElementTypes.Node_3084);
-			types.add(UMLElementTypes.Class_3085);
-			types.add(UMLElementTypes.Collaboration_3086);
-			types.add(UMLElementTypes.Interface_3087);
-			types.add(UMLElementTypes.PrimitiveType_3078);
-			types.add(UMLElementTypes.Enumeration_3079);
-			types.add(UMLElementTypes.DataType_3080);
-			types.add(UMLElementTypes.Actor_3091);
-			types.add(UMLElementTypes.DeploymentSpecification_3092);
-			types.add(UMLElementTypes.Artifact_3093);
-			types.add(UMLElementTypes.InformationItem_3094);
-			types.add(UMLElementTypes.Signal_3095);
-			types.add(UMLElementTypes.UseCase_3096);
-			types.add(UMLElementTypes.Comment_3097);
-			return types;
-		}
-		if(editPart instanceof FunctionBehaviorCompositeCompartmentEditPartCN) {
-			ArrayList types = new ArrayList(27);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Parameter_3088);
-			types.add(UMLElementTypes.Property_3070);
-			types.add(UMLElementTypes.CollaborationUse_3071);
-			types.add(UMLElementTypes.Activity_3072);
-			types.add(UMLElementTypes.Interaction_3073);
-			types.add(UMLElementTypes.ProtocolStateMachine_3074);
-			types.add(UMLElementTypes.StateMachine_3075);
-			types.add(UMLElementTypes.FunctionBehavior_3076);
-			types.add(UMLElementTypes.OpaqueBehavior_3077);
-			types.add(UMLElementTypes.Component_3081);
-			types.add(UMLElementTypes.Device_3082);
-			types.add(UMLElementTypes.ExecutionEnvironment_3083);
-			types.add(UMLElementTypes.Node_3084);
-			types.add(UMLElementTypes.Class_3085);
-			types.add(UMLElementTypes.Collaboration_3086);
-			types.add(UMLElementTypes.Interface_3087);
-			types.add(UMLElementTypes.PrimitiveType_3078);
-			types.add(UMLElementTypes.Enumeration_3079);
-			types.add(UMLElementTypes.DataType_3080);
-			types.add(UMLElementTypes.Actor_3091);
-			types.add(UMLElementTypes.DeploymentSpecification_3092);
-			types.add(UMLElementTypes.Artifact_3093);
-			types.add(UMLElementTypes.InformationItem_3094);
-			types.add(UMLElementTypes.Signal_3095);
-			types.add(UMLElementTypes.UseCase_3096);
-			types.add(UMLElementTypes.Comment_3097);
-			return types;
-		}
-		if(editPart instanceof OpaqueBehaviorCompositeCompartmentEditPartCN) {
-			ArrayList types = new ArrayList(27);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Parameter_3088);
-			types.add(UMLElementTypes.Property_3070);
-			types.add(UMLElementTypes.CollaborationUse_3071);
-			types.add(UMLElementTypes.Activity_3072);
-			types.add(UMLElementTypes.Interaction_3073);
-			types.add(UMLElementTypes.ProtocolStateMachine_3074);
-			types.add(UMLElementTypes.StateMachine_3075);
-			types.add(UMLElementTypes.FunctionBehavior_3076);
-			types.add(UMLElementTypes.OpaqueBehavior_3077);
-			types.add(UMLElementTypes.Component_3081);
-			types.add(UMLElementTypes.Device_3082);
-			types.add(UMLElementTypes.ExecutionEnvironment_3083);
-			types.add(UMLElementTypes.Node_3084);
-			types.add(UMLElementTypes.Class_3085);
-			types.add(UMLElementTypes.Collaboration_3086);
-			types.add(UMLElementTypes.Interface_3087);
-			types.add(UMLElementTypes.PrimitiveType_3078);
-			types.add(UMLElementTypes.Enumeration_3079);
-			types.add(UMLElementTypes.DataType_3080);
-			types.add(UMLElementTypes.Actor_3091);
-			types.add(UMLElementTypes.DeploymentSpecification_3092);
-			types.add(UMLElementTypes.Artifact_3093);
-			types.add(UMLElementTypes.InformationItem_3094);
-			types.add(UMLElementTypes.Signal_3095);
-			types.add(UMLElementTypes.UseCase_3096);
-			types.add(UMLElementTypes.Comment_3097);
-			return types;
-		}
-		if(editPart instanceof ComponentCompositeCompartmentEditPartCN) {
-			ArrayList types = new ArrayList(26);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Property_3070);
-			types.add(UMLElementTypes.CollaborationUse_3071);
-			types.add(UMLElementTypes.Activity_3072);
-			types.add(UMLElementTypes.Interaction_3073);
-			types.add(UMLElementTypes.ProtocolStateMachine_3074);
-			types.add(UMLElementTypes.StateMachine_3075);
-			types.add(UMLElementTypes.FunctionBehavior_3076);
-			types.add(UMLElementTypes.OpaqueBehavior_3077);
-			types.add(UMLElementTypes.Component_3081);
-			types.add(UMLElementTypes.Device_3082);
-			types.add(UMLElementTypes.ExecutionEnvironment_3083);
-			types.add(UMLElementTypes.Node_3084);
-			types.add(UMLElementTypes.Class_3085);
-			types.add(UMLElementTypes.Collaboration_3086);
-			types.add(UMLElementTypes.Interface_3087);
-			types.add(UMLElementTypes.PrimitiveType_3078);
-			types.add(UMLElementTypes.Enumeration_3079);
-			types.add(UMLElementTypes.DataType_3080);
-			types.add(UMLElementTypes.Actor_3091);
-			types.add(UMLElementTypes.DeploymentSpecification_3092);
-			types.add(UMLElementTypes.Artifact_3093);
-			types.add(UMLElementTypes.InformationItem_3094);
-			types.add(UMLElementTypes.Signal_3095);
-			types.add(UMLElementTypes.UseCase_3096);
-			types.add(UMLElementTypes.Comment_3097);
-			return types;
-		}
-		if(editPart instanceof DeviceCompositeCompartmentEditPartCN) {
-			ArrayList types = new ArrayList(26);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Property_3070);
-			types.add(UMLElementTypes.CollaborationUse_3071);
-			types.add(UMLElementTypes.Activity_3072);
-			types.add(UMLElementTypes.Interaction_3073);
-			types.add(UMLElementTypes.ProtocolStateMachine_3074);
-			types.add(UMLElementTypes.StateMachine_3075);
-			types.add(UMLElementTypes.FunctionBehavior_3076);
-			types.add(UMLElementTypes.OpaqueBehavior_3077);
-			types.add(UMLElementTypes.Component_3081);
-			types.add(UMLElementTypes.Device_3082);
-			types.add(UMLElementTypes.ExecutionEnvironment_3083);
-			types.add(UMLElementTypes.Node_3084);
-			types.add(UMLElementTypes.Class_3085);
-			types.add(UMLElementTypes.Collaboration_3086);
-			types.add(UMLElementTypes.Interface_3087);
-			types.add(UMLElementTypes.PrimitiveType_3078);
-			types.add(UMLElementTypes.Enumeration_3079);
-			types.add(UMLElementTypes.DataType_3080);
-			types.add(UMLElementTypes.Actor_3091);
-			types.add(UMLElementTypes.DeploymentSpecification_3092);
-			types.add(UMLElementTypes.Artifact_3093);
-			types.add(UMLElementTypes.InformationItem_3094);
-			types.add(UMLElementTypes.Signal_3095);
-			types.add(UMLElementTypes.UseCase_3096);
-			types.add(UMLElementTypes.Comment_3097);
-			return types;
-		}
-		if(editPart instanceof ExecutionEnvironmentCompositeCompartmentEditPartCN) {
-			ArrayList types = new ArrayList(26);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Property_3070);
-			types.add(UMLElementTypes.CollaborationUse_3071);
-			types.add(UMLElementTypes.Activity_3072);
-			types.add(UMLElementTypes.Interaction_3073);
-			types.add(UMLElementTypes.ProtocolStateMachine_3074);
-			types.add(UMLElementTypes.StateMachine_3075);
-			types.add(UMLElementTypes.FunctionBehavior_3076);
-			types.add(UMLElementTypes.OpaqueBehavior_3077);
-			types.add(UMLElementTypes.Component_3081);
-			types.add(UMLElementTypes.Device_3082);
-			types.add(UMLElementTypes.ExecutionEnvironment_3083);
-			types.add(UMLElementTypes.Node_3084);
-			types.add(UMLElementTypes.Class_3085);
-			types.add(UMLElementTypes.Collaboration_3086);
-			types.add(UMLElementTypes.Interface_3087);
-			types.add(UMLElementTypes.PrimitiveType_3078);
-			types.add(UMLElementTypes.Enumeration_3079);
-			types.add(UMLElementTypes.DataType_3080);
-			types.add(UMLElementTypes.Actor_3091);
-			types.add(UMLElementTypes.DeploymentSpecification_3092);
-			types.add(UMLElementTypes.Artifact_3093);
-			types.add(UMLElementTypes.InformationItem_3094);
-			types.add(UMLElementTypes.Signal_3095);
-			types.add(UMLElementTypes.UseCase_3096);
-			types.add(UMLElementTypes.Comment_3097);
-			return types;
-		}
-		if(editPart instanceof NodeCompositeCompartmentEditPartCN) {
-			ArrayList types = new ArrayList(26);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Property_3070);
-			types.add(UMLElementTypes.CollaborationUse_3071);
-			types.add(UMLElementTypes.Activity_3072);
-			types.add(UMLElementTypes.Interaction_3073);
-			types.add(UMLElementTypes.ProtocolStateMachine_3074);
-			types.add(UMLElementTypes.StateMachine_3075);
-			types.add(UMLElementTypes.FunctionBehavior_3076);
-			types.add(UMLElementTypes.OpaqueBehavior_3077);
-			types.add(UMLElementTypes.Component_3081);
-			types.add(UMLElementTypes.Device_3082);
-			types.add(UMLElementTypes.ExecutionEnvironment_3083);
-			types.add(UMLElementTypes.Node_3084);
-			types.add(UMLElementTypes.Class_3085);
-			types.add(UMLElementTypes.Collaboration_3086);
-			types.add(UMLElementTypes.Interface_3087);
-			types.add(UMLElementTypes.PrimitiveType_3078);
-			types.add(UMLElementTypes.Enumeration_3079);
-			types.add(UMLElementTypes.DataType_3080);
-			types.add(UMLElementTypes.Actor_3091);
-			types.add(UMLElementTypes.DeploymentSpecification_3092);
-			types.add(UMLElementTypes.Artifact_3093);
-			types.add(UMLElementTypes.InformationItem_3094);
-			types.add(UMLElementTypes.Signal_3095);
-			types.add(UMLElementTypes.UseCase_3096);
-			types.add(UMLElementTypes.Comment_3097);
-			return types;
-		}
-		if(editPart instanceof ClassCompositeCompartmentEditPartCN) {
-			ArrayList types = new ArrayList(26);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Property_3070);
-			types.add(UMLElementTypes.CollaborationUse_3071);
-			types.add(UMLElementTypes.Activity_3072);
-			types.add(UMLElementTypes.Interaction_3073);
-			types.add(UMLElementTypes.ProtocolStateMachine_3074);
-			types.add(UMLElementTypes.StateMachine_3075);
-			types.add(UMLElementTypes.FunctionBehavior_3076);
-			types.add(UMLElementTypes.OpaqueBehavior_3077);
-			types.add(UMLElementTypes.Component_3081);
-			types.add(UMLElementTypes.Device_3082);
-			types.add(UMLElementTypes.ExecutionEnvironment_3083);
-			types.add(UMLElementTypes.Node_3084);
-			types.add(UMLElementTypes.Class_3085);
-			types.add(UMLElementTypes.Collaboration_3086);
-			types.add(UMLElementTypes.Interface_3087);
-			types.add(UMLElementTypes.PrimitiveType_3078);
-			types.add(UMLElementTypes.Enumeration_3079);
-			types.add(UMLElementTypes.DataType_3080);
-			types.add(UMLElementTypes.Actor_3091);
-			types.add(UMLElementTypes.DeploymentSpecification_3092);
-			types.add(UMLElementTypes.Artifact_3093);
-			types.add(UMLElementTypes.InformationItem_3094);
-			types.add(UMLElementTypes.Signal_3095);
-			types.add(UMLElementTypes.UseCase_3096);
-			types.add(UMLElementTypes.Comment_3097);
-			return types;
-		}
-		if(editPart instanceof CollaborationCompositeCompartmentEditPartCN) {
-			ArrayList types = new ArrayList(4);
-			types.add(UMLElementTypes.Property_3070);
-			types.add(UMLElementTypes.CollaborationUse_3071);
-			types.add(UMLElementTypes.Comment_3097);
-			types.add(UMLElementTypes.ConnectableElement_3115);
-			return types;
-		}
-		if(editPart instanceof ActivityCompositeCompartmentEditPart) {
-			ArrayList types = new ArrayList(27);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Parameter_3088);
-			types.add(UMLElementTypes.Property_3070);
-			types.add(UMLElementTypes.CollaborationUse_3071);
-			types.add(UMLElementTypes.Activity_3072);
-			types.add(UMLElementTypes.Interaction_3073);
-			types.add(UMLElementTypes.ProtocolStateMachine_3074);
-			types.add(UMLElementTypes.StateMachine_3075);
-			types.add(UMLElementTypes.FunctionBehavior_3076);
-			types.add(UMLElementTypes.OpaqueBehavior_3077);
-			types.add(UMLElementTypes.Component_3081);
-			types.add(UMLElementTypes.Device_3082);
-			types.add(UMLElementTypes.ExecutionEnvironment_3083);
-			types.add(UMLElementTypes.Node_3084);
-			types.add(UMLElementTypes.Class_3085);
-			types.add(UMLElementTypes.Collaboration_3086);
-			types.add(UMLElementTypes.Interface_3087);
-			types.add(UMLElementTypes.PrimitiveType_3078);
-			types.add(UMLElementTypes.Enumeration_3079);
-			types.add(UMLElementTypes.DataType_3080);
-			types.add(UMLElementTypes.Actor_3091);
-			types.add(UMLElementTypes.DeploymentSpecification_3092);
-			types.add(UMLElementTypes.Artifact_3093);
-			types.add(UMLElementTypes.InformationItem_3094);
-			types.add(UMLElementTypes.Signal_3095);
-			types.add(UMLElementTypes.UseCase_3096);
-			types.add(UMLElementTypes.Comment_3097);
-			return types;
-		}
-		if(editPart instanceof InteractionCompositeCompartmentEditPart) {
-			ArrayList types = new ArrayList(27);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Parameter_3088);
-			types.add(UMLElementTypes.Property_3070);
-			types.add(UMLElementTypes.CollaborationUse_3071);
-			types.add(UMLElementTypes.Activity_3072);
-			types.add(UMLElementTypes.Interaction_3073);
-			types.add(UMLElementTypes.ProtocolStateMachine_3074);
-			types.add(UMLElementTypes.StateMachine_3075);
-			types.add(UMLElementTypes.FunctionBehavior_3076);
-			types.add(UMLElementTypes.OpaqueBehavior_3077);
-			types.add(UMLElementTypes.Component_3081);
-			types.add(UMLElementTypes.Device_3082);
-			types.add(UMLElementTypes.ExecutionEnvironment_3083);
-			types.add(UMLElementTypes.Node_3084);
-			types.add(UMLElementTypes.Class_3085);
-			types.add(UMLElementTypes.Collaboration_3086);
-			types.add(UMLElementTypes.Interface_3087);
-			types.add(UMLElementTypes.PrimitiveType_3078);
-			types.add(UMLElementTypes.Enumeration_3079);
-			types.add(UMLElementTypes.DataType_3080);
-			types.add(UMLElementTypes.Actor_3091);
-			types.add(UMLElementTypes.DeploymentSpecification_3092);
-			types.add(UMLElementTypes.Artifact_3093);
-			types.add(UMLElementTypes.InformationItem_3094);
-			types.add(UMLElementTypes.Signal_3095);
-			types.add(UMLElementTypes.UseCase_3096);
-			types.add(UMLElementTypes.Comment_3097);
-			return types;
-		}
-		if(editPart instanceof ProtocolStateMachineCompositeCompartmentEditPart) {
-			ArrayList types = new ArrayList(27);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Parameter_3088);
-			types.add(UMLElementTypes.Property_3070);
-			types.add(UMLElementTypes.CollaborationUse_3071);
-			types.add(UMLElementTypes.Activity_3072);
-			types.add(UMLElementTypes.Interaction_3073);
-			types.add(UMLElementTypes.ProtocolStateMachine_3074);
-			types.add(UMLElementTypes.StateMachine_3075);
-			types.add(UMLElementTypes.FunctionBehavior_3076);
-			types.add(UMLElementTypes.OpaqueBehavior_3077);
-			types.add(UMLElementTypes.Component_3081);
-			types.add(UMLElementTypes.Device_3082);
-			types.add(UMLElementTypes.ExecutionEnvironment_3083);
-			types.add(UMLElementTypes.Node_3084);
-			types.add(UMLElementTypes.Class_3085);
-			types.add(UMLElementTypes.Collaboration_3086);
-			types.add(UMLElementTypes.Interface_3087);
-			types.add(UMLElementTypes.PrimitiveType_3078);
-			types.add(UMLElementTypes.Enumeration_3079);
-			types.add(UMLElementTypes.DataType_3080);
-			types.add(UMLElementTypes.Actor_3091);
-			types.add(UMLElementTypes.DeploymentSpecification_3092);
-			types.add(UMLElementTypes.Artifact_3093);
-			types.add(UMLElementTypes.InformationItem_3094);
-			types.add(UMLElementTypes.Signal_3095);
-			types.add(UMLElementTypes.UseCase_3096);
-			types.add(UMLElementTypes.Comment_3097);
-			return types;
-		}
-		if(editPart instanceof StateMachineCompositeCompartmentEditPart) {
-			ArrayList types = new ArrayList(27);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Parameter_3088);
-			types.add(UMLElementTypes.Property_3070);
-			types.add(UMLElementTypes.CollaborationUse_3071);
-			types.add(UMLElementTypes.Activity_3072);
-			types.add(UMLElementTypes.Interaction_3073);
-			types.add(UMLElementTypes.ProtocolStateMachine_3074);
-			types.add(UMLElementTypes.StateMachine_3075);
-			types.add(UMLElementTypes.FunctionBehavior_3076);
-			types.add(UMLElementTypes.OpaqueBehavior_3077);
-			types.add(UMLElementTypes.Component_3081);
-			types.add(UMLElementTypes.Device_3082);
-			types.add(UMLElementTypes.ExecutionEnvironment_3083);
-			types.add(UMLElementTypes.Node_3084);
-			types.add(UMLElementTypes.Class_3085);
-			types.add(UMLElementTypes.Collaboration_3086);
-			types.add(UMLElementTypes.Interface_3087);
-			types.add(UMLElementTypes.PrimitiveType_3078);
-			types.add(UMLElementTypes.Enumeration_3079);
-			types.add(UMLElementTypes.DataType_3080);
-			types.add(UMLElementTypes.Actor_3091);
-			types.add(UMLElementTypes.DeploymentSpecification_3092);
-			types.add(UMLElementTypes.Artifact_3093);
-			types.add(UMLElementTypes.InformationItem_3094);
-			types.add(UMLElementTypes.Signal_3095);
-			types.add(UMLElementTypes.UseCase_3096);
-			types.add(UMLElementTypes.Comment_3097);
-			return types;
-		}
-		if(editPart instanceof FunctionBehaviorCompositeCompartmentEditPart) {
-			ArrayList types = new ArrayList(27);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Parameter_3088);
-			types.add(UMLElementTypes.Property_3070);
-			types.add(UMLElementTypes.CollaborationUse_3071);
-			types.add(UMLElementTypes.Activity_3072);
-			types.add(UMLElementTypes.Interaction_3073);
-			types.add(UMLElementTypes.ProtocolStateMachine_3074);
-			types.add(UMLElementTypes.StateMachine_3075);
-			types.add(UMLElementTypes.FunctionBehavior_3076);
-			types.add(UMLElementTypes.OpaqueBehavior_3077);
-			types.add(UMLElementTypes.Component_3081);
-			types.add(UMLElementTypes.Device_3082);
-			types.add(UMLElementTypes.ExecutionEnvironment_3083);
-			types.add(UMLElementTypes.Node_3084);
-			types.add(UMLElementTypes.Class_3085);
-			types.add(UMLElementTypes.Collaboration_3086);
-			types.add(UMLElementTypes.Interface_3087);
-			types.add(UMLElementTypes.PrimitiveType_3078);
-			types.add(UMLElementTypes.Enumeration_3079);
-			types.add(UMLElementTypes.DataType_3080);
-			types.add(UMLElementTypes.Actor_3091);
-			types.add(UMLElementTypes.DeploymentSpecification_3092);
-			types.add(UMLElementTypes.Artifact_3093);
-			types.add(UMLElementTypes.InformationItem_3094);
-			types.add(UMLElementTypes.Signal_3095);
-			types.add(UMLElementTypes.UseCase_3096);
-			types.add(UMLElementTypes.Comment_3097);
-			return types;
-		}
-		if(editPart instanceof OpaqueBehaviorCompositeCompartmentEditPart) {
-			ArrayList types = new ArrayList(27);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Parameter_3088);
-			types.add(UMLElementTypes.Property_3070);
-			types.add(UMLElementTypes.CollaborationUse_3071);
-			types.add(UMLElementTypes.Activity_3072);
-			types.add(UMLElementTypes.Interaction_3073);
-			types.add(UMLElementTypes.ProtocolStateMachine_3074);
-			types.add(UMLElementTypes.StateMachine_3075);
-			types.add(UMLElementTypes.FunctionBehavior_3076);
-			types.add(UMLElementTypes.OpaqueBehavior_3077);
-			types.add(UMLElementTypes.Component_3081);
-			types.add(UMLElementTypes.Device_3082);
-			types.add(UMLElementTypes.ExecutionEnvironment_3083);
-			types.add(UMLElementTypes.Node_3084);
-			types.add(UMLElementTypes.Class_3085);
-			types.add(UMLElementTypes.Collaboration_3086);
-			types.add(UMLElementTypes.Interface_3087);
-			types.add(UMLElementTypes.PrimitiveType_3078);
-			types.add(UMLElementTypes.Enumeration_3079);
-			types.add(UMLElementTypes.DataType_3080);
-			types.add(UMLElementTypes.Actor_3091);
-			types.add(UMLElementTypes.DeploymentSpecification_3092);
-			types.add(UMLElementTypes.Artifact_3093);
-			types.add(UMLElementTypes.InformationItem_3094);
-			types.add(UMLElementTypes.Signal_3095);
-			types.add(UMLElementTypes.UseCase_3096);
-			types.add(UMLElementTypes.Comment_3097);
-			return types;
-		}
-		if(editPart instanceof ComponentCompositeCompartmentEditPart) {
-			ArrayList types = new ArrayList(26);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Property_3070);
-			types.add(UMLElementTypes.CollaborationUse_3071);
-			types.add(UMLElementTypes.Activity_3072);
-			types.add(UMLElementTypes.Interaction_3073);
-			types.add(UMLElementTypes.ProtocolStateMachine_3074);
-			types.add(UMLElementTypes.StateMachine_3075);
-			types.add(UMLElementTypes.FunctionBehavior_3076);
-			types.add(UMLElementTypes.OpaqueBehavior_3077);
-			types.add(UMLElementTypes.Component_3081);
-			types.add(UMLElementTypes.Device_3082);
-			types.add(UMLElementTypes.ExecutionEnvironment_3083);
-			types.add(UMLElementTypes.Node_3084);
-			types.add(UMLElementTypes.Class_3085);
-			types.add(UMLElementTypes.Collaboration_3086);
-			types.add(UMLElementTypes.Interface_3087);
-			types.add(UMLElementTypes.PrimitiveType_3078);
-			types.add(UMLElementTypes.Enumeration_3079);
-			types.add(UMLElementTypes.DataType_3080);
-			types.add(UMLElementTypes.Actor_3091);
-			types.add(UMLElementTypes.DeploymentSpecification_3092);
-			types.add(UMLElementTypes.Artifact_3093);
-			types.add(UMLElementTypes.InformationItem_3094);
-			types.add(UMLElementTypes.Signal_3095);
-			types.add(UMLElementTypes.UseCase_3096);
-			types.add(UMLElementTypes.Comment_3097);
-			return types;
-		}
-		if(editPart instanceof DeviceCompositeCompartmentEditPart) {
-			ArrayList types = new ArrayList(26);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Property_3070);
-			types.add(UMLElementTypes.CollaborationUse_3071);
-			types.add(UMLElementTypes.Activity_3072);
-			types.add(UMLElementTypes.Interaction_3073);
-			types.add(UMLElementTypes.ProtocolStateMachine_3074);
-			types.add(UMLElementTypes.StateMachine_3075);
-			types.add(UMLElementTypes.FunctionBehavior_3076);
-			types.add(UMLElementTypes.OpaqueBehavior_3077);
-			types.add(UMLElementTypes.Component_3081);
-			types.add(UMLElementTypes.Device_3082);
-			types.add(UMLElementTypes.ExecutionEnvironment_3083);
-			types.add(UMLElementTypes.Node_3084);
-			types.add(UMLElementTypes.Class_3085);
-			types.add(UMLElementTypes.Collaboration_3086);
-			types.add(UMLElementTypes.Interface_3087);
-			types.add(UMLElementTypes.PrimitiveType_3078);
-			types.add(UMLElementTypes.Enumeration_3079);
-			types.add(UMLElementTypes.DataType_3080);
-			types.add(UMLElementTypes.Actor_3091);
-			types.add(UMLElementTypes.DeploymentSpecification_3092);
-			types.add(UMLElementTypes.Artifact_3093);
-			types.add(UMLElementTypes.InformationItem_3094);
-			types.add(UMLElementTypes.Signal_3095);
-			types.add(UMLElementTypes.UseCase_3096);
-			types.add(UMLElementTypes.Comment_3097);
-			return types;
-		}
-		if(editPart instanceof ExecutionEnvironmentCompositeCompartmentEditPart) {
-			ArrayList types = new ArrayList(26);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Property_3070);
-			types.add(UMLElementTypes.CollaborationUse_3071);
-			types.add(UMLElementTypes.Activity_3072);
-			types.add(UMLElementTypes.Interaction_3073);
-			types.add(UMLElementTypes.ProtocolStateMachine_3074);
-			types.add(UMLElementTypes.StateMachine_3075);
-			types.add(UMLElementTypes.FunctionBehavior_3076);
-			types.add(UMLElementTypes.OpaqueBehavior_3077);
-			types.add(UMLElementTypes.Component_3081);
-			types.add(UMLElementTypes.Device_3082);
-			types.add(UMLElementTypes.ExecutionEnvironment_3083);
-			types.add(UMLElementTypes.Node_3084);
-			types.add(UMLElementTypes.Class_3085);
-			types.add(UMLElementTypes.Collaboration_3086);
-			types.add(UMLElementTypes.Interface_3087);
-			types.add(UMLElementTypes.PrimitiveType_3078);
-			types.add(UMLElementTypes.Enumeration_3079);
-			types.add(UMLElementTypes.DataType_3080);
-			types.add(UMLElementTypes.Actor_3091);
-			types.add(UMLElementTypes.DeploymentSpecification_3092);
-			types.add(UMLElementTypes.Artifact_3093);
-			types.add(UMLElementTypes.InformationItem_3094);
-			types.add(UMLElementTypes.Signal_3095);
-			types.add(UMLElementTypes.UseCase_3096);
-			types.add(UMLElementTypes.Comment_3097);
-			return types;
-		}
-		if(editPart instanceof NodeCompositeCompartmentEditPart) {
-			ArrayList types = new ArrayList(26);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Property_3070);
-			types.add(UMLElementTypes.CollaborationUse_3071);
-			types.add(UMLElementTypes.Activity_3072);
-			types.add(UMLElementTypes.Interaction_3073);
-			types.add(UMLElementTypes.ProtocolStateMachine_3074);
-			types.add(UMLElementTypes.StateMachine_3075);
-			types.add(UMLElementTypes.FunctionBehavior_3076);
-			types.add(UMLElementTypes.OpaqueBehavior_3077);
-			types.add(UMLElementTypes.Component_3081);
-			types.add(UMLElementTypes.Device_3082);
-			types.add(UMLElementTypes.ExecutionEnvironment_3083);
-			types.add(UMLElementTypes.Node_3084);
-			types.add(UMLElementTypes.Class_3085);
-			types.add(UMLElementTypes.Collaboration_3086);
-			types.add(UMLElementTypes.Interface_3087);
-			types.add(UMLElementTypes.PrimitiveType_3078);
-			types.add(UMLElementTypes.Enumeration_3079);
-			types.add(UMLElementTypes.DataType_3080);
-			types.add(UMLElementTypes.Actor_3091);
-			types.add(UMLElementTypes.DeploymentSpecification_3092);
-			types.add(UMLElementTypes.Artifact_3093);
-			types.add(UMLElementTypes.InformationItem_3094);
-			types.add(UMLElementTypes.Signal_3095);
-			types.add(UMLElementTypes.UseCase_3096);
-			types.add(UMLElementTypes.Comment_3097);
-			return types;
-		}
-		if(editPart instanceof ClassCompositeCompartmentEditPart) {
-			ArrayList types = new ArrayList(26);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Property_3070);
-			types.add(UMLElementTypes.CollaborationUse_3071);
-			types.add(UMLElementTypes.Activity_3072);
-			types.add(UMLElementTypes.Interaction_3073);
-			types.add(UMLElementTypes.ProtocolStateMachine_3074);
-			types.add(UMLElementTypes.StateMachine_3075);
-			types.add(UMLElementTypes.FunctionBehavior_3076);
-			types.add(UMLElementTypes.OpaqueBehavior_3077);
-			types.add(UMLElementTypes.Component_3081);
-			types.add(UMLElementTypes.Device_3082);
-			types.add(UMLElementTypes.ExecutionEnvironment_3083);
-			types.add(UMLElementTypes.Node_3084);
-			types.add(UMLElementTypes.Class_3085);
-			types.add(UMLElementTypes.Collaboration_3086);
-			types.add(UMLElementTypes.Interface_3087);
-			types.add(UMLElementTypes.PrimitiveType_3078);
-			types.add(UMLElementTypes.Enumeration_3079);
-			types.add(UMLElementTypes.DataType_3080);
-			types.add(UMLElementTypes.Actor_3091);
-			types.add(UMLElementTypes.DeploymentSpecification_3092);
-			types.add(UMLElementTypes.Artifact_3093);
-			types.add(UMLElementTypes.InformationItem_3094);
-			types.add(UMLElementTypes.Signal_3095);
-			types.add(UMLElementTypes.UseCase_3096);
-			types.add(UMLElementTypes.Comment_3097);
-			return types;
-		}
-		if(editPart instanceof CollaborationCompositeCompartmentEditPart) {
-			ArrayList types = new ArrayList(4);
-			types.add(UMLElementTypes.Property_3070);
-			types.add(UMLElementTypes.CollaborationUse_3071);
-			types.add(UMLElementTypes.Comment_3097);
-			types.add(UMLElementTypes.ConnectableElement_3115);
-			return types;
-		}
-		if(editPart instanceof PropertyPartCompartmentEditPartCN) {
-			ArrayList types = new ArrayList(3);
-			types.add(UMLElementTypes.Port_3069);
-			types.add(UMLElementTypes.Property_3070);
-			types.add(UMLElementTypes.Comment_3097);
-			return types;
-		}
 		if(editPart instanceof PackageEditPart) {
-			ArrayList types = new ArrayList(55);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(55);
 			types.add(UMLElementTypes.Activity_2060);
 			types.add(UMLElementTypes.Interaction_2061);
 			types.add(UMLElementTypes.ProtocolStateMachine_2062);
@@ -967,6 +104,869 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.IntervalConstraint_2112);
 			types.add(UMLElementTypes.InteractionConstraint_2113);
 			types.add(UMLElementTypes.Constraint_2114);
+			return types;
+		}
+		if(editPart instanceof ActivityCompositeEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Parameter_3088);
+			return types;
+		}
+		if(editPart instanceof InteractionCompositeEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Parameter_3088);
+			return types;
+		}
+		if(editPart instanceof ProtocolStateMachineCompositeEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Parameter_3088);
+			return types;
+		}
+		if(editPart instanceof StateMachineCompositeEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Parameter_3088);
+			return types;
+		}
+		if(editPart instanceof FunctionBehaviorCompositeEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Parameter_3088);
+			return types;
+		}
+		if(editPart instanceof OpaqueBehaviorCompositeEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Parameter_3088);
+			return types;
+		}
+		if(editPart instanceof ComponentCompositeEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.Port_3069);
+			return types;
+		}
+		if(editPart instanceof DeviceCompositeEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.Port_3069);
+			return types;
+		}
+		if(editPart instanceof ExecutionEnvironmentCompositeEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.Port_3069);
+			return types;
+		}
+		if(editPart instanceof NodeCompositeEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.Port_3069);
+			return types;
+		}
+		if(editPart instanceof ClassCompositeEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.Port_3069);
+			return types;
+		}
+		if(editPart instanceof ClassClassifierEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(15);
+			types.add(UMLElementTypes.Property_3101);
+			types.add(UMLElementTypes.Reception_3100);
+			types.add(UMLElementTypes.Operation_3102);
+			types.add(UMLElementTypes.Activity_3103);
+			types.add(UMLElementTypes.Interaction_3104);
+			types.add(UMLElementTypes.ProtocolStateMachine_3105);
+			types.add(UMLElementTypes.StateMachine_3106);
+			types.add(UMLElementTypes.FunctionBehavior_3107);
+			types.add(UMLElementTypes.OpaqueBehavior_3108);
+			types.add(UMLElementTypes.Collaboration_3109);
+			types.add(UMLElementTypes.Interface_3110);
+			types.add(UMLElementTypes.Enumeration_3111);
+			types.add(UMLElementTypes.PrimitiveType_3112);
+			types.add(UMLElementTypes.DataType_3113);
+			types.add(UMLElementTypes.Class_3114);
+			return types;
+		}
+		if(editPart instanceof EnumerationEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.EnumerationLiteral_3066);
+			return types;
+		}
+		if(editPart instanceof DataTypeEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+			types.add(UMLElementTypes.Property_3101);
+			types.add(UMLElementTypes.Operation_3102);
+			return types;
+		}
+		if(editPart instanceof PropertyPartEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.Port_3069);
+			return types;
+		}
+		if(editPart instanceof ActivityCompositeEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Parameter_3088);
+			return types;
+		}
+		if(editPart instanceof InteractionCompositeEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Parameter_3088);
+			return types;
+		}
+		if(editPart instanceof ProtocolStateMachineCompositeEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Parameter_3088);
+			return types;
+		}
+		if(editPart instanceof StateMachineCompositeEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Parameter_3088);
+			return types;
+		}
+		if(editPart instanceof FunctionBehaviorCompositeEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Parameter_3088);
+			return types;
+		}
+		if(editPart instanceof OpaqueBehaviorCompositeEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Parameter_3088);
+			return types;
+		}
+		if(editPart instanceof ComponentCompositeEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.Port_3069);
+			return types;
+		}
+		if(editPart instanceof DeviceCompositeEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.Port_3069);
+			return types;
+		}
+		if(editPart instanceof ExecutionEnvironmentCompositeEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.Port_3069);
+			return types;
+		}
+		if(editPart instanceof NodeCompositeEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.Port_3069);
+			return types;
+		}
+		if(editPart instanceof ClassCompositeEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.Port_3069);
+			return types;
+		}
+		if(editPart instanceof EnumerationEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.EnumerationLiteral_3066);
+			return types;
+		}
+		if(editPart instanceof DataTypeEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+			types.add(UMLElementTypes.Property_3101);
+			types.add(UMLElementTypes.Operation_3102);
+			return types;
+		}
+		if(editPart instanceof ActivityCompositeCompartmentEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(27);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Parameter_3088);
+			types.add(UMLElementTypes.Property_3070);
+			types.add(UMLElementTypes.CollaborationUse_3071);
+			types.add(UMLElementTypes.Activity_3072);
+			types.add(UMLElementTypes.Interaction_3073);
+			types.add(UMLElementTypes.ProtocolStateMachine_3074);
+			types.add(UMLElementTypes.StateMachine_3075);
+			types.add(UMLElementTypes.FunctionBehavior_3076);
+			types.add(UMLElementTypes.OpaqueBehavior_3077);
+			types.add(UMLElementTypes.Component_3081);
+			types.add(UMLElementTypes.Device_3082);
+			types.add(UMLElementTypes.ExecutionEnvironment_3083);
+			types.add(UMLElementTypes.Node_3084);
+			types.add(UMLElementTypes.Class_3085);
+			types.add(UMLElementTypes.Collaboration_3086);
+			types.add(UMLElementTypes.Interface_3087);
+			types.add(UMLElementTypes.PrimitiveType_3078);
+			types.add(UMLElementTypes.Enumeration_3079);
+			types.add(UMLElementTypes.DataType_3080);
+			types.add(UMLElementTypes.Actor_3091);
+			types.add(UMLElementTypes.DeploymentSpecification_3092);
+			types.add(UMLElementTypes.Artifact_3093);
+			types.add(UMLElementTypes.InformationItem_3094);
+			types.add(UMLElementTypes.Signal_3095);
+			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.Comment_3097);
+			return types;
+		}
+		if(editPart instanceof InteractionCompositeCompartmentEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(27);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Parameter_3088);
+			types.add(UMLElementTypes.Property_3070);
+			types.add(UMLElementTypes.CollaborationUse_3071);
+			types.add(UMLElementTypes.Activity_3072);
+			types.add(UMLElementTypes.Interaction_3073);
+			types.add(UMLElementTypes.ProtocolStateMachine_3074);
+			types.add(UMLElementTypes.StateMachine_3075);
+			types.add(UMLElementTypes.FunctionBehavior_3076);
+			types.add(UMLElementTypes.OpaqueBehavior_3077);
+			types.add(UMLElementTypes.Component_3081);
+			types.add(UMLElementTypes.Device_3082);
+			types.add(UMLElementTypes.ExecutionEnvironment_3083);
+			types.add(UMLElementTypes.Node_3084);
+			types.add(UMLElementTypes.Class_3085);
+			types.add(UMLElementTypes.Collaboration_3086);
+			types.add(UMLElementTypes.Interface_3087);
+			types.add(UMLElementTypes.PrimitiveType_3078);
+			types.add(UMLElementTypes.Enumeration_3079);
+			types.add(UMLElementTypes.DataType_3080);
+			types.add(UMLElementTypes.Actor_3091);
+			types.add(UMLElementTypes.DeploymentSpecification_3092);
+			types.add(UMLElementTypes.Artifact_3093);
+			types.add(UMLElementTypes.InformationItem_3094);
+			types.add(UMLElementTypes.Signal_3095);
+			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.Comment_3097);
+			return types;
+		}
+		if(editPart instanceof ProtocolStateMachineCompositeCompartmentEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(27);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Parameter_3088);
+			types.add(UMLElementTypes.Property_3070);
+			types.add(UMLElementTypes.CollaborationUse_3071);
+			types.add(UMLElementTypes.Activity_3072);
+			types.add(UMLElementTypes.Interaction_3073);
+			types.add(UMLElementTypes.ProtocolStateMachine_3074);
+			types.add(UMLElementTypes.StateMachine_3075);
+			types.add(UMLElementTypes.FunctionBehavior_3076);
+			types.add(UMLElementTypes.OpaqueBehavior_3077);
+			types.add(UMLElementTypes.Component_3081);
+			types.add(UMLElementTypes.Device_3082);
+			types.add(UMLElementTypes.ExecutionEnvironment_3083);
+			types.add(UMLElementTypes.Node_3084);
+			types.add(UMLElementTypes.Class_3085);
+			types.add(UMLElementTypes.Collaboration_3086);
+			types.add(UMLElementTypes.Interface_3087);
+			types.add(UMLElementTypes.PrimitiveType_3078);
+			types.add(UMLElementTypes.Enumeration_3079);
+			types.add(UMLElementTypes.DataType_3080);
+			types.add(UMLElementTypes.Actor_3091);
+			types.add(UMLElementTypes.DeploymentSpecification_3092);
+			types.add(UMLElementTypes.Artifact_3093);
+			types.add(UMLElementTypes.InformationItem_3094);
+			types.add(UMLElementTypes.Signal_3095);
+			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.Comment_3097);
+			return types;
+		}
+		if(editPart instanceof StateMachineCompositeCompartmentEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(27);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Parameter_3088);
+			types.add(UMLElementTypes.Property_3070);
+			types.add(UMLElementTypes.CollaborationUse_3071);
+			types.add(UMLElementTypes.Activity_3072);
+			types.add(UMLElementTypes.Interaction_3073);
+			types.add(UMLElementTypes.ProtocolStateMachine_3074);
+			types.add(UMLElementTypes.StateMachine_3075);
+			types.add(UMLElementTypes.FunctionBehavior_3076);
+			types.add(UMLElementTypes.OpaqueBehavior_3077);
+			types.add(UMLElementTypes.Component_3081);
+			types.add(UMLElementTypes.Device_3082);
+			types.add(UMLElementTypes.ExecutionEnvironment_3083);
+			types.add(UMLElementTypes.Node_3084);
+			types.add(UMLElementTypes.Class_3085);
+			types.add(UMLElementTypes.Collaboration_3086);
+			types.add(UMLElementTypes.Interface_3087);
+			types.add(UMLElementTypes.PrimitiveType_3078);
+			types.add(UMLElementTypes.Enumeration_3079);
+			types.add(UMLElementTypes.DataType_3080);
+			types.add(UMLElementTypes.Actor_3091);
+			types.add(UMLElementTypes.DeploymentSpecification_3092);
+			types.add(UMLElementTypes.Artifact_3093);
+			types.add(UMLElementTypes.InformationItem_3094);
+			types.add(UMLElementTypes.Signal_3095);
+			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.Comment_3097);
+			return types;
+		}
+		if(editPart instanceof FunctionBehaviorCompositeCompartmentEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(27);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Parameter_3088);
+			types.add(UMLElementTypes.Property_3070);
+			types.add(UMLElementTypes.CollaborationUse_3071);
+			types.add(UMLElementTypes.Activity_3072);
+			types.add(UMLElementTypes.Interaction_3073);
+			types.add(UMLElementTypes.ProtocolStateMachine_3074);
+			types.add(UMLElementTypes.StateMachine_3075);
+			types.add(UMLElementTypes.FunctionBehavior_3076);
+			types.add(UMLElementTypes.OpaqueBehavior_3077);
+			types.add(UMLElementTypes.Component_3081);
+			types.add(UMLElementTypes.Device_3082);
+			types.add(UMLElementTypes.ExecutionEnvironment_3083);
+			types.add(UMLElementTypes.Node_3084);
+			types.add(UMLElementTypes.Class_3085);
+			types.add(UMLElementTypes.Collaboration_3086);
+			types.add(UMLElementTypes.Interface_3087);
+			types.add(UMLElementTypes.PrimitiveType_3078);
+			types.add(UMLElementTypes.Enumeration_3079);
+			types.add(UMLElementTypes.DataType_3080);
+			types.add(UMLElementTypes.Actor_3091);
+			types.add(UMLElementTypes.DeploymentSpecification_3092);
+			types.add(UMLElementTypes.Artifact_3093);
+			types.add(UMLElementTypes.InformationItem_3094);
+			types.add(UMLElementTypes.Signal_3095);
+			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.Comment_3097);
+			return types;
+		}
+		if(editPart instanceof OpaqueBehaviorCompositeCompartmentEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(27);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Parameter_3088);
+			types.add(UMLElementTypes.Property_3070);
+			types.add(UMLElementTypes.CollaborationUse_3071);
+			types.add(UMLElementTypes.Activity_3072);
+			types.add(UMLElementTypes.Interaction_3073);
+			types.add(UMLElementTypes.ProtocolStateMachine_3074);
+			types.add(UMLElementTypes.StateMachine_3075);
+			types.add(UMLElementTypes.FunctionBehavior_3076);
+			types.add(UMLElementTypes.OpaqueBehavior_3077);
+			types.add(UMLElementTypes.Component_3081);
+			types.add(UMLElementTypes.Device_3082);
+			types.add(UMLElementTypes.ExecutionEnvironment_3083);
+			types.add(UMLElementTypes.Node_3084);
+			types.add(UMLElementTypes.Class_3085);
+			types.add(UMLElementTypes.Collaboration_3086);
+			types.add(UMLElementTypes.Interface_3087);
+			types.add(UMLElementTypes.PrimitiveType_3078);
+			types.add(UMLElementTypes.Enumeration_3079);
+			types.add(UMLElementTypes.DataType_3080);
+			types.add(UMLElementTypes.Actor_3091);
+			types.add(UMLElementTypes.DeploymentSpecification_3092);
+			types.add(UMLElementTypes.Artifact_3093);
+			types.add(UMLElementTypes.InformationItem_3094);
+			types.add(UMLElementTypes.Signal_3095);
+			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.Comment_3097);
+			return types;
+		}
+		if(editPart instanceof ComponentCompositeCompartmentEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(26);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Property_3070);
+			types.add(UMLElementTypes.CollaborationUse_3071);
+			types.add(UMLElementTypes.Activity_3072);
+			types.add(UMLElementTypes.Interaction_3073);
+			types.add(UMLElementTypes.ProtocolStateMachine_3074);
+			types.add(UMLElementTypes.StateMachine_3075);
+			types.add(UMLElementTypes.FunctionBehavior_3076);
+			types.add(UMLElementTypes.OpaqueBehavior_3077);
+			types.add(UMLElementTypes.Component_3081);
+			types.add(UMLElementTypes.Device_3082);
+			types.add(UMLElementTypes.ExecutionEnvironment_3083);
+			types.add(UMLElementTypes.Node_3084);
+			types.add(UMLElementTypes.Class_3085);
+			types.add(UMLElementTypes.Collaboration_3086);
+			types.add(UMLElementTypes.Interface_3087);
+			types.add(UMLElementTypes.PrimitiveType_3078);
+			types.add(UMLElementTypes.Enumeration_3079);
+			types.add(UMLElementTypes.DataType_3080);
+			types.add(UMLElementTypes.Actor_3091);
+			types.add(UMLElementTypes.DeploymentSpecification_3092);
+			types.add(UMLElementTypes.Artifact_3093);
+			types.add(UMLElementTypes.InformationItem_3094);
+			types.add(UMLElementTypes.Signal_3095);
+			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.Comment_3097);
+			return types;
+		}
+		if(editPart instanceof DeviceCompositeCompartmentEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(26);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Property_3070);
+			types.add(UMLElementTypes.CollaborationUse_3071);
+			types.add(UMLElementTypes.Activity_3072);
+			types.add(UMLElementTypes.Interaction_3073);
+			types.add(UMLElementTypes.ProtocolStateMachine_3074);
+			types.add(UMLElementTypes.StateMachine_3075);
+			types.add(UMLElementTypes.FunctionBehavior_3076);
+			types.add(UMLElementTypes.OpaqueBehavior_3077);
+			types.add(UMLElementTypes.Component_3081);
+			types.add(UMLElementTypes.Device_3082);
+			types.add(UMLElementTypes.ExecutionEnvironment_3083);
+			types.add(UMLElementTypes.Node_3084);
+			types.add(UMLElementTypes.Class_3085);
+			types.add(UMLElementTypes.Collaboration_3086);
+			types.add(UMLElementTypes.Interface_3087);
+			types.add(UMLElementTypes.PrimitiveType_3078);
+			types.add(UMLElementTypes.Enumeration_3079);
+			types.add(UMLElementTypes.DataType_3080);
+			types.add(UMLElementTypes.Actor_3091);
+			types.add(UMLElementTypes.DeploymentSpecification_3092);
+			types.add(UMLElementTypes.Artifact_3093);
+			types.add(UMLElementTypes.InformationItem_3094);
+			types.add(UMLElementTypes.Signal_3095);
+			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.Comment_3097);
+			return types;
+		}
+		if(editPart instanceof ExecutionEnvironmentCompositeCompartmentEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(26);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Property_3070);
+			types.add(UMLElementTypes.CollaborationUse_3071);
+			types.add(UMLElementTypes.Activity_3072);
+			types.add(UMLElementTypes.Interaction_3073);
+			types.add(UMLElementTypes.ProtocolStateMachine_3074);
+			types.add(UMLElementTypes.StateMachine_3075);
+			types.add(UMLElementTypes.FunctionBehavior_3076);
+			types.add(UMLElementTypes.OpaqueBehavior_3077);
+			types.add(UMLElementTypes.Component_3081);
+			types.add(UMLElementTypes.Device_3082);
+			types.add(UMLElementTypes.ExecutionEnvironment_3083);
+			types.add(UMLElementTypes.Node_3084);
+			types.add(UMLElementTypes.Class_3085);
+			types.add(UMLElementTypes.Collaboration_3086);
+			types.add(UMLElementTypes.Interface_3087);
+			types.add(UMLElementTypes.PrimitiveType_3078);
+			types.add(UMLElementTypes.Enumeration_3079);
+			types.add(UMLElementTypes.DataType_3080);
+			types.add(UMLElementTypes.Actor_3091);
+			types.add(UMLElementTypes.DeploymentSpecification_3092);
+			types.add(UMLElementTypes.Artifact_3093);
+			types.add(UMLElementTypes.InformationItem_3094);
+			types.add(UMLElementTypes.Signal_3095);
+			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.Comment_3097);
+			return types;
+		}
+		if(editPart instanceof NodeCompositeCompartmentEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(26);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Property_3070);
+			types.add(UMLElementTypes.CollaborationUse_3071);
+			types.add(UMLElementTypes.Activity_3072);
+			types.add(UMLElementTypes.Interaction_3073);
+			types.add(UMLElementTypes.ProtocolStateMachine_3074);
+			types.add(UMLElementTypes.StateMachine_3075);
+			types.add(UMLElementTypes.FunctionBehavior_3076);
+			types.add(UMLElementTypes.OpaqueBehavior_3077);
+			types.add(UMLElementTypes.Component_3081);
+			types.add(UMLElementTypes.Device_3082);
+			types.add(UMLElementTypes.ExecutionEnvironment_3083);
+			types.add(UMLElementTypes.Node_3084);
+			types.add(UMLElementTypes.Class_3085);
+			types.add(UMLElementTypes.Collaboration_3086);
+			types.add(UMLElementTypes.Interface_3087);
+			types.add(UMLElementTypes.PrimitiveType_3078);
+			types.add(UMLElementTypes.Enumeration_3079);
+			types.add(UMLElementTypes.DataType_3080);
+			types.add(UMLElementTypes.Actor_3091);
+			types.add(UMLElementTypes.DeploymentSpecification_3092);
+			types.add(UMLElementTypes.Artifact_3093);
+			types.add(UMLElementTypes.InformationItem_3094);
+			types.add(UMLElementTypes.Signal_3095);
+			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.Comment_3097);
+			return types;
+		}
+		if(editPart instanceof ClassCompositeCompartmentEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(26);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Property_3070);
+			types.add(UMLElementTypes.CollaborationUse_3071);
+			types.add(UMLElementTypes.Activity_3072);
+			types.add(UMLElementTypes.Interaction_3073);
+			types.add(UMLElementTypes.ProtocolStateMachine_3074);
+			types.add(UMLElementTypes.StateMachine_3075);
+			types.add(UMLElementTypes.FunctionBehavior_3076);
+			types.add(UMLElementTypes.OpaqueBehavior_3077);
+			types.add(UMLElementTypes.Component_3081);
+			types.add(UMLElementTypes.Device_3082);
+			types.add(UMLElementTypes.ExecutionEnvironment_3083);
+			types.add(UMLElementTypes.Node_3084);
+			types.add(UMLElementTypes.Class_3085);
+			types.add(UMLElementTypes.Collaboration_3086);
+			types.add(UMLElementTypes.Interface_3087);
+			types.add(UMLElementTypes.PrimitiveType_3078);
+			types.add(UMLElementTypes.Enumeration_3079);
+			types.add(UMLElementTypes.DataType_3080);
+			types.add(UMLElementTypes.Actor_3091);
+			types.add(UMLElementTypes.DeploymentSpecification_3092);
+			types.add(UMLElementTypes.Artifact_3093);
+			types.add(UMLElementTypes.InformationItem_3094);
+			types.add(UMLElementTypes.Signal_3095);
+			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.Comment_3097);
+			return types;
+		}
+		if(editPart instanceof CollaborationCompositeCompartmentEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(4);
+			types.add(UMLElementTypes.Property_3070);
+			types.add(UMLElementTypes.CollaborationUse_3071);
+			types.add(UMLElementTypes.Comment_3097);
+			types.add(UMLElementTypes.ConnectableElement_3115);
+			return types;
+		}
+		if(editPart instanceof ActivityCompositeCompartmentEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(27);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Parameter_3088);
+			types.add(UMLElementTypes.Property_3070);
+			types.add(UMLElementTypes.CollaborationUse_3071);
+			types.add(UMLElementTypes.Activity_3072);
+			types.add(UMLElementTypes.Interaction_3073);
+			types.add(UMLElementTypes.ProtocolStateMachine_3074);
+			types.add(UMLElementTypes.StateMachine_3075);
+			types.add(UMLElementTypes.FunctionBehavior_3076);
+			types.add(UMLElementTypes.OpaqueBehavior_3077);
+			types.add(UMLElementTypes.Component_3081);
+			types.add(UMLElementTypes.Device_3082);
+			types.add(UMLElementTypes.ExecutionEnvironment_3083);
+			types.add(UMLElementTypes.Node_3084);
+			types.add(UMLElementTypes.Class_3085);
+			types.add(UMLElementTypes.Collaboration_3086);
+			types.add(UMLElementTypes.Interface_3087);
+			types.add(UMLElementTypes.PrimitiveType_3078);
+			types.add(UMLElementTypes.Enumeration_3079);
+			types.add(UMLElementTypes.DataType_3080);
+			types.add(UMLElementTypes.Actor_3091);
+			types.add(UMLElementTypes.DeploymentSpecification_3092);
+			types.add(UMLElementTypes.Artifact_3093);
+			types.add(UMLElementTypes.InformationItem_3094);
+			types.add(UMLElementTypes.Signal_3095);
+			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.Comment_3097);
+			return types;
+		}
+		if(editPart instanceof InteractionCompositeCompartmentEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(27);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Parameter_3088);
+			types.add(UMLElementTypes.Property_3070);
+			types.add(UMLElementTypes.CollaborationUse_3071);
+			types.add(UMLElementTypes.Activity_3072);
+			types.add(UMLElementTypes.Interaction_3073);
+			types.add(UMLElementTypes.ProtocolStateMachine_3074);
+			types.add(UMLElementTypes.StateMachine_3075);
+			types.add(UMLElementTypes.FunctionBehavior_3076);
+			types.add(UMLElementTypes.OpaqueBehavior_3077);
+			types.add(UMLElementTypes.Component_3081);
+			types.add(UMLElementTypes.Device_3082);
+			types.add(UMLElementTypes.ExecutionEnvironment_3083);
+			types.add(UMLElementTypes.Node_3084);
+			types.add(UMLElementTypes.Class_3085);
+			types.add(UMLElementTypes.Collaboration_3086);
+			types.add(UMLElementTypes.Interface_3087);
+			types.add(UMLElementTypes.PrimitiveType_3078);
+			types.add(UMLElementTypes.Enumeration_3079);
+			types.add(UMLElementTypes.DataType_3080);
+			types.add(UMLElementTypes.Actor_3091);
+			types.add(UMLElementTypes.DeploymentSpecification_3092);
+			types.add(UMLElementTypes.Artifact_3093);
+			types.add(UMLElementTypes.InformationItem_3094);
+			types.add(UMLElementTypes.Signal_3095);
+			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.Comment_3097);
+			return types;
+		}
+		if(editPart instanceof ProtocolStateMachineCompositeCompartmentEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(27);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Parameter_3088);
+			types.add(UMLElementTypes.Property_3070);
+			types.add(UMLElementTypes.CollaborationUse_3071);
+			types.add(UMLElementTypes.Activity_3072);
+			types.add(UMLElementTypes.Interaction_3073);
+			types.add(UMLElementTypes.ProtocolStateMachine_3074);
+			types.add(UMLElementTypes.StateMachine_3075);
+			types.add(UMLElementTypes.FunctionBehavior_3076);
+			types.add(UMLElementTypes.OpaqueBehavior_3077);
+			types.add(UMLElementTypes.Component_3081);
+			types.add(UMLElementTypes.Device_3082);
+			types.add(UMLElementTypes.ExecutionEnvironment_3083);
+			types.add(UMLElementTypes.Node_3084);
+			types.add(UMLElementTypes.Class_3085);
+			types.add(UMLElementTypes.Collaboration_3086);
+			types.add(UMLElementTypes.Interface_3087);
+			types.add(UMLElementTypes.PrimitiveType_3078);
+			types.add(UMLElementTypes.Enumeration_3079);
+			types.add(UMLElementTypes.DataType_3080);
+			types.add(UMLElementTypes.Actor_3091);
+			types.add(UMLElementTypes.DeploymentSpecification_3092);
+			types.add(UMLElementTypes.Artifact_3093);
+			types.add(UMLElementTypes.InformationItem_3094);
+			types.add(UMLElementTypes.Signal_3095);
+			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.Comment_3097);
+			return types;
+		}
+		if(editPart instanceof StateMachineCompositeCompartmentEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(27);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Parameter_3088);
+			types.add(UMLElementTypes.Property_3070);
+			types.add(UMLElementTypes.CollaborationUse_3071);
+			types.add(UMLElementTypes.Activity_3072);
+			types.add(UMLElementTypes.Interaction_3073);
+			types.add(UMLElementTypes.ProtocolStateMachine_3074);
+			types.add(UMLElementTypes.StateMachine_3075);
+			types.add(UMLElementTypes.FunctionBehavior_3076);
+			types.add(UMLElementTypes.OpaqueBehavior_3077);
+			types.add(UMLElementTypes.Component_3081);
+			types.add(UMLElementTypes.Device_3082);
+			types.add(UMLElementTypes.ExecutionEnvironment_3083);
+			types.add(UMLElementTypes.Node_3084);
+			types.add(UMLElementTypes.Class_3085);
+			types.add(UMLElementTypes.Collaboration_3086);
+			types.add(UMLElementTypes.Interface_3087);
+			types.add(UMLElementTypes.PrimitiveType_3078);
+			types.add(UMLElementTypes.Enumeration_3079);
+			types.add(UMLElementTypes.DataType_3080);
+			types.add(UMLElementTypes.Actor_3091);
+			types.add(UMLElementTypes.DeploymentSpecification_3092);
+			types.add(UMLElementTypes.Artifact_3093);
+			types.add(UMLElementTypes.InformationItem_3094);
+			types.add(UMLElementTypes.Signal_3095);
+			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.Comment_3097);
+			return types;
+		}
+		if(editPart instanceof FunctionBehaviorCompositeCompartmentEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(27);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Parameter_3088);
+			types.add(UMLElementTypes.Property_3070);
+			types.add(UMLElementTypes.CollaborationUse_3071);
+			types.add(UMLElementTypes.Activity_3072);
+			types.add(UMLElementTypes.Interaction_3073);
+			types.add(UMLElementTypes.ProtocolStateMachine_3074);
+			types.add(UMLElementTypes.StateMachine_3075);
+			types.add(UMLElementTypes.FunctionBehavior_3076);
+			types.add(UMLElementTypes.OpaqueBehavior_3077);
+			types.add(UMLElementTypes.Component_3081);
+			types.add(UMLElementTypes.Device_3082);
+			types.add(UMLElementTypes.ExecutionEnvironment_3083);
+			types.add(UMLElementTypes.Node_3084);
+			types.add(UMLElementTypes.Class_3085);
+			types.add(UMLElementTypes.Collaboration_3086);
+			types.add(UMLElementTypes.Interface_3087);
+			types.add(UMLElementTypes.PrimitiveType_3078);
+			types.add(UMLElementTypes.Enumeration_3079);
+			types.add(UMLElementTypes.DataType_3080);
+			types.add(UMLElementTypes.Actor_3091);
+			types.add(UMLElementTypes.DeploymentSpecification_3092);
+			types.add(UMLElementTypes.Artifact_3093);
+			types.add(UMLElementTypes.InformationItem_3094);
+			types.add(UMLElementTypes.Signal_3095);
+			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.Comment_3097);
+			return types;
+		}
+		if(editPart instanceof OpaqueBehaviorCompositeCompartmentEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(27);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Parameter_3088);
+			types.add(UMLElementTypes.Property_3070);
+			types.add(UMLElementTypes.CollaborationUse_3071);
+			types.add(UMLElementTypes.Activity_3072);
+			types.add(UMLElementTypes.Interaction_3073);
+			types.add(UMLElementTypes.ProtocolStateMachine_3074);
+			types.add(UMLElementTypes.StateMachine_3075);
+			types.add(UMLElementTypes.FunctionBehavior_3076);
+			types.add(UMLElementTypes.OpaqueBehavior_3077);
+			types.add(UMLElementTypes.Component_3081);
+			types.add(UMLElementTypes.Device_3082);
+			types.add(UMLElementTypes.ExecutionEnvironment_3083);
+			types.add(UMLElementTypes.Node_3084);
+			types.add(UMLElementTypes.Class_3085);
+			types.add(UMLElementTypes.Collaboration_3086);
+			types.add(UMLElementTypes.Interface_3087);
+			types.add(UMLElementTypes.PrimitiveType_3078);
+			types.add(UMLElementTypes.Enumeration_3079);
+			types.add(UMLElementTypes.DataType_3080);
+			types.add(UMLElementTypes.Actor_3091);
+			types.add(UMLElementTypes.DeploymentSpecification_3092);
+			types.add(UMLElementTypes.Artifact_3093);
+			types.add(UMLElementTypes.InformationItem_3094);
+			types.add(UMLElementTypes.Signal_3095);
+			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.Comment_3097);
+			return types;
+		}
+		if(editPart instanceof ComponentCompositeCompartmentEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(26);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Property_3070);
+			types.add(UMLElementTypes.CollaborationUse_3071);
+			types.add(UMLElementTypes.Activity_3072);
+			types.add(UMLElementTypes.Interaction_3073);
+			types.add(UMLElementTypes.ProtocolStateMachine_3074);
+			types.add(UMLElementTypes.StateMachine_3075);
+			types.add(UMLElementTypes.FunctionBehavior_3076);
+			types.add(UMLElementTypes.OpaqueBehavior_3077);
+			types.add(UMLElementTypes.Component_3081);
+			types.add(UMLElementTypes.Device_3082);
+			types.add(UMLElementTypes.ExecutionEnvironment_3083);
+			types.add(UMLElementTypes.Node_3084);
+			types.add(UMLElementTypes.Class_3085);
+			types.add(UMLElementTypes.Collaboration_3086);
+			types.add(UMLElementTypes.Interface_3087);
+			types.add(UMLElementTypes.PrimitiveType_3078);
+			types.add(UMLElementTypes.Enumeration_3079);
+			types.add(UMLElementTypes.DataType_3080);
+			types.add(UMLElementTypes.Actor_3091);
+			types.add(UMLElementTypes.DeploymentSpecification_3092);
+			types.add(UMLElementTypes.Artifact_3093);
+			types.add(UMLElementTypes.InformationItem_3094);
+			types.add(UMLElementTypes.Signal_3095);
+			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.Comment_3097);
+			return types;
+		}
+		if(editPart instanceof DeviceCompositeCompartmentEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(26);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Property_3070);
+			types.add(UMLElementTypes.CollaborationUse_3071);
+			types.add(UMLElementTypes.Activity_3072);
+			types.add(UMLElementTypes.Interaction_3073);
+			types.add(UMLElementTypes.ProtocolStateMachine_3074);
+			types.add(UMLElementTypes.StateMachine_3075);
+			types.add(UMLElementTypes.FunctionBehavior_3076);
+			types.add(UMLElementTypes.OpaqueBehavior_3077);
+			types.add(UMLElementTypes.Component_3081);
+			types.add(UMLElementTypes.Device_3082);
+			types.add(UMLElementTypes.ExecutionEnvironment_3083);
+			types.add(UMLElementTypes.Node_3084);
+			types.add(UMLElementTypes.Class_3085);
+			types.add(UMLElementTypes.Collaboration_3086);
+			types.add(UMLElementTypes.Interface_3087);
+			types.add(UMLElementTypes.PrimitiveType_3078);
+			types.add(UMLElementTypes.Enumeration_3079);
+			types.add(UMLElementTypes.DataType_3080);
+			types.add(UMLElementTypes.Actor_3091);
+			types.add(UMLElementTypes.DeploymentSpecification_3092);
+			types.add(UMLElementTypes.Artifact_3093);
+			types.add(UMLElementTypes.InformationItem_3094);
+			types.add(UMLElementTypes.Signal_3095);
+			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.Comment_3097);
+			return types;
+		}
+		if(editPart instanceof ExecutionEnvironmentCompositeCompartmentEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(26);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Property_3070);
+			types.add(UMLElementTypes.CollaborationUse_3071);
+			types.add(UMLElementTypes.Activity_3072);
+			types.add(UMLElementTypes.Interaction_3073);
+			types.add(UMLElementTypes.ProtocolStateMachine_3074);
+			types.add(UMLElementTypes.StateMachine_3075);
+			types.add(UMLElementTypes.FunctionBehavior_3076);
+			types.add(UMLElementTypes.OpaqueBehavior_3077);
+			types.add(UMLElementTypes.Component_3081);
+			types.add(UMLElementTypes.Device_3082);
+			types.add(UMLElementTypes.ExecutionEnvironment_3083);
+			types.add(UMLElementTypes.Node_3084);
+			types.add(UMLElementTypes.Class_3085);
+			types.add(UMLElementTypes.Collaboration_3086);
+			types.add(UMLElementTypes.Interface_3087);
+			types.add(UMLElementTypes.PrimitiveType_3078);
+			types.add(UMLElementTypes.Enumeration_3079);
+			types.add(UMLElementTypes.DataType_3080);
+			types.add(UMLElementTypes.Actor_3091);
+			types.add(UMLElementTypes.DeploymentSpecification_3092);
+			types.add(UMLElementTypes.Artifact_3093);
+			types.add(UMLElementTypes.InformationItem_3094);
+			types.add(UMLElementTypes.Signal_3095);
+			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.Comment_3097);
+			return types;
+		}
+		if(editPart instanceof NodeCompositeCompartmentEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(26);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Property_3070);
+			types.add(UMLElementTypes.CollaborationUse_3071);
+			types.add(UMLElementTypes.Activity_3072);
+			types.add(UMLElementTypes.Interaction_3073);
+			types.add(UMLElementTypes.ProtocolStateMachine_3074);
+			types.add(UMLElementTypes.StateMachine_3075);
+			types.add(UMLElementTypes.FunctionBehavior_3076);
+			types.add(UMLElementTypes.OpaqueBehavior_3077);
+			types.add(UMLElementTypes.Component_3081);
+			types.add(UMLElementTypes.Device_3082);
+			types.add(UMLElementTypes.ExecutionEnvironment_3083);
+			types.add(UMLElementTypes.Node_3084);
+			types.add(UMLElementTypes.Class_3085);
+			types.add(UMLElementTypes.Collaboration_3086);
+			types.add(UMLElementTypes.Interface_3087);
+			types.add(UMLElementTypes.PrimitiveType_3078);
+			types.add(UMLElementTypes.Enumeration_3079);
+			types.add(UMLElementTypes.DataType_3080);
+			types.add(UMLElementTypes.Actor_3091);
+			types.add(UMLElementTypes.DeploymentSpecification_3092);
+			types.add(UMLElementTypes.Artifact_3093);
+			types.add(UMLElementTypes.InformationItem_3094);
+			types.add(UMLElementTypes.Signal_3095);
+			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.Comment_3097);
+			return types;
+		}
+		if(editPart instanceof ClassCompositeCompartmentEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(26);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Property_3070);
+			types.add(UMLElementTypes.CollaborationUse_3071);
+			types.add(UMLElementTypes.Activity_3072);
+			types.add(UMLElementTypes.Interaction_3073);
+			types.add(UMLElementTypes.ProtocolStateMachine_3074);
+			types.add(UMLElementTypes.StateMachine_3075);
+			types.add(UMLElementTypes.FunctionBehavior_3076);
+			types.add(UMLElementTypes.OpaqueBehavior_3077);
+			types.add(UMLElementTypes.Component_3081);
+			types.add(UMLElementTypes.Device_3082);
+			types.add(UMLElementTypes.ExecutionEnvironment_3083);
+			types.add(UMLElementTypes.Node_3084);
+			types.add(UMLElementTypes.Class_3085);
+			types.add(UMLElementTypes.Collaboration_3086);
+			types.add(UMLElementTypes.Interface_3087);
+			types.add(UMLElementTypes.PrimitiveType_3078);
+			types.add(UMLElementTypes.Enumeration_3079);
+			types.add(UMLElementTypes.DataType_3080);
+			types.add(UMLElementTypes.Actor_3091);
+			types.add(UMLElementTypes.DeploymentSpecification_3092);
+			types.add(UMLElementTypes.Artifact_3093);
+			types.add(UMLElementTypes.InformationItem_3094);
+			types.add(UMLElementTypes.Signal_3095);
+			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.Comment_3097);
+			return types;
+		}
+		if(editPart instanceof CollaborationCompositeCompartmentEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(4);
+			types.add(UMLElementTypes.Property_3070);
+			types.add(UMLElementTypes.CollaborationUse_3071);
+			types.add(UMLElementTypes.Comment_3097);
+			types.add(UMLElementTypes.ConnectableElement_3115);
+			return types;
+		}
+		if(editPart instanceof PropertyPartCompartmentEditPartCN) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(3);
+			types.add(UMLElementTypes.Port_3069);
+			types.add(UMLElementTypes.Property_3070);
+			types.add(UMLElementTypes.Comment_3097);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -2284,9 +2284,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return null;
 		}
 		Diagram diagram = (Diagram)editPart.getRoot().getContents().getModel();
-		Collection elements = new HashSet();
-		for(Iterator it = diagram.getElement().eAllContents(); it.hasNext();) {
-			EObject element = (EObject)it.next();
+		HashSet<EObject> elements = new HashSet<EObject>();
+		for(Iterator<EObject> it = diagram.getElement().eAllContents(); it.hasNext();) {
+			EObject element = it.next();
 			if(isApplicableElement(element, types)) {
 				elements.add(element);
 			}

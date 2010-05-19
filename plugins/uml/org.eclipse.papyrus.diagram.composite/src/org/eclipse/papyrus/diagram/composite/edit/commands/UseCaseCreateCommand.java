@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.composite.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UseCase;
@@ -113,7 +113,7 @@ public class UseCaseCreateCommand extends EditElementCommand {
 		owner.getPackagedElements().add(newElement);
 
 
-		UMLElementTypes.init_UseCase_2082(newElement);
+		ElementInitializers.getInstance().init_UseCase_2082(newElement);
 
 		doConfigure(newElement, monitor, info);
 

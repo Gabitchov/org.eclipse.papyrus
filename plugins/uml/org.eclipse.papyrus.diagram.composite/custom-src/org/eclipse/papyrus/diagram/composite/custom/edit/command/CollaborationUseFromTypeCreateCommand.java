@@ -22,7 +22,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
-import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.composite.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.CollaborationUse;
 import org.eclipse.uml2.uml.StructuredClassifier;
@@ -72,7 +72,7 @@ public class CollaborationUseFromTypeCreateCommand extends EditElementCommand {
 		owner.getCollaborationUses().add(newElement);
 		newElement.setType(collaboration);
 
-		UMLElementTypes.init_CollaborationUse_3071(newElement);
+		ElementInitializers.getInstance().init_CollaborationUse_3071(newElement);
 
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 

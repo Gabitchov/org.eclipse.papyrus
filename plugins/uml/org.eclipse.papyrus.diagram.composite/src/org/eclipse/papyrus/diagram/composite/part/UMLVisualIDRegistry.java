@@ -89,7 +89,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static String getType(int visualID) {
-		return String.valueOf(visualID);
+		return Integer.toString(visualID);
 	}
 
 	/**
@@ -128,6 +128,283 @@ public class UMLVisualIDRegistry {
 			}
 		}
 		switch(containerVisualID) {
+		case PackageEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ActivityCompositeEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return InteractionCompositeEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ProtocolStateMachineCompositeEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return StateMachineCompositeEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return FunctionBehaviorCompositeEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return OpaqueBehaviorCompositeEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ComponentCompositeEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return DeviceCompositeEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ExecutionEnvironmentCompositeEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return NodeCompositeEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ClassCompositeEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ClassClassifierEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return CollaborationCompositeEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return InterfaceEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return PrimitiveTypeEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return EnumerationEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return DataTypeEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ActorEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return DeploymentSpecificationEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ArtifactEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return InformationItemEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return SignalEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return UseCaseEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getSignalEvent().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return SignalEventEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getCallEvent().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return CallEventEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getAnyReceiveEvent().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return AnyReceiveEventEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getSendSignalEvent().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return SendSignalEventEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getSendOperationEvent().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return SendOperationEventEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getChangeEvent().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ChangeEventEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getTimeEvent().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return TimeEventEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getCreationEvent().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return CreationEventEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getDestructionEvent().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return DestructionEventEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getExecutionEvent().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ExecutionEventEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getDurationObservation().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return DurationObservationEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getTimeObservation().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return TimeObservationEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getLiteralBoolean().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return LiteralBooleanEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getLiteralInteger().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return LiteralIntegerEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getLiteralNull().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return LiteralNullEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getLiteralString().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return LiteralStringEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getLiteralUnlimitedNatural().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return LiteralUnlimitedNaturalEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getStringExpression().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return StringExpressionEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getOpaqueExpression().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return OpaqueExpressionEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getTimeExpression().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return TimeExpressionEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getExpression().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ExpressionEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getDuration().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return DurationEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getTimeInterval().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return TimeIntervalEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getDurationInterval().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return DurationIntervalEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getInterval().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return IntervalEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getInstanceValue().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return InstanceValueEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return CommentEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return DurationConstraintEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return TimeConstraintEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return IntervalConstraintEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return InteractionConstraintEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ConstraintEditPart.VISUAL_ID;
+			}
+			break;
 		case ActivityCompositeEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getPort().isSuperTypeOf(domainElement.eClass())
 
@@ -3461,283 +3738,6 @@ public class UMLVisualIDRegistry {
 				return CommentEditPartCN.VISUAL_ID;
 			}
 			break;
-		case PackageEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return ActivityCompositeEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return InteractionCompositeEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getProtocolStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return ProtocolStateMachineCompositeEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getStateMachine().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return StateMachineCompositeEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getFunctionBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return FunctionBehaviorCompositeEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getOpaqueBehavior().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return OpaqueBehaviorCompositeEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return ComponentCompositeEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getDevice().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return DeviceCompositeEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getExecutionEnvironment().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return ExecutionEnvironmentCompositeEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getNode().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return NodeCompositeEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return ClassCompositeEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return ClassClassifierEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getCollaboration().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return CollaborationCompositeEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getInterface().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return InterfaceEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getPrimitiveType().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return PrimitiveTypeEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return EnumerationEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return DataTypeEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return ActorEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getDeploymentSpecification().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return DeploymentSpecificationEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getArtifact().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return ArtifactEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getInformationItem().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return InformationItemEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getSignal().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return SignalEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return UseCaseEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getSignalEvent().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return SignalEventEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getCallEvent().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return CallEventEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getAnyReceiveEvent().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return AnyReceiveEventEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getSendSignalEvent().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return SendSignalEventEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getSendOperationEvent().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return SendOperationEventEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getChangeEvent().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return ChangeEventEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getTimeEvent().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return TimeEventEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getCreationEvent().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return CreationEventEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getDestructionEvent().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return DestructionEventEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getExecutionEvent().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return ExecutionEventEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getDurationObservation().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return DurationObservationEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getTimeObservation().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return TimeObservationEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getLiteralBoolean().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return LiteralBooleanEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getLiteralInteger().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return LiteralIntegerEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getLiteralNull().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return LiteralNullEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getLiteralString().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return LiteralStringEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getLiteralUnlimitedNatural().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return LiteralUnlimitedNaturalEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getStringExpression().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return StringExpressionEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getOpaqueExpression().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return OpaqueExpressionEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getTimeExpression().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return TimeExpressionEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getExpression().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return ExpressionEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getDuration().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return DurationEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getTimeInterval().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return TimeIntervalEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getDurationInterval().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return DurationIntervalEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getInterval().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return IntervalEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getInstanceValue().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return InstanceValueEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return CommentEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getDurationConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return DurationConstraintEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getTimeConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return TimeConstraintEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getIntervalConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return IntervalConstraintEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getInteractionConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return InteractionConstraintEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return ConstraintEditPart.VISUAL_ID;
-			}
-			break;
 		}
 		return -1;
 	}
@@ -3761,6 +3761,173 @@ public class UMLVisualIDRegistry {
 			}
 		}
 		switch(containerVisualID) {
+		case PackageEditPart.VISUAL_ID:
+			if(ActivityCompositeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(InteractionCompositeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ProtocolStateMachineCompositeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(StateMachineCompositeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(FunctionBehaviorCompositeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(OpaqueBehaviorCompositeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ComponentCompositeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(DeviceCompositeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ExecutionEnvironmentCompositeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(NodeCompositeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ClassCompositeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ClassClassifierEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(CollaborationCompositeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(InterfaceEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(PrimitiveTypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(EnumerationEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(DataTypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ActorEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(DeploymentSpecificationEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ArtifactEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(InformationItemEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(SignalEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(UseCaseEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(SignalEventEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(CallEventEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(AnyReceiveEventEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(SendSignalEventEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(SendOperationEventEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ChangeEventEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(TimeEventEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(CreationEventEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(DestructionEventEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ExecutionEventEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(DurationObservationEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(TimeObservationEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(LiteralBooleanEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(LiteralIntegerEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(LiteralNullEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(LiteralStringEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(LiteralUnlimitedNaturalEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(StringExpressionEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(OpaqueExpressionEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(TimeExpressionEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ExpressionEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(DurationEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(TimeIntervalEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(DurationIntervalEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(IntervalEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(InstanceValueEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(CommentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(DurationConstraintEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(TimeConstraintEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(IntervalConstraintEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(InteractionConstraintEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConstraintEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case ActivityCompositeEditPart.VISUAL_ID:
 			if(ActivityCompositeNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -6320,173 +6487,6 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(CommentEditPartCN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
-		case PackageEditPart.VISUAL_ID:
-			if(ActivityCompositeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(InteractionCompositeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(ProtocolStateMachineCompositeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(StateMachineCompositeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(FunctionBehaviorCompositeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(OpaqueBehaviorCompositeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(ComponentCompositeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(DeviceCompositeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(ExecutionEnvironmentCompositeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(NodeCompositeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(ClassCompositeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(ClassClassifierEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(CollaborationCompositeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(InterfaceEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(PrimitiveTypeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(EnumerationEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(DataTypeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(ActorEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(DeploymentSpecificationEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(ArtifactEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(InformationItemEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(SignalEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(UseCaseEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(SignalEventEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(CallEventEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(AnyReceiveEventEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(SendSignalEventEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(SendOperationEventEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(ChangeEventEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(TimeEventEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(CreationEventEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(DestructionEventEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(ExecutionEventEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(DurationObservationEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(TimeObservationEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(LiteralBooleanEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(LiteralIntegerEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(LiteralNullEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(LiteralStringEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(LiteralUnlimitedNaturalEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(StringExpressionEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(OpaqueExpressionEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(TimeExpressionEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(ExpressionEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(DurationEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(TimeIntervalEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(DurationIntervalEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(IntervalEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(InstanceValueEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(CommentEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(DurationConstraintEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(TimeConstraintEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(IntervalConstraintEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(InteractionConstraintEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(ConstraintEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

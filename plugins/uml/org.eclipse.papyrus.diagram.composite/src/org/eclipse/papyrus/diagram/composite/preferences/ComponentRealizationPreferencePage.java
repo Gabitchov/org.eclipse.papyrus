@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.composite.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.diagram.composite.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage;
 
@@ -21,6 +22,14 @@ import org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage;
  * @generated
  */
 public class ComponentRealizationPreferencePage extends AbstractPapyrusLinkPreferencePage {
+
+	/**
+	 * @generated
+	 */
+	public ComponentRealizationPreferencePage() {
+		super();
+		setPreferenceKey(PackageEditPart.MODEL_ID + "_ComponentRealization");
+	}
 
 	/**
 	 * @generated
