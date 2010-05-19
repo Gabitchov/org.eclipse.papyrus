@@ -2282,8 +2282,8 @@
 </extension>
 
 <extension
-		id="PapyrusUMLCompositeDiagram.palettedefinition"
-		name="PapyrusUMLCompositeDiagram Predefined Entries"
+		id="Papyrus Composite Structure Diagram (incubation).palettedefinition"
+		name="Papyrus Composite Structure Diagram (incubation) Predefined Entries"
 		point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
 		
 		<?gmfgen generated="true"?>	
@@ -2297,7 +2297,7 @@
 					<entry
        defineOnly="true"
        description="Create new Class"
-       id="createClass1CreationTool"
+       id="composite.tool.class"
        kind="tool"
        label="Class"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
@@ -2307,7 +2307,7 @@
 	<entry
        defineOnly="true"
        description="Create new Property"
-       id="createProperty2CreationTool"
+       id="composite.tool.property"
        kind="tool"
        label="Property"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
@@ -2317,7 +2317,7 @@
 	<entry
        defineOnly="true"
        description="Create new Port"
-       id="createPort3CreationTool"
+       id="composite.tool.port"
        kind="tool"
        label="Port"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif"
@@ -2327,7 +2327,7 @@
 	<entry
        defineOnly="true"
        description="Create new Collaboration"
-       id="createCollaboration4CreationTool"
+       id="composite.tool.collaboration"
        kind="tool"
        label="Collaboration"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Collaboration.gif"
@@ -2337,7 +2337,7 @@
 	<entry
        defineOnly="true"
        description="Create new CollaborationRole"
-       id="createCollaborationRole5CreationTool"
+       id="composite.tool.collaborationrole"
        kind="tool"
        label="CollaborationRole"
        large_icon="icons/obj16/CollaborationRole.gif"
@@ -2347,7 +2347,7 @@
 	<entry
        defineOnly="true"
        description="Create new CollaborationUse"
-       id="createCollaborationUse6CreationTool"
+       id="composite.tool.collaborationuse"
        kind="tool"
        label="CollaborationUse"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CollaborationUse.gif"
@@ -2357,7 +2357,7 @@
 	<entry
        defineOnly="true"
        description="Create new Comment"
-       id="createComment7CreationTool"
+       id="composite.tool.comment"
        kind="tool"
        label="Comment"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
@@ -2367,7 +2367,7 @@
 	<entry
        defineOnly="true"
        description="Create new Constraint"
-       id="createConstraint8CreationTool"
+       id="composite.tool.constraint"
        kind="tool"
        label="Constraint"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
@@ -2377,7 +2377,7 @@
 	<entry
        defineOnly="true"
        description="Create new TimeObservation"
-       id="createTimeObservation9CreationTool"
+       id="composite.tool.timeobservation"
        kind="tool"
        label="TimeObservation"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
@@ -2387,7 +2387,7 @@
 	<entry
        defineOnly="true"
        description="Create new DurationObservation"
-       id="createDurationObservation10CreationTool"
+       id="composite.tool.durationobservation"
        kind="tool"
        label="DurationObservation"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif"
@@ -2397,7 +2397,7 @@
 	<entry
        defineOnly="true"
        description="Create new InformationItem"
-       id="createInformationItem11CreationTool"
+       id="composite.tool.informationitem"
        kind="tool"
        label="InformationItem"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationItem.gif"
@@ -2407,7 +2407,7 @@
 	<entry
        defineOnly="true"
        description="Create new Parameter"
-       id="createParameter12CreationTool"
+       id="composite.tool.parameter"
        kind="tool"
        label="Parameter"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Parameter.gif"
@@ -2417,7 +2417,7 @@
 	<entry
        defineOnly="true"
        description="Create new Activity"
-       id="createActivity13CreationTool"
+       id="composite.tool.activity"
        kind="tool"
        label="Activity"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Activity.gif"
@@ -2427,7 +2427,7 @@
 	<entry
        defineOnly="true"
        description="Create new Interaction"
-       id="createInteraction14CreationTool"
+       id="composite.tool.interaction"
        kind="tool"
        label="Interaction"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interaction.gif"
@@ -2437,7 +2437,7 @@
 	<entry
        defineOnly="true"
        description="Create new ProtocolStateMachine"
-       id="createProtocolStateMachine15CreationTool"
+       id="composite.tool.protocolstatemachine"
        kind="tool"
        label="ProtocolStateMachine"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProtocolStateMachine.gif"
@@ -2447,7 +2447,7 @@
 	<entry
        defineOnly="true"
        description="Create new StateMachine"
-       id="createStateMachine16CreationTool"
+       id="composite.tool.statemachine"
        kind="tool"
        label="StateMachine"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateMachine.gif"
@@ -2457,7 +2457,7 @@
 	<entry
        defineOnly="true"
        description="Create new FunctionBehavior"
-       id="createFunctionBehavior17CreationTool"
+       id="composite.tool.functionbehavior"
        kind="tool"
        label="FunctionBehavior"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FunctionBehavior.gif"
@@ -2467,7 +2467,7 @@
 	<entry
        defineOnly="true"
        description="Create new OpaqueBehavior"
-       id="createOpaqueBehavior18CreationTool"
+       id="composite.tool.opaquebehavior"
        kind="tool"
        label="OpaqueBehavior"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueBehavior.gif"
@@ -2477,7 +2477,7 @@
 	<entry
        defineOnly="true"
        description="Create new Link (Comment / Constraint)"
-       id="createLink1CreationTool"
+       id="composite.tool.link"
        kind="tool"
        label="Link"
        large_icon="icons/obj16/Link.gif"
@@ -2487,7 +2487,7 @@
 	<entry
        defineOnly="true"
        description="Create new Connector"
-       id="createConnector2CreationTool"
+       id="composite.tool.connector"
        kind="tool"
        label="Connector"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif"
@@ -2497,7 +2497,7 @@
 	<entry
        defineOnly="true"
        description="Create new RoleBinding"
-       id="createRoleBinding3CreationTool"
+       id="composite.tool.rolebinding"
        kind="tool"
        label="RoleBinding"
        large_icon="icons/obj16/CollaborationRoleBinding.gif"
@@ -2507,7 +2507,7 @@
 	<entry
        defineOnly="true"
        description="Create new Generalization"
-       id="createGeneralization4CreationTool"
+       id="composite.tool.generalization"
        kind="tool"
        label="Generalization"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
@@ -2517,7 +2517,7 @@
 	<entry
        defineOnly="true"
        description="Create new Realization"
-       id="createRealization5CreationTool"
+       id="composite.tool.realization"
        kind="tool"
        label="Realization"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif"
@@ -2527,7 +2527,7 @@
 	<entry
        defineOnly="true"
        description="Create new Substitution"
-       id="createSubstitution6CreationTool"
+       id="composite.tool.substitution"
        kind="tool"
        label="Substitution"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Substitution.gif"
@@ -2537,7 +2537,7 @@
 	<entry
        defineOnly="true"
        description="Create new Abstraction"
-       id="createAbstraction7CreationTool"
+       id="composite.tool.abstraction"
        kind="tool"
        label="Abstraction"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif"
@@ -2547,7 +2547,7 @@
 	<entry
        defineOnly="true"
        description="Create new Usage"
-       id="createUsage8CreationTool"
+       id="composite.tool.usage"
        kind="tool"
        label="Usage"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif"
@@ -2557,7 +2557,7 @@
 	<entry
        defineOnly="true"
        description="Create new Dependency"
-       id="createDependency9CreationTool"
+       id="composite.tool.dependency"
        kind="tool"
        label="Dependency"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
@@ -2567,7 +2567,7 @@
 	<entry
        defineOnly="true"
        description="Create new representation for an InformationItem"
-       id="createRepresentation10CreationTool"
+       id="composite.tool.representation"
        kind="tool"
        label="Representation"
        large_icon="icons/obj16/Representation.gif"
@@ -2577,7 +2577,7 @@
 	<entry
        defineOnly="true"
        description="Create new InformationFlow"
-       id="createInformationFlow11CreationTool"
+       id="composite.tool.informationflow"
        kind="tool"
        label="InformationFlow"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationFlow.gif"
@@ -2592,8 +2592,8 @@
 	</extension>
 
 <extension
-		id="PapyrusUMLCompositeDiagram.standard"
-		name="PapyrusUMLCompositeDiagram Standard Palette"
+		id="Papyrus Composite Structure Diagram (incubation).standard"
+		name="Papyrus Composite Structure Diagram (incubation) Standard Palette"
 		point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders"> 
 		
 		<?gmfgen generated="true"?>	
@@ -2606,7 +2606,7 @@
 				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
 					<entry
        description="Nodes"
-       id="createNodes1Group"
+       id="composite.group.nodes"
        kind="drawer"
        label="Nodes"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
@@ -2615,81 +2615,81 @@
  	</entry>
  	 
  	 	<predefinedEntry
-          id="createClass1CreationTool"
-          path="/createNodes1Group">
+          id="composite.tool.class"
+          path="/composite.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
-          id="createProperty2CreationTool"
-          path="/createNodes1Group">
+          id="composite.tool.property"
+          path="/composite.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
-          id="createPort3CreationTool"
-          path="/createNodes1Group">
+          id="composite.tool.port"
+          path="/composite.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
-          id="createCollaboration4CreationTool"
-          path="/createNodes1Group">
+          id="composite.tool.collaboration"
+          path="/composite.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
-          id="createCollaborationRole5CreationTool"
-          path="/createNodes1Group">
+          id="composite.tool.collaborationrole"
+          path="/composite.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
-          id="createCollaborationUse6CreationTool"
-          path="/createNodes1Group">
+          id="composite.tool.collaborationuse"
+          path="/composite.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
-          id="createComment7CreationTool"
-          path="/createNodes1Group">
+          id="composite.tool.comment"
+          path="/composite.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
-          id="createConstraint8CreationTool"
-          path="/createNodes1Group">
+          id="composite.tool.constraint"
+          path="/composite.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
-          id="createTimeObservation9CreationTool"
-          path="/createNodes1Group">
+          id="composite.tool.timeobservation"
+          path="/composite.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
-          id="createDurationObservation10CreationTool"
-          path="/createNodes1Group">
+          id="composite.tool.durationobservation"
+          path="/composite.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
-          id="createInformationItem11CreationTool"
-          path="/createNodes1Group">
+          id="composite.tool.informationitem"
+          path="/composite.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
-          id="createParameter12CreationTool"
-          path="/createNodes1Group">
+          id="composite.tool.parameter"
+          path="/composite.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
-          id="createActivity13CreationTool"
-          path="/createNodes1Group">
+          id="composite.tool.activity"
+          path="/composite.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
-          id="createInteraction14CreationTool"
-          path="/createNodes1Group">
+          id="composite.tool.interaction"
+          path="/composite.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
-          id="createProtocolStateMachine15CreationTool"
-          path="/createNodes1Group">
+          id="composite.tool.protocolstatemachine"
+          path="/composite.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
-          id="createStateMachine16CreationTool"
-          path="/createNodes1Group">
+          id="composite.tool.statemachine"
+          path="/composite.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
-          id="createFunctionBehavior17CreationTool"
-          path="/createNodes1Group">
+          id="composite.tool.functionbehavior"
+          path="/composite.group.nodes">
     </predefinedEntry>
  	<predefinedEntry
-          id="createOpaqueBehavior18CreationTool"
-          path="/createNodes1Group">
+          id="composite.tool.opaquebehavior"
+          path="/composite.group.nodes">
     </predefinedEntry>
 
 	<entry
        description="Edges"
-       id="createEdges2Group"
+       id="composite.group.edges"
        kind="drawer"
        label="Edges"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
@@ -2698,48 +2698,48 @@
  	</entry>
  	 
  	 	<predefinedEntry
-          id="createLink1CreationTool"
-          path="/createEdges2Group">
+          id="composite.tool.link"
+          path="/composite.group.edges">
     </predefinedEntry>
  	<predefinedEntry
-          id="createConnector2CreationTool"
-          path="/createEdges2Group">
+          id="composite.tool.connector"
+          path="/composite.group.edges">
     </predefinedEntry>
  	<predefinedEntry
-          id="createRoleBinding3CreationTool"
-          path="/createEdges2Group">
+          id="composite.tool.rolebinding"
+          path="/composite.group.edges">
     </predefinedEntry>
  	<predefinedEntry
-          id="createGeneralization4CreationTool"
-          path="/createEdges2Group">
+          id="composite.tool.generalization"
+          path="/composite.group.edges">
     </predefinedEntry>
  	<predefinedEntry
-          id="createRealization5CreationTool"
-          path="/createEdges2Group">
+          id="composite.tool.realization"
+          path="/composite.group.edges">
     </predefinedEntry>
  	<predefinedEntry
-          id="createSubstitution6CreationTool"
-          path="/createEdges2Group">
+          id="composite.tool.substitution"
+          path="/composite.group.edges">
     </predefinedEntry>
  	<predefinedEntry
-          id="createAbstraction7CreationTool"
-          path="/createEdges2Group">
+          id="composite.tool.abstraction"
+          path="/composite.group.edges">
     </predefinedEntry>
  	<predefinedEntry
-          id="createUsage8CreationTool"
-          path="/createEdges2Group">
+          id="composite.tool.usage"
+          path="/composite.group.edges">
     </predefinedEntry>
  	<predefinedEntry
-          id="createDependency9CreationTool"
-          path="/createEdges2Group">
+          id="composite.tool.dependency"
+          path="/composite.group.edges">
     </predefinedEntry>
  	<predefinedEntry
-          id="createRepresentation10CreationTool"
-          path="/createEdges2Group">
+          id="composite.tool.representation"
+          path="/composite.group.edges">
     </predefinedEntry>
  	<predefinedEntry
-          id="createInformationFlow11CreationTool"
-          path="/createEdges2Group">
+          id="composite.tool.informationflow"
+          path="/composite.group.edges">
     </predefinedEntry>
 
 

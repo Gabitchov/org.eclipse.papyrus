@@ -35,147 +35,147 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private final static String CREATECLASS1CREATIONTOOL = "createClass1CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_CLASS = "composite.tool.class"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEPROPERTY2CREATIONTOOL = "createProperty2CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_PROPERTY = "composite.tool.property"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEPORT3CREATIONTOOL = "createPort3CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_PORT = "composite.tool.port"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATECOLLABORATION4CREATIONTOOL = "createCollaboration4CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_COLLABORATION = "composite.tool.collaboration"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATECOLLABORATIONROLE5CREATIONTOOL = "createCollaborationRole5CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_COLLABORATIONROLE = "composite.tool.collaborationrole"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATECOLLABORATIONUSE6CREATIONTOOL = "createCollaborationUse6CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_COLLABORATIONUSE = "composite.tool.collaborationuse"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATECOMMENT7CREATIONTOOL = "createComment7CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_COMMENT = "composite.tool.comment"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATECONSTRAINT8CREATIONTOOL = "createConstraint8CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_CONSTRAINT = "composite.tool.constraint"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATETIMEOBSERVATION9CREATIONTOOL = "createTimeObservation9CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_TIMEOBSERVATION = "composite.tool.timeobservation"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEDURATIONOBSERVATION10CREATIONTOOL = "createDurationObservation10CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_DURATIONOBSERVATION = "composite.tool.durationobservation"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEINFORMATIONITEM11CREATIONTOOL = "createInformationItem11CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_INFORMATIONITEM = "composite.tool.informationitem"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEPARAMETER12CREATIONTOOL = "createParameter12CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_PARAMETER = "composite.tool.parameter"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEACTIVITY13CREATIONTOOL = "createActivity13CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_ACTIVITY = "composite.tool.activity"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEINTERACTION14CREATIONTOOL = "createInteraction14CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_INTERACTION = "composite.tool.interaction"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEPROTOCOLSTATEMACHINE15CREATIONTOOL = "createProtocolStateMachine15CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_PROTOCOLSTATEMACHINE = "composite.tool.protocolstatemachine"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATESTATEMACHINE16CREATIONTOOL = "createStateMachine16CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_STATEMACHINE = "composite.tool.statemachine"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEFUNCTIONBEHAVIOR17CREATIONTOOL = "createFunctionBehavior17CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_FUNCTIONBEHAVIOR = "composite.tool.functionbehavior"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEOPAQUEBEHAVIOR18CREATIONTOOL = "createOpaqueBehavior18CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_OPAQUEBEHAVIOR = "composite.tool.opaquebehavior"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATELINK1CREATIONTOOL = "createLink1CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_LINK = "composite.tool.link"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATECONNECTOR2CREATIONTOOL = "createConnector2CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_CONNECTOR = "composite.tool.connector"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEROLEBINDING3CREATIONTOOL = "createRoleBinding3CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_ROLEBINDING = "composite.tool.rolebinding"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEGENERALIZATION4CREATIONTOOL = "createGeneralization4CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_GENERALIZATION = "composite.tool.generalization"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEREALIZATION5CREATIONTOOL = "createRealization5CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_REALIZATION = "composite.tool.realization"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATESUBSTITUTION6CREATIONTOOL = "createSubstitution6CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_SUBSTITUTION = "composite.tool.substitution"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEABSTRACTION7CREATIONTOOL = "createAbstraction7CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_ABSTRACTION = "composite.tool.abstraction"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEUSAGE8CREATIONTOOL = "createUsage8CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_USAGE = "composite.tool.usage"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEDEPENDENCY9CREATIONTOOL = "createDependency9CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_DEPENDENCY = "composite.tool.dependency"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEREPRESENTATION10CREATIONTOOL = "createRepresentation10CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_REPRESENTATION = "composite.tool.representation"; //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEINFORMATIONFLOW11CREATIONTOOL = "createInformationFlow11CreationTool"; //$NON-NLS-1$
+	private final static String COMPOSITE_TOOL_INFORMATIONFLOW = "composite.tool.informationflow"; //$NON-NLS-1$
 
 
 
@@ -192,92 +192,92 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	public Tool createTool(String toolId) {
-		if(toolId.equals(CREATECLASS1CREATIONTOOL)) {
-			return createClass1CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_CLASS)) {
+			return createClassCreationTool();
 		}
-		if(toolId.equals(CREATEPROPERTY2CREATIONTOOL)) {
-			return createProperty2CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_PROPERTY)) {
+			return createPropertyCreationTool();
 		}
-		if(toolId.equals(CREATEPORT3CREATIONTOOL)) {
-			return createPort3CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_PORT)) {
+			return createPortCreationTool();
 		}
-		if(toolId.equals(CREATECOLLABORATION4CREATIONTOOL)) {
-			return createCollaboration4CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_COLLABORATION)) {
+			return createCollaborationCreationTool();
 		}
-		if(toolId.equals(CREATECOLLABORATIONROLE5CREATIONTOOL)) {
-			return createCollaborationRole5CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_COLLABORATIONROLE)) {
+			return createCollaborationRoleCreationTool();
 		}
-		if(toolId.equals(CREATECOLLABORATIONUSE6CREATIONTOOL)) {
-			return createCollaborationUse6CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_COLLABORATIONUSE)) {
+			return createCollaborationUseCreationTool();
 		}
-		if(toolId.equals(CREATECOMMENT7CREATIONTOOL)) {
-			return createComment7CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_COMMENT)) {
+			return createCommentCreationTool();
 		}
-		if(toolId.equals(CREATECONSTRAINT8CREATIONTOOL)) {
-			return createConstraint8CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_CONSTRAINT)) {
+			return createConstraintCreationTool();
 		}
-		if(toolId.equals(CREATETIMEOBSERVATION9CREATIONTOOL)) {
-			return createTimeObservation9CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_TIMEOBSERVATION)) {
+			return createTimeObservationCreationTool();
 		}
-		if(toolId.equals(CREATEDURATIONOBSERVATION10CREATIONTOOL)) {
-			return createDurationObservation10CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_DURATIONOBSERVATION)) {
+			return createDurationObservationCreationTool();
 		}
-		if(toolId.equals(CREATEINFORMATIONITEM11CREATIONTOOL)) {
-			return createInformationItem11CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_INFORMATIONITEM)) {
+			return createInformationItemCreationTool();
 		}
-		if(toolId.equals(CREATEPARAMETER12CREATIONTOOL)) {
-			return createParameter12CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_PARAMETER)) {
+			return createParameterCreationTool();
 		}
-		if(toolId.equals(CREATEACTIVITY13CREATIONTOOL)) {
-			return createActivity13CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_ACTIVITY)) {
+			return createActivityCreationTool();
 		}
-		if(toolId.equals(CREATEINTERACTION14CREATIONTOOL)) {
-			return createInteraction14CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_INTERACTION)) {
+			return createInteractionCreationTool();
 		}
-		if(toolId.equals(CREATEPROTOCOLSTATEMACHINE15CREATIONTOOL)) {
-			return createProtocolStateMachine15CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_PROTOCOLSTATEMACHINE)) {
+			return createProtocolStateMachineCreationTool();
 		}
-		if(toolId.equals(CREATESTATEMACHINE16CREATIONTOOL)) {
-			return createStateMachine16CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_STATEMACHINE)) {
+			return createStateMachineCreationTool();
 		}
-		if(toolId.equals(CREATEFUNCTIONBEHAVIOR17CREATIONTOOL)) {
-			return createFunctionBehavior17CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_FUNCTIONBEHAVIOR)) {
+			return createFunctionBehaviorCreationTool();
 		}
-		if(toolId.equals(CREATEOPAQUEBEHAVIOR18CREATIONTOOL)) {
-			return createOpaqueBehavior18CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_OPAQUEBEHAVIOR)) {
+			return createOpaqueBehaviorCreationTool();
 		}
-		if(toolId.equals(CREATELINK1CREATIONTOOL)) {
-			return createLink1CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_LINK)) {
+			return createLinkCreationTool();
 		}
-		if(toolId.equals(CREATECONNECTOR2CREATIONTOOL)) {
-			return createConnector2CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_CONNECTOR)) {
+			return createConnectorCreationTool();
 		}
-		if(toolId.equals(CREATEROLEBINDING3CREATIONTOOL)) {
-			return createRoleBinding3CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_ROLEBINDING)) {
+			return createRoleBindingCreationTool();
 		}
-		if(toolId.equals(CREATEGENERALIZATION4CREATIONTOOL)) {
-			return createGeneralization4CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_GENERALIZATION)) {
+			return createGeneralizationCreationTool();
 		}
-		if(toolId.equals(CREATEREALIZATION5CREATIONTOOL)) {
-			return createRealization5CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_REALIZATION)) {
+			return createRealizationCreationTool();
 		}
-		if(toolId.equals(CREATESUBSTITUTION6CREATIONTOOL)) {
-			return createSubstitution6CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_SUBSTITUTION)) {
+			return createSubstitutionCreationTool();
 		}
-		if(toolId.equals(CREATEABSTRACTION7CREATIONTOOL)) {
-			return createAbstraction7CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_ABSTRACTION)) {
+			return createAbstractionCreationTool();
 		}
-		if(toolId.equals(CREATEUSAGE8CREATIONTOOL)) {
-			return createUsage8CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_USAGE)) {
+			return createUsageCreationTool();
 		}
-		if(toolId.equals(CREATEDEPENDENCY9CREATIONTOOL)) {
-			return createDependency9CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_DEPENDENCY)) {
+			return createDependencyCreationTool();
 		}
-		if(toolId.equals(CREATEREPRESENTATION10CREATIONTOOL)) {
-			return createRepresentation10CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_REPRESENTATION)) {
+			return createRepresentationCreationTool();
 		}
-		if(toolId.equals(CREATEINFORMATIONFLOW11CREATIONTOOL)) {
-			return createInformationFlow11CreationTool();
+		if(toolId.equals(COMPOSITE_TOOL_INFORMATIONFLOW)) {
+			return createInformationFlowCreationTool();
 		}
 
 		// default return: null
@@ -301,7 +301,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createClass1CreationTool() {
+	private Tool createClassCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.Class_2073);
 		types.add(UMLElementTypes.Class_3085);
@@ -313,7 +313,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createProperty2CreationTool() {
+	private Tool createPropertyCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Property_3070);
 
@@ -324,7 +324,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createPort3CreationTool() {
+	private Tool createPortCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Port_3069);
 
@@ -335,7 +335,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createCollaboration4CreationTool() {
+	private Tool createCollaborationCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.Collaboration_3086);
 		types.add(UMLElementTypes.Collaboration_2075);
@@ -347,7 +347,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createCollaborationRole5CreationTool() {
+	private Tool createCollaborationRoleCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.ConnectableElement_3115);
 
@@ -358,7 +358,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createCollaborationUse6CreationTool() {
+	private Tool createCollaborationUseCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.CollaborationUse_3071);
 
@@ -369,7 +369,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createComment7CreationTool() {
+	private Tool createCommentCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.Comment_3097);
 		types.add(UMLElementTypes.Comment_2109);
@@ -381,7 +381,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createConstraint8CreationTool() {
+	private Tool createConstraintCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Constraint_2114);
 
@@ -392,7 +392,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createTimeObservation9CreationTool() {
+	private Tool createTimeObservationCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.TimeObservation_2094);
 
@@ -403,7 +403,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createDurationObservation10CreationTool() {
+	private Tool createDurationObservationCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.DurationObservation_2093);
 
@@ -414,7 +414,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createInformationItem11CreationTool() {
+	private Tool createInformationItemCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.InformationItem_3094);
 		types.add(UMLElementTypes.InformationItem_2080);
@@ -426,7 +426,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createParameter12CreationTool() {
+	private Tool createParameterCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Parameter_3088);
 
@@ -437,7 +437,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createActivity13CreationTool() {
+	private Tool createActivityCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.Activity_3072);
 		types.add(UMLElementTypes.Activity_2060);
@@ -449,7 +449,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createInteraction14CreationTool() {
+	private Tool createInteractionCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.Interaction_3073);
 		types.add(UMLElementTypes.Interaction_2061);
@@ -461,7 +461,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createProtocolStateMachine15CreationTool() {
+	private Tool createProtocolStateMachineCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.ProtocolStateMachine_3074);
 		types.add(UMLElementTypes.ProtocolStateMachine_2062);
@@ -473,7 +473,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createStateMachine16CreationTool() {
+	private Tool createStateMachineCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.StateMachine_3075);
 		types.add(UMLElementTypes.StateMachine_2063);
@@ -485,7 +485,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createFunctionBehavior17CreationTool() {
+	private Tool createFunctionBehaviorCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.FunctionBehavior_3076);
 		types.add(UMLElementTypes.FunctionBehavior_2064);
@@ -497,7 +497,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createOpaqueBehavior18CreationTool() {
+	private Tool createOpaqueBehaviorCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.OpaqueBehavior_3077);
 		types.add(UMLElementTypes.OpaqueBehavior_2065);
@@ -509,7 +509,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createLink1CreationTool() {
+	private Tool createLinkCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(4);
 		types.add(UMLElementTypes.CommentAnnotatedElement_4002);
 		types.add(UMLElementTypes.ConstraintConstrainedElement_4003);
@@ -523,7 +523,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createConnector2CreationTool() {
+	private Tool createConnectorCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Connector_4013);
 
@@ -534,7 +534,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createRoleBinding3CreationTool() {
+	private Tool createRoleBindingCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Dependency_4017);
 
@@ -545,7 +545,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createGeneralization4CreationTool() {
+	private Tool createGeneralizationCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Generalization_4015);
 
@@ -556,7 +556,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createRealization5CreationTool() {
+	private Tool createRealizationCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Realization_4006);
 
@@ -567,7 +567,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createSubstitution6CreationTool() {
+	private Tool createSubstitutionCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Substitution_4011);
 
@@ -578,7 +578,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createAbstraction7CreationTool() {
+	private Tool createAbstractionCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Abstraction_4007);
 
@@ -589,7 +589,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createUsage8CreationTool() {
+	private Tool createUsageCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Usage_4008);
 
@@ -600,7 +600,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createDependency9CreationTool() {
+	private Tool createDependencyCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Dependency_4010);
 
@@ -611,7 +611,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createRepresentation10CreationTool() {
+	private Tool createRepresentationCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.InformationItemRepresented_4020);
 
@@ -622,7 +622,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createInformationFlow11CreationTool() {
+	private Tool createInformationFlowCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.InformationFlow_4021);
 

@@ -9620,13 +9620,16 @@
             description="Nodes"
             largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-            collapse="true">
+            createMethodName="createNodesGroup"
+            id="&quot;composite.group.nodes&quot;">
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Class"
               description="Create new Class"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
+              createMethodName="createClassCreationTool"
+              id="&quot;composite.tool.class&quot;"
               genNodes="/0/@diagram/@topLevelNodes.10 /0/@diagram/@childNodes.15"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -9634,6 +9637,8 @@
               description="Create new Property"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+              createMethodName="createPropertyCreationTool"
+              id="&quot;composite.tool.property&quot;"
               genNodes="/0/@diagram/@childNodes.2"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -9641,6 +9646,8 @@
               description="Create new Port"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif"
+              createMethodName="createPortCreationTool"
+              id="&quot;composite.tool.port&quot;"
               genNodes="/0/@diagram/@childNodes.0"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -9648,6 +9655,8 @@
               description="Create new Collaboration"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Collaboration.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Collaboration.gif"
+              createMethodName="createCollaborationCreationTool"
+              id="&quot;composite.tool.collaboration&quot;"
               genNodes="/0/@diagram/@childNodes.16 /0/@diagram/@topLevelNodes.12"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -9655,6 +9664,8 @@
               description="Create new CollaborationRole"
               largeIconPath="icons/obj16/CollaborationRole.gif"
               smallIconPath="icons/obj16/CollaborationRole.gif"
+              createMethodName="createCollaborationRoleCreationTool"
+              id="&quot;composite.tool.collaborationrole&quot;"
               genNodes="/0/@diagram/@childNodes.3"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -9662,6 +9673,8 @@
               description="Create new CollaborationUse"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CollaborationUse.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CollaborationUse.gif"
+              createMethodName="createCollaborationUseCreationTool"
+              id="&quot;composite.tool.collaborationuse&quot;"
               genNodes="/0/@diagram/@childNodes.4"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -9669,6 +9682,8 @@
               description="Create new Comment"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+              createMethodName="createCommentCreationTool"
+              id="&quot;composite.tool.comment&quot;"
               genNodes="/0/@diagram/@childNodes.27 /0/@diagram/@topLevelNodes.49"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -9676,7 +9691,8 @@
               description="Create new Constraint"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
-              createMethodName="createConstraint8CreationTool"
+              createMethodName="createConstraintCreationTool"
+              id="&quot;composite.tool.constraint&quot;"
               genNodes="/0/@diagram/@topLevelNodes.54"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -9684,6 +9700,8 @@
               description="Create new TimeObservation"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
+              createMethodName="createTimeObservationCreationTool"
+              id="&quot;composite.tool.timeobservation&quot;"
               genNodes="/0/@diagram/@topLevelNodes.34"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -9691,6 +9709,8 @@
               description="Create new DurationObservation"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif"
+              createMethodName="createDurationObservationCreationTool"
+              id="&quot;composite.tool.durationobservation&quot;"
               genNodes="/0/@diagram/@topLevelNodes.33"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -9698,6 +9718,8 @@
               description="Create new InformationItem"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationItem.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationItem.gif"
+              createMethodName="createInformationItemCreationTool"
+              id="&quot;composite.tool.informationitem&quot;"
               genNodes="/0/@diagram/@childNodes.24 /0/@diagram/@topLevelNodes.20"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -9705,6 +9727,8 @@
               description="Create new Parameter"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Parameter.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Parameter.gif"
+              createMethodName="createParameterCreationTool"
+              id="&quot;composite.tool.parameter&quot;"
               genNodes="/0/@diagram/@childNodes.1"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -9712,6 +9736,8 @@
               description="Create new Activity"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Activity.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Activity.gif"
+              createMethodName="createActivityCreationTool"
+              id="&quot;composite.tool.activity&quot;"
               genNodes="/0/@diagram/@childNodes.5 /0/@diagram/@topLevelNodes.0"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -9719,6 +9745,8 @@
               description="Create new Interaction"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interaction.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interaction.gif"
+              createMethodName="createInteractionCreationTool"
+              id="&quot;composite.tool.interaction&quot;"
               genNodes="/0/@diagram/@childNodes.6 /0/@diagram/@topLevelNodes.1"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -9726,6 +9754,8 @@
               description="Create new ProtocolStateMachine"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProtocolStateMachine.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProtocolStateMachine.gif"
+              createMethodName="createProtocolStateMachineCreationTool"
+              id="&quot;composite.tool.protocolstatemachine&quot;"
               genNodes="/0/@diagram/@childNodes.7 /0/@diagram/@topLevelNodes.2"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -9733,6 +9763,8 @@
               description="Create new StateMachine"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateMachine.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateMachine.gif"
+              createMethodName="createStateMachineCreationTool"
+              id="&quot;composite.tool.statemachine&quot;"
               genNodes="/0/@diagram/@childNodes.8 /0/@diagram/@topLevelNodes.3"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -9740,6 +9772,8 @@
               description="Create new FunctionBehavior"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FunctionBehavior.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FunctionBehavior.gif"
+              createMethodName="createFunctionBehaviorCreationTool"
+              id="&quot;composite.tool.functionbehavior&quot;"
               genNodes="/0/@diagram/@childNodes.9 /0/@diagram/@topLevelNodes.4"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -9747,6 +9781,8 @@
               description="Create new OpaqueBehavior"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueBehavior.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueBehavior.gif"
+              createMethodName="createOpaqueBehaviorCreationTool"
+              id="&quot;composite.tool.opaquebehavior&quot;"
               genNodes="/0/@diagram/@childNodes.10 /0/@diagram/@topLevelNodes.5"/>
         </groups>
         <groups
@@ -9754,13 +9790,16 @@
             description="Edges"
             largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-            collapse="true">
+            createMethodName="createEdgesGroup"
+            id="&quot;composite.group.edges&quot;">
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Link"
               description="Create new Link (Comment / Constraint)"
               largeIconPath="icons/obj16/Link.gif"
               smallIconPath="icons/obj16/Link.gif"
+              createMethodName="createLinkCreationTool"
+              id="&quot;composite.tool.link&quot;"
               genLinks="/0/@diagram/@links.1 /0/@diagram/@links.2 /0/@diagram/@links.15 /0/@diagram/@links.16"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -9768,6 +9807,8 @@
               description="Create new Connector"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif"
+              createMethodName="createConnectorCreationTool"
+              id="&quot;composite.tool.connector&quot;"
               genLinks="/0/@diagram/@links.13"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -9775,6 +9816,8 @@
               description="Create new RoleBinding"
               largeIconPath="icons/obj16/CollaborationRoleBinding.gif"
               smallIconPath="icons/obj16/CollaborationRoleBinding.gif"
+              createMethodName="createRoleBindingCreationTool"
+              id="&quot;composite.tool.rolebinding&quot;"
               genLinks="/0/@diagram/@links.11"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -9782,6 +9825,8 @@
               description="Create new Generalization"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
+              createMethodName="createGeneralizationCreationTool"
+              id="&quot;composite.tool.generalization&quot;"
               genLinks="/0/@diagram/@links.14"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -9789,6 +9834,8 @@
               description="Create new Realization"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif"
+              createMethodName="createRealizationCreationTool"
+              id="&quot;composite.tool.realization&quot;"
               genLinks="/0/@diagram/@links.6"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -9796,6 +9843,8 @@
               description="Create new Substitution"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Substitution.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Substitution.gif"
+              createMethodName="createSubstitutionCreationTool"
+              id="&quot;composite.tool.substitution&quot;"
               genLinks="/0/@diagram/@links.5"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -9803,6 +9852,8 @@
               description="Create new Abstraction"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif"
+              createMethodName="createAbstractionCreationTool"
+              id="&quot;composite.tool.abstraction&quot;"
               genLinks="/0/@diagram/@links.8"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -9810,6 +9861,8 @@
               description="Create new Usage"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif"
+              createMethodName="createUsageCreationTool"
+              id="&quot;composite.tool.usage&quot;"
               genLinks="/0/@diagram/@links.9"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -9817,6 +9870,8 @@
               description="Create new Dependency"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
+              createMethodName="createDependencyCreationTool"
+              id="&quot;composite.tool.dependency&quot;"
               genLinks="/0/@diagram/@links.12"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -9824,6 +9879,8 @@
               description="Create new representation for an InformationItem"
               largeIconPath="icons/obj16/Representation.gif"
               smallIconPath="icons/obj16/Representation.gif"
+              createMethodName="createRepresentationCreationTool"
+              id="&quot;composite.tool.representation&quot;"
               genLinks="/0/@diagram/@links.17"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -9831,6 +9888,8 @@
               description="Create new InformationFlow"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationFlow.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationFlow.gif"
+              createMethodName="createInformationFlowCreationTool"
+              id="&quot;composite.tool.informationflow&quot;"
               genLinks="/0/@diagram/@links.18"/>
         </groups>
       </palette>
@@ -9862,7 +9921,7 @@
     </diagram>
     <plugin
         iD="org.eclipse.papyrus.diagram.composite"
-        name="Papyrus Composite Structure Diagram (Incubation)"
+        name="Papyrus Composite Structure Diagram (incubation)"
         provider="Eclipse.org"
         version="0.7.0.qualifier">
       <requiredPlugins>org.eclipse.draw2d</requiredPlugins>

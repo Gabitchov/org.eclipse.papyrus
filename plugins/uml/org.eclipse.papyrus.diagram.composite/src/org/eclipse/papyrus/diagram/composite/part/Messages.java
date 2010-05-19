@@ -258,312 +258,312 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String createNodes1Group_title;
+	public static String createNodesGroup_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createNodes1Group_desc;
+	public static String createNodesGroup_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createEdges2Group_title;
+	public static String createEdgesGroup_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createEdges2Group_desc;
+	public static String createEdgesGroup_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createClass1CreationTool_title;
+	public static String createClassCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createClass1CreationTool_desc;
+	public static String createClassCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createProperty2CreationTool_title;
+	public static String createPropertyCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createProperty2CreationTool_desc;
+	public static String createPropertyCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createPort3CreationTool_title;
+	public static String createPortCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createPort3CreationTool_desc;
+	public static String createPortCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createCollaboration4CreationTool_title;
+	public static String createCollaborationCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createCollaboration4CreationTool_desc;
+	public static String createCollaborationCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createCollaborationRole5CreationTool_title;
+	public static String createCollaborationRoleCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createCollaborationRole5CreationTool_desc;
+	public static String createCollaborationRoleCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createCollaborationUse6CreationTool_title;
+	public static String createCollaborationUseCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createCollaborationUse6CreationTool_desc;
+	public static String createCollaborationUseCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createComment7CreationTool_title;
+	public static String createCommentCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createComment7CreationTool_desc;
+	public static String createCommentCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createConstraint8CreationTool_title;
+	public static String createConstraintCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createConstraint8CreationTool_desc;
+	public static String createConstraintCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createTimeObservation9CreationTool_title;
+	public static String createTimeObservationCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createTimeObservation9CreationTool_desc;
+	public static String createTimeObservationCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createDurationObservation10CreationTool_title;
+	public static String createDurationObservationCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createDurationObservation10CreationTool_desc;
+	public static String createDurationObservationCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createInformationItem11CreationTool_title;
+	public static String createInformationItemCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createInformationItem11CreationTool_desc;
+	public static String createInformationItemCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createParameter12CreationTool_title;
+	public static String createParameterCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createParameter12CreationTool_desc;
+	public static String createParameterCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createActivity13CreationTool_title;
+	public static String createActivityCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createActivity13CreationTool_desc;
+	public static String createActivityCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createInteraction14CreationTool_title;
+	public static String createInteractionCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createInteraction14CreationTool_desc;
+	public static String createInteractionCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createProtocolStateMachine15CreationTool_title;
+	public static String createProtocolStateMachineCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createProtocolStateMachine15CreationTool_desc;
+	public static String createProtocolStateMachineCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createStateMachine16CreationTool_title;
+	public static String createStateMachineCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createStateMachine16CreationTool_desc;
+	public static String createStateMachineCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createFunctionBehavior17CreationTool_title;
+	public static String createFunctionBehaviorCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createFunctionBehavior17CreationTool_desc;
+	public static String createFunctionBehaviorCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createOpaqueBehavior18CreationTool_title;
+	public static String createOpaqueBehaviorCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createOpaqueBehavior18CreationTool_desc;
+	public static String createOpaqueBehaviorCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createLink1CreationTool_title;
+	public static String createLinkCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createLink1CreationTool_desc;
+	public static String createLinkCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createConnector2CreationTool_title;
+	public static String createConnectorCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createConnector2CreationTool_desc;
+	public static String createConnectorCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createRoleBinding3CreationTool_title;
+	public static String createRoleBindingCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createRoleBinding3CreationTool_desc;
+	public static String createRoleBindingCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createGeneralization4CreationTool_title;
+	public static String createGeneralizationCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createGeneralization4CreationTool_desc;
+	public static String createGeneralizationCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createRealization5CreationTool_title;
+	public static String createRealizationCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createRealization5CreationTool_desc;
+	public static String createRealizationCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createSubstitution6CreationTool_title;
+	public static String createSubstitutionCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createSubstitution6CreationTool_desc;
+	public static String createSubstitutionCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createAbstraction7CreationTool_title;
+	public static String createAbstractionCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createAbstraction7CreationTool_desc;
+	public static String createAbstractionCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createUsage8CreationTool_title;
+	public static String createUsageCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createUsage8CreationTool_desc;
+	public static String createUsageCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createDependency9CreationTool_title;
+	public static String createDependencyCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createDependency9CreationTool_desc;
+	public static String createDependencyCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createRepresentation10CreationTool_title;
+	public static String createRepresentationCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createRepresentation10CreationTool_desc;
+	public static String createRepresentationCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createInformationFlow11CreationTool_title;
+	public static String createInformationFlowCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createInformationFlow11CreationTool_desc;
+	public static String createInformationFlowCreationTool_desc;
 
 	/**
 	 * @generated

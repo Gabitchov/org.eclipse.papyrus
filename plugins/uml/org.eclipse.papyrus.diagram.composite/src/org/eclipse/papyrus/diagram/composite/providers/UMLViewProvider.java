@@ -3930,7 +3930,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	private Node createLabel(View owner, String hint) {
+	protected Node createLabel(View owner, String hint) {
 		DecorationNode rv = NotationFactory.eINSTANCE.createDecorationNode();
 		rv.setType(hint);
 		ViewUtil.insertChildView(owner, rv, ViewUtil.APPEND, true);
@@ -3941,7 +3941,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	private Node createCompartment(View owner, String hint, boolean canCollapse, boolean hasTitle, boolean canSort, boolean canFilter) {
+	protected Node createCompartment(View owner, String hint, boolean canCollapse, boolean hasTitle, boolean canSort, boolean canFilter) {
 		//SemanticListCompartment rv = NotationFactory.eINSTANCE.createSemanticListCompartment();
 		//rv.setShowTitle(showTitle);
 		//rv.setCollapsed(isCollapsed);
@@ -3972,7 +3972,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	private EObject getSemanticElement(IAdaptable semanticAdapter) {
+	protected EObject getSemanticElement(IAdaptable semanticAdapter) {
 		if(semanticAdapter == null) {
 			return null;
 		}
@@ -3987,7 +3987,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	private IElementType getSemanticElementType(IAdaptable semanticAdapter) {
+	protected IElementType getSemanticElementType(IAdaptable semanticAdapter) {
 		if(semanticAdapter == null) {
 			return null;
 		}
