@@ -612,7 +612,7 @@
             <method name="getType()" value="4001,4002,4003,4004,4005"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5001,5002,5080,5081,5082,5003,5011,5024,5083,5012,5025,5084,5009,5085,5010,5086,5004,5013,5026,5087,5014,5027,5088,5015,5089,5016,5090,5006,5017,5028,5091,5018,5029,5092,5019,5093,5020,5094,5021,5030,5095,5022,5031,5096,5023,5097,5038,5039,5040,5041,5034,5035,5036,5037,5007,5008,5043,5098,5099,5100,5042,5101,5059,5049,5050,5102,5051,5052,5103,5053,5104,5054,5055,5105,5056,5057,5106,5058,5107,5060,5061,5062,5108,5063,5064,5109,5065,5110,5072,5073,5111,5074,5075,5112,5076,5113,5071,5078,5079,5115,5077,5114,5119,5120,5121,5123,5117,5118,5126,5124,5125,5127"/>
+            <method name="getType()" value="5001,5002,5080,5081,5082,5003,5011,5024,5083,5012,5025,5084,5009,5085,5010,5086,5004,5013,5026,5087,5014,5027,5088,5015,5089,5016,5090,5006,5017,5028,5091,5018,5029,5092,5019,5093,5020,5094,5021,5030,5095,5022,5031,5096,5023,5097,5038,5039,5040,5041,5034,5035,5036,5037,5007,5008,5043,5098,5099,5100,5042,5101,5059,5049,5050,5102,5051,5052,5103,5053,5104,5054,5055,5105,5056,5057,5106,5058,5107,5060,5061,5062,5108,5063,5064,5109,5065,5110,5072,5073,5111,5074,5075,5112,5076,5113,5071,5078,5079,5115,5077,5114,5119,5120,5121,5123,5117,5118,5126,5124,5125,5127,5128"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value="7001,7002,7003,7004,7008,7009,7010,7012,7005,7006,7007"/>
@@ -1753,6 +1753,52 @@
          <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateElement">
                   </constraints>
          <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateObjectNode">
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectNode_validateNotUnique"
+            lang="OCL"
+            name="validateNotUnique"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            <![CDATA[-- must be applied on corresponding parameter, if only it exists
+true
+--not self.isUnique]]>
+            <description><![CDATA[Object nodes are not unique typed elements]]></description>
+            <message><![CDATA[isUnique must be false for object nodes.]]></message>
+            <target class="uml.ObjectNode"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectNode_validateSelectionBehavior"
+            lang="OCL"
+            name="validateSelectionBehavior"
+            mode="Batch"
+            severity="ERROR" statusCode="200">
+            <![CDATA[-- must be applied on corresponding parameter, if only it exists
+true
+--((not self.selection.oclIsUndefined()) implies self.isOrdered) and
+--(self.isOrdered implies (not self.selection.oclIsUndefined()))]]>
+            <description><![CDATA[If an object node has a selection behavior, then the ordering of the object node is ordered, and vice versa.]]></description>
+            <message><![CDATA[isOrdered means there is a selection behavior for object nodes.]]></message>
+            <target class="uml.ObjectNode"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectNode_validateObjectFlowEdges"
+            lang="OCL"
+            name="validateObjectFlowEdges"
+            mode="Batch"
+            severity="ERROR" statusCode="200">
+            <![CDATA[true
+-- Already checked by validateControlFlow_validateObjectNodes]]>
+            <description><![CDATA[All edges coming into or going out of object nodes must be object flow edges.]]></description>
+            <message><![CDATA[All edges coming into or going out of object nodes must be object flow edges.]]></message>
+            <target class="uml.ObjectNode"/>
+         </constraint>
+                  <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectNode_validateInputOutputParameter"
+            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter7"
+            name="validateInputOutputParameter"
+            mode="Batch"
+            severity="ERROR" statusCode="200">
+            
+            <description><![CDATA[A selection behavior has one input parameter and one output parameter. The input parameter must be a bag of elements of the same type as the object node or a supertype of the type of object node. The output parameter must be the same or a subtype of the type of object node. The behavior cannot have side effects.]]></description>
+            <message><![CDATA[The selection behavior of an object node must have one input parameter and one output parameter. The parameters types must be compatible with the object node's type.]]></message>
+            <target class="uml.ObjectNode"/>
+         </constraint>
                   </constraints>
          <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateMultiplicityElement">
                   </constraints>
@@ -1819,7 +1865,7 @@ and self.fromAction.output->forAll(incoming->isEmpty() and outgoing->isEmpty()))
                   </constraints>
          <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateValuePin">
                   <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateValuePin_validateCompatibleType"
-            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter9"
+            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter13"
             name="validateCompatibleType"
             mode="Live"
             severity="ERROR" statusCode="200">
@@ -1853,7 +1899,7 @@ and self.fromAction.output->forAll(incoming->isEmpty() and outgoing->isEmpty()))
                   </constraints>
          <constraints categories="org.eclipse.uml2.uml.util.UMLValidator.validate/org.eclipse.uml2.uml.util.UMLValidator.validateActivityEdge">
                   <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateActivityEdge_validateSourceAndTarget"
-            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter12"
+            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter16"
             name="validateSourceAndTarget"
             mode="Live"
             severity="ERROR" statusCode="200">
@@ -1910,7 +1956,7 @@ and (self.target.oclIsUndefined() or not self.target.oclIsKindOf(Action))]]>
             <target class="uml.ObjectFlow"/>
          </constraint>
                   <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateCompatibleTypes"
-            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter17"
+            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter21"
             name="validateCompatibleTypes"
             mode="Live"
             severity="ERROR" statusCode="200">
@@ -1920,7 +1966,7 @@ and (self.target.oclIsUndefined() or not self.target.oclIsKindOf(Action))]]>
             <target class="uml.ObjectFlow"/>
          </constraint>
                   <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateSameUpperBounds"
-            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter18"
+            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter22"
             name="validateSameUpperBounds"
             mode="Live"
             severity="ERROR" statusCode="200">
@@ -1930,7 +1976,7 @@ and (self.target.oclIsUndefined() or not self.target.oclIsKindOf(Action))]]>
             <target class="uml.ObjectFlow"/>
          </constraint>
                   <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateTarget"
-            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter19"
+            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter23"
             name="validateTarget"
             mode="Live"
             severity="ERROR" statusCode="200">
@@ -1940,7 +1986,7 @@ and (self.target.oclIsUndefined() or not self.target.oclIsKindOf(Action))]]>
             <target class="uml.ObjectFlow"/>
          </constraint>
                   <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateTransformationBehaviour"
-            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter20"
+            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter24"
             name="validateTransformationBehaviour"
             mode="Live"
             severity="ERROR" statusCode="200">
@@ -1960,7 +2006,7 @@ and (self.target.oclIsUndefined() or not self.target.oclIsKindOf(Action))]]>
             <target class="uml.ObjectFlow"/>
          </constraint>
                   <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectFlow_validateInputAndOutputParameter"
-            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter22"
+            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter26"
             name="validateInputAndOutputParameter"
             mode="Live"
             severity="ERROR" statusCode="200">
@@ -2069,7 +2115,7 @@ and self.decisionInput.ownedParameter->select(
             <target class="uml.DecisionNode"/>
          </constraint>
                   <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateIncomingObjectOneInputParameter"
-            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter30"
+            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter34"
             name="validateIncomingObjectOneInputParameter"
             mode="Batch"
             severity="ERROR" statusCode="200">
@@ -2079,7 +2125,7 @@ and self.decisionInput.ownedParameter->select(
             <target class="uml.DecisionNode"/>
          </constraint>
                   <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateIncomingControlOneInputParameter"
-            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter31"
+            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter35"
             name="validateIncomingControlOneInputParameter"
             mode="Batch"
             severity="ERROR" statusCode="200">
@@ -2089,7 +2135,7 @@ and self.decisionInput.ownedParameter->select(
             <target class="uml.DecisionNode"/>
          </constraint>
                   <constraint id="org.eclipse.uml2.uml.util.UMLValidator.validateDecisionNode_validateTwoInputParameters"
-            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter32"
+            lang="Java" class="org.eclipse.papyrus.diagram.activity.providers.UMLValidationProvider$Adapter36"
             name="validateTwoInputParameters"
             mode="Batch"
             severity="ERROR" statusCode="200">
@@ -2199,6 +2245,10 @@ and self.decisionInput.ownedParameter->select(
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateInitialNode_validateNoIncomingEdges"/>
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateInitialNode_validateControlEdges"/>
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateFinalNode_validateNoOutgoingEdges"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateObjectNode_validateNotUnique"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateObjectNode_validateSelectionBehavior"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateObjectNode_validateObjectFlowEdges"/>
+                  <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateObjectNode_validateInputOutputParameter"/>
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validatePin_validateControlPins"/>
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateInputPin_validateOutgoingEdgesStructuredOnly"/>
                   <constraint ref="org.eclipse.papyrus.diagram.activity.org.eclipse.uml2.uml.util.UMLValidator.validateActionInputPin_validateOneOutputPin"/>

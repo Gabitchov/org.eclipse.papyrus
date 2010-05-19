@@ -24,15 +24,19 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.papyrus.diagram.activity.parsers.MessageFormatParser;
 import org.eclipse.uml2.uml.ActivityParameterNode;
+import org.eclipse.uml2.uml.DataStoreNode;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ObjectNode;
 import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * The Class ObjectNodeParser.
+ * The Class ObjectNodeParser. This parser handle labels for Object Nodes
  */
 public class ObjectNodeParser extends MessageFormatParser implements ISemanticParser {
+
+	/** The String to display in front of a Data Store */
+	private static final String DATASTORE_PREFIX = "<<datastore>>".concat(System.getProperty("line.separator"));
 
 	/** The String format for displaying an ActivityParameterNodeParser with no type */
 	private static final String UNTYPED_PARAMETER_FORMAT = "%s";
@@ -87,16 +91,20 @@ public class ObjectNodeParser extends MessageFormatParser implements ISemanticPa
 	 * {@inheritDoc}
 	 */
 	public String getPrintString(IAdaptable element, int flags) {
-		String result = "";
+		StringBuffer result = new StringBuffer();
 		Object adapter = element.getAdapter(EObject.class);
+		if(adapter instanceof DataStoreNode) {
+			result.append(DATASTORE_PREFIX);
+		}
 		if(adapter instanceof ObjectNode) {
 			ObjectNode objectNode = (ObjectNode)adapter;
 			String name = objectNode.getName();
-			result = String.format(UNTYPED_PARAMETER_FORMAT, name);
 			// manage type
 			if(objectNode.getType() != null) {
 				String type = objectNode.getType().getName();
-				result = String.format(TYPED_PARAMETER_FORMAT, name, type);
+				result.append(String.format(TYPED_PARAMETER_FORMAT, name, type));
+			} else {
+				result.append(String.format(UNTYPED_PARAMETER_FORMAT, name));
 			}
 			// manage states
 			StringBuffer stateLabel = new StringBuffer();
@@ -113,10 +121,10 @@ public class ObjectNodeParser extends MessageFormatParser implements ISemanticPa
 				}
 			}
 			if(stateLabel.length() > 0) {
-				result += String.format(STATE_FORMAT, stateLabel.toString());
+				result.append(String.format(STATE_FORMAT, stateLabel.toString()));
 			}
 		}
-		return result;
+		return result.toString();
 	}
 
 	/**

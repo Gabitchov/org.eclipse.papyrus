@@ -1476,6 +1476,9 @@ public class UMLVisualIDRegistry {
 			if(DataStoreNodeLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(DataStoreSelectionEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 			if(ParameterEditPart.VISUAL_ID == nodeVisualID) {

@@ -42,6 +42,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.DecisionNode;
 import org.eclipse.uml2.uml.ObjectFlow;
+import org.eclipse.uml2.uml.ObjectNode;
 import org.eclipse.uml2.uml.ValuePin;
 
 /**
@@ -196,7 +197,21 @@ public class UMLValidationProvider {
 	/**
 	 * @generated
 	 */
-	public static class Adapter9 extends AbstractModelConstraint {
+	public static class Adapter7 extends AbstractModelConstraint {
+
+		/**
+		 * @generated
+		 */
+		public IStatus validate(IValidationContext ctx) {
+			ObjectNode context = (ObjectNode)ctx.getTarget();
+			return UMLValidationHelper.validateInputOutputParameter(context, ctx);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public static class Adapter13 extends AbstractModelConstraint {
 
 		/**
 		 * @generated
@@ -210,7 +225,7 @@ public class UMLValidationProvider {
 	/**
 	 * @generated
 	 */
-	public static class Adapter12 extends AbstractModelConstraint {
+	public static class Adapter16 extends AbstractModelConstraint {
 
 		/**
 		 * @generated
@@ -224,7 +239,7 @@ public class UMLValidationProvider {
 	/**
 	 * @generated
 	 */
-	public static class Adapter17 extends AbstractModelConstraint {
+	public static class Adapter21 extends AbstractModelConstraint {
 
 		/**
 		 * @generated
@@ -238,7 +253,7 @@ public class UMLValidationProvider {
 	/**
 	 * @generated
 	 */
-	public static class Adapter18 extends AbstractModelConstraint {
+	public static class Adapter22 extends AbstractModelConstraint {
 
 		/**
 		 * @generated
@@ -252,7 +267,7 @@ public class UMLValidationProvider {
 	/**
 	 * @generated
 	 */
-	public static class Adapter19 extends AbstractModelConstraint {
+	public static class Adapter23 extends AbstractModelConstraint {
 
 		/**
 		 * @generated
@@ -266,7 +281,7 @@ public class UMLValidationProvider {
 	/**
 	 * @generated
 	 */
-	public static class Adapter20 extends AbstractModelConstraint {
+	public static class Adapter24 extends AbstractModelConstraint {
 
 		/**
 		 * @generated
@@ -280,7 +295,7 @@ public class UMLValidationProvider {
 	/**
 	 * @generated
 	 */
-	public static class Adapter22 extends AbstractModelConstraint {
+	public static class Adapter26 extends AbstractModelConstraint {
 
 		/**
 		 * @generated
@@ -294,7 +309,7 @@ public class UMLValidationProvider {
 	/**
 	 * @generated
 	 */
-	public static class Adapter30 extends AbstractModelConstraint {
+	public static class Adapter34 extends AbstractModelConstraint {
 
 		/**
 		 * @generated
@@ -308,7 +323,7 @@ public class UMLValidationProvider {
 	/**
 	 * @generated
 	 */
-	public static class Adapter31 extends AbstractModelConstraint {
+	public static class Adapter35 extends AbstractModelConstraint {
 
 		/**
 		 * @generated
@@ -322,7 +337,7 @@ public class UMLValidationProvider {
 	/**
 	 * @generated
 	 */
-	public static class Adapter32 extends AbstractModelConstraint {
+	public static class Adapter36 extends AbstractModelConstraint {
 
 		/**
 		 * @generated

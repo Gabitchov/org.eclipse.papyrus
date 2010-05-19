@@ -13,13 +13,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.parts;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.draw2d.FigureListener;
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.Polyline;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PointList;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -27,22 +31,20 @@ import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.AccessibleEditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
-import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
-import org.eclipse.gef.handles.MoveHandle;
-import org.eclipse.gef.handles.NonResizableHandleKit;
 import org.eclipse.gef.requests.DirectEditRequest;
 import org.eclipse.gef.tools.DirectEditManager;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
+import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
@@ -56,13 +58,17 @@ import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
+import org.eclipse.papyrus.diagram.activity.edit.policies.BehaviorPropertyNodeEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.UMLTextSelectionEditPolicy;
+import org.eclipse.papyrus.diagram.activity.figures.WrappedLabel;
+import org.eclipse.papyrus.diagram.activity.locator.LinkedBehaviorLocator;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.activity.providers.UMLParserProvider;
 import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
@@ -79,16 +85,24 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.ObjectNode;
 
 /**
  * @generated
  */
-public class DataStoreNodeLabelEditPart extends CompartmentEditPart implements ITextAwareEditPart {
+public class DataStoreSelectionEditPart
+
+
+extends LabelEditPart
+
+
+implements ITextAwareEditPart, IBorderItemEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5127;
+	public static final int VISUAL_ID = 5128;
 
 	/**
 	 * @generated
@@ -112,10 +126,18 @@ public class DataStoreNodeLabelEditPart extends CompartmentEditPart implements I
 
 
 
-	/** direct edition mode (default, undefined, registered editor, etc.) */
+	/**
+	 * direct edition mode (default, undefined, registered editor, etc.)
+	 * 
+	 * @generated
+	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
-	/** configuration from a registered edit dialog */
+	/**
+	 * configuration from a registered edit dialog
+	 * 
+	 * @generated
+	 */
 	protected IDirectEditorConfiguration configuration;
 
 
@@ -123,7 +145,14 @@ public class DataStoreNodeLabelEditPart extends CompartmentEditPart implements I
 	/**
 	 * @generated
 	 */
-	public DataStoreNodeLabelEditPart(View view) {
+	static {
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreSelectionEditPart.VISUAL_ID), new Point(0, 0));
+	}
+
+	/**
+	 * @generated
+	 */
+	public DataStoreSelectionEditPart(View view) {
 		super(view);
 	}
 
@@ -132,74 +161,88 @@ public class DataStoreNodeLabelEditPart extends CompartmentEditPart implements I
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new NonResizableEditPolicy() {
-
-			protected List createSelectionHandles() {
-				List handles = new ArrayList();
-				NonResizableHandleKit.addMoveHandle((GraphicalEditPart)getHost(), handles);
-				((MoveHandle)handles.get(0)).setBorder(null);
-				return handles;
-			}
-
-			public Command getCommand(Request request) {
-				return null;
-			}
-
-			public boolean understandsRequest(Request request) {
-				return false;
-			}
-		});
+		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
 	}
 
 	/**
 	 * @generated
+	 */
+	public IBorderItemLocator getBorderItemLocator() {
+		IFigure parentFigure = getFigure().getParent();
+		if(parentFigure != null && parentFigure.getLayoutManager() != null) {
+			Object constraint = parentFigure.getLayoutManager().getConstraint(getFigure());
+			return (IBorderItemLocator)constraint;
+		}
+		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void refreshBounds() {
+		int x = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
+		int y = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
+		int width = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
+		int height = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
+		getBorderItemLocator().setConstraint(new Rectangle(x, y, width, height));
+	}
+
+	/**
+	 * @generated NOT handle LinkAndCornerBentWithTextFigure
 	 */
 	protected String getLabelTextHelper(IFigure figure) {
 		if(figure instanceof WrappingLabel) {
 			return ((WrappingLabel)figure).getText();
 		} else if(figure instanceof ILabelFigure) {
 			return ((ILabelFigure)figure).getText();
+		} else if(figure instanceof LinkAndCornerBentWithTextFigure) {
+			return ((LinkAndCornerBentWithTextFigure)figure).getCornerBentContent().getText();
 		} else {
 			return ((Label)figure).getText();
 		}
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT handle LinkAndCornerBentWithTextFigure
 	 */
 	protected void setLabelTextHelper(IFigure figure, String text) {
 		if(figure instanceof WrappingLabel) {
 			((WrappingLabel)figure).setText(text);
 		} else if(figure instanceof ILabelFigure) {
 			((ILabelFigure)figure).setText(text);
+		} else if(figure instanceof LinkAndCornerBentWithTextFigure) {
+			((LinkAndCornerBentWithTextFigure)figure).getCornerBentContent().setText(text);
 		} else {
 			((Label)figure).setText(text);
 		}
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT handle LinkAndCornerBentWithTextFigure
 	 */
 	protected Image getLabelIconHelper(IFigure figure) {
 		if(figure instanceof WrappingLabel) {
 			return ((WrappingLabel)figure).getIcon();
 		} else if(figure instanceof ILabelFigure) {
 			return ((ILabelFigure)figure).getIcon();
+		} else if(figure instanceof LinkAndCornerBentWithTextFigure) {
+			return ((LinkAndCornerBentWithTextFigure)figure).getCornerBentContent().getIcon();
 		} else {
 			return ((Label)figure).getIcon();
 		}
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT handle LinkAndCornerBentWithTextFigure
 	 */
 	protected void setLabelIconHelper(IFigure figure, Image icon) {
 		if(figure instanceof WrappingLabel) {
 			((WrappingLabel)figure).setIcon(icon);
 		} else if(figure instanceof ILabelFigure) {
 			((ILabelFigure)figure).setIcon(icon);
+		} else if(figure instanceof LinkAndCornerBentWithTextFigure) {
+			((LinkAndCornerBentWithTextFigure)figure).getCornerBentContent().setIcon(icon);
 		} else {
 			((Label)figure).setIcon(icon);
 		}
@@ -208,7 +251,7 @@ public class DataStoreNodeLabelEditPart extends CompartmentEditPart implements I
 	/**
 	 * @generated
 	 */
-	public void setLabel(WrappingLabel figure) {
+	public void setLabel(IFigure figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -245,18 +288,24 @@ public class DataStoreNodeLabelEditPart extends CompartmentEditPart implements I
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT do not edit label if hidden
 	 */
 	protected String getLabelText() {
-		String text = null;
-		EObject parserElement = getParserElement();
-		if(parserElement != null && getParser() != null) {
-			text = getParser().getPrintString(new EObjectAdapter(parserElement), getParserOptions().intValue());
+		//do not edit label if hidden
+		boolean selectionSet = ((ObjectNode)resolveSemanticElement()).getSelection() != null;
+		if(selectionSet) {
+			String text = null;
+			EObject parserElement = getParserElement();
+			if(parserElement != null && getParser() != null) {
+				text = getParser().getPrintString(new EObjectAdapter(parserElement), getParserOptions().intValue());
+			}
+			if(text == null || text.length() == 0) {
+				text = defaultText;
+			}
+			return text;
+		} else {
+			return "";
 		}
-		if(text == null || text.length() == 0) {
-			text = defaultText;
-		}
-		return text;
 	}
 
 	/**
@@ -275,10 +324,12 @@ public class DataStoreNodeLabelEditPart extends CompartmentEditPart implements I
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT do not edit label if hidden
 	 */
 	public String getEditText() {
-		if(getParserElement() == null || getParser() == null) {
+		//do not edit label if hidden
+		boolean selectionSet = ((ObjectNode)resolveSemanticElement()).getSelection() != null;
+		if(getParserElement() == null || getParser() == null || !selectionSet) {
 			return ""; //$NON-NLS-1$
 		}
 		return getParser().getEditString(new EObjectAdapter(getParserElement()), getParserOptions().intValue());
@@ -342,7 +393,7 @@ public class DataStoreNodeLabelEditPart extends CompartmentEditPart implements I
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.DataStoreNode_3078, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeLabelEditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.DataStoreNode_3078, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreSelectionEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -365,26 +416,34 @@ public class DataStoreNodeLabelEditPart extends CompartmentEditPart implements I
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT do not edit label if hidden
 	 */
 	protected void performDirectEdit() {
-		getManager().show();
+		//do not edit label if hidden
+		boolean selectionSet = ((ObjectNode)resolveSemanticElement()).getSelection() != null;
+		if(selectionSet) {
+			getManager().show();
+		}
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT do not edit label if hidden
 	 */
 	protected void performDirectEdit(Point eventLocation) {
-		if(getManager() instanceof TextDirectEditManager) {
+		//do not edit label if hidden
+		boolean selectionSet = ((ObjectNode)resolveSemanticElement()).getSelection() != null;
+		if(getManager() instanceof TextDirectEditManager && selectionSet) {
 			((TextDirectEditManager)getManager()).show(eventLocation.getSWTPoint());
 		}
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT do not edit label if hidden
 	 */
 	private void performDirectEdit(char initialCharacter) {
-		if(getManager() instanceof TextDirectEditManager) {
+		//do not edit label if hidden
+		boolean selectionSet = ((ObjectNode)resolveSemanticElement()).getSelection() != null;
+		if(getManager() instanceof TextDirectEditManager && selectionSet) {
 			((TextDirectEditManager)getManager()).show(initialCharacter);
 		} else {
 			performDirectEdit();
@@ -392,9 +451,14 @@ public class DataStoreNodeLabelEditPart extends CompartmentEditPart implements I
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT do not edit label if hidden
 	 */
 	protected void performDirectEditRequest(Request request) {
+		//do not edit label if hidden
+		boolean selectionSet = ((ObjectNode)resolveSemanticElement()).getSelection() != null;
+		if(!selectionSet) {
+			return;
+		}
 
 		final Request theRequest = request;
 
@@ -478,6 +542,24 @@ public class DataStoreNodeLabelEditPart extends CompartmentEditPart implements I
 		refreshFontColor();
 		refreshUnderline();
 		refreshStrikeThrough();
+	}
+
+	/**
+	 * sets the visibility of this edit part
+	 * 
+	 * @param vis
+	 *        the new value of the visibility
+	 * @generated NOT
+	 */
+	protected void setVisibility(boolean vis) {
+		EObject element = resolveSemanticElement();
+		if(element instanceof ObjectNode) {
+			Behavior selection = ((ObjectNode)element).getSelection();
+			if(selection == null) {
+				vis = false;
+			}
+		}
+		super.setVisibility(vis);
 	}
 
 	/**
@@ -649,6 +731,8 @@ public class DataStoreNodeLabelEditPart extends CompartmentEditPart implements I
 
 	/**
 	 * Updates the preference configuration
+	 * 
+	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
@@ -664,6 +748,7 @@ public class DataStoreNodeLabelEditPart extends CompartmentEditPart implements I
 	 * 
 	 * @param theRequest
 	 *        the direct edit request that starts the direct edit system
+	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
 		// initialize the direct edit manager
@@ -692,27 +777,9 @@ public class DataStoreNodeLabelEditPart extends CompartmentEditPart implements I
 
 
 	/**
-	 * @generated
-	 */
-	protected void addNotationalListeners() {
-		super.addNotationalListeners();
-		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void removeNotationalListeners() {
-		super.removeNotationalListeners();
-		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
-	}
-
-
-	/**
-	 * @generated
+	 * @generated NOT refresh the visibility in case the selection assignment changed
 	 */
 	protected void handleNotificationEvent(Notification event) {
-		refreshLabel();
 		Object feature = event.getFeature();
 		if(NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
 			Integer c = (Integer)event.getNewValue();
@@ -735,11 +802,11 @@ public class DataStoreNodeLabelEditPart extends CompartmentEditPart implements I
 						addSemanticListeners();
 					}
 					refreshLabel();
+					// refresh the visibility in case the selection assignment changed
+					refreshVisibility();
 				}
 			}
 		}
-
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -747,48 +814,165 @@ public class DataStoreNodeLabelEditPart extends CompartmentEditPart implements I
 	 * @generated
 	 */
 	protected IFigure createFigure() {
-		// Parent should assign one using setLabel() method
-		return null;
-	}
-
-
-
-	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
-
-	/**
-	 * @generated
-	 */
-	public void activate() {
-		super.activate();
-		addOwnerElementListeners();
+		IFigure label = createFigurePrim();
+		defaultText = getLabelTextHelper(label);
+		return label;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected void addOwnerElementListeners() {
-		addListenerFilter(ADD_PARENT_MODEL, this, ((View)getParent().getModel())); //$NON-NLS-1$
-
-	}
-
-	/**
-	 * @generated
-	 */
-	public void deactivate() {
-		removeOwnerElementListeners();
-		super.deactivate();
-
+	protected IFigure createFigurePrim() {
+		return new LinkAndCornerBentWithTextFigure();
 	}
 
 
 	/**
 	 * @generated
 	 */
-	protected void removeOwnerElementListeners() {
-		removeListenerFilter(ADD_PARENT_MODEL);
+	public class LinkAndCornerBentWithTextFigure extends CornerBentFigure {
+
+
+		/**
+		 * @generated
+		 */
+		private WrappedLabel fCornerBentContent;
+
+		/**
+		 * @generated
+		 */
+		private Polyline fLinkToBehaviorProperty;
+
+
+		/**
+		 * @generated
+		 */
+		public LinkAndCornerBentWithTextFigure() {
+
+
+			this.setBackgroundColor(THIS_BACK);
+			createContents();
+		}
+
+		/**
+		 * @generated NOT do not add link in this figure
+		 */
+		private void createContents() {
+
+
+			fCornerBentContent = new WrappedLabel();
+
+
+
+			this.add(fCornerBentContent);
+
+
+
+			fLinkToBehaviorProperty = new Polyline();
+			fLinkToBehaviorProperty.setLineWidth(1);
+			fLinkToBehaviorProperty.setLineStyle(Graphics.LINE_DASH);
+
+			// do not add link in this figure but refresh it when figure moves
+			addFigureListener(new FigureListener() {
+
+				public void figureMoved(IFigure source) {
+					refreshLinkToBehaviorProperty();
+				}
+			});
+
+
+		}
+
+
+
+
+		/**
+		 * @generated
+		 */
+		private boolean myUseLocalCoordinates = true;
+
+		/**
+		 * @generated
+		 */
+		protected boolean useLocalCoordinates() {
+			return myUseLocalCoordinates;
+		}
+
+		/**
+		 * @generated
+		 */
+		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
+			myUseLocalCoordinates = useLocalCoordinates;
+		}
+
+		/**
+		 * @see org.eclipse.draw2d.Figure#setVisible(boolean)
+		 * @generated NOT report visibility on the link
+		 */
+		@Override
+		public void setVisible(boolean visible) {
+			super.setVisible(visible);
+			getLinkToBehaviorProperty().setVisible(visible);
+		}
+
+		/**
+		 * Refresh the link between parent figure and this one
+		 * 
+		 * @generated NOT
+		 */
+		private void refreshLinkToBehaviorProperty() {
+			if(getLinkToBehaviorProperty().getParent() == null) {
+				// add in appropriate figure
+				getParent().add(getLinkToBehaviorProperty());
+			}
+
+			if(getParent() != null && getParent().getParent() instanceof BorderedNodeFigure) {
+				BorderedNodeFigure gParent = (BorderedNodeFigure)getParent().getParent();
+				Rectangle parentBounds = gParent.getHandleBounds().getCopy();
+				Point parentCenter = parentBounds.getCenter();
+				IFigure rect = gParent.getMainFigure();
+
+				Rectangle currentBounds = ((LinkedBehaviorLocator)getBorderItemLocator()).getCorrectItemLocation(this);
+				Point end = BehaviorPropertyNodeEditPolicy.getAppropriateBorderPoint(parentCenter, currentBounds);
+				getLinkToBehaviorProperty().setEnd(end);
+
+				PointList polygonalBounds = new PointList(4);
+				polygonalBounds.addPoint(rect.getBounds().getTopLeft());
+				polygonalBounds.addPoint(rect.getBounds().getTopRight());
+				polygonalBounds.addPoint(rect.getBounds().getBottomRight());
+				polygonalBounds.addPoint(rect.getBounds().getBottomLeft());
+				Point start = BehaviorPropertyNodeEditPolicy.getIntersectionPoint(polygonalBounds, parentCenter, end);
+				if(start != null) {
+					getLinkToBehaviorProperty().setStart(start);
+				} else {
+					// in case start computation fails
+					getLinkToBehaviorProperty().setStart(parentCenter);
+				}
+			}
+		}
+
+		/**
+		 * @generated
+		 */
+		public WrappedLabel getCornerBentContent() {
+			return fCornerBentContent;
+		}
+
+		/**
+		 * @generated
+		 */
+		public Polyline getLinkToBehaviorProperty() {
+			return fLinkToBehaviorProperty;
+		}
+
 
 	}
+
+	/**
+	 * @generated
+	 */
+	static final Color THIS_BACK = new Color(null, 248, 249, 214);
+
 
 
 }

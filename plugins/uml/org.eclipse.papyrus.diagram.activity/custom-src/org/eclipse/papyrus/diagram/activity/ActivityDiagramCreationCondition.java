@@ -20,13 +20,13 @@ import org.eclipse.uml2.uml.Package;
  * ActivityDiagramCreationCondition class allows to check if an Activity diagram can be added to the
  * selected element.
  */
-public class ActivityDiagramCreationCondition  extends PerspectiveContextDependence {
+public class ActivityDiagramCreationCondition extends PerspectiveContextDependence {
 
 	/**
 	 * @return whether the diagram can be created.
 	 */
 	public boolean create(EObject selectedElement) {
-		if(super.create(selectedElement)){
+		if(super.create(selectedElement)) {
 			return selectedElement instanceof Activity || selectedElement instanceof Package || selectedElement instanceof BehavioredClassifier;
 		}
 		return false;

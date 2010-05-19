@@ -41,6 +41,7 @@ import org.eclipse.papyrus.diagram.activity.parser.custom.JoinSpecParser;
 import org.eclipse.papyrus.diagram.activity.parser.custom.ObjectFlowSelectionParser;
 import org.eclipse.papyrus.diagram.activity.parser.custom.ObjectFlowTransformationParser;
 import org.eclipse.papyrus.diagram.activity.parser.custom.ObjectNodeParser;
+import org.eclipse.papyrus.diagram.activity.parser.custom.ObjectNodeSelectionParser;
 import org.eclipse.papyrus.diagram.activity.parser.custom.ParameterParser;
 import org.eclipse.papyrus.diagram.activity.parser.custom.PinParser;
 import org.eclipse.papyrus.diagram.activity.parser.custom.PinValueParser;
@@ -1635,6 +1636,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private ObjectNodeSelectionParser dataStoreNodeLabel_5128Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDataStoreNodeLabel_5128Parser() {
+		if(dataStoreNodeLabel_5128Parser == null) {
+			dataStoreNodeLabel_5128Parser = new ObjectNodeSelectionParser();
+		}
+		return dataStoreNodeLabel_5128Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private StructuredActivityNodeKeywordParser conditionalNodeLabel_5119Parser;
 
 	/**
@@ -2271,6 +2287,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getOutputPinLabel_5125Parser();
 		case DataStoreNodeLabelEditPart.VISUAL_ID:
 			return getDataStoreNodeLabel_5127Parser();
+		case DataStoreSelectionEditPart.VISUAL_ID:
+			return getDataStoreNodeLabel_5128Parser();
 		case ObjectFlowNameEditPart.VISUAL_ID:
 			return getObjectFlowName_6001Parser();
 		case ObjectFlowWeightEditPart.VISUAL_ID:

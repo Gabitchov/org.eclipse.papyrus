@@ -496,6 +496,67 @@ public class UMLValidationHelper {
 	}
 
 	/**
+	 * A selection behavior has one input parameter and one output parameter. The input parameter must be a bag of elements of the same type as the
+	 * object node or a supertype of the type of object node. The output parameter must be the same or a subtype of the type of object node. The
+	 * behavior cannot have side effects.
+	 * 
+	 * @param context
+	 *        The receiving '<em><b>Object Node</b></em>' model object.
+	 * @param ctx
+	 *        The cache of context-specific information.
+	 */
+	public static IStatus validateInputOutputParameter(ObjectNode context, IValidationContext ctx) {
+		Behavior selection = context.getSelection();
+		if(selection != null) {
+			Parameter inParam = null;
+			Parameter outParam = null;
+			for(Parameter param : selection.getOwnedParameters()) {
+				switch(param.getDirection()) {
+				case IN_LITERAL:
+					if(inParam != null) {
+						// second input found
+						return ctx.createFailureStatus();
+					}
+					inParam = param;
+					break;
+				case OUT_LITERAL:
+				case RETURN_LITERAL:
+					if(outParam != null) {
+						// second output found
+						return ctx.createFailureStatus();
+					}
+					outParam = param;
+					break;
+				case INOUT_LITERAL:
+					if(inParam != null) {
+						// second input found
+						return ctx.createFailureStatus();
+					}
+					inParam = param;
+					if(outParam != null) {
+						// second output found
+						return ctx.createFailureStatus();
+					}
+					outParam = param;
+					break;
+				}
+			}
+			if(inParam == null || outParam == null) {
+				// missing a parameter
+				return ctx.createFailureStatus();
+			}
+			// check type compatibility
+			if(!isSuperType(inParam.getType(), context.getType())) {
+				return ctx.createFailureStatus();
+			}
+			if(!isSuperType(context.getType(), outParam.getType())) {
+				return ctx.createFailureStatus();
+			}
+		}
+		return ctx.createSuccessStatus();
+	}
+
+	/**
 	 * Check that type is compatible with the first one as parent
 	 * 
 	 * @param superType

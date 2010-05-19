@@ -37,8 +37,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
+import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
@@ -103,7 +103,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	@Override
 	protected Set<Integer> getDroppableElementVisualId() {
 		Set<Integer> droppableElementsVisualID = new HashSet<Integer>();
-		
+
 		droppableElementsVisualID.add(OpaqueActionEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(CallBehaviorActionEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(CallOperationActionEditPart.VISUAL_ID);

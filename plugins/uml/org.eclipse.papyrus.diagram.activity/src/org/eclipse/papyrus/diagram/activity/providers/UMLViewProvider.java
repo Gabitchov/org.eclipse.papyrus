@@ -2422,6 +2422,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "DataStoreNode");
 
 		Node label5127 = createLabel(node, UMLVisualIDRegistry.getType(DataStoreNodeLabelEditPart.VISUAL_ID));
+		Node label5128 = createLabel(node, UMLVisualIDRegistry.getType(DataStoreSelectionEditPart.VISUAL_ID));
+		label5128.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
+		Location location5128 = (Location)label5128.getLayoutConstraint();
+		location5128.setX(0);
+		location5128.setY(5);
 		return node;
 	}
 

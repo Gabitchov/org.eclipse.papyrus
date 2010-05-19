@@ -2626,6 +2626,10 @@
             <diagramLabel
                 href="activityDiagram.gmfgraph#ObjectNodeName"/>
           </labelMappings>
+          <labelMappings>
+            <diagramLabel
+                href="activityDiagram.gmfgraph#ObjectNodeSelection"/>
+          </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
               href="activityDiagram.gmftool#//@palette/@tools.0/@tools.8"/>
@@ -2922,7 +2926,62 @@
     <childContainers
         id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectNode"
         name="validateObjectNode"
-        description="Validate an object node"/>
+        description="Validate an object node">
+      <audits
+          name="validateNotUnique"
+          description="Object nodes are not unique typed elements"
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectNode_validateNotUnique"
+          useInLiveMode="true"
+          message="isUnique must be false for object nodes.">
+        <rule
+            body="-- must be applied on corresponding parameter, if only it exists&#xD;&#xA;true&#xD;&#xA;--not self.isUnique"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ObjectNode"/>
+        </target>
+      </audits>
+      <audits
+          name="validateSelectionBehavior"
+          description="If an object node has a selection behavior, then the ordering of the object node is ordered, and vice versa."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectNode_validateSelectionBehavior"
+          message="isOrdered means there is a selection behavior for object nodes.">
+        <rule
+            body="-- must be applied on corresponding parameter, if only it exists&#xD;&#xA;true&#xD;&#xA;--((not self.selection.oclIsUndefined()) implies self.isOrdered) and&#xD;&#xA;--(self.isOrdered implies (not self.selection.oclIsUndefined()))"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ObjectNode"/>
+        </target>
+      </audits>
+      <audits
+          name="validateObjectFlowEdges"
+          description="All edges coming into or going out of object nodes must be object flow edges."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectNode_validateObjectFlowEdges"
+          message="All edges coming into or going out of object nodes must be object flow edges.">
+        <rule
+            body="true&#xD;&#xA;-- Already checked by validateControlFlow_validateObjectNodes"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ObjectNode"/>
+        </target>
+      </audits>
+      <audits
+          name="validateInputOutputParameter"
+          description="A selection behavior has one input parameter and one output parameter. The input parameter must be a bag of elements of the same type as the object node or a supertype of the type of object node. The output parameter must be the same or a subtype of the type of object node. The behavior cannot have side effects."
+          id="org.eclipse.uml2.uml.util.UMLValidator.validateObjectNode_validateInputOutputParameter"
+          message="The selection behavior of an object node must have one input parameter and one output parameter. The parameters types must be compatible with the object node's type.">
+        <rule
+            body="return UMLValidationHelper.validateInputOutputParameter(context, ctx);"
+            language="java"/>
+        <target
+            xsi:type="gmfmap:DomainElementTarget">
+          <element
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//ObjectNode"/>
+        </target>
+      </audits>
+    </childContainers>
     <childContainers
         id="org.eclipse.uml2.uml.util.UMLValidator.validateMultiplicityElement"
         name="validateMultiplicityElement"

@@ -31,7 +31,7 @@ public class CreateActivityDiagramCommand extends CreateBehavioredClassifierDiag
 	protected String getDiagramNotationID() {
 		return ActivityDiagramEditPart.MODEL_ID;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */

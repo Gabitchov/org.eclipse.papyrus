@@ -295,7 +295,7 @@
           <children
               xsi:type="gmfgraph:CustomFigure"
               name="ActionLabel"
-              qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel">
+              qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel">
             <insets
                 top="5"
                 left="5"
@@ -485,7 +485,7 @@
           <children
               xsi:type="gmfgraph:CustomFigure"
               name="SendSignalActionLabel"
-              qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel">
+              qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel">
             <insets
                 top="5"
                 left="5"
@@ -536,7 +536,7 @@
           <children
               xsi:type="gmfgraph:CustomFigure"
               name="ActivityParameterNodeLabel"
-              qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel">
+              qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel">
             <insets
                 top="5"
                 left="5"
@@ -578,7 +578,7 @@
           <children
               xsi:type="gmfgraph:CustomFigure"
               name="AcceptEventActionLabel"
-              qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel">
+              qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel">
             <insets
                 top="5"
                 left="5"
@@ -625,7 +625,7 @@
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="StructuredActivityNodeKeyword"
-            qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel">
+            qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel">
           <layoutData
               xsi:type="gmfgraph:GridLayoutData"
               horizontalAlignment="BEGINNING"/>
@@ -700,7 +700,7 @@
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ActivityPartitionLabel"
-            qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel">
+            qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel">
           <layoutData
               xsi:type="gmfgraph:GridLayoutData"/>
           <insets
@@ -789,42 +789,23 @@
     <descriptors
         name="ObjectNodeDescriptor">
       <actualFigure
-          xsi:type="gmfgraph:Rectangle"
-          name="ObjectNodeFigure">
-        <layout
-            xsi:type="gmfgraph:GridLayout"/>
-        <preferredSize
-            dx="100"
-            dy="50"/>
+          xsi:type="gmfgraph:CustomFigure"
+          name="NodeNamedElementFigure"
+          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure">
         <children
-            xsi:type="gmfgraph:Rectangle"
-            name="ObjectNodeLabelRect"
-            outline="false"
-            fill="false">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              grabExcessVerticalSpace="true"
-              verticalAlignment="FILL"
-              horizontalAlignment="FILL"/>
-          <layout
-              xsi:type="gmfgraph:CustomLayout"
-              qualifiedClassName="org.eclipse.papyrus.diagram.common.draw2d.CenterLayout"/>
-          <children
-              xsi:type="gmfgraph:CustomFigure"
-              name="ObjectNodeLabel"
-              qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel">
-            <insets
-                top="5"
-                left="5"
-                bottom="5"
-                right="5"/>
-          </children>
+            xsi:type="gmfgraph:CustomFigure"
+            name="fakeObjectNodeLabel"
+            qualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+          <insets
+              top="5"
+              left="5"
+              bottom="5"
+              right="5"/>
         </children>
       </actualFigure>
       <accessors
           accessor="getObjectNodeLabel"
-          figure="//@figures.0/@descriptors.23/@actualFigure/@children.0/@children.0"/>
+          figure="//@figures.0/@descriptors.23/@actualFigure/@children.0"/>
     </descriptors>
   </figures>
   <nodes
@@ -1143,4 +1124,8 @@
         xsi:type="gmfgraph:AlignmentFacet"
         alignment="CENTER"/>
   </labels>
+  <labels
+      name="ObjectNodeSelection"
+      figure="LinkAndCornerBentWithTextFigure"
+      elementIcon="false"/>
 </gmfgraph:Canvas>

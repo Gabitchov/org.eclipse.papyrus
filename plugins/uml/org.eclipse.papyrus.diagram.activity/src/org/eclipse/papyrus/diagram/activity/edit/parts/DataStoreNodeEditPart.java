@@ -16,14 +16,13 @@ package org.eclipse.papyrus.diagram.activity.edit.parts;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.draw2d.GridData;
-import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
-import org.eclipse.draw2d.RectangleFigure;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -32,11 +31,13 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -44,12 +45,16 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.activity.edit.policies.BehaviorPropertyNodeEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.DataStoreNodeItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
-import org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel;
+import org.eclipse.papyrus.diagram.activity.locator.LinkedBehaviorLocator;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.common.draw2d.CenterLayout;
+import org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
@@ -59,7 +64,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class DataStoreNodeEditPart extends
 
-ShapeNodeEditPart {
+NamedElementEditPart {
 
 	/**
 	 * @generated
@@ -91,6 +96,7 @@ ShapeNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DataStoreNodeItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -100,12 +106,27 @@ ShapeNodeEditPart {
 
 
 	/**
+	 * Papyrus codeGen
+	 * 
 	 * @generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
+	}
+
+	/**
+	 * @generated NOT use BehaviorPropertyNodeEditPolicy
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
+				View childView = (View)child.getModel();
+				switch(UMLVisualIDRegistry.getVisualID(childView)) {
+				case DataStoreSelectionEditPart.VISUAL_ID:
+					return new BehaviorPropertyNodeEditPolicy();
+				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
 					result = new NonResizableEditPolicy();
@@ -187,15 +208,32 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
+		if(editPart instanceof IBorderItemEditPart) {
+			return getBorderedFigure().getBorderItemContainer();
+		}
 		return getContentPane();
 	}
 
 
 	/**
+	 * @generated NOT use custom locator
+	 */
+	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
+		if(borderItemEditPart instanceof DataStoreSelectionEditPart) {
+			// use custom locator
+			BorderItemLocator locator = new LinkedBehaviorLocator(getMainFigure(), PositionConstants.NORTH);
+			locator.setBorderItemOffset(new Dimension(-20, -20));
+			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
+		} else {
+			super.addBorderItem(borderItemContainer, borderItemEditPart);
+		}
+	}
+
+	/**
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(100, 50);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
 		return result;
 	}
 
@@ -208,7 +246,7 @@ ShapeNodeEditPart {
 	 * 
 	 * @generated
 	 */
-	protected NodeFigure createNodeFigure() {
+	protected NodeFigure createMainFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
 		IFigure shape = createNodeShape();
@@ -1302,70 +1340,41 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public class ObjectNodeDescriptor extends RectangleFigure {
+	public class ObjectNodeDescriptor extends NodeNamedElementFigure {
 
 
 		/**
 		 * @generated
 		 */
-		private CenteredWrappedLabel fObjectNodeLabel;
+		private WrappingLabel fObjectNodeLabel;
 
 
 		/**
-		 * @generated
+		 * @generated NOT call super
 		 */
 		public ObjectNodeDescriptor() {
-
-			GridLayout layoutThis = new GridLayout();
-			layoutThis.numColumns = 1;
-			layoutThis.makeColumnsEqualWidth = true;
-			this.setLayoutManager(layoutThis);
-
-			this.setLineWidth(1);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(100), getMapMode().DPtoLP(50)));
+			// call super
+			super();
 			createContents();
 		}
 
 		/**
-		 * @generated
+		 * @generated NOT use super figure name label instead
 		 */
 		private void createContents() {
+			//use super figure name label instead
+			getNameLabel().setTextJustification(WrappingLabel.CENTER);
+			getNameLabel().setAlignment(WrappingLabel.CENTER);
+			getNameLabel().setTextWrap(true);
+			getNameLabel().setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
 
-
-			RectangleFigure objectNodeLabelRect0 = new RectangleFigure();
-			objectNodeLabelRect0.setFill(false);
-			objectNodeLabelRect0.setOutline(false);
-			objectNodeLabelRect0.setLineWidth(1);
-
-
-			GridData constraintObjectNodeLabelRect0 = new GridData();
-			constraintObjectNodeLabelRect0.verticalAlignment = GridData.FILL;
-			constraintObjectNodeLabelRect0.horizontalAlignment = GridData.FILL;
-			constraintObjectNodeLabelRect0.horizontalIndent = 0;
-			constraintObjectNodeLabelRect0.horizontalSpan = 1;
-			constraintObjectNodeLabelRect0.verticalSpan = 1;
-			constraintObjectNodeLabelRect0.grabExcessHorizontalSpace = true;
-			constraintObjectNodeLabelRect0.grabExcessVerticalSpace = true;
-			this.add(objectNodeLabelRect0, constraintObjectNodeLabelRect0);
-
-
-			CenterLayout layoutObjectNodeLabelRect0 = new CenterLayout();
-
-
-			objectNodeLabelRect0.setLayoutManager(layoutObjectNodeLabelRect0);
-
-
-
-			fObjectNodeLabel = new CenteredWrappedLabel();
-
-
-
-			fObjectNodeLabel.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
-
-			objectNodeLabelRect0.add(fObjectNodeLabel);
-
-
-
+			//			fObjectNodeLabel = new WrappingLabel();
+			//
+			//
+			//
+			//			fObjectNodeLabel.setBorder(new MarginBorder(getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
+			//
+			//			this.add(fObjectNodeLabel);
 		}
 
 
@@ -1375,7 +1384,6 @@ ShapeNodeEditPart {
 		 * @generated
 		 */
 		private boolean myUseLocalCoordinates = false;
-
 
 		/**
 		 * @generated
@@ -1391,15 +1399,20 @@ ShapeNodeEditPart {
 			myUseLocalCoordinates = useLocalCoordinates;
 		}
 
+
+
 		/**
-		 * @generated
+		 * @generated NOT get label from super figure instead
 		 */
-		public CenteredWrappedLabel getObjectNodeLabel() {
-			return fObjectNodeLabel;
+		public WrappingLabel getObjectNodeLabel() {
+			// get label from super figure instead
+			return getNameLabel();
+			//return fObjectNodeLabel;
 		}
 
 
 	}
+
 
 
 
