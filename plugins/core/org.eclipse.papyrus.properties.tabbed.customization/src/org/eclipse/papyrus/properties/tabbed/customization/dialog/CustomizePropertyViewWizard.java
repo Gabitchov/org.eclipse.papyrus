@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.properties.tabbed.customization.dialog;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
@@ -65,9 +66,7 @@ public class CustomizePropertyViewWizard extends Wizard {
 	 */
 	@Override
 	public boolean performFinish() {
-		final Document document = customizeContentPage.getFinalContent();
-		final File file = ResourcesPlugin.getWorkspace().getRoot().getRawLocation().append("test/test.xml").toFile();
-		Job job = new Job("Saving XML File") {
+		Job job = new Job("Saving configuration file") {
 
 			/**
 			 * {@inheritDoc}
@@ -75,6 +74,11 @@ public class CustomizePropertyViewWizard extends Wizard {
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
 				try {
+					final Document document = customizeContentPage.getFinalContent();
+					final File file = ResourcesPlugin.getWorkspace().getRoot().getRawLocation().append("test/test.xml").toFile();
+					if(!file.exists()) {
+						file.createNewFile();
+					}
 					TransformerFactory factory = TransformerFactory.newInstance();
 					Transformer transformer = factory.newTransformer();
 
@@ -86,6 +90,9 @@ public class CustomizePropertyViewWizard extends Wizard {
 				} catch (TransformerException e) {
 					Activator.log.error(e);
 					return new Status(Status.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage());
+				} catch (IOException e) {
+					Activator.log.error(e);
+					return new Status(Status.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage());
 				}
 
 			}
@@ -95,4 +102,5 @@ public class CustomizePropertyViewWizard extends Wizard {
 		// there, the xml file should be serialized
 		return true;
 	}
+
 }

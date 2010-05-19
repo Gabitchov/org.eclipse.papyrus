@@ -21,7 +21,7 @@ import org.eclipse.papyrus.properties.runtime.view.XMLParseException;
 import org.eclipse.papyrus.properties.tabbed.core.view.PropertyTabViewProviderParser;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptor;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
-import org.w3c.dom.NodeList;
+import org.w3c.dom.Document;
 
 
 /**
@@ -46,8 +46,8 @@ public class StatePropertyTabViewProviderParser extends PropertyTabViewProviderP
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void parseXMLfile(NodeList views, Map<String, FragmentDescriptor> predefinedFragments, Map<String, DialogDescriptor> predefinedDialogs) throws XMLParseException {
-		super.parseXMLfile(views, predefinedFragments, predefinedDialogs);
+	public void parseXMLfile(Document document, Map<String, FragmentDescriptor> predefinedFragments, Map<String, DialogDescriptor> predefinedDialogs) throws XMLParseException {
+		super.parseXMLfile(document, predefinedFragments, predefinedDialogs);
 
 		// from the list of created tab descriptors and section sets descriptors, creates the state
 		for(SectionSetDescriptor sectionSetDescriptor : getProvidedSectionSets()) {

@@ -11,6 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.customization.dialog;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
@@ -21,6 +23,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
@@ -29,6 +32,8 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
 import org.eclipse.papyrus.properties.tabbed.customization.Messages;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
@@ -42,6 +47,7 @@ import org.eclipse.swt.widgets.Text;
 import org.w3c.dom.Comment;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.xml.sax.SAXException;
 
 
 /**
@@ -159,6 +165,7 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 			area.setEnable(false);
 		}
 		areaToEnable.setEnable(true);
+		areaToEnable.validatePage();
 	}
 
 	/**
@@ -200,6 +207,14 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 		}
 		return null;
 	}
+
+	//	/**
+	//	 * {@inheritDoc}
+	//	 */
+	//	@Override
+	//	public boolean isPageComplete() {
+	//		return getEnableConfigurationArea().isComplete();
+	//	}
 
 	/**
 	 * Listener added to the radio buttons.
@@ -253,6 +268,11 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 		public void setEnable(boolean enable);
 
 		/**
+		 * Indicates if the page is complete and the user can go to the next page
+		 */
+		public void validatePage();
+
+		/**
 		 * Generates the initial content from the given configuration
 		 * 
 		 * @return the initial content passed to the second page
@@ -302,6 +322,20 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 			Activator.log.warn("the text area for the new name was disposed or null. A default name has been generated: " + generatedName);
 			return generatedName;
 		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public void validatePage() {
+			if(nameText.getText() == null || nameText.getText().equals("")) {
+				setPageComplete(false);
+				setMessage("Please enter a valid name for the configuration", ERROR);
+			} else {
+				setPageComplete(true);
+				setMessage("", NONE);
+			}
+
+		}
 	}
 
 	/**
@@ -312,6 +346,9 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 		/** Button used to create an empty configuration */
 		protected Button createFromScratchButton;
 
+		/** text used to enter the plugin id required to load classes on runtime */
+		protected Text pluginIdText;
+
 		/**
 		 * {@inheritDoc}
 		 */
@@ -319,6 +356,10 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 			if(isValid(createFromScratchButton)) {
 				createFromScratchButton.setSelection(enable);
 				nameText.setEnabled(enable);
+				if(enable) {
+					nameText.selectAll();
+					nameText.setFocus();
+				}
 			}
 		}
 
@@ -351,6 +392,29 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 			nameText.setText("newConfiguration");
 			GridData textData = new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1);
 			nameText.setLayoutData(textData);
+			nameText.addModifyListener(new ModifyListener() {
+
+				public void modifyText(ModifyEvent e) {
+					validatePage();
+				}
+			});
+
+			// third line: plugin required to load classes
+			Label pluginIdLabel = new Label(createFromScratchComposite, SWT.NONE);
+			pluginIdLabel.setText("Plugin Id:");
+			pluginIdLabel.setToolTipText("Enter here the plugin identifier required to load classes at runtime, for example: org.eclipse.uml2.uml");
+			labelData = new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1);
+			pluginIdLabel.setLayoutData(labelData);
+
+			pluginIdText = new Text(createFromScratchComposite, SWT.BORDER);
+			pluginIdText.setText("org.eclipse.uml2.uml");
+			pluginIdText.setLayoutData(textData);
+			pluginIdText.addModifyListener(new ModifyListener() {
+
+				public void modifyText(ModifyEvent e) {
+					validatePage();
+				}
+			});
 
 			return createFromScratchComposite;
 		}
@@ -369,13 +433,28 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 				document.appendChild(comment);
 
 				Element rootNode = document.createElement("propertyTabView");
-				rootNode.setAttribute("pluginId", "org.eclipse.uml2.uml");
+				rootNode.setAttribute("pluginId", pluginIdText.getText());
 				document.appendChild(rootNode);
+				document.normalizeDocument();
 				return document;
 			} catch (ParserConfigurationException e) {
 				Activator.log.error(e);
 			}
 			return null;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public void validatePage() {
+			if(isValid(nameText)) {
+				if(pluginIdText.getText() == null || pluginIdText.getText().equals("")) {
+					setPageComplete(false);
+					setMessage("Please enter a valid plugin identifier for the configuration", ERROR);
+				} else {
+					super.validatePage();
+				}
+			}
 		}
 	}
 
@@ -428,6 +507,7 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 					if(selectedFiles != null && selectedFiles.length == 1) {
 						IFile selectedFile = selectedFiles[0];
 						createFromExistingConfigurationText.setText(selectedFile.getFullPath().toString());
+						validatePage();
 					}
 				}
 
@@ -451,6 +531,13 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 			nameText.setText("newConfiguration");
 			GridData textData = new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1);
 			nameText.setLayoutData(textData);
+			nameText.addModifyListener(new ModifyListener() {
+
+				public void modifyText(ModifyEvent e) {
+					validatePage();
+				}
+			});
+
 			return mainComposite;
 		}
 
@@ -463,6 +550,24 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 				createFromExistingConfigurationSelectionButton.setEnabled(enable);
 				createFromExistingConfigurationText.setEnabled(enable);
 				nameText.setEnabled(enable);
+				if(enable) {
+					nameText.setFocus();
+					nameText.selectAll();
+				}
+			}
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public void validatePage() {
+			if(isValid(nameText)) {
+				if(createFromExistingConfigurationText.getText() == null || createFromExistingConfigurationText.getText().equals("")) {
+					setPageComplete(false);
+					setMessage("Please select an existing configuration", ERROR);
+				} else {
+					super.validatePage();
+				}
 			}
 		}
 
@@ -470,21 +575,20 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 		 * {@inheritDoc}
 		 */
 		public Document generateInitialContent() {
-			//FIXME correct the xml file generation
+			// should read the document from the existing file. The result will be put somewhere else.
 			DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 			documentBuilderFactory.setNamespaceAware(true);
 			DocumentBuilder documentBuilder;
 			try {
 				documentBuilder = documentBuilderFactory.newDocumentBuilder();
-				Document document = documentBuilder.newDocument();
-				Comment comment = document.createComment("Defined using Papyrus Property View customization. Date: " + Calendar.getInstance().getTime());
-				document.appendChild(comment);
-
-				Element rootNode = document.createElement("propertyTabView");
-				rootNode.setAttribute("pluginId", "org.eclipse.uml2.uml");
-				document.appendChild(rootNode);
+				final File file = ResourcesPlugin.getWorkspace().getRoot().getRawLocation().append(createFromExistingConfigurationText.getText()).toFile();
+				Document document = documentBuilder.parse(file);
 				return document;
 			} catch (ParserConfigurationException e) {
+				Activator.log.error(e);
+			} catch (SAXException e) {
+				Activator.log.error(e);
+			} catch (IOException e) {
 				Activator.log.error(e);
 			}
 			return null;
@@ -520,6 +624,21 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 		/**
 		 * {@inheritDoc}
 		 */
+		public void validatePage() {
+			if(isValid(modifyExistingConfigurationText)) {
+				if(modifyExistingConfigurationText.getText() == null || modifyExistingConfigurationText.getText().equals("")) {
+					setPageComplete(false);
+					setMessage("Please enter a valid configuration to edit", ERROR);
+				} else {
+					setMessage("", NONE);
+					setPageComplete(true);
+				}
+			}
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
 		public Composite createContent(Composite parent) {
 			// modify an existing configuration composite
 			Composite modifyExistingConfigurationComposite = new Composite(parent, SWT.BORDER);
@@ -546,6 +665,7 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 					if(selectedFiles != null && selectedFiles.length == 1) {
 						IFile selectedFile = selectedFiles[0];
 						modifyExistingConfigurationText.setText(selectedFile.getFullPath().toString());
+						validatePage();
 					}
 				}
 
@@ -563,21 +683,19 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 		 * {@inheritDoc}
 		 */
 		public Document generateInitialContent() {
-			//FIXME correct the xml file generation
 			DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 			documentBuilderFactory.setNamespaceAware(true);
 			DocumentBuilder documentBuilder;
 			try {
 				documentBuilder = documentBuilderFactory.newDocumentBuilder();
-				Document document = documentBuilder.newDocument();
-				Comment comment = document.createComment("Defined using Papyrus Property View customization. Date: " + Calendar.getInstance().getTime());
-				document.appendChild(comment);
-
-				Element rootNode = document.createElement("propertyTabView");
-				rootNode.setAttribute("pluginId", "org.eclipse.uml2.uml");
-				document.appendChild(rootNode);
+				final File file = ResourcesPlugin.getWorkspace().getRoot().getRawLocation().append(modifyExistingConfigurationText.getText()).toFile();
+				Document document = documentBuilder.parse(file);
 				return document;
 			} catch (ParserConfigurationException e) {
+				Activator.log.error(e);
+			} catch (SAXException e) {
+				Activator.log.error(e);
+			} catch (IOException e) {
 				Activator.log.error(e);
 			}
 			return null;

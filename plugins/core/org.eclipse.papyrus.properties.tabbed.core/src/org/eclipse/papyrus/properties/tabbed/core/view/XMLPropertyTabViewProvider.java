@@ -30,7 +30,6 @@ import org.eclipse.papyrus.properties.runtime.view.XMLPropertyViewProvider;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
 import org.osgi.framework.Bundle;
 import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 /**
@@ -106,8 +105,7 @@ public class XMLPropertyTabViewProvider extends XMLPropertyViewProvider implemen
 						throw new IOException("Impossible to load file: " + file);
 					} else {
 						Document document = documentBuilder.parse(file);
-						NodeList viewNodes = document.getChildNodes();
-						getParser().parseXMLfile(viewNodes, this.predefinedFragments, this.predefinedDialogs);
+						getParser().parseXMLfile(document, this.predefinedFragments, this.predefinedDialogs);
 					}
 				} catch (ParserConfigurationException e) {
 					Activator.log.error(e);

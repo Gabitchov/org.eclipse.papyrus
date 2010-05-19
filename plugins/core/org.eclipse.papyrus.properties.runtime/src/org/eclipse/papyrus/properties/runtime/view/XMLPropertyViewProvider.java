@@ -35,7 +35,6 @@ import org.eclipse.papyrus.properties.runtime.dialogs.GetDialogDescriptorOperati
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.osgi.framework.Bundle;
 import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 
@@ -204,8 +203,7 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 						throw new IOException("Impossible to load file: " + file);
 					} else {
 						Document document = documentBuilder.parse(file);
-						NodeList viewNodes = document.getChildNodes();
-						getParser().parseXMLfile(viewNodes, this.predefinedFragments, this.predefinedDialogs);
+						getParser().parseXMLfile(document, this.predefinedFragments, this.predefinedDialogs);
 					}
 				} catch (ParserConfigurationException e) {
 					Activator.log.error(e);

@@ -27,6 +27,7 @@ import org.eclipse.papyrus.properties.runtime.view.content.GroupContainerDescrip
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Layout;
 import org.osgi.framework.Bundle;
+import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -230,17 +231,18 @@ public class PropertyViewProviderParser {
 	/**
 	 * Parses the content of the xml file
 	 * 
-	 * @param roots
-	 *        the list of root nodes
+	 * @param document
+	 *        the document to parse
 	 * @param predefinedFragments
 	 *        the list of predefined views, which will be completed during this parsing
 	 * @throws XMLParseException
 	 *         parsing failed
 	 */
-	public void parseXMLfile(NodeList roots, Map<String, FragmentDescriptor> predefinedFragments, Map<String, DialogDescriptor> predefinedDialogs) throws XMLParseException {
+	public void parseXMLfile(Document document, Map<String, FragmentDescriptor> predefinedFragments, Map<String, DialogDescriptor> predefinedDialogs) throws XMLParseException {
 		this.predefinedFragments = predefinedFragments;
 		this.predefinedDialogs = predefinedDialogs;
 		// this.bundle = bundle;
+		NodeList roots = document.getChildNodes();
 		for(int i = 0; i < roots.getLength(); i++) {
 			Node fragmentsOrDialogsNode = roots.item(i);
 			// check this is a "fragments" or "dialogs" node, not a comment or a text format node.

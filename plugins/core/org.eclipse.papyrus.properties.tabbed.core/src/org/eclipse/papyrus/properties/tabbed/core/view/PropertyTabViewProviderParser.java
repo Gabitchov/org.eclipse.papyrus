@@ -30,6 +30,7 @@ import org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.SimpleContain
 import org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.SubFeatureContainerDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.SubFeatureDescriptor;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
+import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -99,9 +100,10 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void parseXMLfile(NodeList views, Map<String, FragmentDescriptor> predefinedFragments, Map<String, DialogDescriptor> predefinedDialogs) throws XMLParseException {
+	public void parseXMLfile(Document document, Map<String, FragmentDescriptor> predefinedFragments, Map<String, DialogDescriptor> predefinedDialogs) throws XMLParseException {
 		this.predefinedFragments = predefinedFragments;
 		this.predefinedDialogs = predefinedDialogs;
+		NodeList views = document.getChildNodes();
 		for(int i = 0; i < views.getLength(); i++) {
 			Node propertyViewNode = views.item(i);
 			// check this is a "propertyTabView" node, not a comment or a text format node.
