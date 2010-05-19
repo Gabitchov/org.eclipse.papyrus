@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.core.service">
+      <service
+            classname="org.eclipse.papyrus.uml.service.creation.UmlCreationProvider"
+            priority="1"
+            startKind="lazy"
+            useClassTypeAsKey="true">
+      </service>
+   </extension>
+
+</plugin>
