@@ -22,7 +22,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class ObjectFlowSelectionParser extends AssociatedBehaviorParser {
 
 	/** The format for displaying object flow selection */
-	private static final String SELECTION_FORMAT = "<<selection>>%s";
+	private static final String SELECTION_FORMAT = "<<selection>>".concat(System.getProperty("line.separator")).concat("%s");
 
 	/**
 	 * Get the format for displaying object flow selection

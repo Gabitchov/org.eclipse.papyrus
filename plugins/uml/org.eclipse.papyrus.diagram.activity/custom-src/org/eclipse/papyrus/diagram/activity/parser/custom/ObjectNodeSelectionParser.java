@@ -22,7 +22,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class ObjectNodeSelectionParser extends AssociatedBehaviorParser {
 
 	/** The format for displaying Data Store selection */
-	private static final String SELECTION_FORMAT = "<<selection>>%s";
+	private static final String SELECTION_FORMAT = "<<selection>>".concat(System.getProperty("line.separator")).concat("%s");
 
 	/**
 	 * Get the format for displaying Input decision

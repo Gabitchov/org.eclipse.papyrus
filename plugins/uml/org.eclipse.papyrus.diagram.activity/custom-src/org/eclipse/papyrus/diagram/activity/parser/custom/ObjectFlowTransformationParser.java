@@ -22,7 +22,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class ObjectFlowTransformationParser extends AssociatedBehaviorParser {
 
 	/** The format for displaying the object flow transformation */
-	private static final String TRANSFORMATION_FORMAT = "<<transformation>>%s";
+	private static final String TRANSFORMATION_FORMAT = "<<transformation>>".concat(System.getProperty("line.separator")).concat("%s");
 
 	/**
 	 * Get the format for displaying the object flow transformation
