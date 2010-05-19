@@ -44,7 +44,7 @@ import org.eclipse.gmf.runtime.diagram.ui.internal.figures.LabelHelper;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
-import org.eclipse.gmf.runtime.gef.ui.internal.figures.DiamondFigure;
+import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 
 public class BehaviorPropertyNodeEditPolicy extends NonResizableEditPolicyEx {
@@ -236,8 +236,8 @@ public class BehaviorPropertyNodeEditPolicy extends NonResizableEditPolicyEx {
 			// the parent figure is a node : choose a point on its border
 			AbstractBorderedShapeEditPart parentPart = (AbstractBorderedShapeEditPart)getHost().getParent();
 			IFigure fig = parentPart.getMainFigure();
-			if(fig instanceof DiamondFigure) {
-				PointList pointsList = ((DiamondFigure)fig).getPolygonPoints().getCopy();
+			if(fig instanceof NodeFigure) {
+				PointList pointsList = ((NodeFigure)fig).getPolygonPoints().getCopy();
 				// translate points relatively to drag feedback
 				fig.translateToAbsolute(pointsList);
 				getDragSourceFeedbackFigure().translateToRelative(pointsList);

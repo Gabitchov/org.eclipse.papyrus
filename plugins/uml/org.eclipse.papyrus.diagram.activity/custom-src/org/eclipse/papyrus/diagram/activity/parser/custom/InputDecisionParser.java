@@ -22,7 +22,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class InputDecisionParser extends AssociatedBehaviorParser {
 
 	/** The format for displaying Input decision */
-	private static final String DECISION_INPUT_FORMAT = "<<decisionInput>>%s";
+	private static final String DECISION_INPUT_FORMAT = "<<decisionInput>>".concat(System.getProperty("line.separator")).concat("%s");
 
 	/**
 	 * Get the format for displaying Input decision

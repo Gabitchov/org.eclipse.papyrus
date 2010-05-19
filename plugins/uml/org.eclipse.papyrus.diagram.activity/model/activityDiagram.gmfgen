@@ -3421,6 +3421,10 @@
                 xsi:type="gmfgen:StyleAttributes"
                 fixedBackground="true"/>
           </viewmap>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="EditPolicy.PRIMARY_DRAG_ROLE"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.BehaviorPropertyNodeEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.10"/>
         </labels>
@@ -5784,6 +5788,10 @@
                 xsi:type="gmfgen:StyleAttributes"
                 fixedBackground="true"/>
           </viewmap>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="EditPolicy.PRIMARY_DRAG_ROLE"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.BehaviorPropertyNodeEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.21"/>
         </labels>
