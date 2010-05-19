@@ -585,6 +585,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case DataStoreNodeLabelEditPart.VISUAL_ID:
 				return new DataStoreNodeLabelEditPart(view);
 
+			case DataStoreSelectionEditPart.VISUAL_ID:
+				return new DataStoreSelectionEditPart(view);
+
 			case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 				return new ActivityActivityParametersCompartmentEditPart(view);
 

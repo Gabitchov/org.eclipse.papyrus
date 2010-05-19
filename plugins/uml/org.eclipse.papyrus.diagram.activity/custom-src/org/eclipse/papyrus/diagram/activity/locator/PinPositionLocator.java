@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionEditPart.AcceptEventActionFigure;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallOpActEditPart;
@@ -43,6 +44,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInAcceptEventAct
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOpaqueActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart.SendSignalActionFigure;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallOpActEditPart;
@@ -51,8 +53,6 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendObjActAsReq
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendObjActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionEditPart.AcceptEventActionFigure;
-import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart.SendSignalActionFigure;
 import org.eclipse.papyrus.diagram.activity.helper.ActivityFigureDrawer;
 import org.eclipse.papyrus.diagram.common.locator.AdvancedBorderItemLocator;
 import org.eclipse.uml2.uml.Action;

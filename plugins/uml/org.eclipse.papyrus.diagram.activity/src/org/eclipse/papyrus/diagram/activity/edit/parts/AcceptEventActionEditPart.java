@@ -70,7 +70,6 @@ import org.eclipse.papyrus.diagram.activity.edit.policies.CreateActionLocalCondi
 import org.eclipse.papyrus.diagram.activity.edit.policies.DeleteActionViewEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
-import org.eclipse.papyrus.diagram.activity.figures.CenteredWrappedLabel;
 import org.eclipse.papyrus.diagram.activity.helper.AcceptEventActionSwitchHelper;
 import org.eclipse.papyrus.diagram.activity.locator.PinPositionLocator;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
@@ -80,6 +79,7 @@ import org.eclipse.papyrus.diagram.common.editparts.IPapyrusEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
+import org.eclipse.papyrus.diagram.common.figure.node.CenteredWrappedLabel;
 import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.diagram.common.helper.StereotypeFigureHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
