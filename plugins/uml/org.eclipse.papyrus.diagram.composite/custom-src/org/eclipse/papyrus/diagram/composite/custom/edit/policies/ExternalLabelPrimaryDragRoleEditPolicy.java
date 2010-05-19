@@ -40,7 +40,7 @@ import org.eclipse.gmf.runtime.notation.View;
 public class ExternalLabelPrimaryDragRoleEditPolicy extends NonResizableLabelEditPolicy {
 
 	@Override
-	protected List createSelectionHandles() {
+	protected List<?> createSelectionHandles() {
 		MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
 		mh.setBorder(null);
 		return Collections.singletonList(mh);

@@ -94,12 +94,12 @@ public class DurationObservationHelper extends ElementHelper {
 			NamedElement currentEvent = iteratorProp.next();
 
 			// look for if an EditPart exist for this element
-			Collection<EditPart> editPartSet = viewer.getEditPartRegistry().values();
-			Iterator<EditPart> editPartIterator = editPartSet.iterator();
+			Collection<?> editPartSet = viewer.getEditPartRegistry().values();
+			Iterator<?> editPartIterator = editPartSet.iterator();
 
 			while(editPartIterator.hasNext() && endEditPart[index] == null) {
 
-				EditPart currentEditPart = editPartIterator.next();
+				EditPart currentEditPart = (EditPart)editPartIterator.next();
 
 				if(currentEditPart instanceof GraphicalEditPart && currentEvent.equals(((GraphicalEditPart)currentEditPart).resolveSemanticElement())) {
 					/**

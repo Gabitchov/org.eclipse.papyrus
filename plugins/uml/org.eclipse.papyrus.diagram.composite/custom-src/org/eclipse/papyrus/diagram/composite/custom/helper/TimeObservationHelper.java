@@ -87,12 +87,12 @@ public class TimeObservationHelper extends ElementHelper {
 		// we have an event
 		if(endToConnect != null) {
 			// look for if an EditPart exist for this element
-			Collection<EditPart> editPartSet = viewer.getEditPartRegistry().values();
-			Iterator<EditPart> editPartIterator = editPartSet.iterator();
+			Collection<?> editPartSet = viewer.getEditPartRegistry().values();
+			Iterator<?> editPartIterator = editPartSet.iterator();
 
 			while(editPartIterator.hasNext() && endEditPart == null) {
 
-				EditPart currentEditPart = editPartIterator.next();
+				EditPart currentEditPart = (EditPart)editPartIterator.next();
 				if(currentEditPart instanceof GraphicalEditPart && endToConnect.equals(((GraphicalEditPart)currentEditPart).resolveSemanticElement())) {
 					/**
 					 * Warning : TimeObservationEditPart, TimeObservationStereotypeLabelEditPart and

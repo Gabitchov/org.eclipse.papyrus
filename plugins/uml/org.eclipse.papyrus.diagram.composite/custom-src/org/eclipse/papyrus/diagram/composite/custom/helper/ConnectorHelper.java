@@ -140,12 +140,12 @@ public class ConnectorHelper extends ElementHelper {
 	 * @return the searched EditPart or null
 	 */
 	private ShapeNodeEditPart resolveRoleEditPart(ConnectableElement role, Property partWithPort, EditPartViewer viewer) {
-		Collection<EditPart> editPartSet = viewer.getEditPartRegistry().values();
-		Iterator<EditPart> editPartIterator = editPartSet.iterator();
+		Collection<?> editPartSet = viewer.getEditPartRegistry().values();
+		Iterator<?> editPartIterator = editPartSet.iterator();
 		EditPart foundEditPart = null;
 		while(editPartIterator.hasNext() && foundEditPart == null) {
 
-			EditPart currentEditPart = editPartIterator.next();
+			EditPart currentEditPart = (EditPart)editPartIterator.next();
 
 			if((currentEditPart instanceof ShapeNodeEditPart) && (role.equals(((ShapeNodeEditPart)currentEditPart).resolveSemanticElement()))) {
 
