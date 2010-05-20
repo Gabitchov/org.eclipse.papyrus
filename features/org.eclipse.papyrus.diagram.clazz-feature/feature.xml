@@ -63,6 +63,7 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.emf.validation"/>
       <import plugin="org.eclipse.gmf.runtime.draw2d.ui"/>
       <import plugin="org.eclipse.gef"/>
+      <import plugin="org.eclipse.ui"/>
    </requires>
 
    <plugin

@@ -62,6 +62,7 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.emf.ecore.edit"/>
       <import plugin="org.eclipse.emf.validation"/>
       <import plugin="org.eclipse.gef"/>
+      <import plugin="org.eclipse.emf.validation.ocl"/>
    </requires>
 
    <plugin
