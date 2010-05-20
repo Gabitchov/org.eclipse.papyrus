@@ -104,7 +104,19 @@ new org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolic
 «ENDAROUND»
 
 
-
+«AROUND createNodePlate FOR gmfgen::GenNode-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	protected org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure createNodePlate() {
+		String prefElementId="«elementType.displayName»";
+		org.eclipse.jface.preference.IPreferenceStore store =«getDiagram().editorGen.plugin.getActivatorQualifiedClassName()».getInstance().getPreferenceStore();
+		String preferrenceContantWitdh=org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId,  org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.WIDTH);
+		String preferrenceContantHeight=org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId,  org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.HEIGHT);
+		org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure result = new org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure(store.getInt(preferrenceContantWitdh), store.getInt(preferrenceContantWitdh));
+		
+		«EXPAND setupNodePlate-»
+		return result;
+	}
+«ENDAROUND»
 «AROUND borderItemSelectionEditPolicy FOR gmfgen::GenNode-»
 «IF hasBorderItems(self)-»
 org.eclipse.gmf.runtime.notation.View childView = (org.eclipse.gmf.runtime.notation.View) child.getModel();
@@ -265,4 +277,9 @@ if(«self.triggeringCondition»){
 	«ENDIF-»
 «ENDDEFINE»
 
+«DEFINE setupNodePlate FOR gmfgen::GenNode»«ENDDEFINE»
 
+«DEFINE setupNodePlate FOR gmfgen::GenChildSideAffixedNode»
+	//FIXME: workaround for #154536
+	result.getBounds().setSize(result.getPreferredSize());
+«ENDDEFINE»

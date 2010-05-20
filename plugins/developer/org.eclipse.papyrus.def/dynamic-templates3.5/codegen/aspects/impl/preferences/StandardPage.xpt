@@ -13,11 +13,26 @@
 «IMPORT 'http://www.eclipse.org/gmf/2009/GenModel'»
 
 «REM»DOCUMENTATION: PapyrusGencode«ENDREM»
-«REM»change onlu the superclass «ENDREM»
+«REM»change the superclass and the initialization «ENDREM»
 
+«DEFINE Main FOR gmfgen::GenStandardPreferencePage-»
+«EXPAND xpt::Common::copyright FOR getDiagram().editorGen-»
+package «getDiagram().preferencesPackageName»;
 
+«EXPAND xpt::Common::generatedClassComment»
+public class «getClassName()»«EXPAND extendsList»«EXPAND implementsList» {
 
-«AROUND extendsList FOR gmfgen::GenStandardPreferencePage-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	public «getClassName()»() {
+		setPreferenceStore(«getDiagram().editorGen.plugin.getActivatorQualifiedClassName()».getInstance().getPreferenceStore());
+		«IF gmfgen::StandardPreferencePages::General = kind-»
+		setPreferenceKey(«getDiagram().editPartsPackageName».«getDiagram().editPartClassName».MODEL_ID);
+		«ENDIF»
+	}
+}
+«ENDDEFINE»
+
+«DEFINE extendsList FOR gmfgen::GenStandardPreferencePage-»
 «IF gmfgen::StandardPreferencePages::General = kind-»
  extends org.eclipse.papyrus.preferences.pages.DiagramPreferencePage«-»
 «ELSEIF gmfgen::StandardPreferencePages::Appearance = kind-»
@@ -29,5 +44,9 @@
 «ELSEIF gmfgen::StandardPreferencePages::RulersAndGrid = kind-»
  extends org.eclipse.gmf.runtime.diagram.ui.preferences.RulerGridPreferencePage«-»
 «ENDIF-»
-«ENDAROUND»
+«ENDDEFINE»
+
+«DEFINE implementsList FOR gmfgen::GenStandardPreferencePage»«REM»no-op«ENDREM»«ENDDEFINE»
+
+«DEFINE call_initDefaults(storeVarName : String) FOR gmfgen::GenStandardPreferencePage»«IF kind <> gmfgen::StandardPreferencePages::Pathmaps»«getQualifiedClassName()».initDefaults(«storeVarName»);«ENDIF»«ENDDEFINE»
 
