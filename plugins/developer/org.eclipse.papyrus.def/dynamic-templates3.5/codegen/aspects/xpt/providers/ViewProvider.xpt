@@ -196,7 +196,7 @@ public class «notationViewProviderClassName»«EXPAND xpt::providers::ViewProvi
 
 «IF topLevelNodes->notEmpty()»
 	«EXPAND xpt::Common::generatedMemberComment»
-	private void stampShortcut(org.eclipse.gmf.runtime.notation.View containerView, org.eclipse.gmf.runtime.notation.Node target) {
+	protected void stampShortcut(org.eclipse.gmf.runtime.notation.View containerView, org.eclipse.gmf.runtime.notation.Node target) {
 		if (!«EXPAND xpt::editor::VisualIDRegistry::modelID».equals(«EXPAND xpt::editor::VisualIDRegistry::getModelIDMethodCall»(containerView))) {
 			«EXPAND xpt::Common::addShortcutAnnotation('target')-»
 		}
@@ -205,7 +205,7 @@ public class «notationViewProviderClassName»«EXPAND xpt::providers::ViewProvi
 
 «IF links.labels->notEmpty() or topLevelNodes.labels->notEmpty() or childNodes.labels->notEmpty()»
 	«EXPAND xpt::Common::generatedMemberComment»
-	private org.eclipse.gmf.runtime.notation.Node createLabel(org.eclipse.gmf.runtime.notation.View owner, String hint) {
+	protected org.eclipse.gmf.runtime.notation.Node createLabel(org.eclipse.gmf.runtime.notation.View owner, String hint) {
 		org.eclipse.gmf.runtime.notation.DecorationNode rv = org.eclipse.gmf.runtime.notation.NotationFactory.eINSTANCE.createDecorationNode();
 		rv.setType(hint);
 		org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.insertChildView(owner, rv, org.eclipse.gmf.runtime.diagram.core.util.ViewUtil.APPEND, true);
@@ -215,7 +215,7 @@ public class «notationViewProviderClassName»«EXPAND xpt::providers::ViewProvi
 
 «IF getAllNodes().compartments->notEmpty()»
 	«EXPAND xpt::Common::generatedMemberComment»
-	private org.eclipse.gmf.runtime.notation.Node createCompartment(org.eclipse.gmf.runtime.notation.View owner, String hint, boolean canCollapse, boolean hasTitle, boolean canSort, boolean canFilter) {
+	protected org.eclipse.gmf.runtime.notation.Node createCompartment(org.eclipse.gmf.runtime.notation.View owner, String hint, boolean canCollapse, boolean hasTitle, boolean canSort, boolean canFilter) {
 		//SemanticListCompartment rv = NotationFactory.eINSTANCE.createSemanticListCompartment();
 		//rv.setShowTitle(showTitle);
 		//rv.setCollapsed(isCollapsed);
@@ -418,7 +418,7 @@ public class «notationViewProviderClassName»«EXPAND xpt::providers::ViewProvi
 
 «DEFINE getSemanticElementMethod FOR gmfgen::GenDiagram»
 	«EXPAND xpt::Common::generatedMemberComment»
-	private org.eclipse.emf.ecore.EObject getSemanticElement(org.eclipse.core.runtime.IAdaptable semanticAdapter) {
+	protected org.eclipse.emf.ecore.EObject getSemanticElement(org.eclipse.core.runtime.IAdaptable semanticAdapter) {
 		if (semanticAdapter == null) {
 			return null;
 		}
@@ -432,7 +432,7 @@ public class «notationViewProviderClassName»«EXPAND xpt::providers::ViewProvi
 
 «DEFINE getSemanticElementTypeMethod FOR gmfgen::GenDiagram»
 «EXPAND xpt::Common::generatedMemberComment»
-private org.eclipse.gmf.runtime.emf.type.core.IElementType getSemanticElementType(org.eclipse.core.runtime.IAdaptable semanticAdapter) {
+protected org.eclipse.gmf.runtime.emf.type.core.IElementType getSemanticElementType(org.eclipse.core.runtime.IAdaptable semanticAdapter) {
 	if (semanticAdapter == null) {
 		return null;
 	}
