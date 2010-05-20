@@ -45,7 +45,9 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.controlmode.commands.IControlCommand.STATE_CONTROL;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.core.utils.NotationUtils;
+import org.eclipse.papyrus.resource.notation.NotationModel;
+import org.eclipse.papyrus.resource.notation.NotationUtils;
+import org.eclipse.papyrus.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.sashwindows.di.PageRef;
 import org.eclipse.papyrus.sashwindows.di.SashWindowsMngr;
 import org.eclipse.papyrus.sashwindows.di.exception.SashEditorException;
@@ -127,10 +129,10 @@ public class ControlCommand extends AbstractTransactionalCommand {
 		this.diResourceSet = EditorUtils.getDiResourceSet();
 
 		// Create the URI from models that will be created
-		final URI newNotationURI = URI.createURI(controlledModel.getURI().trimFileExtension().appendFileExtension(DiResourceSet.NOTATION_FILE_EXTENSION).toString());
+		final URI newNotationURI = URI.createURI(controlledModel.getURI().trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION).toString());
 		this.controlledNotation = getResource(newNotationURI);
 
-		final URI newDiURI = URI.createURI(controlledModel.getURI().trimFileExtension().appendFileExtension(DiResourceSet.DI_FILE_EXTENSION).toString());
+		final URI newDiURI = URI.createURI(controlledModel.getURI().trimFileExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION).toString());
 		this.controlledDI = getResource(newDiURI);
 
 		final List<Diagram> diagrams = NotationUtils.getDiagrams(diResourceSet.getNotationResource(), eObject);

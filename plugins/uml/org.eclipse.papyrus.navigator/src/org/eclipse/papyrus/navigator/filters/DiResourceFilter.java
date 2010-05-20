@@ -14,6 +14,8 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
+import org.eclipse.papyrus.resource.notation.NotationModel;
+import org.eclipse.papyrus.resource.sasheditor.DiModel;
 
 /**
  * Filter that hides/shows the di/uml/notation.
@@ -30,10 +32,10 @@ public class DiResourceFilter extends ViewerFilter {
 		if(element instanceof IFile) {
 			IFile file = ((IFile)element);
 			String ext = file.getFileExtension();
-			if(DiResourceSet.NOTATION_FILE_EXTENSION.equalsIgnoreCase(ext)) {
+			if(NotationModel.NOTATION_FILE_EXTENSION.equalsIgnoreCase(ext)) {
 				// Let see if the .di exists
 				String name = file.getName().substring(0, file.getName().lastIndexOf('.'));
-				if(file.getParent().findMember(name + "." + DiResourceSet.DI_FILE_EXTENSION) != null) {
+				if(file.getParent().findMember(name + "." + DiModel.DI_FILE_EXTENSION) != null) {
 					return false;
 				}
 			}

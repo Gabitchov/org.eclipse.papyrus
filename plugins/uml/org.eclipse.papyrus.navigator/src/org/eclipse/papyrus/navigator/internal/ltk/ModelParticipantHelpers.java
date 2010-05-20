@@ -33,6 +33,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
+import org.eclipse.papyrus.resource.notation.NotationModel;
+import org.eclipse.papyrus.resource.sasheditor.DiModel;
 
 public class ModelParticipantHelpers {
 
@@ -52,14 +54,14 @@ public class ModelParticipantHelpers {
 
 		IPath diPath = null;
 
-		if(DiResourceSet.DI_FILE_EXTENSION.equalsIgnoreCase(initialPath.getFileExtension())) {
+		if(DiModel.DI_FILE_EXTENSION.equalsIgnoreCase(initialPath.getFileExtension())) {
 			diPath = initialPath;
 		} else {
 			// try to find a di file with the same name
 			try {
 				for(IResource r : parent.members()) {
 					IPath p = r.getFullPath();
-					if(DiResourceSet.DI_FILE_EXTENSION.equalsIgnoreCase(p.getFileExtension()) && p.removeFileExtension().equals(initialPath.removeFileExtension())) {
+					if(DiModel.DI_FILE_EXTENSION.equalsIgnoreCase(p.getFileExtension()) && p.removeFileExtension().equals(initialPath.removeFileExtension())) {
 						diPath = p;
 						break;
 					}
@@ -75,7 +77,7 @@ public class ModelParticipantHelpers {
 				relatedFiles.add(diFile);
 
 				// add the notation file
-				IPath notationPath = initialPath.removeFileExtension().addFileExtension(DiResourceSet.NOTATION_FILE_EXTENSION);
+				IPath notationPath = initialPath.removeFileExtension().addFileExtension(NotationModel.NOTATION_FILE_EXTENSION);
 				IFile notationFile = parent.getFile(notationPath.makeRelativeTo(parent.getFullPath()));
 
 				if(notationFile.exists()) {

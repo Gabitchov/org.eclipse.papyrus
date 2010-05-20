@@ -52,7 +52,9 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.controlmode.commands.IUncontrolCommand.STATE_CONTROL;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.core.utils.NotationUtils;
+import org.eclipse.papyrus.resource.notation.NotationModel;
+import org.eclipse.papyrus.resource.notation.NotationUtils;
+import org.eclipse.papyrus.resource.sasheditor.DiModel;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 
@@ -131,10 +133,10 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 	protected IStatus doRedo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if(eObject != null) {
 			controlledModel = eObject.eResource();
-			final URI newNotationURI = URI.createURI(controlledModel.getURI().trimFileExtension().appendFileExtension(DiResourceSet.NOTATION_FILE_EXTENSION).toString());
+			final URI newNotationURI = URI.createURI(controlledModel.getURI().trimFileExtension().appendFileExtension(NotationModel.NOTATION_FILE_EXTENSION).toString());
 			this.controlledNotation = getEditingDomain().getResourceSet().getResource(newNotationURI, false);
 
-			final URI newDiURI = URI.createURI(controlledModel.getURI().trimFileExtension().appendFileExtension(DiResourceSet.DI_FILE_EXTENSION).toString());
+			final URI newDiURI = URI.createURI(controlledModel.getURI().trimFileExtension().appendFileExtension(DiModel.DI_FILE_EXTENSION).toString());
 			this.controlledDI = getEditingDomain().getResourceSet().getResource(newDiURI, true);
 		}
 		this.diResourceSet = EditorUtils.getDiResourceSet();

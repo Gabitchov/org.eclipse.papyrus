@@ -24,7 +24,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.papyrus.core.extension.diagrameditor.IPluggableEditorFactory;
 import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.core.utils.NotationUtils;
+import org.eclipse.papyrus.resource.notation.NotationUtils;
 
 /**
  * Base class for create diagram Handlers.
@@ -84,7 +84,8 @@ public abstract class CreateDiagramHandler extends AbstractHandler implements IH
 			di2Diagram.setName(name);
 
 		// Add it to resource, so that it will be saved.
-		NotationUtils.getNotationResource().getContents().add(di2Diagram);
+//		NotationUtils.getNotationResource().getContents().add(di2Diagram);
+		NotationUtils.getNotationModel().addDiagram(di2Diagram);
 
 		// Attach to sash in order to show it
 		// Add the diagram as a page to the current sash folder

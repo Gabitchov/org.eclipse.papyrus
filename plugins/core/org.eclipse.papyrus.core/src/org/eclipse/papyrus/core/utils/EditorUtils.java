@@ -29,6 +29,7 @@ import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
+import org.eclipse.papyrus.resource.sasheditor.DiModelUtils;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr;
@@ -113,7 +114,7 @@ public class EditorUtils {
 	 */
 	public static IMultiDiagramEditor[] getRelatedEditors(IFile file) {
 		// Get the DI file
-		IFile diFile = DiResourceSet.getRelatedDiFile(file);
+		IFile diFile = DiModelUtils.getRelatedDiFile(file);
 		if(diFile == null || !diFile.exists()) {
 			return new IMultiDiagramEditor[0];
 		}

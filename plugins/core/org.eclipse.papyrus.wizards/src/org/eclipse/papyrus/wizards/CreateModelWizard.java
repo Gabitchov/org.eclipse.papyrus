@@ -130,7 +130,7 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 					diModelFileName += ".di";
 					this.newModelFilePage.setFileName(diModelFileName);
 
-					Resource resource = diResourceSet.loadModelResource(domainModelURI);
+					Resource resource = diResourceSet.loadModelResource(file);
 					EObject diagramRoot = resource.getContents().get(0);
 					this.selectRootElementPage = new SelectRootElementPage("Select the root element", diagramRoot);
 				}

@@ -40,6 +40,7 @@ import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.resource.sasheditor.DiModelUtils;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.part.FileEditorInput;
 
@@ -231,7 +232,7 @@ public class RenameModelChange extends Change {
 
 					public void run() {
 						// Get the DI file as the rename could occur on any model's file.
-						IFile newDiFile = DiResourceSet.getRelatedDiFile(newFile);
+						IFile newDiFile = DiModelUtils.getRelatedDiFile(newFile);
 						for(IMultiDiagramEditor editor : openedEditors) {
 							try {
 								DiResourceSet diRes = editor.getServicesRegistry().getService(DiResourceSet.class);

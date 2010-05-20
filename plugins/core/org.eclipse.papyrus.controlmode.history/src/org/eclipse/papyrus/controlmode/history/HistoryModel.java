@@ -21,9 +21,9 @@ public class HistoryModel extends AbstractBaseModel {
 	public static final String MODEL_FILE_EXTENSION = "history"; //$NON-NLS-1$
 
 	/**
-	 * File extension used for notation.
+	 *  Model ID.
 	 */
-	public static final String MODEL_ID = "org.eclipse.papyrus.controlmode.history"; //$NON-NLS-1$
+	public static final String MODEL_ID = "org.eclipse.papyrus.controlmode.history.HistoryModel"; //$NON-NLS-1$
 
 	
 	/**
@@ -34,8 +34,7 @@ public class HistoryModel extends AbstractBaseModel {
 	 */
 	@Override
 	public Object getIdentifier() {
-		// TODO Auto-generated method stub
-		return null;
+		return MODEL_ID;
 	}
 
 	/**

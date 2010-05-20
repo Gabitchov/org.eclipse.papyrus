@@ -11,7 +11,7 @@
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.core.utils;
+package org.eclipse.papyrus.resource.notation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,22 +20,70 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.core.services.ServiceException;
+import org.eclipse.papyrus.resource.ModelUtils;
+import org.eclipse.papyrus.resource.ModelSet;
 
 /**
  * Utilities method to manage notation models. Should be moved in a more suitable plugin
  */
 public class NotationUtils {
 
-	
+
 	/**
 	 * Get the notation Resource.
 	 * 
 	 * @return
+	 * 
+	 * @deprecated Usage of the internal Resource is discouraged.
 	 */
 	public static Resource getNotationResource() {
-		return EditorUtils.getDiResourceSet().getNotationResource();
+		return getNotationModel().getResource();
 	}
-	
+
+	/**
+	 * Gets the NotationModel for the currently selected editor. <br>
+	 * Warning: this method can return null if called during the MultiEditor initialization.
+	 * 
+	 * 
+	 * @return The {@link NotationModel} of the current editor, or null if not found.
+	 */
+	public static NotationModel getNotationModel() {
+
+		try {
+			return (NotationModel)ModelUtils.getModelSetChecked().getModel(NotationModel.MODEL_ID);
+		} catch (ServiceException e) {
+			return null;
+		}
+	}
+
+	/**
+	 * Gets the NotationModel for the currently selected editor. <br>
+	 * Warning: this method can return null if called during the MultiEditor initialization.
+	 * 
+	 * 
+	 * @return The {@link NotationModel} of the current editor, or null if not found.
+	 * @throws ServiceException
+	 *         If an error occurs while getting or starting the service.
+	 */
+	public static NotationModel getNotationModelChecked() throws ServiceException {
+
+		return (NotationModel)ModelUtils.getModelSetChecked().getModel(NotationModel.MODEL_ID);
+	}
+
+	/**
+	 * Gets the NotationModel from the {@link ModelSet}. 
+	 * <br>
+	 * 
+	 * @param modelsManager The modelManager containing the requested model.
+	 * 
+	 * @return The {@link NotationModel} registered in modelManager, or null if not found.
+	 */
+	public static NotationModel getNotationModel(ModelSet modelsManager) {
+
+		return (NotationModel)modelsManager.getModel(NotationModel.MODEL_ID);
+	}
+
 	/**
 	 * Gets the direct associated diagram of the specified eObject.
 	 * 

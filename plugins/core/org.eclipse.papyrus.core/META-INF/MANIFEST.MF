@@ -25,5 +25,9 @@ Export-Package: org.eclipse.papyrus.core,
  org.eclipse.papyrus.core.multidiagram.actionbarcontributor,
  org.eclipse.papyrus.core.services,
  org.eclipse.papyrus.core.utils,
- org.eclipse.papyrus.core.utils.caches
+ org.eclipse.papyrus.core.utils.caches,
+ org.eclipse.papyrus.resource,
+ org.eclipse.papyrus.resource.notation,
+ org.eclipse.papyrus.resource.sasheditor,
+ org.eclipse.papyrus.resource.uml
 Bundle-Vendor: %providerName

@@ -6,6 +6,7 @@ package org.eclipse.papyrus.controlmode.history.utils;
 import org.eclipse.papyrus.controlmode.history.HistoryModel;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.resource.ModelUtils;
+import org.eclipse.papyrus.resource.ModelSet;
 
 
 /**
@@ -27,7 +28,7 @@ public class HistoryUtils {
 	public static HistoryModel getHistoryModel() {
 
 		try {
-			return (HistoryModel)ModelUtils.getModelsManagerChecked().getModel(HistoryModel.MODEL_ID);
+			return (HistoryModel)ModelUtils.getModelSetChecked().getModel(HistoryModel.MODEL_ID);
 		} catch (ServiceException e) {
 			return null;
 		}
@@ -44,7 +45,21 @@ public class HistoryUtils {
 	 */
 	public static HistoryModel getHistoryModelChecked() throws ServiceException {
 
-		return (HistoryModel)ModelUtils.getModelsManagerChecked().getModel(HistoryModel.MODEL_ID);
+		return (HistoryModel)ModelUtils.getModelSetChecked().getModel(HistoryModel.MODEL_ID);
 	}
 	
+	/**
+	 * Gets the HistoryModel from the {@link ModelSet}. 
+	 * <br>
+	 * 
+	 * @param modelsManager The modelManager containing the requested model.
+	 * 
+	 * @return The {@link HistoryModel} registered in modelManager, or null if not found.
+	 */
+	public static HistoryModel getHistoryModel(ModelSet modelsManager) {
+
+		return (HistoryModel)modelsManager.getModel(HistoryModel.MODEL_ID);
+	}
+
+
 }
