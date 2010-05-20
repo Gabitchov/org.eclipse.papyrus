@@ -8,17 +8,18 @@ package org.eclipse.papyrus.resource;
  * a fake {@link IModelSetSnippet} for test purpose.
  * 
  * @author cedric dumoulin
- *
+ * 
  */
 public class FakeModelManagerSnippet implements IModelSetSnippet {
 
 	private TestTrace trace;
+
 	private String name;
-	
+
 	/**
 	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param string
 	 */
 	public FakeModelManagerSnippet(String name) {
@@ -29,7 +30,7 @@ public class FakeModelManagerSnippet implements IModelSetSnippet {
 	/**
 	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param trace2
 	 * @param string
 	 */
@@ -40,20 +41,18 @@ public class FakeModelManagerSnippet implements IModelSetSnippet {
 
 	/**
 	 * @see org.eclipse.papyrus.resource.IModelSetSnippet#start(org.eclipse.papyrus.resource.ModelSet)
-	 *
+	 * 
 	 * @param modelsManager
 	 */
-	@Override
 	public void start(ModelSet modelsManager) {
 		trace.addTrace(name, "start");
 	}
 
 	/**
 	 * @see org.eclipse.papyrus.resource.IModelSetSnippet#dispose(org.eclipse.papyrus.resource.ModelSet)
-	 *
+	 * 
 	 * @param modelsManager
 	 */
-	@Override
 	public void dispose(ModelSet modelsManager) {
 		trace.addTrace(name, "dispose");
 

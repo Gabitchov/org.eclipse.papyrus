@@ -12,37 +12,36 @@ import org.eclipse.papyrus.resource.IModelSnippet;
  * A snippet registering adapters to the UML model.
  * 
  * @author cedric dumoulin
- *
+ * 
  */
 public class UmlSnippet implements IModelSnippet {
 
 	private ModelListenerManager modelListenerManager;
-	
+
 	/**
 	 * Register the UML adapters
+	 * 
 	 * @see org.eclipse.papyrus.resource.IModelSnippet#start(org.eclipse.papyrus.resource.IModel)
-	 *
+	 * 
 	 * @param startingModel
 	 */
-	@Override
 	public void start(IModel startingModel) {
-		
+
 
 		// Modl should be an uml one
-		UmlModel umlModel =(UmlModel)startingModel;
+		UmlModel umlModel = (UmlModel)startingModel;
 		// add adapters
 		modelListenerManager = new ModelListenerManager();
 		umlModel.getResource().eAdapters().add(modelListenerManager);
-		
+
 	}
 
-	@Override
 	public void dispose(IModel stoppingModel) {
 		// Modl should be an uml one
-		UmlModel umlModel =(UmlModel)stoppingModel;
+		UmlModel umlModel = (UmlModel)stoppingModel;
 		// add adapters
 		umlModel.getResource().eAdapters().remove(modelListenerManager);
-		
+
 	}
 
 }
