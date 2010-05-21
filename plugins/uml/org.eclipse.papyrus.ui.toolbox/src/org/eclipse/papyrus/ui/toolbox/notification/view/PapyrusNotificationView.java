@@ -33,7 +33,6 @@ import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
@@ -63,7 +62,7 @@ public class PapyrusNotificationView extends ViewPart implements ICallBack {
 
 	private ScrolledForm form;
 
-	private FormToolkit toolkit = new PapyrusToolkit(Display.getDefault());
+	private FormToolkit toolkit = PapyrusToolkit.INSTANCE;
 
 	/**
 	 * The constructor.

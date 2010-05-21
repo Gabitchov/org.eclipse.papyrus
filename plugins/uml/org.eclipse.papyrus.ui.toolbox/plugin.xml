@@ -15,6 +15,7 @@
 -->
 
 <plugin>
+   <extension-point id="papyrusNotificationBuilder" name="Papyrus Notification Builder" schema="schema/papyrusNotificationBuilder.exsd"/>
    <extension
          point="org.eclipse.ui.views">
       <view
@@ -24,5 +25,17 @@
             id="org.eclipse.papyrus.ui.toolbox.notification.view.PapyrusNotificationView"
             name="Papyrus Notification">
       </view>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.ui.toolbox.papyrusNotificationBuilder">
+      <BuilderInstance
+            builder="org.eclipse.papyrus.ui.toolbox.notification.builders.PopupBuilder">
+      </BuilderInstance>
+      <BuilderInstance
+            builder="org.eclipse.papyrus.ui.toolbox.notification.builders.ViewBuilder">
+      </BuilderInstance>
+      <BuilderInstance
+            builder="org.eclipse.papyrus.ui.toolbox.notification.builders.AsyncNotifierBuilder">
+      </BuilderInstance>
    </extension>
 </plugin>

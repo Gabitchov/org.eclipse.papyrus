@@ -41,7 +41,7 @@ public class PapyrusAsyncNotificationPopup extends AbstractNotificationPopup {
 
 	protected IContext context = new IContext.Context();
 
-	private Collection<NotificationRunnable> runnables = new LinkedList<NotificationRunnable>();
+	protected Collection<NotificationRunnable> runnables = new LinkedList<NotificationRunnable>();
 
 	public PapyrusAsyncNotificationPopup(Display display, FormToolkit toolkit) {
 		super(display, toolkit);

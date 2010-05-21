@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.ui.toolbox.notification.utils;
 
 import org.eclipse.papyrus.ui.toolbox.notification.ICompositeCreator;
+import org.eclipse.papyrus.ui.toolbox.notification.PapyrusToolkit;
 import org.eclipse.papyrus.ui.toolbox.notification.Type;
 import org.eclipse.papyrus.ui.toolbox.notification.builders.IContext;
 import org.eclipse.papyrus.ui.toolbox.notification.builders.NotificationBuilder;
@@ -113,6 +114,9 @@ public class PapyrusControlsFactory {
 				label.setLayoutData(new GridData(GridData.FILL_BOTH));
 			}
 		} else {
+			if(toolkit == null) {
+				toolkit = PapyrusToolkit.INSTANCE;
+			}
 			Composite compo = creator.createComposite(top, toolkit);
 			if(context != null) {
 				context.put(IContext.COMPOSITE_CREATED, compo);

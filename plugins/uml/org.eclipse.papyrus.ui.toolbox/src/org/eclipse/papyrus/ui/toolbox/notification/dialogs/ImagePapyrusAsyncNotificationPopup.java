@@ -27,9 +27,9 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
  */
 public class ImagePapyrusAsyncNotificationPopup extends PapyrusAsyncNotificationPopup {
 
-	private final Type type;
+	protected final Type type;
 
-	private Image image = null;
+	protected Image image = null;
 
 	/**
 	 * Create an async popup with a specific type

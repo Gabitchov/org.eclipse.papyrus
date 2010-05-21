@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.ui.toolbox.notification.builders;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.papyrus.ui.toolbox.notification.ICompositeCreator;
@@ -49,6 +50,8 @@ public class PropertyWrapper {
 
 	private Image image = null;
 
+	private Map<String, Object> others = new HashMap<String, Object>();
+
 	/**
 	 * The class analyses the map and set the fields of the objects according to the values of the map.
 	 * 
@@ -78,6 +81,8 @@ public class PropertyWrapper {
 				type = (Type)properties.get(s);
 			} else if(NotificationBuilder.IMAGE.equals(s)) {
 				image = (Image)properties.get(s);
+			} else {
+				others.put(s, properties.get(s));
 			}
 		}
 	}
@@ -170,6 +175,15 @@ public class PropertyWrapper {
 	 */
 	public Image getImage() {
 		return image;
+	}
+
+	/**
+	 * Get the map containing parameters not predefined
+	 * 
+	 * @return the map
+	 */
+	public Map<String, Object> getCustomParameters() {
+		return others;
 	}
 
 }

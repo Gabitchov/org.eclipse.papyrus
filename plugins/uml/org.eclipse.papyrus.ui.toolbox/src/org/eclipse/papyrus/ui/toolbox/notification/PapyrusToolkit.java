@@ -27,7 +27,12 @@ public class PapyrusToolkit extends FormToolkit {
 
 	public static int DEFAULT_STYLE = -1;
 
-	public PapyrusToolkit(Display display) {
+	/**
+	 * The unique instance of the papyrus toolkit
+	 */
+	public static PapyrusToolkit INSTANCE = new PapyrusToolkit(Display.getDefault());
+
+	private PapyrusToolkit(Display display) {
 		super(display);
 	}
 

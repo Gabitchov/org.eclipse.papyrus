@@ -20,6 +20,9 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.ui.toolbox.notification.IBuilder;
 import org.eclipse.papyrus.ui.toolbox.notification.ICompositeCreator;
 import org.eclipse.papyrus.ui.toolbox.notification.NotificationRunnable;
@@ -40,7 +43,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
  */
 public class NotificationBuilder {
 
-	private FormToolkit toolkit = new PapyrusToolkit(Display.getDefault());
+	private FormToolkit toolkit = PapyrusToolkit.INSTANCE;
 
 	/** The parameters of the notification with the corresponding values */
 	protected Map<String, Object> parameters = new HashMap<String, Object>();
@@ -91,9 +94,15 @@ public class NotificationBuilder {
 	 */
 	private static Map<Class<? extends IBuilder>, IBuilder> getBuilders() {
 		Map<Class<? extends IBuilder>, IBuilder> result = new HashMap<Class<? extends IBuilder>, IBuilder>();
-		result.put(ViewBuilder.class, new ViewBuilder());
-		result.put(PopupBuilder.class, new PopupBuilder());
-		result.put(AsyncNotifierBuilder.class, new AsyncNotifierBuilder());
+		IConfigurationElement[] elements = Platform.getExtensionRegistry().getConfigurationElementsFor("org.eclipse.papyrus.ui.toolbox.papyrusNotificationBuilder");
+		for(IConfigurationElement e : elements) {
+			IBuilder instance;
+			try {
+				instance = (IBuilder)e.createExecutableExtension("builder");
+				result.put(instance.getClass(), instance);
+			} catch (CoreException e1) {
+			}
+		}
 		return result;
 	}
 
@@ -231,6 +240,20 @@ public class NotificationBuilder {
 	 */
 	public NotificationBuilder setBuilderClass(Class<? extends IBuilder> builderClass) {
 		this.builderClass = builderClass;
+		return this;
+	}
+
+	/**
+	 * Allows the developer to use a specific parameter
+	 * 
+	 * @param name
+	 *        , the key of the parameter
+	 * @param value
+	 *        , the value
+	 * @return this
+	 */
+	public NotificationBuilder setParameter(String name, Object value) {
+		parameters.put(name, value);
 		return this;
 	}
 

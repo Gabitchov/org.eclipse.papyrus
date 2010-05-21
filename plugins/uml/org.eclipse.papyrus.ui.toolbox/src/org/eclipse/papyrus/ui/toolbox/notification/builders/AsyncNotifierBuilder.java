@@ -15,6 +15,7 @@ import org.eclipse.papyrus.ui.toolbox.notification.IBuilder;
 import org.eclipse.papyrus.ui.toolbox.notification.ICompositeCreator;
 import org.eclipse.papyrus.ui.toolbox.notification.dialogs.ImagePapyrusAsyncNotificationPopup;
 import org.eclipse.papyrus.ui.toolbox.notification.dialogs.PapyrusAsyncNotificationPopup;
+import org.eclipse.papyrus.ui.toolbox.notification.utils.PapyrusControlsFactory;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.forms.widgets.FormToolkit;
@@ -38,14 +39,27 @@ public class AsyncNotifierBuilder implements IBuilder {
 		PapyrusAsyncNotificationPopup popup = null;
 		if(wrapper.getComposite() != null) {
 			final ICompositeCreator composite = wrapper.getComposite();
-			popup = new PapyrusAsyncNotificationPopup(Display.getDefault(), toolkit) {
+			// use the creator to a notification with image
+			if(wrapper.getType() != null) {
+				popup = new ImagePapyrusAsyncNotificationPopup(Display.getDefault(), toolkit, wrapper.getType()) {
 
-				@Override
-				protected void doCreateClient(Composite parent) {
-					Composite compo = composite.createComposite(parent, toolkit);
-					setCompositeCreated(compo);
-				}
-			};
+					@Override
+					protected void doCreateClient(Composite parent) {
+						PapyrusControlsFactory.createCompositeWithType(getShell(), null, parent, type, image, text, false, composite, context);
+					}
+
+				};
+			} else {
+				// use the creator to a notification without image
+				popup = new PapyrusAsyncNotificationPopup(Display.getDefault(), toolkit) {
+
+					@Override
+					protected void doCreateClient(Composite parent) {
+						Composite compo = composite.createComposite(parent, toolkit);
+						setCompositeCreated(compo);
+					}
+				};
+			}
 		} else {
 			if(wrapper.getType() != null) {
 				popup = new ImagePapyrusAsyncNotificationPopup(Display.getDefault(), toolkit, wrapper.getType());
