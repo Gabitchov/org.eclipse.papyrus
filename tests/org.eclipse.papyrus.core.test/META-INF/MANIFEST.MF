@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Test Plugin for core
+Bundle-SymbolicName: org.eclipse.papyrus.core.test
+Bundle-Version: 0.7.0.qualifier
+Bundle-Activator: org.eclipse.papyrus.core.test.Activator
+Bundle-Vendor: Eclipse.org
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.papyrus.core,
+ org.eclipse.uml2.uml,
+ org.eclipse.papyrus.core.preferences
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Import-Package: junit.framework
