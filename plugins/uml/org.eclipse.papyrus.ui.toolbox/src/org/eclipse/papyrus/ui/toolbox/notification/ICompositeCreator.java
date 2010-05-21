@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010 ATOS ORIGIN.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Tristan FAURE (ATOS ORIGIN INTEGRATION) tristan.faure@atosorigin.com - Initial API and implementation
+ *  Tristan Faure (ATOS ORIGIN INTEGRATION) tristan.faure@atosorigin.com - Initial API and implementation
  *****************************************************************************/
 package org.eclipse.papyrus.ui.toolbox.notification;
 
@@ -25,6 +25,8 @@ public interface ICompositeCreator {
 	/**
 	 * Create the composite in the parent using the toolkit
 	 * 
+	 * @param parent, the parent of the composite
+	 * @param toolkit, the toolkit to use
 	 * @return the composite created
 	 */
 	Composite createComposite(Composite parent, FormToolkit toolkit);
