@@ -25,6 +25,8 @@ import org.eclipse.papyrus.ui.toolbox.notification.ICallBack;
 import org.eclipse.papyrus.ui.toolbox.notification.ICompositeCreator;
 import org.eclipse.papyrus.ui.toolbox.notification.NotificationRunnable;
 import org.eclipse.papyrus.ui.toolbox.notification.PapyrusToolkit;
+import org.eclipse.papyrus.ui.toolbox.notification.Type;
+import org.eclipse.papyrus.ui.toolbox.notification.utils.PapyrusControlsFactory;
 import org.eclipse.papyrus.ui.toolbox.utils.ToolbooxImageUtils;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
@@ -33,6 +35,7 @@ import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
@@ -119,12 +122,32 @@ public class PapyrusNotificationView extends ViewPart implements ICallBack {
 	 * @return the composite
 	 */
 	public AbstractInsideComposite setComposite(final ICompositeCreator creator, final String messageTitle, Collection<NotificationRunnable> runnables) {
+		return setComposite(creator, messageTitle, runnables, null);
+	}
+
+	/**
+	 * Add a composite in the view
+	 * 
+	 * @param creator
+	 *        , the composite creator
+	 * @param messageTitle
+	 *        , the message in the section
+	 * @param collection
+	 *        , the collection of actions
+	 * @return the composite
+	 */
+	public AbstractInsideComposite setComposite(final ICompositeCreator creator, final String messageTitle, Collection<NotificationRunnable> runnables, final Type type) {
 		MessageComposite composite = new MessageComposite(this, form, toolkit, runnables) {
 
 			@Override
 			protected Control doCreateContents(FormToolkit toolkit, Composite composite) {
-				Composite compo = creator.createComposite(composite, toolkit);
-				setCompositeCreated(compo);
+				Composite compo = null;
+				if(type != null) {
+					compo = PapyrusControlsFactory.createCompositeWithType(Display.getDefault().getActiveShell(), toolkit, composite, type, null, null, false, creator, context);
+				} else {
+					compo = creator.createComposite(composite, toolkit);
+					setCompositeCreated(compo);
+				}
 				return compo;
 			}
 

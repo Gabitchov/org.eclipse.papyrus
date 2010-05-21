@@ -48,11 +48,7 @@ public class ViewBuilder implements IBuilder {
 				PapyrusNotificationView view = (PapyrusNotificationView)part;
 				AbstractInsideComposite viewCompo = null;
 				if(wrapper.getComposite() != null) {
-					if(wrapper.getTitle() != null) {
-						viewCompo = view.setComposite(wrapper.getComposite(), wrapper.getTitle(), wrapper.getActions());
-					} else {
-						viewCompo = view.setComposite(wrapper.getComposite(), wrapper.getActions());
-					}
+					viewCompo = view.setComposite(wrapper.getComposite(), wrapper.getTitle(), wrapper.getActions(), wrapper.getType());
 				} else {
 					if(wrapper.getType() != null || wrapper.getImage() != null || wrapper.isHtml()) {
 						final Image image = wrapper.getImage();
