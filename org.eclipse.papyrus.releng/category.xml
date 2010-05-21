@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<site associateSitesURL="http://download.eclipse.org/modeling/mdt/papyrus/updates/nightly/associateSites.xml" pack200="true">
+<site pack200="true">
    <feature url="features/org.eclipse.papyrus.backbone_${org.eclipse.papyrus.backbone.version}.jar" id="org.eclipse.papyrus.backbone" version="${org.eclipse.papyrus.backbone.version}">
       <category name="Papyrus Runtime"/>
    </feature>
@@ -34,9 +34,6 @@
       <category name="Papyrus SysML"/>
    </feature>
    <feature url="features/org.eclipse.papyrus.diagram.block_${org.eclipse.papyrus.diagram.block.version}.jar" id="org.eclipse.papyrus.diagram.block" version="${org.eclipse.papyrus.diagram.block.version}">
-      <category name="Papyrus SysML"/>
-   </feature>
-   <feature url="features/org.eclipse.papyrus.diagram.internalblock_${org.eclipse.papyrus.diagram.internalblock.version}.jar" id="org.eclipse.papyrus.diagram.internalblock" version="${org.eclipse.papyrus.diagram.internalblock.version}">
       <category name="Papyrus SysML"/>
    </feature>
    <feature url="features/org.eclipse.papyrus.diagram.parametric_${org.eclipse.papyrus.diagram.parametric.version}.jar" id="org.eclipse.papyrus.diagram.parametric" version="${org.eclipse.papyrus.diagram.parametric.version}">
