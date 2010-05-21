@@ -24,8 +24,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.core.resourceloading.ILoadingStrategyExtension;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.caches.TypeCacheAdapter;
+import org.eclipse.papyrus.resource.ModelSet;
+import org.eclipse.papyrus.resource.uml.UmlUtils;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -40,11 +41,11 @@ public class UMLProfileStrategyExtension implements ILoadingStrategyExtension {
 	/**
 	 * {@inheritDoc} Load a profile resource if it used in the model
 	 */
-	public boolean loadResource(DiResourceSet diResourceSet, URI uri) {
-		Resource modelResource = diResourceSet.getModelResource();
+	public boolean loadResource(ModelSet modelSet, URI uri) {
+		Resource modelResource = UmlUtils.getUmlModel().getResource();
 		if(modelResource != null && UMLResource.FILE_EXTENSION.equals(modelResource.getURI().fileExtension())) {
 			TypeCacheAdapter adapter = null;
-			for(Adapter a : diResourceSet.eAdapters()) {
+			for(Adapter a : modelSet.eAdapters()) {
 				if(a instanceof TypeCacheAdapter) {
 					adapter = (TypeCacheAdapter)a;
 					break;
@@ -57,8 +58,8 @@ public class UMLProfileStrategyExtension implements ILoadingStrategyExtension {
 						// set the profile applications in the cache at the first time
 						applications = new HashSet<EObject>();
 						// a profile application can only be stored in a package
-						for(int i = 0; i < diResourceSet.getResources().size(); i++) {
-							for(TreeIterator<EObject> j = EcoreUtil.getAllProperContents(diResourceSet.getResources().get(i), false); j.hasNext();) {
+						for(int i = 0; i < modelSet.getResources().size(); i++) {
+							for(TreeIterator<EObject> j = EcoreUtil.getAllProperContents(modelSet.getResources().get(i), false); j.hasNext();) {
 								EObject e = j.next();
 								if(e instanceof Package) {
 									applications.addAll(((Package)e).getProfileApplications());
