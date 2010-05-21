@@ -61,7 +61,7 @@ public class «visualIDRegistryClassName» {
 
 	«EXPAND _constraintMethods-»
 
-	«EXPAND additions-»
+	«EXPAND additions-»	
 }
 «ENDDEFINE»
 
@@ -99,11 +99,6 @@ public class «visualIDRegistryClassName» {
 «DEFINE attributes FOR gmfgen::GenDiagram-»
 	«EXPAND xpt::Common::generatedMemberComment»
 	private static final String DEBUG_KEY = "«editorGen.plugin.iD»/debug/visualID"; «EXPAND xpt::Common::nonNLS»
-«IF null <> editorGen.expressionProviders-»
-	«EXPAND _constraintField FOREACH topLevelNodes-»
-	«EXPAND _constraintField FOREACH childNodes-»
-	«EXPAND _constraintField FOREACH links-»
-«ENDIF-»
 «ENDDEFINE»
 
 «DEFINE getViewVisualID FOR gmfgen::GenDiagram-»
@@ -158,7 +153,7 @@ public static int «EXPAND getVisualIdMethodName»(String type) {
 	However, even intern() seems too much, as in most usecases returned value is not kept, and unlikely to survive Eden (or whatever name it has) heap space 
 «ENDREM»
 «DEFINE getType FOR gmfgen::GenDiagram-»
-	«EXPAND xpt::Common::generatedMemberComment»
+«EXPAND xpt::Common::generatedMemberComment»
 public static String «EXPAND getTypeMethodName»(int visualID) {
 	return Integer.toString(visualID);
 }
@@ -348,7 +343,7 @@ private static boolean «EXPAND xpt::editor::VisualIDRegistry::isDiagramMethodNa
 «IF null <> editorGen.expressionProviders-»
 	«EXPAND _constraintMethod FOREACH topLevelNodes->select(n | n.modelFacet.modelElementSelector <> null)-»
 	«EXPAND _constraintMethod FOREACH childNodes->select(n | n.modelFacet.modelElementSelector <> null)-»
-	«FOREACH links->asSequence() AS l»«EXPAND _constraintMethod(l) FOR l.modelFacet»«ENDFOREACH»
+	«FOREACH links AS l»«EXPAND _constraintMethod(l) FOR l.modelFacet»«ENDFOREACH»
 «ENDIF-»
 «ENDDEFINE»
 
@@ -390,13 +385,11 @@ private static boolean «EXPAND xpt::editor::VisualIDRegistry::isDiagramMethodNa
 	}
 «ENDDEFINE»
 
+// FIXME move these methods to ElementInitializers or any other more suitable place
 «DEFINE _domainElementConstraintMethod(diagramElement : gmfgen::GenCommonBase, expression : gmfgen::ValueExpression, context : genmodel::GenClass) FOR gmfgen::GenExpressionInterpreter-»
 	«EXPAND xpt::Common::generatedMemberComment»
 	private static boolean «EXPAND _domainElementConstraintMethodName FOR diagramElement»(«EXPAND MetaModel::QualifiedClassName FOR context» domainElement) {
-		if («constraintFieldName(diagramElement)» == null) { // lazy initialization
-			«constraintFieldName(diagramElement)» = «EXPAND xpt::expressions::getExpression::getExpression(expression, context)»; «EXPAND xpt::Common::nonNLS»
-		}
-		Object result = «constraintFieldName(diagramElement)».evaluate(domainElement);
+		Object result = «EXPAND xpt::expressions::getExpression::getExpression(expression, context)».evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}			
 «ENDDEFINE»
