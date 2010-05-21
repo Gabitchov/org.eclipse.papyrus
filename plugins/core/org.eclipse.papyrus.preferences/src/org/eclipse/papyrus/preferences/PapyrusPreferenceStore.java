@@ -96,7 +96,7 @@ public class PapyrusPreferenceStore extends PapyrusScopedPreferenceStore {
 	 *            the qualifier used when looking up the defaults
 	 */
 	public PapyrusPreferenceStore(IScopeContext context, String qualifier,
-			String defaultQualifierPath) {
+		String defaultQualifierPath) {
 		super(context, qualifier, defaultQualifierPath);
 	}
 
@@ -117,21 +117,37 @@ public class PapyrusPreferenceStore extends PapyrusScopedPreferenceStore {
 	 */
 	protected String findKeyWithAValue(String initialKey){
 		String foundedKey=null;
-
-		if(getStorePreferences().get(initialKey, null)!=null||getDefaultPreferences().get(initialKey, null)!=null){
-			foundedKey=initialKey;
+		//first look for in value stack
+		foundedKey=findKeyAStoreValue(getUpperKey(initialKey));
+		//then look for in default stack
+		if(foundedKey==null){
+			foundedKey=findKeyWithADefaultValue(initialKey);
 		}
-
-		if(foundedKey==null&& hasPrefix(initialKey)){
-			return findKeyWithAValue(getUpperKey(initialKey));
-		}
-		else{
+		if(foundedKey==null){
 			foundedKey=initialKey;
 		}
 		return foundedKey;
 
 	}
+	/**
+	 * look for a key with a value in the store stack
+	 * @param initialKey
+	 *  element : ELEMENT_DiagramKind_ElementKind.preferenceKind
+	 *  Diagram : DIAGRAM_DiagramKind.preferenceKind
+	 *  Editor:   PAPYRUS_EDITOR.preferenceKind
+	 * @return the key that returns a value or null if there is no value
+	 */
+	protected String findKeyAStoreValue(String initialKey){
+		String foundedKey=null;
+		if(getStorePreferences().get(initialKey, null)!=null){
+			foundedKey=initialKey;
+		}
 
+		if(foundedKey==null&& hasPrefix(initialKey)){
+			foundedKey= findKeyAStoreValue(getUpperKey(initialKey));
+		}
+		return foundedKey;
+	}
 	/**
 	 * this method is used to find a key that a got a value:
 	 * if the key is an element. The method look for if this key exist. If no value exists, it look for the key for diagram
@@ -197,7 +213,7 @@ public class PapyrusPreferenceStore extends PapyrusScopedPreferenceStore {
 		String newKey= findKeyWithAValue(key);
 		//System.err.println("-->Initial Key "+key+"--> "+ newKey);
 		return Platform.getPreferencesService().get(newKey, null,
-				getPreferenceNodes(true));
+			getPreferenceNodes(true));
 	}
 
 	public boolean getDefaultBoolean(String name){
