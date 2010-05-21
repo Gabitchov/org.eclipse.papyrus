@@ -39,7 +39,7 @@ public class ContainerDescriptorState {
 		this.descriptor = descriptor;
 
 		// read the current list of controller descriptor managed by this state
-		List<IPropertyEditorControllerDescriptor> controllerDescriptors = descriptor.getControllerDescriptors();
+		List<IPropertyEditorControllerDescriptor> controllerDescriptors = descriptor.getUnparsedControllerDescriptors();
 		for(IPropertyEditorControllerDescriptor controllerDescriptor : controllerDescriptors) {
 			controllerDescriptorStates.add(new ControllerDescriptorState(controllerDescriptor));
 		}

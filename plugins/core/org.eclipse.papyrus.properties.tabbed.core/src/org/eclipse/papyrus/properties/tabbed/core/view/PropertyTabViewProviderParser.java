@@ -238,7 +238,7 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 			sectionDescriptors.add(sectionDescriptor);
 		}
 
-		return new SectionSetDescriptor(sectionDescriptors, constraintDescriptors, selectionSize);
+		return new SectionSetDescriptor(name, sectionDescriptors, constraintDescriptors, selectionSize);
 	}
 
 	/**

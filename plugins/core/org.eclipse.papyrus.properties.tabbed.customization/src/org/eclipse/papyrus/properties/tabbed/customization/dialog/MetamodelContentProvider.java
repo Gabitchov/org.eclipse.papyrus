@@ -11,24 +11,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.customization.dialog;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.gmf.runtime.common.core.service.IProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
+import org.eclipse.papyrus.core.utils.FilteredCollectionView;
+import org.eclipse.papyrus.core.utils.IFilter;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.ObjectTypeConstraintDescriptor;
-import org.eclipse.papyrus.properties.tabbed.core.view.DynamicSectionDescriptor;
-import org.eclipse.papyrus.properties.tabbed.core.view.IPropertyTabViewProvider;
 import org.eclipse.papyrus.properties.tabbed.customization.state.SectionSetDescriptorState;
-import org.eclipse.ui.views.properties.tabbed.ISectionDescriptor;
-import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
 
 
 /**
@@ -82,54 +77,83 @@ public class MetamodelContentProvider implements ITreeContentProvider {
 	 */
 	public Object[] getChildren(Object parentElement) {
 		if(parentElement instanceof EClass) {
-			List<DynamicSectionDescriptor> descriptors = new ArrayList<DynamicSectionDescriptor>();
+			// List<SectionSetDescriptorState> sectionSetDescriptorStates = new ArrayList<SectionSetDescriptorState>();
 			String qualifiedInstanceClassName = ((EClassifier)parentElement).getInstanceClassName();
-			Class<?> metamodelClass;
 			try {
-				metamodelClass = Class.forName(qualifiedInstanceClassName);
+				final Class<?> metamodelClass = Class.forName(qualifiedInstanceClassName);
+
+
+				// populate the section sets
+
+				FilteredCollectionView<SectionSetDescriptorState> filteredList = new FilteredCollectionView<SectionSetDescriptorState>(availableSectionSets, new IFilter() {
+
+					public boolean isAllowed(Object object) {
+						if(object instanceof SectionSetDescriptorState) {
+							List<IConstraintDescriptor> constraintDescriptors = ((SectionSetDescriptorState)object).getSectionSetDescriptor().getConstraintDescriptors();
+							for(IConstraintDescriptor constraintDescriptor : constraintDescriptors) {
+								if(constraintDescriptor instanceof ObjectTypeConstraintDescriptor) {
+									Class<?> elementClass = ((ObjectTypeConstraintDescriptor)constraintDescriptor).getElementClass();
+									if(elementClass.isAssignableFrom(metamodelClass)) {
+										return true;
+									}
+								}
+							}
+						}
+						return false;
+					}
+				});
+				return filteredList.toArray();
+
 			} catch (ClassNotFoundException e) {
 				// Activator.log.error(e);
 				return new Object[0];
 			}
+			//			for(SectionSetDescriptorState sectionSetDescriptorState : availableSectionSets) {
+			//				List<IConstraintDescriptor> constraintDescriptors = sectionSetDescriptorState.getSectionSetDescriptor().getConstraintDescriptors();
+			//				for(IConstraintDescriptor constraintDescriptor : constraintDescriptors) {
+			//					if(constraintDescriptor instanceof ObjectTypeConstraintDescriptor) {
+			//						Class<?> elementClass = ((ObjectTypeConstraintDescriptor)constraintDescriptor).getElementClass();
+			//						if(elementClass.isAssignableFrom(metamodelClass)) {
+			//							sectionSetDescriptorStates.add(sectionSetDescriptorState);
+			//						}
+			//					}
+			//				}
+			//			}
+			// return sectionSetDescriptorStates.toArray();
 
-			// populate the section sets
-			for(SectionSetDescriptorState descriptorState : availableSectionSets) {
 
-			}
-
-
-			// find actions sets valid for this instance class
-			List<?> providers = PropertyViewService.getInstance().findAllProviders();
-			for(Object provider : providers) {
-				if(provider instanceof PropertyViewService.ProviderDescriptor) {
-					IProvider providerDescriptor = (IProvider)((PropertyViewService.ProviderDescriptor)provider).getProvider();
-					if(providerDescriptor instanceof IPropertyTabViewProvider) {
-
-						// get the list of all tab descriptors, which gives access to all section descriptors
-						// we will then have access to the section for the given element
-						List<ITabDescriptor> tabDescriptors = ((IPropertyTabViewProvider)providerDescriptor).getTabDescriptors();
-						for(ITabDescriptor tabDescriptor : tabDescriptors) {
-							List<ISectionDescriptor> sectionDescriptors = tabDescriptor.getSectionDescriptors();
-							for(ISectionDescriptor sectionDescriptor : sectionDescriptors) {
-								if(sectionDescriptor instanceof DynamicSectionDescriptor) {
-									DynamicSectionDescriptor dynamicSectionDescriptor = (DynamicSectionDescriptor)sectionDescriptor;
-									List<IConstraintDescriptor> constraintDescriptors = dynamicSectionDescriptor.getConstraints();
-									for(IConstraintDescriptor constraintDescriptor : constraintDescriptors) {
-										if(constraintDescriptor instanceof ObjectTypeConstraintDescriptor) {
-											Class<?> elementClass = ((ObjectTypeConstraintDescriptor)constraintDescriptor).getElementClass();
-											if(elementClass.isAssignableFrom(metamodelClass)) {
-												descriptors.add(dynamicSectionDescriptor);
-											}
-										}
-									}
-
-								}
-							}
-						}
-					}
-				}
-			}
-			return descriptors.toArray();
+			//			// find actions sets valid for this instance class
+			//			List<?> providers = PropertyViewService.getInstance().findAllProviders();
+			//			for(Object provider : providers) {
+			//				if(provider instanceof PropertyViewService.ProviderDescriptor) {
+			//					IProvider providerDescriptor = (IProvider)((PropertyViewService.ProviderDescriptor)provider).getProvider();
+			//					if(providerDescriptor instanceof IPropertyTabViewProvider) {
+			//
+			//						// get the list of all tab descriptors, which gives access to all section descriptors
+			//						// we will then have access to the section for the given element
+			//						List<ITabDescriptor> tabDescriptors = ((IPropertyTabViewProvider)providerDescriptor).getTabDescriptors();
+			//						for(ITabDescriptor tabDescriptor : tabDescriptors) {
+			//							List<ISectionDescriptor> sectionDescriptors = tabDescriptor.getSectionDescriptors();
+			//							for(ISectionDescriptor sectionDescriptor : sectionDescriptors) {
+			//								if(sectionDescriptor instanceof DynamicSectionDescriptor) {
+			//									DynamicSectionDescriptor dynamicSectionDescriptor = (DynamicSectionDescriptor)sectionDescriptor;
+			//									List<IConstraintDescriptor> constraintDescriptors = dynamicSectionDescriptor.getConstraints();
+			//									for(IConstraintDescriptor constraintDescriptor : constraintDescriptors) {
+			//										if(constraintDescriptor instanceof ObjectTypeConstraintDescriptor) {
+			//											Class<?> elementClass = ((ObjectTypeConstraintDescriptor)constraintDescriptor).getElementClass();
+			//											if(elementClass.isAssignableFrom(metamodelClass)) {
+			//												descriptors.add(dynamicSectionDescriptor);
+			//											}
+			//										}
+			//									}
+			//
+			//								}
+			//							}
+			//						}
+			//					}
+			//				}
+			//			}
+			//			return descriptors.toArray();
 		}
 		return new Object[0];
 	}

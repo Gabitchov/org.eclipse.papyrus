@@ -27,20 +27,22 @@ public class SectionSetDescriptor {
 	/** list of constraint descriptors placed on this section set */
 	private final List<IConstraintDescriptor> constraintDescriptors;
 
+	/** name of this section set, mostly used during configuration or debug time */
+	private final String name;
+
 	/** size of the selection */
 	private final int selectionSize;
-
 
 	/**
 	 * Creates a new SectionSetDescriptor.
 	 * 
 	 */
-	public SectionSetDescriptor(List<DynamicSectionDescriptor> sectionDescriptors, List<IConstraintDescriptor> constraintDescriptors, int selectionSize) {
+	public SectionSetDescriptor(String name, List<DynamicSectionDescriptor> sectionDescriptors, List<IConstraintDescriptor> constraintDescriptors, int selectionSize) {
+		this.name = name;
 		this.sectionDescriptors = sectionDescriptors;
 		this.constraintDescriptors = constraintDescriptors;
 		this.selectionSize = selectionSize;
 	}
-
 
 	/**
 	 * Returns the sectionDescriptors owned by the described section set
@@ -51,7 +53,6 @@ public class SectionSetDescriptor {
 		return sectionDescriptors;
 	}
 
-
 	/**
 	 * Returns the constraintDescriptors placed on the described section set
 	 * 
@@ -60,7 +61,6 @@ public class SectionSetDescriptor {
 	public List<IConstraintDescriptor> getConstraintDescriptors() {
 		return constraintDescriptors;
 	}
-
 
 	/**
 	 * Returns the size of the selection for this described section set
@@ -71,6 +71,12 @@ public class SectionSetDescriptor {
 		return selectionSize;
 	}
 
-
-
+	/**
+	 * Returns the name of this section set descriptor
+	 * 
+	 * @return the name of this section set descriptor
+	 */
+	public String getName() {
+		return name;
+	}
 }

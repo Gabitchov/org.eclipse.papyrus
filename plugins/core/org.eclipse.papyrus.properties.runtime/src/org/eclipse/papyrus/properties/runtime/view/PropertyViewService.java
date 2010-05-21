@@ -12,7 +12,9 @@
 package org.eclipse.papyrus.properties.runtime.view;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.gmf.runtime.common.core.service.ExecutionStrategy;
@@ -138,21 +140,6 @@ public class PropertyViewService extends Service {
 	}
 
 	/**
-	 * Flattens the list, i.e. creates a list from the list of list
-	 * 
-	 * @param validDescriptors
-	 *        the list of list to flatten
-	 * @return a list of descriptors
-	 */
-	public List<DialogDescriptor> flattenList(List<List<DialogDescriptor>> validDescriptors) {
-		List<DialogDescriptor> flattenList = new ArrayList<DialogDescriptor>();
-		for(List<DialogDescriptor> list : validDescriptors) {
-			flattenList.addAll(list);
-		}
-		return flattenList;
-	}
-
-	/**
 	 * Returns a fragment descriptor for its Id
 	 * 
 	 * @param id
@@ -227,5 +214,46 @@ public class PropertyViewService extends Service {
 			return super.getProvider();
 		}
 	}
+
+	/**
+	 * Returns the list of all available fragment descriptors
+	 * 
+	 * @return the list of available fragment descriptors
+	 */
+	public Map<String, FragmentDescriptor> getAllFragmentDescriptors() {
+		List<Map<String, FragmentDescriptor>> fragmentDescriptors = execute(ExecutionStrategy.FORWARD, new GetAllFragmentDescriptorsOperation());
+		return flattenMap(fragmentDescriptors);
+	}
+
+	/**
+	 * Flattens the list, i.e. creates a list from the list of list
+	 * 
+	 * @param descriptors
+	 *        the list of list to flatten
+	 * @return a flatten list of descriptors
+	 */
+	public <T> List<T> flattenList(List<List<T>> descriptors) {
+		List<T> flattenList = new ArrayList<T>();
+		for(List<T> list : descriptors) {
+			flattenList.addAll(list);
+		}
+		return flattenList;
+	}
+
+	/**
+	 * Flattens the list, i.e. creates a list from the list of list
+	 * 
+	 * @param descriptors
+	 *        the list of list to flatten
+	 * @return a flatten list of descriptors
+	 */
+	public <T, V> Map<T, V> flattenMap(List<Map<T, V>> descriptors) {
+		Map<T, V> flattenMap = new HashMap<T, V>();
+		for(Map<T, V> map : descriptors) {
+			flattenMap.putAll(map);
+		}
+		return flattenMap;
+	}
+
 
 }

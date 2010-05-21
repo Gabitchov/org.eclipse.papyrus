@@ -12,7 +12,7 @@
 package org.eclipse.papyrus.properties.tabbed.customization.dialog;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -21,7 +21,13 @@ import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.properties.runtime.view.DialogDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
+import org.eclipse.papyrus.properties.runtime.view.XMLParseException;
+import org.eclipse.papyrus.properties.tabbed.core.view.PropertyServiceUtil;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
+import org.eclipse.papyrus.properties.tabbed.customization.state.SectionSetDescriptorState;
+import org.eclipse.papyrus.properties.tabbed.customization.state.StatePropertyTabViewProviderParser;
 import org.eclipse.papyrus.umlutils.PackageUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
@@ -31,6 +37,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Tree;
+import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -47,6 +54,11 @@ public class CustomizeContentWizardPage extends WizardPage {
 
 	/** UML metamodel label for the metamodel selection combo */
 	protected static final String UML_METAMODEL = "UML";
+
+	/** available section states for this wizard page */
+	protected List<SectionSetDescriptorState> sectionSetDescriptorStates;
+
+	protected TreeViewer contentViewer;
 
 	/**
 	 * Creates a new CustomizeContentWizardPage.
@@ -86,6 +98,23 @@ public class CustomizeContentWizardPage extends WizardPage {
 	 */
 	public void setInitialContent(Document document) {
 		this.document = document;
+
+		// parses the content of the document to create the SectionSetDescriptors states
+		List<ITabDescriptor> tabDescriptors = new ArrayList<ITabDescriptor>();
+		for(List<ITabDescriptor> descriptors : PropertyServiceUtil.getTabDescriptors()) {
+			tabDescriptors.addAll(descriptors);
+		}
+		StatePropertyTabViewProviderParser parser = new StatePropertyTabViewProviderParser(tabDescriptors);
+		try {
+			parser.parseXMLfile(document, PropertyViewService.getInstance().getAllFragmentDescriptors(), new HashMap<String, DialogDescriptor>());
+			sectionSetDescriptorStates = parser.getSectionSetDescriptorStates();
+
+			contentViewer.setContentProvider(new MetamodelContentProvider(sectionSetDescriptorStates));
+			contentViewer.setLabelProvider(new MetamodelLabelProvider());
+			contentViewer.setInput(UMLPackage.eINSTANCE.eContents());
+		} catch (XMLParseException e) {
+			Activator.log.error(e);
+		}
 	}
 
 	/**
@@ -177,10 +206,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 		// content tree and viewer on this tree
 		Tree contentTree = new Tree(mainContentAreaComposite, SWT.BORDER);
 		contentTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		TreeViewer contentViewer = new TreeViewer(contentTree);
-		contentViewer.setContentProvider(new MetamodelContentProvider(Collections.EMPTY_LIST));
-		contentViewer.setLabelProvider(new MetamodelLabelProvider());
-		contentViewer.setInput(UMLPackage.eINSTANCE.eContents());
+		contentViewer = new TreeViewer(contentTree);
 	}
 
 	/**

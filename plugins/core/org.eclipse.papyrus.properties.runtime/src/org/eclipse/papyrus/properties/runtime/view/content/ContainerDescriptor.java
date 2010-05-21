@@ -193,4 +193,17 @@ public class ContainerDescriptor extends AbstractContainerDescriptor {
 	public List<IPropertyEditorControllerDescriptor> getControllerDescriptors() {
 		return uncachedDescriptors;
 	}
+
+	/**
+	 * non optimized method to have access to all controller descriptors. It forces the parse of the content of the controller descriptors
+	 * 
+	 * @return the parsed list of the content descriptors
+	 */
+	public List<IPropertyEditorControllerDescriptor> getUnparsedControllerDescriptors() {
+		if(unparsedContent) {
+			uncachedDescriptors = new ArrayList<IPropertyEditorControllerDescriptor>();
+			parseContent();
+		}
+		return getControllerDescriptors();
+	}
 }

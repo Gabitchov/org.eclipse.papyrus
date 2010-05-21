@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.properties.runtime.view;
 
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.gmf.runtime.common.core.service.IProvider;
@@ -39,6 +40,12 @@ public interface IPropertyViewProvider extends IProvider {
 	 */
 	public FragmentDescriptor getFragmentDescriptor(String descriptorID);
 
+	/**
+	 * returns the full map of fragments descriptors proposed by this provider, key is their identifier
+	 * 
+	 * @return the full map of fragments descriptors proposed by this provider, key is their identifier
+	 */
+	public Map<String, FragmentDescriptor> getAllFragmentDescriptors();
 
 	/**
 	 * returns <code>true</code> if this provider can handle the fragment descriptor specified by its identifier

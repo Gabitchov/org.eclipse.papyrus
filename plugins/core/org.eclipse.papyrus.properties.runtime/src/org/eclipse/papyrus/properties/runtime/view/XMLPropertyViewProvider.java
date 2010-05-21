@@ -134,6 +134,8 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 			return managesDialogDescriptor(((GetDialogDescriptorOperationById)operation).getDescriptorID());
 		} else if(operation instanceof GetDialogDescriptorOperation) {
 			return true; // ?
+		} else if(operation instanceof GetAllFragmentDescriptorsOperation) {
+			return true;
 		}
 		return false;
 	}
@@ -232,7 +234,7 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 			String filePath = urlFile.getPath();
 			if(filePath.startsWith("file:")) {
 				// strip off the file: and the !/
-				filePath = filePath.substring(5, path.length() - 2);
+				filePath = filePath.substring(5, filePath.length() - 2);
 				return new File(filePath);
 			}
 		}
@@ -244,6 +246,13 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 	 */
 	public FragmentDescriptor getFragmentDescriptor(String descriptorID) {
 		return predefinedFragments.get(descriptorID);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Map<String, FragmentDescriptor> getAllFragmentDescriptors() {
+		return predefinedFragments;
 	}
 
 	/**

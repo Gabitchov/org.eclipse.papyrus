@@ -429,7 +429,7 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 				Document document = documentBuilder.newDocument();
 				Comment comment = document.createComment(Messages.bind(Messages.SelectConfigurationFileWizardPage_EmptyDocument_InitialComment, Calendar.getInstance().getTime()));
 				document.appendChild(comment);
-
+				// FIXME change with an interface constant
 				Element rootNode = document.createElement("propertyTabView");// $NON-NLS-1$
 				rootNode.setAttribute("pluginId", pluginIdText.getText()); // $NON-NLS-1$
 				document.appendChild(rootNode);

@@ -16,6 +16,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.papyrus.properties.tabbed.core.view.DynamicSectionDescriptor;
+import org.eclipse.papyrus.properties.tabbed.customization.state.SectionSetDescriptorState;
 
 
 /**
@@ -45,12 +46,12 @@ public class MetamodelLabelProvider extends AdapterFactoryLabelProvider {
 			} else {
 				return itemLabelProvider != null ? itemLabelProvider.getText(object) : object == null ? "" : object.toString();
 			}
+		} else if(object instanceof DynamicSectionDescriptor) {
+			return ((DynamicSectionDescriptor)object).getId();
+		} else if(object instanceof SectionSetDescriptorState) {
+			SectionSetDescriptorState state = (SectionSetDescriptorState)object;
+			return state.getLabel();
 		} else {
-			if(object instanceof DynamicSectionDescriptor) {
-				return ((DynamicSectionDescriptor)object).getId();
-			}
-
-
 			return object.toString();
 		}
 
