@@ -26,7 +26,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.helper.DurationObservationHelper;
-import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
@@ -138,7 +138,7 @@ public class DurationObservationCreateCommand extends EditElementCommand {
 		owner.getPackagedElements().add(newElement);
 
 
-		UMLElementTypes.init_DurationObservation_3024(newElement);
+		ElementInitializers.getInstance().init_DurationObservation_3024(newElement);
 
 		// assign the occurrence specification
 		Object occurrence1 = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);

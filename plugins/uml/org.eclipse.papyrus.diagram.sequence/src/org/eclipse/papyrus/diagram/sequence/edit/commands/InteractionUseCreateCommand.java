@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.InteractionUse;
@@ -117,7 +117,7 @@ public class InteractionUseCreateCommand extends EditElementCommand {
 			owner.getFragments().add(newElement);
 		}
 
-		UMLElementTypes.init_InteractionUse_3002(newElement);
+		ElementInitializers.getInstance().init_InteractionUse_3002(newElement);
 
 		doConfigure(newElement, monitor, info);
 

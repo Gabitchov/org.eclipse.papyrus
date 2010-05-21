@@ -459,7 +459,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			if(lifeline.equals(getHostObject())) {
 				return getCreateCommand(stateInvariant, nodeVISUALID);
 			}
-		}else{
+		} else {
 			CompositeCommand cc = new CompositeCommand("Moving a StateInvariant");
 
 			// Add the view to the new container

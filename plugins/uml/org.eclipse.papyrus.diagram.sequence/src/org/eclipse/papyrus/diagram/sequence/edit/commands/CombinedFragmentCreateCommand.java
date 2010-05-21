@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionOperand;
@@ -108,7 +108,7 @@ public class CombinedFragmentCreateCommand extends EditElementCommand {
 
 		CombinedFragment newElement = UMLFactory.eINSTANCE.createCombinedFragment();
 
-		UMLElementTypes.init_CombinedFragment_3004(newElement);
+		ElementInitializers.getInstance().init_CombinedFragment_3004(newElement);
 
 		// START GENERATED NOT CODE
 		EObject elementToEdit = getElementToEdit();

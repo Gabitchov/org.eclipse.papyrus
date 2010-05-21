@@ -102,7 +102,7 @@ public class Message5CreateCommand extends EditElementCommand {
 				return false;
 			}
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateMessage_4007(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateMessage_4007(getContainer(), getSource(), getTarget());
 	}
 
 	/**

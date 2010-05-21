@@ -71,7 +71,6 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintLabelEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
-import org.eclipse.papyrus.diagram.sequence.expressions.UMLAbstractExpression;
 import org.eclipse.papyrus.diagram.sequence.expressions.UMLOCLFactory;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.DurationObservation;
@@ -94,41 +93,6 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static final String DEBUG_KEY = "org.eclipse.papyrus.diagram.sequence/debug/visualID"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression Message_4003_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression Message_4004_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression Message_4005_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression Message_4006_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression Message_4007_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression Message_4008_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression Message_4009_Constraint;
 
 	/**
 	 * @generated
@@ -177,7 +141,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static String getType(int visualID) {
-		return String.valueOf(visualID);
+		return Integer.toString(visualID);
 	}
 
 	/**
@@ -403,6 +367,11 @@ public class UMLVisualIDRegistry {
 			}
 		}
 		switch(containerVisualID) {
+		case PackageEditPart.VISUAL_ID:
+			if(InteractionEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case InteractionEditPart.VISUAL_ID:
 			if(InteractionNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -533,11 +502,6 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case PackageEditPart.VISUAL_ID:
-			if(InteractionEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
 		case MessageEditPart.VISUAL_ID:
 			if(MessageNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -650,10 +614,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isMessage_4003(Message domainElement) {
-		if(Message_4003_Constraint == null) { // lazy initialization
-			Message_4003_Constraint = UMLOCLFactory.getExpression("self.messageSort=MessageSort::synchCall and self.sendEvent<>null and self.receiveEvent<>null", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
-		}
-		Object result = Message_4003_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getMessage(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -661,10 +622,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isMessage_4004(Message domainElement) {
-		if(Message_4004_Constraint == null) { // lazy initialization
-			Message_4004_Constraint = UMLOCLFactory.getExpression("(self.messageSort=MessageSort::asynchCall or self.messageSort=MessageSort::asynchSignal) and self.sendEvent<>null and self.receiveEvent<>null", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
-		}
-		Object result = Message_4004_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(5, UMLPackage.eINSTANCE.getMessage(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -672,10 +630,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isMessage_4005(Message domainElement) {
-		if(Message_4005_Constraint == null) { // lazy initialization
-			Message_4005_Constraint = UMLOCLFactory.getExpression("self.messageSort=MessageSort::reply and self.sendEvent<>null and self.receiveEvent<>null", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
-		}
-		Object result = Message_4005_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(8, UMLPackage.eINSTANCE.getMessage(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -683,10 +638,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isMessage_4006(Message domainElement) {
-		if(Message_4006_Constraint == null) { // lazy initialization
-			Message_4006_Constraint = UMLOCLFactory.getExpression("self.messageSort=MessageSort::createMessage and self.sendEvent<>null and self.receiveEvent<>null", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
-		}
-		Object result = Message_4006_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(11, UMLPackage.eINSTANCE.getMessage(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -694,10 +646,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isMessage_4007(Message domainElement) {
-		if(Message_4007_Constraint == null) { // lazy initialization
-			Message_4007_Constraint = UMLOCLFactory.getExpression("self.messageSort=MessageSort::deleteMessage and self.sendEvent<>null and self.receiveEvent<>null", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
-		}
-		Object result = Message_4007_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(14, UMLPackage.eINSTANCE.getMessage(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -705,10 +654,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isMessage_4008(Message domainElement) {
-		if(Message_4008_Constraint == null) { // lazy initialization
-			Message_4008_Constraint = UMLOCLFactory.getExpression("self.receiveEvent=null", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
-		}
-		Object result = Message_4008_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(17, UMLPackage.eINSTANCE.getMessage(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -716,10 +662,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isMessage_4009(Message domainElement) {
-		if(Message_4009_Constraint == null) { // lazy initialization
-			Message_4009_Constraint = UMLOCLFactory.getExpression("self.sendEvent=null", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
-		}
-		Object result = Message_4009_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(20, UMLPackage.eINSTANCE.getMessage(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 

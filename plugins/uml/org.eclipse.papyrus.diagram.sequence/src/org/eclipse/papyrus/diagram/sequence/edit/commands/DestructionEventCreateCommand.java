@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.papyrus.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.uml2.uml.DestructionEvent;
@@ -121,7 +121,7 @@ public class DestructionEventCreateCommand extends EditElementCommand {
 
 		DestructionEvent destructionEvent = (DestructionEvent)CommandHelper.doCreateDestructionEvent((Lifeline)getElementToEdit(), modelContainer);
 
-		UMLElementTypes.init_DestructionEvent_3022(destructionEvent);
+		ElementInitializers.getInstance().init_DestructionEvent_3022(destructionEvent);
 
 		doConfigure(destructionEvent, monitor, info);
 

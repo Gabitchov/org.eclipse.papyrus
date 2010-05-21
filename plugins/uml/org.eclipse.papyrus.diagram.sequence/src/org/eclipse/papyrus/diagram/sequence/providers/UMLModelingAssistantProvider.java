@@ -65,19 +65,24 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart)host.getAdapter(IGraphicalEditPart.class);
+		if(editPart instanceof PackageEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.Interaction_2001);
+			return types;
+		}
 		if(editPart instanceof InteractionEditPart) {
-			ArrayList types = new ArrayList(2);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 			types.add(UMLElementTypes.DurationConstraint_3023);
 			types.add(UMLElementTypes.DurationObservation_3024);
 			return types;
 		}
 		if(editPart instanceof CombinedFragmentEditPart) {
-			ArrayList types = new ArrayList(1);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
 			types.add(UMLElementTypes.InteractionOperand_3005);
 			return types;
 		}
 		if(editPart instanceof InteractionOperandEditPart) {
-			ArrayList types = new ArrayList(4);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(4);
 			types.add(UMLElementTypes.InteractionUse_3002);
 			types.add(UMLElementTypes.CombinedFragment_3004);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
@@ -85,7 +90,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof LifelineEditPart) {
-			ArrayList types = new ArrayList(8);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(8);
 			types.add(UMLElementTypes.ActionExecutionSpecification_3006);
 			types.add(UMLElementTypes.BehaviorExecutionSpecification_3003);
 			types.add(UMLElementTypes.StateInvariant_3017);
@@ -97,18 +102,13 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof InteractionInteractionCompartmentEditPart) {
-			ArrayList types = new ArrayList(6);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(6);
 			types.add(UMLElementTypes.ConsiderIgnoreFragment_3007);
 			types.add(UMLElementTypes.CombinedFragment_3004);
 			types.add(UMLElementTypes.Lifeline_3001);
 			types.add(UMLElementTypes.InteractionUse_3002);
 			types.add(UMLElementTypes.Constraint_3008);
 			types.add(UMLElementTypes.Comment_3009);
-			return types;
-		}
-		if(editPart instanceof PackageEditPart) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.Interaction_2001);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -436,9 +436,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return null;
 		}
 		Diagram diagram = (Diagram)editPart.getRoot().getContents().getModel();
-		Collection elements = new HashSet();
-		for(Iterator it = diagram.getElement().eAllContents(); it.hasNext();) {
-			EObject element = (EObject)it.next();
+		HashSet<EObject> elements = new HashSet<EObject>();
+		for(Iterator<EObject> it = diagram.getElement().eAllContents(); it.hasNext();) {
+			EObject element = it.next();
 			if(isApplicableElement(element, types)) {
 				elements.add(element);
 			}

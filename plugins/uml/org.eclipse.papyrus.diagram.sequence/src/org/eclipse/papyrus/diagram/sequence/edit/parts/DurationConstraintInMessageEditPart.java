@@ -108,7 +108,7 @@ public class DurationConstraintInMessageEditPart extends LabelEditPart implement
 	/**
 	 * @generated
 	 */
-	private List parserElements;
+	private List<?> parserElements;
 
 	/**
 	 * @generated

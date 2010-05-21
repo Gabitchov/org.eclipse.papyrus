@@ -13,24 +13,20 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.expressions;
 
-import java.lang.ref.WeakReference;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EParameter;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.Query;
 import org.eclipse.ocl.ecore.EcoreFactory;
-import org.eclipse.ocl.expressions.OCLExpression;
-import org.eclipse.ocl.expressions.OperationCallExp;
-import org.eclipse.ocl.expressions.Variable;
-import org.eclipse.ocl.helper.OCLHelper;
-import org.eclipse.ocl.utilities.AbstractVisitor;
-import org.eclipse.ocl.utilities.PredefinedType;
+import org.eclipse.ocl.ecore.OCL.Helper;
+import org.eclipse.ocl.options.ParsingOptions;
+import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 
 /**
  * @generated
@@ -40,13 +36,60 @@ public class UMLOCLFactory {
 	/**
 	 * @generated
 	 */
-	private UMLOCLFactory() {
+	private final UMLAbstractExpression[] expressions;
+
+	/**
+	 * @generated
+	 */
+	protected UMLOCLFactory() {
+		this.expressions = new UMLAbstractExpression[23];
 	}
 
 	/**
 	 * @generated
 	 */
-	public static UMLAbstractExpression getExpression(String body, EClassifier context, Map environment) {
+	public static UMLAbstractExpression getExpression(int index, EClassifier context, Map<String, EClassifier> environment) {
+		UMLOCLFactory cached = UMLDiagramEditorPlugin.getInstance().getUMLOCLFactory();
+		if(cached == null) {
+			UMLDiagramEditorPlugin.getInstance().setUMLOCLFactory(cached = new UMLOCLFactory());
+		}
+		if(index < 0 || index >= cached.expressions.length) {
+			throw new IllegalArgumentException();
+		}
+		if(cached.expressions[index] == null) {
+			final String[] exprBodies = new String[]{ "\'OpaqueExpression\'", //$NON-NLS-1$
+			"\' \'", //$NON-NLS-1$
+			"self.messageSort=MessageSort::synchCall and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
+			"self.oclIsKindOf(uml::InteractionFragment)", //$NON-NLS-1$
+			"self.oclIsKindOf(uml::InteractionFragment)", //$NON-NLS-1$
+			"(self.messageSort=MessageSort::asynchCall or self.messageSort=MessageSort::asynchSignal) and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
+			"self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
+			"(self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)) and (self.owner = oppositeEnd.owner or self.owner = oppositeEnd or self = oppositeEnd.owner)", //$NON-NLS-1$
+			"self.messageSort=MessageSort::reply and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
+			"self.oclIsKindOf(uml::InteractionFragment)", //$NON-NLS-1$
+			"self.oclIsKindOf(uml::InteractionFragment)", //$NON-NLS-1$
+			"self.messageSort=MessageSort::createMessage and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
+			"self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
+			"self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
+			"self.messageSort=MessageSort::deleteMessage and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
+			"self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
+			"self.oclIsKindOf(uml::DestructionEvent)", //$NON-NLS-1$
+			"self.receiveEvent=null", //$NON-NLS-1$
+			"self.oclIsKindOf(uml::Lifeline) or self.oclIsKindOf(uml::InteractionFragment)", //$NON-NLS-1$
+			"self.oclIsKindOf(uml::Interaction)", //$NON-NLS-1$
+			"self.sendEvent=null", //$NON-NLS-1$
+			"self.oclIsKindOf(uml::Interaction)", //$NON-NLS-1$
+			"(self.oclIsKindOf(uml::Lifeline) or self.oclIsKindOf(uml::InteractionFragment))", //$NON-NLS-1$
+			};
+			cached.expressions[index] = getExpression(exprBodies[index], context, environment == null ? Collections.<String, EClassifier> emptyMap() : environment);
+		}
+		return cached.expressions[index];
+	}
+
+	/**
+	 * @generated
+	 */
+	public static UMLAbstractExpression getExpression(String body, EClassifier context, Map<String, EClassifier> environment) {
 		return new Expression(body, context, environment);
 	}
 
@@ -54,7 +97,7 @@ public class UMLOCLFactory {
 	 * @generated
 	 */
 	public static UMLAbstractExpression getExpression(String body, EClassifier context) {
-		return getExpression(body, context, Collections.EMPTY_MAP);
+		return getExpression(body, context, Collections.<String, EClassifier> emptyMap());
 	}
 
 	/**
@@ -65,105 +108,61 @@ public class UMLOCLFactory {
 		/**
 		 * @generated
 		 */
-		private WeakReference queryRef;
-
-		/**
-		 * @generated
-		 */
 		private final org.eclipse.ocl.ecore.OCL oclInstance;
 
 		/**
 		 * @generated
 		 */
-		public Expression(String body, EClassifier context, Map environment) {
+		private org.eclipse.ocl.ecore.OCLExpression oclExpression;
+
+		/**
+		 * @generated
+		 */
+		public Expression(String body, EClassifier context, Map<String, EClassifier> environment) {
 			super(body, context);
 			oclInstance = org.eclipse.ocl.ecore.OCL.newInstance();
 			initCustomEnv(oclInstance.getEnvironment(), environment);
+			Helper oclHelper = oclInstance.createOCLHelper();
+			oclHelper.setContext(context());
+			try {
+				oclExpression = oclHelper.createQuery(body());
+				setStatus(IStatus.OK, null, null);
+			} catch (ParserException e) {
+				setStatus(IStatus.ERROR, e.getMessage(), e);
+			}
 		}
 
 		/**
 		 * @generated
 		 */
-		protected Query getQuery() {
-			Query oclQuery = null;
-			if(this.queryRef != null) {
-				oclQuery = (Query)this.queryRef.get();
-			}
-			if(oclQuery == null) {
-				OCLHelper oclHelper = oclInstance.createOCLHelper();
-				oclHelper.setContext(context());
-				try {
-					OCLExpression oclExpression = oclHelper.createQuery(body());
-					oclQuery = oclInstance.createQuery(oclExpression);
-					this.queryRef = new WeakReference(oclQuery);
-					setStatus(IStatus.OK, null, null);
-				} catch (ParserException e) {
-					setStatus(IStatus.ERROR, e.getMessage(), e);
-				}
-			}
-			return oclQuery;
-		}
-
-		/**
-		 * @generated
-		 */
+		@SuppressWarnings("rawtypes")
 		protected Object doEvaluate(Object context, Map env) {
-			Query oclQuery = getQuery();
-			if(oclQuery == null) {
+			if(oclExpression == null) {
 				return null;
 			}
-			EvaluationEnvironment evalEnv = oclQuery.getEvaluationEnvironment();
-			// init environment
-			for(Iterator it = env.entrySet().iterator(); it.hasNext();) {
-				Map.Entry nextEntry = (Map.Entry)it.next();
-				evalEnv.replace((String)nextEntry.getKey(), nextEntry.getValue());
+			// on the first call, both evalEnvironment and extentMap are clear, for later we have finally, below.
+			EvaluationEnvironment<?, ?, ?, ?, ?> evalEnv = oclInstance.getEvaluationEnvironment();
+			// initialize environment
+			for(Object nextKey : env.keySet()) {
+				evalEnv.replace((String)nextKey, env.get(nextKey));
 			}
 			try {
-				initExtentMap(context);
-				Object result = oclQuery.evaluate(context);
-				return (result != oclInstance.getEnvironment().getOCLStandardLibrary().getOclInvalid()) ? result : null;
+				Object result = oclInstance.evaluate(context, oclExpression);
+				return oclInstance.isInvalid(result) ? null : result;
 			} finally {
 				evalEnv.clear();
-				oclQuery.getExtentMap().clear();
+				oclInstance.setExtentMap(null); // clear allInstances cache, and get the oclInstance ready for the next call
 			}
 		}
 
 		/**
 		 * @generated
 		 */
-		private void initExtentMap(Object context) {
-			if(!getStatus().isOK() || context == null) {
-				return;
-			}
-			final Query queryToInit = getQuery();
-			final Object extentContext = context;
-			queryToInit.getExtentMap().clear();
-			if(queryToInit.queryText() != null && queryToInit.queryText().indexOf(PredefinedType.ALL_INSTANCES_NAME) >= 0) {
-				AbstractVisitor visitior = new AbstractVisitor() {
-
-					private boolean usesAllInstances = false;
-
-					public Object visitOperationCallExp(OperationCallExp oc) {
-						if(!usesAllInstances) {
-							usesAllInstances = PredefinedType.ALL_INSTANCES == oc.getOperationCode();
-							if(usesAllInstances) {
-								queryToInit.getExtentMap().putAll(oclInstance.getEvaluationEnvironment().createExtentMap(extentContext));
-							}
-						}
-						return super.visitOperationCallExp(oc);
-					}
-				};
-				queryToInit.getExpression().accept(visitior);
-			}
-		}
-
-		/**
-		 * @generated
-		 */
-		private static void initCustomEnv(Environment ecoreEnv, Map environment) {
-			for(Iterator it = environment.keySet().iterator(); it.hasNext();) {
-				String varName = (String)it.next();
-				EClassifier varType = (EClassifier)environment.get(varName);
+		private static void initCustomEnv(Environment<?, EClassifier, ?, ?, ?, EParameter, ?, ?, ?, ?, ?, ?> ecoreEnv, Map<String, EClassifier> environment) {
+			// Use EObject as implicit root class for any object, to allow eContainer() and other EObject operations from OCL expressions
+			ParsingOptions.setOption(ecoreEnv, ParsingOptions.implicitRootClass(ecoreEnv), EcorePackage.eINSTANCE.getEObject());
+			for(String varName : environment.keySet()) {
+				EClassifier varType = environment.get(varName);
 				ecoreEnv.addElement(varName, createVar(ecoreEnv, varName, varType), false);
 			}
 		}
@@ -171,8 +170,8 @@ public class UMLOCLFactory {
 		/**
 		 * @generated
 		 */
-		private static Variable createVar(Environment ecoreEnv, String name, EClassifier type) {
-			Variable var = EcoreFactory.eINSTANCE.createVariable();
+		private static org.eclipse.ocl.ecore.Variable createVar(Environment<?, EClassifier, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?> ecoreEnv, String name, EClassifier type) {
+			org.eclipse.ocl.ecore.Variable var = EcoreFactory.eINSTANCE.createVariable();
 			var.setName(name);
 			var.setType(ecoreEnv.getUMLReflection().getOCLType(type));
 			return var;

@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.uml2.uml.BehavioredClassifier;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Package;
@@ -117,7 +117,7 @@ public class InteractionCreateCommand extends EditElementCommand {
 			((BehavioredClassifier)elementToEdit).setClassifierBehavior(newElement);
 		}
 
-		UMLElementTypes.init_Interaction_2001(newElement);
+		ElementInitializers.getInstance().init_Interaction_2001(newElement);
 
 		doConfigure(newElement, monitor, info);
 

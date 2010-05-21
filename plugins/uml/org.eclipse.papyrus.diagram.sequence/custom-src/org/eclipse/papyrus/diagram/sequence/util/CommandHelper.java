@@ -743,7 +743,7 @@ public class CommandHelper {
 	public static Message doCreateMessage(Interaction container, MessageSort messageSort, Element source, Element target, InteractionFragment sourceContainer, InteractionFragment targetContainer) {
 		return doCreateMessage(container, messageSort, source, target, sourceContainer, targetContainer, null, null);
 	}
-		
+
 	/**
 	 * Create a message. It also creates its message end (if not provided), their corresponding events and updates the signature of the message.
 	 * 
@@ -755,8 +755,10 @@ public class CommandHelper {
 	 *        the source of the message, it can be null
 	 * @param target
 	 *        the target of the message, it can be null
-	 * @param sendMessageEnd the existing Send MessageEnd of the message
-	 * @param receiveMessageEnd the existing Receive MessageEnd of the message
+	 * @param sendMessageEnd
+	 *        the existing Send MessageEnd of the message
+	 * @param receiveMessageEnd
+	 *        the existing Receive MessageEnd of the message
 	 * @return the created message
 	 */
 	public static Message doCreateMessage(Interaction container, MessageSort messageSort, Element source, Element target, InteractionFragment sourceContainer, InteractionFragment targetContainer, MessageEnd sendMessageEnd, MessageEnd receiveMessageEnd) {

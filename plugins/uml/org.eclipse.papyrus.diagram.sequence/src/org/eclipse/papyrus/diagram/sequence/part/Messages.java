@@ -291,272 +291,272 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Nodes1Group_title;
+	public static String createNodes1Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Nodes1Group_desc;
+	public static String createNodes1Group_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Edges2Group_title;
+	public static String createEdges2Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Edges2Group_desc;
+	public static String createEdges2Group_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Lifeline1CreationTool_title;
+	public static String createLifeline1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Lifeline1CreationTool_desc;
+	public static String createLifeline1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String ActionExecutionSpecification2CreationTool_title;
+	public static String createActionExecutionSpecification2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ActionExecutionSpecification2CreationTool_desc;
+	public static String createActionExecutionSpecification2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String BehaviorExecutionSpecification3CreationTool_title;
+	public static String createBehaviorExecutionSpecification3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String BehaviorExecutionSpecification3CreationTool_desc;
+	public static String createBehaviorExecutionSpecification3CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String InteractionUse4CreationTool_title;
+	public static String createInteractionUse4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String InteractionUse4CreationTool_desc;
+	public static String createInteractionUse4CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String CombinedFragment5CreationTool_title;
+	public static String createCombinedFragment5CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String CombinedFragment5CreationTool_desc;
+	public static String createCombinedFragment5CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String InteractionOperand6CreationTool_title;
+	public static String createInteractionOperand6CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String InteractionOperand6CreationTool_desc;
+	public static String createInteractionOperand6CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Continuation7CreationTool_title;
+	public static String createContinuation7CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Continuation7CreationTool_desc;
+	public static String createContinuation7CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String StateInvariant8CreationTool_title;
+	public static String createStateInvariant8CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String StateInvariant8CreationTool_desc;
+	public static String createStateInvariant8CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Comment9CreationTool_title;
+	public static String createComment9CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Comment9CreationTool_desc;
+	public static String createComment9CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Constraint10CreationTool_title;
+	public static String createConstraint10CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Constraint10CreationTool_desc;
+	public static String createConstraint10CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String CoRegion11CreationTool_title;
+	public static String createCoRegion11CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String CoRegion11CreationTool_desc;
+	public static String createCoRegion11CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String DurationObservation12CreationTool_title;
+	public static String createDurationObservation12CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String DurationObservation12CreationTool_desc;
+	public static String createDurationObservation12CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String TimeConstraint13CreationTool_title;
+	public static String createTimeConstraint13CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String TimeConstraint13CreationTool_desc;
+	public static String createTimeConstraint13CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String TimeObservation14CreationTool_title;
+	public static String createTimeObservation14CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String TimeObservation14CreationTool_desc;
+	public static String createTimeObservation14CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String DurationConstraint15CreationTool_title;
+	public static String createDurationConstraint15CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String DurationConstraint15CreationTool_desc;
+	public static String createDurationConstraint15CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String DestructionEvent16CreationTool_title;
+	public static String createDestructionEvent16CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String DestructionEvent16CreationTool_desc;
+	public static String createDestructionEvent16CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String MessageSync1CreationTool_title;
+	public static String createMessageSync1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String MessageSync1CreationTool_desc;
+	public static String createMessageSync1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String MessageAsync2CreationTool_title;
+	public static String createMessageAsync2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String MessageAsync2CreationTool_desc;
+	public static String createMessageAsync2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String MessageReply3CreationTool_title;
+	public static String createMessageReply3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String MessageReply3CreationTool_desc;
+	public static String createMessageReply3CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String MessageCreate4CreationTool_title;
+	public static String createMessageCreate4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String MessageCreate4CreationTool_desc;
+	public static String createMessageCreate4CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String MessageDelete5CreationTool_title;
+	public static String createMessageDelete5CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String MessageDelete5CreationTool_desc;
+	public static String createMessageDelete5CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String MessageLost6CreationTool_title;
+	public static String createMessageLost6CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String MessageLost6CreationTool_desc;
+	public static String createMessageLost6CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String MessageFound7CreationTool_title;
+	public static String createMessageFound7CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String MessageFound7CreationTool_desc;
+	public static String createMessageFound7CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Commentlink8CreationTool_title;
+	public static String createCommentlink8CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Commentlink8CreationTool_desc;
+	public static String createCommentlink8CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Constraintlink9CreationTool_title;
+	public static String createConstraintlink9CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Constraintlink9CreationTool_desc;
+	public static String createConstraintlink9CreationTool_desc;
 
 	/**
 	 * @generated

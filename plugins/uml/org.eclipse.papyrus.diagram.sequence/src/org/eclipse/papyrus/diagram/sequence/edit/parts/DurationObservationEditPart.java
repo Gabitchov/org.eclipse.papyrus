@@ -108,7 +108,7 @@ public class DurationObservationEditPart extends LabelEditPart implements ITextA
 	/**
 	 * @generated
 	 */
-	private List parserElements;
+	private List<?> parserElements;
 
 	/**
 	 * @generated

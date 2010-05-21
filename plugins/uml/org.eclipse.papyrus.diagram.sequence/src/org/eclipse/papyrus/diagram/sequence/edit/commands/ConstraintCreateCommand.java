@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -111,7 +111,7 @@ public class ConstraintCreateCommand extends EditElementCommand {
 		owner.getOwnedRules().add(newElement);
 
 
-		UMLElementTypes.init_Constraint_3008(newElement);
+		ElementInitializers.getInstance().init_Constraint_3008(newElement);
 
 		doConfigure(newElement, monitor, info);
 

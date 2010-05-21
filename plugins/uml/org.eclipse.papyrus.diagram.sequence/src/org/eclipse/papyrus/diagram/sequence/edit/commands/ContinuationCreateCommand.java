@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Continuation;
 import org.eclipse.uml2.uml.InteractionFragment;
@@ -130,7 +130,7 @@ public class ContinuationCreateCommand extends EditElementCommand {
 		//(e.g., it always covers all Lifelines covered by the enclosing InteractionFragment)
 		newElement.getCovereds().addAll(owner.getCovereds());
 
-		UMLElementTypes.init_Continuation_3016(newElement);
+		ElementInitializers.getInstance().init_Continuation_3016(newElement);
 
 		doConfigure(newElement, monitor, info);
 

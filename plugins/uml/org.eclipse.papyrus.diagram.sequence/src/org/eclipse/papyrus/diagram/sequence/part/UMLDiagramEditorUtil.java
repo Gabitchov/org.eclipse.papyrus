@@ -14,10 +14,10 @@
 package org.eclipse.papyrus.diagram.sequence.part;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -73,8 +73,8 @@ public class UMLDiagramEditorUtil {
 	/**
 	 * @generated
 	 */
-	public static Map getSaveOptions() {
-		Map saveOptions = new HashMap();
+	public static Map<?, ?> getSaveOptions() {
+		HashMap<String, Object> saveOptions = new HashMap<String, Object>();
 		saveOptions.put(XMLResource.OPTION_ENCODING, "UTF-8"); //$NON-NLS-1$
 		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
 		return saveOptions;
@@ -220,12 +220,11 @@ public class UMLDiagramEditorUtil {
 	/**
 	 * @generated
 	 */
-	public static void selectElementsInDiagram(IDiagramWorkbenchPart diagramPart, List/* EditPart */editParts) {
+	public static void selectElementsInDiagram(IDiagramWorkbenchPart diagramPart, List<EditPart> editParts) {
 		diagramPart.getDiagramGraphicalViewer().deselectAll();
 
 		EditPart firstPrimary = null;
-		for(Iterator it = editParts.iterator(); it.hasNext();) {
-			EditPart nextPart = (EditPart)it.next();
+		for(EditPart nextPart : editParts) {
 			diagramPart.getDiagramGraphicalViewer().appendSelection(nextPart);
 			if(firstPrimary == null && nextPart instanceof IPrimaryEditPart) {
 				firstPrimary = nextPart;
@@ -240,7 +239,7 @@ public class UMLDiagramEditorUtil {
 	/**
 	 * @generated
 	 */
-	private static int findElementsInDiagramByID(DiagramEditPart diagramPart, EObject element, List editPartCollector) {
+	private static int findElementsInDiagramByID(DiagramEditPart diagramPart, EObject element, List<EditPart> editPartCollector) {
 		IDiagramGraphicalViewer viewer = (IDiagramGraphicalViewer)diagramPart.getViewer();
 		final int intialNumOfEditParts = editPartCollector.size();
 
@@ -253,10 +252,10 @@ public class UMLDiagramEditorUtil {
 		}
 
 		String elementID = EMFCoreUtil.getProxyID(element);
-		List associatedParts = viewer.findEditPartsForElement(elementID, IGraphicalEditPart.class);
+		@SuppressWarnings("unchecked")
+		List<EditPart> associatedParts = viewer.findEditPartsForElement(elementID, IGraphicalEditPart.class);
 		// perform the possible hierarchy disjoint -> take the top-most parts only
-		for(Iterator editPartIt = associatedParts.iterator(); editPartIt.hasNext();) {
-			EditPart nextPart = (EditPart)editPartIt.next();
+		for(EditPart nextPart : associatedParts) {
 			EditPart parentPart = nextPart.getParent();
 			while(parentPart != null && !associatedParts.contains(parentPart)) {
 				parentPart = parentPart.getParent();
@@ -268,7 +267,7 @@ public class UMLDiagramEditorUtil {
 
 		if(intialNumOfEditParts == editPartCollector.size()) {
 			if(!associatedParts.isEmpty()) {
-				editPartCollector.add(associatedParts.iterator().next());
+				editPartCollector.add(associatedParts.get(0));
 			} else {
 				if(element.eContainer() != null) {
 					return findElementsInDiagramByID(diagramPart, element.eContainer(), editPartCollector);
@@ -288,11 +287,11 @@ public class UMLDiagramEditorUtil {
 		}
 
 		View view = null;
+		LinkedList<EditPart> editPartHolder = new LinkedList<EditPart>();
 		if(hasStructuralURI && !lazyElement2ViewMap.getElement2ViewMap().isEmpty()) {
-			view = (View)lazyElement2ViewMap.getElement2ViewMap().get(targetElement);
-		} else if(findElementsInDiagramByID(diagramEditPart, targetElement, lazyElement2ViewMap.editPartTmpHolder) > 0) {
-			EditPart editPart = (EditPart)lazyElement2ViewMap.editPartTmpHolder.get(0);
-			lazyElement2ViewMap.editPartTmpHolder.clear();
+			view = lazyElement2ViewMap.getElement2ViewMap().get(targetElement);
+		} else if(findElementsInDiagramByID(diagramEditPart, targetElement, editPartHolder) > 0) {
+			EditPart editPart = editPartHolder.get(0);
 			view = editPart.getModel() instanceof View ? (View)editPart.getModel() : null;
 		}
 
@@ -307,7 +306,7 @@ public class UMLDiagramEditorUtil {
 		/**
 		 * @generated
 		 */
-		private Map element2ViewMap;
+		private Map<EObject, View> element2ViewMap;
 
 		/**
 		 * @generated
@@ -317,17 +316,12 @@ public class UMLDiagramEditorUtil {
 		/**
 		 * @generated
 		 */
-		private Set elementSet;
+		private Set<? extends EObject> elementSet;
 
 		/**
 		 * @generated
 		 */
-		public final List editPartTmpHolder = new ArrayList();
-
-		/**
-		 * @generated
-		 */
-		public LazyElement2ViewMap(View scope, Set elements) {
+		public LazyElement2ViewMap(View scope, Set<? extends EObject> elements) {
 			this.scope = scope;
 			this.elementSet = elements;
 		}
@@ -335,16 +329,15 @@ public class UMLDiagramEditorUtil {
 		/**
 		 * @generated
 		 */
-		public final Map getElement2ViewMap() {
+		public final Map<EObject, View> getElement2ViewMap() {
 			if(element2ViewMap == null) {
-				element2ViewMap = new HashMap();
+				element2ViewMap = new HashMap<EObject, View>();
 				// map possible notation elements to itself as these can't be found by view.getElement()
-				for(Iterator it = elementSet.iterator(); it.hasNext();) {
-					EObject element = (EObject)it.next();
+				for(EObject element : elementSet) {
 					if(element instanceof View) {
 						View view = (View)element;
 						if(view.getDiagram() == scope.getDiagram()) {
-							element2ViewMap.put(element, element); // take only those that part of our diagram
+							element2ViewMap.put(element, view); // take only those that part of our diagram
 						}
 					}
 				}
@@ -357,32 +350,28 @@ public class UMLDiagramEditorUtil {
 		/**
 		 * @generated
 		 */
-		static Map buildElement2ViewMap(View parentView, Map element2ViewMap, Set elements) {
-			if(elements.size() == element2ViewMap.size())
-				return element2ViewMap;
+		private static boolean buildElement2ViewMap(View parentView, Map<EObject, View> element2ViewMap, Set<? extends EObject> elements) {
+			if(elements.size() == element2ViewMap.size()) {
+				return true;
+			}
 
 			if(parentView.isSetElement() && !element2ViewMap.containsKey(parentView.getElement()) && elements.contains(parentView.getElement())) {
 				element2ViewMap.put(parentView.getElement(), parentView);
-				if(elements.size() == element2ViewMap.size())
-					return element2ViewMap;
+				if(elements.size() == element2ViewMap.size()) {
+					return true;
+				}
 			}
-
-			for(Iterator it = parentView.getChildren().iterator(); it.hasNext();) {
-				buildElement2ViewMap((View)it.next(), element2ViewMap, elements);
-				if(elements.size() == element2ViewMap.size())
-					return element2ViewMap;
+			boolean complete = false;
+			for(Iterator<?> it = parentView.getChildren().iterator(); it.hasNext() && !complete;) {
+				complete = buildElement2ViewMap((View)it.next(), element2ViewMap, elements);
 			}
-			for(Iterator it = parentView.getSourceEdges().iterator(); it.hasNext();) {
-				buildElement2ViewMap((View)it.next(), element2ViewMap, elements);
-				if(elements.size() == element2ViewMap.size())
-					return element2ViewMap;
+			for(Iterator<?> it = parentView.getSourceEdges().iterator(); it.hasNext() && !complete;) {
+				complete = buildElement2ViewMap((View)it.next(), element2ViewMap, elements);
 			}
-			for(Iterator it = parentView.getSourceEdges().iterator(); it.hasNext();) {
-				buildElement2ViewMap((View)it.next(), element2ViewMap, elements);
-				if(elements.size() == element2ViewMap.size())
-					return element2ViewMap;
+			for(Iterator<?> it = parentView.getTargetEdges().iterator(); it.hasNext() && !complete;) {
+				complete = buildElement2ViewMap((View)it.next(), element2ViewMap, elements);
 			}
-			return element2ViewMap;
+			return complete;
 		}
 	} // LazyElement2ViewMap
 

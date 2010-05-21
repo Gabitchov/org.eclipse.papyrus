@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.uml2.uml.ConsiderIgnoreFragment;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionOperand;
@@ -109,7 +109,7 @@ public class ConsiderIgnoreFragmentCreateCommand extends EditElementCommand {
 
 		ConsiderIgnoreFragment newElement = UMLFactory.eINSTANCE.createConsiderIgnoreFragment();
 
-		UMLElementTypes.init_ConsiderIgnoreFragment_3007(newElement);
+		ElementInitializers.getInstance().init_ConsiderIgnoreFragment_3007(newElement);
 
 		// START GENERATED NOT CODE
 		EObject elementToEdit = getElementToEdit();

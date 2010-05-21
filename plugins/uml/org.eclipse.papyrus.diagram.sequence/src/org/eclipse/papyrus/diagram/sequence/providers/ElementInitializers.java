@@ -43,10 +43,14 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class ElementInitializers {
 
+	protected ElementInitializers() {
+		// use #getInstance to access cached instance
+	}
+
 	/**
 	 * @generated
 	 */
-	public static void init_Interaction_2001(Interaction instance) {
+	public void init_Interaction_2001(Interaction instance) {
 		try {
 			Object value_0 = name_Interaction_2001(instance);
 			instance.setName((String)value_0);
@@ -58,7 +62,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_Lifeline_3001(Lifeline instance) {
+	public void init_Lifeline_3001(Lifeline instance) {
 		try {
 			Object value_0 = name_Lifeline_3001(instance);
 			instance.setName((String)value_0);
@@ -70,7 +74,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_StateInvariant_3017(StateInvariant instance) {
+	public void init_StateInvariant_3017(StateInvariant instance) {
 		try {
 			Object value_0 = name_StateInvariant_3017(instance);
 			instance.setName((String)value_0);
@@ -82,7 +86,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_CombinedFragment_3018(CombinedFragment instance) {
+	public void init_CombinedFragment_3018(CombinedFragment instance) {
 		try {
 			Object value_0 = name_CombinedFragment_3018(instance);
 			instance.setName((String)value_0);
@@ -94,7 +98,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_TimeConstraint_3019(TimeConstraint instance) {
+	public void init_TimeConstraint_3019(TimeConstraint instance) {
 		try {
 			TimeInterval newInstance_0_0 = UMLFactory.eINSTANCE.createTimeInterval();
 			instance.setSpecification(newInstance_0_0);
@@ -111,7 +115,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_TimeObservation_3020(TimeObservation instance) {
+	public void init_TimeObservation_3020(TimeObservation instance) {
 		try {
 			Object value_0 = name_TimeObservation_3020(instance);
 			instance.setName((String)value_0);
@@ -123,7 +127,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_DurationConstraint_3021(DurationConstraint instance) {
+	public void init_DurationConstraint_3021(DurationConstraint instance) {
 		try {
 			DurationInterval newInstance_0_0 = UMLFactory.eINSTANCE.createDurationInterval();
 			instance.setSpecification(newInstance_0_0);
@@ -140,7 +144,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_DestructionEvent_3022(DestructionEvent instance) {
+	public void init_DestructionEvent_3022(DestructionEvent instance) {
 		try {
 			Object value_0 = name_DestructionEvent_3022(instance);
 			instance.setName((String)value_0);
@@ -152,7 +156,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_InteractionUse_3002(InteractionUse instance) {
+	public void init_InteractionUse_3002(InteractionUse instance) {
 		try {
 			Object value_0 = name_InteractionUse_3002(instance);
 			instance.setName((String)value_0);
@@ -164,7 +168,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_CombinedFragment_3004(CombinedFragment instance) {
+	public void init_CombinedFragment_3004(CombinedFragment instance) {
 		try {
 			Object value_0 = name_CombinedFragment_3004(instance);
 			instance.setName((String)value_0);
@@ -176,7 +180,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_Continuation_3016(Continuation instance) {
+	public void init_Continuation_3016(Continuation instance) {
 		try {
 			Object value_0 = name_Continuation_3016(instance);
 			instance.setName((String)value_0);
@@ -188,11 +192,11 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_Constraint_3008(Constraint instance) {
+	public void init_Constraint_3008(Constraint instance) {
 		try {
 			OpaqueExpression newInstance_0_0 = UMLFactory.eINSTANCE.createOpaqueExpression();
 			instance.setSpecification(newInstance_0_0);
-			Object value_0_0_0 = UMLOCLFactory.getExpression("\'OpaqueExpression\'", UMLPackage.eINSTANCE.getOpaqueExpression()).evaluate(newInstance_0_0);
+			Object value_0_0_0 = UMLOCLFactory.getExpression(0, UMLPackage.eINSTANCE.getOpaqueExpression(), null).evaluate(newInstance_0_0);
 			if(value_0_0_0 instanceof Collection) {
 				newInstance_0_0.getBodies().clear();
 				newInstance_0_0.getBodies().addAll(((Collection)value_0_0_0));
@@ -208,9 +212,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_Comment_3009(Comment instance) {
+	public void init_Comment_3009(Comment instance) {
 		try {
-			Object value_0 = UMLOCLFactory.getExpression("\' \'", UMLPackage.eINSTANCE.getComment()).evaluate(instance);
+			Object value_0 = UMLOCLFactory.getExpression(1, UMLPackage.eINSTANCE.getComment(), null).evaluate(instance);
 			instance.setBody((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
@@ -220,7 +224,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_DurationConstraint_3023(DurationConstraint instance) {
+	public void init_DurationConstraint_3023(DurationConstraint instance) {
 		try {
 			DurationInterval newInstance_0_0 = UMLFactory.eINSTANCE.createDurationInterval();
 			instance.setSpecification(newInstance_0_0);
@@ -237,7 +241,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_DurationObservation_3024(DurationObservation instance) {
+	public void init_DurationObservation_3024(DurationObservation instance) {
 		try {
 			Object value_0 = name_DurationObservation_3024(instance);
 			instance.setName((String)value_0);
@@ -249,126 +253,137 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private static String name_Interaction_2001(Interaction self) {
+	private String name_Interaction_2001(Interaction self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_Lifeline_3001(Lifeline self) {
+	private String name_Lifeline_3001(Lifeline self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_StateInvariant_3017(StateInvariant self) {
+	private String name_StateInvariant_3017(StateInvariant self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_CombinedFragment_3018(CombinedFragment self) {
+	private String name_CombinedFragment_3018(CombinedFragment self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_TimeConstraint_3019(TimeConstraint self) {
+	private String name_TimeConstraint_3019(TimeConstraint self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_specification_TimeConstraint_3019(TimeInterval self) {
+	private String name_specification_TimeConstraint_3019(TimeInterval self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_TimeObservation_3020(TimeObservation self) {
+	private String name_TimeObservation_3020(TimeObservation self) {
 		return getNamedElement(self, "", "t", "");
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_DurationConstraint_3021(DurationConstraint self) {
+	private String name_DurationConstraint_3021(DurationConstraint self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_DestructionEvent_3022(DestructionEvent self) {
+	private String name_DestructionEvent_3022(DestructionEvent self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_specification_DurationConstraint_3023(DurationInterval self) {
+	private String name_specification_DurationConstraint_3023(DurationInterval self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_DurationConstraint_3023(DurationConstraint self) {
+	private String name_DurationConstraint_3023(DurationConstraint self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_DurationObservation_3024(DurationObservation self) {
+	private String name_DurationObservation_3024(DurationObservation self) {
 		return getNamedElement(self, "", "d", "");
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_specification_DurationConstraint_3021(DurationInterval self) {
+	public static ElementInitializers getInstance() {
+		ElementInitializers cached = UMLDiagramEditorPlugin.getInstance().getElementInitializers();
+		if(cached == null) {
+			UMLDiagramEditorPlugin.getInstance().setElementInitializers(cached = new ElementInitializers());
+		}
+		return cached;
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_specification_DurationConstraint_3021(DurationInterval self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_InteractionUse_3002(InteractionUse self) {
+	private String name_InteractionUse_3002(InteractionUse self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_ConsiderIgnoreFragment_3007(ConsiderIgnoreFragment self) {
+	private String name_ConsiderIgnoreFragment_3007(ConsiderIgnoreFragment self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_CombinedFragment_3004(CombinedFragment self) {
+	private String name_CombinedFragment_3004(CombinedFragment self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_Continuation_3016(Continuation self) {
+	private String name_Continuation_3016(Continuation self) {
 		return getNamedElement(self, "", self.eClass().getName(), "");
 	}
 
 	/**
 	 * @generated
 	 */
-	public static void init_ConsiderIgnoreFragment_3007(ConsiderIgnoreFragment instance) {
+	public void init_ConsiderIgnoreFragment_3007(ConsiderIgnoreFragment instance) {
 		try {
 			Object value_0 = name_ConsiderIgnoreFragment_3007(instance);
 			instance.setName((String)value_0);
