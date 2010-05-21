@@ -256,222 +256,222 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Nodes1Group_title;
+	public static String createNodes1Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Nodes1Group_desc;
+	public static String createNodes1Group_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Children2Group_title;
+	public static String createChildren2Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Children2Group_desc;
+	public static String createChildren2Group_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Links3Group_title;
+	public static String createLinks3Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Links3Group_desc;
+	public static String createLinks3Group_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Package1CreationTool_title;
+	public static String createPackage1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Package1CreationTool_desc;
+	public static String createPackage1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Subject2CreationTool_title;
+	public static String createSubject2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Subject2CreationTool_desc;
+	public static String createSubject2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Actor3CreationTool_title;
+	public static String createActor3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Actor3CreationTool_desc;
+	public static String createActor3CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String UseCase4CreationTool_title;
+	public static String createUseCase4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String UseCase4CreationTool_desc;
+	public static String createUseCase4CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Constraint5CreationTool_title;
+	public static String createConstraint5CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Constraint5CreationTool_desc;
+	public static String createConstraint5CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Comment6CreationTool_title;
+	public static String createComment6CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Comment6CreationTool_desc;
+	public static String createComment6CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String ExtensionPoint1CreationTool_title;
+	public static String createExtensionPoint1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ExtensionPoint1CreationTool_desc;
+	public static String createExtensionPoint1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Association1CreationTool_title;
+	public static String createAssociation1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Association1CreationTool_desc;
+	public static String createAssociation1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Generalization2CreationTool_title;
+	public static String createGeneralization2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Generalization2CreationTool_desc;
+	public static String createGeneralization2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Dependency3CreationTool_title;
+	public static String createDependency3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Dependency3CreationTool_desc;
+	public static String createDependency3CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Abstraction4CreationTool_title;
+	public static String createAbstraction4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Abstraction4CreationTool_desc;
+	public static String createAbstraction4CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Realization5CreationTool_title;
+	public static String createRealization5CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Realization5CreationTool_desc;
+	public static String createRealization5CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Usage6CreationTool_title;
+	public static String createUsage6CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Usage6CreationTool_desc;
+	public static String createUsage6CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String PackageMerge7CreationTool_title;
+	public static String createPackageMerge7CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String PackageMerge7CreationTool_desc;
+	public static String createPackageMerge7CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String PackageImport8CreationTool_title;
+	public static String createPackageImport8CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String PackageImport8CreationTool_desc;
+	public static String createPackageImport8CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Include9CreationTool_title;
+	public static String createInclude9CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Include9CreationTool_desc;
+	public static String createInclude9CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Extend10CreationTool_title;
+	public static String createExtend10CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Extend10CreationTool_desc;
+	public static String createExtend10CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String ConstrainedElement11CreationTool_title;
+	public static String createConstrainedElement11CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ConstrainedElement11CreationTool_desc;
+	public static String createConstrainedElement11CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Commentlink12CreationTool_title;
+	public static String createCommentlink12CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Commentlink12CreationTool_desc;
+	public static String createCommentlink12CreationTool_desc;
 
 	/**
 	 * @generated

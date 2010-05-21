@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.UMLBaseItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.usecase.providers.ElementInitializers;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -81,7 +81,7 @@ public class UsageCreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateUsage_4016(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateUsage_4016(getContainer(), getSource(), getTarget());
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class UsageCreateCommand extends EditElementCommand {
 		getContainer().getPackagedElements().add(newElement);
 		newElement.getClients().add(getSource());
 		newElement.getSuppliers().add(getTarget());
-		UMLElementTypes.init_Usage_4016(newElement);
+		ElementInitializers.getInstance().init_Usage_4016(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

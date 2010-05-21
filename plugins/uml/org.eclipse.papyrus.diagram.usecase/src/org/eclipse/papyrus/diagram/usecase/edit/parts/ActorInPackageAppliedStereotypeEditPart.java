@@ -110,7 +110,7 @@ implements ITextAwareEditPart, IBorderItemEditPart, IPapyrusEditPart {
 	/**
 	 * @generated
 	 */
-	private List parserElements;
+	private List<?> parserElements;
 
 	/**
 	 * @generated

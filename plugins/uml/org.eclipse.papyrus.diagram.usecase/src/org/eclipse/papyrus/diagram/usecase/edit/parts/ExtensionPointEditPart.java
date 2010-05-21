@@ -107,7 +107,7 @@ public class ExtensionPointEditPart extends CompartmentEditPart implements IText
 	/**
 	 * @generated
 	 */
-	private List parserElements;
+	private List<?> parserElements;
 
 	/**
 	 * @generated

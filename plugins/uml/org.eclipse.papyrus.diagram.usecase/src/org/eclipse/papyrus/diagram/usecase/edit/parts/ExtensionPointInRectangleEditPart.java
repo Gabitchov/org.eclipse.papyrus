@@ -107,7 +107,7 @@ public class ExtensionPointInRectangleEditPart extends CompartmentEditPart imple
 	/**
 	 * @generated
 	 */
-	private List parserElements;
+	private List<?> parserElements;
 
 	/**
 	 * @generated

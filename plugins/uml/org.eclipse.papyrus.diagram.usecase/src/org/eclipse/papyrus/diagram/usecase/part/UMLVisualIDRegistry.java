@@ -102,7 +102,6 @@ import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePointsEditPartTN;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePointsInComponentEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePointsInPackageEditPart;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCasePointsInRectangleEditPart;
-import org.eclipse.papyrus.diagram.usecase.expressions.UMLAbstractExpression;
 import org.eclipse.papyrus.diagram.usecase.expressions.UMLOCLFactory;
 import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.Association;
@@ -124,31 +123,6 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static final String DEBUG_KEY = "org.eclipse.papyrus.diagram.usecase/debug/visualID"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression Association_4011_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression Dependency_4013_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression Abstraction_4015_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression Usage_4016_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression Realization_4017_Constraint;
 
 	/**
 	 * @generated
@@ -197,7 +171,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static String getType(int visualID) {
-		return String.valueOf(visualID);
+		return Integer.toString(visualID);
 	}
 
 	/**
@@ -236,6 +210,53 @@ public class UMLVisualIDRegistry {
 			}
 		}
 		switch(containerVisualID) {
+		case UseCaseDiagramEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ActorEditPartTN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ActorAsRectangleEditPartTN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return UseCaseEditPartTN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return UseCaseAsRectangleEditPartTN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ComponentEditPartTN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return PackageEditPartTN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ConstraintEditPartTN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return CommentEditPartTN.VISUAL_ID;
+			}
+			if(NotationPackage.eINSTANCE.getDiagram().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ShortCutDiagramEditPart.VISUAL_ID;
+			}
+			break;
 		case UseCasePointsEditPartTN.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getExtensionPoint().isSuperTypeOf(domainElement.eClass())
 
@@ -409,53 +430,6 @@ public class UMLVisualIDRegistry {
 				return CommentEditPartCN.VISUAL_ID;
 			}
 			break;
-		case UseCaseDiagramEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return ActorEditPartTN.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getActor().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return ActorAsRectangleEditPartTN.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return UseCaseEditPartTN.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getUseCase().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return UseCaseAsRectangleEditPartTN.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getComponent().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return ComponentEditPartTN.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return PackageEditPartTN.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return ConstraintEditPartTN.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return CommentEditPartTN.VISUAL_ID;
-			}
-			if(NotationPackage.eINSTANCE.getDiagram().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return ShortCutDiagramEditPart.VISUAL_ID;
-			}
-			break;
 		}
 		return -1;
 	}
@@ -479,6 +453,35 @@ public class UMLVisualIDRegistry {
 			}
 		}
 		switch(containerVisualID) {
+		case UseCaseDiagramEditPart.VISUAL_ID:
+			if(ActorEditPartTN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ActorAsRectangleEditPartTN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(UseCaseEditPartTN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(UseCaseAsRectangleEditPartTN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ComponentEditPartTN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(PackageEditPartTN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConstraintEditPartTN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(CommentEditPartTN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ShortCutDiagramEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case ActorEditPartTN.VISUAL_ID:
 			if(ActorNameEditPartTN.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -721,35 +724,6 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case UseCaseDiagramEditPart.VISUAL_ID:
-			if(ActorEditPartTN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(ActorAsRectangleEditPartTN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(UseCaseEditPartTN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(UseCaseAsRectangleEditPartTN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(ComponentEditPartTN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(PackageEditPartTN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(ConstraintEditPartTN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(CommentEditPartTN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(ShortCutDiagramEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
 		case IncludeEditPart.VISUAL_ID:
 			if(IncludeLink_fixedEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -922,10 +896,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isAssociation_4011(Association domainElement) {
-		if(Association_4011_Constraint == null) { // lazy initialization
-			Association_4011_Constraint = UMLOCLFactory.getExpression("not self.oclIsTypeOf(uml::AssociationClass)", UMLPackage.eINSTANCE.getAssociation()); //$NON-NLS-1$
-		}
-		Object result = Association_4011_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(12, UMLPackage.eINSTANCE.getAssociation(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -933,10 +904,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isDependency_4013(Dependency domainElement) {
-		if(Dependency_4013_Constraint == null) { // lazy initialization
-			Dependency_4013_Constraint = UMLOCLFactory.getExpression("self.oclIsTypeOf(uml::Dependency) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))", UMLPackage.eINSTANCE.getDependency()); //$NON-NLS-1$
-		}
-		Object result = Dependency_4013_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(16, UMLPackage.eINSTANCE.getDependency(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -944,10 +912,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isAbstraction_4015(Abstraction domainElement) {
-		if(Abstraction_4015_Constraint == null) { // lazy initialization
-			Abstraction_4015_Constraint = UMLOCLFactory.getExpression("self.oclIsTypeOf(uml::Abstraction) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))", UMLPackage.eINSTANCE.getAbstraction()); //$NON-NLS-1$
-		}
-		Object result = Abstraction_4015_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(18, UMLPackage.eINSTANCE.getAbstraction(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -955,10 +920,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isUsage_4016(Usage domainElement) {
-		if(Usage_4016_Constraint == null) { // lazy initialization
-			Usage_4016_Constraint = UMLOCLFactory.getExpression("self.oclIsTypeOf(uml::Usage) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))", UMLPackage.eINSTANCE.getUsage()); //$NON-NLS-1$
-		}
-		Object result = Usage_4016_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(19, UMLPackage.eINSTANCE.getUsage(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -966,10 +928,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isRealization_4017(Realization domainElement) {
-		if(Realization_4017_Constraint == null) { // lazy initialization
-			Realization_4017_Constraint = UMLOCLFactory.getExpression("self.oclIsTypeOf(uml::Realization) and self.supplier->size() = 1 and self.client->size() = 1 and self.supplier->forAll(e|not e.oclIsKindOf(uml::Interface))", UMLPackage.eINSTANCE.getRealization()); //$NON-NLS-1$
-		}
-		Object result = Realization_4017_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(20, UMLPackage.eINSTANCE.getRealization(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 

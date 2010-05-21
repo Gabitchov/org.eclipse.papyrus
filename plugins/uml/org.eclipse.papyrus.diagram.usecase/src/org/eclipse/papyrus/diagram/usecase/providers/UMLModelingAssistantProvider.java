@@ -490,9 +490,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return null;
 		}
 		Diagram diagram = (Diagram)editPart.getRoot().getContents().getModel();
-		Collection elements = new HashSet();
-		for(Iterator it = diagram.getElement().eAllContents(); it.hasNext();) {
-			EObject element = (EObject)it.next();
+		HashSet<EObject> elements = new HashSet<EObject>();
+		for(Iterator<EObject> it = diagram.getElement().eAllContents(); it.hasNext();) {
+			EObject element = it.next();
 			if(isApplicableElement(element, types)) {
 				elements.add(element);
 			}

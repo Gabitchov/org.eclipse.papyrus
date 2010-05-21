@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.usecase.providers.ElementInitializers;
 import org.eclipse.uml2.uml.ExtensionPoint;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UseCase;
@@ -111,7 +111,7 @@ public class ExtensionPointCreateCommand extends EditElementCommand {
 		owner.getExtensionPoints().add(newElement);
 
 
-		UMLElementTypes.init_ExtensionPoint_3007(newElement);
+		ElementInitializers.getInstance().init_ExtensionPoint_3007(newElement);
 
 		doConfigure(newElement, monitor, info);
 

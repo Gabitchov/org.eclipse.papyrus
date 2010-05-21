@@ -17,6 +17,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -47,20 +48,29 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.usecase.edit.helpers.UMLBaseEditHelper;
-import org.eclipse.papyrus.diagram.usecase.expressions.UMLAbstractExpression;
 import org.eclipse.papyrus.diagram.usecase.expressions.UMLOCLFactory;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.Abstraction;
+import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Extend;
+import org.eclipse.uml2.uml.Generalization;
+import org.eclipse.uml2.uml.Include;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.PackageImport;
+import org.eclipse.uml2.uml.PackageMerge;
+import org.eclipse.uml2.uml.Realization;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.Usage;
 import org.eclipse.uml2.uml.UseCase;
 
 /**
@@ -314,70 +324,58 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
+	public static LinkConstraints getLinkConstraints() {
+		LinkConstraints cached = UMLDiagramEditorPlugin.getInstance().getLinkConstraints();
+		if(cached == null) {
+			UMLDiagramEditorPlugin.getInstance().setLinkConstraints(cached = new LinkConstraints());
+		}
+		return cached;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static class LinkConstraints {
 
 		/**
 		 * @generated
 		 */
-		private static final String OPPOSITE_END_VAR = "oppositeEnd"; //$NON-NLS-1$
-
-		/**
-		 * @generated
-		 */
-		private static UMLAbstractExpression Generalization_4010_SourceExpression;
-
-		/**
-		 * @generated
-		 */
-		private static UMLAbstractExpression Generalization_4010_TargetExpression;
-
-		/**
-		 * @generated
-		 */
-		private static UMLAbstractExpression Association_4011_SourceExpression;
-
-		/**
-		 * @generated
-		 */
-		private static UMLAbstractExpression Association_4011_TargetExpression;
-
-		/**
-		 * @generated
-		 */
-		private static UMLAbstractExpression Dependency_4013_TargetExpression;
-
-		/**
-		 * @generated
-		 */
-		public static boolean canCreateInclude_4008(UseCase container, UseCase source, UseCase target) {
-			return canExistInclude_4008(container, source, target);
+		LinkConstraints() {
+			// use static method #getLinkConstraints() to access instance
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateExtend_4009(UseCase container, UseCase source, UseCase target) {
-			return canExistExtend_4009(container, source, target);
+		public boolean canCreateInclude_4008(UseCase container, UseCase source, UseCase target) {
+			return canExistInclude_4008(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateGeneralization_4010(Classifier container, Classifier source, Classifier target) {
-			return canExistGeneralization_4010(container, source, target);
+		public boolean canCreateExtend_4009(UseCase container, UseCase source, UseCase target) {
+			return canExistExtend_4009(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateAssociation_4011(Package container, Type source, Type target) {
-			return canExistAssociation_4011(container, source, target);
+		public boolean canCreateGeneralization_4010(Classifier container, Classifier source, Classifier target) {
+			return canExistGeneralization_4010(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateConstraintConstrainedElement_4012(Constraint source, Element target) {
+		public boolean canCreateAssociation_4011(Package container, Type source, Type target) {
+			return canExistAssociation_4011(container, null, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canCreateConstraintConstrainedElement_4012(Constraint source, Element target) {
 			if(source != null) {
 				if(source.getConstrainedElements().contains(target)) {
 					return false;
@@ -390,14 +388,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateDependency_4013(Package container, NamedElement source, NamedElement target) {
-			return canExistDependency_4013(container, source, target);
+		public boolean canCreateDependency_4013(Package container, NamedElement source, NamedElement target) {
+			return canExistDependency_4013(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateCommentAnnotatedElement_4014(Comment source, Element target) {
+		public boolean canCreateCommentAnnotatedElement_4014(Comment source, Element target) {
 			if(source != null) {
 				if(source.getAnnotatedElements().contains(target)) {
 					return false;
@@ -410,79 +408,75 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateAbstraction_4015(Package container, NamedElement source, NamedElement target) {
-			return canExistAbstraction_4015(container, source, target);
+		public boolean canCreateAbstraction_4015(Package container, NamedElement source, NamedElement target) {
+			return canExistAbstraction_4015(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateUsage_4016(Package container, NamedElement source, NamedElement target) {
-			return canExistUsage_4016(container, source, target);
+		public boolean canCreateUsage_4016(Package container, NamedElement source, NamedElement target) {
+			return canExistUsage_4016(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateRealization_4017(Package container, NamedElement source, NamedElement target) {
-			return canExistRealization_4017(container, source, target);
+		public boolean canCreateRealization_4017(Package container, NamedElement source, NamedElement target) {
+			return canExistRealization_4017(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreatePackageMerge_4018(Package container, Package source, Package target) {
-			return canExistPackageMerge_4018(container, source, target);
+		public boolean canCreatePackageMerge_4018(Package container, Package source, Package target) {
+			return canExistPackageMerge_4018(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreatePackageImport_4019(Namespace source, Package target) {
-			return canExistPackageImport_4019(source, target);
+		public boolean canCreatePackageImport_4019(Namespace source, Package target) {
+			return canExistPackageImport_4019(null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistInclude_4008(UseCase container, UseCase source, UseCase target) {
+		public boolean canExistInclude_4008(UseCase container, Include linkInstance, UseCase source, UseCase target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistExtend_4009(UseCase container, UseCase source, UseCase target) {
+		public boolean canExistExtend_4009(UseCase container, Extend linkInstance, UseCase source, UseCase target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistGeneralization_4010(Classifier container, Classifier source, Classifier target) {
+		public boolean canExistGeneralization_4010(Classifier container, Generalization linkInstance, Classifier source, Classifier target) {
 			try {
 				if(source == null) {
 					return true;
+				} else {
+					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getClassifier()); //$NON-NLS-1$
+					Object sourceVal = UMLOCLFactory.getExpression(10, UMLPackage.eINSTANCE.getClassifier(), env).evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
+					if(false == sourceVal instanceof Boolean || !((Boolean)sourceVal).booleanValue()) {
+						return false;
+					} // else fall-through
 				}
-				if(Generalization_4010_SourceExpression == null) {
-					Map env = Collections.singletonMap(OPPOSITE_END_VAR, UMLPackage.eINSTANCE.getClassifier());
-					Generalization_4010_SourceExpression = UMLOCLFactory.getExpression("self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) ", UMLPackage.eINSTANCE.getClassifier(), env); //$NON-NLS-1$
-				}
-				Object sourceVal = Generalization_4010_SourceExpression.evaluate(source, Collections.singletonMap(OPPOSITE_END_VAR, target));
-				if(false == sourceVal instanceof Boolean || !((Boolean)sourceVal).booleanValue()) {
-					return false;
-				} // else fall-through
 				if(target == null) {
 					return true;
+				} else {
+					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getClassifier()); //$NON-NLS-1$
+					Object targetVal = UMLOCLFactory.getExpression(11, UMLPackage.eINSTANCE.getClassifier(), env).evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
+					if(false == targetVal instanceof Boolean || !((Boolean)targetVal).booleanValue()) {
+						return false;
+					} // else fall-through
 				}
-				if(Generalization_4010_TargetExpression == null) {
-					Map env = Collections.singletonMap(OPPOSITE_END_VAR, UMLPackage.eINSTANCE.getClassifier());
-					Generalization_4010_TargetExpression = UMLOCLFactory.getExpression("self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) ", UMLPackage.eINSTANCE.getClassifier(), env); //$NON-NLS-1$
-				}
-				Object targetVal = Generalization_4010_TargetExpression.evaluate(target, Collections.singletonMap(OPPOSITE_END_VAR, source));
-				if(false == targetVal instanceof Boolean || !((Boolean)targetVal).booleanValue()) {
-					return false;
-				} // else fall-through
 				return true;
 			} catch (Exception e) {
 				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
@@ -493,30 +487,26 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistAssociation_4011(Package container, Type source, Type target) {
+		public boolean canExistAssociation_4011(Package container, Association linkInstance, Type source, Type target) {
 			try {
 				if(source == null) {
 					return true;
+				} else {
+					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getType()); //$NON-NLS-1$
+					Object sourceVal = UMLOCLFactory.getExpression(14, UMLPackage.eINSTANCE.getType(), env).evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
+					if(false == sourceVal instanceof Boolean || !((Boolean)sourceVal).booleanValue()) {
+						return false;
+					} // else fall-through
 				}
-				if(Association_4011_SourceExpression == null) {
-					Map env = Collections.singletonMap(OPPOSITE_END_VAR, UMLPackage.eINSTANCE.getType());
-					Association_4011_SourceExpression = UMLOCLFactory.getExpression("self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) ", UMLPackage.eINSTANCE.getType(), env); //$NON-NLS-1$
-				}
-				Object sourceVal = Association_4011_SourceExpression.evaluate(source, Collections.singletonMap(OPPOSITE_END_VAR, target));
-				if(false == sourceVal instanceof Boolean || !((Boolean)sourceVal).booleanValue()) {
-					return false;
-				} // else fall-through
 				if(target == null) {
 					return true;
+				} else {
+					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getType()); //$NON-NLS-1$
+					Object targetVal = UMLOCLFactory.getExpression(15, UMLPackage.eINSTANCE.getType(), env).evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
+					if(false == targetVal instanceof Boolean || !((Boolean)targetVal).booleanValue()) {
+						return false;
+					} // else fall-through
 				}
-				if(Association_4011_TargetExpression == null) {
-					Map env = Collections.singletonMap(OPPOSITE_END_VAR, UMLPackage.eINSTANCE.getType());
-					Association_4011_TargetExpression = UMLOCLFactory.getExpression("self.oclIsKindOf(uml::Actor) or self.oclIsKindOf(uml::UseCase) ", UMLPackage.eINSTANCE.getType(), env); //$NON-NLS-1$
-				}
-				Object targetVal = Association_4011_TargetExpression.evaluate(target, Collections.singletonMap(OPPOSITE_END_VAR, source));
-				if(false == targetVal instanceof Boolean || !((Boolean)targetVal).booleanValue()) {
-					return false;
-				} // else fall-through
 				return true;
 			} catch (Exception e) {
 				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
@@ -527,26 +517,24 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistConstraintConstrainedElement_4012(Constraint source, Element target) {
+		public boolean canExistConstraintConstrainedElement_4012(Constraint source, Element target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistDependency_4013(Package container, NamedElement source, NamedElement target) {
+		public boolean canExistDependency_4013(Package container, Dependency linkInstance, NamedElement source, NamedElement target) {
 			try {
 				if(target == null) {
 					return true;
+				} else {
+					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getNamedElement()); //$NON-NLS-1$
+					Object targetVal = UMLOCLFactory.getExpression(17, UMLPackage.eINSTANCE.getNamedElement(), env).evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
+					if(false == targetVal instanceof Boolean || !((Boolean)targetVal).booleanValue()) {
+						return false;
+					} // else fall-through
 				}
-				if(Dependency_4013_TargetExpression == null) {
-					Map env = Collections.singletonMap(OPPOSITE_END_VAR, UMLPackage.eINSTANCE.getNamedElement());
-					Dependency_4013_TargetExpression = UMLOCLFactory.getExpression("not self.oclIsKindOf(uml::Interface)\r\n", UMLPackage.eINSTANCE.getNamedElement(), env); //$NON-NLS-1$
-				}
-				Object targetVal = Dependency_4013_TargetExpression.evaluate(target, Collections.singletonMap(OPPOSITE_END_VAR, source));
-				if(false == targetVal instanceof Boolean || !((Boolean)targetVal).booleanValue()) {
-					return false;
-				} // else fall-through
 				return true;
 			} catch (Exception e) {
 				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
@@ -557,42 +545,42 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistCommentAnnotatedElement_4014(Comment source, Element target) {
+		public boolean canExistCommentAnnotatedElement_4014(Comment source, Element target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistAbstraction_4015(Package container, NamedElement source, NamedElement target) {
+		public boolean canExistAbstraction_4015(Package container, Abstraction linkInstance, NamedElement source, NamedElement target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistUsage_4016(Package container, NamedElement source, NamedElement target) {
+		public boolean canExistUsage_4016(Package container, Usage linkInstance, NamedElement source, NamedElement target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistRealization_4017(Package container, NamedElement source, NamedElement target) {
+		public boolean canExistRealization_4017(Package container, Realization linkInstance, NamedElement source, NamedElement target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistPackageMerge_4018(Package container, Package source, Package target) {
+		public boolean canExistPackageMerge_4018(Package container, PackageMerge linkInstance, Package source, Package target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistPackageImport_4019(Namespace source, Package target) {
+		public boolean canExistPackageImport_4019(PackageImport linkInstance, Namespace source, Package target) {
 			return true;
 		}
 	}

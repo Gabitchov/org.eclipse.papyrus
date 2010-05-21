@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.papyrus.diagram.common.commands.SupplementCommand;
-import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.usecase.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
@@ -96,7 +96,7 @@ public class CreateAssociationSupplement extends SupplementCommand {
 		}
 
 		((Package)getContainer()).getPackagedElements().add(association);
-		UMLElementTypes.init_Association_4011(association);
+		ElementInitializers.getInstance().init_Association_4011(association);
 		return association;
 	}
 }

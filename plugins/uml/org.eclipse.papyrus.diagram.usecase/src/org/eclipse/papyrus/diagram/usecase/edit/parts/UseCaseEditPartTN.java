@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.usecase.edit.parts;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
@@ -302,8 +303,8 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+	public List<IElementType> getMARelTypesOnSource() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(9);
 		types.add(UMLElementTypes.Include_4008);
 		types.add(UMLElementTypes.Extend_4009);
 		types.add(UMLElementTypes.Generalization_4010);
@@ -319,8 +320,8 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+	public List<IElementType> getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseEditPartTN) {
 			types.add(UMLElementTypes.Include_4008);
 		}
@@ -615,294 +616,112 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if(relationshipType == UMLElementTypes.Include_4008) {
 			types.add(UMLElementTypes.UseCase_2013);
-		}
-		if(relationshipType == UMLElementTypes.Include_4008) {
 			types.add(UMLElementTypes.UseCase_2014);
-		}
-		if(relationshipType == UMLElementTypes.Include_4008) {
 			types.add(UMLElementTypes.UseCase_3009);
-		}
-		if(relationshipType == UMLElementTypes.Include_4008) {
 			types.add(UMLElementTypes.UseCase_3012);
-		}
-		if(relationshipType == UMLElementTypes.Extend_4009) {
+		} else if(relationshipType == UMLElementTypes.Extend_4009) {
 			types.add(UMLElementTypes.UseCase_2013);
-		}
-		if(relationshipType == UMLElementTypes.Extend_4009) {
 			types.add(UMLElementTypes.UseCase_2014);
-		}
-		if(relationshipType == UMLElementTypes.Extend_4009) {
 			types.add(UMLElementTypes.UseCase_3009);
-		}
-		if(relationshipType == UMLElementTypes.Extend_4009) {
 			types.add(UMLElementTypes.UseCase_3012);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4010) {
+		} else if(relationshipType == UMLElementTypes.Generalization_4010) {
 			types.add(UMLElementTypes.Actor_2011);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4010) {
 			types.add(UMLElementTypes.Actor_2012);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4010) {
 			types.add(UMLElementTypes.UseCase_2013);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4010) {
 			types.add(UMLElementTypes.UseCase_2014);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4010) {
 			types.add(UMLElementTypes.Component_2015);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4010) {
 			types.add(UMLElementTypes.UseCase_3009);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4010) {
 			types.add(UMLElementTypes.Component_3016);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4010) {
 			types.add(UMLElementTypes.Actor_3018);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4010) {
 			types.add(UMLElementTypes.Actor_3011);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4010) {
 			types.add(UMLElementTypes.UseCase_3012);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4010) {
 			types.add(UMLElementTypes.Component_3013);
-		}
-		if(relationshipType == UMLElementTypes.Association_4011) {
+		} else if(relationshipType == UMLElementTypes.Association_4011) {
 			types.add(UMLElementTypes.Actor_2011);
-		}
-		if(relationshipType == UMLElementTypes.Association_4011) {
 			types.add(UMLElementTypes.Actor_2012);
-		}
-		if(relationshipType == UMLElementTypes.Association_4011) {
 			types.add(UMLElementTypes.UseCase_2013);
-		}
-		if(relationshipType == UMLElementTypes.Association_4011) {
 			types.add(UMLElementTypes.UseCase_2014);
-		}
-		if(relationshipType == UMLElementTypes.Association_4011) {
 			types.add(UMLElementTypes.Component_2015);
-		}
-		if(relationshipType == UMLElementTypes.Association_4011) {
 			types.add(UMLElementTypes.UseCase_3009);
-		}
-		if(relationshipType == UMLElementTypes.Association_4011) {
 			types.add(UMLElementTypes.Component_3016);
-		}
-		if(relationshipType == UMLElementTypes.Association_4011) {
 			types.add(UMLElementTypes.Actor_3018);
-		}
-		if(relationshipType == UMLElementTypes.Association_4011) {
 			types.add(UMLElementTypes.Actor_3011);
-		}
-		if(relationshipType == UMLElementTypes.Association_4011) {
 			types.add(UMLElementTypes.UseCase_3012);
-		}
-		if(relationshipType == UMLElementTypes.Association_4011) {
 			types.add(UMLElementTypes.Component_3013);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
+		} else if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Actor_2011);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Actor_2012);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.UseCase_2013);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.UseCase_2014);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Component_2015);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Package_2016);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Constraint_2017);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.UseCase_3009);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Component_3016);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Constraint_3017);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Actor_3018);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Constraint_3010);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Actor_3011);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.UseCase_3012);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Component_3013);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Package_3014);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
+		} else if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Actor_2011);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Actor_2012);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.UseCase_2013);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.UseCase_2014);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Component_2015);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Package_2016);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Constraint_2017);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.UseCase_3009);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Component_3016);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Constraint_3017);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Actor_3018);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Constraint_3010);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Actor_3011);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.UseCase_3012);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Component_3013);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Package_3014);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
+		} else if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Actor_2011);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Actor_2012);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.UseCase_2013);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.UseCase_2014);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Component_2015);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Package_2016);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Constraint_2017);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.UseCase_3009);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Component_3016);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Constraint_3017);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Actor_3018);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Constraint_3010);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Actor_3011);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.UseCase_3012);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Component_3013);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Package_3014);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
+		} else if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Actor_2011);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Actor_2012);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.UseCase_2013);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.UseCase_2014);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Component_2015);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Package_2016);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Constraint_2017);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.UseCase_3009);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Component_3016);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Constraint_3017);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Actor_3018);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Constraint_3010);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Actor_3011);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.UseCase_3012);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Component_3013);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Package_3014);
-		}
-		if(relationshipType == UMLElementTypes.PackageImport_4019) {
+		} else if(relationshipType == UMLElementTypes.PackageImport_4019) {
 			types.add(UMLElementTypes.Package_2016);
-		}
-		if(relationshipType == UMLElementTypes.PackageImport_4019) {
 			types.add(UMLElementTypes.Package_3014);
 		}
 		return types;
@@ -911,8 +730,8 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+	public List<IElementType> getMARelTypesOnTarget() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(10);
 		types.add(UMLElementTypes.Include_4008);
 		types.add(UMLElementTypes.Extend_4009);
 		types.add(UMLElementTypes.Generalization_4010);
@@ -929,303 +748,116 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if(relationshipType == UMLElementTypes.Include_4008) {
 			types.add(UMLElementTypes.UseCase_2013);
-		}
-		if(relationshipType == UMLElementTypes.Include_4008) {
 			types.add(UMLElementTypes.UseCase_2014);
-		}
-		if(relationshipType == UMLElementTypes.Include_4008) {
 			types.add(UMLElementTypes.UseCase_3009);
-		}
-		if(relationshipType == UMLElementTypes.Include_4008) {
 			types.add(UMLElementTypes.UseCase_3012);
-		}
-		if(relationshipType == UMLElementTypes.Extend_4009) {
+		} else if(relationshipType == UMLElementTypes.Extend_4009) {
 			types.add(UMLElementTypes.UseCase_2013);
-		}
-		if(relationshipType == UMLElementTypes.Extend_4009) {
 			types.add(UMLElementTypes.UseCase_2014);
-		}
-		if(relationshipType == UMLElementTypes.Extend_4009) {
 			types.add(UMLElementTypes.UseCase_3009);
-		}
-		if(relationshipType == UMLElementTypes.Extend_4009) {
 			types.add(UMLElementTypes.UseCase_3012);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4010) {
+		} else if(relationshipType == UMLElementTypes.Generalization_4010) {
 			types.add(UMLElementTypes.Actor_2011);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4010) {
 			types.add(UMLElementTypes.Actor_2012);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4010) {
 			types.add(UMLElementTypes.UseCase_2013);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4010) {
 			types.add(UMLElementTypes.UseCase_2014);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4010) {
 			types.add(UMLElementTypes.Component_2015);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4010) {
 			types.add(UMLElementTypes.UseCase_3009);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4010) {
 			types.add(UMLElementTypes.Component_3016);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4010) {
 			types.add(UMLElementTypes.Actor_3018);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4010) {
 			types.add(UMLElementTypes.Actor_3011);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4010) {
 			types.add(UMLElementTypes.UseCase_3012);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4010) {
 			types.add(UMLElementTypes.Component_3013);
-		}
-		if(relationshipType == UMLElementTypes.Association_4011) {
+		} else if(relationshipType == UMLElementTypes.Association_4011) {
 			types.add(UMLElementTypes.Actor_2011);
-		}
-		if(relationshipType == UMLElementTypes.Association_4011) {
 			types.add(UMLElementTypes.Actor_2012);
-		}
-		if(relationshipType == UMLElementTypes.Association_4011) {
 			types.add(UMLElementTypes.UseCase_2013);
-		}
-		if(relationshipType == UMLElementTypes.Association_4011) {
 			types.add(UMLElementTypes.UseCase_2014);
-		}
-		if(relationshipType == UMLElementTypes.Association_4011) {
 			types.add(UMLElementTypes.Component_2015);
-		}
-		if(relationshipType == UMLElementTypes.Association_4011) {
 			types.add(UMLElementTypes.UseCase_3009);
-		}
-		if(relationshipType == UMLElementTypes.Association_4011) {
 			types.add(UMLElementTypes.Component_3016);
-		}
-		if(relationshipType == UMLElementTypes.Association_4011) {
 			types.add(UMLElementTypes.Actor_3018);
-		}
-		if(relationshipType == UMLElementTypes.Association_4011) {
 			types.add(UMLElementTypes.Actor_3011);
-		}
-		if(relationshipType == UMLElementTypes.Association_4011) {
 			types.add(UMLElementTypes.UseCase_3012);
-		}
-		if(relationshipType == UMLElementTypes.Association_4011) {
 			types.add(UMLElementTypes.Component_3013);
-		}
-		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4012) {
+		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4012) {
 			types.add(UMLElementTypes.Constraint_2017);
-		}
-		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4012) {
 			types.add(UMLElementTypes.Constraint_3017);
-		}
-		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4012) {
 			types.add(UMLElementTypes.Constraint_3010);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
+		} else if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Actor_2011);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Actor_2012);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.UseCase_2013);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.UseCase_2014);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Component_2015);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Package_2016);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Constraint_2017);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.UseCase_3009);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Component_3016);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Constraint_3017);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Actor_3018);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Constraint_3010);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Actor_3011);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.UseCase_3012);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Component_3013);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4013) {
 			types.add(UMLElementTypes.Package_3014);
-		}
-		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4014) {
+		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4014) {
 			types.add(UMLElementTypes.Comment_2018);
-		}
-		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4014) {
 			types.add(UMLElementTypes.Comment_3015);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
+		} else if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Actor_2011);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Actor_2012);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.UseCase_2013);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.UseCase_2014);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Component_2015);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Package_2016);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Constraint_2017);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.UseCase_3009);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Component_3016);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Constraint_3017);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Actor_3018);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Constraint_3010);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Actor_3011);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.UseCase_3012);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Component_3013);
-		}
-		if(relationshipType == UMLElementTypes.Abstraction_4015) {
 			types.add(UMLElementTypes.Package_3014);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
+		} else if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Actor_2011);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Actor_2012);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.UseCase_2013);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.UseCase_2014);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Component_2015);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Package_2016);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Constraint_2017);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.UseCase_3009);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Component_3016);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Constraint_3017);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Actor_3018);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Constraint_3010);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Actor_3011);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.UseCase_3012);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Component_3013);
-		}
-		if(relationshipType == UMLElementTypes.Usage_4016) {
 			types.add(UMLElementTypes.Package_3014);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
+		} else if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Actor_2011);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Actor_2012);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.UseCase_2013);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.UseCase_2014);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Component_2015);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Package_2016);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Constraint_2017);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.UseCase_3009);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Component_3016);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Constraint_3017);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Actor_3018);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Constraint_3010);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Actor_3011);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.UseCase_3012);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Component_3013);
-		}
-		if(relationshipType == UMLElementTypes.Realization_4017) {
 			types.add(UMLElementTypes.Package_3014);
 		}
 		return types;

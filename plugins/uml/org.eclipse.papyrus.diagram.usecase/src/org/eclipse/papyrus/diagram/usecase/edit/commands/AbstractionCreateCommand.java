@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.diagram.usecase.edit.policies.UMLBaseItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.usecase.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
@@ -81,7 +81,7 @@ public class AbstractionCreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateAbstraction_4015(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateAbstraction_4015(getContainer(), getSource(), getTarget());
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class AbstractionCreateCommand extends EditElementCommand {
 		getContainer().getPackagedElements().add(newElement);
 		newElement.getClients().add(getSource());
 		newElement.getSuppliers().add(getTarget());
-		UMLElementTypes.init_Abstraction_4015(newElement);
+		ElementInitializers.getInstance().init_Abstraction_4015(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.usecase.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Actor;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -111,7 +111,7 @@ public class ActorCreateCommandTN extends EditElementCommand {
 		owner.getPackagedElements().add(newElement);
 
 
-		UMLElementTypes.init_Actor_2011(newElement);
+		ElementInitializers.getInstance().init_Actor_2011(newElement);
 
 		doConfigure(newElement, monitor, info);
 

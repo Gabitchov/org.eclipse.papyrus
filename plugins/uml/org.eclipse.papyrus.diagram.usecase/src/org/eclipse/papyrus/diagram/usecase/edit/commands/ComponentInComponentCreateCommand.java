@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.usecase.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.usecase.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.UMLFactory;
 
@@ -110,7 +110,7 @@ public class ComponentInComponentCreateCommand extends EditElementCommand {
 		owner.getPackagedElements().add(newElement);
 
 
-		UMLElementTypes.init_Component_3016(newElement);
+		ElementInitializers.getInstance().init_Component_3016(newElement);
 
 		doConfigure(newElement, monitor, info);
 

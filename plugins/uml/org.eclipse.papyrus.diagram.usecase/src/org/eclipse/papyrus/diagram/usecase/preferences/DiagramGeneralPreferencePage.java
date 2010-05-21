@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.usecase.preferences;
 
+import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.DiagramPreferencePage;
 
@@ -26,5 +27,7 @@ public class DiagramGeneralPreferencePage extends DiagramPreferencePage {
 	 */
 	public DiagramGeneralPreferencePage() {
 		setPreferenceStore(UMLDiagramEditorPlugin.getInstance().getPreferenceStore());
+		setPreferenceKey(UseCaseDiagramEditPart.MODEL_ID);
+
 	}
 }
