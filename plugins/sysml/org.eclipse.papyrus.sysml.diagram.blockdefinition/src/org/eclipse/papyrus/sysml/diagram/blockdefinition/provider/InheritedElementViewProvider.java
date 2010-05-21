@@ -102,4 +102,11 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 		//		System.err.println("Unable to create view for : (hint) " + semanticHint);
 		//		return null;
 	}
+
+	private IElementType getSemanticElementType(IAdaptable semanticAdapter) {
+		if(semanticAdapter == null) {
+			return null;
+		}
+		return (IElementType)semanticAdapter.getAdapter(IElementType.class);
+	}
 }

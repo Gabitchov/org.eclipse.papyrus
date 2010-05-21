@@ -18,7 +18,6 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.papyrus.umlutils.NamedElementUtil;
-import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
 
@@ -39,8 +38,7 @@ public class BlockHelperAdvice extends AbstractEditHelperAdvice {
 				org.eclipse.uml2.uml.Class newClass = (org.eclipse.uml2.uml.Class)request.getElementToConfigure();
 
 				// Set the element name
-				String baseName = getElementType().getDisplayName();
-				String newElementName = NamedElementUtil.getNewUMLElementName((Element)getElementToEdit(), baseName);
+				String newElementName = NamedElementUtil.getDefaultNameWithIncrement(newClass);
 				newClass.setName(newElementName);
 
 				// Apply stereotype
