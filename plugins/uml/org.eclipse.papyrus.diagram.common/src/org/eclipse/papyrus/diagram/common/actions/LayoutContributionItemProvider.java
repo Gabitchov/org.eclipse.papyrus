@@ -16,6 +16,7 @@ package org.eclipse.papyrus.diagram.common.actions;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.gef.ui.actions.GEFActionConstants;
 import org.eclipse.gmf.runtime.common.ui.util.IWorkbenchPartDescriptor;
+import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
 import org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.ui.IWorkbenchPage;
@@ -55,6 +56,8 @@ public class LayoutContributionItemProvider extends DiagramContributionItemProvi
 	protected IAction createAction(String actionId, IWorkbenchPartDescriptor partDescriptor) {
 		IWorkbenchPage workbenchPage = partDescriptor.getPartPage();
 
+
+		/* ToolBar and Menu Diagram */
 		if(GEFActionConstants.ALIGN_LEFT.equals(actionId)) {
 			return new CustomAlignAction(workbenchPage, actionId, PositionConstants.LEFT, true);
 		} else if(GEFActionConstants.ALIGN_CENTER.equals(actionId)) {
@@ -67,6 +70,19 @@ public class LayoutContributionItemProvider extends DiagramContributionItemProvi
 			return new CustomAlignAction(workbenchPage, actionId, PositionConstants.MIDDLE, true);
 		} else if(GEFActionConstants.ALIGN_BOTTOM.equals(actionId)) {
 			return new CustomAlignAction(workbenchPage, actionId, PositionConstants.BOTTOM, true);
+			/* Right Click */
+		} else if(actionId.equals(ActionIds.ACTION_ALIGN_LEFT)) {
+			return new CustomAlignAction(workbenchPage, actionId, PositionConstants.LEFT, false);
+		} else if(actionId.equals(ActionIds.ACTION_ALIGN_CENTER)) {
+			return new CustomAlignAction(workbenchPage, actionId, PositionConstants.CENTER, false);
+		} else if(actionId.equals(ActionIds.ACTION_ALIGN_RIGHT)) {
+			return new CustomAlignAction(workbenchPage, actionId, PositionConstants.RIGHT, false);
+		} else if(actionId.equals(ActionIds.ACTION_ALIGN_TOP)) {
+			return new CustomAlignAction(workbenchPage, actionId, PositionConstants.TOP, false);
+		} else if(actionId.equals(ActionIds.ACTION_ALIGN_MIDDLE)) {
+			return new CustomAlignAction(workbenchPage, actionId, PositionConstants.MIDDLE, false);
+		} else if(actionId.equals(ActionIds.ACTION_ALIGN_BOTTOM)) {
+			return new CustomAlignAction(workbenchPage, actionId, PositionConstants.BOTTOM, false);
 		}
 		return super.createAction(actionId, partDescriptor);
 	}

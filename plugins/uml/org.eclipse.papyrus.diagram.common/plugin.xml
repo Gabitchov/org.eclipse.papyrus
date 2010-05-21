@@ -469,6 +469,39 @@
                toolbarPath="/alignMenu/alignVerticalGroup">
          </partPredefinedItem>
       </partContribution>
+      <popupContribution
+            class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+         <popupPredefinedItem
+               id="alignLeftAction"
+               path="/formatMenu/alignMenu/alignHorizontalGroup"
+               remove="true">
+         </popupPredefinedItem>
+         <popupPredefinedItem
+               id="alignCenterAction"
+               path="/formatMenu/alignMenu/alignHorizontalGroup"
+               remove="true">
+         </popupPredefinedItem>
+         <popupPredefinedItem
+               id="alignRightAction"
+               path="/formatMenu/alignMenu/alignHorizontalGroup"
+               remove="true">
+         </popupPredefinedItem>
+         <popupPredefinedItem
+               id="alignTopAction"
+               path="/formatMenu/alignMenu/alignVerticalGroup"
+               remove="true">
+         </popupPredefinedItem>
+         <popupPredefinedItem
+               id="alignMiddleAction"
+               path="/formatMenu/alignMenu/alignVerticalGroup"
+               remove="true">
+         </popupPredefinedItem>
+         <popupPredefinedItem
+               id="alignBottomAction"
+               path="/formatMenu/alignMenu/alignVerticalGroup"
+               remove="true">
+         </popupPredefinedItem>
+      </popupContribution>
    </contributionItemProvider>
 </extension>
 <extension
@@ -512,6 +545,33 @@
                toolbarPath="/alignMenu/alignVerticalGroup">
          </partAction>
       </partContribution>
+      <popupContribution
+            class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+         <popupAction
+               id="alignLeftAction"
+               path="/formatMenu/alignMenu/alignHorizontalGroup">
+         </popupAction>
+         <popupAction
+               id="alignRightAction"
+               path="/formatMenu/alignMenu/alignHorizontalGroup">
+         </popupAction>
+         <popupAction
+               id="alignCenterAction"
+               path="/formatMenu/alignMenu/alignHorizontalGroup">
+         </popupAction>
+         <popupAction
+               id="alignTopAction"
+               path="/formatMenu/alignMenu/alignVerticalGroup">
+         </popupAction>
+         <popupAction
+               id="alignMiddleAction"
+               path="/formatMenu/alignMenu/alignVerticalGroup">
+         </popupAction>
+         <popupAction
+               id="alignBottomAction"
+               path="/formatMenu/alignMenu/alignVerticalGroup">
+         </popupAction>
+      </popupContribution>
    </contributionItemProvider>
 </extension>
 
