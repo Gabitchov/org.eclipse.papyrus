@@ -79,7 +79,7 @@ public class ProfileApplicationReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Profile target = getLink().getAppliedProfile();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistProfileApplication_4012(getNewSource(), target);
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistProfileApplication_4012(getLink(), getNewSource(), target);
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class ProfileApplicationReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Package source = (Package)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistProfileApplication_4012(source, getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistProfileApplication_4012(getLink(), source, getNewTarget());
 	}
 
 	/**

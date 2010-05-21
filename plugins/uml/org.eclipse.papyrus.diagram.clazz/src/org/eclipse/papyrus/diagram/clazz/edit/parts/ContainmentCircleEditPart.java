@@ -45,7 +45,9 @@ import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomListenerContainme
 import org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomContainmentCircleItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ContainmentCircleItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.OpenDiagramEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
@@ -147,7 +149,11 @@ AbstractBorderItemEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		String prefElementId = "Port";
+		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+		String preferrenceContantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
+		String preferrenceContantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferrenceContantWitdh), store.getInt(preferrenceContantHeight));
 
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());

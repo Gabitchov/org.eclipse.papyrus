@@ -86,7 +86,7 @@ public class Dependency2ReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Package container = (Package)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistDependency_4018(container, getNewSource(), target);
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistDependency_4018(container, getLink(), getNewSource(), target);
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class Dependency2ReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Package container = (Package)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistDependency_4018(container, source, getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistDependency_4018(container, getLink(), source, getNewTarget());
 	}
 
 	/**

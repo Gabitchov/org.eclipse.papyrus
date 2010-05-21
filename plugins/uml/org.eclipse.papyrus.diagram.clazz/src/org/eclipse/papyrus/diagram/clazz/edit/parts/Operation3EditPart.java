@@ -110,7 +110,7 @@ public class Operation3EditPart extends CompartmentEditPart implements ITextAwar
 	/**
 	 * @generated
 	 */
-	private List parserElements;
+	private List<?> parserElements;
 
 	/**
 	 * @generated

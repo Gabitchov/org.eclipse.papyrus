@@ -285,8 +285,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		AssociationNodeDescriptor figure = new AssociationNodeDescriptor();
-		return primaryShape = figure;
+		return primaryShape = new AssociationNodeDescriptor();
 	}
 
 	/**

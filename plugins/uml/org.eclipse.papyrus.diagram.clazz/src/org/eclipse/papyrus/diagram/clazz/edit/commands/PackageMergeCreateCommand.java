@@ -79,7 +79,7 @@ public class PackageMergeCreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreatePackageMerge_4011(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreatePackageMerge_4011(getContainer(), getSource(), getTarget());
 	}
 
 	/**

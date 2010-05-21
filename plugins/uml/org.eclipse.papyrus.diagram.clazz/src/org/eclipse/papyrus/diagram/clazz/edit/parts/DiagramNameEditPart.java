@@ -118,7 +118,7 @@ public class DiagramNameEditPart extends LabelEditPart implements ITextAwareEdit
 	/**
 	 * @generated
 	 */
-	private List parserElements;
+	private List<?> parserElements;
 
 	/**
 	 * @generated

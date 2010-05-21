@@ -68,6 +68,7 @@ public class UMLNavigatorContentProvider implements ICommonContentProvider {
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings({ "unchecked", "serial", "rawtypes" })
 	public UMLNavigatorContentProvider() {
 		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
 		myEditingDomain = (AdapterFactoryEditingDomain)editingDomain;

@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.PropertyCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.providers.ElementInitializers;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
@@ -57,7 +58,7 @@ public class PropertyCommandForAssociation extends PropertyCreateCommand {
 			newElement.setName(((Type)type).getName());
 		}
 		owner.getOwnedEnds().add(newElement);
-		UMLElementTypes.init_Property_3005(newElement);
+		ElementInitializers.getInstance().init_Property_3005(newElement);
 		if(type != null && type instanceof Type) {
 			newElement.setName(((Type)type).getName());
 		}

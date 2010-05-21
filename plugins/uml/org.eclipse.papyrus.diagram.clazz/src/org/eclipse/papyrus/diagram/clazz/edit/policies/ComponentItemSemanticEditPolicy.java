@@ -128,7 +128,7 @@ public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
-		for(Iterator it = view.getTargetEdges().iterator(); it.hasNext();) {
+		for(Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge)it.next();
 			if(UMLVisualIDRegistry.getVisualID(incomingLink) == AssociationClass2EditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -233,7 +233,7 @@ public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 				continue;
 			}
 		}
-		for(Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
+		for(Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge)it.next();
 			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == AssociationClass2EditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
@@ -344,11 +344,11 @@ public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 	 */
 	private void addDestroyChildNodesCommand(ICompositeCommand cmd) {
 		View view = (View)getHost().getModel();
-		for(Iterator nit = view.getChildren().iterator(); nit.hasNext();) {
+		for(Iterator<?> nit = view.getChildren().iterator(); nit.hasNext();) {
 			Node node = (Node)nit.next();
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case RedefinableTemplateSignatureEditPart.VISUAL_ID:
-				for(Iterator it = node.getTargetEdges().iterator(); it.hasNext();) {
+				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					if(UMLVisualIDRegistry.getVisualID(incomingLink) == RealizationEditPart.VISUAL_ID) {
 						DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -417,7 +417,7 @@ public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 						continue;
 					}
 				}
-				for(Iterator it = node.getSourceEdges().iterator(); it.hasNext();) {
+				for(Iterator<?> it = node.getSourceEdges().iterator(); it.hasNext();) {
 					Edge outgoingLink = (Edge)it.next();
 					if(UMLVisualIDRegistry.getVisualID(outgoingLink) == RealizationEditPart.VISUAL_ID) {
 						DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
@@ -461,7 +461,7 @@ public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 				// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), node));
 				break;
 			case ComponentAttributeCompartmentEditPart.VISUAL_ID:
-				for(Iterator cit = node.getChildren().iterator(); cit.hasNext();) {
+				for(Iterator<?> cit = node.getChildren().iterator(); cit.hasNext();) {
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case PropertyEditPart.VISUAL_ID:
@@ -473,7 +473,7 @@ public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 				}
 				break;
 			case ComponentOperationCompartmentEditPart.VISUAL_ID:
-				for(Iterator cit = node.getChildren().iterator(); cit.hasNext();) {
+				for(Iterator<?> cit = node.getChildren().iterator(); cit.hasNext();) {
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case OperationEditPart.VISUAL_ID:
@@ -485,7 +485,7 @@ public class ComponentItemSemanticEditPolicy extends UMLBaseItemSemanticEditPoli
 				}
 				break;
 			case ComponentNestedClassifierCompartmentEditPart.VISUAL_ID:
-				for(Iterator cit = node.getChildren().iterator(); cit.hasNext();) {
+				for(Iterator<?> cit = node.getChildren().iterator(); cit.hasNext();) {
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case Class2EditPart.VISUAL_ID:

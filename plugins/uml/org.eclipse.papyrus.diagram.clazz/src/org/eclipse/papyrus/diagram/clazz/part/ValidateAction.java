@@ -171,7 +171,7 @@ public class ValidateAction extends Action {
 		}
 		final IStatus rootStatus = validationStatus;
 		List allStatuses = new ArrayList();
-		UMLDiagramEditorUtil.LazyElement2ViewMap element2ViewMap = new UMLDiagramEditorUtil.LazyElement2ViewMap(diagramEditPart.getDiagramView(), collectTargetElements(rootStatus, new HashSet(), allStatuses));
+		UMLDiagramEditorUtil.LazyElement2ViewMap element2ViewMap = new UMLDiagramEditorUtil.LazyElement2ViewMap(diagramEditPart.getDiagramView(), collectTargetElements(rootStatus, new HashSet<EObject>(), allStatuses));
 		for(Iterator it = allStatuses.iterator(); it.hasNext();) {
 			IConstraintStatus nextStatus = (IConstraintStatus)it.next();
 			View view = UMLDiagramEditorUtil.findView(diagramEditPart, nextStatus.getTarget(), element2ViewMap);
@@ -188,7 +188,7 @@ public class ValidateAction extends Action {
 		}
 		final Diagnostic rootStatus = emfValidationStatus;
 		List allDiagnostics = new ArrayList();
-		UMLDiagramEditorUtil.LazyElement2ViewMap element2ViewMap = new UMLDiagramEditorUtil.LazyElement2ViewMap(diagramEditPart.getDiagramView(), collectTargetElements(rootStatus, new HashSet(), allDiagnostics));
+		UMLDiagramEditorUtil.LazyElement2ViewMap element2ViewMap = new UMLDiagramEditorUtil.LazyElement2ViewMap(diagramEditPart.getDiagramView(), collectTargetElements(rootStatus, new HashSet<EObject>(), allDiagnostics));
 		for(Iterator it = emfValidationStatus.getChildren().iterator(); it.hasNext();) {
 			Diagnostic nextDiagnostic = (Diagnostic)it.next();
 			List data = nextDiagnostic.getData();
@@ -229,7 +229,7 @@ public class ValidateAction extends Action {
 	/**
 	 * @generated
 	 */
-	private static Set collectTargetElements(IStatus status, Set targetElementCollector, List allConstraintStatuses) {
+	private static Set<EObject> collectTargetElements(IStatus status, Set<EObject> targetElementCollector, List allConstraintStatuses) {
 		if(status instanceof IConstraintStatus) {
 			targetElementCollector.add(((IConstraintStatus)status).getTarget());
 			allConstraintStatuses.add(status);
@@ -246,7 +246,7 @@ public class ValidateAction extends Action {
 	/**
 	 * @generated
 	 */
-	private static Set collectTargetElements(Diagnostic diagnostic, Set targetElementCollector, List allDiagnostics) {
+	private static Set<EObject> collectTargetElements(Diagnostic diagnostic, Set<EObject> targetElementCollector, List allDiagnostics) {
 		List data = diagnostic.getData();
 		EObject target = null;
 		if(data != null && !data.isEmpty() && data.get(0) instanceof EObject) {

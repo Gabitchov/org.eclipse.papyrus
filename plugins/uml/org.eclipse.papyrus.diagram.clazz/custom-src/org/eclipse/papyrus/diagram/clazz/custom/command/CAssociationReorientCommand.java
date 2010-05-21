@@ -56,9 +56,11 @@ public class CAssociationReorientCommand extends AssociationReorientCommand {
 		if(!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
-		Package container = (Package)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistAssociation_4001(container, getNewSource(), target);
-	}
+		Package container = (Package) getLink().eContainer();
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints()
+				.canExistAssociation_4001(container, getLink(), getNewSource(),
+						target);
+		}
 
 	/**
 	 * @generated
@@ -77,8 +79,10 @@ public class CAssociationReorientCommand extends AssociationReorientCommand {
 			return false;
 		}
 		Package container = (Package)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistAssociation_4001(container, source, getNewTarget());
-	}
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints()
+		.canExistAssociation_4001(container, getLink(), source,
+				getNewTarget());
+		}
 
 	/**
 	 * @generated

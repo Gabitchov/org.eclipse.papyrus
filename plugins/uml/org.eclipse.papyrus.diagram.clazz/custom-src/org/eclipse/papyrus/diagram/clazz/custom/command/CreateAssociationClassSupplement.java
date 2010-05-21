@@ -23,6 +23,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.PropertyCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.providers.ElementInitializers;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.commands.SupplementCommand;
 import org.eclipse.papyrus.ui.toolbox.LookForElement;
@@ -119,7 +120,7 @@ public class CreateAssociationClassSupplement extends SupplementCommand {
 		}
 
 		((Package)getContainer()).getPackagedElements().add(association);
-		UMLElementTypes.init_AssociationClass_2013(association);
+		ElementInitializers.getInstance().init_AssociationClass_2013(association);
 		// ////////////////////////////////////////////////////////////////////
 		return association;
 	}

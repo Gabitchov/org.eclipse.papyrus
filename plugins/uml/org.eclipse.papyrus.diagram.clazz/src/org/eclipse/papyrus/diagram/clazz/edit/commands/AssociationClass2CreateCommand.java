@@ -97,7 +97,7 @@ public class AssociationClass2CreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateAssociationClass_4017(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateAssociationClass_4017(getContainer(), getSource(), getTarget());
 	}
 
 	/**

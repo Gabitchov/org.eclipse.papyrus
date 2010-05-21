@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.clazz.providers.ElementInitializers;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -104,7 +104,7 @@ public class Operation4CreateCommand extends EditElementCommand {
 		DataType owner = (DataType)getElementToEdit();
 		owner.getOwnedOperations().add(newElement);
 
-		UMLElementTypes.init_Operation_3019(newElement);
+		ElementInitializers.getInstance().init_Operation_3019(newElement);
 
 		doConfigure(newElement, monitor, info);
 

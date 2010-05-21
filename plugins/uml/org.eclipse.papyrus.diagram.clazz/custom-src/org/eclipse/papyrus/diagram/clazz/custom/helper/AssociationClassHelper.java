@@ -48,6 +48,7 @@ import org.eclipse.papyrus.diagram.clazz.custom.command.AssociationClassViewCrea
 import org.eclipse.papyrus.diagram.clazz.custom.command.PropertyCommandForAssociation;
 import org.eclipse.papyrus.diagram.clazz.custom.providers.CustomDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.PropertyCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.providers.ElementInitializers;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.helper.ElementHelper;
@@ -106,7 +107,7 @@ public class AssociationClassHelper extends ElementHelper {
 		}
 
 		container.getPackagedElements().add(association);
-		UMLElementTypes.init_AssociationClass_2013(association);
+		ElementInitializers.getInstance().init_AssociationClass_2013(association);
 		// ////////////////////////////////////////////////////////////////////
 		return association;
 	}

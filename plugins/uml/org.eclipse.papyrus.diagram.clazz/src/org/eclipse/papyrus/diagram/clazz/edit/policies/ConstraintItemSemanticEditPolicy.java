@@ -86,7 +86,7 @@ public class ConstraintItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
-		for(Iterator it = view.getTargetEdges().iterator(); it.hasNext();) {
+		for(Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge)it.next();
 			if(UMLVisualIDRegistry.getVisualID(incomingLink) == RealizationEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -161,7 +161,7 @@ public class ConstraintItemSemanticEditPolicy extends UMLBaseItemSemanticEditPol
 				continue;
 			}
 		}
-		for(Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
+		for(Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge)it.next();
 			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == RealizationEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);

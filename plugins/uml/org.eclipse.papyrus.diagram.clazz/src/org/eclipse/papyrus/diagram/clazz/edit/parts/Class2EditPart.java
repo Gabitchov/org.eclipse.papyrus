@@ -110,7 +110,7 @@ public class Class2EditPart extends CompartmentEditPart implements ITextAwareEdi
 	/**
 	 * @generated
 	 */
-	private List parserElements;
+	private List<?> parserElements;
 
 	/**
 	 * @generated

@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.clazz.providers.ElementInitializers;
 import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.PackageableElement;
@@ -72,7 +72,7 @@ public class ElementImportCreateCommand extends EditElementCommand {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateElementImport_4009(getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateElementImport_4009(getSource(), getTarget());
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class ElementImportCreateCommand extends EditElementCommand {
 		ElementImport newElement = UMLFactory.eINSTANCE.createElementImport();
 		getSource().getElementImports().add(newElement);
 		newElement.setImportedElement(getTarget());
-		UMLElementTypes.init_ElementImport_4009(newElement);
+		ElementInitializers.getInstance().init_ElementImport_4009(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

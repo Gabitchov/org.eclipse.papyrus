@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.preferences;
 
-import org.eclipse.gmf.runtime.diagram.ui.preferences.DiagramsPreferencePage;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.DiagramPreferencePage;
 
@@ -27,5 +27,7 @@ public class DiagramGeneralPreferencePage extends DiagramPreferencePage {
 	 */
 	public DiagramGeneralPreferencePage() {
 		setPreferenceStore(UMLDiagramEditorPlugin.getInstance().getPreferenceStore());
+		setPreferenceKey(ModelEditPart.MODEL_ID);
+
 	}
 }

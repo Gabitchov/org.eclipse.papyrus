@@ -84,7 +84,7 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 		if(!(oldEnd instanceof Element && newEnd instanceof Constraint)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistConstraintConstrainedElement_4014(getNewSource(), getOldTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistConstraintConstrainedElement_4014(getNewSource(), getOldTarget());
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistConstraintConstrainedElement_4014(getOldSource(), getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistConstraintConstrainedElement_4014(getOldSource(), getNewTarget());
 	}
 
 	/**

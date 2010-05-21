@@ -79,7 +79,7 @@ public class TemplateBindingCreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateTemplateBinding_4015(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateTemplateBinding_4015(getContainer(), getSource(), getTarget());
 	}
 
 	/**

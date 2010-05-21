@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.clazz.providers.ElementInitializers;
 import org.eclipse.uml2.uml.BehavioredClassifier;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.InterfaceRealization;
@@ -72,7 +72,7 @@ public class InterfaceRealizationCreateCommand extends EditElementCommand {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateInterfaceRealization_4003(getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateInterfaceRealization_4003(getSource(), getTarget());
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class InterfaceRealizationCreateCommand extends EditElementCommand {
 		InterfaceRealization newElement = UMLFactory.eINSTANCE.createInterfaceRealization();
 		getSource().getInterfaceRealizations().add(newElement);
 		newElement.setContract(getTarget());
-		UMLElementTypes.init_InterfaceRealization_4003(newElement);
+		ElementInitializers.getInstance().init_InterfaceRealization_4003(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

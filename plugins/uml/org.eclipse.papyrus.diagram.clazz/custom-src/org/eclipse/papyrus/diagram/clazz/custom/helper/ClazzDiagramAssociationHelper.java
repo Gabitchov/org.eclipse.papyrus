@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.diagram.clazz.custom.command.PropertyCommandForAssociation;
+import org.eclipse.papyrus.diagram.clazz.providers.ElementInitializers;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.ui.toolbox.LookForElement;
 import org.eclipse.uml2.uml.Association;
@@ -83,7 +84,7 @@ public class ClazzDiagramAssociationHelper {
 		}
 
 		container.getPackagedElements().add(association);
-		UMLElementTypes.init_Association_4001(association);
+		ElementInitializers.getInstance().init_Association_4001(association);
 		association.setName(sourceString + "_" + targetString);
 		return association;
 	}

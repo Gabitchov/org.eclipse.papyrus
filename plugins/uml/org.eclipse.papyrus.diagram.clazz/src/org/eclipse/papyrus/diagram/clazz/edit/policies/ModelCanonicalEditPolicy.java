@@ -34,7 +34,6 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.DeferredLayoutCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetViewMutabilityCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalConnectionEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
@@ -112,17 +111,17 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
-	Set<EStructuralFeature> myFeaturesToSynchronize;
+	private Set<EStructuralFeature> myFeaturesToSynchronize;
 
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected List getSemanticChildrenList() {
 		View viewObject = (View)getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
 		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getPackage_1000SemanticChildren(viewObject);
-		for(Iterator<UMLNodeDescriptor> it = childDescriptors.iterator(); it.hasNext();) {
-			UMLNodeDescriptor d = it.next();
+		for(UMLNodeDescriptor d : childDescriptors) {
 			result.add(d.getModelElement());
 		}
 		return result;
@@ -131,14 +130,14 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected boolean shouldDeleteView(View view) {
-		return true;
+	protected boolean isOrphaned(Collection<EObject> semanticChildren, final View view) {
+		return isMyDiagramElement(view) && !semanticChildren.contains(view.getElement());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected boolean isOrphaned(Collection semanticChildren, final View view) {
+	private boolean isMyDiagramElement(View view) {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
 		switch(visualID) {
 		case Dependency2EditPart.VISUAL_ID:
@@ -159,9 +158,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		case ShortCutDiagramEditPart.VISUAL_ID:
 		case DurationObservationEditPart.VISUAL_ID:
 		case TimeObservationEditPart.VISUAL_ID:
-			if(!semanticChildren.contains(view.getElement())) {
-				return true;
-			}
+			return true;
 		}
 		return false;
 	}
@@ -186,41 +183,68 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 			return;
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
-		// refreshSemanticChildren() alternative
 		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getPackage_1000SemanticChildren((View)getHost().getModel());
-		ArrayList<EObject> semanticChildren = new ArrayList<EObject>(childDescriptors.size());
-		for(Iterator<UMLNodeDescriptor> it = childDescriptors.iterator(); it.hasNext();) {
-			UMLNodeDescriptor next = it.next();
-			semanticChildren.add(next.getModelElement());
-		}
-		List<View> orphaned = cleanCanonicalSemanticChildren(getViewChildren(), semanticChildren);
-		boolean changed = deleteViews(orphaned.iterator());
-		// leave descriptors that reference survived semanticChildren.
-		// NOTE, we may want to stop using cleanCanonicalSemanticChildren() here, replacing with own code, that respects NodeDescriptors 
-		for(Iterator<UMLNodeDescriptor> it = childDescriptors.iterator(); it.hasNext();) {
-			UMLNodeDescriptor next = it.next();
-			if(!semanticChildren.contains(next.getModelElement())) {
-				it.remove();
+		LinkedList<View> orphaned = new LinkedList<View>();
+		// we care to check only views we recognize as ours
+		LinkedList<View> knownViewChildren = new LinkedList<View>();
+		for(View v : getViewChildren()) {
+			if(isMyDiagramElement(v)) {
+				knownViewChildren.add(v);
 			}
 		}
+		// alternative to #cleanCanonicalSemanticChildren(getViewChildren(), semanticChildren)
+		//
+		// iteration happens over list of desired semantic elements, trying to find best matching View, while original CEP
+		// iterates views, potentially losing view (size/bounds) information - i.e. if there are few views to reference same EObject, only last one 
+		// to answer isOrphaned == true will be used for the domain element representation, see #cleanCanonicalSemanticChildren()
+		for(Iterator<UMLNodeDescriptor> descriptorsIterator = childDescriptors.iterator(); descriptorsIterator.hasNext();) {
+			UMLNodeDescriptor next = descriptorsIterator.next();
+			String hint = UMLVisualIDRegistry.getType(next.getVisualID());
+			LinkedList<View> perfectMatch = new LinkedList<View>(); // both semanticElement and hint match that of NodeDescriptor
+			for(View childView : getViewChildren()) {
+				EObject semanticElement = childView.getElement();
+				if(next.getModelElement().equals(semanticElement)) {
+					if(hint.equals(childView.getType())) {
+						perfectMatch.add(childView);
+						// actually, can stop iteration over view children here, but
+						// may want to use not the first view but last one as a 'real' match (the way original CEP does
+						// with its trick with viewToSemanticMap inside #cleanCanonicalSemanticChildren
+					}
+				}
+			}
+			if(perfectMatch.size() > 0) {
+				descriptorsIterator.remove(); // precise match found no need to create anything for the NodeDescriptor
+				// use only one view (first or last?), keep rest as orphaned for further consideration
+				knownViewChildren.remove(perfectMatch.getFirst());
+			}
+		}
+		// those left in knownViewChildren are subject to removal - they are our diagram elements we didn't find match to,
+		// or those we have potential matches to, and thus need to be recreated, preserving size/location information.
+		orphaned.addAll(knownViewChildren);
+		//
 		ArrayList<CreateViewRequest.ViewDescriptor> viewDescriptors = new ArrayList<CreateViewRequest.ViewDescriptor>(childDescriptors.size());
-		for(Iterator<UMLNodeDescriptor> it = childDescriptors.iterator(); it.hasNext();) {
-			UMLNodeDescriptor next = it.next();
+		for(UMLNodeDescriptor next : childDescriptors) {
 			String hint = UMLVisualIDRegistry.getType(next.getVisualID());
 			IAdaptable elementAdapter = new CanonicalElementAdapter(next.getModelElement(), hint);
-			viewDescriptors.add(new CreateViewRequest.ViewDescriptor(elementAdapter, Node.class, hint, ViewUtil.APPEND, false, host().getDiagramPreferencesHint()));
+			CreateViewRequest.ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(elementAdapter, Node.class, hint, ViewUtil.APPEND, false, host().getDiagramPreferencesHint());
+			viewDescriptors.add(descriptor);
 		}
+
+		boolean changed = deleteViews(orphaned.iterator());
 		//
 		CreateViewRequest request = getCreateViewRequest(viewDescriptors);
 		Command cmd = getCreateViewCommand(request);
 		if(cmd != null && cmd.canExecute()) {
 			SetViewMutabilityCommand.makeMutable(new EObjectAdapter(host().getNotationView())).execute();
 			executeCommand(cmd);
-			createdViews.addAll((List<IAdaptable>)request.getNewObject());
+			@SuppressWarnings("unchecked")
+			List<IAdaptable> nl = (List<IAdaptable>)request.getNewObject();
+			createdViews.addAll(nl);
 		}
 		if(changed || createdViews.size() > 0) {
 			postProcessRefreshSemantic(createdViews);
 		}
+
 		Collection<IAdaptable> createdConnectionViews = refreshConnections();
 
 		if(createdViews.size() > 1) {
@@ -230,6 +254,7 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		}
 
 		createdViews.addAll(createdConnectionViews);
+
 		makeViewsImmutable(createdViews);
 	}
 
@@ -806,14 +831,13 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	 */
 	private Collection<IAdaptable> createConnections(Collection<UMLLinkDescriptor> linkDescriptors, Map<EObject, View> domain2NotationMap) {
 		LinkedList<IAdaptable> adapters = new LinkedList<IAdaptable>();
-		for(Iterator<UMLLinkDescriptor> it = linkDescriptors.iterator(); it.hasNext();) {
-			UMLLinkDescriptor nextLinkDescriptor = it.next();
+		for(UMLLinkDescriptor nextLinkDescriptor : linkDescriptors) {
 			EditPart sourceEditPart = getEditPart(nextLinkDescriptor.getSource(), domain2NotationMap);
 			EditPart targetEditPart = getEditPart(nextLinkDescriptor.getDestination(), domain2NotationMap);
 			if(sourceEditPart == null || targetEditPart == null) {
 				continue;
 			}
-			CreateConnectionViewRequest.ConnectionViewDescriptor descriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(nextLinkDescriptor.getSemanticAdapter(), String.valueOf(nextLinkDescriptor.getVisualID()), ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
+			CreateConnectionViewRequest.ConnectionViewDescriptor descriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(nextLinkDescriptor.getSemanticAdapter(), UMLVisualIDRegistry.getType(nextLinkDescriptor.getVisualID()), ViewUtil.APPEND, false, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint());
 			CreateConnectionViewRequest ccr = new CreateConnectionViewRequest(descriptor);
 			ccr.setType(RequestConstants.REQ_CONNECTION_START);
 			ccr.setSourceEditPart(sourceEditPart);

@@ -104,7 +104,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	private List parserElements;
+	private List<?> parserElements;
 
 	/**
 	 * @generated

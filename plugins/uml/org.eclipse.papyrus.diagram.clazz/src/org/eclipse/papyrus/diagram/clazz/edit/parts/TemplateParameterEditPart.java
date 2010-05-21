@@ -130,7 +130,7 @@ public class TemplateParameterEditPart extends CompartmentEditPart implements IT
 	/**
 	 * @generated
 	 */
-	private List parserElements;
+	private List<?> parserElements;
 
 	/**
 	 * @generated

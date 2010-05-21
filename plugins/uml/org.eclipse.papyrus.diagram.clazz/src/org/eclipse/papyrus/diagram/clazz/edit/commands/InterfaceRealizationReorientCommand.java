@@ -79,7 +79,7 @@ public class InterfaceRealizationReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Interface target = getLink().getContract();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistInterfaceRealization_4003(getNewSource(), target);
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistInterfaceRealization_4003(getLink(), getNewSource(), target);
 	}
 
 	/**
@@ -93,7 +93,7 @@ public class InterfaceRealizationReorientCommand extends EditElementCommand {
 			return false;
 		}
 		BehavioredClassifier source = (BehavioredClassifier)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistInterfaceRealization_4003(source, getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistInterfaceRealization_4003(getLink(), source, getNewTarget());
 	}
 
 	/**

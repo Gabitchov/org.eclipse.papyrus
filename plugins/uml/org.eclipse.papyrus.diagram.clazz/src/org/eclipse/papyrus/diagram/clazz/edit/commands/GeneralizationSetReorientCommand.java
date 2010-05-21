@@ -86,7 +86,7 @@ public class GeneralizationSetReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Package container = (Package)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistGeneralizationSet_4020(container, getNewSource(), target);
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistGeneralizationSet_4020(container, getLink(), getNewSource(), target);
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class GeneralizationSetReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Package container = (Package)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistGeneralizationSet_4020(container, source, getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistGeneralizationSet_4020(container, getLink(), source, getNewTarget());
 	}
 
 	/**

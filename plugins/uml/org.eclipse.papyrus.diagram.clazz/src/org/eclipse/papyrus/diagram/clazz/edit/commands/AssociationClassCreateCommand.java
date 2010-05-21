@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.clazz.providers.ElementInitializers;
 import org.eclipse.uml2.uml.AssociationClass;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -101,7 +101,7 @@ public class AssociationClassCreateCommand extends EditElementCommand {
 		Package owner = (Package)getElementToEdit();
 		owner.getPackagedElements().add(newElement);
 
-		UMLElementTypes.init_AssociationClass_2013(newElement);
+		ElementInitializers.getInstance().init_AssociationClass_2013(newElement);
 
 		doConfigure(newElement, monitor, info);
 

@@ -98,7 +98,7 @@ public class GeneralizationSetCreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateGeneralizationSet_4020(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateGeneralizationSet_4020(getContainer(), getSource(), getTarget());
 	}
 
 	/**

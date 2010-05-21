@@ -109,7 +109,7 @@ public class ReceptionEditPart extends CompartmentEditPart implements ITextAware
 	/**
 	 * @generated
 	 */
-	private List parserElements;
+	private List<?> parserElements;
 
 	/**
 	 * @generated

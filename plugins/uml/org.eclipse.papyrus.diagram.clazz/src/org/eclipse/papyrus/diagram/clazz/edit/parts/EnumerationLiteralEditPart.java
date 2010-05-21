@@ -111,7 +111,7 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 	/**
 	 * @generated
 	 */
-	private List parserElements;
+	private List<?> parserElements;
 
 	/**
 	 * @generated

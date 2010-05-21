@@ -130,7 +130,7 @@ public class ClassifierTemplateParameterEditPart extends CompartmentEditPart imp
 	/**
 	 * @generated
 	 */
-	private List parserElements;
+	private List<?> parserElements;
 
 	/**
 	 * @generated

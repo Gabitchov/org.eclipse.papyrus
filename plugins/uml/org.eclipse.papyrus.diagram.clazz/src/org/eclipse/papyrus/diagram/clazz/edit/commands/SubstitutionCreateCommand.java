@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.clazz.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Substitution;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -80,7 +80,7 @@ public class SubstitutionCreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateSubstitution_4004(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateSubstitution_4004(getContainer(), getSource(), getTarget());
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class SubstitutionCreateCommand extends EditElementCommand {
 		getContainer().getSubstitutions().add(newElement);
 		newElement.setSubstitutingClassifier(getSource());
 		newElement.setContract(getTarget());
-		UMLElementTypes.init_Substitution_4004(newElement);
+		ElementInitializers.getInstance().init_Substitution_4004(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

@@ -82,7 +82,7 @@ public class SubstitutionReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Classifier container = (Classifier)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistSubstitution_4004(container, getNewSource(), target);
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistSubstitution_4004(container, getLink(), getNewSource(), target);
 	}
 
 	/**
@@ -97,7 +97,7 @@ public class SubstitutionReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Classifier container = (Classifier)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistSubstitution_4004(container, source, getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistSubstitution_4004(container, getLink(), source, getNewTarget());
 	}
 
 	/**

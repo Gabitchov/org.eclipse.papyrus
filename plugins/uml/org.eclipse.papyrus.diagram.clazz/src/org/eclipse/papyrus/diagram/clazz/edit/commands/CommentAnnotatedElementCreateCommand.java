@@ -65,7 +65,7 @@ public class CommentAnnotatedElementCreateCommand extends EditElementCommand {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateCommentAnnotatedElement_4013(getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateCommentAnnotatedElement_4013(getSource(), getTarget());
 	}
 
 	/**

@@ -104,7 +104,7 @@ public class PrimitiveTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
-		for(Iterator it = view.getTargetEdges().iterator(); it.hasNext();) {
+		for(Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge)it.next();
 			if(UMLVisualIDRegistry.getVisualID(incomingLink) == AssociationClass2EditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -209,7 +209,7 @@ public class PrimitiveTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 				continue;
 			}
 		}
-		for(Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
+		for(Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge)it.next();
 			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == AssociationClass2EditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
