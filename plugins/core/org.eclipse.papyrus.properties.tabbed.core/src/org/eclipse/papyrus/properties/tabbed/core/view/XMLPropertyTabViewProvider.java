@@ -11,8 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.core.view;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,14 +97,12 @@ public class XMLPropertyTabViewProvider extends XMLPropertyViewProvider implemen
 
 					// retrieve xml file from path
 					String path = child.getAttribute(XML_PATH);
-					File file = getXmlFile(child, path, bundle);
+					InputStream stream = getXmlFile(child, path, bundle);
 					// the file should never be null in this implementation, but sub-classes could return null
-					if(file == null) {
+					if(stream == null) {
 						throw new IOException("Impossible to load file: " + path);
-					} else if(!file.exists()) {
-						throw new IOException("Impossible to load file: " + file);
 					} else {
-						Document document = documentBuilder.parse(file);
+						Document document = documentBuilder.parse(stream);
 						getParser().parseXMLfile(document, this.predefinedFragments, this.predefinedDialogs);
 					}
 				} catch (ParserConfigurationException e) {

@@ -12,12 +12,16 @@
 package org.eclipse.papyrus.properties.runtime.view;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -197,14 +201,12 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 
 					// retrieve xml file from path
 					String path = child.getAttribute(XML_PATH);
-					File file = getXmlFile(child, path, bundle);
+					InputStream stream = getXmlFile(child, path, bundle);
 					// the file should never be null in this implementation, but sub-classes could return null
-					if(file == null) {
+					if(stream == null) {
 						throw new IOException("Impossible to load file: " + path);
-					} else if(!file.exists()) {
-						throw new IOException("Impossible to load file: " + file);
 					} else {
-						Document document = documentBuilder.parse(file);
+						Document document = documentBuilder.parse(stream);
 						getParser().parseXMLfile(document, this.predefinedFragments, this.predefinedDialogs);
 					}
 				} catch (ParserConfigurationException e) {
@@ -223,19 +225,28 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 	/**
 	 * Retrieves the xml file configuring the property view
 	 */
-	public File getXmlFile(IConfigurationElement element, String path, Bundle bundle) throws IOException {
+	public InputStream getXmlFile(IConfigurationElement element, String path, Bundle bundle) throws IOException {
 		// try to read it in a plugin...
 		URL urlFile = bundle.getEntry(path);
 		urlFile = FileLocator.resolve(urlFile);
 		urlFile = FileLocator.toFileURL(urlFile);
 		if("file".equals(urlFile.getProtocol())) { //$NON-NLS-1$
-			return new File(urlFile.getFile());
+			return new FileInputStream(new File(urlFile.getFile()));
 		} else if("jar".equals(urlFile.getProtocol())) { //$NON-NLS-1$
 			String filePath = urlFile.getPath();
 			if(filePath.startsWith("file:")) {
 				// strip off the file: and the !/
-				filePath = filePath.substring(5, filePath.length() - 2);
-				return new File(filePath);
+				int jarPathEndIndex = filePath.indexOf("!/");
+				if(jarPathEndIndex < 0) {
+					Activator.log.error("Impossible to find the jar path end", null);
+					return null;
+				}
+				String jarPath = filePath.substring("file:".length(), jarPathEndIndex);
+				ZipFile zipFile = new ZipFile(jarPath);
+				filePath = filePath.substring(jarPathEndIndex + 2, filePath.length());
+				ZipEntry entry = zipFile.getEntry(filePath);
+				return zipFile.getInputStream(entry);
+				// return new File(filePath);
 			}
 		}
 		return null;
