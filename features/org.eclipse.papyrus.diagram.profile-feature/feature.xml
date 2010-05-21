@@ -19,7 +19,7 @@ http://www.eclipse.org/legal/epl-v10.html
    </copyright>
 
    <license url="http://www.example.com/license">
-      [Enter License Description here.]
+      %license
    </license>
 
    <requires>
