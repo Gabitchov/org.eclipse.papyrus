@@ -37,7 +37,7 @@ import org.eclipse.swt.graphics.Image;
  */
 public class CornerBentFigure extends NoteFigure implements IPapyrusNodeUMLElementFigure, IPapyrusNodeFigure{
 
-	protected RectangularShadowBorder shadowborder;
+	protected NoteShadowBorder shadowborder;
 	protected NoteFigureBorder noteBorder=null;
 	/**
 	 * Added for stereptypes properties
@@ -59,10 +59,10 @@ public class CornerBentFigure extends NoteFigure implements IPapyrusNodeUMLEleme
 		super(100, 60, new Insets(5, 5, 5, 14));
 		setLayoutManager( new ToolbarLayout());
 		if( this.getBorder() instanceof NoteFigureBorder){
-		noteBorder=(NoteFigureBorder)this.getBorder();
+			noteBorder=(NoteFigureBorder)this.getBorder();
 		}
 		shadowborder = new NoteShadowBorder(3, getForegroundColor(),new Dimension(10, 10), noteBorder);
-		//setBorder(shadowborder);
+		setBorder(shadowborder);
 	}
 
 	/**
@@ -322,11 +322,13 @@ public class CornerBentFigure extends NoteFigure implements IPapyrusNodeUMLEleme
 	public void setShadow(boolean shadow) {
 		this.shadow = shadow;
 		if(shadow == true) {
-			//this.setBorder(shadowborder);
+			this.setBorder(shadowborder);
 		}
 		else{
-			 if (noteBorder !=null){
-			this.setBorder(noteBorder);}
-	}
+			if (noteBorder !=null){
+				this.setBorder(noteBorder);}
 		}
+		revalidate();
+		repaint();
+	}
 }

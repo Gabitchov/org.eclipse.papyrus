@@ -20,6 +20,7 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gmf.runtime.diagram.ui.figures.NoteFigure;
 import org.eclipse.gmf.runtime.diagram.ui.figures.NoteFigure.NoteFigureBorder;
 import org.eclipse.swt.graphics.Color;
 
@@ -41,29 +42,40 @@ public class NoteShadowBorder extends RectangularShadowBorder {
 	}
 
 	/**
+	 * Returns margin for this border
+	 * @return margin as Insets
+	 */
+	public Insets getMargin() {
+		return noteBorder.getMargin();
+	}
+
+	public Insets getInsets(IFigure figure) {
+		return noteBorder.getInsets(figure);
+	}
+	/**
 	 * @see org.eclipse.draw2d.Border#paint(IFigure, Graphics, Insets)
 	 */
 	@Override
 	public void paint(IFigure figure, Graphics graphics, Insets insets) {
 		graphics.pushState();
 		noteBorder.paint(figure, graphics, insets);
-		
 
 		// draw the shadow
 		// first expand the clip rectangle
-		Rectangle newRect = new Rectangle(tempRect);
+		Rectangle newRect = new Rectangle(figure.getBounds());
+		Rectangle figureRect = new Rectangle(figure.getBounds());
 		newRect.width = newRect.width + borderwidth;
 		newRect.height = newRect.height + borderwidth;
 		graphics.setClip(newRect);
 		// paint the shadow
 		PointList plt = new PointList();
-		plt.addPoint(tempRect.x + tempRect.width, tempRect.y + borderwidth+ cornerDim.height);
-		plt.addPoint(tempRect.x + tempRect.width, tempRect.y + tempRect.height);
-		plt.addPoint(tempRect.x + borderwidth, tempRect.y + tempRect.height);
-		plt.addPoint(tempRect.x + borderwidth, tempRect.y + tempRect.height + borderwidth);
-		plt.addPoint(tempRect.x + tempRect.width + borderwidth, tempRect.y + tempRect.height + borderwidth);
-		plt.addPoint(tempRect.x + tempRect.width + borderwidth, tempRect.y + borderwidth+ cornerDim.height+ borderwidth);
-		plt.addPoint(tempRect.x + tempRect.width, tempRect.y + borderwidth+ cornerDim.height);
+		plt.addPoint(figureRect.x + figureRect.width, figureRect.y + borderwidth+ cornerDim.height);
+		plt.addPoint(figureRect.x + figureRect.width, figureRect.y + figureRect.height);
+		plt.addPoint(figureRect.x + borderwidth, figureRect.y + figureRect.height);
+		plt.addPoint(figureRect.x + borderwidth, figureRect.y + figureRect.height + borderwidth);
+		plt.addPoint(figureRect.x + figureRect.width + borderwidth, figureRect.y + figureRect.height + borderwidth);
+		plt.addPoint(figureRect.x + figureRect.width + borderwidth, figureRect.y + borderwidth+ cornerDim.height+ borderwidth);
+		plt.addPoint(figureRect.x + figureRect.width, figureRect.y + borderwidth+ cornerDim.height);
 		if(getColor()!=null){
 		graphics.setBackgroundColor(getColor());
 		}
