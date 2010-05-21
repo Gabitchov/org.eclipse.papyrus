@@ -8,19 +8,20 @@
 		-->
 	</target>
 
-	<target name="postProcess">
-		<echo>generating javadoc</echo>
-		<!--<ant target="javadoc" antfile="javadoc.xml" dir="${buildDirectory}/plugins/org.eclipse.gmt.modisco.infra.doc/" />-->
-	</target>
-
 	<target name="extraPackaging">
 		<!-- Delete source checkout zip, shouldn't even be there -->
 		<delete file="${buildDirectory}/${buildLabel}/${zipPrefix}-Sources${incubation}-${buildAlias}.zip" />
 
-		<echo message="Retrieving build log" />
+		<condition property="lastBuildLogFile" value="https://build.eclipse.org/hudson/job/cbi-papyrus-0.7-nightly/lastBuild/consoleText" else="https://build.eclipse.org/hudson/job/cbi-papyrus-0.7-integration/lastBuild/consoleText">
+			<equals arg1="${buildType}" arg2="N" />
+		</condition>
+		<echo>retrieving build log: ${lastBuildLogFile} (for build type "${buildType}")</echo>
+		<get dest="${buildDirectory}/${buildLabel}/buildlog.txt" src="${lastBuildLogFile}" />
+		<!--
 		<property name="hudsonRoot" location="${buildDirectory}/../../../../" />
 		<available type="file" file="${hudsonRoot}/nextBuildNumber" property="foundHudsonRoot" />
 		<antcall target="addLog" />
+		-->
 		<!-- create ALL zip from ${allZip} -->
 		<!--
 		<echo>Building ALL zip</echo>
@@ -30,14 +31,92 @@
 		-->
 	</target>
 
+	<!--
 	<target name="addLog" if="foundHudsonRoot">
 		<loadfile property="lastBuildNumber" srcFile="${hudsonRoot}/nextBuildNumber" />
 		<math result="buildNumber" operand1="${lastBuildNumber}" operation="-" operand2="1" datatype="int" />
 		<copy tofile="${buildDirectory}/${buildLabel}/buildlog.txt" file="${hudsonRoot}/builds/${buildNumber}/log" />
 	</target>
+	-->
 
+	<!-- to do other unpacking of dependencies not already unpacked or installed by p2.director by default (eg., third party stuff) -->
 	<target name="getDependencies">
 		<!-- if your project requires more dependencies, add them here; if it does not require all of these, remove those not required -->
+	</target>
+
+	<!-- ===================================================================== -->
+	<!-- Steps to do before fetching the build elements -->
+	<!-- ===================================================================== -->
+	<target name="preFetch">
+	</target>
+
+	<!-- ===================================================================== -->
+	<!-- Steps to do after the fetch -->
+	<!-- ===================================================================== -->
+	<target name="postFetch">
+	</target>
+
+	<!-- ===================================================================== -->
+	<!-- Steps to do before generating build scripts -->
+	<!-- ===================================================================== -->
+	<target name="preGenerate">
+	</target>
+
+	<!-- ===================================================================== -->
+	<!-- Steps to do after generating the build scripts -->
+	<!-- ===================================================================== -->
+	<target name="postGenerate">
+	</target>
+
+	<!-- ===================================================================== -->
+	<!-- Steps to do before assembling -->
+	<!-- ===================================================================== -->
+	<target name="preAssemble">
+		<echo>Replacing @buildid@</echo>
+		<replace dir="${buildDirectory}/plugins" value="${timestamp}" token="@buildid@">
+			<include name="**/about.mappings" />
+		</replace>
+	</target>
+
+	<!-- ===================================================================== -->
+	<!-- Steps to do after assembling-->
+	<!-- ===================================================================== -->
+	<target name="postAssemble">
+	</target>
+
+	<!-- ===================================================================== -->
+	<!-- Steps to do before running package. -->
+	<!-- ===================================================================== -->
+	<target name="prePackage">
+	</target>
+
+	<!-- ===================================================================== -->
+	<!-- Steps to do after  running package. -->
+	<!-- ===================================================================== -->
+	<target name="postPackage">
+	</target>
+
+	<!-- ===================================================================== -->
+	<!-- Steps to do before running the build.xmls for the elements being built. -->
+	<!-- ===================================================================== -->
+	<target name="preProcess">
+	</target>
+
+	<!-- ===================================================================== -->
+	<!-- Steps to do after running the build.xmls for the elements being built. -->
+	<!-- ===================================================================== -->
+	<target name="postProcess">
+		<!--
+		<echo>generating javadoc</echo>
+		<ant target="javadoc" antfile="javadoc.xml" dir="${buildDirectory}/plugins/org.eclipse.gmt.modisco.infra.doc/" />
+		-->
+	</target>
+
+	<!-- ===================================================================== -->
+	<!-- Steps to do after everything is built and assembled -->
+	<!-- (e.g., testing, posting, emailing, ...) -->
+	<!-- ===================================================================== -->
+	<target name="postBuild">
 	</target>
 
 
