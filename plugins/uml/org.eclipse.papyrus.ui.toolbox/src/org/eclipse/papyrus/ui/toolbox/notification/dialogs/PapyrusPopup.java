@@ -56,7 +56,7 @@ public abstract class PapyrusPopup extends Dialog {
 	/**
 	 * Used to custom the composite inside the popup
 	 */
-	private ICompositeCreator creator = null;
+	protected ICompositeCreator creator = null;
 
 	private String title;
 

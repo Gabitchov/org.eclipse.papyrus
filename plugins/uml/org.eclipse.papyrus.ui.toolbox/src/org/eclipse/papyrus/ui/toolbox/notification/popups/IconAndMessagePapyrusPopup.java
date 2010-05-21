@@ -11,12 +11,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.ui.toolbox.notification.popups;
 
+import org.eclipse.papyrus.ui.toolbox.notification.PapyrusToolkit;
 import org.eclipse.papyrus.ui.toolbox.notification.Type;
 import org.eclipse.papyrus.ui.toolbox.notification.utils.PapyrusControlsFactory;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.eclipse.ui.forms.widgets.ScrolledForm;
+import org.eclipse.ui.forms.widgets.Section;
 
 
 /**
@@ -40,9 +44,20 @@ public class IconAndMessagePapyrusPopup extends MessagePapyrusPopup {
 		super(activeShell, toolkit, message);
 	}
 
+
+
+	@Override
+	protected void createSection(Composite c, ScrolledForm form) {
+		Section section = toolkit.createSection(form.getBody(), PapyrusToolkit.DEFAULT_STYLE);
+		section.setText("Papyrus");
+		section.setClient(doCreateContents(section));
+		getShell().setFocus();
+		section.setLayoutData(new GridData(GridData.FILL_BOTH));
+	}
+
 	@Override
 	protected Composite createText(Composite composite) {
-		Composite top = PapyrusControlsFactory.createCompositeWithType(getShell(), toolkit, composite, type, image, message, useHtml);
+		Composite top = PapyrusControlsFactory.createCompositeWithType(getShell(), toolkit, composite, type, image, message, useHtml, creator, context);
 		return top;
 	}
 

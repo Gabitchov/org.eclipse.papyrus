@@ -38,19 +38,20 @@ public class PopupBuilder implements IBuilder {
 		if(wrapper.getTitle() != null) {
 			title = wrapper.getTitle();
 		}
+		String message = null;
 		if(wrapper.getMessage() != null) {
-			String message = wrapper.getMessage();
-			if(wrapper.getType() != null) {
-				popup = new IconAndMessagePapyrusPopup(Display.getDefault().getActiveShell(), toolkit, message, wrapper.getType());
-			} else if(wrapper.getImage() != null) {
-				popup = new IconAndMessagePapyrusPopup(Display.getDefault().getActiveShell(), toolkit, message);
-				((IconAndMessagePapyrusPopup)popup).setImage(wrapper.getImage());
-			} else {
-				popup = new MessagePapyrusPopup(Display.getDefault().getActiveShell(), toolkit, message);
-			}
-			popup.setTitle(title);
-			popup.setUseHtml(wrapper.isHtml());
+			message = wrapper.getMessage();
 		}
+		if(wrapper.getType() != null) {
+			popup = new IconAndMessagePapyrusPopup(Display.getDefault().getActiveShell(), toolkit, message, wrapper.getType());
+		} else if(wrapper.getImage() != null) {
+			popup = new IconAndMessagePapyrusPopup(Display.getDefault().getActiveShell(), toolkit, message);
+			((IconAndMessagePapyrusPopup)popup).setImage(wrapper.getImage());
+		} else {
+			popup = new MessagePapyrusPopup(Display.getDefault().getActiveShell(), toolkit, message);
+		}
+		popup.setTitle(title);
+		popup.setUseHtml(wrapper.isHtml());
 		if(wrapper.getComposite() != null) {
 			popup.setCompositeCreator(wrapper.getComposite());
 			popup.setTitle(title);
@@ -93,6 +94,9 @@ public class PopupBuilder implements IBuilder {
 		}
 		if(NotificationBuilder.ACTION.equals(parameterName)) {
 			return true;
+		}
+		if(NotificationBuilder.TEMPORARY.equals(parameterName)) {
+			return value instanceof Boolean && !((Boolean)value);
 		}
 		return false;
 	}

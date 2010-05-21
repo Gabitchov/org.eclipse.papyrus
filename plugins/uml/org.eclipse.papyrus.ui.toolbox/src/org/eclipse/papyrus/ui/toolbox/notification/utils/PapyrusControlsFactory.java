@@ -11,7 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.ui.toolbox.notification.utils;
 
+import org.eclipse.papyrus.ui.toolbox.notification.ICompositeCreator;
 import org.eclipse.papyrus.ui.toolbox.notification.Type;
+import org.eclipse.papyrus.ui.toolbox.notification.builders.IContext;
 import org.eclipse.papyrus.ui.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -26,7 +28,53 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 
 public class PapyrusControlsFactory {
 
+	/**
+	 * Create a composite according to the type
+	 * 
+	 * @param shell
+	 *        , the shell of the element
+	 * @param toolkit
+	 *        , the toolkit used
+	 * @param parent
+	 *        , the parent containing the composite created
+	 * @param type
+	 *        , the type to create
+	 * @param image
+	 *        , the image to associate
+	 * @param message
+	 *        , the message to display
+	 * @param useHTML
+	 *        , if the composite use html
+	 * @return the composite created
+	 */
 	public static Composite createCompositeWithType(Shell shell, FormToolkit toolkit, Composite parent, Type type, Image image, String message, boolean useHTML) {
+		return createCompositeWithType(shell, toolkit, parent, type, image, message, useHTML, null, null);
+	}
+
+	/**
+	 * Create a composite according to the type
+	 * 
+	 * @param shell
+	 *        , the shell of the element
+	 * @param toolkit
+	 *        , the toolkit used
+	 * @param parent
+	 *        , the parent containing the composite created
+	 * @param type
+	 *        , the type to create
+	 * @param image
+	 *        , the image to associate
+	 * @param message
+	 *        , the message to display
+	 * @param useHTML
+	 *        , if the composite use html
+	 * @param creator
+	 *        , the composite creator it can be null
+	 * @param context
+	 *        , the context to add the composite created by the creator
+	 * @return the composite created
+	 */
+	public static Composite createCompositeWithType(Shell shell, FormToolkit toolkit, Composite parent, Type type, Image image, String message, boolean useHTML, ICompositeCreator creator, IContext context) {
 		Composite top = null;
 		if(toolkit == null) {
 			top = new Composite(parent, SWT.None);
@@ -54,14 +102,21 @@ public class PapyrusControlsFactory {
 		if(anImage != null) {
 			labelImage.setImage(anImage);
 		}
-		if(toolkit != null) {
-			FormText label = toolkit.createFormText(top, false);
-			label.setText(message, useHTML, true);
-			label.setLayoutData(new GridData(GridData.FILL_BOTH));
+		if(creator == null) {
+			if(toolkit != null) {
+				FormText label = toolkit.createFormText(top, false);
+				label.setText(message, useHTML, true);
+				label.setLayoutData(new GridData(GridData.FILL_BOTH));
+			} else {
+				Label label = new Label(top, SWT.None);
+				label.setText(message);
+				label.setLayoutData(new GridData(GridData.FILL_BOTH));
+			}
 		} else {
-			Label label = new Label(top, SWT.None);
-			label.setText(message);
-			label.setLayoutData(new GridData(GridData.FILL_BOTH));
+			Composite compo = creator.createComposite(top, toolkit);
+			if(context != null) {
+				context.put(IContext.COMPOSITE_CREATED, compo);
+			}
 		}
 		return top;
 	}
