@@ -118,7 +118,7 @@ public class PapyrusPreferenceStore extends PapyrusScopedPreferenceStore {
 	protected String findKeyWithAValue(String initialKey){
 		String foundedKey=null;
 		//first look for in value stack
-		foundedKey=findKeyAStoreValue(getUpperKey(initialKey));
+		foundedKey=findKeyAStoreValue(initialKey);
 		//then look for in default stack
 		if(foundedKey==null){
 			foundedKey=findKeyWithADefaultValue(initialKey);
@@ -166,7 +166,7 @@ public class PapyrusPreferenceStore extends PapyrusScopedPreferenceStore {
 		}
 
 		if(foundedKey==null&& hasPrefix(initialKey)){
-			return findKeyWithAValue(getUpperKey(initialKey));
+			return findKeyWithADefaultValue(getUpperKey(initialKey));
 		}
 		else{
 			foundedKey=initialKey;
