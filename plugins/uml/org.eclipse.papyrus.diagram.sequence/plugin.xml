@@ -87,13 +87,13 @@
 
    <extension point="org.eclipse.team.core.fileTypes" id="repo-ftype">
       <?gmfgen generated="true"?>
-      <fileTypes type="text" extension="uml_diagram"/>
+      <fileTypes type="text" extension="PapyrusUMLSequence_diagram"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser" id="resource-factory">
       <?gmfgen generated="true"?>
       <parser
-         type="uml_diagram"
+         type="PapyrusUMLSequence_diagram"
          class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
       </parser>
    </extension>
@@ -104,7 +104,7 @@
          id="org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorID"
          name="%editorName"
          icon="icons/obj16/UMLDiagramFile.gif"
-         extensions="uml_diagram"
+         extensions="PapyrusUMLSequence_diagram"
          default="true"
          class="org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditor"
          matchingStrategy="org.eclipse.papyrus.diagram.sequence.part.UMLMatchingStrategy"
@@ -138,7 +138,7 @@
       <?gmfgen generated="true"?>
       <objectContribution
             id="org.eclipse.papyrus.diagram.sequence.InitDiagram"
-            nameFilter="*.uml"
+            nameFilter="*.PapyrusUMLSequence"
             objectClass="org.eclipse.core.resources.IFile">
          <action
                label="%initDiagramActionLabel"
@@ -686,7 +686,7 @@
             <or>
 	           <and>
     	          <instanceof value="org.eclipse.core.resources.IFile"/>
-        	      <test property="org.eclipse.core.resources.extension" value="uml_diagram"/>
+        	      <test property="org.eclipse.core.resources.extension" value="PapyrusUMLSequence_diagram"/>
                </and>
                <instanceof value="org.eclipse.papyrus.diagram.sequence.navigator.UMLAbstractNavigatorItem"/>
             </or>
@@ -703,7 +703,7 @@
                <or>
 	              <and>
     	             <instanceof value="org.eclipse.core.resources.IFile"/>
-        	         <test property="org.eclipse.core.resources.extension" value="uml_diagram"/>
+        	         <test property="org.eclipse.core.resources.extension" value="PapyrusUMLSequence_diagram"/>
                   </and>
                   <instanceof value="org.eclipse.papyrus.diagram.sequence.navigator.UMLAbstractNavigatorItem"/>
                </or>
@@ -722,7 +722,7 @@
             <or>
 	           <and>
     	          <instanceof value="org.eclipse.core.resources.IFile"/>
-        	      <test property="org.eclipse.core.resources.extension" value="uml"/>
+        	      <test property="org.eclipse.core.resources.extension" value="PapyrusUMLSequence"/>
                </and>
                <instanceof value="org.eclipse.papyrus.diagram.sequence.navigator.UMLDomainNavigatorItem"/>
             </or>
