@@ -14,6 +14,9 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.wizards.CreateModelWizard;
 import org.eclipse.papyrus.wizards.InitDiagramAction;
 
+/**
+ * @deprecated the class is not used - there is no references to it in Papyrus
+ */
 public class InitUMLDiagramAction extends InitDiagramAction {
 
 	@Override

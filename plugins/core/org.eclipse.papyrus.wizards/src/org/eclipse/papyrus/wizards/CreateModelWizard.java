@@ -32,6 +32,7 @@ import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.core.utils.PapyrusTrace;
+import org.eclipse.papyrus.resource.uml.UmlModel;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
@@ -117,24 +118,20 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
 		this.diResourceSet = new DiResourceSet();
-		// set the di file name with the selected domain model
-		if(selection != null && !selection.isEmpty()) {
-			if(selection.getFirstElement() instanceof IFile) {
-				IFile file = (IFile)selection.getFirstElement();
-				String extension = file.getFileExtension();
-				if(getModelFileExtension().equals(extension)) {
-					this.domainModelURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
+		IFile file = getSelectedFile(selection);
+		// builds a new Papyrus Model for an existing domain model
+		if(isSupportedDomainModelFile(file)) {
+			this.domainModelURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
+			this.newModelFilePage = new NewModelFilePage("Create a new Papyrus model", "Create a new Papyrus model from an existing semantic model", selection, true);
+			this.newModelFilePage.setFileName(getDiagramFileName(file));
 
-					this.newModelFilePage = new NewModelFilePage("Create a new Papyrus model", "Create a new Papyrus model from an existing semantic model", selection, true);
-					String diModelFileName = (file.getLocation().removeFileExtension().lastSegment());
-					diModelFileName += ".di";
-					this.newModelFilePage.setFileName(diModelFileName);
+			// I don't understand a need to load the model during initialization, 
+			// I rather expect it to be loaded when wizard is finished and executed or
+			// when the page that needs the model is initialized 
+			Resource resource = diResourceSet.loadModelResource(file);
 
-					Resource resource = diResourceSet.loadModelResource(file);
-					EObject diagramRoot = resource.getContents().get(0);
-					this.selectRootElementPage = new SelectRootElementPage("Select the root element", diagramRoot);
-				}
-			}
+			EObject diagramRoot = resource.getContents().get(0);
+			this.selectRootElementPage = new SelectRootElementPage("Select the root element", diagramRoot);
 		}
 		if(domainModelURI == null) {
 			this.newModelFilePage = new NewModelFilePage("Create a new Papyrus model", "Create a new empty Papyrus model", selection, false);
@@ -143,6 +140,33 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 		// fjcano #293135 :: support model templates
 		selectTemplateWizardPage = new SelectTemplateWizardPage(Activator.PLUGIN_ID, null, null);
 	}
+	
+	/**
+	 * Suggests a name of diagram file for the domain model file 
+	 */
+	protected String getDiagramFileName(IFile domainModel) {
+		String diModelFileName = (domainModel.getLocation().removeFileExtension().lastSegment());
+		diModelFileName += ".di";
+		return diModelFileName;
+	}
+
+	/**
+	 * Returns the first file from the given selection 
+	 */
+	private IFile getSelectedFile(IStructuredSelection selection) {
+		if(selection != null && !selection.isEmpty() && selection.getFirstElement() instanceof IFile) {
+			return (IFile)selection.getFirstElement();
+		}
+		return null;
+	}
+
+	/**
+	 * Returns true is the file can be served as a model model for the diagram
+	 */
+	protected boolean isSupportedDomainModelFile(IFile file) {
+		return file != null && getModelFileExtension().equals(file.getFileExtension());
+	}
+
 
 	/**
 	 * This method will be invoked, when the "Finish" button is pressed.
@@ -155,7 +179,6 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 		try {
 			// create a new file, result != null if successful
 			final IFile newFile = newModelFilePage.createNewFile();
-			NewModelFilePage.fileCount++;
 
 			RecordingCommand command = new RecordingCommand(diResourceSet.getTransactionalEditingDomain()) {
 
@@ -197,12 +220,8 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 					// SashSystem.
 					EditorUtils.getTransactionalIPageMngr(diResourceSet.getDiResource(), diResourceSet.getTransactionalEditingDomain());
 				} else {
-					// Create requested diagram.
-					if(domainModelURI != null) {
-						creationCommand.createDiagram(diResourceSet, selectRootElementPage.getModelElement(), diagramName);
-					} else {
-						creationCommand.createDiagram(diResourceSet, null, diagramName);
-					}
+					EObject root = domainModelURI != null ? selectRootElementPage.getModelElement() : null;
+					creationCommand.createDiagram(diResourceSet, root, diagramName);
 				}
 				try {
 					diResourceSet.save(new NullProgressMonitor());
@@ -231,47 +250,42 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 	protected abstract String getModelFileExtension();
 
 	// fjcano #293135 :: support model templates
-	protected void initializeModelResource(Resource resource, String rootElementName) {
-		if(isInitializeFromTemplate()) {
-			Resource templateResource = loadTemplateResource();
-			List<EObject> eObjectsToAdd = new ArrayList<EObject>();
-			for(EObject eObject : templateResource.getContents()) {
-				eObjectsToAdd.add(EcoreUtil.copy(eObject));
-			}
-			for(EObject eObject : eObjectsToAdd) {
-				resource.getContents().add(eObject);
-			}
+	private void initializeModelResource(Resource resource, String rootElementName) {
+		String templatePath = selectTemplateWizardPage.getTemplatePath();
+		boolean initializeFromTemplate = templatePath != null;
+		if(initializeFromTemplate) {
+			initializeFromTemplate(resource, rootElementName, templatePath);
 		} else {
-			// nothing
-			return;
+			initializeEmptyModel(resource, rootElementName);
 		}
 	}
 
-	// fjcano #293135 :: support model templates
-	protected boolean isInitializeFromTemplate() {
-		return getTemplatePath() != null;
+	protected void initializeFromTemplate(Resource resource, String rootElementName, String templatePath) {
+		Resource templateResource = loadTemplateResource(templatePath);
+		List<EObject> eObjectsToAdd = new ArrayList<EObject>();
+		for(EObject eObject : templateResource.getContents()) {
+			eObjectsToAdd.add(EcoreUtil.copy(eObject));
+		}
+		for(EObject eObject : eObjectsToAdd) {
+			resource.getContents().add(eObject);
+		}
 	}
 
-	// fjcano #293135 :: support model templates
-	protected String getTemplatePath() {
-		String templatePath = selectTemplateWizardPage.getTemplatePath();
-		return templatePath;
+	protected void initializeEmptyModel(Resource resource, String rootElementName) {
 	}
 
-	// fjcano #293135 :: support model templates
-	protected Resource loadTemplateResource() {
+	private Resource loadTemplateResource(String templatePath) {
 		String templatePluginID = selectTemplateWizardPage.getTemplatePluginId();
-		String templatePath = getTemplatePath();
 		java.net.URL templateURL = Platform.getBundle(templatePluginID).getResource(templatePath);
-		if(templatePath != null) {
-			String fullUri = templateURL.getPath();
-			URI uri = URI.createPlatformPluginURI(templatePluginID + fullUri, true);
-			ResourceSet resourceSet = new ResourceSetImpl();
-			Resource resource = resourceSet.getResource(uri, true);
-			if(resource.isLoaded()) {
-				return resource;
-			}
+		String fullUri = templateURL.getPath();
+		URI uri = URI.createPlatformPluginURI(templatePluginID + fullUri, true);
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.getResource(uri, true);
+		if(resource.isLoaded()) {
+			return resource;
 		}
 		return null;
 	}
+
+
 }

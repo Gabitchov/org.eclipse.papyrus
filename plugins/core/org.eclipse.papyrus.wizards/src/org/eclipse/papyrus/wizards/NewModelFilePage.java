@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.papyrus.wizards;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbench;
@@ -23,7 +24,7 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 public class NewModelFilePage extends WizardNewFileCreationPage {
 
 	/** index for several file creation */
-	protected static int fileCount = 1;
+	private static int fileCount = 1;
 
 	protected boolean createFromSemanticModel;
 
@@ -88,6 +89,13 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 		// }
 		// return false;
 		return true;
+	}
+	
+	@Override
+	public IFile createNewFile() {
+		IFile created = super.createNewFile();
+		fileCount++;
+		return created;
 	}
 
 	/**

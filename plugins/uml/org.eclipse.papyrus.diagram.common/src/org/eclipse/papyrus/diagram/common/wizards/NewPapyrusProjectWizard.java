@@ -50,14 +50,11 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 
 	private SelectDiagramKindPage myDiagramKindPage;
 
-	private IStructuredSelection selection;
-
 	private String initialProjectName;
 
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		super.init(workbench, selection);
 		setWindowTitle("New Papyrus Project");
-		this.selection = selection;
 	}
 
 	public void addPages() {
@@ -89,12 +86,12 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 		}
 		// if the user wants to create a diagram
 		if (myDiagramKindPage.getCreationCommand() != null) {
-			return createDiagram();
+			return createPapyrusModel();
 		}
 		return true;
 	}
 	
-	private boolean createDiagram() {
+	private boolean createPapyrusModel() {
 		final DiResourceSet diResourceSet = new DiResourceSet();
 		try {
 			// create a new file, result != null if successful

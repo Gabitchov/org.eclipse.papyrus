@@ -22,14 +22,6 @@ import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
 public class CreateUMLModelWizard extends CreateModelWizard {
-	
-	public CreateUMLModelWizard() {
-		super();
-	}
-	
-	public CreateUMLModelWizard(URI domainModelURI) {
-		super(domainModelURI);
-	}
 
 	/**
 	 * This ID is the id defined in the extension "org.eclipse.ui.newWizards" of
@@ -37,33 +29,32 @@ public class CreateUMLModelWizard extends CreateModelWizard {
 	 */
 	// @unused
 	public static final String ID_UMLWIZARD = "org.eclipse.papyrus.wizards.createumlmodel";
-	 /**
-	      * The config element which declares this wizard.
-	     */
-     private IConfigurationElement configElement;
 
-	
+	public CreateUMLModelWizard() {
+		super();
+	}
+
+	public CreateUMLModelWizard(URI domainModelURI) {
+		super(domainModelURI);
+	}
 
 	@Override
 	protected String getModelContentType() {
 		return UMLPackage.eCONTENT_TYPE;
 	}
-	
+
 	@Override
 	protected String getModelFileExtension() {
 		return "uml";
 	}
 
-	@Override
-	protected void initializeModelResource(Resource resource, String rootElementName) {
-		// fjcano #293135 :: support model templates
-		if(!isInitializeFromTemplate()) {
-			Model model = UMLFactory.eINSTANCE.createModel();
-			model.setName(rootElementName);
-			resource.getContents().add(model);
-		} else {
-			super.initializeModelResource(resource, rootElementName);
-		}
+	/**
+	 * This method is invoked for creation of a model 
+	 */
+	protected void initializeEmptyModel(Resource resource, String rootElementName) {
+		Model model = UMLFactory.eINSTANCE.createModel();
+		model.setName(rootElementName);
+		resource.getContents().add(model);
 	}
 
 }
