@@ -1,22 +1,41 @@
-/**
- * 
- */
+/*****************************************************************************
+ * Copyright (c) 2008 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Cedric Dumoulin  Cedric.dumoulin@lifl.fr - Initial API and implementation
+ *  Emilien Perico emilien.perico@atosorigin.com - manage loading strategies
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.resource;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.papyrus.core.resourceloading.ProxyManager;
+import org.eclipse.papyrus.resource.notation.NotationUtils;
+import org.eclipse.papyrus.resource.sasheditor.SashModelUtils;
+import org.eclipse.papyrus.resource.uml.UmlUtils;
 
 
 
@@ -36,33 +55,41 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
  */
 public class ModelSet extends ResourceSetImpl {
 
-	/**
-	 * The associated IModels
-	 */
+	/** The associated IModels. */
 	private Map<Object, IModel> models = new HashMap<Object, IModel>();
 	
+	/** The snippets. */
 	private ModelSetSnippetList snippets = new ModelSetSnippetList();
 	
 	/**
 	 * The associated EditingDomain.
 	 */
 	private TransactionalEditingDomain transactionalEditingDomain;
+	
+	/** Set that enables to always load the uri with any strategy. */
+	private Set<URI> uriLoading = new HashSet<URI>();
+	
+	/** 
+	 * The proxy manager that loads the model according to a specific strategy. 
+	 */
+	private ProxyManager proxyManager;
 
+	
 	/**
 	 * 
 	 * Constructor.
 	 *
 	 */
 	public ModelSet() {
-		
+		proxyManager = new ProxyManager(this);
 	}
 	
 	/**
 	 * Register the specified model under its associated key.
 	 * The key is defined in the model itself. It is ussually the model type from
 	 * (ModelPackage.eCONTENT_TYPE).
-	 * 
-	 * @param model
+	 *
+	 * @param model the model
 	 */
 	public void registerModel( IModel model) {
 		models.put(model.getIdentifier(), model);
@@ -72,15 +99,38 @@ public class ModelSet extends ResourceSetImpl {
 	/**
 	 * Get a model by its key.
 	 * TODO throw an exception if not found.
-	 * @param key
-	 * @return
+	 *
+	 * @param key the key
+	 * @return the model
 	 */
 	public IModel getModel(Object key) {
 		return models.get(key);
 	}
 	
 	/**
-	 * Create the transactional editing domain
+	 * @see org.eclipse.emf.ecore.resource.impl.ResourceSetImpl#getEObject(org.eclipse.emf.common.util.URI, boolean)
+	 */
+	@Override
+	public EObject getEObject(URI uri, boolean loadOnDemand) {
+		//return super.getEObject(uri, loadOnDemand);
+		
+		URI resourceURI = uri.trimFragment();
+		// for performance reasons, we check the three initial resources first
+		if(resourceURI.equals(UmlUtils.getUmlModel(this).getResourceURI()) || resourceURI.equals(NotationUtils.getNotationModel(this).getResourceURI()) 
+			|| resourceURI.equals(SashModelUtils.getSashModel(this).getResourceURI()) || uriLoading.contains(resourceURI)) {
+			// do not manage eObject of the current resources
+			return super.getEObject(uri, loadOnDemand);
+		} else if(loadOnDemand) {
+			return proxyManager.getEObjectFromStrategy(uri);
+		} else {
+			return null;
+		}			
+	}
+	
+	/**
+	 * Create the transactional editing domain.
+	 *
+	 * @return the transactional editing domain
 	 */
 	public TransactionalEditingDomain getTransactionalEditingDomain() {
 		transactionalEditingDomain = TransactionalEditingDomain.Factory.INSTANCE.getEditingDomain(this);
@@ -148,7 +198,10 @@ public class ModelSet extends ResourceSetImpl {
 	
 	/**
 	 * Load only the specified model. ManagerSnippets are not called.
-	 * 
+	 *
+	 * @param modelIdentifier the model identifier
+	 * @param file the file
+	 * @return the i model
 	 * @returns The loaded model.
 	 */
 	public IModel loadModel(Object modelIdentifier, IFile file) {
@@ -205,9 +258,9 @@ public class ModelSet extends ResourceSetImpl {
 	
 	/**
 	 * The resources are already loaded, but we want to save them under another name.
-	 * 
-	 * @param path
-	 * @throws IOException
+	 *
+	 * @param path the path
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
 	public void saveAs(IPath path) throws IOException {
 
@@ -257,6 +310,16 @@ public class ModelSet extends ResourceSetImpl {
 	}
 	
 	/**
+	 * Enables to add an URI that will be always loaded.
+	 * It is not listening at the current loading strategy and always load the specified URI if needed.
+	 *
+	 * @param alwaysLoadedUri the always loaded uri
+	 */
+	public void forceUriLoading(URI alwaysLoadedUri) {
+		uriLoading.add(alwaysLoadedUri);
+	}
+	
+	/**
 	 * A list of {@link IModelSetSnippet}.
 	 * 
 	 * Used by Models to maintain their list of Snippets.
@@ -266,9 +329,7 @@ public class ModelSet extends ResourceSetImpl {
 	 */
 	public class ModelSetSnippetList extends ArrayList<IModelSetSnippet> {
 
-		/**
-		 * 
-		 */
+		/** The Constant serialVersionUID. */
 		private static final long serialVersionUID = 1L;
 
 		/**

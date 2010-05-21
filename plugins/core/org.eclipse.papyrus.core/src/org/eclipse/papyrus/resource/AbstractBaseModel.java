@@ -35,6 +35,11 @@ public abstract class AbstractBaseModel implements IModel {
 	 * The associated resource.
 	 */
 	protected Resource resource;
+	
+	/**
+	 * The resource URI.
+	 */
+	protected URI resourceURI;
 
 	/**
 	 * @see org.eclipse.papyrus.resource.IModel#init(org.eclipse.papyrus.resource.ModelSet)
@@ -70,6 +75,13 @@ public abstract class AbstractBaseModel implements IModel {
 	}
 
 	/**
+	 * @return the resourceURI
+	 */
+	public URI getResourceURI() {
+		return resourceURI;
+	}
+
+	/**
 	 * Get the model identifier.
 	 * 
 	 * @return
@@ -91,10 +103,10 @@ public abstract class AbstractBaseModel implements IModel {
 	public void createModel(IPath fullPath) {
 
 		// Compute model URI
-		URI modelUri = getPlatformURI(fullPath.addFileExtension(getModelFileExtension()));
+		resourceURI = getPlatformURI(fullPath.addFileExtension(getModelFileExtension()));
 
 		// Create Resource of appropriate type
-		resource = getModelManager().createResource(modelUri);
+		resource = getModelManager().createResource(resourceURI);
 	}
 
 	/**
@@ -130,10 +142,10 @@ public abstract class AbstractBaseModel implements IModel {
 	public void loadModel(IPath fullPathWithoutExtension) {
 
 		// Compute model URI
-		URI modelUri = getPlatformURI(fullPathWithoutExtension.addFileExtension(getModelFileExtension()));
+		resourceURI = getPlatformURI(fullPathWithoutExtension.addFileExtension(getModelFileExtension()));
 
 		// Create Resource of appropriate type
-		resource = modelManager.getResource(modelUri, true);
+		resource = modelManager.getResource(resourceURI, true);
 		// call registered snippets
 		snippets.performStart(this);
 	}
@@ -154,9 +166,9 @@ public abstract class AbstractBaseModel implements IModel {
 	 */
 	public void changeModelPath(IPath fullPath) {
 		// Compute model URI
-		URI modelUri = getPlatformURI(fullPath.addFileExtension(getModelFileExtension()));
+		resourceURI = getPlatformURI(fullPath.addFileExtension(getModelFileExtension()));
 
-		resource.setURI(modelUri);
+		resource.setURI(resourceURI);
 	}
 
 	/**

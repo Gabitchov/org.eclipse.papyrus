@@ -43,7 +43,8 @@ public class ExtendedUmlModel extends UmlModel {
 					String extension = r.getFullPath().getFileExtension();
 					if(r.getFullPath().removeFileExtension().lastSegment().equals(fullPath.lastSegment()) && !"di".equalsIgnoreCase(extension) && !"notation".equalsIgnoreCase(extension)) {
 						if(Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().get(extension) != null) {
-							resource = getResourceSet().getResource(getPlatformURI(r.getFullPath()), true);
+							resourceURI = getPlatformURI(r.getFullPath());
+							resource = getResourceSet().getResource(resourceURI, true);
 							break;
 						}
 					}

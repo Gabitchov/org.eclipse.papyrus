@@ -4,7 +4,6 @@
 package org.eclipse.papyrus.resource.uml;
 
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.resource.AbstractBaseModel;
 import org.eclipse.papyrus.resource.IModel;
 
@@ -34,10 +33,10 @@ public class UmlModel extends AbstractBaseModel implements IModel {
 	public void createModel(IPath fullPath) {
 		
 		// Compute model URI
-		URI modelUri = getPlatformURI(fullPath.addFileExtension(UML_FILE_EXTENSION));
+		resourceURI = getPlatformURI(fullPath.addFileExtension(UML_FILE_EXTENSION));
 
 		// Create Resource of appropriate type
-		resource = getResourceSet().createResource(modelUri, getContentType());
+		resource = getResourceSet().createResource(resourceURI, getContentType());
 	}
 
 	/**
