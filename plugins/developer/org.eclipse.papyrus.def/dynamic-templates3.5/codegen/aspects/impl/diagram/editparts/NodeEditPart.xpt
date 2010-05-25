@@ -109,9 +109,9 @@ new org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolic
 	protected org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure createNodePlate() {
 		String prefElementId="«elementType.displayName»";
 		org.eclipse.jface.preference.IPreferenceStore store =«getDiagram().editorGen.plugin.getActivatorQualifiedClassName()».getInstance().getPreferenceStore();
-		String preferrenceContantWitdh=org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId,  org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.WIDTH);
-		String preferrenceContantHeight=org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId,  org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.HEIGHT);
-		org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure result = new org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure(store.getInt(preferrenceContantWitdh), store.getInt(preferrenceContantHeight));
+		String preferenceConstantWitdh=org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId,  org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.WIDTH);
+		String preferenceConstantHeight=org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId,  org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.HEIGHT);
+		org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure result = new org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 		
 		«EXPAND setupNodePlate-»
 		return result;
