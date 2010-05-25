@@ -139,7 +139,7 @@ public class BehaviorExecutionSpecificationEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * Overrides to disable the defaultAnchorArea. The edge is now more stuck with the middle of the
+	 * Overrides to disable the defaultAnchorArea. The edge is no more stuck with the middle of the
 	 * figure.
 	 * 
 	 * @generated NOT
