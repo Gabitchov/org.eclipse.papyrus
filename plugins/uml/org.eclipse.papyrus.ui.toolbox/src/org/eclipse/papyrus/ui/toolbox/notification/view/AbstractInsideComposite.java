@@ -112,7 +112,7 @@ public abstract class AbstractInsideComposite extends Composite {
 	/**
 	 * Close the current Composite
 	 */
-	protected void close() {
+	public void close() {
 		callback.callBack(this);
 	}
 

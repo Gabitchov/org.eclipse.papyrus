@@ -13,6 +13,8 @@ package org.eclipse.papyrus.ui.toolbox.notification.builders;
 
 import org.eclipse.papyrus.ui.toolbox.notification.IBuilder;
 import org.eclipse.papyrus.ui.toolbox.notification.ICompositeCreator;
+import org.eclipse.papyrus.ui.toolbox.notification.INotification;
+import org.eclipse.papyrus.ui.toolbox.notification.dialogs.AsyncNotification;
 import org.eclipse.papyrus.ui.toolbox.notification.dialogs.ImagePapyrusAsyncNotificationPopup;
 import org.eclipse.papyrus.ui.toolbox.notification.dialogs.PapyrusAsyncNotificationPopup;
 import org.eclipse.papyrus.ui.toolbox.notification.utils.PapyrusControlsFactory;
@@ -35,7 +37,7 @@ public class AsyncNotifierBuilder implements IBuilder {
 	 * @see org.eclipse.papyrus.ui.toolbox.notification.IBuilder#build(org.eclipse.papyrus.ui.toolbox.notification.PropertyWrapper,
 	 * org.eclipse.ui.forms.widgets.FormToolkit)
 	 */
-	public void build(PropertyWrapper wrapper, final FormToolkit toolkit) {
+	public INotification build(PropertyWrapper wrapper, final FormToolkit toolkit) {
 		PapyrusAsyncNotificationPopup popup = null;
 		if(wrapper.getComposite() != null) {
 			final ICompositeCreator composite = wrapper.getComposite();
@@ -80,6 +82,7 @@ public class AsyncNotifierBuilder implements IBuilder {
 		}
 		popup.setTitle(wrapper.getTitle() == null ? "Papyrus" : wrapper.getTitle());
 		popup.open();
+		return new AsyncNotification(popup);
 	}
 
 	/*

@@ -25,6 +25,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.ui.toolbox.notification.IBuilder;
 import org.eclipse.papyrus.ui.toolbox.notification.ICompositeCreator;
+import org.eclipse.papyrus.ui.toolbox.notification.INotification;
 import org.eclipse.papyrus.ui.toolbox.notification.NotificationRunnable;
 import org.eclipse.papyrus.ui.toolbox.notification.PapyrusToolkit;
 import org.eclipse.papyrus.ui.toolbox.notification.Type;
@@ -260,7 +261,7 @@ public class NotificationBuilder {
 	/**
 	 * Creates a notification according to different parameters
 	 */
-	public void run() {
+	public INotification run() {
 		Set<IBuilder> copy = null;
 		if(builderClass != null) {
 			copy = new HashSet<IBuilder>();
@@ -281,13 +282,15 @@ public class NotificationBuilder {
 				}
 			}
 		}
+		INotification result = null;
 		PropertyWrapper wrapper = new PropertyWrapper(parameters);
 		if(copy.size() >= 1) {
-			copy.iterator().next().build(wrapper, toolkit);
+			result = copy.iterator().next().build(wrapper, toolkit);
 			// default case : the popup
 		} else if(copy.isEmpty()) {
-			builders.get(PopupBuilder.class).build(wrapper, toolkit);
+			result = builders.get(PopupBuilder.class).build(wrapper, toolkit);
 		}
+		return result;
 	}
 
 	/**

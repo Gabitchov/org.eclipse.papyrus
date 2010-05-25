@@ -32,7 +32,7 @@ public interface IBuilder {
 	 * @param toolkit
 	 *        , the toolkit for form creation
 	 */
-	void build(PropertyWrapper wrapper, FormToolkit toolkit);
+	INotification build(PropertyWrapper wrapper, FormToolkit toolkit);
 
 	/**
 	 * Determines if the IBuilder can manage the parameter with its value

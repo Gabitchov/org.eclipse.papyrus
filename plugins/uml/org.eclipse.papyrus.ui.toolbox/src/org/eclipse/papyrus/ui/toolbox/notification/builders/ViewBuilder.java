@@ -13,10 +13,12 @@ package org.eclipse.papyrus.ui.toolbox.notification.builders;
 
 import org.eclipse.papyrus.ui.toolbox.notification.IBuilder;
 import org.eclipse.papyrus.ui.toolbox.notification.ICompositeCreator;
+import org.eclipse.papyrus.ui.toolbox.notification.INotification;
 import org.eclipse.papyrus.ui.toolbox.notification.Type;
 import org.eclipse.papyrus.ui.toolbox.notification.utils.PapyrusControlsFactory;
 import org.eclipse.papyrus.ui.toolbox.notification.view.AbstractInsideComposite;
 import org.eclipse.papyrus.ui.toolbox.notification.view.PapyrusNotificationView;
+import org.eclipse.papyrus.ui.toolbox.notification.view.ViewNotification;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -41,7 +43,7 @@ public class ViewBuilder implements IBuilder {
 	 * @see org.eclipse.papyrus.ui.toolbox.notification.IBuilder#build(org.eclipse.papyrus.ui.toolbox.notification.PropertyWrapper,
 	 * org.eclipse.ui.forms.widgets.FormToolkit)
 	 */
-	public void build(PropertyWrapper wrapper, FormToolkit toolkit) {
+	public INotification build(PropertyWrapper wrapper, FormToolkit toolkit) {
 		try {
 			IViewPart part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(PapyrusNotificationView.ID);
 			if(part instanceof PapyrusNotificationView) {
@@ -68,9 +70,11 @@ public class ViewBuilder implements IBuilder {
 						}
 					}
 				}
+				return new ViewNotification(viewCompo);
 			}
 		} catch (PartInitException e) {
 		}
+		return null;
 	}
 
 	/*

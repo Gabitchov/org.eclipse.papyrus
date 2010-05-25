@@ -12,9 +12,11 @@
 package org.eclipse.papyrus.ui.toolbox.notification.builders;
 
 import org.eclipse.papyrus.ui.toolbox.notification.IBuilder;
+import org.eclipse.papyrus.ui.toolbox.notification.INotification;
 import org.eclipse.papyrus.ui.toolbox.notification.dialogs.PapyrusPopup;
 import org.eclipse.papyrus.ui.toolbox.notification.popups.IconAndMessagePapyrusPopup;
 import org.eclipse.papyrus.ui.toolbox.notification.popups.MessagePapyrusPopup;
+import org.eclipse.papyrus.ui.toolbox.notification.popups.PopupNotification;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 
@@ -32,7 +34,7 @@ public class PopupBuilder implements IBuilder {
 	 * @see org.eclipse.papyrus.ui.toolbox.notification.IBuilder#build(org.eclipse.papyrus.ui.toolbox.notification.PropertyWrapper,
 	 * org.eclipse.ui.forms.widgets.FormToolkit)
 	 */
-	public void build(PropertyWrapper wrapper, FormToolkit toolkit) {
+	public INotification build(PropertyWrapper wrapper, FormToolkit toolkit) {
 		PapyrusPopup popup = null;
 		String title = "Papyrus";
 		if(wrapper.getTitle() != null) {
@@ -60,6 +62,7 @@ public class PopupBuilder implements IBuilder {
 			popup.addRunnables(wrapper.getActions());
 		}
 		popup.open();
+		return new PopupNotification(popup);
 	}
 
 	/*
