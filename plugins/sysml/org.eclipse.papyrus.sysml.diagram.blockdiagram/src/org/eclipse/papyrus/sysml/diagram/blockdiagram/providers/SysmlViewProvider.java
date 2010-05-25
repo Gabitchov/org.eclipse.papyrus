@@ -71,24 +71,6 @@ public class SysmlViewProvider extends UMLViewProvider implements IViewProvider 
 	/**
 	 * @generated
 	 */
-	public boolean provides(IOperation operation) {
-		if(operation instanceof CreateViewForKindOperation) {
-			return provides((CreateViewForKindOperation)operation);
-		}
-		assert operation instanceof CreateViewOperation;
-		if(operation instanceof CreateDiagramViewOperation) {
-			return provides((CreateDiagramViewOperation)operation);
-		} else if(operation instanceof CreateEdgeViewOperation) {
-			return provides((CreateEdgeViewOperation)operation);
-		} else if(operation instanceof CreateNodeViewOperation) {
-			return provides((CreateNodeViewOperation)operation);
-		}
-		return false;
-	}
-
-	/**
-	 * @generated
-	 */
 	protected boolean provides(CreateViewForKindOperation op) {
 		/*
 		 * if (op.getViewKind() == Node.class)
