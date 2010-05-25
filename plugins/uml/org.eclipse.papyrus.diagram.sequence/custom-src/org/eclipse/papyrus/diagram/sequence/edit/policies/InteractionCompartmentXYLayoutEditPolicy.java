@@ -78,7 +78,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 	private CompoundCommand getResizeChildrenCommand(CompoundCommand compoundCmd, int width, LifelineEditPart lifelineEditPart, int number) {
 		// If the width increases or decreases, ExecutionSpecification elements need to
 		// be moved
-		for(ShapeNodeEditPart executionSpecificationEP : lifelineEditPart.getExecutionSpecificationList()) {
+		for(ShapeNodeEditPart executionSpecificationEP : lifelineEditPart.getChildShapeNodeEditPart()) {
 			// Lifeline's figure where the child is drawn
 			Rectangle rDotLine = lifelineEditPart.getContentPane().getBounds();
 
@@ -174,7 +174,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 		for(LifelineEditPart lifelineEP : lifelineEditPart.getInnerConnectableElementList()) {
 			minimunSize.union(getMinimumSizeFor(lifelineEP));
 		}
-		for(ShapeNodeEditPart executionSpecificationEP : lifelineEditPart.getExecutionSpecificationList()) {
+		for(ShapeNodeEditPart executionSpecificationEP : lifelineEditPart.getChildShapeNodeEditPart()) {
 			int minimunHeight = executionSpecificationEP.getFigure().getBounds().bottom();
 			minimunSize.setSize(new Dimension(minimunSize.width, Math.max(minimunSize.height, minimunHeight)));
 		}

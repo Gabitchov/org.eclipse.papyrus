@@ -57,6 +57,7 @@ import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
+import org.eclipse.uml2.uml.InteractionOperatorKind;
 import org.eclipse.uml2.uml.InteractionUse;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
@@ -580,6 +581,37 @@ public class CommandHelper {
 		}
 		return null;
 	}
+	
+	
+	/**
+	 * Create a CombinedFragment and its associated interaction Operand 
+	 * @param modelContainer the container of the CF. It could be an InteractionOperand or an Interaction.
+	 * @param operatorKind the operatorKind of the combinedFragment
+	 * @return the created CombinedFragment
+	 */
+	public static CombinedFragment doCreateCombinedFragment(Object modelContainer, InteractionOperatorKind operatorKind){
+		CombinedFragment combinedFragment = null;
+		
+		Element element = createElement(modelContainer, UMLPackage.eINSTANCE.getCombinedFragment());
+		if(element instanceof CombinedFragment){
+			combinedFragment = (CombinedFragment)element;
+			
+			// Set the operator kind
+			combinedFragment.setInteractionOperator(operatorKind);
+
+			// Create the operand
+			combinedFragment.createOperand(LabelHelper.INSTANCE.findName(combinedFragment,  UMLPackage.eINSTANCE.getInteractionOperand()));
+			
+			// 
+			if(InteractionOperatorKind.PAR_LITERAL.equals(operatorKind)){
+				combinedFragment.createOperand(LabelHelper.INSTANCE.findName(combinedFragment,  UMLPackage.eINSTANCE.getInteractionOperand()));
+			}
+			// TODO manage constraint3 and covered property
+			
+		}
+		return combinedFragment;
+	}
+	
 
 	/**
 	 * Create an ExecutionSpecification. It also creates the start and finish ExecutionOccurenceSpecification of the ExecutionSpecification, and their
@@ -850,5 +882,7 @@ public class CommandHelper {
 
 		return true;
 	}
+	
+
 
 }

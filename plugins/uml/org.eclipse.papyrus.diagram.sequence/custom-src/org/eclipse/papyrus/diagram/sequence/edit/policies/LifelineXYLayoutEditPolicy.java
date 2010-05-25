@@ -96,7 +96,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 					// Get the dotline figure
 					LifelineDotLineFigure figureLifelineDotLineFigure = editPart.getPrimaryShape().getFigureLifelineDotLineFigure();
-					List<ShapeNodeEditPart> executionSpecificationList = editPart.getExecutionSpecificationList();
+					List<ShapeNodeEditPart> executionSpecificationList = editPart.getChildShapeNodeEditPart();
 
 					// Translate the absolute location to relative
 					figureLifelineDotLineFigure.translateToRelative(newLocation);
@@ -247,7 +247,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		LifelineEditPart lifelineEP = (LifelineEditPart)getHost();
 
 		// We are supposed to work with only one children at a time
-		if(editParts != null && editParts.size() == 1 && lifelineEP.getExecutionSpecificationList().contains(editParts.get(0))) {
+		if(editParts != null && editParts.size() == 1 && lifelineEP.getChildShapeNodeEditPart().contains(editParts.get(0))) {
 			// The child's EditPart
 			ShapeNodeEditPart executionSpecificationEP = (ShapeNodeEditPart)editParts.get(0);
 
@@ -322,7 +322,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			return null;
 		}
 
-		List<ShapeNodeEditPart> toCheckExecutionSpecificationList = lifelineEP.getExecutionSpecificationList();
+		List<ShapeNodeEditPart> toCheckExecutionSpecificationList = lifelineEP.getChildShapeNodeEditPart();
 		toCheckExecutionSpecificationList.removeAll(notToCheckExecutionSpecificationList);
 
 		// Change to relative bounds of the LifelineEP
@@ -344,7 +344,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		LifelineEditPart lifelineEP = (LifelineEditPart)getHost();
 
 		// We are supposed to work with only one children at a time
-		if(editParts != null && editParts.size() == 1 && lifelineEP.getExecutionSpecificationList().contains(editParts.get(0))) {
+		if(editParts != null && editParts.size() == 1 && lifelineEP.getChildShapeNodeEditPart().contains(editParts.get(0))) {
 			// The child's EditPart
 			ShapeNodeEditPart executionSpecificationEP = (ShapeNodeEditPart)editParts.get(0);
 
@@ -366,7 +366,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 			// Add also current ExecutionSpecification EditPart
 			notToCheckExecutionSpecificationList.add(executionSpecificationEP);
 
-			newBounds = getExecutionSpecificationNewBoundsForMove(lifelineEP.getPrimaryShape().getFigureLifelineDotLineFigure(), newBounds, lifelineEP.getExecutionSpecificationList(), notToCheckExecutionSpecificationList);
+			newBounds = getExecutionSpecificationNewBoundsForMove(lifelineEP.getPrimaryShape().getFigureLifelineDotLineFigure(), newBounds, lifelineEP.getChildShapeNodeEditPart(), notToCheckExecutionSpecificationList);
 			if(newBounds == null) {
 				return null; // UnexecutableCommand.INSTANCE
 			}
@@ -411,7 +411,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 * @return the command
 	 */
 	protected final static Command createZOrderCommand(LifelineEditPart lifelineEP, ShapeNodeEditPart executionSpecificationEP, Rectangle newBounds, List<ShapeNodeEditPart> notToCheckExecutionSpecificationList) {
-		List<ShapeNodeEditPart> toCheckExecutionSpecificationList = lifelineEP.getExecutionSpecificationList();
+		List<ShapeNodeEditPart> toCheckExecutionSpecificationList = lifelineEP.getChildShapeNodeEditPart();
 		toCheckExecutionSpecificationList.removeAll(notToCheckExecutionSpecificationList);
 		CompoundCommand cmd = new CompoundCommand();
 		for(ShapeNodeEditPart externalExecutionSpecificationEP : toCheckExecutionSpecificationList) {
@@ -592,7 +592,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		LifelineEditPart lifelineEP = (LifelineEditPart)executionSpecificationEP.getParent();
 
 		// ExecutionSpecification EditParts list
-		List<ShapeNodeEditPart> executionSpecificationList = lifelineEP.getExecutionSpecificationList();
+		List<ShapeNodeEditPart> executionSpecificationList = lifelineEP.getChildShapeNodeEditPart();
 		executionSpecificationList.remove(newNotToCheckExecutionSpecificationList);
 
 		// List to store the Affixed ExecutionSpecification

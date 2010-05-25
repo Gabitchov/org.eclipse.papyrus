@@ -357,7 +357,7 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		// Execution specification handling
-		if(editPart instanceof BehaviorExecutionSpecificationEditPart || editPart instanceof ActionExecutionSpecificationEditPart) {
+		if(editPart instanceof BehaviorExecutionSpecificationEditPart || editPart instanceof ActionExecutionSpecificationEditPart || editPart instanceof CombinedFragment2EditPart) {
 			return getPrimaryShape().getFigureLifelineDotLineFigure();
 		}
 		if(editPart instanceof IBorderItemEditPart) {
@@ -1337,12 +1337,14 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 	 * 
 	 * @return the list of ExecutionSpecification EditParts
 	 */
-	public List<ShapeNodeEditPart> getExecutionSpecificationList() {
+	public List<ShapeNodeEditPart> getChildShapeNodeEditPart() {
 		List<ShapeNodeEditPart> executionSpecificationList = new ArrayList<ShapeNodeEditPart>();
 		for(Object obj : getChildren()) {
 			if(obj instanceof BehaviorExecutionSpecificationEditPart) {
 				executionSpecificationList.add((ShapeNodeEditPart)obj);
 			} else if(obj instanceof ActionExecutionSpecificationEditPart) {
+				executionSpecificationList.add((ShapeNodeEditPart)obj);
+			} else if(obj instanceof CombinedFragment2EditPart){
 				executionSpecificationList.add((ShapeNodeEditPart)obj);
 			}
 		}
@@ -1590,7 +1592,7 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 			if(target instanceof LifelineEditPart) {
 				LifelineEditPart lifelineEditPart = (LifelineEditPart)target;
 				Rectangle lifelineBounds = lifelineEditPart.getContentPane().getBounds();
-				for(ShapeNodeEditPart executionSpecificationEditPart : lifelineEditPart.getExecutionSpecificationList()) {
+				for(ShapeNodeEditPart executionSpecificationEditPart : lifelineEditPart.getChildShapeNodeEditPart()) {
 					IFigure executionSpecificationFigure = executionSpecificationEditPart.getFigure();
 					Rectangle esBounds = executionSpecificationFigure.getBounds().getCopy();
 					esBounds.x = lifelineBounds.x;

@@ -25,11 +25,10 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
+import org.eclipse.papyrus.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.uml2.uml.CombinedFragment;
-import org.eclipse.uml2.uml.Interaction;
-import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.InteractionOperatorKind;
 
 /**
  * @generated
@@ -100,6 +99,10 @@ public class CombinedFragment2CreateCommand extends EditElementCommand {
 	}
 
 	/**
+	 * Create a CoRegion :
+	 * - creates two operands 
+	 * - set the Interaction Operator to parallel 
+	 * 
 	 * @generated NOT
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -107,19 +110,16 @@ public class CombinedFragment2CreateCommand extends EditElementCommand {
 		// Get the model container
 		Object modelContainer = ((CreateElementRequest)getRequest()).getParameters().get(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER);
 
-		CombinedFragment newElement = UMLFactory.eINSTANCE.createCombinedFragment();
+		CombinedFragment combinedFragment = CommandHelper.doCreateCombinedFragment(modelContainer, InteractionOperatorKind.PAR_LITERAL);
 
-		// TODO : modelContainer may be an operand. 
-		Interaction owner = (Interaction)modelContainer;
-		owner.getFragments().add(newElement);
-
-
-		ElementInitializers.getInstance().init_CombinedFragment_3018(newElement);
-
-		doConfigure(newElement, monitor, info);
-
-		((CreateElementRequest)getRequest()).setNewElement(newElement);
-		return CommandResult.newOKCommandResult(newElement);
+		if(combinedFragment != null){
+			doConfigure(combinedFragment, monitor, info);
+			((CreateElementRequest)getRequest()).setNewElement(combinedFragment);
+			return CommandResult.newOKCommandResult(combinedFragment);
+		}
+	
+		return CommandResult.newErrorCommandResult("");
+		
 	}
 
 
