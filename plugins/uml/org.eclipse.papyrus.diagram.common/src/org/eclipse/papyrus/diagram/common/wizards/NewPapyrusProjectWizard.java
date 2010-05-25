@@ -41,22 +41,35 @@ import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * The Wizard creates a Papyrus Project and a Papyrus Model inside it
+ * The Wizard creates a Papyrus Project and a Papyrus Model inside it.
  */
-
 public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 
+	/** The new project page. */
 	private WizardNewProjectCreationPage myNewProjectPage;
 
+	/** The diagram kind page. */
 	private SelectDiagramKindPage myDiagramKindPage;
 
+	/** The initial project name. */
 	private String initialProjectName;
 
+	/**
+	 * @see org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard#init(org.eclipse.ui.IWorkbench,
+	 *      org.eclipse.jface.viewers.IStructuredSelection)
+	 * 
+	 * @param workbench
+	 * @param selection
+	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		super.init(workbench, selection);
 		setWindowTitle("New Papyrus Project");
 	}
 
+	/**
+	 * @see org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard#addPages()
+	 * 
+	 */
 	public void addPages() {
 		super.addPages();
 		myNewProjectPage = (WizardNewProjectCreationPage)getPage("basicNewProjectPage"); //$NON-NLS-1$
@@ -67,6 +80,7 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 		}
 
 		myDiagramKindPage = new SelectDiagramKindPage("Select kind of diagram") {
+
 			protected boolean validatePage() {
 				return true;
 			};
@@ -74,23 +88,38 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 		addPage(myDiagramKindPage);
 	}
 
+	/**
+	 * Creates the file.
+	 * 
+	 * @return the file
+	 */
 	private IFile createFile() {
 		IPath newFilePath = myNewProjectPage.getProjectHandle().getFullPath().append(NewModelFilePage.DEFAULT_NAME + "." + NewModelFilePage.DIAGRAM_EXTENSION);
 		return ResourcesPlugin.getWorkspace().getRoot().getFile(newFilePath);
 	}
 
+	/**
+	 * @see org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard#performFinish()
+	 * 
+	 * @return
+	 */
 	public boolean performFinish() {
 		boolean created = super.performFinish();
-		if (!created) {
+		if(!created) {
 			return false;
 		}
 		// if the user wants to create a diagram
-		if (myDiagramKindPage.getCreationCommand() != null) {
+		if(myDiagramKindPage.getCreationCommand() != null) {
 			return createPapyrusModel();
 		}
 		return true;
 	}
-	
+
+	/**
+	 * Creates the papyrus model.
+	 * 
+	 * @return true, if successful
+	 */
 	private boolean createPapyrusModel() {
 		final DiResourceSet diResourceSet = new DiResourceSet();
 		try {
@@ -147,25 +176,49 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 		return true;
 	}
 
+	/**
+	 * Initialize model resource.
+	 * 
+	 * @param resource
+	 *        the domain model resource
+	 * @param rootElementName
+	 *        the root element name
+	 */
 	private void initializeModelResource(Resource resource, String rootElementName) {
-//		// fjcano #293135 :: support model templates
-//		if(!isInitializeFromTemplate()) {
-			Model model = UMLFactory.eINSTANCE.createModel();
-			model.setName(rootElementName);
-			resource.getContents().add(model);
-//		} else {
-//			super.initializeModelResource(resource, rootElementName);
-//		}
+		//		// fjcano #293135 :: support model templates
+		//		if(!isInitializeFromTemplate()) {
+		Model model = UMLFactory.eINSTANCE.createModel();
+		model.setName(rootElementName);
+		resource.getContents().add(model);
+		//		} else {
+		//			super.initializeModelResource(resource, rootElementName);
+		//		}
 	}
 
+	/**
+	 * Sets the initial project name.
+	 * 
+	 * @param initialProjectName
+	 *        the new initial project name
+	 */
 	public void setInitialProjectName(String initialProjectName) {
 		this.initialProjectName = initialProjectName;
 	}
 
+	/**
+	 * Gets the model content type.
+	 * 
+	 * @return the model content type
+	 */
 	protected String getModelContentType() {
 		return UMLPackage.eCONTENT_TYPE;
 	}
 
+	/**
+	 * Gets the model file extension.
+	 * 
+	 * @return the model file extension
+	 */
 	protected String getModelFileExtension() {
 		return "uml";
 	}

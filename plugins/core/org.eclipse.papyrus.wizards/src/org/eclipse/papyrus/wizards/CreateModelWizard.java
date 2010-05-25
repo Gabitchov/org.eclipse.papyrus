@@ -245,11 +245,27 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 		return true;
 	}
 
+	/**
+	 * Gets the model content type.
+	 *
+	 * @return the model content type
+	 */
 	protected abstract String getModelContentType();
 
+	/**
+	 * Gets the model file extension.
+	 *
+	 * @return the model file extension
+	 */
 	protected abstract String getModelFileExtension();
 
 	// fjcano #293135 :: support model templates
+	/**
+	 * Initialize model resource.
+	 *
+	 * @param resource the resource
+	 * @param rootElementName the root element name
+	 */
 	private void initializeModelResource(Resource resource, String rootElementName) {
 		String templatePath = selectTemplateWizardPage.getTemplatePath();
 		boolean initializeFromTemplate = templatePath != null;
@@ -260,6 +276,13 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 		}
 	}
 
+	/**
+	 * Initialize from template.
+	 *
+	 * @param resource the resource
+	 * @param rootElementName the root element name
+	 * @param templatePath the template path
+	 */
 	protected void initializeFromTemplate(Resource resource, String rootElementName, String templatePath) {
 		Resource templateResource = loadTemplateResource(templatePath);
 		List<EObject> eObjectsToAdd = new ArrayList<EObject>();
@@ -271,9 +294,21 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 		}
 	}
 
+	/**
+	 * Initialize empty model.
+	 *
+	 * @param resource the resource
+	 * @param rootElementName the root element name
+	 */
 	protected void initializeEmptyModel(Resource resource, String rootElementName) {
 	}
 
+	/**
+	 * Load template resource.
+	 *
+	 * @param templatePath the template path
+	 * @return the resource
+	 */
 	private Resource loadTemplateResource(String templatePath) {
 		String templatePluginID = selectTemplateWizardPage.getTemplatePluginId();
 		java.net.URL templateURL = Platform.getBundle(templatePluginID).getResource(templatePath);
