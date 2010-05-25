@@ -79,4 +79,21 @@ public class Activator extends AbstractUIPlugin {
 		return image;
 	}
 
+	/**
+	 * Returns the image from the given image descriptor
+	 * 
+	 * @param descriptor
+	 *        the descriptor of the image to be displayed
+	 * @return the image found
+	 */
+	public static Image getImage(String path) {
+		final ImageRegistry registry = getDefault().getImageRegistry();
+		Image image = registry.get(path);
+		if(image == null) {
+			registry.put(path, Activator.imageDescriptorFromPlugin(ID, path));
+			image = registry.get(path);
+		}
+		return image;
+
+	}
 }

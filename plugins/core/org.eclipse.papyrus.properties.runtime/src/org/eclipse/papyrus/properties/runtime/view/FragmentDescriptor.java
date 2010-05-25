@@ -17,6 +17,7 @@ import java.util.List;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptor;
+import org.eclipse.swt.graphics.Image;
 import org.w3c.dom.Node;
 
 
@@ -65,6 +66,20 @@ public class FragmentDescriptor extends AbstractConstrainedDescriptor {
 			}
 		}
 		return descriptors;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getText() {
+		return "Fragment: " + getId();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Image getImage() {
+		return Activator.getImage("/icons/Fragment.gif");
 	}
 
 }

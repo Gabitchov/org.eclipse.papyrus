@@ -21,13 +21,13 @@ import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptor;
 /**
  * state for Fragment descriptor
  */
-public class FragmentDescriptorState {
+public class FragmentDescriptorState extends AbstractState {
 
 	/** descriptor managed by this state */
 	protected FragmentDescriptor descriptor;
 
 	/** list of container descriptors state children of this state */
-	protected List<ContainerDescriptorState> containerDescriptorStates = new ArrayList<ContainerDescriptorState>();
+	protected final List<ContainerDescriptorState> containerDescriptorStates = new ArrayList<ContainerDescriptorState>();
 
 	/**
 	 * Creates a new FragmentDescriptorState.
@@ -45,7 +45,25 @@ public class FragmentDescriptorState {
 		}
 	}
 
-	public FragmentDescriptor getFragmentDescriptor() {
+	public FragmentDescriptor getDescriptor() {
 		return descriptor;
 	}
+
+
+	/**
+	 * Returns the containerDescriptor States for this fragment
+	 * 
+	 * @return the containerDescriptor States for this fragment
+	 */
+	public List<ContainerDescriptorState> getContainerDescriptorStates() {
+		return containerDescriptorStates;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getEditionDialogId() {
+		return "FragmentDescriptorStateDialog";
+	}
+
 }

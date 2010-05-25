@@ -9,22 +9,28 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.properties.runtime.view.constraints;
+package org.eclipse.papyrus.properties.tabbed.customization.state;
 
-import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
+import org.eclipse.swt.graphics.Image;
+
 
 /**
- * Descriptor for constraints on the sections
+ * Abstract class for state used to configure the property view
  */
-public interface IConstraintDescriptor extends IConfigurableDescriptor {
+public abstract class AbstractState implements IState {
 
 	/**
-	 * Returns <code>true</code> if the constraint is valid for the given object
-	 * 
-	 * @param objectToTest
-	 *        the object to test
-	 * @return <code>true</code> if the constraint is valid
+	 * {@inheritDoc}
 	 */
-	public boolean select(Object objectToTest);
+	public String getText() {
+		return getDescriptor().getText();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Image getImage() {
+		return getDescriptor().getImage();
+	}
 
 }

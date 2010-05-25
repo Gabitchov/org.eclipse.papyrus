@@ -11,27 +11,29 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.customization.dialog;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.gmt.modisco.infra.browser.uicore.CustomizableModelLabelProvider;
 import org.eclipse.papyrus.properties.tabbed.core.view.DynamicSectionDescriptor;
+import org.eclipse.papyrus.properties.tabbed.customization.Activator;
 import org.eclipse.papyrus.properties.tabbed.customization.state.SectionSetDescriptorState;
+import org.eclipse.swt.graphics.Image;
 
 
 /**
  * Label provider for the metamodel tree viewer in the customize property view dialog
  */
-public class MetamodelLabelProvider extends AdapterFactoryLabelProvider {
+public class MetamodelLabelProvider extends CustomizableModelLabelProvider {
+
+	/** image key for the section set state */
+	public static final String SECTION_SET_IMG = "sectionSetImg";
 
 	/**
 	 * Creates a new MetamodelLabelProvider.
 	 * 
 	 * @param adapterFactory
-	 *        the adapter factory from which elements can be adap to find their own label provider
+	 *        the adapter factory from which elements can be adapt to find their own label provider
 	 */
 	public MetamodelLabelProvider() {
-		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		super(Activator.getDefault().getCustomizationManager());
 	}
 
 	/**
@@ -39,22 +41,24 @@ public class MetamodelLabelProvider extends AdapterFactoryLabelProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		IItemLabelProvider itemLabelProvider = (IItemLabelProvider)adapterFactory.adapt(object, IItemLabelProvider.class);
-		if(object instanceof EObject) {
-			if(((EObject)object).eIsProxy()) {
-				return "Proxy - " + object;
-			} else {
-				return itemLabelProvider != null ? itemLabelProvider.getText(object) : object == null ? "" : object.toString();
-			}
-		} else if(object instanceof DynamicSectionDescriptor) {
+		if(object instanceof DynamicSectionDescriptor) {
 			return ((DynamicSectionDescriptor)object).getId();
 		} else if(object instanceof SectionSetDescriptorState) {
 			SectionSetDescriptorState state = (SectionSetDescriptorState)object;
 			return state.getLabel();
 		} else {
-			return object.toString();
+			return super.getText(object);
 		}
-
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Image getImage(Object element) {
+		if(element instanceof SectionSetDescriptorState) {
+			return Activator.getImage("/icons/type.gif");
+		}
+		return super.getImage(element);
+	}
 }

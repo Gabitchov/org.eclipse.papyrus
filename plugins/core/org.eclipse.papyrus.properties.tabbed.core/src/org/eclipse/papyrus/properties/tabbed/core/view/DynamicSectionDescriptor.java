@@ -19,8 +19,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.views.properties.tabbed.AbstractSectionDescriptor;
 import org.eclipse.ui.views.properties.tabbed.ISection;
@@ -32,7 +34,7 @@ import org.w3c.dom.Node;
 /**
  * Descriptor for sections using controllers.
  */
-public class DynamicSectionDescriptor extends AbstractSectionDescriptor implements IEnhancedFilter {
+public class DynamicSectionDescriptor extends AbstractSectionDescriptor implements IEnhancedFilter, IConfigurableDescriptor {
 
 	/** semantic resolver */
 	protected static final String SEMANTIC_RESOLVER = "Semantic";
@@ -311,4 +313,17 @@ public class DynamicSectionDescriptor extends AbstractSectionDescriptor implemen
 		return fragmentsId;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getText() {
+		return "Section: " + getId() + " in tab: " + getTargetTab();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Image getImage() {
+		return org.eclipse.papyrus.properties.tabbed.core.Activator.getImage("/icons/Section.gif");
+	}
 }

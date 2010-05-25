@@ -9,22 +9,28 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.properties.runtime.view.constraints;
+package org.eclipse.papyrus.properties.runtime.view;
 
-import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
+import org.eclipse.swt.graphics.Image;
+
 
 /**
- * Descriptor for constraints on the sections
+ * interface shared by all descriptors that can be configured by the Papyrus customization support
  */
-public interface IConstraintDescriptor extends IConfigurableDescriptor {
+public interface IConfigurableDescriptor {
 
 	/**
-	 * Returns <code>true</code> if the constraint is valid for the given object
+	 * Returns the label displayed by the descriptor
 	 * 
-	 * @param objectToTest
-	 *        the object to test
-	 * @return <code>true</code> if the constraint is valid
+	 * @return the label displayed by the descriptor
 	 */
-	public boolean select(Object objectToTest);
+	public String getText();
+
+	/**
+	 * Returns the image displayed by the descriptor
+	 * 
+	 * @return the image displayed by the descriptor
+	 */
+	public Image getImage();
 
 }

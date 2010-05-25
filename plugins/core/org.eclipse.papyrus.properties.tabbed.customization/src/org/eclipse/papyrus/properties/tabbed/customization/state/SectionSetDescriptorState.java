@@ -24,19 +24,13 @@ import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptor;
 /**
  * State for section set descriptors
  */
-public class SectionSetDescriptorState {
+public class SectionSetDescriptorState extends AbstractState {
 
 	/** list of sections for this section set */
 	protected final List<SectionDescriptorState> sectionDescriptorStates = new ArrayList<SectionDescriptorState>();
 
-	/**
-	 * Returns the sectionDescriptorStates
-	 * 
-	 * @return the sectionDescriptorStates
-	 */
-	public List<SectionDescriptorState> getSectionDescriptorStates() {
-		return sectionDescriptorStates;
-	}
+	/** list of constraints for this section set */
+	protected final List<ConstraintDescriptorState> constraintDescriptorStates = new ArrayList<ConstraintDescriptorState>();
 
 	/** descriptor for section sets */
 	protected final SectionSetDescriptor sectionSetDescriptor;
@@ -49,7 +43,7 @@ public class SectionSetDescriptorState {
 	 * 
 	 * @return the sectionSetDescriptor managed by this state
 	 */
-	public SectionSetDescriptor getSectionSetDescriptor() {
+	public SectionSetDescriptor getDescriptor() {
 		return sectionSetDescriptor;
 	}
 
@@ -67,6 +61,12 @@ public class SectionSetDescriptorState {
 			SectionDescriptorState sectionState = new SectionDescriptorState(abstractSectionDescriptor);
 			sectionDescriptorStates.add(sectionState);
 		}
+
+		// retrieve and build the states for the children sections
+		for(IConstraintDescriptor constraintDescriptor : sectionSetDescriptor.getConstraintDescriptors()) {
+			ConstraintDescriptorState constraintState = new ConstraintDescriptorState(constraintDescriptor);
+			constraintDescriptorStates.add(constraintState);
+		}
 	}
 
 	/**
@@ -81,7 +81,7 @@ public class SectionSetDescriptorState {
 			buffer.append(": ");
 			// retrieve metaclass constraint
 			String metaclassName = "";
-			for(IConstraintDescriptor constraintDescriptor : getSectionSetDescriptor().getConstraintDescriptors()) {
+			for(IConstraintDescriptor constraintDescriptor : getDescriptor().getConstraintDescriptors()) {
 				if(constraintDescriptor instanceof ObjectTypeConstraintDescriptor) {
 					metaclassName = ((ObjectTypeConstraintDescriptor)constraintDescriptor).getElementClass().getCanonicalName();
 				}
@@ -89,13 +89,13 @@ public class SectionSetDescriptorState {
 			buffer.append(metaclassName);
 
 			// now append selection size between '[' and ']'
-			int selectionSize = getSectionSetDescriptor().getSelectionSize();
+			int selectionSize = getDescriptor().getSelectionSize();
 			buffer.append(" [");
 			buffer.append((selectionSize >= 0) ? selectionSize : "*");
 			buffer.append(']');
 
 			// append stereotype required 
-			for(IConstraintDescriptor constraintDescriptor : getSectionSetDescriptor().getConstraintDescriptors()) {
+			for(IConstraintDescriptor constraintDescriptor : getDescriptor().getConstraintDescriptors()) {
 				if(constraintDescriptor instanceof AppliedStereotypeConstraintDescriptor) {
 					buffer.append('<');
 					buffer.append(((AppliedStereotypeConstraintDescriptor)constraintDescriptor).getStereotypeQualifiedNames());
@@ -106,5 +106,30 @@ public class SectionSetDescriptorState {
 			name = buffer.toString();
 		}
 		return name;
+	}
+
+	/**
+	 * Returns the constraintDescriptor States for this section set
+	 * 
+	 * @return the constraintDescriptor States for this section set
+	 */
+	public List<ConstraintDescriptorState> getConstraintDescriptorStates() {
+		return constraintDescriptorStates;
+	}
+
+	/**
+	 * Returns the sectionDescriptor States for this section set
+	 * 
+	 * @return the sectionDescriptor States for this section set
+	 */
+	public List<SectionDescriptorState> getSectionDescriptorStates() {
+		return sectionDescriptorStates;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getEditionDialogId() {
+		return "SectionSetDescriptorStateDialog";
 	}
 }

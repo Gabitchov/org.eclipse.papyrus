@@ -22,13 +22,13 @@ import org.eclipse.papyrus.properties.tabbed.core.view.DynamicSectionDescriptor;
 /**
  * State for section descriptors
  */
-public class SectionDescriptorState {
+public class SectionDescriptorState extends AbstractState {
 
 	/** section descriptor managed by this state */
 	protected DynamicSectionDescriptor sectionDescriptor;
 
 	/** list of fragment descriptor states */
-	protected List<FragmentDescriptorState> fragmentDescriptorStates = new ArrayList<FragmentDescriptorState>();
+	private List<FragmentDescriptorState> fragmentDescriptorStates = new ArrayList<FragmentDescriptorState>();
 
 	/**
 	 * Creates a new SectionDescriptorState.
@@ -44,7 +44,7 @@ public class SectionDescriptorState {
 			/// retrieve the descriptor and creates a state on it
 			FragmentDescriptor fragmentDescriptor = PropertyViewService.getInstance().getFragmentDescriptor(id);
 			if(fragmentDescriptor != null) {
-				fragmentDescriptorStates.add(new FragmentDescriptorState(fragmentDescriptor));
+				getFragmentDescriptorStates().add(new FragmentDescriptorState(fragmentDescriptor));
 			}
 		}
 	}
@@ -54,7 +54,23 @@ public class SectionDescriptorState {
 	 * 
 	 * @return the section Descriptor managed by this state
 	 */
-	public DynamicSectionDescriptor getSectionDescriptor() {
+	public DynamicSectionDescriptor getDescriptor() {
 		return sectionDescriptor;
+	}
+
+	/**
+	 * Returns the fragmentDescriptor States for the section descriptor
+	 * 
+	 * @return the fragmentDescriptorStates for the section descriptor
+	 */
+	public List<FragmentDescriptorState> getFragmentDescriptorStates() {
+		return fragmentDescriptorStates;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getEditionDialogId() {
+		return "SectionDescriptorStateDialog";
 	}
 }

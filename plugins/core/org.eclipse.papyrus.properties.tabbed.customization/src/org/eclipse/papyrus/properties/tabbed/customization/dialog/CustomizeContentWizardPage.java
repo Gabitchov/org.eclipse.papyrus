@@ -15,17 +15,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.ITreeSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.TreePath;
+import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.properties.runtime.dialogs.PropertyDialog;
 import org.eclipse.papyrus.properties.runtime.view.DialogDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
 import org.eclipse.papyrus.properties.runtime.view.XMLParseException;
 import org.eclipse.papyrus.properties.tabbed.core.view.PropertyServiceUtil;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
+import org.eclipse.papyrus.properties.tabbed.customization.state.IState;
 import org.eclipse.papyrus.properties.tabbed.customization.state.SectionSetDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.customization.state.StatePropertyTabViewProviderParser;
 import org.eclipse.papyrus.umlutils.PackageUtil;
@@ -36,8 +47,10 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
+import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -58,7 +71,17 @@ public class CustomizeContentWizardPage extends WizardPage {
 	/** available section states for this wizard page */
 	protected List<SectionSetDescriptorState> sectionSetDescriptorStates;
 
-	protected TreeViewer contentViewer;
+	/** tree viewer on the metamodel and the set of available section sets descriptors */
+	protected TreeViewer metamodelViewer;
+
+	/** current selection of section set */
+	protected SectionSetDescriptorState currentSectionSetDescriptorState;
+
+	/** current selection of metaclass */
+	protected EClassifier currentMetaClass;
+
+	/** tree viewer for the configuration area */
+	protected TreeViewer configurationViewer;
 
 	/**
 	 * Creates a new CustomizeContentWizardPage.
@@ -109,9 +132,9 @@ public class CustomizeContentWizardPage extends WizardPage {
 			parser.parseXMLfile(document, PropertyViewService.getInstance().getAllFragmentDescriptors(), new HashMap<String, DialogDescriptor>());
 			sectionSetDescriptorStates = parser.getSectionSetDescriptorStates();
 
-			contentViewer.setContentProvider(new MetamodelContentProvider(sectionSetDescriptorStates));
-			contentViewer.setLabelProvider(new MetamodelLabelProvider());
-			contentViewer.setInput(UMLPackage.eINSTANCE.eContents());
+			metamodelViewer.setContentProvider(new MetamodelContentProvider(sectionSetDescriptorStates));
+			metamodelViewer.setLabelProvider(new MetamodelLabelProvider());
+			metamodelViewer.setInput(UMLPackage.eINSTANCE.eContents());
 		} catch (XMLParseException e) {
 			Activator.log.error(e);
 		}
@@ -160,7 +183,45 @@ public class CustomizeContentWizardPage extends WizardPage {
 		// content tree and viewer on this tree
 		Tree configurationTree = new Tree(configurationAreaComposite, SWT.BORDER);
 		configurationTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		TreeViewer contentViewer = new TreeViewer(configurationTree);
+		configurationViewer = new TreeViewer(configurationTree);
+		configurationViewer.setContentProvider(new ConfigurationContentProvider());
+		configurationViewer.setLabelProvider(new ConfigurationLabelProvider());
+		configurationViewer.addDoubleClickListener(new IDoubleClickListener() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void doubleClick(DoubleClickEvent event) {
+				// edit element on which double click occurs => open edit dialog
+				ITreeSelection selection = (ITreeSelection)event.getSelection();
+				Object selectedElement = selection.getFirstElement();
+
+				// if element is a state, opens the dialog on this state
+				if(selectedElement instanceof IState) {
+					openEditionDialog(((IState)selectedElement));
+				}
+			}
+		});
+
+	}
+
+	/**
+	 * Opens an edition dialog on the given state
+	 * 
+	 * @param iState
+	 *        the state to edit
+	 */
+	protected void openEditionDialog(IState iState) {
+		// find editor descriptor...
+		DialogDescriptor descriptor = PropertyViewService.getInstance().getDialogDescriptor(iState.getEditionDialogId());
+		List<Object> objectsToEdit = new ArrayList<Object>();
+		objectsToEdit.add(iState);
+
+		if(descriptor != null) {
+			Shell parentShell = getShell();
+			PropertyDialog dialog = new PropertyDialog(parentShell, descriptor, objectsToEdit, new TabbedPropertySheetWidgetFactory());
+			dialog.open();
+		}
 	}
 
 	/**
@@ -206,7 +267,45 @@ public class CustomizeContentWizardPage extends WizardPage {
 		// content tree and viewer on this tree
 		Tree contentTree = new Tree(mainContentAreaComposite, SWT.BORDER);
 		contentTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		contentViewer = new TreeViewer(contentTree);
+		metamodelViewer = new TreeViewer(contentTree);
+		metamodelViewer.addPostSelectionChangedListener(new ISelectionChangedListener() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void selectionChanged(SelectionChangedEvent event) {
+				//update the current section set selection
+				TreeSelection selection = ((TreeSelection)event.getSelection());
+				Object selectedElement = selection.getFirstElement();
+				// this can be a metaclass or a section set descriptor.
+				if(selectedElement instanceof EClass) {
+					setCurrentSectionSetDescriptorState(null);
+					setCurrentMetaClass((EClass)selectedElement);
+				} else if(selectedElement instanceof SectionSetDescriptorState) {
+					// retrieve the metaclass using the TreePath of the selection
+					TreePath[] paths = selection.getPathsFor(selectedElement);
+					// metaclass should be the first element in the table
+					if(paths.length > 0) {
+						TreePath treePath = paths[0];
+						Object firstSegment = treePath.getSegment(0);
+						if(firstSegment instanceof EClassifier) {
+							currentMetaClass = (EClassifier)firstSegment;
+						}
+					}
+					currentSectionSetDescriptorState = (SectionSetDescriptorState)selectedElement;
+
+					updateConfigurationArea();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Updates the configuration area
+	 */
+	protected void updateConfigurationArea() {
+		configurationViewer.setInput(currentSectionSetDescriptorState);
+		configurationViewer.expandAll();
 	}
 
 	/**
@@ -250,5 +349,47 @@ public class CustomizeContentWizardPage extends WizardPage {
 	 */
 	protected String getProfileDisplayName(Profile profile) {
 		return profile.getQualifiedName();
+	}
+
+
+	/**
+	 * Returns the currentSectionSetDescriptorState
+	 * 
+	 * @return the currentSectionSetDescriptorState
+	 */
+	public SectionSetDescriptorState getCurrentSectionSetDescriptorState() {
+		return currentSectionSetDescriptorState;
+	}
+
+
+	/**
+	 * Sets the currentSectionSetDescriptorState
+	 * 
+	 * @param currentSectionSetDescriptorState
+	 *        the currentSectionSetDescriptorState to set
+	 */
+	public void setCurrentSectionSetDescriptorState(SectionSetDescriptorState currentSectionSetDescriptorState) {
+		this.currentSectionSetDescriptorState = currentSectionSetDescriptorState;
+	}
+
+
+	/**
+	 * Returns the current selected MetaClass
+	 * 
+	 * @return the current selected MetaClass
+	 */
+	public EClassifier getCurrentMetaClass() {
+		return currentMetaClass;
+	}
+
+
+	/**
+	 * Sets the current selected MetaClass
+	 * 
+	 * @param currentMetaClass
+	 *        the current MetaClass to set
+	 */
+	public void setCurrentMetaClass(EClassifier currentMetaClass) {
+		this.currentMetaClass = currentMetaClass;
 	}
 }

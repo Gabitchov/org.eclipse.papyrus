@@ -12,12 +12,13 @@
 package org.eclipse.papyrus.properties.runtime.controller.descriptor;
 
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
 
 
 /**
  * interface for all property editor controllers
  */
-public interface IPropertyEditorControllerDescriptor {
+public interface IPropertyEditorControllerDescriptor extends IConfigurableDescriptor {
 
 	/**
 	 * Indicates if the controller accepts multi selection

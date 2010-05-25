@@ -13,13 +13,16 @@ package org.eclipse.papyrus.properties.runtime.view.constraints;
 
 import java.util.List;
 
+import org.eclipse.papyrus.properties.runtime.Activator;
+import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * Descriptor for constraints based on stereoype application
  */
-public class AppliedStereotypeConstraintDescriptor implements IConstraintDescriptor {
+public class AppliedStereotypeConstraintDescriptor implements IConstraintDescriptor, IConfigurableDescriptor {
 
 	/** list of stereotype qualified names to be applied */
 	private final List<String> stereotypeQualifiedNames;
@@ -61,6 +64,20 @@ public class AppliedStereotypeConstraintDescriptor implements IConstraintDescrip
 	 */
 	public List<String> getStereotypeQualifiedNames() {
 		return stereotypeQualifiedNames;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getText() {
+		return "Stereotypes Constraint: " + getStereotypeQualifiedNames();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Image getImage() {
+		return Activator.getImage("/icons/StereotypeConstraint.gif");
 	}
 
 }

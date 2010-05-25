@@ -15,6 +15,7 @@ import java.util.List;
 
 import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorController;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Layout;
 import org.eclipse.ui.services.IDisposable;
@@ -25,7 +26,7 @@ import org.w3c.dom.Node;
 /**
  * Descriptor for the containers in the section.
  */
-public abstract class AbstractContainerDescriptor implements IDisposable {
+public abstract class AbstractContainerDescriptor implements IDisposable, IConfigurableDescriptor {
 
 	/** layout used by this container */
 	protected final Layout layout;

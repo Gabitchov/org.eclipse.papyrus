@@ -17,7 +17,10 @@ import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEdi
 /**
  * State for controller descriptors
  */
-public class ControllerDescriptorState {
+public class ControllerDescriptorState extends AbstractState {
+
+	/** identifier for the controller descriptor editor dialog */
+	private static final String CONTROLLER_DESCRIPTOR_EDITOR_DLG = "ControllerDescriptorEditorDialog";
 
 	/** descriptor managed by this state */
 	protected IPropertyEditorControllerDescriptor descriptor;
@@ -38,6 +41,13 @@ public class ControllerDescriptorState {
 	 */
 	public IPropertyEditorControllerDescriptor getDescriptor() {
 		return descriptor;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getEditionDialogId() {
+		return CONTROLLER_DESCRIPTOR_EDITOR_DLG;
 	}
 
 }

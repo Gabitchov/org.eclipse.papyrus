@@ -11,18 +11,24 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.view.constraints;
 
+import org.eclipse.papyrus.properties.runtime.Activator;
+import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
+import org.eclipse.swt.graphics.Image;
+
 
 /**
  * Descriptor for a constraint based on the type of object
  */
-public class ObjectTypeConstraintDescriptor implements IConstraintDescriptor {
+public class ObjectTypeConstraintDescriptor implements IConstraintDescriptor, IConfigurableDescriptor {
 
 	/** class of the edited element */
 	protected final Class<?> elementClass;
 
 	/**
 	 * Creates a new ObjectTypeConstraintDescriptor.
-	 * @param elementClass class of the element to edit
+	 * 
+	 * @param elementClass
+	 *        class of the element to edit
 	 */
 	public ObjectTypeConstraintDescriptor(Class<?> elementClass) {
 		this.elementClass = elementClass;
@@ -51,6 +57,19 @@ public class ObjectTypeConstraintDescriptor implements IConstraintDescriptor {
 		return elementClass;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getText() {
+		return "Object Type Constraint: " + getElementClass().getCanonicalName();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Image getImage() {
+		return Activator.getImage("/icons/ObjectTypeConstraint.gif");
+	}
 
 
 }

@@ -13,8 +13,10 @@ package org.eclipse.papyrus.properties.runtime.view.content;
 
 import java.util.List;
 
+import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorController;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Layout;
@@ -81,5 +83,19 @@ public class ExpandableContainerDescriptor extends ContainerDescriptor {
 	 */
 	protected Composite getPropertyEditorContainer() {
 		return expandableContainer;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getText() {
+		return "ExpandableContainerDescriptor";
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Image getImage() {
+		return Activator.getImage("/icons/ExpandableContainer.gif");
 	}
 }

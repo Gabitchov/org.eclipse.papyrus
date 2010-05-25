@@ -21,7 +21,7 @@ import org.w3c.dom.Node;
 /**
  * Abstract Descriptors that contains a list of constraints, has a unique identifier and holds a list of created containers
  */
-public class AbstractConstrainedDescriptor {
+public abstract class AbstractConstrainedDescriptor implements IConfigurableDescriptor {
 
 	/** id of the dialog */
 	protected final String id;

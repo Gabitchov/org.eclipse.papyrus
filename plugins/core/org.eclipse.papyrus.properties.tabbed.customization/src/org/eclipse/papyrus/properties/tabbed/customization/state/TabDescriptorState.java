@@ -11,12 +11,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.customization.state;
 
+import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
 
 /**
  * State for tab descriptors
  */
-public class TabDescriptorState {
+public class TabDescriptorState implements IState {
 
 	/** tab descriptor managed by this state */
 	protected ITabDescriptor tabDescriptor;
@@ -39,5 +41,36 @@ public class TabDescriptorState {
 	 */
 	public ITabDescriptor getTabDescriptor() {
 		return tabDescriptor;
+	}
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getText() {
+		return "NotImplemented: TabDescriptorState";
+	}
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Image getImage() {
+		return null;
+	}
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public IConfigurableDescriptor getDescriptor() {
+		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getEditionDialogId() {
+		return "TabDescriptorStateDialog";
 	}
 }

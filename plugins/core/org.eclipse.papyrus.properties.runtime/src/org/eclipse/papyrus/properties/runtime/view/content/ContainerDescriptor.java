@@ -21,6 +21,7 @@ import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEdi
 import org.eclipse.papyrus.properties.runtime.controller.predefined.PredefinedPropertyControllerProvider;
 import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Layout;
@@ -205,5 +206,19 @@ public class ContainerDescriptor extends AbstractContainerDescriptor {
 			parseContent();
 		}
 		return getControllerDescriptors();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getText() {
+		return "SimpleContainerDescriptor";
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Image getImage() {
+		return Activator.getImage("/icons/Container.gif");
 	}
 }

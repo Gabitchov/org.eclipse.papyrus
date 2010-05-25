@@ -15,19 +15,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.content.AbstractContainerDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptor;
 
 
 /**
  * State for the container descriptors. this is used to do some customization on elements
  */
-public class ContainerDescriptorState {
+public class ContainerDescriptorState extends AbstractState {
 
 	/** descriptor managed by this state */
-	protected ContainerDescriptor descriptor;
+	protected AbstractContainerDescriptor descriptor;
 
 	/** list of controllers managed by this state */
-	protected List<ControllerDescriptorState> controllerDescriptorStates = new ArrayList<ControllerDescriptorState>();
+	protected final List<ControllerDescriptorState> controllerDescriptorStates = new ArrayList<ControllerDescriptorState>();
 
 	/**
 	 * Creates a new ContainerDescriptorState.
@@ -50,8 +51,26 @@ public class ContainerDescriptorState {
 	 * 
 	 * @return the descriptor described by this state
 	 */
-	public ContainerDescriptor getDescriptor() {
+	public AbstractContainerDescriptor getDescriptor() {
 		return descriptor;
+	}
+
+
+	/**
+	 * Returns the controllerDescriptor States for this descriptor
+	 * 
+	 * @return the controllerDescriptor States for this descriptor
+	 */
+	public List<ControllerDescriptorState> getControllerDescriptorStates() {
+		return controllerDescriptorStates;
+	}
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getEditionDialogId() {
+		return "ContainerDescriptorStateDialog";
 	}
 
 }

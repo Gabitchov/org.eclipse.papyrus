@@ -17,6 +17,7 @@ import java.util.List;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IBindingLabelProviderDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
+import org.eclipse.swt.graphics.Image;
 import org.w3c.dom.Node;
 
 /**
@@ -112,5 +113,19 @@ public class DialogDescriptor extends AbstractConstrainedDescriptor {
 	 */
 	public List<String> getReplacedDialogIds() {
 		return replacedDialogIds;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getText() {
+		return "DialogDescriptor";
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Image getImage() {
+		return null;
 	}
 }

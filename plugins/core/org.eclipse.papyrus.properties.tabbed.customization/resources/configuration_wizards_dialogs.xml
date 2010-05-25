@@ -1,0 +1,32 @@
+<!-- Generic dialogs for UML elements -->
+<dialogs pluginId="org.eclipse.papyrus.properties.tabbed.customization">
+	<dialog id="ControllerDescriptorEditorDialog"><!-- Dialog for single controller descriptor state -->
+		<context enablesFor="1">
+			<elementClass
+				name="org.eclipse.papyrus.properties.tabbed.customization.state.ControllerDescriptorState">
+			</elementClass>
+		</context>
+		<title>
+			<string value="Edit Controller Descriptor"/>
+		</title>
+		<message>
+			<string value="Edit Controller Descriptor Message"/>
+		</message>
+		<content>
+			<fragment id="fragment_single_ControllerDescriptorState">	<!-- fragment for controller descriptor state -->
+				<context enablesFor="1">
+					<elementClass name="org.eclipse.papyrus.properties.tabbed.customization.state.ControllerDescriptorState"></elementClass>
+				</context>
+				<content>
+					<container layout="Grid" columns="1" sameSize="false">
+						 <controller id="emftLabelProviderStructuralFeatureController">
+							<feature name="ownedAttribute" handlerID="Reference"/>
+							<editor id="org.eclipse.papyrus.properties.runtime.multipleStructuralFeaturesPropertyEditor" label="Attributes:" labelPosition="16384">
+							</editor>
+						</controller>
+					</container>
+				</content>
+			</fragment>
+		</content>
+	</dialog>
+</dialogs>

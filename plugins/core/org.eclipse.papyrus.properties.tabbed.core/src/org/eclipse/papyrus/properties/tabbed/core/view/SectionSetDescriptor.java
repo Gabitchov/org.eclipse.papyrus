@@ -13,13 +13,18 @@ package org.eclipse.papyrus.properties.tabbed.core.view;
 
 import java.util.List;
 
+import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.constraints.AppliedStereotypeConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.constraints.ObjectTypeConstraintDescriptor;
+import org.eclipse.papyrus.properties.tabbed.core.Activator;
+import org.eclipse.swt.graphics.Image;
 
 
 /**
  * Descriptor for section set (used mostly for configuration purpose)
  */
-public class SectionSetDescriptor {
+public class SectionSetDescriptor implements IConfigurableDescriptor {
 
 	/** list of section descriptors own by this section set */
 	private final List<DynamicSectionDescriptor> sectionDescriptors;
@@ -78,5 +83,45 @@ public class SectionSetDescriptor {
 	 */
 	public String getName() {
 		return name;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getText() {
+		StringBuffer buffer = new StringBuffer();
+		buffer.append(getName());
+		buffer.append(": ");
+		// retrieve metaclass constraint
+		String metaclassName = "";
+		for(IConstraintDescriptor constraintDescriptor : getConstraintDescriptors()) {
+			if(constraintDescriptor instanceof ObjectTypeConstraintDescriptor) {
+				metaclassName = ((ObjectTypeConstraintDescriptor)constraintDescriptor).getElementClass().getCanonicalName();
+			}
+		}
+		buffer.append(metaclassName);
+
+		// now append selection size between '[' and ']'
+		int selectionSize = getSelectionSize();
+		buffer.append(" [");
+		buffer.append((selectionSize >= 0) ? selectionSize : "*");
+		buffer.append(']');
+
+		// append stereotype required 
+		for(IConstraintDescriptor constraintDescriptor : getConstraintDescriptors()) {
+			if(constraintDescriptor instanceof AppliedStereotypeConstraintDescriptor) {
+				buffer.append('<');
+				buffer.append(((AppliedStereotypeConstraintDescriptor)constraintDescriptor).getStereotypeQualifiedNames());
+				buffer.append('>');
+			}
+		}
+		return buffer.toString();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Image getImage() {
+		return Activator.getImage("/icons/SectionSet.gif");
 	}
 }
