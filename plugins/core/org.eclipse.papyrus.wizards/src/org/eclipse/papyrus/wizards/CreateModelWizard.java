@@ -7,32 +7,19 @@
  * 
  * Contributors:
  *     Obeo - initial API and implementation
+ *     Tatiana Fesenko(CEA) - [313179] Refactor CreateModelWizard
  *******************************************************************************/
 package org.eclipse.papyrus.wizards;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import static org.eclipse.papyrus.wizards.Activator.log;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
-import org.eclipse.papyrus.core.utils.EditorUtils;
-import org.eclipse.papyrus.core.utils.PapyrusTrace;
-import org.eclipse.papyrus.resource.uml.UmlModel;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
@@ -138,35 +125,12 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 		}
 		selectDiagramKindPage = new SelectDiagramKindPage("Select kind of diagram");
 		// fjcano #293135 :: support model templates
-		selectTemplateWizardPage = new SelectTemplateWizardPage(Activator.PLUGIN_ID, null, null);
+		selectTemplateWizardPage = getSelectTemplateWizardPage();
 	}
 	
-	/**
-	 * Suggests a name of diagram file for the domain model file 
-	 */
-	protected String getDiagramFileName(IFile domainModel) {
-		String diModelFileName = (domainModel.getLocation().removeFileExtension().lastSegment());
-		diModelFileName += ".di";
-		return diModelFileName;
+	protected SelectTemplateWizardPage getSelectTemplateWizardPage() {
+		return new SelectTemplateWizardPage(Activator.PLUGIN_ID, null, null); 
 	}
-
-	/**
-	 * Returns the first file from the given selection 
-	 */
-	private IFile getSelectedFile(IStructuredSelection selection) {
-		if(selection != null && !selection.isEmpty() && selection.getFirstElement() instanceof IFile) {
-			return (IFile)selection.getFirstElement();
-		}
-		return null;
-	}
-
-	/**
-	 * Returns true is the file can be served as a model model for the diagram
-	 */
-	protected boolean isSupportedDomainModelFile(IFile file) {
-		return file != null && getModelFileExtension().equals(file.getFileExtension());
-	}
-
 
 	/**
 	 * This method will be invoked, when the "Finish" button is pressed.
@@ -176,151 +140,67 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 	 */
 	@Override
 	public boolean performFinish() {
-		try {
-			// create a new file, result != null if successful
-			final IFile newFile = newModelFilePage.createNewFile();
-
-			RecordingCommand command = new RecordingCommand(diResourceSet.getTransactionalEditingDomain()) {
-
-				@Override
-				protected void doExecute() {
-					// Create Model Resource, Notation Resource, DI Resource
-					diResourceSet.createModelResources(newFile, getModelContentType(), getModelFileExtension());
-
-					// Initialize Model Resource
-					Resource modelResource = diResourceSet.getModelResource();
-					if(modelResource != null) {
-						IPath path = new Path(newFile.getName());
-						initializeModelResource(modelResource, path.removeFileExtension().toString());
-					}
-				}
-			};
-			diResourceSet.getTransactionalEditingDomain().getCommandStack().execute(command);
-
-			// WorkspaceModifyOperation operation = new
-			// WorkspaceModifyOperation() {
-			// @Override
-			// protected void execute(IProgressMonitor progressMonitor) {
-			//			
-			// }
-			// };
-			//		
-			// getContainer().run(false, false, operation);
-
-			// open newly created file in the editor
-			IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
-			if((newFile != null) && (page != null)) {
-
-				String diagramName = selectDiagramKindPage.getDiagramName();
-				ICreationCommand creationCommand = selectDiagramKindPage.getCreationCommand();
-
-				if(creationCommand == null) {
-					// Create an empty editor (no diagrams opened)
-					// Geting an IPageMngr is enough to initialize the
-					// SashSystem.
-					EditorUtils.getTransactionalIPageMngr(diResourceSet.getDiResource(), diResourceSet.getTransactionalEditingDomain());
-				} else {
-					EObject root = domainModelURI != null ? selectRootElementPage.getModelElement() : null;
-					creationCommand.createDiagram(diResourceSet, root, diagramName);
-				}
-				try {
-					diResourceSet.save(new NullProgressMonitor());
-				} catch (IOException e) {
-					PapyrusTrace.log(e);
-					return false;
-				}
-
-				try {
-					IDE.openEditor(page, newFile, true);
-				} catch (PartInitException e) {
-					PapyrusTrace.log(e);
-					return false;
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		// create a new file, result != null if successful
+		final IFile newFile = newModelFilePage.createNewFile();
+		selectTemplateWizardPage.initializeModelResource(diResourceSet, newFile, getModelContentType(), getModelFileExtension());
+		if(newFile == null) {
 			return false;
+		}
+
+		EObject root = domainModelURI != null ? selectRootElementPage.getModelElement() : null;
+		selectDiagramKindPage.createDiagram(diResourceSet, root);
+
+		IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
+		if(page != null) {
+			try {
+				IDE.openEditor(page, newFile, true);
+			} catch (PartInitException e) {
+				log.error(e);
+				return false;
+			}
 		}
 
 		return true;
 	}
 
 	/**
+	 * Suggests a name of diagram file for the domain model file
+	 */
+	protected String getDiagramFileName(IFile domainModel) {
+		String diModelFileName = (domainModel.getLocation().removeFileExtension().lastSegment());
+		diModelFileName += ".di";
+		return diModelFileName;
+	}
+
+	/**
+	 * Returns true is the file can be served as a model model for the diagram
+	 */
+	protected boolean isSupportedDomainModelFile(IFile file) {
+		return file != null && getModelFileExtension().equals(file.getFileExtension());
+	}
+
+	/**
+	 * Returns the first file from the given selection
+	 */
+	private IFile getSelectedFile(IStructuredSelection selection) {
+		if(selection != null && !selection.isEmpty() && selection.getFirstElement() instanceof IFile) {
+			return (IFile)selection.getFirstElement();
+		}
+		return null;
+	}
+
+	/**
 	 * Gets the model content type.
-	 *
+	 * 
 	 * @return the model content type
 	 */
 	protected abstract String getModelContentType();
 
 	/**
 	 * Gets the model file extension.
-	 *
+	 * 
 	 * @return the model file extension
 	 */
 	protected abstract String getModelFileExtension();
-
-	// fjcano #293135 :: support model templates
-	/**
-	 * Initialize model resource.
-	 *
-	 * @param resource the resource
-	 * @param rootElementName the root element name
-	 */
-	private void initializeModelResource(Resource resource, String rootElementName) {
-		String templatePath = selectTemplateWizardPage.getTemplatePath();
-		boolean initializeFromTemplate = templatePath != null;
-		if(initializeFromTemplate) {
-			initializeFromTemplate(resource, rootElementName, templatePath);
-		} else {
-			initializeEmptyModel(resource, rootElementName);
-		}
-	}
-
-	/**
-	 * Initialize from template.
-	 *
-	 * @param resource the resource
-	 * @param rootElementName the root element name
-	 * @param templatePath the template path
-	 */
-	protected void initializeFromTemplate(Resource resource, String rootElementName, String templatePath) {
-		Resource templateResource = loadTemplateResource(templatePath);
-		List<EObject> eObjectsToAdd = new ArrayList<EObject>();
-		for(EObject eObject : templateResource.getContents()) {
-			eObjectsToAdd.add(EcoreUtil.copy(eObject));
-		}
-		for(EObject eObject : eObjectsToAdd) {
-			resource.getContents().add(eObject);
-		}
-	}
-
-	/**
-	 * Initialize empty model.
-	 *
-	 * @param resource the resource
-	 * @param rootElementName the root element name
-	 */
-	protected void initializeEmptyModel(Resource resource, String rootElementName) {
-	}
-
-	/**
-	 * Load template resource.
-	 *
-	 * @param templatePath the template path
-	 * @return the resource
-	 */
-	private Resource loadTemplateResource(String templatePath) {
-		String templatePluginID = selectTemplateWizardPage.getTemplatePluginId();
-		java.net.URL templateURL = Platform.getBundle(templatePluginID).getResource(templatePath);
-		String fullUri = templateURL.getPath();
-		URI uri = URI.createPlatformPluginURI(templatePluginID + fullUri, true);
-		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.getResource(uri, true);
-		if(resource.isLoaded()) {
-			return resource;
-		}
-		return null;
-	}
-
 
 }

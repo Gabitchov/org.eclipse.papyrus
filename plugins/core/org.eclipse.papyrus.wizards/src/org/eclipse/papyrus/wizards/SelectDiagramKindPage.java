@@ -11,15 +11,20 @@
  *******************************************************************************/
 package org.eclipse.papyrus.wizards;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.core.extension.NotFoundException;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.core.extension.commands.CreationCommandRegistry;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
+import org.eclipse.papyrus.core.utils.DiResourceSet;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.core.utils.PapyrusTrace;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -73,14 +78,14 @@ public class SelectDiagramKindPage extends WizardPage {
 	public ICreationCommand getCreationCommand() {
 		return creationCommand;
 	}
-	
+
 	public SelectDiagramKindPage(String pageName) {
 		super(pageName);
 		setPageComplete(false);
 		setTitle("Initialization information");
 		setDescription("Select name and kind of the diagram");
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -94,11 +99,11 @@ public class SelectDiagramKindPage extends WizardPage {
 
 		createNameForm(plate);
 		createDiagramKindForm(plate);
-		
-//		if(!myDiagramKindButtons.isEmpty()) {
-//			Button defaultKind = myDiagramKindButtons.get(0);
-//			setDefaultDiagramKind((String)defaultKind.getData());
-//		}
+
+		//		if(!myDiagramKindButtons.isEmpty()) {
+		//			Button defaultKind = myDiagramKindButtons.get(0);
+		//			setDefaultDiagramKind((String)defaultKind.getData());
+		//		}
 		setPageComplete(validatePage());
 
 	}
@@ -128,12 +133,12 @@ public class SelectDiagramKindPage extends WizardPage {
 			button.setData(desc.getCommandId());
 			myDiagramKindButtons.add(button);
 		}
-		
+
 	}
-	
+
 	private void setDefaultDiagramKind(String defaultKindCommandId) {
 		for(Button button : myDiagramKindButtons) {
-			if (defaultKindCommandId != null && defaultKindCommandId.equals(button.getData())) {
+			if(defaultKindCommandId != null && defaultKindCommandId.equals(button.getData())) {
 				button.setSelection(true);
 			} else {
 				button.setSelection(false);
@@ -143,7 +148,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	}
 
 	private void setDiagramCreationCommand(String commandId) {
-		if (commandId == null) {
+		if(commandId == null) {
 			this.creationCommand = null;
 			return;
 		}
@@ -210,9 +215,30 @@ public class SelectDiagramKindPage extends WizardPage {
 		setErrorMessage(message);
 		setPageComplete(message == null);
 	}
-	
+
 	protected boolean validatePage() {
 		return false == "".equals(getDiagramName()) && getCreationCommand() != null;
 	}
-	
+
+	public boolean createDiagram(DiResourceSet diResourceSet, EObject root) {
+		String diagramName = getDiagramName();
+		ICreationCommand creationCommand = getCreationCommand();
+
+		if(creationCommand != null) {
+			creationCommand.createDiagram(diResourceSet, root, diagramName);
+		} else {
+			// Create an empty editor (no diagrams opened)
+			// Geting an IPageMngr is enough to initialize the
+			// SashSystem.
+			EditorUtils.getTransactionalIPageMngr(diResourceSet.getDiResource(), diResourceSet.getTransactionalEditingDomain());
+		}
+		try {
+			diResourceSet.save(new NullProgressMonitor());
+		} catch (IOException e) {
+			PapyrusTrace.log(e);
+			return false;
+		}
+		return true;
+	}
+
 }

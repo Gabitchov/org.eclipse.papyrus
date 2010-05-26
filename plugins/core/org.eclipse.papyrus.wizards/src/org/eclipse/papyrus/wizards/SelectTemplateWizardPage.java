@@ -15,10 +15,20 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -27,6 +37,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -60,20 +71,17 @@ public class SelectTemplateWizardPage extends WizardPage {
 		// TODO Auto-generated constructor stub
 	}
 
-	public SelectTemplateWizardPage(String editorId, WizardPage nextPage,
-			WizardPage templatePage) {
+	public SelectTemplateWizardPage(String editorId, WizardPage nextPage, WizardPage templatePage) {
 		super("Select creation approach");
 		this.setTitle("Select creation approach");
-		this
-				.setDescription("Diagrams can be created from scratch or from a template");
+		this.setDescription("Diagrams can be created from scratch or from a template");
 		this.editorId = editorId;
 	}
 
 	public String getTemplatePath() {
 		if(this.useTemplateButton.getSelection()) {
 			if(this.templateTableViewer.getSelection() instanceof IStructuredSelection) {
-				Object first = ((IStructuredSelection)this.templateTableViewer
-						.getSelection()).getFirstElement();
+				Object first = ((IStructuredSelection)this.templateTableViewer.getSelection()).getFirstElement();
 				if(first instanceof ModelTemplateDescription) {
 					return ((ModelTemplateDescription)first).getPath();
 				}
@@ -86,8 +94,7 @@ public class SelectTemplateWizardPage extends WizardPage {
 	public String getTemplatePluginId() {
 		if(this.useTemplateButton.getSelection()) {
 			if(this.templateTableViewer.getSelection() instanceof IStructuredSelection) {
-				Object first = ((IStructuredSelection)this.templateTableViewer
-						.getSelection()).getFirstElement();
+				Object first = ((IStructuredSelection)this.templateTableViewer.getSelection()).getFirstElement();
 				if(first instanceof ModelTemplateDescription) {
 					return ((ModelTemplateDescription)first).getPluginId();
 				}
@@ -125,13 +132,11 @@ public class SelectTemplateWizardPage extends WizardPage {
 		templateTableViewer = new TableViewer(composite);
 		templateTableViewer.getTable().setLayoutData(data);
 
-		templateTableViewer
-				.setContentProvider(new ModelTemplatesContentProvider());
+		templateTableViewer.setContentProvider(new ModelTemplatesContentProvider());
 		templateTableViewer.setLabelProvider(new ModelTemplatesLabelProvider());
 		templateTableViewer.setInput(0);
 		if(templateTableViewer.getTable().getItemCount() > 0) {
-			IStructuredSelection ss = new StructuredSelection(
-					templateTableViewer.getElementAt(0));
+			IStructuredSelection ss = new StructuredSelection(templateTableViewer.getElementAt(0));
 			templateTableViewer.setSelection(ss);
 		} else {
 			useTemplateButton.setEnabled(false);
@@ -171,8 +176,98 @@ public class SelectTemplateWizardPage extends WizardPage {
 
 	}
 
-	private class ModelTemplatesContentProvider implements
-			IStructuredContentProvider {
+	public void initializeModelResource(final DiResourceSet diResourceSet, final IFile newFile, final String modelContentType, final String modelFileExtension) {
+		RecordingCommand command = new RecordingCommand(diResourceSet.getTransactionalEditingDomain()) {
+
+			@Override
+			protected void doExecute() {
+				// Create Model Resource, Notation Resource, DI Resource
+				diResourceSet.createModelResources(newFile, modelContentType, modelFileExtension);
+
+				// Initialize Model Resource
+				Resource modelResource = diResourceSet.getModelResource();
+				if(modelResource != null) {
+					IPath path = new Path(newFile.getName());
+					initializeModelResource(modelResource, path.removeFileExtension().toString());
+				}
+			}
+		};
+		diResourceSet.getTransactionalEditingDomain().getCommandStack().execute(command);
+
+	}
+
+	/**
+	 * Initialize model resource.
+	 * 
+	 * @param resource
+	 *        the resource
+	 * @param rootElementName
+	 *        the root element name
+	 */
+	protected void initializeModelResource(Resource resource, String rootElementName) {
+		String templatePath = getTemplatePath();
+		boolean initializeFromTemplate = templatePath != null;
+		if(initializeFromTemplate) {
+			initializeFromTemplate(resource, rootElementName, templatePath);
+		} else {
+			initializeEmptyModel(resource, rootElementName);
+		}
+	}
+
+	/**
+	 * Initialize from template.
+	 * 
+	 * @param resource
+	 *        the resource
+	 * @param rootElementName
+	 *        the root element name
+	 * @param templatePath
+	 *        the template path
+	 */
+	protected void initializeFromTemplate(Resource resource, String rootElementName, String templatePath) {
+		Resource templateResource = loadTemplateResource(templatePath);
+		List<EObject> eObjectsToAdd = new ArrayList<EObject>();
+		for(EObject eObject : templateResource.getContents()) {
+			eObjectsToAdd.add(EcoreUtil.copy(eObject));
+		}
+		for(EObject eObject : eObjectsToAdd) {
+			resource.getContents().add(eObject);
+		}
+	}
+
+	/**
+	 * Initialize empty model.
+	 * 
+	 * @param resource
+	 *        the resource
+	 * @param rootElementName
+	 *        the root element name
+	 */
+	protected void initializeEmptyModel(Resource resource, String rootElementName) {
+	}
+	
+	/**
+	 * Load template resource.
+	 * 
+	 * @param templatePath
+	 *        the template path
+	 * @return the resource
+	 */
+	private Resource loadTemplateResource(String templatePath) {
+		String templatePluginID = getTemplatePluginId();
+		java.net.URL templateURL = Platform.getBundle(templatePluginID).getResource(templatePath);
+		String fullUri = templateURL.getPath();
+		URI uri = URI.createPlatformPluginURI(templatePluginID + fullUri, true);
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.getResource(uri, true);
+		if(resource.isLoaded()) {
+			return resource;
+		}
+		return null;
+	}
+
+
+	private class ModelTemplatesContentProvider implements IStructuredContentProvider {
 
 		private static final String extensionPointId = "org.eclipse.papyrus.wizards.templates";
 
@@ -189,8 +284,7 @@ public class SelectTemplateWizardPage extends WizardPage {
 			List<ModelTemplateDescription> templates = new ArrayList<ModelTemplateDescription>();
 
 			IExtensionRegistry registry = Platform.getExtensionRegistry();
-			IExtension[] extensions = registry.getExtensionPoint(
-					extensionPointId).getExtensions();
+			IExtension[] extensions = registry.getExtensionPoint(extensionPointId).getExtensions();
 
 			for(IExtension extension : extensions) {
 				templates.addAll(processExtension(extension));
@@ -199,15 +293,10 @@ public class SelectTemplateWizardPage extends WizardPage {
 			return templates.toArray();
 		}
 
-		private Collection<ModelTemplateDescription> processExtension(
-				IExtension extension) {
+		private Collection<ModelTemplateDescription> processExtension(IExtension extension) {
 			List<ModelTemplateDescription> templates = new ArrayList<ModelTemplateDescription>();
-			for(IConfigurationElement configElement : extension
-					.getConfigurationElements()) {
-				templates.add(new ModelTemplateDescription(configElement
-						.getAttribute(ATTRIBUTE_NAME), extension
-						.getContributor().getName(), configElement
-						.getAttribute(ATTRIBUTE_FILE)));
+			for(IConfigurationElement configElement : extension.getConfigurationElements()) {
+				templates.add(new ModelTemplateDescription(configElement.getAttribute(ATTRIBUTE_NAME), extension.getContributor().getName(), configElement.getAttribute(ATTRIBUTE_FILE)));
 			}
 			return templates;
 		}
@@ -233,8 +322,7 @@ public class SelectTemplateWizardPage extends WizardPage {
 
 		private String pluginId;
 
-		public ModelTemplateDescription(String name, String pluginId,
-				String path) {
+		public ModelTemplateDescription(String name, String pluginId, String path) {
 			super();
 			this.name = name;
 			// this.e = metamodelURI;
@@ -283,8 +371,7 @@ public class SelectTemplateWizardPage extends WizardPage {
 		public String getColumnText(Object element, int columnIndex) {
 			if(element instanceof ModelTemplateDescription) {
 				ModelTemplateDescription modelTemplate = (ModelTemplateDescription)element;
-				return modelTemplate.getName() + " ("
-						+ modelTemplate.getFileName() + ")";
+				return modelTemplate.getName() + " (" + modelTemplate.getFileName() + ")";
 			}
 			return null;
 		}

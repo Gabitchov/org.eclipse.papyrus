@@ -14,9 +14,10 @@
 package org.eclipse.papyrus.diagram.common.wizards;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.papyrus.wizards.Activator;
 import org.eclipse.papyrus.wizards.CreateModelWizard;
+import org.eclipse.papyrus.wizards.SelectTemplateWizardPage;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -48,13 +49,18 @@ public class CreateUMLModelWizard extends CreateModelWizard {
 		return "uml";
 	}
 
-	/**
-	 * This method is invoked for creation of a model 
-	 */
-	protected void initializeEmptyModel(Resource resource, String rootElementName) {
-		Model model = UMLFactory.eINSTANCE.createModel();
-		model.setName(rootElementName);
-		resource.getContents().add(model);
+	protected SelectTemplateWizardPage getSelectTemplateWizardPage() {
+		return new SelectTemplateWizardPage(Activator.PLUGIN_ID, null, null) {
+			/**
+			 * This method is invoked for creation of a model 
+			 */
+			protected void initializeEmptyModel(Resource resource, String rootElementName) {
+				Model model = UMLFactory.eINSTANCE.createModel();
+				model.setName(rootElementName);
+				resource.getContents().add(model);
+			}
+		}; 
 	}
+
 
 }
