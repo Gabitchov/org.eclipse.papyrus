@@ -61,6 +61,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificat
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.DestructionEvent;
 import org.eclipse.uml2.uml.DurationConstraint;
@@ -108,7 +109,7 @@ public class SequenceUtil {
 
 		InteractionFragment interactionFragment = null;
 		EditPart ep = host.getRoot().getViewer().findObjectAtExcluding(location, exclusionSet);
-		while(ep instanceof LifelineEditPart || ep instanceof BehaviorExecutionSpecificationEditPart || ep instanceof ActionExecutionSpecificationEditPart) {
+		while(ep instanceof LifelineEditPart || ep instanceof BehaviorExecutionSpecificationEditPart || ep instanceof ActionExecutionSpecificationEditPart || ep instanceof StateInvariantEditPart || ep instanceof DestructionEventEditPart) {
 			exclusionSet.add(((GraphicalEditPart)ep).getFigure());
 			ep = host.getRoot().getViewer().findObjectAtExcluding(location, exclusionSet);
 		}
