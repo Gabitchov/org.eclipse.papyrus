@@ -15,21 +15,17 @@ package org.eclipse.papyrus.diagram.common.wizards;
 
 import static org.eclipse.papyrus.diagram.common.Activator.log;
 
-import java.io.IOException;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
-import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.wizards.Activator;
 import org.eclipse.papyrus.wizards.NewModelFilePage;
 import org.eclipse.papyrus.wizards.SelectDiagramKindPage;
+import org.eclipse.papyrus.wizards.SelectTemplateWizardPage;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
@@ -51,8 +47,13 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 	/** The diagram kind page. */
 	private SelectDiagramKindPage myDiagramKindPage;
 
+	/** Select a template to initialize the model with */
+	private SelectTemplateWizardPage selectTemplateWizardPage;
+
 	/** The initial project name. */
 	private String initialProjectName;
+	
+	
 
 	/**
 	 * @see org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard#init(org.eclipse.ui.IWorkbench,
@@ -64,6 +65,20 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		super.init(workbench, selection);
 		setWindowTitle("New Papyrus Project");
+		selectTemplateWizardPage = getSelectTemplateWizardPage();
+	}
+	
+	protected SelectTemplateWizardPage getSelectTemplateWizardPage() {
+		return new SelectTemplateWizardPage(Activator.PLUGIN_ID, null, null) {
+			/**
+			 * This method is invoked for creation of a model 
+			 */
+			protected void initializeEmptyModel(Resource resource, String rootElementName) {
+				Model model = UMLFactory.eINSTANCE.createModel();
+				model.setName(rootElementName);
+				resource.getContents().add(model);
+			}
+		}; 
 	}
 
 	/**
@@ -78,6 +93,8 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 			myNewProjectPage.setTitle("Papyrus Project");
 			myNewProjectPage.setDescription("Create a New Papyrus Project");
 		}
+		
+		addPage(selectTemplateWizardPage);
 
 		myDiagramKindPage = new SelectDiagramKindPage("Select kind of diagram") {
 
@@ -108,91 +125,30 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 		if(!created) {
 			return false;
 		}
-		// if the user wants to create a diagram
-		if(myDiagramKindPage.getCreationCommand() != null) {
-			return createPapyrusModel();
-		}
-		return true;
-	}
-
-	/**
-	 * Creates the papyrus model.
-	 * 
-	 * @return true, if successful
-	 */
-	private boolean createPapyrusModel() {
 		final DiResourceSet diResourceSet = new DiResourceSet();
-		try {
-			// create a new file, result != null if successful
-			final IFile newFile = createFile();
-
-			RecordingCommand command = new RecordingCommand(diResourceSet.getTransactionalEditingDomain()) {
-
-				@Override
-				protected void doExecute() {
-					// Create Model Resource, Notation Resource, DI Resource
-					diResourceSet.createModelResources(newFile, getModelContentType(), getModelFileExtension());
-					Resource modelResource = diResourceSet.getModelResource();
-					if(modelResource != null) {
-						IPath path = new Path(newFile.getName());
-						initializeModelResource(modelResource, path.removeFileExtension().toString());
-					}
-				}
-			};
-			diResourceSet.getTransactionalEditingDomain().getCommandStack().execute(command);
-
-			IWorkbenchPage page = getWorkbench().getActiveWorkbenchWindow().getActivePage();
-			if((newFile != null) && (page != null)) {
-
-				String diagramName = myDiagramKindPage.getDiagramName();
-				ICreationCommand creationCommand = myDiagramKindPage.getCreationCommand();
-
-				if(creationCommand == null) {
-					// Create an empty editor (no diagrams opened)
-					// Geting an IPageMngr is enough to initialize the
-					// SashSystem.
-					EditorUtils.getTransactionalIPageMngr(diResourceSet.getDiResource(), diResourceSet.getTransactionalEditingDomain());
-				} else {
-					creationCommand.createDiagram(diResourceSet, null, diagramName);
-				}
-				try {
-					diResourceSet.save(new NullProgressMonitor());
-				} catch (IOException e) {
-					log.error(e);
-					return false;
-				}
-
-				try {
-					IDE.openEditor(page, newFile, true);
-				} catch (PartInitException e) {
-					log.error(e);
-					return false;
-				}
-			}
-		} catch (Exception e) {
-			log.error(e);
+		// create a new file, result != null if successful
+		final IFile newFile = createFile();
+		selectTemplateWizardPage.initializeModelResource(diResourceSet, newFile, getModelContentType(), getModelFileExtension());
+		if(newFile == null) {
 			return false;
 		}
-		return true;
-	}
 
-	/**
-	 * Initialize model resource.
-	 * 
-	 * @param resource
-	 *        the domain model resource
-	 * @param rootElementName
-	 *        the root element name
-	 */
-	private void initializeModelResource(Resource resource, String rootElementName) {
-		//		// fjcano #293135 :: support model templates
-		//		if(!isInitializeFromTemplate()) {
-		Model model = UMLFactory.eINSTANCE.createModel();
-		model.setName(rootElementName);
-		resource.getContents().add(model);
-		//		} else {
-		//			super.initializeModelResource(resource, rootElementName);
-		//		}
+		EObject root = null;
+		myDiagramKindPage.createDiagram(diResourceSet, root);
+
+		IWorkbenchPage page = getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		if(page != null) {
+			try {
+				IDE.openEditor(page, newFile, true);
+			} catch (PartInitException e) {
+				log.error(e);
+				return false;
+			}
+		}
+
+		return true;
+
+		
 	}
 
 	/**
