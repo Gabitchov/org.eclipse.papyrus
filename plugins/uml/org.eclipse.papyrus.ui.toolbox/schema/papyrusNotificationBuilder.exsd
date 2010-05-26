@@ -54,7 +54,7 @@ Take care to not always return true in the method accept to avoid intercepting a
          <attribute name="builder" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  the builder instance. The implementation shall implement the methods to recognize and run a notification.
                </documentation>
                <appInfo>
                   <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.ui.toolbox.notification.IBuilder"/>
@@ -69,7 +69,7 @@ Take care to not always return true in the method accept to avoid intercepting a
          <meta.section type="since"/>
       </appInfo>
       <documentation>
-         [Enter the first release in which this extension point appears.]
+         0.7.0
       </documentation>
    </annotation>
 

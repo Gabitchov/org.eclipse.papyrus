@@ -108,9 +108,6 @@ public class ViewBuilder implements IBuilder {
 			if(NotificationBuilder.ACTION.equals(parameterName)) {
 				return true;
 			}
-			if(NotificationBuilder.DELAY.equals(parameterName)) {
-				return false;
-			}
 			if(NotificationBuilder.TYPE.equals(parameterName)) {
 				return true;
 			}

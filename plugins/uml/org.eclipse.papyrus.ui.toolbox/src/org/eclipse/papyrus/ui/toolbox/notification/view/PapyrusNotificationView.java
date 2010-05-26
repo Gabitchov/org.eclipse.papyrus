@@ -377,19 +377,21 @@ public class PapyrusNotificationView extends ViewPart implements ICallBack {
 	protected void destroy(Object element) {
 		if(element instanceof AbstractInsideComposite) {
 			AbstractInsideComposite inside = (AbstractInsideComposite)element;
-			Control previous = inside.getPrevious();
-			Control after = inside.getAfter();
-			if(after != null) {
-				manageComposite(after, previous);
-			} else {
-				if(previous instanceof AbstractInsideComposite) {
-					AbstractInsideComposite compo = (AbstractInsideComposite)previous;
-					compo.setAfter(null);
+			if(!inside.isDisposed()) {
+				Control previous = inside.getPrevious();
+				Control after = inside.getAfter();
+				if(after != null) {
+					manageComposite(after, previous);
+				} else {
+					if(previous instanceof AbstractInsideComposite) {
+						AbstractInsideComposite compo = (AbstractInsideComposite)previous;
+						compo.setAfter(null);
+					}
 				}
+				inside.dispose();
+				form.getBody().layout(true, true);
+				form.layout(true, true);
 			}
-			inside.dispose();
-			form.getBody().layout(true, true);
-			form.layout(true, true);
 		}
 	}
 }
