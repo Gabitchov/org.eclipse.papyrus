@@ -11,6 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.customization.state;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 
 
@@ -21,6 +24,9 @@ public class ConstraintDescriptorState extends AbstractState {
 
 	/** constraint managed by this state */
 	protected IConstraintDescriptor constraintDescriptor;
+
+	/** change support for this bean */
+	private PropertyChangeSupport changeSupport;
 
 	/**
 	 * Creates a new ConstraintDescriptorState.
@@ -46,4 +52,23 @@ public class ConstraintDescriptorState extends AbstractState {
 		return "ConstraintDescriptorStateDialog";
 	}
 
+	/**
+	 * Adds a property change listener to this class
+	 * 
+	 * @param listener
+	 *        the listener to add
+	 */
+	public synchronized void addPropertyChangeListener(PropertyChangeListener listener) {
+		changeSupport.addPropertyChangeListener(listener);
+	}
+
+	/**
+	 * Removes a property change listener from this class
+	 * 
+	 * @param listener
+	 *        the listener to remove
+	 */
+	public synchronized void removePropertyChangeListener(PropertyChangeListener listener) {
+		changeSupport.removePropertyChangeListener(listener);
+	}
 }

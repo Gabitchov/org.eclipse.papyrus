@@ -11,6 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.customization.state;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +32,9 @@ public class SectionDescriptorState extends AbstractState {
 	/** list of fragment descriptor states */
 	private List<FragmentDescriptorState> fragmentDescriptorStates = new ArrayList<FragmentDescriptorState>();
 
+	/** change support for this bean */
+	private PropertyChangeSupport changeSupport;
+
 	/**
 	 * Creates a new SectionDescriptorState.
 	 * 
@@ -47,6 +52,8 @@ public class SectionDescriptorState extends AbstractState {
 				getFragmentDescriptorStates().add(new FragmentDescriptorState(fragmentDescriptor));
 			}
 		}
+		// register change support
+		changeSupport = new PropertyChangeSupport(this);
 	}
 
 	/**
@@ -72,5 +79,25 @@ public class SectionDescriptorState extends AbstractState {
 	 */
 	public String getEditionDialogId() {
 		return "SectionDescriptorStateDialog";
+	}
+
+	/**
+	 * Adds a property change listener to this class
+	 * 
+	 * @param listener
+	 *        the listener to add
+	 */
+	public synchronized void addPropertyChangeListener(PropertyChangeListener listener) {
+		changeSupport.addPropertyChangeListener(listener);
+	}
+
+	/**
+	 * Removes a property change listener from this class
+	 * 
+	 * @param listener
+	 *        the listener to remove
+	 */
+	public synchronized void removePropertyChangeListener(PropertyChangeListener listener) {
+		changeSupport.removePropertyChangeListener(listener);
 	}
 }

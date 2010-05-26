@@ -31,4 +31,35 @@
          </command>
       </menuContribution>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.properties.runtime.propertyViewProvider">
+      <propertyViewProvider
+            class="org.eclipse.papyrus.properties.runtime.view.XMLPropertyViewProvider">
+         <Priority
+               name="Lowest">
+         </Priority>
+         <PropertyViewContribution
+         	   name="Property Editor configuration dialogs"
+               icon="/icons/Provider.gif"
+               path="resources/configuration_wizards_dialogs.xml">
+         </PropertyViewContribution>
+      </propertyViewProvider>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.properties.runtime.propertyEditorControllerProvider">
+      <propertyEditorControllerProvider
+            class="org.eclipse.papyrus.properties.runtime.controller.PropertyEditorControllerProvider"
+            description="Property editor controller provider for states "
+            id="customizationPropertyEditorControllerProvider">
+         <Priority
+               name="Lowest">
+         </Priority>
+         <PropertyEditorController
+               class="org.eclipse.papyrus.properties.tabbed.customization.state.StateBeanPropertyEditorController"
+               description="controller for states in the customization wizard"
+               factory="org.eclipse.papyrus.properties.runtime.controller.descriptor.BeanPropertyEditorControllerDescriptorFactory"
+               id="stateBeanPropertyEditorController">
+         </PropertyEditorController>
+      </propertyEditorControllerProvider>
+   </extension>
 </plugin>

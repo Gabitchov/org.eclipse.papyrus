@@ -221,6 +221,8 @@ public class CustomizeContentWizardPage extends WizardPage {
 			Shell parentShell = getShell();
 			PropertyDialog dialog = new PropertyDialog(parentShell, descriptor, objectsToEdit, new TabbedPropertySheetWidgetFactory());
 			dialog.open();
+		} else {
+			Activator.log.warn("impossible to find an editor for element: " + iState);
 		}
 	}
 

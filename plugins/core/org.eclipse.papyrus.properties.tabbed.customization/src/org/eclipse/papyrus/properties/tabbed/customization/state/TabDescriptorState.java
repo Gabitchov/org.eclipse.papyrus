@@ -11,6 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.customization.state;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
@@ -23,6 +26,9 @@ public class TabDescriptorState implements IState {
 	/** tab descriptor managed by this state */
 	protected ITabDescriptor tabDescriptor;
 
+	/** change support for this bean */
+	private PropertyChangeSupport changeSupport;
+
 	/**
 	 * Creates a new TabDescriptorState.
 	 * 
@@ -31,6 +37,9 @@ public class TabDescriptorState implements IState {
 	 */
 	public TabDescriptorState(ITabDescriptor tabDescriptor) {
 		this.tabDescriptor = tabDescriptor;
+
+		// register change support
+		changeSupport = new PropertyChangeSupport(this);
 	}
 
 
@@ -72,5 +81,25 @@ public class TabDescriptorState implements IState {
 	 */
 	public String getEditionDialogId() {
 		return "TabDescriptorStateDialog";
+	}
+
+	/**
+	 * Adds a property change listener to this class
+	 * 
+	 * @param listener
+	 *        the listener to add
+	 */
+	public synchronized void addPropertyChangeListener(PropertyChangeListener listener) {
+		changeSupport.addPropertyChangeListener(listener);
+	}
+
+	/**
+	 * Removes a property change listener from this class
+	 * 
+	 * @param listener
+	 *        the listener to remove
+	 */
+	public synchronized void removePropertyChangeListener(PropertyChangeListener listener) {
+		changeSupport.removePropertyChangeListener(listener);
 	}
 }

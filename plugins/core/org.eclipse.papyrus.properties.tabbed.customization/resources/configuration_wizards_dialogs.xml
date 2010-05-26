@@ -19,10 +19,13 @@
 				</context>
 				<content>
 					<container layout="Grid" columns="1" sameSize="false">
-						 <controller id="emftLabelProviderStructuralFeatureController">
-							<feature name="ownedAttribute" handlerID="Reference"/>
-							<editor id="org.eclipse.papyrus.properties.runtime.multipleStructuralFeaturesPropertyEditor" label="Attributes:" labelPosition="16384">
-							</editor>
+						 <controller id="stateBeanPropertyEditorController">
+							<property name="id"/>
+							<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Identifier:" labelPosition="16384"/>
+						</controller>
+						<controller id="stateBeanPropertyEditorController">
+							<property name="id"/>
+							<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Identifier:" labelPosition="16384"/>
 						</controller>
 					</container>
 				</content>

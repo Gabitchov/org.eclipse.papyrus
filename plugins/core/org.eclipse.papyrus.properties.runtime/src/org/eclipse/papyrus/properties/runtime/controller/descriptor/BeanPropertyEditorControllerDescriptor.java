@@ -1,0 +1,98 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *****************************************************************************/
+package org.eclipse.papyrus.properties.runtime.controller.descriptor;
+
+import org.eclipse.papyrus.properties.runtime.Activator;
+import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
+import org.eclipse.swt.graphics.Image;
+
+/**
+ * Descriptor for controller based on java.beans properties
+ */
+public class BeanPropertyEditorControllerDescriptor implements IPropertyEditorControllerDescriptor {
+
+	/** id of the controller described by this descriptor */
+	private final String controllerID;
+
+	/** indicates if the controller can handle several objects to edit */
+	private final boolean multiSelection;
+
+	/** name of the property to edit */
+	private final String propertyName;
+
+	/** descriptor of the editor managed by the controller */
+	private final IPropertyEditorDescriptor editorDescriptor;
+
+	/**
+	 * Creates a new BeanPropertyEditorControllerDescriptor.
+	 * 
+	 * @param controllerID
+	 *        id of the controller described by this descriptor
+	 * @param multiSelection
+	 *        <code>true</code> when the controller can handle several objects to edit
+	 * @param propertyName
+	 *        the name of the property to edit
+	 * @param editorDescriptor
+	 *        the descriptor of the editor managed by this controller
+	 */
+	public BeanPropertyEditorControllerDescriptor(String controllerID, boolean multiSelection, String propertyName, IPropertyEditorDescriptor editorDescriptor) {
+		this.controllerID = controllerID;
+		this.multiSelection = multiSelection;
+		this.propertyName = propertyName;
+		this.editorDescriptor = editorDescriptor;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getText() {
+		return "Bean controller: " + getControllerID();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Image getImage() {
+		return Activator.getImage("/icons/BeanController.gif");
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean acceptMultiSelection() {
+		return multiSelection;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getControllerID() {
+		return controllerID;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public IPropertyEditorDescriptor getEditorDescriptor() {
+		return editorDescriptor;
+	}
+
+	/**
+	 * Returns the name of the property to edit
+	 * 
+	 * @return the name of the property to edit
+	 */
+	public String getPropertyName() {
+		return propertyName;
+	}
+
+}

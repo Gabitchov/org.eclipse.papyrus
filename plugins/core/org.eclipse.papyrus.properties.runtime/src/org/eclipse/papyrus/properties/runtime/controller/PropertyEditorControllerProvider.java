@@ -35,7 +35,7 @@ public class PropertyEditorControllerProvider extends AbstractProvider {
 	 * 
 	 * @return the property editor managed by this provider
 	 */
-	public PropertyEditorController createPropertyEditorController(String controllerIdentifier) {
+	public IPropertyEditorController createPropertyEditorController(String controllerIdentifier) {
 		// retrieve property class managed by this provider
 		try {
 			PropertyEditorControllerConfiguration configuration = controllers.get(controllerIdentifier);
@@ -44,7 +44,7 @@ public class PropertyEditorControllerProvider extends AbstractProvider {
 				return null;
 			}
 			Object controller = configuration.instanciateController();
-			return (PropertyEditorController)controller;
+			return (IPropertyEditorController)controller;
 		} catch (CoreException e) {
 			e.printStackTrace();
 			Activator.log.error(e);
@@ -70,7 +70,7 @@ public class PropertyEditorControllerProvider extends AbstractProvider {
 	}
 
 	/**
-	 *  {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public boolean provides(IOperation operation) {
 		if(operation instanceof CreatePropertyEditorControllerOperation) {

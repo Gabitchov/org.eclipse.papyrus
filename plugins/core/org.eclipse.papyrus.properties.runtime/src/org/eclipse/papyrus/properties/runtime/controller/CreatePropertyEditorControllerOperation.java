@@ -71,11 +71,11 @@ public class CreatePropertyEditorControllerOperation implements IOperation {
 	/**
 	 * {@inheritDoc}
 	 */
-	public PropertyEditorController execute(IProvider provider) {
+	public IPropertyEditorController execute(IProvider provider) {
 		if(provider instanceof PropertyEditorControllerProvider) {
 			if(checkMultiSelection()) {
 				// this descriptor allows multi-selection edition. Create the given controller
-				EMFTPropertyEditorController controller = (EMFTPropertyEditorController)((PropertyEditorControllerProvider)provider).createPropertyEditorController(getControllerIdentifier());
+				IPropertyEditorController controller = ((PropertyEditorControllerProvider)provider).createPropertyEditorController(getControllerIdentifier());
 				IStatus status = controller.initController(parent, objectsToEdit, descriptor);
 				if(status.getSeverity() != Status.ERROR) {
 					return controller;

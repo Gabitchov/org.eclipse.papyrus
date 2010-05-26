@@ -11,6 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.customization.state;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
 
 
@@ -25,6 +28,11 @@ public class ControllerDescriptorState extends AbstractState {
 	/** descriptor managed by this state */
 	protected IPropertyEditorControllerDescriptor descriptor;
 
+	/** id of the controller managed by this state */
+	protected String id;
+
+	/** change support for this bean */
+	private PropertyChangeSupport changeSupport;
 
 	/**
 	 * Creates a new ControllerDescriptorState.
@@ -32,6 +40,10 @@ public class ControllerDescriptorState extends AbstractState {
 	 */
 	public ControllerDescriptorState(IPropertyEditorControllerDescriptor descriptor) {
 		this.descriptor = descriptor;
+		id = descriptor.getControllerID();
+
+		// register change support
+		changeSupport = new PropertyChangeSupport(this);
 	}
 
 	/**
@@ -50,4 +62,45 @@ public class ControllerDescriptorState extends AbstractState {
 		return CONTROLLER_DESCRIPTOR_EDITOR_DLG;
 	}
 
+	/**
+	 * Sets the id of the controller managed by this state
+	 * 
+	 * @param id
+	 *        the id to set
+	 */
+	public void setId(String id) {
+		String oldId = this.id;
+		this.id = id;
+
+		changeSupport.firePropertyChange("id", oldId, id);
+	}
+
+	/**
+	 * Returns the id of the controller managed by this state
+	 * 
+	 * @return the id of the controller managed by this state
+	 */
+	public String getId() {
+		return id;
+	}
+
+	/**
+	 * Adds a property change listener to this class
+	 * 
+	 * @param listener
+	 *        the listener to add
+	 */
+	public synchronized void addPropertyChangeListener(PropertyChangeListener listener) {
+		changeSupport.addPropertyChangeListener(listener);
+	}
+
+	/**
+	 * Removes a property change listener from this class
+	 * 
+	 * @param listener
+	 *        the listener to remove
+	 */
+	public synchronized void removePropertyChangeListener(PropertyChangeListener listener) {
+		changeSupport.removePropertyChangeListener(listener);
+	}
 }

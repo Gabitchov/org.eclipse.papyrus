@@ -11,6 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.customization.state;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +32,10 @@ public class ContainerDescriptorState extends AbstractState {
 	/** list of controllers managed by this state */
 	protected final List<ControllerDescriptorState> controllerDescriptorStates = new ArrayList<ControllerDescriptorState>();
 
+	/** change support for this bean */
+	private PropertyChangeSupport changeSupport;
+
+
 	/**
 	 * Creates a new ContainerDescriptorState.
 	 * 
@@ -44,6 +50,8 @@ public class ContainerDescriptorState extends AbstractState {
 		for(IPropertyEditorControllerDescriptor controllerDescriptor : controllerDescriptors) {
 			controllerDescriptorStates.add(new ControllerDescriptorState(controllerDescriptor));
 		}
+		// register change support
+		changeSupport = new PropertyChangeSupport(this);
 	}
 
 	/**
@@ -71,6 +79,26 @@ public class ContainerDescriptorState extends AbstractState {
 	 */
 	public String getEditionDialogId() {
 		return "ContainerDescriptorStateDialog";
+	}
+
+	/**
+	 * Adds a property change listener to this class
+	 * 
+	 * @param listener
+	 *        the listener to add
+	 */
+	public synchronized void addPropertyChangeListener(PropertyChangeListener listener) {
+		changeSupport.addPropertyChangeListener(listener);
+	}
+
+	/**
+	 * Removes a property change listener from this class
+	 * 
+	 * @param listener
+	 *        the listener to remove
+	 */
+	public synchronized void removePropertyChangeListener(PropertyChangeListener listener) {
+		changeSupport.removePropertyChangeListener(listener);
 	}
 
 }

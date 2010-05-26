@@ -11,6 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.customization.state;
 
+import java.beans.PropertyChangeListener;
+
 import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
 import org.eclipse.swt.graphics.Image;
 
@@ -48,4 +50,19 @@ public interface IState {
 	 */
 	public String getEditionDialogId();
 
+	/**
+	 * Adds a property change listener to this class
+	 * 
+	 * @param listener
+	 *        the listener to add
+	 */
+	public void addPropertyChangeListener(PropertyChangeListener listener);
+
+	/**
+	 * Removes a property change listener from this class
+	 * 
+	 * @param listener
+	 *        the listener to remove
+	 */
+	public void removePropertyChangeListener(PropertyChangeListener listener);
 }
