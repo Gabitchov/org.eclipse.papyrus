@@ -581,37 +581,64 @@ public class CommandHelper {
 		}
 		return null;
 	}
-	
-	
+
+
 	/**
-	 * Create a CombinedFragment and its associated interaction Operand 
-	 * @param modelContainer the container of the CF. It could be an InteractionOperand or an Interaction.
-	 * @param operatorKind the operatorKind of the combinedFragment
-	 * @return the created CombinedFragment
+	 * Create a CombinedFragment and its associated interaction Operand
+	 * 
+	 * @param modelContainer
+	 *        the container of the CF. It could be an InteractionOperand or an Interaction.
+	 * @param operatorKind
+	 *        the operatorKind of the combinedFragment
+	 * @return the created CombinedFragment or null
 	 */
-	public static CombinedFragment doCreateCombinedFragment(Object modelContainer, InteractionOperatorKind operatorKind){
+	public static CombinedFragment doCreateCombinedFragment(Object modelContainer, InteractionOperatorKind operatorKind) {
 		CombinedFragment combinedFragment = null;
-		
+
 		Element element = createElement(modelContainer, UMLPackage.eINSTANCE.getCombinedFragment());
-		if(element instanceof CombinedFragment){
+		if(element instanceof CombinedFragment) {
 			combinedFragment = (CombinedFragment)element;
-			
+
 			// Set the operator kind
 			combinedFragment.setInteractionOperator(operatorKind);
 
 			// Create the operand
-			combinedFragment.createOperand(LabelHelper.INSTANCE.findName(combinedFragment,  UMLPackage.eINSTANCE.getInteractionOperand()));
-			
-			// 
-			if(InteractionOperatorKind.PAR_LITERAL.equals(operatorKind)){
-				combinedFragment.createOperand(LabelHelper.INSTANCE.findName(combinedFragment,  UMLPackage.eINSTANCE.getInteractionOperand()));
-			}
-			// TODO manage constraint3 and covered property
-			
+			combinedFragment.createOperand(LabelHelper.INSTANCE.findName(combinedFragment, UMLPackage.eINSTANCE.getInteractionOperand()));
+
 		}
 		return combinedFragment;
 	}
-	
+
+	/**
+	 * Create a CoRegion element :
+	 * a CombinedFragment with InteractionOperator set to 'Parallel' and with at least two InteractionOperand
+	 * 
+	 * @param modelContainer
+	 *        the parent element of the CoRegion
+	 * @param coveredLifeline
+	 *        the lifeline on which the CoRegion is created
+	 * @return the created CoRegion or null
+	 */
+	public static CombinedFragment doCreateCoRegion(Object modelContainer, Lifeline coveredLifeline) {
+
+		// Create a Parallel CombinedFragment
+		CombinedFragment combinedFragment = doCreateCombinedFragment(modelContainer, InteractionOperatorKind.PAR_LITERAL);
+
+		if(combinedFragment != null) {
+			// Create a second operand
+			combinedFragment.createOperand(LabelHelper.INSTANCE.findName(combinedFragment, UMLPackage.eINSTANCE.getInteractionOperand()));
+
+			// Add the lifeline where the CoRegion is drawn as a covered lifeline.
+			combinedFragment.getCovereds().add(coveredLifeline);
+
+			// Each operand must covered the same lifeline
+			for(InteractionOperand operand : combinedFragment.getOperands()) {
+				operand.getCovereds().add(coveredLifeline);
+			}
+		}
+		return combinedFragment;
+	}
+
 
 	/**
 	 * Create an ExecutionSpecification. It also creates the start and finish ExecutionOccurenceSpecification of the ExecutionSpecification, and their
@@ -760,6 +787,69 @@ public class CommandHelper {
 	}
 
 	/**
+	 * Creates a message and manage the creation of a message from/to a CoRegion
+	 * 
+	 * @param interaction
+	 *        the interaction containing the message.
+	 * @param messageSort
+	 *        the messageSort of the message, it can be null
+	 * @param source
+	 *        the source of the message, it can be null
+	 * @param target
+	 *        the target of the message, it can be null
+	 * @param params
+	 *        a map of params. It must at least contain the source and target container;
+	 * @return the created message.
+	 */
+	public static Message doCreateMessage(Interaction interaction, MessageSort messageSort, Element source, Element target, Map<Object, Object> params) {
+		InteractionFragment sourceContainer = (InteractionFragment)params.get(SequenceRequestConstant.SOURCE_MODEL_CONTAINER);
+		InteractionFragment targetContainer = (InteractionFragment)params.get(SequenceRequestConstant.TARGET_MODEL_CONTAINER);
+
+		Object lifeline = params.get(SequenceRequestConstant.LIFELINE_GRAPHICAL_CONTAINER);
+		if(lifeline != null) {
+			if(source instanceof CombinedFragment) {
+				CombinedFragment cf = (CombinedFragment)source;
+				if(InteractionOperatorKind.PAR_LITERAL.equals(cf.getInteractionOperator())) {
+					InteractionOperand interactionOperand = getCoRegionInteractionOperand(cf);
+					sourceContainer = interactionOperand;
+					targetContainer = interactionOperand;
+					source = (Lifeline)lifeline;
+				}
+			} else if(target instanceof CombinedFragment) {
+				CombinedFragment cf = (CombinedFragment)target;
+				if(InteractionOperatorKind.PAR_LITERAL.equals(cf.getInteractionOperator())) {
+					InteractionOperand interactionOperand = getCoRegionInteractionOperand(cf);
+					sourceContainer = interactionOperand;
+					targetContainer = interactionOperand;
+					target = (Lifeline)lifeline;
+				}
+			}
+		}
+		return doCreateMessage(interaction, messageSort, source, target, sourceContainer, targetContainer);
+	}
+
+	/**
+	 * Get the interactionOperand where the occurrenceSpecification will be created
+	 */
+	private static InteractionOperand getCoRegionInteractionOperand(CombinedFragment cf) {
+		InteractionOperand interactionOperand = null;
+
+		// Search in the existing operands if there are any operand without fragments.
+		for(InteractionOperand existingOperand : cf.getOperands()) {
+			if(existingOperand.getFragments().size() == 0) {
+				interactionOperand = existingOperand;
+				break;
+			}
+		}
+
+		// If the operand is still null, we create a new operand in the combinedFragment.
+		if(interactionOperand == null) {
+			interactionOperand = cf.createOperand(LabelHelper.INSTANCE.findName(cf, UMLPackage.eINSTANCE.getInteractionOperand()));
+		}
+		return interactionOperand;
+	}
+
+	/**
 	 * Create a message. It also creates its message end, their corresponding events and updates the signature of the message.
 	 * 
 	 * @param container
@@ -839,7 +929,6 @@ public class CommandHelper {
 	}
 
 
-
 	/**
 	 * Get the messageSort of a message if it doesn't exist yet depending of the messageSignature.
 	 * If no messageSort exists, and if the signature is null, then return a MessageSort.ASYNCH_CALL_LITERAL
@@ -882,7 +971,6 @@ public class CommandHelper {
 
 		return true;
 	}
-	
 
 
 }

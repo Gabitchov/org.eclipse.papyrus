@@ -41,12 +41,14 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.CombinedFragment2ItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineChildGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.figures.CoRegionCombinedFragmentFigure;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.uml2.uml.Lifeline;
 
 /**
  * @generated
@@ -84,6 +86,7 @@ ShapeNodeEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CombinedFragment2ItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new LifelineChildGraphicalNodeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -139,9 +142,9 @@ ShapeNodeEditPart {
 	protected NodeFigure createNodePlate() {
 		String prefElementId = "CombinedFragment";
 		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		String preferrenceContantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
-		String preferrenceContantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferrenceContantWitdh), store.getInt(preferrenceContantWitdh));
+		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
+		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
 		return result;
 	}
@@ -923,5 +926,32 @@ ShapeNodeEditPart {
 			result = getStructuralFeatureValue(feature);
 		}
 		return result;
+	}
+
+	/**
+	 * Overrides to return a ghost central vertical line which will be used for creating message (message will be bound to the lifeline and not the
+	 * outline of this shape).
+	 */
+	@Override
+	protected NodeFigure getNodeFigure() {
+		NodeFigure centerFigure = null;
+		if(getContentPane() instanceof CoRegionCombinedFragmentFigure) {
+			centerFigure = ((CoRegionCombinedFragmentFigure)getContentPane()).getCentralVerticalLine();
+		}
+		return centerFigure;
+	}
+
+	/**
+	 * Get the lifeline element where the CoRegion is drawn
+	 * 
+	 * @return the attached lifeline
+	 */
+	public Lifeline getAttachedLifeline() {
+		Lifeline attachedLifeline = null;
+		EditPart editPartParent = getParent();
+		if(editPartParent instanceof LifelineEditPart) {
+			attachedLifeline = (Lifeline)((LifelineEditPart)editPartParent).resolveSemanticElement();
+		}
+		return attachedLifeline;
 	}
 }

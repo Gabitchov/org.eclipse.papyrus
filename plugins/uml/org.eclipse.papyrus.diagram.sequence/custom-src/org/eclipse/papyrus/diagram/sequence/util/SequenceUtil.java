@@ -59,6 +59,7 @@ import org.eclipse.papyrus.diagram.common.helper.TimeObservationHelper;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragment2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
@@ -109,7 +110,7 @@ public class SequenceUtil {
 
 		InteractionFragment interactionFragment = null;
 		EditPart ep = host.getRoot().getViewer().findObjectAtExcluding(location, exclusionSet);
-		while(ep instanceof LifelineEditPart || ep instanceof BehaviorExecutionSpecificationEditPart || ep instanceof ActionExecutionSpecificationEditPart || ep instanceof StateInvariantEditPart || ep instanceof DestructionEventEditPart) {
+		while(ep instanceof LifelineEditPart || ep instanceof BehaviorExecutionSpecificationEditPart || ep instanceof ActionExecutionSpecificationEditPart || ep instanceof StateInvariantEditPart || ep instanceof DestructionEventEditPart || ep instanceof CombinedFragment2EditPart) {
 			exclusionSet.add(((GraphicalEditPart)ep).getFigure());
 			ep = host.getRoot().getViewer().findObjectAtExcluding(location, exclusionSet);
 		}

@@ -20,6 +20,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 
 
 public class CoRegionCombinedFragmentFigure extends RectangleFigure {
@@ -31,6 +32,9 @@ public class CoRegionCombinedFragmentFigure extends RectangleFigure {
 
 	private static final int BRACKET_LINE_WIDTH = 3;
 
+	/** The DashLine figure where elements will be attached */
+	private NodeFigure centralVerticalLine;
+
 	/**
 	 * Constructor
 	 * 
@@ -38,6 +42,10 @@ public class CoRegionCombinedFragmentFigure extends RectangleFigure {
 	 */
 	public CoRegionCombinedFragmentFigure() {
 		super();
+
+		// Init centralVerticalLine
+		centralVerticalLine = new NodeFigure();
+		centralVerticalLine.setParent(this);
 	}
 
 	/**
@@ -57,6 +65,12 @@ public class CoRegionCombinedFragmentFigure extends RectangleFigure {
 		graphics.drawLine(r.right() - 1, r.y + BRACKET_HEIGHT, r.right() - 1, r.y);
 		graphics.drawLine(r.right() - 1, r.bottom() - 1, r.right() - 1, r.bottom() - 1 - BRACKET_HEIGHT);
 		graphics.drawLine(r.x, r.bottom() - 1, r.x, r.bottom() - 1 - BRACKET_HEIGHT);
+
+		// Refresh the line
+		int endY = r.height + r.x;
+		Point pStart = new Point(r.x + r.width / 2, r.y + 1);
+		centralVerticalLine.setSize(1, endY - pStart.y);
+		centralVerticalLine.setLocation(pStart);
 	}
 
 	/**
@@ -103,4 +117,12 @@ public class CoRegionCombinedFragmentFigure extends RectangleFigure {
 
 		return false;
 	}
+
+	/**
+	 * Get a rectangleFigure representing a central vertical line
+	 */
+	public NodeFigure getCentralVerticalLine() {
+		return centralVerticalLine;
+	}
+
 }

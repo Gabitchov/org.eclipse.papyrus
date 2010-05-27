@@ -28,7 +28,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.uml2.uml.CombinedFragment;
-import org.eclipse.uml2.uml.InteractionOperatorKind;
+import org.eclipse.uml2.uml.Lifeline;
 
 /**
  * @generated
@@ -100,8 +100,8 @@ public class CombinedFragment2CreateCommand extends EditElementCommand {
 
 	/**
 	 * Create a CoRegion :
-	 * - creates two operands 
-	 * - set the Interaction Operator to parallel 
+	 * - creates two operands
+	 * - set the Interaction Operator to parallel
 	 * 
 	 * @generated NOT
 	 */
@@ -110,16 +110,16 @@ public class CombinedFragment2CreateCommand extends EditElementCommand {
 		// Get the model container
 		Object modelContainer = ((CreateElementRequest)getRequest()).getParameters().get(SequenceRequestConstant.INTERACTIONFRAGMENT_CONTAINER);
 
-		CombinedFragment combinedFragment = CommandHelper.doCreateCombinedFragment(modelContainer, InteractionOperatorKind.PAR_LITERAL);
+		CombinedFragment combinedFragment = CommandHelper.doCreateCoRegion(modelContainer, (Lifeline)getElementToEdit());
 
-		if(combinedFragment != null){
+		if(combinedFragment != null) {
 			doConfigure(combinedFragment, monitor, info);
 			((CreateElementRequest)getRequest()).setNewElement(combinedFragment);
 			return CommandResult.newOKCommandResult(combinedFragment);
 		}
-	
+
 		return CommandResult.newErrorCommandResult("");
-		
+
 	}
 
 
