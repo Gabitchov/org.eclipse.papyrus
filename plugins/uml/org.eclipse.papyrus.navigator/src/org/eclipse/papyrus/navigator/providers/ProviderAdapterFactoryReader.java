@@ -2,10 +2,10 @@ package org.eclipse.papyrus.navigator.providers;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.papyrus.core.extension.DescriptorExtensionFactory;
 import org.eclipse.papyrus.core.extension.ExtensionException;
+import org.eclipse.papyrus.core.extension.ExtensionUtils;
 
-public class ProviderAdapterFactoryReader extends DescriptorExtensionFactory {
+public class ProviderAdapterFactoryReader extends ExtensionUtils{
 
 	/** singleton eINSTANCE of this class */
 	public final static ProviderAdapterFactoryReader eINSTANCE = new ProviderAdapterFactoryReader();
