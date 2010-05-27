@@ -1344,7 +1344,7 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 				executionSpecificationList.add((ShapeNodeEditPart)obj);
 			} else if(obj instanceof ActionExecutionSpecificationEditPart) {
 				executionSpecificationList.add((ShapeNodeEditPart)obj);
-			} else if(obj instanceof CombinedFragment2EditPart){
+			} else if(obj instanceof CombinedFragment2EditPart) {
 				executionSpecificationList.add((ShapeNodeEditPart)obj);
 			}
 		}

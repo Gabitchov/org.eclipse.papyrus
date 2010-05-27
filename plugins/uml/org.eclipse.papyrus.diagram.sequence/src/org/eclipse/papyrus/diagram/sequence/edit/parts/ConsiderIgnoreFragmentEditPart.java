@@ -160,9 +160,9 @@ public class ConsiderIgnoreFragmentEditPart extends CombinedFragmentEditPart {
 	protected NodeFigure createNodePlate() {
 		String prefElementId = "ConsiderIgnoreFragment";
 		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		String preferrenceContantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
-		String preferrenceContantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferrenceContantWitdh), store.getInt(preferrenceContantWitdh));
+		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
+		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
 		return result;
 	}
