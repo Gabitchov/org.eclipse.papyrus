@@ -19,12 +19,19 @@ import org.eclipse.core.runtime.Platform;
 import org.osgi.framework.Bundle;
 
 /**
- * This is a factory in charge to create descriptor
+ * Utility methods for Eclipse extension reading.
+ * This class can be extended, or access throw the unique instance.
  * 
+ * @author cedric dumoulin
  * @author Patrick Tessier
  */
-public abstract class DescriptorExtensionFactory {
+public abstract class ExtensionUtils {
 
+	/**
+	 * Unique instance that can be used directly.
+	 */
+	static public ExtensionUtils INSTANCE = new ExtensionUtils(){};
+	
 	/**
 	 * used to verify if the name of the {@link IConfigurationElement} is the same as the given name
 	 * 

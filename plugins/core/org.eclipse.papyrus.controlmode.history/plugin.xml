@@ -16,5 +16,12 @@
             class="org.eclipse.papyrus.controlmode.mm.history.historyPackage"
             genModel="model/history.genmodel"/>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.core.model">
+      <model
+            classname="org.eclipse.papyrus.controlmode.history.HistoryModel"
+            description="Model for History">
+      </model>
+   </extension>
 
 </plugin>

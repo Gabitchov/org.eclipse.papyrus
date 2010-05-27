@@ -15,7 +15,7 @@ package org.eclipse.papyrus.core.multidiagram.actionbarcontributor;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.papyrus.core.extension.BadNameExtensionException;
-import org.eclipse.papyrus.core.extension.DescriptorExtensionFactory;
+import org.eclipse.papyrus.core.extension.ExtensionUtils;
 import org.eclipse.papyrus.core.extension.ExtensionException;
 import org.eclipse.ui.part.EditorActionBarContributor;
 
@@ -25,7 +25,7 @@ import org.eclipse.ui.part.EditorActionBarContributor;
  * @author Cedric Dumoulin
  *@auhtor Patrick Tessier
  */
-public class ActionBarContributorExtensionFactory extends DescriptorExtensionFactory {
+public class ActionBarContributorExtensionFactory extends ExtensionUtils {
 
 	/** singleton eINSTANCE of this class */
 	public final static ActionBarContributorExtensionFactory eINSTANCE = new ActionBarContributorExtensionFactory();

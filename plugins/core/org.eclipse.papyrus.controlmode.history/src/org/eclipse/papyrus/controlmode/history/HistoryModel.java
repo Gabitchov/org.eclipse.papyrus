@@ -3,22 +3,28 @@
  */
 package org.eclipse.papyrus.controlmode.history;
 
-import org.eclipse.papyrus.resource.AbstractBaseModel;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.papyrus.controlmode.mm.history.ControledResource;
+import org.eclipse.papyrus.resource.AbstractModelWithSharedResource;
+import org.eclipse.papyrus.resource.sasheditor.SashModel;
 
 
 /**
  * The trace model entry point that can be registered to 
  * Trace model is used for the ControlMode.
+ * This model is located in the same {@link Resource} than the {@link SashModel}. The SashModel is master 
+ * while this model is slave: it doesn't perform the save.
  * 
  * @author cedric dumoulin
  *
  */
-public class HistoryModel extends AbstractBaseModel {
+public class HistoryModel extends AbstractModelWithSharedResource<ControledResource> {
 
 	/**
 	 * File extension used for notation.
 	 */
-	public static final String MODEL_FILE_EXTENSION = "history"; //$NON-NLS-1$
+	public static final String MODEL_FILE_EXTENSION = "di"; //$NON-NLS-1$
 
 	/**
 	 *  Model ID.
@@ -46,6 +52,17 @@ public class HistoryModel extends AbstractBaseModel {
 	@Override
 	protected String getModelFileExtension() {
 		return MODEL_FILE_EXTENSION;
+	}
+
+	/**
+	 * Return true if the provided object is a root of the model, false otherwise.
+	 * This method should be implemented by subclasses.
+	 * 
+	 * @param object
+	 * @return
+	 */
+	protected boolean isModelRoot(EObject object) {
+		return object instanceof ControledResource;
 	}
 
 }

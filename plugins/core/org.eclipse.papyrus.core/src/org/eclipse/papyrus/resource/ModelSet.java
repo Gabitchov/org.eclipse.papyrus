@@ -218,16 +218,32 @@ public class ModelSet extends ResourceSetImpl {
 	 * @param file
 	 *        The file to load (no matter the extension)
 	 */
-	public void loadModels(IFile file) {
+	public void loadModels(IFile file) throws ModelMultiException {
 				
+		ModelMultiException exceptions = null;
+		
 		// Walk all registered models
 		for( IModel model : models.values())
 		{
-			model.loadModel( file );
+			// Try to load each model. Catch exceptions in order to load other models.
+			try {
+				model.loadModel( file );
+			} catch (Exception e) {
+				// Record the exception
+				if( exceptions == null)
+				{
+					exceptions = new ModelMultiException("Problems encountered while loading one of the models.");
+				}
+				exceptions.addException(e);
+			}
 		}
 		
 		// call snippets to allow them to do their stuff
 		snippets.performStart(this);
+		
+		// Report exceptions if any
+		if(exceptions != null)
+			throw exceptions;
 	}
 	
 	/**

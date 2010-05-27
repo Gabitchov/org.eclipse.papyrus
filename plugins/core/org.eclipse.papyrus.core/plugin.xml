@@ -8,6 +8,7 @@
    <extension-point id="loadingStrategy" name="loadingStrategy" schema="schema/loadingStrategy.exsd"/>
    <extension-point id="loadingStrategyExtender" name="loadingStrategyExtender" schema="schema/loadingStrategyExtender.exsd"/>
    <extension-point id="currentStrategyChooser" name="Current Strategy Chooser" schema="schema/currentStrategyChooser.exsd"/>
+   <extension-point id="model" name="plugin.xml.ModelName" schema="schema/model.exsd"/>
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
@@ -177,6 +178,28 @@
             id="2"
             strategy="org.eclipse.papyrus.core.resourceloading.strategies.LoadControlledResources">
       </loadingStrategy>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.core.model">
+      <model
+            classname="org.eclipse.papyrus.resource.uml.ExtendedUmlModel"
+            description="Model for UML">
+         <modelSnippet
+               classname="org.eclipse.papyrus.resource.uml.UmlSnippet"
+               description="Complete the UML model.">
+         </modelSnippet>
+      </model>
+      <model
+            classname="org.eclipse.papyrus.resource.notation.NotationModel"
+            description="Model for natation">
+      </model>
+      <model
+            classname="org.eclipse.papyrus.resource.sasheditor.SashModel"
+            description="Model for sash system">
+      </model>
+      <modelSetSnippet
+            classname="org.eclipse.papyrus.core.utils.caches.TypeCacheInitializer">
+      </modelSetSnippet>
    </extension>
 	
 	

@@ -13,7 +13,7 @@ package org.eclipse.papyrus.core.extension.commands;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.papyrus.core.extension.BadNameExtensionException;
-import org.eclipse.papyrus.core.extension.DescriptorExtensionFactory;
+import org.eclipse.papyrus.core.extension.ExtensionUtils;
 import org.eclipse.papyrus.core.extension.ExtensionException;
 import org.eclipse.papyrus.core.utils.IDebugChannel;
 import org.eclipse.papyrus.core.utils.PapyrusTrace;
@@ -24,7 +24,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  * 
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public class CreationCommandExtensionFactory extends DescriptorExtensionFactory {
+public class CreationCommandExtensionFactory extends ExtensionUtils {
 
 	/** singleton eINSTANCE of this class */
 	public final static CreationCommandExtensionFactory eINSTANCE = new CreationCommandExtensionFactory();

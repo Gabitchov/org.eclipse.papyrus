@@ -17,7 +17,7 @@ import static org.eclipse.papyrus.core.Activator.log;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.papyrus.core.extension.BadNameExtensionException;
-import org.eclipse.papyrus.core.extension.DescriptorExtensionFactory;
+import org.eclipse.papyrus.core.extension.ExtensionUtils;
 import org.eclipse.papyrus.core.extension.ExtensionException;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
@@ -27,7 +27,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  *@author Cedric Dumoulin
  *@author Patrick Tessier
  */
-public class EditorDescriptorExtensionFactory extends DescriptorExtensionFactory {
+public class EditorDescriptorExtensionFactory extends ExtensionUtils {
 
 	/** singleton eINSTANCE of this class */
 	public final static EditorDescriptorExtensionFactory eINSTANCE = new EditorDescriptorExtensionFactory();

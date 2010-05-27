@@ -3,15 +3,17 @@
  */
 package org.eclipse.papyrus.resource.sasheditor;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.resource.AbstractBaseModel;
+import org.eclipse.papyrus.resource.AbstractModelWithSharedResource;
 import org.eclipse.papyrus.resource.IModel;
 
 
 /**
- * @author dumoulin
+ * @author cedric dumoulin
  *
  */
-public class SashModel extends AbstractBaseModel implements IModel {
+public class SashModel extends AbstractModelWithSharedResource<org.eclipse.papyrus.sashwindows.di.SashModel> implements IModel {
 
 	/**
 	 * File extension used for notation.
@@ -44,6 +46,11 @@ public class SashModel extends AbstractBaseModel implements IModel {
 	@Override
 	public Object getIdentifier() {
 		return MODEL_ID;
+	}
+
+	@Override
+	protected boolean isModelRoot(EObject object) {
+		return object instanceof org.eclipse.papyrus.sashwindows.di.SashModel;
 	}
 
 }

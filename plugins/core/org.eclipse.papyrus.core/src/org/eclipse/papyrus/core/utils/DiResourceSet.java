@@ -35,6 +35,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.core.listenerservice.ModelListenerManager;
 import org.eclipse.papyrus.core.utils.caches.TypeCacheAdapter;
 import org.eclipse.papyrus.resource.IModel;
+import org.eclipse.papyrus.resource.ModelMultiException;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.ModelsReader;
 import org.eclipse.papyrus.resource.notation.NotationUtils;
@@ -50,6 +51,7 @@ import org.eclipse.papyrus.resource.uml.UmlUtils;
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  * @author <a href="mailto:thomas.szadel@atosorigin.com">Thomas Szadel</a>
  * 
+ * @deprecated Use ModelSet instead.
  */
 public class DiResourceSet extends ModelSet {
 
@@ -99,7 +101,11 @@ public class DiResourceSet extends ModelSet {
 	 * @deprecated use {@link ModelSet#loadModels(IFile)} instead.
 	 */
 	public void loadResources(IFile file) {
-		loadModels(file);
+		try {
+			loadModels(file);
+		} catch (ModelMultiException e) {
+			e.printStackTrace();
+		}
 
 		//		// Extract file name, without extension
 		//		IPath fullPath = file.getFullPath().removeFileExtension();

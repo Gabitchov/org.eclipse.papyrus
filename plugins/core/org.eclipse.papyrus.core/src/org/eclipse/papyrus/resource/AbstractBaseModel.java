@@ -96,6 +96,15 @@ public abstract class AbstractBaseModel implements IModel {
 	abstract protected String getModelFileExtension();
 
 	/**
+	 * Return true if the resource is set, false otherwise.
+	 * When the resource is set, this mean that the model is loaded or created.
+	 * @return
+	 */
+	protected boolean resourceIsSet() {
+		return resource != null;
+	}
+
+	/**
 	 * @see org.eclipse.papyrus.resource.IModel#createModel(org.eclipse.core.runtime.IPath)
 	 * 
 	 * @param fullPath

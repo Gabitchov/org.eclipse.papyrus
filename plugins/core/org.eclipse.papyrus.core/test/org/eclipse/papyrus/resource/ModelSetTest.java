@@ -113,9 +113,10 @@ public class ModelSetTest {
 
 	/**
 	 * Test method for {@link org.eclipse.papyrus.resource.ModelSet#loadModels(IFile)} .
+	 * @throws ModelMultiException 
 	 */
 	@Test
-	public void testLoadModels() throws IOException, CoreException {
+	public void testLoadModels() throws IOException, CoreException, ModelMultiException {
 		
 		// Create models so they exists
 		testSave();
@@ -307,9 +308,10 @@ public class ModelSetTest {
 	
 	/**
 	 * Test that snippets are called after a call to loadModels()
+	 * @throws ModelMultiException 
 	 */
 	@Test
-	public void testSnippetCalledAfterLoadModels() {
+	public void testSnippetCalledAfterLoadModels() throws ModelMultiException {
 		
 		// force model creation
 		testSnippetCalledAfterCreateModels();
