@@ -137,8 +137,9 @@
    </extension>
 
 <extension point="org.eclipse.ui.popupMenus" id="init-diagram-action">
-      <?gmfgen generated="true"?>
-      <objectContribution
+      <?gmfgen generated="false"?>
+       <!-- FIX Bug 314257-->
+      <!--objectContribution
             id="org.eclipse.papyrus.diagram.communication.InitDiagram"
             nameFilter="*.PapyrusUMLCommunication"
             objectClass="org.eclipse.core.resources.IFile">
@@ -149,7 +150,7 @@
                enablesFor="1"
                id="org.eclipse.papyrus.diagram.communication.InitDiagramAction">
          </action>
-      </objectContribution>
+      </objectContribution-->
    </extension>
 
 <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders" id="global-actions">

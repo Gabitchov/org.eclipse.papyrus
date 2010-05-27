@@ -52,8 +52,9 @@
    </extension>
 
    <extension point="org.eclipse.ui.popupMenus" id="init-diagram-action">
-      <?gmfgen generated="true"?>
-      <objectContribution
+      <?gmfgen generated="false"?>
+       <!-- FIX Bug 314257-->
+      <!--objectContribution
             id="org.eclipse.papyrus.diagram.composite.InitDiagram"
             nameFilter="*.uml"
             objectClass="org.eclipse.core.resources.IFile">
@@ -64,7 +65,7 @@
                enablesFor="1"
                id="org.eclipse.papyrus.diagram.composite.InitDiagramAction">
          </action>
-      </objectContribution>
+      </objectContribution-->
    </extension>
 
    

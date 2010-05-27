@@ -136,8 +136,9 @@
    </extension>
 
    <extension point="org.eclipse.ui.popupMenus" id="init-diagram-action">
-      <?gmfgen generated="true"?>
-      <objectContribution
+      <?gmfgen generated="false"?>
+      <!-- FIX Bug 314257-->
+      <!--objectContribution
             id="org.eclipse.papyrus.diagram.usecase.InitDiagram"
             nameFilter="*.PapyrusUMLUsecase"
             objectClass="org.eclipse.core.resources.IFile">
@@ -148,7 +149,7 @@
                enablesFor="1"
                id="org.eclipse.papyrus.diagram.usecase.InitDiagramAction">
          </action>
-      </objectContribution>
+      </objectContribution-->
    </extension>
 
    	
