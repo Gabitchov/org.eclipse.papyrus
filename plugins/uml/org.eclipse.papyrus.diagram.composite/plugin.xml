@@ -2246,13 +2246,6 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
-			class="org.eclipse.papyrus.diagram.composite.preferences.UndefinedPreferencePage"
-            id="org.eclipse.papyrus.diagram.composite.preferences.UndefinedPreferencePage"
-            name="Undefined Link" />
-		
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.DeploymentPreferencePage"
             id="org.eclipse.papyrus.diagram.composite.preferences.DeploymentPreferencePage"
             name="Deployment Link" />
