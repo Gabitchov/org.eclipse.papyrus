@@ -10,29 +10,39 @@
 package org.eclipse.papyrus.sysml.diagram.internalblock.provider;
 
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.CreateGraphicEditPartOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.IEditPartOperation;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.composite.providers.UMLEditPartProvider;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.part.InternalBlockDiagramEditPart;
-import org.eclipse.papyrus.sysml.diagram.internalblock.factory.InheritedElementEditPartFactory;
 
 public class InheritedElementEditPartProvider extends UMLEditPartProvider {
 
-	public InheritedElementEditPartProvider() {
-		setFactory(new InheritedElementEditPartFactory());
-		setAllowCaching(true);
-	}
-
+	@Override
 	public synchronized boolean provides(IOperation operation) {
 		if(operation instanceof CreateGraphicEditPartOperation) {
 			View view = ((IEditPartOperation)operation).getView();
+
+			// Ensure current diagram is an InternalBlock Diagram
 			if(!InternalBlockDiagramEditPart.DIAGRAM_ID.equals(view.getDiagram().getType())) {
 				return false;
 			}
-			IGraphicalEditPart part = createEditPart(view);
-			if(part != null) {
+
+			// Test supported inherited types
+			String hint = view.getType();
+			if(InternalBlockDiagramElementTypes.CLASS.getSemanticHint().equals(hint)) {
+				return true;
+			}
+
+			if(InternalBlockDiagramElementTypes.PROPERTY.getSemanticHint().equals(hint)) {
+				return true;
+			}
+
+			if(InternalBlockDiagramElementTypes.PORT.getSemanticHint().equals(hint)) {
+				return true;
+			}
+
+			if(InternalBlockDiagramElementTypes.CONNECTOR.getSemanticHint().equals(hint)) {
 				return true;
 			}
 		}

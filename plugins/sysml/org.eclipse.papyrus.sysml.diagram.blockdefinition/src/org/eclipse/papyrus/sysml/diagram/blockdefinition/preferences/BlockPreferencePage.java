@@ -9,11 +9,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences;
 
-import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockDefinitionDiagramEditPart;
 
 public class BlockPreferencePage extends BlockDefinitionDiagramElementPreferencePage {
 
-	public static void initDefaults(IPreferenceStore store) {
-		BlockDefinitionDiagramElementPreferencePage.initDefaults(store, "Block");
-	}
+	public String key = BlockDefinitionDiagramEditPart.DIAGRAM_ID + "_Block"; //$NON-NLS-1$
+
 }

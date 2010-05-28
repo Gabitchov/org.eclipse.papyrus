@@ -11,13 +11,25 @@ package org.eclipse.papyrus.sysml.diagram.blockdefinition.provider;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.gmf.runtime.diagram.core.providers.AbstractViewProvider;
+import org.eclipse.gmf.runtime.diagram.core.services.view.CreateDiagramViewOperation;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockDefinitionDiagramEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.factory.BlockDefinitionDiagramViewFactory;
 
 
 public class BlockDefinitionDiagramViewProvider extends AbstractViewProvider {
 
-	protected Class getDiagramViewClass(IAdaptable semanticAdapter, String diagramKind) {
+	@Override
+	protected boolean provides(CreateDiagramViewOperation operation) {
+
+		if(BlockDefinitionDiagramEditPart.DIAGRAM_ID.equals(operation.getSemanticHint())) {
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
+	protected Class<?> getDiagramViewClass(IAdaptable semanticAdapter, String diagramKind) {
 		if(BlockDefinitionDiagramEditPart.DIAGRAM_ID.equals(diagramKind)) {
 			return BlockDefinitionDiagramViewFactory.class;
 		}

@@ -9,10 +9,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences;
 
-import org.eclipse.gmf.runtime.diagram.ui.preferences.DiagramsPreferencePage;
+import org.eclipse.papyrus.preferences.pages.DiagramPreferencePage;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.Activator;
 
-public class DiagramGeneralPreferencePage extends DiagramsPreferencePage {
+public class DiagramGeneralPreferencePage extends DiagramPreferencePage {
 
 	public DiagramGeneralPreferencePage() {
 		setPreferenceStore(Activator.getDefault().getPreferenceStore());

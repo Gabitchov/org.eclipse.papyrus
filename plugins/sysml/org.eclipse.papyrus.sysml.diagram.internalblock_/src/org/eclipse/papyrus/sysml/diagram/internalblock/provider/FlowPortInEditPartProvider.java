@@ -35,7 +35,7 @@ public class FlowPortInEditPartProvider extends AbstractEditPartProvider {
 	}
 
 	@Override
-	protected Class getNodeEditPartClass(View view) {
+	protected Class<?> getNodeEditPartClass(View view) {
 
 		if(InternalBlockDiagramElementTypes.FLOWPORT_IN.getSemanticHint().equals(view.getType())) {
 			return PortEditPart.class;

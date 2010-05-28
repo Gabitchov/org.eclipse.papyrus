@@ -9,14 +9,31 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.provider;
 
+import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.AbstractEditPartProvider;
+import org.eclipse.gmf.runtime.diagram.ui.services.editpart.CreateGraphicEditPartOperation;
+import org.eclipse.gmf.runtime.diagram.ui.services.editpart.IEditPartOperation;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.part.InternalBlockDiagramEditPart;
 
-//TODO : Implements provides against diagram type
 public class InternalBlockDiagramEditPartProvider extends AbstractEditPartProvider {
 
-	protected Class getDiagramEditPartClass(View view) {
+	@Override
+	public boolean provides(IOperation operation) {
+		if(operation instanceof CreateGraphicEditPartOperation) {
+			View view = ((IEditPartOperation)operation).getView();
+
+			// Ensure current diagram is InternalBlockDiagram
+			if(InternalBlockDiagramEditPart.DIAGRAM_ID.equals(view.getType())) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	@Override
+	protected Class<?> getDiagramEditPartClass(View view) {
 		if(InternalBlockDiagramEditPart.DIAGRAM_ID.equals(view.getType())) {
 			return InternalBlockDiagramEditPart.class;
 		}

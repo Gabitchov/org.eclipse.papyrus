@@ -11,7 +11,6 @@
 		label="SysML Block Definition Diagram" />
 	<editorDiagram
 		actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
-		contextId="org.eclipse.papyrus.gmf.editor.context"
 		factoryClass="org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinitionDiagramEditorFactory"
 		icon="icons/diagram/Diagram_BlockDefinitionDiagram.gif" />
 </extension>
@@ -249,7 +248,7 @@
 <!-- A kind type should be created for diagram elements       -->
    <extension
          point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
-        
+<!--        
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Class"
@@ -260,33 +259,34 @@
             <param name="semanticHint" value="Class"/>
          </metamodelType>
       </metamodel>
-            
+  -->            
       <specializationType
             id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Block"
             name="Block"
             kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
             icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif"
             edithelperadvice="org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.BlockHelperAdvice">
-         <specializes id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Class"/>
+         <specializes id="org.eclipse.papyrus.uml.Class"/>
+         <!--<specializes id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Class"/>-->
 		 <param name="semanticHint" value="Block"/>
          <matcher class = "org.eclipse.papyrus.sysml.diagram.blockdefinition.matcher.BlockMatcher" />
       </specializationType>  
    </extension>
 
 <!-- Context binding does not seem to be used - maybe broken by the backbone -->
-<!--
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
 	
 	<clientContext id="org.eclipse.papyrus.sysml.diagram.blockdefinition.TypeContext">
 		<enablement>
 		<test
 			property="org.eclipse.gmf.runtime.emf.core.editingDomain"
-			value="org.eclipse.papyrus.sysml.diagram.blockdefinition.EditingDomain"/>
+			value="SharedEditingDomain"/>
 		</enablement>
 	</clientContext> 
 	
 	<binding context="org.eclipse.papyrus.sysml.diagram.blockdefinition.TypeContext">
-		<elementType ref="org.eclipse.papyrus.sysml.diagram.blockdefinition.Class"/>
+		<elementType pattern="org.eclipse.papyrus.uml.*" />	
+		<!--<elementType ref="org.eclipse.papyrus.sysml.diagram.blockdefinition.Class"/>-->
 		<elementType ref="org.eclipse.papyrus.sysml.diagram.blockdefinition.Block"/>
 		<elementType ref="org.eclipse.papyrus.diagram.clazz.Package_2007"/>      
 		<elementType ref="org.eclipse.papyrus.diagram.clazz.Property_3012"/>
@@ -294,7 +294,6 @@
 	</binding>
 	
 </extension>   
-  -->
 
 <!-- Preference pages declaration -->
 <extension point="org.eclipse.ui.preferencePages" id="prefpages">
@@ -334,11 +333,6 @@
             name="Package">
 	</page>	
 
-</extension>
-
-<!-- Preference pages initializer -->
-<extension point="org.eclipse.core.runtime.preferences">
-	<initializer class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DiagramPreferenceInitializer"/>
 </extension>
 
 </plugin>

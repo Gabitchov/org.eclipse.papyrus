@@ -11,7 +11,6 @@
 		label="SysML Internal Block Diagram"/>
 	<editorDiagram
 		actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
-		contextId="org.eclipse.papyrus.gmf.editor.context"
 		factoryClass="org.eclipse.papyrus.sysml.diagram.internalblock.InternalBlockDiagramEditorFactory"
 		icon="icons/diagram/Diagram_InternalBlockDiagram.gif" />
 </extension>
@@ -121,7 +120,7 @@
 		<entry
 			defineOnly="true"
 			description="Create new Class"
-			id="createClass1CreationTool"
+			id="composite.tool.class"
 			kind="tool"
 			label="Class"
 			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
@@ -132,7 +131,7 @@
 		<entry
 			defineOnly="true"
 			description="Create new Property"
-			id="createProperty2CreationTool"
+			id="composite.tool.property"
 			kind="tool"
 			label="Property"
 			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
@@ -143,7 +142,7 @@
 		<entry
 			defineOnly="true"
 			description="Create new Port"
-			id="createPort3CreationTool"
+			id="composite.tool.port"
 			kind="tool"
 			label="Port"
 			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif"
@@ -154,7 +153,7 @@
 		<entry
 			defineOnly="true"
 			description="Create new Connector"
-			id="createConnector2CreationTool"
+			id="composite.tool.connector"
 			kind="tool"
 			label="Connector"
 			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif"
@@ -201,6 +200,7 @@
 	<editpartProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.InternalBlockDiagramEditPartProvider">
 		<Priority name="Low"/>
 		<object 
+			id="org.eclipse.papyrus.sysml.diagram.internalblock.Diagram"
 			class="org.eclipse.gmf.runtime.notation.Diagram">
 			<method name="getType()" value="InternalBlock"/>
 		</object>
@@ -230,6 +230,7 @@
 			"3069" = Port 
 			"5125" = Port name label -->			
 		<object
+			id="org.eclipse.papyrus.sysml.diagram.internalblock.InheritedNodes"
 			class="org.eclipse.gmf.runtime.notation.Node">
 			<method name="getType()" value="2073, 5156, 7073, 3070, 5126, 7077, 3069, 5025"/>
 		</object>
@@ -237,6 +238,7 @@
 		<!-- 
 			"4013" = Connector -->			
 		<object
+			id="org.eclipse.papyrus.sysml.diagram.internalblock.InheritedEdges"
 			class="org.eclipse.gmf.runtime.notation.Edge">
 			<method name="getType()" value="4013"/>
 		</object>
@@ -312,7 +314,7 @@
 	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
 		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.BlockPreferencePage"
 		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.BlockPreferencePage"
-		name="Block">
+		name="Class">
 	</page>
 
 	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
@@ -333,11 +335,6 @@
 		name="Port">
 	</page>	
 
-</extension>
-
-<!-- Preference pages initializer -->
-<extension point="org.eclipse.core.runtime.preferences">
-	<initializer class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.DiagramPreferenceInitializer"/>
 </extension>
    
 </plugin>

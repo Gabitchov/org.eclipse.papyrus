@@ -19,8 +19,9 @@ import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
+import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.papyrus.umlutils.NamedElementUtil;
-import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -42,12 +43,11 @@ public class FlowPortINHelperAdvice extends AbstractEditHelperAdvice {
 				Port newElement = (Port)request.getElementToConfigure();
 
 				// Set the element name (should bound by a separated AdviceHelper)
-				String baseName = getElementType().getDisplayName();
-				String newElementName = NamedElementUtil.getNewUMLElementName((Element)getElementToEdit(), baseName);
+				String newElementName = NamedElementUtil.getName((NamedElement)getElementToEdit());
 				newElement.setName(newElementName);
 
 				// Apply stereotype
-				Stereotype st = newElement.getApplicableStereotype("SysML::PortAndFlows::FlowPort");
+				Stereotype st = newElement.getApplicableStereotype(SysmlResource.FLOW_PORT_ID);
 				FlowPort fp = (FlowPort)newElement.applyStereotype(st);
 				fp.setDirection(FlowDirection.IN);
 

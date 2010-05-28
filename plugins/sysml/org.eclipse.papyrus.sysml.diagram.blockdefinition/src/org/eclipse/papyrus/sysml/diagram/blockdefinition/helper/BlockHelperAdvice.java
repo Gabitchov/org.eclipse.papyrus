@@ -17,7 +17,9 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
-import org.eclipse.papyrus.umlutils.NamedElementUtil;
+import org.eclipse.papyrus.diagram.common.helper.NamedElementHelper;
+import org.eclipse.papyrus.sysml.blocks.BlocksPackage;
+import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.Stereotype;
 
 
@@ -38,11 +40,11 @@ public class BlockHelperAdvice extends AbstractEditHelperAdvice {
 				org.eclipse.uml2.uml.Class newClass = (org.eclipse.uml2.uml.Class)request.getElementToConfigure();
 
 				// Set the element name
-				String newElementName = NamedElementUtil.getDefaultNameWithIncrement(newClass);
+				String newElementName = NamedElementHelper.EINSTANCE.getNewUMLElementName(newClass.getOwner(), BlocksPackage.eINSTANCE.getBlock());
 				newClass.setName(newElementName);
 
 				// Apply stereotype
-				Stereotype st = newClass.getApplicableStereotype("SysML::Blocks::Block");
+				Stereotype st = newClass.getApplicableStereotype(SysmlResource.BLOCK_ID);
 				newClass.applyStereotype(st);
 
 				return CommandResult.newOKCommandResult();

@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.papyrus.sysml.portandflows.FlowDirection;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
+import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.Port;
 
 /**
@@ -26,7 +27,7 @@ public class FlowPortINMatcher implements IElementMatcher {
 		if(eObject instanceof Port) {
 
 			Port port = (Port)eObject;
-			FlowPort flowport = (FlowPort)port.getAppliedStereotype("SysML::Blocks::Block");
+			FlowPort flowport = (FlowPort)port.getStereotypeApplication(port.getAppliedStereotype(SysmlResource.FLOW_PORT_ID));
 
 			if((flowport != null) && (flowport.getDirection() == FlowDirection.IN)) {
 				isFPIn = true;

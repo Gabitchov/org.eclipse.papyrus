@@ -9,11 +9,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.preferences;
 
-import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.sysml.diagram.internalblock.edit.part.InternalBlockDiagramEditPart;
 
 public class PortPreferencePage extends InternalBlockDiagramElementPreferencePage {
 
-	public static void initDefaults(IPreferenceStore store) {
-		InternalBlockDiagramElementPreferencePage.initDefaults(store, "Port");
-	}
+	protected String key = InternalBlockDiagramEditPart.DIAGRAM_ID + "_Port"; //$NON-NLS-1$
+
 }

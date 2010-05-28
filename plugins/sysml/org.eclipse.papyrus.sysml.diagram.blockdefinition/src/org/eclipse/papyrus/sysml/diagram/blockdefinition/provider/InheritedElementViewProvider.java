@@ -10,6 +10,8 @@
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.provider;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateEdgeViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperation;
@@ -17,6 +19,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLViewProvider;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockDefinitionDiagramEditPart;
 
@@ -87,26 +90,15 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 		// Log a warning here
 		System.err.println("Unable to create view for : (hint) " + semanticHint);
 		return null;
-
-		//		final EObject domainElement = getSemanticElement(semanticAdapter);
-		//		final IElementType elementType = (IElementType)semanticAdapter.getAdapter(IElementType.class);
-		//		if(elementType == BlockDefinitionDiagramElementTypes.Package_2007) {
-		//			return createPackage_2007(domainElement, containerView, index, persisted, preferencesHint);
-		//		}
-		//
-		//		if(elementType == BlockDefinitionDiagramElementTypes.Property_3012) {
-		//			return createProperty_3012(domainElement, containerView, index, persisted, preferencesHint);
-		//		}
-		//
-		//		// Log a warning here
-		//		System.err.println("Unable to create view for : (hint) " + semanticHint);
-		//		return null;
 	}
-
-	private IElementType getSemanticElementType(IAdaptable semanticAdapter) {
-		if(semanticAdapter == null) {
-			return null;
+	
+	@Override
+	protected void stampShortcut(View containerView, Node target) {
+		if(!BlockDefinitionDiagramEditPart.DIAGRAM_ID.equals(UMLVisualIDRegistry.getModelID(containerView))) {
+			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
+			shortcutAnnotation.getDetails().put("modelID", BlockDefinitionDiagramEditPart.DIAGRAM_ID); //$NON-NLS-1$
+			target.getEAnnotations().add(shortcutAnnotation);
 		}
-		return (IElementType)semanticAdapter.getAdapter(IElementType.class);
 	}
 }

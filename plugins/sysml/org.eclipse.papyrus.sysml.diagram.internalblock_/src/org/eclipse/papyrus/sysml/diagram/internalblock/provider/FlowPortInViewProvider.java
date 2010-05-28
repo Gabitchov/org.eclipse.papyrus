@@ -23,7 +23,7 @@ import org.eclipse.papyrus.sysml.diagram.internalblock.factory.FlowPortNameLabel
 
 public class FlowPortInViewProvider extends AbstractViewProvider {
 
-	private Map<String, Class> nodeMap = new HashMap<String, Class>();
+	private Map<String, Class<?>> nodeMap = new HashMap<String, Class<?>>();
 	{
 		nodeMap.put(InternalBlockDiagramElementTypes.FLOWPORT_IN.getSemanticHint(), FlowPortInViewFactory.class);
 		nodeMap.put(InternalBlockDiagramElementTypes.FLOWPORT_IN_NAME_LABEL_HINT, FlowPortNameLabelViewFactory.class);
@@ -45,7 +45,7 @@ public class FlowPortInViewProvider extends AbstractViewProvider {
 	}
 
 	@Override
-	protected Class getNodeViewClass(IAdaptable semanticAdapter, View containerView, String semanticHint) {
+	protected Class<?> getNodeViewClass(IAdaptable semanticAdapter, View containerView, String semanticHint) {
 		return nodeMap.get(semanticHint);
 	}
 }

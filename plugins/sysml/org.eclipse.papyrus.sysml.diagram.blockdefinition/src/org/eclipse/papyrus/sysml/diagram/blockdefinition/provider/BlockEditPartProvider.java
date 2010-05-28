@@ -40,7 +40,7 @@ public class BlockEditPartProvider extends AbstractEditPartProvider {
 	}
 
 	@Override
-	protected Class getNodeEditPartClass(View view) {
+	protected Class<?> getNodeEditPartClass(View view) {
 
 		if(BlockDefinitionDiagramElementTypes.BLOCK.getSemanticHint().equals(view.getType())) {
 			return BlockEditPart.class;

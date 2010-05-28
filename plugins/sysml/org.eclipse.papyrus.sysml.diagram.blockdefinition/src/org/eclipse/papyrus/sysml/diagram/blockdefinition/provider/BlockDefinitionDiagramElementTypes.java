@@ -29,6 +29,10 @@ public class BlockDefinitionDiagramElementTypes extends AbstractElementTypeEnume
 
 	public static final String BLOCK_CONSTRAINT_COMPARTMENT_HINT = "Block_Constraint_Compartment";
 
+	public static final String PACKAGE_NAME_LABEL_HINT = "5026"; // ClassNameEditPart.VISUAL_ID
+
+	public static final String PACKAGE_COMPARTMENT_HINT = "7016"; //ClassAttributeCompartment2EditPart.VISUAL_ID
+
 	/** Block Definition Diagram - Class Diagram related elements */
 	public static final IHintedType Package_2007 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Package_2007"); //$NON-NLS-1$
 

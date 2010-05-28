@@ -11,6 +11,7 @@ package org.eclipse.papyrus.sysml.diagram.blockdefinition.matcher;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
+import org.eclipse.papyrus.sysml.util.SysmlResource;
 import org.eclipse.uml2.uml.Class;
 
 /**
@@ -24,11 +25,10 @@ public class BlockMatcher implements IElementMatcher {
 		if(eObject instanceof Class) {
 
 			Class clazz = (Class)eObject;
-			if(clazz.getAppliedStereotype("SysML::Blocks::Block") != null) { //$NON-NLS-1$
+			if(clazz.getAppliedStereotype(SysmlResource.BLOCK_ID) != null) {
 				isBlock = true;
 			}
 		}
-
 		return isBlock;
 	}
 

@@ -10,6 +10,8 @@
 package org.eclipse.papyrus.sysml.diagram.internalblock.provider;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateEdgeViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperation;
@@ -17,6 +19,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.composite.providers.UMLViewProvider;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.part.InternalBlockDiagramEditPart;
 
@@ -91,5 +94,15 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 		// Log a warning here
 		System.err.println("Unable to create view for : (hint) " + semanticHint);
 		return null;
+	}
+
+	@Override
+	protected void stampShortcut(View containerView, Node target) {
+		if(!InternalBlockDiagramEditPart.DIAGRAM_ID.equals(UMLVisualIDRegistry.getModelID(containerView))) {
+			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
+			shortcutAnnotation.getDetails().put("modelID", InternalBlockDiagramEditPart.DIAGRAM_ID); //$NON-NLS-1$
+			target.getEAnnotations().add(shortcutAnnotation);
+		}
 	}
 }

@@ -1,7 +1,9 @@
 package org.eclipse.papyrus.sysml.diagram.internalblock;
 
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.papyrus.sysml.diagram.internalblock.preferences.DiagramPreferenceInitializer;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -35,6 +37,9 @@ public class Activator extends AbstractUIPlugin {
 		plugin = this;
 
 		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT, getPreferenceStore());
+		// Preferences initialization
+		DiagramPreferenceInitializer diagramPreferenceInitializer = new DiagramPreferenceInitializer();
+		diagramPreferenceInitializer.initializeDefaultPreferences();
 	}
 
 	/*
@@ -68,4 +73,15 @@ public class Activator extends AbstractUIPlugin {
 		return AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#getPreferenceStore()
+	 * 
+	 * @return Shared Preference Store.
+	 */
+	@Override
+	public IPreferenceStore getPreferenceStore() {
+		IPreferenceStore store = org.eclipse.papyrus.preferences.Activator.getDefault().getPreferenceStore();
+		return store;
+	}
 }
