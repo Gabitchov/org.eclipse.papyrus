@@ -18,7 +18,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.papyrus.core.extension.ExtensionException;
 import org.eclipse.papyrus.core.extension.ExtensionUtils;
 
-public class ProviderAdapterFactoryReader extends ExtensionUtils{
+public class ProviderAdapterFactoryReader extends ExtensionUtils {
 
 	/** singleton eINSTANCE of this class */
 	public final static ProviderAdapterFactoryReader eINSTANCE = new ProviderAdapterFactoryReader();

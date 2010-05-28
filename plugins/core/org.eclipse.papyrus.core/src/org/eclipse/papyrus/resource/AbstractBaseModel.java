@@ -35,7 +35,7 @@ public abstract class AbstractBaseModel implements IModel {
 	 * The associated resource.
 	 */
 	protected Resource resource;
-	
+
 	/**
 	 * The resource URI.
 	 */
@@ -98,6 +98,7 @@ public abstract class AbstractBaseModel implements IModel {
 	/**
 	 * Return true if the resource is set, false otherwise.
 	 * When the resource is set, this mean that the model is loaded or created.
+	 * 
 	 * @return
 	 */
 	protected boolean resourceIsSet() {
@@ -186,11 +187,13 @@ public abstract class AbstractBaseModel implements IModel {
 	 */
 	public void unload() {
 		// call registered snippets
-		snippets.performStart(this);
+		snippets.performDispose(this);
 
 		// Do unloading
-		resource.unload();
-		resource = null;
+		if(resource != null) {
+			resource.unload();
+			resource = null;
+		}
 	}
 
 	/**

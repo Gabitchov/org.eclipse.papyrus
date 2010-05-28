@@ -20,6 +20,8 @@ public class DoSaveEvent {
 	final protected IMultiDiagramEditor multiDiagramEditor;
 	
 	/**
+	 * Create an Event that is sent with a Save or SaveAs.
+	 * The same event can be reused.
 	 * Constructor.
 	 *
 	 * @param serviceRegistry

@@ -11,7 +11,7 @@
  *  Tristan FAURE    tristan.faure@atosorigin.com - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.core.utils.caches;
+package org.eclipse.papyrus.core.resourceloading.caches;
 
 import java.util.Collection;
 

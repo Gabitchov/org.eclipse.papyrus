@@ -128,7 +128,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	/**
 	 * Object managing models lifeCycle.
 	 */
-	protected DiResourceSet resourceSet = new DiResourceSet();
+	protected DiResourceSet resourceSet ;
 
 	/**
 	 * Class used to propagate life cycle events.
@@ -427,6 +427,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		BusinessModelResolver.getInstance();
 
 		// Load resources
+		resourceSet = new DiResourceSet();
 		IFile file = ((IFileEditorInput)input).getFile();
 		resourceSet.loadResources(file);
 
@@ -440,7 +441,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		// Create ServicesRegistry and register services
 		servicesRegistry = createServicesRegistry();
 
-		// Create lifeCycle event provider.
+		// Create lifeCycle event provider and the event that is used when the editor fire a save event.
 		lifeCycleEventsProvider = new LifeCycleEventsProvider();
 		lifeCycleEvent = new DoSaveEvent(servicesRegistry, this);
 		servicesRegistry.add(ILifeCycleEventsProvider.class, 1, lifeCycleEventsProvider);

@@ -4,12 +4,19 @@
 package org.eclipse.papyrus.resource.sasheditor;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.resource.AbstractBaseModel;
 import org.eclipse.papyrus.resource.AbstractModelWithSharedResource;
+import org.eclipse.papyrus.resource.AbstractModelWithSharedResource.ModelKind;
 import org.eclipse.papyrus.resource.IModel;
 
 
 /**
+ * Model for the sash system.
+ * <br>
+ * This model can share its resource with other model. This model is declared as {@link ModelKind#master}.
+ * Other model whishing to share the resource should subclass {@link AbstractModelWithSharedResource},
+ * be declared as {@link ModelKind#slave} (which is the default.), and set {@link #getModelFileExtension()}
+ * to return the same file extension as this model ({@link #MODEL_FILE_EXTENSION}).
+ * 
  * @author cedric dumoulin
  *
  */
@@ -26,6 +33,16 @@ public class SashModel extends AbstractModelWithSharedResource<org.eclipse.papyr
 	 */
 	public static final String MODEL_ID = "org.eclipse.papyrus.resource.sasheditor.SashModel"; //$NON-NLS-1$
 
+	
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 */
+	public SashModel() {
+		super(ModelKind.master);
+	}
+	
 	/**
 	 * Get the file extension used for this model.
 	 * @see org.eclipse.papyrus.resource.AbstractBaseModel#getModelFileExtension()

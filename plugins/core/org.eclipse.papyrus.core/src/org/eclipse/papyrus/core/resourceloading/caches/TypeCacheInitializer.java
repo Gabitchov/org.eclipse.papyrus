@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.eclipse.papyrus.core.utils.caches;
+package org.eclipse.papyrus.core.resourceloading.caches;
 
 import org.eclipse.papyrus.resource.IModelSetSnippet;
 import org.eclipse.papyrus.resource.ModelSet;

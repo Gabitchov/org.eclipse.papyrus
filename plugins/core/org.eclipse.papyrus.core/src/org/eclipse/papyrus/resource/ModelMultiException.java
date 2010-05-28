@@ -26,6 +26,10 @@ public class ModelMultiException extends ModelException {
 	 * List of encountered exceptions.
 	 */
 	List<Throwable> encounteredExceptions = new ArrayList<Throwable>();
+	/**
+	 * List of identifiers corresponding to exceptions.
+	 */
+	List<Object> encounteredModels = new ArrayList<Object>();
 	
 	
 	/**
@@ -79,7 +83,12 @@ public class ModelMultiException extends ModelException {
 			buffer.append(message).append('\n');
 		
 		buffer.append("----- exceptions : ----------\n");
-		for( Throwable exception: encounteredExceptions) {
+		for( int i = 0; i< encounteredExceptions.size(); i++ ) {
+			Throwable exception = encounteredExceptions.get(i);
+			Object identifierMsg = encounteredModels.get(i);
+			
+			if(identifierMsg != null)
+				buffer.append(identifierMsg.toString()).append(" : ");
 			String msg = exception.getMessage();
 			if(msg != null)
 				buffer.append(msg).append('\n');
@@ -100,6 +109,16 @@ public class ModelMultiException extends ModelException {
 	 * @param exception
 	 */
 	public void addException( Throwable exception) {
-		encounteredExceptions.add(exception);
+		addException("unknown", exception);
 	}
+
+	/**
+	 * Add an exception to the list of exceptions. Also record the corresponding model identifier if any.
+	 * @param exception
+	 */
+	public void addException(Object identifier, Throwable exception) {
+		encounteredExceptions.add( exception );
+		encounteredModels.add(identifier);
+	}
+	
 }

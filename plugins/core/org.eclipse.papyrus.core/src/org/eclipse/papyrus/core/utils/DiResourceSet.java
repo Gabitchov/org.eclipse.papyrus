@@ -13,28 +13,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.core.utils;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory;
-import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.core.listenerservice.ModelListenerManager;
-import org.eclipse.papyrus.core.utils.caches.TypeCacheAdapter;
-import org.eclipse.papyrus.resource.IModel;
+import org.eclipse.papyrus.core.resourceloading.OnDemandLoadingModelSet;
 import org.eclipse.papyrus.resource.ModelMultiException;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.ModelsReader;
@@ -53,7 +39,7 @@ import org.eclipse.papyrus.resource.uml.UmlUtils;
  * 
  * @deprecated Use ModelSet instead.
  */
-public class DiResourceSet extends ModelSet {
+public class DiResourceSet extends OnDemandLoadingModelSet {
 
 
 	/**

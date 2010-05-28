@@ -18,24 +18,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.papyrus.core.resourceloading.ProxyManager;
-import org.eclipse.papyrus.resource.notation.NotationUtils;
-import org.eclipse.papyrus.resource.sasheditor.SashModelUtils;
-import org.eclipse.papyrus.resource.uml.UmlUtils;
 
 
 
@@ -66,22 +58,12 @@ public class ModelSet extends ResourceSetImpl {
 	 */
 	private TransactionalEditingDomain transactionalEditingDomain;
 	
-	/** Set that enables to always load the uri with any strategy. */
-	private Set<URI> uriLoading = new HashSet<URI>();
-	
-	/** 
-	 * The proxy manager that loads the model according to a specific strategy. 
-	 */
-	private ProxyManager proxyManager;
-
-	
 	/**
 	 * 
 	 * Constructor.
 	 *
 	 */
 	public ModelSet() {
-		proxyManager = new ProxyManager(this);
 	}
 	
 	/**
@@ -105,26 +87,6 @@ public class ModelSet extends ResourceSetImpl {
 	 */
 	public IModel getModel(Object key) {
 		return models.get(key);
-	}
-	
-	/**
-	 * @see org.eclipse.emf.ecore.resource.impl.ResourceSetImpl#getEObject(org.eclipse.emf.common.util.URI, boolean)
-	 */
-	@Override
-	public EObject getEObject(URI uri, boolean loadOnDemand) {
-		//return super.getEObject(uri, loadOnDemand);
-		
-		URI resourceURI = uri.trimFragment();
-		// for performance reasons, we check the three initial resources first
-		if(resourceURI.equals(UmlUtils.getUmlModel(this).getResourceURI()) || resourceURI.equals(NotationUtils.getNotationModel(this).getResourceURI()) 
-			|| resourceURI.equals(SashModelUtils.getSashModel(this).getResourceURI()) || uriLoading.contains(resourceURI)) {
-			// do not manage eObject of the current resources
-			return super.getEObject(uri, loadOnDemand);
-		} else if(loadOnDemand) {
-			return proxyManager.getEObjectFromStrategy(uri);
-		} else {
-			return null;
-		}			
 	}
 	
 	/**
@@ -157,38 +119,6 @@ public class ModelSet extends ResourceSetImpl {
 		// Walk all registered models
 		for( IModel model : models.values())
 		{
-			model.createModel( filenameWithoutExtension );
-		}
-		
-		// call snippets to allow them to do their stuff
-		snippets.performStart(this);
-	}
-	
-	/**
-	 * Create all the associated models that are not already created.
-	 * This creates only missing models.
-	 * <br>
-	 * Usage:
-	 * <ul>
-	 *   <li>mngr = new ModelManager()</li>
-	 *   <li>mngr.addModel( UmlModel )</li>
-	 *   <li>mngr.createModels(File)</li>
-	 *   <li>mngr.addModel(NotationModel)</li>
-	 *   <li>mngr.createMissingModels(File)</li>
-	 * </ul>
-	 * 
-	 * @param newFile
-	 *        The file from which path is extracted to create the new resources
-	 */
-	public void createsMissingModels(IFile newFile) {
-		
-		// Get the file name, without extension.
-		IPath filenameWithoutExtension = newFile.getFullPath().removeFileExtension();
-		
-		// Walk all registered models
-		for( IModel model : models.values())
-		{
-//			if(model.)
 			model.createModel( filenameWithoutExtension );
 		}
 		
@@ -232,9 +162,10 @@ public class ModelSet extends ResourceSetImpl {
 				// Record the exception
 				if( exceptions == null)
 				{
+					
 					exceptions = new ModelMultiException("Problems encountered while loading one of the models.");
 				}
-				exceptions.addException(e);
+				exceptions.addException(model.getIdentifier(), e);
 			}
 		}
 		
@@ -323,16 +254,6 @@ public class ModelSet extends ResourceSetImpl {
 	 */
 	public void addModelSetSnippet(IModelSetSnippet snippet) {
 		snippets.add(snippet);
-	}
-	
-	/**
-	 * Enables to add an URI that will be always loaded.
-	 * It is not listening at the current loading strategy and always load the specified URI if needed.
-	 *
-	 * @param alwaysLoadedUri the always loaded uri
-	 */
-	public void forceUriLoading(URI alwaysLoadedUri) {
-		uriLoading.add(alwaysLoadedUri);
 	}
 	
 	/**
