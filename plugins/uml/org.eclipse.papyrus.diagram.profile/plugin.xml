@@ -1159,6 +1159,7 @@
             creationCondition="org.eclipse.papyrus.diagram.profile.ProfileDiagramCreationCondition"
             icon="icons/obj16/Diagram_ProfileDiagram.gif"
             id="org.eclipse.papyrus.diagram.profile.CreateProfileDiagramCommand"
+            language="profile"
             label="UML Profile Diagram">
       </creationCommand>
    </extension>

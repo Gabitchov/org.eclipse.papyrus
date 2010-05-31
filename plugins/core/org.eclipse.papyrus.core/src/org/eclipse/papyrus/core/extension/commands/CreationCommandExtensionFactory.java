@@ -47,6 +47,9 @@ public class CreationCommandExtensionFactory extends ExtensionUtils {
 	/** constant for the attribute icon **/
 	public final static String ICON_ATTR = "icon";
 
+	/** constant for the attribute language **/
+	public final static String LANGUAGE_ATTR = "language";
+	
 	/**
 	 * @return the eINSTANCE
 	 */
@@ -71,6 +74,7 @@ public class CreationCommandExtensionFactory extends ExtensionUtils {
 				CREATION_COMMAND_EXTENSIONPOINT);
 		res.commandId = element.getAttribute(ID_ATTRIBUTE);
 		res.label = element.getAttribute(LABEL_ATTR);
+		res.language = element.getAttribute(LANGUAGE_ATTR);
 		String iconPath = element.getAttribute(ICON_ATTR);
 		if(iconPath != null) {
 			res.icon = AbstractUIPlugin.imageDescriptorFromPlugin(element.getNamespaceIdentifier(), iconPath);

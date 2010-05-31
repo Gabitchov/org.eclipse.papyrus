@@ -29,6 +29,8 @@ public class CreationCommandDescriptor {
 
 	protected ImageDescriptor icon;
 
+	protected String language;
+
 	private ICreationCondition condition;
 
 	public String getCommandId() {
@@ -41,6 +43,10 @@ public class CreationCommandDescriptor {
 
 	public ImageDescriptor getIcon() {
 		return icon;
+	}
+
+	public String getLanguage() {
+		return language;
 	}
 
 	public ICreationCondition getCondition() {

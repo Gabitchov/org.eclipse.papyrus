@@ -172,6 +172,40 @@ An ActionBarContributor can be shared among several Editors or Views.
                </appinfo>
             </annotation>
          </attribute>
+         <attribute name="language" type="string" use="default" value="uml">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="org.eclipse.papyrus.core.papyrusDiagram/@id"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="diagramCategory">
+      <annotation>
+         <documentation>
+            The language, e.g. UML, SysML, Profile, etc... The language is used to put different kinds of diagrams into categories and to filter model templates.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="label" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
       </complexType>
    </element>
 

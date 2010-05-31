@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.ui.INewWizard;
@@ -44,6 +45,9 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 
 	/** Select kind of new diagram the wizard must create */
 	private SelectDiagramKindPage selectDiagramKindPage;
+
+	/** The select diagram category page. */
+	private SelectDiagramCategoryPage selectDiagramCategoryPage;
 
 	/** Select the root element containing the new diagram */
 	private SelectRootElementPage selectRootElementPage;
@@ -82,6 +86,7 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 	@Override
 	public void addPages() {
 		addPage(newModelFilePage);
+		addPage(selectDiagramCategoryPage);
 		// fjcano #293135 :: support model templates
 		addPage(selectTemplateWizardPage);
 		addPage(selectDiagramKindPage);
@@ -123,11 +128,17 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 		if(domainModelURI == null) {
 			this.newModelFilePage = new NewModelFilePage("Create a new Papyrus model", "Create a new empty Papyrus model", selection, false);
 		}
+		selectDiagramCategoryPage = new SelectDiagramCategoryPage("Select language of the diagram");
 		selectDiagramKindPage = new SelectDiagramKindPage("Select kind of diagram");
 		// fjcano #293135 :: support model templates
 		selectTemplateWizardPage = getSelectTemplateWizardPage();
 	}
 	
+	/**
+	 * Gets the select template wizard page.
+	 *
+	 * @return the select template wizard page
+	 */
 	protected SelectTemplateWizardPage getSelectTemplateWizardPage() {
 		return new SelectTemplateWizardPage(Activator.PLUGIN_ID, null, null); 
 	}

@@ -7,6 +7,21 @@
     		name="Papyrus">
 		</category>
 	</extension>
+   <extension
+         point="org.eclipse.papyrus.core.papyrusDiagram">
+      <diagramCategory
+             id="uml"
+             label="UML">
+      </diagramCategory>      
+      <diagramCategory
+             id="sysml"
+             label="SysML">
+      </diagramCategory>      
+      <diagramCategory
+             id="profile"
+             label="Profile">
+      </diagramCategory>      
+   </extension>
 	
    
 </plugin>

@@ -7,6 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors: Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
+ * Tatiana Fesenko((CEA LIST) - [314614] [Wizard] Add SelectDiagramCategory Wizard page) 
  *
  ******************************************************************************/
 package org.eclipse.papyrus.wizards;
@@ -36,6 +37,7 @@ import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.swt.SWT;
@@ -103,6 +105,24 @@ public class SelectTemplateWizardPage extends WizardPage {
 
 		return null;
 	}
+	@Override
+	public void setVisible(boolean visible) {
+		super.setVisible(visible);
+		templateTableViewer.setInput(getDiagramCategory());
+	}
+	
+	/**
+	 * Gets the diagram category.
+	 * 
+	 * @return the diagram category
+	 */
+	private String getDiagramCategory() {
+		IWizardPage previousPage = getPreviousPage();
+		if(previousPage == null || false == previousPage instanceof SelectDiagramCategoryPage) {
+			return null;
+		}
+		return ((SelectDiagramCategoryPage)previousPage).getDiagramCategory();
+	}
 
 	public void createControl(Composite parent) {
 		Composite root = new Composite(parent, SWT.NONE);
@@ -134,7 +154,6 @@ public class SelectTemplateWizardPage extends WizardPage {
 
 		templateTableViewer.setContentProvider(new ModelTemplatesContentProvider());
 		templateTableViewer.setLabelProvider(new ModelTemplatesLabelProvider());
-		templateTableViewer.setInput(0);
 		if(templateTableViewer.getTable().getItemCount() > 0) {
 			IStructuredSelection ss = new StructuredSelection(templateTableViewer.getElementAt(0));
 			templateTableViewer.setSelection(ss);
@@ -275,12 +294,14 @@ public class SelectTemplateWizardPage extends WizardPage {
 
 		private static final String ATTRIBUTE_FILE = "file";
 
+		private static final String ATTRIBUTE_LANGUAGE = "language";
+
 		public void dispose() {
 			// TODO Auto-generated method stub
 
 		}
 
-		private Object[] getTemplatesDescription() {
+		private ModelTemplateDescription[] getTemplatesDescription() {
 			List<ModelTemplateDescription> templates = new ArrayList<ModelTemplateDescription>();
 
 			IExtensionRegistry registry = Platform.getExtensionRegistry();
@@ -290,19 +311,31 @@ public class SelectTemplateWizardPage extends WizardPage {
 				templates.addAll(processExtension(extension));
 			}
 
-			return templates.toArray();
+			return templates.toArray(new ModelTemplateDescription[templates.size()]);
 		}
 
 		private Collection<ModelTemplateDescription> processExtension(IExtension extension) {
 			List<ModelTemplateDescription> templates = new ArrayList<ModelTemplateDescription>();
 			for(IConfigurationElement configElement : extension.getConfigurationElements()) {
-				templates.add(new ModelTemplateDescription(configElement.getAttribute(ATTRIBUTE_NAME), extension.getContributor().getName(), configElement.getAttribute(ATTRIBUTE_FILE)));
+				ModelTemplateDescription template = new ModelTemplateDescription(configElement.getAttribute(ATTRIBUTE_NAME), extension.getContributor().getName(), configElement.getAttribute(ATTRIBUTE_FILE));
+				template.setLanguage(configElement.getAttribute(ATTRIBUTE_LANGUAGE));
+				templates.add(template);
 			}
 			return templates;
 		}
 
 		public Object[] getElements(Object inputElement) {
-			return getTemplatesDescription();
+			if(inputElement instanceof String) {
+				List<ModelTemplateDescription> result = new ArrayList<ModelTemplateDescription>();
+				String diagramCategory = (String)inputElement;
+				for (ModelTemplateDescription template: getTemplatesDescription()) {
+					if(diagramCategory == null || diagramCategory.equals(template.getLanguage())) {
+						result.add(template);
+					}
+				}
+				return result.toArray();
+			}
+			return new Object[0];
 		}
 
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
@@ -322,12 +355,18 @@ public class SelectTemplateWizardPage extends WizardPage {
 
 		private String pluginId;
 
+		private String language;
+
 		public ModelTemplateDescription(String name, String pluginId, String path) {
 			super();
 			this.name = name;
 			// this.e = metamodelURI;
 			this.path = path;
 			this.pluginId = pluginId;
+		}
+		
+		public void setLanguage(String language) {
+			this.language = language;
 		}
 
 		/**
@@ -358,6 +397,10 @@ public class SelectTemplateWizardPage extends WizardPage {
 
 		public String getPluginId() {
 			return pluginId;
+		}
+		
+		public String getLanguage() {
+			return language;
 		}
 
 	}
