@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.core.resourceloading.ILoadingStrategyExtension;
-import org.eclipse.papyrus.core.utils.caches.TypeCacheAdapter;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.uml.UmlUtils;
 import org.eclipse.uml2.uml.Package;
@@ -44,10 +43,10 @@ public class UMLProfileStrategyExtension implements ILoadingStrategyExtension {
 	public boolean loadResource(ModelSet modelSet, URI uri) {
 		Resource modelResource = UmlUtils.getUmlModel().getResource();
 		if(modelResource != null && UMLResource.FILE_EXTENSION.equals(modelResource.getURI().fileExtension())) {
-			TypeCacheAdapter adapter = null;
+			org.eclipse.papyrus.core.resourceloading.caches.TypeCacheAdapter adapter = null;
 			for(Adapter a : modelSet.eAdapters()) {
-				if(a instanceof TypeCacheAdapter) {
-					adapter = (TypeCacheAdapter)a;
+				if(a instanceof org.eclipse.papyrus.core.resourceloading.caches.TypeCacheAdapter) {
+					adapter = (org.eclipse.papyrus.core.resourceloading.caches.TypeCacheAdapter)a;
 					break;
 				}
 			}
@@ -79,14 +78,14 @@ public class UMLProfileStrategyExtension implements ILoadingStrategyExtension {
 							EObject profile = (EObject)profileApp.eGet(UMLPackage.Literals.PROFILE_APPLICATION__APPLIED_PROFILE, false);
 							if(profile != null) {
 								URI trimFragment = uri.trimFragment();
-								if (profile.eIsProxy()) {
+								if(profile.eIsProxy()) {
 									InternalEObject internal = (InternalEObject)profile;
 									if(trimFragment.equals(internal.eProxyURI().trimFragment())) {
 										return true;
-									}									
-								} else if (profile instanceof Profile) {
-									if (trimFragment.equals(((Profile) profile).eResource().getURI().trimFragment())) {
-										return true;										
+									}
+								} else if(profile instanceof Profile) {
+									if(trimFragment.equals(((Profile)profile).eResource().getURI().trimFragment())) {
+										return true;
 									}
 								}
 							}
