@@ -27,8 +27,25 @@ public class AsyncNotification implements INotification {
 		this.popup = popup;
 	}
 
+	/**
+	 * delete the current notification
+	 * 
+	 * @see org.eclipse.papyrus.ui.toolbox.notification.INotification#delete()
+	 */
 	public void delete() {
-		// no effect
+		// delete immediately to avoid superposition with another
+		popup.close();
+	}
+
+	/**
+	 * whether the current notification is deleted
+	 * 
+	 * @see org.eclipse.papyrus.ui.toolbox.notification.INotification#isDeleted()
+	 * 
+	 * @return true if notification is deleted
+	 */
+	public boolean isDeleted() {
+		return popup.getShell() == null || popup.getShell().isDisposed();
 	}
 
 }

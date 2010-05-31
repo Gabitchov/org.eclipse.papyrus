@@ -32,4 +32,16 @@ public class PopupNotification implements INotification {
 		// no effect
 	}
 
+	/**
+	 * Whether the popup has been closed
+	 * 
+	 * @see org.eclipse.papyrus.ui.toolbox.notification.INotification#isDeleted()
+	 * 
+	 * @return true
+	 */
+	public boolean isDeleted() {
+		// the object is created once the popup is closed
+		return true;
+	}
+
 }

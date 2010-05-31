@@ -31,4 +31,14 @@ public class ViewNotification implements INotification {
 		viewCompo.close();
 	}
 
+	/**
+	 * 
+	 * whether the current notification is deleted
+	 * 
+	 * @see org.eclipse.papyrus.ui.toolbox.notification.INotification#isDeleted()
+	 * @return true if notification is deleted
+	 */
+	public boolean isDeleted() {
+		return viewCompo.isDisposed();
+	}
 }

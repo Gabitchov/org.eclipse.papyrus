@@ -20,4 +20,11 @@ public interface INotification {
 
 	/** delete the current notification */
 	void delete();
+
+	/**
+	 * whether the current notification is deleted
+	 * 
+	 * @return true if notification is deleted
+	 */
+	boolean isDeleted();
 }
