@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+<extension
+         point="org.eclipse.ui.views.properties.tabbed.propertySections">
+      <propertySections
+            contributorId="TreeOutlinePage">
+         <propertySection
+               class="org.eclipse.papyrus.properties.tabbed.profile.imagesection.ImageIndexSection"
+               filter="org.eclipse.papyrus.properties.tabbed.profile.imagesection.ImageSectionFilter"
+               id="org.eclipse.papyrus.properties.tabbed.profile.image.ImageIndexSection"
+               tab="Base">
+         </propertySection>
+         <propertySection
+               class="org.eclipse.papyrus.properties.tabbed.profile.imagesection.ImageKindSection"
+               filter="org.eclipse.papyrus.properties.tabbed.profile.imagesection.ImageSectionFilter"
+               id="org.eclipse.papyrus.properties.tabbed.profile.image.ImageKindSection"
+               tab="Base">
+         </propertySection>
+         <propertySection
+               afterSection="org.eclipse.papyrus.properties.tabbed.profile.image.ImageKindSection"
+               class="org.eclipse.papyrus.properties.tabbed.profile.imagesection.ImageExpressionSection"
+               filter="org.eclipse.papyrus.properties.tabbed.profile.imagesection.ImageSectionFilter"
+               id="org.eclipse.papyrus.properties.tabbed.profile.image.ImageExpressionSection"
+               tab="Base">
+         </propertySection>
+         <propertySection
+               afterSection="org.eclipse.papyrus.properties.tabbed.profile.image.ImageExpressionSection"
+               class="org.eclipse.papyrus.properties.tabbed.profile.imagesection.ImageLocationSection"
+               filter="org.eclipse.papyrus.properties.tabbed.profile.imagesection.ImageSectionFilter"
+               id="org.eclipse.papyrus.properties.tabbed.profile.image.ImageLocationSection"
+               tab="Base">
+         </propertySection>
+         <propertySection
+               afterSection="org.eclipse.papyrus.properties.tabbed.profile.image.ImageLocationSection"
+               class="org.eclipse.papyrus.properties.tabbed.profile.imagesection.ImageFormatSection"
+               filter="org.eclipse.papyrus.properties.tabbed.profile.imagesection.ImageSectionFilter"
+               id="org.eclipse.papyrus.properties.tabbed.profile.image.ImageFormatSection"
+               tab="Base">
+         </propertySection>
+         <propertySection
+               afterSection="org.eclipse.papyrus.properties.tabbed.profile.image.ImageFormatSection"
+               class="org.eclipse.papyrus.properties.tabbed.profile.imagesection.ImageContentSection"
+               filter="org.eclipse.papyrus.properties.tabbed.profile.imagesection.ImageSectionFilter"
+               id="org.eclipse.papyrus.properties.tabbed.profile.image.ImageContentSection"
+               tab="Base">
+         </propertySection>
+      </propertySections>
+   </extension>
+
+</plugin>
