@@ -85,6 +85,7 @@
             creationCommandClass="org.eclipse.papyrus.diagram.activity.CreateActivityDiagramCommand"
             creationCondition="org.eclipse.papyrus.diagram.activity.ActivityDiagramCreationCondition"
             icon="icons/ActivityDiagram.gif"
+            language="uml"
             id="org.eclipse.papyrus.diagram.activity.CreateActivityDiagramCommand"
             label="UML Activity Diagram">
       </creationCommand>

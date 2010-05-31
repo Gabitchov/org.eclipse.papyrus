@@ -575,6 +575,7 @@
             creationCondition="org.eclipse.papyrus.diagram.statemachine.StateMachineDiagramCreationCondition"
             icon="icons/StateMachineDiagram.gif"
             id="org.eclipse.papyrus.diagram.statemachine.action.CreationCommand"
+            language="uml"
             label="UML StateMachine Diagram">
       </creationCommand>
    </extension>

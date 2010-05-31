@@ -617,6 +617,7 @@
             creationCondition="org.eclipse.papyrus.sysml.diagram.parametric.ParametricDiagramCondition"
             icon="icons/obj16/ResourceDiagramFile.gif"
             id="org.eclipse.papyrus.sysml.diagram.parametric.CreateParametricDiagramCommand"
+            language="sysml"
             label="SysML Parametric Diagram">
       </creationCommand>
    </extension>

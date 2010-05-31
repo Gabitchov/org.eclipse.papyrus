@@ -81,7 +81,7 @@
                </appInfo>
             </annotation>
          </attribute>
-         <attribute name="language" type="string" use="default" value="">
+         <attribute name="language" type="string" use="required">
             <annotation>
                <documentation>
                   

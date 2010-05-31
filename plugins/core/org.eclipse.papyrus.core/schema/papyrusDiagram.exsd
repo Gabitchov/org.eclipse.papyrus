@@ -172,7 +172,7 @@ An ActionBarContributor can be shared among several Editors or Views.
                </appinfo>
             </annotation>
          </attribute>
-         <attribute name="language" type="string" use="default" value="uml">
+         <attribute name="language" type="string" use="required">
             <annotation>
                <documentation>
                   
@@ -204,6 +204,16 @@ An ActionBarContributor can be shared among several Editors or Views.
                <documentation>
                   
                </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="icon" type="string">
+            <annotation>
+               <documentation>
+                  The icon representing the diagram category.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="resource"/>
+               </appinfo>
             </annotation>
          </attribute>
       </complexType>

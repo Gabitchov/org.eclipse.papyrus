@@ -81,7 +81,8 @@
             creationCondition="org.eclipse.papyrus.diagram.sequence.SequenceDiagramCreationCondition"
             icon="icons/SequenceDiagram.gif"
             id="org.eclipse.papyrus.diagram.sequence.CreateSequenceDiagramCommand"
-            label="UML Sequence Diagram">
+            label="UML Sequence Diagram"
+            language="uml">
       </creationCommand>
    </extension>
 

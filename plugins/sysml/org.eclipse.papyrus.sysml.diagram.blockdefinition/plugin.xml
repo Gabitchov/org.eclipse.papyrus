@@ -8,6 +8,7 @@
 		creationCommandClass="org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinitionDiagramCreateCommand"
 		icon="icons/diagram/Diagram_BlockDefinitionDiagram.gif" 
 		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand"
+        language="sysml"
 		label="SysML Block Definition Diagram" />
 	<editorDiagram
 		actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"

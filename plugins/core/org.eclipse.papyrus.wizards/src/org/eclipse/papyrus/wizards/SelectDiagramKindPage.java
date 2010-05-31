@@ -371,7 +371,10 @@ public class SelectDiagramKindPage extends WizardPage {
 			// TODO use ImageRegistry to store images
 			if(element != null && element instanceof CreationCommandDescriptor) {
 				ImageDescriptor image = ((CreationCommandDescriptor)element).getIcon();
-				return new Image(null, image.getImageData());
+				// image is an optional attribute
+				if (image!= null) {
+					return new Image(null, image.getImageData());
+				}
 			}
 			return null;
 		}

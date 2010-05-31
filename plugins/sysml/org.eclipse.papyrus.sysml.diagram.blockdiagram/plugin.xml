@@ -628,6 +628,7 @@
       <creationCommand
             creationCommandClass="org.eclipse.papyrus.sysml.diagram.blockdiagram.BDDCreation"
             id="org.eclipse.papyrus.sysml.diagram.blockdiagram.creationCommand"
+            language="sysml"
             label="SysML Block Definition Diagram">
       </creationCommand>
    </extension>
