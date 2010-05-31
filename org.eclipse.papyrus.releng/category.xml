@@ -33,9 +33,6 @@
    <feature url="features/org.eclipse.papyrus.profiletool_${org.eclipse.papyrus.profiletool.version}.jar" id="org.eclipse.papyrus.profiletool" version="${org.eclipse.papyrus.profiletool.version}">
       <category name="Papyrus SysML"/>
    </feature>
-   <feature url="features/org.eclipse.papyrus.diagram.block_${org.eclipse.papyrus.diagram.block.version}.jar" id="org.eclipse.papyrus.diagram.block" version="${org.eclipse.papyrus.diagram.block.version}">
-      <category name="Papyrus SysML"/>
-   </feature>
    <feature url="features/org.eclipse.papyrus.diagram.parametric_${org.eclipse.papyrus.diagram.parametric.version}.jar" id="org.eclipse.papyrus.diagram.parametric" version="${org.eclipse.papyrus.diagram.parametric.version}">
       <category name="Papyrus SysML"/>
    </feature>
