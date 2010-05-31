@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
+import org.eclipse.jface.action.IMenuCreator;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -43,10 +44,13 @@ import org.eclipse.papyrus.umlutils.PackageUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.SashForm;
+import org.eclipse.swt.events.MenuDetectEvent;
+import org.eclipse.swt.events.MenuDetectListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
@@ -202,7 +206,27 @@ public class CustomizeContentWizardPage extends WizardPage {
 				}
 			}
 		});
+		configurationViewer.getTree().addMenuDetectListener(new MenuDetectListener() {
 
+			/**
+			 * {@inheritDoc}
+			 */
+			public void menuDetected(MenuDetectEvent e) {
+				// retrieve current selection, this should be a state or a contentHolder/constraintholder
+				ITreeSelection selection = (ITreeSelection)configurationViewer.getSelection();
+				if(selection == null || selection.size() < 1) {
+					Activator.log.warn("Impossible to find the selection to create the menu");
+					return;
+				}
+
+				Object selectedObject = selection.getFirstElement();
+				if(selectedObject instanceof IMenuCreator) {
+					Menu menu = ((IMenuCreator)selectedObject).getMenu(configurationViewer.getTree());
+					// creates the menu, depending on the selection
+					menu.setVisible(true);
+				}
+			}
+		});
 	}
 
 	/**

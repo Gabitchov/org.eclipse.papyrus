@@ -17,7 +17,13 @@ import org.eclipse.swt.graphics.Image;
 /**
  * Abstract class for state used to configure the property view
  */
-public abstract class AbstractState implements IState {
+public abstract class AbstractState implements IState, ITraversableModelElement {
+
+	/** key for the event: add an element to the list of children */
+	public static final String PROPERTY_ADD_CHILD = "ADD_CHILD_EVENT";
+
+	/** key for the event: remove an element to the list of children */
+	public static final String PROPERTY_REMOVE_CHILD = "REMOVE_CHILD_EVENT";
 
 	/**
 	 * {@inheritDoc}

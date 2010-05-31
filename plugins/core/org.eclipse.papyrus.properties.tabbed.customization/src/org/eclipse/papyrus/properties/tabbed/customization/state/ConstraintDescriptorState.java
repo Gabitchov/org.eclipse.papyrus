@@ -13,6 +13,8 @@ package org.eclipse.papyrus.properties.tabbed.customization.state;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 
@@ -36,6 +38,9 @@ public class ConstraintDescriptorState extends AbstractState {
 	 */
 	public ConstraintDescriptorState(IConstraintDescriptor constraintDescriptor) {
 		this.constraintDescriptor = constraintDescriptor;
+
+		// register change support
+		changeSupport = new PropertyChangeSupport(this);
 	}
 
 	/**
@@ -71,4 +76,13 @@ public class ConstraintDescriptorState extends AbstractState {
 	public synchronized void removePropertyChangeListener(PropertyChangeListener listener) {
 		changeSupport.removePropertyChangeListener(listener);
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public List<ITraversableModelElement> getChildren() {
+		return Collections.emptyList();
+	}
+
+
 }

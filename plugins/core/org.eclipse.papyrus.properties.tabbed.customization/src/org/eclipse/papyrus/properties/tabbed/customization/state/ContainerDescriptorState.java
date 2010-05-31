@@ -101,4 +101,11 @@ public class ContainerDescriptorState extends AbstractState {
 		changeSupport.removePropertyChangeListener(listener);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public List<ControllerDescriptorState> getChildren() {
+		return getControllerDescriptorStates();
+	}
+
 }

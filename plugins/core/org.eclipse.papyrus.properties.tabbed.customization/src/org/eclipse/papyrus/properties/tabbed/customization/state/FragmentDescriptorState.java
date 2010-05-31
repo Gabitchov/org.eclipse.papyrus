@@ -93,4 +93,11 @@ public class FragmentDescriptorState extends AbstractState {
 		changeSupport.removePropertyChangeListener(listener);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public List<ContainerDescriptorState> getChildren() {
+		return getContainerDescriptorStates();
+	}
+
 }

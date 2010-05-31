@@ -32,4 +32,36 @@
 			</fragment>
 		</content>
 	</dialog>
+	<dialog id="SectionDescriptorStateDialog"><!-- Dialog for single section descriptor state -->
+		<context enablesFor="1">
+			<elementClass
+				name="org.eclipse.papyrus.properties.tabbed.customization.state.SectionDescriptorState">
+			</elementClass>
+		</context>
+		<title>
+			<string value="Edit Section Descriptor"/>
+		</title>
+		<message>
+			<string value="Edit Section Descriptor Message"/>
+		</message>
+		<content>
+			<fragment id="fragment_single_SectionDescriptorState">	<!-- fragment for controller descriptor state -->
+				<context enablesFor="1">
+					<elementClass name="org.eclipse.papyrus.properties.tabbed.customization.state.SectionDescriptorState"/>
+				</context>
+				<content>
+					<container layout="Grid" columns="1" sameSize="false">
+						 <controller id="stateBeanPropertyEditorController">
+							<property name="id"/>
+							<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Identifier:" labelPosition="16384"/>
+						</controller>
+						<controller id="stateBeanPropertyEditorController">
+							<property name="targetTab"/>
+							<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Tab Identifier" labelPosition="16384"/>
+						</controller>
+					</container>
+				</content>
+			</fragment>
+		</content>
+	</dialog>
 </dialogs>

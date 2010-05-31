@@ -159,4 +159,36 @@ public class SectionSetDescriptorState extends AbstractState {
 	public synchronized void removePropertyChangeListener(PropertyChangeListener listener) {
 		changeSupport.removePropertyChangeListener(listener);
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public List<? extends ITraversableModelElement> getChildren() {
+		List<ITraversableModelElement> children = new ArrayList<ITraversableModelElement>();
+		children.addAll(getConstraintDescriptorStates());
+		children.addAll(getSectionDescriptorStates());
+		return children;
+	}
+
+	/**
+	 * adds a section descriptor state and fire a add event
+	 * 
+	 * @param state
+	 *        the state to add
+	 */
+	public void addSectionDescriptorState(SectionDescriptorState state) {
+		sectionDescriptorStates.add(state);
+		changeSupport.firePropertyChange(PROPERTY_ADD_CHILD, null, sectionDescriptorStates);
+	}
+
+	/**
+	 * adds a section descriptor state and fire a add event
+	 * 
+	 * @param state
+	 *        the state to add
+	 */
+	public void removeSectionDescriptorState(SectionDescriptorState state) {
+		sectionDescriptorStates.remove(state);
+		changeSupport.firePropertyChange(PROPERTY_REMOVE_CHILD, null, sectionDescriptorStates);
+	}
 }

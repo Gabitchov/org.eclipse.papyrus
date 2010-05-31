@@ -13,6 +13,8 @@ package org.eclipse.papyrus.properties.tabbed.customization.state;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
 
@@ -102,5 +104,12 @@ public class ControllerDescriptorState extends AbstractState {
 	 */
 	public synchronized void removePropertyChangeListener(PropertyChangeListener listener) {
 		changeSupport.removePropertyChangeListener(listener);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public List<ITraversableModelElement> getChildren() {
+		return Collections.emptyList();
 	}
 }

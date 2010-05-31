@@ -37,7 +37,7 @@ import org.w3c.dom.Node;
 public class DynamicSectionDescriptor extends AbstractSectionDescriptor implements IEnhancedFilter, IConfigurableDescriptor {
 
 	/** semantic resolver */
-	protected static final String SEMANTIC_RESOLVER = "Semantic";
+	public static final String SEMANTIC_RESOLVER = "Semantic";
 
 	/** section class managing the content */
 	protected ISection section;

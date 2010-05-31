@@ -57,6 +57,7 @@ public class StateBeanPropertyEditorController extends BeanPropertyEditorControl
 			for(Method method : methods) {
 				if(searchMethodName.equalsIgnoreCase(method.getName())) {
 					method.invoke(state, value);
+					return;
 				}
 			}
 		} catch (IllegalArgumentException e) {
