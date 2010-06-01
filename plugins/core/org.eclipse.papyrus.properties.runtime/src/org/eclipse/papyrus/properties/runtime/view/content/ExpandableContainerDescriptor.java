@@ -15,6 +15,7 @@ import java.util.List;
 
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorController;
+import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
@@ -39,9 +40,30 @@ public class ExpandableContainerDescriptor extends ContainerDescriptor {
 	/**
 	 * Creates a new ExpandableContainerDescriptor
 	 * 
+	 * @param layout
+	 *        the layout applied to the container
+	 * @param label
+	 *        the label of the created composite
+	 * @param containerNode
+	 *        the unparsed xml configuration node for this container
 	 */
 	public ExpandableContainerDescriptor(Layout layout, String label, Node containerNode) {
 		super(layout, containerNode);
+		this.label = label;
+	}
+
+	/**
+	 * Creates a new ExpandableContainerDescriptor
+	 * 
+	 * @param layout
+	 *        the layout applied to the container
+	 * @param label
+	 *        the label of the created composite
+	 * @param descriptors
+	 *        the list of {@link IPropertyEditorControllerDescriptor} contained by this container
+	 */
+	public ExpandableContainerDescriptor(Layout layout, String label, List<IPropertyEditorControllerDescriptor> descriptors) {
+		super(layout, descriptors);
 		this.label = label;
 	}
 

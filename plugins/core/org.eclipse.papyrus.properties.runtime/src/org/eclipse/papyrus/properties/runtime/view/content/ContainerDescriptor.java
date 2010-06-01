@@ -57,9 +57,25 @@ public class ContainerDescriptor extends AbstractContainerDescriptor {
 	 * 
 	 * @param layout
 	 *        the layout of the composite described by this element
+	 * @param containerNode
+	 *        the xml configuration node for this container
+	 * 
 	 */
 	public ContainerDescriptor(Layout layout, Node containerNode) {
 		super(layout, containerNode);
+	}
+
+	/**
+	 * Creates a new ContainerDescriptor.
+	 * 
+	 * @param layout
+	 *        the layout of the composite described by this element
+	 */
+	public ContainerDescriptor(Layout layout, List<IPropertyEditorControllerDescriptor> descriptors) {
+		super(layout, null);
+		// force the list of descriptors, not using cache
+		uncachedDescriptors = descriptors;
+		unparsedContent = false;
 	}
 
 	/**
