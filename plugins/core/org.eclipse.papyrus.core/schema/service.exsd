@@ -20,7 +20,8 @@ Some services are used to load models, provide factories, ...
       </annotation>
       <complexType>
          <sequence>
-            <element ref="service" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="service" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="serviceFactory" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -52,10 +53,13 @@ Some services are used to load models, provide factories, ...
    <element name="service">
       <annotation>
          <documentation>
-            Description of the service.
+            A service that should be registered to the ServicesRegistry.
          </documentation>
       </annotation>
       <complexType>
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="dependsOn"/>
+         </sequence>
          <attribute name="id" type="string">
             <annotation>
                <documentation>
@@ -98,11 +102,97 @@ startup: started when the Registry is about to finish its initialization.
                </restriction>
             </simpleType>
          </attribute>
-         <attribute name="useClassTypeAsKey" type="boolean" use="default" value="false">
+         <attribute name="description" type="string">
             <annotation>
                <documentation>
-                  If set to true, indicate that the classtype should be used as key.
-If set to false, attribute &apos;key&apos; is used as key.
+                  A human readable description
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="serviceFactory">
+      <annotation>
+         <documentation>
+            A service factory that should be registered to the ServicesRegistry.
+The factory is used to create the service. The factory receive all the services event, and take incharge to forward them to the service.
+         </documentation>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="0" maxOccurs="unbounded">
+            <element ref="dependsOn"/>
+         </sequence>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  The key used to retrieve the service from the ServiceRegistry. 
+If not set (default), the classname is used as key.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="classname" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Name of the class implementing the service.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.services.IServiceFactory"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="priority" type="string" use="default" value="1">
+            <annotation>
+               <documentation>
+                  Priority used when two services are registered under the same key. The service with the higher prority is used.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="startKind" use="default" value="lazy">
+            <annotation>
+               <documentation>
+                  Specify how the service is started:
+lazy: when the service is requested.
+startup: started when the Registry is about to finish its initialization.
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="lazy">
+                  </enumeration>
+                  <enumeration value="startup">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  A human readable description
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="dependsOn">
+      <annotation>
+         <documentation>
+            Allows to express dependancies needed before starting the surrounding service.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="serviceKeyRef" type="string">
+            <annotation>
+               <documentation>
+                  Key of the service on which the surrounding service depends.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  A human readable description
                </documentation>
             </annotation>
          </attribute>

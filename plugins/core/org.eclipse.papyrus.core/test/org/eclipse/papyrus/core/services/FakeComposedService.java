@@ -3,7 +3,6 @@
  */
 package org.eclipse.papyrus.core.services;
 
-import java.util.Collections;
 
 
 /**

@@ -8,7 +8,7 @@ package org.eclipse.papyrus.core.services;
  * A factory creating a Service that can be registered in the {@link ServicesRegistry}.
  * 
  * A service is a singleton available throw the registry. A service can be shared across editors.
- * The service lifecycle events (init, start and dispose) are sent to the factory. The factory is 
+ * The service lifecycle events (init, start and dispose) are sent to the factory. The factory is
  * responsible to forward them to the real service.
  * 
  * @author dumoulin
@@ -17,10 +17,12 @@ package org.eclipse.papyrus.core.services;
 public interface IServiceFactory extends IService {
 
 	/**
-	 * Creates the service that should be registered in the registry.
+	 * Create the instance of the service that will be returned by {@link ServicesRegistry#getService(Class)}.
 	 * 
-	 * @return The service to register in the registry.
+	 * @return The instance of the service.
+	 * @throws ServiceException
+	 *         If an error occurs during the operation.
 	 */
-	public Object createService();
-	
+	public Object createServiceInstance() throws ServiceException;
+
 }

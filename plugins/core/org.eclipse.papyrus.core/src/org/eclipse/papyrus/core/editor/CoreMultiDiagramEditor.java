@@ -18,7 +18,10 @@ import static org.eclipse.papyrus.core.Activator.log;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EventObject;
+import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -62,6 +65,7 @@ import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.ActionBarContr
 import org.eclipse.papyrus.core.multidiagram.actionbarcontributor.CoreComposedActionBarContributor;
 import org.eclipse.papyrus.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
+import org.eclipse.papyrus.core.services.ServiceMultiException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.BusinessModelResolver;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
@@ -427,12 +431,12 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		BusinessModelResolver.getInstance();
 
 		// Load resources
-		resourceSet = new DiResourceSet();
-		IFile file = ((IFileEditorInput)input).getFile();
-		resourceSet.loadResources(file);
+//		resourceSet = new DiResourceSet();
+//		IFile file = ((IFileEditorInput)input).getFile();
+//		resourceSet.loadResources(file);
 
 		// Create the 2 edit domains
-		transactionalEditingDomain = resourceSet.getTransactionalEditingDomain();
+//		transactionalEditingDomain = resourceSet.getTransactionalEditingDomain();
 
 		// Create Gef adaptor
 		gefAdaptorDelegate = new MultiDiagramEditorGefDelegate();
@@ -448,26 +452,26 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 		// register services
 		servicesRegistry.add(ActionBarContributorRegistry.class, 1, getActionBarContributorRegistry());
-		servicesRegistry.add(TransactionalEditingDomain.class, 1, transactionalEditingDomain);
-		servicesRegistry.add(DiResourceSet.class, 1, resourceSet);
+//		servicesRegistry.add(TransactionalEditingDomain.class, 1, transactionalEditingDomain);
+//		servicesRegistry.add(DiResourceSet.class, 1, resourceSet);
 
 		// Create and initalize editor icons service
-		PageIconsRegistry pageIconsRegistry = new PageIconsRegistry();
-		PluggableEditorFactoryReader editorReader = new PluggableEditorFactoryReader(Activator.PLUGIN_ID);
-		editorReader.populate(pageIconsRegistry);
-		servicesRegistry.add(IPageIconsRegistry.class, 1, pageIconsRegistry);
+//		PageIconsRegistry pageIconsRegistry = new PageIconsRegistry();
+//		PluggableEditorFactoryReader editorReader = new PluggableEditorFactoryReader(Activator.PLUGIN_ID);
+//		editorReader.populate(pageIconsRegistry);
+//		servicesRegistry.add(IPageIconsRegistry.class, 1, pageIconsRegistry);
 
 
 		// Create PageModelRegistry requested by content provider.
 		// Also populate it from extensions.
-		PageModelFactoryRegistry pageModelRegistry = new PageModelFactoryRegistry();
-		editorReader.populate(pageModelRegistry, servicesRegistry);
+//		PageModelFactoryRegistry pageModelRegistry = new PageModelFactoryRegistry();
+//		editorReader.populate(pageModelRegistry, servicesRegistry);
 
 		// TODO : create appropriate Resource for the contentProvider, and pass it here.
 		// This will allow to remove the old sash stuff.
-		setContentProvider(createPageProvider(pageModelRegistry, resourceSet.getDiResource(), transactionalEditingDomain));
-		servicesRegistry.add(ISashWindowsContentProvider.class, 1, getContentProvider());
-		servicesRegistry.add(IPageMngr.class, 1, getIPageMngr());
+//		setContentProvider(createPageProvider(pageModelRegistry, resourceSet.getDiResource(), transactionalEditingDomain));
+//		servicesRegistry.add(ISashWindowsContentProvider.class, 1, getContentProvider());
+//		servicesRegistry.add(IPageMngr.class, 1, getIPageMngr());
 
 		// register a basic label provider
 		// adapter factory used by EMF objects
@@ -495,8 +499,37 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		servicesRegistry.add(ILabelProvider.class, 1, labelProvider);
 
 		// Start servicesRegistry
-		servicesRegistry.startRegistry();
+		IFile file = ((IFileEditorInput)input).getFile();
+		try {
+			// Start the ModelSet first, and load if from the specified File
+			List<Class<?>> servicesToStart = new ArrayList<Class<?>>(1);
+			servicesToStart.add(DiResourceSet.class);
+			
+			servicesRegistry.startServicesByClassKeys( servicesToStart );
+			resourceSet = servicesRegistry.getService(DiResourceSet.class);
+			resourceSet.loadResources(file);
+			
+			// start remaining services
+			servicesRegistry.startRegistry();
+		} catch (ServiceException e) {
+			log.error(e);
+		}
 
+		// Get required services
+		ISashWindowsContentProvider contentProvider = null;
+		try {
+			transactionalEditingDomain = servicesRegistry.getService(TransactionalEditingDomain.class);
+			sashModelMngr = servicesRegistry.getService(DiSashModelMngr.class);
+			contentProvider = servicesRegistry.getService(ISashWindowsContentProvider.class);
+		} catch (ServiceException e) {
+			log.error(e);
+			// TODO : if one of the services above fail to start, the editor can't run.
+			// We should certainly stop it here
+		}
+
+		// Set the content provider providing editors.
+		setContentProvider(contentProvider);
+		
 		// Listen to the modifications of the EMF model
 		transactionalEditingDomain.getCommandStack().addCommandStackListener(commandStackListener);
 
@@ -576,7 +609,11 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 
 		// dispose available service
 		if(servicesRegistry != null) {
-			servicesRegistry.disposeRegistry();
+			try {
+				servicesRegistry.disposeRegistry();
+			} catch (ServiceMultiException e) {
+				log.error(e);
+			}
 		}
 
 		super.dispose();

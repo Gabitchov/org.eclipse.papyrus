@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.eclipse.papyrus.resource;
+package org.eclipse.papyrus.core.services;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +41,24 @@ public class TestTrace {
 		traces.add(new TraceRecord( name, trace, value));
 	}
 	
+	/**
+	 * Return the name and the trace in one concatenated string ("name,trace").
+	 * @param i Index of the requested trace
+	 * @return
+	 */
+	public String getNameTrace(int i) {
+		return traces.get(i).getNameTrace();
+	}
+
+	/**
+	 * Get the value
+	 * @param i
+	 * @return
+	 */
+	public Object getValue(int i) {
+		return traces.get(i).value;
+	}
+
 	/**
 	 * Return true if the trace contains the specified events.
 	 * @return
@@ -149,5 +167,15 @@ public class TestTrace {
 			this.value = value;
 		}
 		
+		/**
+		 * 
+		 * @return
+		 */
+		public String getNameTrace() {
+			// TODO Auto-generated method stub
+			return name + "," + trace;
+		}
+		
 	}
+
 }

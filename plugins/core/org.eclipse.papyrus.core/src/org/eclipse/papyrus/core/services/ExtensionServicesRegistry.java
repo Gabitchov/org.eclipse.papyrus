@@ -4,10 +4,12 @@
 package org.eclipse.papyrus.core.services;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.papyrus.core.services.ServiceDescriptor.ServiceTypeKind;
 
 
 /**
@@ -27,11 +29,20 @@ public class ExtensionServicesRegistry extends ServicesRegistry {
 	/** Extension point name inside the extension description **/
 	public final static String SERVICE_EXTENSIONPOINT = "service";
 
+	/** ServiceFactory Extension point **/
+	public final static String SERVICE_FACTORY_ELEMENT_NAME = "serviceFactory";
+
 	/** constant for the attribute factoryClass **/
 	public final static String CONTEXTCLASS_ATTRIBUTE = "contextClass";
 
 	/** extension point propertyname */
 	private final static String STARTKIND_PROPERTY = "startKind";
+
+	/** name of the dependsOn element */
+	private static final String DEPENDSON_ELEMENT_NAME = "dependsOn";
+
+	/** name of the key attribute inside the DEPENDSON element */
+	private static final String DEPENDSON_KEY_ATTRIBUTE_NAME = "serviceKeyRef";
 
 	/**
 	 * Constructor.
@@ -59,9 +70,23 @@ public class ExtensionServicesRegistry extends ServicesRegistry {
 		for(IConfigurationElement ele : configElements) {
 			ServiceDescriptor desc;
 			if(SERVICE_EXTENSIONPOINT.equals(ele.getName())) {
-				// Read value from extension
+				// Read a Service
 				try {
 					desc = readServiceDescriptor(ele);
+					desc.setServiceTypeKind(ServiceTypeKind.service);
+					// Add created desc
+					descriptors.add(desc);
+				} catch (ServiceException e) {
+					// record exceptions
+					if(exceptions == null)
+						exceptions = new ArrayList<ServiceException>();
+					exceptions.add(e);
+				}
+			} else if(SERVICE_FACTORY_ELEMENT_NAME.equals(ele.getName())) {
+				// Read a Service Factory
+				try {
+					desc = readServiceDescriptor(ele);
+					desc.setServiceTypeKind(ServiceTypeKind.serviceFactory);
 					// Add created desc
 					descriptors.add(desc);
 				} catch (ServiceException e) {
@@ -97,9 +122,6 @@ public class ExtensionServicesRegistry extends ServicesRegistry {
 	 * @throws ServiceException
 	 */
 	private ServiceDescriptor readServiceDescriptor(IConfigurationElement ele) throws ServiceException {
-		//
-		String useTypeAsKeyStr = ele.getAttribute("useClassTypeAsKey");
-		boolean useTypeAsKey = Boolean.valueOf(useTypeAsKeyStr);
 
 		// classname
 		String serviceClassname = ele.getAttribute("classname");
@@ -136,10 +158,45 @@ public class ExtensionServicesRegistry extends ServicesRegistry {
 			}
 		}
 
+		// Read dependsOn keys
+		List<String> keys = getDependsOn(ele);
 
+
+		// Create descriptor
 		ServiceDescriptor desc = new ServiceDescriptor(key, serviceClassname, serviceStartKind, priority);
 		desc.setClassBundleID(ele.getContributor().getName());
-		desc.setUseClassTypeAsKey(useTypeAsKey);
+
+		if(keys.size() > 0)
+			desc.setRequiredServiceKeys(keys);
+
 		return desc;
 	}
+
+	/**
+	 * Add dependsOn keys.
+	 * 
+	 * @param parentElement
+	 * @param model
+	 */
+	private List<String> getDependsOn(IConfigurationElement parentElement) {
+
+		List<String> keys = new ArrayList<String>();
+
+		// Get children
+		IConfigurationElement[] configElements = parentElement.getChildren(DEPENDSON_ELEMENT_NAME);
+
+		for(IConfigurationElement ele : configElements) {
+			String key = ele.getAttribute(DEPENDSON_KEY_ATTRIBUTE_NAME);
+			if(key != null && key.length() > 0) {
+				keys.add(key.trim());
+			}
+		}
+
+		if(keys.size() == 0)
+			return Collections.emptyList();
+
+		return keys;
+	}
+
+
 }

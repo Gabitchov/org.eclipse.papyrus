@@ -25,11 +25,9 @@ public class PojoServiceEntry extends ServiceTypeEntry {
 	 * Constructor.
 	 * 
 	 * @param serviceDescriptor
-	 * @param registry
 	 */
-	public PojoServiceEntry(ServiceDescriptor serviceDescriptor, ServicesRegistry registry) {
-		this.serviceDescriptor = serviceDescriptor;
-		this.registry = registry;
+	public PojoServiceEntry(ServiceDescriptor serviceDescriptor) {
+		super( serviceDescriptor );
 		setState(ServiceState.registered);
 	}
 
@@ -44,7 +42,7 @@ public class PojoServiceEntry extends ServiceTypeEntry {
 	 *        The service Instance
 	 */
 	public PojoServiceEntry(ServiceDescriptor descriptor, Object serviceInstance) {
-		this.serviceDescriptor = descriptor;
+		super( descriptor );
 		this.serviceInstance = serviceInstance;
 		setState(ServiceState.registered);
 	}

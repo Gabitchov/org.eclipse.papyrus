@@ -14,6 +14,7 @@ package org.eclipse.papyrus.core.services;
  * @param T The type of the ComposedService to which this part will be registered.
  *
  */
+@SuppressWarnings("rawtypes")
 public abstract class ComposedServicePart <T extends ComposedService> implements IService {
 
 	/**
@@ -43,6 +44,7 @@ public abstract class ComposedServicePart <T extends ComposedService> implements
 	 * @param servicesRegistry
 	 * @throws ServiceException 
 	 */
+	@SuppressWarnings("unchecked")
 	public void init(ServicesRegistry servicesRegistry) throws ServiceException {
 		this.servicesRegistry = servicesRegistry;
 		parentService = servicesRegistry.getService(composedServiceKey);
@@ -59,6 +61,12 @@ public abstract class ComposedServicePart <T extends ComposedService> implements
 	
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.core.services.IService#disposeService()
+	 *
+	 */
+	@SuppressWarnings("unchecked")
 	public void disposeService() {
 		parentService.removeServicePart(this);
 	}

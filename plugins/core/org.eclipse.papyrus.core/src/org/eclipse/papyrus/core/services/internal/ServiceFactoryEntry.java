@@ -4,7 +4,6 @@
 package org.eclipse.papyrus.core.services.internal;
 
 import org.eclipse.papyrus.core.services.BadStateException;
-import org.eclipse.papyrus.core.services.IService;
 import org.eclipse.papyrus.core.services.IServiceFactory;
 import org.eclipse.papyrus.core.services.ServiceDescriptor;
 import org.eclipse.papyrus.core.services.ServiceException;
@@ -35,9 +34,8 @@ public class ServiceFactoryEntry extends ServiceTypeEntry {
 	 * @param serviceDescriptor
 	 * @param registry
 	 */
-	public ServiceFactoryEntry(ServiceDescriptor serviceDescriptor, ServicesRegistry registry) {
-		this.serviceDescriptor = serviceDescriptor;
-		this.registry = registry;
+	public ServiceFactoryEntry(ServiceDescriptor serviceDescriptor) {
+		super( serviceDescriptor );
 		setState(ServiceState.registered);
 
 	}
@@ -53,7 +51,7 @@ public class ServiceFactoryEntry extends ServiceTypeEntry {
 	 *        The service Instance
 	 */
 	public ServiceFactoryEntry(ServiceDescriptor descriptor, IServiceFactory factoryInstance) {
-		this.serviceDescriptor = descriptor;
+		super( descriptor );
 		this.factoryInstance = factoryInstance;
 		setState(ServiceState.registered);
 	}
@@ -68,8 +66,18 @@ public class ServiceFactoryEntry extends ServiceTypeEntry {
 	 */
 	public Object getServiceInstance() throws ServiceException {
 		
-		if( serviceInstance == null)
+		if( factoryInstance == null)
 			throw new BadStateException("Service is not created.", state, serviceDescriptor);
+		
+		// Get the service instance if needed.
+		if(serviceInstance == null)
+		{
+			serviceInstance = factoryInstance.createServiceInstance();
+			if( serviceInstance == null)
+			{
+				throw new ServiceException("Service Factory '" + getDescriptor().getKey() + " return a null service. It should return a valid service.");
+			}
+		}
 		
 		return serviceInstance;
 			
@@ -95,16 +103,16 @@ public class ServiceFactoryEntry extends ServiceTypeEntry {
 	public void createService() throws ServiceException {
 		checkState(ServiceState.registered);
 		// Exit if already  created.
-		if( factoryInstance == null)
+		if( factoryInstance != null)
 		{
-//			factoryInstance = instanciateService();
+			setState(ServiceState.created);
 			return;
 		}
 		
-		// Create the service
+		// Create it
 		try {
 			// Create the instance
-			serviceInstance = factoryInstance.createService();
+			factoryInstance = (IServiceFactory)instanciateService();
 		} catch (Exception e) {
 			setState(ServiceState.error);
 			throw new ServiceException(e);

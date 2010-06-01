@@ -201,6 +201,75 @@
             classname="org.eclipse.papyrus.core.resourceloading.caches.TypeCacheInitializer">
       </modelSetSnippet>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.core.service">
+      <serviceFactory
+            classname="org.eclipse.papyrus.core.editor.ModelSetServiceFactory"
+            description="The service loading Models"
+            id="org.eclipse.papyrus.resource.ModelSet"
+            priority="1"
+            startKind="startup">
+      </serviceFactory>
+      <serviceFactory
+            classname="org.eclipse.papyrus.core.editor.DiResourceSetServiceFactory"
+            description="An alias to ModelSet"
+            id="org.eclipse.papyrus.core.utils.DiResourceSet"
+            priority="1"
+            startKind="startup">
+         <dependsOn
+               serviceKeyRef="org.eclipse.papyrus.resource.ModelSet">
+         </dependsOn>
+      </serviceFactory>
+      <serviceFactory
+            classname="org.eclipse.papyrus.resource.EditingDomainServiceFactory"
+            description="TransactionalEditing Domain"
+            id="org.eclipse.emf.transaction.TransactionalEditingDomain"
+            priority="1"
+            startKind="startup">
+         <dependsOn
+               serviceKeyRef="org.eclipse.papyrus.resource.ModelSet">
+         </dependsOn>
+      </serviceFactory>
+      <serviceFactory
+            classname="org.eclipse.papyrus.core.editor.PageIconRegistryServiceFactory"
+            id="org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry"
+            priority="1"
+            startKind="startup">
+      </serviceFactory>
+      <serviceFactory
+            classname="org.eclipse.papyrus.core.editor.DiSashModelMngrServiceFactory"
+            description="The concrete implementation of SashContentProviderr and IPageMngr"
+            id="org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr"
+            priority="1"
+            startKind="startup">
+         <dependsOn
+               serviceKeyRef="org.eclipse.emf.transaction.TransactionalEditingDomain">
+         </dependsOn>
+         <dependsOn
+               serviceKeyRef="org.eclipse.papyrus.resource.ModelSet">
+         </dependsOn>
+      </serviceFactory>
+      <serviceFactory
+            classname="org.eclipse.papyrus.core.editor.PageMngrServiceFactory"
+            description="IPageMngr allows to add and remove pages to the editor."
+            id="org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr"
+            priority="1"
+            startKind="startup">
+         <dependsOn
+               serviceKeyRef="org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr">
+         </dependsOn>
+      </serviceFactory>
+      <serviceFactory
+            classname="org.eclipse.papyrus.core.editor.ContentProviderServiceFactory"
+            description="The SashContentProvider maintain the structure of pages of the editor."
+            id="org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider"
+            priority="1"
+            startKind="startup">
+         <dependsOn
+               serviceKeyRef="org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr">
+         </dependsOn>
+      </serviceFactory>
+   </extension>
 	
 	
 </plugin>

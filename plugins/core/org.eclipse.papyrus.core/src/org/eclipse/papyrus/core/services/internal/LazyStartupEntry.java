@@ -3,7 +3,7 @@
  */
 package org.eclipse.papyrus.core.services.internal;
 
-import org.eclipse.papyrus.core.services.ServiceDescriptor;
+import org.eclipse.papyrus.core.services.IService;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServiceState;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
@@ -17,11 +17,6 @@ import org.eclipse.papyrus.core.services.ServicesRegistry;
  */
 public class LazyStartupEntry extends ServiceStartupEntry {
 
-	/**
-	 * The ServiceEntry, according to its type.
-	 */
-	private ServiceTypeEntry serviceEntry;
-	
 	protected ServicesRegistry registry;
 
 	/**
@@ -30,14 +25,15 @@ public class LazyStartupEntry extends ServiceStartupEntry {
 	 * @param serviceDescriptor
 	 * @param registry
 	 */
-	public LazyStartupEntry(ServiceTypeEntry serviceEntry, ServiceDescriptor serviceDescriptor, ServicesRegistry registry) {
+	public LazyStartupEntry(ServiceTypeEntry serviceEntry, ServicesRegistry registry) {
 
-		super( serviceEntry, serviceDescriptor);
+		super( serviceEntry);
 		this.registry = registry;
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.core.services.AbstractServiceEntry#getServiceInstance()
+	 * 
+	 * @see org.eclipse.papyrus.core.services.internal.ServiceStartupEntry#getServiceInstance()
 	 *
 	 * @return
 	 * @throws ServiceException

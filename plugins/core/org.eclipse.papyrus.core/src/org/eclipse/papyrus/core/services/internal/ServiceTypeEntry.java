@@ -3,9 +3,6 @@
  */
 package org.eclipse.papyrus.core.services.internal;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.core.services.BadStateException;
 import org.eclipse.papyrus.core.services.ServiceDescriptor;
@@ -27,14 +24,20 @@ public abstract class ServiceTypeEntry {
 	 */
 	protected ServiceState state = ServiceState.registered;
 	
-	protected ServicesRegistry registry;
-
 	/**
 	 * Descriptor of the service associated to this entry.
 	 */
 	protected ServiceDescriptor serviceDescriptor;
 
-
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 */
+	public ServiceTypeEntry(ServiceDescriptor serviceDescriptor) {
+		this.serviceDescriptor = serviceDescriptor;
+	}
+	
 	/**
 	 * Change the state of the service.
 	 * @param newState
@@ -87,22 +90,23 @@ public abstract class ServiceTypeEntry {
 		Class<?> classname = loadClass();
 
 		// Try to get the one arg constructor.
-		try {
-			Constructor<?> constructor = classname.getConstructor(ServicesRegistry.class);
-			return constructor.newInstance(registry);
-		} catch (SecurityException e) {
-			// Do nothing, try next constructor
-		} catch (NoSuchMethodException e) {
-			// Do nothing, try next constructor
-		} catch (IllegalArgumentException e) {
-			throw new ServiceException("Can't instanciate '" + serviceClassname + "' with args ServicesRegistry.", e);
-		} catch (InstantiationException e) {
-			throw new ServiceException("Can't instanciate '" + serviceClassname + "' with args ServicesRegistry.", e);
-		} catch (IllegalAccessException e) {
-			throw new ServiceException("Can't instanciate '" + serviceClassname + "' with args ServicesRegistry.", e);
-		} catch (InvocationTargetException e) {
-			throw new ServiceException("Can't instanciate '" + serviceClassname + "' with args ServicesRegistry.", e);
-		}
+		// This require the ServiceRegistry. Old stuff, not more used.
+//		try {
+//			Constructor<?> constructor = classname.getConstructor(ServicesRegistry.class);
+//			return constructor.newInstance(registry);
+//		} catch (SecurityException e) {
+//			// Do nothing, try next constructor
+//		} catch (NoSuchMethodException e) {
+//			// Do nothing, try next constructor
+//		} catch (IllegalArgumentException e) {
+//			throw new ServiceException("Can't instanciate '" + serviceClassname + "' with args ServicesRegistry.", e);
+//		} catch (InstantiationException e) {
+//			throw new ServiceException("Can't instanciate '" + serviceClassname + "' with args ServicesRegistry.", e);
+//		} catch (IllegalAccessException e) {
+//			throw new ServiceException("Can't instanciate '" + serviceClassname + "' with args ServicesRegistry.", e);
+//		} catch (InvocationTargetException e) {
+//			throw new ServiceException("Can't instanciate '" + serviceClassname + "' with args ServicesRegistry.", e);
+//		}
 
 		// Try with zero arg constructor.
 		try {

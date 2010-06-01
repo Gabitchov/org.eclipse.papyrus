@@ -33,7 +33,7 @@ public class ErrorServiceTypeEntry extends ServiceTypeEntry {
 	 * @param descriptor
 	 */
 	public ErrorServiceTypeEntry( ServiceDescriptor descriptor ) {
-		this.descriptor = descriptor;
+		super(descriptor);
 	}
 	
 	/**

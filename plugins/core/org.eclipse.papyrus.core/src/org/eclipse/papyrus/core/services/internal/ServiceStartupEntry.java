@@ -3,57 +3,64 @@
  */
 package org.eclipse.papyrus.core.services.internal;
 
+import java.util.Collection;
+import java.util.List;
+
 import org.eclipse.papyrus.core.services.ServiceDescriptor;
 import org.eclipse.papyrus.core.services.ServiceException;
+import org.eclipse.papyrus.core.services.ServiceState;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 
 
 /**
  * Base class for the different types of service startups (lazy, synchronized).
+ * 
  * @author cedric dumoulin
- *
+ * 
  */
 public abstract class ServiceStartupEntry {
 
-	
-	/**
-	 * Descriptor of the service associated to this entry.
-	 */
-	protected ServiceDescriptor serviceDescriptor;
 
 	/**
 	 * The ServiceEntry, according to its type.
 	 */
 	protected ServiceTypeEntry serviceEntry;
-	
+
+	/**
+	 * Entries of Services required by this service.
+	 */
+	protected List<ServiceStartupEntry> requiredServices;
+
 	/**
 	 * 
 	 * Constructor.
-	 *
+	 * 
 	 * @param serviceDescriptor
 	 */
-	public ServiceStartupEntry(ServiceTypeEntry serviceEntry, ServiceDescriptor serviceDescriptor) {
-		this.serviceDescriptor = serviceDescriptor;
-		// TODO : check where the entryType should be created
+	public ServiceStartupEntry(ServiceTypeEntry serviceEntry) {
 		this.serviceEntry = serviceEntry;
 	}
 
 	/**
 	 * Create the associated service if not a Lazy Service.
+	 * 
 	 * @throws ServiceException
 	 */
 	abstract public void createService() throws ServiceException;
 
 	/**
 	 * Init the associated service if not a Lazy Service.
-	 * @param servicesRegistry The servicesRegistry containing this service.
+	 * 
+	 * @param servicesRegistry
+	 *        The servicesRegistry containing this service.
 	 * 
 	 * @throws ServiceException
 	 */
-	abstract public void initService( ServicesRegistry servicesRegistry) throws ServiceException;
+	abstract public void initService(ServicesRegistry servicesRegistry) throws ServiceException;
 
 	/**
 	 * Start the associated service if not a Lazy Service.
+	 * 
 	 * @throws ServiceException
 	 */
 	abstract public void startService() throws ServiceException;
@@ -71,5 +78,51 @@ public abstract class ServiceStartupEntry {
 	 */
 	abstract public void disposeService() throws ServiceException;
 
+	/**
+	 * Return the list of the {@link ServiceStartupEntry} required by this service.
+	 * 
+	 * @return
+	 */
+	public Collection<ServiceStartupEntry> getRequiredServices() {
+
+		throw new UnsupportedOperationException("Not yet implemented");
+//		return requiredServices;
+	}
+
+	/**
+	 * Get {@link ServiceDescriptor} associated to this entry.
+	 * @return
+	 */
+	public ServiceDescriptor getDescriptor() {
+		return serviceEntry.getDescriptor();
+	}
+
+	/**
+	 * @return the state of the service
+	 */
+	public ServiceState getState() {
+		return serviceEntry.getState();
+	}
+
+	/**
+	 * Return true if the service is started. Return false otherwise.
+	 * 
+	 * @return
+	 */
+	public boolean isStarted() {
+		return serviceEntry.isStarted();
+	}
+
+
+	/**
+	 * 
+	 * @see java.lang.Object#toString()
+	 *
+	 * @return
+	 */
+	@Override
+	public String toString() {
+		return super.toString() + ": key=" + getDescriptor().getKey();
+	}
 
 }

@@ -31,9 +31,8 @@ public class ServiceEntry extends ServiceTypeEntry {
 	 * @param serviceDescriptor
 	 * @param registry
 	 */
-	public ServiceEntry(ServiceDescriptor serviceDescriptor, ServicesRegistry registry) {
-		this.serviceDescriptor = serviceDescriptor;
-		this.registry = registry;
+	public ServiceEntry(ServiceDescriptor serviceDescriptor) {
+		super( serviceDescriptor );
 		setState(ServiceState.registered);
 
 	}
@@ -49,7 +48,7 @@ public class ServiceEntry extends ServiceTypeEntry {
 	 *        The service Instance
 	 */
 	public ServiceEntry(ServiceDescriptor descriptor, IService serviceInstance) {
-		this.serviceDescriptor = descriptor;
+		super( descriptor );
 		this.serviceInstance = serviceInstance;
 		setState(ServiceState.registered);
 	}

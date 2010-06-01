@@ -46,8 +46,7 @@ public class ProfileService implements IService {
 	 * 
 	 * @param servicesRegistry
 	 */
-	public ProfileService(ServicesRegistry servicesRegistry) {
-		this.servicesRegistry = servicesRegistry;
+	public ProfileService() {
 		aboutToSaveListener = new PreSaveProfileListener();
 		//	System.out.println("ProfileService created"); //$NON-NLS-1$
 	}

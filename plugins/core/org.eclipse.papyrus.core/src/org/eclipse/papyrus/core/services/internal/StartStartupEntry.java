@@ -3,9 +3,8 @@
  */
 package org.eclipse.papyrus.core.services.internal;
 
-import org.eclipse.papyrus.core.services.ServiceDescriptor;
+import org.eclipse.papyrus.core.services.IService;
 import org.eclipse.papyrus.core.services.ServiceException;
-import org.eclipse.papyrus.core.services.ServiceState;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 
 
@@ -13,7 +12,7 @@ import org.eclipse.papyrus.core.services.ServicesRegistry;
  * An ServiceEntry managing {@link IService} that should be started when the registry is started.
  * 
  * @author cedric dumoulin
- *
+ * 
  */
 public class StartStartupEntry extends ServiceStartupEntry {
 
@@ -23,13 +22,14 @@ public class StartStartupEntry extends ServiceStartupEntry {
 	 * @param serviceDescriptor
 	 * @param registry
 	 */
-	public StartStartupEntry(ServiceTypeEntry serviceEntry, ServiceDescriptor serviceDescriptor) {
+	public StartStartupEntry(ServiceTypeEntry serviceEntry) {
 
-		super( serviceEntry, serviceDescriptor);
+		super(serviceEntry);
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.core.services.AbstractServiceEntry#getServiceInstance()
+	 * 
+	 * @see org.eclipse.papyrus.core.services.internal.ServiceStartupEntry#getServiceInstance()
 	 *
 	 * @return
 	 * @throws ServiceException
@@ -42,7 +42,7 @@ public class StartStartupEntry extends ServiceStartupEntry {
 
 	/**
 	 * Do nothing
-	 *
+	 * 
 	 * @throws ServiceException
 	 */
 	@Override
@@ -63,7 +63,7 @@ public class StartStartupEntry extends ServiceStartupEntry {
 
 	/**
 	 * Do nothing.
-	 *
+	 * 
 	 * @throws ServiceException
 	 */
 	@Override
@@ -73,7 +73,7 @@ public class StartStartupEntry extends ServiceStartupEntry {
 
 	/**
 	 * @see org.eclipse.papyrus.core.services.AbstractServiceEntry#disposeService()
-	 *
+	 * 
 	 * @throws ServiceException
 	 */
 	@Override
