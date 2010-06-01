@@ -7,7 +7,9 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.eclipse.papyrus.controlmode.mm.history,
+Export-Package: org.eclipse.papyrus.controlmode.history,
+ org.eclipse.papyrus.controlmode.history.utils,
+ org.eclipse.papyrus.controlmode.mm.history,
  org.eclipse.papyrus.controlmode.mm.history.impl,
  org.eclipse.papyrus.controlmode.mm.history.util
 Require-Bundle: org.eclipse.core.runtime,

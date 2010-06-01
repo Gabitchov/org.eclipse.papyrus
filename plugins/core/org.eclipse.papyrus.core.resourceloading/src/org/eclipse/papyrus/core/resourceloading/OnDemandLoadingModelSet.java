@@ -8,6 +8,10 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.controlmode.history.HistoryModel;
+import org.eclipse.papyrus.controlmode.history.utils.HistoryUtils;
+import org.eclipse.papyrus.controlmode.mm.history.ControledResource;
+import org.eclipse.papyrus.controlmode.mm.history.historyFactory;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.ModelsReader;
@@ -48,6 +52,7 @@ public class OnDemandLoadingModelSet extends DiResourceSet {
 //		reader.readModel(this);
 		
 		proxyManager = new ProxyManager(this);
+		
 	}
 	
 	/**

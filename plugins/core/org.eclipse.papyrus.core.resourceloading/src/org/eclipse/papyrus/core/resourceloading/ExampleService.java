@@ -7,61 +7,52 @@ import org.eclipse.papyrus.controlmode.history.HistoryModel;
 import org.eclipse.papyrus.controlmode.history.utils.HistoryUtils;
 import org.eclipse.papyrus.controlmode.mm.history.ControledResource;
 import org.eclipse.papyrus.controlmode.mm.history.historyFactory;
-import org.eclipse.papyrus.core.services.IServiceFactory;
+import org.eclipse.papyrus.core.services.IService;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
-import org.eclipse.papyrus.resource.ModelSet;
 
 
 /**
- * A service starting the ModelSet
+ * An example of a service loading the HistoryModel.
  * @author cedric dumoulin
  *
  */
-public class OnDemandLoadingModelSetServiceFactory implements IServiceFactory{
+public class ExampleService implements IService {
 
-	/** The ModelSet */
-	private ModelSet service;
+	protected ServicesRegistry servicesRegistry;
 	
 	/**
-	 * 
 	 * @see org.eclipse.papyrus.core.services.IService#init(org.eclipse.papyrus.core.services.ServicesRegistry)
 	 *
 	 * @param servicesRegistry
 	 * @throws ServiceException
 	 */
 	public void init(ServicesRegistry servicesRegistry) throws ServiceException {
+		this.servicesRegistry = servicesRegistry;
+
 	}
 
 	/**
-	 * 
 	 * @see org.eclipse.papyrus.core.services.IService#startService()
 	 *
 	 * @throws ServiceException
 	 */
 	public void startService() throws ServiceException {
-
+		// Example of code to retrieve the History Model:
+		HistoryModel historyModel = HistoryUtils.getHistoryModel(servicesRegistry);
+		ControledResource root = historyFactory.eINSTANCE.createControledResource();
+		historyModel.addModelRoot(root);
+		
 	}
 
 	/**
-	 * 
 	 * @see org.eclipse.papyrus.core.services.IService#disposeService()
 	 *
 	 * @throws ServiceException
 	 */
 	public void disposeService() throws ServiceException {
-		if( service != null)
-			service.unload();
-	}
+		// TODO Auto-generated method stub
 
-	/**
-	 * Create the service served by this factory.
-	 */
-	public Object createServiceInstance() {
-		// Create the appropriate service.
-		service = new OnDemandLoadingModelSet();
-		return service;
 	}
 
 }
