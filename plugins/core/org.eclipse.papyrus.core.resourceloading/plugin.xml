@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.papyrus.core.service">
+      <serviceFactory
+            classname="org.eclipse.papyrus.core.resourceloading.OnDemandLoadingModelSetServiceFactory"
+            description="The service loading Models - Overload the original service."
+            id="org.eclipse.papyrus.resource.ModelSet"
+            priority="5"
+            startKind="startup">
+      </serviceFactory>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.core.model">
+      <modelSetSnippet
+            classname="org.eclipse.papyrus.core.resourceloading.caches.TypeCacheInitializer"
+            description="Adapter attached to the ModelSet (aka ResourceSet)">
+      </modelSetSnippet>
+   </extension>
+
+</plugin>

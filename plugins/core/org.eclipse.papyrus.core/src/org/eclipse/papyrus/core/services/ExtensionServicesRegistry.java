@@ -151,7 +151,7 @@ public class ExtensionServicesRegistry extends ServicesRegistry {
 		// priority
 		int priority = 1;
 		String priorityStr = ele.getAttribute("priority");
-		if(priorityStr == null || priorityStr.length() == 0) {
+		if(priorityStr != null && priorityStr.length() > 0) {
 			try {
 				priority = Integer.parseInt(priorityStr);
 			} catch (NumberFormatException e) {

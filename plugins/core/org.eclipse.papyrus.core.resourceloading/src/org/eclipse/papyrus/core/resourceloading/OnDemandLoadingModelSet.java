@@ -8,7 +8,9 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.resource.ModelSet;
+import org.eclipse.papyrus.resource.ModelsReader;
 import org.eclipse.papyrus.resource.notation.NotationUtils;
 import org.eclipse.papyrus.resource.sasheditor.SashModelUtils;
 import org.eclipse.papyrus.resource.uml.UmlUtils;
@@ -16,13 +18,16 @@ import org.eclipse.papyrus.resource.uml.UmlUtils;
 
 /**
  * A {@link ModelSet} allowing to load models on demand.
- * Also, this implementation allows to have loading strateies.
+ * Also, this implementation allows to have loading strategies.
+ * 
+ * TODO extends {@link ModelSet} rather than {@link DiResourceSet}. This can be done once 
+ * DiResourceSet is not referenced anyware.
  * 
  * @author cedric dumoulin
  * @author emilien perico
  *
  */
-public class OnDemandLoadingModelSet extends ModelSet {
+public class OnDemandLoadingModelSet extends DiResourceSet {
 
 	/** Set that enables to always load the uri with any strategy. */
 	private Set<URI> uriLoading = new HashSet<URI>();
@@ -38,6 +43,10 @@ public class OnDemandLoadingModelSet extends ModelSet {
 	 */
 	public OnDemandLoadingModelSet() {
 		super();
+		// Register declared models
+//		ModelsReader reader = new ModelsReader();
+//		reader.readModel(this);
+		
 		proxyManager = new ProxyManager(this);
 	}
 	

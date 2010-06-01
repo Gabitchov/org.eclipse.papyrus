@@ -83,7 +83,14 @@ public class ServicesRegistry {
 			if(service.getDescriptor().getPriority() > serviceDescriptor.getPriority())
 				return;
 			else if(service.getDescriptor().getPriority() == serviceDescriptor.getPriority())
-				log.warning("Two services with same priority are declared under key '" + service.getDescriptor().getKey() + "'. Keep the first encountered only.");
+			{
+				log.warning("Two services with same priority (" + serviceDescriptor.getPriority() 
+						+ ") are declared under key '" + service.getDescriptor().getKey() 
+						+ "'. Keep the first encountered only. (bundles: " + service.getDescriptor().getClassBundleID()
+						+ ", " + serviceDescriptor.getClassBundleID() 
+						+ ")"
+						);
+			}
 		}
 
 
@@ -156,7 +163,7 @@ public class ServicesRegistry {
 			if(service.getDescriptor().getPriority() > priority)
 				return;
 			else if(service.getDescriptor().getPriority() == priority)
-				log.warning("Two services with same priority are declared under key '" + service.getDescriptor().getKey() + "'. Keep the first encountered only.");
+				log.warning("Two services with same priority (" + priority + ") are declared under key '" + service.getDescriptor().getKey() + "'. Keep the first encountered only.");
 		}
 
 		// Create descriptor and add service.
@@ -221,7 +228,7 @@ public class ServicesRegistry {
 			if(service.getDescriptor().getPriority() > priority)
 				return;
 			else if(service.getDescriptor().getPriority() == priority)
-				log.warning("Two services with same priority are declared under key '" + service.getDescriptor().getKey() + "'. Keep the first encountered only.");
+				log.warning("Two services with same priority (" + priority + ") are declared under key '" + service.getDescriptor().getKey() + "'. Keep the first encountered only.");
 		}
 
 		// Create descriptor and add service.

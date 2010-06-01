@@ -197,9 +197,6 @@
             classname="org.eclipse.papyrus.resource.sasheditor.SashModel"
             description="Model for sash system">
       </model>
-      <modelSetSnippet
-            classname="org.eclipse.papyrus.core.resourceloading.caches.TypeCacheInitializer">
-      </modelSetSnippet>
    </extension>
    <extension
          point="org.eclipse.papyrus.core.service">
