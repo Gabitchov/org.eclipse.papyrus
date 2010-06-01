@@ -152,13 +152,13 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 	@Override
 	public boolean performFinish() {
 		// create a new file, result != null if successful
+		EObject root = domainModelURI != null ? selectRootElementPage.getModelElement() : null;
 		final IFile newFile = newModelFilePage.createNewFile();
-		selectTemplateWizardPage.initializeModelResource(diResourceSet, newFile, getModelContentType(), getModelFileExtension());
+		selectTemplateWizardPage.initializeModelResource(diResourceSet, newFile, root, getModelContentType(), getModelFileExtension());
 		if(newFile == null) {
 			return false;
 		}
 
-		EObject root = domainModelURI != null ? selectRootElementPage.getModelElement() : null;
 		selectDiagramKindPage.createDiagram(diResourceSet, root);
 
 		IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();

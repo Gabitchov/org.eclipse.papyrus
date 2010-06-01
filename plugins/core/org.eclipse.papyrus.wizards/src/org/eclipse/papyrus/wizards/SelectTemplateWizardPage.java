@@ -40,6 +40,10 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
+import org.eclipse.papyrus.resource.IModel;
+import org.eclipse.papyrus.resource.notation.NotationModel;
+import org.eclipse.papyrus.resource.sasheditor.DiModel;
+import org.eclipse.papyrus.resource.uml.UmlModel;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -195,19 +199,49 @@ public class SelectTemplateWizardPage extends WizardPage {
 
 	}
 
-	public void initializeModelResource(final DiResourceSet diResourceSet, final IFile newFile, final String modelContentType, final String modelFileExtension) {
+	public void initializeModelResource(final DiResourceSet diResourceSet, final IFile newFile, final EObject root, final String modelContentType, final String modelFileExtension) {
 		RecordingCommand command = new RecordingCommand(diResourceSet.getTransactionalEditingDomain()) {
 
 			@Override
 			protected void doExecute() {
-				// Create Model Resource, Notation Resource, DI Resource
-				diResourceSet.createModelResources(newFile, modelContentType, modelFileExtension);
 
-				// Initialize Model Resource
-				Resource modelResource = diResourceSet.getModelResource();
-				if(modelResource != null) {
-					IPath path = new Path(newFile.getName());
-					initializeModelResource(modelResource, path.removeFileExtension().toString());
+				if(root != null) {
+					IPath filenameWithoutExtension = newFile.getFullPath().removeFileExtension();
+
+					IModel model = diResourceSet.getModel(DiModel.MODEL_ID);
+					model.createModel(filenameWithoutExtension);
+					model = diResourceSet.getModel(NotationModel.MODEL_ID);
+					model.createModel(filenameWithoutExtension);
+					// START OF WORKAROUND for #315083 
+					IModel umlModel = new UmlModel() {
+						public void createModel(IPath fullPath) {
+							try {
+								resourceURI = root.eResource().getURI();
+								// as resource already exists, use rs.getResource() not rs.createResource() here
+								resource = getResourceSet().getResource(resourceURI, true);
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						};
+					};
+					diResourceSet.registerModel(umlModel);
+					umlModel.createModel(null);
+
+					//					// call snippets to allow them to do their stuff
+					//					snippets.performStart(this);
+					// END OF WORKAROUND for #315083 
+				} else {
+					
+					// Create Model Resource, Notation Resource, DI Resource
+					diResourceSet.createsModels(newFile);
+
+
+					// Initialize Model Resource
+					Resource modelResource = diResourceSet.getModelResource();
+					if(modelResource != null) {
+						IPath path = new Path(newFile.getName());
+						initializeModelResource(modelResource, path.removeFileExtension().toString());
+					}
 				}
 			}
 		};
@@ -264,7 +298,7 @@ public class SelectTemplateWizardPage extends WizardPage {
 	 */
 	protected void initializeEmptyModel(Resource resource, String rootElementName) {
 	}
-	
+
 	/**
 	 * Load template resource.
 	 * 
@@ -328,7 +362,7 @@ public class SelectTemplateWizardPage extends WizardPage {
 			if(inputElement instanceof String) {
 				List<ModelTemplateDescription> result = new ArrayList<ModelTemplateDescription>();
 				String diagramCategory = (String)inputElement;
-				for (ModelTemplateDescription template: getTemplatesDescription()) {
+				for(ModelTemplateDescription template : getTemplatesDescription()) {
 					if(diagramCategory == null || diagramCategory.equals(template.getLanguage())) {
 						result.add(template);
 					}
@@ -364,7 +398,7 @@ public class SelectTemplateWizardPage extends WizardPage {
 			this.path = path;
 			this.pluginId = pluginId;
 		}
-		
+
 		public void setLanguage(String language) {
 			this.language = language;
 		}
@@ -398,7 +432,7 @@ public class SelectTemplateWizardPage extends WizardPage {
 		public String getPluginId() {
 			return pluginId;
 		}
-		
+
 		public String getLanguage() {
 			return language;
 		}
