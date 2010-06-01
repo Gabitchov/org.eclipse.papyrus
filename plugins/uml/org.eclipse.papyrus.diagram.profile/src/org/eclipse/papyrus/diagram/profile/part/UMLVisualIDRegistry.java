@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.part;
 
 import org.eclipse.core.runtime.Platform;
@@ -168,7 +155,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static String getType(int visualID) {
-		return String.valueOf(visualID);
+		return Integer.toString(visualID);
 	}
 
 	/**
@@ -207,6 +194,68 @@ public class UMLVisualIDRegistry {
 			}
 		}
 		switch(containerVisualID) {
+		case ProfileDiagramEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getDependency().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return DependencyNodeEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getAssociation().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return AssociationNodeEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getStereotype().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return StereotypeEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return MetaclassEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return CommentEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ConstraintEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getModel().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ModelEditPartTN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getProfile().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ProfileEditPartTN.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return PackageEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return EnumerationEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return DataTypeEditPart.VISUAL_ID;
+			}
+			if(NotationPackage.eINSTANCE.getDiagram().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ShortCutDiagramEditPart.VISUAL_ID;
+			}
+			break;
 		case PackageEditPartCN.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())
 
@@ -526,68 +575,6 @@ public class UMLVisualIDRegistry {
 				return DataTypeOperationEditPart.VISUAL_ID;
 			}
 			break;
-		case ProfileDiagramEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getDependency().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return DependencyNodeEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getAssociation().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return AssociationNodeEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getStereotype().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return StereotypeEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getClass_().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return MetaclassEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getComment().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return CommentEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getConstraint().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return ConstraintEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getModel().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return ModelEditPartTN.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getProfile().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return ProfileEditPartTN.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return PackageEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getEnumeration().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return EnumerationEditPart.VISUAL_ID;
-			}
-			if(UMLPackage.eINSTANCE.getDataType().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return DataTypeEditPart.VISUAL_ID;
-			}
-			if(NotationPackage.eINSTANCE.getDiagram().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return ShortCutDiagramEditPart.VISUAL_ID;
-			}
-			break;
 		}
 		return -1;
 	}
@@ -611,6 +598,44 @@ public class UMLVisualIDRegistry {
 			}
 		}
 		switch(containerVisualID) {
+		case ProfileDiagramEditPart.VISUAL_ID:
+			if(DependencyNodeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(AssociationNodeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(StereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(MetaclassEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(CommentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConstraintEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ModelEditPartTN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ProfileEditPartTN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(PackageEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(EnumerationEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(DataTypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ShortCutDiagramEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case DependencyNodeEditPart.VISUAL_ID:
 			if(MultiDependencyLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -962,44 +987,6 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case ProfileDiagramEditPart.VISUAL_ID:
-			if(DependencyNodeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(AssociationNodeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(StereotypeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(MetaclassEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(CommentEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(ConstraintEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(ModelEditPartTN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(ProfileEditPartTN.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(PackageEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(EnumerationEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(DataTypeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			if(ShortCutDiagramEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
 		case AssociationEditPart.VISUAL_ID:
 			if(AssociationAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -1123,8 +1110,7 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
-	 * User can change implementation of this method to handle some specific
-	 * situations not covered by default logic.
+	 * "User can change implementation of this method to handle some specific\n""situations not covered by default logic.\n"
 	 * 
 	 * @generated
 	 */

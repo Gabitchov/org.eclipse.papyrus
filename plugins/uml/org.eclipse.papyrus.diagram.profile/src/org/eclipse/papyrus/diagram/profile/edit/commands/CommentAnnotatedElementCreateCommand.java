@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -65,7 +52,7 @@ public class CommentAnnotatedElementCreateCommand extends EditElementCommand {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateCommentAnnotatedElement_1022(getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateCommentAnnotatedElement_1022(getSource(), getTarget());
 	}
 
 

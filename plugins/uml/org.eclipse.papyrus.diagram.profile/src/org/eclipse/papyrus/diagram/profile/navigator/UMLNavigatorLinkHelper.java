@@ -1,19 +1,4 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.navigator;
-
-import java.util.Iterator;
 
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
@@ -47,8 +32,7 @@ public class UMLNavigatorLinkHelper implements ILinkHelper {
 	 */
 	private static IEditorInput getEditorInput(Diagram diagram) {
 		Resource diagramResource = diagram.eResource();
-		for(Iterator it = diagramResource.getContents().iterator(); it.hasNext();) {
-			EObject nextEObject = (EObject)it.next();
+		for(EObject nextEObject : diagramResource.getContents()) {
 			if(nextEObject == diagram) {
 				return new FileEditorInput(WorkspaceSynchronizer.getFile(diagramResource));
 			}
@@ -57,7 +41,7 @@ public class UMLNavigatorLinkHelper implements ILinkHelper {
 			}
 		}
 		URI uri = EcoreUtil.getURI(diagram);
-		String editorName = uri.lastSegment() + "#" + diagram.eResource().getContents().indexOf(diagram); //$NON-NLS-1$
+		String editorName = uri.lastSegment() + '#' + diagram.eResource().getContents().indexOf(diagram);
 		IEditorInput editorInput = new URIEditorInput(uri, editorName);
 		return editorInput;
 	}

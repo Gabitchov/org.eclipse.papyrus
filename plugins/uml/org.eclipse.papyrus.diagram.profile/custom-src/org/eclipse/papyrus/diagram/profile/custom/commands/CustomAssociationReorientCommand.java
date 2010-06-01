@@ -44,6 +44,7 @@ public class CustomAssociationReorientCommand extends AssociationReorientCommand
 	/**
 	 * @generated
 	 */
+	@Override
 	protected boolean canReorientSource() {
 		if(!(oldEnd instanceof Type && newEnd instanceof Type)) {
 			return false;
@@ -52,17 +53,18 @@ public class CustomAssociationReorientCommand extends AssociationReorientCommand
 		if(getLink().getEndTypes().size() == 1) {
 			return false;
 		}
-		Type target = (Type)getLink().getEndTypes().get(0);
+		Type target = getLink().getEndTypes().get(0);
 		if(!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
 		Package container = (Package)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistAssociation_4001(container, getNewSource(), target);
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistAssociation_4001(container, getLink(), getNewSource(), target);
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected boolean canReorientTarget() {
 		if(!(oldEnd instanceof Type && newEnd instanceof Type)) {
 			return false;
@@ -72,17 +74,18 @@ public class CustomAssociationReorientCommand extends AssociationReorientCommand
 		if(getLink().getEndTypes().size() == 1) {
 			return false;
 		}
-		Type source = (Type)getLink().getEndTypes().get(0);
+		Type source = getLink().getEndTypes().get(0);
 		if(!(getLink().eContainer() instanceof Package)) {
 			return false;
 		}
 		Package container = (Package)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistAssociation_4001(container, source, getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistAssociation_4001(container, getLink(), source, getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected CommandResult reorientSource() throws ExecutionException {
 		return AssociationHelper.reconnect(AssociationHelper.source, getLink(), getNewSource());
 	}
@@ -90,6 +93,7 @@ public class CustomAssociationReorientCommand extends AssociationReorientCommand
 	/**
 	 * @generated
 	 */
+	@Override
 	protected CommandResult reorientTarget() throws ExecutionException {
 		return AssociationHelper.reconnect(AssociationHelper.target, getLink(), getNewTarget());
 

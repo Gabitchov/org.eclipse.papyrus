@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -78,7 +65,7 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Classifier target = getLink().getGeneral();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistGeneralization_4002(getNewSource(), target);
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistGeneralization_4002(getLink(), getNewSource(), target);
 	}
 
 	/**
@@ -92,7 +79,7 @@ public class GeneralizationReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Classifier source = (Classifier)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistGeneralization_4002(source, getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistGeneralization_4002(getLink(), source, getNewTarget());
 	}
 
 	/**

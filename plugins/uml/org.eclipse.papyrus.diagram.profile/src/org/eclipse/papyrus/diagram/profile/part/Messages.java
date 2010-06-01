@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.part;
 
 import org.eclipse.osgi.util.NLS;
@@ -258,272 +245,272 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Packages1Group_title;
+	public static String createPackages1Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Packages1Group_desc;
+	public static String createPackages1Group_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Classifiers2Group_title;
+	public static String createClassifiers2Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Classifiers2Group_desc;
+	public static String createClassifiers2Group_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String RelationShips3Group_title;
+	public static String createRelationShips3Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String RelationShips3Group_desc;
+	public static String createRelationShips3Group_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Features4Group_title;
+	public static String createFeatures4Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Features4Group_desc;
+	public static String createFeatures4Group_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Package1CreationTool_title;
+	public static String createPackage1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Package1CreationTool_desc;
+	public static String createPackage1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Model2CreationTool_title;
+	public static String createModel2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Model2CreationTool_desc;
+	public static String createModel2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Profile3CreationTool_title;
+	public static String createProfile3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Profile3CreationTool_desc;
+	public static String createProfile3CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Comment4CreationTool_title;
+	public static String createComment4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Comment4CreationTool_desc;
+	public static String createComment4CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Constraint5CreationTool_title;
+	public static String createConstraint5CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Constraint5CreationTool_desc;
+	public static String createConstraint5CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Stereotype2CreationTool_title;
+	public static String createStereotype2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Stereotype2CreationTool_desc;
+	public static String createStereotype2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Metaclass3CreationTool_title;
+	public static String createMetaclass3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Metaclass3CreationTool_desc;
+	public static String createMetaclass3CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Enumeration4CreationTool_title;
+	public static String createEnumeration4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Enumeration4CreationTool_desc;
+	public static String createEnumeration4CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String DataType5CreationTool_title;
+	public static String createDataType5CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String DataType5CreationTool_desc;
+	public static String createDataType5CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Extension1CreationTool_title;
+	public static String createExtension1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Extension1CreationTool_desc;
+	public static String createExtension1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Generalization2CreationTool_title;
+	public static String createGeneralization2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Generalization2CreationTool_desc;
+	public static String createGeneralization2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Commentlink3CreationTool_title;
+	public static String createCommentlink3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Commentlink3CreationTool_desc;
+	public static String createCommentlink3CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String ConstraintLink4CreationTool_title;
+	public static String createConstraintLink4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ConstraintLink4CreationTool_desc;
+	public static String createConstraintLink4CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String ProfileApplication5CreationTool_title;
+	public static String createProfileApplication5CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ProfileApplication5CreationTool_desc;
+	public static String createProfileApplication5CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String ElementImport6CreationTool_title;
+	public static String createElementImport6CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String ElementImport6CreationTool_desc;
+	public static String createElementImport6CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String PackageImport7CreationTool_title;
+	public static String createPackageImport7CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String PackageImport7CreationTool_desc;
+	public static String createPackageImport7CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Dependency8CreationTool_title;
+	public static String createDependency8CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Dependency8CreationTool_desc;
+	public static String createDependency8CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String DependencyBranch9CreationTool_title;
+	public static String createDependencyBranch9CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String DependencyBranch9CreationTool_desc;
+	public static String createDependencyBranch9CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Association10CreationTool_title;
+	public static String createAssociation10CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Association10CreationTool_desc;
+	public static String createAssociation10CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String AssociationBranch11CreationTool_title;
+	public static String createAssociationBranch11CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String AssociationBranch11CreationTool_desc;
+	public static String createAssociationBranch11CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Property1CreationTool_title;
+	public static String createProperty1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Property1CreationTool_desc;
+	public static String createProperty1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Operation2CreationTool_title;
+	public static String createOperation2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Operation2CreationTool_desc;
+	public static String createOperation2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String EnumerationLiteral3CreationTool_title;
+	public static String createEnumerationLiteral3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String EnumerationLiteral3CreationTool_desc;
+	public static String createEnumerationLiteral3CreationTool_desc;
 
 	/**
 	 * @generated

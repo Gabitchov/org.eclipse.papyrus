@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
@@ -29,6 +16,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.CustomContainerEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.diagram.profile.custom.policies.CustomCreationRoleEditPolicy;
 import org.eclipse.papyrus.diagram.profile.custom.policies.ProfileDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.profile.custom.policies.RemoveOrphanViewPolicy;
@@ -83,6 +71,7 @@ extends ShapeCompartmentEditPart
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ProfilePackageableElementCompartmentItemSemanticEditPolicyTN());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
+		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ProfileDiagramDragDropEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomContainerEditPolicy());

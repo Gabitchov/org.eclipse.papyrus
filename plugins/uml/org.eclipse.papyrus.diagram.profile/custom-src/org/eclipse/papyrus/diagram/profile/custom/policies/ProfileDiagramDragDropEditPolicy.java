@@ -92,10 +92,10 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 		droppableElementsVisualID.add(ElementImportEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(ExtensionEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(AssociationNodeEditPart.VISUAL_ID);
-		
+
 		return droppableElementsVisualID;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -119,7 +119,7 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	public IElementType getUMLElementType(int elementID) {
 		return UMLElementTypes.getElementType(elementID);
 	}
-	
+
 	/**
 	 * this method has in charge to create command for create an association if the number of
 	 * endtype is superior of 2 a multi association is dropped. if the number of endtype this is
@@ -312,7 +312,6 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 		}
 
 		return new ICommandProxy(dropBinaryLinkExtension(new CompositeCommand("drop Extension"), source, target, ExtensionEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink)); //$NON-NLS-1$
-		//return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Extension"), source, target, ExtensionEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink));
 	}
 
 

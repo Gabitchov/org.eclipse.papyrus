@@ -1,19 +1,7 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.edit.parts;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.ColorConstants;
@@ -43,10 +31,12 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.diagram.profile.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.profile.custom.policies.itemsemantic.CustomAssociationNodeItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.profile.edit.policies.AssociationNodeItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.profile.edit.policies.OpenDiagramEditPolicy;
+import org.eclipse.papyrus.diagram.profile.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
@@ -128,8 +118,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		AssociationNodeDescriptor figure = new AssociationNodeDescriptor();
-		return primaryShape = figure;
+		return primaryShape = new AssociationNodeDescriptor();
 	}
 
 	/**
@@ -145,7 +134,12 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(20, 20);
+		String prefElementId = "Association";
+		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
+		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
+
 		return result;
 	}
 
@@ -220,8 +214,8 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSource() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+	public List<IElementType> getMARelTypesOnSource() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(7);
 		types.add(UMLElementTypes.Association_4001);
 		types.add(UMLElementTypes.Association_4019);
 		types.add(UMLElementTypes.Generalization_4002);
@@ -235,8 +229,8 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+	public List<IElementType> getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.profile.edit.parts.AssociationNodeEditPart) {
 			types.add(UMLElementTypes.Association_4001);
 		}
@@ -504,267 +498,101 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForTarget(IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if(relationshipType == UMLElementTypes.Association_4001) {
 			types.add(UMLElementTypes.Association_2015);
-		}
-		if(relationshipType == UMLElementTypes.Association_4001) {
 			types.add(UMLElementTypes.Stereotype_1026);
-		}
-		if(relationshipType == UMLElementTypes.Association_4001) {
 			types.add(UMLElementTypes.Class_1031);
-		}
-		if(relationshipType == UMLElementTypes.Association_4001) {
 			types.add(UMLElementTypes.Enumeration_2006);
-		}
-		if(relationshipType == UMLElementTypes.Association_4001) {
 			types.add(UMLElementTypes.DataType_2010);
-		}
-		if(relationshipType == UMLElementTypes.Association_4001) {
 			types.add(UMLElementTypes.Stereotype_1023);
-		}
-		if(relationshipType == UMLElementTypes.Association_4001) {
 			types.add(UMLElementTypes.Class_3028);
-		}
-		if(relationshipType == UMLElementTypes.Association_4001) {
 			types.add(UMLElementTypes.Enumeration_3025);
-		}
-		if(relationshipType == UMLElementTypes.Association_4001) {
 			types.add(UMLElementTypes.DataType_3027);
-		}
-		if(relationshipType == UMLElementTypes.Association_4019) {
+		} else if(relationshipType == UMLElementTypes.Association_4019) {
 			types.add(UMLElementTypes.Association_2015);
-		}
-		if(relationshipType == UMLElementTypes.Association_4019) {
 			types.add(UMLElementTypes.Stereotype_1026);
-		}
-		if(relationshipType == UMLElementTypes.Association_4019) {
 			types.add(UMLElementTypes.Class_1031);
-		}
-		if(relationshipType == UMLElementTypes.Association_4019) {
 			types.add(UMLElementTypes.Enumeration_2006);
-		}
-		if(relationshipType == UMLElementTypes.Association_4019) {
 			types.add(UMLElementTypes.DataType_2010);
-		}
-		if(relationshipType == UMLElementTypes.Association_4019) {
 			types.add(UMLElementTypes.Stereotype_1023);
-		}
-		if(relationshipType == UMLElementTypes.Association_4019) {
 			types.add(UMLElementTypes.Class_3028);
-		}
-		if(relationshipType == UMLElementTypes.Association_4019) {
 			types.add(UMLElementTypes.Enumeration_3025);
-		}
-		if(relationshipType == UMLElementTypes.Association_4019) {
 			types.add(UMLElementTypes.DataType_3027);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4002) {
+		} else if(relationshipType == UMLElementTypes.Generalization_4002) {
 			types.add(UMLElementTypes.Association_2015);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4002) {
 			types.add(UMLElementTypes.Stereotype_1026);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4002) {
 			types.add(UMLElementTypes.Class_1031);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4002) {
 			types.add(UMLElementTypes.Enumeration_2006);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4002) {
 			types.add(UMLElementTypes.DataType_2010);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4002) {
 			types.add(UMLElementTypes.Stereotype_1023);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4002) {
 			types.add(UMLElementTypes.Class_3028);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4002) {
 			types.add(UMLElementTypes.Enumeration_3025);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4002) {
 			types.add(UMLElementTypes.DataType_3027);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
+		} else if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Dependency_2014);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Association_2015);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Stereotype_1026);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Class_1031);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Constraint_1014);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Model_2005);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Profile_1030);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Package_2007);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Enumeration_2006);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.DataType_2010);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Stereotype_1023);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Class_3028);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Model_1027);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Profile_1024);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Package_1012);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Constraint_1028);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Enumeration_3025);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.DataType_3027);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
+		} else if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Dependency_2014);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Association_2015);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Stereotype_1026);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Class_1031);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Constraint_1014);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Model_2005);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Profile_1030);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Package_2007);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Enumeration_2006);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.DataType_2010);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Stereotype_1023);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Class_3028);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Model_1027);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Profile_1024);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Package_1012);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Constraint_1028);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Enumeration_3025);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.DataType_3027);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
+		} else if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Dependency_2014);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Association_2015);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Stereotype_1026);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Class_1031);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Constraint_1014);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Model_2005);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Profile_1030);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Package_2007);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Enumeration_2006);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.DataType_2010);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Stereotype_1023);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Class_3028);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Model_1027);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Profile_1024);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Package_1012);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Constraint_1028);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Enumeration_3025);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.DataType_3027);
-		}
-		if(relationshipType == UMLElementTypes.PackageImport_1065) {
+		} else if(relationshipType == UMLElementTypes.PackageImport_1065) {
 			types.add(UMLElementTypes.Model_2005);
-		}
-		if(relationshipType == UMLElementTypes.PackageImport_1065) {
 			types.add(UMLElementTypes.Profile_1030);
-		}
-		if(relationshipType == UMLElementTypes.PackageImport_1065) {
 			types.add(UMLElementTypes.Package_2007);
-		}
-		if(relationshipType == UMLElementTypes.PackageImport_1065) {
 			types.add(UMLElementTypes.Model_1027);
-		}
-		if(relationshipType == UMLElementTypes.PackageImport_1065) {
 			types.add(UMLElementTypes.Profile_1024);
-		}
-		if(relationshipType == UMLElementTypes.PackageImport_1065) {
 			types.add(UMLElementTypes.Package_1012);
 		}
 		return types;
@@ -773,8 +601,8 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+	public List<IElementType> getMARelTypesOnTarget() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(8);
 		types.add(UMLElementTypes.Association_4001);
 		types.add(UMLElementTypes.Association_4019);
 		types.add(UMLElementTypes.Generalization_4002);
@@ -789,252 +617,97 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if(relationshipType == UMLElementTypes.Association_4001) {
 			types.add(UMLElementTypes.Association_2015);
-		}
-		if(relationshipType == UMLElementTypes.Association_4001) {
 			types.add(UMLElementTypes.Stereotype_1026);
-		}
-		if(relationshipType == UMLElementTypes.Association_4001) {
 			types.add(UMLElementTypes.Class_1031);
-		}
-		if(relationshipType == UMLElementTypes.Association_4001) {
 			types.add(UMLElementTypes.Enumeration_2006);
-		}
-		if(relationshipType == UMLElementTypes.Association_4001) {
 			types.add(UMLElementTypes.DataType_2010);
-		}
-		if(relationshipType == UMLElementTypes.Association_4001) {
 			types.add(UMLElementTypes.Stereotype_1023);
-		}
-		if(relationshipType == UMLElementTypes.Association_4001) {
 			types.add(UMLElementTypes.Class_3028);
-		}
-		if(relationshipType == UMLElementTypes.Association_4001) {
 			types.add(UMLElementTypes.Enumeration_3025);
-		}
-		if(relationshipType == UMLElementTypes.Association_4001) {
 			types.add(UMLElementTypes.DataType_3027);
-		}
-		if(relationshipType == UMLElementTypes.Association_4019) {
+		} else if(relationshipType == UMLElementTypes.Association_4019) {
 			types.add(UMLElementTypes.Association_2015);
-		}
-		if(relationshipType == UMLElementTypes.Association_4019) {
 			types.add(UMLElementTypes.Stereotype_1026);
-		}
-		if(relationshipType == UMLElementTypes.Association_4019) {
 			types.add(UMLElementTypes.Class_1031);
-		}
-		if(relationshipType == UMLElementTypes.Association_4019) {
 			types.add(UMLElementTypes.Enumeration_2006);
-		}
-		if(relationshipType == UMLElementTypes.Association_4019) {
 			types.add(UMLElementTypes.DataType_2010);
-		}
-		if(relationshipType == UMLElementTypes.Association_4019) {
 			types.add(UMLElementTypes.Stereotype_1023);
-		}
-		if(relationshipType == UMLElementTypes.Association_4019) {
 			types.add(UMLElementTypes.Class_3028);
-		}
-		if(relationshipType == UMLElementTypes.Association_4019) {
 			types.add(UMLElementTypes.Enumeration_3025);
-		}
-		if(relationshipType == UMLElementTypes.Association_4019) {
 			types.add(UMLElementTypes.DataType_3027);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4002) {
+		} else if(relationshipType == UMLElementTypes.Generalization_4002) {
 			types.add(UMLElementTypes.Association_2015);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4002) {
 			types.add(UMLElementTypes.Stereotype_1026);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4002) {
 			types.add(UMLElementTypes.Class_1031);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4002) {
 			types.add(UMLElementTypes.Enumeration_2006);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4002) {
 			types.add(UMLElementTypes.DataType_2010);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4002) {
 			types.add(UMLElementTypes.Stereotype_1023);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4002) {
 			types.add(UMLElementTypes.Class_3028);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4002) {
 			types.add(UMLElementTypes.Enumeration_3025);
-		}
-		if(relationshipType == UMLElementTypes.Generalization_4002) {
 			types.add(UMLElementTypes.DataType_3027);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
+		} else if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Dependency_2014);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Association_2015);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Stereotype_1026);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Class_1031);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Constraint_1014);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Model_2005);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Profile_1030);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Package_2007);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Enumeration_2006);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.DataType_2010);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Stereotype_1023);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Class_3028);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Model_1027);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Profile_1024);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Package_1012);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Constraint_1028);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.Enumeration_3025);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4008) {
 			types.add(UMLElementTypes.DataType_3027);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
+		} else if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Dependency_2014);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Association_2015);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Stereotype_1026);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Class_1031);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Constraint_1014);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Model_2005);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Profile_1030);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Package_2007);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Enumeration_2006);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.DataType_2010);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Stereotype_1023);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Class_3028);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Model_1027);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Profile_1024);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Package_1012);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Constraint_1028);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.Enumeration_3025);
-		}
-		if(relationshipType == UMLElementTypes.Dependency_4018) {
 			types.add(UMLElementTypes.DataType_3027);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
+		} else if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Association_2015);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Stereotype_1026);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Class_1031);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Model_2005);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Profile_1030);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Package_2007);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Enumeration_2006);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.DataType_2010);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Stereotype_1023);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Class_3028);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Model_1027);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Profile_1024);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Package_1012);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.Enumeration_3025);
-		}
-		if(relationshipType == UMLElementTypes.ElementImport_1064) {
 			types.add(UMLElementTypes.DataType_3027);
-		}
-		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_1022) {
+		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_1022) {
 			types.add(UMLElementTypes.Comment_1002);
-		}
-		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_1022) {
 			types.add(UMLElementTypes.Comment_1007);
-		}
-		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
+		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Constraint_1014);
-		}
-		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4014) {
 			types.add(UMLElementTypes.Constraint_1028);
 		}
 		return types;

@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -63,7 +50,6 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	@Override
 	public boolean canExecute() {
 		if(source == null && target == null) {
 			return false;
@@ -81,14 +67,13 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateAssociation_4019(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateAssociation_4019(getContainer(), getSource(), getTarget());
 	}
 
 
 	/**
 	 * @generated
 	 */
-	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
@@ -118,7 +103,6 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setElementToEdit(EObject element) {
 		throw new UnsupportedOperationException();
 	}

@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -84,7 +71,7 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 		if(!(oldEnd instanceof Element && newEnd instanceof Constraint)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistConstraintConstrainedElement_4014(getNewSource(), getOldTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistConstraintConstrainedElement_4014(getNewSource(), getOldTarget());
 	}
 
 	/**
@@ -94,7 +81,7 @@ public class ConstraintConstrainedElementReorientCommand extends EditElementComm
 		if(!(oldEnd instanceof Element && newEnd instanceof Element)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistConstraintConstrainedElement_4014(getOldSource(), getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistConstraintConstrainedElement_4014(getOldSource(), getNewTarget());
 	}
 
 	/**

@@ -131,7 +131,7 @@ public class CustomCreationRoleEditPolicy extends org.eclipse.gmf.runtime.diagra
 		CreateElementRequestAdapter requestAdapter = request.getViewAndElementDescriptor().getCreateElementRequestAdapter();
 
 		/**
-		 *We create our own request!
+		 * We create our own request!
 		 */
 		CustomCreateElementRequestAdapter customRequestAdapter = new CustomCreateElementRequestAdapter((CreateElementRequest)requestAdapter.getAdapter(CreateElementRequest.class));
 		CustomCreateViewAndElementRequest.ViewAndElementDescriptor viewDescriptor = new ViewAndElementDescriptor(customRequestAdapter, request.getViewDescriptors().get(0).getViewKind(), request.getViewDescriptors().get(0).getSemanticHint(), request.getViewDescriptors().get(0).getPreferencesHint());

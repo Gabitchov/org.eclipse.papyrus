@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.part;
 
 import java.util.EventObject;
@@ -35,7 +22,6 @@ import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
 import org.eclipse.gmf.runtime.diagram.ui.internal.parts.PaletteToolTransferDragSourceListener;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
-import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
@@ -47,6 +33,7 @@ import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.diagram.common.listeners.DropTargetListener;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteContextMenuProvider;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteViewer;
+import org.eclipse.papyrus.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.TransferData;
@@ -65,8 +52,7 @@ import org.eclipse.ui.part.ShowInContext;
 /**
  * @generated
  */
-public class UMLDiagramEditor extends DiagramDocumentEditor implements IProviderChangeListener, IGotoMarker {
-
+public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderChangeListener, IGotoMarker {
 
 	/**
 	 * @generated
@@ -77,7 +63,6 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	 * @generated
 	 */
 	public static final String CONTEXT_ID = "org.eclipse.papyrus.diagram.profile.ui.diagramContext"; //$NON-NLS-1$
-
 
 
 
@@ -107,10 +92,6 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	 */
 	private IDocumentProvider documentProvider;
 
-	/**
-	 * @generated
-	 */
-	private Diagram diagram;
 
 
 
@@ -118,8 +99,7 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	 * @generated
 	 */
 	public UMLDiagramEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws ServiceException {
-		super(true);
-		this.diagram = diagram;
+		super(servicesRegistry, diagram);
 
 
 		// adds a listener to the palette service, which reacts to palette customizations
@@ -260,8 +240,6 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 		getDiagramGraphicalViewer().setContextMenu(provider);
 		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU, provider, getDiagramGraphicalViewer());
 	}
-
-
 
 
 
@@ -490,20 +468,6 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	@Override
 	public GraphicalViewer getGraphicalViewer() {
 		return super.getGraphicalViewer();
-	}
-
-	/**
-	 * @generated
-	 */
-	public Diagram getDiagram() {
-		return diagram;
-	}
-
-	/**
-	 * @generated
-	 */
-	public void setDiagram(Diagram diagram) {
-		this.diagram = diagram;
 	}
 
 	/**

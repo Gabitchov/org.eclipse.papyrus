@@ -1,25 +1,12 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.edit.policies;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.emf.commands.core.commands.DuplicateEObjectsCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.diagram.common.commands.DuplicateNamedElementCommand;
 import org.eclipse.papyrus.diagram.profile.edit.commands.AssociationNodeCreateCommand;
 import org.eclipse.papyrus.diagram.profile.edit.commands.CommentEditPartCreateCommand;
 import org.eclipse.papyrus.diagram.profile.edit.commands.ConstraintCreateCommand;
@@ -105,15 +92,18 @@ public class ProfileDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 	/**
 	 * @generated
 	 */
-	private static class DuplicateAnythingCommand extends DuplicateEObjectsCommand {
+	private static class DuplicateAnythingCommand extends DuplicateNamedElementCommand {
 
+		/**
+		 * @generated
+		 */
 		private Diagram diagram;
 
 		/**
 		 * @generated
 		 */
 		public DuplicateAnythingCommand(TransactionalEditingDomain editingDomain, DuplicateElementsRequest req, Diagram currentDiagram) {
-			super(editingDomain, req.getLabel(), req.getElementsToBeDuplicated(), req.getAllDuplicatedElementsMap());
+			super(editingDomain, req.getLabel(), req.getElementsToBeDuplicated(), req.getAllDuplicatedElementsMap(), currentDiagram);
 			this.diagram = currentDiagram;
 		}
 	}

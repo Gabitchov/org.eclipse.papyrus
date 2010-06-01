@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.edit.parts;
 
 import java.util.Collections;
@@ -46,8 +33,10 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.editparts.AbstractShortCutDiagramEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.ShortCutDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.DiagramNodeFigure;
+import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.diagram.profile.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.profile.edit.policies.ShortCutDiagramItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.profile.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.profile.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
@@ -182,7 +171,12 @@ AbstractShortCutDiagramEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(20, 20);
+		String prefElementId = "ShortCutDiagram";
+		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
+		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
+
 		return result;
 	}
 

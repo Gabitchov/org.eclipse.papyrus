@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -25,7 +12,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.diagram.profile.edit.policies.UMLBaseItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.profile.providers.ElementInitializers;
 import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.PackageableElement;
@@ -82,7 +69,7 @@ public class ElementImportCreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateElementImport_1064(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateElementImport_1064(getContainer(), getSource(), getTarget());
 	}
 
 
@@ -98,7 +85,7 @@ public class ElementImportCreateCommand extends EditElementCommand {
 		getContainer().getElementImports().add(newElement);
 		newElement.setImportingNamespace(getSource());
 		newElement.setImportedElement(getTarget());
-		UMLElementTypes.init_ElementImport_1064(newElement);
+		ElementInitializers.getInstance().init_ElementImport_1064(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

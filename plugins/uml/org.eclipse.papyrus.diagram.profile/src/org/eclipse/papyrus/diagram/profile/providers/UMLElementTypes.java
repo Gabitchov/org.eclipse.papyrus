@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.providers;
 
 import java.util.HashSet;
@@ -73,7 +60,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class UMLElementTypes extends ElementInitializers {
+public class UMLElementTypes {
 
 	/**
 	 * @generated
@@ -84,7 +71,7 @@ public class UMLElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private static Map elements;
+	private static Map<IElementType, ENamedElement> elements;
 
 	/**
 	 * @generated
@@ -94,7 +81,7 @@ public class UMLElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private static Set KNOWN_ELEMENT_TYPES;
+	private static Set<IElementType> KNOWN_ELEMENT_TYPES;
 
 	/**
 	 * @generated
@@ -390,7 +377,7 @@ public class UMLElementTypes extends ElementInitializers {
 	public static ENamedElement getElement(IAdaptable hint) {
 		Object type = hint.getAdapter(IElementType.class);
 		if(elements == null) {
-			elements = new IdentityHashMap();
+			elements = new IdentityHashMap<IElementType, ENamedElement>();
 
 			elements.put(Profile_1000, UMLPackage.eINSTANCE.getProfile());
 
@@ -518,7 +505,7 @@ public class UMLElementTypes extends ElementInitializers {
 	 */
 	public static boolean isKnownElementType(IElementType elementType) {
 		if(KNOWN_ELEMENT_TYPES == null) {
-			KNOWN_ELEMENT_TYPES = new HashSet();
+			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
 			KNOWN_ELEMENT_TYPES.add(Profile_1000);
 			KNOWN_ELEMENT_TYPES.add(Dependency_2014);
 			KNOWN_ELEMENT_TYPES.add(Association_2015);

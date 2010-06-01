@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.part;
 
 import java.util.Collection;
@@ -108,6 +95,16 @@ public class UMLDiagramContentInitializer {
 		}
 		createProfile_1000Children(diagram);
 		createLinks(diagram);
+	}
+
+	/**
+	 * @generated
+	 */
+	private void createProfile_1000Children(View view) {
+		Collection childNodeDescriptors = UMLDiagramUpdater.getProfile_1000SemanticChildren(view);
+		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
+			createNode(view, (UMLNodeDescriptor)it.next());
+		}
 	}
 
 	/**
@@ -519,16 +516,6 @@ public class UMLDiagramContentInitializer {
 	 */
 	private void createDataTypeDataTypeOperationCompartment_1070Children(View view) {
 		Collection childNodeDescriptors = UMLDiagramUpdater.getDataTypeDataTypeOperationCompartment_1070SemanticChildren(view);
-		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
-			createNode(view, (UMLNodeDescriptor)it.next());
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private void createProfile_1000Children(View view) {
-		Collection childNodeDescriptors = UMLDiagramUpdater.getProfile_1000SemanticChildren(view);
 		for(Iterator it = childNodeDescriptors.iterator(); it.hasNext();) {
 			createNode(view, (UMLNodeDescriptor)it.next());
 		}

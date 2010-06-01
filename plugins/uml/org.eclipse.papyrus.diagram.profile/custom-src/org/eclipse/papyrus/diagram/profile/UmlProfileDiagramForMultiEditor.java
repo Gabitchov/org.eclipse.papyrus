@@ -44,12 +44,17 @@ public class UmlProfileDiagramForMultiEditor extends UMLDiagramEditor {
 	/**
 	 * The location of diagram icon in the plug-in
 	 */
-	private static final String DIAG_IMG_PATH = "icons/obj16/Diagram_ProfileDiagram.gif"; //$NON-NLS-1$
+	//	private static final String DIAG_IMG_PATH = "icons/obj16/Diagram_ProfileDiagram.gif"; //$NON-NLS-1$
+	private static final String DIAG_IMG_PATH = "platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/ProfileDiagramEditorIcons/ProfileDiagramEditorIcon_16x16-32.bmp";
 
 	/**
 	 * The EditingDomain ID for this diagram
 	 */
-	private static final String PROFIL_DIAGRAM_EDITING_DOMAIN_ID = "icons/obj16/Diagram_ProfileDiagram.gif"; //$NON-NLS-1$
+	//private static final String PROFIL_DIAGRAM_EDITING_DOMAIN_ID = "icons/obj16/Diagram_ProfileDiagram.gif"; //$NON-NLS-1$
+
+	private static final String PROFIL_DIAGRAM_EDITING_DOMAIN_ID = "platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/ProfileDiagramEditorIcons/ProfileDiagramEditorIcon_16x16-32.bmp"; //$NON-NLS-1$
+
+
 
 	/**
 	 * The image descriptor of the diagram icon

@@ -64,14 +64,16 @@ public class ProfileService implements IService {
 	/**
 	 * Initialize the service. Set the {@link ServicesRegistry} that can be used to retrieve other services.
 	 * This method is called after the object instanciation, and before the service start.
+	 * 
 	 * @see org.eclipse.papyrus.core.services.IService#init(org.eclipse.papyrus.core.services.ServicesRegistry)
-	 *
+	 * 
 	 * @param servicesRegistry
 	 */
 	public void init(ServicesRegistry servicesRegistry) {
 		this.servicesRegistry = servicesRegistry;
-		
+
 	}
+
 	/**
 	 * @see org.eclipse.papyrus.core.services.IService#startService()
 	 * 

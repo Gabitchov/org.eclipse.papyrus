@@ -20,7 +20,7 @@
       <editor
          id="org.eclipse.papyrus.diagram.profile.part.UMLDiagramEditorID"
          name="%editorName"
-         icon="icons/obj16/Diagram_ProfileDiagram.gif"
+         icon="platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/ProfileDiagramEditorIcons/ProfileDiagramEditorIcon_16x16-32.bmp"
          extensions="PapyrusUMLProfile_diagram"
          default="true"
          class="org.eclipse.papyrus.diagram.profile.part.UMLDiagramEditor"
@@ -43,7 +43,7 @@
       <?gmfgen generated="true"?>
   	  <wizard
   	     name="%newWizardName"
-  	     icon="icons/obj16/Diagram_ProfileDiagram.gif"
+  	     icon="platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/ProfileDiagramEditorIcons/ProfileDiagramEditorIcon_16x16-32.bmp"
   	     category="org.eclipse.ui.Examples"
   	     class="org.eclipse.papyrus.diagram.profile.part.UMLCreationWizard"
   	     id="org.eclipse.papyrus.diagram.profile.part.UMLCreationWizardID">
@@ -1101,7 +1101,7 @@
                id="org.eclipse.papyrus.diagram.ui.toolbar">
             <command
                   commandId="org.eclipse.papyrus.diagram.profile.CreateProfileDiagramCommand"
-                  icon="icons/obj16/Diagram_ProfileDiagram.gif"
+                  icon="platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/ProfileDiagramEditorIcons/ProfileDiagramEditorIcon_16x16-32.bmp"
                   label="Create a new Profile Diagram"
                   style="push"
                   tooltip="Create a new Profile Diagram">
@@ -1123,7 +1123,7 @@
                label="Diagrams">
             <command
                   commandId="org.eclipse.papyrus.diagram.profile.CreateProfileDiagramCommand"
-                  icon="icons/obj16/Diagram_ProfileDiagram.gif"
+                  icon="platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/ProfileDiagramEditorIcons/ProfileDiagramEditorIcon_16x16-32.bmp"
                   label="Create a new Profile Diagram"
                   style="push"
                   tooltip="Create a new Profile Diagram">
@@ -1152,12 +1152,12 @@
       <editorDiagram
             contextId="com.cea.papyrus.gmf.editor.context"
             factoryClass="org.eclipse.papyrus.diagram.profile.ProfileDiagramEditorFactory"
-            icon="icons/obj16/Diagram_ProfileDiagram.gif">
+            icon="platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/ProfileDiagramEditorIcons/ProfileDiagramEditorIcon_16x16-32.bmp">
       </editorDiagram>
       <creationCommand
             creationCommandClass="org.eclipse.papyrus.diagram.profile.CreateProfileDiagramCommand"
             creationCondition="org.eclipse.papyrus.diagram.profile.ProfileDiagramCreationCondition"
-            icon="icons/obj16/Diagram_ProfileDiagram.gif"
+            icon="platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/ProfileDiagramEditorIcons/ProfileDiagramEditorIcon_16x16-32.bmp"
             id="org.eclipse.papyrus.diagram.profile.CreateProfileDiagramCommand"
             language="profile"
             label="UML Profile Diagram">
@@ -1291,7 +1291,7 @@
             priority="normal" 
             contentProvider="org.eclipse.papyrus.diagram.profile.navigator.UMLNavigatorContentProvider" 
             labelProvider="org.eclipse.papyrus.diagram.profile.navigator.UMLNavigatorLabelProvider"
-            icon="icons/obj16/Diagram_ProfileDiagram.gif"
+            icon="platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/ProfileDiagramEditorIcons/ProfileDiagramEditorIcon_16x16-32.bmp"
             activeByDefault="true">
          <triggerPoints>
             <or>
@@ -1327,7 +1327,7 @@
             priority="normal" 
             contentProvider="org.eclipse.papyrus.diagram.profile.navigator.UMLDomainNavigatorContentProvider" 
             labelProvider="org.eclipse.papyrus.diagram.profile.navigator.UMLDomainNavigatorLabelProvider"
-            icon="icons/obj16/Diagram_ProfileDiagram.gif"
+            icon="platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/ProfileDiagramEditorIcons/ProfileDiagramEditorIcon_16x16-32.bmp"
             activeByDefault="true">
          <triggerPoints>
             <or>

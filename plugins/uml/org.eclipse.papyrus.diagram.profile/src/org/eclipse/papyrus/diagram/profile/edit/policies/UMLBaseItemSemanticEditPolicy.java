@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.edit.policies;
 
 import java.util.Iterator;
@@ -48,16 +35,23 @@ import org.eclipse.papyrus.diagram.profile.edit.helpers.UMLBaseEditHelper;
 import org.eclipse.papyrus.diagram.profile.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.profile.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.ElementImport;
+import org.eclipse.uml2.uml.Extension;
+import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.ProfileApplication;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 
@@ -94,6 +88,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * 
 	 * @generated
 	 */
+	@Override
 	public Command getCommand(Request request) {
 		if(request instanceof ReconnectRequest) {
 			Object view = ((ReconnectRequest)request).getConnectionEditPart().getModel();
@@ -118,6 +113,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Command getSemanticCommand(IEditCommandRequest request) {
 		IEditCommandRequest completedRequest = completeRequest(request);
 		Command semanticCommand = getSemanticCommandSwitch(completedRequest);
@@ -310,6 +306,19 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 	}
 
+
+	/**
+	 * @generated
+	 */
+	public static LinkConstraints getLinkConstraints() {
+		LinkConstraints cached = UMLDiagramEditorPlugin.getInstance().getLinkConstraints();
+		if(cached == null) {
+			UMLDiagramEditorPlugin.getInstance().setLinkConstraints(cached = new LinkConstraints());
+		}
+		return cached;
+	}
+
+
 	/**
 	 * @generated
 	 */
@@ -318,77 +327,87 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		private static final String OPPOSITE_END_VAR = "oppositeEnd"; //$NON-NLS-1$
-
-
-
-		/**
-		 * @generated
-		 */
-		public static boolean canCreateExtension_1013(Package container, Property source, Class target) {
-			return canExistExtension_1013(container, source, target);
+		protected LinkConstraints() {
+			// use static method #getLinkConstraints() to access instance
 		}
 
-		/**
-		 * @generated
-		 */
-		public static boolean canCreateAssociation_4001(Package container, Type source, Type target) {
-			return canExistAssociation_4001(container, source, target);
-		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateProfileApplication_1045(Package container, Package source, Profile target) {
-			return canExistProfileApplication_1045(container, source, target);
+		public boolean canCreateExtension_1013(Package container, Property source, Class target) {
+			return canExistExtension_1013(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateAssociation_4019(Package container, Type source, Type target) {
-			return canExistAssociation_4019(container, source, target);
+		public boolean canCreateAssociation_4001(Package container, Type source, Type target) {
+			return canExistAssociation_4001(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateGeneralization_4002(Classifier source, Classifier target) {
-			return canExistGeneralization_4002(source, target);
+		public boolean canCreateProfileApplication_1045(Package container, Package source, Profile target) {
+			return canExistProfileApplication_1045(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateDependency_4008(Package container, NamedElement source, NamedElement target) {
-			return canExistDependency_4008(container, source, target);
+		public boolean canCreateAssociation_4019(Package container, Type source, Type target) {
+			return canExistAssociation_4019(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateDependency_4018(Package container, NamedElement source, NamedElement target) {
-			return canExistDependency_4018(container, source, target);
+		public boolean canCreateGeneralization_4002(Classifier source, Classifier target) {
+			return canExistGeneralization_4002(null, source, target);
 		}
+
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateElementImport_1064(Namespace container, Namespace source, PackageableElement target) {
-			return canExistElementImport_1064(container, source, target);
+		public boolean canCreateDependency_4008(Package container, NamedElement source, NamedElement target) {
+			return canExistDependency_4008(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreatePackageImport_1065(Namespace container, Namespace source, Package target) {
-			return canExistPackageImport_1065(container, source, target);
+		public boolean canCreateDependency_4018(Package container, NamedElement source, NamedElement target) {
+			return canExistDependency_4018(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateCommentAnnotatedElement_1022(Comment source, Element target) {
+		public boolean canCreateElementImport_1064(Namespace container, Namespace source, PackageableElement target) {
+			return canExistElementImport_1064(container, null, source, target);
+		}
+
+
+		/**
+		 * @generated
+		 */
+		public boolean canCreatePackageImport_1065(Namespace container, Namespace source, Package target) {
+			return canExistPackageImport_1065(container, null, source, target);
+		}
+
+
+		/**
+		 * @generated
+		 */
+		public boolean canCreateCommentAnnotatedElement_1022(Comment source, Element target) {
 			if(source != null) {
 				if(source.getAnnotatedElements().contains(target)) {
 					return false;
@@ -398,10 +417,11 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistCommentAnnotatedElement_1022(source, target);
 		}
 
+
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateConstraintConstrainedElement_4014(Constraint source, Element target) {
+		public boolean canCreateConstraintConstrainedElement_4014(Constraint source, Element target) {
 			if(source != null) {
 				if(source.getConstrainedElements().contains(target)) {
 					return false;
@@ -411,10 +431,11 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistConstraintConstrainedElement_4014(source, target);
 		}
 
+
 		/**
 		 * @generated
 		 */
-		public static boolean canExistExtension_1013(Package container, Property source, Class target) {
+		public boolean canExistExtension_1013(Package container, Extension linkInstance, Property source, Class target) {
 			try {
 				//ExtensionSource
 				/**
@@ -439,71 +460,72 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistAssociation_4001(Package container, Type source, Type target) {
+		public boolean canExistAssociation_4001(Package container, Association linkInstance, Type source, Type target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistProfileApplication_1045(Package container, Package source, Profile target) {
+		public boolean canExistProfileApplication_1045(Package container, ProfileApplication linkInstance, Package source, Profile target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistAssociation_4019(Package container, Type source, Type target) {
+		public boolean canExistAssociation_4019(Package container, Association linkInstance, Type source, Type target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistGeneralization_4002(Classifier source, Classifier target) {
+		public boolean canExistGeneralization_4002(Generalization linkInstance, Classifier source, Classifier target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistDependency_4008(Package container, NamedElement source, NamedElement target) {
+		public boolean canExistDependency_4008(Package container, Dependency linkInstance, NamedElement source, NamedElement target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistDependency_4018(Package container, NamedElement source, NamedElement target) {
+		public boolean canExistDependency_4018(Package container, Dependency linkInstance, NamedElement source, NamedElement target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistElementImport_1064(Namespace container, Namespace source, PackageableElement target) {
+		public boolean canExistElementImport_1064(Namespace container, ElementImport linkInstance, Namespace source, PackageableElement target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistPackageImport_1065(Namespace container, Namespace source, Package target) {
+		public boolean canExistPackageImport_1065(Namespace container, PackageImport linkInstance, Namespace source, Package target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistCommentAnnotatedElement_1022(Comment source, Element target) {
+		public boolean canExistCommentAnnotatedElement_1022(Comment source, Element target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistConstraintConstrainedElement_4014(Constraint source, Element target) {
+		public boolean canExistConstraintConstrainedElement_4014(Constraint source, Element target) {
 			return true;
 		}
 	}
+
 }

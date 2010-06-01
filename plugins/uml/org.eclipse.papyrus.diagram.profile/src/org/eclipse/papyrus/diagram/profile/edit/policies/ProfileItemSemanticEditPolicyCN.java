@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.edit.policies;
 
 import java.util.Iterator;
@@ -88,7 +75,7 @@ public class ProfileItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
-		for(Iterator it = view.getTargetEdges().iterator(); it.hasNext();) {
+		for(Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge)it.next();
 			if(UMLVisualIDRegistry.getVisualID(incomingLink) == ProfileApplicationEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -133,7 +120,7 @@ public class ProfileItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 				continue;
 			}
 		}
-		for(Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
+		for(Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge)it.next();
 			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ProfileApplicationEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
@@ -184,15 +171,15 @@ public class ProfileItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 	 */
 	private void addDestroyChildNodesCommand(ICompositeCommand cmd) {
 		View view = (View)getHost().getModel();
-		for(Iterator nit = view.getChildren().iterator(); nit.hasNext();) {
+		for(Iterator<?> nit = view.getChildren().iterator(); nit.hasNext();) {
 			Node node = (Node)nit.next();
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case ProfilePackageableElementCompartmentEditPartCN.VISUAL_ID:
-				for(Iterator cit = node.getChildren().iterator(); cit.hasNext();) {
+				for(Iterator<?> cit = node.getChildren().iterator(); cit.hasNext();) {
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case StereotypeEditPartCN.VISUAL_ID:
-						for(Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ExtensionEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -249,7 +236,7 @@ public class ProfileItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 								continue;
 							}
 						}
-						for(Iterator it = cnode.getSourceEdges().iterator(); it.hasNext();) {
+						for(Iterator<?> it = cnode.getSourceEdges().iterator(); it.hasNext();) {
 							Edge outgoingLink = (Edge)it.next();
 							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == AssociationEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
@@ -299,7 +286,7 @@ public class ProfileItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case ModelEditPartCN.VISUAL_ID:
-						for(Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							if(UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -338,7 +325,7 @@ public class ProfileItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 								continue;
 							}
 						}
-						for(Iterator it = cnode.getSourceEdges().iterator(); it.hasNext();) {
+						for(Iterator<?> it = cnode.getSourceEdges().iterator(); it.hasNext();) {
 							Edge outgoingLink = (Edge)it.next();
 							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ProfileApplicationEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
@@ -376,7 +363,7 @@ public class ProfileItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case ProfileEditPartCN.VISUAL_ID:
-						for(Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ProfileApplicationEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -421,7 +408,7 @@ public class ProfileItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 								continue;
 							}
 						}
-						for(Iterator it = cnode.getSourceEdges().iterator(); it.hasNext();) {
+						for(Iterator<?> it = cnode.getSourceEdges().iterator(); it.hasNext();) {
 							Edge outgoingLink = (Edge)it.next();
 							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ProfileApplicationEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
@@ -459,7 +446,7 @@ public class ProfileItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case PackageEditPartCN.VISUAL_ID:
-						for(Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							if(UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -498,7 +485,7 @@ public class ProfileItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 								continue;
 							}
 						}
-						for(Iterator it = cnode.getSourceEdges().iterator(); it.hasNext();) {
+						for(Iterator<?> it = cnode.getSourceEdges().iterator(); it.hasNext();) {
 							Edge outgoingLink = (Edge)it.next();
 							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ProfileApplicationEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
@@ -536,7 +523,7 @@ public class ProfileItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case ConstraintEditPartCN.VISUAL_ID:
-						for(Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							if(UMLVisualIDRegistry.getVisualID(incomingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -569,7 +556,7 @@ public class ProfileItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 								continue;
 							}
 						}
-						for(Iterator it = cnode.getSourceEdges().iterator(); it.hasNext();) {
+						for(Iterator<?> it = cnode.getSourceEdges().iterator(); it.hasNext();) {
 							Edge outgoingLink = (Edge)it.next();
 							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == DependencyEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
@@ -595,7 +582,7 @@ public class ProfileItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case EnumerationEditPartCN.VISUAL_ID:
-						for(Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							if(UMLVisualIDRegistry.getVisualID(incomingLink) == AssociationEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -646,7 +633,7 @@ public class ProfileItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 								continue;
 							}
 						}
-						for(Iterator it = cnode.getSourceEdges().iterator(); it.hasNext();) {
+						for(Iterator<?> it = cnode.getSourceEdges().iterator(); it.hasNext();) {
 							Edge outgoingLink = (Edge)it.next();
 							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == AssociationEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
@@ -696,7 +683,7 @@ public class ProfileItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case DataTypeEditPartCN.VISUAL_ID:
-						for(Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							if(UMLVisualIDRegistry.getVisualID(incomingLink) == AssociationEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -747,7 +734,7 @@ public class ProfileItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 								continue;
 							}
 						}
-						for(Iterator it = cnode.getSourceEdges().iterator(); it.hasNext();) {
+						for(Iterator<?> it = cnode.getSourceEdges().iterator(); it.hasNext();) {
 							Edge outgoingLink = (Edge)it.next();
 							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == AssociationEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
@@ -797,7 +784,7 @@ public class ProfileItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case CommentEditPartCN.VISUAL_ID:
-						for(Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							if(UMLVisualIDRegistry.getVisualID(incomingLink) == CommentAnnotatedElementEditPart.VISUAL_ID) {
 								DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
@@ -812,7 +799,7 @@ public class ProfileItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 								continue;
 							}
 						}
-						for(Iterator it = cnode.getSourceEdges().iterator(); it.hasNext();) {
+						for(Iterator<?> it = cnode.getSourceEdges().iterator(); it.hasNext();) {
 							Edge outgoingLink = (Edge)it.next();
 							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == CommentAnnotatedElementEditPart.VISUAL_ID) {
 								DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null, outgoingLink.getTarget().getElement(), false);
@@ -826,7 +813,7 @@ public class ProfileItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
 					case MetaclassEditPartCN.VISUAL_ID:
-						for(Iterator it = cnode.getTargetEdges().iterator(); it.hasNext();) {
+						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ExtensionEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
@@ -883,7 +870,7 @@ public class ProfileItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 								continue;
 							}
 						}
-						for(Iterator it = cnode.getSourceEdges().iterator(); it.hasNext();) {
+						for(Iterator<?> it = cnode.getSourceEdges().iterator(); it.hasNext();) {
 							Edge outgoingLink = (Edge)it.next();
 							if(UMLVisualIDRegistry.getVisualID(outgoingLink) == AssociationEditPart.VISUAL_ID) {
 								DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);

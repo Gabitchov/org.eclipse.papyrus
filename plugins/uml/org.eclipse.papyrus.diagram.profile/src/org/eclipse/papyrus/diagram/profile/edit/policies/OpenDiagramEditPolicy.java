@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.edit.policies;
 
 import java.io.IOException;
@@ -106,7 +93,7 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 					diagram = intializeNewDiagram();
 				}
 				URI uri = EcoreUtil.getURI(diagram);
-				String editorName = uri.lastSegment() + "#" + diagram.eResource().getContents().indexOf(diagram); //$NON-NLS-1$
+				String editorName = uri.lastSegment() + '#' + diagram.eResource().getContents().indexOf(diagram);
 				IEditorInput editorInput = new URIEditorInput(uri, editorName);
 				IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 				page.openEditor(editorInput, getEditorID());
