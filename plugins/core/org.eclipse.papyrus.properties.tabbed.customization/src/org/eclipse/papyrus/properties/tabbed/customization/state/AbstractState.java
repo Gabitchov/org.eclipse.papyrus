@@ -25,6 +25,9 @@ public abstract class AbstractState implements IState, ITraversableModelElement 
 	/** key for the event: remove an element to the list of children */
 	public static final String PROPERTY_REMOVE_CHILD = "REMOVE_CHILD_EVENT";
 
+	/** Add group identifier for context menu */
+	public static final String ADD_GROUP = "ADD_GROUP";
+
 	/**
 	 * {@inheritDoc}
 	 */

@@ -14,14 +14,18 @@ package org.eclipse.papyrus.properties.tabbed.customization.state;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuCreator;
 import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.action.Separator;
 import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
+import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.DynamicSectionDescriptor;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.ContentHolder;
@@ -194,7 +198,7 @@ public class SectionDescriptorState extends AbstractState implements IMenuCreato
 		}
 		manager.removeAll();
 		menu = manager.createContextMenu(parent);
-		IAction action = new Action("Remove Section", Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/delete.gif")) {
+		IAction removeAction = new Action("Remove Section", Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/delete.gif")) {
 
 			/**
 			 * {@inheritDoc}
@@ -226,9 +230,100 @@ public class SectionDescriptorState extends AbstractState implements IMenuCreato
 			}
 
 		};
+		manager.add(removeAction);
+		manager.add(new Separator(ADD_GROUP));
 
-		manager.add(action);
+		IAction addFragmentAction = new Action("Add Fragment", Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/NewFragment.gif")) {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public void run() {
+				// adds a fragment to the current element
+				FragmentDescriptor fragmentDescriptor = new FragmentDescriptor(getNewFragmentId(), new ArrayList<IConstraintDescriptor>(), new ArrayList<ContainerDescriptor>());
+				FragmentDescriptorState fragmentDescriptorState = new FragmentDescriptorState(fragmentDescriptor);
+				SectionDescriptorState.this.addFragmentDescriptorState(fragmentDescriptorState);
+			}
+
+		};
+		manager.appendToGroup(ADD_GROUP, addFragmentAction);
+
+		//		IAction addPredefinedFragmentAction = new Action("Add PredefinedFragment", Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/NewFragment.gif")) {
+		//
+		//			/**
+		//			 * {@inheritDoc}
+		//			 */
+		//			@Override
+		//			public void run() {
+		//				// adds a fragment to the current element
+		//				Map<String, FragmentDescriptor>  availableFragmentDescriptors = PropertyViewService.getInstance().getAllFragmentDescriptors();
+		//				
+		//				for(FragmentDescriptor descriptor : availableFragmentDescriptors.values()) {
+		//					// check the constraints for this descriptor are valid ?
+		//					for(IConstraintDescriptor constraintDescriptor : descriptor.getConstraintDescriptors()) {
+		//						
+		//					}
+		//				}
+		//				
+		//				FragmentDescriptor fragmentDescriptor = new FragmentDescriptor(getNewFragmentId(), new ArrayList<IConstraintDescriptor>(), new ArrayList<ContainerDescriptor>());
+		//				FragmentDescriptorState fragmentDescriptorState = new FragmentDescriptorState(fragmentDescriptor);
+		//				SectionDescriptorState.this.addFragmentDescriptorState(fragmentDescriptorState);
+		//			}
+		//
+		//		};
+		//		manager.appendToGroup(ADD_GROUP, addPredefinedFragmentAction);
 		return menu;
+	}
+
+	/**
+	 * Adds a fragment descriptor state and throws an event using the change support
+	 * 
+	 * @param state
+	 *        the state to add
+	 */
+	public void addFragmentDescriptorState(FragmentDescriptorState state) {
+		fragmentDescriptorStates.add(state);
+
+		changeSupport.firePropertyChange(PROPERTY_ADD_CHILD, null, state);
+	}
+
+	/**
+	 * Adds a fragment descriptor state and throws an event using the change support
+	 * 
+	 * @param state
+	 *        the state to add
+	 */
+	public void removeFragmentDescriptorState(FragmentDescriptorState state) {
+		fragmentDescriptorStates.remove(state);
+
+		changeSupport.firePropertyChange(PROPERTY_REMOVE_CHILD, null, state);
+	}
+
+
+	/**
+	 * Returns the new Id for the section
+	 * 
+	 * @return the new Id for the section
+	 */
+	protected String getNewFragmentId() {
+		for(int i = 0; i < 100; i++) { // no need to go to more than 100, because 100 is already a very big number of fragments
+			boolean found = false; // indicates if the id has been found in already fragments or not
+			String name = "fragment_" + i;
+			Iterator<FragmentDescriptorState> it = getFragmentDescriptorStates().iterator();
+			while(it.hasNext()) {
+				FragmentDescriptorState fragmentDescriptorState = it.next();
+				String id = fragmentDescriptorState.getDescriptor().getId();
+				if(name.equalsIgnoreCase(id)) {
+					found = true;
+				}
+			}
+
+			if(!found) {
+				return name;
+			}
+		}
+		return "";
 	}
 
 	/**

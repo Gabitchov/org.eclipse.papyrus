@@ -16,15 +16,25 @@ import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.action.IMenuCreator;
+import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.action.Separator;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.AbstractContainerDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptor;
+import org.eclipse.papyrus.properties.tabbed.customization.Activator;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeItem;
 
 
 /**
  * State for the container descriptors. this is used to do some customization on elements
  */
-public class ContainerDescriptorState extends AbstractState {
+public class ContainerDescriptorState extends AbstractState implements IMenuCreator {
 
 	/** descriptor managed by this state */
 	protected AbstractContainerDescriptor descriptor;
@@ -34,6 +44,9 @@ public class ContainerDescriptorState extends AbstractState {
 
 	/** change support for this bean */
 	private PropertyChangeSupport changeSupport;
+
+	/** menu manager used to create elements */
+	private MenuManager manager;
 
 
 	/**
@@ -106,6 +119,77 @@ public class ContainerDescriptorState extends AbstractState {
 	 */
 	public List<ControllerDescriptorState> getChildren() {
 		return getControllerDescriptorStates();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Menu getMenu(final Control parent) {
+		if(manager == null) {
+			manager = new MenuManager();
+		}
+		Menu menu = manager.getMenu();
+		if(menu != null) {
+			menu.dispose();
+			menu = null;
+		}
+		manager.removeAll();
+		menu = manager.createContextMenu(parent);
+		IAction removeAction = new Action("Remove Container", Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/delete.gif")) {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public void run() {
+				// remove this section descriptor state from its parent
+				if(parent instanceof Tree) {
+					TreeItem[] selectedItems = ((Tree)parent).getSelection();
+					if(selectedItems.length < 1) {
+						Activator.log.warn("Impossible to find the current selection in the tree");
+						return;
+					}
+					TreeItem selectedItem = selectedItems[0];
+					TreeItem parentItem = selectedItem.getParentItem();
+					// parent item should be the section descriptor set 
+					if(parentItem == null) {
+						Activator.log.warn("Impossible to find the parent for current selection in the tree ");
+						return;
+					}
+					Object parent = parentItem.getData();
+					// test the parent is a FragmentDescriptorState
+					if((parent instanceof FragmentDescriptorState)) {
+						((FragmentDescriptorState)parent).removeContainerDescriptorState(ContainerDescriptorState.this);
+					}
+				}
+			}
+
+		};
+		manager.add(removeAction);
+		manager.add(new Separator(ADD_GROUP));
+
+		return menu;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void dispose() {
+		if(manager != null) {
+			Menu menu = manager.getMenu();
+			if(menu != null) {
+				menu.dispose();
+				menu = null;
+			}
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Menu getMenu(Menu parent) {
+		// nothing to do here
+		return null;
 	}
 
 }

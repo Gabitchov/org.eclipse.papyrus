@@ -119,8 +119,8 @@ public class ContentHolder extends LabelProvider implements IMenuCreator, ITrave
 				SectionDescriptorState sectionDescriptorState = new SectionDescriptorState(descriptor);
 				sectionSetDescriptorState.addSectionDescriptorState(sectionDescriptorState);
 				if(fViewer instanceof TreeViewer) {
-					fViewer.refresh();
-					((TreeViewer)fViewer).expandAll();
+					// fViewer.refresh();
+					// ((TreeViewer)fViewer).expandAll();
 					// try to retrieve the selection
 					fViewer.setSelection(new TreeSelection(new TreePath(new Object[]{ ContentHolder.this, sectionDescriptorState })), true);
 
