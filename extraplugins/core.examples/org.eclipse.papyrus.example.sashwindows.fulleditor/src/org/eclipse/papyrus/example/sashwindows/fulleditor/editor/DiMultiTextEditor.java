@@ -120,7 +120,7 @@ public class DiMultiTextEditor extends /* MultiPageEditor */AbstractMultiPageSas
 		// Adding requested pages
 		pageProvider.addPage(new TextEditorPartModel());
 		// Listen on contentProvider changes
-		sashModelMngr.getSashModelContentChangedProvider().addContentChangedListener(contentChangedListener);
+		sashModelMngr.getSashModelContentChangedProvider().addListener(contentChangedListener);
 
 		return pageProvider;
 	}
@@ -131,7 +131,7 @@ public class DiMultiTextEditor extends /* MultiPageEditor */AbstractMultiPageSas
 	 */
 	public void dispose() {
 		//		ResourcesPlugin.getWorkspace().removeResourceChangeListener(this);
-		sashModelMngr.getSashModelContentChangedProvider().removeContentChangedListener(contentChangedListener);
+		sashModelMngr.getSashModelContentChangedProvider().removeListener(contentChangedListener);
 		super.dispose();
 	}
 

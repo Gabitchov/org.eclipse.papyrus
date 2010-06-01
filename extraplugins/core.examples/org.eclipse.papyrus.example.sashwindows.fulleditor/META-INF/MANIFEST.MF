@@ -11,6 +11,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.editors,
  org.eclipse.ui.ide,
  org.eclipse.papyrus.sasheditor;bundle-version="0.7.0",
- org.eclipse.emf.ecore.xmi;bundle-version="2.5.0"
+ org.eclipse.emf.ecore.xmi;bundle-version="2.5.0",
+ org.eclipse.papyrus.sasheditor.di;bundle-version="0.7.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

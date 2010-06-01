@@ -87,7 +87,7 @@ public class MultiTextEditor extends /* MultiPageEditor */AbstractMultiPageSashE
 		// Adding requested pages
 		pageProvider.addPage(new TextEditorPartModel());
 		// Listen on contentProvider changes
-		pageProvider.addContentChangedListener(contentChangedListener);
+		pageProvider.addListener(contentChangedListener);
 		return pageProvider;
 	}
 
@@ -106,7 +106,7 @@ public class MultiTextEditor extends /* MultiPageEditor */AbstractMultiPageSashE
 	 */
 	public void dispose() {
 		//		ResourcesPlugin.getWorkspace().removeResourceChangeListener(this);
-		getContentProvider().removeContentChangedListener(contentChangedListener);
+		getContentProvider().removeListener(contentChangedListener);
 		super.dispose();
 	}
 

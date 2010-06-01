@@ -74,8 +74,7 @@ public class LifeCycleEventsMonitorService implements IService {
 	 * 
 	 * @param servicesRegistry
 	 */
-	public LifeCycleEventsMonitorService(ServicesRegistry servicesRegistry) {
-		this.servicesRegistry = servicesRegistry;
+	public LifeCycleEventsMonitorService() {
 		System.out.println("LifeCycleEventsMonitorService created");
 	}
 
@@ -87,6 +86,16 @@ public class LifeCycleEventsMonitorService implements IService {
 		deactivate();
 		System.out.println("LifeCycleEventsMonitorService disposed");
 		
+	}
+
+	/**
+	 * Initialize the service.
+	 * @see org.eclipse.papyrus.core.services.IService#init(org.eclipse.papyrus.core.services.ServicesRegistry)
+	 *
+	 * @param servicesRegistry
+	 */
+	public void init(ServicesRegistry servicesRegistry) {
+		this.servicesRegistry = servicesRegistry;
 	}
 
 	/**
