@@ -14,6 +14,7 @@ package org.eclipse.papyrus.properties.runtime.controller.predefined;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,12 +52,17 @@ public class PredefinedPropertyControllerProvider extends AbstractProvider {
 	/** predefined controllers identified by their unique predefined identifier */
 	private Map<String, IPropertyEditorControllerDescriptor> controllers = new HashMap<String, IPropertyEditorControllerDescriptor>();
 
+	/** bundle that declares this provider */
+	private Bundle bundle = null;
+
 	/**
 	 * {@inheritDoc}
 	 */
 	public boolean provides(IOperation operation) {
 		if(operation instanceof CreatePredefinedPropertyControllerProviderOperation) {
 			return controllers.containsKey(((CreatePredefinedPropertyControllerProviderOperation)operation).getPredefinedID());
+		} else if(operation instanceof GetAllPredefinedPropertyEditorControllersOperation) {
+			return true;
 		}
 		return false;
 	}
@@ -74,6 +80,9 @@ public class PredefinedPropertyControllerProvider extends AbstractProvider {
 			if("PredefinedControllers".equals(element.getName())) {
 				// parse this editor configuration
 				// there should be an xml path
+				bundle = Platform.getBundle(providerConfiguration.getContributor().getName());
+				assert (bundle != null) : "bundle should not be null when loading predefined controllers";
+
 				readXMLConfiguration(element);
 				//controllers.put(configuration.getId(), configuration);
 			}
@@ -103,29 +112,7 @@ public class PredefinedPropertyControllerProvider extends AbstractProvider {
 						parsePredefinedControllersNode(predefinedControllerNode);
 					}
 				}
-
 			}
-			//			DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-			//
-			//			// retrieve xml file from path
-			//			String path = element.getAttribute(XML_PATH);
-			//			File file = getXmlFile(element, path);
-			//			// the file should never be null in this implementation, but sub-classes could return null
-			//			if(file == null) {
-			//				throw new IOException("Impossible to load file: " + path);
-			//			} else if(!file.exists()) {
-			//				throw new IOException("Impossible to load file: " + file);
-			//			} else {
-			//				Document document = documentBuilder.parse(file);
-			//				NodeList views = document.getChildNodes();
-			//				for(int i = 0; i < views.getLength(); i++) {
-			//					Node predefinedControllerNode = views.item(i);
-			//					// check this is a property view, not a comment or a text format node.
-			//					if("predefinedControllers".equals(predefinedControllerNode.getNodeName())) {
-			//						parsePredefinedControllersNode(predefinedControllerNode);
-			//					}
-			//				}
-			//			}
 		} catch (ParserConfigurationException e) {
 			Activator.log.error(e);
 		} catch (IOException e) {
@@ -133,7 +120,6 @@ public class PredefinedPropertyControllerProvider extends AbstractProvider {
 		} catch (SAXException e) {
 			Activator.log.error(e);
 		}
-
 	}
 
 	/**
@@ -146,6 +132,15 @@ public class PredefinedPropertyControllerProvider extends AbstractProvider {
 	 */
 	public IPropertyEditorControllerDescriptor retrievePropertyEditorControllerDescriptor(String predefinedID) {
 		return controllers.get(predefinedID);
+	}
+
+	/**
+	 * Returns the list of all predefined controllers proposed by this provider
+	 * 
+	 * @return the list of all predefined controllers proposed by this provider
+	 */
+	public Collection<IPropertyEditorControllerDescriptor> getAllPredefinedProviders() {
+		return controllers.values();
 	}
 
 	/**
@@ -204,7 +199,7 @@ public class PredefinedPropertyControllerProvider extends AbstractProvider {
 				String predefinedID = predefinedIDNode.getNodeValue();
 
 				// retrieve other informations using the specific descriptors of each controller
-				IPropertyEditorControllerDescriptor descriptor = PropertyEditorControllerService.getInstance().createPropertyEditorControllerDescriptor(controllerID, childNode);
+				IPropertyEditorControllerDescriptor descriptor = PropertyEditorControllerService.getInstance().createPropertyEditorControllerDescriptor(controllerID, childNode, bundle);
 				controllers.put(predefinedID, descriptor);
 			}
 		} else {

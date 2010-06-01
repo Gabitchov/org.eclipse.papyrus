@@ -195,7 +195,7 @@ public class ContainerDescriptor extends AbstractContainerDescriptor {
 			controllerDescriptor = PropertyEditorControllerService.getInstance().createPredefinedControllerDescriptor(predefinedIDNode.getNodeValue());
 		} else {
 			String controllerId = controllerNode.getAttributes().getNamedItem("id").getNodeValue();
-			controllerDescriptor = PropertyEditorControllerService.getInstance().createPropertyEditorControllerDescriptor(controllerId, controllerNode);
+			controllerDescriptor = PropertyEditorControllerService.getInstance().createPropertyEditorControllerDescriptor(controllerId, controllerNode, null);
 		}
 
 		if(controllerDescriptor != null) {

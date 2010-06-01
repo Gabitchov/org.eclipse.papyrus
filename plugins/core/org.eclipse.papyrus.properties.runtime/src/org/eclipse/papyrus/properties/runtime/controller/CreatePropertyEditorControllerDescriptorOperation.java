@@ -14,6 +14,7 @@ package org.eclipse.papyrus.properties.runtime.controller;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.common.core.service.IProvider;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
+import org.osgi.framework.Bundle;
 import org.w3c.dom.Node;
 
 
@@ -28,6 +29,9 @@ public class CreatePropertyEditorControllerDescriptorOperation implements IOpera
 	/** node that configures the controller */
 	private final Node controllerNode;
 
+	/** bundle used to load classes for the controllers */
+	private final Bundle bundle;
+
 	/**
 	 * Creates a new CreatePropertyEditorControllerDescriptorOperation.
 	 * 
@@ -36,9 +40,10 @@ public class CreatePropertyEditorControllerDescriptorOperation implements IOpera
 	 * @param controllerNode
 	 *        the node that configures the controller
 	 */
-	public CreatePropertyEditorControllerDescriptorOperation(String controllerId, Node controllerNode) {
+	public CreatePropertyEditorControllerDescriptorOperation(String controllerId, Node controllerNode, Bundle bundle) {
 		this.controllerID = controllerId;
 		this.controllerNode = controllerNode;
+		this.bundle = bundle;
 	}
 
 	/**
@@ -61,6 +66,15 @@ public class CreatePropertyEditorControllerDescriptorOperation implements IOpera
 	 */
 	public String getControllerID() {
 		return controllerID;
+	}
+
+	/**
+	 * Returns the bundle
+	 * 
+	 * @return the bundle
+	 */
+	public Bundle getBundle() {
+		return bundle;
 	}
 
 }

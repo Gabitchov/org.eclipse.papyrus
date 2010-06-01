@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.controller.descriptor;
 
+import org.osgi.framework.Bundle;
 import org.w3c.dom.Node;
 
 
@@ -24,7 +25,9 @@ public interface IPropertyEditorControllerDescriptorFactory {
 	 * 
 	 * @param controllerNode
 	 *        the configuration node
+	 * @param bundle
+	 *        the bundle used to load classes for the created controller
 	 * @return a configured {@link IPropertyEditorControllerDescriptor}
 	 */
-	IPropertyEditorControllerDescriptor createDescriptor(Node controllerNode);
+	IPropertyEditorControllerDescriptor createDescriptor(Node controllerNode, Bundle bundle);
 }

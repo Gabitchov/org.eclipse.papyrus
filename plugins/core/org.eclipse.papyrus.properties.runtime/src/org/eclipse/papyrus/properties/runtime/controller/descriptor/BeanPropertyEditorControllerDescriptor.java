@@ -11,8 +11,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.controller.descriptor;
 
+import java.util.List;
+
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -32,6 +35,9 @@ public class BeanPropertyEditorControllerDescriptor implements IPropertyEditorCo
 	/** descriptor of the editor managed by the controller */
 	private final IPropertyEditorDescriptor editorDescriptor;
 
+	/** list of constraints applied to this descriptor */
+	private final List<IConstraintDescriptor> constraints;
+
 	/**
 	 * Creates a new BeanPropertyEditorControllerDescriptor.
 	 * 
@@ -44,11 +50,12 @@ public class BeanPropertyEditorControllerDescriptor implements IPropertyEditorCo
 	 * @param editorDescriptor
 	 *        the descriptor of the editor managed by this controller
 	 */
-	public BeanPropertyEditorControllerDescriptor(String controllerID, boolean multiSelection, String propertyName, IPropertyEditorDescriptor editorDescriptor) {
+	public BeanPropertyEditorControllerDescriptor(String controllerID, boolean multiSelection, String propertyName, IPropertyEditorDescriptor editorDescriptor, List<IConstraintDescriptor> constraints) {
 		this.controllerID = controllerID;
 		this.multiSelection = multiSelection;
 		this.propertyName = propertyName;
 		this.editorDescriptor = editorDescriptor;
+		this.constraints = constraints;
 	}
 
 	/**
@@ -93,6 +100,13 @@ public class BeanPropertyEditorControllerDescriptor implements IPropertyEditorCo
 	 */
 	public String getPropertyName() {
 		return propertyName;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public List<IConstraintDescriptor> getConstraintDescriptors() {
+		return constraints;
 	}
 
 }

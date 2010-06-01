@@ -16,10 +16,12 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
+import org.osgi.framework.Bundle;
 import org.w3c.dom.Node;
 
 /**
@@ -29,6 +31,8 @@ public class PropertyEditorControllerProvider extends AbstractProvider {
 
 	/** map that stores the mapping id -> editor class */
 	private Map<String, PropertyEditorControllerConfiguration> controllers = new HashMap<String, PropertyEditorControllerConfiguration>();
+
+	private Bundle bundle;
 
 	/**
 	 * Creates the property editor managed by this provider
@@ -54,6 +58,8 @@ public class PropertyEditorControllerProvider extends AbstractProvider {
 
 	public void configure(IConfigurationElement providerConfiguration) {
 		try {
+			bundle = Platform.getBundle(providerConfiguration.getContributor().getName());
+
 			// for each property editors defined in the provider, retrieves important information
 			for(IConfigurationElement element : providerConfiguration.getChildren()) {
 				// check this child is really configuring editors (not a Priority child...)
@@ -101,7 +107,7 @@ public class PropertyEditorControllerProvider extends AbstractProvider {
 	 */
 	public IPropertyEditorControllerDescriptor generateDescriptor(String controllerID, Node contentNode) {
 		PropertyEditorControllerConfiguration configuration = controllers.get(controllerID);
-		return configuration.createControllerDescriptor(contentNode);
+		return configuration.createControllerDescriptor(contentNode, bundle);
 	}
 
 }

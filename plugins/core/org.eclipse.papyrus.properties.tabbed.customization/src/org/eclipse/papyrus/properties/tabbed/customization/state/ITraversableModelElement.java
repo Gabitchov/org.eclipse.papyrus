@@ -16,13 +16,30 @@ import java.util.List;
 
 
 /**
- *
+ * Interface for element which can be visited to add or remove property listeners
  */
 public interface ITraversableModelElement {
 
+	/**
+	 * Returns the list of children for this element
+	 * 
+	 * @return the list of children for this element
+	 */
 	public List<? extends ITraversableModelElement> getChildren();
 
+	/**
+	 * Adds the given listener to the list of listeners listening for property change on the element
+	 * 
+	 * @param listener
+	 *        the listener to add
+	 */
 	public void addPropertyChangeListener(PropertyChangeListener listener);
 
+	/**
+	 * Removes the given listener from the list of listeners listening for property change on the element
+	 * 
+	 * @param listener
+	 *        the listener to remove
+	 */
 	public void removePropertyChangeListener(PropertyChangeListener listener);
 }

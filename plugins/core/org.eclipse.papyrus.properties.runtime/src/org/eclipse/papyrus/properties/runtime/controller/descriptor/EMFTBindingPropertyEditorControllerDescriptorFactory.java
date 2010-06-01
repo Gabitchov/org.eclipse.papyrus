@@ -17,6 +17,9 @@ import java.util.List;
 import org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandler;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.PropertyEditorService;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.constraints.ConstraintParser;
+import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
+import org.osgi.framework.Bundle;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -42,7 +45,7 @@ public class EMFTBindingPropertyEditorControllerDescriptorFactory extends EMFTPr
 	/**
 	 * {@inheritDoc}
 	 */
-	public EMFTPropertyEditorControllerDescriptor createDescriptor(Node controllerNode) {
+	public EMFTPropertyEditorControllerDescriptor createDescriptor(Node controllerNode, Bundle bundle) {
 		// parse content of the node
 
 		String controllerID = "";
@@ -60,6 +63,7 @@ public class EMFTBindingPropertyEditorControllerDescriptorFactory extends EMFTPr
 		IEMFModelHandler modelHandler = null;
 		String featureName = null;
 		IPropertyEditorDescriptor editorDescriptor = null;
+		List<IConstraintDescriptor> constraints = null;
 		NodeList children = controllerNode.getChildNodes();
 		for(int i = 0; i < children.getLength(); i++) {
 			Node child = children.item(i);
@@ -94,13 +98,16 @@ public class EMFTBindingPropertyEditorControllerDescriptorFactory extends EMFTPr
 						}
 					}
 				}
+			} else if("constraints".equals(child.getNodeName())) {
+				constraints = ConstraintParser.parseConstraints(child, bundle);
 			}
 		}
 
 		assert (modelHandler != null) : "impossible to find handler for controller " + controllerID;
 		assert (featureName != null && !"".equals(featureName)) : "impossible to find feature name for controller " + controllerID;
 		assert (editorDescriptor != null) : "impossible to create editor descriptor";
+		assert (constraints != null) : "Impossible to parse constraints";
 
-		return new EMFTBindingPropertyEditorControllerDescriptor(controllerID, multiSelection, featureName, modelHandler, editorDescriptor, message, featuresName.toArray(new String[]{}));
+		return new EMFTBindingPropertyEditorControllerDescriptor(controllerID, multiSelection, featureName, modelHandler, editorDescriptor, constraints, message, featuresName.toArray(new String[]{}));
 	}
 }

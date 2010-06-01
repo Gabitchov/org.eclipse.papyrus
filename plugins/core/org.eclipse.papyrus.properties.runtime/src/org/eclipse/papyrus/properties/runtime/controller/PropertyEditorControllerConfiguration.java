@@ -16,6 +16,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptorFactory;
+import org.osgi.framework.Bundle;
 import org.w3c.dom.Node;
 
 /**
@@ -171,7 +172,7 @@ public class PropertyEditorControllerConfiguration {
 	 *        the configuration node of the controller
 	 * @return the configured descriptor
 	 */
-	public IPropertyEditorControllerDescriptor createControllerDescriptor(Node controllerNode) {
-		return factory.createDescriptor(controllerNode);
+	public IPropertyEditorControllerDescriptor createControllerDescriptor(Node controllerNode, Bundle bundle) {
+		return factory.createDescriptor(controllerNode, bundle);
 	}
 }

@@ -21,7 +21,10 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuCreator;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorControllerService;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.constraints.ObjectTypeConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.AbstractContainerDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptor;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
@@ -168,7 +171,38 @@ public class ContainerDescriptorState extends AbstractState implements IMenuCrea
 		manager.add(removeAction);
 		manager.add(new Separator(ADD_GROUP));
 
+		if(parent instanceof Tree) {
+			Tree tree = (Tree)parent;
+			System.err.println(tree);
+			TreeItem[] items = tree.getSelection();
+			System.err.println(items);
+			TreeItem root = retrieveRoot(items[0]);
+			System.err.println(root);
+
+		}
+
+		// action to add a predefined controller => must retrieve the list of predefined controllers for this element
+		// => find the correct predefined controllers ? They should meet the constraints
+		List<IPropertyEditorControllerDescriptor> predefinedDescriptors = PropertyEditorControllerService.getInstance().getAllPredefinedControllers();
+
+		for(IPropertyEditorControllerDescriptor propertyEditorControllerDescriptor : predefinedDescriptors) {
+			for(IConstraintDescriptor constraintDescriptor : propertyEditorControllerDescriptor.getConstraintDescriptors()) {
+				if(constraintDescriptor instanceof ObjectTypeConstraintDescriptor) {
+					Class<?> elementClass = ((ObjectTypeConstraintDescriptor)constraintDescriptor).getElementClass();
+					// check element class is compatible
+
+				}
+			}
+		}
+
 		return menu;
+	}
+
+	protected TreeItem retrieveRoot(TreeItem item) {
+		if(item.getParentItem() == null) {
+			return item;
+		}
+		return retrieveRoot(item.getParentItem());
 	}
 
 	/**

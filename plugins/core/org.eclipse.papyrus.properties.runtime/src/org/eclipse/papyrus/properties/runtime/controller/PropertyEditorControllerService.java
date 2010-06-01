@@ -11,6 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.controller;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -22,8 +24,10 @@ import org.eclipse.gmf.runtime.common.ui.services.util.ActivityFilterProviderDes
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
 import org.eclipse.papyrus.properties.runtime.controller.predefined.CreatePredefinedPropertyControllerProviderOperation;
+import org.eclipse.papyrus.properties.runtime.controller.predefined.GetAllPredefinedPropertyEditorControllersOperation;
 import org.eclipse.papyrus.properties.runtime.controller.predefined.PredefinedPropertyControllerProvider;
 import org.eclipse.swt.widgets.Composite;
+import org.osgi.framework.Bundle;
 import org.w3c.dom.Node;
 
 
@@ -67,9 +71,11 @@ public class PropertyEditorControllerService extends Service {
 	 *        the id of the configured controller
 	 * @param controllerNode
 	 *        the content node
+	 * @param bundle
+	 *        the bundle used to load classes for the controller
 	 */
-	public IPropertyEditorControllerDescriptor createPropertyEditorControllerDescriptor(String controllerId, Node controllerNode) {
-		return (IPropertyEditorControllerDescriptor)executeUnique(ExecutionStrategy.REVERSE, new CreatePropertyEditorControllerDescriptorOperation(controllerId, controllerNode));
+	public IPropertyEditorControllerDescriptor createPropertyEditorControllerDescriptor(String controllerId, Node controllerNode, Bundle bundle) {
+		return (IPropertyEditorControllerDescriptor)executeUnique(ExecutionStrategy.REVERSE, new CreatePropertyEditorControllerDescriptorOperation(controllerId, controllerNode, bundle));
 	}
 
 	/**
@@ -80,6 +86,21 @@ public class PropertyEditorControllerService extends Service {
 	 */
 	public IPropertyEditorControllerDescriptor createPredefinedControllerDescriptor(String predefinedID) {
 		return (IPropertyEditorControllerDescriptor)executeUnique(ExecutionStrategy.REVERSE, new CreatePredefinedPropertyControllerProviderOperation(predefinedID));
+	}
+
+	/**
+	 * Returns the flatten collection of all available predefined controllers
+	 * 
+	 * @return the flatten collection of all available predefined controllers
+	 */
+	@SuppressWarnings("unchecked")
+	public List<IPropertyEditorControllerDescriptor> getAllPredefinedControllers() {
+		List<Collection<IPropertyEditorControllerDescriptor>> predefinedControllers = (List<Collection<IPropertyEditorControllerDescriptor>>)execute(ExecutionStrategy.REVERSE, new GetAllPredefinedPropertyEditorControllersOperation());
+		List<IPropertyEditorControllerDescriptor> flattenList = new ArrayList<IPropertyEditorControllerDescriptor>();
+		for(Collection<IPropertyEditorControllerDescriptor> subList : predefinedControllers) {
+			flattenList.addAll(subList);
+		}
+		return flattenList;
 	}
 
 	/**
@@ -138,6 +159,10 @@ public class PropertyEditorControllerService extends Service {
 			}
 
 			if(operation instanceof CreatePropertyEditorControllerDescriptorOperation) {
+				return getProvider().provides(operation);
+			}
+
+			if(operation instanceof GetAllPredefinedPropertyEditorControllersOperation) {
 				return getProvider().provides(operation);
 			}
 			return false;

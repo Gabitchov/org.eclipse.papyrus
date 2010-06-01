@@ -11,9 +11,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.controller.descriptor;
 
+import java.util.List;
+
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandler;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -25,16 +28,19 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 	protected final IEMFModelHandler handler;
 
 	/** boolean that indicates if the controller accepts multi selection */
-	protected boolean multiSelection;
+	protected final boolean multiSelection;
 
 	/** controller unique identifier */
-	protected String controllerID;
+	protected final String controllerID;
 
 	/** name of the feature to edit */
-	protected String featureNameToEdit;
+	protected final String featureNameToEdit;
 
 	/** editor descriptor */
-	protected IPropertyEditorDescriptor editorDescriptor;
+	protected final IPropertyEditorDescriptor editorDescriptor;
+
+	/** list of constraints for this descriptors */
+	private final List<IConstraintDescriptor> constraints;
 
 	/**
 	 * {@inheritDoc}
@@ -75,12 +81,13 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 	 * @param editorDescriptor
 	 *        descriptor of the editor managed by this controller
 	 */
-	public EMFTPropertyEditorControllerDescriptor(String controllerID, boolean multiSelection, String featureNameToEdit, IEMFModelHandler handler, IPropertyEditorDescriptor editorDescriptor) {
+	public EMFTPropertyEditorControllerDescriptor(String controllerID, boolean multiSelection, String featureNameToEdit, IEMFModelHandler handler, IPropertyEditorDescriptor editorDescriptor, List<IConstraintDescriptor> constraints) {
 		this.controllerID = controllerID;
 		this.multiSelection = multiSelection;
 		this.featureNameToEdit = featureNameToEdit;
 		this.handler = handler;
 		this.editorDescriptor = editorDescriptor;
+		this.constraints = constraints;
 	}
 
 	/**
@@ -95,6 +102,13 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 	 */
 	public IPropertyEditorDescriptor getEditorDescriptor() {
 		return editorDescriptor;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public List<IConstraintDescriptor> getConstraintDescriptors() {
+		return constraints;
 	}
 
 	/**

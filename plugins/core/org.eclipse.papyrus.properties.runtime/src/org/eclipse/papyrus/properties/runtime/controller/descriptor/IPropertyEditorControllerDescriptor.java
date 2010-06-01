@@ -11,8 +11,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.controller.descriptor;
 
+import java.util.List;
+
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 
 
 /**
@@ -40,4 +43,11 @@ public interface IPropertyEditorControllerDescriptor extends IConfigurableDescri
 	 * @return the editor descriptor for this controller
 	 */
 	public IPropertyEditorDescriptor getEditorDescriptor();
+
+	/**
+	 * Returns the list of constraints for this descriptor
+	 * 
+	 * @return the list of constraints for this descriptor
+	 */
+	public List<IConstraintDescriptor> getConstraintDescriptors();
 }

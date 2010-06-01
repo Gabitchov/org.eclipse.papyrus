@@ -11,9 +11,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.controller.descriptor;
 
+import java.util.List;
+
 import org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandler;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.PropertyEditorService;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.constraints.ConstraintParser;
+import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
+import org.osgi.framework.Bundle;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -27,7 +32,7 @@ public class BeanPropertyEditorControllerDescriptorFactory implements IPropertyE
 	/**
 	 * {@inheritDoc}
 	 */
-	public IPropertyEditorControllerDescriptor createDescriptor(Node controllerNode) {
+	public IPropertyEditorControllerDescriptor createDescriptor(Node controllerNode, Bundle bundle) {
 		// parse content of the node
 
 		String controllerID = "";
@@ -45,6 +50,7 @@ public class BeanPropertyEditorControllerDescriptorFactory implements IPropertyE
 		String propertyName = null;
 		IEMFModelHandler modelHandler = null;
 		IPropertyEditorDescriptor editorDescriptor = null;
+		List<IConstraintDescriptor> constraints = null;
 		NodeList children = controllerNode.getChildNodes();
 		for(int i = 0; i < children.getLength(); i++) {
 			Node child = children.item(i);
@@ -65,15 +71,17 @@ public class BeanPropertyEditorControllerDescriptorFactory implements IPropertyE
 					Node editorIDNode = child.getAttributes().getNamedItem("id");
 					editorDescriptor = PropertyEditorService.getInstance().createPropertyEditorDescriptor(editorIDNode.getNodeValue(), child);
 				}
-
+			} else if("constraints".equals(child.getNodeName())) {
+				constraints = ConstraintParser.parseConstraints(child, bundle);
 			}
 		}
 
 		assert (modelHandler != null) : "impossible to find handler for controller " + controllerID;
 		assert (propertyName != null && !"".equals(propertyName)) : "impossible to find feature name for controller " + controllerID;
 		assert (editorDescriptor != null) : "impossible to create editor descriptor";
+		assert (constraints != null) : "Impossible to parse constraints";
 
-		return new BeanPropertyEditorControllerDescriptor(controllerID, multiSelection, propertyName, editorDescriptor);
+		return new BeanPropertyEditorControllerDescriptor(controllerID, multiSelection, propertyName, editorDescriptor, constraints);
 	}
 
 

@@ -20,6 +20,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandler;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.eclipse.uml2.uml.StructuralFeature;
 
 /**
@@ -46,13 +47,15 @@ public class EMFTBindingPropertyEditorControllerDescriptor extends EMFTPropertyE
 	 *        model handler used to interact with the model
 	 * @param editorDescriptor
 	 *        descriptor of the editor
+	 * @param constraints
+	 *        the list of constraints for this descriptor
 	 * @param message
 	 *        message to bind
 	 * @param featuresName
 	 *        names of the features to bind
 	 */
-	public EMFTBindingPropertyEditorControllerDescriptor(String controllerID, boolean multiSelection, String featureNameToEdit, IEMFModelHandler handler, IPropertyEditorDescriptor editorDescriptor, String message, String[] featuresName) {
-		super(controllerID, multiSelection, featureNameToEdit, handler, editorDescriptor);
+	public EMFTBindingPropertyEditorControllerDescriptor(String controllerID, boolean multiSelection, String featureNameToEdit, IEMFModelHandler handler, IPropertyEditorDescriptor editorDescriptor, List<IConstraintDescriptor> constraints, String message, String[] featuresName) {
+		super(controllerID, multiSelection, featureNameToEdit, handler, editorDescriptor, constraints);
 		this.message = message;
 		this.featuresName = featuresName;
 	}
