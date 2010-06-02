@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.papyrus.diagram.activity.edit.dialogs.CreateSendSignalActionDialog;
-import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.SendSignalAction;
@@ -128,7 +128,7 @@ public class SendSignalActionCreateCommand extends EditElementCommand {
 
 		if(newElement.getName() == null || newElement.getName().length() == 0) {
 			// initialize name if it is not yet 
-			UMLElementTypes.init_SendSignalAction_3052(newElement);
+			ElementInitializers.getInstance().init_SendSignalAction_3052(newElement);
 		}
 
 		doConfigure(newElement, monitor, info);

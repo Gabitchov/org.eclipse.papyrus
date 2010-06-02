@@ -13,29 +13,36 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.policies;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Status;
+import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.Transaction;
-import org.eclipse.emf.workspace.AbstractEMFOperation;
-import org.eclipse.gmf.runtime.common.core.util.StringStatics;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.diagram.ui.commands.DeferredLayoutCommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
+import org.eclipse.gmf.runtime.diagram.ui.commands.SetViewMutabilityCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
+import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
-import org.eclipse.gmf.runtime.notation.Ratio;
 import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInSendSigActAsTargetEditPart;
@@ -44,7 +51,6 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendSigActAsTar
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInSendSigActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActEditPart;
-import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.activity.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
@@ -63,7 +69,7 @@ public class SendSignalActionCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
-	Set myFeaturesToSynchronize;
+	private Set<EStructuralFeature> myFeaturesToSynchronize;
 
 	/**
 	 * @generated
@@ -71,9 +77,10 @@ public class SendSignalActionCanonicalEditPolicy extends CanonicalEditPolicy {
 	@SuppressWarnings("rawtypes")
 	protected List getSemanticChildrenList() {
 		View viewObject = (View)getHost().getModel();
-		List result = new LinkedList();
-		for(Iterator it = UMLDiagramUpdater.getSendSignalAction_3052SemanticChildren(viewObject).iterator(); it.hasNext();) {
-			result.add(((UMLNodeDescriptor)it.next()).getModelElement());
+		LinkedList<EObject> result = new LinkedList<EObject>();
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getSendSignalAction_3052SemanticChildren(viewObject);
+		for(UMLNodeDescriptor d : childDescriptors) {
+			result.add(d.getModelElement());
 		}
 		return result;
 	}
@@ -81,7 +88,14 @@ public class SendSignalActionCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected boolean isOrphaned(Collection semanticChildren, final View view) {
+	protected boolean isOrphaned(Collection<EObject> semanticChildren, final View view) {
+		return isMyDiagramElement(view) && !semanticChildren.contains(view.getElement());
+	}
+
+	/**
+	 * @generated
+	 */
+	private boolean isMyDiagramElement(View view) {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
 		switch(visualID) {
 		case ActionInputPinInSendSigActEditPart.VISUAL_ID:
@@ -90,29 +104,7 @@ public class SendSignalActionCanonicalEditPolicy extends CanonicalEditPolicy {
 		case ValuePinInSendSigActAsTargetEditPart.VISUAL_ID:
 		case ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID:
 		case InputPinInSendSigActAsTargetEditPart.VISUAL_ID:
-			if(!semanticChildren.contains(view.getElement())) {
-				return true;
-			}
-			EObject domainModelElement = view.getElement();
-			if(visualID != UMLVisualIDRegistry.getNodeVisualID((View)getHost().getModel(), domainModelElement)) {
-				List createdViews = createViews(Collections.singletonList(domainModelElement));
-				assert createdViews.size() == 1;
-				final View createdView = (View)((IAdaptable)createdViews.get(0)).getAdapter(View.class);
-				if(createdView != null) {
-					try {
-						new AbstractEMFOperation(host().getEditingDomain(), StringStatics.BLANK, Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE)) {
-
-							protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-								populateViewProperties(view, createdView);
-								return Status.OK_STATUS;
-							}
-						}.execute(new NullProgressMonitor(), null);
-					} catch (ExecutionException e) {
-						UMLDiagramEditorPlugin.getInstance().logError("Error while copyign view information to newly created view", e); //$NON-NLS-1$
-					}
-				}
-				deleteViews(Collections.singletonList(view).iterator());
-			}
+			return true;
 		}
 		return false;
 	}
@@ -120,30 +112,112 @@ public class SendSignalActionCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
-	private void populateViewProperties(View oldView, View newView) {
-		if(oldView instanceof Node && newView instanceof Node) {
-			Node oldNode = (Node)oldView;
-			Node newNode = (Node)newView;
-			if(oldNode.getLayoutConstraint() instanceof Location && newNode.getLayoutConstraint() instanceof Location) {
-				((Location)newNode.getLayoutConstraint()).setX(((Location)oldNode.getLayoutConstraint()).getX());
-				((Location)newNode.getLayoutConstraint()).setY(((Location)oldNode.getLayoutConstraint()).getY());
-			}
-			if(oldNode.getLayoutConstraint() instanceof Size && newNode.getLayoutConstraint() instanceof Size) {
-				((Size)newNode.getLayoutConstraint()).setWidth(((Size)oldNode.getLayoutConstraint()).getWidth());
-				((Size)newNode.getLayoutConstraint()).setHeight(((Size)oldNode.getLayoutConstraint()).getHeight());
-			}
-			if(oldNode.getLayoutConstraint() instanceof Ratio && newNode.getLayoutConstraint() instanceof Ratio) {
-				((Ratio)newNode.getLayoutConstraint()).setValue(((Ratio)oldNode.getLayoutConstraint()).getValue());
-			}
-			newNode.persist();
+	protected void refreshSemantic() {
+		if(resolveSemanticElement() == null) {
+			return;
 		}
-	}
+		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getSendSignalAction_3052SemanticChildren((View)getHost().getModel());
+		LinkedList<View> orphaned = new LinkedList<View>();
+		// we care to check only views we recognize as ours
+		LinkedList<View> knownViewChildren = new LinkedList<View>();
+		for(View v : getViewChildren()) {
+			if(isMyDiagramElement(v)) {
+				knownViewChildren.add(v);
+			}
+		}
+		// alternative to #cleanCanonicalSemanticChildren(getViewChildren(), semanticChildren)
+		HashMap<UMLNodeDescriptor, LinkedList<View>> potentialViews = new HashMap<UMLNodeDescriptor, LinkedList<View>>();
+		//
+		// iteration happens over list of desired semantic elements, trying to find best matching View, while original CEP
+		// iterates views, potentially losing view (size/bounds) information - i.e. if there are few views to reference same EObject, only last one 
+		// to answer isOrphaned == true will be used for the domain element representation, see #cleanCanonicalSemanticChildren()
+		for(Iterator<UMLNodeDescriptor> descriptorsIterator = childDescriptors.iterator(); descriptorsIterator.hasNext();) {
+			UMLNodeDescriptor next = descriptorsIterator.next();
+			String hint = UMLVisualIDRegistry.getType(next.getVisualID());
+			LinkedList<View> perfectMatch = new LinkedList<View>(); // both semanticElement and hint match that of NodeDescriptor
+			LinkedList<View> potentialMatch = new LinkedList<View>(); // semanticElement matches, hint does not
+			for(View childView : getViewChildren()) {
+				EObject semanticElement = childView.getElement();
+				if(next.getModelElement().equals(semanticElement)) {
+					if(hint.equals(childView.getType())) {
+						perfectMatch.add(childView);
+						// actually, can stop iteration over view children here, but
+						// may want to use not the first view but last one as a 'real' match (the way original CEP does
+						// with its trick with viewToSemanticMap inside #cleanCanonicalSemanticChildren
+					} else {
+						potentialMatch.add(childView);
+					}
+				}
+			}
+			if(perfectMatch.size() > 0) {
+				descriptorsIterator.remove(); // precise match found no need to create anything for the NodeDescriptor
+				// use only one view (first or last?), keep rest as orphaned for further consideration
+				knownViewChildren.remove(perfectMatch.getFirst());
+			} else if(potentialMatch.size() > 0) {
+				potentialViews.put(next, potentialMatch);
+			}
+		}
+		// those left in knownViewChildren are subject to removal - they are our diagram elements we didn't find match to,
+		// or those we have potential matches to, and thus need to be recreated, preserving size/location information.
+		orphaned.addAll(knownViewChildren);
+		//
+		CompositeTransactionalCommand boundsCommand = new CompositeTransactionalCommand(host().getEditingDomain(), DiagramUIMessages.SetLocationCommand_Label_Resize);
+		ArrayList<CreateViewRequest.ViewDescriptor> viewDescriptors = new ArrayList<CreateViewRequest.ViewDescriptor>(childDescriptors.size());
+		for(UMLNodeDescriptor next : childDescriptors) {
+			String hint = UMLVisualIDRegistry.getType(next.getVisualID());
+			IAdaptable elementAdapter = new CanonicalElementAdapter(next.getModelElement(), hint);
+			CreateViewRequest.ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(elementAdapter, Node.class, hint, ViewUtil.APPEND, false, host().getDiagramPreferencesHint());
+			viewDescriptors.add(descriptor);
 
-	/**
-	 * @generated
-	 */
-	protected String getDefaultFactoryHint() {
-		return null;
+			LinkedList<View> possibleMatches = potentialViews.get(next);
+			if(possibleMatches != null) {
+				// from potential matches, leave those that were not eventually used for some other NodeDescriptor (i.e. those left as orphaned)
+				possibleMatches.retainAll(knownViewChildren);
+			}
+			if(possibleMatches != null && !possibleMatches.isEmpty()) {
+				View originalView = possibleMatches.getFirst();
+				knownViewChildren.remove(originalView); // remove not to copy properties of the same view again and again
+				// add command to copy properties
+				if(originalView instanceof Node) {
+					if(((Node)originalView).getLayoutConstraint() instanceof Bounds) {
+						Bounds b = (Bounds)((Node)originalView).getLayoutConstraint();
+						boundsCommand.add(new SetBoundsCommand(boundsCommand.getEditingDomain(), boundsCommand.getLabel(), descriptor, new Rectangle(b.getX(), b.getY(), b.getWidth(), b.getHeight())));
+					} else if(((Node)originalView).getLayoutConstraint() instanceof Location) {
+						Location l = (Location)((Node)originalView).getLayoutConstraint();
+						boundsCommand.add(new SetBoundsCommand(boundsCommand.getEditingDomain(), boundsCommand.getLabel(), descriptor, new Point(l.getX(), l.getY())));
+					} else if(((Node)originalView).getLayoutConstraint() instanceof Size) {
+						Size s = (Size)((Node)originalView).getLayoutConstraint();
+						boundsCommand.add(new SetBoundsCommand(boundsCommand.getEditingDomain(), boundsCommand.getLabel(), descriptor, new Dimension(s.getWidth(), s.getHeight())));
+					}
+				}
+			}
+		}
+
+		boolean changed = deleteViews(orphaned.iterator());
+		//
+		CreateViewRequest request = getCreateViewRequest(viewDescriptors);
+		Command cmd = getCreateViewCommand(request);
+		if(cmd != null && cmd.canExecute()) {
+			SetViewMutabilityCommand.makeMutable(new EObjectAdapter(host().getNotationView())).execute();
+			executeCommand(cmd);
+			if(boundsCommand.canExecute()) {
+				executeCommand(new ICommandProxy(boundsCommand.reduce()));
+			}
+			@SuppressWarnings("unchecked")
+			List<IAdaptable> nl = (List<IAdaptable>)request.getNewObject();
+			createdViews.addAll(nl);
+		}
+		if(changed || createdViews.size() > 0) {
+			postProcessRefreshSemantic(createdViews);
+		}
+		if(createdViews.size() > 1) {
+			// perform a layout of the container
+			DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host().getEditingDomain(), createdViews, host());
+			executeCommand(new ICommandProxy(layoutCmd));
+		}
+
+		makeViewsImmutable(createdViews);
 	}
 
 	/**
@@ -151,7 +225,7 @@ public class SendSignalActionCanonicalEditPolicy extends CanonicalEditPolicy {
 	 */
 	protected Set getFeaturesToSynchronize() {
 		if(myFeaturesToSynchronize == null) {
-			myFeaturesToSynchronize = new HashSet();
+			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getInvocationAction_Argument());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getSendSignalAction_Target());
 		}

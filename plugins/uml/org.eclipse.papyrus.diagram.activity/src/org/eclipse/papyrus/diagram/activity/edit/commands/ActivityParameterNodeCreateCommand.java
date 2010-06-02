@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.papyrus.diagram.activity.edit.dialogs.CreateActivityParameterNodeDialog;
-import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityParameterNode;
@@ -127,7 +127,7 @@ public class ActivityParameterNodeCreateCommand extends EditElementCommand {
 
 		if(newElement.getName() == null || newElement.getName().length() == 0) {
 			// initialize name if it is not yet 
-			UMLElementTypes.init_ActivityParameterNode_3059(newElement);
+			ElementInitializers.getInstance().init_ActivityParameterNode_3059(newElement);
 		}
 
 		doConfigure(newElement, monitor, info);

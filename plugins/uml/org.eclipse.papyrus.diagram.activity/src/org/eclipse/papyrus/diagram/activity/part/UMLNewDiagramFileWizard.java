@@ -15,7 +15,6 @@ package org.eclipse.papyrus.diagram.activity.part;
 
 import java.io.IOException;
 import java.util.LinkedList;
-import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
@@ -85,7 +84,7 @@ public class UMLNewDiagramFileWizard extends Wizard {
 			throw new IllegalArgumentException("Unsupported URI: " + domainModelURI); //$NON-NLS-1$
 		}
 		myFileCreationPage.setContainerFullPath(filePath);
-		myFileCreationPage.setFileName(UMLDiagramEditorUtil.getUniqueFileName(filePath, fileName, "uml_diagram")); //$NON-NLS-1$
+		myFileCreationPage.setFileName(UMLDiagramEditorUtil.getUniqueFileName(filePath, fileName, "PapyrusUMLActivity_diagram")); //$NON-NLS-1$
 
 		diagramRootElementSelectionPage = new DiagramRootElementSelectionPage(Messages.UMLNewDiagramFileWizard_RootSelectionPageName);
 		diagramRootElementSelectionPage.setTitle(Messages.UMLNewDiagramFileWizard_RootSelectionPageTitle);
@@ -107,7 +106,7 @@ public class UMLNewDiagramFileWizard extends Wizard {
 	 * @generated
 	 */
 	public boolean performFinish() {
-		List affectedFiles = new LinkedList();
+		LinkedList<IFile> affectedFiles = new LinkedList<IFile>();
 		IFile diagramFile = myFileCreationPage.createNewFile();
 		UMLDiagramEditorUtil.setCharset(diagramFile);
 		affectedFiles.add(diagramFile);

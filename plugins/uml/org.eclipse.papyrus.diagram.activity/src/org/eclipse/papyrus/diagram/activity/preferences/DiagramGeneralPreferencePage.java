@@ -15,6 +15,7 @@ package org.eclipse.papyrus.diagram.activity.preferences;
 
 import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityDiagramEditPart;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.DiagramPreferencePage;
@@ -46,6 +47,8 @@ public class DiagramGeneralPreferencePage extends DiagramPreferencePage {
 	 */
 	public DiagramGeneralPreferencePage() {
 		setPreferenceStore(UMLDiagramEditorPlugin.getInstance().getPreferenceStore());
+		setPreferenceKey(ActivityDiagramEditPart.MODEL_ID);
+
 	}
 
 	/**

@@ -93,13 +93,13 @@
 
    <extension point="org.eclipse.team.core.fileTypes" id="repo-ftype">
       <?gmfgen generated="true"?>
-      <fileTypes type="text" extension="uml_diagram"/>
+      <fileTypes type="text" extension="PapyrusUMLActivity_diagram"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser" id="resource-factory">
       <?gmfgen generated="true"?>
       <parser
-         type="uml_diagram"
+         type="PapyrusUMLActivity_diagram"
          class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
       </parser>
    </extension>
@@ -110,7 +110,7 @@
          id="org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorID"
          name="%editorName"
          icon="icons/obj16/UMLDiagramFile.gif"
-         extensions="uml_diagram"
+         extensions="PapyrusUMLActivity_diagram"
          default="true"
          class="org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditor"
          matchingStrategy="org.eclipse.papyrus.diagram.activity.part.UMLMatchingStrategy"
@@ -1484,7 +1484,7 @@
             <or>
 	           <and>
     	          <instanceof value="org.eclipse.core.resources.IFile"/>
-        	      <test property="org.eclipse.core.resources.extension" value="uml_diagram"/>
+        	      <test property="org.eclipse.core.resources.extension" value="PapyrusUMLActivity_diagram"/>
                </and>
                <instanceof value="org.eclipse.papyrus.diagram.activity.navigator.UMLAbstractNavigatorItem"/>
             </or>
@@ -1501,7 +1501,7 @@
                <or>
 	              <and>
     	             <instanceof value="org.eclipse.core.resources.IFile"/>
-        	         <test property="org.eclipse.core.resources.extension" value="uml_diagram"/>
+        	         <test property="org.eclipse.core.resources.extension" value="PapyrusUMLActivity_diagram"/>
                   </and>
                   <instanceof value="org.eclipse.papyrus.diagram.activity.navigator.UMLAbstractNavigatorItem"/>
                </or>
@@ -1520,7 +1520,7 @@
             <or>
 	           <and>
     	          <instanceof value="org.eclipse.core.resources.IFile"/>
-        	      <test property="org.eclipse.core.resources.extension" value="uml"/>
+        	      <test property="org.eclipse.core.resources.extension" value="PapyrusUMLActivity"/>
                </and>
                <instanceof value="org.eclipse.papyrus.diagram.activity.navigator.UMLDomainNavigatorItem"/>
             </or>

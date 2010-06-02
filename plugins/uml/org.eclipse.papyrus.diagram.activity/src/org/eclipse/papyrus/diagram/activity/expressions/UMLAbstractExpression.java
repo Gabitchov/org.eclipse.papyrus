@@ -131,10 +131,10 @@ public abstract class UMLAbstractExpression {
 		if(false == value instanceof Number || targetType == null || targetType.getInstanceClass() == null) {
 			return value;
 		}
-		Class targetClass = targetType.getInstanceClass();
+		Class<?> targetClass = targetType.getInstanceClass();
 		Number num = (Number)value;
-		Class valClass = value.getClass();
-		Class targetWrapperClass = targetClass;
+		Class<?> valClass = value.getClass();
+		Class<?> targetWrapperClass = targetClass;
 		if(targetClass.isPrimitive()) {
 			targetWrapperClass = EcoreUtil.wrapperClassFor(targetClass);
 		}

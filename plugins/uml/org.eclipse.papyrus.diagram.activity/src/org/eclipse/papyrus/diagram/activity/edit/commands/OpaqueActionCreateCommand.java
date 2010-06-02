@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -111,7 +111,7 @@ public class OpaqueActionCreateCommand extends EditElementCommand {
 		owner.getNodes().add(newElement);
 
 
-		UMLElementTypes.init_OpaqueAction_3007(newElement);
+		ElementInitializers.getInstance().init_OpaqueAction_3007(newElement);
 
 		doConfigure(newElement, monitor, info);
 

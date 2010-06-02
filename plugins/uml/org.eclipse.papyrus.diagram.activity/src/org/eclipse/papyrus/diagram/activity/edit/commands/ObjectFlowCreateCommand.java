@@ -28,7 +28,7 @@ import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.papyrus.diagram.activity.edit.dialogs.CreatePinsForObjectFlowDialog;
 import org.eclipse.papyrus.diagram.activity.edit.helpers.ObjectFlowEditHelper;
 import org.eclipse.papyrus.diagram.activity.edit.policies.UMLBaseItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityNode;
@@ -85,7 +85,7 @@ public class ObjectFlowCreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateObjectFlow_4003(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateObjectFlow_4003(getContainer(), getSource(), getTarget());
 	}
 
 	/**
@@ -111,7 +111,7 @@ public class ObjectFlowCreateCommand extends EditElementCommand {
 		getContainer().getEdges().add(newElement);
 		newElement.setSource(getSource());
 		newElement.setTarget(getTarget());
-		UMLElementTypes.init_ObjectFlow_4003(newElement);
+		ElementInitializers.getInstance().init_ObjectFlow_4003(newElement);
 		doConfigure(newElement, monitor, info);
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);

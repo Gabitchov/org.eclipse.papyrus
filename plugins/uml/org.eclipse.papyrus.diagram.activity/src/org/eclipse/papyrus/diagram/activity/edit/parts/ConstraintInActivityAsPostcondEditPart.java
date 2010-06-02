@@ -107,7 +107,7 @@ public class ConstraintInActivityAsPostcondEditPart extends CompartmentEditPart 
 	/**
 	 * @generated
 	 */
-	private List parserElements;
+	private List<?> parserElements;
 
 	/**
 	 * @generated

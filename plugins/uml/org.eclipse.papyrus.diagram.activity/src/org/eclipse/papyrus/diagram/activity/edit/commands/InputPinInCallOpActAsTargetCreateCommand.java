@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
 import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.InputPin;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -115,7 +115,7 @@ public class InputPinInCallOpActAsTargetCreateCommand extends EditElementCommand
 		owner.setTarget(newElement);
 
 
-		UMLElementTypes.init_InputPin_3027(newElement);
+		ElementInitializers.getInstance().init_InputPin_3027(newElement);
 
 		doConfigure(newElement, monitor, info);
 

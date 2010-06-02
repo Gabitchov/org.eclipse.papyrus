@@ -67,7 +67,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_Activity_2001(Activity instance) {
+	public void init_Activity_2001(Activity instance) {
 		try {
 			Object value_0 = name_Activity_2001(instance);
 			instance.setName((String)value_0);
@@ -79,7 +79,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_Parameter_3001(Parameter instance) {
+	public void init_Parameter_3001(Parameter instance) {
 		try {
 			Object value_0 = name_Parameter_3001(instance);
 			instance.setName((String)value_0);
@@ -91,7 +91,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_Constraint_3002(Constraint instance) {
+	public void init_Constraint_3002(Constraint instance) {
 		try {
 			Object value_0 = name_Constraint_3002(instance);
 			instance.setName((String)value_0);
@@ -103,7 +103,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_Constraint_3003(Constraint instance) {
+	public void init_Constraint_3003(Constraint instance) {
 		try {
 			Object value_0 = name_Constraint_3003(instance);
 			instance.setName((String)value_0);
@@ -115,7 +115,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_InitialNode_3004(InitialNode instance) {
+	public void init_InitialNode_3004(InitialNode instance) {
 		try {
 			Object value_0 = name_InitialNode_3004(instance);
 			instance.setName((String)value_0);
@@ -127,7 +127,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_ActivityFinalNode_3005(ActivityFinalNode instance) {
+	public void init_ActivityFinalNode_3005(ActivityFinalNode instance) {
 		try {
 			Object value_0 = name_ActivityFinalNode_3005(instance);
 			instance.setName((String)value_0);
@@ -139,7 +139,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_FlowFinalNode_3006(FlowFinalNode instance) {
+	public void init_FlowFinalNode_3006(FlowFinalNode instance) {
 		try {
 			Object value_0 = name_FlowFinalNode_3006(instance);
 			instance.setName((String)value_0);
@@ -151,7 +151,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_OpaqueAction_3007(OpaqueAction instance) {
+	public void init_OpaqueAction_3007(OpaqueAction instance) {
 		try {
 			Object value_0 = name_OpaqueAction_3007(instance);
 			instance.setName((String)value_0);
@@ -163,7 +163,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_ValuePin_3015(ValuePin instance) {
+	public void init_ValuePin_3015(ValuePin instance) {
 		try {
 			Object value_0 = name_ValuePin_3015(instance);
 			instance.setName((String)value_0);
@@ -175,7 +175,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_ActionInputPin_3016(ActionInputPin instance) {
+	public void init_ActionInputPin_3016(ActionInputPin instance) {
 		try {
 			Object value_0 = name_ActionInputPin_3016(instance);
 			instance.setName((String)value_0);
@@ -187,7 +187,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_InputPin_3013(InputPin instance) {
+	public void init_InputPin_3013(InputPin instance) {
 		try {
 			Object value_0 = name_InputPin_3013(instance);
 			instance.setName((String)value_0);
@@ -199,7 +199,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_OutputPin_3014(OutputPin instance) {
+	public void init_OutputPin_3014(OutputPin instance) {
 		try {
 			Object value_0 = name_OutputPin_3014(instance);
 			instance.setName((String)value_0);
@@ -211,7 +211,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_CallBehaviorAction_3008(CallBehaviorAction instance) {
+	public void init_CallBehaviorAction_3008(CallBehaviorAction instance) {
 		try {
 			Object value_0 = name_CallBehaviorAction_3008(instance);
 			instance.setName((String)value_0);
@@ -223,7 +223,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_ValuePin_3017(ValuePin instance) {
+	public void init_ValuePin_3017(ValuePin instance) {
 		try {
 			Object value_0 = name_ValuePin_3017(instance);
 			instance.setName((String)value_0);
@@ -235,7 +235,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_ActionInputPin_3018(ActionInputPin instance) {
+	public void init_ActionInputPin_3018(ActionInputPin instance) {
 		try {
 			Object value_0 = name_ActionInputPin_3018(instance);
 			instance.setName((String)value_0);
@@ -247,7 +247,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_InputPin_3019(InputPin instance) {
+	public void init_InputPin_3019(InputPin instance) {
 		try {
 			Object value_0 = name_InputPin_3019(instance);
 			instance.setName((String)value_0);
@@ -259,7 +259,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_OutputPin_3020(OutputPin instance) {
+	public void init_OutputPin_3020(OutputPin instance) {
 		try {
 			Object value_0 = name_OutputPin_3020(instance);
 			instance.setName((String)value_0);
@@ -271,7 +271,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_CallOperationAction_3010(CallOperationAction instance) {
+	public void init_CallOperationAction_3010(CallOperationAction instance) {
 		try {
 			Object value_0 = name_CallOperationAction_3010(instance);
 			instance.setName((String)value_0);
@@ -283,7 +283,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_ActionInputPin_3021(ActionInputPin instance) {
+	public void init_ActionInputPin_3021(ActionInputPin instance) {
 		try {
 			Object value_0 = name_ActionInputPin_3021(instance);
 			instance.setName((String)value_0);
@@ -295,7 +295,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_ValuePin_3022(ValuePin instance) {
+	public void init_ValuePin_3022(ValuePin instance) {
 		try {
 			Object value_0 = name_ValuePin_3022(instance);
 			instance.setName((String)value_0);
@@ -307,7 +307,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_InputPin_3023(InputPin instance) {
+	public void init_InputPin_3023(InputPin instance) {
 		try {
 			Object value_0 = name_InputPin_3023(instance);
 			instance.setName((String)value_0);
@@ -319,7 +319,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_OutputPin_3024(OutputPin instance) {
+	public void init_OutputPin_3024(OutputPin instance) {
 		try {
 			Object value_0 = name_OutputPin_3024(instance);
 			instance.setName((String)value_0);
@@ -331,7 +331,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_ValuePin_3025(ValuePin instance) {
+	public void init_ValuePin_3025(ValuePin instance) {
 		try {
 			Object value_0 = name_ValuePin_3025(instance);
 			instance.setName((String)value_0);
@@ -343,7 +343,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_ActionInputPin_3026(ActionInputPin instance) {
+	public void init_ActionInputPin_3026(ActionInputPin instance) {
 		try {
 			Object value_0 = name_ActionInputPin_3026(instance);
 			instance.setName((String)value_0);
@@ -355,7 +355,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_InputPin_3027(InputPin instance) {
+	public void init_InputPin_3027(InputPin instance) {
 		try {
 			Object value_0 = name_InputPin_3027(instance);
 			instance.setName((String)value_0);
@@ -367,7 +367,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_Constraint_3011(Constraint instance) {
+	public void init_Constraint_3011(Constraint instance) {
 		try {
 			Object value_0 = name_Constraint_3011(instance);
 			instance.setName((String)value_0);
@@ -379,7 +379,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_Constraint_3012(Constraint instance) {
+	public void init_Constraint_3012(Constraint instance) {
 		try {
 			Object value_0 = name_Constraint_3012(instance);
 			instance.setName((String)value_0);
@@ -391,7 +391,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_DecisionNode_3038(DecisionNode instance) {
+	public void init_DecisionNode_3038(DecisionNode instance) {
 		try {
 			Object value_0 = name_DecisionNode_3038(instance);
 			instance.setName((String)value_0);
@@ -403,7 +403,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_MergeNode_3039(MergeNode instance) {
+	public void init_MergeNode_3039(MergeNode instance) {
 		try {
 			Object value_0 = name_MergeNode_3039(instance);
 			instance.setName((String)value_0);
@@ -415,7 +415,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_ForkNode_3040(ForkNode instance) {
+	public void init_ForkNode_3040(ForkNode instance) {
 		try {
 			Object value_0 = name_ForkNode_3040(instance);
 			instance.setName((String)value_0);
@@ -427,7 +427,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_JoinNode_3041(JoinNode instance) {
+	public void init_JoinNode_3041(JoinNode instance) {
 		try {
 			Object value_0 = name_JoinNode_3041(instance);
 			instance.setName((String)value_0);
@@ -439,7 +439,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_SendObjectAction_3042(SendObjectAction instance) {
+	public void init_SendObjectAction_3042(SendObjectAction instance) {
 		try {
 			Object value_0 = name_SendObjectAction_3042(instance);
 			instance.setName((String)value_0);
@@ -451,7 +451,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_ValuePin_3046(ValuePin instance) {
+	public void init_ValuePin_3046(ValuePin instance) {
 		try {
 			Object value_0 = name_ValuePin_3046(instance);
 			instance.setName((String)value_0);
@@ -463,7 +463,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_ActionInputPin_3047(ActionInputPin instance) {
+	public void init_ActionInputPin_3047(ActionInputPin instance) {
 		try {
 			Object value_0 = name_ActionInputPin_3047(instance);
 			instance.setName((String)value_0);
@@ -475,7 +475,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_InputPin_3048(InputPin instance) {
+	public void init_InputPin_3048(InputPin instance) {
 		try {
 			Object value_0 = name_InputPin_3048(instance);
 			instance.setName((String)value_0);
@@ -487,7 +487,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_ValuePin_3049(ValuePin instance) {
+	public void init_ValuePin_3049(ValuePin instance) {
 		try {
 			Object value_0 = name_ValuePin_3049(instance);
 			instance.setName((String)value_0);
@@ -499,7 +499,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_ActionInputPin_3050(ActionInputPin instance) {
+	public void init_ActionInputPin_3050(ActionInputPin instance) {
 		try {
 			Object value_0 = name_ActionInputPin_3050(instance);
 			instance.setName((String)value_0);
@@ -511,7 +511,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_InputPin_3051(InputPin instance) {
+	public void init_InputPin_3051(InputPin instance) {
 		try {
 			Object value_0 = name_InputPin_3051(instance);
 			instance.setName((String)value_0);
@@ -523,7 +523,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_SendSignalAction_3052(SendSignalAction instance) {
+	public void init_SendSignalAction_3052(SendSignalAction instance) {
 		try {
 			Object value_0 = name_SendSignalAction_3052(instance);
 			instance.setName((String)value_0);
@@ -535,7 +535,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_ActionInputPin_3053(ActionInputPin instance) {
+	public void init_ActionInputPin_3053(ActionInputPin instance) {
 		try {
 			Object value_0 = name_ActionInputPin_3053(instance);
 			instance.setName((String)value_0);
@@ -547,7 +547,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_ValuePin_3054(ValuePin instance) {
+	public void init_ValuePin_3054(ValuePin instance) {
 		try {
 			Object value_0 = name_ValuePin_3054(instance);
 			instance.setName((String)value_0);
@@ -559,7 +559,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_InputPin_3055(InputPin instance) {
+	public void init_InputPin_3055(InputPin instance) {
 		try {
 			Object value_0 = name_InputPin_3055(instance);
 			instance.setName((String)value_0);
@@ -571,7 +571,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_ValuePin_3060(ValuePin instance) {
+	public void init_ValuePin_3060(ValuePin instance) {
 		try {
 			Object value_0 = name_ValuePin_3060(instance);
 			instance.setName((String)value_0);
@@ -583,7 +583,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_ActionInputPin_3061(ActionInputPin instance) {
+	public void init_ActionInputPin_3061(ActionInputPin instance) {
 		try {
 			Object value_0 = name_ActionInputPin_3061(instance);
 			instance.setName((String)value_0);
@@ -595,7 +595,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_InputPin_3062(InputPin instance) {
+	public void init_InputPin_3062(InputPin instance) {
 		try {
 			Object value_0 = name_InputPin_3062(instance);
 			instance.setName((String)value_0);
@@ -607,7 +607,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_ActivityParameterNode_3059(ActivityParameterNode instance) {
+	public void init_ActivityParameterNode_3059(ActivityParameterNode instance) {
 		try {
 			Object value_0 = name_ActivityParameterNode_3059(instance);
 			instance.setName((String)value_0);
@@ -619,7 +619,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_AcceptEventAction_3063(AcceptEventAction instance) {
+	public void init_AcceptEventAction_3063(AcceptEventAction instance) {
 		try {
 			Object value_0 = name_AcceptEventAction_3063(instance);
 			instance.setName((String)value_0);
@@ -631,7 +631,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_OutputPin_3064(OutputPin instance) {
+	public void init_OutputPin_3064(OutputPin instance) {
 		try {
 			Object value_0 = name_OutputPin_3064(instance);
 			instance.setName((String)value_0);
@@ -643,7 +643,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_ConditionalNode_3069(ConditionalNode instance) {
+	public void init_ConditionalNode_3069(ConditionalNode instance) {
 		try {
 			Object value_0 = name_ConditionalNode_3069(instance);
 			instance.setName((String)value_0);
@@ -655,7 +655,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_ExpansionRegion_3070(ExpansionRegion instance) {
+	public void init_ExpansionRegion_3070(ExpansionRegion instance) {
 		try {
 			Object value_0 = name_ExpansionRegion_3070(instance);
 			instance.setName((String)value_0);
@@ -667,7 +667,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_ExpansionNode_3074(ExpansionNode instance) {
+	public void init_ExpansionNode_3074(ExpansionNode instance) {
 		try {
 			Object value_0 = name_ExpansionNode_3074(instance);
 			instance.setName((String)value_0);
@@ -679,7 +679,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_ExpansionNode_3075(ExpansionNode instance) {
+	public void init_ExpansionNode_3075(ExpansionNode instance) {
 		try {
 			Object value_0 = name_ExpansionNode_3075(instance);
 			instance.setName((String)value_0);
@@ -691,7 +691,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_LoopNode_3071(LoopNode instance) {
+	public void init_LoopNode_3071(LoopNode instance) {
 		try {
 			Object value_0 = name_LoopNode_3071(instance);
 			instance.setName((String)value_0);
@@ -703,7 +703,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_SequenceNode_3073(SequenceNode instance) {
+	public void init_SequenceNode_3073(SequenceNode instance) {
 		try {
 			Object value_0 = name_SequenceNode_3073(instance);
 			instance.setName((String)value_0);
@@ -715,7 +715,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_StructuredActivityNode_3065(StructuredActivityNode instance) {
+	public void init_StructuredActivityNode_3065(StructuredActivityNode instance) {
 		try {
 			Object value_0 = name_StructuredActivityNode_3065(instance);
 			instance.setName((String)value_0);
@@ -727,7 +727,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_ActivityPartition_3067(ActivityPartition instance) {
+	public void init_ActivityPartition_3067(ActivityPartition instance) {
 		try {
 			Object value_0 = name_ActivityPartition_3067(instance);
 			instance.setName((String)value_0);
@@ -739,7 +739,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_ValueSpecificationAction_3076(ValueSpecificationAction instance) {
+	public void init_ValueSpecificationAction_3076(ValueSpecificationAction instance) {
 		try {
 			Object value_0 = name_ValueSpecificationAction_3076(instance);
 			instance.setName((String)value_0);
@@ -751,7 +751,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_OutputPin_3077(OutputPin instance) {
+	public void init_OutputPin_3077(OutputPin instance) {
 		try {
 			Object value_0 = name_OutputPin_3077(instance);
 			instance.setName((String)value_0);
@@ -763,7 +763,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_DataStoreNode_3078(DataStoreNode instance) {
+	public void init_DataStoreNode_3078(DataStoreNode instance) {
 		try {
 			Object value_0 = name_DataStoreNode_3078(instance);
 			instance.setName((String)value_0);
@@ -775,7 +775,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_InteractionConstraint_3030(InteractionConstraint instance) {
+	public void init_InteractionConstraint_3030(InteractionConstraint instance) {
 		try {
 			Object value_0 = name_InteractionConstraint_3030(instance);
 			instance.setName((String)value_0);
@@ -787,7 +787,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_InteractionConstraint_3031(InteractionConstraint instance) {
+	public void init_InteractionConstraint_3031(InteractionConstraint instance) {
 		try {
 			Object value_0 = name_InteractionConstraint_3031(instance);
 			instance.setName((String)value_0);
@@ -799,7 +799,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_IntervalConstraint_3032(IntervalConstraint instance) {
+	public void init_IntervalConstraint_3032(IntervalConstraint instance) {
 		try {
 			Object value_0 = name_IntervalConstraint_3032(instance);
 			instance.setName((String)value_0);
@@ -811,7 +811,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_IntervalConstraint_3033(IntervalConstraint instance) {
+	public void init_IntervalConstraint_3033(IntervalConstraint instance) {
 		try {
 			Object value_0 = name_IntervalConstraint_3033(instance);
 			instance.setName((String)value_0);
@@ -823,7 +823,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_DurationConstraint_3034(DurationConstraint instance) {
+	public void init_DurationConstraint_3034(DurationConstraint instance) {
 		try {
 			Object value_0 = name_DurationConstraint_3034(instance);
 			instance.setName((String)value_0);
@@ -835,7 +835,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_DurationConstraint_3035(DurationConstraint instance) {
+	public void init_DurationConstraint_3035(DurationConstraint instance) {
 		try {
 			Object value_0 = name_DurationConstraint_3035(instance);
 			instance.setName((String)value_0);
@@ -847,7 +847,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_TimeConstraint_3036(TimeConstraint instance) {
+	public void init_TimeConstraint_3036(TimeConstraint instance) {
 		try {
 			Object value_0 = name_TimeConstraint_3036(instance);
 			instance.setName((String)value_0);
@@ -859,7 +859,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_TimeConstraint_3037(TimeConstraint instance) {
+	public void init_TimeConstraint_3037(TimeConstraint instance) {
 		try {
 			Object value_0 = name_TimeConstraint_3037(instance);
 			instance.setName((String)value_0);
@@ -871,7 +871,7 @@ public class ElementInitializers {
 	/**
 	 * @generated NOT initialize the guard
 	 */
-	public static void init_ObjectFlow_4003(ObjectFlow instance) {
+	public void init_ObjectFlow_4003(ObjectFlow instance) {
 		try {
 			Object value_0 = name_ObjectFlow_4003(instance);
 			instance.setName((String)value_0);
@@ -885,7 +885,7 @@ public class ElementInitializers {
 	/**
 	 * @generated NOT initialize the guard
 	 */
-	public static void init_ControlFlow_4004(ControlFlow instance) {
+	public void init_ControlFlow_4004(ControlFlow instance) {
 		try {
 			Object value_0 = name_ControlFlow_4004(instance);
 			instance.setName((String)value_0);
@@ -909,77 +909,77 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private static String name_Parameter_3001(Parameter self) {
+	private String name_Parameter_3001(Parameter self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_Constraint_3002(Constraint self) {
+	private String name_Constraint_3002(Constraint self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_Constraint_3003(Constraint self) {
+	private String name_Constraint_3003(Constraint self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_InitialNode_3004(InitialNode self) {
+	private String name_InitialNode_3004(InitialNode self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_ActivityFinalNode_3005(ActivityFinalNode self) {
+	private String name_ActivityFinalNode_3005(ActivityFinalNode self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_FlowFinalNode_3006(FlowFinalNode self) {
+	private String name_FlowFinalNode_3006(FlowFinalNode self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_OpaqueAction_3007(OpaqueAction self) {
+	private String name_OpaqueAction_3007(OpaqueAction self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_ValuePin_3015(ValuePin self) {
+	private String name_ValuePin_3015(ValuePin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_ActionInputPin_3016(ActionInputPin self) {
+	private String name_ActionInputPin_3016(ActionInputPin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_InputPin_3013(InputPin self) {
+	private String name_InputPin_3013(InputPin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_OutputPin_3014(OutputPin self) {
+	private String name_OutputPin_3014(OutputPin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
@@ -1000,393 +1000,404 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private static String name_ValuePin_3017(ValuePin self) {
+	private String name_ValuePin_3017(ValuePin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_ActionInputPin_3018(ActionInputPin self) {
+	private String name_ActionInputPin_3018(ActionInputPin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_InputPin_3019(InputPin self) {
+	private String name_InputPin_3019(InputPin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_OutputPin_3020(OutputPin self) {
+	private String name_OutputPin_3020(OutputPin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_CallOperationAction_3010(CallOperationAction self) {
+	private String name_CallOperationAction_3010(CallOperationAction self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_ActionInputPin_3021(ActionInputPin self) {
+	private String name_ActionInputPin_3021(ActionInputPin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_ValuePin_3022(ValuePin self) {
+	private String name_ValuePin_3022(ValuePin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_InputPin_3023(InputPin self) {
+	private String name_InputPin_3023(InputPin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_OutputPin_3024(OutputPin self) {
+	private String name_OutputPin_3024(OutputPin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_ValuePin_3025(ValuePin self) {
+	private String name_ValuePin_3025(ValuePin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_ActionInputPin_3026(ActionInputPin self) {
+	private String name_ActionInputPin_3026(ActionInputPin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_InputPin_3027(InputPin self) {
+	private String name_InputPin_3027(InputPin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_Constraint_3011(Constraint self) {
+	private String name_Constraint_3011(Constraint self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_Constraint_3012(Constraint self) {
+	private String name_Constraint_3012(Constraint self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_DecisionNode_3038(DecisionNode self) {
+	private String name_DecisionNode_3038(DecisionNode self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_MergeNode_3039(MergeNode self) {
+	private String name_MergeNode_3039(MergeNode self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_ForkNode_3040(ForkNode self) {
+	private String name_ForkNode_3040(ForkNode self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_JoinNode_3041(JoinNode self) {
+	private String name_JoinNode_3041(JoinNode self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_SendObjectAction_3042(SendObjectAction self) {
+	private String name_SendObjectAction_3042(SendObjectAction self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_ValuePin_3046(ValuePin self) {
+	private String name_ValuePin_3046(ValuePin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_ActionInputPin_3047(ActionInputPin self) {
+	private String name_ActionInputPin_3047(ActionInputPin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_InputPin_3048(InputPin self) {
+	private String name_InputPin_3048(InputPin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_ValuePin_3049(ValuePin self) {
+	private String name_ValuePin_3049(ValuePin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_ActionInputPin_3050(ActionInputPin self) {
+	private String name_ActionInputPin_3050(ActionInputPin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_InputPin_3051(InputPin self) {
+	private String name_InputPin_3051(InputPin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_SendSignalAction_3052(SendSignalAction self) {
+	private String name_SendSignalAction_3052(SendSignalAction self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_ActionInputPin_3053(ActionInputPin self) {
+	private String name_ActionInputPin_3053(ActionInputPin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_ValuePin_3054(ValuePin self) {
+	private String name_ValuePin_3054(ValuePin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_InputPin_3055(InputPin self) {
+	private String name_InputPin_3055(InputPin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_ValuePin_3060(ValuePin self) {
+	private String name_ValuePin_3060(ValuePin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_ActionInputPin_3061(ActionInputPin self) {
+	private String name_ActionInputPin_3061(ActionInputPin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_InputPin_3062(InputPin self) {
+	private String name_InputPin_3062(InputPin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_ActivityParameterNode_3059(ActivityParameterNode self) {
+	private String name_ActivityParameterNode_3059(ActivityParameterNode self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_AcceptEventAction_3063(AcceptEventAction self) {
+	private String name_AcceptEventAction_3063(AcceptEventAction self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_OutputPin_3064(OutputPin self) {
+	private String name_OutputPin_3064(OutputPin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_ConditionalNode_3069(ConditionalNode self) {
+	private String name_ConditionalNode_3069(ConditionalNode self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_ExpansionRegion_3070(ExpansionRegion self) {
+	private String name_ExpansionRegion_3070(ExpansionRegion self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_ExpansionNode_3074(ExpansionNode self) {
+	private String name_ExpansionNode_3074(ExpansionNode self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_ExpansionNode_3075(ExpansionNode self) {
+	private String name_ExpansionNode_3075(ExpansionNode self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_LoopNode_3071(LoopNode self) {
+	private String name_LoopNode_3071(LoopNode self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_SequenceNode_3073(SequenceNode self) {
+	private String name_SequenceNode_3073(SequenceNode self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_StructuredActivityNode_3065(StructuredActivityNode self) {
+	private String name_StructuredActivityNode_3065(StructuredActivityNode self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_ActivityPartition_3067(ActivityPartition self) {
+	private String name_ActivityPartition_3067(ActivityPartition self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_ValueSpecificationAction_3076(ValueSpecificationAction self) {
+	private String name_ValueSpecificationAction_3076(ValueSpecificationAction self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_OutputPin_3077(OutputPin self) {
+	private String name_OutputPin_3077(OutputPin self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_DataStoreNode_3078(DataStoreNode self) {
+	private String name_DataStoreNode_3078(DataStoreNode self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_InteractionConstraint_3030(InteractionConstraint self) {
+	private String name_InteractionConstraint_3030(InteractionConstraint self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_InteractionConstraint_3031(InteractionConstraint self) {
+	private String name_InteractionConstraint_3031(InteractionConstraint self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_IntervalConstraint_3032(IntervalConstraint self) {
+	private String name_IntervalConstraint_3032(IntervalConstraint self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_IntervalConstraint_3033(IntervalConstraint self) {
+	private String name_IntervalConstraint_3033(IntervalConstraint self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_DurationConstraint_3034(DurationConstraint self) {
+	private String name_DurationConstraint_3034(DurationConstraint self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_DurationConstraint_3035(DurationConstraint self) {
+	private String name_DurationConstraint_3035(DurationConstraint self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_TimeConstraint_3036(TimeConstraint self) {
+	private String name_TimeConstraint_3036(TimeConstraint self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_TimeConstraint_3037(TimeConstraint self) {
+	private String name_TimeConstraint_3037(TimeConstraint self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_ObjectFlow_4003(ObjectFlow self) {
+	private String name_ObjectFlow_4003(ObjectFlow self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_ControlFlow_4004(ControlFlow self) {
+	private String name_ControlFlow_4004(ControlFlow self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	public static ElementInitializers getInstance() {
+		ElementInitializers cached = UMLDiagramEditorPlugin.getInstance().getElementInitializers();
+		if(cached == null) {
+			UMLDiagramEditorPlugin.getInstance().setElementInitializers(cached = new ElementInitializers());
+		}
+		return cached;
 	}
 
 	/**

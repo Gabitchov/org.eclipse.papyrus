@@ -81,7 +81,7 @@ public class ExceptionHandlerCreateCommand extends EditElementCommand {
 		if(getContainer() == null) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateExceptionHandler_4005(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateExceptionHandler_4005(getContainer(), getSource(), getTarget());
 	}
 
 

@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.diagram.activity.edit.parts;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
@@ -42,9 +43,11 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.activity.edit.policies.IntervalConstraintAsLocalPrecondItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.activity.figures.WrappedLabel;
+import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure;
+import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.swt.graphics.Color;
@@ -119,8 +122,7 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		CornerBentWithTextFigure figure = new CornerBentWithTextFigure();
-		return primaryShape = figure;
+		return primaryShape = new CornerBentWithTextFigure();
 	}
 
 	/**
@@ -184,7 +186,12 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		String prefElementId = "IntervalConstraint";
+		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
+		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
+
 		return result;
 	}
 
@@ -269,8 +276,8 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMARelTypesOnTarget() {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+	public List<IElementType> getMARelTypesOnTarget() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.ActionLocalPrecondition_4001);
 		types.add(UMLElementTypes.ActionLocalPostcondition_4002);
 		return types;
@@ -279,78 +286,33 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */getMATypesForSource(IElementType relationshipType) {
-		List/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */types = new ArrayList/* <org.eclipse.gmf.runtime.emf.type.core.IElementType> */();
+	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
 			types.add(UMLElementTypes.OpaqueAction_3007);
-		}
-		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
 			types.add(UMLElementTypes.CallBehaviorAction_3008);
-		}
-		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
 			types.add(UMLElementTypes.CallOperationAction_3010);
-		}
-		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
 			types.add(UMLElementTypes.SendObjectAction_3042);
-		}
-		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
 			types.add(UMLElementTypes.SendSignalAction_3052);
-		}
-		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
 			types.add(UMLElementTypes.AcceptEventAction_3063);
-		}
-		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
 			types.add(UMLElementTypes.ConditionalNode_3069);
-		}
-		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
 			types.add(UMLElementTypes.ExpansionRegion_3070);
-		}
-		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
 			types.add(UMLElementTypes.LoopNode_3071);
-		}
-		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
 			types.add(UMLElementTypes.SequenceNode_3073);
-		}
-		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
-		}
-		if(relationshipType == UMLElementTypes.ActionLocalPrecondition_4001) {
 			types.add(UMLElementTypes.ValueSpecificationAction_3076);
-		}
-		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
+		} else if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
 			types.add(UMLElementTypes.OpaqueAction_3007);
-		}
-		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
 			types.add(UMLElementTypes.CallBehaviorAction_3008);
-		}
-		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
 			types.add(UMLElementTypes.CallOperationAction_3010);
-		}
-		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
 			types.add(UMLElementTypes.SendObjectAction_3042);
-		}
-		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
 			types.add(UMLElementTypes.SendSignalAction_3052);
-		}
-		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
 			types.add(UMLElementTypes.AcceptEventAction_3063);
-		}
-		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
 			types.add(UMLElementTypes.ConditionalNode_3069);
-		}
-		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
 			types.add(UMLElementTypes.ExpansionRegion_3070);
-		}
-		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
 			types.add(UMLElementTypes.LoopNode_3071);
-		}
-		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
 			types.add(UMLElementTypes.SequenceNode_3073);
-		}
-		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
-		}
-		if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
 			types.add(UMLElementTypes.ValueSpecificationAction_3076);
 		}
 		return types;

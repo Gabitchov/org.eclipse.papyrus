@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.DataStoreNode;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -111,7 +111,7 @@ public class DataStoreNodeCreateCommand extends EditElementCommand {
 		owner.getNodes().add(newElement);
 
 
-		UMLElementTypes.init_DataStoreNode_3078(newElement);
+		ElementInitializers.getInstance().init_DataStoreNode_3078(newElement);
 
 		doConfigure(newElement, monitor, info);
 

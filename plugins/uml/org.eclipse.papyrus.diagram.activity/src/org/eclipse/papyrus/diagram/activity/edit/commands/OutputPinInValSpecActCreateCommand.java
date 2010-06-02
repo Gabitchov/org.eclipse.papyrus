@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
 import org.eclipse.uml2.uml.OutputPin;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.ValueSpecificationAction;
@@ -115,7 +115,7 @@ public class OutputPinInValSpecActCreateCommand extends EditElementCommand {
 		owner.setResult(newElement);
 
 
-		UMLElementTypes.init_OutputPin_3077(newElement);
+		ElementInitializers.getInstance().init_OutputPin_3077(newElement);
 
 		doConfigure(newElement, monitor, info);
 

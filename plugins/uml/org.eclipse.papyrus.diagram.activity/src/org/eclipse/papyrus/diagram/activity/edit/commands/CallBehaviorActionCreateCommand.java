@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.papyrus.diagram.activity.edit.dialogs.CreateCallBehaviorActionDialog;
-import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Behavior;
@@ -126,7 +126,7 @@ public class CallBehaviorActionCreateCommand extends EditElementCommand {
 
 		owner.getNodes().add(newElement);
 
-		UMLElementTypes.init_CallBehaviorAction_3008(newElement);
+		ElementInitializers.getInstance().init_CallBehaviorAction_3008(newElement);
 
 		doConfigure(newElement, monitor, info);
 

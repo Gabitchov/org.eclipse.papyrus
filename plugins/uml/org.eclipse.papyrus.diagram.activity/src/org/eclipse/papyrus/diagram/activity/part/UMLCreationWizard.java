@@ -112,18 +112,18 @@ public class UMLCreationWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public void addPages() {
-		diagramModelFilePage = new UMLCreationWizardPage("DiagramModelFile", getSelection(), "uml_diagram"); //$NON-NLS-1$ //$NON-NLS-2$
+		diagramModelFilePage = new UMLCreationWizardPage("DiagramModelFile", getSelection(), "PapyrusUMLActivity_diagram"); //$NON-NLS-1$ //$NON-NLS-2$
 		diagramModelFilePage.setTitle(Messages.UMLCreationWizard_DiagramModelFilePageTitle);
 		diagramModelFilePage.setDescription(Messages.UMLCreationWizard_DiagramModelFilePageDescription);
 		addPage(diagramModelFilePage);
 
-		domainModelFilePage = new UMLCreationWizardPage("DomainModelFile", getSelection(), "uml") { //$NON-NLS-1$ //$NON-NLS-2$
+		domainModelFilePage = new UMLCreationWizardPage("DomainModelFile", getSelection(), "PapyrusUMLActivity") { //$NON-NLS-1$ //$NON-NLS-2$
 
 			public void setVisible(boolean visible) {
 				if(visible) {
 					String fileName = diagramModelFilePage.getFileName();
-					fileName = fileName.substring(0, fileName.length() - ".uml_diagram".length()); //$NON-NLS-1$
-					setFileName(UMLDiagramEditorUtil.getUniqueFileName(getContainerFullPath(), fileName, "uml")); //$NON-NLS-1$
+					fileName = fileName.substring(0, fileName.length() - ".PapyrusUMLActivity_diagram".length()); //$NON-NLS-1$
+					setFileName(UMLDiagramEditorUtil.getUniqueFileName(getContainerFullPath(), fileName, "PapyrusUMLActivity")); //$NON-NLS-1$
 				}
 				super.setVisible(visible);
 			}

@@ -65,7 +65,7 @@ public class ActionLocalPostconditionCreateCommand extends EditElementCommand {
 			return true; // link creation is in progress; source is not defined yet
 		}
 		// target may be null here but it's possible to check constraint
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateActionLocalPostcondition_4002(getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateActionLocalPostcondition_4002(getSource(), getTarget());
 	}
 
 	/**

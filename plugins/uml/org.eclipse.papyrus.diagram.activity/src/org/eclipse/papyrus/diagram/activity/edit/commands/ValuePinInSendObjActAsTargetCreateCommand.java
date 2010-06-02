@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
 import org.eclipse.uml2.uml.SendObjectAction;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.ValuePin;
@@ -115,7 +115,7 @@ public class ValuePinInSendObjActAsTargetCreateCommand extends EditElementComman
 		owner.setTarget(newElement);
 
 
-		UMLElementTypes.init_ValuePin_3049(newElement);
+		ElementInitializers.getInstance().init_ValuePin_3049(newElement);
 
 		doConfigure(newElement, monitor, info);
 

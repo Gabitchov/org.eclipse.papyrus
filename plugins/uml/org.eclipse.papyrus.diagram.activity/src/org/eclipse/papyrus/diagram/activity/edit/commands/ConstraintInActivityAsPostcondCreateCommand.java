@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Namespace;
@@ -114,7 +114,7 @@ public class ConstraintInActivityAsPostcondCreateCommand extends EditElementComm
 		childHolder.getPostconditions().add(newElement);
 
 
-		UMLElementTypes.init_Constraint_3003(newElement);
+		ElementInitializers.getInstance().init_Constraint_3003(newElement);
 
 		doConfigure(newElement, monitor, info);
 

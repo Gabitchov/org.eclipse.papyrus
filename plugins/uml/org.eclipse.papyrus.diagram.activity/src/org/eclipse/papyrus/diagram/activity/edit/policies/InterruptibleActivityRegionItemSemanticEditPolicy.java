@@ -66,11 +66,11 @@ public class InterruptibleActivityRegionItemSemanticEditPolicy extends UMLBaseIt
 	 */
 	private void addDestroyChildNodesCommand(ICompositeCommand cmd) {
 		View view = (View)getHost().getModel();
-		for(Iterator nit = view.getChildren().iterator(); nit.hasNext();) {
+		for(Iterator<?> nit = view.getChildren().iterator(); nit.hasNext();) {
 			Node node = (Node)nit.next();
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID:
-				for(Iterator cit = node.getChildren().iterator(); cit.hasNext();) {
+				for(Iterator<?> cit = node.getChildren().iterator(); cit.hasNext();) {
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					}

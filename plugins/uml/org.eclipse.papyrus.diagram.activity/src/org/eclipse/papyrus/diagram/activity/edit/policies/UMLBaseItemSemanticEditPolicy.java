@@ -47,7 +47,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.helpers.ObjectFlowEditHelper;
 import org.eclipse.papyrus.diagram.activity.edit.helpers.UMLBaseEditHelper;
-import org.eclipse.papyrus.diagram.activity.expressions.UMLAbstractExpression;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
@@ -57,7 +56,9 @@ import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ActivityParameterNode;
 import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.ControlFlow;
 import org.eclipse.uml2.uml.DecisionNode;
+import org.eclipse.uml2.uml.ExceptionHandler;
 import org.eclipse.uml2.uml.ExecutableNode;
 import org.eclipse.uml2.uml.FinalNode;
 import org.eclipse.uml2.uml.ForkNode;
@@ -347,37 +348,30 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
+	public static LinkConstraints getLinkConstraints() {
+		LinkConstraints cached = UMLDiagramEditorPlugin.getInstance().getLinkConstraints();
+		if(cached == null) {
+			UMLDiagramEditorPlugin.getInstance().setLinkConstraints(cached = new LinkConstraints());
+		}
+		return cached;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static class LinkConstraints {
 
 		/**
 		 * @generated
 		 */
-		private static final String OPPOSITE_END_VAR = "oppositeEnd"; //$NON-NLS-1$
+		LinkConstraints() {
+			// use static method #getLinkConstraints() to access instance
+		}
 
 		/**
 		 * @generated
 		 */
-		private static UMLAbstractExpression ObjectFlow_4003_SourceExpression;
-
-		/**
-		 * @generated
-		 */
-		private static UMLAbstractExpression ObjectFlow_4003_TargetExpression;
-
-		/**
-		 * @generated
-		 */
-		private static UMLAbstractExpression ControlFlow_4004_SourceExpression;
-
-		/**
-		 * @generated
-		 */
-		private static UMLAbstractExpression ControlFlow_4004_TargetExpression;
-
-		/**
-		 * @generated
-		 */
-		public static boolean canCreateActionLocalPrecondition_4001(Action source, Constraint target) {
+		public boolean canCreateActionLocalPrecondition_4001(Action source, Constraint target) {
 			if(source != null) {
 				if(source.getLocalPreconditions().contains(target)) {
 					return false;
@@ -393,7 +387,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateActionLocalPostcondition_4002(Action source, Constraint target) {
+		public boolean canCreateActionLocalPostcondition_4002(Action source, Constraint target) {
 			if(source != null) {
 				if(source.getLocalPostconditions().contains(target)) {
 					return false;
@@ -409,42 +403,42 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateObjectFlow_4003(Activity container, ActivityNode source, ActivityNode target) {
-			return canExistObjectFlow_4003(container, source, target);
+		public boolean canCreateObjectFlow_4003(Activity container, ActivityNode source, ActivityNode target) {
+			return canExistObjectFlow_4003(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateControlFlow_4004(Activity container, ActivityNode source, ActivityNode target) {
-			return canExistControlFlow_4004(container, source, target);
+		public boolean canCreateControlFlow_4004(Activity container, ActivityNode source, ActivityNode target) {
+			return canExistControlFlow_4004(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateExceptionHandler_4005(ExecutableNode container, ExecutableNode source, ObjectNode target) {
-			return canExistExceptionHandler_4005(container, source, target);
+		public boolean canCreateExceptionHandler_4005(ExecutableNode container, ExecutableNode source, ObjectNode target) {
+			return canExistExceptionHandler_4005(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistActionLocalPrecondition_4001(Action source, Constraint target) {
+		public boolean canExistActionLocalPrecondition_4001(Action source, Constraint target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistActionLocalPostcondition_4002(Action source, Constraint target) {
+		public boolean canExistActionLocalPostcondition_4002(Action source, Constraint target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistObjectFlow_4003(Activity container, ActivityNode source, ActivityNode target) {
+		public boolean canExistObjectFlow_4003(Activity container, ObjectFlow linkInstance, ActivityNode source, ActivityNode target) {
 			try {
 				if(source instanceof Action) {
 					// rule validateObjectFlow_validateNoActions
@@ -613,7 +607,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistControlFlow_4004(Activity container, ActivityNode source, ActivityNode target) {
+		public boolean canExistControlFlow_4004(Activity container, ControlFlow linkInstance, ActivityNode source, ActivityNode target) {
 			try {
 				if(source instanceof ObjectNode) {
 					if(!((ObjectNode)source).isControlType()) {
@@ -755,7 +749,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistExceptionHandler_4005(ExecutableNode container, ExecutableNode source, ObjectNode target) {
+		public boolean canExistExceptionHandler_4005(ExecutableNode container, ExceptionHandler linkInstance, ExecutableNode source, ObjectNode target) {
 			return true;
 		}
 	}

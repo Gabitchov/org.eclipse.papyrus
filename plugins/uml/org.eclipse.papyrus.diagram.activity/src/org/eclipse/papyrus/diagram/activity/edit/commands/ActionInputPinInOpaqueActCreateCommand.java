@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
 import org.eclipse.uml2.uml.ActionInputPin;
 import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -111,7 +111,7 @@ public class ActionInputPinInOpaqueActCreateCommand extends EditElementCommand {
 		owner.getInputValues().add(newElement);
 
 
-		UMLElementTypes.init_ActionInputPin_3016(newElement);
+		ElementInitializers.getInstance().init_ActionInputPin_3016(newElement);
 
 		doConfigure(newElement, monitor, info);
 

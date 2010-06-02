@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
 import org.eclipse.uml2.uml.ExpansionNode;
 import org.eclipse.uml2.uml.ExpansionRegion;
 import org.eclipse.uml2.uml.StructuredActivityNode;
@@ -114,7 +114,7 @@ public class ExpansionNodeAsOutCreateCommand extends EditElementCommand {
 		childHolder.getOutputElements().add(newElement);
 
 
-		UMLElementTypes.init_ExpansionNode_3075(newElement);
+		ElementInitializers.getInstance().init_ExpansionNode_3075(newElement);
 
 		doConfigure(newElement, monitor, info);
 

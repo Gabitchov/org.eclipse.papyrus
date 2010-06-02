@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Action;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -111,7 +111,7 @@ public class DurationConstraintAsLocalPrecondCreateCommand extends EditElementCo
 		owner.getLocalPreconditions().add(newElement);
 
 
-		UMLElementTypes.init_DurationConstraint_3034(newElement);
+		ElementInitializers.getInstance().init_DurationConstraint_3034(newElement);
 
 		doConfigure(newElement, monitor, info);
 

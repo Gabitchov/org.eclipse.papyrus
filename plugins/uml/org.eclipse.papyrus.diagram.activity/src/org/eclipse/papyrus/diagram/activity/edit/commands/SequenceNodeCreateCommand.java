@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.SequenceNode;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -111,7 +111,7 @@ public class SequenceNodeCreateCommand extends EditElementCommand {
 		owner.getGroups().add(newElement);
 
 
-		UMLElementTypes.init_SequenceNode_3073(newElement);
+		ElementInitializers.getInstance().init_SequenceNode_3073(newElement);
 
 		doConfigure(newElement, monitor, info);
 

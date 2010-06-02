@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.parts.*;
-import org.eclipse.papyrus.diagram.activity.expressions.UMLAbstractExpression;
 import org.eclipse.papyrus.diagram.activity.expressions.UMLOCLFactory;
 import org.eclipse.papyrus.diagram.common.providers.BaseViewInfo;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
@@ -48,156 +47,6 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static final String DEBUG_KEY = "org.eclipse.papyrus.diagram.activity/debug/visualID"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression ActionInputPin_3021_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression ValuePin_3022_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression InputPin_3023_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression ValuePin_3025_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression ActionInputPin_3026_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression InputPin_3027_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression Constraint_3011_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression Constraint_3012_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression ValuePin_3046_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression ActionInputPin_3047_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression InputPin_3048_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression ValuePin_3049_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression ActionInputPin_3050_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression InputPin_3051_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression ActionInputPin_3053_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression ValuePin_3054_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression InputPin_3055_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression ValuePin_3060_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression ActionInputPin_3061_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression InputPin_3062_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression ExpansionNode_3074_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression ExpansionNode_3075_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression InteractionConstraint_3030_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression InteractionConstraint_3031_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression IntervalConstraint_3032_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression IntervalConstraint_3033_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression DurationConstraint_3034_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression DurationConstraint_3035_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression TimeConstraint_3036_Constraint;
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression TimeConstraint_3037_Constraint;
 
 	/**
 	 * @generated
@@ -246,7 +95,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static String getType(int visualID) {
-		return String.valueOf(visualID);
+		return Integer.toString(visualID);
 	}
 
 	/**
@@ -285,6 +134,13 @@ public class UMLVisualIDRegistry {
 			}
 		}
 		switch(containerVisualID) {
+		case ActivityDiagramEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ActivityEditPart.VISUAL_ID;
+			}
+			break;
 		case ActivityEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getActivityParameterNode().isSuperTypeOf(domainElement.eClass())
 
@@ -586,13 +442,6 @@ public class UMLVisualIDRegistry {
 				return DataStoreNodeEditPart.VISUAL_ID;
 			}
 			break;
-		case ActivityDiagramEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return ActivityEditPart.VISUAL_ID;
-			}
-			break;
 		}
 		return -1;
 	}
@@ -886,6 +735,11 @@ public class UMLVisualIDRegistry {
 			}
 		}
 		switch(containerVisualID) {
+		case ActivityDiagramEditPart.VISUAL_ID:
+			if(ActivityEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case ActivityEditPart.VISUAL_ID:
 			if(ActivityNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -1593,11 +1447,6 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case ActivityDiagramEditPart.VISUAL_ID:
-			if(ActivityEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
 		case ObjectFlowEditPart.VISUAL_ID:
 			if(ObjectFlowNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -1689,10 +1538,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isActionInputPin_3021(ActionInputPin domainElement) {
-		if(ActionInputPin_3021_Constraint == null) { // lazy initialization
-			ActionInputPin_3021_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(CallOperationAction)\r\nthen self.owner.oclAsType(CallOperationAction).argument->includes(self)\r\nelse false endif", UMLPackage.eINSTANCE.getActionInputPin()); //$NON-NLS-1$
-		}
-		Object result = ActionInputPin_3021_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(0, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1700,10 +1546,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isValuePin_3022(ValuePin domainElement) {
-		if(ValuePin_3022_Constraint == null) { // lazy initialization
-			ValuePin_3022_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(CallOperationAction)\r\nthen self.owner.oclAsType(CallOperationAction).argument->includes(self)\r\nelse false endif", UMLPackage.eINSTANCE.getValuePin()); //$NON-NLS-1$
-		}
-		Object result = ValuePin_3022_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(1, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1711,10 +1554,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isInputPin_3023(InputPin domainElement) {
-		if(InputPin_3023_Constraint == null) { // lazy initialization
-			InputPin_3023_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(CallOperationAction)\r\nthen self.owner.oclAsType(CallOperationAction).argument->includes(self)\r\nelse false endif", UMLPackage.eINSTANCE.getInputPin()); //$NON-NLS-1$
-		}
-		Object result = InputPin_3023_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1722,10 +1562,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isValuePin_3025(ValuePin domainElement) {
-		if(ValuePin_3025_Constraint == null) { // lazy initialization
-			ValuePin_3025_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(CallOperationAction)\r\nthen self.owner.oclAsType(CallOperationAction).target = self\r\nelse false endif", UMLPackage.eINSTANCE.getValuePin()); //$NON-NLS-1$
-		}
-		Object result = ValuePin_3025_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(3, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1733,10 +1570,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isActionInputPin_3026(ActionInputPin domainElement) {
-		if(ActionInputPin_3026_Constraint == null) { // lazy initialization
-			ActionInputPin_3026_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(CallOperationAction)\r\nthen self.owner.oclAsType(CallOperationAction).target = self\r\nelse false endif", UMLPackage.eINSTANCE.getActionInputPin()); //$NON-NLS-1$
-		}
-		Object result = ActionInputPin_3026_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(4, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1744,10 +1578,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isInputPin_3027(InputPin domainElement) {
-		if(InputPin_3027_Constraint == null) { // lazy initialization
-			InputPin_3027_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(CallOperationAction)\r\nthen self.owner.oclAsType(CallOperationAction).target = self\r\nelse false endif", UMLPackage.eINSTANCE.getInputPin()); //$NON-NLS-1$
-		}
-		Object result = InputPin_3027_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(5, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1755,10 +1586,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isConstraint_3011(Constraint domainElement) {
-		if(Constraint_3011_Constraint == null) { // lazy initialization
-			Constraint_3011_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(Action)\r\nthen self.owner.oclAsType(Action).localPrecondition->includes(self)\r\nelse false endif", UMLPackage.eINSTANCE.getConstraint()); //$NON-NLS-1$
-		}
-		Object result = Constraint_3011_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(14, UMLPackage.eINSTANCE.getConstraint(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1766,10 +1594,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isConstraint_3012(Constraint domainElement) {
-		if(Constraint_3012_Constraint == null) { // lazy initialization
-			Constraint_3012_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(Action)\r\nthen self.owner.oclAsType(Action).localPostcondition->includes(self)\r\nelse false endif", UMLPackage.eINSTANCE.getConstraint()); //$NON-NLS-1$
-		}
-		Object result = Constraint_3012_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(15, UMLPackage.eINSTANCE.getConstraint(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1777,10 +1602,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isValuePin_3046(ValuePin domainElement) {
-		if(ValuePin_3046_Constraint == null) { // lazy initialization
-			ValuePin_3046_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(SendObjectAction)\r\nthen self.owner.oclAsType(SendObjectAction).request = self\r\nelse false endif", UMLPackage.eINSTANCE.getValuePin()); //$NON-NLS-1$
-		}
-		Object result = ValuePin_3046_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(16, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1788,10 +1610,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isActionInputPin_3047(ActionInputPin domainElement) {
-		if(ActionInputPin_3047_Constraint == null) { // lazy initialization
-			ActionInputPin_3047_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(SendObjectAction)\r\nthen self.owner.oclAsType(SendObjectAction).request = self\r\nelse false endif", UMLPackage.eINSTANCE.getActionInputPin()); //$NON-NLS-1$
-		}
-		Object result = ActionInputPin_3047_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(17, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1799,10 +1618,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isInputPin_3048(InputPin domainElement) {
-		if(InputPin_3048_Constraint == null) { // lazy initialization
-			InputPin_3048_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(SendObjectAction)\r\nthen self.owner.oclAsType(SendObjectAction).request = self\r\nelse false endif", UMLPackage.eINSTANCE.getInputPin()); //$NON-NLS-1$
-		}
-		Object result = InputPin_3048_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(18, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1810,10 +1626,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isValuePin_3049(ValuePin domainElement) {
-		if(ValuePin_3049_Constraint == null) { // lazy initialization
-			ValuePin_3049_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(SendObjectAction)\r\nthen self.owner.oclAsType(SendObjectAction).target = self\r\nelse false endif", UMLPackage.eINSTANCE.getValuePin()); //$NON-NLS-1$
-		}
-		Object result = ValuePin_3049_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(19, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1821,10 +1634,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isActionInputPin_3050(ActionInputPin domainElement) {
-		if(ActionInputPin_3050_Constraint == null) { // lazy initialization
-			ActionInputPin_3050_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(SendObjectAction)\r\nthen self.owner.oclAsType(SendObjectAction).target = self\r\nelse false endif", UMLPackage.eINSTANCE.getActionInputPin()); //$NON-NLS-1$
-		}
-		Object result = ActionInputPin_3050_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(20, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1832,10 +1642,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isInputPin_3051(InputPin domainElement) {
-		if(InputPin_3051_Constraint == null) { // lazy initialization
-			InputPin_3051_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(SendObjectAction)\r\nthen self.owner.oclAsType(SendObjectAction).target = self\r\nelse false endif", UMLPackage.eINSTANCE.getInputPin()); //$NON-NLS-1$
-		}
-		Object result = InputPin_3051_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(21, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1843,10 +1650,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isActionInputPin_3053(ActionInputPin domainElement) {
-		if(ActionInputPin_3053_Constraint == null) { // lazy initialization
-			ActionInputPin_3053_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(SendSignalAction)\r\nthen self.owner.oclAsType(SendSignalAction).argument->includes(self)\r\nelse false endif", UMLPackage.eINSTANCE.getActionInputPin()); //$NON-NLS-1$
-		}
-		Object result = ActionInputPin_3053_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(22, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1854,10 +1658,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isValuePin_3054(ValuePin domainElement) {
-		if(ValuePin_3054_Constraint == null) { // lazy initialization
-			ValuePin_3054_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(SendSignalAction)\r\nthen self.owner.oclAsType(SendSignalAction).argument->includes(self)\r\nelse false endif", UMLPackage.eINSTANCE.getValuePin()); //$NON-NLS-1$
-		}
-		Object result = ValuePin_3054_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(23, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1865,10 +1666,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isInputPin_3055(InputPin domainElement) {
-		if(InputPin_3055_Constraint == null) { // lazy initialization
-			InputPin_3055_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(SendSignalAction)\r\nthen self.owner.oclAsType(SendSignalAction).argument->includes(self)\r\nelse false endif", UMLPackage.eINSTANCE.getInputPin()); //$NON-NLS-1$
-		}
-		Object result = InputPin_3055_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(24, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1876,10 +1674,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isValuePin_3060(ValuePin domainElement) {
-		if(ValuePin_3060_Constraint == null) { // lazy initialization
-			ValuePin_3060_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(SendSignalAction)\r\nthen self.owner.oclAsType(SendSignalAction).target = self\r\nelse false endif", UMLPackage.eINSTANCE.getValuePin()); //$NON-NLS-1$
-		}
-		Object result = ValuePin_3060_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(25, UMLPackage.eINSTANCE.getValuePin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1887,10 +1682,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isActionInputPin_3061(ActionInputPin domainElement) {
-		if(ActionInputPin_3061_Constraint == null) { // lazy initialization
-			ActionInputPin_3061_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(SendSignalAction)\r\nthen self.owner.oclAsType(SendSignalAction).target = self\r\nelse false endif", UMLPackage.eINSTANCE.getActionInputPin()); //$NON-NLS-1$
-		}
-		Object result = ActionInputPin_3061_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(26, UMLPackage.eINSTANCE.getActionInputPin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1898,10 +1690,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isInputPin_3062(InputPin domainElement) {
-		if(InputPin_3062_Constraint == null) { // lazy initialization
-			InputPin_3062_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(SendSignalAction)\r\nthen self.owner.oclAsType(SendSignalAction).target = self\r\nelse false endif", UMLPackage.eINSTANCE.getInputPin()); //$NON-NLS-1$
-		}
-		Object result = InputPin_3062_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(27, UMLPackage.eINSTANCE.getInputPin(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1909,10 +1698,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isExpansionNode_3074(ExpansionNode domainElement) {
-		if(ExpansionNode_3074_Constraint == null) { // lazy initialization
-			ExpansionNode_3074_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(ExpansionRegion)\r\nthen self.owner.oclAsType(ExpansionRegion).inputElement->includes(self)\r\nelse false endif", UMLPackage.eINSTANCE.getExpansionNode()); //$NON-NLS-1$
-		}
-		Object result = ExpansionNode_3074_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(28, UMLPackage.eINSTANCE.getExpansionNode(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1920,10 +1706,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isExpansionNode_3075(ExpansionNode domainElement) {
-		if(ExpansionNode_3075_Constraint == null) { // lazy initialization
-			ExpansionNode_3075_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(ExpansionRegion)\r\nthen self.owner.oclAsType(ExpansionRegion).outputElement->includes(self)\r\nelse false endif", UMLPackage.eINSTANCE.getExpansionNode()); //$NON-NLS-1$
-		}
-		Object result = ExpansionNode_3075_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(29, UMLPackage.eINSTANCE.getExpansionNode(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1931,10 +1714,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isInteractionConstraint_3030(InteractionConstraint domainElement) {
-		if(InteractionConstraint_3030_Constraint == null) { // lazy initialization
-			InteractionConstraint_3030_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(Action)\r\nthen self.owner.oclAsType(Action).localPrecondition->includes(self)\r\nelse false endif", UMLPackage.eINSTANCE.getInteractionConstraint()); //$NON-NLS-1$
-		}
-		Object result = InteractionConstraint_3030_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(10, UMLPackage.eINSTANCE.getInteractionConstraint(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1942,10 +1722,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isInteractionConstraint_3031(InteractionConstraint domainElement) {
-		if(InteractionConstraint_3031_Constraint == null) { // lazy initialization
-			InteractionConstraint_3031_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(Action)\r\nthen self.owner.oclAsType(Action).localPostcondition->includes(self)\r\nelse false endif", UMLPackage.eINSTANCE.getInteractionConstraint()); //$NON-NLS-1$
-		}
-		Object result = InteractionConstraint_3031_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(11, UMLPackage.eINSTANCE.getInteractionConstraint(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1953,10 +1730,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isIntervalConstraint_3032(IntervalConstraint domainElement) {
-		if(IntervalConstraint_3032_Constraint == null) { // lazy initialization
-			IntervalConstraint_3032_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(Action)\r\nthen self.owner.oclAsType(Action).localPrecondition->includes(self)\r\nelse false endif", UMLPackage.eINSTANCE.getIntervalConstraint()); //$NON-NLS-1$
-		}
-		Object result = IntervalConstraint_3032_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(12, UMLPackage.eINSTANCE.getIntervalConstraint(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1964,10 +1738,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isIntervalConstraint_3033(IntervalConstraint domainElement) {
-		if(IntervalConstraint_3033_Constraint == null) { // lazy initialization
-			IntervalConstraint_3033_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(Action)\r\nthen self.owner.oclAsType(Action).localPostcondition->includes(self)\r\nelse false endif", UMLPackage.eINSTANCE.getIntervalConstraint()); //$NON-NLS-1$
-		}
-		Object result = IntervalConstraint_3033_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(13, UMLPackage.eINSTANCE.getIntervalConstraint(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1975,10 +1746,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isDurationConstraint_3034(DurationConstraint domainElement) {
-		if(DurationConstraint_3034_Constraint == null) { // lazy initialization
-			DurationConstraint_3034_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(Action)\r\nthen self.owner.oclAsType(Action).localPrecondition->includes(self)\r\nelse false endif", UMLPackage.eINSTANCE.getDurationConstraint()); //$NON-NLS-1$
-		}
-		Object result = DurationConstraint_3034_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(6, UMLPackage.eINSTANCE.getDurationConstraint(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1986,10 +1754,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isDurationConstraint_3035(DurationConstraint domainElement) {
-		if(DurationConstraint_3035_Constraint == null) { // lazy initialization
-			DurationConstraint_3035_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(Action)\r\nthen self.owner.oclAsType(Action).localPostcondition->includes(self)\r\nelse false endif", UMLPackage.eINSTANCE.getDurationConstraint()); //$NON-NLS-1$
-		}
-		Object result = DurationConstraint_3035_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(7, UMLPackage.eINSTANCE.getDurationConstraint(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -1997,10 +1762,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isTimeConstraint_3036(TimeConstraint domainElement) {
-		if(TimeConstraint_3036_Constraint == null) { // lazy initialization
-			TimeConstraint_3036_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(Action)\r\nthen self.owner.oclAsType(Action).localPrecondition->includes(self)\r\nelse false endif", UMLPackage.eINSTANCE.getTimeConstraint()); //$NON-NLS-1$
-		}
-		Object result = TimeConstraint_3036_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(8, UMLPackage.eINSTANCE.getTimeConstraint(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -2008,10 +1770,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static boolean isTimeConstraint_3037(TimeConstraint domainElement) {
-		if(TimeConstraint_3037_Constraint == null) { // lazy initialization
-			TimeConstraint_3037_Constraint = UMLOCLFactory.getExpression("if self.owner.oclIsKindOf(Action)\r\nthen self.owner.oclAsType(Action).localPostcondition->includes(self)\r\nelse false endif", UMLPackage.eINSTANCE.getTimeConstraint()); //$NON-NLS-1$
-		}
-		Object result = TimeConstraint_3037_Constraint.evaluate(domainElement);
+		Object result = UMLOCLFactory.getExpression(9, UMLPackage.eINSTANCE.getTimeConstraint(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 

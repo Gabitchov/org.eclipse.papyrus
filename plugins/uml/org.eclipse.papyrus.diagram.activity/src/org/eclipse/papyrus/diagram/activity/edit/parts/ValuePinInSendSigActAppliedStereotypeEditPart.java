@@ -110,7 +110,7 @@ extends LabelEditPart implements ITextAwareEditPart, IBorderItemEditPart, IPapyr
 	/**
 	 * @generated
 	 */
-	private List parserElements;
+	private List<?> parserElements;
 
 	/**
 	 * @generated

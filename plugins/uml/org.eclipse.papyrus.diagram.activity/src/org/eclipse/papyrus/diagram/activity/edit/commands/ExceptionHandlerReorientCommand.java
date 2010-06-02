@@ -83,7 +83,7 @@ public class ExceptionHandlerReorientCommand extends EditElementCommand {
 			return false;
 		}
 		ExecutableNode container = (ExecutableNode)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistExceptionHandler_4005(container, getNewSource(), target);
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistExceptionHandler_4005(container, getLink(), getNewSource(), target);
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class ExceptionHandlerReorientCommand extends EditElementCommand {
 			return false;
 		}
 		ExecutableNode container = (ExecutableNode)getLink().eContainer();
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistExceptionHandler_4005(container, source, getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistExceptionHandler_4005(container, getLink(), source, getNewTarget());
 	}
 
 	/**

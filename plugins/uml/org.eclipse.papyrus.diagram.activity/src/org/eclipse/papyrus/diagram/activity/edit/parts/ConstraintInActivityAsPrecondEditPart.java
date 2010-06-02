@@ -107,7 +107,7 @@ public class ConstraintInActivityAsPrecondEditPart extends CompartmentEditPart i
 	/**
 	 * @generated
 	 */
-	private List parserElements;
+	private List<?> parserElements;
 
 	/**
 	 * @generated

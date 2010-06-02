@@ -84,7 +84,7 @@ public class ActionLocalPostconditionReorientCommand extends EditElementCommand 
 		if(!(oldEnd instanceof Constraint && newEnd instanceof Action)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistActionLocalPostcondition_4002(getNewSource(), getOldTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistActionLocalPostcondition_4002(getNewSource(), getOldTarget());
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class ActionLocalPostconditionReorientCommand extends EditElementCommand 
 		if(!(oldEnd instanceof Constraint && newEnd instanceof Constraint)) {
 			return false;
 		}
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canExistActionLocalPostcondition_4002(getOldSource(), getNewTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canExistActionLocalPostcondition_4002(getOldSource(), getNewTarget());
 	}
 
 	/**
