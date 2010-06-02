@@ -186,6 +186,16 @@ public class Messages extends NLS {
 	/** tooltip for the edit palette button */
 	public static String Dialog_Edit_Palette_Tooltip;
 
+	public static String DistributionConstants_Distribute_Horizontally;
+
+	public static String DistributionConstants_Distribute_Horizontally_Between_Nodes;
+
+	public static String DistributionConstants_Distribute_Vertically;
+
+	public static String DistributionConstants_Distribute_Vertically_Between_Nodes;
+
+	public static String DistributionConstants_DistributionTitle;
+
 	/** tooltip for the create drawer button */
 	public static String Local_Palette_Create_Drawer_Tooltip;
 

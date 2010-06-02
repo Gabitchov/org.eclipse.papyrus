@@ -17,7 +17,6 @@ import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gef.RootEditPart;
 
 /**
  * This class provides utilities for the layout actions
@@ -26,8 +25,11 @@ import org.eclipse.gef.RootEditPart;
  */
 public class LayoutUtils {
 
-	/** This rectangle is used to precise when the container is the diagram */
-	public static final PrecisionRectangle diagramRect = new PrecisionRectangle(new Rectangle(0, 0, -1, -1));
+	/**
+	 * the shift to avoid the scrollbar
+	 * If there is no scrollBar, set scrollBarSize to 0.0!
+	 */
+	public static final double scrollBarSize = 6;
 
 	/**
 	 * 
@@ -37,17 +39,12 @@ public class LayoutUtils {
 	 *        the {@link EditPart} that we want the position
 	 * @return
 	 *         a {@link Rectangle} with the absolute position from the {@link EditPart}
-	 *         <ul>
-	 *         <li>
-	 *         <li> {@link #diagramRect}</li> if the parent {@link EditPart} is the {@link RootEditPart};
+	 * 
 	 */
 	public static PrecisionRectangle getAbsolutePosition(EditPart ep) {
 		GraphicalEditPart part = (GraphicalEditPart)ep;
 		PrecisionRectangle rect = new PrecisionRectangle(part.getFigure().getBounds());
 		part.getFigure().translateToAbsolute(rect);
-		if(ep.getParent() instanceof RootEditPart) {
-			rect = diagramRect;
-		}
 		return rect;
 	}
 

@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.editparts;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.FillStyle;
@@ -137,5 +138,21 @@ public abstract class BorderNodeEditPart extends BorderedBorderItemEditPart impl
 	 */
 	protected void refreshShadow() {
 		getPrimaryShape().setShadow(ShadowFigureHelper.getShadowFigureValue((View)getModel()));
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#handleNotificationEvent(org.eclipse.emf.common.notify.Notification)
+	 * 
+	 * @param event
+	 */
+	@Override
+	protected void handleNotificationEvent(Notification event) {
+		super.handleNotificationEvent(event);
+
+		if(resolveSemanticElement() != null) {
+			refreshShadow();
+		}
+
 	}
 }

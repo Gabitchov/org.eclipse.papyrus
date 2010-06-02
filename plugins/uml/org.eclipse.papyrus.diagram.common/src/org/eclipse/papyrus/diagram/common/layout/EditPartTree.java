@@ -14,15 +14,15 @@
 package org.eclipse.papyrus.diagram.common.layout;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeNode;
 
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef.requests.AlignmentRequest;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.RootEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 
 
@@ -32,7 +32,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
  * 
  * 
  */
-public class EditPartTree extends DefaultMutableTreeNode {
+public abstract class EditPartTree extends DefaultMutableTreeNode {
 
 	/**
 	 * this UDI can be used to serialize this class
@@ -55,14 +55,10 @@ public class EditPartTree extends DefaultMutableTreeNode {
 	private boolean isSelected = false;
 
 	/**
-	 * the alignment request for the editpart
+	 * the request for the editpart
 	 */
-	private AlignmentRequest request;
+	private Request request;
 
-	/**
-	 * The new position for this element
-	 */
-	private PrecisionRectangle newPosition = null;
 
 	/**
 	 * 
@@ -77,7 +73,18 @@ public class EditPartTree extends DefaultMutableTreeNode {
 	public EditPartTree(Object editpart, boolean isSelected) {
 		super(editpart, true);
 		this.isSelected = isSelected;
+	}
 
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param editparts
+	 *        the editparts used to build the tree
+	 */
+	public EditPartTree(List<EditPart> editparts) {
+		this(null, false);
+		buildTree(editparts);
 	}
 
 	/**
@@ -85,7 +92,7 @@ public class EditPartTree extends DefaultMutableTreeNode {
 	 * 
 	 * @return the alignment request for the editpart
 	 */
-	public AlignmentRequest getRequest() {
+	public Request getRequest() {
 		return request;
 	}
 
@@ -95,31 +102,9 @@ public class EditPartTree extends DefaultMutableTreeNode {
 	 * @param request
 	 *        the new alignment request for the editpart
 	 */
-	public void setRequest(AlignmentRequest request) {
+	public void setRequest(Request request) {
 		this.request = request;
 	}
-
-	/**
-	 * Gets the new alignment position for the editpart.
-	 * 
-	 * @return the new alignment position for the editpart
-	 */
-	public PrecisionRectangle getNewPosition() {
-		return newPosition;
-	}
-
-
-
-	/**
-	 * Sets the alignment position for the editpart
-	 * 
-	 * @param newPosition
-	 *        the new alignment position for the editpart
-	 */
-	public void setNewPosition(PrecisionRectangle newPosition) {
-		this.newPosition = newPosition;
-	}
-
 
 
 	/**
@@ -180,6 +165,7 @@ public class EditPartTree extends DefaultMutableTreeNode {
 	 *         the string representing the tree with its children
 	 */
 
+	@Override
 	public String toString() {
 		getLevel();
 		String str = ""; //$NON-NLS-1$
@@ -318,7 +304,7 @@ public class EditPartTree extends DefaultMutableTreeNode {
 	 *        the tree node (level one of a tree) where we search the first selected element
 	 * @return the selected first edit part or {@code null} if not found
 	 */
-	private EditPartTree getSelectedFirstEditPart(EditPartTree treeNode) {
+	protected EditPartTree getSelectedFirstEditPart(EditPartTree treeNode) {
 		if(treeNode.isFirstSelected) {
 			return treeNode;
 		} else if((treeNode.children != null) && (!treeNode.children.isEmpty())) {
@@ -387,55 +373,95 @@ public class EditPartTree extends DefaultMutableTreeNode {
 	}
 
 	/**
-	 * Returns the new bounds of the container
+	 * Sorts the editparts in the tree
+	 * In this tree, we have the selected editparts.
+	 * Moreover, we add the intermediate packages, even if they aren't selected.
+	 * These intermediate packages are used to determine the final position of their parents, if the reference is inside on of these packages
 	 * 
-	 * @return
-	 *         <ul>
-	 *         <li>{@link EditPartTree#diagramRect} if the container is the diagram</li>
-	 *         <li>the bounds of the container after the shift</li>
-	 *         </ul>
+	 * @param editparts
+	 *        the editparts to sort
 	 */
-	public PrecisionRectangle getNewContainerBounds() {
-		EditPartTree treeParent = (EditPartTree)this.getParent();
-		PrecisionRectangle newContainerBounds;
+	public void buildTree(List<EditPart> editparts) {
+		List<EditPart> parentsList;
+		if(editparts.size() >= 2) {
 
-		if(treeParent.getEditPart() != null) {
-			Point oldParentLocation = LayoutUtils.getAbsolutePosition(treeParent.getEditPart()).getLocation();
-			Point newParentLocation = treeParent.getNewPosition().getLocation();
+			//we build the tree
+			for(EditPart currentEP : editparts) {
+				parentsList = new ArrayList<EditPart>();
+				EditPart parent = currentEP;
+				EditPartTree grandFatherTree = this;
+				int i = 0;
+				while(parent != null) {
+					if(this.contains(parent)) {
+						grandFatherTree = this.getTree(parent);
+						break; //on sort du while
+					} else {
+						//we add all the parent in this list!
+						if(!(parent instanceof CompartmentEditPart)) {
+							if(!(parent instanceof RootEditPart)) {
+								if(!(parent.getParent() instanceof RootEditPart)) {
+									parentsList.add(i, parent);
+									i++;
+								}
+							}
+						}
+					}
+					parent = parent.getParent();
+				}
 
-			//shift between the two positions
-			Point shift = newParentLocation.getTranslated(oldParentLocation.getNegated());
 
-			// we want know the final position for the container
-			PrecisionRectangle oldContainerBounds = LayoutUtils.getAbsolutePosition(this.getEditPart().getParent());
-			newContainerBounds = new PrecisionRectangle(oldContainerBounds);
-			newContainerBounds.translate(shift);
-		} else {//treeParent is the root of the tree
-			EditPart containerEditPart = this.getEditPart().getParent();
-			if(containerEditPart instanceof CompartmentEditPart) {
-				newContainerBounds = LayoutUtils.getAbsolutePosition(containerEditPart);
-			} else {//we are on the diagram!!!
-				newContainerBounds = LayoutUtils.diagramRect;
+				//We add all the node in the rootTree
+				EditPartTree childTree = createChildrenTree(editparts, parentsList);
+
+				//we add the node to the tree
+				if(childTree != null) {
+					grandFatherTree.add(childTree);
+				}
+
 			}
+
+			//we precise which element is the reference (the last selected element)
+			this.getTree(editparts.get(editparts.size() - 1)).setIsReference(true);
+
+			/*
+			 * we precise for each branch the first selected element
+			 * it's this element (and its brothers) which are really align on the reference
+			 */
+
+			Enumeration childrenEnum = this.children();
+			while(childrenEnum.hasMoreElements()) {
+				EditPartTree currentTree = (EditPartTree)childrenEnum.nextElement();
+				for(int i = 0; i < editparts.size(); i++) {
+					if(currentTree.contains(editparts.get(i))) {
+						currentTree.getTree(editparts.get(i)).setFirstSelectedElement(true);
+						break;
+					}
+				}
+			}
+
+			postBuildOperations(editparts);
+
 		}
-		return newContainerBounds;
 	}
-
-
-
 
 	/**
-	 * Returns the absolute position for the editpart in the new container
+	 * This method is used to create an EditPartTree with {@code the List<EditPart> children}
 	 * 
+	 * @param editparts
+	 *        the selected editparts for this action
+	 * @param children
+	 *        intermediate children which could be interesting to add like node in the tree
 	 * @return
-	 *         the absolute position for the editpart in the new container. That's to say the intermediate position, when the container has moved, and
-	 *         the editpart hasn't moved
+	 *         a new EditPartTree
 	 */
-	public PrecisionRectangle getAbsolutePositionInTheNewContainerPosition() {
-		PrecisionRectangle newPosition = new PrecisionRectangle(LayoutUtils.getAbsolutePosition(getEditPart()));
-		PrecisionRectangle newContainerPosition = getNewContainerBounds();
-		PrecisionRectangle oldContainerPosition = LayoutUtils.getAbsolutePosition(getEditPart().getParent());
-		PrecisionRectangle distance = (PrecisionRectangle)newContainerPosition.translate(oldContainerPosition.getLocation().getNegated());
-		return (PrecisionRectangle)newPosition.translate(distance.getLocation());
-	}
+	protected abstract EditPartTree createChildrenTree(List<EditPart> editparts, List<EditPart> children);
+
+	/**
+	 * Action that can be done to conclude the tree construction
+	 * 
+	 * @param editparts
+	 *        an editparts list
+	 */
+	protected abstract void postBuildOperations(List<EditPart> editparts);
+
 }
