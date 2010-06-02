@@ -24,6 +24,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.wizards.Activator;
 import org.eclipse.papyrus.wizards.NewModelFilePage;
+import org.eclipse.papyrus.wizards.SelectDiagramCategoryPage;
 import org.eclipse.papyrus.wizards.SelectDiagramKindPage;
 import org.eclipse.papyrus.wizards.SelectTemplateWizardPage;
 import org.eclipse.ui.IWorkbench;
@@ -50,6 +51,9 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 	/** Select a template to initialize the model with */
 	private SelectTemplateWizardPage selectTemplateWizardPage;
 
+	/** The select diagram category page. */
+	private SelectDiagramCategoryPage selectDiagramCategoryPage;
+
 	/** The initial project name. */
 	private String initialProjectName;
 	
@@ -65,7 +69,10 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		super.init(workbench, selection);
 		setWindowTitle("New Papyrus Project");
+		selectDiagramCategoryPage = new SelectDiagramCategoryPage("Select language of the diagram");
+		myDiagramKindPage = new SelectDiagramKindPage("Select kind of diagram");
 		selectTemplateWizardPage = getSelectTemplateWizardPage();
+
 	}
 	
 	protected SelectTemplateWizardPage getSelectTemplateWizardPage() {
@@ -94,6 +101,7 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 			myNewProjectPage.setDescription("Create a New Papyrus Project");
 		}
 		
+		addPage(selectDiagramCategoryPage);
 		addPage(selectTemplateWizardPage);
 
 		myDiagramKindPage = new SelectDiagramKindPage("Select kind of diagram") {
@@ -103,6 +111,7 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 			};
 		};
 		addPage(myDiagramKindPage);
+		
 	}
 
 	/**
@@ -147,7 +156,6 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 		}
 
 		return true;
-
 		
 	}
 

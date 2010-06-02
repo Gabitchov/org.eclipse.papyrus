@@ -64,7 +64,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 *
 	 * @param pageName the page name
 	 */
-	protected SelectDiagramCategoryPage(String pageName) {
+	public SelectDiagramCategoryPage(String pageName) {
 		super(pageName);
 		setTitle("Initialization information");
 		setDescription("Select language of the diagram");
