@@ -28,6 +28,7 @@ import org.eclipse.papyrus.properties.runtime.view.constraints.ObjectTypeConstra
 import org.eclipse.papyrus.properties.runtime.view.content.AbstractContainerDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptor;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
+import org.eclipse.papyrus.properties.tabbed.customization.dialog.ContentHolder;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Tree;
@@ -118,6 +119,30 @@ public class ContainerDescriptorState extends AbstractState implements IMenuCrea
 	}
 
 	/**
+	 * Adds a Property editor controller state to the list of controller states owned by this Container descriptor state
+	 * 
+	 * @param state
+	 *        the state to add
+	 */
+	public void addPropertyEditorControllerState(ControllerDescriptorState state) {
+		controllerDescriptorStates.add(state);
+
+		changeSupport.firePropertyChange(PROPERTY_ADD_CHILD, null, controllerDescriptorStates);
+	}
+
+	/**
+	 * Removes a Property editor controller state to the list of controller states owned by this Container descriptor state
+	 * 
+	 * @param state
+	 *        the state to remove
+	 */
+	public void removePropertyEditorControllerState(ControllerDescriptorState state) {
+		controllerDescriptorStates.remove(state);
+
+		changeSupport.firePropertyChange(PROPERTY_REMOVE_CHILD, null, controllerDescriptorStates);
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
 	public List<ControllerDescriptorState> getChildren() {
@@ -170,27 +195,62 @@ public class ContainerDescriptorState extends AbstractState implements IMenuCrea
 		};
 		manager.add(removeAction);
 		manager.add(new Separator(ADD_GROUP));
-
+		Class<?> selectionClass = null;
 		if(parent instanceof Tree) {
 			Tree tree = (Tree)parent;
-			System.err.println(tree);
 			TreeItem[] items = tree.getSelection();
-			System.err.println(items);
+			if(items.length < 1) {
+				Activator.log.warn("impossible to find an element in the selection");
+				return menu;
+			}
 			TreeItem root = retrieveRoot(items[0]);
-			System.err.println(root);
-
+			if(root != null) {
+				Object rootElement = root.getData();
+				if(rootElement instanceof ContentHolder) {
+					List<ConstraintDescriptorState> constraintDescriptorStates = ((ContentHolder)rootElement).getSectionSetDescriptorState().getConstraintDescriptorStates();
+					for(ConstraintDescriptorState constraintDescriptorState : constraintDescriptorStates) {
+						IConstraintDescriptor descriptor = constraintDescriptorState.getDescriptor();
+						if(descriptor instanceof ObjectTypeConstraintDescriptor) { // check class compatibility. Should also check the other constraints...
+							selectionClass = ((ObjectTypeConstraintDescriptor)descriptor).getElementClass();
+						}
+					}
+				}
+			}
 		}
 
 		// action to add a predefined controller => must retrieve the list of predefined controllers for this element
 		// => find the correct predefined controllers ? They should meet the constraints
 		List<IPropertyEditorControllerDescriptor> predefinedDescriptors = PropertyEditorControllerService.getInstance().getAllPredefinedControllers();
 
-		for(IPropertyEditorControllerDescriptor propertyEditorControllerDescriptor : predefinedDescriptors) {
+		for(final IPropertyEditorControllerDescriptor propertyEditorControllerDescriptor : predefinedDescriptors) {
 			for(IConstraintDescriptor constraintDescriptor : propertyEditorControllerDescriptor.getConstraintDescriptors()) {
 				if(constraintDescriptor instanceof ObjectTypeConstraintDescriptor) {
 					Class<?> elementClass = ((ObjectTypeConstraintDescriptor)constraintDescriptor).getElementClass();
 					// check element class is compatible
+					if(elementClass.isAssignableFrom(selectionClass)) {
+						// build the action to add the controller
+						IAction action = new Action("Add Predefined Controller " + propertyEditorControllerDescriptor.getText(), Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/NewPredefinedController.gif")) {
 
+							/**
+							 * {@inheritDoc}
+							 */
+							@Override
+							public void run() {
+								// remove this section descriptor state from its parent
+								if(parent instanceof Tree) {
+									TreeItem[] selectedItems = ((Tree)parent).getSelection();
+									if(selectedItems.length < 1) {
+										Activator.log.warn("Impossible to find the current selection in the tree");
+										return;
+									}
+									ControllerDescriptorState state = new ControllerDescriptorState(propertyEditorControllerDescriptor);
+									ContainerDescriptorState.this.addPropertyEditorControllerState(state);
+								}
+							}
+
+						};
+						manager.appendToGroup(ADD_GROUP, action);
+					}
 				}
 			}
 		}
