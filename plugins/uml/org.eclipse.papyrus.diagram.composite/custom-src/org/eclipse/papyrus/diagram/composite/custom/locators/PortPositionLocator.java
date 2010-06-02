@@ -9,11 +9,12 @@
  *
  * Contributors:
  *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- *
+ *  Vincent Lorenzo(CEA-List) vincent.lorenzo@cea.fr - getCurrentSideOfParent()
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.composite.custom.locators;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
@@ -139,10 +140,55 @@ public class PortPositionLocator implements IBorderItemLocator {
 	 * @see org.eclipse.gmf.runtime.draw2d.ui.figures.IBorderItemLocator#getCurrentSideOfParent()
 	 * 
 	 * @return
+	 *         the position of the port around its parent. This position can be
+	 *         <ul>
+	 *         <li>{@linkplain PositionConstants#NORTH}</li>
+	 *         <li> {@linkplain PositionConstants#SOUTH}</li>
+	 *         <li> {@linkplain PositionConstants#EAST}</li>
+	 *         <li> {@linkplain PositionConstants#WEST}</li>
+	 *         <li> {@linkplain PositionConstants#NORTH_EAST}</li>
+	 *         <li> {@linkplain PositionConstants#NORTH_WEST}</li>
+	 *         <li> {@linkplain PositionConstants#SOUTH_EAST}</li>
+	 *         <li> {@linkplain PositionConstants#SOUTH_WEST}</li>
+	 *         </ul>
 	 */
 	public int getCurrentSideOfParent() {
-		// Currently unused by this locator
-		return 0;
+		int position = PositionConstants.NONE;
+
+		//we are not on EAST, not on WEST, but we are on the NORTH
+		if((constraint.x != parentFigure.getBounds().width - borderItemOffset) && (constraint.x != -this.borderItemOffset) && (constraint.y == -this.borderItemOffset)) {
+			position = PositionConstants.NORTH;
+
+			//we are not on the EAST and not on the WEST, but we are on the SOUTH			
+		} else if((constraint.x != parentFigure.getBounds().width - borderItemOffset) && (constraint.x != -this.borderItemOffset) && (constraint.y == parentFigure.getBounds().height - borderItemOffset)) {
+			position = PositionConstants.SOUTH;
+
+			//we are on the EAST, but we are not on the NORTH and not on the SOUTH
+		} else if((constraint.x == parentFigure.getBounds().width - borderItemOffset) && (constraint.y != -this.borderItemOffset) && (constraint.y != parentFigure.getBounds().height - borderItemOffset)) {
+			position = PositionConstants.EAST;
+
+			//we are on the WEST, but we are not on the on the NORTH and not on the SOUTH
+		} else if((constraint.x == -this.borderItemOffset) && (constraint.y != -this.borderItemOffset) && (constraint.y != parentFigure.getBounds().height - borderItemOffset)) {
+			position = PositionConstants.WEST;
+
+			//we are on the NORTH and on the EAST
+		} else if((constraint.x == parentFigure.getBounds().width - borderItemOffset) && (constraint.y == -this.borderItemOffset)) {
+			position = PositionConstants.NORTH_EAST;
+
+			//we are on the NORTH and on the WEST
+		} else if((constraint.x == -this.borderItemOffset) && (constraint.y == -this.borderItemOffset)) {
+			position = PositionConstants.NORTH_WEST;
+
+			//we are on the EAST and on the SOUTH
+		} else if((constraint.x == parentFigure.getBounds().width - borderItemOffset) && (constraint.y == parentFigure.getBounds().height - borderItemOffset)) {
+			position = PositionConstants.SOUTH_EAST;
+
+			//we are on the WEST and on the SOUTH
+		} else if((constraint.x == -this.borderItemOffset) && (constraint.y == parentFigure.getBounds().height - borderItemOffset)) {
+			position = PositionConstants.SOUTH_WEST;
+		}
+
+		return position;
 	}
 
 	/**
