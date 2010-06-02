@@ -5,9 +5,6 @@
    <extension-point id="modelListener" name="ModelListener" schema="schema/modelListener.exsd"/>
    <extension-point id="papyrusContentOutline" name="PapyrusContentOutline" schema="schema/contentOutline.exsd"/>
    <extension-point id="service" name="Service" schema="schema/service.exsd"/>
-   <extension-point id="loadingStrategy" name="loadingStrategy" schema="schema/loadingStrategy.exsd"/>
-   <extension-point id="loadingStrategyExtender" name="loadingStrategyExtender" schema="schema/loadingStrategyExtender.exsd"/>
-   <extension-point id="currentStrategyChooser" name="Current Strategy Chooser" schema="schema/currentStrategyChooser.exsd"/>
    <extension-point id="model" name="plugin.xml.ModelName" schema="schema/model.exsd"/>
    <extension
          point="org.eclipse.ui.menus">
@@ -160,24 +157,6 @@
             class="org.eclipse.papyrus.sasheditor.contentprovider.di.commands.CloseOtherDiagramsCommand"
             commandId="org.eclipse.papyrus.core.commands.closeothersdiagrams">
       </handler>
-   </extension>
-   <extension
-         point="org.eclipse.papyrus.core.loadingStrategy">
-      <loadingStrategy
-            description="Load all the needed resources"
-            id="0"
-            strategy="org.eclipse.papyrus.core.resourceloading.strategies.LoadAllResources">
-      </loadingStrategy>
-      <loadingStrategy
-            description="Load the addtionnal resources (profile and pathmap). Controlled resources are not loaded"
-            id="1"
-            strategy="org.eclipse.papyrus.core.resourceloading.strategies.LoadCurrentResource">
-      </loadingStrategy>
-      <loadingStrategy
-            description="Load the additionnal resources (profile and pathmap) and the needed controlled resources"
-            id="2"
-            strategy="org.eclipse.papyrus.core.resourceloading.strategies.LoadControlledResources">
-      </loadingStrategy>
    </extension>
    <extension
          point="org.eclipse.papyrus.core.model">

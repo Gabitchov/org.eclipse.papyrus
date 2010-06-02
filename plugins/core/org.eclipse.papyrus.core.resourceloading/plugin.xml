@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="loadingStrategy" name="loadingStrategy" schema="schema/loadingStrategy.exsd"/>
+   <extension-point id="loadingStrategyExtender" name="loadingStrategyExtender" schema="schema/loadingStrategyExtender.exsd"/>
+   <extension-point id="currentStrategyChooser" name="Current Strategy Chooser" schema="schema/currentStrategyChooser.exsd"/>
    <extension
          point="org.eclipse.papyrus.core.service">
       <serviceFactory
@@ -26,6 +29,24 @@
             classname="org.eclipse.papyrus.core.resourceloading.caches.TypeCacheInitializer"
             description="Adapter attached to the ModelSet (aka ResourceSet)">
       </modelSetSnippet>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.core.resourceloading.loadingStrategy">
+      <loadingStrategy
+            description="Load all the needed resources"
+            id="0"
+            strategy="org.eclipse.papyrus.core.resourceloading.strategies.LoadAllResources">
+      </loadingStrategy>
+      <loadingStrategy
+            description="Load the addtionnal resources (profile and pathmap). Controlled resources are not loaded"
+            id="1"
+            strategy="org.eclipse.papyrus.core.resourceloading.strategies.LoadCurrentResource">
+      </loadingStrategy>
+      <loadingStrategy
+            description="Load the additionnal resources (profile and pathmap) and the needed controlled resources"
+            id="2"
+            strategy="org.eclipse.papyrus.core.resourceloading.strategies.LoadControlledResources">
+      </loadingStrategy>
    </extension>
 
 </plugin>
