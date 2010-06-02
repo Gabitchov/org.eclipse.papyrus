@@ -7,6 +7,14 @@
       </appinfo>
       <documentation>
          This extension point allows to register group types and their relationship with contained objects, in order to let the group framework handle the graphical parent reassignation.
+
+Diagrams using this extension point must register their diagram part to the group framework.
+This can be achieved calling the code :
+		//configure group framework
+		EditingDomainRegisteringService.addGroupFrameworkForEditingDomain(getEditingDomain(), getDiagramEditPart());
+at the end of the initializeGraphicalViewer() method,
+in the class org.eclipse.papyrus.diagram.***.Uml***DiagramForMultiEditor extending org.eclipse.papyrus.diagram.***.part.UMLDiagramEditor, which itself extends org.eclipse.papyrus.diagram.common.part.UmlGmfDiagramEditor.
+
       </documentation>
    </annotation>
 
