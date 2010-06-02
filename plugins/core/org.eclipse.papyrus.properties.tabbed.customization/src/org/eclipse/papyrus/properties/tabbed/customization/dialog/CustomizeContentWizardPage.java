@@ -268,7 +268,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 		// content tree and viewer on this tree
 		Tree previewTree = new Tree(previewAreaComposite, SWT.BORDER);
 		previewTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		TreeViewer contentViewer = new TreeViewer(previewTree);
+		// TreeViewer contentViewer = new TreeViewer(previewTree);
 	}
 
 	/**

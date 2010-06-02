@@ -29,6 +29,7 @@ import org.eclipse.papyrus.properties.tabbed.customization.state.SectionSetDescr
 /**
  * Content Provider for the metamodel viewer. It will display the metaclass elements, and the section sets that are available for these elements
  */
+@SuppressWarnings("restriction")
 public class MetamodelContentProvider extends CustomizableModelContentProvider {
 
 	/** list of available section sets */

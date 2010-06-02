@@ -52,8 +52,7 @@ public class CustomizePropertyViewCommandHandler extends AbstractHandler {
 			};
 			wd.create();
 			// wd.getShell().setSize(640, 600);
-			int result = wd.open();
-
+			wd.open();
 		} else {
 			Activator.log.error("impossible to find a shell to open the message dialog", null);
 		}

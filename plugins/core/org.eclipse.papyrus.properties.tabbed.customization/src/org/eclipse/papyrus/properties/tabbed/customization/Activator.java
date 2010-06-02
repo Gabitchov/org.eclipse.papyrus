@@ -16,6 +16,7 @@ import org.osgi.framework.BundleContext;
 /**
  * The activator class controls the plug-in life cycle
  */
+@SuppressWarnings("restriction")
 public class Activator extends AbstractUIPlugin {
 
 	/** plugin ID */
@@ -77,10 +78,14 @@ public class Activator extends AbstractUIPlugin {
 		return this.fCustomizationManager;
 	}
 
+	/**
+	 * Initializes the customization manager for this plugin.
+	 * 
+	 * @param customizationManager
+	 *        the customization manager to initialize
+	 */
 	private void init(final CustomizationManager customizationManager) {
 		// the appearance can be customized here:
-		// customizationManager.setShowEmptyLinks(true);
-		// customizationManager.setShowAttributes(true);
 		try {
 			// load customizations defined as default through the customization
 			// extension
