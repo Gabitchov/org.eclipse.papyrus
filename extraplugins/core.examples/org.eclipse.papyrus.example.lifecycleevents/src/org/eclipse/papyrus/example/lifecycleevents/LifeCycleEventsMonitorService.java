@@ -24,6 +24,10 @@ import org.eclipse.papyrus.core.services.ServicesRegistry;
 public class LifeCycleEventsMonitorService implements IService {
 
 	protected ServicesRegistry servicesRegistry;
+	/**
+	 * The object firing event about the Editor lifecycle.
+	 */
+	protected ILifeCycleEventsProvider eventProvider;
 	
 	/**
 	 * Listener on aboutToSave events.
@@ -112,7 +116,7 @@ public class LifeCycleEventsMonitorService implements IService {
 	 */
 	private void activate() {
 		try {
-			ILifeCycleEventsProvider eventProvider = servicesRegistry.getService(ILifeCycleEventsProvider.class);
+			eventProvider = servicesRegistry.getService(ILifeCycleEventsProvider.class);
 			eventProvider.addAboutToDoSaveListener(aboutToSaveListener);
 			eventProvider.addDoSaveListener(saveListener);
 			eventProvider.addPostDoSaveListener(postSaveListener);
@@ -128,16 +132,9 @@ public class LifeCycleEventsMonitorService implements IService {
 	 * Deactivate listeners
 	 */
 	private void deactivate() {
-		try {
-			ILifeCycleEventsProvider eventProvider = servicesRegistry.getService(ILifeCycleEventsProvider.class);
 			eventProvider.removeAboutToDoSaveListener(aboutToSaveListener);
 			eventProvider.removeDoSaveListener(saveListener);
 			eventProvider.removePostDoSaveListener(postSaveListener);
-		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		// TODO Auto-generated method stub
 		
 	}
 
