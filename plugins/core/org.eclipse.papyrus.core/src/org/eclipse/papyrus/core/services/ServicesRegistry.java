@@ -386,7 +386,7 @@ public class ServicesRegistry {
 
 		// Get all roots : LAZY and START
 		Collection<ServiceStartupEntry> roots = getServiceRoots(addedServices.values(), map);
-		showServices(" Roots:", roots);
+//		showServices(" Roots:", roots);
 		// Detect cycles
 		checkCycle(roots, map);
 		// Retain only services with startupkind = START
@@ -394,10 +394,9 @@ public class ServicesRegistry {
 		// 
 		List<ServiceStartupEntry> toStart = buildTopologicalListOfServicesToStart(roots, map);
 
-		//		if( log.isLoggable(Level.FINE))
-		//		{
-		showServices(" Services to start:", toStart);
-		//		}
+		if(log.isLoggable(Level.FINE)) {
+			showServices(" Services to start:", toStart);
+		}
 
 		// Create an object to collect errors if any.
 		ServiceMultiException errors = new ServiceMultiException();

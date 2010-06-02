@@ -322,4 +322,21 @@ public class EditorUtils {
 		return null;
 	}
 
+	/**
+	 * Gets the transactional editing domain.
+	 * 
+	 * @param servicesRegistry
+	 * @return
+	 */
+	public static TransactionalEditingDomain getTransactionalEditingDomain(ServicesRegistry registry) {
+		try {
+			return registry.getService(TransactionalEditingDomain.class);
+		} catch (IllegalStateException e) {
+			// Registry can't be found, do nothing.
+		} catch (ServiceException e) {
+			log.error(e);
+		}
+		return null;
+	}
+
 }
