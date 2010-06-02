@@ -45,7 +45,6 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
@@ -53,7 +52,6 @@ import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.profile.custom.helper.ClassLinkMappingHelper;
-import org.eclipse.papyrus.diagram.profile.custom.helper.MetaclassHelper;
 import org.eclipse.papyrus.diagram.profile.custom.helper.MultiAssociationHelper;
 import org.eclipse.papyrus.diagram.profile.custom.helper.MultiDependencyHelper;
 import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationNodeEditPart;
@@ -327,6 +325,7 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	protected Command dropElementImport(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
 		if(semanticLink instanceof ElementImport) {
 			if(((ElementImport)semanticLink).getImportedElement() instanceof Class) {
+
 				Class metaclass = (Class)((ElementImport)semanticLink).getImportedElement();
 
 				/**
@@ -348,8 +347,7 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 				if(containerView.get(0).equals(getHost().getModel())) {//we are on the diagram
 					return new ICommandProxy(getDefaultDropNodeCommand(MetaclassEditPart.VISUAL_ID, dropRequest.getLocation(), metaclass));
 				} else {
-					Location newLocation = MetaclassHelper.getMetaclassLocation(dropRequest.getLocation(), container);
-					return new ICommandProxy(getDefaultDropNodeCommand(MetaclassEditPartCN.VISUAL_ID, new Point(newLocation.getX(), newLocation.getY()), metaclass));
+					return new ICommandProxy(getDefaultDropNodeCommand(MetaclassEditPartCN.VISUAL_ID, dropRequest.getLocation(), metaclass));
 				}
 
 			}

@@ -32,7 +32,6 @@ import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.profile.custom.helper.MetaclassHelper;
 import org.eclipse.papyrus.diagram.profile.custom.requests.CustomCreateViewRequest;
 import org.eclipse.papyrus.diagram.profile.edit.parts.MetaclassEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.MetaclassEditPartCN;
@@ -71,6 +70,7 @@ public class CustomCreateCommand extends org.eclipse.gmf.runtime.diagram.ui.comm
 
 	public CustomCreateCommand(TransactionalEditingDomain editingDomain, CustomCreateViewRequest.ViewDescriptor descriptor, View containerView, Point location) {
 
+
 		// /!\ Warning
 		//The new 2nd parameter is unused. It's here only to be in conformity with the superclass's constructor!
 		super(editingDomain, new CreateViewRequest.ViewDescriptor(descriptor.getElementAdapter(), descriptor.getViewKind(), descriptor.getSemanticHint(), true, descriptor.getPreferencesHint()), containerView);
@@ -82,7 +82,6 @@ public class CustomCreateCommand extends org.eclipse.gmf.runtime.diagram.ui.comm
 		setLocation(location);
 		// make sure the return object is available even before executing/undoing/redoing
 		setResult(CommandResult.newOKCommandResult(viewDescriptor));
-
 	}
 
 
@@ -119,19 +118,14 @@ public class CustomCreateCommand extends org.eclipse.gmf.runtime.diagram.ui.comm
 			adapter2 = (CreateElementRequestAdapter)adapterIterator2.next();
 			CreateElementRequest req = (CreateElementRequest)adapter2.getAdapter(CreateElementRequest.class);
 			EObject container = req.getContainer();
-			//obtain the default location
-
-			Location metaclassLocation = MetaclassHelper.getMetaclassLocation(getLocation(), container);
-			//------------- fin du test
-			//Location metaclassLocation = getMetaclassLocation();
 
 			//creation of the nodes!
 			while(adapterIterator.hasNext()) {
 				CreateElementRequestAdapter adapter = (CreateElementRequestAdapter)adapterIterator.next();
 				Node node = viewProvider.createNode(adapter, containerView, myViewDescriptor.getSemanticHint(), myViewDescriptor.getIndex(), myViewDescriptor.isPersisted(), myViewDescriptor.getPreferencesHint());
 				Location notationLocation = NotationFactory.eINSTANCE.createLocation();
-				notationLocation.setX(metaclassLocation.getX());
-				notationLocation.setY(metaclassLocation.getY() + iterNbAddedMetaclasses++ * HEIGHT_BETWEEN_TWO_METACLASS);
+				notationLocation.setX(location.x);
+				notationLocation.setY(location.y + iterNbAddedMetaclasses++ * HEIGHT_BETWEEN_TWO_METACLASS);
 				node.setLayoutConstraint(notationLocation);
 			}
 			return CommandResult.newOKCommandResult(myViewDescriptor);

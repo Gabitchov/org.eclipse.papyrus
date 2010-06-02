@@ -18,7 +18,6 @@ package org.eclipse.papyrus.diagram.profile.custom.helper;
 
 import java.util.List;
 
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
@@ -27,11 +26,8 @@ import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
-import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.papyrus.diagram.common.helper.ElementHelper;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
@@ -48,59 +44,6 @@ import org.eclipse.uml2.uml.Profile;
  * 
  */
 public class MetaclassHelper extends ElementHelper {
-
-
-	/** height of a title package, approximatively */
-	final static private int HEIGHT_TITLE_PROFILE = 35;
-
-	/**
-	 * the location of the metaclass depends of the container
-	 * if the container is the diagram, it's OK
-	 * 
-	 * if not, by default, the editor takes the mouse location (x,y) in the diagram
-	 * and put the metaclass to this location with changing the (0,0), which is now the left corner of the profile!
-	 * 
-	 * this method calculate the good location
-	 * 
-	 * @return the location
-	 */
-
-	static public Location getMetaclassLocation(Point locationRequest, EObject container) {
-		// the location
-		Location notationLocation = NotationFactory.eINSTANCE.createLocation();
-		notationLocation.setX(locationRequest.x);
-		notationLocation.setY(locationRequest.y);
-
-		while(container != null) {
-			Location tmp = getParentLocation(container);
-			if(tmp != null) {
-				notationLocation.setX(notationLocation.getX() - tmp.getX());
-				notationLocation.setY(notationLocation.getY() - (tmp.getY() + HEIGHT_TITLE_PROFILE));
-			}
-			container = container.eContainer();
-		}
-		return notationLocation;
-	}
-
-	/**
-	 * 
-	 * @param container
-	 * @return the location of the container if it's a node
-	 *         null if it is not
-	 */
-	static private Location getParentLocation(EObject container) {
-
-		Location notationLocation = NotationFactory.eINSTANCE.createLocation();
-		List<?> view = DiagramEditPartsUtil.getEObjectViews(container);
-		if(view.get(0) instanceof Node) {
-			Bounds constraints = (Bounds)((Node)view.get(0)).getLayoutConstraint();
-			notationLocation.setX(constraints.getX());
-			notationLocation.setY(constraints.getY());
-			return notationLocation;
-		}
-		return null;
-
-	}
 
 	/**
 	 * 

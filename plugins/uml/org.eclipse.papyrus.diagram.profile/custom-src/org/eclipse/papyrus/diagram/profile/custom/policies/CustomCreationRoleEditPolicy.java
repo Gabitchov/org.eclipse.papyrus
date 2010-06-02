@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -35,6 +36,7 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GroupEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
@@ -211,6 +213,14 @@ public class CustomCreationRoleEditPolicy extends org.eclipse.gmf.runtime.diagra
 		if(understandsRequest(request)) {
 			if(request instanceof CreateViewAndElementRequest) {
 				if(metaclassesEP_ID_List.contains(((CreateViewAndElementRequest)request).getViewDescriptors().get(0).getSemanticHint())) {
+
+					//get the correct location for the new metaclass
+					Point location = ((CreateViewAndElementRequest)request).getLocation().getCopy();
+					((GraphicalEditPart)getHost()).getContentPane().translateToRelative(location);
+					((GraphicalEditPart)getHost()).getContentPane().translateFromParent(location);
+					location.translate(((GraphicalEditPart)getHost()).getContentPane().getClientArea().getLocation().getNegated());
+					((CreateViewAndElementRequest)request).setLocation(location);
+
 					return getCreateElementAndViewCommand((CreateViewAndElementRequest)request);
 				}
 			}
