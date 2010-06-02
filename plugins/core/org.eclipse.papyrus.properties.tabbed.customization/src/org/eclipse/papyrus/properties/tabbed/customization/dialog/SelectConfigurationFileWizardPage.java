@@ -420,6 +420,17 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 		/**
 		 * {@inheritDoc}
 		 */
+		public String getPluginId() {
+			if(isValid(pluginIdText)) {
+				return pluginIdText.getText();
+			}
+			Activator.log.error("impossible to read plugin Id from the text area", null);
+			return "";
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
 		public Document generateInitialContent() {
 			DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 			documentBuilderFactory.setNamespaceAware(true);
@@ -593,6 +604,8 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 		}
 
 	}
+
+
 
 	/**
 	 * Area for the "modify an existing configuration" in the dialog

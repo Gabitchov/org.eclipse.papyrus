@@ -59,6 +59,8 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 
 /**
@@ -150,7 +152,67 @@ public class CustomizeContentWizardPage extends WizardPage {
 	 * @return the final content for this page
 	 */
 	public Document getFinalContent() {
-		return this.document;
+
+		return createFinalDocument();
+	}
+
+	/**
+	 * Creates the final document, serializing the existing section set descriptor states
+	 * 
+	 * @return the final document created
+	 */
+	protected Document createFinalDocument() {
+		// remove existing elements on the current document
+		Node topNode = retrieveTopNode(document);
+
+		if(topNode == null) {
+			return document;
+		}
+
+		removeAllExistingSectionSetDescriptors(topNode);
+
+		// add all new section set descriptors using states 
+		for(SectionSetDescriptorState state : sectionSetDescriptorStates) {
+			topNode.appendChild(state.generateNode());
+		}
+
+		return document;
+	}
+
+	/**
+	 * Retrieves the top node for this document
+	 * 
+	 * @param document
+	 *        the document to look in
+	 */
+	protected Node retrieveTopNode(Document document) {
+		NodeList childNodes = document.getChildNodes();
+		for(int i = 0; i < childNodes.getLength(); i++) {
+			Node childNode = childNodes.item(i);
+			// be sure child node is the propertyTabView node
+			if("propertyTabView".equals(childNode.getNodeName())) {
+				return childNode;
+			}
+		}
+		Activator.log.error("no propertyTabView node was found for this document", null);
+		return null;
+	}
+
+	/**
+	 * Removes all section set descriptors child of the specified node
+	 * 
+	 * @param topNode
+	 *        the node that contains the element to remove
+	 */
+	protected void removeAllExistingSectionSetDescriptors(Node topNode) {
+		NodeList children = topNode.getChildNodes();
+		for(int i = 0; i < children.getLength(); i++) {
+			Node child = children.item(i);
+			if("sectionSet".equals(child.getNodeName())) {
+				topNode.removeChild(child);
+				child = null;
+			}
+		}
 	}
 
 	/**
