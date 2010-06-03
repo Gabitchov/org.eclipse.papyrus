@@ -22,8 +22,8 @@ import org.eclipse.papyrus.core.utils.FilteredCollectionView;
 import org.eclipse.papyrus.core.utils.IFilter;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.ObjectTypeConstraintDescriptor;
+import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
-import org.eclipse.papyrus.properties.tabbed.customization.state.SectionSetDescriptorState;
 
 
 /**

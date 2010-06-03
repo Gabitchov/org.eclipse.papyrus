@@ -124,4 +124,11 @@ public class SectionSetDescriptor implements IConfigurableDescriptor {
 	public Image getImage() {
 		return Activator.getImage("/icons/SectionSet.gif");
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public SectionSetDescriptorState createState() {
+		return new SectionSetDescriptorState(this);
+	}
 }

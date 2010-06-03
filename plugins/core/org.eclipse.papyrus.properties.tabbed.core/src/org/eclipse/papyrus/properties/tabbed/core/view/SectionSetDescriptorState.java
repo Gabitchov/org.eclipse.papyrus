@@ -9,7 +9,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.properties.tabbed.customization.state;
+package org.eclipse.papyrus.properties.tabbed.core.view;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -22,8 +22,6 @@ import org.eclipse.papyrus.properties.runtime.view.constraints.AppliedStereotype
 import org.eclipse.papyrus.properties.runtime.view.constraints.ConstraintDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.ObjectTypeConstraintDescriptor;
-import org.eclipse.papyrus.properties.tabbed.core.view.DynamicSectionDescriptor;
-import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptor;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -69,13 +67,13 @@ public class SectionSetDescriptorState extends AbstractState {
 
 		// retrieve and build the states for the children sections
 		for(DynamicSectionDescriptor abstractSectionDescriptor : sectionSetDescriptor.getSectionDescriptors()) {
-			SectionDescriptorState sectionState = new SectionDescriptorState(abstractSectionDescriptor);
+			SectionDescriptorState sectionState = abstractSectionDescriptor.createState();
 			sectionDescriptorStates.add(sectionState);
 		}
 
 		// retrieve and build the states for the children sections
 		for(IConstraintDescriptor constraintDescriptor : sectionSetDescriptor.getConstraintDescriptors()) {
-			ConstraintDescriptorState constraintState = ConstraintDescriptorState.createState(constraintDescriptor);
+			ConstraintDescriptorState constraintState = constraintDescriptor.createState();
 			constraintDescriptorStates.add(constraintState);
 		}
 		// register change support
@@ -201,6 +199,9 @@ public class SectionSetDescriptorState extends AbstractState {
 	/**
 	 * Serializes this section set descriptor state
 	 * 
+	 * @param document
+	 *        document used to create XML nodes
+	 * 
 	 * @return the node result of the parsing of this state
 	 */
 	public Node generateNode(Document document) {
@@ -218,7 +219,8 @@ public class SectionSetDescriptorState extends AbstractState {
 
 		// generate for section
 		for(SectionDescriptorState sectionState : getSectionDescriptorStates()) {
-			// FIXME generate the section
+			Node node = sectionState.generateNode(document);
+			contextNode.appendChild(node);
 		}
 		sectionSetDescriptorNode.appendChild(contextNode);
 

@@ -109,4 +109,11 @@ public class BeanPropertyEditorControllerDescriptor implements IPropertyEditorCo
 		return constraints;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public ControllerDescriptorState createState() {
+		return new ControllerDescriptorState(this);
+	}
+
 }

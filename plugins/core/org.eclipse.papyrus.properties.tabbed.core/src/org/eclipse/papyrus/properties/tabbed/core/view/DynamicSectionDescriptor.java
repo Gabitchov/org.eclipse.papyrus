@@ -61,10 +61,10 @@ public class DynamicSectionDescriptor extends AbstractSectionDescriptor implemen
 	protected final List<IConstraintDescriptor> constraints;
 
 	/** size of selection */
-	protected int selectionSize;
+	protected final int selectionSize;
 
 	/** object adapter id */
-	protected String adapterId;
+	protected final String adapterId;
 
 	/** list of replaced ids */
 	protected final List<String> replacedSectionIds;
@@ -106,6 +106,15 @@ public class DynamicSectionDescriptor extends AbstractSectionDescriptor implemen
 	 */
 	public String getId() {
 		return id;
+	}
+
+	/**
+	 * Returns the adapterId for this section descriptor
+	 * 
+	 * @return the adapterId for this section descriptor
+	 */
+	public String getAdapterId() {
+		return adapterId;
 	}
 
 	/**
@@ -325,5 +334,12 @@ public class DynamicSectionDescriptor extends AbstractSectionDescriptor implemen
 	 */
 	public Image getImage() {
 		return org.eclipse.papyrus.properties.tabbed.core.Activator.getImage("/icons/Section.gif");
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public SectionDescriptorState createState() {
+		return new SectionDescriptorState(this);
 	}
 }

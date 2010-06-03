@@ -82,4 +82,11 @@ public class FragmentDescriptor extends AbstractConstrainedDescriptor {
 		return Activator.getImage("/icons/Fragment.gif");
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public FragmentDescriptorState createState() {
+		return new FragmentDescriptorState(this);
+	}
+
 }

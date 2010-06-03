@@ -3,7 +3,7 @@
 	<dialog id="ControllerDescriptorEditorDialog"><!-- Dialog for single controller descriptor state -->
 		<context enablesFor="1">
 			<elementClass
-				name="org.eclipse.papyrus.properties.tabbed.customization.state.ControllerDescriptorState">
+				name="org.eclipse.papyrus.properties.runtime.controller.descriptor.ControllerDescriptorState">
 			</elementClass>
 		</context>
 		<title>
@@ -15,7 +15,7 @@
 		<content>
 			<fragment id="fragment_single_ControllerDescriptorState">	<!-- fragment for controller descriptor state -->
 				<context enablesFor="1">
-					<elementClass name="org.eclipse.papyrus.properties.tabbed.customization.state.ControllerDescriptorState"></elementClass>
+					<elementClass name="org.eclipse.papyrus.properties.runtime.controller.descriptor.ControllerDescriptorState"></elementClass>
 				</context>
 				<content>
 					<container layout="Grid" columns="1" sameSize="false">
@@ -35,7 +35,7 @@
 	<dialog id="SectionDescriptorStateDialog"><!-- Dialog for single section descriptor state -->
 		<context enablesFor="1">
 			<elementClass
-				name="org.eclipse.papyrus.properties.tabbed.customization.state.SectionDescriptorState">
+				name="org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState">
 			</elementClass>
 		</context>
 		<title>
@@ -47,7 +47,7 @@
 		<content>
 			<fragment id="fragment_single_SectionDescriptorState">	<!-- fragment for controller descriptor state -->
 				<context enablesFor="1">
-					<elementClass name="org.eclipse.papyrus.properties.tabbed.customization.state.SectionDescriptorState"/>
+					<elementClass name="org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState"/>
 				</context>
 				<content>
 					<container layout="Grid" columns="1" sameSize="false">

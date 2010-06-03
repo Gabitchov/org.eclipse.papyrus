@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
-import org.eclipse.jface.action.IMenuCreator;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -31,14 +30,23 @@ import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.properties.runtime.controller.descriptor.ControllerDescriptorState;
 import org.eclipse.papyrus.properties.runtime.dialogs.PropertyDialog;
 import org.eclipse.papyrus.properties.runtime.state.IState;
 import org.eclipse.papyrus.properties.runtime.view.DialogDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
 import org.eclipse.papyrus.properties.runtime.view.XMLParseException;
+import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.core.view.PropertyServiceUtil;
+import org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState;
+import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
-import org.eclipse.papyrus.properties.tabbed.customization.state.SectionSetDescriptorState;
+import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.ContainerMenuCreator;
+import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.ContentHolderMenuCreator;
+import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.ControllerMenuCreator;
+import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.FragmentMenuCreator;
+import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.SectionMenuCreator;
 import org.eclipse.papyrus.properties.tabbed.customization.state.StatePropertyTabViewProviderParser;
 import org.eclipse.papyrus.umlutils.PackageUtil;
 import org.eclipse.swt.SWT;
@@ -282,8 +290,21 @@ public class CustomizeContentWizardPage extends WizardPage {
 				}
 
 				Object selectedObject = selection.getFirstElement();
-				if(selectedObject instanceof IMenuCreator) {
-					Menu menu = ((IMenuCreator)selectedObject).getMenu(configurationViewer.getTree());
+				Menu menu = null;
+				// awful code, should delegate to each state which menu should be created
+				if(selectedObject instanceof SectionDescriptorState) {
+					menu = new SectionMenuCreator(((SectionDescriptorState)selectedObject)).getMenu(configurationViewer.getTree());
+				} else if(selectedObject instanceof FragmentDescriptorState) {
+					menu = new FragmentMenuCreator(((FragmentDescriptorState)selectedObject)).getMenu(configurationViewer.getTree());
+				} else if(selectedObject instanceof ContainerDescriptorState) {
+					menu = new ContainerMenuCreator(((ContainerDescriptorState)selectedObject)).getMenu(configurationViewer.getTree());
+				} else if(selectedObject instanceof ControllerDescriptorState) {
+					menu = new ControllerMenuCreator(((ControllerDescriptorState)selectedObject)).getMenu(configurationViewer.getTree());
+				} else if(selectedObject instanceof ContentHolder) {
+					menu = new ContentHolderMenuCreator(((ContentHolder)selectedObject)).getMenu(configurationViewer.getTree());
+				}
+
+				if(menu != null) {
 					// creates the menu, depending on the selection
 					menu.setVisible(true);
 				}

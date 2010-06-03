@@ -50,4 +50,9 @@ public interface IPropertyEditorControllerDescriptor extends IConfigurableDescri
 	 * @return the list of constraints for this descriptor
 	 */
 	public List<IConstraintDescriptor> getConstraintDescriptors();
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public ControllerDescriptorState createState();
 }

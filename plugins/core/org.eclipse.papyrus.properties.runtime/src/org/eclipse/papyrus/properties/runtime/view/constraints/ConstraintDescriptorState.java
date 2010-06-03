@@ -39,17 +39,6 @@ public abstract class ConstraintDescriptorState extends AbstractState {
 	}
 
 	/**
-	 * Creates the state for the given descriptor. It delegates to the descriptor itself the creation of the state
-	 * 
-	 * @param constraintDescriptor
-	 *        the constraint descriptor to manage
-	 * @return the created state
-	 */
-	public static ConstraintDescriptorState createState(IConstraintDescriptor constraintDescriptor) {
-		return constraintDescriptor.createState();
-	}
-
-	/**
 	 * {@inheritDoc}
 	 */
 	public IConstraintDescriptor getDescriptor() {

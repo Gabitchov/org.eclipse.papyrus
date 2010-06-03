@@ -237,4 +237,11 @@ public class ContainerDescriptor extends AbstractContainerDescriptor {
 	public Image getImage() {
 		return Activator.getImage("/icons/Container.gif");
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public ContainerDescriptorState createState() {
+		return new ContainerDescriptorState(this);
+	}
 }

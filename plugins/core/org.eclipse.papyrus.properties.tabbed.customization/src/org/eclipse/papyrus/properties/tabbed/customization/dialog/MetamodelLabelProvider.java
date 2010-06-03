@@ -13,8 +13,8 @@ package org.eclipse.papyrus.properties.tabbed.customization.dialog;
 
 import org.eclipse.gmt.modisco.infra.browser.uicore.CustomizableModelLabelProvider;
 import org.eclipse.papyrus.properties.tabbed.core.view.DynamicSectionDescriptor;
+import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
-import org.eclipse.papyrus.properties.tabbed.customization.state.SectionSetDescriptorState;
 import org.eclipse.swt.graphics.Image;
 
 

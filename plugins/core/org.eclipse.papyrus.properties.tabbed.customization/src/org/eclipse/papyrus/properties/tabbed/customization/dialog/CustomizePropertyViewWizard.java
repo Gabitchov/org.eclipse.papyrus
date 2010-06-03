@@ -89,10 +89,10 @@ public class CustomizePropertyViewWizard extends Wizard {
 					return Status.OK_STATUS;
 				} catch (TransformerException e) {
 					Activator.log.error(e);
-					return new Status(Status.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage());
+					return new Status(Status.ERROR, Activator.ID, e.getLocalizedMessage());
 				} catch (IOException e) {
 					Activator.log.error(e);
-					return new Status(Status.ERROR, Activator.PLUGIN_ID, e.getLocalizedMessage());
+					return new Status(Status.ERROR, Activator.ID, e.getLocalizedMessage());
 				}
 
 			}

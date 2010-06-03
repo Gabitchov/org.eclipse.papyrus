@@ -21,11 +21,11 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.properties.runtime.state.AbstractState;
 import org.eclipse.papyrus.properties.runtime.state.ITraversableModelElement;
+import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptorState;
+import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptorState;
+import org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState;
+import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
-import org.eclipse.papyrus.properties.tabbed.customization.state.ContainerDescriptorState;
-import org.eclipse.papyrus.properties.tabbed.customization.state.FragmentDescriptorState;
-import org.eclipse.papyrus.properties.tabbed.customization.state.SectionDescriptorState;
-import org.eclipse.papyrus.properties.tabbed.customization.state.SectionSetDescriptorState;
 import org.eclipse.swt.graphics.Image;
 
 
@@ -51,7 +51,7 @@ public class ConfigurationContentProvider implements ITreeContentProvider, Prope
 	 */
 	public Object[] getElements(Object inputElement) {
 		if(inputElement instanceof SectionSetDescriptorState) {
-			return new Object[]{ new ConstraintHolder(sectionSetDescriptorState), new ContentHolder(sectionSetDescriptorState, fViewer) };
+			return new Object[]{ new ConstraintHolder(sectionSetDescriptorState), new ContentHolder(sectionSetDescriptorState) };
 		}
 		return new Object[0];
 	}

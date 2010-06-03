@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.view;
 
+import org.eclipse.papyrus.properties.runtime.state.IState;
 import org.eclipse.swt.graphics.Image;
 
 
@@ -32,5 +33,10 @@ public interface IConfigurableDescriptor {
 	 * @return the image displayed by the descriptor
 	 */
 	public Image getImage();
+
+	/**
+	 * Creates a state on this descriptor, in order to be able to customize it.
+	 */
+	public IState createState();
 
 }

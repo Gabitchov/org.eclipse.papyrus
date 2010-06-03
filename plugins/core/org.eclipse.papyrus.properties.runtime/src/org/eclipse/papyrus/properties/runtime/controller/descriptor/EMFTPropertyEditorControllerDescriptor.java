@@ -125,4 +125,11 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 		return "EMFTController for: " + getFeatureNameToEdit();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public ControllerDescriptorState createState() {
+		return new ControllerDescriptorState(this);
+	}
+
 }

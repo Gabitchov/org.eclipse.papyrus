@@ -9,26 +9,22 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.properties.tabbed.customization.state;
+package org.eclipse.papyrus.properties.tabbed.customization.dialog.actions;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.action.IMenuCreator;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorControllerService;
+import org.eclipse.papyrus.properties.runtime.controller.descriptor.ControllerDescriptorState;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
-import org.eclipse.papyrus.properties.runtime.state.AbstractState;
+import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.constraints.ConstraintDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.ObjectTypeConstraintDescriptor;
-import org.eclipse.papyrus.properties.runtime.view.content.AbstractContainerDescriptor;
-import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.ContentHolder;
 import org.eclipse.swt.widgets.Control;
@@ -38,118 +34,26 @@ import org.eclipse.swt.widgets.TreeItem;
 
 
 /**
- * State for the container descriptors. this is used to do some customization on elements
+ * Menu creator for {@link ContainerDescriptorState}
  */
-public class ContainerDescriptorState extends AbstractState implements IMenuCreator {
+public class ContainerMenuCreator extends AbstractMenuCreator {
 
-	/** descriptor managed by this state */
-	protected AbstractContainerDescriptor descriptor;
-
-	/** list of controllers managed by this state */
-	protected final List<ControllerDescriptorState> controllerDescriptorStates = new ArrayList<ControllerDescriptorState>();
-
-	/** change support for this bean */
-	private PropertyChangeSupport changeSupport;
+	/** element on which the menu should be created */
+	private final ContainerDescriptorState containerDescriptorState;
 
 	/** menu manager used to create elements */
 	private MenuManager manager;
 
-
 	/**
-	 * Creates a new ContainerDescriptorState.
+	 * Creates a new ContainerMenuCreator.
 	 * 
-	 * @param descriptor
-	 *        the descriptor managed by this state
+	 * @param containerDescriptorState
+	 *        the state on which this menu is created
 	 */
-	public ContainerDescriptorState(ContainerDescriptor descriptor) {
-		this.descriptor = descriptor;
-
-		// read the current list of controller descriptor managed by this state
-		List<IPropertyEditorControllerDescriptor> controllerDescriptors = descriptor.getUnparsedControllerDescriptors();
-		for(IPropertyEditorControllerDescriptor controllerDescriptor : controllerDescriptors) {
-			controllerDescriptorStates.add(new ControllerDescriptorState(controllerDescriptor));
-		}
-		// register change support
-		changeSupport = new PropertyChangeSupport(this);
+	public ContainerMenuCreator(ContainerDescriptorState containerDescriptorState) {
+		this.containerDescriptorState = containerDescriptorState;
 	}
 
-	/**
-	 * Returns the descriptor described by this state
-	 * 
-	 * @return the descriptor described by this state
-	 */
-	public AbstractContainerDescriptor getDescriptor() {
-		return descriptor;
-	}
-
-
-	/**
-	 * Returns the controllerDescriptor States for this descriptor
-	 * 
-	 * @return the controllerDescriptor States for this descriptor
-	 */
-	public List<ControllerDescriptorState> getControllerDescriptorStates() {
-		return controllerDescriptorStates;
-	}
-
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public String getEditionDialogId() {
-		return "ContainerDescriptorStateDialog";
-	}
-
-	/**
-	 * Adds a property change listener to this class
-	 * 
-	 * @param listener
-	 *        the listener to add
-	 */
-	public synchronized void addPropertyChangeListener(PropertyChangeListener listener) {
-		changeSupport.addPropertyChangeListener(listener);
-	}
-
-	/**
-	 * Removes a property change listener from this class
-	 * 
-	 * @param listener
-	 *        the listener to remove
-	 */
-	public synchronized void removePropertyChangeListener(PropertyChangeListener listener) {
-		changeSupport.removePropertyChangeListener(listener);
-	}
-
-	/**
-	 * Adds a Property editor controller state to the list of controller states owned by this Container descriptor state
-	 * 
-	 * @param state
-	 *        the state to add
-	 */
-	public void addPropertyEditorControllerState(ControllerDescriptorState state) {
-		controllerDescriptorStates.add(state);
-
-		changeSupport.firePropertyChange(PROPERTY_ADD_CHILD, null, controllerDescriptorStates);
-	}
-
-	/**
-	 * Removes a Property editor controller state to the list of controller states owned by this Container descriptor state
-	 * 
-	 * @param state
-	 *        the state to remove
-	 */
-	public void removePropertyEditorControllerState(ControllerDescriptorState state) {
-		controllerDescriptorStates.remove(state);
-
-		changeSupport.firePropertyChange(PROPERTY_REMOVE_CHILD, null, controllerDescriptorStates);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public List<ControllerDescriptorState> getChildren() {
-		return getControllerDescriptorStates();
-	}
 
 	/**
 	 * {@inheritDoc}
@@ -165,7 +69,7 @@ public class ContainerDescriptorState extends AbstractState implements IMenuCrea
 		}
 		manager.removeAll();
 		menu = manager.createContextMenu(parent);
-		IAction removeAction = new Action("Remove Container", Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/delete.gif")) {
+		IAction removeAction = new Action("Remove Container", Activator.imageDescriptorFromPlugin(Activator.ID, "/icons/delete.gif")) {
 
 			/**
 			 * {@inheritDoc}
@@ -189,7 +93,7 @@ public class ContainerDescriptorState extends AbstractState implements IMenuCrea
 					Object parent = parentItem.getData();
 					// test the parent is a FragmentDescriptorState
 					if((parent instanceof FragmentDescriptorState)) {
-						((FragmentDescriptorState)parent).removeContainerDescriptorState(ContainerDescriptorState.this);
+						((FragmentDescriptorState)parent).removeContainerDescriptorState(containerDescriptorState);
 					}
 				}
 			}
@@ -231,7 +135,7 @@ public class ContainerDescriptorState extends AbstractState implements IMenuCrea
 					// check element class is compatible
 					if(elementClass.isAssignableFrom(selectionClass)) {
 						// build the action to add the controller
-						IAction action = new Action("Add Predefined Controller " + propertyEditorControllerDescriptor.getText(), Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/NewPredefinedController.gif")) {
+						IAction action = new Action("Add Predefined Controller " + propertyEditorControllerDescriptor.getText(), Activator.imageDescriptorFromPlugin(Activator.ID, "/icons/NewPredefinedController.gif")) {
 
 							/**
 							 * {@inheritDoc}
@@ -246,7 +150,7 @@ public class ContainerDescriptorState extends AbstractState implements IMenuCrea
 										return;
 									}
 									ControllerDescriptorState state = new ControllerDescriptorState(propertyEditorControllerDescriptor);
-									ContainerDescriptorState.this.addPropertyEditorControllerState(state);
+									containerDescriptorState.addPropertyEditorControllerState(state);
 								}
 							}
 
@@ -279,13 +183,4 @@ public class ContainerDescriptorState extends AbstractState implements IMenuCrea
 			}
 		}
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public Menu getMenu(Menu parent) {
-		// nothing to do here
-		return null;
-	}
-
 }

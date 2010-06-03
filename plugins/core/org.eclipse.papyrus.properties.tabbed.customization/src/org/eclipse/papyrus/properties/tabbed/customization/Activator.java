@@ -20,7 +20,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends AbstractUIPlugin {
 
 	/** plugin ID */
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.properties.tabbed.customization"; //$NON-NLS-1$
+	public static final String ID = "org.eclipse.papyrus.properties.tabbed.customization"; //$NON-NLS-1$
 
 	/** singleton instance */
 	private static Activator plugin;
@@ -95,7 +95,7 @@ public class Activator extends AbstractUIPlugin {
 			}
 			customizationManager.loadCustomizations();
 		} catch (Throwable e) {
-			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error initializing customizations", e)); //$NON-NLS-1$
+			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.ID, "Error initializing customizations", e)); //$NON-NLS-1$
 		}
 	}
 
@@ -110,7 +110,7 @@ public class Activator extends AbstractUIPlugin {
 		final ImageRegistry registry = getDefault().getImageRegistry();
 		Image image = registry.get(path);
 		if(image == null) {
-			registry.put(path, Activator.imageDescriptorFromPlugin(PLUGIN_ID, path));
+			registry.put(path, Activator.imageDescriptorFromPlugin(ID, path));
 			image = registry.get(path);
 		}
 		return image;
