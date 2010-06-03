@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
+import org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -45,8 +46,10 @@ import org.eclipse.papyrus.properties.tabbed.customization.Activator;
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.ContainerMenuCreator;
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.ContentHolderMenuCreator;
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.ControllerMenuCreator;
+import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.EClassifierMenuCreator;
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.FragmentMenuCreator;
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.SectionMenuCreator;
+import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.SectionSetMenuCreator;
 import org.eclipse.papyrus.properties.tabbed.customization.state.StatePropertyTabViewProviderParser;
 import org.eclipse.papyrus.umlutils.PackageUtil;
 import org.eclipse.swt.SWT;
@@ -145,7 +148,6 @@ public class CustomizeContentWizardPage extends WizardPage {
 		try {
 			parser.parseXMLfile(document, PropertyViewService.getInstance().getAllFragmentDescriptors(), new HashMap<String, DialogDescriptor>());
 			sectionSetDescriptorStates = parser.getSectionSetDescriptorStates();
-
 			metamodelViewer.setContentProvider(new MetamodelContentProvider(sectionSetDescriptorStates));
 			metamodelViewer.setLabelProvider(new MetamodelLabelProvider());
 			metamodelViewer.setInput(UMLPackage.eINSTANCE.eContents());
@@ -376,6 +378,34 @@ public class CustomizeContentWizardPage extends WizardPage {
 		// content tree and viewer on this tree
 		Tree contentTree = new Tree(mainContentAreaComposite, SWT.BORDER);
 		contentTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		contentTree.addMenuDetectListener(new MenuDetectListener() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void menuDetected(MenuDetectEvent e) {
+				// retrieve current selection, this should be an EObject or a SectionSetDescriptorState
+				ITreeSelection selection = (ITreeSelection)metamodelViewer.getSelection();
+				if(selection == null || selection.size() < 1) {
+					Activator.log.warn("Impossible to find the selection to create the menu");
+					return;
+				}
+
+				Object selectedObject = selection.getFirstElement();
+				Menu menu = null;
+				// awful code, should delegate to each state which menu should be created
+				if(selectedObject instanceof SectionSetDescriptorState) {
+					menu = new SectionSetMenuCreator((SectionSetDescriptorState)selectedObject, sectionSetDescriptorStates, metamodelViewer).getMenu(metamodelViewer.getTree());
+				} else if(selectedObject instanceof ModelElementItem) {
+					menu = new EClassifierMenuCreator((ModelElementItem)selectedObject, sectionSetDescriptorStates, metamodelViewer).getMenu(metamodelViewer.getTree());
+				}
+
+				if(menu != null) {
+					// creates the menu, depending on the selection
+					menu.setVisible(true);
+				}
+			}
+		});
 		metamodelViewer = new TreeViewer(contentTree);
 		metamodelViewer.addPostSelectionChangedListener(new ISelectionChangedListener() {
 

@@ -375,6 +375,7 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 			if(isValid(createFromScratchButton)) {
 				createFromScratchButton.setSelection(enable);
 				nameText.setEnabled(enable);
+				folderButton.setEnabled(enable);
 				if(enable) {
 					nameText.selectAll();
 					nameText.setFocus();
@@ -678,6 +679,7 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 				createFromExistingConfigurationButton.setSelection(enable);
 				createFromExistingConfigurationSelectionButton.setEnabled(enable);
 				createFromExistingConfigurationText.setEnabled(enable);
+				folderButton.setEnabled(enable);
 				nameText.setEnabled(enable);
 				if(enable) {
 					nameText.setFocus();

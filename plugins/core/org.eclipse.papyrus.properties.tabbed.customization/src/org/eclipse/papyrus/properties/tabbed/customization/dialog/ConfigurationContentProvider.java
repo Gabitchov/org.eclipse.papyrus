@@ -207,6 +207,8 @@ public class ConfigurationContentProvider implements ITreeContentProvider, Prope
 		if(AbstractState.PROPERTY_ADD_CHILD.equals(evt.getPropertyName())) {
 			((TreeViewer)fViewer).refresh(evt.getSource(), true);
 			traverseModel((ITraversableModelElement)evt.getSource(), true);
+			// try to keep a valid expand level
+			((TreeViewer)fViewer).expandToLevel(evt.getSource(), 2);
 		} else if(AbstractState.PROPERTY_REMOVE_CHILD.equals(evt.getPropertyName())) {
 			((TreeViewer)fViewer).refresh(evt.getSource(), true);
 			traverseModel((ITraversableModelElement)evt.getSource(), true);
