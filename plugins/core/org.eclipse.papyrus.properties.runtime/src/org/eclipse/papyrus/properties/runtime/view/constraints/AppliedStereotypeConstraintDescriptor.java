@@ -11,6 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.view.constraints;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.papyrus.properties.runtime.Activator;
@@ -18,6 +21,8 @@ import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 
 /**
  * Descriptor for constraints based on stereoype application
@@ -80,4 +85,100 @@ public class AppliedStereotypeConstraintDescriptor implements IConstraintDescrip
 		return Activator.getImage("/icons/StereotypeConstraint.gif");
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public AppliedStereotypeConstraintDescriptorState createState() {
+		return new AppliedStereotypeConstraintDescriptorState(this);
+	}
+
+	/**
+	 * State for the {@link AppliedStereotypeConstraintDescriptor}, used for customization
+	 */
+	public class AppliedStereotypeConstraintDescriptorState extends ConstraintDescriptorState {
+
+		/** change support for this bean */
+		private PropertyChangeSupport changeSupport;
+
+		/** list of stereotypes to be applied */
+		private List<String> stereotypesToApply = new ArrayList<String>();
+
+		/**
+		 * Creates a new AppliedStereotypeConstraintDescriptorState.
+		 * 
+		 */
+		public AppliedStereotypeConstraintDescriptorState(AppliedStereotypeConstraintDescriptor descriptor) {
+			super(descriptor);
+
+			// initialize the list of stereotypes
+			stereotypesToApply.addAll(descriptor.getStereotypeQualifiedNames());
+
+			// register change support
+			changeSupport = new PropertyChangeSupport(this);
+		}
+
+		/**
+		 * Adds a stereotype to the list of required stereotypes
+		 * 
+		 * @param qualifiedName
+		 *        the qualified name of the stereotype to apply
+		 */
+		public void addStereotypeToApply(String qualifiedName) {
+			stereotypesToApply.add(qualifiedName);
+
+			// fire changes event
+			changeSupport.firePropertyChange(PROPERTY_ADD_CHILD, null, stereotypesToApply);
+		}
+
+		/**
+		 * Removes a stereotype from the list of required stereotypes
+		 * 
+		 * @param qualifiedName
+		 *        the qualified name of the stereotype to remove
+		 */
+		public void removeStereotypeToApply(String qualifiedName) {
+			stereotypesToApply.remove(qualifiedName);
+
+			// fire changes event
+			changeSupport.firePropertyChange(PROPERTY_REMOVE_CHILD, null, stereotypesToApply);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public String getEditionDialogId() {
+			// FIXME add a configuration dialog identifier  
+			return "";
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public void addPropertyChangeListener(PropertyChangeListener listener) {
+			changeSupport.addPropertyChangeListener(listener);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public void removePropertyChangeListener(PropertyChangeListener listener) {
+			changeSupport.removePropertyChangeListener(listener);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public Node generateNode(Document document) {
+			Node node = document.createElement("appliedStereotypes");
+
+			// generate for each stereotype required
+			for(String qualifiedName : stereotypesToApply) {
+				org.w3c.dom.Element subNode = document.createElement("appliedStereotype");
+				subNode.setAttribute("qualifiedName", qualifiedName);
+				node.appendChild(subNode);
+			}
+
+			return node;
+		}
+	}
 }

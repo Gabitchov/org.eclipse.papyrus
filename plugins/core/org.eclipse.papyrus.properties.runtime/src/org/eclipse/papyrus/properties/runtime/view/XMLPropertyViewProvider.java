@@ -68,7 +68,7 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 	/** key for the value: path to the xml file */
 	protected static final String XML_PATH = "path";
 
-	/** key for the value: property view conribution */
+	/** key for the value: property view contribution */
 	protected static final String PROPERTY_VIEW_CONTRIBUTION = "PropertyViewContribution";
 
 	/** key for the value: icon path */

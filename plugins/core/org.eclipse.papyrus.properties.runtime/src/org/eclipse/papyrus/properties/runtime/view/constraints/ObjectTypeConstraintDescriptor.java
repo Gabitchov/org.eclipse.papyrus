@@ -11,9 +11,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.view.constraints;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
 import org.eclipse.swt.graphics.Image;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 
 /**
@@ -71,5 +77,72 @@ public class ObjectTypeConstraintDescriptor implements IConstraintDescriptor, IC
 		return Activator.getImage("/icons/ObjectTypeConstraint.gif");
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public ConstraintDescriptorState createState() {
+		return new ObjectTypeConstraintDescriptorState(this);
+	}
+
+	/**
+	 * State for the {@link ObjectTypeConstraintDescriptor}, used for customization
+	 */
+	public class ObjectTypeConstraintDescriptorState extends ConstraintDescriptorState {
+
+		/** change support for this bean */
+		private PropertyChangeSupport changeSupport;
+
+		/** class constraint */
+		private Class<?> elementClassState;
+
+		/**
+		 * Creates a new ObjectTypeConstraintDescriptorState.
+		 * 
+		 * @param objectTypeConstraintDescriptor
+		 *        the descriptor to manage
+		 */
+		public ObjectTypeConstraintDescriptorState(ObjectTypeConstraintDescriptor objectTypeConstraintDescriptor) {
+			super(objectTypeConstraintDescriptor);
+
+			// register change support
+			changeSupport = new PropertyChangeSupport(this);
+		}
+
+		/**
+		 * Sets the element class for the descriptor
+		 * 
+		 * @param elementClass
+		 *        the element class for the descriptor
+		 */
+		public void setElementClass(Class<?> elementClass) {
+			Class<?> oldClass = this.elementClassState;
+			this.elementClassState = elementClass;
+
+			changeSupport.firePropertyChange("elementClass", oldClass, this.elementClassState);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public void addPropertyChangeListener(PropertyChangeListener listener) {
+			changeSupport.addPropertyChangeListener(listener);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public void removePropertyChangeListener(PropertyChangeListener listener) {
+			changeSupport.removePropertyChangeListener(listener);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public Node generateNode(Document document) {
+			Element node = document.createElement("elementClass");
+			node.setAttribute("name", elementClassState.getName());
+			return node;
+		}
+	}
 
 }

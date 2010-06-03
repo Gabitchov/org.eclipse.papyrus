@@ -16,6 +16,7 @@ Export-Package: org.eclipse.papyrus.properties.runtime,
  org.eclipse.papyrus.properties.runtime.modelhandler.emf,
  org.eclipse.papyrus.properties.runtime.propertyeditor,
  org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor,
+ org.eclipse.papyrus.properties.runtime.state,
  org.eclipse.papyrus.properties.runtime.view,
  org.eclipse.papyrus.properties.runtime.view.constraints,
  org.eclipse.papyrus.properties.runtime.view.content

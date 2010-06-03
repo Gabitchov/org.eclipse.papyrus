@@ -16,11 +16,17 @@ import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.papyrus.properties.runtime.state.AbstractState;
+import org.eclipse.papyrus.properties.runtime.state.ITraversableModelElement;
 import org.eclipse.papyrus.properties.runtime.view.constraints.AppliedStereotypeConstraintDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.constraints.ConstraintDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.ObjectTypeConstraintDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.DynamicSectionDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptor;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 
 /**
@@ -69,7 +75,7 @@ public class SectionSetDescriptorState extends AbstractState {
 
 		// retrieve and build the states for the children sections
 		for(IConstraintDescriptor constraintDescriptor : sectionSetDescriptor.getConstraintDescriptors()) {
-			ConstraintDescriptorState constraintState = new ConstraintDescriptorState(constraintDescriptor);
+			ConstraintDescriptorState constraintState = ConstraintDescriptorState.createState(constraintDescriptor);
 			constraintDescriptorStates.add(constraintState);
 		}
 		// register change support
@@ -190,5 +196,32 @@ public class SectionSetDescriptorState extends AbstractState {
 	public void removeSectionDescriptorState(SectionDescriptorState state) {
 		sectionDescriptorStates.remove(state);
 		changeSupport.firePropertyChange(PROPERTY_REMOVE_CHILD, null, sectionDescriptorStates);
+	}
+
+	/**
+	 * Serializes this section set descriptor state
+	 * 
+	 * @return the node result of the parsing of this state
+	 */
+	public Node generateNode(Document document) {
+		Element sectionSetDescriptorNode = document.createElement("sectionSet");
+		sectionSetDescriptorNode.setAttribute("name", getDescriptor().getName());
+
+		// create the context
+		Element contextNode = document.createElement("context");
+		contextNode.setAttribute("enablesFor", "" + getDescriptor().getSelectionSize());
+		// generate for each constraint
+		for(ConstraintDescriptorState constraintState : getConstraintDescriptorStates()) {
+			Node node = constraintState.generateNode(document);
+			contextNode.appendChild(node);
+		}
+
+		// generate for section
+		for(SectionDescriptorState sectionState : getSectionDescriptorStates()) {
+			// FIXME generate the section
+		}
+		sectionSetDescriptorNode.appendChild(contextNode);
+
+		return sectionSetDescriptorNode;
 	}
 }

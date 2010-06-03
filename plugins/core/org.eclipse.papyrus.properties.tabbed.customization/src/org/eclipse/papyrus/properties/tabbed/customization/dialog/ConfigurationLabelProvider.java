@@ -12,7 +12,7 @@
 package org.eclipse.papyrus.properties.tabbed.customization.dialog;
 
 import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.papyrus.properties.tabbed.customization.state.IState;
+import org.eclipse.papyrus.properties.runtime.state.IState;
 import org.eclipse.swt.graphics.Image;
 
 

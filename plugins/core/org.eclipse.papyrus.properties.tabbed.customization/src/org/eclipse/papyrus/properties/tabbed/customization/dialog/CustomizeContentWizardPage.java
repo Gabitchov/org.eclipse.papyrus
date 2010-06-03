@@ -32,12 +32,12 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.properties.runtime.dialogs.PropertyDialog;
+import org.eclipse.papyrus.properties.runtime.state.IState;
 import org.eclipse.papyrus.properties.runtime.view.DialogDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
 import org.eclipse.papyrus.properties.runtime.view.XMLParseException;
 import org.eclipse.papyrus.properties.tabbed.core.view.PropertyServiceUtil;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
-import org.eclipse.papyrus.properties.tabbed.customization.state.IState;
 import org.eclipse.papyrus.properties.tabbed.customization.state.SectionSetDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.customization.state.StatePropertyTabViewProviderParser;
 import org.eclipse.papyrus.umlutils.PackageUtil;
@@ -173,7 +173,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 
 		// add all new section set descriptors using states 
 		for(SectionSetDescriptorState state : sectionSetDescriptorStates) {
-			topNode.appendChild(state.generateNode());
+			topNode.appendChild(state.generateNode(document));
 		}
 
 		return document;

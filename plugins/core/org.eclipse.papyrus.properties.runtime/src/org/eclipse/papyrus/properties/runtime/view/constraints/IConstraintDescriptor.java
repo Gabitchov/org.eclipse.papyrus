@@ -27,4 +27,11 @@ public interface IConstraintDescriptor extends IConfigurableDescriptor {
 	 */
 	public boolean select(Object objectToTest);
 
+	/**
+	 * Creates the state that manages the constraint descriptor when it is customized
+	 * 
+	 * @return the state that manages the constraint descriptor when it is customized
+	 */
+	public ConstraintDescriptorState createState();
+
 }

@@ -9,26 +9,24 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.properties.tabbed.customization.state;
+package org.eclipse.papyrus.properties.runtime.view.constraints;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
+import org.eclipse.papyrus.properties.runtime.state.AbstractState;
+import org.eclipse.papyrus.properties.runtime.state.ITraversableModelElement;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 
 
 /**
  * State for Constraint Descriptors
  */
-public class ConstraintDescriptorState extends AbstractState {
+public abstract class ConstraintDescriptorState extends AbstractState {
 
 	/** constraint managed by this state */
 	protected IConstraintDescriptor constraintDescriptor;
-
-	/** change support for this bean */
-	private PropertyChangeSupport changeSupport;
 
 	/**
 	 * Creates a new ConstraintDescriptorState.
@@ -38,9 +36,17 @@ public class ConstraintDescriptorState extends AbstractState {
 	 */
 	public ConstraintDescriptorState(IConstraintDescriptor constraintDescriptor) {
 		this.constraintDescriptor = constraintDescriptor;
+	}
 
-		// register change support
-		changeSupport = new PropertyChangeSupport(this);
+	/**
+	 * Creates the state for the given descriptor. It delegates to the descriptor itself the creation of the state
+	 * 
+	 * @param constraintDescriptor
+	 *        the constraint descriptor to manage
+	 * @return the created state
+	 */
+	public static ConstraintDescriptorState createState(IConstraintDescriptor constraintDescriptor) {
+		return constraintDescriptor.createState();
 	}
 
 	/**
@@ -58,31 +64,19 @@ public class ConstraintDescriptorState extends AbstractState {
 	}
 
 	/**
-	 * Adds a property change listener to this class
-	 * 
-	 * @param listener
-	 *        the listener to add
-	 */
-	public synchronized void addPropertyChangeListener(PropertyChangeListener listener) {
-		changeSupport.addPropertyChangeListener(listener);
-	}
-
-	/**
-	 * Removes a property change listener from this class
-	 * 
-	 * @param listener
-	 *        the listener to remove
-	 */
-	public synchronized void removePropertyChangeListener(PropertyChangeListener listener) {
-		changeSupport.removePropertyChangeListener(listener);
-	}
-
-	/**
 	 * {@inheritDoc}
 	 */
 	public List<ITraversableModelElement> getChildren() {
 		return Collections.emptyList();
 	}
 
+	/**
+	 * Serialize the configuration given by this state
+	 * 
+	 * @param document
+	 *        the document used to create XML elements
+	 * @return the created xml node
+	 */
+	public abstract Node generateNode(Document document);
 
 }

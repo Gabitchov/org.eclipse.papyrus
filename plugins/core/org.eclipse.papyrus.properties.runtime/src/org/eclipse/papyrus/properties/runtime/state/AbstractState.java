@@ -9,7 +9,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.properties.tabbed.customization.state;
+package org.eclipse.papyrus.properties.runtime.state;
 
 import org.eclipse.swt.graphics.Image;
 

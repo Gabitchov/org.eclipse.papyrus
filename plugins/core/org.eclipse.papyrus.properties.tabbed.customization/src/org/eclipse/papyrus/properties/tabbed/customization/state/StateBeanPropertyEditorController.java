@@ -16,6 +16,7 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 import org.eclipse.papyrus.properties.runtime.controller.BeanPropertyEditorController;
+import org.eclipse.papyrus.properties.runtime.state.IState;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
 
 
