@@ -17,7 +17,7 @@
       </page>
    </extension>
    <extension
-         point="org.eclipse.papyrus.core.currentStrategyChooser">
+         point="org.eclipse.papyrus.core.resourceloading.currentStrategyChooser">
       <CurrentStrategyChooser
             chooser="org.eclipse.papyrus.core.preferences.StrategyChooser">
       </CurrentStrategyChooser>
