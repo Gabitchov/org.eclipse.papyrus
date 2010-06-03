@@ -87,6 +87,7 @@ plugin@org.eclipse.papyrus.properties.tabbed.uml=SVN,,svn://dev.eclipse.org/svnr
 plugin@org.eclipse.papyrus.properties.view.uml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.properties.view.uml
 plugin@org.eclipse.papyrus.tabbedproperties.appearance=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.tabbedproperties.appearance
 plugin@org.eclipse.papyrus.tabbedproperties.uml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.tabbedproperties.uml
+plugin@org.eclipse.papyrus.resourceloading.umlprofile=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.resourceloading.umlprofile
 plugin@org.eclipse.papyrus.ui.toolbox=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.ui.toolbox
 plugin@org.eclipse.papyrus.uml.modelexplorer=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.uml.modelexplorer
 plugin@org.eclipse.papyrus.uml.ui.perspectiveconfiguration=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.uml.ui.perspectiveconfiguration
