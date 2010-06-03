@@ -20,10 +20,12 @@ feature@org.eclipse.papyrus.uml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.
 
 # core
 plugin@org.eclipse.papyrus.controlmode=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core,,org.eclipse.papyrus.controlmode
+plugin@org.eclipse.papyrus.controlmode.history=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core,,org.eclipse.papyrus.controlmode.history
 plugin@org.eclipse.papyrus.core=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core,,org.eclipse.papyrus.core
 plugin@org.eclipse.papyrus.core.adaptor.emf=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core,,org.eclipse.papyrus.core.adaptor.emf
 plugin@org.eclipse.papyrus.core.adaptor.gmf=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core,,org.eclipse.papyrus.core.adaptor.gmf
 plugin@org.eclipse.papyrus.core.preferences=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core,,org.eclipse.papyrus.core.preferences
+plugin@org.eclipse.papyrus.core.resourceloading=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core,,org.eclipse.papyrus.core.resourceloading
 plugin@org.eclipse.papyrus.di=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core,,org.eclipse.papyrus.di
 plugin@org.eclipse.papyrus.di.edit=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core,,org.eclipse.papyrus.di.edit
 plugin@org.eclipse.papyrus.di.editor=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core,,org.eclipse.papyrus.di.editor
@@ -88,7 +90,6 @@ plugin@org.eclipse.papyrus.tabbedproperties.uml=SVN,,svn://dev.eclipse.org/svnro
 plugin@org.eclipse.papyrus.ui.toolbox=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.ui.toolbox
 plugin@org.eclipse.papyrus.uml.modelexplorer=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.uml.modelexplorer
 plugin@org.eclipse.papyrus.uml.ui.perspectiveconfiguration=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.uml.ui.perspectiveconfiguration
-plugin@org.eclipse.papyrus.resourceloading.umlprofile=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.resourceloading.umlprofile
 plugin@org.eclipse.papyrus.uml.standard=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.uml.standard
 plugin@org.eclipse.papyrus.uml.standard.edit=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.uml.standard.edit
 plugin@org.eclipse.papyrus.umlutils=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.umlutils
