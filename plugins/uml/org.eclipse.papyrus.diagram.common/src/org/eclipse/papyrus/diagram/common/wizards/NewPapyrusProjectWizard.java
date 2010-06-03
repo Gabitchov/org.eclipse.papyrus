@@ -22,11 +22,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
-import org.eclipse.papyrus.wizards.Activator;
 import org.eclipse.papyrus.wizards.NewModelFilePage;
 import org.eclipse.papyrus.wizards.SelectDiagramCategoryPage;
 import org.eclipse.papyrus.wizards.SelectDiagramKindPage;
-import org.eclipse.papyrus.wizards.SelectTemplateWizardPage;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
@@ -48,9 +46,6 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 	/** The diagram kind page. */
 	private SelectDiagramKindPage myDiagramKindPage;
 
-	/** Select a template to initialize the model with */
-	private SelectTemplateWizardPage selectTemplateWizardPage;
-
 	/** The select diagram category page. */
 	private SelectDiagramCategoryPage selectDiagramCategoryPage;
 
@@ -70,13 +65,12 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 		super.init(workbench, selection);
 		setWindowTitle("New Papyrus Project");
 		selectDiagramCategoryPage = new SelectDiagramCategoryPage("Select language of the diagram");
-		myDiagramKindPage = new SelectDiagramKindPage("Select kind of diagram");
-		selectTemplateWizardPage = getSelectTemplateWizardPage();
+		myDiagramKindPage = getSelectDiagramKindPage();
 
 	}
 	
-	protected SelectTemplateWizardPage getSelectTemplateWizardPage() {
-		return new SelectTemplateWizardPage(Activator.PLUGIN_ID, null, null) {
+	protected SelectDiagramKindPage getSelectDiagramKindPage() {
+		return new SelectDiagramKindPage() {
 			/**
 			 * This method is invoked for creation of a model 
 			 */
@@ -85,6 +79,11 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 				model.setName(rootElementName);
 				resource.getContents().add(model);
 			}
+			
+			protected boolean validatePage() {
+				return true;
+			};
+
 		}; 
 	}
 
@@ -102,14 +101,6 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 		}
 		
 		addPage(selectDiagramCategoryPage);
-		addPage(selectTemplateWizardPage);
-
-		myDiagramKindPage = new SelectDiagramKindPage("Select kind of diagram") {
-
-			protected boolean validatePage() {
-				return true;
-			};
-		};
 		addPage(myDiagramKindPage);
 		
 	}
@@ -138,7 +129,7 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 		// create a new file, result != null if successful
 		final IFile newFile = createFile();
 		EObject root = null;
-		selectTemplateWizardPage.initializeModelResource(diResourceSet, newFile, root, getModelContentType(), getModelFileExtension());
+		myDiagramKindPage.initializeModelResource(diResourceSet, newFile, root, getModelContentType(), getModelFileExtension());
 		if(newFile == null) {
 			return false;
 		}

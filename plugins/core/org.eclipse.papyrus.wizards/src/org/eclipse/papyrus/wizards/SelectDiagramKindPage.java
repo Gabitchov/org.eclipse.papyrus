@@ -17,8 +17,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -34,6 +44,11 @@ import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.papyrus.core.extension.commands.ICreationCommandRegistry;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.resource.IModel;
+import org.eclipse.papyrus.resource.notation.NotationModel;
+import org.eclipse.papyrus.resource.sasheditor.DiModel;
+import org.eclipse.papyrus.resource.uml.UmlModel;
+import org.eclipse.papyrus.wizards.template.SelectModelTemplateComposite;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -42,6 +57,7 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Table;
@@ -75,6 +91,9 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	private CheckboxTableViewer diagramKindTableViewer;
 
+	/** The select template composite. */
+	private SelectModelTemplateComposite selectTemplateComposite;
+
 	/**
 	 * @return the new diagram name
 	 */
@@ -95,8 +114,8 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * @param pageName
 	 *        the page name
 	 */
-	public SelectDiagramKindPage(String pageName) {
-		super(pageName);
+	public SelectDiagramKindPage() {
+		super("Select kind of diagram");
 		setPageComplete(false);
 		setTitle("Initialization information");
 		setDescription("Select name and kind of the diagram");
@@ -111,16 +130,24 @@ public class SelectDiagramKindPage extends WizardPage {
 	public void createControl(Composite parent) {
 		Composite plate = new Composite(parent, SWT.NONE);
 		plate.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		GridLayout gridLayout = new GridLayout();
+		GridLayout gridLayout = new GridLayout(1, false);
 		gridLayout.marginWidth = 10;
 		plate.setLayout(gridLayout);
 		setControl(plate);
 
 		createNameForm(plate);
+
 		createDiagramKindForm(plate);
+
+		createModelTemplateComposite(plate);
 
 		setPageComplete(validatePage());
 
+	}
+
+	private void createModelTemplateComposite(Composite composite) {
+		Group group = createGroup(composite, "You can load a template:");
+		selectTemplateComposite = new SelectModelTemplateComposite(group);
 	}
 
 	/**
@@ -130,7 +157,10 @@ public class SelectDiagramKindPage extends WizardPage {
 	 *        the composite
 	 */
 	private void createDiagramKindForm(Composite composite) {
-		Group group = createGroup(composite, "Diagram Kind:");
+		Group group = createGroup(composite, "Select a Diagram Kind:");
+		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
+		group.setData(data);
+
 		final Table diagramKindTable = new Table(group, SWT.NO_BACKGROUND | SWT.CHECK);
 		diagramKindTable.setFont(group.getFont());
 		diagramKindTable.setBackground(group.getBackground());
@@ -140,8 +170,8 @@ public class SelectDiagramKindPage extends WizardPage {
 		layout.marginWidth = 5;
 		diagramKindTable.setLayout(layout);
 
-		GridData data = new GridData(SWT.FILL, SWT.FILL, true, false);
-		diagramKindTable.setLayoutData(data);
+		GridData data2 = new GridData(SWT.FILL, SWT.FILL, true, false);
+		diagramKindTable.setLayoutData(data2);
 
 		diagramKindTable.addSelectionListener(new SelectionListener() {
 
@@ -151,12 +181,13 @@ public class SelectDiagramKindPage extends WizardPage {
 			public void widgetSelected(SelectionEvent e) {
 				if(e.detail == SWT.CHECK) {
 					TableItem item = (TableItem)e.item;
-					for (TableItem next: diagramKindTable.getItems()) {
+					for(TableItem next : diagramKindTable.getItems()) {
 						next.setChecked(false);
 					}
 					item.setChecked(true);
 					setDiagramCreationCommand(((CreationCommandDescriptor)item.getData()).getCommandId());
 					setPageComplete(validatePage());
+					
 				}
 			}
 
@@ -175,13 +206,14 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/**
 	 * @see org.eclipse.jface.dialogs.DialogPage#setVisible(boolean)
-	 *
+	 * 
 	 * @param visible
 	 */
 	@Override
 	public void setVisible(boolean visible) {
 		super.setVisible(visible);
 		diagramKindTableViewer.setInput(getDiagramCategory());
+		selectTemplateComposite.setInput(getDiagramCategory());
 	}
 
 	/**
@@ -190,7 +222,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * @return the diagram category
 	 */
 	private String getDiagramCategory() {
-		IWizardPage previousPage = getPreviousPage().getPreviousPage();
+		IWizardPage previousPage = getPreviousPage();
 		if(previousPage == null || false == previousPage instanceof SelectDiagramCategoryPage) {
 			return null;
 		}
@@ -205,7 +237,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	 */
 	private void setDiagramCreationCommand(String commandId) {
 		try {
-			creationCommand = commandId!= null? getCreationCommandRegistry().getCommand(commandId) : null;
+			creationCommand = commandId != null ? getCreationCommandRegistry().getCommand(commandId) : null;
 		} catch (NotFoundException e) {
 			log.error(e);
 		}
@@ -227,7 +259,7 @@ public class SelectDiagramKindPage extends WizardPage {
 		layout.marginHeight = 5;
 		layout.marginWidth = 5;
 		group.setLayout(layout);
-		GridData data = new GridData(SWT.FILL, SWT.FILL, true, false);
+		GridData data = new GridData(SWT.FILL, SWT.BEGINNING, true, false);
 		group.setLayoutData(data);
 		return group;
 	}
@@ -340,11 +372,11 @@ public class SelectDiagramKindPage extends WizardPage {
 
 		/**
 		 * @see org.eclipse.jface.viewers.IStructuredContentProvider#getElements(java.lang.Object)
-		 *
+		 * 
 		 * @param inputElement
 		 * @return
 		 */
-		
+
 		public Object[] getElements(Object inputElement) {
 			if(inputElement instanceof String) {
 				String diagramCategory = (String)inputElement;
@@ -363,8 +395,8 @@ public class SelectDiagramKindPage extends WizardPage {
 	/**
 	 * The Class DiagramCategoryLabelProvider.
 	 */
-	protected class DiagramCategoryLabelProvider implements ILabelProvider {
-		
+	protected static class DiagramCategoryLabelProvider implements ILabelProvider {
+
 		private static final String UNDEFINED_ELEMENT = "<undefined>";
 
 		public Image getImage(Object element) {
@@ -372,7 +404,7 @@ public class SelectDiagramKindPage extends WizardPage {
 			if(element != null && element instanceof CreationCommandDescriptor) {
 				ImageDescriptor image = ((CreationCommandDescriptor)element).getIcon();
 				// image is an optional attribute
-				if (image!= null) {
+				if(image != null) {
 					return new Image(null, image.getImageData());
 				}
 			}
@@ -413,6 +445,133 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	}
 
+	/**
+	 * Initialize model resource.
+	 *
+	 * @param diResourceSet the di resource set
+	 * @param newFile the new file
+	 * @param root the root
+	 * @param modelContentType the model content type
+	 * @param modelFileExtension the model file extension
+	 */
+	public void initializeModelResource(final DiResourceSet diResourceSet, final IFile newFile, final EObject root, final String modelContentType, final String modelFileExtension) {
+		RecordingCommand command = new RecordingCommand(diResourceSet.getTransactionalEditingDomain()) {
+
+			@Override
+			protected void doExecute() {
+
+				if(root != null) {
+					IPath filenameWithoutExtension = newFile.getFullPath().removeFileExtension();
+
+					IModel model = diResourceSet.getModel(DiModel.MODEL_ID);
+					model.createModel(filenameWithoutExtension);
+					model = diResourceSet.getModel(NotationModel.MODEL_ID);
+					model.createModel(filenameWithoutExtension);
+					// START OF WORKAROUND for #315083 
+					IModel umlModel = new UmlModel() {
+						public void createModel(IPath fullPath) {
+							try {
+								resourceURI = root.eResource().getURI();
+								// as resource already exists, use rs.getResource() not rs.createResource() here
+								resource = getResourceSet().getResource(resourceURI, true);
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						};
+					};
+					diResourceSet.registerModel(umlModel);
+					umlModel.createModel(null);
+
+					//					// call snippets to allow them to do their stuff
+					//					snippets.performStart(this);
+					// END OF WORKAROUND for #315083 
+				} else {
+					
+					// Create Model Resource, Notation Resource, DI Resource
+					diResourceSet.createsModels(newFile);
 
 
+					// Initialize Model Resource
+					Resource modelResource = diResourceSet.getModelResource();
+					if(modelResource != null) {
+						IPath path = new Path(newFile.getName());
+						initializeModelResource(modelResource, path.removeFileExtension().toString());
+					}
+				}
+			}
+		};
+		diResourceSet.getTransactionalEditingDomain().getCommandStack().execute(command);
+
+	}
+
+	/**
+	 * Initialize model resource.
+	 * 
+	 * @param resource
+	 *        the resource
+	 * @param rootElementName
+	 *        the root element name
+	 */
+	protected void initializeModelResource(Resource resource, String rootElementName) {
+		String templatePath = selectTemplateComposite.getTemplatePath();
+		boolean useTemplate = templatePath != null;
+		if(useTemplate) {
+			initializeFromTemplate(resource, rootElementName, templatePath);
+		} else {
+			initializeEmptyModel(resource, rootElementName);
+		}
+	}
+
+	/**
+	 * Initialize from template.
+	 * 
+	 * @param resource
+	 *        the resource
+	 * @param rootElementName
+	 *        the root element name
+	 * @param templatePath
+	 *        the template path
+	 */
+	protected void initializeFromTemplate(Resource resource, String rootElementName, String templatePath) {
+		Resource templateResource = loadTemplateResource(templatePath);
+		List<EObject> eObjectsToAdd = new ArrayList<EObject>();
+		for(EObject eObject : templateResource.getContents()) {
+			eObjectsToAdd.add(EcoreUtil.copy(eObject));
+		}
+		for(EObject eObject : eObjectsToAdd) {
+			resource.getContents().add(eObject);
+		}
+	}
+
+	/**
+	 * Initialize empty model.
+	 * 
+	 * @param resource
+	 *        the resource
+	 * @param rootElementName
+	 *        the root element name
+	 */
+	protected void initializeEmptyModel(Resource resource, String rootElementName) {
+	}
+
+	/**
+	 * Load template resource.
+	 * 
+	 * @param templatePath
+	 *        the template path
+	 * @return the resource
+	 */
+	private Resource loadTemplateResource(String templatePath) {
+		String templatePluginID = selectTemplateComposite.getTemplatePluginId();
+		java.net.URL templateURL = Platform.getBundle(templatePluginID).getResource(templatePath);
+		String fullUri = templateURL.getPath();
+		URI uri = URI.createPlatformPluginURI(templatePluginID + fullUri, true);
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.getResource(uri, true);
+		if(resource.isLoaded()) {
+			return resource;
+		}
+		return null;
+	}
+	
 }

@@ -15,9 +15,8 @@ package org.eclipse.papyrus.diagram.common.wizards;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.papyrus.wizards.Activator;
 import org.eclipse.papyrus.wizards.CreateModelWizard;
-import org.eclipse.papyrus.wizards.SelectTemplateWizardPage;
+import org.eclipse.papyrus.wizards.SelectDiagramKindPage;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -49,8 +48,8 @@ public class CreateUMLModelWizard extends CreateModelWizard {
 		return "uml";
 	}
 
-	protected SelectTemplateWizardPage getSelectTemplateWizardPage() {
-		return new SelectTemplateWizardPage(Activator.PLUGIN_ID, null, null) {
+	protected SelectDiagramKindPage getSelectTemplateWizardPage() {
+		return new SelectDiagramKindPage() {
 			/**
 			 * This method is invoked for creation of a model 
 			 */
