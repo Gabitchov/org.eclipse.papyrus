@@ -77,6 +77,7 @@ import org.w3c.dom.NodeList;
 /**
  * Wizard page where user can customize the content of the property view
  */
+@SuppressWarnings("restriction")
 public class CustomizeContentWizardPage extends WizardPage {
 
 	/** initial content */

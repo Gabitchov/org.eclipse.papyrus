@@ -37,6 +37,7 @@ import org.eclipse.swt.widgets.Menu;
 /**
  * Menu creator for section sets
  */
+@SuppressWarnings("restriction")
 public class EClassifierMenuCreator extends AbstractMenuCreator {
 
 	/** element on which the menu should be created */
