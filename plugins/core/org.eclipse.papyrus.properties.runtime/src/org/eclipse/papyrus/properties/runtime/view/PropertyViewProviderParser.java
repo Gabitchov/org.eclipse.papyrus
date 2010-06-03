@@ -123,8 +123,11 @@ public class PropertyViewProviderParser {
 		// parses constraints that will be given to each section
 		List<IConstraintDescriptor> constraints = parseConstraints(contextNode);
 
+		// retrieve selection size
+		int selectionSize = parseSelectionSize(contextNode);
+
 		// do not parse currently the content node, will be done later, as the fragment is used
-		return new FragmentDescriptor(id, constraints, contentNode, this);
+		return new FragmentDescriptor(id, constraints, contentNode, selectionSize, this);
 	}
 
 	/**
@@ -335,6 +338,7 @@ public class PropertyViewProviderParser {
 
 		// parses constraints that will be given to each section
 		List<IConstraintDescriptor> constraints = parseConstraints(contextNode);
+		int selectionSize = parseSelectionSize(contextNode);
 
 		// parses the list of replaced dialogs
 		List<String> replacedDialogIds = parseReplacedDialogs(contextNode);
@@ -344,7 +348,7 @@ public class PropertyViewProviderParser {
 		Object title = parseStringNode(titleNode);
 
 		// do not parse currently the content node, will be done later, as the dialog is used
-		return new DialogDescriptor(id, constraints, contentNode, replacedDialogIds, title, message, this);
+		return new DialogDescriptor(id, constraints, contentNode, selectionSize, replacedDialogIds, title, message, this);
 	}
 
 	/**

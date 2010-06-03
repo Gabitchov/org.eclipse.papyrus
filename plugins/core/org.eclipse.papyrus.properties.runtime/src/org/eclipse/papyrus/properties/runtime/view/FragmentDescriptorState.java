@@ -17,8 +17,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.papyrus.properties.runtime.state.AbstractState;
+import org.eclipse.papyrus.properties.runtime.view.constraints.ConstraintDescriptorState;
+import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptorState;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 
 /**
@@ -27,10 +32,16 @@ import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptorSt
 public class FragmentDescriptorState extends AbstractState {
 
 	/** descriptor managed by this state */
-	protected FragmentDescriptor descriptor;
+	private FragmentDescriptor descriptor;
 
 	/** list of container descriptors state children of this state */
-	protected final List<ContainerDescriptorState> containerDescriptorStates = new ArrayList<ContainerDescriptorState>();
+	private final List<ContainerDescriptorState> containerDescriptorStates = new ArrayList<ContainerDescriptorState>();
+
+	/** list of constraints descriptors state children of this state */
+	private final List<ConstraintDescriptorState> constraintDescriptorStates = new ArrayList<ConstraintDescriptorState>();
+
+	/** selection size state */
+	private int selectionSizeState;
 
 	/** change support for this bean */
 	private PropertyChangeSupport changeSupport;
@@ -49,6 +60,13 @@ public class FragmentDescriptorState extends AbstractState {
 		for(ContainerDescriptor containerDescriptor : containerDescriptors) {
 			containerDescriptorStates.add(containerDescriptor.createState());
 		}
+
+		for(IConstraintDescriptor constraintDescriptor : descriptor.getConstraintDescriptors()) {
+			getConstraintDescriptorStates().add(constraintDescriptor.createState());
+		}
+
+		selectionSizeState = descriptor.getSelectionSize();
+
 		// register change support
 		changeSupport = new PropertyChangeSupport(this);
 	}
@@ -59,12 +77,43 @@ public class FragmentDescriptorState extends AbstractState {
 
 
 	/**
+	 * Returns the state for the selection size
+	 * 
+	 * @return the state for the selection size
+	 */
+	public int getSelectionSizeState() {
+		return selectionSizeState;
+	}
+
+	/**
+	 * Sets the state for the selection size
+	 * 
+	 * @param selectionSizeState
+	 *        the selectionSize to set
+	 */
+	public void setSelectionSizeState(int selectionSizeState) {
+		int oldSize = this.selectionSizeState;
+		this.selectionSizeState = selectionSizeState;
+
+		changeSupport.firePropertyChange("selectionSize", oldSize, this.selectionSizeState);
+	}
+
+	/**
 	 * Returns the containerDescriptor States for this fragment
 	 * 
 	 * @return the containerDescriptor States for this fragment
 	 */
 	public List<ContainerDescriptorState> getContainerDescriptorStates() {
 		return containerDescriptorStates;
+	}
+
+	/**
+	 * Returns the constraintDescriptor States for this fragment
+	 * 
+	 * @return the constraintDescriptor States for this fragment
+	 */
+	public List<ConstraintDescriptorState> getConstraintDescriptorStates() {
+		return constraintDescriptorStates;
 	}
 
 	/**
@@ -123,5 +172,55 @@ public class FragmentDescriptorState extends AbstractState {
 	 */
 	public List<ContainerDescriptorState> getChildren() {
 		return getContainerDescriptorStates();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Node generateNode(Document document) {
+		Element node = document.createElement("fragment");
+
+		// generate for children(containers and constraints)
+		generateConstraints(node, document);
+		generateContainers(node, document);
+
+		return node;
+	}
+
+	/**
+	 * Generates the constraints for the fragment descriptor
+	 * 
+	 * @param node
+	 *        the parent node for generated nodes
+	 * @param document
+	 *        the document used to create elements
+	 */
+	protected void generateConstraints(Element node, Document document) {
+		Element contentElement = document.createElement("context");
+		// add the enables for attribute
+		contentElement.setAttribute("enablesFor", "" + getSelectionSizeState());
+
+		// generate for each constraint
+		for(ConstraintDescriptorState state : getConstraintDescriptorStates()) {
+			contentElement.appendChild(state.generateNode(document));
+		}
+		node.appendChild(contentElement);
+
+	}
+
+	/**
+	 * Generate the children nodes for all containers
+	 * 
+	 * @param node
+	 *        the parent node for generated nodes
+	 * @param document
+	 *        the document used to create elements
+	 */
+	protected void generateContainers(Element node, Document document) {
+		Element contentElement = document.createElement("content");
+		for(ContainerDescriptorState state : getContainerDescriptorStates()) {
+			contentElement.appendChild(state.generateNode(document));
+		}
+		node.appendChild(contentElement);
 	}
 }

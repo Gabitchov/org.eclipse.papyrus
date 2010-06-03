@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.view.content;
 
+import java.beans.PropertyChangeSupport;
 import java.util.List;
 
 import org.eclipse.papyrus.properties.runtime.Activator;
@@ -23,6 +24,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Layout;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
@@ -102,5 +105,86 @@ public class GroupContainerDescriptor extends ContainerDescriptor {
 	 */
 	public Image getImage() {
 		return Activator.getImage("/icons/GroupContainer.gif");
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public ContainerDescriptorState createState() {
+		return new GroupContainerDescriptorState(this);
+	}
+
+	/**
+	 * Returns the label of the expandable composite
+	 * 
+	 * @return the label of the expandable composite
+	 */
+	public String getLabel() {
+		return label;
+	}
+
+	/**
+	 * State for {@link GroupContainerDescriptor}
+	 */
+	public class GroupContainerDescriptorState extends ContainerDescriptorState {
+
+		/** name of the container */
+		private String name;
+
+		/** change support for this bean */
+		private PropertyChangeSupport changeSupport;
+
+		/**
+		 * Creates a new ExpandableContainerDescriptorState.
+		 * 
+		 * @param descriptor
+		 *        the descriptor managed by the state
+		 */
+		public GroupContainerDescriptorState(GroupContainerDescriptor descriptor) {
+			super(descriptor);
+
+			this.name = descriptor.getLabel();
+			// register change support
+			changeSupport = new PropertyChangeSupport(this);
+		}
+
+		/**
+		 * Sets the name of the expandable composite
+		 * 
+		 * @param name
+		 *        the name to set
+		 */
+		public void setName(String name) {
+			String oldName = this.name;
+			this.name = name;
+
+			// fire change event
+			changeSupport.firePropertyChange("label", oldName, this.name);
+		}
+
+		/**
+		 * Returns the name of the expandable composite
+		 * 
+		 * @return the name
+		 */
+		public String getName() {
+			return name;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public Node generateNode(Document document) {
+			Element node = document.createElement("groupContainer");
+			generateContainerAttributes(node, document);
+			node.setAttribute("label", getName());
+
+			// generate for owned controllers
+			generateControllers(node, document);
+
+			return node;
+		}
+
 	}
 }

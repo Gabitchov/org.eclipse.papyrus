@@ -110,7 +110,7 @@ public class FragmentMenuCreator extends AbstractMenuCreator {
 			public void run() {
 				// adds a simple container to the current element
 				ContainerDescriptor containerDescriptor = new ContainerDescriptor(new GridLayout(), new ArrayList<IPropertyEditorControllerDescriptor>());
-				ContainerDescriptorState containerDescriptorState = new ContainerDescriptorState(containerDescriptor);
+				ContainerDescriptorState containerDescriptorState = containerDescriptor.createState();
 				fragmentDescriptorState.addContainerDescriptorState(containerDescriptorState);
 				// try to retrieve the selection
 				if(parent instanceof Tree) {
@@ -140,7 +140,7 @@ public class FragmentMenuCreator extends AbstractMenuCreator {
 			public void run() {
 				// adds an expandable container to the current element
 				ExpandableContainerDescriptor containerDescriptor = new ExpandableContainerDescriptor(new GridLayout(), "Label", new ArrayList<IPropertyEditorControllerDescriptor>());
-				ContainerDescriptorState containerDescriptorState = new ContainerDescriptorState(containerDescriptor);
+				ContainerDescriptorState containerDescriptorState = containerDescriptor.createState();
 				fragmentDescriptorState.addContainerDescriptorState(containerDescriptorState);
 				// try to retrieve the selection
 				if(parent instanceof Tree) {
@@ -171,7 +171,7 @@ public class FragmentMenuCreator extends AbstractMenuCreator {
 			public void run() {
 				// adds an expandable container to the current element
 				GroupContainerDescriptor containerDescriptor = new GroupContainerDescriptor(new GridLayout(), "Label", new ArrayList<IPropertyEditorControllerDescriptor>());
-				ContainerDescriptorState containerDescriptorState = new ContainerDescriptorState(containerDescriptor);
+				ContainerDescriptorState containerDescriptorState = containerDescriptor.createState();
 				fragmentDescriptorState.addContainerDescriptorState(containerDescriptorState);
 
 				// try to retrieve the selection

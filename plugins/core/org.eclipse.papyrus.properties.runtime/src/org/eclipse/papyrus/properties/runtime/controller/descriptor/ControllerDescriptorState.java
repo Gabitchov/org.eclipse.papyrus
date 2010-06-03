@@ -18,6 +18,8 @@ import java.util.List;
 
 import org.eclipse.papyrus.properties.runtime.state.AbstractState;
 import org.eclipse.papyrus.properties.runtime.state.ITraversableModelElement;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 
 
 /**
@@ -112,6 +114,14 @@ public class ControllerDescriptorState extends AbstractState {
 	 */
 	public List<ITraversableModelElement> getChildren() {
 		return Collections.emptyList();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Node generateNode(Document document) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

@@ -18,6 +18,8 @@ import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.DynamicSectionDescriptor;
+import org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState;
+import org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.SubFeatureDescriptor.SubFeatureDescriptorState;
 import org.eclipse.ui.views.properties.tabbed.ISection;
 
 
@@ -47,6 +49,24 @@ public class DynamicSubFeatureSectionDescriptor extends DynamicSectionDescriptor
 		this.maxColumn = maxColumn;
 		this.subFeatureDescriptor = subFeatureDescriptor;
 		this.subFeatureContainerDescriptor = containerDescriptor;
+	}
+
+	/**
+	 * Returns the subFeatureDescriptor for this descriptor
+	 * 
+	 * @return the subFeatureDescriptor for this descriptor
+	 */
+	public SubFeatureDescriptor getSubFeatureDescriptor() {
+		return subFeatureDescriptor;
+	}
+
+	/**
+	 * Returns the subFeatureContainerDescriptor for this descriptor
+	 * 
+	 * @return the subFeatureContainerDescriptor for this descriptor
+	 */
+	public SubFeatureContainerDescriptor getSubFeatureContainerDescriptor() {
+		return subFeatureContainerDescriptor;
 	}
 
 	/**
@@ -81,6 +101,44 @@ public class DynamicSubFeatureSectionDescriptor extends DynamicSectionDescriptor
 	 */
 	public int getMaxColumn() {
 		return maxColumn;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public SubFeatureSectionDescriptorState createState() {
+		return new SubFeatureSectionDescriptorState(this);
+	}
+
+	/**
+	 * State for {@link SubFeatureContainerDescriptor}
+	 */
+	public class SubFeatureSectionDescriptorState extends SectionDescriptorState {
+
+		private SubFeatureDescriptorState subFeatureDescriptorState;
+
+		/**
+		 * Creates a new SubFeatureSectionDescriptorState.
+		 * 
+		 * @param sectionDescriptor
+		 */
+		public SubFeatureSectionDescriptorState(DynamicSubFeatureSectionDescriptor sectionDescriptor) {
+			super(sectionDescriptor);
+
+			subFeatureDescriptorState = sectionDescriptor.getSubFeatureDescriptor().createState();
+		}
+
+
+		/**
+		 * Returns the subFeatureDescriptorState for this state
+		 * 
+		 * @return the subFeatureDescriptorState for this state
+		 */
+		public SubFeatureDescriptorState getSubFeatureDescriptorState() {
+			return subFeatureDescriptorState;
+		}
+
 	}
 
 }

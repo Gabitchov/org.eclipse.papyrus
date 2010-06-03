@@ -18,6 +18,9 @@ import org.eclipse.papyrus.properties.runtime.state.IState;
 import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  * State for tab descriptors
@@ -102,5 +105,15 @@ public class TabDescriptorState implements IState {
 	 */
 	public synchronized void removePropertyChangeListener(PropertyChangeListener listener) {
 		changeSupport.removePropertyChangeListener(listener);
+	}
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Node generateNode(Document document) {
+		Element node = document.createElement("tab");
+		// TODO generate attributes
+		return node;
 	}
 }

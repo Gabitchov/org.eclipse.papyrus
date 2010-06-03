@@ -41,25 +41,30 @@ public abstract class AbstractConstrainedDescriptor implements IConfigurableDesc
 	/** parser of the content node */
 	protected final PropertyViewProviderParser parser;
 
+	/** size of the selection */
+	private int selectionSize;
+
 	/**
 	 * Creates a new AbstractConstrainedDescriptor.
 	 * 
 	 */
-	public AbstractConstrainedDescriptor(String id, List<IConstraintDescriptor> constraints) {
+	public AbstractConstrainedDescriptor(String id, List<IConstraintDescriptor> constraints, int selectionSize) {
 		this.id = id;
 		this.constraints = constraints;
 		this.parser = null;
+		this.selectionSize = selectionSize;
 	}
 
 	/**
 	 * Creates a new AbstractConstrainedDescriptor.
 	 * 
 	 */
-	public AbstractConstrainedDescriptor(String id, List<IConstraintDescriptor> constraints, Node contentNode, PropertyViewProviderParser parser) {
+	public AbstractConstrainedDescriptor(String id, List<IConstraintDescriptor> constraints, Node contentNode, int selectionSize, PropertyViewProviderParser parser) {
 		this.id = id;
 		this.constraints = constraints;
 		this.contentNode = contentNode;
 		this.parser = parser;
+		this.selectionSize = selectionSize;
 		unparsed = true;
 	}
 
@@ -79,6 +84,16 @@ public abstract class AbstractConstrainedDescriptor implements IConfigurableDesc
 	 */
 	public String getId() {
 		return id;
+	}
+
+
+	/**
+	 * Returns the size of the selection
+	 * 
+	 * @return the size of the selection
+	 */
+	public int getSelectionSize() {
+		return selectionSize;
 	}
 
 }

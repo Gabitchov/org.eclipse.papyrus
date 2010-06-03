@@ -56,8 +56,8 @@ public class DialogDescriptor extends AbstractConstrainedDescriptor {
 	 * @param parser
 	 *        the parser used to parse the content node
 	 */
-	public DialogDescriptor(String id, List<IConstraintDescriptor> constraints, Node contentNode, List<String> replacedDialogIds, Object title, Object message, PropertyViewProviderParser parser) {
-		super(id, constraints, contentNode, parser);
+	public DialogDescriptor(String id, List<IConstraintDescriptor> constraints, Node contentNode, int selectionSize, List<String> replacedDialogIds, Object title, Object message, PropertyViewProviderParser parser) {
+		super(id, constraints, contentNode, selectionSize, parser);
 		this.replacedDialogIds = replacedDialogIds;
 		this.title = title;
 		this.message = message;

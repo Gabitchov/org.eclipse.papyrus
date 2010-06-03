@@ -11,13 +11,18 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.core.view.subfeatures;
 
+import java.util.Collections;
 import java.util.List;
+
+import org.eclipse.papyrus.properties.runtime.state.AbstractState;
+import org.eclipse.papyrus.properties.runtime.state.ITraversableModelElement;
+import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
 
 
 /**
  * Feature descriptor for sub features of an element
  */
-public abstract class SubFeatureDescriptor {
+public abstract class SubFeatureDescriptor implements IConfigurableDescriptor {
 
 	/**
 	 * Returns the list of sub elements for a given set of objects
@@ -27,4 +32,49 @@ public abstract class SubFeatureDescriptor {
 	 * @return the list of sub elements for a given set of objects or an empty list
 	 */
 	public abstract List<Object> getSubElementsToEdit(List<Object> editedObjects);
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public abstract SubFeatureDescriptorState createState();
+
+	/**
+	 * State for {@link SubFeatureDescriptor}
+	 */
+	public abstract class SubFeatureDescriptorState extends AbstractState {
+
+		/** managed descriptor */
+		private SubFeatureDescriptor descriptor;
+
+		/**
+		 * Creates a new SubFeatureDescriptor.SubFeatureDescriptionState.
+		 * 
+		 * @param descriptor
+		 *        the descriptor to manage
+		 */
+		public SubFeatureDescriptorState(SubFeatureDescriptor descriptor) {
+			this.descriptor = descriptor;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public SubFeatureDescriptor getDescriptor() {
+			return descriptor;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public String getEditionDialogId() {
+			return "";
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public List<? extends ITraversableModelElement> getChildren() {
+			return Collections.emptyList();
+		}
+	}
 }

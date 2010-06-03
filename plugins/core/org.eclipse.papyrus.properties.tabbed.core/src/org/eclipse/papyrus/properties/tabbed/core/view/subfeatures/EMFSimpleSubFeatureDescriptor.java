@@ -11,12 +11,18 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.core.view.subfeatures;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.properties.runtime.Activator;
+import org.eclipse.swt.graphics.Image;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 
 /**
@@ -60,5 +66,116 @@ public class EMFSimpleSubFeatureDescriptor extends SubFeatureDescriptor {
 			}
 		}
 		return results;
+	}
+
+	/**
+	 * Returns the name of the feature to edit
+	 * 
+	 * @return the name of the feature to edit
+	 */
+	public String getFeatureNameToEdit() {
+		return featureNameToEdit;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getText() {
+		return "EMF Feature: " + featureNameToEdit;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Image getImage() {
+		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public EMFSimpleSubFeatureDescriptorState createState() {
+		return new EMFSimpleSubFeatureDescriptorState(this);
+	}
+
+	/**
+	 * State for {@link EMFSimpleSubFeatureDescriptor}
+	 */
+	public class EMFSimpleSubFeatureDescriptorState extends SubFeatureDescriptorState {
+
+		/** change support for this bean */
+		private PropertyChangeSupport changeSupport;
+
+		/** name of the feature to edit */
+		private String featureNameState;
+
+		/**
+		 * Creates a new EMFSimpleSubFeatureDescriptorState.
+		 * 
+		 * @param emfSimpleSubFeatureDescriptor
+		 *        the descriptor to customize
+		 */
+		public EMFSimpleSubFeatureDescriptorState(EMFSimpleSubFeatureDescriptor emfSimpleSubFeatureDescriptor) {
+			super(emfSimpleSubFeatureDescriptor);
+
+			this.setFeatureNameState(emfSimpleSubFeatureDescriptor.getFeatureNameToEdit());
+
+			// register change support
+			changeSupport = new PropertyChangeSupport(this);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public EMFSimpleSubFeatureDescriptor getDescriptor() {
+			return (EMFSimpleSubFeatureDescriptor)super.getDescriptor();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public void addPropertyChangeListener(PropertyChangeListener listener) {
+			changeSupport.addPropertyChangeListener(listener);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public void removePropertyChangeListener(PropertyChangeListener listener) {
+			changeSupport.removePropertyChangeListener(listener);
+		}
+
+		/**
+		 * customizes the featureNameState
+		 * 
+		 * @param featureNameState
+		 *        the featureNameState to set
+		 */
+		public void setFeatureNameState(String featureNameState) {
+			String oldFeatureName = this.featureNameState;
+			this.featureNameState = featureNameState;
+
+			changeSupport.firePropertyChange("featureNameState", oldFeatureName, this.featureNameState);
+		}
+
+		/**
+		 * Returns the customized feature Name
+		 * 
+		 * @return the customized feature Name
+		 */
+		public String getFeatureNameState() {
+			return featureNameState;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public Node generateNode(Document document) {
+			//<subFeatureDescriptor featureName="memberEnd">
+			//</subFeatureDescriptor>
+			Element node = document.createElement("subFeatureDescriptor");
+			node.setAttribute("featureName", getFeatureNameState());
+			return node;
+		}
 	}
 }

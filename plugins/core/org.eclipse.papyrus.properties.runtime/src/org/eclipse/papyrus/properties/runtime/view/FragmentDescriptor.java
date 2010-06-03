@@ -32,16 +32,16 @@ public class FragmentDescriptor extends AbstractConstrainedDescriptor {
 	/**
 	 * Creates a new FragmentDescriptor.
 	 */
-	public FragmentDescriptor(String id, List<IConstraintDescriptor> constraints, List<ContainerDescriptor> descriptors) {
-		super(id, constraints);
+	public FragmentDescriptor(String id, List<IConstraintDescriptor> constraints, List<ContainerDescriptor> descriptors, int selectionSize) {
+		super(id, constraints, selectionSize);
 		this.descriptors = descriptors;
 	}
 
 	/**
 	 * Creates a new FragmentDescriptor.
 	 */
-	public FragmentDescriptor(String id, List<IConstraintDescriptor> constraints, Node contentNode, PropertyViewProviderParser parser) {
-		super(id, constraints, contentNode, parser);
+	public FragmentDescriptor(String id, List<IConstraintDescriptor> constraints, Node contentNode, int selectionSize, PropertyViewProviderParser parser) {
+		super(id, constraints, contentNode, selectionSize, parser);
 	}
 
 	/**

@@ -15,6 +15,8 @@ import java.beans.PropertyChangeListener;
 
 import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
 import org.eclipse.swt.graphics.Image;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 
 
 /**
@@ -65,4 +67,13 @@ public interface IState {
 	 *        the listener to remove
 	 */
 	public void removePropertyChangeListener(PropertyChangeListener listener);
+
+	/**
+	 * Serializes the state under the form of an xml node
+	 * 
+	 * @param document
+	 *        the document used to create elements
+	 * @return the generate node
+	 */
+	public Node generateNode(Document document);
 }

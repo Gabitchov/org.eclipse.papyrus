@@ -19,6 +19,9 @@ import java.util.List;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.ControllerDescriptorState;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
 import org.eclipse.papyrus.properties.runtime.state.AbstractState;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 
 /**
@@ -62,7 +65,6 @@ public class ContainerDescriptorState extends AbstractState {
 		return descriptor;
 	}
 
-
 	/**
 	 * Returns the controllerDescriptor States for this descriptor
 	 * 
@@ -71,7 +73,6 @@ public class ContainerDescriptorState extends AbstractState {
 	public List<ControllerDescriptorState> getControllerDescriptorStates() {
 		return controllerDescriptorStates;
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -129,6 +130,48 @@ public class ContainerDescriptorState extends AbstractState {
 	 */
 	public List<ControllerDescriptorState> getChildren() {
 		return getControllerDescriptorStates();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Node generateNode(Document document) {
+		Element node = document.createElement("container");
+		// attributes of the node: example: layout="Grid" columns="2" sameSize="false"
+		generateContainerAttributes(node, document);
+
+		// generate for owned controllers
+		generateControllers(node, document);
+
+		return node;
+	}
+
+	/**
+	 * Generates the attributes for the given node
+	 * 
+	 * @param node
+	 *        the node to complete
+	 * @param document
+	 *        the document used to create elements
+	 */
+	protected void generateContainerAttributes(Element node, Document document) {
+		node.setAttribute("layout", "Grid");
+		node.setAttribute("columns", "2");
+		node.setAttribute("sameSize", "false");
+	}
+
+	/**
+	 * Generate the controllers node
+	 * 
+	 * @param node
+	 *        the node owner of the generated nodes
+	 * @param document
+	 *        the document used to create elements
+	 */
+	protected void generateControllers(Element node, Document document) {
+		for(ControllerDescriptorState state : getControllerDescriptorStates()) {
+			node.appendChild(state.generateNode(document));
+		}
 	}
 
 }

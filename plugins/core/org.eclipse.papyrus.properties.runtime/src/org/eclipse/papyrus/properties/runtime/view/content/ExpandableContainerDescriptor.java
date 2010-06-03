@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.view.content;
 
+import java.beans.PropertyChangeSupport;
 import java.util.List;
 
 import org.eclipse.papyrus.properties.runtime.Activator;
@@ -24,6 +25,8 @@ import org.eclipse.swt.widgets.Layout;
 import org.eclipse.ui.forms.widgets.ExpandableComposite;
 import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 /**
@@ -32,7 +35,7 @@ import org.w3c.dom.Node;
 public class ExpandableContainerDescriptor extends ContainerDescriptor {
 
 	/** label for the folder */
-	protected final String label;
+	private final String label;
 
 	/** composite content of the expandable container */
 	protected Composite expandableContainer;
@@ -87,7 +90,7 @@ public class ExpandableContainerDescriptor extends ContainerDescriptor {
 
 			expandableContainer = widgetFactory.createComposite(getDescribedComposite());
 			expandableContainer.setLayout(layout);
-			getDescribedComposite().setText(label);
+			getDescribedComposite().setText(getLabel());
 
 			widgetFactory.paintBordersFor(expandableContainer);
 			getDescribedComposite().setClient(expandableContainer);
@@ -119,5 +122,86 @@ public class ExpandableContainerDescriptor extends ContainerDescriptor {
 	 */
 	public Image getImage() {
 		return Activator.getImage("/icons/ExpandableContainer.gif");
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public ContainerDescriptorState createState() {
+		return new ExpandableContainerDescriptorState(this);
+	}
+
+	/**
+	 * Returns the label of the expandable composite
+	 * 
+	 * @return the label of the expandable composite
+	 */
+	public String getLabel() {
+		return label;
+	}
+
+	/**
+	 * State for {@link ExpandableContainerDescriptor}
+	 */
+	public class ExpandableContainerDescriptorState extends ContainerDescriptorState {
+
+		/** name of the container */
+		private String name;
+
+		/** change support for this bean */
+		private PropertyChangeSupport changeSupport;
+
+		/**
+		 * Creates a new ExpandableContainerDescriptorState.
+		 * 
+		 * @param descriptor
+		 *        the descriptor managed by the state
+		 */
+		public ExpandableContainerDescriptorState(ExpandableContainerDescriptor descriptor) {
+			super(descriptor);
+
+			this.name = descriptor.getLabel();
+			// register change support
+			changeSupport = new PropertyChangeSupport(this);
+		}
+
+		/**
+		 * Sets the name of the expandable composite
+		 * 
+		 * @param name
+		 *        the name to set
+		 */
+		public void setName(String name) {
+			String oldName = this.name;
+			this.name = name;
+
+			// fire change event
+			changeSupport.firePropertyChange("label", oldName, this.name);
+		}
+
+		/**
+		 * Returns the name of the expandable composite
+		 * 
+		 * @return the name
+		 */
+		public String getName() {
+			return name;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public Node generateNode(Document document) {
+			Element node = document.createElement("expandableContainer");
+			generateContainerAttributes(node, document);
+			node.setAttribute("label", getName());
+
+			// generate for owned controllers
+			generateControllers(node, document);
+
+			return node;
+		}
+
 	}
 }
