@@ -57,7 +57,6 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Table;
@@ -116,7 +115,6 @@ public class SelectDiagramKindPage extends WizardPage {
 	 */
 	public SelectDiagramKindPage() {
 		super("Select kind of diagram");
-		setPageComplete(false);
 		setTitle("Initialization information");
 		setDescription("Select name and kind of the diagram");
 	}
@@ -140,8 +138,6 @@ public class SelectDiagramKindPage extends WizardPage {
 		createDiagramKindForm(plate);
 
 		createModelTemplateComposite(plate);
-
-		setPageComplete(validatePage());
 
 	}
 
@@ -170,7 +166,7 @@ public class SelectDiagramKindPage extends WizardPage {
 		layout.marginWidth = 5;
 		diagramKindTable.setLayout(layout);
 
-		GridData data2 = new GridData(SWT.FILL, SWT.FILL, true, false);
+		GridData data2 = new GridData(SWT.FILL, SWT.FILL, true, true);
 		diagramKindTable.setLayoutData(data2);
 
 		diagramKindTable.addSelectionListener(new SelectionListener() {
@@ -212,8 +208,10 @@ public class SelectDiagramKindPage extends WizardPage {
 	@Override
 	public void setVisible(boolean visible) {
 		super.setVisible(visible);
+		creationCommand = null;
 		diagramKindTableViewer.setInput(getDiagramCategory());
 		selectTemplateComposite.setInput(getDiagramCategory());
+		setPageComplete(validatePage());
 	}
 
 	/**
@@ -259,7 +257,7 @@ public class SelectDiagramKindPage extends WizardPage {
 		layout.marginHeight = 5;
 		layout.marginWidth = 5;
 		group.setLayout(layout);
-		GridData data = new GridData(SWT.FILL, SWT.BEGINNING, true, false);
+		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
 		group.setLayoutData(data);
 		return group;
 	}
