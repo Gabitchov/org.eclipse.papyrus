@@ -22,7 +22,6 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -75,7 +74,8 @@ public class CustomizePropertyViewWizard extends Wizard {
 			protected IStatus run(IProgressMonitor monitor) {
 				try {
 					final Document document = customizeContentPage.getFinalContent();
-					final File file = ResourcesPlugin.getWorkspace().getRoot().getRawLocation().append("test/test.xml").toFile();
+					final File file = selectXmlFilePage.getNewFile();
+					// final File file = ResourcesPlugin.getWorkspace().getRoot().getRawLocation().append("test/test.xml").toFile();
 					if(!file.exists()) {
 						file.createNewFile();
 					}

@@ -24,7 +24,10 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
+import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.wizard.IWizardPage;
@@ -44,6 +47,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.dialogs.ContainerSelectionDialog;
 import org.w3c.dom.Comment;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -80,6 +84,9 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 
 	/** content area for the modify exiting configuration */
 	protected ModifyExistingConfigurationArea modifyExistingConfigurationArea = new ModifyExistingConfigurationArea();
+
+	/** file where to serialize configuration */
+	private File file;
 
 	/** empty string */
 	protected static final String EMPTY_STRING = ""; //$NON-NLS-1$
@@ -206,6 +213,7 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 			// newPage.setInitialContent();
 			Document initialDocument = getEnableConfigurationArea().generateInitialContent();
 			newPage.setInitialContent(initialDocument);
+			file = getEnableConfigurationArea().getNewFile();
 			return newPage;
 		}
 		return null;
@@ -285,6 +293,13 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 		 * @return the composite created
 		 */
 		public Composite createContent(Composite parent);
+
+		/**
+		 * Returns the new file where the content will be serialized
+		 * 
+		 * @return the new file where the content will be serialized
+		 */
+		public File getNewFile();
 	}
 
 	/**
@@ -346,6 +361,12 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 
 		/** text used to enter the plugin id required to load classes on runtime */
 		protected Text pluginIdText;
+
+		/** text that contais the location of the new file, workspace root-relative */
+		protected Text folderText;
+
+		/** button that open a workspce folder selection dialog */
+		protected Button folderButton;
 
 		/**
 		 * {@inheritDoc}
@@ -414,6 +435,48 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 				}
 			});
 
+			// 4th line: folder where to create the new file
+			Label folderLabel = new Label(createFromScratchComposite, SWT.NONE);
+			folderLabel.setText("Folder:");
+			folderLabel.setToolTipText("Select the folder where you want to create the new file");
+			labelData = new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1);
+			folderLabel.setLayoutData(labelData);
+
+			folderText = new Text(createFromScratchComposite, SWT.BORDER);
+			folderText.setText("");
+			folderText.setEditable(false);
+			textData = new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1);
+			folderText.setLayoutData(textData);
+
+			folderButton = new Button(createFromScratchComposite, SWT.NONE);
+			folderButton.setText("Select...");
+			folderButton.addSelectionListener(new SelectionListener() {
+
+				public void widgetSelected(SelectionEvent e) {
+					ContainerSelectionDialog selectionDialog = new ContainerSelectionDialog(getShell(), null, true, "Select the container where the file will be created");
+					if(Dialog.OK == selectionDialog.open()) {
+						Object[] result = selectionDialog.getResult();
+						if(result.length < 1) {
+							Activator.log.error("no container was selected in the dialog", null);
+							return;
+						}
+
+						Object container = result[0];
+						if(container instanceof Path) {
+							Path path = (Path)container;
+							folderText.setText(path.toString());
+						}
+
+
+						validatePage();
+					}
+				}
+
+				public void widgetDefaultSelected(SelectionEvent e) {
+
+				}
+			});
+
 			return createFromScratchComposite;
 		}
 
@@ -426,6 +489,14 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 			}
 			Activator.log.error("impossible to read plugin Id from the text area", null);
 			return "";
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public File getNewFile() {
+			File file = ResourcesPlugin.getWorkspace().getRoot().getRawLocation().append(folderText.getText()).append(Character.toString(IPath.SEPARATOR)).append(nameText.getText()).addFileExtension("xml").toFile();
+			return file;
 		}
 
 		/**
@@ -460,6 +531,9 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 				if(pluginIdText.getText() == null || pluginIdText.getText().equals(EMPTY_STRING)) {
 					setPageComplete(false);
 					setMessage(Messages.SelectConfigurationFileWizardPage_ErrorMessage_NoValidPluginIdentifier, ERROR);
+				} else if(folderText.getText() == null || folderText.getText().equals(EMPTY_STRING)) {
+					setPageComplete(false);
+					setMessage("Please select a valid folder", ERROR);
 				} else {
 					super.validatePage();
 				}
@@ -480,6 +554,12 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 
 		/** text area that display the name of the configuration file to copy and modify */
 		protected Text createFromExistingConfigurationText;
+
+		/** text that contais the location of the new file, workspace root-relative */
+		protected Text folderText;
+
+		/** button that open a workspce folder selection dialog */
+		protected Button folderButton;
 
 		/**
 		 * {@inheritDoc}
@@ -547,6 +627,48 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 				}
 			});
 
+			// 4th line: folder where to create the new file
+			Label folderLabel = new Label(mainComposite, SWT.NONE);
+			folderLabel.setText("Folder:");
+			folderLabel.setToolTipText("Select the folder where you want to create the new file");
+			labelData = new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1);
+			folderLabel.setLayoutData(labelData);
+
+			folderText = new Text(mainComposite, SWT.BORDER);
+			folderText.setText("");
+			folderText.setEditable(false);
+			textData = new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1);
+			folderText.setLayoutData(textData);
+
+			folderButton = new Button(mainComposite, SWT.NONE);
+			folderButton.setText("Select...");
+			folderButton.addSelectionListener(new SelectionListener() {
+
+				public void widgetSelected(SelectionEvent e) {
+					ContainerSelectionDialog selectionDialog = new ContainerSelectionDialog(getShell(), null, true, "Select the container where the file will be created");
+					if(Dialog.OK == selectionDialog.open()) {
+						Object[] result = selectionDialog.getResult();
+						if(result.length < 1) {
+							Activator.log.error("no container was selected in the dialog", null);
+							return;
+						}
+
+						Object container = result[0];
+						if(container instanceof Path) {
+							Path path = (Path)container;
+							folderText.setText(path.toString());
+						}
+
+
+						validatePage();
+					}
+				}
+
+				public void widgetDefaultSelected(SelectionEvent e) {
+
+				}
+			});
+
 			return mainComposite;
 		}
 
@@ -603,9 +725,14 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 			return null;
 		}
 
+		/**
+		 * {@inheritDoc}
+		 */
+		public File getNewFile() {
+			File file = ResourcesPlugin.getWorkspace().getRoot().getRawLocation().append(folderText.getText()).append(Character.toString(IPath.SEPARATOR)).append(nameText.getText()).addFileExtension("xml").toFile();
+			return file;
+		}
 	}
-
-
 
 	/**
 	 * Area for the "modify an existing configuration" in the dialog
@@ -711,5 +838,22 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 			}
 			return null;
 		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public File getNewFile() {
+			// returns the file itself
+			return ResourcesPlugin.getWorkspace().getRoot().getRawLocation().append(modifyExistingConfigurationText.getText()).toFile();
+		}
+	}
+
+	/**
+	 * Returns the new file, where the content of the configuration will be serialized
+	 * 
+	 * @return the new file, where the content of the configuration will be serialized
+	 */
+	public File getNewFile() {
+		return file;
 	}
 }
