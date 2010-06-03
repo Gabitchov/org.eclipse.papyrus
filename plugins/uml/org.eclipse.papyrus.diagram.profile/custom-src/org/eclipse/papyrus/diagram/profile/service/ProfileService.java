@@ -38,7 +38,7 @@ public class ProfileService implements IService {
 	 * The object firing event about the Editor lifecycle.
 	 */
 	protected ILifeCycleEventsProvider eventProvider;
-	
+
 	/**
 	 * Listener on aboutToSave events.
 	 */
@@ -108,7 +108,7 @@ public class ProfileService implements IService {
 	 * Deactivate listeners
 	 */
 	private void deactivate() {
-			eventProvider.removeAboutToDoSaveListener(aboutToSaveListener);
+		eventProvider.removeAboutToDoSaveListener(aboutToSaveListener);
 
 	}
 
