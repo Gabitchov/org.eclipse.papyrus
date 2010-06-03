@@ -104,6 +104,8 @@ public class ObjectTypeConstraintDescriptor implements IConstraintDescriptor, IC
 		public ObjectTypeConstraintDescriptorState(ObjectTypeConstraintDescriptor objectTypeConstraintDescriptor) {
 			super(objectTypeConstraintDescriptor);
 
+			elementClassState = objectTypeConstraintDescriptor.getElementClass();
+
 			// register change support
 			changeSupport = new PropertyChangeSupport(this);
 		}
