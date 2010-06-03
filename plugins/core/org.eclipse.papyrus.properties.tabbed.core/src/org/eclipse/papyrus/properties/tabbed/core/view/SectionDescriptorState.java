@@ -239,7 +239,23 @@ public class SectionDescriptorState extends AbstractState {
 		node.setAttribute("tabId", getTargetTab());
 		node.setAttribute("adapterId", getAdapterId());
 
+		generateFragmentDescriptorStateNodes(node, document);
+
 		return node;
+	}
+
+	/**
+	 * Generates for children fragment descriptors
+	 * 
+	 * @param node
+	 *        the parent node for generated nodes
+	 * @param document
+	 *        the document used to create elements
+	 */
+	protected void generateFragmentDescriptorStateNodes(Element node, Document document) {
+		for(FragmentDescriptorState fragmentDescriptorState : getFragmentDescriptorStates()) {
+			node.appendChild(fragmentDescriptorState.generateNode(document));
+		}
 	}
 
 }

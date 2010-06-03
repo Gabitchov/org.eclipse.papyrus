@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.properties.tabbed.customization.dialog.actions;
 
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
@@ -19,7 +20,8 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorControllerService;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.ControllerDescriptorState;
-import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
+import org.eclipse.papyrus.properties.runtime.controller.predefined.PredefinedControllerDescriptor;
+import org.eclipse.papyrus.properties.runtime.controller.predefined.PredefinedControllerState;
 import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.constraints.ConstraintDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
@@ -126,9 +128,10 @@ public class ContainerMenuCreator extends AbstractMenuCreator {
 
 		// action to add a predefined controller => must retrieve the list of predefined controllers for this element
 		// => find the correct predefined controllers ? They should meet the constraints
-		List<IPropertyEditorControllerDescriptor> predefinedDescriptors = PropertyEditorControllerService.getInstance().getAllPredefinedControllers();
+		Map<String, PredefinedControllerDescriptor> predefinedDescriptors = PropertyEditorControllerService.getInstance().getAllPredefinedControllers();
 
-		for(final IPropertyEditorControllerDescriptor propertyEditorControllerDescriptor : predefinedDescriptors) {
+		for(final String predefinedId : predefinedDescriptors.keySet()) {
+			final PredefinedControllerDescriptor propertyEditorControllerDescriptor = predefinedDescriptors.get(predefinedId);
 			for(IConstraintDescriptor constraintDescriptor : propertyEditorControllerDescriptor.getConstraintDescriptors()) {
 				if(constraintDescriptor instanceof ObjectTypeConstraintDescriptor) {
 					Class<?> elementClass = ((ObjectTypeConstraintDescriptor)constraintDescriptor).getElementClass();
@@ -149,7 +152,7 @@ public class ContainerMenuCreator extends AbstractMenuCreator {
 										Activator.log.warn("Impossible to find the current selection in the tree");
 										return;
 									}
-									ControllerDescriptorState state = new ControllerDescriptorState(propertyEditorControllerDescriptor);
+									ControllerDescriptorState state = new PredefinedControllerState(propertyEditorControllerDescriptor);
 									containerDescriptorState.addPropertyEditorControllerState(state);
 								}
 							}

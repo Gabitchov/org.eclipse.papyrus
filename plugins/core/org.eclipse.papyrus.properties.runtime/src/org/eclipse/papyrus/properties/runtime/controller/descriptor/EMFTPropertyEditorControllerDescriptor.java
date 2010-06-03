@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.controller.descriptor;
 
+import java.beans.PropertyChangeSupport;
 import java.util.List;
 
 import org.eclipse.papyrus.properties.runtime.Activator;
@@ -18,6 +19,9 @@ import org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandler;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.eclipse.swt.graphics.Image;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  * Basic configuration for property editor controllers
@@ -129,7 +133,167 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 	 * {@inheritDoc}
 	 */
 	public ControllerDescriptorState createState() {
-		return new ControllerDescriptorState(this);
+		return new EMFTPropertyEditorControllerDescriptorState(this);
 	}
 
+	/**
+	 * state for {@link EMFTPropertyEditorControllerDescriptor}
+	 */
+	public class EMFTPropertyEditorControllerDescriptorState extends ControllerDescriptorState {
+
+		/** change support for this bean */
+		private PropertyChangeSupport changeSupport;
+
+		/** state for the feature name */
+		private String featureNameState;
+
+		/** model handler state */
+		private String modelHandlerState;
+
+		/** multi selection state */
+		private boolean multiSelectionState;
+
+		/**
+		 * Creates a new EMFTPropertyEditorControllerDescriptorState.
+		 * 
+		 * @param descriptor
+		 */
+		public EMFTPropertyEditorControllerDescriptorState(EMFTPropertyEditorControllerDescriptor descriptor) {
+			super(descriptor);
+			featureNameState = descriptor.getFeatureNameToEdit();
+			multiSelectionState = descriptor.acceptMultiSelection();
+
+
+			// register change support
+			changeSupport = new PropertyChangeSupport(this);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public EMFTPropertyEditorControllerDescriptor getDescriptor() {
+			return (EMFTPropertyEditorControllerDescriptor)super.getDescriptor();
+		}
+
+
+		/**
+		 * Returns the changeSupport for this state
+		 * 
+		 * @return the changeSupport for this state
+		 */
+		public PropertyChangeSupport getChangeSupport() {
+			return changeSupport;
+		}
+
+		/**
+		 * Sets the changeSupport for this state
+		 * 
+		 * @param changeSupport
+		 *        the changeSupport to set
+		 */
+		public void setChangeSupport(PropertyChangeSupport changeSupport) {
+			this.changeSupport = changeSupport;
+		}
+
+		/**
+		 * Returns the featureNameState for this state
+		 * 
+		 * @return the featureNameState for this state
+		 */
+		public String getFeatureNameState() {
+			return featureNameState;
+		}
+
+		/**
+		 * Sets the featureNameState for this state
+		 * 
+		 * @param featureNameState
+		 *        the featureNameState to set
+		 */
+		public void setFeatureNameState(String featureNameState) {
+			String oldName = this.featureNameState;
+			this.featureNameState = featureNameState;
+
+			changeSupport.firePropertyChange("featureNameState", oldName, this.featureNameState);
+		}
+
+		/**
+		 * Returns the modelHandler for this state
+		 * 
+		 * @return the modelHandler for this state
+		 */
+		public String getModelHandlerState() {
+			return modelHandlerState;
+		}
+
+		/**
+		 * Sets the modelHandler for this state
+		 * 
+		 * @param modelHandlerState
+		 *        the modelHandler to set
+		 */
+		public void setModelHandler(String modelHandlerState) {
+			String oldHandlerState = this.modelHandlerState;
+			this.modelHandlerState = modelHandlerState;
+
+			changeSupport.firePropertyChange("modelHandler", oldHandlerState, this.modelHandlerState);
+		}
+
+		/**
+		 * Returns the multiSelection for this state
+		 * 
+		 * @return the multiSelection for this state
+		 */
+		public boolean isMultiSelection() {
+			return multiSelection;
+		}
+
+		/**
+		 * Sets the multiSelection for this state
+		 * 
+		 * @param multiSelectionState
+		 *        the multiSelection to set
+		 */
+		public void setMultiSelection(boolean multiSelectionState) {
+			boolean oldSelection = this.multiSelectionState;
+			this.multiSelectionState = multiSelectionState;
+			changeSupport.firePropertyChange("multiSelection", oldSelection, this.multiSelectionState);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public Node generateNode(Document document) {
+			Element node = document.createElement("controller");
+			node.setAttribute("id", getId());
+
+			//			<controller id="emftStructuralFeatureController">
+			//			<feature name="qualifiedName" handlerID="String"/>
+			//			<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Qualified Name:" labelPosition="16384">
+			//				<icon pluginID="org.eclipse.papyrus.properties.tabbed.uml" path="/icons/tool.gif"/>
+			//			</editor>
+			//			</controller>
+
+			Element featureNode = document.createElement("feature");
+			featureNode.setAttribute("name", getFeatureNameState());
+			// FIXME generate element from the model handler
+
+			generateEditorNode(node, document);
+			return node;
+		}
+
+		/**
+		 * Generates the editor node for the controller
+		 * 
+		 * @param node
+		 *        the parent node for generated nodes
+		 * @param document
+		 *        the document used to create elements
+		 */
+		protected void generateEditorNode(Element node, Document document) {
+			// FIXME generate the editor node
+		}
+	}
 }

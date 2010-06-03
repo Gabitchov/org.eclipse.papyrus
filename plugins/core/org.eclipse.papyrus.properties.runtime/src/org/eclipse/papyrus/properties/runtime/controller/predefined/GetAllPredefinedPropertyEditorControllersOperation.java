@@ -11,12 +11,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.controller.predefined;
 
-import java.util.Collection;
 import java.util.Collections;
+import java.util.Map;
 
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.common.core.service.IProvider;
-import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
 
 
 /**
@@ -27,11 +26,10 @@ public class GetAllPredefinedPropertyEditorControllersOperation implements IOper
 	/**
 	 * {@inheritDoc}
 	 */
-	public Collection<IPropertyEditorControllerDescriptor> execute(IProvider provider) {
+	public Map<String, PredefinedControllerDescriptor> execute(IProvider provider) {
 		if(provider instanceof PredefinedPropertyControllerProvider) {
 			return ((PredefinedPropertyControllerProvider)provider).getAllPredefinedProviders();
 		}
-		return Collections.emptyList();
+		return Collections.emptyMap();
 	}
-
 }

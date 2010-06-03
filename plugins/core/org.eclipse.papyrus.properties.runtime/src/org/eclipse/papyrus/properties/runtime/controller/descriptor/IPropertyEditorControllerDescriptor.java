@@ -55,4 +55,11 @@ public interface IPropertyEditorControllerDescriptor extends IConfigurableDescri
 	 * {@inheritDoc}
 	 */
 	public ControllerDescriptorState createState();
+
+	//	/**
+	//	 * Returns the predefined id of the described controller
+	//	 * 
+	//	 * @return the predefined id of the described controller
+	//	 */
+	//	public String getPredefinedId();
 }

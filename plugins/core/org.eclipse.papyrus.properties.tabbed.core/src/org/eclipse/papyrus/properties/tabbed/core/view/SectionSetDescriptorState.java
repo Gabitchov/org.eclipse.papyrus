@@ -216,13 +216,14 @@ public class SectionSetDescriptorState extends AbstractState {
 			Node node = constraintState.generateNode(document);
 			contextNode.appendChild(node);
 		}
+		sectionSetDescriptorNode.appendChild(contextNode);
 
 		// generate for section
 		for(SectionDescriptorState sectionState : getSectionDescriptorStates()) {
 			Node node = sectionState.generateNode(document);
-			contextNode.appendChild(node);
+			sectionSetDescriptorNode.appendChild(node);
 		}
-		sectionSetDescriptorNode.appendChild(contextNode);
+
 
 		return sectionSetDescriptorNode;
 	}

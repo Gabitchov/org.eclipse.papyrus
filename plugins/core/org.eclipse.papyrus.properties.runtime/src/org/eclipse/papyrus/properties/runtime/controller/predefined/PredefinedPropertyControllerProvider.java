@@ -14,7 +14,6 @@ package org.eclipse.papyrus.properties.runtime.controller.predefined;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,8 +48,8 @@ public class PredefinedPropertyControllerProvider extends AbstractProvider {
 	/** key for the value: path to the xml file */
 	protected static final String XML_PATH = "path";
 
-	/** predefined controllers identified by their unique predefined identifier */
-	private Map<String, IPropertyEditorControllerDescriptor> controllers = new HashMap<String, IPropertyEditorControllerDescriptor>();
+	/** predefined controllers identified by their unique predefined identifier (faster search) */
+	private Map<String, PredefinedControllerDescriptor> predefinedControllers = new HashMap<String, PredefinedControllerDescriptor>();
 
 	/** bundle that declares this provider */
 	private Bundle bundle = null;
@@ -60,7 +59,7 @@ public class PredefinedPropertyControllerProvider extends AbstractProvider {
 	 */
 	public boolean provides(IOperation operation) {
 		if(operation instanceof CreatePredefinedPropertyControllerProviderOperation) {
-			return controllers.containsKey(((CreatePredefinedPropertyControllerProviderOperation)operation).getPredefinedID());
+			return predefinedControllers.containsKey(((CreatePredefinedPropertyControllerProviderOperation)operation).getPredefinedID());
 		} else if(operation instanceof GetAllPredefinedPropertyEditorControllersOperation) {
 			return true;
 		}
@@ -131,7 +130,7 @@ public class PredefinedPropertyControllerProvider extends AbstractProvider {
 	 * @return the created controller
 	 */
 	public IPropertyEditorControllerDescriptor retrievePropertyEditorControllerDescriptor(String predefinedID) {
-		return controllers.get(predefinedID);
+		return predefinedControllers.get(predefinedID);
 	}
 
 	/**
@@ -139,8 +138,8 @@ public class PredefinedPropertyControllerProvider extends AbstractProvider {
 	 * 
 	 * @return the list of all predefined controllers proposed by this provider
 	 */
-	public Collection<IPropertyEditorControllerDescriptor> getAllPredefinedProviders() {
-		return controllers.values();
+	public Map<String, PredefinedControllerDescriptor> getAllPredefinedProviders() {
+		return predefinedControllers;
 	}
 
 	/**
@@ -200,7 +199,7 @@ public class PredefinedPropertyControllerProvider extends AbstractProvider {
 
 				// retrieve other informations using the specific descriptors of each controller
 				IPropertyEditorControllerDescriptor descriptor = PropertyEditorControllerService.getInstance().createPropertyEditorControllerDescriptor(controllerID, childNode, bundle);
-				controllers.put(predefinedID, descriptor);
+				predefinedControllers.put(predefinedID, new PredefinedControllerDescriptor(predefinedID, descriptor));
 			}
 		} else {
 			Activator.log.error("Impossible to find attributes for predefined controller node", null);

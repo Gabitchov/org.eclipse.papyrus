@@ -11,9 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.controller;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.gmf.runtime.common.core.service.ExecutionStrategy;
@@ -25,6 +25,7 @@ import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
 import org.eclipse.papyrus.properties.runtime.controller.predefined.CreatePredefinedPropertyControllerProviderOperation;
 import org.eclipse.papyrus.properties.runtime.controller.predefined.GetAllPredefinedPropertyEditorControllersOperation;
+import org.eclipse.papyrus.properties.runtime.controller.predefined.PredefinedControllerDescriptor;
 import org.eclipse.papyrus.properties.runtime.controller.predefined.PredefinedPropertyControllerProvider;
 import org.eclipse.swt.widgets.Composite;
 import org.osgi.framework.Bundle;
@@ -94,13 +95,13 @@ public class PropertyEditorControllerService extends Service {
 	 * @return the flatten collection of all available predefined controllers
 	 */
 	@SuppressWarnings("unchecked")
-	public List<IPropertyEditorControllerDescriptor> getAllPredefinedControllers() {
-		List<Collection<IPropertyEditorControllerDescriptor>> predefinedControllers = (List<Collection<IPropertyEditorControllerDescriptor>>)execute(ExecutionStrategy.REVERSE, new GetAllPredefinedPropertyEditorControllersOperation());
-		List<IPropertyEditorControllerDescriptor> flattenList = new ArrayList<IPropertyEditorControllerDescriptor>();
-		for(Collection<IPropertyEditorControllerDescriptor> subList : predefinedControllers) {
-			flattenList.addAll(subList);
+	public Map<String, PredefinedControllerDescriptor> getAllPredefinedControllers() {
+		List<Map<String, PredefinedControllerDescriptor>> predefinedControllers = (List<Map<String, PredefinedControllerDescriptor>>)execute(ExecutionStrategy.REVERSE, new GetAllPredefinedPropertyEditorControllersOperation());
+		Map<String, PredefinedControllerDescriptor> flattenMap = new HashMap<String, PredefinedControllerDescriptor>();
+		for(Map<String, PredefinedControllerDescriptor> subList : predefinedControllers) {
+			flattenMap.putAll(subList);
 		}
-		return flattenList;
+		return flattenMap;
 	}
 
 	/**

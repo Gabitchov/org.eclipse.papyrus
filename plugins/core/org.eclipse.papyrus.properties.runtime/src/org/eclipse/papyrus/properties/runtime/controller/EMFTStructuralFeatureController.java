@@ -26,6 +26,7 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.EMFTPropertyEditorControllerDescriptor;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
+import org.eclipse.papyrus.properties.runtime.controller.predefined.PredefinedControllerDescriptor;
 import org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandler;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 import org.eclipse.swt.widgets.Composite;
@@ -78,8 +79,16 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 		}
 		setEditingDomain(editingDomain);
 
-		if(descriptor instanceof EMFTPropertyEditorControllerDescriptor) {
-			this.descriptor = (EMFTPropertyEditorControllerDescriptor)descriptor;
+		IPropertyEditorControllerDescriptor realDescriptor = descriptor;
+		if(descriptor instanceof PredefinedControllerDescriptor) {
+			IPropertyEditorControllerDescriptor predefinedDescriptor = ((PredefinedControllerDescriptor)descriptor).getDescriptor();
+			if(predefinedDescriptor instanceof EMFTPropertyEditorControllerDescriptor) {
+				realDescriptor = predefinedDescriptor;
+			}
+		}
+
+		if(realDescriptor instanceof EMFTPropertyEditorControllerDescriptor) {
+			this.descriptor = (EMFTPropertyEditorControllerDescriptor)realDescriptor;
 		} else {
 			return new Status(IStatus.ERROR, Activator.ID, "impossible to adapt descriptor to an EMFTPropertyEditorControllerDescriptor");
 		}

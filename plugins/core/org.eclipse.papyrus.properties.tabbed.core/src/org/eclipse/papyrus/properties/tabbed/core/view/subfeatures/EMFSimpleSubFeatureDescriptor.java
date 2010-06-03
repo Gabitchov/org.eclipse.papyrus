@@ -118,7 +118,7 @@ public class EMFSimpleSubFeatureDescriptor extends SubFeatureDescriptor {
 		public EMFSimpleSubFeatureDescriptorState(EMFSimpleSubFeatureDescriptor emfSimpleSubFeatureDescriptor) {
 			super(emfSimpleSubFeatureDescriptor);
 
-			this.setFeatureNameState(emfSimpleSubFeatureDescriptor.getFeatureNameToEdit());
+			featureNameState = emfSimpleSubFeatureDescriptor.getFeatureNameToEdit();
 
 			// register change support
 			changeSupport = new PropertyChangeSupport(this);
