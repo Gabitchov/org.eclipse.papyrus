@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.properties.tabbed.customization.state;
 
 import java.beans.PropertyChangeEvent;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.List;
 
@@ -57,6 +58,7 @@ public class StateBeanPropertyEditorController extends BeanPropertyEditorControl
 			String searchMethodName = "set" + propertyName;
 			for(Method method : methods) {
 				if(searchMethodName.equalsIgnoreCase(method.getName())) {
+					method.setAccessible(true);
 					method.invoke(state, value);
 					return;
 				}
@@ -80,7 +82,9 @@ public class StateBeanPropertyEditorController extends BeanPropertyEditorControl
 		IState state = getObjectsToEdit().get(0);
 		String propertyName = getDescriptor().getPropertyName();
 		try {
-			return state.getClass().getDeclaredField(propertyName).get(state);
+			Field field = state.getClass().getDeclaredField(propertyName);
+			field.setAccessible(true);
+			return field.get(state);
 		} catch (IllegalArgumentException e) {
 			Activator.log.error(e);
 		} catch (SecurityException e) {
