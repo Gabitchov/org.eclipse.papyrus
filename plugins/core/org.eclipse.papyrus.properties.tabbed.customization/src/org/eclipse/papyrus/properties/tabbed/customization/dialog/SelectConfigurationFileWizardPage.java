@@ -696,6 +696,9 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 				if(createFromExistingConfigurationText.getText() == null || createFromExistingConfigurationText.getText().equals(EMPTY_STRING)) {
 					setPageComplete(false);
 					setMessage(Messages.SelectConfigurationFileWizardPage_ErrorMessage_NoValidExistingConfiguration, ERROR);
+				} else if(folderText.getText() == null || folderText.getText().equals(EMPTY_STRING)) {
+					setPageComplete(false);
+					setMessage("Please select a valid folder", ERROR);
 				} else {
 					super.validatePage();
 				}
