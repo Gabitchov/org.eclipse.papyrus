@@ -11,6 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.customization.dialog;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClassifier;
@@ -46,6 +49,7 @@ public class MetamodelContentProvider extends CustomizableModelContentProvider {
 	/**
 	 * {@inheritDoc}
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public EObject[] getRootElements(Object inputElement) {
 		if(inputElement instanceof EPackage) {
@@ -53,7 +57,23 @@ public class MetamodelContentProvider extends CustomizableModelContentProvider {
 		} else if(inputElement instanceof EObject) {
 			return ((EObject)inputElement).eContents().toArray(new EObject[]{});
 		} else if(inputElement instanceof List<?>) {
-			return ((List<?>)inputElement).toArray(new EObject[]{});
+			List<EClassifier> objects = new ArrayList<EClassifier>();
+			objects.addAll((List<EClassifier>)inputElement);
+			//order the list by name, if required ?
+			Collections.sort(objects, new Comparator<EClassifier>() {
+
+				/**
+				 * {@inheritDoc}
+				 */
+				public int compare(EClassifier o1, EClassifier o2) {
+					if(o1.getName() == null) {
+						return 0;
+					}
+					return o1.getName().compareTo(o2.getName());
+				}
+
+			});
+			return objects.toArray(new EObject[]{});
 		}
 		return new EObject[0];
 

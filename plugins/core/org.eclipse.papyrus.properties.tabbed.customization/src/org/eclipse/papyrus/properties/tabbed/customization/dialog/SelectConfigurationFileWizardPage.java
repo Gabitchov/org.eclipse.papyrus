@@ -658,8 +658,6 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 							Path path = (Path)container;
 							folderText.setText(path.toString());
 						}
-
-
 						validatePage();
 					}
 				}
