@@ -63,7 +63,7 @@ public class NotationModel extends AbstractBaseModel implements IModel {
 	 * @return
 	 */
 	@Override
-	public Object getIdentifier() {
+	public String getIdentifier() {
 		return MODEL_ID;
 	}
 

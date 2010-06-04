@@ -26,7 +26,7 @@ import org.junit.Test;
 
 
 /**
- * Run as Plug-in Test
+ * Run as "JUnit Plugin-Test"
  * 
  * @author cedric dumoulin
  *

@@ -20,6 +20,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.papyrus.resource.ModelException;
 import org.eclipse.papyrus.resource.ModelMultiException;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.ModelsReader;
@@ -56,12 +57,17 @@ public class DiResourceSet extends ModelSet {
 	/**
 	 * Just loads the model into the current resource set.
 	 * 
-	 * @returns The loaded model.
+	 * @returns The loaded model or null if the model is not loaded.
 	 * @deprecated load requested model and get its resource. See implementation for example.
 	 */
 	public Resource loadModelResource(IFile file) {
 
-		UmlModel model = (UmlModel)loadModel(UmlModel.MODEL_ID, file);
+		UmlModel model = null;
+		try {
+			model = (UmlModel)loadModel(UmlModel.MODEL_ID, file);
+		} catch (ModelException e) {
+			return null;
+		}
 		return model.getResource();
 	}
 

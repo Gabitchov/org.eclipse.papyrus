@@ -24,7 +24,7 @@ public abstract class AbstractBaseModel implements IModel {
 	/**
 	 * The associated ModelManager.
 	 */
-	private ModelSet modelManager;
+	private ModelSet modelSet;
 
 	/**
 	 * List of attached snippets.
@@ -47,7 +47,7 @@ public abstract class AbstractBaseModel implements IModel {
 	 * @param modelManager
 	 */
 	public void init(ModelSet modelManager) {
-		this.modelManager = modelManager;
+		this.modelSet = modelManager;
 
 	}
 
@@ -55,7 +55,7 @@ public abstract class AbstractBaseModel implements IModel {
 	 * @return the modelManager
 	 */
 	protected ModelSet getModelManager() {
-		return modelManager;
+		return modelSet;
 	}
 
 	/**
@@ -64,7 +64,7 @@ public abstract class AbstractBaseModel implements IModel {
 	 * @return
 	 */
 	protected ResourceSet getResourceSet() {
-		return modelManager;
+		return modelSet;
 	}
 
 	/**
@@ -86,7 +86,7 @@ public abstract class AbstractBaseModel implements IModel {
 	 * 
 	 * @return
 	 */
-	abstract public Object getIdentifier();
+	abstract public String getIdentifier();
 
 	/**
 	 * Get the file extension used by the resource.
@@ -155,9 +155,20 @@ public abstract class AbstractBaseModel implements IModel {
 		resourceURI = getPlatformURI(fullPathWithoutExtension.addFileExtension(getModelFileExtension()));
 
 		// Create Resource of appropriate type
-		resource = modelManager.getResource(resourceURI, true);
+		resource = modelSet.getResource(resourceURI, true);
 		// call registered snippets
 		snippets.performStart(this);
+	}
+
+	/**
+	 * Import the model by using the provided fullpath as a hint for the resource URI.
+	 * In this implementation, simply call {@link #loadModel(IPath)}
+	 * 
+	 * @param fullPathWithoutExtension
+	 */
+	public void importModel(IPath fullPathWithoutExtension) {
+
+		loadModel(fullPathWithoutExtension);
 	}
 
 	/**

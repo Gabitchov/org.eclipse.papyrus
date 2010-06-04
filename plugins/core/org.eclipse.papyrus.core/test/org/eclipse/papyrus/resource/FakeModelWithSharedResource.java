@@ -17,6 +17,15 @@ public class FakeModelWithSharedResource<T extends EObject> extends AbstractMode
 	private String fileExtension;
 	private Class<T> expectedType;
 	
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param kind
+	 * @param identifier
+	 * @param fileExtension
+	 * @param expectedType
+	 */
 	public FakeModelWithSharedResource(ModelKind kind, String identifier, String fileExtension, Class<T> expectedType) {
         super(kind);
 		this.identifier = identifier;
@@ -24,24 +33,58 @@ public class FakeModelWithSharedResource<T extends EObject> extends AbstractMode
 		this.fileExtension = fileExtension;
 	}
 	
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param kind
+	 * @param identifier
+	 * @param expectedType
+	 */
 	public FakeModelWithSharedResource(ModelKind kind, String identifier, Class<T> expectedType) {
 		this(kind, identifier, "di", expectedType);
 	}
 	
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param identifier
+	 * @param expectedType
+	 */
 	public FakeModelWithSharedResource(String identifier, Class<T> expectedType) {
 		this(ModelKind.slave, identifier, expectedType);
 	}
 	
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.resource.AbstractModelWithSharedResource#isModelRoot(org.eclipse.emf.ecore.EObject)
+	 *
+	 * @param object
+	 * @return
+	 */
 	@Override
 	protected boolean isModelRoot(EObject object) {
 		return expectedType.isInstance(object);
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.resource.AbstractBaseModel#getIdentifier()
+	 *
+	 * @return
+	 */
 	@Override
-	public Object getIdentifier() {
+	public String getIdentifier() {
 		return identifier;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.resource.AbstractBaseModel#getModelFileExtension()
+	 *
+	 * @return
+	 */
 	@Override
 	protected String getModelFileExtension() {
 		return fileExtension;

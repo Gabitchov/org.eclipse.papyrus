@@ -32,7 +32,7 @@ public interface IModel {
 	 * Get the identifier identifying this model (aka: uml, notation, ...)
 	 * @return
 	 */
-	public Object getIdentifier();
+	public String getIdentifier();
 
 	/**
 	 * Create the model repository.
@@ -42,11 +42,18 @@ public interface IModel {
 	public void createModel(IPath fullPath);
 
 	/**
-	 * Load the model repository.
+	 * Load the model from the specified path..
 	 * 
-	 * @param file The file selected by user requesting load. Should be used as a bases to guess the model IPath.
+	 * @param path The full path, without extension where the model should be saved. Should be used as a bases to guess the model IPath.
 	 */
-	public void loadModel(IFile file);
+	public void loadModel(IPath path);
+
+	/**
+	 * Import the model from the specified path.
+	 * 
+	 * @param path The full path, without extension.
+	 */
+	public void importModel(IPath path);
 
 	/**
 	 * Save the model in its repository.
@@ -75,5 +82,6 @@ public interface IModel {
 	 * @param snippet The snippet to add.
 	 */
 	public void addModelSnippet(IModelSnippet snippet);
+
 
 }

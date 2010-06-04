@@ -39,7 +39,7 @@ public class HistoryModel extends AbstractModelWithSharedResource<ControledResou
 	 * @return
 	 */
 	@Override
-	public Object getIdentifier() {
+	public String getIdentifier() {
 		return MODEL_ID;
 	}
 

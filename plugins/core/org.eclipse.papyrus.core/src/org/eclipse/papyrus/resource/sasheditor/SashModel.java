@@ -61,7 +61,7 @@ public class SashModel extends AbstractModelWithSharedResource<org.eclipse.papyr
 	 * @return
 	 */
 	@Override
-	public Object getIdentifier() {
+	public String getIdentifier() {
 		return MODEL_ID;
 	}
 

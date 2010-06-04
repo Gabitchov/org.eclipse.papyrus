@@ -24,7 +24,7 @@ public class FakeModel extends AbstractBaseModel {
 	 * @return
 	 */
 	@Override
-	public Object getIdentifier() {
+	public String getIdentifier() {
 		// TODO Auto-generated method stub
 		return identifier;
 	}
@@ -40,11 +40,4 @@ public class FakeModel extends AbstractBaseModel {
 		return identifier;
 	}
 
-	/**
-	 * Get the associted resource.
-	 * @return
-	 */
-	public Resource getResouce() {
-		return resource;
-	}
 }
