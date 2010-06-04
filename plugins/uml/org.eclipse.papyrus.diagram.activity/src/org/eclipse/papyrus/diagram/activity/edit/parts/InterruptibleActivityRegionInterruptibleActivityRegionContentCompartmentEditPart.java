@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.policies.InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
+import org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInReferencingGroupEditPolicy;
 
 /**
  * @generated
@@ -86,6 +87,7 @@ extends ShapeCompartmentEditPart
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.activity.edit.policies.InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentCanonicalEditPolicy());
 
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreateInReferencingGroupEditPolicy());
 	}
 
 

@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 Atos Origin.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   Atos Origin - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -13,9 +26,11 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
+import org.eclipse.papyrus.diagram.common.groups.utils.GroupRequestConstants;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.InterruptibleActivityRegion;
+import org.eclipse.uml2.uml.StructuredActivityNode;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
@@ -75,19 +90,15 @@ public class CallOperationActionInIARCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT check that there is a model container.
 	 */
 	public boolean canExecute() {
-
-
-		return true;
-
-
-
+		//check that there is a model container.
+		return getRequest().getParameter(GroupRequestConstants.MODEL_CONTAINER) != null;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT create in appropriate model container
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
@@ -95,8 +106,17 @@ public class CallOperationActionInIARCreateCommand extends EditElementCommand {
 
 		CallOperationAction newElement = UMLFactory.eINSTANCE.createCallOperationAction();
 
-		Activity owner = (Activity)getElementToEdit();
-		owner.getNodes().add(newElement);
+		// create in appropriate model container
+		Object owner = getRequest().getParameter(GroupRequestConstants.MODEL_CONTAINER);
+		if(owner instanceof Activity) {
+			((Activity)owner).getNodes().add(newElement);
+		} else if(owner instanceof StructuredActivityNode) {
+			((StructuredActivityNode)owner).getNodes().add(newElement);
+		} else {
+			return CommandResult.newCancelledCommandResult();
+		}
+		//		Activity owner = (Activity)getElementToEdit();
+		//		owner.getNodes().add(newElement);
 		InterruptibleActivityRegion childHolder = (InterruptibleActivityRegion)getElementToEdit();
 		childHolder.getNodes().add(newElement);
 

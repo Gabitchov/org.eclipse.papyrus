@@ -38,49 +38,33 @@ public class RoundedRectangleDashedBorder extends RoundedRectangleBorder {
 		super(arcWidth, arcHeight);
 	}
 
+	/**
+	 * Get the dashed style
+	 * 
+	 * @see org.eclipse.draw2d.LineBorder#getStyle()
+	 * @return dashed style
+	 */
+	@Override
+	public int getStyle() {
+		return SWT.LINE_DASH;
+	}
+
+	/**
+	 * Paints rounded rectangular dashed border taking into account arcWidth, arcHeight, line width and line style
+	 * 
+	 * @see org.eclipse.gmf.runtime.draw2d.ui.figures.RoundedRectangleBorder#paint(org.eclipse.draw2d.IFigure, org.eclipse.draw2d.Graphics,
+	 *      org.eclipse.draw2d.geometry.Insets)
+	 * 
+	 * @param figure
+	 *        Figure for which the paintable rectangle is needed
+	 * @param graphics
+	 *        the graphics
+	 * @param insets
+	 *        the insets
+	 */
 	@Override
 	public void paint(IFigure figure, Graphics graphics, Insets insets) {
 		graphics.setLineStyle(SWT.LINE_DASH);
-
-		getPaintRectangle(figure, insets);
-
-
-
-
-		//		// bug fix when lineWidth is 1
-		//		if(getWidth() % 2 == 1) {
-		//			tempRect.width--;
-		//			tempRect.height--;
-		//		}
-		//
-		//		// Shrink to accommodate for the line width
-		//		tempRect.shrink(getWidth() / 2, getWidth() / 2);
-
-
-
-
-		// bug fix when lineWidth is 1 : make the 0 rounding in our favor
-		// Shrink to accommodate for the line width
-		tempRect.x = tempRect.x + getWidth() - getWidth() / 2;
-		tempRect.y = tempRect.y + getWidth() - getWidth() / 2;
-		tempRect.width = tempRect.width - getWidth();
-		tempRect.height = tempRect.height - getWidth();
-
-		graphics.setLineWidth(getWidth());
-		graphics.setLineStyle(getStyle());
-		// If the color for this border is specified, then use it. 
-		// Otherwise, use the figure's foreground color
-		if(getColor() != null) {
-			graphics.setForegroundColor(getColor());
-		} else {
-			graphics.setForegroundColor(figure.getForegroundColor());
-		}
-
-		graphics.drawRoundRectangle(tempRect, getArcWidth(), getArcHeight());
-
-
-
-
-
+		super.paint(figure, graphics, insets);
 	}
 }
