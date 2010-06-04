@@ -92,7 +92,7 @@ public class GroupContainmentRegistry {
 						try {
 							Object provider = providing.createExecutableExtension(CONTAINER_DESCRIPTOR_ATTRIBUTE);
 							if(provider instanceof IContainerNodeDescriptor) {
-								modelContainersDescriptors.put(editPartType, (IContainerNodeDescriptor)provider);
+								graphicalContainersDescriptors.put(editPartType, (IContainerNodeDescriptor)provider);
 							}
 						} catch (CoreException e) {
 							// ignore this extension node
