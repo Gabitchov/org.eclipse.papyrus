@@ -33,6 +33,7 @@ import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditor;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.diagram.common.groups.groupcontainment.EditingDomainRegisteringService;
 import org.eclipse.papyrus.diagram.common.listeners.DropTargetListener;
 import org.eclipse.swt.dnd.TransferData;
 import org.eclipse.swt.widgets.Composite;
@@ -156,5 +157,7 @@ public class UmlActivityDiagramForMultiEditor extends UMLDiagramEditor {
 				return getEditingDomain();
 			}
 		});
+		//configure group framework
+		EditingDomainRegisteringService.addGroupFrameworkForEditingDomain(getEditingDomain(), getDiagramEditPart());
 	}
 }

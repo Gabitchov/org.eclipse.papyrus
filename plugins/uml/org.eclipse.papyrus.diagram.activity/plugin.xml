@@ -3223,6 +3223,35 @@ and self.decisionInput.ownedParameter->select(
          </propertySection>
       </propertySections>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.diagram.common.groups.groupcontainment"
+         name="ActivityGroup"
+         id="org.eclipse.papyrus.diagram.activity.activitygroup">
+         <modelContainer editPartType="org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart"
+          descriptor="org.eclipse.papyrus.diagram.activity.groupcontainment.StructuredActivityNodeContainment"/>
+         <modelContainer
+               descriptor="org.eclipse.papyrus.diagram.activity.groupcontainment.ConditionalNodeContainment"
+               editPartType="org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeStructuredActivityNodeContentCompartmentEditPart">
+         </modelContainer>
+         <modelContainer
+               descriptor="org.eclipse.papyrus.diagram.activity.groupcontainment.ExpansionRegionContainment"
+               editPartType="org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionRegionStructuredActivityNodeContentCompartmentEditPart">
+         </modelContainer>
+         <modelContainer
+               descriptor="org.eclipse.papyrus.diagram.activity.groupcontainment.LoopNodeContainment"
+               editPartType="org.eclipse.papyrus.diagram.activity.edit.parts.LoopNodeStructuredActivityNodeContentCompartmentEditPart">
+         </modelContainer>
+         <modelContainer
+               descriptor="org.eclipse.papyrus.diagram.activity.groupcontainment.SequenceNodeContainment"
+               editPartType="org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeStructuredActivityNodeContentCompartmentEditPart">
+         </modelContainer>
+         <referenceContainer
+               descriptor="org.eclipse.papyrus.diagram.activity.groupcontainment.InterruptibleActivityRegionContainment"
+               editPartType="org.eclipse.papyrus.diagram.activity.edit.parts.InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart"/>
+         <referenceContainer
+               descriptor="org.eclipse.papyrus.diagram.activity.groupcontainment.ActivityPartitionContainment"
+               editPartType="org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionActivityPartitionContentCompartmentEditPart"/>
+   </extension>
 
 
 
