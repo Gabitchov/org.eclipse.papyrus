@@ -71,6 +71,7 @@ plugin@org.eclipse.papyrus.sysml.diagram.blockdiagram=SVN,,svn://dev.eclipse.org
 plugin@org.eclipse.papyrus.diagram.activity=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.diagram.activity
 plugin@org.eclipse.papyrus.diagram.clazz=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.diagram.clazz
 plugin@org.eclipse.papyrus.diagram.common=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.diagram.common
+plugin@org.eclipse.papyrus.diagram.common.groups=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.diagram.common.groups
 plugin@org.eclipse.papyrus.diagram.composite=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.diagram.composite
 plugin@org.eclipse.papyrus.diagram.emftree=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.diagram.emftree
 plugin@org.eclipse.papyrus.diagram.profile=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.diagram.profile
