@@ -332,7 +332,6 @@ ShapeNodeEditPart {
 			this.setLayoutManager(layoutThis);
 
 			this.setFill(false);
-			this.setLineWidth(1);
 			createContents();
 		}
 
@@ -392,7 +391,6 @@ ShapeNodeEditPart {
 			fActivityPartitionCompartment = new RectangleFigure();
 			fActivityPartitionCompartment.setFill(false);
 			fActivityPartitionCompartment.setOutline(false);
-			fActivityPartitionCompartment.setLineWidth(1);
 
 
 			GridData constraintFActivityPartitionCompartment = new GridData();
@@ -411,26 +409,6 @@ ShapeNodeEditPart {
 
 
 
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = false;
-
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
-		}
 
 		/**
 		 * @generated

@@ -658,32 +658,9 @@
     <descriptors
         name="InterruptibleActivityRegionDescriptor">
       <actualFigure
-          xsi:type="gmfgraph:RoundedRectangle"
+          xsi:type="gmfgraph:CustomFigure"
           name="InterruptibleActivityRegionFigure"
-          fill="false"
-          lineKind="LINE_DASH">
-        <layout
-            xsi:type="gmfgraph:GridLayout"
-            equalWidth="false">
-          <margins/>
-          <spacing/>
-        </layout>
-        <children
-            xsi:type="gmfgraph:Rectangle"
-            name="InterruptibleActivityRegionCompartment"
-            outline="false"
-            fill="false">
-          <layoutData
-              xsi:type="gmfgraph:GridLayoutData"
-              grabExcessHorizontalSpace="true"
-              grabExcessVerticalSpace="true"
-              verticalAlignment="FILL"
-              horizontalAlignment="FILL"/>
-        </children>
-      </actualFigure>
-      <accessors
-          accessor="getInterruptibleActivityRegionCompartment"
-          figure="//@figures.0/@descriptors.19/@actualFigure/@children.0"/>
+          qualifiedClassName="org.eclipse.papyrus.diagram.activity.figures.InterruptibleActivityRegionFigure"/>
     </descriptors>
     <descriptors
         name="ActivityPartitionDescriptor">
@@ -900,8 +877,7 @@
       accessor="//@figures.0/@descriptors.18/@accessors.0"/>
   <compartments
       name="InterruptibleActivityRegionContentCompartment"
-      figure="InterruptibleActivityRegionDescriptor"
-      accessor="//@figures.0/@descriptors.19/@accessors.0"/>
+      figure="InterruptibleActivityRegionDescriptor"/>
   <compartments
       name="ActivityPartitionContentCompartment"
       figure="ActivityPartitionDescriptor"

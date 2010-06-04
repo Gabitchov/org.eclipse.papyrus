@@ -18,9 +18,10 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.papyrus.diagram.common.locator.AdvancedBorderItemLocator;
 
-public class ActivityParameterNodePositionLocator extends AdvancedBorderItemLocator {
+public class ActivityParameterNodePositionLocator extends AdvancedBorderItemLocator implements IBorderItemLocator {
 
 	/** The offset to add to default position. (to avoid corner of rounded rectangles) */
 	public static final int EXTRA_BORDER_DEFAULT_OFFSET = 8;

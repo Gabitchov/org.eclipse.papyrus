@@ -123,7 +123,6 @@ implements ITreeBranchEditPart {
 		 * @generated
 		 */
 		public ExceptionHandlerDescriptor() {
-			this.setLineWidth(1);
 
 			setTargetDecoration(createTargetDecoration());
 		}
@@ -133,7 +132,6 @@ implements ITreeBranchEditPart {
 		 */
 		private RotatableDecoration createTargetDecoration() {
 			PolylineDecoration df = new PolylineDecoration();
-			df.setLineWidth(1);
 			PointList pl = new PointList();
 			pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(2));
 			pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));

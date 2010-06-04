@@ -300,7 +300,14 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.OpaqueAction_3082);
+			types.add(UMLElementTypes.CallBehaviorAction_3083);
+			types.add(UMLElementTypes.CallOperationAction_3084);
+			types.add(UMLElementTypes.SendObjectAction_3085);
+			types.add(UMLElementTypes.SendSignalAction_3086);
+			types.add(UMLElementTypes.AcceptEventAction_3087);
 			types.add(UMLElementTypes.ValueSpecificationAction_3076);
+			types.add(UMLElementTypes.ValueSpecificationAction_3088);
 		} else if(relationshipType == UMLElementTypes.ActionLocalPostcondition_4002) {
 			types.add(UMLElementTypes.OpaqueAction_3007);
 			types.add(UMLElementTypes.CallBehaviorAction_3008);
@@ -313,7 +320,14 @@ ShapeNodeEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.OpaqueAction_3082);
+			types.add(UMLElementTypes.CallBehaviorAction_3083);
+			types.add(UMLElementTypes.CallOperationAction_3084);
+			types.add(UMLElementTypes.SendObjectAction_3085);
+			types.add(UMLElementTypes.SendSignalAction_3086);
+			types.add(UMLElementTypes.AcceptEventAction_3087);
 			types.add(UMLElementTypes.ValueSpecificationAction_3076);
+			types.add(UMLElementTypes.ValueSpecificationAction_3088);
 		}
 		return types;
 	}
@@ -351,25 +365,6 @@ ShapeNodeEditPart {
 			this.add(fCornerBentContent);
 
 
-		}
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = false;
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
 		}
 
 		/**

@@ -480,7 +480,6 @@ AbstractBorderedShapeEditPart {
 
 			RoundedRectangle activityBorderFigure0 = new RoundedRectangle();
 			activityBorderFigure0.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8), getMapMode().DPtoLP(8)));
-			activityBorderFigure0.setLineWidth(1);
 
 			this.add(activityBorderFigure0, BorderLayout.CENTER);
 
@@ -664,25 +663,6 @@ AbstractBorderedShapeEditPart {
 
 
 
-		}
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = false;
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
 		}
 
 		/**

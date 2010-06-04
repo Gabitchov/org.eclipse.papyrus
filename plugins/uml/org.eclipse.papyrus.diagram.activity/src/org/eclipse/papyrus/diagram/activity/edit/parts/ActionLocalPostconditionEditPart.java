@@ -78,7 +78,6 @@ implements ITreeBranchEditPart {
 		 * @generated
 		 */
 		public DashedLinkDescriptor() {
-			this.setLineWidth(1);
 			this.setLineStyle(Graphics.LINE_DASH);
 
 		}

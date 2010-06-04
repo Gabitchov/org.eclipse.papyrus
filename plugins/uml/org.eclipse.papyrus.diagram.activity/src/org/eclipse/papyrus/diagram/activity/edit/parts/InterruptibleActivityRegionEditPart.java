@@ -13,15 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.parts;
 
-import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.GridData;
-import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.RectangleFigure;
-import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -30,7 +24,6 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
@@ -43,6 +36,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.activity.edit.policies.InterruptibleActivityRegionItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
+import org.eclipse.papyrus.diagram.activity.figures.InterruptibleActivityRegionFigure;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
@@ -123,76 +117,15 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new InterruptibleActivityRegionDescriptor();
+		return primaryShape = new InterruptibleActivityRegionFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public InterruptibleActivityRegionDescriptor getPrimaryShape() {
-		return (InterruptibleActivityRegionDescriptor)primaryShape;
+	public InterruptibleActivityRegionFigure getPrimaryShape() {
+		return (InterruptibleActivityRegionFigure)primaryShape;
 	}
-
-	/**
-	 * @generated
-	 */
-	protected boolean addFixedChild(EditPart childEditPart) {
-
-
-		if(childEditPart instanceof InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart) {
-			IFigure pane = getPrimaryShape().getInterruptibleActivityRegionCompartment();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart)childEditPart).getFigure());
-			return true;
-		}
-
-		return false;
-	}
-
-
-	/**
-	 * @generated
-	 */
-	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart) {
-			IFigure pane = getPrimaryShape().getInterruptibleActivityRegionCompartment();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.remove(((InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart)childEditPart).getFigure());
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
-			return;
-		}
-		super.addChildVisual(childEditPart, -1);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
-			return;
-		}
-		super.removeChildVisual(childEditPart);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if(editPart instanceof InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart) {
-			return getPrimaryShape().getInterruptibleActivityRegionCompartment();
-		}
-		return getContentPane();
-	}
-
 
 	/**
 	 * @generated
@@ -279,102 +212,6 @@ ShapeNodeEditPart {
 		}
 	}
 
-
-
-
-
-	/**
-	 * @generated
-	 */
-	public class InterruptibleActivityRegionDescriptor extends RoundedRectangle {
-
-
-		/**
-		 * @generated
-		 */
-		private RectangleFigure fInterruptibleActivityRegionCompartment;
-
-
-		/**
-		 * @generated
-		 */
-		public InterruptibleActivityRegionDescriptor() {
-
-			GridLayout layoutThis = new GridLayout();
-			layoutThis.numColumns = 1;
-			layoutThis.makeColumnsEqualWidth = false;
-			layoutThis.horizontalSpacing = 0;
-			layoutThis.verticalSpacing = 0;
-			layoutThis.marginWidth = 0;
-			layoutThis.marginHeight = 0;
-			this.setLayoutManager(layoutThis);
-
-			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8), getMapMode().DPtoLP(8)));
-			this.setFill(false);
-			this.setLineWidth(1);
-			this.setLineStyle(Graphics.LINE_DASH);
-			createContents();
-		}
-
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-
-
-			fInterruptibleActivityRegionCompartment = new RectangleFigure();
-			fInterruptibleActivityRegionCompartment.setFill(false);
-			fInterruptibleActivityRegionCompartment.setOutline(false);
-			fInterruptibleActivityRegionCompartment.setLineWidth(1);
-
-
-			GridData constraintFInterruptibleActivityRegionCompartment = new GridData();
-			constraintFInterruptibleActivityRegionCompartment.verticalAlignment = GridData.FILL;
-			constraintFInterruptibleActivityRegionCompartment.horizontalAlignment = GridData.FILL;
-			constraintFInterruptibleActivityRegionCompartment.horizontalIndent = 0;
-			constraintFInterruptibleActivityRegionCompartment.horizontalSpan = 1;
-			constraintFInterruptibleActivityRegionCompartment.verticalSpan = 1;
-			constraintFInterruptibleActivityRegionCompartment.grabExcessHorizontalSpace = true;
-			constraintFInterruptibleActivityRegionCompartment.grabExcessVerticalSpace = true;
-			this.add(fInterruptibleActivityRegionCompartment, constraintFInterruptibleActivityRegionCompartment);
-
-
-
-		}
-
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = false;
-
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
-		}
-
-
-		/**
-		 * @generated
-		 */
-		public RectangleFigure getInterruptibleActivityRegionCompartment() {
-			return fInterruptibleActivityRegionCompartment;
-		}
-
-
-	}
 
 
 

@@ -18,15 +18,12 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.ScalablePolygonShape;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.PointList;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -406,13 +403,58 @@ AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof StructuredActivityNodeEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof InitialNodeInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof ActivityFinalNodeInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof FlowFinalNodeInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof OpaqueActionInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof CallBehaviorActionInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof CallOperationActionInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof SendObjectActionInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof SendSignalActionInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof AcceptEventActionInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
 		if(targetEditPart instanceof OutputPinInValSpecActEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof DecisionNodeInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof MergeNodeInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof ForkNodeInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof JoinNodeInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof DataStoreNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof ValueSpecificationActionInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof DataStoreNodeInIAREditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
 		if(targetEditPart instanceof InitialNodeEditPart) {
@@ -562,13 +604,58 @@ AbstractBorderedShapeEditPart {
 		if(targetEditPart instanceof StructuredActivityNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
+		if(targetEditPart instanceof InitialNodeInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof ActivityFinalNodeInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof FlowFinalNodeInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof OpaqueActionInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof CallBehaviorActionInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof CallOperationActionInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof SendObjectActionInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof SendSignalActionInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof AcceptEventActionInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
 		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
 		if(targetEditPart instanceof OutputPinInValSpecActEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
+		if(targetEditPart instanceof DecisionNodeInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof MergeNodeInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof ForkNodeInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof JoinNodeInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
 		if(targetEditPart instanceof DataStoreNodeEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof ValueSpecificationActionInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof DataStoreNodeInIAREditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
 		return types;
@@ -629,9 +716,24 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.InitialNode_3079);
+			types.add(UMLElementTypes.ActivityFinalNode_3080);
+			types.add(UMLElementTypes.FlowFinalNode_3081);
+			types.add(UMLElementTypes.OpaqueAction_3082);
+			types.add(UMLElementTypes.CallBehaviorAction_3083);
+			types.add(UMLElementTypes.CallOperationAction_3084);
+			types.add(UMLElementTypes.SendObjectAction_3085);
+			types.add(UMLElementTypes.SendSignalAction_3086);
+			types.add(UMLElementTypes.AcceptEventAction_3087);
 			types.add(UMLElementTypes.ValueSpecificationAction_3076);
 			types.add(UMLElementTypes.OutputPin_3077);
+			types.add(UMLElementTypes.DecisionNode_3089);
+			types.add(UMLElementTypes.MergeNode_3090);
+			types.add(UMLElementTypes.ForkNode_3091);
+			types.add(UMLElementTypes.JoinNode_3092);
 			types.add(UMLElementTypes.DataStoreNode_3078);
+			types.add(UMLElementTypes.ValueSpecificationAction_3088);
+			types.add(UMLElementTypes.DataStoreNode_3093);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -682,9 +784,24 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.InitialNode_3079);
+			types.add(UMLElementTypes.ActivityFinalNode_3080);
+			types.add(UMLElementTypes.FlowFinalNode_3081);
+			types.add(UMLElementTypes.OpaqueAction_3082);
+			types.add(UMLElementTypes.CallBehaviorAction_3083);
+			types.add(UMLElementTypes.CallOperationAction_3084);
+			types.add(UMLElementTypes.SendObjectAction_3085);
+			types.add(UMLElementTypes.SendSignalAction_3086);
+			types.add(UMLElementTypes.AcceptEventAction_3087);
 			types.add(UMLElementTypes.ValueSpecificationAction_3076);
 			types.add(UMLElementTypes.OutputPin_3077);
+			types.add(UMLElementTypes.DecisionNode_3089);
+			types.add(UMLElementTypes.MergeNode_3090);
+			types.add(UMLElementTypes.ForkNode_3091);
+			types.add(UMLElementTypes.JoinNode_3092);
 			types.add(UMLElementTypes.DataStoreNode_3078);
+			types.add(UMLElementTypes.ValueSpecificationAction_3088);
+			types.add(UMLElementTypes.DataStoreNode_3093);
 		}
 		return types;
 	}
@@ -754,9 +871,24 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.InitialNode_3079);
+			types.add(UMLElementTypes.ActivityFinalNode_3080);
+			types.add(UMLElementTypes.FlowFinalNode_3081);
+			types.add(UMLElementTypes.OpaqueAction_3082);
+			types.add(UMLElementTypes.CallBehaviorAction_3083);
+			types.add(UMLElementTypes.CallOperationAction_3084);
+			types.add(UMLElementTypes.SendObjectAction_3085);
+			types.add(UMLElementTypes.SendSignalAction_3086);
+			types.add(UMLElementTypes.AcceptEventAction_3087);
 			types.add(UMLElementTypes.ValueSpecificationAction_3076);
 			types.add(UMLElementTypes.OutputPin_3077);
+			types.add(UMLElementTypes.DecisionNode_3089);
+			types.add(UMLElementTypes.MergeNode_3090);
+			types.add(UMLElementTypes.ForkNode_3091);
+			types.add(UMLElementTypes.JoinNode_3092);
 			types.add(UMLElementTypes.DataStoreNode_3078);
+			types.add(UMLElementTypes.ValueSpecificationAction_3088);
+			types.add(UMLElementTypes.DataStoreNode_3093);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -807,9 +939,24 @@ AbstractBorderedShapeEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.InitialNode_3079);
+			types.add(UMLElementTypes.ActivityFinalNode_3080);
+			types.add(UMLElementTypes.FlowFinalNode_3081);
+			types.add(UMLElementTypes.OpaqueAction_3082);
+			types.add(UMLElementTypes.CallBehaviorAction_3083);
+			types.add(UMLElementTypes.CallOperationAction_3084);
+			types.add(UMLElementTypes.SendObjectAction_3085);
+			types.add(UMLElementTypes.SendSignalAction_3086);
+			types.add(UMLElementTypes.AcceptEventAction_3087);
 			types.add(UMLElementTypes.ValueSpecificationAction_3076);
 			types.add(UMLElementTypes.OutputPin_3077);
+			types.add(UMLElementTypes.DecisionNode_3089);
+			types.add(UMLElementTypes.MergeNode_3090);
+			types.add(UMLElementTypes.ForkNode_3091);
+			types.add(UMLElementTypes.JoinNode_3092);
 			types.add(UMLElementTypes.DataStoreNode_3078);
+			types.add(UMLElementTypes.ValueSpecificationAction_3088);
+			types.add(UMLElementTypes.DataStoreNode_3093);
 		}
 		return types;
 	}
@@ -817,94 +964,15 @@ AbstractBorderedShapeEditPart {
 	/**
 	 * @generated
 	 */
-	public class DiamondFigure extends Shape {
+	public class DiamondFigure extends ScalablePolygonShape {
 
 		/**
 		 * @generated
 		 */
 		public DiamondFigure() {
 			this.setFill(true);
-			this.setLineWidth(1);
 			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(20), getMapMode().DPtoLP(30)));
 			this.setSize(getMapMode().DPtoLP(20), getMapMode().DPtoLP(30));
-		}
-
-		/**
-		 * @generated
-		 */
-		private final PointList myTemplate = new PointList();
-
-		/**
-		 * @generated
-		 */
-		private Rectangle myTemplateBounds;
-
-		/**
-		 * @generated
-		 */
-		public void addPoint(Point point) {
-			myTemplate.addPoint(point);
-			myTemplateBounds = null;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void fillShape(Graphics graphics) {
-			Rectangle bounds = getBounds();
-			graphics.pushState();
-			graphics.translate(bounds.x, bounds.y);
-			graphics.fillPolygon(scalePointList());
-			graphics.popState();
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void outlineShape(Graphics graphics) {
-			Rectangle bounds = getBounds();
-			graphics.pushState();
-			graphics.translate(bounds.x, bounds.y);
-			graphics.drawPolygon(scalePointList());
-			graphics.popState();
-		}
-
-		/**
-		 * @generated
-		 */
-		private Rectangle getTemplateBounds() {
-			if(myTemplateBounds == null) {
-				myTemplateBounds = myTemplate.getBounds().getCopy().union(0, 0);
-				//just safety -- we are going to use this as divider 
-				if(myTemplateBounds.width < 1) {
-					myTemplateBounds.width = 1;
-				}
-				if(myTemplateBounds.height < 1) {
-					myTemplateBounds.height = 1;
-				}
-			}
-			return myTemplateBounds;
-		}
-
-		/**
-		 * @generated
-		 */
-		private int[] scalePointList() {
-			Rectangle pointsBounds = getTemplateBounds();
-			Rectangle actualBounds = getBounds();
-
-			float xScale = ((float)actualBounds.width) / pointsBounds.width;
-			float yScale = ((float)actualBounds.height) / pointsBounds.height;
-
-			if(xScale == 1 && yScale == 1) {
-				return myTemplate.toIntArray();
-			}
-			int[] scaled = (int[])myTemplate.toIntArray().clone();
-			for(int i = 0; i < scaled.length; i += 2) {
-				scaled[i] = (int)Math.floor(scaled[i] * xScale);
-				scaled[i + 1] = (int)Math.floor(scaled[i + 1] * yScale);
-			}
-			return scaled;
 		}
 
 	}

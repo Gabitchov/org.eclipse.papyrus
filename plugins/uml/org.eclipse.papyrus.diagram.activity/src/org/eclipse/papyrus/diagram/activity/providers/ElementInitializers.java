@@ -739,6 +739,114 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public void init_InitialNode_3079(InitialNode instance) {
+		try {
+			Object value_0 = name_InitialNode_3079(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_ActivityFinalNode_3080(ActivityFinalNode instance) {
+		try {
+			Object value_0 = name_ActivityFinalNode_3080(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_FlowFinalNode_3081(FlowFinalNode instance) {
+		try {
+			Object value_0 = name_FlowFinalNode_3081(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_OpaqueAction_3082(OpaqueAction instance) {
+		try {
+			Object value_0 = name_OpaqueAction_3082(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_CallBehaviorAction_3083(CallBehaviorAction instance) {
+		try {
+			Object value_0 = name_CallBehaviorAction_3083(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_CallOperationAction_3084(CallOperationAction instance) {
+		try {
+			Object value_0 = name_CallOperationAction_3084(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_SendObjectAction_3085(SendObjectAction instance) {
+		try {
+			Object value_0 = name_SendObjectAction_3085(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_SendSignalAction_3086(SendSignalAction instance) {
+		try {
+			Object value_0 = name_SendSignalAction_3086(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_AcceptEventAction_3087(AcceptEventAction instance) {
+		try {
+			Object value_0 = name_AcceptEventAction_3087(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	public void init_ValueSpecificationAction_3076(ValueSpecificationAction instance) {
 		try {
 			Object value_0 = name_ValueSpecificationAction_3076(instance);
@@ -763,9 +871,81 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public void init_DecisionNode_3089(DecisionNode instance) {
+		try {
+			Object value_0 = name_DecisionNode_3089(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_MergeNode_3090(MergeNode instance) {
+		try {
+			Object value_0 = name_MergeNode_3090(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_ForkNode_3091(ForkNode instance) {
+		try {
+			Object value_0 = name_ForkNode_3091(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_JoinNode_3092(JoinNode instance) {
+		try {
+			Object value_0 = name_JoinNode_3092(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	public void init_DataStoreNode_3078(DataStoreNode instance) {
 		try {
 			Object value_0 = name_DataStoreNode_3078(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_ValueSpecificationAction_3088(ValueSpecificationAction instance) {
+		try {
+			Object value_0 = name_ValueSpecificationAction_3088(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_DataStoreNode_3093(DataStoreNode instance) {
+		try {
+			Object value_0 = name_DataStoreNode_3093(instance);
 			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
@@ -1301,6 +1481,69 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	private String name_InitialNode_3079(InitialNode self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ActivityFinalNode_3080(ActivityFinalNode self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_FlowFinalNode_3081(FlowFinalNode self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_OpaqueAction_3082(OpaqueAction self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_CallBehaviorAction_3083(CallBehaviorAction self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_CallOperationAction_3084(CallOperationAction self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_SendObjectAction_3085(SendObjectAction self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_SendSignalAction_3086(SendSignalAction self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_AcceptEventAction_3087(AcceptEventAction self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
 	private String name_ValueSpecificationAction_3076(ValueSpecificationAction self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
@@ -1315,7 +1558,49 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	private String name_DecisionNode_3089(DecisionNode self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_MergeNode_3090(MergeNode self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ForkNode_3091(ForkNode self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_JoinNode_3092(JoinNode self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
 	private String name_DataStoreNode_3078(DataStoreNode self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_ValueSpecificationAction_3088(ValueSpecificationAction self) {
+		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_DataStoreNode_3093(DataStoreNode self) {
 		return LabelHelper.INSTANCE.findName(self.eContainer(), self);
 	}
 

@@ -21,7 +21,7 @@ import org.eclipse.draw2d.FigureListener;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.Polyline;
+import org.eclipse.draw2d.PolylineShape;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
@@ -779,7 +779,7 @@ implements ITextAwareEditPart {
 		/**
 		 * @generated
 		 */
-		private Polyline fLinkToBehaviorProperty;
+		private PolylineShape fLinkToBehaviorProperty;
 
 		/**
 		 * @generated
@@ -800,7 +800,7 @@ implements ITextAwareEditPart {
 
 			this.add(fCornerBentContent);
 
-			fLinkToBehaviorProperty = new Polyline();
+			fLinkToBehaviorProperty = new PolylineShape();
 			fLinkToBehaviorProperty.setLineWidth(1);
 			fLinkToBehaviorProperty.setLineStyle(Graphics.LINE_DASH);
 
@@ -812,25 +812,6 @@ implements ITextAwareEditPart {
 				}
 			});
 
-		}
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = true;
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
 		}
 
 		/**
@@ -873,7 +854,7 @@ implements ITextAwareEditPart {
 		/**
 		 * @generated
 		 */
-		public Polyline getLinkToBehaviorProperty() {
+		public PolylineShape getLinkToBehaviorProperty() {
 			return fLinkToBehaviorProperty;
 		}
 

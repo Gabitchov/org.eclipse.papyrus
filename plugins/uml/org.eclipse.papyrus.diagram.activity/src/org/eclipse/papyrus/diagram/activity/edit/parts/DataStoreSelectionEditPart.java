@@ -20,7 +20,7 @@ import org.eclipse.draw2d.FigureListener;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.Polyline;
+import org.eclipse.draw2d.PolylineShape;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -842,7 +842,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 		/**
 		 * @generated
 		 */
-		private Polyline fLinkToBehaviorProperty;
+		private PolylineShape fLinkToBehaviorProperty;
 
 
 		/**
@@ -869,7 +869,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 
 
 
-			fLinkToBehaviorProperty = new Polyline();
+			fLinkToBehaviorProperty = new PolylineShape();
 			fLinkToBehaviorProperty.setLineWidth(1);
 			fLinkToBehaviorProperty.setLineStyle(Graphics.LINE_DASH);
 
@@ -886,25 +886,6 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 
 
 
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = true;
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
-		}
 
 		/**
 		 * @see org.eclipse.draw2d.Figure#setVisible(boolean)
@@ -962,7 +943,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 		/**
 		 * @generated
 		 */
-		public Polyline getLinkToBehaviorProperty() {
+		public PolylineShape getLinkToBehaviorProperty() {
 			return fLinkToBehaviorProperty;
 		}
 

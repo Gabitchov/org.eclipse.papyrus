@@ -1574,6 +1574,177 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private AppliedStereotypeParser initialNodeLabel_5129Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInitialNodeLabel_5129Parser() {
+		if(initialNodeLabel_5129Parser == null) {
+			initialNodeLabel_5129Parser = new AppliedStereotypeParser();
+		}
+		return initialNodeLabel_5129Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser activityFinalNodeLabel_5130Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getActivityFinalNodeLabel_5130Parser() {
+		if(activityFinalNodeLabel_5130Parser == null) {
+			activityFinalNodeLabel_5130Parser = new AppliedStereotypeParser();
+		}
+		return activityFinalNodeLabel_5130Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser flowFinalNodeLabel_5131Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getFlowFinalNodeLabel_5131Parser() {
+		if(flowFinalNodeLabel_5131Parser == null) {
+			flowFinalNodeLabel_5131Parser = new AppliedStereotypeParser();
+		}
+		return flowFinalNodeLabel_5131Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser opaqueActionName_5132Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getOpaqueActionName_5132Parser() {
+		if(opaqueActionName_5132Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			opaqueActionName_5132Parser = parser;
+		}
+		return opaqueActionName_5132Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private CallBehaviorActionParser callBehaviorActionLabel_5133Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getCallBehaviorActionLabel_5133Parser() {
+		if(callBehaviorActionLabel_5133Parser == null) {
+			callBehaviorActionLabel_5133Parser = new CallBehaviorActionParser();
+		}
+		return callBehaviorActionLabel_5133Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private CallOperationActionParser callOperationActionLabel_5134Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getCallOperationActionLabel_5134Parser() {
+		if(callOperationActionLabel_5134Parser == null) {
+			callOperationActionLabel_5134Parser = new CallOperationActionParser();
+		}
+		return callOperationActionLabel_5134Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser sendObjectActionName_5135Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getSendObjectActionName_5135Parser() {
+		if(sendObjectActionName_5135Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			sendObjectActionName_5135Parser = parser;
+		}
+		return sendObjectActionName_5135Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser sendSignalActionName_5136Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getSendSignalActionName_5136Parser() {
+		if(sendSignalActionName_5136Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			sendSignalActionName_5136Parser = parser;
+		}
+		return sendSignalActionName_5136Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AcceptEventActionParser acceptEventActionLabel_5137Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getAcceptEventActionLabel_5137Parser() {
+		if(acceptEventActionLabel_5137Parser == null) {
+			acceptEventActionLabel_5137Parser = new AcceptEventActionParser();
+		}
+		return acceptEventActionLabel_5137Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AcceptTimeEventActionParser acceptEventActionLabel_5138Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getAcceptEventActionLabel_5138Parser() {
+		if(acceptEventActionLabel_5138Parser == null) {
+			acceptEventActionLabel_5138Parser = new AcceptTimeEventActionParser();
+		}
+		return acceptEventActionLabel_5138Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser acceptEventActionLabel_5139Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getAcceptEventActionLabel_5139Parser() {
+		if(acceptEventActionLabel_5139Parser == null) {
+			acceptEventActionLabel_5139Parser = new AppliedStereotypeParser();
+		}
+		return acceptEventActionLabel_5139Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser valueSpecificationActionName_5126Parser;
 
 	/**
@@ -1621,6 +1792,96 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private InputDecisionParser decisionNodeLabel_5141Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDecisionNodeLabel_5141Parser() {
+		if(decisionNodeLabel_5141Parser == null) {
+			decisionNodeLabel_5141Parser = new InputDecisionParser();
+		}
+		return decisionNodeLabel_5141Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser decisionNodeLabel_5142Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDecisionNodeLabel_5142Parser() {
+		if(decisionNodeLabel_5142Parser == null) {
+			decisionNodeLabel_5142Parser = new AppliedStereotypeParser();
+		}
+		return decisionNodeLabel_5142Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser mergeNodeLabel_5143Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMergeNodeLabel_5143Parser() {
+		if(mergeNodeLabel_5143Parser == null) {
+			mergeNodeLabel_5143Parser = new AppliedStereotypeParser();
+		}
+		return mergeNodeLabel_5143Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser forkNodeLabel_5144Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getForkNodeLabel_5144Parser() {
+		if(forkNodeLabel_5144Parser == null) {
+			forkNodeLabel_5144Parser = new AppliedStereotypeParser();
+		}
+		return forkNodeLabel_5144Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private JoinSpecParser joinNodeLabel_5145Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getJoinNodeLabel_5145Parser() {
+		if(joinNodeLabel_5145Parser == null) {
+			joinNodeLabel_5145Parser = new JoinSpecParser();
+		}
+		return joinNodeLabel_5145Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser joinNodeLabel_5146Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getJoinNodeLabel_5146Parser() {
+		if(joinNodeLabel_5146Parser == null) {
+			joinNodeLabel_5146Parser = new AppliedStereotypeParser();
+		}
+		return joinNodeLabel_5146Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private ObjectNodeParser dataStoreNodeLabel_5127Parser;
 
 	/**
@@ -1646,6 +1907,53 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			dataStoreNodeLabel_5128Parser = new ObjectNodeSelectionParser();
 		}
 		return dataStoreNodeLabel_5128Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser valueSpecificationActionName_5140Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getValueSpecificationActionName_5140Parser() {
+		if(valueSpecificationActionName_5140Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			valueSpecificationActionName_5140Parser = parser;
+		}
+		return valueSpecificationActionName_5140Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ObjectNodeParser dataStoreNodeLabel_5147Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDataStoreNodeLabel_5147Parser() {
+		if(dataStoreNodeLabel_5147Parser == null) {
+			dataStoreNodeLabel_5147Parser = new ObjectNodeParser();
+		}
+		return dataStoreNodeLabel_5147Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ObjectNodeSelectionParser dataStoreNodeLabel_5148Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDataStoreNodeLabel_5148Parser() {
+		if(dataStoreNodeLabel_5148Parser == null) {
+			dataStoreNodeLabel_5148Parser = new ObjectNodeSelectionParser();
+		}
+		return dataStoreNodeLabel_5148Parser;
 	}
 
 	/**
@@ -2279,16 +2587,56 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getStructuredActivityNodeLabel_5117Parser();
 		case ActivityPartitionNameEditPart.VISUAL_ID:
 			return getActivityPartitionName_5118Parser();
+		case AppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
+			return getInitialNodeLabel_5129Parser();
+		case ActivityFinalNodeInIARAppliedStereotypeEditPart.VISUAL_ID:
+			return getActivityFinalNodeLabel_5130Parser();
+		case FlowFinalNodeInIARAppliedStereotypeEditPart.VISUAL_ID:
+			return getFlowFinalNodeLabel_5131Parser();
+		case OpaqueActionInIARNameEditPart.VISUAL_ID:
+			return getOpaqueActionName_5132Parser();
+		case CallBehaviorActionInIARNameEditPart.VISUAL_ID:
+			return getCallBehaviorActionLabel_5133Parser();
+		case CallOperationActionInIARNameEditPart.VISUAL_ID:
+			return getCallOperationActionLabel_5134Parser();
+		case SendObjectActionInIARNameEditPart.VISUAL_ID:
+			return getSendObjectActionName_5135Parser();
+		case SendSignalActionInIARNameEditPart.VISUAL_ID:
+			return getSendSignalActionName_5136Parser();
+		case AcceptEventActionInIARLabelEditPart.VISUAL_ID:
+			return getAcceptEventActionLabel_5137Parser();
+		case AcceptTimeEventActionInIARLabelEditPart.VISUAL_ID:
+			return getAcceptEventActionLabel_5138Parser();
+		case AcceptTimeEventActionInIARAppliedStereotypeEditPart.VISUAL_ID:
+			return getAcceptEventActionLabel_5139Parser();
 		case ValueSpecificationActionNameEditPart.VISUAL_ID:
 			return getValueSpecificationActionName_5126Parser();
 		case OutputPinInValSpecActLabelEditPart.VISUAL_ID:
 			return getOutputPinLabel_5124Parser();
 		case OutputPinInValSpecActAppliedStereotypeEditPart.VISUAL_ID:
 			return getOutputPinLabel_5125Parser();
+		case DecisionInputInIAREditPart.VISUAL_ID:
+			return getDecisionNodeLabel_5141Parser();
+		case DecisionNodeInIARAppliedStereotypeEditPart.VISUAL_ID:
+			return getDecisionNodeLabel_5142Parser();
+		case MergeNodeInIARAppliedStereotypeEditPart.VISUAL_ID:
+			return getMergeNodeLabel_5143Parser();
+		case ForkNodeInIARAppliedStereotypeEditPart.VISUAL_ID:
+			return getForkNodeLabel_5144Parser();
+		case JoinSpecInIAREditPart.VISUAL_ID:
+			return getJoinNodeLabel_5145Parser();
+		case JoinNodeInIARAppliedStereotypeEditPart.VISUAL_ID:
+			return getJoinNodeLabel_5146Parser();
 		case DataStoreNodeLabelEditPart.VISUAL_ID:
 			return getDataStoreNodeLabel_5127Parser();
 		case DataStoreSelectionEditPart.VISUAL_ID:
 			return getDataStoreNodeLabel_5128Parser();
+		case ValueSpecificationActionInIARNameEditPart.VISUAL_ID:
+			return getValueSpecificationActionName_5140Parser();
+		case DataStoreNodeInIARLabelEditPart.VISUAL_ID:
+			return getDataStoreNodeLabel_5147Parser();
+		case DataStoreInIARSelectionEditPart.VISUAL_ID:
+			return getDataStoreNodeLabel_5148Parser();
 		case ObjectFlowNameEditPart.VISUAL_ID:
 			return getObjectFlowName_6001Parser();
 		case ObjectFlowWeightEditPart.VISUAL_ID:

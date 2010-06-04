@@ -20,7 +20,7 @@ import java.util.List;
 import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
-import org.eclipse.draw2d.Polyline;
+import org.eclipse.draw2d.PolylineShape;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
@@ -652,13 +652,58 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		if(targetEditPart instanceof StructuredActivityNodeEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof InitialNodeInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof ActivityFinalNodeInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof FlowFinalNodeInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof OpaqueActionInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof CallBehaviorActionInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof CallOperationActionInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof SendObjectActionInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof SendSignalActionInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof AcceptEventActionInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
 		if(targetEditPart instanceof OutputPinInValSpecActEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof DecisionNodeInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof MergeNodeInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof ForkNodeInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof JoinNodeInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof DataStoreNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof ValueSpecificationActionInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof DataStoreNodeInIAREditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
 		if(targetEditPart instanceof InitialNodeEditPart) {
@@ -808,13 +853,58 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		if(targetEditPart instanceof StructuredActivityNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
+		if(targetEditPart instanceof InitialNodeInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof ActivityFinalNodeInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof FlowFinalNodeInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof OpaqueActionInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof CallBehaviorActionInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof CallOperationActionInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof SendObjectActionInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof SendSignalActionInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof AcceptEventActionInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
 		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
 		if(targetEditPart instanceof OutputPinInValSpecActEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
+		if(targetEditPart instanceof DecisionNodeInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof MergeNodeInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof ForkNodeInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof JoinNodeInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
 		if(targetEditPart instanceof DataStoreNodeEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof ValueSpecificationActionInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof DataStoreNodeInIAREditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
 		if(targetEditPart instanceof ValuePinInOpaqueActEditPart) {
@@ -916,6 +1006,9 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		if(targetEditPart instanceof DataStoreNodeEditPart) {
 			types.add(UMLElementTypes.ExceptionHandler_4005);
 		}
+		if(targetEditPart instanceof DataStoreNodeInIAREditPart) {
+			types.add(UMLElementTypes.ExceptionHandler_4005);
+		}
 		return types;
 	}
 
@@ -996,9 +1089,24 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.InitialNode_3079);
+			types.add(UMLElementTypes.ActivityFinalNode_3080);
+			types.add(UMLElementTypes.FlowFinalNode_3081);
+			types.add(UMLElementTypes.OpaqueAction_3082);
+			types.add(UMLElementTypes.CallBehaviorAction_3083);
+			types.add(UMLElementTypes.CallOperationAction_3084);
+			types.add(UMLElementTypes.SendObjectAction_3085);
+			types.add(UMLElementTypes.SendSignalAction_3086);
+			types.add(UMLElementTypes.AcceptEventAction_3087);
 			types.add(UMLElementTypes.ValueSpecificationAction_3076);
 			types.add(UMLElementTypes.OutputPin_3077);
+			types.add(UMLElementTypes.DecisionNode_3089);
+			types.add(UMLElementTypes.MergeNode_3090);
+			types.add(UMLElementTypes.ForkNode_3091);
+			types.add(UMLElementTypes.JoinNode_3092);
 			types.add(UMLElementTypes.DataStoreNode_3078);
+			types.add(UMLElementTypes.ValueSpecificationAction_3088);
+			types.add(UMLElementTypes.DataStoreNode_3093);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -1049,9 +1157,24 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.InitialNode_3079);
+			types.add(UMLElementTypes.ActivityFinalNode_3080);
+			types.add(UMLElementTypes.FlowFinalNode_3081);
+			types.add(UMLElementTypes.OpaqueAction_3082);
+			types.add(UMLElementTypes.CallBehaviorAction_3083);
+			types.add(UMLElementTypes.CallOperationAction_3084);
+			types.add(UMLElementTypes.SendObjectAction_3085);
+			types.add(UMLElementTypes.SendSignalAction_3086);
+			types.add(UMLElementTypes.AcceptEventAction_3087);
 			types.add(UMLElementTypes.ValueSpecificationAction_3076);
 			types.add(UMLElementTypes.OutputPin_3077);
+			types.add(UMLElementTypes.DecisionNode_3089);
+			types.add(UMLElementTypes.MergeNode_3090);
+			types.add(UMLElementTypes.ForkNode_3091);
+			types.add(UMLElementTypes.JoinNode_3092);
 			types.add(UMLElementTypes.DataStoreNode_3078);
+			types.add(UMLElementTypes.ValueSpecificationAction_3088);
+			types.add(UMLElementTypes.DataStoreNode_3093);
 		} else if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
 			types.add(UMLElementTypes.ValuePin_3015);
 			types.add(UMLElementTypes.ActionInputPin_3016);
@@ -1086,6 +1209,7 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.ExpansionNode_3075);
 			types.add(UMLElementTypes.OutputPin_3077);
 			types.add(UMLElementTypes.DataStoreNode_3078);
+			types.add(UMLElementTypes.DataStoreNode_3093);
 		}
 		return types;
 	}
@@ -1155,9 +1279,24 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.InitialNode_3079);
+			types.add(UMLElementTypes.ActivityFinalNode_3080);
+			types.add(UMLElementTypes.FlowFinalNode_3081);
+			types.add(UMLElementTypes.OpaqueAction_3082);
+			types.add(UMLElementTypes.CallBehaviorAction_3083);
+			types.add(UMLElementTypes.CallOperationAction_3084);
+			types.add(UMLElementTypes.SendObjectAction_3085);
+			types.add(UMLElementTypes.SendSignalAction_3086);
+			types.add(UMLElementTypes.AcceptEventAction_3087);
 			types.add(UMLElementTypes.ValueSpecificationAction_3076);
 			types.add(UMLElementTypes.OutputPin_3077);
+			types.add(UMLElementTypes.DecisionNode_3089);
+			types.add(UMLElementTypes.MergeNode_3090);
+			types.add(UMLElementTypes.ForkNode_3091);
+			types.add(UMLElementTypes.JoinNode_3092);
 			types.add(UMLElementTypes.DataStoreNode_3078);
+			types.add(UMLElementTypes.ValueSpecificationAction_3088);
+			types.add(UMLElementTypes.DataStoreNode_3093);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -1208,9 +1347,24 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
+			types.add(UMLElementTypes.InitialNode_3079);
+			types.add(UMLElementTypes.ActivityFinalNode_3080);
+			types.add(UMLElementTypes.FlowFinalNode_3081);
+			types.add(UMLElementTypes.OpaqueAction_3082);
+			types.add(UMLElementTypes.CallBehaviorAction_3083);
+			types.add(UMLElementTypes.CallOperationAction_3084);
+			types.add(UMLElementTypes.SendObjectAction_3085);
+			types.add(UMLElementTypes.SendSignalAction_3086);
+			types.add(UMLElementTypes.AcceptEventAction_3087);
 			types.add(UMLElementTypes.ValueSpecificationAction_3076);
 			types.add(UMLElementTypes.OutputPin_3077);
+			types.add(UMLElementTypes.DecisionNode_3089);
+			types.add(UMLElementTypes.MergeNode_3090);
+			types.add(UMLElementTypes.ForkNode_3091);
+			types.add(UMLElementTypes.JoinNode_3092);
 			types.add(UMLElementTypes.DataStoreNode_3078);
+			types.add(UMLElementTypes.ValueSpecificationAction_3088);
+			types.add(UMLElementTypes.DataStoreNode_3093);
 		}
 		return types;
 	}
@@ -1229,7 +1383,7 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		/**
 		 * @generated
 		 */
-		private Polyline fOptionalRakeFigure;
+		private PolylineShape fOptionalRakeFigure;
 
 
 		/**
@@ -1247,7 +1401,7 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		private void createContents() {
 
 
-			fOptionalRakeFigure = new Polyline();
+			fOptionalRakeFigure = new PolylineShape();
 			fOptionalRakeFigure.setFill(false);
 			fOptionalRakeFigure.setLineWidth(2);
 
@@ -1296,26 +1450,6 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		/**
 		 * @generated
 		 */
-		private boolean myUseLocalCoordinates = true;
-
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
 		public CenteredWrappedLabel getActionLabel() {
 			return fActionLabel;
 		}
@@ -1323,7 +1457,7 @@ AbstractBorderedShapeEditPart implements IPapyrusEditPart {
 		/**
 		 * @generated
 		 */
-		public Polyline getOptionalRakeFigure() {
+		public PolylineShape getOptionalRakeFigure() {
 			return fOptionalRakeFigure;
 		}
 

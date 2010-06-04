@@ -1177,6 +1177,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_OpaqueAction_3082_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_OpaqueAction_3082_incominglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_FlowFinalNode_3006_incominglinks;
 
 	/**
@@ -1327,12 +1337,32 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_DataStoreNode_3093_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DataStoreNode_3093_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_OutputPin_3024_incominglinks;
 
 	/**
 	 * @generated
 	 */
 	public static String NavigatorGroupName_OutputPin_3024_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_SendObjectAction_3085_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_SendObjectAction_3085_incominglinks;
 
 	/**
 	 * @generated
@@ -1353,11 +1383,6 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_ActionInputPin_3026_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Constraint_3002_incominglinks;
 
 	/**
 	 * @generated
@@ -1398,6 +1423,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_MergeNode_3039_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ValueSpecificationAction_3088_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ValueSpecificationAction_3088_incominglinks;
 
 	/**
 	 * @generated
@@ -1492,6 +1527,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_InitialNode_3079_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_InitialNode_3079_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_SendSignalAction_3052_outgoinglinks;
 
 	/**
@@ -1572,7 +1617,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Constraint_3003_incominglinks;
+	public static String NavigatorGroupName_MergeNode_3090_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_MergeNode_3090_outgoinglinks;
 
 	/**
 	 * @generated
@@ -1617,6 +1667,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_JoinNode_3092_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_JoinNode_3092_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_OutputPin_3077_incominglinks;
 
 	/**
@@ -1643,6 +1703,26 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_ConditionalNode_3069_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_CallBehaviorAction_3083_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_CallBehaviorAction_3083_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DecisionNode_3089_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_DecisionNode_3089_outgoinglinks;
 
 	/**
 	 * @generated
@@ -1677,6 +1757,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_ActivityFinalNode_3080_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ActivityFinalNode_3080_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_LoopNode_3071_outgoinglinks;
 
 	/**
@@ -1698,6 +1788,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_InteractionConstraint_3030_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_FlowFinalNode_3081_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_FlowFinalNode_3081_outgoinglinks;
 
 	/**
 	 * @generated
@@ -1777,12 +1877,52 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_CallOperationAction_3084_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_CallOperationAction_3084_incominglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_ExceptionHandler_4005_target;
 
 	/**
 	 * @generated
 	 */
 	public static String NavigatorGroupName_ExceptionHandler_4005_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ForkNode_3091_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ForkNode_3091_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_AcceptEventAction_3087_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_AcceptEventAction_3087_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_SendSignalAction_3086_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_SendSignalAction_3086_incominglinks;
 
 	/**
 	 * @generated

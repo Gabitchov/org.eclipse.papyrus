@@ -87,154 +87,184 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	 */
 	public Image getImage(View view) {
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
-		case ValuePinInSendObjActAsTargetEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3049); //$NON-NLS-1$
-		case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?DurationConstraint", UMLElementTypes.DurationConstraint_3034); //$NON-NLS-1$
-		case SendSignalActionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?SendSignalAction", UMLElementTypes.SendSignalAction_3052); //$NON-NLS-1$
-		case AcceptEventActionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?AcceptEventAction", UMLElementTypes.AcceptEventAction_3063); //$NON-NLS-1$
-		case ValuePinInCallOpActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3022); //$NON-NLS-1$
-		case ConditionalNodeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ConditionalNode", UMLElementTypes.ConditionalNode_3069); //$NON-NLS-1$
-		case LoopNodeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?LoopNode", UMLElementTypes.LoopNode_3071); //$NON-NLS-1$
-		case OpaqueActionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?OpaqueAction", UMLElementTypes.OpaqueAction_3007); //$NON-NLS-1$
-		case ValuePinInCallBeActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3017); //$NON-NLS-1$
-		case ValuePinInSendObjActAsReqEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3046); //$NON-NLS-1$
-		case OutputPinInOpaqueActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3014); //$NON-NLS-1$
-		case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?IntervalConstraint", UMLElementTypes.IntervalConstraint_3032); //$NON-NLS-1$
-		case ActionInputPinInSendSigActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3053); //$NON-NLS-1$
-		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Constraint", UMLElementTypes.Constraint_3012); //$NON-NLS-1$
-		case ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3026); //$NON-NLS-1$
-		case ActionInputPinInOpaqueActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3016); //$NON-NLS-1$
-		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?IntervalConstraint", UMLElementTypes.IntervalConstraint_3033); //$NON-NLS-1$
-		case ControlFlowEditPart.VISUAL_ID:
-			return getImage("Navigator?Link?http://www.eclipse.org/uml2/3.0.0/UML?ControlFlow", UMLElementTypes.ControlFlow_4004); //$NON-NLS-1$
-		case DataStoreNodeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?DataStoreNode", UMLElementTypes.DataStoreNode_3078); //$NON-NLS-1$
-		case InputPinInCallOpActAsTargetEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InputPin", UMLElementTypes.InputPin_3027); //$NON-NLS-1$
-		case ParameterEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Parameter", UMLElementTypes.Parameter_3001); //$NON-NLS-1$
-		case DecisionNodeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?DecisionNode", UMLElementTypes.DecisionNode_3038); //$NON-NLS-1$
-		case ValuePinInOpaqueActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3015); //$NON-NLS-1$
-		case ExpansionNodeAsOutEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ExpansionNode", UMLElementTypes.ExpansionNode_3075); //$NON-NLS-1$
-		case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?DurationConstraint", UMLElementTypes.DurationConstraint_3035); //$NON-NLS-1$
-		case ForkNodeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ForkNode", UMLElementTypes.ForkNode_3040); //$NON-NLS-1$
 		case ValueSpecificationActionEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ValueSpecificationAction", UMLElementTypes.ValueSpecificationAction_3076); //$NON-NLS-1$
-		case ValuePinInSendSigActAsTargetEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3060); //$NON-NLS-1$
-		case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?TimeConstraint", UMLElementTypes.TimeConstraint_3036); //$NON-NLS-1$
-		case ActionLocalPreconditionEditPart.VISUAL_ID:
-			return getImage("Navigator?Link?http://www.eclipse.org/uml2/3.0.0/UML?Action?localPrecondition", UMLElementTypes.ActionLocalPrecondition_4001); //$NON-NLS-1$
-		case ActionInputPinInCallOpActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3021); //$NON-NLS-1$
-		case CallOperationActionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?CallOperationAction", UMLElementTypes.CallOperationAction_3010); //$NON-NLS-1$
-		case CallBehaviorActionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?CallBehaviorAction", UMLElementTypes.CallBehaviorAction_3008); //$NON-NLS-1$
-		case ActivityFinalNodeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ActivityFinalNode", UMLElementTypes.ActivityFinalNode_3005); //$NON-NLS-1$
-		case ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3047); //$NON-NLS-1$
-		case StructuredActivityNodeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?StructuredActivityNode", UMLElementTypes.StructuredActivityNode_3065); //$NON-NLS-1$
-		case ExpansionNodeAsInEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ExpansionNode", UMLElementTypes.ExpansionNode_3074); //$NON-NLS-1$
-		case ConstraintInActivityAsPrecondEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Constraint", UMLElementTypes.Constraint_3002); //$NON-NLS-1$
-		case SendObjectActionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?SendObjectAction", UMLElementTypes.SendObjectAction_3042); //$NON-NLS-1$
-		case OutputPinInCallOpActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3024); //$NON-NLS-1$
-		case InputPinInCallOpActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InputPin", UMLElementTypes.InputPin_3023); //$NON-NLS-1$
-		case ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3061); //$NON-NLS-1$
-		case ExpansionRegionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ExpansionRegion", UMLElementTypes.ExpansionRegion_3070); //$NON-NLS-1$
-		case ValuePinInCallOpActAsTargetEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3025); //$NON-NLS-1$
-		case InitialNodeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InitialNode", UMLElementTypes.InitialNode_3004); //$NON-NLS-1$
-		case InputPinInCallBeActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InputPin", UMLElementTypes.InputPin_3019); //$NON-NLS-1$
-		case ValuePinInSendSigActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3054); //$NON-NLS-1$
-		case FlowFinalNodeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?FlowFinalNode", UMLElementTypes.FlowFinalNode_3006); //$NON-NLS-1$
-		case InputPinInSendObjActAsTargetEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InputPin", UMLElementTypes.InputPin_3051); //$NON-NLS-1$
-		case InputPinInOpaqueActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InputPin", UMLElementTypes.InputPin_3013); //$NON-NLS-1$
-		case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?TimeConstraint", UMLElementTypes.TimeConstraint_3037); //$NON-NLS-1$
-		case InputPinInSendSigActAsTargetEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InputPin", UMLElementTypes.InputPin_3062); //$NON-NLS-1$
-		case ActionInputPinInCallBeActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3018); //$NON-NLS-1$
-		case ConstraintInActivityAsPostcondEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Constraint", UMLElementTypes.Constraint_3003); //$NON-NLS-1$
-		case ActivityPartitionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ActivityPartition", UMLElementTypes.ActivityPartition_3067); //$NON-NLS-1$
-		case ExceptionHandlerEditPart.VISUAL_ID:
-			return getImage("Navigator?Link?http://www.eclipse.org/uml2/3.0.0/UML?ExceptionHandler", UMLElementTypes.ExceptionHandler_4005); //$NON-NLS-1$
-		case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Constraint", UMLElementTypes.Constraint_3011); //$NON-NLS-1$
-		case InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InteractionConstraint", UMLElementTypes.InteractionConstraint_3030); //$NON-NLS-1$
-		case JoinNodeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?JoinNode", UMLElementTypes.JoinNode_3041); //$NON-NLS-1$
-		case ActivityEditPart.VISUAL_ID:
-			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/3.0.0/UML?Activity", UMLElementTypes.Activity_2001); //$NON-NLS-1$
-		case ActivityDiagramEditPart.VISUAL_ID:
-			return getImage("Navigator?Diagram?http://www.eclipse.org/uml2/3.0.0/UML?Package", UMLElementTypes.Package_1000); //$NON-NLS-1$
-		case InputPinInSendSigActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InputPin", UMLElementTypes.InputPin_3055); //$NON-NLS-1$
-		case ActivityParameterNodeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ActivityParameterNode", UMLElementTypes.ActivityParameterNode_3059); //$NON-NLS-1$
-		case InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InteractionConstraint", UMLElementTypes.InteractionConstraint_3031); //$NON-NLS-1$
-		case SequenceNodeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?SequenceNode", UMLElementTypes.SequenceNode_3073); //$NON-NLS-1$
-		case ActionLocalPostconditionEditPart.VISUAL_ID:
-			return getImage("Navigator?Link?http://www.eclipse.org/uml2/3.0.0/UML?Action?localPostcondition", UMLElementTypes.ActionLocalPostcondition_4002); //$NON-NLS-1$
-		case MergeNodeEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?MergeNode", UMLElementTypes.MergeNode_3039); //$NON-NLS-1$
-		case InputPinInSendObjActAsReqEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InputPin", UMLElementTypes.InputPin_3048); //$NON-NLS-1$
-		case OutputPinInAcceptEventActionEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3064); //$NON-NLS-1$
-		case OutputPinInValSpecActEditPart.VISUAL_ID:
-			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3077); //$NON-NLS-1$
 		case InterruptibleActivityRegionEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InterruptibleActivityRegion", UMLElementTypes.InterruptibleActivityRegion_3068); //$NON-NLS-1$
+		case ParameterEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Parameter", UMLElementTypes.Parameter_3001); //$NON-NLS-1$
 		case ObjectFlowEditPart.VISUAL_ID:
 			return getImage("Navigator?Link?http://www.eclipse.org/uml2/3.0.0/UML?ObjectFlow", UMLElementTypes.ObjectFlow_4003); //$NON-NLS-1$
+		case InputPinInSendSigActAsTargetEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InputPin", UMLElementTypes.InputPin_3062); //$NON-NLS-1$
+		case ValuePinInSendObjActAsReqEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3046); //$NON-NLS-1$
+		case ActionInputPinInSendSigActEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3053); //$NON-NLS-1$
+		case CallBehaviorActionInIAREditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?CallBehaviorAction", UMLElementTypes.CallBehaviorAction_3083); //$NON-NLS-1$
+		case InputPinInSendSigActEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InputPin", UMLElementTypes.InputPin_3055); //$NON-NLS-1$
+		case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?TimeConstraint", UMLElementTypes.TimeConstraint_3036); //$NON-NLS-1$
+		case OutputPinInCallOpActEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3024); //$NON-NLS-1$
+		case JoinNodeEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?JoinNode", UMLElementTypes.JoinNode_3041); //$NON-NLS-1$
+		case InputPinInOpaqueActEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InputPin", UMLElementTypes.InputPin_3013); //$NON-NLS-1$
+		case DataStoreNodeEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?DataStoreNode", UMLElementTypes.DataStoreNode_3078); //$NON-NLS-1$
+		case ActivityDiagramEditPart.VISUAL_ID:
+			return getImage("Navigator?Diagram?http://www.eclipse.org/uml2/3.0.0/UML?Package", UMLElementTypes.Package_1000); //$NON-NLS-1$
+		case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Constraint", UMLElementTypes.Constraint_3011); //$NON-NLS-1$
+		case ForkNodeEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ForkNode", UMLElementTypes.ForkNode_3040); //$NON-NLS-1$
+		case OutputPinInValSpecActEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3077); //$NON-NLS-1$
+		case ActionInputPinInCallBeActEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3018); //$NON-NLS-1$
+		case SendObjectActionInIAREditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?SendObjectAction", UMLElementTypes.SendObjectAction_3085); //$NON-NLS-1$
+		case ActionLocalPostconditionEditPart.VISUAL_ID:
+			return getImage("Navigator?Link?http://www.eclipse.org/uml2/3.0.0/UML?Action?localPostcondition", UMLElementTypes.ActionLocalPostcondition_4002); //$NON-NLS-1$
+		case ActionLocalPreconditionEditPart.VISUAL_ID:
+			return getImage("Navigator?Link?http://www.eclipse.org/uml2/3.0.0/UML?Action?localPrecondition", UMLElementTypes.ActionLocalPrecondition_4001); //$NON-NLS-1$
 		case ActionInputPinInSendObjActAsTargetEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3050); //$NON-NLS-1$
+		case DataStoreNodeInIAREditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?DataStoreNode", UMLElementTypes.DataStoreNode_3093); //$NON-NLS-1$
 		case OutputPinInCallBeActEditPart.VISUAL_ID:
 			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3020); //$NON-NLS-1$
+		case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?DurationConstraint", UMLElementTypes.DurationConstraint_3034); //$NON-NLS-1$
+		case InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InteractionConstraint", UMLElementTypes.InteractionConstraint_3030); //$NON-NLS-1$
+		case ConditionalNodeEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ConditionalNode", UMLElementTypes.ConditionalNode_3069); //$NON-NLS-1$
+		case ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3026); //$NON-NLS-1$
+		case ValuePinInCallBeActEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3017); //$NON-NLS-1$
+		case ActionInputPinInCallOpActEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3021); //$NON-NLS-1$
+		case ControlFlowEditPart.VISUAL_ID:
+			return getImage("Navigator?Link?http://www.eclipse.org/uml2/3.0.0/UML?ControlFlow", UMLElementTypes.ControlFlow_4004); //$NON-NLS-1$
+		case ValuePinInOpaqueActEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3015); //$NON-NLS-1$
+		case LoopNodeEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?LoopNode", UMLElementTypes.LoopNode_3071); //$NON-NLS-1$
+		case InputPinInSendObjActAsReqEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InputPin", UMLElementTypes.InputPin_3048); //$NON-NLS-1$
+		case InputPinInSendObjActAsTargetEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InputPin", UMLElementTypes.InputPin_3051); //$NON-NLS-1$
+		case ValuePinInCallOpActAsTargetEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3025); //$NON-NLS-1$
+		case ActivityParameterNodeEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ActivityParameterNode", UMLElementTypes.ActivityParameterNode_3059); //$NON-NLS-1$
+		case ExpansionRegionEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ExpansionRegion", UMLElementTypes.ExpansionRegion_3070); //$NON-NLS-1$
+		case InitialNodeEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InitialNode", UMLElementTypes.InitialNode_3004); //$NON-NLS-1$
+		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Constraint", UMLElementTypes.Constraint_3012); //$NON-NLS-1$
+		case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?TimeConstraint", UMLElementTypes.TimeConstraint_3037); //$NON-NLS-1$
+		case InputPinInCallBeActEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InputPin", UMLElementTypes.InputPin_3019); //$NON-NLS-1$
+		case ExpansionNodeAsInEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ExpansionNode", UMLElementTypes.ExpansionNode_3074); //$NON-NLS-1$
+		case InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InteractionConstraint", UMLElementTypes.InteractionConstraint_3031); //$NON-NLS-1$
+		case DecisionNodeInIAREditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?DecisionNode", UMLElementTypes.DecisionNode_3089); //$NON-NLS-1$
+		case ConstraintInActivityAsPrecondEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Constraint", UMLElementTypes.Constraint_3002); //$NON-NLS-1$
+		case DecisionNodeEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?DecisionNode", UMLElementTypes.DecisionNode_3038); //$NON-NLS-1$
+		case ActionInputPinInOpaqueActEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3016); //$NON-NLS-1$
+		case ValuePinInSendObjActAsTargetEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3049); //$NON-NLS-1$
+		case FlowFinalNodeInIAREditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?FlowFinalNode", UMLElementTypes.FlowFinalNode_3081); //$NON-NLS-1$
+		case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?IntervalConstraint", UMLElementTypes.IntervalConstraint_3032); //$NON-NLS-1$
+		case ActivityFinalNodeEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ActivityFinalNode", UMLElementTypes.ActivityFinalNode_3005); //$NON-NLS-1$
+		case OpaqueActionEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?OpaqueAction", UMLElementTypes.OpaqueAction_3007); //$NON-NLS-1$
+		case ValuePinInCallOpActEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3022); //$NON-NLS-1$
+		case ValueSpecificationActionInIAREditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ValueSpecificationAction", UMLElementTypes.ValueSpecificationAction_3088); //$NON-NLS-1$
+		case ConstraintInActivityAsPostcondEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?Constraint", UMLElementTypes.Constraint_3003); //$NON-NLS-1$
+		case ActivityEditPart.VISUAL_ID:
+			return getImage("Navigator?TopLevelNode?http://www.eclipse.org/uml2/3.0.0/UML?Activity", UMLElementTypes.Activity_2001); //$NON-NLS-1$
+		case ActivityFinalNodeInIAREditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ActivityFinalNode", UMLElementTypes.ActivityFinalNode_3080); //$NON-NLS-1$
+		case InputPinInCallOpActAsTargetEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InputPin", UMLElementTypes.InputPin_3027); //$NON-NLS-1$
+		case FlowFinalNodeEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?FlowFinalNode", UMLElementTypes.FlowFinalNode_3006); //$NON-NLS-1$
+		case SequenceNodeEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?SequenceNode", UMLElementTypes.SequenceNode_3073); //$NON-NLS-1$
+		case OpaqueActionInIAREditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?OpaqueAction", UMLElementTypes.OpaqueAction_3082); //$NON-NLS-1$
+		case AcceptEventActionInIAREditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?AcceptEventAction", UMLElementTypes.AcceptEventAction_3087); //$NON-NLS-1$
+		case OutputPinInOpaqueActEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3014); //$NON-NLS-1$
+		case OutputPinInAcceptEventActionEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?OutputPin", UMLElementTypes.OutputPin_3064); //$NON-NLS-1$
+		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?IntervalConstraint", UMLElementTypes.IntervalConstraint_3033); //$NON-NLS-1$
+		case ExceptionHandlerEditPart.VISUAL_ID:
+			return getImage("Navigator?Link?http://www.eclipse.org/uml2/3.0.0/UML?ExceptionHandler", UMLElementTypes.ExceptionHandler_4005); //$NON-NLS-1$
+		case CallOperationActionEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?CallOperationAction", UMLElementTypes.CallOperationAction_3010); //$NON-NLS-1$
+		case InitialNodeInIAREditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InitialNode", UMLElementTypes.InitialNode_3079); //$NON-NLS-1$
+		case ValuePinInSendSigActAsTargetEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3060); //$NON-NLS-1$
+		case CallBehaviorActionEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?CallBehaviorAction", UMLElementTypes.CallBehaviorAction_3008); //$NON-NLS-1$
+		case SendSignalActionInIAREditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?SendSignalAction", UMLElementTypes.SendSignalAction_3086); //$NON-NLS-1$
+		case CallOperationActionInIAREditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?CallOperationAction", UMLElementTypes.CallOperationAction_3084); //$NON-NLS-1$
+		case ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3061); //$NON-NLS-1$
+		case ExpansionNodeAsOutEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ExpansionNode", UMLElementTypes.ExpansionNode_3075); //$NON-NLS-1$
+		case AcceptEventActionEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?AcceptEventAction", UMLElementTypes.AcceptEventAction_3063); //$NON-NLS-1$
+		case InputPinInCallOpActEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?InputPin", UMLElementTypes.InputPin_3023); //$NON-NLS-1$
+		case JoinNodeInIAREditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?JoinNode", UMLElementTypes.JoinNode_3092); //$NON-NLS-1$
+		case SendObjectActionEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?SendObjectAction", UMLElementTypes.SendObjectAction_3042); //$NON-NLS-1$
+		case ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ActionInputPin", UMLElementTypes.ActionInputPin_3047); //$NON-NLS-1$
+		case ValuePinInSendSigActEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ValuePin", UMLElementTypes.ValuePin_3054); //$NON-NLS-1$
+		case StructuredActivityNodeEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?StructuredActivityNode", UMLElementTypes.StructuredActivityNode_3065); //$NON-NLS-1$
+		case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?DurationConstraint", UMLElementTypes.DurationConstraint_3035); //$NON-NLS-1$
+		case MergeNodeInIAREditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?MergeNode", UMLElementTypes.MergeNode_3090); //$NON-NLS-1$
+		case ForkNodeInIAREditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ForkNode", UMLElementTypes.ForkNode_3091); //$NON-NLS-1$
+		case ActivityPartitionEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?ActivityPartition", UMLElementTypes.ActivityPartition_3067); //$NON-NLS-1$
+		case MergeNodeEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?MergeNode", UMLElementTypes.MergeNode_3039); //$NON-NLS-1$
+		case SendSignalActionEditPart.VISUAL_ID:
+			return getImage("Navigator?Node?http://www.eclipse.org/uml2/3.0.0/UML?SendSignalAction", UMLElementTypes.SendSignalAction_3052); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -286,154 +316,184 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return getUnresolvedDomainElementProxyText(view);
 		}
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
-		case ValuePinInSendObjActAsTargetEditPart.VISUAL_ID:
-			return getValuePin_3049Text(view);
-		case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
-			return getDurationConstraint_3034Text(view);
-		case SendSignalActionEditPart.VISUAL_ID:
-			return getSendSignalAction_3052Text(view);
-		case AcceptEventActionEditPart.VISUAL_ID:
-			return getAcceptEventAction_3063Text(view);
-		case ValuePinInCallOpActEditPart.VISUAL_ID:
-			return getValuePin_3022Text(view);
-		case ConditionalNodeEditPart.VISUAL_ID:
-			return getConditionalNode_3069Text(view);
-		case LoopNodeEditPart.VISUAL_ID:
-			return getLoopNode_3071Text(view);
-		case OpaqueActionEditPart.VISUAL_ID:
-			return getOpaqueAction_3007Text(view);
-		case ValuePinInCallBeActEditPart.VISUAL_ID:
-			return getValuePin_3017Text(view);
-		case ValuePinInSendObjActAsReqEditPart.VISUAL_ID:
-			return getValuePin_3046Text(view);
-		case OutputPinInOpaqueActEditPart.VISUAL_ID:
-			return getOutputPin_3014Text(view);
-		case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
-			return getIntervalConstraint_3032Text(view);
-		case ActionInputPinInSendSigActEditPart.VISUAL_ID:
-			return getActionInputPin_3053Text(view);
-		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
-			return getConstraint_3012Text(view);
-		case ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID:
-			return getActionInputPin_3026Text(view);
-		case ActionInputPinInOpaqueActEditPart.VISUAL_ID:
-			return getActionInputPin_3016Text(view);
-		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
-			return getIntervalConstraint_3033Text(view);
-		case ControlFlowEditPart.VISUAL_ID:
-			return getControlFlow_4004Text(view);
-		case DataStoreNodeEditPart.VISUAL_ID:
-			return getDataStoreNode_3078Text(view);
-		case InputPinInCallOpActAsTargetEditPart.VISUAL_ID:
-			return getInputPin_3027Text(view);
-		case ParameterEditPart.VISUAL_ID:
-			return getParameter_3001Text(view);
-		case DecisionNodeEditPart.VISUAL_ID:
-			return getDecisionNode_3038Text(view);
-		case ValuePinInOpaqueActEditPart.VISUAL_ID:
-			return getValuePin_3015Text(view);
-		case ExpansionNodeAsOutEditPart.VISUAL_ID:
-			return getExpansionNode_3075Text(view);
-		case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
-			return getDurationConstraint_3035Text(view);
-		case ForkNodeEditPart.VISUAL_ID:
-			return getForkNode_3040Text(view);
 		case ValueSpecificationActionEditPart.VISUAL_ID:
 			return getValueSpecificationAction_3076Text(view);
-		case ValuePinInSendSigActAsTargetEditPart.VISUAL_ID:
-			return getValuePin_3060Text(view);
-		case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
-			return getTimeConstraint_3036Text(view);
-		case ActionLocalPreconditionEditPart.VISUAL_ID:
-			return getActionLocalPrecondition_4001Text(view);
-		case ActionInputPinInCallOpActEditPart.VISUAL_ID:
-			return getActionInputPin_3021Text(view);
-		case CallOperationActionEditPart.VISUAL_ID:
-			return getCallOperationAction_3010Text(view);
-		case CallBehaviorActionEditPart.VISUAL_ID:
-			return getCallBehaviorAction_3008Text(view);
-		case ActivityFinalNodeEditPart.VISUAL_ID:
-			return getActivityFinalNode_3005Text(view);
-		case ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID:
-			return getActionInputPin_3047Text(view);
-		case StructuredActivityNodeEditPart.VISUAL_ID:
-			return getStructuredActivityNode_3065Text(view);
-		case ExpansionNodeAsInEditPart.VISUAL_ID:
-			return getExpansionNode_3074Text(view);
-		case ConstraintInActivityAsPrecondEditPart.VISUAL_ID:
-			return getConstraint_3002Text(view);
-		case SendObjectActionEditPart.VISUAL_ID:
-			return getSendObjectAction_3042Text(view);
-		case OutputPinInCallOpActEditPart.VISUAL_ID:
-			return getOutputPin_3024Text(view);
-		case InputPinInCallOpActEditPart.VISUAL_ID:
-			return getInputPin_3023Text(view);
-		case ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID:
-			return getActionInputPin_3061Text(view);
-		case ExpansionRegionEditPart.VISUAL_ID:
-			return getExpansionRegion_3070Text(view);
-		case ValuePinInCallOpActAsTargetEditPart.VISUAL_ID:
-			return getValuePin_3025Text(view);
-		case InitialNodeEditPart.VISUAL_ID:
-			return getInitialNode_3004Text(view);
-		case InputPinInCallBeActEditPart.VISUAL_ID:
-			return getInputPin_3019Text(view);
-		case ValuePinInSendSigActEditPart.VISUAL_ID:
-			return getValuePin_3054Text(view);
-		case FlowFinalNodeEditPart.VISUAL_ID:
-			return getFlowFinalNode_3006Text(view);
-		case InputPinInSendObjActAsTargetEditPart.VISUAL_ID:
-			return getInputPin_3051Text(view);
-		case InputPinInOpaqueActEditPart.VISUAL_ID:
-			return getInputPin_3013Text(view);
-		case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
-			return getTimeConstraint_3037Text(view);
-		case InputPinInSendSigActAsTargetEditPart.VISUAL_ID:
-			return getInputPin_3062Text(view);
-		case ActionInputPinInCallBeActEditPart.VISUAL_ID:
-			return getActionInputPin_3018Text(view);
-		case ConstraintInActivityAsPostcondEditPart.VISUAL_ID:
-			return getConstraint_3003Text(view);
-		case ActivityPartitionEditPart.VISUAL_ID:
-			return getActivityPartition_3067Text(view);
-		case ExceptionHandlerEditPart.VISUAL_ID:
-			return getExceptionHandler_4005Text(view);
-		case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
-			return getConstraint_3011Text(view);
-		case InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID:
-			return getInteractionConstraint_3030Text(view);
-		case JoinNodeEditPart.VISUAL_ID:
-			return getJoinNode_3041Text(view);
-		case ActivityEditPart.VISUAL_ID:
-			return getActivity_2001Text(view);
-		case ActivityDiagramEditPart.VISUAL_ID:
-			return getPackage_1000Text(view);
-		case InputPinInSendSigActEditPart.VISUAL_ID:
-			return getInputPin_3055Text(view);
-		case ActivityParameterNodeEditPart.VISUAL_ID:
-			return getActivityParameterNode_3059Text(view);
-		case InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID:
-			return getInteractionConstraint_3031Text(view);
-		case SequenceNodeEditPart.VISUAL_ID:
-			return getSequenceNode_3073Text(view);
-		case ActionLocalPostconditionEditPart.VISUAL_ID:
-			return getActionLocalPostcondition_4002Text(view);
-		case MergeNodeEditPart.VISUAL_ID:
-			return getMergeNode_3039Text(view);
-		case InputPinInSendObjActAsReqEditPart.VISUAL_ID:
-			return getInputPin_3048Text(view);
-		case OutputPinInAcceptEventActionEditPart.VISUAL_ID:
-			return getOutputPin_3064Text(view);
-		case OutputPinInValSpecActEditPart.VISUAL_ID:
-			return getOutputPin_3077Text(view);
 		case InterruptibleActivityRegionEditPart.VISUAL_ID:
 			return getInterruptibleActivityRegion_3068Text(view);
+		case ParameterEditPart.VISUAL_ID:
+			return getParameter_3001Text(view);
 		case ObjectFlowEditPart.VISUAL_ID:
 			return getObjectFlow_4003Text(view);
+		case InputPinInSendSigActAsTargetEditPart.VISUAL_ID:
+			return getInputPin_3062Text(view);
+		case ValuePinInSendObjActAsReqEditPart.VISUAL_ID:
+			return getValuePin_3046Text(view);
+		case ActionInputPinInSendSigActEditPart.VISUAL_ID:
+			return getActionInputPin_3053Text(view);
+		case CallBehaviorActionInIAREditPart.VISUAL_ID:
+			return getCallBehaviorAction_3083Text(view);
+		case InputPinInSendSigActEditPart.VISUAL_ID:
+			return getInputPin_3055Text(view);
+		case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			return getTimeConstraint_3036Text(view);
+		case OutputPinInCallOpActEditPart.VISUAL_ID:
+			return getOutputPin_3024Text(view);
+		case JoinNodeEditPart.VISUAL_ID:
+			return getJoinNode_3041Text(view);
+		case InputPinInOpaqueActEditPart.VISUAL_ID:
+			return getInputPin_3013Text(view);
+		case DataStoreNodeEditPart.VISUAL_ID:
+			return getDataStoreNode_3078Text(view);
+		case ActivityDiagramEditPart.VISUAL_ID:
+			return getPackage_1000Text(view);
+		case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			return getConstraint_3011Text(view);
+		case ForkNodeEditPart.VISUAL_ID:
+			return getForkNode_3040Text(view);
+		case OutputPinInValSpecActEditPart.VISUAL_ID:
+			return getOutputPin_3077Text(view);
+		case ActionInputPinInCallBeActEditPart.VISUAL_ID:
+			return getActionInputPin_3018Text(view);
+		case SendObjectActionInIAREditPart.VISUAL_ID:
+			return getSendObjectAction_3085Text(view);
+		case ActionLocalPostconditionEditPart.VISUAL_ID:
+			return getActionLocalPostcondition_4002Text(view);
+		case ActionLocalPreconditionEditPart.VISUAL_ID:
+			return getActionLocalPrecondition_4001Text(view);
 		case ActionInputPinInSendObjActAsTargetEditPart.VISUAL_ID:
 			return getActionInputPin_3050Text(view);
+		case DataStoreNodeInIAREditPart.VISUAL_ID:
+			return getDataStoreNode_3093Text(view);
 		case OutputPinInCallBeActEditPart.VISUAL_ID:
 			return getOutputPin_3020Text(view);
+		case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			return getDurationConstraint_3034Text(view);
+		case InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			return getInteractionConstraint_3030Text(view);
+		case ConditionalNodeEditPart.VISUAL_ID:
+			return getConditionalNode_3069Text(view);
+		case ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID:
+			return getActionInputPin_3026Text(view);
+		case ValuePinInCallBeActEditPart.VISUAL_ID:
+			return getValuePin_3017Text(view);
+		case ActionInputPinInCallOpActEditPart.VISUAL_ID:
+			return getActionInputPin_3021Text(view);
+		case ControlFlowEditPart.VISUAL_ID:
+			return getControlFlow_4004Text(view);
+		case ValuePinInOpaqueActEditPart.VISUAL_ID:
+			return getValuePin_3015Text(view);
+		case LoopNodeEditPart.VISUAL_ID:
+			return getLoopNode_3071Text(view);
+		case InputPinInSendObjActAsReqEditPart.VISUAL_ID:
+			return getInputPin_3048Text(view);
+		case InputPinInSendObjActAsTargetEditPart.VISUAL_ID:
+			return getInputPin_3051Text(view);
+		case ValuePinInCallOpActAsTargetEditPart.VISUAL_ID:
+			return getValuePin_3025Text(view);
+		case ActivityParameterNodeEditPart.VISUAL_ID:
+			return getActivityParameterNode_3059Text(view);
+		case ExpansionRegionEditPart.VISUAL_ID:
+			return getExpansionRegion_3070Text(view);
+		case InitialNodeEditPart.VISUAL_ID:
+			return getInitialNode_3004Text(view);
+		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			return getConstraint_3012Text(view);
+		case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			return getTimeConstraint_3037Text(view);
+		case InputPinInCallBeActEditPart.VISUAL_ID:
+			return getInputPin_3019Text(view);
+		case ExpansionNodeAsInEditPart.VISUAL_ID:
+			return getExpansionNode_3074Text(view);
+		case InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			return getInteractionConstraint_3031Text(view);
+		case DecisionNodeInIAREditPart.VISUAL_ID:
+			return getDecisionNode_3089Text(view);
+		case ConstraintInActivityAsPrecondEditPart.VISUAL_ID:
+			return getConstraint_3002Text(view);
+		case DecisionNodeEditPart.VISUAL_ID:
+			return getDecisionNode_3038Text(view);
+		case ActionInputPinInOpaqueActEditPart.VISUAL_ID:
+			return getActionInputPin_3016Text(view);
+		case ValuePinInSendObjActAsTargetEditPart.VISUAL_ID:
+			return getValuePin_3049Text(view);
+		case FlowFinalNodeInIAREditPart.VISUAL_ID:
+			return getFlowFinalNode_3081Text(view);
+		case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
+			return getIntervalConstraint_3032Text(view);
+		case ActivityFinalNodeEditPart.VISUAL_ID:
+			return getActivityFinalNode_3005Text(view);
+		case OpaqueActionEditPart.VISUAL_ID:
+			return getOpaqueAction_3007Text(view);
+		case ValuePinInCallOpActEditPart.VISUAL_ID:
+			return getValuePin_3022Text(view);
+		case ValueSpecificationActionInIAREditPart.VISUAL_ID:
+			return getValueSpecificationAction_3088Text(view);
+		case ConstraintInActivityAsPostcondEditPart.VISUAL_ID:
+			return getConstraint_3003Text(view);
+		case ActivityEditPart.VISUAL_ID:
+			return getActivity_2001Text(view);
+		case ActivityFinalNodeInIAREditPart.VISUAL_ID:
+			return getActivityFinalNode_3080Text(view);
+		case InputPinInCallOpActAsTargetEditPart.VISUAL_ID:
+			return getInputPin_3027Text(view);
+		case FlowFinalNodeEditPart.VISUAL_ID:
+			return getFlowFinalNode_3006Text(view);
+		case SequenceNodeEditPart.VISUAL_ID:
+			return getSequenceNode_3073Text(view);
+		case OpaqueActionInIAREditPart.VISUAL_ID:
+			return getOpaqueAction_3082Text(view);
+		case AcceptEventActionInIAREditPart.VISUAL_ID:
+			return getAcceptEventAction_3087Text(view);
+		case OutputPinInOpaqueActEditPart.VISUAL_ID:
+			return getOutputPin_3014Text(view);
+		case OutputPinInAcceptEventActionEditPart.VISUAL_ID:
+			return getOutputPin_3064Text(view);
+		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			return getIntervalConstraint_3033Text(view);
+		case ExceptionHandlerEditPart.VISUAL_ID:
+			return getExceptionHandler_4005Text(view);
+		case CallOperationActionEditPart.VISUAL_ID:
+			return getCallOperationAction_3010Text(view);
+		case InitialNodeInIAREditPart.VISUAL_ID:
+			return getInitialNode_3079Text(view);
+		case ValuePinInSendSigActAsTargetEditPart.VISUAL_ID:
+			return getValuePin_3060Text(view);
+		case CallBehaviorActionEditPart.VISUAL_ID:
+			return getCallBehaviorAction_3008Text(view);
+		case SendSignalActionInIAREditPart.VISUAL_ID:
+			return getSendSignalAction_3086Text(view);
+		case CallOperationActionInIAREditPart.VISUAL_ID:
+			return getCallOperationAction_3084Text(view);
+		case ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID:
+			return getActionInputPin_3061Text(view);
+		case ExpansionNodeAsOutEditPart.VISUAL_ID:
+			return getExpansionNode_3075Text(view);
+		case AcceptEventActionEditPart.VISUAL_ID:
+			return getAcceptEventAction_3063Text(view);
+		case InputPinInCallOpActEditPart.VISUAL_ID:
+			return getInputPin_3023Text(view);
+		case JoinNodeInIAREditPart.VISUAL_ID:
+			return getJoinNode_3092Text(view);
+		case SendObjectActionEditPart.VISUAL_ID:
+			return getSendObjectAction_3042Text(view);
+		case ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID:
+			return getActionInputPin_3047Text(view);
+		case ValuePinInSendSigActEditPart.VISUAL_ID:
+			return getValuePin_3054Text(view);
+		case StructuredActivityNodeEditPart.VISUAL_ID:
+			return getStructuredActivityNode_3065Text(view);
+		case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
+			return getDurationConstraint_3035Text(view);
+		case MergeNodeInIAREditPart.VISUAL_ID:
+			return getMergeNode_3090Text(view);
+		case ForkNodeInIAREditPart.VISUAL_ID:
+			return getForkNode_3091Text(view);
+		case ActivityPartitionEditPart.VISUAL_ID:
+			return getActivityPartition_3067Text(view);
+		case MergeNodeEditPart.VISUAL_ID:
+			return getMergeNode_3039Text(view);
+		case SendSignalActionEditPart.VISUAL_ID:
+			return getSendSignalAction_3052Text(view);
 		}
 		return getUnknownElementText(view);
 	}
@@ -525,6 +585,19 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
 			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5081); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getOpaqueAction_3082Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.OpaqueAction_3082, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(OpaqueActionInIARNameEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5132); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -727,12 +800,38 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	/**
 	 * @generated
 	 */
+	private String getDataStoreNode_3093Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.DataStoreNode_3093, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(DataStoreNodeInIARLabelEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5147); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	private String getOutputPin_3024Text(View view) {
 		IParser parser = UMLParserProvider.getParser(UMLElementTypes.OutputPin_3024, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(OutputPinInCOActLabelEditPart.VISUAL_ID));
 		if(parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
 			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5020); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getSendObjectAction_3085Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.SendObjectAction_3085, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(SendObjectActionInIARNameEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5135); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -824,6 +923,19 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
 			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5099); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getValueSpecificationAction_3088Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.ValueSpecificationAction_3088, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ValueSpecificationActionInIARNameEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5140); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -948,6 +1060,19 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	/**
 	 * @generated
 	 */
+	private String getInitialNode_3079Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.InitialNode_3079, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(AppliedStereotypeWrappingLabelEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5129); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	private String getSendSignalAction_3052Text(View view) {
 		IParser parser = UMLParserProvider.getParser(UMLElementTypes.SendSignalAction_3052, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(SendSignalActionNameEditPart.VISUAL_ID));
 		if(parser != null) {
@@ -1052,6 +1177,19 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	/**
 	 * @generated
 	 */
+	private String getMergeNode_3090Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.MergeNode_3090, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(MergeNodeInIARAppliedStereotypeEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5143); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	private String getAcceptEventAction_3063Text(View view) {
 		IParser parser = UMLParserProvider.getParser(UMLElementTypes.AcceptEventAction_3063, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(AcceptEventActionLabelEditPart.VISUAL_ID));
 		if(parser != null) {
@@ -1124,6 +1262,19 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	/**
 	 * @generated
 	 */
+	private String getJoinNode_3092Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.JoinNode_3092, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(JoinSpecInIAREditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5145); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	private String getOutputPin_3077Text(View view) {
 		IParser parser = UMLParserProvider.getParser(UMLElementTypes.OutputPin_3077, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(OutputPinInValSpecActLabelEditPart.VISUAL_ID));
 		if(parser != null) {
@@ -1156,6 +1307,32 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
 			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5119); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getCallBehaviorAction_3083Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.CallBehaviorAction_3083, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(CallBehaviorActionInIARNameEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5133); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getDecisionNode_3089Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.DecisionNode_3089, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(DecisionInputInIAREditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5141); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -1202,6 +1379,19 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	/**
 	 * @generated
 	 */
+	private String getActivityFinalNode_3080Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.ActivityFinalNode_3080, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ActivityFinalNodeInIARAppliedStereotypeEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5130); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	private String getLoopNode_3071Text(View view) {
 		IParser parser = UMLParserProvider.getParser(UMLElementTypes.LoopNode_3071, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(LoopNodeKeywordEditPart.VISUAL_ID));
 		if(parser != null) {
@@ -1234,6 +1424,19 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
 			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5034); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getFlowFinalNode_3081Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.FlowFinalNode_3081, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(FlowFinalNodeInIARAppliedStereotypeEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5131); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -1372,12 +1575,64 @@ public class UMLNavigatorLabelProvider extends LabelProvider implements ICommonL
 	/**
 	 * @generated
 	 */
+	private String getCallOperationAction_3084Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.CallOperationAction_3084, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(CallOperationActionInIARNameEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5134); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	private String getExceptionHandler_4005Text(View view) {
 		IParser parser = UMLParserProvider.getParser(UMLElementTypes.ExceptionHandler_4005, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ExceptionHandlerTypeEditPart.VISUAL_ID));
 		if(parser != null) {
 			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
 		} else {
 			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 6012); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getForkNode_3091Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.ForkNode_3091, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(ForkNodeInIARAppliedStereotypeEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5144); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getAcceptEventAction_3087Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.AcceptEventAction_3087, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(AcceptEventActionInIARLabelEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5137); //$NON-NLS-1$
+			return ""; //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getSendSignalAction_3086Text(View view) {
+		IParser parser = UMLParserProvider.getParser(UMLElementTypes.SendSignalAction_3086, view.getElement() != null ? view.getElement() : view, UMLVisualIDRegistry.getType(SendSignalActionInIARNameEditPart.VISUAL_ID));
+		if(parser != null) {
+			return parser.getPrintString(new EObjectAdapter(view.getElement() != null ? view.getElement() : view), ParserOptions.NONE.intValue());
+		} else {
+			UMLDiagramEditorPlugin.getInstance().logError("Parser was not found for label " + 5136); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}

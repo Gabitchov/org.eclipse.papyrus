@@ -595,7 +595,7 @@
       <viewProvider class="org.eclipse.papyrus.diagram.activity.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLActivityDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3030,3031,3032,3033,3011,3012,3038,3039,3040,3041,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3069,3070,3074,3075,3071,3073,3065,3067,3068,3076,3077,3078"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3030,3031,3032,3033,3011,3012,3038,3039,3040,3041,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3069,3070,3074,3075,3071,3073,3065,3067,3068,3079,3080,3081,3082,3083,3084,3085,3086,3087,3076,3077,3089,3090,3091,3092,3078,3088,3093"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4003,4004,4005"/>
       </viewProvider>
    </extension>
@@ -608,13 +608,13 @@
             <method name="getType()" value="PapyrusUMLActivityDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3030,3031,3032,3033,3011,3012,3038,3039,3040,3041,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3069,3070,3074,3075,3071,3073,3065,3067,3068,3076,3077,3078"/>
+            <method name="getType()" value="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3030,3031,3032,3033,3011,3012,3038,3039,3040,3041,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3069,3070,3074,3075,3071,3073,3065,3067,3068,3079,3080,3081,3082,3083,3084,3085,3086,3087,3076,3077,3089,3090,3091,3092,3078,3088,3093"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="4001,4002,4003,4004,4005"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5001,5002,5080,5081,5082,5003,5011,5024,5083,5012,5025,5084,5009,5085,5010,5086,5004,5013,5026,5087,5014,5027,5088,5015,5089,5016,5090,5006,5017,5028,5091,5018,5029,5092,5019,5093,5020,5094,5021,5030,5095,5022,5031,5096,5023,5097,5038,5039,5040,5041,5034,5035,5036,5037,5007,5008,5043,5098,5099,5100,5042,5101,5059,5049,5050,5102,5051,5052,5103,5053,5104,5054,5055,5105,5056,5057,5106,5058,5107,5060,5061,5062,5108,5063,5064,5109,5065,5110,5072,5073,5111,5074,5075,5112,5076,5113,5071,5078,5079,5115,5077,5114,5119,5120,5121,5123,5117,5118,5126,5124,5125,5127,5128"/>
+            <method name="getType()" value="5001,5002,5080,5081,5082,5003,5011,5024,5083,5012,5025,5084,5009,5085,5010,5086,5004,5013,5026,5087,5014,5027,5088,5015,5089,5016,5090,5006,5017,5028,5091,5018,5029,5092,5019,5093,5020,5094,5021,5030,5095,5022,5031,5096,5023,5097,5038,5039,5040,5041,5034,5035,5036,5037,5007,5008,5043,5098,5099,5100,5042,5101,5059,5049,5050,5102,5051,5052,5103,5053,5104,5054,5055,5105,5056,5057,5106,5058,5107,5060,5061,5062,5108,5063,5064,5109,5065,5110,5072,5073,5111,5074,5075,5112,5076,5113,5071,5078,5079,5115,5077,5114,5119,5120,5121,5123,5117,5118,5129,5130,5131,5132,5133,5134,5135,5136,5137,5138,5139,5126,5124,5125,5141,5142,5143,5144,5145,5146,5127,5128,5140,5147,5148"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value="7001,7002,7003,7004,7008,7009,7010,7012,7005,7006,7007"/>
@@ -1278,6 +1278,87 @@
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.InitialNode_3079"
+               name="%metatype.name.InitialNode_3079"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.InitialNode_3004"/>
+            <param name="semanticHint" value="3079"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.ActivityFinalNode_3080"
+               name="%metatype.name.ActivityFinalNode_3080"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.ActivityFinalNode_3005"/>
+            <param name="semanticHint" value="3080"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.FlowFinalNode_3081"
+               name="%metatype.name.FlowFinalNode_3081"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.FlowFinalNode_3006"/>
+            <param name="semanticHint" value="3081"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.OpaqueAction_3082"
+               name="%metatype.name.OpaqueAction_3082"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.OpaqueAction_3007"/>
+            <param name="semanticHint" value="3082"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.CallBehaviorAction_3083"
+               name="%metatype.name.CallBehaviorAction_3083"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.CallBehaviorAction_3008"/>
+            <param name="semanticHint" value="3083"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.CallOperationAction_3084"
+               name="%metatype.name.CallOperationAction_3084"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.CallOperationAction_3010"/>
+            <param name="semanticHint" value="3084"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.SendObjectAction_3085"
+               name="%metatype.name.SendObjectAction_3085"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.SendObjectAction_3042"/>
+            <param name="semanticHint" value="3085"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.SendSignalAction_3086"
+               name="%metatype.name.SendSignalAction_3086"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.SendSignalAction_3052"/>
+            <param name="semanticHint" value="3086"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.AcceptEventAction_3087"
+               name="%metatype.name.AcceptEventAction_3087"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.AcceptEventAction_3063"/>
+            <param name="semanticHint" value="3087"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.diagram.activity.ValueSpecificationAction_3076"
                name="%metatype.name.ValueSpecificationAction_3076"
@@ -1297,6 +1378,42 @@
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.DecisionNode_3089"
+               name="%metatype.name.DecisionNode_3089"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.DecisionNode_3038"/>
+            <param name="semanticHint" value="3089"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.MergeNode_3090"
+               name="%metatype.name.MergeNode_3090"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.MergeNode_3039"/>
+            <param name="semanticHint" value="3090"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.ForkNode_3091"
+               name="%metatype.name.ForkNode_3091"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.ForkNode_3040"/>
+            <param name="semanticHint" value="3091"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.JoinNode_3092"
+               name="%metatype.name.JoinNode_3092"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.JoinNode_3041"/>
+            <param name="semanticHint" value="3092"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.diagram.activity.DataStoreNode_3078"
                name="%metatype.name.DataStoreNode_3078"
@@ -1305,6 +1422,24 @@
                edithelper="org.eclipse.papyrus.diagram.activity.edit.helpers.DataStoreNodeEditHelper">
             <param name="semanticHint" value="3078"/>
          </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.ValueSpecificationAction_3088"
+               name="%metatype.name.ValueSpecificationAction_3088"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.ValueSpecificationAction_3076"/>
+            <param name="semanticHint" value="3088"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <specializationType
+               id="org.eclipse.papyrus.diagram.activity.DataStoreNode_3093"
+               name="%metatype.name.DataStoreNode_3093"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.papyrus.diagram.activity.DataStoreNode_3078"/>
+            <param name="semanticHint" value="3093"/>
+         </specializationType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <specializationType
@@ -1432,9 +1567,24 @@
          <elementType ref="org.eclipse.papyrus.diagram.activity.StructuredActivityNode_3065"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ActivityPartition_3067"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.InterruptibleActivityRegion_3068"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.InitialNode_3079"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.ActivityFinalNode_3080"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.FlowFinalNode_3081"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.OpaqueAction_3082"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.CallBehaviorAction_3083"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.CallOperationAction_3084"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.SendObjectAction_3085"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.SendSignalAction_3086"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.AcceptEventAction_3087"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ValueSpecificationAction_3076"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.OutputPin_3077"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.DecisionNode_3089"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.MergeNode_3090"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.ForkNode_3091"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.JoinNode_3092"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.DataStoreNode_3078"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.ValueSpecificationAction_3088"/>
+         <elementType ref="org.eclipse.papyrus.diagram.activity.DataStoreNode_3093"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ActionLocalPrecondition_4001"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ActionLocalPostcondition_4002"/>
          <elementType ref="org.eclipse.papyrus.diagram.activity.ObjectFlow_4003"/>
