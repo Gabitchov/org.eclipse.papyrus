@@ -5,7 +5,8 @@
 			<elementClass name="org.eclipse.papyrus.properties.runtime.view.content.ExpandableContainerDescriptor$ExpandableContainerDescriptorState"/>
 		</context>
 		<content>
-			<container layout="Grid" columns="1" sameSize="false">
+			<container>
+				<layout kind="Grid" columns="1" sameSize="false"/>
 				 <controller id="stateBeanPropertyEditorController">
 					<property name="name"/>
 					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Label:" labelPosition="16384"/>
@@ -18,7 +19,8 @@
 			<elementClass name="org.eclipse.papyrus.properties.runtime.view.content.GroupContainerDescriptor$GroupContainerDescriptorState"/>
 		</context>
 		<content>
-			<container layout="Grid" columns="1" sameSize="false">
+			<container >
+				<layout kind="Grid" columns="1" sameSize="false"/>
 				 <controller id="stateBeanPropertyEditorController">
 					<property name="name"/>
 					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Label:" labelPosition="16384"/>
@@ -31,7 +33,8 @@
 			<elementClass name="org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptorState"/>
 		</context>
 		<content>
-			<container layout="Grid" columns="1" sameSize="false">
+			<container>
+			 <layout kind="Grid" columns="1" sameSize="false"/>
 			</container>
 		</content>
 	</fragment>
@@ -40,7 +43,8 @@
 			<elementClass name="org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState"/>
 		</context>
 		<content>
-			<container layout="Grid" columns="1" sameSize="false">
+			<container>
+				 <layout kind="Grid" columns="1" sameSize="false"/>
 				 <controller id="stateBeanPropertyEditorController">
 					<property name="id"/>
 					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Identifier:" labelPosition="16384"/>
@@ -57,7 +61,8 @@
 			<elementClass name="org.eclipse.papyrus.properties.runtime.controller.descriptor.ControllerDescriptorState"></elementClass>
 		</context>
 		<content>
-			<container layout="Grid" columns="1" sameSize="false">
+			<container>
+				 <layout kind="Grid" columns="1" sameSize="false"/>
 				 <controller id="stateBeanPropertyEditorController">
 					<property name="id"/>
 					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Identifier:" labelPosition="16384"/>
@@ -74,7 +79,8 @@
 			<elementClass name="org.eclipse.papyrus.properties.runtime.view.content.GridLayoutDescriptor"/>
 		</context>
 		<content>
-			<container layout="Grid" columns="1" sameSize="false">
+			<container>
+				 <layout kind="Grid" columns="1" sameSize="false"/>
 				 <controller id="stateBeanPropertyEditorController">
 					<property name="numColumns"/>
 					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Number of Columns:" labelPosition="16384"/>
