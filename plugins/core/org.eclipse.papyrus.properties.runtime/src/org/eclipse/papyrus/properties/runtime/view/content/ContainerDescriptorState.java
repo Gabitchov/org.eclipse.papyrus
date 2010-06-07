@@ -158,10 +158,25 @@ public class ContainerDescriptorState extends AbstractState {
 		// attributes of the node: example: layout="Grid" columns="2" sameSize="false"
 		generateContainerAttributes(node, document);
 
+		// generate the layout descriptor node
+		generateLayoutDescriptor(node, document);
+
 		// generate for owned controllers
 		generateControllers(node, document);
 
 		return node;
+	}
+
+	/**
+	 * Generates the layout descriptor node
+	 * 
+	 * @param node
+	 *        the node to generate
+	 * @param document
+	 *        the document used to create elements
+	 */
+	protected void generateLayoutDescriptor(Element node, Document document) {
+		node.appendChild(getLayoutDescriptorState().generateNode(document));
 	}
 
 	/**
