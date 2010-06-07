@@ -104,7 +104,7 @@ public class ConfigurationContentProvider implements ITreeContentProvider, Prope
 		} else if(parentElement instanceof FragmentDescriptorState) {
 			return ((FragmentDescriptorState)parentElement).getContainerDescriptorStates().toArray();
 		} else if(parentElement instanceof ContainerDescriptorState) {
-			return ((ContainerDescriptorState)parentElement).getControllerDescriptorStates().toArray();
+			return ((ContainerDescriptorState)parentElement).getChildren().toArray();
 		}
 		return new Object[0];
 	}

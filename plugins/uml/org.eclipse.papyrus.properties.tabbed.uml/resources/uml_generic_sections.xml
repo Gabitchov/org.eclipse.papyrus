@@ -34,10 +34,12 @@
 					<elementClass name="org.eclipse.uml2.uml.Classifier"></elementClass>
 				</context>
 				<content>
-					<container layout="Grid" columns="2" sameSize="false">
+					<container>
+						<layout kind="Grid" columns="2" sameSize="false"/>
 						 <controller predefinedId="UML_Classifier_isAbstract"/>
 					</container>
-					<expandableContainer label="Features" layout="Grid" columns="2" sameSize="false">
+					<expandableContainer label="Features">
+						<layout kind="Grid" columns="2" sameSize="false"/>
 						<controller id="emftLabelProviderStructuralFeatureController">
 							<feature name="ownedAttribute" handlerID="Reference"/>
 							<editor id="org.eclipse.papyrus.properties.runtime.multipleStructuralFeaturesPropertyEditor" label="Attributes:" labelPosition="16384">
@@ -49,7 +51,8 @@
 							</editor>
 						</controller>
 					</expandableContainer>
-					<groupContainer label="MyGroup" layout="Grid" columns="1" sameSize="false">
+					<groupContainer label="MyGroup">
+						<layout kind="Grid" columns="1" sameSize="false"/>
 						<controller id="emftStructuralFeatureController">
 							<feature name="qualifiedName" handlerID="String"/>
 							<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Qualified Name:" labelPosition="16384">
@@ -82,7 +85,8 @@
 					<elementClass name="org.eclipse.uml2.uml.Property"></elementClass>
 				</context>
 				<content>
-					<groupContainer label="" layout="Grid" columns="1" sameSize="false">
+					<groupContainer label="">
+						<layout kind="Grid" columns="1" sameSize="false"/>
 						 <controller predefinedId="UML_NamedElement_name"/>
 						 <controller id="emftBindingReferenceController">
 							<feature name="type" handlerID="Reference"/>
@@ -125,7 +129,8 @@
 					<elementClass name="org.eclipse.uml2.uml.Class"></elementClass>
 				</context>
 				<content>
-					<expandableContainer label="EClass" layout="Grid" columns="1" sameSize="false">
+					<expandableContainer label="EClass">
+						<layout kind="Grid" columns="1" sameSize="false"/>
 						<controller id="emftStructuralFeatureController">
 							<feature stereotypeName="Ecore::EClass" name="className" handlerID="StringStereotype"/>
 							<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Class Name:" labelPosition="16384">
@@ -157,7 +162,8 @@
 					<elementClass name="org.eclipse.uml2.uml.Property"></elementClass>
 				</context>
 				<content>
-					<expandableContainer label="EAttribute" layout="Grid" columns="1" sameSize="false">
+					<expandableContainer label="EAttribute">
+						<layout kind="Grid" columns="1" sameSize="false"/>
 						<controller id="emftStructuralFeatureController">
 							<feature stereotypeName="Ecore::EAttribute" name="isTransient" handlerID="BooleanStereotype"/>
 							<editor id="org.eclipse.papyrus.properties.runtime.comboPropertyEditor" label="Transient:" labelPosition="16384">
@@ -184,7 +190,8 @@
 					<elementClass name="org.eclipse.uml2.uml.Property"></elementClass>
 				</context>
 				<content>
-					<expandableContainer label="SysML" layout="Grid" columns="1" sameSize="false">
+					<expandableContainer label="SysML">
+						<layout kind="Grid" columns="1" sameSize="false"/>
 						<controller id="emftBindingReferenceController">
 							<binding message="{0} - ({1})">
 								<feature name="name"/>

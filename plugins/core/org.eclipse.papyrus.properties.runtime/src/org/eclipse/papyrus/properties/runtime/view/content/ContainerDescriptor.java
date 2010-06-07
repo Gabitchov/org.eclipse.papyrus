@@ -24,7 +24,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Layout;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -55,24 +54,24 @@ public class ContainerDescriptor extends AbstractContainerDescriptor {
 	/**
 	 * Creates a new ContainerDescriptor.
 	 * 
-	 * @param layout
+	 * @param layoutDescriptor
 	 *        the layout of the composite described by this element
 	 * @param containerNode
 	 *        the xml configuration node for this container
 	 * 
 	 */
-	public ContainerDescriptor(Layout layout, Node containerNode) {
-		super(layout, containerNode);
+	public ContainerDescriptor(LayoutDescriptor layoutDescriptor, Node containerNode) {
+		super(layoutDescriptor, containerNode);
 	}
 
 	/**
 	 * Creates a new ContainerDescriptor.
 	 * 
-	 * @param layout
-	 *        the layout of the composite described by this element
+	 * @param layoutDescriptor
+	 *        the layoutDescriptor of the composite described by this element
 	 */
-	public ContainerDescriptor(Layout layout, List<IPropertyEditorControllerDescriptor> descriptors) {
-		super(layout, null);
+	public ContainerDescriptor(LayoutDescriptor layoutDescriptor, List<IPropertyEditorControllerDescriptor> descriptors) {
+		super(layoutDescriptor, null);
 		// force the list of descriptors, not using cache
 		uncachedDescriptors = descriptors;
 		unparsedContent = false;
@@ -106,7 +105,7 @@ public class ContainerDescriptor extends AbstractContainerDescriptor {
 		if(getDescribedComposite() == null || getDescribedComposite().isDisposed()) {
 			setDescribedComposite(widgetFactory.createComposite(parent));
 			// creates the layout
-			getDescribedComposite().setLayout(layout);
+			getDescribedComposite().setLayout(getLayoutDescriptor().createLayout());
 			getDescribedComposite().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		}
 

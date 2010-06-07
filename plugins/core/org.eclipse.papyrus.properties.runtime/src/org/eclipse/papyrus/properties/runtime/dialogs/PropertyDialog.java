@@ -170,9 +170,11 @@ public class PropertyDialog extends StatusDialog {
 		List<AbstractContainerDescriptor> containers = new ArrayList<AbstractContainerDescriptor>();
 		for(String fragmentId : getFragmentsId()) {
 			FragmentDescriptor fragmentDescriptor = PropertyViewService.getInstance().getFragmentDescriptor(fragmentId);
-			for(AbstractContainerDescriptor descriptor : fragmentDescriptor.getContainerDescriptors()) {
-				descriptor.createContent(containerComposite, getWidgetFactory(), objectsToEdit);
-				containers.add(descriptor);
+			if(fragmentDescriptor != null) {
+				for(AbstractContainerDescriptor descriptor : fragmentDescriptor.getContainerDescriptors()) {
+					descriptor.createContent(containerComposite, getWidgetFactory(), objectsToEdit);
+					containers.add(descriptor);
+				}
 			}
 		}
 

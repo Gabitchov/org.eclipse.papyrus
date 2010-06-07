@@ -38,6 +38,9 @@ public class ContainerDescriptorState extends AbstractState {
 	/** change support for this bean */
 	private PropertyChangeSupport changeSupport;
 
+	/** Layout descriptor state */
+	private final LayoutDescriptorState layoutDescriptorState;
+
 	/**
 	 * Creates a new ContainerDescriptorState.
 	 * 
@@ -47,11 +50,14 @@ public class ContainerDescriptorState extends AbstractState {
 	public ContainerDescriptorState(ContainerDescriptor descriptor) {
 		this.descriptor = descriptor;
 
+		layoutDescriptorState = descriptor.getLayoutDescriptor().createState();
+
 		// read the current list of controller descriptor managed by this state
 		List<IPropertyEditorControllerDescriptor> controllerDescriptors = descriptor.getUnparsedControllerDescriptors();
 		for(IPropertyEditorControllerDescriptor controllerDescriptor : controllerDescriptors) {
 			controllerDescriptorStates.add(controllerDescriptor.createState());
 		}
+
 		// register change support
 		changeSupport = new PropertyChangeSupport(this);
 	}
@@ -72,6 +78,15 @@ public class ContainerDescriptorState extends AbstractState {
 	 */
 	public List<ControllerDescriptorState> getControllerDescriptorStates() {
 		return controllerDescriptorStates;
+	}
+
+	/**
+	 * Returns the layoutDescriptor state for this element
+	 * 
+	 * @return the layoutDescriptor state for this element
+	 */
+	public LayoutDescriptorState getLayoutDescriptorState() {
+		return layoutDescriptorState;
 	}
 
 	/**
@@ -128,8 +143,11 @@ public class ContainerDescriptorState extends AbstractState {
 	/**
 	 * {@inheritDoc}
 	 */
-	public List<ControllerDescriptorState> getChildren() {
-		return getControllerDescriptorStates();
+	public List<AbstractState> getChildren() {
+		ArrayList<AbstractState> states = new ArrayList<AbstractState>();
+		states.add(layoutDescriptorState);
+		states.addAll(getControllerDescriptorStates());
+		return states;
 	}
 
 	/**

@@ -1,0 +1,89 @@
+<!--UML Basic fragment-->
+<fragments pluginId="org.eclipse.papyrus.properties.tabbed.customization">
+	<fragment id="fragment_single_ExpandableContainerDescriptorState">
+		<context enablesFor="1">
+			<elementClass name="org.eclipse.papyrus.properties.runtime.view.content.ExpandableContainerDescriptor$ExpandableContainerDescriptorState"/>
+		</context>
+		<content>
+			<container layout="Grid" columns="1" sameSize="false">
+				 <controller id="stateBeanPropertyEditorController">
+					<property name="name"/>
+					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Label:" labelPosition="16384"/>
+				</controller>
+			</container>
+		</content>
+	</fragment>
+	<fragment id="fragment_single_GroupContainerDescriptorState">
+		<context enablesFor="1">
+			<elementClass name="org.eclipse.papyrus.properties.runtime.view.content.GroupContainerDescriptor$GroupContainerDescriptorState"/>
+		</context>
+		<content>
+			<container layout="Grid" columns="1" sameSize="false">
+				 <controller id="stateBeanPropertyEditorController">
+					<property name="name"/>
+					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Label:" labelPosition="16384"/>
+				</controller>
+			</container>
+		</content>
+	</fragment>
+	<fragment id="fragment_single_ContainerDescriptorState">
+		<context enablesFor="1">
+			<elementClass name="org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptorState"/>
+		</context>
+		<content>
+			<container layout="Grid" columns="1" sameSize="false">
+			</container>
+		</content>
+	</fragment>
+	<fragment id="fragment_single_SectionDescriptorState">	<!-- fragment for controller descriptor state -->
+		<context enablesFor="1">
+			<elementClass name="org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState"/>
+		</context>
+		<content>
+			<container layout="Grid" columns="1" sameSize="false">
+				 <controller id="stateBeanPropertyEditorController">
+					<property name="id"/>
+					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Identifier:" labelPosition="16384"/>
+				</controller>
+				<controller id="stateBeanPropertyEditorController">
+					<property name="targetTab"/>
+					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Tab Identifier" labelPosition="16384"/>
+				</controller>
+			</container>
+		</content>
+	</fragment>
+	<fragment id="fragment_single_ControllerDescriptorState">
+		<context enablesFor="1">
+			<elementClass name="org.eclipse.papyrus.properties.runtime.controller.descriptor.ControllerDescriptorState"></elementClass>
+		</context>
+		<content>
+			<container layout="Grid" columns="1" sameSize="false">
+				 <controller id="stateBeanPropertyEditorController">
+					<property name="id"/>
+					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Identifier:" labelPosition="16384"/>
+				</controller>
+				<controller id="stateBeanPropertyEditorController">
+					<property name="id"/>
+					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Identifier:" labelPosition="16384"/>
+				</controller>
+			</container>
+		</content>
+	</fragment>
+	<fragment id="fragment_single_GridLayoutDescriptorState">
+		<context enablesFor="1">
+			<elementClass name="org.eclipse.papyrus.properties.runtime.view.content.GridLayoutDescriptor"/>
+		</context>
+		<content>
+			<container layout="Grid" columns="1" sameSize="false">
+				 <controller id="stateBeanPropertyEditorController">
+					<property name="numColumns"/>
+					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Number of Columns:" labelPosition="16384"/>
+				</controller>
+				<controller id="booleanStateBeanPropertyEditorController">
+					<property name="sameWidth"/>
+					<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Columns equal width" labelPosition="16384"/>
+				</controller>
+			</container>
+		</content>
+	</fragment>
+</fragments>

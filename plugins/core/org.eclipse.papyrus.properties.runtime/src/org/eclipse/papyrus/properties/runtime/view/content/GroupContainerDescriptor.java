@@ -22,7 +22,6 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.Layout;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -39,30 +38,30 @@ public class GroupContainerDescriptor extends ContainerDescriptor {
 	/**
 	 * Creates a new ViewConfiguration.FolderContainerDescriptor.
 	 * 
-	 * @param layout
-	 *        the layout applied to the container
+	 * @param layoutDescriptor
+	 *        the layoutDescriptor applied to the container
 	 * @param label
 	 *        the label of the created composite
 	 * @param containerNode
 	 *        the unparsed xml configuration node for this container
 	 */
-	public GroupContainerDescriptor(Layout layout, String label, Node containerNode) {
-		super(layout, containerNode);
+	public GroupContainerDescriptor(LayoutDescriptor layoutDescriptor, String label, Node containerNode) {
+		super(layoutDescriptor, containerNode);
 		this.label = label;
 	}
 
 	/**
 	 * Creates a new GroupContainerDescriptor
 	 * 
-	 * @param layout
-	 *        the layout applied to the container
+	 * @param layoutDescriptor
+	 *        the layoutDescriptor applied to the container
 	 * @param label
 	 *        the label of the created composite
 	 * @param descriptors
 	 *        the list of {@link IPropertyEditorControllerDescriptor} contained by this container
 	 */
-	public GroupContainerDescriptor(Layout layout, String label, List<IPropertyEditorControllerDescriptor> descriptors) {
-		super(layout, descriptors);
+	public GroupContainerDescriptor(LayoutDescriptor layoutDescriptor, String label, List<IPropertyEditorControllerDescriptor> descriptors) {
+		super(layoutDescriptor, descriptors);
 		this.label = label;
 	}
 
@@ -84,7 +83,7 @@ public class GroupContainerDescriptor extends ContainerDescriptor {
 			setDescribedComposite(widgetFactory.createGroup(parent, label));
 			getDescribedComposite().setText(label);
 			// creates the layout
-			getDescribedComposite().setLayout(layout);
+			getDescribedComposite().setLayout(getLayoutDescriptor().createLayout());
 			getDescribedComposite().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		}
 
@@ -184,6 +183,13 @@ public class GroupContainerDescriptor extends ContainerDescriptor {
 			generateControllers(node, document);
 
 			return node;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public String getEditionDialogId() {
+			return "GroupContainerDescriptorStateDialog";
 		}
 
 	}

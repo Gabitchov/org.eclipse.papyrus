@@ -13,23 +13,7 @@
 			<string value="Edit Controller Descriptor Message"/>
 		</message>
 		<content>
-			<fragment id="fragment_single_ControllerDescriptorState">	<!-- fragment for controller descriptor state -->
-				<context enablesFor="1">
-					<elementClass name="org.eclipse.papyrus.properties.runtime.controller.descriptor.ControllerDescriptorState"></elementClass>
-				</context>
-				<content>
-					<container layout="Grid" columns="1" sameSize="false">
-						 <controller id="stateBeanPropertyEditorController">
-							<property name="id"/>
-							<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Identifier:" labelPosition="16384"/>
-						</controller>
-						<controller id="stateBeanPropertyEditorController">
-							<property name="id"/>
-							<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Identifier:" labelPosition="16384"/>
-						</controller>
-					</container>
-				</content>
-			</fragment>
+			<fragment predefinedId="fragment_single_ControllerDescriptorState"/>	<!-- fragment for controller descriptor state -->
 		</content>
 	</dialog>
 	<dialog id="SectionDescriptorStateDialog"><!-- Dialog for single section descriptor state -->
@@ -45,23 +29,79 @@
 			<string value="Edit Section Descriptor Message"/>
 		</message>
 		<content>
-			<fragment id="fragment_single_SectionDescriptorState">	<!-- fragment for controller descriptor state -->
-				<context enablesFor="1">
-					<elementClass name="org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState"/>
-				</context>
-				<content>
-					<container layout="Grid" columns="1" sameSize="false">
-						 <controller id="stateBeanPropertyEditorController">
-							<property name="id"/>
-							<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Identifier:" labelPosition="16384"/>
-						</controller>
-						<controller id="stateBeanPropertyEditorController">
-							<property name="targetTab"/>
-							<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Tab Identifier" labelPosition="16384"/>
-						</controller>
-					</container>
-				</content>
-			</fragment>
+			<fragment predefinedId="fragment_single_SectionDescriptorState"/>	<!-- fragment for controller descriptor state -->
+		</content>
+	</dialog>
+	<dialog id="ContainerDescriptorStateDialog"><!-- Dialog for single container descriptor state -->
+		<context enablesFor="1">
+			<elementClass
+				name="org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptorState">
+			</elementClass>
+		</context>
+		<title>
+			<string value="Edit Container Descriptor"/>
+		</title>
+		<message>
+			<string value="Edit Container Descriptor Message"/>
+		</message>
+		<content>
+			<fragment predefinedId="fragment_single_ContainerDescriptorState"/>
+		</content>
+	</dialog>
+	<dialog id="GroupContainerDescriptorStateDialog">
+		<context enablesFor="1">
+			<elementClass
+				name="org.eclipse.papyrus.properties.runtime.view.content.GroupContainerDescriptor$GroupContainerDescriptorState">
+			</elementClass>
+			<replacedDialogs>
+				<replacedDialog id="ContainerDescriptorStateDialog"/>
+			</replacedDialogs>
+		</context>
+		<title>
+			<string value="Edit Group Container Descriptor"/>
+		</title>
+		<message>
+			<string value="Edit Group Container Descriptor Message"/>
+		</message>
+		<content>
+			<fragment predefinedId="fragment_single_ContainerDescriptorState"/>
+			<fragment predefinedId="fragment_single_GroupContainerDescriptorState"/>
+		</content>
+	</dialog>
+	<dialog id="ExpandableContainerDescriptorStateDialog"><!-- Dialog for single section descriptor state -->
+		<context enablesFor="1">
+			<elementClass
+				name="org.eclipse.papyrus.properties.runtime.view.content.ExpandableContainerDescriptor$ExpandableContainerDescriptorState">
+			</elementClass>
+			<replacedDialogs>
+				<replacedDialog id="ContainerDescriptorStateDialog"/>
+			</replacedDialogs>
+		</context>
+		<title>
+			<string value="Edit Expandable Container Descriptor"/>
+		</title>
+		<message>
+			<string value="Edit Expandable Container Descriptor Message"/>
+		</message>
+		<content>
+			<fragment predefinedId="fragment_single_ContainerDescriptorState"/>
+			<fragment predefinedId="fragment_single_ExpandableContainerDescriptorState"/>
+		</content>
+	</dialog>
+	<dialog id="GridLayoutDescriptorStateDialog"><!-- Dialog for single section descriptor state -->
+		<context enablesFor="1">
+			<elementClass
+				name="org.eclipse.papyrus.properties.runtime.view.content.GridLayoutDescriptor">
+			</elementClass>
+		</context>
+		<title>
+			<string value="Edit Grid Layout Descriptor"/>
+		</title>
+		<message>
+			<string value="Edit Grid Layout Message"/>
+		</message>
+		<content>
+			<fragment predefinedId="fragment_single_GridLayoutDescriptorState"/>
 		</content>
 	</dialog>
 </dialogs>

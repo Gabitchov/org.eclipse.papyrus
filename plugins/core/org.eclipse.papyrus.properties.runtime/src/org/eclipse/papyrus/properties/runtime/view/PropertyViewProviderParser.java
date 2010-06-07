@@ -24,8 +24,8 @@ import org.eclipse.papyrus.properties.runtime.view.constraints.ObjectTypeConstra
 import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.ExpandableContainerDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.GroupContainerDescriptor;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Layout;
+import org.eclipse.papyrus.properties.runtime.view.content.LayoutDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.content.LayoutParser;
 import org.osgi.framework.Bundle;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
@@ -505,8 +505,29 @@ public class PropertyViewProviderParser {
 	 *        the node to parse
 	 */
 	protected ContainerDescriptor parseContainerNode(Node containerNode) throws XMLParseException {
-		Layout layout = parseLayout(containerNode);
-		return new ContainerDescriptor(layout, containerNode);
+		// retrieve layout node
+		Node layoutNode = getLayoutNode(containerNode);
+		LayoutDescriptor layoutDescriptor = parseLayoutNode(layoutNode);
+		return new ContainerDescriptor(layoutDescriptor, containerNode);
+	}
+
+	/**
+	 * Finds and return the layout node for the specified container node
+	 * 
+	 * @param containerNode
+	 *        the node which contains the layout node
+	 * @return the
+	 */
+	protected Node getLayoutNode(Node containerNode) {
+		NodeList children = containerNode.getChildNodes();
+		for(int i = 0; i < children.getLength(); i++) {
+			// get the name of the children,; which should equals "layout"
+			Node child = children.item(i);
+			if("layout".equals(child.getNodeName())) {
+				return child;
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -516,9 +537,11 @@ public class PropertyViewProviderParser {
 	 *        the node to parse
 	 */
 	protected ContainerDescriptor parseGroupNode(Node containerNode) throws XMLParseException {
-		Layout layout = parseLayout(containerNode);
+		// retrieve layout node
+		Node layoutNode = getLayoutNode(containerNode);
+		LayoutDescriptor layoutDescriptor = parseLayoutNode(layoutNode);
 		String label = parseLabel(containerNode);
-		return new GroupContainerDescriptor(layout, label, containerNode);
+		return new GroupContainerDescriptor(layoutDescriptor, label, containerNode);
 	}
 
 	/**
@@ -528,9 +551,11 @@ public class PropertyViewProviderParser {
 	 *        the node to parse
 	 */
 	protected ContainerDescriptor parseExpandableContainerNode(Node containerNode) throws XMLParseException {
-		Layout layout = parseLayout(containerNode);
+		// retrieve layout node
+		Node layoutNode = getLayoutNode(containerNode);
+		LayoutDescriptor layoutDescriptor = parseLayoutNode(layoutNode);
 		String label = parseLabel(containerNode);
-		return new ExpandableContainerDescriptor(layout, label, containerNode);
+		return new ExpandableContainerDescriptor(layoutDescriptor, label, containerNode);
 	}
 
 	/**
@@ -565,37 +590,8 @@ public class PropertyViewProviderParser {
 	 *        the container node which contains layout information
 	 * @return the layout for the container
 	 */
-	protected Layout parseLayout(Node containerNode) throws XMLParseException {
-		Layout layout = null;
-		// this is a simple container. 
-		// Retrieving the layout and generates the composite descriptor
-		NamedNodeMap attributes = containerNode.getAttributes();
-		if(attributes == null) {
-			throw new XMLParseException("Impossible to find attributes for container node " + containerNode);
-		}
-		Node layoutNode = attributes.getNamedItem("layout");
-		if(layoutNode == null) {
-			throw new XMLParseException("Impossible to find layout attribute for container node " + containerNode);
-		} else if("Grid".equals(layoutNode.getNodeValue())) {
-			// retrieve number of columns 
-			int columnNu = 1;
-			boolean sameSize = false;
-
-			Node columnNuNode = attributes.getNamedItem("columns");
-			if(columnNuNode == null) {
-				throw new XMLParseException("Impossible to find column number attribute for container node " + containerNode);
-			} else {
-				columnNu = Integer.parseInt(columnNuNode.getNodeValue());
-			}
-			Node columnSizeNode = attributes.getNamedItem("sameSize");
-			if(columnSizeNode == null) {
-				throw new XMLParseException("Impossible to find column size attribute for container node " + containerNode);
-			} else {
-				sameSize = Boolean.parseBoolean(columnSizeNode.getNodeValue());
-			}
-			layout = new GridLayout(columnNu, sameSize);
-		}
-		return layout;
+	protected LayoutDescriptor parseLayoutNode(Node layoutNode) throws XMLParseException {
+		return LayoutParser.parseLayoutNode(layoutNode);
 	}
 
 	/**

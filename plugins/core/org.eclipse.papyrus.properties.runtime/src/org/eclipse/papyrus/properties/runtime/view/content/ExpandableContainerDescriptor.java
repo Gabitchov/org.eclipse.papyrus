@@ -21,7 +21,6 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Layout;
 import org.eclipse.ui.forms.widgets.ExpandableComposite;
 import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
@@ -43,30 +42,30 @@ public class ExpandableContainerDescriptor extends ContainerDescriptor {
 	/**
 	 * Creates a new ExpandableContainerDescriptor
 	 * 
-	 * @param layout
-	 *        the layout applied to the container
+	 * @param layoutDescriptor
+	 *        the layoutDescriptor applied to the container
 	 * @param label
 	 *        the label of the created composite
 	 * @param containerNode
 	 *        the unparsed xml configuration node for this container
 	 */
-	public ExpandableContainerDescriptor(Layout layout, String label, Node containerNode) {
-		super(layout, containerNode);
+	public ExpandableContainerDescriptor(LayoutDescriptor layoutDescriptor, String label, Node containerNode) {
+		super(layoutDescriptor, containerNode);
 		this.label = label;
 	}
 
 	/**
 	 * Creates a new ExpandableContainerDescriptor
 	 * 
-	 * @param layout
-	 *        the layout applied to the container
+	 * @param layoutDescriptor
+	 *        the layoutDescriptor applied to the container
 	 * @param label
 	 *        the label of the created composite
 	 * @param descriptors
 	 *        the list of {@link IPropertyEditorControllerDescriptor} contained by this container
 	 */
-	public ExpandableContainerDescriptor(Layout layout, String label, List<IPropertyEditorControllerDescriptor> descriptors) {
-		super(layout, descriptors);
+	public ExpandableContainerDescriptor(LayoutDescriptor layoutDescriptor, String label, List<IPropertyEditorControllerDescriptor> descriptors) {
+		super(layoutDescriptor, descriptors);
 		this.label = label;
 	}
 
@@ -89,7 +88,7 @@ public class ExpandableContainerDescriptor extends ContainerDescriptor {
 			getDescribedComposite().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 
 			expandableContainer = widgetFactory.createComposite(getDescribedComposite());
-			expandableContainer.setLayout(layout);
+			expandableContainer.setLayout(getLayoutDescriptor().createLayout());
 			getDescribedComposite().setText(getLabel());
 
 			widgetFactory.paintBordersFor(expandableContainer);
@@ -201,6 +200,13 @@ public class ExpandableContainerDescriptor extends ContainerDescriptor {
 			generateControllers(node, document);
 
 			return node;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public String getEditionDialogId() {
+			return "ExpandableContainerDescriptorStateDialog";
 		}
 
 	}

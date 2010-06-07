@@ -17,7 +17,6 @@ import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorControlle
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Layout;
 import org.eclipse.ui.services.IDisposable;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.w3c.dom.Node;
@@ -29,7 +28,7 @@ import org.w3c.dom.Node;
 public abstract class AbstractContainerDescriptor implements IDisposable, IConfigurableDescriptor {
 
 	/** layout used by this container */
-	protected final Layout layout;
+	private final LayoutDescriptor layoutDescriptor;
 
 	/** uncached content of the container */
 	protected final Node containerNode;
@@ -37,11 +36,11 @@ public abstract class AbstractContainerDescriptor implements IDisposable, IConfi
 	/**
 	 * Creates a new AbstractContainerDescriptor.
 	 * 
-	 * @param layout
+	 * @param layoutDescriptor
 	 *        the layout of the composite described by this element
 	 */
-	public AbstractContainerDescriptor(Layout layout, Node containerNode) {
-		this.layout = layout;
+	public AbstractContainerDescriptor(LayoutDescriptor layoutDescriptor, Node containerNode) {
+		this.layoutDescriptor = layoutDescriptor;
 		this.containerNode = containerNode;
 	}
 
@@ -63,5 +62,14 @@ public abstract class AbstractContainerDescriptor implements IDisposable, IConfi
 	 * @return the list of property editor controllers contained by this container
 	 */
 	public abstract List<IPropertyEditorControllerDescriptor> getControllerDescriptors();
+
+	/**
+	 * Returns the layout descriptor for this container
+	 * 
+	 * @return the layout descriptor for this container
+	 */
+	public LayoutDescriptor getLayoutDescriptor() {
+		return layoutDescriptor;
+	}
 
 }

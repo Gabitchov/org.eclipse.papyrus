@@ -22,10 +22,10 @@ import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.content.ExpandableContainerDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.content.GridLayoutDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.GroupContainerDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Tree;
@@ -109,7 +109,7 @@ public class FragmentMenuCreator extends AbstractMenuCreator {
 			@Override
 			public void run() {
 				// adds a simple container to the current element
-				ContainerDescriptor containerDescriptor = new ContainerDescriptor(new GridLayout(), new ArrayList<IPropertyEditorControllerDescriptor>());
+				ContainerDescriptor containerDescriptor = new ContainerDescriptor(new GridLayoutDescriptor(), new ArrayList<IPropertyEditorControllerDescriptor>());
 				ContainerDescriptorState containerDescriptorState = containerDescriptor.createState();
 				fragmentDescriptorState.addContainerDescriptorState(containerDescriptorState);
 				// try to retrieve the selection
@@ -139,7 +139,7 @@ public class FragmentMenuCreator extends AbstractMenuCreator {
 			@Override
 			public void run() {
 				// adds an expandable container to the current element
-				ExpandableContainerDescriptor containerDescriptor = new ExpandableContainerDescriptor(new GridLayout(), "Label", new ArrayList<IPropertyEditorControllerDescriptor>());
+				ExpandableContainerDescriptor containerDescriptor = new ExpandableContainerDescriptor(new GridLayoutDescriptor(), "Label", new ArrayList<IPropertyEditorControllerDescriptor>());
 				ContainerDescriptorState containerDescriptorState = containerDescriptor.createState();
 				fragmentDescriptorState.addContainerDescriptorState(containerDescriptorState);
 				// try to retrieve the selection
@@ -170,7 +170,7 @@ public class FragmentMenuCreator extends AbstractMenuCreator {
 			@Override
 			public void run() {
 				// adds an expandable container to the current element
-				GroupContainerDescriptor containerDescriptor = new GroupContainerDescriptor(new GridLayout(), "Label", new ArrayList<IPropertyEditorControllerDescriptor>());
+				GroupContainerDescriptor containerDescriptor = new GroupContainerDescriptor(new GridLayoutDescriptor(), "Label", new ArrayList<IPropertyEditorControllerDescriptor>());
 				ContainerDescriptorState containerDescriptorState = containerDescriptor.createState();
 				fragmentDescriptorState.addContainerDescriptorState(containerDescriptorState);
 
