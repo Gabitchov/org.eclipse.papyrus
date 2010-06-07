@@ -349,6 +349,12 @@ AbstractCommentEditPart {
 		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
+		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
+			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
+		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.CommentAnnotatedElement_4013);
 		}
@@ -417,6 +423,8 @@ AbstractCommentEditPart {
 			types.add(UMLElementTypes.Comment_2012);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);

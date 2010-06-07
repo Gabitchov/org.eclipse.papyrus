@@ -63,6 +63,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeNameEditPartCN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.DefaultNamedElementNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DiagramNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DurationObservationNameEditPart;
@@ -92,6 +93,8 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.Property5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RealizationName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ReceptionEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ShapeNamedElementNameEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ShapeNamedElementStereotypeLabelEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SlotEditPart;
@@ -892,6 +895,40 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private IParser namedElementName_5157Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getNamedElementName_5157Parser() {
+		if(namedElementName_5157Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			namedElementName_5157Parser = parser;
+		}
+		return namedElementName_5157Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser namedElementName_5158Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getNamedElementName_5158Parser() {
+		if(namedElementName_5158Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			namedElementName_5158Parser = parser;
+		}
+		return namedElementName_5158Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser getElementImportAlias_6020Parser() {
 		if(elementImportAlias_6020Parser == null) {
 			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getElementImport_Alias() };
@@ -1204,6 +1241,10 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getTimeObservationName_5153Parser();
 		case TimeObservationStereotypeLabelEditPart.VISUAL_ID:
 			return getTimeObservationName_5154Parser();
+		case DefaultNamedElementNameEditPart.VISUAL_ID:
+			return getNamedElementName_5157Parser();
+		case ShapeNamedElementNameEditPart.VISUAL_ID:
+			return getNamedElementName_5158Parser();
 		case PropertyEditPart.VISUAL_ID:
 			return getProperty_3002Parser();
 		case OperationEditPart.VISUAL_ID:

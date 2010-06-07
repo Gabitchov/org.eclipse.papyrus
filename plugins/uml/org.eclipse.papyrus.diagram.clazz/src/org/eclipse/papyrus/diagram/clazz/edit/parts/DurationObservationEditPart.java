@@ -47,6 +47,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.AbstractObservationEditPart;
 import org.eclipse.papyrus.diagram.clazz.custom.figure.DurationObservationNodeFigure;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.ClazzDiagramChangeStereotypedShapeEditpolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.ObservationLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.DurationObservationItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
@@ -54,6 +55,7 @@ import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeIconlDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.ChangeStereotypedShapeEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
@@ -102,6 +104,7 @@ AbstractObservationEditPart {
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new ObservationLayoutEditPolicy());
+		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ClazzDiagramChangeStereotypedShapeEditpolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -337,6 +340,12 @@ AbstractObservationEditPart {
 		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
+			types.add(UMLElementTypes.Realization_4005);
+		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
+			types.add(UMLElementTypes.Realization_4005);
+		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
@@ -424,6 +433,12 @@ AbstractObservationEditPart {
 		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
+			types.add(UMLElementTypes.Abstraction_4006);
+		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
+			types.add(UMLElementTypes.Abstraction_4006);
+		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
@@ -511,6 +526,12 @@ AbstractObservationEditPart {
 		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
+			types.add(UMLElementTypes.Usage_4007);
+		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
+			types.add(UMLElementTypes.Usage_4007);
+		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
@@ -598,6 +619,12 @@ AbstractObservationEditPart {
 		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
+			types.add(UMLElementTypes.Dependency_4008);
+		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
+			types.add(UMLElementTypes.Dependency_4008);
+		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
@@ -685,6 +712,12 @@ AbstractObservationEditPart {
 		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
+			types.add(UMLElementTypes.Dependency_4018);
+		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
+			types.add(UMLElementTypes.Dependency_4018);
+		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
@@ -772,6 +805,12 @@ AbstractObservationEditPart {
 		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
@@ -857,6 +896,12 @@ AbstractObservationEditPart {
 			types.add(UMLElementTypes.DurationObservationEvent_4025);
 		}
 		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.DurationObservationEvent_4025);
+		}
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
+			types.add(UMLElementTypes.DurationObservationEvent_4025);
+		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
 			types.add(UMLElementTypes.DurationObservationEvent_4025);
 		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
@@ -923,6 +968,8 @@ AbstractObservationEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -953,6 +1000,8 @@ AbstractObservationEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -983,6 +1032,8 @@ AbstractObservationEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1013,6 +1064,8 @@ AbstractObservationEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1043,6 +1096,8 @@ AbstractObservationEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1073,6 +1128,8 @@ AbstractObservationEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1103,6 +1160,8 @@ AbstractObservationEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1162,6 +1221,8 @@ AbstractObservationEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1192,6 +1253,8 @@ AbstractObservationEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1222,6 +1285,8 @@ AbstractObservationEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1252,6 +1317,8 @@ AbstractObservationEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1282,6 +1349,8 @@ AbstractObservationEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1360,6 +1429,8 @@ AbstractObservationEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);

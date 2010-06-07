@@ -341,6 +341,23 @@ public class Activator extends AbstractUIPlugin {
 		}
 	}
 
+	
+	public static Image getShape(Element elt, Stereotype stereotype, boolean withVisibilityDecorator) {
+
+		VisibilityKind vis = null;
+		if((elt instanceof NamedElement) && (withVisibilityDecorator)) {
+
+			vis = ((NamedElement)elt).getVisibility();
+		}
+
+		// getStereotypeImage can return null
+		org.eclipse.uml2.uml.Image icon = ElementUtil.getStereotypeImage(elt, stereotype, "shape");
+		if(icon != null) {
+			return getImageInRegistry(icon, vis);
+		} else {
+			return null;
+		}
+	}
 	/**
 	 * Find the image (SWT) in registry Store image in registry if it is not
 	 * found

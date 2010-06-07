@@ -215,6 +215,16 @@ public class UMLVisualIDRegistry {
 			) {
 				return TimeObservationEditPart.VISUAL_ID;
 			}
+			if(UMLPackage.eINSTANCE.getNamedElement().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return DefaultNamedElementEditPart.VISUAL_ID;
+			}
+			if(UMLPackage.eINSTANCE.getNamedElement().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ShapeNamedElementEditPart.VISUAL_ID;
+			}
 			break;
 		case ComponentEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getRedefinableTemplateSignature().isSuperTypeOf(domainElement.eClass())
@@ -884,6 +894,12 @@ public class UMLVisualIDRegistry {
 			if(TimeObservationEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(DefaultNamedElementEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ShapeNamedElementEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case Dependency2EditPart.VISUAL_ID:
 			if(MultiDependencyLabelEditPart.VISUAL_ID == nodeVisualID) {
@@ -1054,6 +1070,16 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(TimeObservationStereotypeLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case DefaultNamedElementEditPart.VISUAL_ID:
+			if(DefaultNamedElementNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ShapeNamedElementEditPart.VISUAL_ID:
+			if(ShapeNamedElementNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1809,6 +1835,12 @@ public class UMLVisualIDRegistry {
 		root.addNode(1000, viewInfo);
 
 		viewInfo = new BaseViewInfo(2096, ViewInfo.Node, "TimeObservation");
+		root.addNode(1000, viewInfo);
+
+		viewInfo = new BaseViewInfo(2097, ViewInfo.Node, "NamedElement");
+		root.addNode(1000, viewInfo);
+
+		viewInfo = new BaseViewInfo(2098, ViewInfo.Node, "NamedElement");
 		root.addNode(1000, viewInfo);
 
 		viewInfo = new BaseViewInfo(4016, ViewInfo.Edge, "");

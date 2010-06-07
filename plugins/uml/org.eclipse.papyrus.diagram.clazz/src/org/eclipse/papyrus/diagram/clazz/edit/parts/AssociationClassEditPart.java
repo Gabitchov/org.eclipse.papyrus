@@ -559,6 +559,12 @@ ClassifierEditPart {
 		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
+			types.add(UMLElementTypes.Realization_4005);
+		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
+			types.add(UMLElementTypes.Realization_4005);
+		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
@@ -646,6 +652,12 @@ ClassifierEditPart {
 		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
+			types.add(UMLElementTypes.Abstraction_4006);
+		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
+			types.add(UMLElementTypes.Abstraction_4006);
+		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
@@ -733,6 +745,12 @@ ClassifierEditPart {
 		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
+			types.add(UMLElementTypes.Usage_4007);
+		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
+			types.add(UMLElementTypes.Usage_4007);
+		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
@@ -820,6 +838,12 @@ ClassifierEditPart {
 		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
+			types.add(UMLElementTypes.Dependency_4008);
+		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
+			types.add(UMLElementTypes.Dependency_4008);
+		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
@@ -905,6 +929,12 @@ ClassifierEditPart {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
 		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.Dependency_4018);
+		}
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
+			types.add(UMLElementTypes.Dependency_4018);
+		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
@@ -1090,6 +1120,12 @@ ClassifierEditPart {
 		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
+			types.add(UMLElementTypes.TemplateBinding_4015);
+		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
+			types.add(UMLElementTypes.TemplateBinding_4015);
+		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.TemplateBinding_4015);
 		}
@@ -1178,6 +1214,12 @@ ClassifierEditPart {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
 		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
 		if(targetEditPart instanceof RedefinableTemplateSignatureEditPart) {
@@ -1354,6 +1396,8 @@ ClassifierEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1384,6 +1428,8 @@ ClassifierEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1414,6 +1460,8 @@ ClassifierEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1444,6 +1492,8 @@ ClassifierEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1474,6 +1524,8 @@ ClassifierEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1552,6 +1604,8 @@ ClassifierEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1683,6 +1737,8 @@ ClassifierEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1713,6 +1769,8 @@ ClassifierEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1743,6 +1801,8 @@ ClassifierEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1773,6 +1833,8 @@ ClassifierEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1803,6 +1865,8 @@ ClassifierEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1867,6 +1931,8 @@ ClassifierEditPart {
 			types.add(UMLElementTypes.Comment_2012);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1898,6 +1964,8 @@ ClassifierEditPart {
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);

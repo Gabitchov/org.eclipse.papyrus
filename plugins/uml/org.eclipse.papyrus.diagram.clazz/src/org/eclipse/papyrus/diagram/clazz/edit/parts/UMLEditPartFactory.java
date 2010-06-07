@@ -156,6 +156,18 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case TimeObservationStereotypeLabelEditPart.VISUAL_ID:
 				return new TimeObservationStereotypeLabelEditPart(view);
 
+			case DefaultNamedElementEditPart.VISUAL_ID:
+				return new DefaultNamedElementEditPart(view);
+
+			case DefaultNamedElementNameEditPart.VISUAL_ID:
+				return new DefaultNamedElementNameEditPart(view);
+
+			case ShapeNamedElementEditPart.VISUAL_ID:
+				return new ShapeNamedElementEditPart(view);
+
+			case ShapeNamedElementNameEditPart.VISUAL_ID:
+				return new ShapeNamedElementNameEditPart(view);
+
 			case PropertyEditPart.VISUAL_ID:
 				return new PropertyEditPart(view);
 

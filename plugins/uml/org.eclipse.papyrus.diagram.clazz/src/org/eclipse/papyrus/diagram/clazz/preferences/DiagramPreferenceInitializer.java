@@ -35,6 +35,8 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
 
+		ShapeNamedElementPreferencePage.initDefaults(store);
+
 		OperationPreferencePage.initDefaults(store);
 
 		DataTypePreferencePage.initDefaults(store);
@@ -86,6 +88,8 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		ReceptionPreferencePage.initDefaults(store);
 
 		ClassifierTemplateParameterPreferencePage.initDefaults(store);
+
+		DefaultNamedElementPreferencePage.initDefaults(store);
 
 		RedefinableTemplateSignaturePreferencePage.initDefaults(store);
 

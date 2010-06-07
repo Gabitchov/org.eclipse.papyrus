@@ -961,6 +961,57 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
+	public Node createNamedElement_2097(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(DefaultNamedElementEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		stampShortcut(containerView, node);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "DefaultNamedElement");
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "DefaultNamedElement");
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "DefaultNamedElement");
+
+		Node label5157 = createLabel(node, UMLVisualIDRegistry.getType(DefaultNamedElementNameEditPart.VISUAL_ID));
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createNamedElement_2098(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(ShapeNamedElementEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		stampShortcut(containerView, node);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "ShapeNamedElement");
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ShapeNamedElement");
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "ShapeNamedElement");
+
+		Node label5158 = createLabel(node, UMLVisualIDRegistry.getType(ShapeNamedElementNameEditPart.VISUAL_ID));
+		label5158.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
+		Location location5158 = (Location)label5158.getLayoutConstraint();
+		location5158.setX(25);
+		location5158.setY(3);
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
 	public Edge createEdge(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
 		IElementType elementType = getSemanticElementType(semanticAdapter);
 		String elementTypeHint = ((IHintedType)elementType).getSemanticHint();
@@ -1509,7 +1560,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	protected Node createLabel(View owner, String hint) {
+	private Node createLabel(View owner, String hint) {
 		DecorationNode rv = NotationFactory.eINSTANCE.createDecorationNode();
 		rv.setType(hint);
 		ViewUtil.insertChildView(owner, rv, ViewUtil.APPEND, true);
@@ -1645,6 +1696,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createDurationObservation_2095(domainElement, containerView, index, persisted, preferencesHint);
 		case TimeObservationEditPart.VISUAL_ID:
 			return createTimeObservation_2096(domainElement, containerView, index, persisted, preferencesHint);
+		case DefaultNamedElementEditPart.VISUAL_ID:
+			return createNamedElement_2097(domainElement, containerView, index, persisted, preferencesHint);
+		case ShapeNamedElementEditPart.VISUAL_ID:
+			return createNamedElement_2098(domainElement, containerView, index, persisted, preferencesHint);
 		case PropertyEditPart.VISUAL_ID:
 			return createProperty_3002(domainElement, containerView, index, persisted, preferencesHint);
 		case OperationEditPart.VISUAL_ID:
@@ -2361,7 +2416,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	protected EObject getSemanticElement(IAdaptable semanticAdapter) {
+	private EObject getSemanticElement(IAdaptable semanticAdapter) {
 		if(semanticAdapter == null) {
 			return null;
 		}
@@ -2375,7 +2430,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	protected IElementType getSemanticElementType(IAdaptable semanticAdapter) {
+	private IElementType getSemanticElementType(IAdaptable semanticAdapter) {
 		if(semanticAdapter == null) {
 			return null;
 		}
@@ -2507,6 +2562,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case ShortCutDiagramEditPart.VISUAL_ID:
 				case DurationObservationEditPart.VISUAL_ID:
 				case TimeObservationEditPart.VISUAL_ID:
+				case DefaultNamedElementEditPart.VISUAL_ID:
+				case ShapeNamedElementEditPart.VISUAL_ID:
 				case PropertyEditPart.VISUAL_ID:
 				case OperationEditPart.VISUAL_ID:
 				case Class2EditPart.VISUAL_ID:
@@ -2554,7 +2611,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 			}
 		}
-		return Dependency2EditPart.VISUAL_ID == visualID || AssociationClassEditPart.VISUAL_ID == visualID || AssociationNodeEditPart.VISUAL_ID == visualID || InstanceSpecificationEditPart.VISUAL_ID == visualID || ComponentEditPart.VISUAL_ID == visualID || SignalEditPart.VISUAL_ID == visualID || InterfaceEditPart.VISUAL_ID == visualID || ModelEditPartTN.VISUAL_ID == visualID || EnumerationEditPart.VISUAL_ID == visualID || PackageEditPart.VISUAL_ID == visualID || ClassEditPart.VISUAL_ID == visualID || PrimitiveTypeEditPart.VISUAL_ID == visualID || DataTypeEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID || ShortCutDiagramEditPart.VISUAL_ID == visualID || DurationObservationEditPart.VISUAL_ID == visualID || TimeObservationEditPart.VISUAL_ID == visualID || PropertyEditPart.VISUAL_ID == visualID || OperationEditPart.VISUAL_ID == visualID || Class2EditPart.VISUAL_ID == visualID || RedefinableTemplateSignatureEditPart.VISUAL_ID == visualID || ClassifierTemplateParameterEditPart.VISUAL_ID == visualID || TemplateParameterEditPart.VISUAL_ID == visualID || Property2EditPart.VISUAL_ID == visualID || Property3EditPart.VISUAL_ID == visualID || Operation2EditPart.VISUAL_ID == visualID || Class3EditPart.VISUAL_ID == visualID || InstanceSpecificationEditPartCN.VISUAL_ID == visualID || ComponentEditPartCN.VISUAL_ID == visualID || SignalEditPartCN.VISUAL_ID == visualID || InterfaceEditPartCN.VISUAL_ID == visualID || ModelEditPartCN.VISUAL_ID == visualID || EnumerationEditPartCN.VISUAL_ID == visualID || EnumerationLiteralEditPart.VISUAL_ID == visualID || PackageEditPartCN.VISUAL_ID == visualID || ClassEditPartCN.VISUAL_ID == visualID || ReceptionEditPart.VISUAL_ID == visualID || Property4EditPart.VISUAL_ID == visualID || Operation3EditPart.VISUAL_ID == visualID || Class5EditPart.VISUAL_ID == visualID || PrimitiveTypeEditPartCN.VISUAL_ID == visualID || DataTypeEditPartCN.VISUAL_ID == visualID || Property5EditPart.VISUAL_ID == visualID || Operation4EditPart.VISUAL_ID == visualID || Comment2EditPart.VISUAL_ID == visualID || Constraint2EditPart.VISUAL_ID == visualID || SlotEditPart.VISUAL_ID == visualID || ContainmentCircleEditPart.VISUAL_ID == visualID;
+		return Dependency2EditPart.VISUAL_ID == visualID || AssociationClassEditPart.VISUAL_ID == visualID || AssociationNodeEditPart.VISUAL_ID == visualID || InstanceSpecificationEditPart.VISUAL_ID == visualID || ComponentEditPart.VISUAL_ID == visualID || SignalEditPart.VISUAL_ID == visualID || InterfaceEditPart.VISUAL_ID == visualID || ModelEditPartTN.VISUAL_ID == visualID || EnumerationEditPart.VISUAL_ID == visualID || PackageEditPart.VISUAL_ID == visualID || ClassEditPart.VISUAL_ID == visualID || PrimitiveTypeEditPart.VISUAL_ID == visualID || DataTypeEditPart.VISUAL_ID == visualID || ConstraintEditPart.VISUAL_ID == visualID || CommentEditPart.VISUAL_ID == visualID || ShortCutDiagramEditPart.VISUAL_ID == visualID || DurationObservationEditPart.VISUAL_ID == visualID || TimeObservationEditPart.VISUAL_ID == visualID || DefaultNamedElementEditPart.VISUAL_ID == visualID || ShapeNamedElementEditPart.VISUAL_ID == visualID || PropertyEditPart.VISUAL_ID == visualID || OperationEditPart.VISUAL_ID == visualID || Class2EditPart.VISUAL_ID == visualID || RedefinableTemplateSignatureEditPart.VISUAL_ID == visualID || ClassifierTemplateParameterEditPart.VISUAL_ID == visualID || TemplateParameterEditPart.VISUAL_ID == visualID || Property2EditPart.VISUAL_ID == visualID || Property3EditPart.VISUAL_ID == visualID || Operation2EditPart.VISUAL_ID == visualID || Class3EditPart.VISUAL_ID == visualID || InstanceSpecificationEditPartCN.VISUAL_ID == visualID || ComponentEditPartCN.VISUAL_ID == visualID || SignalEditPartCN.VISUAL_ID == visualID || InterfaceEditPartCN.VISUAL_ID == visualID || ModelEditPartCN.VISUAL_ID == visualID || EnumerationEditPartCN.VISUAL_ID == visualID || EnumerationLiteralEditPart.VISUAL_ID == visualID || PackageEditPartCN.VISUAL_ID == visualID || ClassEditPartCN.VISUAL_ID == visualID || ReceptionEditPart.VISUAL_ID == visualID || Property4EditPart.VISUAL_ID == visualID || Operation3EditPart.VISUAL_ID == visualID || Class5EditPart.VISUAL_ID == visualID || PrimitiveTypeEditPartCN.VISUAL_ID == visualID || DataTypeEditPartCN.VISUAL_ID == visualID || Property5EditPart.VISUAL_ID == visualID || Operation4EditPart.VISUAL_ID == visualID || Comment2EditPart.VISUAL_ID == visualID || Constraint2EditPart.VISUAL_ID == visualID || SlotEditPart.VISUAL_ID == visualID || ContainmentCircleEditPart.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -2591,7 +2648,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
-	protected void stampShortcut(View containerView, Node target) {
+	private void stampShortcut(View containerView, Node target) {
 		if(!ModelEditPart.MODEL_ID.equals(UMLVisualIDRegistry.getModelID(containerView))) {
 			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$

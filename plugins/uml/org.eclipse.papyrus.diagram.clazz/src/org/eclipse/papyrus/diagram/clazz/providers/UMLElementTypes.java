@@ -56,6 +56,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DataTypeEditPartCN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.DefaultNamedElementEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyEditPart;
@@ -94,6 +95,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ReceptionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ShapeNamedElementEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ShortCutDiagramEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalEditPartCN;
@@ -227,6 +229,16 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType TimeObservation_2096 = getElementType("org.eclipse.papyrus.diagram.clazz.TimeObservation_2096"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType NamedElement_2097 = getElementType("org.eclipse.papyrus.diagram.clazz.NamedElement_2097"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType NamedElement_2098 = getElementType("org.eclipse.papyrus.diagram.clazz.NamedElement_2098"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -652,6 +664,10 @@ public class UMLElementTypes {
 
 			elements.put(TimeObservation_2096, UMLPackage.eINSTANCE.getTimeObservation());
 
+			elements.put(NamedElement_2097, UMLPackage.eINSTANCE.getNamedElement());
+
+			elements.put(NamedElement_2098, UMLPackage.eINSTANCE.getNamedElement());
+
 			elements.put(Property_3002, UMLPackage.eINSTANCE.getProperty());
 
 			elements.put(Operation_3003, UMLPackage.eINSTANCE.getOperation());
@@ -793,6 +809,8 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Diagram_2016);
 			KNOWN_ELEMENT_TYPES.add(DurationObservation_2095);
 			KNOWN_ELEMENT_TYPES.add(TimeObservation_2096);
+			KNOWN_ELEMENT_TYPES.add(NamedElement_2097);
+			KNOWN_ELEMENT_TYPES.add(NamedElement_2098);
 			KNOWN_ELEMENT_TYPES.add(Property_3002);
 			KNOWN_ELEMENT_TYPES.add(Operation_3003);
 			KNOWN_ELEMENT_TYPES.add(Class_3004);
@@ -896,6 +914,10 @@ public class UMLElementTypes {
 			return DurationObservation_2095;
 		case TimeObservationEditPart.VISUAL_ID:
 			return TimeObservation_2096;
+		case DefaultNamedElementEditPart.VISUAL_ID:
+			return NamedElement_2097;
+		case ShapeNamedElementEditPart.VISUAL_ID:
+			return NamedElement_2098;
 		case PropertyEditPart.VISUAL_ID:
 			return Property_3002;
 		case OperationEditPart.VISUAL_ID:

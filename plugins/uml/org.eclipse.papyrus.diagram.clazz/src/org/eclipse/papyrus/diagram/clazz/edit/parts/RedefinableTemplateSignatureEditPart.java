@@ -334,6 +334,12 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
+			types.add(UMLElementTypes.Realization_4005);
+		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
+			types.add(UMLElementTypes.Realization_4005);
+		}
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Realization_4005);
 		}
@@ -421,6 +427,12 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
+			types.add(UMLElementTypes.Abstraction_4006);
+		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
+			types.add(UMLElementTypes.Abstraction_4006);
+		}
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Abstraction_4006);
 		}
@@ -508,6 +520,12 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
+			types.add(UMLElementTypes.Usage_4007);
+		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
+			types.add(UMLElementTypes.Usage_4007);
+		}
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Usage_4007);
 		}
@@ -595,6 +613,12 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
+			types.add(UMLElementTypes.Dependency_4008);
+		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
+			types.add(UMLElementTypes.Dependency_4008);
+		}
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Dependency_4008);
 		}
@@ -682,6 +706,12 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 		if(targetEditPart instanceof TimeObservationEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
+			types.add(UMLElementTypes.Dependency_4018);
+		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
+			types.add(UMLElementTypes.Dependency_4018);
+		}
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart) {
 			types.add(UMLElementTypes.Dependency_4018);
 		}
@@ -767,6 +797,12 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 			types.add(UMLElementTypes.Dependency_4022);
 		}
 		if(targetEditPart instanceof TimeObservationEditPart) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof DefaultNamedElementEditPart) {
+			types.add(UMLElementTypes.Dependency_4022);
+		}
+		if(targetEditPart instanceof ShapeNamedElementEditPart) {
 			types.add(UMLElementTypes.Dependency_4022);
 		}
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart) {
@@ -852,6 +888,8 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -882,6 +920,8 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -912,6 +952,8 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -942,6 +984,8 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -972,6 +1016,8 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1029,6 +1075,8 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1072,6 +1120,8 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1102,6 +1152,8 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1132,6 +1184,8 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1162,6 +1216,8 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1192,6 +1248,8 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
@@ -1222,6 +1280,8 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 			types.add(UMLElementTypes.Constraint_2011);
 			types.add(UMLElementTypes.DurationObservation_2095);
 			types.add(UMLElementTypes.TimeObservation_2096);
+			types.add(UMLElementTypes.NamedElement_2097);
+			types.add(UMLElementTypes.NamedElement_2098);
 			types.add(UMLElementTypes.RedefinableTemplateSignature_3015);
 			types.add(UMLElementTypes.InstanceSpecification_3020);
 			types.add(UMLElementTypes.Component_3021);
