@@ -14,22 +14,24 @@
 package org.eclipse.papyrus.wizards;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 
 /**
@@ -41,7 +43,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	final List<Button> myDiagramKindButtons = new ArrayList<Button>();
 
 	/** The diagram categories. */
-	private HashMap<String, String> diagramCategories;
+	private List<DiagramCategoryDescriptor> diagramCategories;
 
 	/** The Constant CATEGORY_EXTENSION_POINT_NAME. */
 	private static final String CATEGORY_EXTENSION_POINT_NAME = "org.eclipse.papyrus.core.papyrusDiagram";
@@ -55,6 +57,12 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	/** The Constant CATEGORY_LABEL. */
 	private static final String CATEGORY_LABEL = "label";
 	
+	/** The Constant CATEGORY_DESCRIPTION. */
+	private static final String CATEGORY_DESCRIPTION = "description";
+
+	/** The Constant CATEGORY_ICON. */
+	private static final String CATEGORY_ICON = "icon";
+
 	/** The diagram category. */
 	private String diagramCategory;
 
@@ -122,14 +130,25 @@ public class SelectDiagramCategoryPage extends WizardPage {
 			}
 		};
 
-		for(String id : getDiagramCategories().keySet()) {
+		for(DiagramCategoryDescriptor diagramCategoryDescriptor : getDiagramCategories()) {
 			Button button = new Button(group, SWT.CHECK);
 			button.addSelectionListener(listener);
-			button.setText(getDiagramCategories().get(id));
-			button.setData(id);
+			button.setText(diagramCategoryDescriptor.getLabel());
+			button.setData(diagramCategoryDescriptor.getId());
+			Image image = getImage(diagramCategoryDescriptor.getIcon());
+			if(image != null) {
+				button.setImage(image);
+			}
 			myDiagramKindButtons.add(button);
 		}
 
+	}
+	
+	private static Image getImage(ImageDescriptor imageDescriptor) {
+		if(imageDescriptor != null) {
+			return new Image(null, imageDescriptor.getImageData());
+		}
+		return null;
 	}
 
 	/**
@@ -156,7 +175,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 *
 	 * @return the diagram categories
 	 */
-	private HashMap<String, String> getDiagramCategories() {
+	private List<DiagramCategoryDescriptor> getDiagramCategories() {
 		if(diagramCategories == null) {
 			diagramCategories = buildDiagramCategories();
 		}
@@ -168,21 +187,27 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 *
 	 * @return the hash map
 	 */
-	private HashMap<String, String> buildDiagramCategories() {
-		HashMap<String, String> result = new HashMap<String, String>();
+	private List<DiagramCategoryDescriptor> buildDiagramCategories() {
+		List<DiagramCategoryDescriptor> result = new ArrayList<DiagramCategoryDescriptor>();
 
 		IExtensionPoint extensionPoint = Platform.getExtensionRegistry().getExtensionPoint(CATEGORY_EXTENSION_POINT_NAME);
 		for(IExtension extension : extensionPoint.getExtensions()) {
 			for(IConfigurationElement ele : extension.getConfigurationElements()) {
 				if(CATEGORY_ELEMENT_NAME.equals(ele.getName())) {
-					result.put(ele.getAttribute(CATEGORY_ID), ele.getAttribute(CATEGORY_LABEL));
+					DiagramCategoryDescriptor diagramCategoryDescriptor = new DiagramCategoryDescriptor(ele.getAttribute(CATEGORY_ID), ele.getAttribute(CATEGORY_LABEL));
+					diagramCategoryDescriptor.setDescription(ele.getAttribute(CATEGORY_DESCRIPTION));
+					String iconPath = ele.getAttribute(CATEGORY_ICON);
+					if (iconPath != null) {
+						diagramCategoryDescriptor.setIcon(AbstractUIPlugin.imageDescriptorFromPlugin(ele.getNamespaceIdentifier(), iconPath));
+					}
+					result.add(diagramCategoryDescriptor);
 				}
 			}
 		}
 		return result;
 
 	}
-
+	
 	/**
 	 * Validate page.
 	 *
@@ -190,6 +215,44 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 */
 	protected boolean validatePage() {
 		return diagramCategory != null;
+	}
+	
+	private static class DiagramCategoryDescriptor {
+		private String myId;
+		private String myLabel;
+		private String myDescription;
+		private ImageDescriptor myIcon;
+		
+		public DiagramCategoryDescriptor(String id, String label) {
+			myId = id;
+			myLabel = label;
+		}
+		
+		public String getId() {
+			return myId;
+		}
+		
+		public String getLabel() {
+			return myLabel;
+		}
+
+		public String getDescription() {
+			return myDescription;
+		}
+
+		public ImageDescriptor getIcon() {
+			return myIcon;
+		}
+		
+		public void setDescription(String description) {
+			myDescription = description;
+		}
+		
+		public void setIcon(ImageDescriptor icon) {
+			myIcon = icon;
+		}
+		
+
 	}
 
 }

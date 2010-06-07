@@ -195,7 +195,7 @@ An ActionBarContributor can be shared among several Editors or Views.
          <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
-                  
+                  The id of the diagram category. It is used to filter model templates and diagram kinds.
                </documentation>
             </annotation>
          </attribute>
@@ -214,6 +214,13 @@ An ActionBarContributor can be shared among several Editors or Views.
                <appinfo>
                   <meta.attribute kind="resource"/>
                </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  Description of the diagram category is to be displayed next ti its label in UI.
+               </documentation>
             </annotation>
          </attribute>
       </complexType>

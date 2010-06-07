@@ -10,16 +10,19 @@
    <extension
          point="org.eclipse.papyrus.core.papyrusDiagram">
       <diagramCategory
-             id="uml"
-             label="UML">
+            description="UML diagrams"
+            id="uml"
+            label="UML">
       </diagramCategory>      
       <diagramCategory
-             id="sysml"
-             label="SysML">
+            description="SysML diagrams"
+            id="sysml"
+            label="SysML">
       </diagramCategory>      
       <diagramCategory
-             id="profile"
-             label="Profile">
+            description="Profile diagram"
+            id="profile"
+            label="Profile">
       </diagramCategory>      
    </extension>
 	
