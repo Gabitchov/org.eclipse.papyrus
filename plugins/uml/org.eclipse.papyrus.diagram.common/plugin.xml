@@ -263,6 +263,19 @@
          id="org.eclipse.papyrus.diagram.common.commands.PasteWithModelCommand"
          name="PasteWithModel">
    </command>
+   <command
+         category="Papyrus "
+         categoryId="org.eclipse.papyrus.core.papyrusEditor"
+         defaultHandler="org.eclipse.papyrus.diagram.common.handlers.AlignementHandler"
+         description="Call the alignment action"
+         id="org.eclipse.papyrus.diagram.common.commands.AlignmentCommand"
+         name="AlignmentCommand">
+      <commandParameter
+            id="org.eclipse.papyrus.diagram.common.commandAlignmentParameter"
+            name="alignmentParameter"
+            optional="true">
+      </commandParameter>
+   </command>
 </extension>
 <extension
       point="org.eclipse.ui.popupMenus">
@@ -409,6 +422,77 @@
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="CTRL+SHIFT+V">
    </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.AlignmentCommand"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+ARROW_LEFT">
+      <parameter
+            id="org.eclipse.papyrus.diagram.common.commandAlignmentParameter"
+            value="parameter_left"></parameter>
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.AlignmentCommand"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+ARROW_RIGHT">
+      <parameter
+            id="org.eclipse.papyrus.diagram.common.commandAlignmentParameter"
+            value="parameter_right">
+      </parameter>
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.AlignmentCommand"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+ARROW_UP">
+      <parameter
+            id="org.eclipse.papyrus.diagram.common.commandAlignmentParameter"
+            value="parameter_top">
+      </parameter>
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.AlignmentCommand"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+ARROW_DOWN">
+      <parameter
+            id="org.eclipse.papyrus.diagram.common.commandAlignmentParameter"
+            value="parameter_bottom">
+      </parameter>
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.AlignmentCommand"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+SHIFT+ARROW_DOWN">
+      <parameter
+            id="org.eclipse.papyrus.diagram.common.commandAlignmentParameter"
+            value="parameter_middle">
+      </parameter>
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.AlignmentCommand"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+SHIFT+ARROW_UP">
+      <parameter
+            id="org.eclipse.papyrus.diagram.common.commandAlignmentParameter"
+            value="parameter_middle">
+      </parameter>
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.AlignmentCommand"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+SHIFT+ARROW_RIGHT">
+      <parameter
+            id="org.eclipse.papyrus.diagram.common.commandAlignmentParameter"
+            value="parameter_center">
+      </parameter>
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.AlignmentCommand"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+SHIFT+ARROW_LEFT">
+      <parameter
+            id="org.eclipse.papyrus.diagram.common.commandAlignmentParameter"
+            value="parameter_center">
+      </parameter>
+   </key>
 </extension>
 <extension
       point="org.eclipse.papyrus.navigator.providerAdapterFactory">
@@ -487,7 +571,7 @@
                remove="true">
          </popupPredefinedItem>
          <popupPredefinedItem
-               id="alignTopAction"
+               id="alignBottomAction"
                path="/formatMenu/alignMenu/alignVerticalGroup"
                remove="true">
          </popupPredefinedItem>
@@ -497,7 +581,7 @@
                remove="true">
          </popupPredefinedItem>
          <popupPredefinedItem
-               id="alignBottomAction"
+               id="alignTopAction"
                path="/formatMenu/alignMenu/alignVerticalGroup"
                remove="true">
          </popupPredefinedItem>
@@ -552,15 +636,15 @@
                path="/formatMenu/alignMenu/alignHorizontalGroup">
          </popupAction>
          <popupAction
-               id="alignRightAction"
-               path="/formatMenu/alignMenu/alignHorizontalGroup">
-         </popupAction>
-         <popupAction
                id="alignCenterAction"
                path="/formatMenu/alignMenu/alignHorizontalGroup">
          </popupAction>
          <popupAction
-               id="alignTopAction"
+               id="alignRightAction"
+               path="/formatMenu/alignMenu/alignHorizontalGroup">
+         </popupAction>
+         <popupAction
+               id="alignBottomAction"
                path="/formatMenu/alignMenu/alignVerticalGroup">
          </popupAction>
          <popupAction
@@ -568,7 +652,7 @@
                path="/formatMenu/alignMenu/alignVerticalGroup">
          </popupAction>
          <popupAction
-               id="alignBottomAction"
+               id="alignTopAction"
                path="/formatMenu/alignMenu/alignVerticalGroup">
          </popupAction>
       </popupContribution>
