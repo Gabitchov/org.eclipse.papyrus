@@ -11,6 +11,9 @@
 package org.eclipse.papyrus.wizards;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbench;
@@ -46,6 +49,7 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 		super(title, selection);
 		setTitle(title);
 		setDescription(description);
+		setFileExtension(DIAGRAM_EXTENSION);
 		this.createFromSemanticModel = createFromSemanticModel;
 	}
 
@@ -55,10 +59,40 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	@Override
 	public void createControl(Composite parent) {
 		super.createControl(parent);
-		if(getFileName() == null || getFileName().length() == 0) {
-			setFileName(DEFAULT_NAME + fileCount + "." + DIAGRAM_EXTENSION);
-		}
+		setFileName(getUniqueFileName(getContainerFullPath(), getFileName(), getFileExtension()));
 		setPageComplete(validatePage());
+	}
+
+	/**
+	 * Gets the unique file name.
+	 *
+	 * @param containerFullPath the container full path
+	 * @param fileName the file name
+	 * @param extension the extension
+	 * @return the unique file name
+	 */
+	private static String getUniqueFileName(IPath containerFullPath, String fileName, String extension) {
+		if(containerFullPath == null) {
+			containerFullPath = new Path(""); //$NON-NLS-1$
+		}
+		if(fileName == null || fileName.trim().length() == 0) {
+			fileName = DEFAULT_NAME;
+		}
+		IPath filePath = containerFullPath.append(fileName);
+		if(extension != null && !extension.equals(filePath.getFileExtension())) {
+			filePath = filePath.addFileExtension(extension);
+		}
+		extension = filePath.getFileExtension();
+		fileName = filePath.removeFileExtension().lastSegment();
+		int i = 1;
+		while(ResourcesPlugin.getWorkspace().getRoot().exists(filePath)) {
+			i++;
+			filePath = containerFullPath.append(fileName + i);
+			if(extension != null) {
+				filePath = filePath.addFileExtension(extension);
+			}
+		}
+		return filePath.lastSegment();
 	}
 
 	/**
