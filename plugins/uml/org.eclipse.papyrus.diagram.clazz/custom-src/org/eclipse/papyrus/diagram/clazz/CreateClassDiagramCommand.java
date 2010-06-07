@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
+import org.eclipse.papyrus.diagram.common.commands.AbstractUMLCreateDiagramCommand;
 import org.eclipse.uml2.uml.UMLFactory;
 
 /**
@@ -27,12 +28,11 @@ import org.eclipse.uml2.uml.UMLFactory;
  * @author dumoulin
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public class CreateClassDiagramCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
+public class CreateClassDiagramCommand extends AbstractUMLCreateDiagramCommand {
 
 	@Override
 	protected EObject createRootElement() {
 		return UMLFactory.eINSTANCE.createModel();
-
 	}
 
 	@Override

@@ -30,7 +30,7 @@ import org.eclipse.uml2.uml.UMLFactory;
  * outline, creation wizards) to create a new Behavioral Diagram.
  * This class should be extended by behavioral diagram only. 
  */
-public abstract class CreateBehavioredClassifierDiagramCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
+public abstract class CreateBehavioredClassifierDiagramCommand extends AbstractUMLCreateDiagramCommand {
 
 	private Behavior behavior = null;
 	
@@ -64,6 +64,7 @@ public abstract class CreateBehavioredClassifierDiagramCommand extends AbstractP
 	 */
 	@Override
 	protected void initializeModel(EObject owner) {
+		super.initializeModel(owner);
 		if(behavior == null){
 			behavior = createBehavior();
 		}
@@ -83,14 +84,6 @@ public abstract class CreateBehavioredClassifierDiagramCommand extends AbstractP
 		ViewService.getInstance().createView(Node.class, new EObjectAdapter(behavior), diagram, null, ViewUtil.APPEND, true, getPreferenceHint());
 	}
 	
-	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected EObject createRootElement() {
-		return UMLFactory.eINSTANCE.createModel();
-	}
 	
 	/**
 	 * {@inheritDoc}

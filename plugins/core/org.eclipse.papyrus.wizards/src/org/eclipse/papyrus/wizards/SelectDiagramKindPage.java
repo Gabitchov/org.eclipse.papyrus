@@ -15,6 +15,7 @@ import static org.eclipse.papyrus.wizards.Activator.log;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
@@ -34,6 +35,7 @@ import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
@@ -79,11 +81,6 @@ public class SelectDiagramKindPage extends WizardPage {
 	ICreationCommandRegistry creationCommandRegistry;
 
 	/**
-	 * The selected creation command
-	 */
-	private ICreationCommand creationCommand;
-
-	/**
 	 * The diagram name text field
 	 */
 	private Text nameText;
@@ -103,8 +100,21 @@ public class SelectDiagramKindPage extends WizardPage {
 	/**
 	 * @return the creation command
 	 */
-	public ICreationCommand getCreationCommand() {
-		return creationCommand;
+	public List<ICreationCommand> getCreationCommands() {
+		Object[] selected = diagramKindTableViewer.getCheckedElements();
+		List<ICreationCommand> commands = new ArrayList<ICreationCommand>();
+		for (int i = 0; i < selected.length; i++) {
+			
+			String commandId = ((CreationCommandDescriptor)selected[i]).getCommandId();
+			ICreationCommand command;
+			try {
+				command = commandId != null ? getCreationCommandRegistry().getCommand(commandId) : null;
+				commands.add(command);
+			} catch (NotFoundException e) {
+				log.error(e);
+			}
+		}
+		return commands;
 	}
 
 	/**
@@ -176,12 +186,12 @@ public class SelectDiagramKindPage extends WizardPage {
 			 */
 			public void widgetSelected(SelectionEvent e) {
 				if(e.detail == SWT.CHECK) {
-					TableItem item = (TableItem)e.item;
-					for(TableItem next : diagramKindTable.getItems()) {
-						next.setChecked(false);
-					}
-					item.setChecked(true);
-					setDiagramCreationCommand(((CreationCommandDescriptor)item.getData()).getCommandId());
+//					TableItem item = (TableItem)e.item;
+//					for(TableItem next : diagramKindTable.getItems()) {
+//						next.setChecked(false);
+//					}
+//					item.setChecked(true);
+//					setDiagramCreationCommand(((CreationCommandDescriptor)item.getData()).getCommandId());
 					setPageComplete(validatePage());
 					
 				}
@@ -208,7 +218,6 @@ public class SelectDiagramKindPage extends WizardPage {
 	@Override
 	public void setVisible(boolean visible) {
 		super.setVisible(visible);
-		creationCommand = null;
 		diagramKindTableViewer.setInput(getDiagramCategory());
 		selectTemplateComposite.setInput(getDiagramCategory());
 		setPageComplete(validatePage());
@@ -225,20 +234,6 @@ public class SelectDiagramKindPage extends WizardPage {
 			return null;
 		}
 		return ((SelectDiagramCategoryPage)previousPage).getDiagramCategory();
-	}
-
-	/**
-	 * Sets the diagram creation command.
-	 * 
-	 * @param commandId
-	 *        the new diagram creation command
-	 */
-	private void setDiagramCreationCommand(String commandId) {
-		try {
-			creationCommand = commandId != null ? getCreationCommandRegistry().getCommand(commandId) : null;
-		} catch (NotFoundException e) {
-			log.error(e);
-		}
 	}
 
 	/**
@@ -324,7 +319,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * @return true, if successful
 	 */
 	protected boolean validatePage() {
-		return false == "".equals(getDiagramName()) && getCreationCommand() != null;
+		return false == "".equals(getDiagramName()) && !getCreationCommands().isEmpty();
 	}
 
 	/**
@@ -338,10 +333,11 @@ public class SelectDiagramKindPage extends WizardPage {
 	 */
 	public boolean createDiagram(DiResourceSet diResourceSet, EObject root) {
 		String diagramName = getDiagramName();
-		ICreationCommand creationCommand = getCreationCommand();
-
-		if(creationCommand != null) {
-			creationCommand.createDiagram(diResourceSet, root, diagramName);
+		List<ICreationCommand> creationCommands = getCreationCommands();
+		if(!creationCommands.isEmpty()) {
+			for (int i = 0 ; i < creationCommands.size(); i++) {
+				creationCommands.get(i).createDiagram(diResourceSet, root, diagramName);
+			}
 		} else {
 			// Create an empty editor (no diagrams opened)
 			// Geting an IPageMngr is enough to initialize the

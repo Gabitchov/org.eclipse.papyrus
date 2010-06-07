@@ -48,18 +48,4 @@ public class CreateUMLModelWizard extends CreateModelWizard {
 		return "uml";
 	}
 
-	protected SelectDiagramKindPage getSelectTemplateWizardPage() {
-		return new SelectDiagramKindPage() {
-			/**
-			 * This method is invoked for creation of a model 
-			 */
-			protected void initializeEmptyModel(Resource resource, String rootElementName) {
-				Model model = UMLFactory.eINSTANCE.createModel();
-				model.setName(rootElementName);
-				resource.getContents().add(model);
-			}
-		}; 
-	}
-
-
 }

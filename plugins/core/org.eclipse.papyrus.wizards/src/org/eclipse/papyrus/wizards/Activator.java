@@ -21,7 +21,7 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends AbstractUIPlugin {
 
-	// The plug-in ID
+	/** The Constant PLUGIN_ID. */
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.wizards";
 
 	// The shared instance

@@ -19,7 +19,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.wizards.NewModelFilePage;
@@ -31,8 +30,6 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
-import org.eclipse.uml2.uml.Model;
-import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -71,14 +68,6 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 	
 	protected SelectDiagramKindPage getSelectDiagramKindPage() {
 		return new SelectDiagramKindPage() {
-			/**
-			 * This method is invoked for creation of a model 
-			 */
-			protected void initializeEmptyModel(Resource resource, String rootElementName) {
-				Model model = UMLFactory.eINSTANCE.createModel();
-				model.setName(rootElementName);
-				resource.getContents().add(model);
-			}
 			
 			protected boolean validatePage() {
 				return true;

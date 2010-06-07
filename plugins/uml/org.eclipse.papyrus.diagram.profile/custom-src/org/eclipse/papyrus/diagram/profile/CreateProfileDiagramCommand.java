@@ -16,7 +16,7 @@ package org.eclipse.papyrus.diagram.profile;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
-import org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
+import org.eclipse.papyrus.diagram.common.commands.AbstractUMLCreateDiagramCommand;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ProfileDiagramEditPart;
 import org.eclipse.papyrus.diagram.profile.part.UMLDiagramEditorPlugin;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -26,7 +26,7 @@ import org.eclipse.uml2.uml.UMLFactory;
  * outline, creation wizards) to create a new Composite Diagram.
  * 
  */
-public class CreateProfileDiagramCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
+public class CreateProfileDiagramCommand extends AbstractUMLCreateDiagramCommand {
 
 	/**
 	 * Name of the Diagram
@@ -65,6 +65,16 @@ public class CreateProfileDiagramCommand extends AbstractPapyrusGmfCreateDiagram
 	 */
 	@Override
 	protected EObject createRootElement() {
-		return UMLFactory.eINSTANCE.createModel();
+		return UMLFactory.eINSTANCE.createProfile();
+	}
+	
+	/**
+	 * @see org.eclipse.papyrus.diagram.common.commands.AbstractUMLCreateDiagramCommand#getModelName()
+	 *
+	 * @return
+	 */
+	@Override
+	protected String getModelName() {
+		return "Profile";
 	}
 }

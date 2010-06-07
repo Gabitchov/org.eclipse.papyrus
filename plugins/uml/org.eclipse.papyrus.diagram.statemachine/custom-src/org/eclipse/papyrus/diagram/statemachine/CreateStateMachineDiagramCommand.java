@@ -14,12 +14,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.statemachine;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
-import org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
+import org.eclipse.papyrus.diagram.common.commands.AbstractUMLCreateDiagramCommand;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin;
-import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * Define a command to create a new Class Diagram. This command is used by all UI (toolbar, outline,
@@ -28,12 +26,7 @@ import org.eclipse.uml2.uml.UMLFactory;
  * @author dumoulin
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public class CreateStateMachineDiagramCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
-
-	@Override
-	protected EObject createRootElement() {
-		return UMLFactory.eINSTANCE.createModel();
-	}
+public class CreateStateMachineDiagramCommand extends AbstractUMLCreateDiagramCommand {
 
 	/**
 	 * {@inheritDoc}

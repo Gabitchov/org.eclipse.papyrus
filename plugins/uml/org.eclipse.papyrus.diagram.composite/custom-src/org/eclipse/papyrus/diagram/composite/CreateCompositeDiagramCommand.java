@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
+import org.eclipse.papyrus.diagram.common.commands.AbstractUMLCreateDiagramCommand;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.uml2.uml.Collaboration;
@@ -38,7 +39,7 @@ import org.eclipse.uml2.uml.UMLFactory;
  * outline, creation wizards) to create a new Composite Diagram.
  * 
  */
-public class CreateCompositeDiagramCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
+public class CreateCompositeDiagramCommand extends AbstractUMLCreateDiagramCommand {
 
 	/** Domain Element referenced by canvas if it differs from {@link Package} */
 	protected EObject canvasDomainElement = null;
@@ -79,11 +80,6 @@ public class CreateCompositeDiagramCommand extends AbstractPapyrusGmfCreateDiagr
 	@Override
 	protected PreferencesHint getPreferenceHint() {
 		return UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
-	}
-
-	@Override
-	protected EObject createRootElement() {
-		return UMLFactory.eINSTANCE.createModel();
 	}
 
 	/**
