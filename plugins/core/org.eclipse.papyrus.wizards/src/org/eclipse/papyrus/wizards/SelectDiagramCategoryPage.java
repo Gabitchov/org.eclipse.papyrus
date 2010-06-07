@@ -139,6 +139,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 			if(image != null) {
 				button.setImage(image);
 			}
+			button.setToolTipText(diagramCategoryDescriptor.getDescription());
 			myDiagramKindButtons.add(button);
 		}
 
