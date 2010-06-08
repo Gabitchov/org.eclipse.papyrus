@@ -219,7 +219,7 @@ public class SectionDescriptorState extends AbstractState {
 	 * @param state
 	 *        the state to add
 	 */
-	public void removeFragmentDescriptorState(FragmentDescriptorState state) {
+	public void removeFragmentDescriptorState(IFragmentDescriptorState state) {
 		fragmentDescriptorStates.remove(state);
 
 		changeSupport.firePropertyChange(PROPERTY_REMOVE_CHILD, null, state);

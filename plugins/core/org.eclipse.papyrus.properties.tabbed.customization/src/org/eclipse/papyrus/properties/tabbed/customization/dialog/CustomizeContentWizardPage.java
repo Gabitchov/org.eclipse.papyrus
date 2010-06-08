@@ -36,6 +36,7 @@ import org.eclipse.papyrus.properties.runtime.dialogs.PropertyDialog;
 import org.eclipse.papyrus.properties.runtime.state.IState;
 import org.eclipse.papyrus.properties.runtime.view.DialogDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptorState;
+import org.eclipse.papyrus.properties.runtime.view.PredefinedFragmentDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
 import org.eclipse.papyrus.properties.runtime.view.XMLParseException;
 import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptorState;
@@ -48,6 +49,7 @@ import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.Conten
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.ControllerMenuCreator;
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.EClassifierMenuCreator;
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.FragmentMenuCreator;
+import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.PredefinedFragmentMenuCreator;
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.SectionMenuCreator;
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.SectionSetMenuCreator;
 import org.eclipse.papyrus.properties.tabbed.customization.state.StatePropertyTabViewProviderParser;
@@ -299,6 +301,8 @@ public class CustomizeContentWizardPage extends WizardPage {
 					menu = new SectionMenuCreator(((SectionDescriptorState)selectedObject)).getMenu(configurationViewer.getTree());
 				} else if(selectedObject instanceof FragmentDescriptorState) {
 					menu = new FragmentMenuCreator(((FragmentDescriptorState)selectedObject)).getMenu(configurationViewer.getTree());
+				} else if(selectedObject instanceof PredefinedFragmentDescriptorState) {
+					menu = new PredefinedFragmentMenuCreator(((PredefinedFragmentDescriptorState)selectedObject)).getMenu(configurationViewer.getTree());
 				} else if(selectedObject instanceof ContainerDescriptorState) {
 					menu = new ContainerMenuCreator(((ContainerDescriptorState)selectedObject)).getMenu(configurationViewer.getTree());
 				} else if(selectedObject instanceof ControllerDescriptorState) {
