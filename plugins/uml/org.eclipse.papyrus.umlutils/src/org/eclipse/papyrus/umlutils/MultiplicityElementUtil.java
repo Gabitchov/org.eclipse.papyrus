@@ -77,9 +77,14 @@ public class MultiplicityElementUtil {
 
 		// ".." was not found => this should be an integer, for example a multiplicity ~ [1]
 		if(firstIndex == -1) {
-			// this should be directly an integer
-			lower = Integer.parseInt(value);
-			upper = lower;
+			// this should be directly an integer or a star
+			if("*".equals(value)) {
+				lower = 0;
+				upper = -1;
+			} else {
+				lower = Integer.parseInt(value);
+				upper = lower;
+			}
 		} else {
 			String lowerValue = value.substring(0, firstIndex);
 			String upperValue = value.substring(firstIndex + "..".length());
