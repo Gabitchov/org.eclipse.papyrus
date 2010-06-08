@@ -11,16 +11,19 @@
          point="org.eclipse.papyrus.core.papyrusDiagram">
       <diagramCategory
             description="UML diagrams"
+            icon="icons/categories/uml.gif"
             id="uml"
             label="UML">
       </diagramCategory>      
       <diagramCategory
             description="SysML diagrams"
+            icon="icons/categories/sysml.gif"
             id="sysml"
             label="SysML">
       </diagramCategory>      
       <diagramCategory
             description="Profile diagram"
+            icon="icons/categories/profile.gif"
             id="profile"
             label="Profile">
       </diagramCategory>      
