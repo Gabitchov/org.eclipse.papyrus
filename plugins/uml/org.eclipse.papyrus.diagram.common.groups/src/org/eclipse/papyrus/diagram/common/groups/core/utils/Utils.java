@@ -96,10 +96,10 @@ public class Utils {
 	 * @return the list of edit parts that are within the given bounds and which element can be children according to the group framework
 	 */
 	public static List<IGraphicalEditPart> findPossibleChildren(Rectangle contentArea, IGraphicalEditPart groupEditPart, DiagramEditPart diagramPart) {
-		if(diagramPart == null) {
+		IContainerNodeDescriptor descriptor = GroupContainmentRegistry.getContainerDescriptor(groupEditPart);
+		if(diagramPart == null || descriptor == null) {
 			return Collections.emptyList();
 		}
-		IContainerNodeDescriptor descriptor = GroupContainmentRegistry.getContainerDescriptor(groupEditPart);
 		Set<IGraphicalEditPart> groupParts = new HashSet<IGraphicalEditPart>();
 		for(Object view : diagramPart.getViewer().getEditPartRegistry().keySet()) {
 			if(view instanceof View) {
@@ -167,9 +167,16 @@ public class Utils {
 		request.setMoveDelta(new Point(0, 0));
 		request.setSizeDelta(new Dimension(0, 0));
 		request.setEditParts(childPart);
+		Point loc = childPart.getFigure().getBounds().getLocation().getCopy();
+		childPart.getFigure().translateToAbsolute(loc);
+		request.setLocation(loc);
 		request.setType(RequestConstants.REQ_DROP);
 		org.eclipse.gef.commands.Command cmd = newParent.getCommand(request);
-		return new GEFtoEMFCommandWrapper(cmd);
+		if(cmd != null && cmd.canExecute()) {
+			return new GEFtoEMFCommandWrapper(cmd);
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -202,7 +209,7 @@ public class Utils {
 	 *        the possible children references
 	 * @param child
 	 *        the child eobject to choose a referencefor
-	 * @return
+	 * @return the most precise child reference or null
 	 */
 	public static EReference getBestReferenceAmongList(List<EReference> childrenReferences, EObject child) {
 		EReference usedReference = null;
