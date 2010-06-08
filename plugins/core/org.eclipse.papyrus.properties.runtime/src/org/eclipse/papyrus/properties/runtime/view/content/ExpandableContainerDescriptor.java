@@ -193,7 +193,6 @@ public class ExpandableContainerDescriptor extends ContainerDescriptor {
 		 */
 		public Node generateNode(Document document) {
 			Element node = document.createElement("expandableContainer");
-			generateContainerAttributes(node, document);
 			node.setAttribute("label", getName());
 
 			// generate for owned controllers

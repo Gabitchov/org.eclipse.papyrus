@@ -176,7 +176,6 @@ public class GroupContainerDescriptor extends ContainerDescriptor {
 		 */
 		public Node generateNode(Document document) {
 			Element node = document.createElement("groupContainer");
-			generateContainerAttributes(node, document);
 			node.setAttribute("label", getName());
 
 			// generate for owned controllers

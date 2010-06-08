@@ -46,6 +46,9 @@ public class FragmentDescriptorState extends AbstractState {
 	/** change support for this bean */
 	private PropertyChangeSupport changeSupport;
 
+	/** id of the fragment managed by this state */
+	private String id;
+
 	/**
 	 * Creates a new FragmentDescriptorState.
 	 * 
@@ -54,6 +57,8 @@ public class FragmentDescriptorState extends AbstractState {
 	 */
 	public FragmentDescriptorState(FragmentDescriptor descriptor) {
 		this.descriptor = descriptor;
+
+		id = descriptor.getId();
 
 		// retrieve and build the states for the container children
 		List<ContainerDescriptor> containerDescriptors = descriptor.getContainerDescriptors();
@@ -180,11 +185,26 @@ public class FragmentDescriptorState extends AbstractState {
 	public Node generateNode(Document document) {
 		Element node = document.createElement("fragment");
 
+		generateAttributes(node, document);
+
 		// generate for children(containers and constraints)
 		generateConstraints(node, document);
 		generateContainers(node, document);
 
 		return node;
+	}
+
+	/**
+	 * Generates attributes for this fragment
+	 * 
+	 * @param node
+	 *        the node to complete
+	 * @param document
+	 *        the document used to create nodes
+	 */
+	protected void generateAttributes(Element node, Document document) {
+		node.setAttribute("id", getId());
+
 	}
 
 	/**
@@ -222,5 +242,24 @@ public class FragmentDescriptorState extends AbstractState {
 			contentElement.appendChild(state.generateNode(document));
 		}
 		node.appendChild(contentElement);
+	}
+
+	/**
+	 * Sets the id
+	 * 
+	 * @param id
+	 *        the id to set
+	 */
+	public void setId(String id) {
+		changeSupport.firePropertyChange("id", this.id, this.id = id);
+	}
+
+	/**
+	 * Returns the id
+	 * 
+	 * @return the id
+	 */
+	public String getId() {
+		return id;
 	}
 }

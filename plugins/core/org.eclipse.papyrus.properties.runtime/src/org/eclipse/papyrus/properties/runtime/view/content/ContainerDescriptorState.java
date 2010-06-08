@@ -155,9 +155,6 @@ public class ContainerDescriptorState extends AbstractState {
 	 */
 	public Node generateNode(Document document) {
 		Element node = document.createElement("container");
-		// attributes of the node: example: layout="Grid" columns="2" sameSize="false"
-		generateContainerAttributes(node, document);
-
 		// generate the layout descriptor node
 		generateLayoutDescriptor(node, document);
 
@@ -177,20 +174,6 @@ public class ContainerDescriptorState extends AbstractState {
 	 */
 	protected void generateLayoutDescriptor(Element node, Document document) {
 		node.appendChild(getLayoutDescriptorState().generateNode(document));
-	}
-
-	/**
-	 * Generates the attributes for the given node
-	 * 
-	 * @param node
-	 *        the node to complete
-	 * @param document
-	 *        the document used to create elements
-	 */
-	protected void generateContainerAttributes(Element node, Document document) {
-		node.setAttribute("layout", "Grid");
-		node.setAttribute("columns", "2");
-		node.setAttribute("sameSize", "false");
 	}
 
 	/**

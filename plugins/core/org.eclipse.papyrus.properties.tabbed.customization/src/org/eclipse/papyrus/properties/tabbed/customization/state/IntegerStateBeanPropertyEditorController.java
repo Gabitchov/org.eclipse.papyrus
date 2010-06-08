@@ -30,4 +30,6 @@ public class IntegerStateBeanPropertyEditorController extends StateBeanPropertyE
 			super.setValueInModel(Integer.parseInt((String)value));
 		}
 	}
+
+
 }

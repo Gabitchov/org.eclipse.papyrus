@@ -78,9 +78,9 @@ public abstract class AbstractConstrainedDescriptor implements IConfigurableDesc
 	}
 
 	/**
-	 * Returns the id of this dialog descriptor
+	 * Returns the id of this descriptor
 	 * 
-	 * @return the id of this dialog descriptor
+	 * @return the id of this descriptor
 	 */
 	public String getId() {
 		return id;

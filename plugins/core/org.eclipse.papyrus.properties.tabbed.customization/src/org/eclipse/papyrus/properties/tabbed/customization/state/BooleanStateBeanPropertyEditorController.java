@@ -42,6 +42,18 @@ public class BooleanStateBeanPropertyEditorController extends StateBeanPropertyE
 	 * {@inheritDoc}
 	 */
 	@Override
+	protected Object getValueToEdit() {
+		Object value = super.getValueToEdit();
+		if(value instanceof Boolean) {
+			return Boolean.toString((Boolean)value);
+		}
+		return value;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
 	protected IStatus initPropertyEditor(IPropertyEditorDescriptor descriptor) {
 		List<String> values = new ArrayList<String>();
 		values.add("true");

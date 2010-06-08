@@ -133,4 +133,18 @@ public class GridLayoutDescriptorState extends LayoutDescriptorState {
 		return node;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getText() {
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("GridLayout (");
+		buffer.append(getNumColumns());
+		buffer.append(", ");
+		buffer.append(getSameWidth());
+		buffer.append(")");
+		return buffer.toString();
+	}
+
 }
