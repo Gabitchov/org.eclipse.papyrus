@@ -65,16 +65,6 @@
                factory="org.eclipse.papyrus.properties.runtime.controller.descriptor.BeanPropertyEditorControllerDescriptorFactory"
                id="booleanStateBeanPropertyEditorController">
          </PropertyEditorController>
-         <PropertyEditorController
-               class="org.eclipse.papyrus.properties.tabbed.customization.state.BooleanStateBeanPropertyEditorController"
-               factory="org.eclipse.papyrus.properties.tabbed.customization.PropertyEditorControllerDescriptorFactory1"
-               id="booleanStateBeanPropertyEditorController">
-         </PropertyEditorController>
-         <PropertyEditorController
-               class="org.eclipse.papyrus.properties.tabbed.customization.state.BooleanStateBeanPropertyEditorController"
-               factory="org.eclipse.papyrus.properties.tabbed.customization.PropertyEditorControllerDescriptorFactory1"
-               id="org.eclipse.papyrus.properties.tabbed.customization.PropertyEditorController1">
-         </PropertyEditorController>
       </propertyEditorControllerProvider>
    </extension>
    <extension
