@@ -21,6 +21,7 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.papyrus.properties.runtime.dialogs.PropertyDialog;
 import org.eclipse.papyrus.properties.runtime.state.IState;
 import org.eclipse.papyrus.properties.runtime.view.DialogDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.IFragmentDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.DynamicSectionDescriptor;
@@ -80,7 +81,7 @@ public class ContentHolderMenuCreator extends AbstractMenuCreator {
 			@Override
 			public void run() {
 				// should add a section here, using a new Section and pop-up the dialog on the section to create
-				DynamicSectionDescriptor descriptor = new DynamicSectionDescriptor(getNewSectionId(), getDefaultTabId(), new ArrayList<IConstraintDescriptor>(), 1, DynamicSectionDescriptor.SEMANTIC_RESOLVER, new ArrayList<String>(), new ArrayList<String>());
+				DynamicSectionDescriptor descriptor = new DynamicSectionDescriptor(getNewSectionId(), getDefaultTabId(), new ArrayList<IConstraintDescriptor>(), 1, DynamicSectionDescriptor.SEMANTIC_RESOLVER, new ArrayList<String>(), new ArrayList<IFragmentDescriptor>());
 				SectionDescriptorState sectionDescriptorState = new SectionDescriptorState(descriptor);
 				contentHolder.getSectionSetDescriptorState().addSectionDescriptorState(sectionDescriptorState);
 			}

@@ -19,6 +19,8 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.view.DialogDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.IFragmentDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.PredefinedFragmentDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.PropertyViewProviderParser;
 import org.eclipse.papyrus.properties.runtime.view.XMLParseException;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
@@ -280,7 +282,7 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 		}
 
 		List<String> replacedSectionsId = new ArrayList<String>();
-		List<String> fragmentsId = new ArrayList<String>();
+		List<IFragmentDescriptor> fragmentDescriptors = new ArrayList<IFragmentDescriptor>();
 		try {
 			NodeList children = sectionNode.getChildNodes();
 			for(int i = 0; i < children.getLength(); i++) {
@@ -288,8 +290,8 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 				if("replacedSections".equals(childNode.getNodeName())) {
 					replacedSectionsId = parseReplacedSectionIds(childNode);
 				} else if(NODE_NAME_FRAGMENT.equals(childNode.getNodeName())) {
-					String fragmentId = parseFragmentOrPredefinedFragment(childNode);
-					fragmentsId.add(fragmentId);
+					IFragmentDescriptor fragmentDescriptor = parseFragmentOrPredefinedFragment(childNode);
+					fragmentDescriptors.add(fragmentDescriptor);
 				}
 			}
 		} catch (XMLParseException e) {
@@ -321,7 +323,7 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 				}
 			}
 
-			DynamicSectionDescriptor descriptor = new DynamicSubFeatureSectionDescriptor(id, tabId, constraints, selectionSize, adapterId, replacedSectionsId, fragmentsId, subFeatureDescriptor, maxColumn, subFeatureContainerDescriptor);
+			DynamicSectionDescriptor descriptor = new DynamicSubFeatureSectionDescriptor(id, tabId, constraints, selectionSize, adapterId, replacedSectionsId, fragmentDescriptors, subFeatureDescriptor, maxColumn, subFeatureContainerDescriptor);
 			descriptor.setUnparsedContent(sectionNode);
 			// retrieve the tab to add section to it.
 			// this means that the descriptor for the tab should already exist.
@@ -332,7 +334,7 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 				}
 			}
 		} else {
-			DynamicSectionDescriptor descriptor = new DynamicSectionDescriptor(id, tabId, constraints, selectionSize, adapterId, replacedSectionsId, fragmentsId);
+			DynamicSectionDescriptor descriptor = new DynamicSectionDescriptor(id, tabId, constraints, selectionSize, adapterId, replacedSectionsId, fragmentDescriptors);
 			descriptor.setUnparsedContent(sectionNode);
 			// retrieve the tab to add section to it.
 			// this means that the descriptor for the tab should already exist.
@@ -393,12 +395,12 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 	 * @param fragmentNode
 	 *        the node to parse
 	 */
-	protected String parseFragmentOrPredefinedFragment(Node fragmentNode) {
+	protected IFragmentDescriptor parseFragmentOrPredefinedFragment(Node fragmentNode) {
 		NamedNodeMap attributes = fragmentNode.getAttributes();
 		if(attributes != null) {
 			Node attribute = attributes.getNamedItem(ATTRIBUTE_PREDEFINED_ID);
 			if(attribute != null) {
-				return attribute.getNodeValue();
+				return new PredefinedFragmentDescriptor(attribute.getNodeValue());
 			}
 		}
 
@@ -408,7 +410,7 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 		try {
 			fragmentDescriptor = parseFragment(fragmentNode);
 			predefinedFragments.put(fragmentDescriptor.getId(), fragmentDescriptor);
-			return fragmentDescriptor.getId();
+			return fragmentDescriptor;
 		} catch (XMLParseException e) {
 			Activator.log.error(e);
 		}

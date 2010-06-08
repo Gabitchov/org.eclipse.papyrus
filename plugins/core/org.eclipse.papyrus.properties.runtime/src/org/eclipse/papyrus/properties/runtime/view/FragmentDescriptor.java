@@ -24,7 +24,7 @@ import org.w3c.dom.Node;
 /**
  * descriptor for fragments
  */
-public class FragmentDescriptor extends AbstractConstrainedDescriptor {
+public class FragmentDescriptor extends AbstractConstrainedDescriptor implements IFragmentDescriptor {
 
 	/** list of containers created by this dialog */
 	protected List<ContainerDescriptor> descriptors;
@@ -45,9 +45,7 @@ public class FragmentDescriptor extends AbstractConstrainedDescriptor {
 	}
 
 	/**
-	 * Returns the list of containers descriptors
-	 * 
-	 * @return the list of containers descriptors
+	 * {@inheritDoc}
 	 */
 	public List<ContainerDescriptor> getContainerDescriptors() {
 		if(unparsed && !parseFailed) {

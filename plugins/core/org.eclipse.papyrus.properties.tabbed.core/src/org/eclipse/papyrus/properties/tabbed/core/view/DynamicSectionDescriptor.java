@@ -18,9 +18,8 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.papyrus.properties.runtime.Activator;
-import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
-import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
+import org.eclipse.papyrus.properties.runtime.view.IFragmentDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IWorkbenchPart;
@@ -70,27 +69,23 @@ public class DynamicSectionDescriptor extends AbstractSectionDescriptor implemen
 	protected final List<String> replacedSectionIds;
 
 	/** list of fragments to display in the section */
-	protected final List<FragmentDescriptor> fragmentDescriptors;
-
-	/** list of views Identifiers */
-	protected final List<String> fragmentsId;
+	protected final List<IFragmentDescriptor> fragmentDescriptors;
 
 	/**
 	 * Creates a new DynamicSectionDescriptor.
 	 * 
-	 * @param fragmentsId
-	 *        id of the views to display in the section
+	 * @param fragmentDescriptors
+	 *        fragments to display in the section
 	 * 
 	 */
-	public DynamicSectionDescriptor(String id, String tabId, List<IConstraintDescriptor> constraints, int selectionSize, String adapterID, List<String> replacedSectionIds, List<String> fragmentsId) {
+	public DynamicSectionDescriptor(String id, String tabId, List<IConstraintDescriptor> constraints, int selectionSize, String adapterID, List<String> replacedSectionIds, List<IFragmentDescriptor> fragmentDescriptors) {
 		this.id = id;
 		this.tabId = tabId;
 		this.constraints = constraints;
 		this.selectionSize = selectionSize;
 		this.adapterId = adapterID;
 		this.replacedSectionIds = replacedSectionIds;
-		this.fragmentsId = fragmentsId;
-		fragmentDescriptors = new ArrayList<FragmentDescriptor>();
+		this.fragmentDescriptors = fragmentDescriptors;
 	}
 
 	/**
@@ -121,24 +116,7 @@ public class DynamicSectionDescriptor extends AbstractSectionDescriptor implemen
 	 * {@inheritDoc}
 	 */
 	public ISection getSectionClass() {
-		// parses the configuration if required
-		if(unparsed) {
-			for(String id : fragmentsId) {
-				FragmentDescriptor descriptor = PropertyViewService.getInstance().getFragmentDescriptor(id);
-				if(descriptor != null) {
-					fragmentDescriptors.add(descriptor);
-				} else {
-					Activator.log.error("impossible to find the fragment descriptor with id: " + id, null);
-					parseSectionFailed = true;
-				}
-			}
-			unparsed = false;
-		}
-		if(!parseSectionFailed) {
-			return new DynamicSection(fragmentDescriptors);
-		}
-
-		return null;
+		return new DynamicSection(fragmentDescriptors);
 	}
 
 
@@ -312,16 +290,6 @@ public class DynamicSectionDescriptor extends AbstractSectionDescriptor implemen
 		return replacedSectionIds;
 	}
 
-
-	/**
-	 * Returns the fragments identifier hold by this section
-	 * 
-	 * @return the fragments identifier hold by this section
-	 */
-	public List<String> getFragmentsId() {
-		return fragmentsId;
-	}
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -341,5 +309,14 @@ public class DynamicSectionDescriptor extends AbstractSectionDescriptor implemen
 	 */
 	public SectionDescriptorState createState() {
 		return new SectionDescriptorState(this);
+	}
+
+	/**
+	 * Returns the list of fragment descriptors for this section
+	 * 
+	 * @return the list of fragment descriptors for this section
+	 */
+	public List<IFragmentDescriptor> getFragmentDescriptors() {
+		return fragmentDescriptors;
 	}
 }

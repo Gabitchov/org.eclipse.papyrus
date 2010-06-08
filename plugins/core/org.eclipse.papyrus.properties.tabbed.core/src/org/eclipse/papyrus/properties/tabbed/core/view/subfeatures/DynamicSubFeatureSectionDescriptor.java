@@ -13,9 +13,7 @@ package org.eclipse.papyrus.properties.tabbed.core.view.subfeatures;
 
 import java.util.List;
 
-import org.eclipse.papyrus.properties.runtime.Activator;
-import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptor;
-import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
+import org.eclipse.papyrus.properties.runtime.view.IFragmentDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.DynamicSectionDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState;
@@ -44,8 +42,8 @@ public class DynamicSubFeatureSectionDescriptor extends DynamicSectionDescriptor
 	 *        id of the views to display in the section
 	 * 
 	 */
-	public DynamicSubFeatureSectionDescriptor(String id, String tabId, List<IConstraintDescriptor> constraints, int selectionSize, String adapterID, List<String> replacedSectionIds, List<String> viewsId, SubFeatureDescriptor subFeatureDescriptor, int maxColumn, SubFeatureContainerDescriptor containerDescriptor) {
-		super(id, tabId, constraints, selectionSize, adapterID, replacedSectionIds, viewsId);
+	public DynamicSubFeatureSectionDescriptor(String id, String tabId, List<IConstraintDescriptor> constraints, int selectionSize, String adapterID, List<String> replacedSectionIds, List<IFragmentDescriptor> fragmentDescriptors, SubFeatureDescriptor subFeatureDescriptor, int maxColumn, SubFeatureContainerDescriptor containerDescriptor) {
+		super(id, tabId, constraints, selectionSize, adapterID, replacedSectionIds, fragmentDescriptors);
 		this.maxColumn = maxColumn;
 		this.subFeatureDescriptor = subFeatureDescriptor;
 		this.subFeatureContainerDescriptor = containerDescriptor;
@@ -74,24 +72,7 @@ public class DynamicSubFeatureSectionDescriptor extends DynamicSectionDescriptor
 	 */
 	@Override
 	public ISection getSectionClass() {
-		// parses the configuration if required
-		if(unparsed) {
-			for(String id : fragmentsId) {
-				FragmentDescriptor descriptor = PropertyViewService.getInstance().getFragmentDescriptor(id);
-				if(descriptor != null) {
-					fragmentDescriptors.add(descriptor);
-				} else {
-					Activator.log.error("impossible to find the view descriptor with id: " + id, null);
-					parseSectionFailed = true;
-				}
-			}
-			unparsed = false;
-		}
-		if(!parseSectionFailed) {
-			return new DynamicSubFeatureSection(fragmentDescriptors, subFeatureDescriptor, maxColumn, subFeatureContainerDescriptor);
-		}
-
-		return null;
+		return new DynamicSubFeatureSection(fragmentDescriptors, subFeatureDescriptor, maxColumn, subFeatureContainerDescriptor);
 	}
 
 	/**

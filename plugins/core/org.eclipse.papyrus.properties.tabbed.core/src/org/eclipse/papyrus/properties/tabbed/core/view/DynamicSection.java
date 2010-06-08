@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.IFragmentDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.AbstractContainerDescriptor;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -47,7 +47,7 @@ public class DynamicSection extends AbstractPropertySection {
 	protected TabbedPropertySheetPage tabbedPropertySheetPage;
 
 	/** list of fragment descriptors that compose the section */
-	protected List<FragmentDescriptor> fragmentDescriptors;
+	protected List<IFragmentDescriptor> fragmentDescriptors;
 
 	/**
 	 * Creates a new DynamicSection.
@@ -56,7 +56,7 @@ public class DynamicSection extends AbstractPropertySection {
 	 *        the graphical configuration of the section
 	 * 
 	 */
-	public DynamicSection(List<FragmentDescriptor> fragmentDescriptors) {
+	public DynamicSection(List<IFragmentDescriptor> fragmentDescriptors) {
 		this.fragmentDescriptors = fragmentDescriptors;
 		this.containers = new ArrayList<AbstractContainerDescriptor>();
 	}
@@ -129,7 +129,7 @@ public class DynamicSection extends AbstractPropertySection {
 			containers.clear();
 
 			// generate the content of the section, given the configuration
-			for(FragmentDescriptor viewDescriptor : fragmentDescriptors) {
+			for(IFragmentDescriptor viewDescriptor : fragmentDescriptors) {
 				for(AbstractContainerDescriptor descriptor : viewDescriptor.getContainerDescriptors()) {
 					descriptor.createContent(this.parent, this.tabbedPropertySheetPage.getWidgetFactory(), objectsToEdit);
 					containers.add(descriptor);

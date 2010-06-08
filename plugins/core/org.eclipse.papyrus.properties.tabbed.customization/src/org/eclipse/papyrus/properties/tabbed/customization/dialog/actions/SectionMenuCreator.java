@@ -18,6 +18,7 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.papyrus.properties.runtime.state.IFragmentDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
@@ -167,9 +168,9 @@ public class SectionMenuCreator extends AbstractMenuCreator {
 		for(int i = 0; i < 100; i++) { // no need to go to more than 100, because 100 is already a very big number of fragments
 			boolean found = false; // indicates if the id has been found in already fragments or not
 			String name = "fragment_" + i;
-			Iterator<FragmentDescriptorState> it = sectionDescriptorState.getFragmentDescriptorStates().iterator();
+			Iterator<IFragmentDescriptorState> it = sectionDescriptorState.getFragmentDescriptorStates().iterator();
 			while(it.hasNext()) {
-				FragmentDescriptorState fragmentDescriptorState = it.next();
+				IFragmentDescriptorState fragmentDescriptorState = it.next();
 				String id = fragmentDescriptorState.getDescriptor().getId();
 				if(name.equalsIgnoreCase(id)) {
 					found = true;

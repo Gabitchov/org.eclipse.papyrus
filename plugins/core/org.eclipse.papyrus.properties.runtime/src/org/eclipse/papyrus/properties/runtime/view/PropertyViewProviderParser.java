@@ -601,21 +601,21 @@ public class PropertyViewProviderParser {
 	 *        the content node to parse
 	 * @return the list of identifier of fragment descriptors referenced by this content node
 	 */
-	public List<String> parseDialogContentNode(Node contentNode) throws XMLParseException {
-		List<String> fragmentsId = new ArrayList<String>();
+	public List<IFragmentDescriptor> parseDialogContentNode(Node contentNode) throws XMLParseException {
+		List<IFragmentDescriptor> fragmentDescriptors = new ArrayList<IFragmentDescriptor>();
 		try {
 			NodeList children = contentNode.getChildNodes();
 			for(int i = 0; i < children.getLength(); i++) {
 				Node childNode = children.item(i);
 				if(NODE_NAME_FRAGMENT.equals(childNode.getNodeName())) {
-					String fragmentId = parseFragmentOrPredefinedFragment(childNode);
-					fragmentsId.add(fragmentId);
+					IFragmentDescriptor descriptor = parseFragmentOrPredefinedFragment(childNode);
+					fragmentDescriptors.add(descriptor);
 				}
 			}
 		} catch (XMLParseException e) {
 			Activator.log.error("Problem during parsing of replaced sections for node " + contentNode, e);
 		}
-		return fragmentsId;
+		return fragmentDescriptors;
 	}
 
 	/**
@@ -624,12 +624,12 @@ public class PropertyViewProviderParser {
 	 * @param fragmentNode
 	 *        the node to parse
 	 */
-	protected String parseFragmentOrPredefinedFragment(Node fragmentNode) throws XMLParseException {
+	protected IFragmentDescriptor parseFragmentOrPredefinedFragment(Node fragmentNode) throws XMLParseException {
 		NamedNodeMap attributes = fragmentNode.getAttributes();
 		if(attributes != null) {
 			Node attribute = attributes.getNamedItem(ATTRIBUTE_PREDEFINED_ID);
 			if(attribute != null) {
-				return attribute.getNodeValue();
+				return new PredefinedFragmentDescriptor(attribute.getNodeValue());
 			}
 		}
 
@@ -639,6 +639,6 @@ public class PropertyViewProviderParser {
 
 		fragmentDescriptor = parseFragment(fragmentNode);
 		predefinedFragments.put(fragmentDescriptor.getId(), fragmentDescriptor);
-		return fragmentDescriptor.getId();
+		return fragmentDescriptor;
 	}
 }

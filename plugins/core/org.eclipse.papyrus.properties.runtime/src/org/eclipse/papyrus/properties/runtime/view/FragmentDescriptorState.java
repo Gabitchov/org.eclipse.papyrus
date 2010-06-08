@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.papyrus.properties.runtime.state.AbstractState;
+import org.eclipse.papyrus.properties.runtime.state.IFragmentDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.constraints.ConstraintDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptor;
@@ -29,7 +30,7 @@ import org.w3c.dom.Node;
 /**
  * state for Fragment descriptor
  */
-public class FragmentDescriptorState extends AbstractState {
+public class FragmentDescriptorState extends AbstractState implements IFragmentDescriptorState {
 
 	/** descriptor managed by this state */
 	private FragmentDescriptor descriptor;

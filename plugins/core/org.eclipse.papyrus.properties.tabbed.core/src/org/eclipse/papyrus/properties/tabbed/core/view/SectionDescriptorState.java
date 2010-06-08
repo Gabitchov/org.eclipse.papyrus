@@ -17,10 +17,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.papyrus.properties.runtime.state.AbstractState;
+import org.eclipse.papyrus.properties.runtime.state.IFragmentDescriptorState;
 import org.eclipse.papyrus.properties.runtime.state.ITraversableModelElement;
-import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptorState;
-import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
+import org.eclipse.papyrus.properties.runtime.view.IFragmentDescriptor;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -35,7 +35,7 @@ public class SectionDescriptorState extends AbstractState {
 	protected DynamicSectionDescriptor sectionDescriptor;
 
 	/** list of fragment descriptor states */
-	private List<FragmentDescriptorState> fragmentDescriptorStates = new ArrayList<FragmentDescriptorState>();
+	private List<IFragmentDescriptorState> fragmentDescriptorStates = new ArrayList<IFragmentDescriptorState>();
 
 	/** change support for this bean */
 	private PropertyChangeSupport changeSupport;
@@ -61,10 +61,9 @@ public class SectionDescriptorState extends AbstractState {
 		targetTab = sectionDescriptor.getTargetTab();
 		adapterId = sectionDescriptor.getAdapterId();
 
-		List<String> fragmentIds = sectionDescriptor.getFragmentsId();
-		for(String id : fragmentIds) {
+		List<IFragmentDescriptor> fragmentDescriptors = sectionDescriptor.getFragmentDescriptors();
+		for(IFragmentDescriptor fragmentDescriptor : fragmentDescriptors) {
 			/// retrieve the descriptor and creates a state on it
-			FragmentDescriptor fragmentDescriptor = PropertyViewService.getInstance().getFragmentDescriptor(id);
 			if(fragmentDescriptor != null) {
 				getFragmentDescriptorStates().add(fragmentDescriptor.createState());
 			}
@@ -87,7 +86,7 @@ public class SectionDescriptorState extends AbstractState {
 	 * 
 	 * @return the fragmentDescriptorStates for the section descriptor
 	 */
-	public List<FragmentDescriptorState> getFragmentDescriptorStates() {
+	public List<IFragmentDescriptorState> getFragmentDescriptorStates() {
 		return fragmentDescriptorStates;
 	}
 
@@ -253,7 +252,7 @@ public class SectionDescriptorState extends AbstractState {
 	 *        the document used to create elements
 	 */
 	protected void generateFragmentDescriptorStateNodes(Element node, Document document) {
-		for(FragmentDescriptorState fragmentDescriptorState : getFragmentDescriptorStates()) {
+		for(IFragmentDescriptorState fragmentDescriptorState : getFragmentDescriptorStates()) {
 			node.appendChild(fragmentDescriptorState.generateNode(document));
 		}
 	}

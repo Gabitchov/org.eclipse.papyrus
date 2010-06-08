@@ -27,7 +27,7 @@ import org.w3c.dom.Node;
 public class DialogDescriptor extends AbstractConstrainedDescriptor {
 
 	/** list of FragmentDescriptor created by this dialog */
-	protected List<String> fragmentDescriptorsIds;
+	protected List<IFragmentDescriptor> fragmentDescriptors;
 
 	/** title for the dialog */
 	protected Object title;
@@ -68,15 +68,15 @@ public class DialogDescriptor extends AbstractConstrainedDescriptor {
 	 * 
 	 * @return the list of identifier of fragment descriptors
 	 */
-	public List<String> getFragmentDescriptors() {
+	public List<IFragmentDescriptor> getFragmentDescriptors() {
 		if(unparsed) {
 			if(parser == null) {
-				fragmentDescriptorsIds = Collections.emptyList();
+				fragmentDescriptors = Collections.emptyList();
 				Activator.log.error("No parser was given to the fragment descriptor " + id, null);
 				parseFailed = true;
 			} else {
 				try {
-					fragmentDescriptorsIds = parser.parseDialogContentNode(contentNode);
+					fragmentDescriptors = parser.parseDialogContentNode(contentNode);
 					parseFailed = false;
 				} catch (XMLParseException e) {
 					Activator.log.error(e);
@@ -84,7 +84,7 @@ public class DialogDescriptor extends AbstractConstrainedDescriptor {
 				}
 			}
 		}
-		return fragmentDescriptorsIds;
+		return fragmentDescriptors;
 	}
 
 	/**
