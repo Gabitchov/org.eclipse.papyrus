@@ -15,32 +15,24 @@ package org.eclipse.papyrus.diagram.activity.edit.policies;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.papyrus.diagram.activity.edit.commands.AcceptEventActionInIARCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ActivityFinalNodeInIARCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallBehaviorActionInIARCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.CallOperationActionInIARCreateCommand;
-import org.eclipse.papyrus.diagram.activity.edit.commands.ConstraintAsLocalPostcondCreateCommand;
-import org.eclipse.papyrus.diagram.activity.edit.commands.ConstraintAsLocalPrecondCreateCommand;
-import org.eclipse.papyrus.diagram.activity.edit.commands.DataStoreNodeCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.DataStoreNodeInIARCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.DecisionNodeInIARCreateCommand;
-import org.eclipse.papyrus.diagram.activity.edit.commands.DurationConstraintAsLocalPostcondCreateCommand;
-import org.eclipse.papyrus.diagram.activity.edit.commands.DurationConstraintAsLocalPrecondCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.FlowFinalNodeInIARCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.ForkNodeInIARCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.InitialNodeInIARCreateCommand;
-import org.eclipse.papyrus.diagram.activity.edit.commands.InteractionConstraintAsLocalPostcondCreateCommand;
-import org.eclipse.papyrus.diagram.activity.edit.commands.InteractionConstraintAsLocalPrecondCreateCommand;
-import org.eclipse.papyrus.diagram.activity.edit.commands.IntervalConstraintAsLocalPostcondCreateCommand;
-import org.eclipse.papyrus.diagram.activity.edit.commands.IntervalConstraintAsLocalPrecondCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.JoinNodeInIARCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.MergeNodeInIARCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.OpaqueActionInIARCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.SendObjectActionInIARCreateCommand;
 import org.eclipse.papyrus.diagram.activity.edit.commands.SendSignalActionInIARCreateCommand;
-import org.eclipse.papyrus.diagram.activity.edit.commands.TimeConstraintAsLocalPostcondCreateCommand;
-import org.eclipse.papyrus.diagram.activity.edit.commands.TimeConstraintAsLocalPrecondCreateCommand;
-import org.eclipse.papyrus.diagram.activity.edit.commands.ValueSpecificationActionCreateCommand;
+import org.eclipse.papyrus.diagram.activity.edit.commands.ValueSpecificationActionInIARCreateCommand;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.groups.commands.MoveElementInGroupCommand;
 
 /**
  * @generated
@@ -55,7 +47,7 @@ public class InterruptibleActivityRegionInterruptibleActivityRegionContentCompar
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT (update at each gmf change) moved local conditions creation commands to {@link CreateActionLocalConditionEditPolicy}
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.InitialNode_3079 == req.getElementType()) {
@@ -67,36 +59,36 @@ public class InterruptibleActivityRegionInterruptibleActivityRegionContentCompar
 		if(UMLElementTypes.FlowFinalNode_3081 == req.getElementType()) {
 			return getGEFWrapper(new FlowFinalNodeInIARCreateCommand(req));
 		}
-		if(UMLElementTypes.Constraint_3011 == req.getElementType()) {
-			return getGEFWrapper(new ConstraintAsLocalPrecondCreateCommand(req));
-		}
-		if(UMLElementTypes.Constraint_3012 == req.getElementType()) {
-			return getGEFWrapper(new ConstraintAsLocalPostcondCreateCommand(req));
-		}
-		if(UMLElementTypes.DurationConstraint_3034 == req.getElementType()) {
-			return getGEFWrapper(new DurationConstraintAsLocalPrecondCreateCommand(req));
-		}
-		if(UMLElementTypes.DurationConstraint_3035 == req.getElementType()) {
-			return getGEFWrapper(new DurationConstraintAsLocalPostcondCreateCommand(req));
-		}
-		if(UMLElementTypes.InteractionConstraint_3030 == req.getElementType()) {
-			return getGEFWrapper(new InteractionConstraintAsLocalPrecondCreateCommand(req));
-		}
-		if(UMLElementTypes.InteractionConstraint_3031 == req.getElementType()) {
-			return getGEFWrapper(new InteractionConstraintAsLocalPostcondCreateCommand(req));
-		}
-		if(UMLElementTypes.IntervalConstraint_3032 == req.getElementType()) {
-			return getGEFWrapper(new IntervalConstraintAsLocalPrecondCreateCommand(req));
-		}
-		if(UMLElementTypes.IntervalConstraint_3033 == req.getElementType()) {
-			return getGEFWrapper(new IntervalConstraintAsLocalPostcondCreateCommand(req));
-		}
-		if(UMLElementTypes.TimeConstraint_3036 == req.getElementType()) {
-			return getGEFWrapper(new TimeConstraintAsLocalPrecondCreateCommand(req));
-		}
-		if(UMLElementTypes.TimeConstraint_3037 == req.getElementType()) {
-			return getGEFWrapper(new TimeConstraintAsLocalPostcondCreateCommand(req));
-		}
+		//		if(UMLElementTypes.Constraint_3011 == req.getElementType()) {
+		//			return getGEFWrapper(new ConstraintAsLocalPrecondCreateCommand(req));
+		//		}
+		//		if(UMLElementTypes.Constraint_3012 == req.getElementType()) {
+		//			return getGEFWrapper(new ConstraintAsLocalPostcondCreateCommand(req));
+		//		}
+		//		if(UMLElementTypes.DurationConstraint_3034 == req.getElementType()) {
+		//			return getGEFWrapper(new DurationConstraintAsLocalPrecondCreateCommand(req));
+		//		}
+		//		if(UMLElementTypes.DurationConstraint_3035 == req.getElementType()) {
+		//			return getGEFWrapper(new DurationConstraintAsLocalPostcondCreateCommand(req));
+		//		}
+		//		if(UMLElementTypes.InteractionConstraint_3030 == req.getElementType()) {
+		//			return getGEFWrapper(new InteractionConstraintAsLocalPrecondCreateCommand(req));
+		//		}
+		//		if(UMLElementTypes.InteractionConstraint_3031 == req.getElementType()) {
+		//			return getGEFWrapper(new InteractionConstraintAsLocalPostcondCreateCommand(req));
+		//		}
+		//		if(UMLElementTypes.IntervalConstraint_3032 == req.getElementType()) {
+		//			return getGEFWrapper(new IntervalConstraintAsLocalPrecondCreateCommand(req));
+		//		}
+		//		if(UMLElementTypes.IntervalConstraint_3033 == req.getElementType()) {
+		//			return getGEFWrapper(new IntervalConstraintAsLocalPostcondCreateCommand(req));
+		//		}
+		//		if(UMLElementTypes.TimeConstraint_3036 == req.getElementType()) {
+		//			return getGEFWrapper(new TimeConstraintAsLocalPrecondCreateCommand(req));
+		//		}
+		//		if(UMLElementTypes.TimeConstraint_3037 == req.getElementType()) {
+		//			return getGEFWrapper(new TimeConstraintAsLocalPostcondCreateCommand(req));
+		//		}
 		if(UMLElementTypes.OpaqueAction_3082 == req.getElementType()) {
 			return getGEFWrapper(new OpaqueActionInIARCreateCommand(req));
 		}
@@ -116,7 +108,7 @@ public class InterruptibleActivityRegionInterruptibleActivityRegionContentCompar
 			return getGEFWrapper(new AcceptEventActionInIARCreateCommand(req));
 		}
 		if(UMLElementTypes.ValueSpecificationAction_3076 == req.getElementType()) {
-			return getGEFWrapper(new ValueSpecificationActionCreateCommand(req));
+			return getGEFWrapper(new ValueSpecificationActionInIARCreateCommand(req));
 		}
 		if(UMLElementTypes.DecisionNode_3089 == req.getElementType()) {
 			return getGEFWrapper(new DecisionNodeInIARCreateCommand(req));
@@ -131,9 +123,23 @@ public class InterruptibleActivityRegionInterruptibleActivityRegionContentCompar
 			return getGEFWrapper(new JoinNodeInIARCreateCommand(req));
 		}
 		if(UMLElementTypes.DataStoreNode_3078 == req.getElementType()) {
-			return getGEFWrapper(new DataStoreNodeCreateCommand(req));
+			return getGEFWrapper(new DataStoreNodeInIARCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
+	}
+
+	/**
+	 * Get the command to move an element to this group
+	 * 
+	 * @see org.eclipse.papyrus.diagram.activity.edit.policies.UMLBaseItemSemanticEditPolicy#getMoveCommand(org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest)
+	 * @param req
+	 *        the move request
+	 * @return the command to move an element in the group
+	 * @generated NOT
+	 */
+	@Override
+	protected Command getMoveCommand(MoveRequest req) {
+		return getGEFWrapper(new MoveElementInGroupCommand(req, getHost()));
 	}
 
 
