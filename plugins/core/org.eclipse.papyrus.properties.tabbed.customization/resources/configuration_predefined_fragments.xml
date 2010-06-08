@@ -6,7 +6,7 @@
 		</context>
 		<content>
 			<container>
-				<layout kind="Grid" columns="1" sameSize="false"/>
+				<layout kind="Grid" numColumns="1" sameWidth="false"/>
 				 <controller id="stateBeanPropertyEditorController">
 					<property name="name"/>
 					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Label:" labelPosition="16384"/>
@@ -20,7 +20,7 @@
 		</context>
 		<content>
 			<container >
-				<layout kind="Grid" columns="1" sameSize="false"/>
+				<layout kind="Grid" numColumns="1" sameWidth="false"/>
 				 <controller id="stateBeanPropertyEditorController">
 					<property name="name"/>
 					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Label:" labelPosition="16384"/>
@@ -34,7 +34,7 @@
 		</context>
 		<content>
 			<container>
-			 <layout kind="Grid" columns="1" sameSize="false"/>
+			 <layout kind="Grid" numColumns="1" sameWidth="false"/>
 			</container>
 		</content>
 	</fragment>
@@ -44,7 +44,7 @@
 		</context>
 		<content>
 			<container>
-				 <layout kind="Grid" columns="1" sameSize="false"/>
+				 <layout kind="Grid" numColumns="1" sameWidth="false"/>
 				 <controller id="stateBeanPropertyEditorController">
 					<property name="id"/>
 					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Identifier:" labelPosition="16384"/>
@@ -62,7 +62,7 @@
 		</context>
 		<content>
 			<container>
-				 <layout kind="Grid" columns="1" sameSize="false"/>
+				 <layout kind="Grid" numColumns="1" sameWidth="false"/>
 				 <controller id="stateBeanPropertyEditorController">
 					<property name="id"/>
 					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Identifier:" labelPosition="16384"/>
@@ -80,8 +80,8 @@
 		</context>
 		<content>
 			<container>
-				 <layout kind="Grid" columns="1" sameSize="false"/>
-				 <controller id="stateBeanPropertyEditorController">
+				 <layout kind="Grid" numColumns="1" sameWidth="false"/>
+				 <controller id="integerStateBeanPropertyEditorController">
 					<property name="numColumns"/>
 					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Number of Columns:" labelPosition="16384"/>
 				</controller>
