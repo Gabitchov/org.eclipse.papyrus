@@ -48,10 +48,19 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 * {@inheritDoc}
 	 */
 	public void addAdditionalListeners() {
-		// adds a listener to the element itself, and to linked elements, like Type
-		if(getUMLElement().getType() != null) {
-			getDiagramEventBroker().addNotificationListener(getUMLElement().getType(), this);
+		// check host semantic element is not null
+		if(!(hostSemanticElement instanceof Property)) {
+			return;
 		}
+
+		Property property = (Property)hostSemanticElement;
+		// adds a listener to the element itself, and to linked elements, like Type
+		if(property.getType() != null) {
+			getDiagramEventBroker().addNotificationListener(property.getType(), this);
+
+		}
+		getDiagramEventBroker().addNotificationListener(property.getUpperValue(), this);
+		getDiagramEventBroker().addNotificationListener(property.getLowerValue(), this);
 	}
 
 	/**
@@ -212,6 +221,11 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			return;
 		}
 
+		if(notification.getFeature().equals(UMLPackage.eINSTANCE.getLiteralInteger_Value())) {
+			refreshDisplay();
+		} else if(notification.getFeature().equals(UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value())) {
+			refreshDisplay();
+		}
 		if(object.equals(property)) {
 			notifyPropertyChanged(property, notification);
 		} else if(object.equals(property.getType())) {
@@ -241,10 +255,6 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		case UMLPackage.PROPERTY__NAME:
 		case UMLPackage.PROPERTY__VISIBILITY:
 		case UMLPackage.PROPERTY__IS_DERIVED:
-		case UMLPackage.PROPERTY__LOWER:
-		case UMLPackage.PROPERTY__LOWER_VALUE:
-		case UMLPackage.PROPERTY__UPPER:
-		case UMLPackage.PROPERTY__UPPER_VALUE:
 		case UMLPackage.PROPERTY__DEFAULT_VALUE:
 		case UMLPackage.PROPERTY__SUBSETTED_PROPERTY:
 		case UMLPackage.PROPERTY__REDEFINED_PROPERTY:
@@ -254,6 +264,10 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			refreshDisplay();
 			break;
 		case UMLPackage.PROPERTY__TYPE:
+		case UMLPackage.PROPERTY__LOWER:
+		case UMLPackage.PROPERTY__LOWER_VALUE:
+		case UMLPackage.PROPERTY__UPPER:
+		case UMLPackage.PROPERTY__UPPER_VALUE:
 
 			switch(notification.getEventType()) {
 			// if it is added => adds listener to the type element
@@ -272,11 +286,11 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			// if it is set, remove the old one and adds the new one. this is the method use when
 			// the type is set or removed...
 			case Notification.SET:
-				if(notification.getNewValue() != null) {
-					getDiagramEventBroker().addNotificationListener((EObject)notification.getNewValue(), this);
-				}
 				if(notification.getOldValue() != null) {
 					getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);
+				}
+				if(notification.getNewValue() != null) {
+					getDiagramEventBroker().addNotificationListener((EObject)notification.getNewValue(), this);
 				}
 				refreshDisplay();
 
@@ -323,9 +337,19 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	 * 
 	 */
 	protected void removeAdditionalListeners() {
-		if(getUMLElement().getType() != null) {
-			getDiagramEventBroker().removeNotificationListener(getUMLElement().getType(), this);
+		if(!(hostSemanticElement instanceof Property)) {
+			// check semantic element is not null and this is really an instance of Property
+			return;
 		}
+
+		Property property = (Property)hostSemanticElement;
+
+		if(property.getType() != null) {
+			getDiagramEventBroker().removeNotificationListener(property.getType(), this);
+		}
+
+		getDiagramEventBroker().removeNotificationListener(property.getUpperValue(), this);
+		getDiagramEventBroker().removeNotificationListener(property.getLowerValue(), this);
 	}
 
 	/**
