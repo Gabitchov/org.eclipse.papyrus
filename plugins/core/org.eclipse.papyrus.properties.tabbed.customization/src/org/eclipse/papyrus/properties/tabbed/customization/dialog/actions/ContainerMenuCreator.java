@@ -163,7 +163,7 @@ public class ContainerMenuCreator extends AbstractMenuCreator {
 							 */
 							@Override
 							public void run() {
-								// remove this section descriptor state from its parent
+								// add this section descriptor state from its parent
 								if(parent instanceof Tree) {
 									TreeItem[] selectedItems = ((Tree)parent).getSelection();
 									if(selectedItems.length < 1) {

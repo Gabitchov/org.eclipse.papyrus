@@ -19,7 +19,6 @@ import java.util.List;
 import org.eclipse.papyrus.properties.runtime.state.AbstractState;
 import org.eclipse.papyrus.properties.runtime.state.IFragmentDescriptorState;
 import org.eclipse.papyrus.properties.runtime.state.ITraversableModelElement;
-import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.IFragmentDescriptor;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -207,7 +206,7 @@ public class SectionDescriptorState extends AbstractState {
 	 * @param state
 	 *        the state to add
 	 */
-	public void addFragmentDescriptorState(FragmentDescriptorState state) {
+	public void addFragmentDescriptorState(IFragmentDescriptorState state) {
 		fragmentDescriptorStates.add(state);
 
 		changeSupport.firePropertyChange(PROPERTY_ADD_CHILD, null, state);

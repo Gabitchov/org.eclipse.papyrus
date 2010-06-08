@@ -13,6 +13,8 @@ package org.eclipse.papyrus.properties.tabbed.customization.dialog.actions;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
@@ -21,7 +23,12 @@ import org.eclipse.jface.action.Separator;
 import org.eclipse.papyrus.properties.runtime.state.IFragmentDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptorState;
+import org.eclipse.papyrus.properties.runtime.view.PredefinedFragmentDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.PredefinedFragmentDescriptorState;
+import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
+import org.eclipse.papyrus.properties.runtime.view.constraints.ConstraintDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.constraints.ObjectTypeConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptorState;
@@ -116,7 +123,7 @@ public class SectionMenuCreator extends AbstractMenuCreator {
 		manager.add(removeAction);
 		manager.add(new Separator(ADD_GROUP));
 
-		IAction addFragmentAction = new Action("Add Fragment", Activator.imageDescriptorFromPlugin(Activator.ID, "/icons/NewFragment.gif")) {
+		IAction addFragmentAction = new Action("Add New Fragment", Activator.imageDescriptorFromPlugin(Activator.ID, "/icons/NewFragment.gif")) {
 
 			/**
 			 * {@inheritDoc}
@@ -131,32 +138,77 @@ public class SectionMenuCreator extends AbstractMenuCreator {
 
 		};
 		manager.appendToGroup(ADD_GROUP, addFragmentAction);
+		// adds a fragment to the current element
 
-		//		IAction addPredefinedFragmentAction = new Action("Add PredefinedFragment", Activator.imageDescriptorFromPlugin(Activator.PLUGIN_ID, "/icons/NewFragment.gif")) {
-		//
-		//			/**
-		//			 * {@inheritDoc}
-		//			 */
-		//			@Override
-		//			public void run() {
-		//				// adds a fragment to the current element
-		//				Map<String, FragmentDescriptor>  availableFragmentDescriptors = PropertyViewService.getInstance().getAllFragmentDescriptors();
-		//				
-		//				for(FragmentDescriptor descriptor : availableFragmentDescriptors.values()) {
-		//					// check the constraints for this descriptor are valid ?
-		//					for(IConstraintDescriptor constraintDescriptor : descriptor.getConstraintDescriptors()) {
-		//						
-		//					}
-		//				}
-		//				
-		//				FragmentDescriptor fragmentDescriptor = new FragmentDescriptor(getNewFragmentId(), new ArrayList<IConstraintDescriptor>(), new ArrayList<ContainerDescriptor>());
-		//				FragmentDescriptorState fragmentDescriptorState = new FragmentDescriptorState(fragmentDescriptor);
-		//				SectionDescriptorState.this.addFragmentDescriptorState(fragmentDescriptorState);
-		//			}
-		//
-		//		};
-		//		manager.appendToGroup(ADD_GROUP, addPredefinedFragmentAction);
+
+		Class<?> selectionClass = null;
+		if(parent instanceof Tree) {
+			Tree tree = (Tree)parent;
+			TreeItem[] items = tree.getSelection();
+			if(items.length < 1) {
+				Activator.log.warn("impossible to find an element in the selection");
+				return menu;
+			}
+			TreeItem root = retrieveRoot(items[0]);
+			if(root != null) {
+				Object rootElement = root.getData();
+				if(rootElement instanceof ContentHolder) {
+					List<ConstraintDescriptorState> constraintDescriptorStates = ((ContentHolder)rootElement).getSectionSetDescriptorState().getConstraintDescriptorStates();
+					for(ConstraintDescriptorState constraintDescriptorState : constraintDescriptorStates) {
+						IConstraintDescriptor descriptor = constraintDescriptorState.getDescriptor();
+						if(descriptor instanceof ObjectTypeConstraintDescriptor) { // check class compatibility. Should also check the other constraints...
+							selectionClass = ((ObjectTypeConstraintDescriptor)descriptor).getElementClass();
+						}
+					}
+				}
+			}
+		}
+		Map<String, FragmentDescriptor> availableFragmentDescriptors = PropertyViewService.getInstance().getAllFragmentDescriptors();
+
+		for(final FragmentDescriptor descriptor : availableFragmentDescriptors.values()) {
+			// check constraints 
+			for(IConstraintDescriptor constraintDescriptor : descriptor.getConstraintDescriptors()) {
+				if(constraintDescriptor instanceof ObjectTypeConstraintDescriptor) {
+					Class<?> elementClass = ((ObjectTypeConstraintDescriptor)constraintDescriptor).getElementClass();
+					// check element class is compatible
+					if(elementClass.isAssignableFrom(selectionClass)) {
+
+
+						IAction addPredefinedFragmentAction = new Action("Add Predefined " + descriptor.getText(), Activator.imageDescriptorFromPlugin(Activator.ID, "/icons/NewFragment.gif")) {
+
+							/**
+							 * {@inheritDoc}
+							 */
+							@Override
+							public void run() {
+								// add this fragment descriptor state from its parent
+								if(parent instanceof Tree) {
+									TreeItem[] selectedItems = ((Tree)parent).getSelection();
+									if(selectedItems.length < 1) {
+										Activator.log.warn("Impossible to find the current selection in the tree");
+										return;
+									}
+									PredefinedFragmentDescriptor predefinedFragmentDescriptor = new PredefinedFragmentDescriptor(descriptor.getId());
+									PredefinedFragmentDescriptorState state = new PredefinedFragmentDescriptorState(predefinedFragmentDescriptor, false);
+									sectionDescriptorState.addFragmentDescriptorState(state);
+								}
+							}
+
+						};
+						manager.appendToGroup(ADD_GROUP, addPredefinedFragmentAction);
+					}
+				}
+			}
+		}
+
 		return menu;
+	}
+
+	protected TreeItem retrieveRoot(TreeItem item) {
+		if(item.getParentItem() == null) {
+			return item;
+		}
+		return retrieveRoot(item.getParentItem());
 	}
 
 	/**
