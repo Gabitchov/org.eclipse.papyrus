@@ -136,6 +136,42 @@
                                 </objectClass>
                              </enablement>
                           </action>
+                          <action
+                                class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddDefaultNamedElementAction"
+                                enablesFor="*"
+                                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
+                                id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddDefaultNamedElementAction"
+                                label="Add DefaultNamedElement EditPart"
+                                menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddHyperLinkPopupBarBehavior">
+                             <enablement>
+                                <or>
+                                   <objectClass
+                                         name="org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator">
+                                   </objectClass>
+                                   <objectClass
+                                         name="org.eclipse.gmf.codegen.gmfgen.GenDiagram">
+                                   </objectClass>
+                                </or>
+                             </enablement>
+                          </action>
+                          <action
+                                class="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddShapeNamedElementAction"
+                                enablesFor="*"
+                                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Image.gif"
+                                id="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.AddShapeNamedElementAction"
+                                label="Add ShapeNamedElement EditPart"
+                                menubarPath="org.eclipse.papyrus.papyrusgmfgenextension.popupaction.MenuPapyrus/AddHyperLinkPopupBarBehavior">
+                             <enablement>
+                                <or>
+                                   <objectClass
+                                         name="org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator">
+                                   </objectClass>
+                                   <objectClass
+                                         name="org.eclipse.gmf.codegen.gmfgen.GenDiagram">
+                                   </objectClass>
+                                </or>
+                             </enablement>
+                          </action>
       </objectContribution>
    </extension>
 
