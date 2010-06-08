@@ -30,6 +30,7 @@ import org.eclipse.papyrus.diagram.clazz.CreateClassDiagramCommand;
 import org.eclipse.papyrus.diagram.clazz.UmlClassDiagramForMultiEditor;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditor;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
+import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
@@ -48,7 +49,7 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 	protected PapyrusMultiDiagramEditor papyrusEditor;
 	
 	/** The di resource set. */
-	protected DiResourceSet diResourceSet;
+	protected ModelSet diResourceSet;
 	
 	/** The project. */
 	protected IProject project;
@@ -112,7 +113,7 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 	protected void tearDown() throws Exception {
 		diagramEditor.doSave(new NullProgressMonitor());
 		//diResourceSet.save( new NullProgressMonitor());
-		diagramEditor.close(true);
+		//diagramEditor.close(true);
 		diagramEditor=null;
 		page.closeAllEditors(true);
 		project.delete(true, new NullProgressMonitor());
@@ -128,7 +129,8 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 	protected DiagramEditPart getDiagramEditPart(){
 		if(clazzdiagrameditPart== null){
 			diagramEditor= (UmlClassDiagramForMultiEditor)papyrusEditor.getActiveEditor();
-			clazzdiagrameditPart = (DiagramEditPart)diagramEditor.getGraphicalViewer().getEditPartRegistry().get(diagramEditor.getDiagram());
+			System.err.println(diagramEditor.getGraphicalViewer().getContents().getRoot());
+			clazzdiagrameditPart = (DiagramEditPart)diagramEditor.getGraphicalViewer().getContents().getRoot().getChildren().get(0);
 		}
 		return clazzdiagrameditPart;
 	}
@@ -148,9 +150,9 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 			if (!project.isOpen()) project.open(null);
 
 			if (!file.exists()) {
-				diResourceSet.createModelResources(file,"");
+				diResourceSet.createsModels(file);
 				ICreationCommand command= new CreateClassDiagramCommand();
-				command.createDiagram(diResourceSet, null, "ClazzDiagram");
+				command.createDiagram((DiResourceSet)diResourceSet, null, "ClazzDiagram");
 				diResourceSet.save( new NullProgressMonitor());
 				
 			}
