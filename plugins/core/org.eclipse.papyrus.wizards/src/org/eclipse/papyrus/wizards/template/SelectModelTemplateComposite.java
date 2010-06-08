@@ -13,9 +13,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.wizards.template;
 
+import static org.eclipse.papyrus.wizards.Activator.log;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.papyrus.core.extension.NotFoundException;
+import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
+import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -29,7 +37,7 @@ public class SelectModelTemplateComposite extends Composite {
 
 
 	/** The template table viewer. */
-	private TableViewer templateTableViewer;
+	private CheckboxTableViewer templateTableViewer;
 
 	/**
 	 * Instantiates a new select model template composite.
@@ -39,7 +47,7 @@ public class SelectModelTemplateComposite extends Composite {
 	 */
 	public SelectModelTemplateComposite(Composite parent) {
 		super(parent, SWT.NONE);
-		
+
 		setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		GridLayout layout = new GridLayout();
 		layout.marginWidth = layout.marginHeight = 0;
@@ -62,7 +70,7 @@ public class SelectModelTemplateComposite extends Composite {
 		templateTableViewer.setContentProvider(new ModelTemplatesContentProvider());
 		templateTableViewer.setLabelProvider(new ModelTemplatesLabelProvider());
 		templateTableViewer.getControl().setEnabled(true);
-		
+
 		templateTableViewer.getTable().setLayout(new GridLayout());
 	}
 
@@ -72,15 +80,10 @@ public class SelectModelTemplateComposite extends Composite {
 	 * @return the template path
 	 */
 	public String getTemplatePath() {
-		//		if(this.useTemplateButton.getSelection()) {
-		if(this.templateTableViewer.getSelection() instanceof IStructuredSelection) {
-			Object first = ((IStructuredSelection)this.templateTableViewer.getSelection()).getFirstElement();
-			if(first instanceof ModelTemplateDescription) {
-				return ((ModelTemplateDescription)first).getPath();
-			}
+		Object[] selected = templateTableViewer.getCheckedElements();
+		if (selected.length > 0) {
+			return ((ModelTemplateDescription)selected[0]).getPath();
 		}
-		//		}
-
 		return null;
 	}
 
@@ -90,15 +93,10 @@ public class SelectModelTemplateComposite extends Composite {
 	 * @return the template plugin id
 	 */
 	public String getTemplatePluginId() {
-		//		if(this.useTemplateButton.getSelection()) {
-		if(this.templateTableViewer.getSelection() instanceof IStructuredSelection) {
-			Object first = ((IStructuredSelection)this.templateTableViewer.getSelection()).getFirstElement();
-			if(first instanceof ModelTemplateDescription) {
-				return ((ModelTemplateDescription)first).getPluginId();
-			}
+		Object[] selected = templateTableViewer.getCheckedElements();
+		if (selected.length > 0) {
+			return ((ModelTemplateDescription)selected[0]).getPluginId();
 		}
-		//		}
-
 		return null;
 	}
 

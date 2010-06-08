@@ -494,7 +494,11 @@ public class SelectDiagramKindPage extends WizardPage {
 				}
 			}
 		};
+		try {
 		diResourceSet.getTransactionalEditingDomain().getCommandStack().execute(command);
+		} catch (Exception e) {
+			log.error(e);
+		}
 
 	}
 
