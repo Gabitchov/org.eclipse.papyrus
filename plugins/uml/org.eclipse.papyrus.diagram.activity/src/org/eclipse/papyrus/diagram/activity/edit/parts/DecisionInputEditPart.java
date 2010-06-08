@@ -877,15 +877,16 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 
 				Rectangle currentBounds = ((LinkedBehaviorLocator)getBorderItemLocator()).getCorrectItemLocation(this);
 				Point end = BehaviorPropertyNodeEditPolicy.getAppropriateBorderPoint(parentCenter, currentBounds);
-				getLinkToBehaviorProperty().setEnd(end);
-
 				Point start = BehaviorPropertyNodeEditPolicy.getIntersectionPoint(diamond.getPolygonPoints(), parentCenter, end);
-				if(start != null) {
-					getLinkToBehaviorProperty().setStart(start);
-				} else {
+				if(start == null) {
 					// in case start computation fails
-					getLinkToBehaviorProperty().setStart(parentCenter);
+					start = parentCenter;
 				}
+				// adapt ends to bounds
+				Rectangle linkBounds = new Rectangle(start, end);
+				getLinkToBehaviorProperty().setStart(start.translate(linkBounds.getLocation().getNegated()));
+				getLinkToBehaviorProperty().setEnd(end.translate(linkBounds.getLocation().getNegated()));
+				getLinkToBehaviorProperty().setBounds(linkBounds);
 			}
 		}
 

@@ -46,7 +46,7 @@ public class DataStoreNodeInIARItemSemanticEditPolicy extends UMLBaseItemSemanti
 	 * @generated
 	 */
 	public DataStoreNodeInIARItemSemanticEditPolicy() {
-		super(UMLElementTypes.DataStoreNode_3093);
+		super(UMLElementTypes.DataStoreNode_3078);
 	}
 
 

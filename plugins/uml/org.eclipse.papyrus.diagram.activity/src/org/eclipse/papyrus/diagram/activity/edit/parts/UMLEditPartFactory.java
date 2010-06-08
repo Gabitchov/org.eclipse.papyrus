@@ -624,11 +624,11 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case AcceptTimeEventActionInIARAppliedStereotypeEditPart.VISUAL_ID:
 				return new AcceptTimeEventActionInIARAppliedStereotypeEditPart(view);
 
-			case ValueSpecificationActionEditPart.VISUAL_ID:
-				return new ValueSpecificationActionEditPart(view);
+			case ValueSpecificationActionInIAREditPart.VISUAL_ID:
+				return new ValueSpecificationActionInIAREditPart(view);
 
-			case ValueSpecificationActionNameEditPart.VISUAL_ID:
-				return new ValueSpecificationActionNameEditPart(view);
+			case ValueSpecificationActionInIARNameEditPart.VISUAL_ID:
+				return new ValueSpecificationActionInIARNameEditPart(view);
 
 			case OutputPinInValSpecActEditPart.VISUAL_ID:
 				return new OutputPinInValSpecActEditPart(view);
@@ -669,21 +669,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case JoinNodeInIARAppliedStereotypeEditPart.VISUAL_ID:
 				return new JoinNodeInIARAppliedStereotypeEditPart(view);
 
-			case DataStoreNodeEditPart.VISUAL_ID:
-				return new DataStoreNodeEditPart(view);
-
-			case DataStoreNodeLabelEditPart.VISUAL_ID:
-				return new DataStoreNodeLabelEditPart(view);
-
-			case DataStoreSelectionEditPart.VISUAL_ID:
-				return new DataStoreSelectionEditPart(view);
-
-			case ValueSpecificationActionInIAREditPart.VISUAL_ID:
-				return new ValueSpecificationActionInIAREditPart(view);
-
-			case ValueSpecificationActionInIARNameEditPart.VISUAL_ID:
-				return new ValueSpecificationActionInIARNameEditPart(view);
-
 			case DataStoreNodeInIAREditPart.VISUAL_ID:
 				return new DataStoreNodeInIAREditPart(view);
 
@@ -692,6 +677,21 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case DataStoreInIARSelectionEditPart.VISUAL_ID:
 				return new DataStoreInIARSelectionEditPart(view);
+
+			case ValueSpecificationActionEditPart.VISUAL_ID:
+				return new ValueSpecificationActionEditPart(view);
+
+			case ValueSpecificationActionNameEditPart.VISUAL_ID:
+				return new ValueSpecificationActionNameEditPart(view);
+
+			case DataStoreNodeEditPart.VISUAL_ID:
+				return new DataStoreNodeEditPart(view);
+
+			case DataStoreNodeLabelEditPart.VISUAL_ID:
+				return new DataStoreNodeLabelEditPart(view);
+
+			case DataStoreSelectionEditPart.VISUAL_ID:
+				return new DataStoreSelectionEditPart(view);
 
 			case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 				return new ActivityActivityParametersCompartmentEditPart(view);

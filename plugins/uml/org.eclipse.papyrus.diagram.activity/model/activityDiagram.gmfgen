@@ -6125,13 +6125,13 @@
       </childNodes>
       <childNodes
           visualID="3076"
-          editPartClassName="ValueSpecificationActionEditPart"
-          itemSemanticEditPolicyClassName="ValueSpecificationActionItemSemanticEditPolicy"
+          editPartClassName="ValueSpecificationActionInIAREditPart"
+          itemSemanticEditPolicyClassName="ValueSpecificationActionInIARItemSemanticEditPolicy"
           notationViewFactoryClassName="ValueSpecificationActionViewFactory"
-          canonicalEditPolicyClassName="ValueSpecificationActionCanonicalEditPolicy"
+          canonicalEditPolicyClassName="ValueSpecificationActionInIARCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.74"
-          graphicalNodeEditPolicyClassName="ValueSpecificationActionGraphicalNodeEditPolicy"
-          createCommandClassName="ValueSpecificationActionCreateCommand"
+          graphicalNodeEditPolicyClassName="ValueSpecificationActionInIARGraphicalNodeEditPolicy"
+          createCommandClassName="ValueSpecificationActionInIARCreateCommand"
           containers="/0/@diagram/@compartments.10">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -6163,8 +6163,8 @@
         </modelFacet>
         <labels
             visualID="5126"
-            editPartClassName="ValueSpecificationActionNameEditPart"
-            itemSemanticEditPolicyClassName="ValueSpecificationActionNameItemSemanticEditPolicy"
+            editPartClassName="ValueSpecificationActionInIARNameEditPart"
+            itemSemanticEditPolicyClassName="ValueSpecificationActionInIARNameItemSemanticEditPolicy"
             notationViewFactoryClassName="ValueSpecificationActionNameViewFactory">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -6534,12 +6534,12 @@
       </childNodes>
       <childNodes
           visualID="3078"
-          editPartClassName="DataStoreNodeEditPart"
-          itemSemanticEditPolicyClassName="DataStoreNodeItemSemanticEditPolicy"
+          editPartClassName="DataStoreNodeInIAREditPart"
+          itemSemanticEditPolicyClassName="DataStoreNodeInIARItemSemanticEditPolicy"
           notationViewFactoryClassName="DataStoreNodeViewFactory"
-          canonicalEditPolicyClassName="DataStoreNodeCanonicalEditPolicy"
-          graphicalNodeEditPolicyClassName="DataStoreNodeGraphicalNodeEditPolicy"
-          createCommandClassName="DataStoreNodeCreateCommand"
+          canonicalEditPolicyClassName="DataStoreNodeInIARCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="DataStoreNodeInIARGraphicalNodeEditPolicy"
+          createCommandClassName="DataStoreNodeInIARCreateCommand"
           containers="/0/@diagram/@compartments.10">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -6575,8 +6575,8 @@
         </modelFacet>
         <labels
             visualID="5127"
-            editPartClassName="DataStoreNodeLabelEditPart"
-            itemSemanticEditPolicyClassName="DataStoreNodeLabelItemSemanticEditPolicy"
+            editPartClassName="DataStoreNodeInIARLabelEditPart"
+            itemSemanticEditPolicyClassName="DataStoreNodeInIARLabelItemSemanticEditPolicy"
             notationViewFactoryClassName="DataStoreNodeLabelViewFactory">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -6590,8 +6590,8 @@
         <labels
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="5128"
-            editPartClassName="DataStoreSelectionEditPart"
-            itemSemanticEditPolicyClassName="DataStoreSelectionItemSemanticEditPolicy"
+            editPartClassName="DataStoreInIARSelectionEditPart"
+            itemSemanticEditPolicyClassName="DataStoreInIARSelectionItemSemanticEditPolicy"
             notationViewFactoryClassName="DataStoreNodeLabelViewFactory">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -6613,13 +6613,13 @@
       </childNodes>
       <childNodes
           visualID="3088"
-          editPartClassName="ValueSpecificationActionInIAREditPart"
-          itemSemanticEditPolicyClassName="ValueSpecificationActionInIARItemSemanticEditPolicy"
+          editPartClassName="ValueSpecificationActionEditPart"
+          itemSemanticEditPolicyClassName="ValueSpecificationActionItemSemanticEditPolicy"
           notationViewFactoryClassName="ValueSpecificationActionViewFactory"
-          canonicalEditPolicyClassName="ValueSpecificationActionInIARCanonicalEditPolicy"
+          canonicalEditPolicyClassName="ValueSpecificationActionCanonicalEditPolicy"
           childNodes="/0/@diagram/@childNodes.74"
-          graphicalNodeEditPolicyClassName="ValueSpecificationActionInIARGraphicalNodeEditPolicy"
-          createCommandClassName="ValueSpecificationActionInIARCreateCommand"
+          graphicalNodeEditPolicyClassName="ValueSpecificationActionGraphicalNodeEditPolicy"
+          createCommandClassName="ValueSpecificationActionCreateCommand"
           containers="/0/@diagram/@compartments.3">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -6651,8 +6651,8 @@
         </modelFacet>
         <labels
             visualID="5140"
-            editPartClassName="ValueSpecificationActionInIARNameEditPart"
-            itemSemanticEditPolicyClassName="ValueSpecificationActionInIARNameItemSemanticEditPolicy"
+            editPartClassName="ValueSpecificationActionNameEditPart"
+            itemSemanticEditPolicyClassName="ValueSpecificationActionNameItemSemanticEditPolicy"
             notationViewFactoryClassName="ValueSpecificationActionNameViewFactory">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -6670,12 +6670,12 @@
       </childNodes>
       <childNodes
           visualID="3093"
-          editPartClassName="DataStoreNodeInIAREditPart"
-          itemSemanticEditPolicyClassName="DataStoreNodeInIARItemSemanticEditPolicy"
+          editPartClassName="DataStoreNodeEditPart"
+          itemSemanticEditPolicyClassName="DataStoreNodeItemSemanticEditPolicy"
           notationViewFactoryClassName="DataStoreNodeViewFactory"
-          canonicalEditPolicyClassName="DataStoreNodeInIARCanonicalEditPolicy"
-          graphicalNodeEditPolicyClassName="DataStoreNodeInIARGraphicalNodeEditPolicy"
-          createCommandClassName="DataStoreNodeInIARCreateCommand"
+          canonicalEditPolicyClassName="DataStoreNodeCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="DataStoreNodeGraphicalNodeEditPolicy"
+          createCommandClassName="DataStoreNodeCreateCommand"
           containers="/0/@diagram/@compartments.3">
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -6707,8 +6707,8 @@
         </modelFacet>
         <labels
             visualID="5147"
-            editPartClassName="DataStoreNodeInIARLabelEditPart"
-            itemSemanticEditPolicyClassName="DataStoreNodeInIARLabelItemSemanticEditPolicy"
+            editPartClassName="DataStoreNodeLabelEditPart"
+            itemSemanticEditPolicyClassName="DataStoreNodeLabelItemSemanticEditPolicy"
             notationViewFactoryClassName="DataStoreNodeLabelViewFactory">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -6722,8 +6722,8 @@
         <labels
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="5148"
-            editPartClassName="DataStoreInIARSelectionEditPart"
-            itemSemanticEditPolicyClassName="DataStoreInIARSelectionItemSemanticEditPolicy"
+            editPartClassName="DataStoreSelectionEditPart"
+            itemSemanticEditPolicyClassName="DataStoreSelectionItemSemanticEditPolicy"
             notationViewFactoryClassName="DataStoreNodeLabelViewFactory">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -7494,6 +7494,14 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicyRoles.CREATION_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.groups.edit.policies.CreateInReferencingGroupEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="&quot;RemoveOrphanView&quot;"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
       </compartments>
       <palette>
         <groups
@@ -13207,7 +13215,7 @@
           uses="/0/@diagram/@childNodes.1/@labelModelFacet /0/@diagram/@childNodes.2/@labelModelFacet /0/@diagram/@childNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.24/@labels.0/@modelFacet /0/@diagram/@childNodes.25/@labels.0/@modelFacet /0/@diagram/@childNodes.26/@labels.0/@modelFacet /0/@diagram/@childNodes.27/@labels.0/@modelFacet /0/@diagram/@childNodes.28/@labels.0/@modelFacet /0/@diagram/@childNodes.29/@labels.0/@modelFacet /0/@diagram/@childNodes.30/@labels.0/@modelFacet /0/@diagram/@childNodes.31/@labels.0/@modelFacet /0/@diagram/@childNodes.32/@labels.0/@modelFacet /0/@diagram/@childNodes.33/@labels.0/@modelFacet /0/@diagram/@childNodes.38/@labels.0/@modelFacet /0/@diagram/@childNodes.45/@labels.0/@modelFacet /0/@diagram/@childNodes.62/@labels.0/@modelFacet /0/@diagram/@childNodes.67/@labels.0/@modelFacet /0/@diagram/@childNodes.70/@labels.0/@modelFacet /0/@diagram/@childNodes.71/@labels.0/@modelFacet /0/@diagram/@childNodes.73/@labels.0/@modelFacet /0/@diagram/@childNodes.80/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.35/@labels.0/@modelFacet /0/@diagram/@childNodes.20/@labels.1/@modelFacet /0/@diagram/@childNodes.51/@labels.1/@modelFacet /0/@diagram/@childNodes.77/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.6/@modelFacet /0/@diagram/@childNodes.64/@labels.0/@modelFacet /0/@diagram/@childNodes.75/@labels.1/@modelFacet /0/@diagram/@childNodes.65/@labels.0/@modelFacet /0/@diagram/@childNodes.9/@labels.1/@modelFacet /0/@diagram/@childNodes.17/@labels.2/@modelFacet /0/@diagram/@childNodes.34/@labels.1/@modelFacet /0/@diagram/@childNodes.76/@labels.0/@modelFacet /0/@diagram/@childNodes.40/@labels.2/@modelFacet /0/@diagram/@childNodes.54/@labels.1/@modelFacet /0/@diagram/@childNodes.14/@labels.1/@modelFacet /0/@diagram/@childNodes.22/@labels.2/@modelFacet /0/@diagram/@childNodes.43/@labels.2/@modelFacet /0/@diagram/@childNodes.50/@labels.2/@modelFacet /0/@diagram/@childNodes.42/@labels.2/@modelFacet /0/@diagram/@childNodes.23/@labels.1/@modelFacet /0/@diagram/@childNodes.53/@labels.2/@modelFacet /0/@diagram/@childNodes.37/@labels.1/@modelFacet /0/@diagram/@childNodes.47/@labels.2/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet /0/@diagram/@childNodes.44/@labels.1/@modelFacet /0/@diagram/@childNodes.12/@labels.2/@modelFacet /0/@diagram/@childNodes.72/@labels.2/@modelFacet /0/@diagram/@childNodes.13/@labels.2/@modelFacet /0/@diagram/@childNodes.66/@labels.0/@modelFacet /0/@diagram/@childNodes.15/@labels.1/@modelFacet /0/@diagram/@childNodes.49/@labels.2/@modelFacet /0/@diagram/@childNodes.8/@labels.2/@modelFacet /0/@diagram/@childNodes.7/@labels.2/@modelFacet /0/@diagram/@childNodes.39/@labels.2/@modelFacet /0/@diagram/@childNodes.48/@labels.1/@modelFacet /0/@diagram/@links.3/@labels.3/@modelFacet /0/@diagram/@childNodes.41/@labels.1/@modelFacet /0/@diagram/@childNodes.19/@labels.1/@modelFacet /0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.21/@labels.2/@modelFacet /0/@diagram/@childNodes.5/@labels.0/@modelFacet /0/@diagram/@childNodes.74/@labels.1/@modelFacet /0/@diagram/@childNodes.46/@labels.2/@modelFacet /0/@diagram/@childNodes.10/@labels.1/@modelFacet /0/@diagram/@childNodes.18/@labels.2/@modelFacet /0/@diagram/@childNodes.36/@labels.0/@modelFacet /0/@diagram/@childNodes.78/@labels.1/@modelFacet"
+          uses="/0/@diagram/@childNodes.54/@labels.1/@modelFacet /0/@diagram/@childNodes.5/@labels.0/@modelFacet /0/@diagram/@childNodes.35/@labels.0/@modelFacet /0/@diagram/@childNodes.39/@labels.2/@modelFacet /0/@diagram/@childNodes.42/@labels.2/@modelFacet /0/@diagram/@childNodes.12/@labels.2/@modelFacet /0/@diagram/@childNodes.64/@labels.0/@modelFacet /0/@diagram/@childNodes.23/@labels.1/@modelFacet /0/@diagram/@links.3/@labels.3/@modelFacet /0/@diagram/@childNodes.41/@labels.1/@modelFacet /0/@diagram/@childNodes.43/@labels.2/@modelFacet /0/@diagram/@childNodes.51/@labels.1/@modelFacet /0/@diagram/@childNodes.66/@labels.0/@modelFacet /0/@diagram/@childNodes.37/@labels.1/@modelFacet /0/@diagram/@childNodes.34/@labels.1/@modelFacet /0/@diagram/@childNodes.17/@labels.2/@modelFacet /0/@diagram/@childNodes.18/@labels.2/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.2/@modelFacet /0/@diagram/@childNodes.21/@labels.2/@modelFacet /0/@diagram/@childNodes.10/@labels.1/@modelFacet /0/@diagram/@childNodes.75/@labels.1/@modelFacet /0/@diagram/@childNodes.7/@labels.2/@modelFacet /0/@diagram/@childNodes.47/@labels.2/@modelFacet /0/@diagram/@links.2/@labels.6/@modelFacet /0/@diagram/@childNodes.53/@labels.2/@modelFacet /0/@diagram/@childNodes.15/@labels.1/@modelFacet /0/@diagram/@childNodes.65/@labels.0/@modelFacet /0/@diagram/@childNodes.78/@labels.1/@modelFacet /0/@diagram/@childNodes.50/@labels.2/@modelFacet /0/@diagram/@childNodes.14/@labels.1/@modelFacet /0/@diagram/@childNodes.46/@labels.2/@modelFacet /0/@diagram/@childNodes.19/@labels.1/@modelFacet /0/@diagram/@childNodes.72/@labels.2/@modelFacet /0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.44/@labels.1/@modelFacet /0/@diagram/@childNodes.48/@labels.1/@modelFacet /0/@diagram/@childNodes.13/@labels.2/@modelFacet /0/@diagram/@childNodes.22/@labels.2/@modelFacet /0/@diagram/@childNodes.77/@labels.0/@modelFacet /0/@diagram/@childNodes.20/@labels.1/@modelFacet /0/@diagram/@childNodes.74/@labels.1/@modelFacet /0/@diagram/@childNodes.9/@labels.1/@modelFacet /0/@diagram/@childNodes.76/@labels.0/@modelFacet /0/@diagram/@childNodes.49/@labels.2/@modelFacet /0/@diagram/@childNodes.40/@labels.2/@modelFacet /0/@diagram/@childNodes.36/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -13219,19 +13227,19 @@
           qualifiedName="org.eclipse.papyrus.diagram.activity.parser.custom.ParameterParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.69/@labels.0/@modelFacet /0/@diagram/@childNodes.16/@labels.0/@modelFacet"
+          uses="/0/@diagram/@childNodes.16/@labels.0/@modelFacet /0/@diagram/@childNodes.69/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.activity.parser.custom.CallOperationActionParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.68/@labels.0/@modelFacet /0/@diagram/@childNodes.11/@labels.0/@modelFacet"
+          uses="/0/@diagram/@childNodes.11/@labels.0/@modelFacet /0/@diagram/@childNodes.68/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.activity.parser.custom.CallBehaviorActionParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.41/@labels.0/@modelFacet /0/@diagram/@childNodes.18/@labels.0/@modelFacet /0/@diagram/@childNodes.46/@labels.0/@modelFacet /0/@diagram/@childNodes.23/@labels.0/@modelFacet /0/@diagram/@childNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.54/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.21/@labels.0/@modelFacet /0/@diagram/@childNodes.19/@labels.0/@modelFacet /0/@diagram/@childNodes.44/@labels.0/@modelFacet /0/@diagram/@childNodes.39/@labels.0/@modelFacet /0/@diagram/@childNodes.74/@labels.0/@modelFacet /0/@diagram/@childNodes.51/@labels.0/@modelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.49/@labels.0/@modelFacet /0/@diagram/@childNodes.17/@labels.0/@modelFacet /0/@diagram/@childNodes.43/@labels.0/@modelFacet /0/@diagram/@childNodes.15/@labels.0/@modelFacet /0/@diagram/@childNodes.22/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.48/@labels.0/@modelFacet /0/@diagram/@childNodes.13/@labels.0/@modelFacet /0/@diagram/@childNodes.42/@labels.0/@modelFacet /0/@diagram/@childNodes.40/@labels.0/@modelFacet /0/@diagram/@childNodes.20/@labels.0/@modelFacet /0/@diagram/@childNodes.14/@labels.0/@modelFacet /0/@diagram/@childNodes.50/@labels.0/@modelFacet /0/@diagram/@childNodes.47/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet"
+          uses="/0/@diagram/@childNodes.40/@labels.0/@modelFacet /0/@diagram/@childNodes.17/@labels.0/@modelFacet /0/@diagram/@childNodes.18/@labels.0/@modelFacet /0/@diagram/@childNodes.39/@labels.0/@modelFacet /0/@diagram/@childNodes.21/@labels.0/@modelFacet /0/@diagram/@childNodes.20/@labels.0/@modelFacet /0/@diagram/@childNodes.41/@labels.0/@modelFacet /0/@diagram/@childNodes.48/@labels.0/@modelFacet /0/@diagram/@childNodes.22/@labels.0/@modelFacet /0/@diagram/@childNodes.50/@labels.0/@modelFacet /0/@diagram/@childNodes.14/@labels.0/@modelFacet /0/@diagram/@childNodes.74/@labels.0/@modelFacet /0/@diagram/@childNodes.44/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@childNodes.42/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.51/@labels.0/@modelFacet /0/@diagram/@childNodes.15/@labels.0/@modelFacet /0/@diagram/@childNodes.23/@labels.0/@modelFacet /0/@diagram/@childNodes.43/@labels.0/@modelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.46/@labels.0/@modelFacet /0/@diagram/@childNodes.13/@labels.0/@modelFacet /0/@diagram/@childNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.49/@labels.0/@modelFacet /0/@diagram/@childNodes.19/@labels.0/@modelFacet /0/@diagram/@childNodes.47/@labels.0/@modelFacet /0/@diagram/@childNodes.54/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.activity.parser.custom.PinParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.42/@labels.1/@modelFacet /0/@diagram/@childNodes.22/@labels.1/@modelFacet /0/@diagram/@childNodes.39/@labels.1/@modelFacet /0/@diagram/@childNodes.49/@labels.1/@modelFacet /0/@diagram/@childNodes.47/@labels.1/@modelFacet /0/@diagram/@childNodes.50/@labels.1/@modelFacet /0/@diagram/@childNodes.12/@labels.1/@modelFacet /0/@diagram/@childNodes.17/@labels.1/@modelFacet /0/@diagram/@childNodes.46/@labels.1/@modelFacet /0/@diagram/@childNodes.7/@labels.1/@modelFacet /0/@diagram/@childNodes.18/@labels.1/@modelFacet /0/@diagram/@childNodes.43/@labels.1/@modelFacet /0/@diagram/@childNodes.8/@labels.1/@modelFacet /0/@diagram/@childNodes.40/@labels.1/@modelFacet /0/@diagram/@childNodes.13/@labels.1/@modelFacet /0/@diagram/@childNodes.21/@labels.1/@modelFacet"
+          uses="/0/@diagram/@childNodes.18/@labels.1/@modelFacet /0/@diagram/@childNodes.8/@labels.1/@modelFacet /0/@diagram/@childNodes.40/@labels.1/@modelFacet /0/@diagram/@childNodes.13/@labels.1/@modelFacet /0/@diagram/@childNodes.50/@labels.1/@modelFacet /0/@diagram/@childNodes.39/@labels.1/@modelFacet /0/@diagram/@childNodes.17/@labels.1/@modelFacet /0/@diagram/@childNodes.49/@labels.1/@modelFacet /0/@diagram/@childNodes.7/@labels.1/@modelFacet /0/@diagram/@childNodes.42/@labels.1/@modelFacet /0/@diagram/@childNodes.43/@labels.1/@modelFacet /0/@diagram/@childNodes.21/@labels.1/@modelFacet /0/@diagram/@childNodes.47/@labels.1/@modelFacet /0/@diagram/@childNodes.12/@labels.1/@modelFacet /0/@diagram/@childNodes.46/@labels.1/@modelFacet /0/@diagram/@childNodes.22/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.activity.parser.custom.PinValueParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -13239,7 +13247,7 @@
           qualifiedName="org.eclipse.papyrus.diagram.activity.parser.custom.ActivityEdgeWeightParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.37/@labels.0/@modelFacet /0/@diagram/@childNodes.78/@labels.0/@modelFacet"
+          uses="/0/@diagram/@childNodes.78/@labels.0/@modelFacet /0/@diagram/@childNodes.37/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.activity.parser.custom.JoinSpecParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -13271,11 +13279,11 @@
           qualifiedName="org.eclipse.papyrus.diagram.activity.parser.custom.AcceptEventActionParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.72/@labels.1/@modelFacet /0/@diagram/@childNodes.53/@labels.1/@modelFacet"
+          uses="/0/@diagram/@childNodes.53/@labels.1/@modelFacet /0/@diagram/@childNodes.72/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.activity.parser.custom.AcceptTimeEventActionParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.60/@labels.0/@modelFacet /0/@diagram/@childNodes.61/@labels.0/@modelFacet /0/@diagram/@childNodes.56/@labels.0/@modelFacet /0/@diagram/@childNodes.59/@labels.0/@modelFacet /0/@diagram/@childNodes.55/@labels.0/@modelFacet"
+          uses="/0/@diagram/@childNodes.61/@labels.0/@modelFacet /0/@diagram/@childNodes.59/@labels.0/@modelFacet /0/@diagram/@childNodes.56/@labels.0/@modelFacet /0/@diagram/@childNodes.60/@labels.0/@modelFacet /0/@diagram/@childNodes.55/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.activity.parser.custom.StructuredActivityNodeKeywordParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -13287,7 +13295,7 @@
           qualifiedName="org.eclipse.papyrus.diagram.activity.parser.custom.ObjectNodeParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.81/@labels.1/@modelFacet /0/@diagram/@childNodes.79/@labels.1/@modelFacet"
+          uses="/0/@diagram/@childNodes.79/@labels.1/@modelFacet /0/@diagram/@childNodes.81/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.activity.parser.custom.ObjectNodeSelectionParser"/>
     </labelParsers>
     <contextMenus
@@ -13337,7 +13345,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="Node with label for named element"
-        genView="/0/@diagram/@childNodes.79"
+        genView="/0/@diagram/@childNodes.81"
         name="NamedElementEditPart"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart"/>
     <extensionNodes
@@ -13412,8 +13420,8 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="Nodes in groups behave the same way (ValueSpecificationAction)"
-        genView="/0/@diagram/@childNodes.80"
-        superGenViews="/0/@diagram/@childNodes.73"
+        genView="/0/@diagram/@childNodes.73"
+        superGenViews="/0/@diagram/@childNodes.80"
         name="ValueSpecificationActionEditPart"
         superOwnedEditPart="org.eclipse.papyrus.diagram.activity.edit.parts.ValueSpecificationActionEditPart"/>
     <extensionNodes
@@ -13447,8 +13455,8 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="Nodes in groups behave the same way (DataStoreNode)"
-        genView="/0/@diagram/@childNodes.81"
-        superGenViews="/0/@diagram/@childNodes.79"
+        genView="/0/@diagram/@childNodes.79"
+        superGenViews="/0/@diagram/@childNodes.81"
         name="DataStoreNodeEditPart"
         superOwnedEditPart="org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeEditPart"/>
     <extensionNodes
@@ -13524,8 +13532,8 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="Nodes in groups behave the same way (ValueSpecificationActionName)"
-        genView="/0/@diagram/@childNodes.80/@labels.0"
-        superGenViews="/0/@diagram/@childNodes.73/@labels.0"
+        genView="/0/@diagram/@childNodes.73/@labels.0"
+        superGenViews="/0/@diagram/@childNodes.80/@labels.0"
         name="ValueSpecificationActionNameEditPart"
         superOwnedEditPart="org.eclipse.papyrus.diagram.activity.edit.parts.ValueSpecificationActionNameEditPart"/>
     <extensionNodes
@@ -13573,15 +13581,15 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="Nodes in groups behave the same way (DataStoreNodeLabel)"
-        genView="/0/@diagram/@childNodes.81/@labels.0"
-        superGenViews="/0/@diagram/@childNodes.79/@labels.0"
+        genView="/0/@diagram/@childNodes.79/@labels.0"
+        superGenViews="/0/@diagram/@childNodes.81/@labels.0"
         name="DataStoreNodeLabelEditPart"
         superOwnedEditPart="org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeLabelEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="Nodes in groups behave the same way (DataStoreSelection)"
-        genView="/0/@diagram/@childNodes.81/@labels.1"
-        superGenViews="/0/@diagram/@childNodes.79/@labels.1"
+        genView="/0/@diagram/@childNodes.79/@labels.1"
+        superGenViews="/0/@diagram/@childNodes.81/@labels.1"
         name="DataStoreSelectionEditPart"
         superOwnedEditPart="org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreSelectionEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>

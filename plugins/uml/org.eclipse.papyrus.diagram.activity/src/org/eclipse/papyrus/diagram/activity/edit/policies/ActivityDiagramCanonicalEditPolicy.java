@@ -1022,7 +1022,7 @@ public class ActivityDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 			}
 			break;
 		}
-		case ValueSpecificationActionEditPart.VISUAL_ID:
+		case ValueSpecificationActionInIAREditPart.VISUAL_ID:
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getValueSpecificationAction_3076ContainedLinks(view));
@@ -1082,7 +1082,7 @@ public class ActivityDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 			}
 			break;
 		}
-		case DataStoreNodeEditPart.VISUAL_ID:
+		case DataStoreNodeInIAREditPart.VISUAL_ID:
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getDataStoreNode_3078ContainedLinks(view));
@@ -1092,7 +1092,7 @@ public class ActivityDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 			}
 			break;
 		}
-		case ValueSpecificationActionInIAREditPart.VISUAL_ID:
+		case ValueSpecificationActionEditPart.VISUAL_ID:
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getValueSpecificationAction_3088ContainedLinks(view));
@@ -1102,7 +1102,7 @@ public class ActivityDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 			}
 			break;
 		}
-		case DataStoreNodeInIAREditPart.VISUAL_ID:
+		case DataStoreNodeEditPart.VISUAL_ID:
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getDataStoreNode_3093ContainedLinks(view));

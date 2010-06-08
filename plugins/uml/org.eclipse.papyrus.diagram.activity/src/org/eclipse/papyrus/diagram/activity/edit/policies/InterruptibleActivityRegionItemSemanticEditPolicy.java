@@ -42,7 +42,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionInIARE
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
@@ -63,7 +63,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionInIAREdit
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValueSpecificationActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ValueSpecificationActionInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 
@@ -1087,7 +1087,7 @@ public class InterruptibleActivityRegionItemSemanticEditPolicy extends UMLBaseIt
 						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
-					case ValueSpecificationActionEditPart.VISUAL_ID:
+					case ValueSpecificationActionInIAREditPart.VISUAL_ID:
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ObjectFlowEditPart.VISUAL_ID) {
@@ -1302,7 +1302,7 @@ public class InterruptibleActivityRegionItemSemanticEditPolicy extends UMLBaseIt
 						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
 						// cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), cnode));
 						break;
-					case DataStoreNodeEditPart.VISUAL_ID:
+					case DataStoreNodeInIAREditPart.VISUAL_ID:
 						for(Iterator<?> it = cnode.getTargetEdges().iterator(); it.hasNext();) {
 							Edge incomingLink = (Edge)it.next();
 							if(UMLVisualIDRegistry.getVisualID(incomingLink) == ObjectFlowEditPart.VISUAL_ID) {

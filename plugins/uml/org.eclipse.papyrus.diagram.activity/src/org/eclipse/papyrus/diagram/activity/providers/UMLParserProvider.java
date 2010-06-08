@@ -2609,7 +2609,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getAcceptEventActionLabel_5138Parser();
 		case AcceptTimeEventActionInIARAppliedStereotypeEditPart.VISUAL_ID:
 			return getAcceptEventActionLabel_5139Parser();
-		case ValueSpecificationActionNameEditPart.VISUAL_ID:
+		case ValueSpecificationActionInIARNameEditPart.VISUAL_ID:
 			return getValueSpecificationActionName_5126Parser();
 		case OutputPinInValSpecActLabelEditPart.VISUAL_ID:
 			return getOutputPinLabel_5124Parser();
@@ -2627,15 +2627,15 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getJoinNodeLabel_5145Parser();
 		case JoinNodeInIARAppliedStereotypeEditPart.VISUAL_ID:
 			return getJoinNodeLabel_5146Parser();
-		case DataStoreNodeLabelEditPart.VISUAL_ID:
-			return getDataStoreNodeLabel_5127Parser();
-		case DataStoreSelectionEditPart.VISUAL_ID:
-			return getDataStoreNodeLabel_5128Parser();
-		case ValueSpecificationActionInIARNameEditPart.VISUAL_ID:
-			return getValueSpecificationActionName_5140Parser();
 		case DataStoreNodeInIARLabelEditPart.VISUAL_ID:
-			return getDataStoreNodeLabel_5147Parser();
+			return getDataStoreNodeLabel_5127Parser();
 		case DataStoreInIARSelectionEditPart.VISUAL_ID:
+			return getDataStoreNodeLabel_5128Parser();
+		case ValueSpecificationActionNameEditPart.VISUAL_ID:
+			return getValueSpecificationActionName_5140Parser();
+		case DataStoreNodeLabelEditPart.VISUAL_ID:
+			return getDataStoreNodeLabel_5147Parser();
+		case DataStoreSelectionEditPart.VISUAL_ID:
 			return getDataStoreNodeLabel_5148Parser();
 		case ObjectFlowNameEditPart.VISUAL_ID:
 			return getObjectFlowName_6001Parser();

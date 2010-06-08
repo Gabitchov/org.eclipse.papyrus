@@ -52,7 +52,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPa
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeInIAREditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
@@ -75,7 +75,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValueSpecificationActionInIAREditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ValueSpecificationActionEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.activity.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
@@ -148,8 +148,8 @@ public class ActivityActivityContentCompartmentCanonicalEditPolicy extends Canon
 		case StructuredActivityNodeEditPart.VISUAL_ID:
 		case ActivityPartitionEditPart.VISUAL_ID:
 		case InterruptibleActivityRegionEditPart.VISUAL_ID:
-		case ValueSpecificationActionInIAREditPart.VISUAL_ID:
-		case DataStoreNodeInIAREditPart.VISUAL_ID:
+		case ValueSpecificationActionEditPart.VISUAL_ID:
+		case DataStoreNodeEditPart.VISUAL_ID:
 			return true;
 		}
 		return false;

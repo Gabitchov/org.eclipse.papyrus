@@ -18,9 +18,11 @@ import java.util.List;
 
 import org.eclipse.draw2d.AbstractPointListShape;
 import org.eclipse.draw2d.Polygon;
+import org.eclipse.draw2d.PolylineShape;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
@@ -176,12 +178,22 @@ public class ActivityFigureDrawer {
 	 */
 	public static void redrawRake(AbstractPointListShape rake, IMapMode iMapMode, Dimension parentDimension) {
 		rake.removeAllPoints();
-		Point translationPoint = new Point(RAKE_FIGURE_TRANSLATION);
-		translationPoint.translate(parentDimension);
+		Point translationPoint = new Point();
+		if(!(rake instanceof PolylineShape)) {
+			// do not translate for PolylineShape since bounds will be adapted
+			new Point(RAKE_FIGURE_TRANSLATION);
+			translationPoint.translate(parentDimension);
+		}
 		for(Point refPoint : RAKE_FIGURE) {
 			Point translatedPoint = new Point(refPoint).translate(translationPoint);
 			iMapMode.DPtoLP(translatedPoint);
 			rake.addPoint(translatedPoint);
+		}
+		if(rake instanceof PolylineShape) {
+			// adapt bounds for PolylineShape
+			Point loc = rake.getParent().getBounds().getLocation().getCopy().translate(parentDimension).translate(RAKE_FIGURE_TRANSLATION);
+			Rectangle b = new Rectangle(loc, new Dimension(-RAKE_FIGURE_TRANSLATION.x, -RAKE_FIGURE_TRANSLATION.y));
+			((PolylineShape)rake).setBounds(b);
 		}
 	}
 
@@ -222,6 +234,10 @@ public class ActivityFigureDrawer {
 			Point translatedPoint = new Point(refPoint).scale(xScale, yScale);
 			iMapMode.DPtoLP(translatedPoint);
 			arrow.addPoint(translatedPoint);
+		}
+		if(arrow instanceof PolylineShape) {
+			// adapt bounds for PolylineShape
+			((PolylineShape)arrow).setBounds(arrow.getParent().getBounds());
 		}
 	}
 

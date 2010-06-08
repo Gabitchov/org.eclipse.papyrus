@@ -102,7 +102,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5128;
+	public static final int VISUAL_ID = 5148;
 
 	/**
 	 * @generated
@@ -163,7 +163,6 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new BehaviorPropertyNodeEditPolicy());
 	}
 
 	/**
@@ -394,7 +393,7 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.DataStoreNode_3078, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreSelectionEditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.DataStoreNode_3093, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreSelectionEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -916,7 +915,6 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 
 				Rectangle currentBounds = ((LinkedBehaviorLocator)getBorderItemLocator()).getCorrectItemLocation(this);
 				Point end = BehaviorPropertyNodeEditPolicy.getAppropriateBorderPoint(parentCenter, currentBounds);
-				getLinkToBehaviorProperty().setEnd(end);
 
 				PointList polygonalBounds = new PointList(4);
 				polygonalBounds.addPoint(rect.getBounds().getTopLeft());
@@ -924,12 +922,15 @@ implements ITextAwareEditPart, IBorderItemEditPart {
 				polygonalBounds.addPoint(rect.getBounds().getBottomRight());
 				polygonalBounds.addPoint(rect.getBounds().getBottomLeft());
 				Point start = BehaviorPropertyNodeEditPolicy.getIntersectionPoint(polygonalBounds, parentCenter, end);
-				if(start != null) {
-					getLinkToBehaviorProperty().setStart(start);
-				} else {
+				if(start == null) {
 					// in case start computation fails
-					getLinkToBehaviorProperty().setStart(parentCenter);
+					start = parentCenter;
 				}
+				// adapt ends to bounds
+				Rectangle linkBounds = new Rectangle(start, end);
+				getLinkToBehaviorProperty().setStart(start.translate(linkBounds.getLocation().getNegated()));
+				getLinkToBehaviorProperty().setEnd(end.translate(linkBounds.getLocation().getNegated()));
+				getLinkToBehaviorProperty().setBounds(linkBounds);
 			}
 		}
 

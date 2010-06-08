@@ -400,8 +400,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof AcceptEventActionInIAREditPart) {
 			return ((AcceptEventActionInIAREditPart)sourceEditPart).getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof ValueSpecificationActionEditPart) {
-			return ((ValueSpecificationActionEditPart)sourceEditPart).getMARelTypesOnSource();
+		if(sourceEditPart instanceof ValueSpecificationActionInIAREditPart) {
+			return ((ValueSpecificationActionInIAREditPart)sourceEditPart).getMARelTypesOnSource();
 		}
 		if(sourceEditPart instanceof OutputPinInValSpecActEditPart) {
 			return ((OutputPinInValSpecActEditPart)sourceEditPart).getMARelTypesOnSource();
@@ -418,14 +418,14 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof JoinNodeInIAREditPart) {
 			return ((JoinNodeInIAREditPart)sourceEditPart).getMARelTypesOnSource();
 		}
-		if(sourceEditPart instanceof DataStoreNodeEditPart) {
-			return ((DataStoreNodeEditPart)sourceEditPart).getMARelTypesOnSource();
-		}
-		if(sourceEditPart instanceof ValueSpecificationActionInIAREditPart) {
-			return ((ValueSpecificationActionInIAREditPart)sourceEditPart).getMARelTypesOnSource();
-		}
 		if(sourceEditPart instanceof DataStoreNodeInIAREditPart) {
 			return ((DataStoreNodeInIAREditPart)sourceEditPart).getMARelTypesOnSource();
+		}
+		if(sourceEditPart instanceof ValueSpecificationActionEditPart) {
+			return ((ValueSpecificationActionEditPart)sourceEditPart).getMARelTypesOnSource();
+		}
+		if(sourceEditPart instanceof DataStoreNodeEditPart) {
+			return ((DataStoreNodeEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -639,8 +639,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof AcceptEventActionInIAREditPart) {
 			return ((AcceptEventActionInIAREditPart)targetEditPart).getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
-			return ((ValueSpecificationActionEditPart)targetEditPart).getMARelTypesOnTarget();
+		if(targetEditPart instanceof ValueSpecificationActionInIAREditPart) {
+			return ((ValueSpecificationActionInIAREditPart)targetEditPart).getMARelTypesOnTarget();
 		}
 		if(targetEditPart instanceof OutputPinInValSpecActEditPart) {
 			return ((OutputPinInValSpecActEditPart)targetEditPart).getMARelTypesOnTarget();
@@ -657,14 +657,14 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof JoinNodeInIAREditPart) {
 			return ((JoinNodeInIAREditPart)targetEditPart).getMARelTypesOnTarget();
 		}
-		if(targetEditPart instanceof DataStoreNodeEditPart) {
-			return ((DataStoreNodeEditPart)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof ValueSpecificationActionInIAREditPart) {
-			return ((ValueSpecificationActionInIAREditPart)targetEditPart).getMARelTypesOnTarget();
-		}
 		if(targetEditPart instanceof DataStoreNodeInIAREditPart) {
 			return ((DataStoreNodeInIAREditPart)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
+			return ((ValueSpecificationActionEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof DataStoreNodeEditPart) {
+			return ((DataStoreNodeEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -849,8 +849,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof AcceptEventActionInIAREditPart) {
 			return ((AcceptEventActionInIAREditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(sourceEditPart instanceof ValueSpecificationActionEditPart) {
-			return ((ValueSpecificationActionEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		if(sourceEditPart instanceof ValueSpecificationActionInIAREditPart) {
+			return ((ValueSpecificationActionInIAREditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		if(sourceEditPart instanceof OutputPinInValSpecActEditPart) {
 			return ((OutputPinInValSpecActEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
@@ -867,14 +867,14 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof JoinNodeInIAREditPart) {
 			return ((JoinNodeInIAREditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if(sourceEditPart instanceof DataStoreNodeEditPart) {
-			return ((DataStoreNodeEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof ValueSpecificationActionInIAREditPart) {
-			return ((ValueSpecificationActionInIAREditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
 		if(sourceEditPart instanceof DataStoreNodeInIAREditPart) {
 			return ((DataStoreNodeInIAREditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if(sourceEditPart instanceof ValueSpecificationActionEditPart) {
+			return ((ValueSpecificationActionEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if(sourceEditPart instanceof DataStoreNodeEditPart) {
+			return ((DataStoreNodeEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -1088,8 +1088,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof AcceptEventActionInIAREditPart) {
 			return ((AcceptEventActionInIAREditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
-		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
-			return ((ValueSpecificationActionEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		if(targetEditPart instanceof ValueSpecificationActionInIAREditPart) {
+			return ((ValueSpecificationActionInIAREditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
 		if(targetEditPart instanceof OutputPinInValSpecActEditPart) {
 			return ((OutputPinInValSpecActEditPart)targetEditPart).getMATypesForSource(relationshipType);
@@ -1106,14 +1106,14 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof JoinNodeInIAREditPart) {
 			return ((JoinNodeInIAREditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
-		if(targetEditPart instanceof DataStoreNodeEditPart) {
-			return ((DataStoreNodeEditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if(targetEditPart instanceof ValueSpecificationActionInIAREditPart) {
-			return ((ValueSpecificationActionInIAREditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
 		if(targetEditPart instanceof DataStoreNodeInIAREditPart) {
 			return ((DataStoreNodeInIAREditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
+			return ((ValueSpecificationActionEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof DataStoreNodeEditPart) {
+			return ((DataStoreNodeEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -1297,8 +1297,8 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof AcceptEventActionInIAREditPart) {
 			return ((AcceptEventActionInIAREditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
-		if(sourceEditPart instanceof ValueSpecificationActionEditPart) {
-			return ((ValueSpecificationActionEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		if(sourceEditPart instanceof ValueSpecificationActionInIAREditPart) {
+			return ((ValueSpecificationActionInIAREditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		if(sourceEditPart instanceof OutputPinInValSpecActEditPart) {
 			return ((OutputPinInValSpecActEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
@@ -1315,14 +1315,14 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof JoinNodeInIAREditPart) {
 			return ((JoinNodeInIAREditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
-		if(sourceEditPart instanceof DataStoreNodeEditPart) {
-			return ((DataStoreNodeEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof ValueSpecificationActionInIAREditPart) {
-			return ((ValueSpecificationActionInIAREditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
 		if(sourceEditPart instanceof DataStoreNodeInIAREditPart) {
 			return ((DataStoreNodeInIAREditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof ValueSpecificationActionEditPart) {
+			return ((ValueSpecificationActionEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof DataStoreNodeEditPart) {
+			return ((DataStoreNodeEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}

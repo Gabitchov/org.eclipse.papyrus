@@ -50,7 +50,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionInIAREd
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
@@ -68,7 +68,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionInIAREdit
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValueSpecificationActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ValueSpecificationActionInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.activity.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
@@ -144,12 +144,12 @@ public class InterruptibleActivityRegionInterruptibleActivityRegionContentCompar
 		case SendObjectActionInIAREditPart.VISUAL_ID:
 		case SendSignalActionInIAREditPart.VISUAL_ID:
 		case AcceptEventActionInIAREditPart.VISUAL_ID:
-		case ValueSpecificationActionEditPart.VISUAL_ID:
+		case ValueSpecificationActionInIAREditPart.VISUAL_ID:
 		case DecisionNodeInIAREditPart.VISUAL_ID:
 		case MergeNodeInIAREditPart.VISUAL_ID:
 		case ForkNodeInIAREditPart.VISUAL_ID:
 		case JoinNodeInIAREditPart.VISUAL_ID:
-		case DataStoreNodeEditPart.VISUAL_ID:
+		case DataStoreNodeInIAREditPart.VISUAL_ID:
 			return true;
 		}
 		return false;

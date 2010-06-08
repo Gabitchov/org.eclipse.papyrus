@@ -145,10 +145,10 @@ public class ActivityActivityContentCompartmentItemSemanticEditPolicy extends UM
 		if(UMLElementTypes.InterruptibleActivityRegion_3068 == req.getElementType()) {
 			return getGEFWrapper(new InterruptibleActivityRegionCreateCommand(req));
 		}
-		if(UMLElementTypes.ValueSpecificationAction_3076 == req.getElementType()) {
+		if(UMLElementTypes.ValueSpecificationAction_3088 == req.getElementType()) {
 			return getGEFWrapper(new ValueSpecificationActionCreateCommand(req));
 		}
-		if(UMLElementTypes.DataStoreNode_3078 == req.getElementType()) {
+		if(UMLElementTypes.DataStoreNode_3093 == req.getElementType()) {
 			return getGEFWrapper(new DataStoreNodeCreateCommand(req));
 		}
 		return super.getCreateCommand(req);

@@ -74,7 +74,7 @@ ValueSpecificationActionEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3088;
+	public static final int VISUAL_ID = 3076;
 
 	/**
 	 * @generated
@@ -124,10 +124,6 @@ ValueSpecificationActionEditPart {
 		super.handleNotificationEvent(event);
 
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -594,7 +590,7 @@ ValueSpecificationActionEditPart {
 		if(targetEditPart instanceof AcceptEventActionInIAREditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
-		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.activity.edit.parts.ValueSpecificationActionInIAREditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
 		if(targetEditPart instanceof OutputPinInValSpecActEditPart) {
@@ -612,13 +608,13 @@ ValueSpecificationActionEditPart {
 		if(targetEditPart instanceof JoinNodeInIAREditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
-		if(targetEditPart instanceof DataStoreNodeEditPart) {
-			types.add(UMLElementTypes.ObjectFlow_4003);
-		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.activity.edit.parts.ValueSpecificationActionInIAREditPart) {
-			types.add(UMLElementTypes.ObjectFlow_4003);
-		}
 		if(targetEditPart instanceof DataStoreNodeInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof DataStoreNodeEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
 		if(targetEditPart instanceof InitialNodeEditPart) {
@@ -795,7 +791,7 @@ ValueSpecificationActionEditPart {
 		if(targetEditPart instanceof AcceptEventActionInIAREditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
-		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
+		if(targetEditPart instanceof org.eclipse.papyrus.diagram.activity.edit.parts.ValueSpecificationActionInIAREditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
 		if(targetEditPart instanceof OutputPinInValSpecActEditPart) {
@@ -813,13 +809,13 @@ ValueSpecificationActionEditPart {
 		if(targetEditPart instanceof JoinNodeInIAREditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
-		if(targetEditPart instanceof DataStoreNodeEditPart) {
-			types.add(UMLElementTypes.ControlFlow_4004);
-		}
-		if(targetEditPart instanceof org.eclipse.papyrus.diagram.activity.edit.parts.ValueSpecificationActionInIAREditPart) {
-			types.add(UMLElementTypes.ControlFlow_4004);
-		}
 		if(targetEditPart instanceof DataStoreNodeInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof DataStoreNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
 		if(targetEditPart instanceof ValuePinInOpaqueActEditPart) {
@@ -918,10 +914,10 @@ ValueSpecificationActionEditPart {
 		if(targetEditPart instanceof OutputPinInValSpecActEditPart) {
 			types.add(UMLElementTypes.ExceptionHandler_4005);
 		}
-		if(targetEditPart instanceof DataStoreNodeEditPart) {
+		if(targetEditPart instanceof DataStoreNodeInIAREditPart) {
 			types.add(UMLElementTypes.ExceptionHandler_4005);
 		}
-		if(targetEditPart instanceof DataStoreNodeInIAREditPart) {
+		if(targetEditPart instanceof DataStoreNodeEditPart) {
 			types.add(UMLElementTypes.ExceptionHandler_4005);
 		}
 		return types;

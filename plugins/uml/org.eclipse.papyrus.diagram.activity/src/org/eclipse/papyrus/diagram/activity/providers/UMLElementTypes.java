@@ -1225,7 +1225,7 @@ public class UMLElementTypes {
 			return SendSignalAction_3086;
 		case AcceptEventActionInIAREditPart.VISUAL_ID:
 			return AcceptEventAction_3087;
-		case ValueSpecificationActionEditPart.VISUAL_ID:
+		case ValueSpecificationActionInIAREditPart.VISUAL_ID:
 			return ValueSpecificationAction_3076;
 		case OutputPinInValSpecActEditPart.VISUAL_ID:
 			return OutputPin_3077;
@@ -1237,11 +1237,11 @@ public class UMLElementTypes {
 			return ForkNode_3091;
 		case JoinNodeInIAREditPart.VISUAL_ID:
 			return JoinNode_3092;
-		case DataStoreNodeEditPart.VISUAL_ID:
-			return DataStoreNode_3078;
-		case ValueSpecificationActionInIAREditPart.VISUAL_ID:
-			return ValueSpecificationAction_3088;
 		case DataStoreNodeInIAREditPart.VISUAL_ID:
+			return DataStoreNode_3078;
+		case ValueSpecificationActionEditPart.VISUAL_ID:
+			return ValueSpecificationAction_3088;
+		case DataStoreNodeEditPart.VISUAL_ID:
 			return DataStoreNode_3093;
 		case ActionLocalPreconditionEditPart.VISUAL_ID:
 			return ActionLocalPrecondition_4001;

@@ -839,8 +839,11 @@ implements ITextAwareEditPart {
 				Point parentCenter = getReferencePoint();
 				Rectangle currentBounds = getBounds();
 				Point end = BehaviorPropertyNodeEditPolicy.getAppropriateBorderPoint(parentCenter, currentBounds);
-				getLinkToBehaviorProperty().setEnd(end);
-				getLinkToBehaviorProperty().setStart(parentCenter);
+				// adapt ends to bounds
+				Rectangle linkBounds = new Rectangle(parentCenter, end);
+				getLinkToBehaviorProperty().setStart(parentCenter.translate(linkBounds.getLocation().getNegated()));
+				getLinkToBehaviorProperty().setEnd(end.translate(linkBounds.getLocation().getNegated()));
+				getLinkToBehaviorProperty().setBounds(linkBounds);
 			}
 		}
 

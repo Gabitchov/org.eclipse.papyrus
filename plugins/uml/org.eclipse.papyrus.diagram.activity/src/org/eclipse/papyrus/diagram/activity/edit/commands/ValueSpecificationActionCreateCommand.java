@@ -27,7 +27,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Activity;
-import org.eclipse.uml2.uml.InterruptibleActivityRegion;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.ValueSpecificationAction;
 
@@ -110,11 +109,9 @@ public class ValueSpecificationActionCreateCommand extends EditElementCommand {
 
 		Activity owner = (Activity)getElementToEdit();
 		owner.getNodes().add(newElement);
-		InterruptibleActivityRegion childHolder = (InterruptibleActivityRegion)getElementToEdit();
-		childHolder.getNodes().add(newElement);
 
 
-		ElementInitializers.getInstance().init_ValueSpecificationAction_3076(newElement);
+		ElementInitializers.getInstance().init_ValueSpecificationAction_3088(newElement);
 
 		doConfigure(newElement, monitor, info);
 

@@ -388,14 +388,14 @@ public class UMLVisualIDRegistry {
 				return OutputPinInAcceptEventActionEditPart.VISUAL_ID;
 			}
 			break;
-		case ValueSpecificationActionEditPart.VISUAL_ID:
+		case ValueSpecificationActionInIAREditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())
 
 			) {
 				return OutputPinInValSpecActEditPart.VISUAL_ID;
 			}
 			break;
-		case ValueSpecificationActionInIAREditPart.VISUAL_ID:
+		case ValueSpecificationActionEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getOutputPin().isSuperTypeOf(domainElement.eClass())
 
 			) {
@@ -557,12 +557,12 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getValueSpecificationAction().isSuperTypeOf(domainElement.eClass())
 
 			) {
-				return ValueSpecificationActionInIAREditPart.VISUAL_ID;
+				return ValueSpecificationActionEditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getDataStoreNode().isSuperTypeOf(domainElement.eClass())
 
 			) {
-				return DataStoreNodeInIAREditPart.VISUAL_ID;
+				return DataStoreNodeEditPart.VISUAL_ID;
 			}
 			break;
 		case InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID:
@@ -644,7 +644,7 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getValueSpecificationAction().isSuperTypeOf(domainElement.eClass())
 
 			) {
-				return ValueSpecificationActionEditPart.VISUAL_ID;
+				return ValueSpecificationActionInIAREditPart.VISUAL_ID;
 			}
 			if(UMLPackage.eINSTANCE.getDecisionNode().isSuperTypeOf(domainElement.eClass())
 
@@ -669,7 +669,7 @@ public class UMLVisualIDRegistry {
 			if(UMLPackage.eINSTANCE.getDataStoreNode().isSuperTypeOf(domainElement.eClass())
 
 			) {
-				return DataStoreNodeEditPart.VISUAL_ID;
+				return DataStoreNodeInIAREditPart.VISUAL_ID;
 			}
 			break;
 		}
@@ -1675,8 +1675,8 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case ValueSpecificationActionEditPart.VISUAL_ID:
-			if(ValueSpecificationActionNameEditPart.VISUAL_ID == nodeVisualID) {
+		case ValueSpecificationActionInIAREditPart.VISUAL_ID:
+			if(ValueSpecificationActionInIARNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(OutputPinInValSpecActEditPart.VISUAL_ID == nodeVisualID) {
@@ -1717,27 +1717,27 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case DataStoreNodeEditPart.VISUAL_ID:
-			if(DataStoreNodeLabelEditPart.VISUAL_ID == nodeVisualID) {
+		case DataStoreNodeInIAREditPart.VISUAL_ID:
+			if(DataStoreNodeInIARLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(DataStoreSelectionEditPart.VISUAL_ID == nodeVisualID) {
+			if(DataStoreInIARSelectionEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case ValueSpecificationActionInIAREditPart.VISUAL_ID:
-			if(ValueSpecificationActionInIARNameEditPart.VISUAL_ID == nodeVisualID) {
+		case ValueSpecificationActionEditPart.VISUAL_ID:
+			if(ValueSpecificationActionNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(OutputPinInValSpecActEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case DataStoreNodeInIAREditPart.VISUAL_ID:
-			if(DataStoreNodeInIARLabelEditPart.VISUAL_ID == nodeVisualID) {
+		case DataStoreNodeEditPart.VISUAL_ID:
+			if(DataStoreNodeLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(DataStoreInIARSelectionEditPart.VISUAL_ID == nodeVisualID) {
+			if(DataStoreSelectionEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1847,10 +1847,10 @@ public class UMLVisualIDRegistry {
 			if(InterruptibleActivityRegionEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(ValueSpecificationActionInIAREditPart.VISUAL_ID == nodeVisualID) {
+			if(ValueSpecificationActionEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(DataStoreNodeInIAREditPart.VISUAL_ID == nodeVisualID) {
+			if(DataStoreNodeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1912,7 +1912,7 @@ public class UMLVisualIDRegistry {
 			if(AcceptEventActionInIAREditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(ValueSpecificationActionEditPart.VISUAL_ID == nodeVisualID) {
+			if(ValueSpecificationActionInIAREditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(DecisionNodeInIAREditPart.VISUAL_ID == nodeVisualID) {
@@ -1927,7 +1927,7 @@ public class UMLVisualIDRegistry {
 			if(JoinNodeInIAREditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(DataStoreNodeEditPart.VISUAL_ID == nodeVisualID) {
+			if(DataStoreNodeInIAREditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

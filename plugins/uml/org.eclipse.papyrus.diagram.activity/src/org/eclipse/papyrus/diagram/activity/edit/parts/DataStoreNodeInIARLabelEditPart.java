@@ -82,7 +82,7 @@ public class DataStoreNodeInIARLabelEditPart extends CompartmentEditPart impleme
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5147;
+	public static final int VISUAL_ID = 5127;
 
 	/**
 	 * @generated
@@ -328,7 +328,7 @@ public class DataStoreNodeInIARLabelEditPart extends CompartmentEditPart impleme
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.DataStoreNode_3093, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeInIARLabelEditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.DataStoreNode_3078, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeInIARLabelEditPart.VISUAL_ID));
 		}
 		return parser;
 	}

@@ -14,30 +14,17 @@
 package org.eclipse.papyrus.diagram.activity.edit.parts;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
-import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gef.Request;
-import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
-import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
-import org.eclipse.gef.handles.MoveHandle;
-import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -48,8 +35,6 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.diagram.activity.edit.policies.DataStoreNodeInIARItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
@@ -70,7 +55,7 @@ DataStoreNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3093;
+	public static final int VISUAL_ID = 3078;
 
 	/**
 	 * @generated
@@ -90,15 +75,10 @@ DataStoreNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT use inherited method
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DataStoreNodeInIARItemSemanticEditPolicy());
-		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
-		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
 
@@ -119,40 +99,10 @@ DataStoreNodeEditPart {
 
 
 	/**
-	 * @generated
+	 * @generated NOT use inherited method
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
-
-			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View)child.getModel();
-				switch(UMLVisualIDRegistry.getVisualID(childView)) {
-				case DataStoreInIARSelectionEditPart.VISUAL_ID:
-					return new BorderItemSelectionEditPolicy() {
-
-						protected List createSelectionHandles() {
-							MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
-							mh.setBorder(null);
-							return Collections.singletonList(mh);
-						}
-					};
-				}
-				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
-					result = new NonResizableEditPolicy();
-				}
-				return result;
-			}
-
-			protected Command getMoveChildrenCommand(Request request) {
-				return null;
-			}
-
-			protected Command getCreateCommand(CreateRequest request) {
-				return null;
-			}
-		};
-		return lep;
+		return super.createLayoutEditPolicy();
 	}
 
 	/**
@@ -226,16 +176,10 @@ DataStoreNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT use inherited method
 	 */
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if(borderItemEditPart instanceof DataStoreInIARSelectionEditPart) {
-			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.SOUTH);
-			locator.setBorderItemOffset(new Dimension(-20, -20));
-			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else {
-			super.addBorderItem(borderItemContainer, borderItemEditPart);
-		}
+		super.addBorderItem(borderItemContainer, borderItemEditPart);
 	}
 
 	/**
@@ -288,12 +232,9 @@ DataStoreNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT use inherited method
 	 */
 	public IFigure getContentPane() {
-		if(contentPane != null) {
-			return contentPane;
-		}
 		return super.getContentPane();
 	}
 
@@ -523,7 +464,7 @@ DataStoreNodeEditPart {
 		if(targetEditPart instanceof AcceptEventActionInIAREditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
-		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
+		if(targetEditPart instanceof ValueSpecificationActionInIAREditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
 		if(targetEditPart instanceof OutputPinInValSpecActEditPart) {
@@ -541,13 +482,13 @@ DataStoreNodeEditPart {
 		if(targetEditPart instanceof JoinNodeInIAREditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
-		if(targetEditPart instanceof DataStoreNodeEditPart) {
-			types.add(UMLElementTypes.ObjectFlow_4003);
-		}
-		if(targetEditPart instanceof ValueSpecificationActionInIAREditPart) {
-			types.add(UMLElementTypes.ObjectFlow_4003);
-		}
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof DataStoreNodeEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
 		if(targetEditPart instanceof InitialNodeEditPart) {
@@ -724,7 +665,7 @@ DataStoreNodeEditPart {
 		if(targetEditPart instanceof AcceptEventActionInIAREditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
-		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
+		if(targetEditPart instanceof ValueSpecificationActionInIAREditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
 		if(targetEditPart instanceof OutputPinInValSpecActEditPart) {
@@ -742,13 +683,13 @@ DataStoreNodeEditPart {
 		if(targetEditPart instanceof JoinNodeInIAREditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
-		if(targetEditPart instanceof DataStoreNodeEditPart) {
-			types.add(UMLElementTypes.ControlFlow_4004);
-		}
-		if(targetEditPart instanceof ValueSpecificationActionInIAREditPart) {
-			types.add(UMLElementTypes.ControlFlow_4004);
-		}
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof DataStoreNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
 		return types;

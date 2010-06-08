@@ -16,6 +16,9 @@ package org.eclipse.papyrus.diagram.activity.figures;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.notation.GradientStyle;
 import org.eclipse.papyrus.diagram.common.draw2d.RoundedRectangleDashedBorder;
 import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.diagram.common.figure.node.PapyrusNodeFigure;
@@ -53,6 +56,30 @@ public class InterruptibleActivityRegionFigure extends PapyrusNodeFigure impleme
 	public void paintFigure(Graphics graphics) {
 		paintBackground(graphics, getBounds());
 		shadowborder.setColor(getForegroundColor());
+	}
+
+	/**
+	 * Paint the background of the figure. If this figure uses gradient, then it will paint the
+	 * background with the gradient informations. Otherwise it will use the background color.
+	 * 
+	 * @param graphics
+	 *        the graphics
+	 * @param rectangle
+	 *        the rectangle where the background needs to be fill.
+	 */
+	protected void paintBackground(Graphics graphics, Rectangle rectangle) {
+		if(isUsingGradient()) {
+			applyTransparency(graphics);
+			boolean isVertical = (getGradientStyle() == GradientStyle.VERTICAL) ? true : false;
+			graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
+			graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
+			graphics.fillGradient(rectangle, isVertical);
+		} else {
+			graphics.setBackgroundColor(getBackgroundColor());
+			graphics.setForegroundColor(getForegroundColor());
+			// let the figure unfilled to see behind it
+			//graphics.fillRectangle(rectangle);
+		}
 	}
 
 	/**

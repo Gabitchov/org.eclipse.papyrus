@@ -83,7 +83,7 @@ public class ValueSpecificationActionInIARNameEditPart extends CompartmentEditPa
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5140;
+	public static final int VISUAL_ID = 5126;
 
 	/**
 	 * @generated
@@ -329,7 +329,7 @@ public class ValueSpecificationActionInIARNameEditPart extends CompartmentEditPa
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.ValueSpecificationAction_3088, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.ValueSpecificationActionInIARNameEditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.ValueSpecificationAction_3076, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.activity.edit.parts.ValueSpecificationActionInIARNameEditPart.VISUAL_ID));
 		}
 		return parser;
 	}

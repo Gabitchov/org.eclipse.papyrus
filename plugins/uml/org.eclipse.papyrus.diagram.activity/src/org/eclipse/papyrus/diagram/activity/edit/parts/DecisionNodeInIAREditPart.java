@@ -36,7 +36,6 @@ import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -46,8 +45,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.diagram.activity.edit.policies.DecisionNodeInIARItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.activity.edit.policies.OpenDiagramEditPolicy;
+import org.eclipse.papyrus.diagram.activity.edit.policies.BehaviorPropertyNodeEditPolicy;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
@@ -87,15 +85,10 @@ DecisionNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT use inherited method
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DecisionNodeInIARItemSemanticEditPolicy());
-		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
-		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
 
@@ -116,7 +109,7 @@ DecisionNodeEditPart {
 
 
 	/**
-	 * @generated
+	 * @generated NOT use BehaviorPropertyNodeEditPolicy
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
@@ -125,6 +118,8 @@ DecisionNodeEditPart {
 				View childView = (View)child.getModel();
 				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case DecisionInputInIAREditPart.VISUAL_ID:
+					// use BehaviorPropertyNodeEditPolicy
+					return new BehaviorPropertyNodeEditPolicy();
 				case DecisionNodeInIARAppliedStereotypeEditPart.VISUAL_ID:
 					return new BorderItemSelectionEditPolicy() {
 
@@ -228,12 +223,9 @@ DecisionNodeEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT use inherited method
 	 */
 	public IFigure getContentPane() {
-		if(contentPane != null) {
-			return contentPane;
-		}
 		return super.getContentPane();
 	}
 
@@ -463,7 +455,7 @@ DecisionNodeEditPart {
 		if(targetEditPart instanceof AcceptEventActionInIAREditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
-		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
+		if(targetEditPart instanceof ValueSpecificationActionInIAREditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
 		if(targetEditPart instanceof OutputPinInValSpecActEditPart) {
@@ -481,13 +473,13 @@ DecisionNodeEditPart {
 		if(targetEditPart instanceof JoinNodeInIAREditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
-		if(targetEditPart instanceof DataStoreNodeEditPart) {
-			types.add(UMLElementTypes.ObjectFlow_4003);
-		}
-		if(targetEditPart instanceof ValueSpecificationActionInIAREditPart) {
-			types.add(UMLElementTypes.ObjectFlow_4003);
-		}
 		if(targetEditPart instanceof DataStoreNodeInIAREditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof DataStoreNodeEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
 		if(targetEditPart instanceof InitialNodeEditPart) {
@@ -664,7 +656,7 @@ DecisionNodeEditPart {
 		if(targetEditPart instanceof AcceptEventActionInIAREditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
-		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
+		if(targetEditPart instanceof ValueSpecificationActionInIAREditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
 		if(targetEditPart instanceof OutputPinInValSpecActEditPart) {
@@ -682,13 +674,13 @@ DecisionNodeEditPart {
 		if(targetEditPart instanceof JoinNodeInIAREditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
-		if(targetEditPart instanceof DataStoreNodeEditPart) {
-			types.add(UMLElementTypes.ControlFlow_4004);
-		}
-		if(targetEditPart instanceof ValueSpecificationActionInIAREditPart) {
-			types.add(UMLElementTypes.ControlFlow_4004);
-		}
 		if(targetEditPart instanceof DataStoreNodeInIAREditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof DataStoreNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
 		return types;
