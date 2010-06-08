@@ -54,7 +54,7 @@ public interface IPropertyEditorControllerDescriptor extends IConfigurableDescri
 	/**
 	 * {@inheritDoc}
 	 */
-	public ControllerDescriptorState createState();
+	public ControllerDescriptorState createState(boolean readOnly);
 
 	//	/**
 	//	 * Returns the predefined id of the described controller

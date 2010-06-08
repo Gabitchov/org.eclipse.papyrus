@@ -76,4 +76,11 @@ public interface IState {
 	 * @return the generate node
 	 */
 	public Node generateNode(Document document);
+
+	/**
+	 * Indicates if the state is in read only mode
+	 * 
+	 * @return <code>true</code> if the state should be unmodifiable
+	 */
+	public boolean isReadOnly();
 }

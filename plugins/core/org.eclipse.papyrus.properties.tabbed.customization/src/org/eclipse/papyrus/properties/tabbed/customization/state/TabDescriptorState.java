@@ -13,8 +13,11 @@ package org.eclipse.papyrus.properties.tabbed.customization.state;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.Collections;
+import java.util.List;
 
-import org.eclipse.papyrus.properties.runtime.state.IState;
+import org.eclipse.papyrus.properties.runtime.state.AbstractState;
+import org.eclipse.papyrus.properties.runtime.state.ITraversableModelElement;
 import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
@@ -25,7 +28,7 @@ import org.w3c.dom.Node;
 /**
  * State for tab descriptors
  */
-public class TabDescriptorState implements IState {
+public class TabDescriptorState extends AbstractState {
 
 	/** tab descriptor managed by this state */
 	protected ITabDescriptor tabDescriptor;
@@ -39,7 +42,8 @@ public class TabDescriptorState implements IState {
 	 * @param tabDescriptor
 	 *        tab descriptor managed by this state
 	 */
-	public TabDescriptorState(ITabDescriptor tabDescriptor) {
+	public TabDescriptorState(ITabDescriptor tabDescriptor, boolean readOnly) {
+		super(readOnly);
 		this.tabDescriptor = tabDescriptor;
 
 		// register change support
@@ -113,7 +117,15 @@ public class TabDescriptorState implements IState {
 	 */
 	public Node generateNode(Document document) {
 		Element node = document.createElement("tab");
-		// TODO generate attributes
+
 		return node;
+	}
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public List<? extends ITraversableModelElement> getChildren() {
+		return Collections.emptyList();
 	}
 }

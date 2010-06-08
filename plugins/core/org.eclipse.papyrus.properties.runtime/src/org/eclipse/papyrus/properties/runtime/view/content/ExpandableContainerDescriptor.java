@@ -127,8 +127,8 @@ public class ExpandableContainerDescriptor extends ContainerDescriptor {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public ContainerDescriptorState createState() {
-		return new ExpandableContainerDescriptorState(this);
+	public ContainerDescriptorState createState(boolean readOnly) {
+		return new ExpandableContainerDescriptorState(this, readOnly);
 	}
 
 	/**
@@ -156,9 +156,11 @@ public class ExpandableContainerDescriptor extends ContainerDescriptor {
 		 * 
 		 * @param descriptor
 		 *        the descriptor managed by the state
+		 * @param readOnly
+		 *        the read only mode for this state
 		 */
-		public ExpandableContainerDescriptorState(ExpandableContainerDescriptor descriptor) {
-			super(descriptor);
+		public ExpandableContainerDescriptorState(ExpandableContainerDescriptor descriptor, boolean readOnly) {
+			super(descriptor, readOnly);
 
 			this.name = descriptor.getLabel();
 			// register change support

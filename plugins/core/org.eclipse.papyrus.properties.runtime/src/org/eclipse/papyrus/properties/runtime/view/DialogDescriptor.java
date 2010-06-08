@@ -133,8 +133,7 @@ public class DialogDescriptor extends AbstractConstrainedDescriptor {
 	/**
 	 * {@inheritDoc}
 	 */
-	public IState createState() {
-		// TODO Auto-generated method stub
+	public IState createState(boolean readOnly) {
 		return null;
 	}
 }

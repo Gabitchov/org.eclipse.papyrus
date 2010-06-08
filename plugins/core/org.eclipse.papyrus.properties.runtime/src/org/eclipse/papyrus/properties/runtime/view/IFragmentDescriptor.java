@@ -32,7 +32,7 @@ public interface IFragmentDescriptor extends IConfigurableDescriptor {
 	/**
 	 * {@inheritDoc}
 	 */
-	public IFragmentDescriptorState createState();
+	public IFragmentDescriptorState createState(boolean readOnly);
 
 	/**
 	 * Returns the id of the fragment described by the descriptor

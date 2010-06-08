@@ -23,7 +23,7 @@ public abstract class LayoutDescriptor implements IConfigurableDescriptor {
 	/**
 	 * {@inheritDoc}
 	 */
-	public abstract LayoutDescriptorState createState();
+	public abstract LayoutDescriptorState createState(boolean readOnly);
 
 	/**
 	 * Creates the layout relative to this descriptor

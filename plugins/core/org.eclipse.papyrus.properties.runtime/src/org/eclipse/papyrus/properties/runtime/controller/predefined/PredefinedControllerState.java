@@ -37,8 +37,8 @@ public class PredefinedControllerState extends ControllerDescriptorState {
 	 * @param propertyEditorControllerDescriptor
 	 *        descriptor managed by this state
 	 */
-	public PredefinedControllerState(PredefinedControllerDescriptor propertyEditorControllerDescriptor) {
-		super(propertyEditorControllerDescriptor);
+	public PredefinedControllerState(PredefinedControllerDescriptor propertyEditorControllerDescriptor, boolean readOnly) {
+		super(propertyEditorControllerDescriptor, readOnly);
 
 		predefinedIdState = propertyEditorControllerDescriptor.getPredefinedId();
 

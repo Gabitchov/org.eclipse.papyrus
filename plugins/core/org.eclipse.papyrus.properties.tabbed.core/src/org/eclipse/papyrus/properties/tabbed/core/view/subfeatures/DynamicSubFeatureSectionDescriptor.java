@@ -88,8 +88,8 @@ public class DynamicSubFeatureSectionDescriptor extends DynamicSectionDescriptor
 	 * {@inheritDoc}
 	 */
 	@Override
-	public SubFeatureSectionDescriptorState createState() {
-		return new SubFeatureSectionDescriptorState(this);
+	public SubFeatureSectionDescriptorState createState(boolean readOnly) {
+		return new SubFeatureSectionDescriptorState(this, readOnly);
 	}
 
 	/**
@@ -104,10 +104,10 @@ public class DynamicSubFeatureSectionDescriptor extends DynamicSectionDescriptor
 		 * 
 		 * @param sectionDescriptor
 		 */
-		public SubFeatureSectionDescriptorState(DynamicSubFeatureSectionDescriptor sectionDescriptor) {
-			super(sectionDescriptor);
+		public SubFeatureSectionDescriptorState(DynamicSubFeatureSectionDescriptor sectionDescriptor, boolean readOnly) {
+			super(sectionDescriptor, readOnly);
 
-			subFeatureDescriptorState = sectionDescriptor.getSubFeatureDescriptor().createState();
+			subFeatureDescriptorState = sectionDescriptor.getSubFeatureDescriptor().createState(readOnly);
 		}
 
 

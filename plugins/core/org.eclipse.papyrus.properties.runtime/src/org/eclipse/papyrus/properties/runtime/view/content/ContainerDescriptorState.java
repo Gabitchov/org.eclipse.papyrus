@@ -46,16 +46,19 @@ public class ContainerDescriptorState extends AbstractState {
 	 * 
 	 * @param descriptor
 	 *        the descriptor managed by this state
+	 * @param readOnly
+	 *        <code>true</code> if the state should be not modifiable
 	 */
-	public ContainerDescriptorState(ContainerDescriptor descriptor) {
+	public ContainerDescriptorState(ContainerDescriptor descriptor, boolean readOnly) {
+		super(readOnly);
 		this.descriptor = descriptor;
 
-		layoutDescriptorState = descriptor.getLayoutDescriptor().createState();
+		layoutDescriptorState = descriptor.getLayoutDescriptor().createState(readOnly);
 
 		// read the current list of controller descriptor managed by this state
 		List<IPropertyEditorControllerDescriptor> controllerDescriptors = descriptor.getUnparsedControllerDescriptors();
 		for(IPropertyEditorControllerDescriptor controllerDescriptor : controllerDescriptors) {
-			controllerDescriptorStates.add(controllerDescriptor.createState());
+			controllerDescriptorStates.add(controllerDescriptor.createState(readOnly));
 		}
 
 		// register change support

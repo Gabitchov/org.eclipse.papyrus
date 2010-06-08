@@ -28,6 +28,24 @@ public abstract class AbstractState implements IState, ITraversableModelElement 
 	/** Add group identifier for context menu */
 	public static final String ADD_GROUP = "ADD_GROUP";
 
+	/** read only mode for the state */
+	protected boolean readOnly = false;
+
+	/**
+	 * Creates a new AbstractState.
+	 * 
+	 */
+	public AbstractState(boolean readOnly) {
+		this.readOnly = readOnly;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean isReadOnly() {
+		return readOnly;
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */

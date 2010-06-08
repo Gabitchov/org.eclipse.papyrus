@@ -80,8 +80,8 @@ public class ObjectTypeConstraintDescriptor implements IConstraintDescriptor, IC
 	/**
 	 * {@inheritDoc}
 	 */
-	public ConstraintDescriptorState createState() {
-		return new ObjectTypeConstraintDescriptorState(this);
+	public ConstraintDescriptorState createState(boolean readOnly) {
+		return new ObjectTypeConstraintDescriptorState(this, readOnly);
 	}
 
 	/**
@@ -101,8 +101,8 @@ public class ObjectTypeConstraintDescriptor implements IConstraintDescriptor, IC
 		 * @param objectTypeConstraintDescriptor
 		 *        the descriptor to manage
 		 */
-		public ObjectTypeConstraintDescriptorState(ObjectTypeConstraintDescriptor objectTypeConstraintDescriptor) {
-			super(objectTypeConstraintDescriptor);
+		public ObjectTypeConstraintDescriptorState(ObjectTypeConstraintDescriptor objectTypeConstraintDescriptor, boolean readOnly) {
+			super(objectTypeConstraintDescriptor, readOnly);
 
 			elementClassState = objectTypeConstraintDescriptor.getElementClass();
 

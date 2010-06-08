@@ -38,9 +38,11 @@ public class GridLayoutDescriptorState extends LayoutDescriptorState {
 	 * 
 	 * @param layoutDescriptor
 	 *        managed descriptor
+	 * @param readOnly
+	 *        the read only mode of the state
 	 */
-	public GridLayoutDescriptorState(GridLayoutDescriptor layoutDescriptor) {
-		super(layoutDescriptor);
+	public GridLayoutDescriptorState(GridLayoutDescriptor layoutDescriptor, boolean readOnly) {
+		super(layoutDescriptor, readOnly);
 
 		sameWidth = layoutDescriptor.isSameWidth();
 		numColumns = layoutDescriptor.getNumColumns();

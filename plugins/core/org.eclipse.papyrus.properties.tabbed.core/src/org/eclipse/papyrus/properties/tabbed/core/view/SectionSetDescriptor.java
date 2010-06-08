@@ -128,7 +128,7 @@ public class SectionSetDescriptor implements IConfigurableDescriptor {
 	/**
 	 * {@inheritDoc}
 	 */
-	public SectionSetDescriptorState createState() {
-		return new SectionSetDescriptorState(this);
+	public SectionSetDescriptorState createState(boolean readOnly) {
+		return new SectionSetDescriptorState(this, readOnly);
 	}
 }

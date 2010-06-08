@@ -14,6 +14,7 @@ package org.eclipse.papyrus.properties.runtime.view;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.state.IFragmentDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptor;
 import org.eclipse.swt.graphics.Image;
@@ -54,14 +55,14 @@ public class PredefinedFragmentDescriptor implements IFragmentDescriptor {
 	 * {@inheritDoc}
 	 */
 	public Image getImage() {
-		return null;
+		return Activator.getImage("/icons/PredefinedFragment.gif");
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public IFragmentDescriptorState createState() {
-		return new PredefinedFragmentState(this);
+	public IFragmentDescriptorState createState(boolean readOnly) {
+		return new PredefinedFragmentDescriptorState(this, readOnly);
 	}
 
 	/**

@@ -132,8 +132,8 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 	/**
 	 * {@inheritDoc}
 	 */
-	public ControllerDescriptorState createState() {
-		return new EMFTPropertyEditorControllerDescriptorState(this);
+	public ControllerDescriptorState createState(boolean readOnly) {
+		return new EMFTPropertyEditorControllerDescriptorState(this, readOnly);
 	}
 
 	/**
@@ -158,8 +158,8 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 		 * 
 		 * @param descriptor
 		 */
-		public EMFTPropertyEditorControllerDescriptorState(EMFTPropertyEditorControllerDescriptor descriptor) {
-			super(descriptor);
+		public EMFTPropertyEditorControllerDescriptorState(EMFTPropertyEditorControllerDescriptor descriptor, boolean readOnly) {
+			super(descriptor, readOnly);
 			featureNameState = descriptor.getFeatureNameToEdit();
 			multiSelectionState = descriptor.acceptMultiSelection();
 

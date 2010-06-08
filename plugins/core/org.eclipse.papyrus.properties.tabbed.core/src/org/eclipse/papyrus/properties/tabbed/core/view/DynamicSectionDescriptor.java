@@ -307,8 +307,8 @@ public class DynamicSectionDescriptor extends AbstractSectionDescriptor implemen
 	/**
 	 * {@inheritDoc}
 	 */
-	public SectionDescriptorState createState() {
-		return new SectionDescriptorState(this);
+	public SectionDescriptorState createState(boolean readOnly) {
+		return new SectionDescriptorState(this, readOnly);
 	}
 
 	/**

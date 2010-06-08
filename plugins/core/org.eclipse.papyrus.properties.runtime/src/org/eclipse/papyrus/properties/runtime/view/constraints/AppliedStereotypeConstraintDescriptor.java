@@ -25,7 +25,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 /**
- * Descriptor for constraints based on stereoype application
+ * Descriptor for constraints based on stereotype application
  */
 public class AppliedStereotypeConstraintDescriptor implements IConstraintDescriptor, IConfigurableDescriptor {
 
@@ -88,8 +88,8 @@ public class AppliedStereotypeConstraintDescriptor implements IConstraintDescrip
 	/**
 	 * {@inheritDoc}
 	 */
-	public AppliedStereotypeConstraintDescriptorState createState() {
-		return new AppliedStereotypeConstraintDescriptorState(this);
+	public AppliedStereotypeConstraintDescriptorState createState(boolean readOnly) {
+		return new AppliedStereotypeConstraintDescriptorState(this, readOnly);
 	}
 
 	/**
@@ -107,8 +107,8 @@ public class AppliedStereotypeConstraintDescriptor implements IConstraintDescrip
 		 * Creates a new AppliedStereotypeConstraintDescriptorState.
 		 * 
 		 */
-		public AppliedStereotypeConstraintDescriptorState(AppliedStereotypeConstraintDescriptor descriptor) {
-			super(descriptor);
+		public AppliedStereotypeConstraintDescriptorState(AppliedStereotypeConstraintDescriptor descriptor, boolean readOnly) {
+			super(descriptor, readOnly);
 
 			// initialize the list of stereotypes
 			stereotypesToApply.addAll(descriptor.getStereotypeQualifiedNames());

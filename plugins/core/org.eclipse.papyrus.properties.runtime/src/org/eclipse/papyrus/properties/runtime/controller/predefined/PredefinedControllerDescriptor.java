@@ -96,8 +96,8 @@ public class PredefinedControllerDescriptor implements IPropertyEditorController
 	/**
 	 * {@inheritDoc}
 	 */
-	public ControllerDescriptorState createState() {
-		return new PredefinedControllerState(this);
+	public ControllerDescriptorState createState(boolean readOnly) {
+		return new PredefinedControllerState(this, readOnly);
 	}
 
 	/**

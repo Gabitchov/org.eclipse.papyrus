@@ -32,7 +32,8 @@ public abstract class LayoutDescriptorState extends AbstractState {
 	 * @param layoutDescriptor
 	 *        managed descriptor
 	 */
-	public LayoutDescriptorState(LayoutDescriptor layoutDescriptor) {
+	public LayoutDescriptorState(LayoutDescriptor layoutDescriptor, boolean readOnly) {
+		super(readOnly);
 		this.layoutDescriptor = layoutDescriptor;
 	}
 

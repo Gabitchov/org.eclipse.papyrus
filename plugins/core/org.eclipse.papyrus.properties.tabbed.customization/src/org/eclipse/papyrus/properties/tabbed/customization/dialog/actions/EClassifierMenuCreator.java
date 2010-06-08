@@ -113,7 +113,7 @@ public class EClassifierMenuCreator extends AbstractMenuCreator {
 					ObjectTypeConstraintDescriptor constraintDescriptor = new ObjectTypeConstraintDescriptor(metamodelClass);
 					constraints.add(constraintDescriptor);
 					SectionSetDescriptor descriptor = new SectionSetDescriptor(getNewSectionSetName(), new ArrayList<DynamicSectionDescriptor>(), constraints, 1);
-					SectionSetDescriptorState state = descriptor.createState();
+					SectionSetDescriptorState state = descriptor.createState(false);
 					sectionSetDescriptorStates.add(state);
 					treeViewer.refresh();
 					// try to select the new element

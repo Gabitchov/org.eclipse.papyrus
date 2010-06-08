@@ -83,8 +83,8 @@ public class FragmentDescriptor extends AbstractConstrainedDescriptor implements
 	/**
 	 * {@inheritDoc}
 	 */
-	public FragmentDescriptorState createState() {
-		return new FragmentDescriptorState(this);
+	public FragmentDescriptorState createState(boolean readOnly) {
+		return new FragmentDescriptorState(this, readOnly);
 	}
 
 }

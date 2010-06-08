@@ -88,6 +88,37 @@ public class ControllerMenuCreator extends AbstractMenuCreator {
 				}
 			}
 
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public boolean isEnabled() {
+				if(getSelectedControllerState() == null || getSelectedControllerState().isReadOnly()) {
+					setEnabled(false);
+				}
+				return super.isEnabled();
+			}
+
+			/**
+			 * Returns the selected controller state
+			 * 
+			 * @return the selected controller state
+			 */
+			protected ControllerDescriptorState getSelectedControllerState() {
+				if(parent instanceof Tree) {
+					TreeItem[] selectedItems = ((Tree)parent).getSelection();
+					if(selectedItems.length < 1) {
+						Activator.log.warn("Impossible to find the current selection in the tree");
+						return null;
+					}
+					TreeItem selectedItem = selectedItems[0];
+					Object data = selectedItem.getData();
+					if(data instanceof ControllerDescriptorState) {
+						return ((ControllerDescriptorState)data);
+					}
+				}
+				return null;
+			}
 		};
 		manager.add(removeAction);
 		manager.add(new Separator(ADD_GROUP));

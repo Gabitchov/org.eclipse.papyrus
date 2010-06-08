@@ -22,6 +22,7 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.properties.runtime.state.AbstractState;
 import org.eclipse.papyrus.properties.runtime.state.ITraversableModelElement;
 import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptorState;
+import org.eclipse.papyrus.properties.runtime.view.PredefinedFragmentDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptorState;
@@ -103,6 +104,8 @@ public class ConfigurationContentProvider implements ITreeContentProvider, Prope
 			return ((SectionDescriptorState)parentElement).getFragmentDescriptorStates().toArray();
 		} else if(parentElement instanceof FragmentDescriptorState) {
 			return ((FragmentDescriptorState)parentElement).getContainerDescriptorStates().toArray();
+		} else if(parentElement instanceof PredefinedFragmentDescriptorState) {
+			return ((PredefinedFragmentDescriptorState)parentElement).getChildren().toArray();
 		} else if(parentElement instanceof ContainerDescriptorState) {
 			return ((ContainerDescriptorState)parentElement).getChildren().toArray();
 		}

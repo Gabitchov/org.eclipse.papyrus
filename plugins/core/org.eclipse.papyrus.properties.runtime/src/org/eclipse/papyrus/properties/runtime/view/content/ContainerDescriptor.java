@@ -240,7 +240,7 @@ public class ContainerDescriptor extends AbstractContainerDescriptor {
 	/**
 	 * {@inheritDoc}
 	 */
-	public ContainerDescriptorState createState() {
-		return new ContainerDescriptorState(this);
+	public ContainerDescriptorState createState(boolean readOnly) {
+		return new ContainerDescriptorState(this, readOnly);
 	}
 }

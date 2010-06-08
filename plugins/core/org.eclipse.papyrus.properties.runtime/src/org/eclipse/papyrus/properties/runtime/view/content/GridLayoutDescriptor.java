@@ -94,8 +94,8 @@ public class GridLayoutDescriptor extends LayoutDescriptor {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public GridLayoutDescriptorState createState() {
-		return new GridLayoutDescriptorState(this);
+	public GridLayoutDescriptorState createState(boolean readOnly) {
+		return new GridLayoutDescriptorState(this, readOnly);
 	}
 
 }

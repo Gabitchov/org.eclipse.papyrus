@@ -94,8 +94,8 @@ public class EMFSimpleSubFeatureDescriptor extends SubFeatureDescriptor {
 	/**
 	 * {@inheritDoc}
 	 */
-	public EMFSimpleSubFeatureDescriptorState createState() {
-		return new EMFSimpleSubFeatureDescriptorState(this);
+	public EMFSimpleSubFeatureDescriptorState createState(boolean readOnly) {
+		return new EMFSimpleSubFeatureDescriptorState(this, readOnly);
 	}
 
 	/**
@@ -115,8 +115,8 @@ public class EMFSimpleSubFeatureDescriptor extends SubFeatureDescriptor {
 		 * @param emfSimpleSubFeatureDescriptor
 		 *        the descriptor to customize
 		 */
-		public EMFSimpleSubFeatureDescriptorState(EMFSimpleSubFeatureDescriptor emfSimpleSubFeatureDescriptor) {
-			super(emfSimpleSubFeatureDescriptor);
+		public EMFSimpleSubFeatureDescriptorState(EMFSimpleSubFeatureDescriptor emfSimpleSubFeatureDescriptor, boolean readOnly) {
+			super(emfSimpleSubFeatureDescriptor, readOnly);
 
 			featureNameState = emfSimpleSubFeatureDescriptor.getFeatureNameToEdit();
 

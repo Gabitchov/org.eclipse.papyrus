@@ -34,7 +34,8 @@ public abstract class ConstraintDescriptorState extends AbstractState {
 	 * @param constraintDescriptor
 	 *        the constraint descriptor managed by this state
 	 */
-	public ConstraintDescriptorState(IConstraintDescriptor constraintDescriptor) {
+	public ConstraintDescriptorState(IConstraintDescriptor constraintDescriptor, boolean readOnly) {
+		super(readOnly);
 		this.constraintDescriptor = constraintDescriptor;
 	}
 

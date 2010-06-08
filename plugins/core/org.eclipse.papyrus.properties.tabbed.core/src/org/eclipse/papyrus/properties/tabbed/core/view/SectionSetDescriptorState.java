@@ -62,18 +62,19 @@ public class SectionSetDescriptorState extends AbstractState {
 	 * @param sectionSetDescriptor
 	 *        descriptor for section sets
 	 */
-	public SectionSetDescriptorState(SectionSetDescriptor sectionSetDescriptor) {
+	public SectionSetDescriptorState(SectionSetDescriptor sectionSetDescriptor, boolean readOnly) {
+		super(readOnly);
 		this.sectionSetDescriptor = sectionSetDescriptor;
 
 		// retrieve and build the states for the children sections
 		for(DynamicSectionDescriptor abstractSectionDescriptor : sectionSetDescriptor.getSectionDescriptors()) {
-			SectionDescriptorState sectionState = abstractSectionDescriptor.createState();
+			SectionDescriptorState sectionState = abstractSectionDescriptor.createState(readOnly);
 			sectionDescriptorStates.add(sectionState);
 		}
 
 		// retrieve and build the states for the children sections
 		for(IConstraintDescriptor constraintDescriptor : sectionSetDescriptor.getConstraintDescriptors()) {
-			ConstraintDescriptorState constraintState = constraintDescriptor.createState();
+			ConstraintDescriptorState constraintState = constraintDescriptor.createState(readOnly);
 			constraintDescriptorStates.add(constraintState);
 		}
 		// register change support

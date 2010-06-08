@@ -43,7 +43,8 @@ public class ControllerDescriptorState extends AbstractState {
 	 * Creates a new ControllerDescriptorState.
 	 * 
 	 */
-	public ControllerDescriptorState(IPropertyEditorControllerDescriptor descriptor) {
+	public ControllerDescriptorState(IPropertyEditorControllerDescriptor descriptor, boolean readOnly) {
+		super(readOnly);
 		this.descriptor = descriptor;
 		id = descriptor.getControllerID();
 

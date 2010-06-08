@@ -55,7 +55,8 @@ public class SectionDescriptorState extends AbstractState {
 	 * @param sectionDescriptor
 	 *        the section descriptor managed by this state
 	 */
-	public SectionDescriptorState(DynamicSectionDescriptor sectionDescriptor) {
+	public SectionDescriptorState(DynamicSectionDescriptor sectionDescriptor, boolean readOnly) {
+		super(readOnly);
 		this.sectionDescriptor = sectionDescriptor;
 		id = sectionDescriptor.getId();
 		targetTab = sectionDescriptor.getTargetTab();
@@ -65,7 +66,7 @@ public class SectionDescriptorState extends AbstractState {
 		for(IFragmentDescriptor fragmentDescriptor : fragmentDescriptors) {
 			/// retrieve the descriptor and creates a state on it
 			if(fragmentDescriptor != null) {
-				getFragmentDescriptorStates().add(fragmentDescriptor.createState());
+				getFragmentDescriptorStates().add(fragmentDescriptor.createState(readOnly));
 			}
 		}
 		// register change support

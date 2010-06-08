@@ -36,7 +36,7 @@ public abstract class SubFeatureDescriptor implements IConfigurableDescriptor {
 	/**
 	 * {@inheritDoc}
 	 */
-	public abstract SubFeatureDescriptorState createState();
+	public abstract SubFeatureDescriptorState createState(boolean readOnly);
 
 	/**
 	 * State for {@link SubFeatureDescriptor}
@@ -52,7 +52,8 @@ public abstract class SubFeatureDescriptor implements IConfigurableDescriptor {
 		 * @param descriptor
 		 *        the descriptor to manage
 		 */
-		public SubFeatureDescriptorState(SubFeatureDescriptor descriptor) {
+		public SubFeatureDescriptorState(SubFeatureDescriptor descriptor, boolean readOnly) {
+			super(readOnly);
 			this.descriptor = descriptor;
 		}
 

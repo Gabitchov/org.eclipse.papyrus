@@ -52,7 +52,7 @@ public class StatePropertyTabViewProviderParser extends PropertyTabViewProviderP
 
 		// from the list of created tab descriptors and section sets descriptors, creates the state
 		for(SectionSetDescriptor sectionSetDescriptor : getProvidedSectionSets()) {
-			SectionSetDescriptorState descriptorState = new SectionSetDescriptorState(sectionSetDescriptor);
+			SectionSetDescriptorState descriptorState = new SectionSetDescriptorState(sectionSetDescriptor, false);
 			sectionSetDescriptorStates.add(descriptorState);
 		}
 	}

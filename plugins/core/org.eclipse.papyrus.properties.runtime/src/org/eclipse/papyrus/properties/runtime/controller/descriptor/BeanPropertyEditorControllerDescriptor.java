@@ -112,8 +112,8 @@ public class BeanPropertyEditorControllerDescriptor implements IPropertyEditorCo
 	/**
 	 * {@inheritDoc}
 	 */
-	public ControllerDescriptorState createState() {
-		return new ControllerDescriptorState(this);
+	public ControllerDescriptorState createState(boolean readOnly) {
+		return new ControllerDescriptorState(this, readOnly);
 	}
 
 }

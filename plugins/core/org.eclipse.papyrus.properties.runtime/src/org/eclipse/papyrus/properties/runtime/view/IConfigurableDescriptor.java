@@ -37,6 +37,6 @@ public interface IConfigurableDescriptor {
 	/**
 	 * Creates a state on this descriptor, in order to be able to customize it.
 	 */
-	public IState createState();
+	public IState createState(boolean readOnly);
 
 }

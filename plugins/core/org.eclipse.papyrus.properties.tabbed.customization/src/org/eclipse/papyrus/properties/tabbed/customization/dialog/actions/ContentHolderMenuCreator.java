@@ -82,7 +82,7 @@ public class ContentHolderMenuCreator extends AbstractMenuCreator {
 			public void run() {
 				// should add a section here, using a new Section and pop-up the dialog on the section to create
 				DynamicSectionDescriptor descriptor = new DynamicSectionDescriptor(getNewSectionId(), getDefaultTabId(), new ArrayList<IConstraintDescriptor>(), 1, DynamicSectionDescriptor.SEMANTIC_RESOLVER, new ArrayList<String>(), new ArrayList<IFragmentDescriptor>());
-				SectionDescriptorState sectionDescriptorState = new SectionDescriptorState(descriptor);
+				SectionDescriptorState sectionDescriptorState = new SectionDescriptorState(descriptor, false);
 				contentHolder.getSectionSetDescriptorState().addSectionDescriptorState(sectionDescriptorState);
 			}
 

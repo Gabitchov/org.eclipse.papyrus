@@ -55,8 +55,11 @@ public class FragmentDescriptorState extends AbstractState implements IFragmentD
 	 * 
 	 * @param descriptor
 	 *        the fragment descriptor managed by this state
+	 * @param readOnly
+	 *        <code>true</code> if the state should not be modifiable
 	 */
-	public FragmentDescriptorState(FragmentDescriptor descriptor) {
+	public FragmentDescriptorState(FragmentDescriptor descriptor, boolean readOnly) {
+		super(readOnly);
 		this.descriptor = descriptor;
 
 		id = descriptor.getId();
@@ -64,11 +67,11 @@ public class FragmentDescriptorState extends AbstractState implements IFragmentD
 		// retrieve and build the states for the container children
 		List<ContainerDescriptor> containerDescriptors = descriptor.getContainerDescriptors();
 		for(ContainerDescriptor containerDescriptor : containerDescriptors) {
-			containerDescriptorStates.add(containerDescriptor.createState());
+			containerDescriptorStates.add(containerDescriptor.createState(readOnly));
 		}
 
 		for(IConstraintDescriptor constraintDescriptor : descriptor.getConstraintDescriptors()) {
-			getConstraintDescriptorStates().add(constraintDescriptor.createState());
+			getConstraintDescriptorStates().add(constraintDescriptor.createState(readOnly));
 		}
 
 		selectionSizeState = descriptor.getSelectionSize();

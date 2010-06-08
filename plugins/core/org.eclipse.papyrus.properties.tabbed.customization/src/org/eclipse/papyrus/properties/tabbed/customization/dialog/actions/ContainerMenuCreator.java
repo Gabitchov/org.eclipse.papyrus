@@ -100,9 +100,27 @@ public class ContainerMenuCreator extends AbstractMenuCreator {
 				}
 			}
 
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public boolean isEnabled() {
+				ContainerDescriptorState state = getSelectedContainerDescriptorState(parent);
+				if(state == null || state.isReadOnly()) {
+					setEnabled(false);
+				}
+				return super.isEnabled();
+			}
+
 		};
 		manager.add(removeAction);
 		manager.add(new Separator(ADD_GROUP));
+
+		ContainerDescriptorState state = getSelectedContainerDescriptorState(parent);
+		if(state == null || state.isReadOnly()) {
+			return menu;
+		}
+
 		Class<?> selectionClass = null;
 		if(parent instanceof Tree) {
 			Tree tree = (Tree)parent;
@@ -152,7 +170,7 @@ public class ContainerMenuCreator extends AbstractMenuCreator {
 										Activator.log.warn("Impossible to find the current selection in the tree");
 										return;
 									}
-									ControllerDescriptorState state = new PredefinedControllerState(propertyEditorControllerDescriptor);
+									ControllerDescriptorState state = new PredefinedControllerState(propertyEditorControllerDescriptor, false);
 									containerDescriptorState.addPropertyEditorControllerState(state);
 								}
 							}
@@ -172,6 +190,27 @@ public class ContainerMenuCreator extends AbstractMenuCreator {
 			return item;
 		}
 		return retrieveRoot(item.getParentItem());
+	}
+
+	/**
+	 * Returns the current selected container
+	 * 
+	 * @return the current selected container or null
+	 */
+	protected ContainerDescriptorState getSelectedContainerDescriptorState(Object parent) {
+		if(parent instanceof Tree) {
+			TreeItem[] selectedItems = ((Tree)parent).getSelection();
+			if(selectedItems.length < 1) {
+				Activator.log.warn("Impossible to find the current selection in the tree");
+				return null;
+			}
+			TreeItem selectedItem = selectedItems[0];
+			Object data = selectedItem.getData();
+			if(data instanceof ContainerDescriptorState) {
+				return ((ContainerDescriptorState)data);
+			}
+		}
+		return null;
 	}
 
 	/**

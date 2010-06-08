@@ -12,40 +12,51 @@
 package org.eclipse.papyrus.properties.runtime.view;
 
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.state.AbstractState;
 import org.eclipse.papyrus.properties.runtime.state.IFragmentDescriptorState;
 import org.eclipse.papyrus.properties.runtime.state.ITraversableModelElement;
+import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptorState;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 
 /**
  * State for {@link PredefinedFragmentDescriptor}
  */
-public class PredefinedFragmentState extends AbstractState implements IFragmentDescriptorState {
+public class PredefinedFragmentDescriptorState extends AbstractState implements IFragmentDescriptorState {
 
 	/** the descriptor managed by this state */
 	private final PredefinedFragmentDescriptor predefinedFragmentDescriptor;
 
+	/** list of container descriptors state children of this state */
+	private final List<ContainerDescriptorState> containerDescriptorStates = new ArrayList<ContainerDescriptorState>();
+
 	/**
-	 * Creates a new PredefinedFragmentState.
+	 * Creates a new PredefinedFragmentDescriptorState.
 	 * 
 	 * @param predefinedFragmentDescriptor
 	 *        the descriptor managed by this state
+	 * @param readOnly
 	 */
-	public PredefinedFragmentState(PredefinedFragmentDescriptor predefinedFragmentDescriptor) {
+	public PredefinedFragmentDescriptorState(PredefinedFragmentDescriptor predefinedFragmentDescriptor, boolean readOnly) {
+		super(readOnly);
 		this.predefinedFragmentDescriptor = predefinedFragmentDescriptor;
+
+		for(ContainerDescriptor containerDescriptor : predefinedFragmentDescriptor.getContainerDescriptors()) {
+			containerDescriptorStates.add(containerDescriptor.createState(true));
+		}
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public List<? extends ITraversableModelElement> getChildren() {
-		// TODO Auto-generated method stub
-		return null;
+		return containerDescriptorStates;
 	}
 
 	/**
@@ -67,22 +78,23 @@ public class PredefinedFragmentState extends AbstractState implements IFragmentD
 	 * {@inheritDoc}
 	 */
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
-		// nothing here
+		// nothing here, read only
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void removePropertyChangeListener(PropertyChangeListener listener) {
-		// nothing here
+		// nothing here, read only
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Node generateNode(Document document) {
-		Activator.log.error("not implemented yet", null);
-		return null;
+		Element element = document.createElement("fragment");
+		element.setAttribute("predefinedId", getDescriptor().getId());
+		return element;
 	}
 
 }

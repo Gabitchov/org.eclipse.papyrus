@@ -125,7 +125,7 @@ public class SectionMenuCreator extends AbstractMenuCreator {
 			public void run() {
 				// adds a fragment to the current element
 				FragmentDescriptor fragmentDescriptor = new FragmentDescriptor(getNewFragmentId(), new ArrayList<IConstraintDescriptor>(), new ArrayList<ContainerDescriptor>(), 1);
-				FragmentDescriptorState fragmentDescriptorState = new FragmentDescriptorState(fragmentDescriptor);
+				FragmentDescriptorState fragmentDescriptorState = new FragmentDescriptorState(fragmentDescriptor, false);
 				sectionDescriptorState.addFragmentDescriptorState(fragmentDescriptorState);
 			}
 

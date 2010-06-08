@@ -110,8 +110,8 @@ public class GroupContainerDescriptor extends ContainerDescriptor {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public ContainerDescriptorState createState() {
-		return new GroupContainerDescriptorState(this);
+	public ContainerDescriptorState createState(boolean readOnly) {
+		return new GroupContainerDescriptorState(this, readOnly);
 	}
 
 	/**
@@ -140,8 +140,8 @@ public class GroupContainerDescriptor extends ContainerDescriptor {
 		 * @param descriptor
 		 *        the descriptor managed by the state
 		 */
-		public GroupContainerDescriptorState(GroupContainerDescriptor descriptor) {
-			super(descriptor);
+		public GroupContainerDescriptorState(GroupContainerDescriptor descriptor, boolean readOnly) {
+			super(descriptor, readOnly);
 
 			this.name = descriptor.getLabel();
 			// register change support
