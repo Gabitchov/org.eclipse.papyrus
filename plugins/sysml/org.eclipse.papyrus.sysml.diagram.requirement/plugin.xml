@@ -77,7 +77,8 @@
             creationCommandClass="org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCreateCommand"
             icon="icons/RequirementDiagramSysML.gif"
             id="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand"
-            label="SysML Requirement Diagram">
+            label="SysML Requirement Diagram"
+            language="sysml">
       </creationCommand>
    </extension>
    <extension
