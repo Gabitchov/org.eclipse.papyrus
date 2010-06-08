@@ -6,7 +6,7 @@
 		</context>
 		<content>
 			<container>
-				<layout kind="Grid" columns="2" sameSize="false"/>
+				<layout kind="Grid" numColumns="2" sameWidth="false"/>
 				<controller predefinedId="UML_NamedElement_name"/>
 				<controller predefinedId="UML_NamedElement_visibility"/>
 				<!-- <controller id="emftStructuralFeatureController">
@@ -22,7 +22,7 @@
 		</context>
 		<content>
 			<container>
-				<layout kind="Grid" columns="2" sameSize="false"/>
+				<layout kind="Grid" numColumns="2" sameWidth="false"/>
 				<controller predefinedId="UML_NamedElement_visibility"/>
 			</container>
 		</content>
@@ -33,7 +33,7 @@
 		</context>
 		<content>
 			<expandableContainer label="Type">
-			<layout kind="Grid" columns="1" sameSize="false"/>
+			<layout kind="Grid" numColumns="1" sameWidth="false"/>
 				<controller predefinedId="UML_TypedElement_type"/>
 				<controller predefinedId="UML_Property_defaultValue"/>
 				<controller id="emftStructuralFeatureController">
@@ -46,7 +46,7 @@
 					<editor id="org.eclipse.papyrus.properties.runtime.uml.multiplicityPropertyEditor" label="Multiplicity:" labelPosition="16384"/>
 				</controller>
 			</expandableContainer>
-			<expandableContainer label="Redefinition And Subset" layout="Grid" columns="2" sameSize="false">
+			<expandableContainer label="Redefinition And Subset" layout="Grid" numColumns="2" sameWidth="false">
 				<controller predefinedId="UML_Property_redefinedProperty"/>
 				<controller  predefinedId="UML_Property_subsettedProperty"/>
 			</expandableContainer>
@@ -58,14 +58,14 @@
 		</context>
 		<content>
 			<container>
-				<layout kind="Grid" columns="2" sameSize="false"/>
+				<layout kind="Grid" numColumns="2" sameWidth="false"/>
 				 <controller predefinedId="UML_Classifier_isAbstract"/>
 			</container>
-			<expandableContainer label="Features" layout="Grid" columns="2" sameSize="false">
+			<expandableContainer label="Features" layout="Grid" numColumns="2" sameWidth="false">
 				<controller predefinedId="UML_StructuredClassifier_ownedAttribute"/>
 				<controller predefinedId="UML_Class_ownedOperation"/>
 			</expandableContainer>
-			<groupContainer label="MyGroup" layout="Grid" columns="1" sameSize="false">
+			<groupContainer label="MyGroup" layout="Grid" numColumns="1" sameWidth="false">
 				<controller id="emftStructuralFeatureController">
 					<feature name="qualifiedName" handlerID="String"/>
 					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Qualified Name:" labelPosition="16384">
