@@ -10,9 +10,9 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            category="org.eclipse.papyrus.preferences.generalcategory"
+      		category="org.eclipse.papyrus.preferences.generalcategory"
             class="org.eclipse.papyrus.core.preferences.LoadingStrategyPreferencePage"
-            id="org.eclipse.papyrus.core.preferences.CorePreferencePage"
+            id="org.eclipse.papyrus.core.preferences.ModelLoadingPreferencePage"
             name="Model loading">
       </page>
    </extension>

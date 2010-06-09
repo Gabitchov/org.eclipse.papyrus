@@ -6,7 +6,7 @@ Bundle-Version: 0.7.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.controlmode.history,
  org.eclipse.papyrus.controlmode.history.utils,
  org.eclipse.papyrus.controlmode.mm.history,

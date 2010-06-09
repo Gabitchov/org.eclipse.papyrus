@@ -39,7 +39,7 @@ public class ProxyManager {
 	// === Manage strategies
 
 	/** extension point ID for loading strategy */
-	private static final String LOADING_STRATEGY_EXTENSION_POINT_ID = "org.eclipse.papyrus.core.loadingStrategy";
+	private static final String LOADING_STRATEGY_EXTENSION_POINT_ID = "org.eclipse.papyrus.core.resourceloading.loadingStrategy";
 
 	/** element ID for the loading strategy element */
 	private static final String LOADING_STRATEGY_ELEMENT_ID = "loadingStrategy";
@@ -71,7 +71,7 @@ public class ProxyManager {
 
 	/** attribute ID for the implementation of the strategy chooser extension used in preferences */
 	private static final String STRATEGY_CHOOSER_CHOOSER_ATTRIBUTE = "chooser";
-	
+
 	private static IStrategyChooser strategyChooser = getStrategyChooser();
 
 	// ===
@@ -101,13 +101,15 @@ public class ProxyManager {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * Gets the eobject according to the strategy.
-	 *
-	 * @param uri the specified uri to load
+	 * 
+	 * @param uri
+	 *        the specified uri to load
 	 * @return the resolved eobject or the proxy, depending on the loading strategy
-	 * @throws MissingResourceException the missing resource exception
+	 * @throws MissingResourceException
+	 *         the missing resource exception
 	 */
 	public EObject getEObjectFromStrategy(URI uri) throws MissingResourceException {
 		// ask the strategy if the resource of the uri must be loaded
@@ -167,10 +169,10 @@ public class ProxyManager {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Gets the current strategy.
-	 *
+	 * 
 	 * @return the current strategy, strategy 0 (load all resources) is loaded by default if null
 	 */
 	private int getCurrentStrategy() {
@@ -179,7 +181,7 @@ public class ProxyManager {
 		}
 		return strategyChooser.getCurrentStrategy();
 	}
-	
+
 	/**
 	 * Gets the all strategies.
 	 * 
