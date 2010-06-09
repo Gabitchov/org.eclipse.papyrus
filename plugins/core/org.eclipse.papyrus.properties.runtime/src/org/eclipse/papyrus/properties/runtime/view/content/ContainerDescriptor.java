@@ -155,7 +155,9 @@ public class ContainerDescriptor extends AbstractContainerDescriptor {
 	 */
 	public void dispose() {
 		for(PropertyEditorController controller : controllers) {
-			controller.dispose();
+			if(controller != null) {
+				controller.dispose();
+			}
 		}
 		controllers.clear();
 		if(getDescribedComposite() != null && !getDescribedComposite().isDisposed()) {
