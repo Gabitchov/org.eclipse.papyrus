@@ -26,7 +26,6 @@ import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramCommandStack;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeCreationTool;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.EditorUtils;
@@ -85,7 +84,7 @@ public class AspectUnspecifiedTypeCreationTool extends UnspecifiedTypeCreationTo
 				listener = new NotificationListener() {
 
 					public void notifyChanged(Notification notification) {
-						Shape newValue = (Shape)notification.getNewValue();
+						Object newValue = notification.getNewValue();
 						EditPartViewer viewer = getCurrentViewer();
 						if(viewer == null) {
 							viewer = (getTargetEditPart() != null) ? getTargetEditPart().getViewer() : null;
