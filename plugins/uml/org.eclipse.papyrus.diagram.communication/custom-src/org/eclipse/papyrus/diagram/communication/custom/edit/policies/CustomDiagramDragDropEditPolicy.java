@@ -91,7 +91,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		if(!sources.isEmpty() && !targets.isEmpty()) {
 			Element source = (Element)sources.toArray()[0];
 			Element target = (Element)targets.toArray()[0];
-			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Message"), source, target, linkVISUALID, dropRequest.getLocation(), semanticLink)); //$NON-NLS-1$
+			CompositeCommand cc = new CompositeCommand("drop Association"); //$NON-NLS-1$
+			dropBinaryLink(cc, source, target, linkVISUALID, dropRequest.getLocation(), semanticLink);
+			return new ICommandProxy(cc); 
 		} else {
 			return UnexecutableCommand.INSTANCE;
 		}
