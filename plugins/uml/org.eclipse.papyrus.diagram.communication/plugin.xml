@@ -84,6 +84,7 @@
             creationCommandClass="org.eclipse.papyrus.diagram.communication.CreateCommunicationDiagramCommand"
             icon="platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/CommunicationDiagramEditorIcons/CommunicationDiagramEditorIcon_16x16-32.bmp"
             id="org.eclipse.papyrus.diagram.communication.creationCommand"
+            language="uml"
             label="UML communication Diagram">
       </creationCommand>
    </extension>
