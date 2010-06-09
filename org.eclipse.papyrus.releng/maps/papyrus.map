@@ -80,6 +80,7 @@ plugin@org.eclipse.papyrus.diagram.sequence=SVN,,svn://dev.eclipse.org/svnroot/m
 plugin@org.eclipse.papyrus.diagram.statemachine=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.diagram.statemachine
 plugin@org.eclipse.papyrus.diagram.usecase=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.diagram.usecase
 plugin@org.eclipse.papyrus.extensionpoints.uml2=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.extensionpoints.uml2
+plugin@org.eclipse.papyrus.icons.uml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.icons.uml
 plugin@org.eclipse.papyrus.navigator=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.navigator
 plugin@org.eclipse.papyrus.outline.emftree=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.outline.emftree
 plugin@org.eclipse.papyrus.parsers=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.parsers
@@ -87,17 +88,16 @@ plugin@org.eclipse.papyrus.pastemanager=SVN,,svn://dev.eclipse.org/svnroot/model
 plugin@org.eclipse.papyrus.properties.runtime.uml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.properties.runtime.uml
 plugin@org.eclipse.papyrus.properties.tabbed.uml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.properties.tabbed.uml
 plugin@org.eclipse.papyrus.properties.view.uml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.properties.view.uml
+plugin@org.eclipse.papyrus.resourceloading.umlprofile=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.resourceloading.umlprofile
 plugin@org.eclipse.papyrus.tabbedproperties.appearance=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.tabbedproperties.appearance
 plugin@org.eclipse.papyrus.tabbedproperties.uml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.tabbedproperties.uml
-plugin@org.eclipse.papyrus.resourceloading.umlprofile=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.resourceloading.umlprofile
+plugin@org.eclipse.papyrus.templaterepository=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.templaterepository
 plugin@org.eclipse.papyrus.ui.toolbox=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.ui.toolbox
-plugin@org.eclipse.papyrus.uml.icons=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.uml.icons
 plugin@org.eclipse.papyrus.uml.modelexplorer=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.uml.modelexplorer
 plugin@org.eclipse.papyrus.uml.ui.perspectiveconfiguration=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.uml.ui.perspectiveconfiguration
 plugin@org.eclipse.papyrus.uml.standard=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.uml.standard
 plugin@org.eclipse.papyrus.uml.standard.edit=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.uml.standard.edit
 plugin@org.eclipse.papyrus.umlutils=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.umlutils
-plugin@org.eclipse.papyrus.templaterepository=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.templaterepository
 
 #extraplugins/autolayout
 plugin@org.eclipse.papyrus.layouttool=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/extraplugins/autolayout,,org.eclipse.papyrus.layouttool
