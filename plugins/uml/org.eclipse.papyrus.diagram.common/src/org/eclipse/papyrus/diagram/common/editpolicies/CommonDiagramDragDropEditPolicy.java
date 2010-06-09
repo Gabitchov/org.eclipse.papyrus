@@ -14,7 +14,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.editpolicies;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -32,6 +31,7 @@ import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
@@ -198,8 +198,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 		// Create a view request from the drop request and then forward getting
 		// the command for that.
 		CompositeCommand cc = new CompositeCommand("Drop");
-		List viewDescriptors = new ArrayList();
-		Iterator iter = dropRequest.getObjects().iterator();
+		Iterator<?> iter = dropRequest.getObjects().iterator();
 		if(dropRequest.getObjects().size() > 0 && dropRequest.getObjects().get(0) instanceof String) {
 			return getDropFileCommand(dropRequest);
 		}
@@ -213,7 +212,9 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 			int linkVISUALID = getLinkWithClassVisualID(droppedObject);
 			if(getSpecificDrop().contains(nodeVISUALID) || getSpecificDrop().contains(linkVISUALID)) {
 				dropRequest.setLocation(location);
-				return getSpecificDropCommand(dropRequest, (Element)droppedObject, nodeVISUALID, linkVISUALID);
+				// TODO: add to composite command ?
+				cc.add( new CommandProxy( getSpecificDropCommand(dropRequest, (Element)droppedObject, nodeVISUALID, linkVISUALID) ) );
+				continue;
 			}
 
 			if(linkVISUALID == -1 && nodeVISUALID != -1) {
@@ -226,25 +227,25 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 				// . Release the constraint when GraphicalParent is a Package (Canvas for most
 				// diagrams)
 				if(graphicalParent instanceof Package) {
-					cc = getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject);
+					cc.add( getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject) );
 
 				} else if((graphicalParent instanceof Element) && ((Element)graphicalParent).getOwnedElements().contains(droppedObject)) {
-					cc = getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject);
+					cc.add( getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject) );
 
 				} else {
 					return UnexecutableCommand.INSTANCE;
 				}
 
 			} else if(linkVISUALID != -1) {
-				Collection sources = linkmappingHelper.getSource((Element)droppedObject);
-				Collection targets = linkmappingHelper.getTarget((Element)droppedObject);
+				Collection<?> sources = linkmappingHelper.getSource((Element)droppedObject);
+				Collection<?> targets = linkmappingHelper.getTarget((Element)droppedObject);
 				if(sources.size() == 0 || targets.size() == 0) {
 					return UnexecutableCommand.INSTANCE;
 				}
 				// binary association
 				Element source = (Element)sources.toArray()[0];
 				Element target = (Element)targets.toArray()[0];
-				cc = dropBinaryLink(cc, source, target, linkVISUALID, dropRequest.getLocation(), (Element)droppedObject);
+				cc.add( dropBinaryLink(cc, source, target, linkVISUALID, dropRequest.getLocation(), (Element)droppedObject) );
 			}
 		}
 		return new ICommandProxy(cc);
