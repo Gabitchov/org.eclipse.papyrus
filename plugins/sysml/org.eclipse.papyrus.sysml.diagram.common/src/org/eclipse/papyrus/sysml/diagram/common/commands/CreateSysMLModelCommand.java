@@ -13,8 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.common.commands;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.core.extension.commands.ModelCreationCommandBase;
+import org.eclipse.papyrus.sysml.util.SysmlResource;
+import org.eclipse.papyrus.umlutils.PackageUtil;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.UMLFactory;
 
 
@@ -25,35 +29,39 @@ public class CreateSysMLModelCommand extends ModelCreationCommandBase {
 
 	/**
 	 * @see org.eclipse.papyrus.core.extension.commands.ModelCreationCommandBase#createRootElement()
-	 *
+	 * 
 	 * @return
 	 */
-	
+
 	@Override
 	protected EObject createRootElement() {
 		return UMLFactory.eINSTANCE.createModel();
 	}
-	
+
 	/**
 	 * @see org.eclipse.papyrus.core.extension.commands.ModelCreationCommandBase#initializeModel(org.eclipse.emf.ecore.EObject)
-	 *
+	 * 
 	 * @param owner
 	 */
-	
+
 	@Override
 	protected void initializeModel(EObject owner) {
 		super.initializeModel(owner);
 		((org.eclipse.uml2.uml.Package)owner).setName(getModelName());
-		//apply SysML profile here
+
+		// Retrieve SysML profile and apply with Sub-profile
+		Profile sysml = (Profile)PackageUtil.loadPackage(URI.createURI(SysmlResource.SYSML_PROFILE_URI), owner.eResource().getResourceSet());
+		if(sysml != null) {
+			PackageUtil.applyProfile(((org.eclipse.uml2.uml.Package)owner), sysml, true);
+		}
 	}
-	
+
 	/**
 	 * Gets the model name.
-	 *
+	 * 
 	 * @return the model name
 	 */
 	protected String getModelName() {
 		return "SysMLmodel";
 	}
 }
-
