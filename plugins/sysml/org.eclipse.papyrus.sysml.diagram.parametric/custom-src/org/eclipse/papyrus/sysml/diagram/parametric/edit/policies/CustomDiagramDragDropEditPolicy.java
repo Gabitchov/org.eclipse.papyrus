@@ -73,7 +73,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		droppableElementsVisualId.add(PropertyEditPart.VISUAL_ID);
 		return droppableElementsVisualId;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -88,10 +88,10 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	@Override
 	public int getNodeVisualID(View containerView, EObject domainElement) {
 		this.containerView = containerView;
-		if (domainElement instanceof Element) {
+		if(domainElement instanceof Element) {
 			EObject e = getApplication(domainElement);
-			if (e != null) {
-				if (e instanceof ConstraintProperty) {
+			if(e != null) {
+				if(e instanceof ConstraintProperty) {
 					return ConstraintPropertyEditPart.VISUAL_ID;
 				}
 				// others cases for stereotyped elements
@@ -112,10 +112,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID,
-			int linkVISUALID) {
-		if (nodeVISUALID != -1) {
-			switch (nodeVISUALID) {
+	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID, int linkVISUALID) {
+		if(nodeVISUALID != -1) {
+			switch(nodeVISUALID) {
 			case ConstraintPropertyEditPart.VISUAL_ID:
 				return dropConstraintProperty(dropRequest, semanticLink, nodeVISUALID);
 			case PropertyEditPart.VISUAL_ID:
@@ -123,8 +122,8 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			default:
 				return super.getSpecificDropCommand(dropRequest, semanticLink, nodeVISUALID, linkVISUALID);
 			}
-		} else if (linkVISUALID != -1) {
-			switch (linkVISUALID) {
+		} else if(linkVISUALID != -1) {
+			switch(linkVISUALID) {
 			case ConnectorEditPart.VISUAL_ID:
 				return dropConnector(dropRequest, semanticLink, linkVISUALID);
 			default:
@@ -139,24 +138,28 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Specific drop action for connector.
 	 * 
 	 * @param dropRequest
-	 *            the drop request
+	 *        the drop request
 	 * @param semanticLink
-	 *            the semantic link
+	 *        the semantic link
 	 * @param linkVISUALID
-	 *            the link visual Sid
+	 *        the link visual Sid
 	 * 
 	 * @return the command for connector
 	 */
 	protected Command dropConnector(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
 		Collection<?> sources = ConnectorLinkMappingHelper.getInstance().getSource(semanticLink);
 		Collection<?> targets = ConnectorLinkMappingHelper.getInstance().getTarget(semanticLink);
-		if (sources.size() == 1 && targets.size() == 1) {
-			ConnectorEnd sourceConnector = (ConnectorEnd) sources.toArray()[0];
-			ConnectorEnd targetConnector = (ConnectorEnd) targets.toArray()[0];
+		if(sources.size() == 1 && targets.size() == 1) {
+			ConnectorEnd sourceConnector = (ConnectorEnd)sources.toArray()[0];
+			ConnectorEnd targetConnector = (ConnectorEnd)targets.toArray()[0];
 			ConnectableElement source = sourceConnector.getRole();
 			ConnectableElement target = targetConnector.getRole();
-			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Connector"), source, target,
-					linkVISUALID, dropRequest.getLocation(), semanticLink));
+
+			CompositeCommand cc = new CompositeCommand("drop Connector");
+			dropBinaryLink(cc, source, target, linkVISUALID, dropRequest.getLocation(), semanticLink);
+
+			return new ICommandProxy(cc);
+
 		} else {
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -166,18 +169,18 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Specific drop for constraint property.
 	 * 
 	 * @param dropRequest
-	 *            the drop request
+	 *        the drop request
 	 * @param semanticElement
-	 *            the semantic link
+	 *        the semantic link
 	 * @param nodeVISUALID
-	 *            the node visual id
+	 *        the node visual id
 	 * 
 	 * @return the default drop node command for Constraint Property object
 	 */
 	private Command dropConstraintProperty(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID) {
 		CompositeCommand cc = new CompositeCommand("Drop");
 		EObject droppedObject = getApplication(semanticElement);
-		if (droppedObject != null) {
+		if(droppedObject != null) {
 			cc = getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), droppedObject);
 			return new ICommandProxy(cc);
 		}
@@ -189,20 +192,19 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * drag&drop on
 	 * 
 	 * @param dropRequest
-	 *            the drop request
+	 *        the drop request
 	 * @param semanticElement
-	 *            the semantic element
+	 *        the semantic element
 	 * @param nodeVISUALID
-	 *            the node visual id
+	 *        the node visual id
 	 * 
 	 * @return the command
 	 */
 	private Command dropProperty(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID) {
 		EObject eObject = containerView.getElement();
-		if (eObject instanceof Classifier) {
-			PropertyLinkedToClassifier propertyLinkedToClassifier = new PropertyLinkedToClassifier(
-					(Classifier) eObject, (Property) semanticElement);
-			if (propertyLinkedToClassifier.isLinkedToClassifier()) {
+		if(eObject instanceof Classifier) {
+			PropertyLinkedToClassifier propertyLinkedToClassifier = new PropertyLinkedToClassifier((Classifier)eObject, (Property)semanticElement);
+			if(propertyLinkedToClassifier.isLinkedToClassifier()) {
 				CompositeCommand cc = new CompositeCommand("Drop");
 				cc = getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), semanticElement);
 				return new ICommandProxy(cc);
@@ -224,16 +226,16 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Gets stereotype application element for a specified domain element.
 	 * 
 	 * @param domainElement
-	 *            the domain element
+	 *        the domain element
 	 * 
 	 * @return the stereotype application object
 	 */
 	private EObject getApplication(EObject domainElement) {
-		if (getStereotypeAvailable(domainElement) != null && domainElement instanceof Element) {
-			Element element = (Element) domainElement;
+		if(getStereotypeAvailable(domainElement) != null && domainElement instanceof Element) {
+			Element element = (Element)domainElement;
 			List<EObject> applications = element.getStereotypeApplications();
-			for (EObject eObject : applications) {
-				if (getStereotypeAvailable(domainElement).equals(eObject.eClass())) {
+			for(EObject eObject : applications) {
+				if(getStereotypeAvailable(domainElement).equals(eObject.eClass())) {
 					return eObject;
 				}
 			}
@@ -245,12 +247,12 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 * Gets the available stereotype EClass for a specified EObject
 	 * 
 	 * @param eObject
-	 *            the e object
+	 *        the e object
 	 * 
 	 * @return the stereotype available
 	 */
 	private EClass getStereotypeAvailable(EObject eObject) {
-		if (eObject instanceof Property) {
+		if(eObject instanceof Property) {
 			return ConstraintsPackage.Literals.CONSTRAINT_PROPERTY;
 		}
 		return null;
