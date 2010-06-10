@@ -327,7 +327,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 */
 	public String getQualifiedName(String qualifiedName, int depth) {
 		int n = -1;
-
+		if( qualifiedName==null){return null;}
 		int i = 0;
 		if(depth <= 0) {
 			return qualifiedName;
