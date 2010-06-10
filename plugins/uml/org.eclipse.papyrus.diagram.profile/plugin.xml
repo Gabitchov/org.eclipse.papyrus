@@ -1127,6 +1127,11 @@
                   label="Create a new Profile Diagram"
                   style="push"
                   tooltip="Create a new Profile Diagram">
+					<visibleWhen>
+						<with variable="activeEditorId">
+							<equals value="org.eclipse.papyrus.core.papyrusEditor" />
+						</with>
+					</visibleWhen>                  
             </command>
          </menu>
       </menuContribution>
@@ -1150,7 +1155,7 @@
    <extension
          point="org.eclipse.papyrus.core.papyrusDiagram">
       <editorDiagram
-            contextId="com.cea.papyrus.gmf.editor.context"
+            actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
             factoryClass="org.eclipse.papyrus.diagram.profile.ProfileDiagramEditorFactory"
             icon="platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/ProfileDiagramEditorIcons/ProfileDiagramEditorIcon_16x16-32.bmp">
       </editorDiagram>
@@ -1378,19 +1383,32 @@
          name="New PapyII Profile Diagram( Papyrus II)">
    </command>
 </extension>
-   <extension
-         point="org.eclipse.papyrus.core.papyrusDiagram">
-      <diagramCategory
-            class="org.eclipse.papyrus.diagram.profile.CreateProfileModelCommand"
-            description="Profile diagram"
-            icon="icons/wizban/category_profile.gif"
-            id="profile"
-            label="Profile">
-      </diagramCategory>      
-   </extension>
+<extension
+	point="org.eclipse.ui.handlers">
+	<handler
+		class="org.eclipse.papyrus.diagram.profile.CreateProfileDiagramCommand"
+		commandId="org.eclipse.papyrus.diagram.profile.CreateProfileDiagramCommand">
+		<activeWhen>
+		<with
+			variable="activeEditorId">
+			<equals
+				value="org.eclipse.papyrus.core.papyrusEditor">
+			</equals>
+		</with>
+		</activeWhen>
+	</handler>
+</extension>
 
-
-
+<extension
+	point="org.eclipse.papyrus.core.papyrusDiagram">
+	<diagramCategory
+		class="org.eclipse.papyrus.diagram.profile.CreateProfileModelCommand"
+		description="Profile diagram"
+		icon="icons/wizban/category_profile.gif"
+		id="profile"
+		label="Profile">
+	</diagramCategory>      
+</extension>
 
 
    <!-- optionally, specify keybindings -->
