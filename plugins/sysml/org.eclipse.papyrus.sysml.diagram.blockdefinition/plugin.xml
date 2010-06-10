@@ -333,17 +333,6 @@
             id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PackagePreferencePage"
             name="Package">
 	</page>	
-
-</extension>
-   <extension
-         point="org.eclipse.papyrus.core.papyrusDiagram">
-      <diagramCategory
-            class="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateSysMLModelCommand"
-            description="SysML diagrams"
-            icon="icons/category_sysml.gif"
-            id="sysml"
-            label="SysML">
-      </diagramCategory>      
-   </extension>
+</extension>   
 
 </plugin>
