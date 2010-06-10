@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.papyrus.core.papyrusDiagram">
+      <diagramCategory
+            class="org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand"
+            description="SysML diagrams"
+            icon="icons/category_sysml.gif"
+            id="sysml"
+            label="SysML">
+      </diagramCategory>      
+   </extension>
+
+</plugin>
