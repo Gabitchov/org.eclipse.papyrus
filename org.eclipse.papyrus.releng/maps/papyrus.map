@@ -86,6 +86,7 @@ plugin@org.eclipse.papyrus.outline.emftree=SVN,,svn://dev.eclipse.org/svnroot/mo
 plugin@org.eclipse.papyrus.parsers=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.parsers
 plugin@org.eclipse.papyrus.pastemanager=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.pastemanager
 plugin@org.eclipse.papyrus.properties.runtime.uml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.properties.runtime.uml
+plugin@org.eclipse.papyrus.properties.tabbed.profile=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.properties.tabbed.profile
 plugin@org.eclipse.papyrus.properties.tabbed.uml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.properties.tabbed.uml
 plugin@org.eclipse.papyrus.properties.view.uml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.properties.view.uml
 plugin@org.eclipse.papyrus.resourceloading.umlprofile=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.resourceloading.umlprofile
