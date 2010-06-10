@@ -22,6 +22,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
@@ -110,13 +111,21 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	public void initDomainModel(final DiResourceSet diResourceSet, final IFile newFile, final EObject root, final String modelContentType, final String modelFileExtension) {
 		RecordingCommand command = (root != null) ? new PapyrusModelFromExistingDomainModelCommand(diResourceSet, newFile, root) : new NewPapyrusModelCommand(diResourceSet, newFile);
 		diResourceSet.getTransactionalEditingDomain().getCommandStack().execute(command);
-		if(root == null) {
+		if(root == null && !useTemplate()) {
 			try {
 				mySelectedDiagramCategory.getCommand().createModel(diResourceSet);
 			} catch (BackboneException e) {
 				log.error(e);
 			}
 		}
+	}
+
+	private boolean useTemplate() {
+		IWizardPage nextPage = getNextPage();
+		if(nextPage == null || false == nextPage instanceof SelectDiagramKindPage) {
+			return false;
+		}
+		return ((SelectDiagramKindPage)nextPage).useTemplate();
 	}
 
 	/**

@@ -152,11 +152,19 @@ public class SelectDiagramKindPage extends WizardPage {
 	}
 
 	private void initFromTemplateIfNeeded(final DiResourceSet diResourceSet) {
-		String templatePath = selectTemplateComposite.getTemplatePath();
-		boolean useTemplate = templatePath != null;
-		if(useTemplate) {
-			diResourceSet.getTransactionalEditingDomain().getCommandStack().execute(new InitFromTemplateCommand(diResourceSet, selectTemplateComposite.getTemplatePluginId(), templatePath));
+		if(useTemplate()) {
+			diResourceSet.getTransactionalEditingDomain().getCommandStack().execute(new InitFromTemplateCommand(diResourceSet, selectTemplateComposite.getTemplatePluginId(), selectTemplateComposite.getTemplatePath()));
 		}
+	}
+	
+	/**
+	 * Use template.
+	 *
+	 * @return true, if successful
+	 */
+	protected boolean useTemplate() {
+		String templatePath = selectTemplateComposite.getTemplatePath();
+		return templatePath != null;
 	}
 
 	/**
