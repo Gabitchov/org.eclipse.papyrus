@@ -638,9 +638,9 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-		initForegroundFromPrefs(node, prefStore, "CombinedFragment");
-
-		initBackgroundFromPrefs(node, prefStore, "CombinedFragment");
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "CombinedFragment");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "CombinedFragment");
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "CombinedFragment");
 
 		Node compartment = createCompartment(node, UMLVisualIDRegistry.getType(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID), false, false, true, true);
 
@@ -786,12 +786,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		node.setType(UMLVisualIDRegistry.getType(ConsiderIgnoreFragmentEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
-		// initializeFromPreferences 
+		// initializeFromPreferences
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 
-		initForegroundFromPrefs(node, prefStore, "ConsiderIgnoreFragment");
-
-		initBackgroundFromPrefs(node, prefStore, "ConsiderIgnoreFragment");
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "ConsiderIgnoreFragment");
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ConsiderIgnoreFragment");
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "ConsiderIgnoreFragment");
 
 		Node compartment = createCompartment(node, UMLVisualIDRegistry.getType(CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID), false, false, true, true);
 
