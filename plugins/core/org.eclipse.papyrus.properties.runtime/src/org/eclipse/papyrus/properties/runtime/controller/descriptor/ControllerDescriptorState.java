@@ -16,6 +16,7 @@ import java.beans.PropertyChangeSupport;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.state.AbstractState;
 import org.eclipse.papyrus.properties.runtime.state.ITraversableModelElement;
 import org.w3c.dom.Document;
@@ -121,9 +122,9 @@ public class ControllerDescriptorState extends AbstractState {
 	 * {@inheritDoc}
 	 */
 	public Node generateNode(Document document) {
-		// TODO Auto-generated method stub
+		// should be subclassed...
+		Activator.log.error("not implemented", null);
 		return null;
 	}
-
 
 }

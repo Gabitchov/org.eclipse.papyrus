@@ -177,6 +177,30 @@ public class FragmentDescriptorState extends AbstractState implements IFragmentD
 	}
 
 	/**
+	 * Adds the {@link ContainerDescriptorState} to the list of descriptor states belonging to this fragment
+	 * 
+	 * @param containerDescriptorState
+	 *        the state to add
+	 */
+	public void addConstraintDescriptorState(ConstraintDescriptorState constraintDescriptorState) {
+		constraintDescriptorStates.add(constraintDescriptorState);
+
+		changeSupport.firePropertyChange(PROPERTY_ADD_CHILD, null, constraintDescriptorState);
+	}
+
+	/**
+	 * Removes the {@link ContainerDescriptorState} from the list of descriptor states belonging to this fragment
+	 * 
+	 * @param containerDescriptorState
+	 *        the state to remove
+	 */
+	public void removeContainerDescriptorState(ConstraintDescriptorState constraintDescriptorState) {
+		constraintDescriptorStates.remove(constraintDescriptorState);
+
+		changeSupport.firePropertyChange(PROPERTY_REMOVE_CHILD, null, constraintDescriptorState);
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
 	public List<ContainerDescriptorState> getChildren() {

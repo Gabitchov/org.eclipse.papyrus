@@ -62,4 +62,10 @@ public class ReferenceEMFModelHandler extends EMFFeatureModelHandler {
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getId() {
+		return ID;
+	}
 }

@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.properties.tabbed.customization.dialog.actions;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -123,6 +124,21 @@ public class SectionMenuCreator extends AbstractMenuCreator {
 		manager.add(removeAction);
 		manager.add(new Separator(ADD_GROUP));
 
+		Class<?> selectionClass = null;
+		final List<ConstraintDescriptorState> constraintDescriptorStates = getConstraintDescriptorStates(parent);
+
+		if(constraintDescriptorStates != null) {
+			for(ConstraintDescriptorState constraintDescriptorState : constraintDescriptorStates) {
+				IConstraintDescriptor descriptor = constraintDescriptorState.getDescriptor();
+				if(descriptor instanceof ObjectTypeConstraintDescriptor) { // check only class compatibility. Should also check the other constraints...
+					selectionClass = ((ObjectTypeConstraintDescriptor)descriptor).getElementClass();
+				}
+			}
+		}
+
+		if(getCurrentSectionSetDescriptorState(parent) == null) {
+			return menu;
+		}
 		IAction addFragmentAction = new Action("Add New Fragment", Activator.imageDescriptorFromPlugin(Activator.ID, "/icons/NewFragment.gif")) {
 
 			/**
@@ -131,8 +147,13 @@ public class SectionMenuCreator extends AbstractMenuCreator {
 			@Override
 			public void run() {
 				// adds a fragment to the current element
-				FragmentDescriptor fragmentDescriptor = new FragmentDescriptor(getNewFragmentId(), new ArrayList<IConstraintDescriptor>(), new ArrayList<ContainerDescriptor>(), 1);
+				FragmentDescriptor fragmentDescriptor = new FragmentDescriptor(getNewFragmentId(), new ArrayList<IConstraintDescriptor>(), new ArrayList<ContainerDescriptor>(), getCurrentSectionSetDescriptorState(parent).getSelectionSize());
 				FragmentDescriptorState fragmentDescriptorState = new FragmentDescriptorState(fragmentDescriptor, false);
+
+				// retrieve constraints from current section set
+				for(ConstraintDescriptorState state : constraintDescriptorStates) {
+					fragmentDescriptorState.addConstraintDescriptorState(state);
+				}
 				sectionDescriptorState.addFragmentDescriptorState(fragmentDescriptorState);
 			}
 
@@ -141,28 +162,7 @@ public class SectionMenuCreator extends AbstractMenuCreator {
 		// adds a fragment to the current element
 
 
-		Class<?> selectionClass = null;
-		if(parent instanceof Tree) {
-			Tree tree = (Tree)parent;
-			TreeItem[] items = tree.getSelection();
-			if(items.length < 1) {
-				Activator.log.warn("impossible to find an element in the selection");
-				return menu;
-			}
-			TreeItem root = retrieveRoot(items[0]);
-			if(root != null) {
-				Object rootElement = root.getData();
-				if(rootElement instanceof ContentHolder) {
-					List<ConstraintDescriptorState> constraintDescriptorStates = ((ContentHolder)rootElement).getSectionSetDescriptorState().getConstraintDescriptorStates();
-					for(ConstraintDescriptorState constraintDescriptorState : constraintDescriptorStates) {
-						IConstraintDescriptor descriptor = constraintDescriptorState.getDescriptor();
-						if(descriptor instanceof ObjectTypeConstraintDescriptor) { // check class compatibility. Should also check the other constraints...
-							selectionClass = ((ObjectTypeConstraintDescriptor)descriptor).getElementClass();
-						}
-					}
-				}
-			}
-		}
+
 		Map<String, FragmentDescriptor> availableFragmentDescriptors = PropertyViewService.getInstance().getAllFragmentDescriptors();
 
 		for(final FragmentDescriptor descriptor : availableFragmentDescriptors.values()) {
@@ -204,6 +204,53 @@ public class SectionMenuCreator extends AbstractMenuCreator {
 		return menu;
 	}
 
+	/**
+	 * returns the current {@link SectionSetDescriptorState}
+	 * 
+	 * @param parent
+	 *        the tree element
+	 * @return the current section set descriptor state edited or <code>null</code>.
+	 */
+	protected SectionSetDescriptorState getCurrentSectionSetDescriptorState(Object parent) {
+		if(parent instanceof Tree) {
+			Tree tree = (Tree)parent;
+			TreeItem[] items = tree.getSelection();
+			if(items.length < 1) {
+				Activator.log.warn("impossible to find an element in the selection");
+				return null;
+			}
+			TreeItem root = retrieveRoot(items[0]);
+			if(root != null) {
+				Object rootElement = root.getData();
+				if(rootElement instanceof ContentHolder) {
+					return ((ContentHolder)rootElement).getSectionSetDescriptorState();
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Returns the list of constraint descriptor states for the current selected section set descriptor state
+	 * 
+	 * @return the list of constraint descriptor states for the current selected section set descriptor state or an empty list
+	 */
+	private List<ConstraintDescriptorState> getConstraintDescriptorStates(Object parent) {
+		SectionSetDescriptorState state = getCurrentSectionSetDescriptorState(parent);
+
+		if(state != null) {
+			return state.getConstraintDescriptorStates();
+		}
+		return Collections.emptyList();
+	}
+
+	/**
+	 * Retrieves the root item in the tree
+	 * 
+	 * @param item
+	 *        the current item
+	 * @return the root item in the tree
+	 */
 	protected TreeItem retrieveRoot(TreeItem item) {
 		if(item.getParentItem() == null) {
 			return item;

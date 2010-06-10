@@ -17,6 +17,7 @@ import java.util.List;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandler;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
+import org.eclipse.papyrus.properties.runtime.state.IState;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.w3c.dom.Document;
@@ -153,6 +154,9 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 		/** multi selection state */
 		private boolean multiSelectionState;
 
+		/** state of the editor */
+		private IState editorState;
+
 		/**
 		 * Creates a new EMFTPropertyEditorControllerDescriptorState.
 		 * 
@@ -162,8 +166,8 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 			super(descriptor, readOnly);
 			featureNameState = descriptor.getFeatureNameToEdit();
 			multiSelectionState = descriptor.acceptMultiSelection();
-
-
+			modelHandlerState = descriptor.getHandler().getId();
+			editorState = descriptor.getEditorDescriptor().createState(readOnly);
 			// register change support
 			changeSupport = new PropertyChangeSupport(this);
 		}
@@ -278,10 +282,24 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 
 			Element featureNode = document.createElement("feature");
 			featureNode.setAttribute("name", getFeatureNameState());
-			// FIXME generate element from the model handler
+
+			generateModelHandlerAttributes(featureNode, document);
 
 			generateEditorNode(node, document);
 			return node;
+		}
+
+
+		/**
+		 * Generates the attributes to the feature node for the model handler
+		 * 
+		 * @param featureNode
+		 *        the node to complete
+		 * @param document
+		 *        the document used to create elements in the file
+		 */
+		protected void generateModelHandlerAttributes(Element featureNode, Document document) {
+			featureNode.setAttribute("handlerID", modelHandlerState);
 		}
 
 		/**
@@ -293,7 +311,8 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 		 *        the document used to create elements
 		 */
 		protected void generateEditorNode(Element node, Document document) {
-			// FIXME generate the editor node
+			Node editorNode = editorState.generateNode(document);
+			node.appendChild(editorNode);
 		}
 	}
 }

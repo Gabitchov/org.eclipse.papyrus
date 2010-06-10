@@ -42,7 +42,13 @@ public class SectionSetDescriptorState extends AbstractState {
 	protected final SectionSetDescriptor sectionSetDescriptor;
 
 	/** label displayed by this section set descriptor */
+	private String label;
+
+	/** name of the section set descriptor */
 	private String name;
+
+	/** selection size */
+	private int selectionSize;
 
 	/** change support for this bean */
 	private PropertyChangeSupport changeSupport;
@@ -65,6 +71,8 @@ public class SectionSetDescriptorState extends AbstractState {
 	public SectionSetDescriptorState(SectionSetDescriptor sectionSetDescriptor, boolean readOnly) {
 		super(readOnly);
 		this.sectionSetDescriptor = sectionSetDescriptor;
+		this.name = sectionSetDescriptor.getName();
+		this.selectionSize = sectionSetDescriptor.getSelectionSize();
 
 		// retrieve and build the states for the children sections
 		for(DynamicSectionDescriptor abstractSectionDescriptor : sectionSetDescriptor.getSectionDescriptors()) {
@@ -82,42 +90,75 @@ public class SectionSetDescriptorState extends AbstractState {
 	}
 
 	/**
+	 * Sets the name
+	 * 
+	 * @param name
+	 *        the name to set
+	 */
+	public void setName(String name) {
+		changeSupport.firePropertyChange("name", this.name, this.name = name);
+	}
+
+	/**
+	 * Returns the name
+	 * 
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * Sets the selectionSize
+	 * 
+	 * @param selectionSize
+	 *        the selectionSize to set
+	 */
+	public void setSelectionSize(int selectionSize) {
+		changeSupport.firePropertyChange("selectionSize", this.selectionSize, this.selectionSize = selectionSize);
+	}
+
+	/**
+	 * Returns the selectionSize
+	 * 
+	 * @return the selectionSize
+	 */
+	public int getSelectionSize() {
+		return selectionSize;
+	}
+
+	/**
 	 * Returns the label for this section set descriptor state
 	 * 
 	 * @return the label for this section set descriptor state
 	 */
 	public String getLabel() {
-		if(name == null) {
-			StringBuffer buffer = new StringBuffer();
-			buffer.append(sectionSetDescriptor.getName());
-			buffer.append(": ");
-			// retrieve metaclass constraint
-			String metaclassName = "";
-			for(IConstraintDescriptor constraintDescriptor : getDescriptor().getConstraintDescriptors()) {
-				if(constraintDescriptor instanceof ObjectTypeConstraintDescriptor) {
-					metaclassName = ((ObjectTypeConstraintDescriptor)constraintDescriptor).getElementClass().getCanonicalName();
-				}
+		StringBuffer buffer = new StringBuffer();
+		buffer.append(name);
+		buffer.append(": ");
+		// retrieve metaclass constraint
+		String metaclassName = "";
+		for(IConstraintDescriptor constraintDescriptor : getDescriptor().getConstraintDescriptors()) {
+			if(constraintDescriptor instanceof ObjectTypeConstraintDescriptor) {
+				metaclassName = ((ObjectTypeConstraintDescriptor)constraintDescriptor).getElementClass().getCanonicalName();
 			}
-			buffer.append(metaclassName);
-
-			// now append selection size between '[' and ']'
-			int selectionSize = getDescriptor().getSelectionSize();
-			buffer.append(" [");
-			buffer.append((selectionSize >= 0) ? selectionSize : "*");
-			buffer.append(']');
-
-			// append stereotype required 
-			for(IConstraintDescriptor constraintDescriptor : getDescriptor().getConstraintDescriptors()) {
-				if(constraintDescriptor instanceof AppliedStereotypeConstraintDescriptor) {
-					buffer.append('<');
-					buffer.append(((AppliedStereotypeConstraintDescriptor)constraintDescriptor).getStereotypeQualifiedNames());
-					buffer.append('>');
-				}
-			}
-
-			name = buffer.toString();
 		}
-		return name;
+		buffer.append(metaclassName);
+
+		// now append selection size between '[' and ']'
+		buffer.append(" [");
+		buffer.append((selectionSize >= 0) ? selectionSize : "*");
+		buffer.append(']');
+
+		// append stereotype required 
+		for(IConstraintDescriptor constraintDescriptor : getDescriptor().getConstraintDescriptors()) {
+			if(constraintDescriptor instanceof AppliedStereotypeConstraintDescriptor) {
+				buffer.append('<');
+				buffer.append(((AppliedStereotypeConstraintDescriptor)constraintDescriptor).getStereotypeQualifiedNames());
+				buffer.append('>');
+			}
+		}
+		return buffer.toString();
 	}
 
 	/**
@@ -207,11 +248,11 @@ public class SectionSetDescriptorState extends AbstractState {
 	 */
 	public Node generateNode(Document document) {
 		Element sectionSetDescriptorNode = document.createElement("sectionSet");
-		sectionSetDescriptorNode.setAttribute("name", getDescriptor().getName());
+		sectionSetDescriptorNode.setAttribute("name", name);
 
 		// create the context
 		Element contextNode = document.createElement("context");
-		contextNode.setAttribute("enablesFor", "" + getDescriptor().getSelectionSize());
+		contextNode.setAttribute("enablesFor", "" + selectionSize);
 		// generate for each constraint
 		for(ConstraintDescriptorState constraintState : getConstraintDescriptorStates()) {
 			Node node = constraintState.generateNode(document);
@@ -224,8 +265,6 @@ public class SectionSetDescriptorState extends AbstractState {
 			Node node = sectionState.generateNode(document);
 			sectionSetDescriptorNode.appendChild(node);
 		}
-
-
 		return sectionSetDescriptorNode;
 	}
 }

@@ -32,6 +32,9 @@ public class MultiplicityModelHandler implements IEMFModelHandler {
 	/** list of available values */
 	protected final List<String> availableValues;
 
+	/** id of this model handler */
+	public final static String ID = "Multiplicity";
+
 	/**
 	 * Creates a new MultiplicityModelHandler.
 	 * 
@@ -105,4 +108,10 @@ public class MultiplicityModelHandler implements IEMFModelHandler {
 		return true;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getId() {
+		return ID;
+	}
 }

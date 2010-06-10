@@ -11,6 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.customization.dialog;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -21,6 +23,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.gmt.modisco.infra.browser.uicore.CustomizableModelContentProvider;
 import org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem;
+import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.core.utils.FilteredCollectionView;
 import org.eclipse.papyrus.core.utils.IFilter;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
@@ -33,10 +37,13 @@ import org.eclipse.papyrus.properties.tabbed.customization.Activator;
  * Content Provider for the metamodel viewer. It will display the metaclass elements, and the section sets that are available for these elements
  */
 @SuppressWarnings("restriction")
-public class MetamodelContentProvider extends CustomizableModelContentProvider {
+public class MetamodelContentProvider extends CustomizableModelContentProvider implements PropertyChangeListener {
 
 	/** list of available section sets */
 	protected final List<SectionSetDescriptorState> availableSectionSets;
+
+	/** metamodel tree viewer */
+	private TreeViewer fViewer;
 
 	/**
 	 * Creates a new MetamodelContentProvider.
@@ -44,7 +51,20 @@ public class MetamodelContentProvider extends CustomizableModelContentProvider {
 	public MetamodelContentProvider(List<SectionSetDescriptorState> availableSectionSets) {
 		super(Activator.getDefault().getCustomizationManager());
 		this.availableSectionSets = availableSectionSets;
+		for(SectionSetDescriptorState state : availableSectionSets) {
+			state.addPropertyChangeListener(this);
+		}
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+		super.inputChanged(viewer, oldInput, newInput);
+		fViewer = (TreeViewer)viewer;
+	}
+
 
 	/**
 	 * {@inheritDoc}
@@ -132,4 +152,24 @@ public class MetamodelContentProvider extends CustomizableModelContentProvider {
 		return children != null && children.length > 0;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public void propertyChange(PropertyChangeEvent evt) {
+		if(evt.getSource() instanceof SectionSetDescriptorState) {
+			((TreeViewer)fViewer).refresh(true);
+		}
+	}
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void dispose() {
+		for(SectionSetDescriptorState state : availableSectionSets) {
+			state.removePropertyChangeListener(this);
+		}
+		super.dispose();
+	}
 }

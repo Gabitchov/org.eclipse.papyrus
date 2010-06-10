@@ -101,4 +101,11 @@ public class BooleanEMFModelHandler extends EnumerationEMFModelHandler {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getId() {
+		return ID;
+	}
+
 }

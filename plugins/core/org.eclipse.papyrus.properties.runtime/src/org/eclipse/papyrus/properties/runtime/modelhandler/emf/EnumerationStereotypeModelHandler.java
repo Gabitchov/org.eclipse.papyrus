@@ -125,4 +125,11 @@ public class EnumerationStereotypeModelHandler extends EMFStereotypeFeatureModel
 			Activator.log.info("Warning: " + descriptor + "could not be completed.");
 		}
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getId() {
+		return ID;
+	}
 }

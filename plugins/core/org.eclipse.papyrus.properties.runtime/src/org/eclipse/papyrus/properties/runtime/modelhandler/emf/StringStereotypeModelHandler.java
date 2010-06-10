@@ -32,4 +32,11 @@ public class StringStereotypeModelHandler extends EMFStereotypeFeatureModelHandl
 		super(stereotypeName, featureName);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getId() {
+		return ID;
+	}
+
 }

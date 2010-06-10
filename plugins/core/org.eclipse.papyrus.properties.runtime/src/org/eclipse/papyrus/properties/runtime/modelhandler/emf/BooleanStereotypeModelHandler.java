@@ -124,4 +124,11 @@ public class BooleanStereotypeModelHandler extends EnumerationStereotypeModelHan
 			Activator.log.info("Warning: " + descriptor + "could not be completed.");
 		}
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getId() {
+		return ID;
+	}
 }

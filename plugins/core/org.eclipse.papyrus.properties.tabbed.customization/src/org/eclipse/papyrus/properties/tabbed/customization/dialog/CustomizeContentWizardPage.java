@@ -442,6 +442,23 @@ public class CustomizeContentWizardPage extends WizardPage {
 				}
 			}
 		});
+		metamodelViewer.addDoubleClickListener(new IDoubleClickListener() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void doubleClick(DoubleClickEvent event) {
+				// edit element on which double click occurs => open edit dialog
+				ITreeSelection selection = (ITreeSelection)event.getSelection();
+				Object selectedElement = selection.getFirstElement();
+
+				// if element is a state, opens the dialog on this state
+				if(selectedElement instanceof IState) {
+					openEditionDialog(((IState)selectedElement));
+				}
+			}
+		});
+
 	}
 
 	/**

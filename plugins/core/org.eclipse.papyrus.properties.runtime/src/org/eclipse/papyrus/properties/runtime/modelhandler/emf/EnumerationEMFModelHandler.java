@@ -111,4 +111,11 @@ public class EnumerationEMFModelHandler extends EMFFeatureModelHandler {
 			Activator.log.info("Warning: " + descriptor + "could not be completed.");
 		}
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getId() {
+		return ID;
+	}
 }

@@ -12,13 +12,16 @@
 package org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor;
 
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.papyrus.properties.runtime.state.IState;
+import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
 
 
 /**
  * Basic configuration for property editors
  */
-public class PropertyEditorDescriptor implements IPropertyEditorDescriptor {
+public class PropertyEditorDescriptor implements IPropertyEditorDescriptor, IConfigurableDescriptor {
 
 	/** the label position of the property editor */
 	private int labelPosition = 0;
@@ -75,6 +78,27 @@ public class PropertyEditorDescriptor implements IPropertyEditorDescriptor {
 	 */
 	public String getEditorId() {
 		return editorID;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getText() {
+		return "editor";
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Image getImage() {
+		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public IState createState(boolean readOnly) {
+		return new PropertyEditorDescriptorState(this, readOnly);
 	}
 
 }

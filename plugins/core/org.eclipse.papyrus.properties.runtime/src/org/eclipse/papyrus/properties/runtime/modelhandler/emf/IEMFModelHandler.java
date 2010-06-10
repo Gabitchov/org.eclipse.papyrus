@@ -32,8 +32,8 @@ public interface IEMFModelHandler {
 	/**
 	 * Sets the new Value in the model
 	 * 
-	 * @param objectToEdit 
-	 *  	  the object to edit
+	 * @param objectToEdit
+	 *        the object to edit
 	 * @param newValue
 	 *        the new value to set
 	 */
@@ -42,10 +42,10 @@ public interface IEMFModelHandler {
 	/**
 	 * Returns the initialization data that will be given to the property editor
 	 * 
-	 * @param descriptor 
-	 *        descriptor of the editor managed by the controller linked to this model handler 
-	 * @param objectToEdit 
-	 * 		  list of objects to edit
+	 * @param descriptor
+	 *        descriptor of the editor managed by the controller linked to this model handler
+	 * @param objectToEdit
+	 *        list of objects to edit
 	 */
 	public void completeEditorDescriptor(IPropertyEditorDescriptor descriptor, List<EObject> objectToEdit);
 
@@ -57,5 +57,12 @@ public interface IEMFModelHandler {
 	 * @return <code>true</code> if the feature is changeable
 	 */
 	public boolean isChangeable(List<EObject> objectsToEdit);
+
+	/**
+	 * Returns the identifier of this model handler
+	 * 
+	 * @return the identifier of this model handler
+	 */
+	public String getId();
 
 }

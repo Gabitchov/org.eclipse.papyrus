@@ -56,6 +56,24 @@
 			</container>
 		</content>
 	</fragment>
+	<fragment id="fragment_single_SectionSetDescriptorState">	<!-- fragment for controller descriptor state -->
+		<context enablesFor="1">
+			<elementClass name="org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptorState"/>
+		</context>
+		<content>
+			<container>
+				 <layout kind="Grid" numColumns="1" sameWidth="false"/>
+				 <controller id="stateBeanPropertyEditorController">
+					<property name="name"/>
+					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Name" labelPosition="16384"/>
+				</controller>
+				<controller id="integerStateBeanPropertyEditorController">
+					<property name="selectionSize"/>
+					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Selection Size" labelPosition="16384"/>
+				</controller>
+			</container>
+		</content>
+	</fragment>
 	<fragment id="fragment_single_ControllerDescriptorState">
 		<context enablesFor="1">
 			<elementClass name="org.eclipse.papyrus.properties.runtime.controller.descriptor.ControllerDescriptorState"></elementClass>

@@ -37,7 +37,7 @@ public class StringEMFModelHandler extends EMFFeatureModelHandler {
 	}
 
 	/**
-	 *{@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public void setValueInModel(EObject objectToEdit, Object newValue) {
 		EStructuralFeature featureToEdit = getFeatureByName(objectToEdit);
@@ -54,5 +54,10 @@ public class StringEMFModelHandler extends EMFFeatureModelHandler {
 		// nothing to do here
 	}
 
-
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getId() {
+		return ID;
+	}
 }

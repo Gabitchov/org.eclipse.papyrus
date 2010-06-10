@@ -50,4 +50,11 @@ public class ReferenceStereotypeModelHandler extends EMFStereotypeFeatureModelHa
 			Activator.log.error("impossible to set the new value", null);
 		}
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getId() {
+		return ID;
+	}
 }

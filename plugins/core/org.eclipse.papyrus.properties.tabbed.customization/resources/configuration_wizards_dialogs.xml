@@ -32,6 +32,22 @@
 			<fragment predefinedId="fragment_single_SectionDescriptorState"/>	<!-- fragment for controller descriptor state -->
 		</content>
 	</dialog>
+	<dialog id="SectionSetDescriptorStateDialog"><!-- Dialog for single section set descriptor state -->
+		<context enablesFor="1">
+			<elementClass
+				name="org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptorState">
+			</elementClass>
+		</context>
+		<title>
+			<string value="Edit Section Set Descriptor"/>
+		</title>
+		<message>
+			<string value="Edit Section Set Descriptor Message"/>
+		</message>
+		<content>
+			<fragment predefinedId="fragment_single_SectionSetDescriptorState"/>	<!-- fragment for section set descriptor state -->
+		</content>
+	</dialog>
 	<dialog id="ContainerDescriptorStateDialog"><!-- Dialog for single container descriptor state -->
 		<context enablesFor="1">
 			<elementClass

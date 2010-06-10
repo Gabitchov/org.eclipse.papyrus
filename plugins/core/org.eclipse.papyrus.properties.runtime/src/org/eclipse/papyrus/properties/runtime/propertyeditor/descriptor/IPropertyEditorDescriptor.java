@@ -12,13 +12,14 @@
 package org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor;
 
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
 
 
 
 /**
  * Interface implemented by all editor descriptors. These descriptors are used to configure the property editors. (label, label position, icon, etc.)
  */
-public interface IPropertyEditorDescriptor {
+public interface IPropertyEditorDescriptor extends IConfigurableDescriptor {
 
 	/**
 	 * Returns the icon that should be associated to the label of the property editor
