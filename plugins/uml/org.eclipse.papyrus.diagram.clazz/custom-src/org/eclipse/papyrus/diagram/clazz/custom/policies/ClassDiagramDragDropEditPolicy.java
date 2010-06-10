@@ -143,9 +143,7 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 		if(endtypes.size() == 2) {
 			Element source = (Element)endtypes.toArray()[0];
 			Element target = (Element)endtypes.toArray()[1];
-			CompositeCommand cc = new CompositeCommand("drop Association");
-			dropBinaryLink(cc, source, target, 4001, dropRequest.getLocation(), semanticLink);
-			return new ICommandProxy(cc);
+			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, 4001, dropRequest.getLocation(), semanticLink));
 		}
 		if(endtypes.size() > 2) {
 			MultiAssociationHelper associationHelper = new MultiAssociationHelper(getEditingDomain());
@@ -190,9 +188,7 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 		if(sources.size() == 1 && targets.size() == 1) {
 			Element source = (Element)sources.toArray()[0];
 			Element target = (Element)targets.toArray()[0];
-			CompositeCommand cc = new CompositeCommand("drop Association"); //$NON-NLS-1$
-			dropBinaryLink(cc, source, target, 4008, dropRequest.getLocation(), semanticLink);
-			return new ICommandProxy(cc);
+			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, 4008, dropRequest.getLocation(), semanticLink));
 		}
 		if(sources.size() > 1 || targets.size() > 1) {
 			MultiDependencyHelper dependencyHelper = new MultiDependencyHelper(getEditingDomain());

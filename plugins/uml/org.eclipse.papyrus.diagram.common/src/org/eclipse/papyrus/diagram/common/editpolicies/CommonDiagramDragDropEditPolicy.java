@@ -136,7 +136,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	 * 
 	 * @return the composite command
 	 */
-	public void dropBinaryLink(CompositeCommand cc, Element source, Element target, int linkVISUALID, Point location, Element semanticLink) {
+	public CompositeCommand dropBinaryLink(CompositeCommand cc, Element source, Element target, int linkVISUALID, Point location, Element semanticLink) {
 		// look for editpart
 		GraphicalEditPart sourceEditPart = (GraphicalEditPart)lookForEditPart(source);
 		GraphicalEditPart targetEditPart = (GraphicalEditPart)lookForEditPart(target);
@@ -178,6 +178,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 		CommonDeferredCreateConnectionViewCommand aLinkCommand = new CommonDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)getUMLElementType(linkVISUALID)).getSemanticHint(), sourceAdapter, targetAdapter, getViewer(), getDiagramPreferencesHint(), linkdescriptor, null);
 		aLinkCommand.setElement(semanticLink);
 		cc.compose(aLinkCommand);
+		return cc;
 
 	}
 
