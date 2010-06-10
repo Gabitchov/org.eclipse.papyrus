@@ -744,6 +744,7 @@
       <diagramCategory
             class="org.eclipse.papyrus.diagram.common.commands.CreateUMLModelCommand"
             description="UML diagrams"
+            icon="icons/category_uml.gif"
             id="uml"
             label="UML">
       </diagramCategory>      

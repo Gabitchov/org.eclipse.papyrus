@@ -340,6 +340,7 @@
       <diagramCategory
             class="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateSysMLModelCommand"
             description="SysML diagrams"
+            icon="icons/category_sysml.gif"
             id="sysml"
             label="SysML">
       </diagramCategory>      

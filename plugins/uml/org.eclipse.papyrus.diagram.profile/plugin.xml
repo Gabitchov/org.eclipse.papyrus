@@ -1383,6 +1383,7 @@
       <diagramCategory
             class="org.eclipse.papyrus.diagram.profile.CreateProfileModelCommand"
             description="Profile diagram"
+            icon="icons/wizban/category_profile.gif"
             id="profile"
             label="Profile">
       </diagramCategory>      
