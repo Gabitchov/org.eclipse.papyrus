@@ -35,11 +35,9 @@ public abstract class ModelCreationCommandBase implements IModelCreationCommand 
 
 	/**
 	 * @see org.eclipse.papyrus.core.extension.commands.IModelCreationCommand#createModel(org.eclipse.papyrus.core.utils.DiResourceSet)
-	 *
+	 * 
 	 * @param diResourceSet
 	 */
-	
-	@Override
 	public void createModel(final DiResourceSet diResourceSet) {
 		TransactionalEditingDomain transactionalEditingDomain = diResourceSet.getTransactionalEditingDomain();
 		RecordingCommand command = new RecordingCommand(transactionalEditingDomain) {
@@ -54,8 +52,9 @@ public abstract class ModelCreationCommandBase implements IModelCreationCommand 
 
 	/**
 	 * Run as transaction.
-	 *
-	 * @param diResourceSet the di resource set
+	 * 
+	 * @param diResourceSet
+	 *        the di resource set
 	 */
 	protected void runAsTransaction(final DiResourceSet diResourceSet) {
 		// Get the uml element to which the newly created diagram will be attached.
@@ -86,8 +85,9 @@ public abstract class ModelCreationCommandBase implements IModelCreationCommand 
 
 	/**
 	 * Initialize model.
-	 *
-	 * @param owner the owner
+	 * 
+	 * @param owner
+	 *        the owner
 	 */
 	protected void initializeModel(EObject owner) {
 
@@ -95,8 +95,9 @@ public abstract class ModelCreationCommandBase implements IModelCreationCommand 
 
 	/**
 	 * Get the root element associated with canvas.
-	 *
-	 * @param modelResource the model resource
+	 * 
+	 * @param modelResource
+	 *        the model resource
 	 * @return the root element
 	 */
 	protected EObject getRootElement(Resource modelResource) {
