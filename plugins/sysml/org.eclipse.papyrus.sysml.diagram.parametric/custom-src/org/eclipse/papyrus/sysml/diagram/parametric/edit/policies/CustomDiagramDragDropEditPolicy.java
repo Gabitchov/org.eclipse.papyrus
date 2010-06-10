@@ -154,12 +154,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			ConnectorEnd targetConnector = (ConnectorEnd)targets.toArray()[0];
 			ConnectableElement source = sourceConnector.getRole();
 			ConnectableElement target = targetConnector.getRole();
-
-			CompositeCommand cc = new CompositeCommand("drop Connector");
-			dropBinaryLink(cc, source, target, linkVISUALID, dropRequest.getLocation(), semanticLink);
-
-			return new ICommandProxy(cc);
-
+			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Connector"), source, target, linkVISUALID, dropRequest.getLocation(), semanticLink));
 		} else {
 			return UnexecutableCommand.INSTANCE;
 		}
