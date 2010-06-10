@@ -208,13 +208,6 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 		durationCreationFeedback = null;
 	}
 
-//	protected Connection createDummyConnection(Request req) {
-//		PolylineConnection c = (PolylineConnection)super.createDummyConnection(req);
-//		c.setLineStyle(Graphics.LINE_DASHDOT);
-//		c.setForegroundColor(((GraphicalEditPart)getHost()).getFigure().getForegroundColor());
-//		return c;
-//	}
-
 	/**
 	 * Get the replacing connection router for routing messages correctly
 	 * 
@@ -259,38 +252,4 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 
 		return super.getDummyConnectionRouter(arg0);
 	}
-
-	/**
-	 * Returns the FeedbackHelper that is ready to use. The feedback helper must be configured
-	 * with the connection that will be used to display feedback, and that connection must be
-	 * added to the appropriate layer in the diagram.
-	 * 
-	 * @param request
-	 *        the CreateConnectionRequest
-	 * @return a FeedbackHelper
-	 */
-//	protected FeedbackHelper getFeedbackHelper(CreateConnectionRequest request) {
-//		if(feedbackHelper == null) {
-//			feedbackHelper = new FeedbackHelper() {
-//
-//				public void update(org.eclipse.draw2d.ConnectionAnchor anchor, Point p) {
-//					if(anchor != null)
-//						setAnchor(anchor);
-//					else {
-//						XYAnchor dummyAnchor = new XYAnchor(new Point(10, 10));
-//						dummyAnchor.setLocation(p.getTranslated(0, -50));
-//						setAnchor(dummyAnchor);
-//					}
-//				};
-//			};
-//			Point p = request.getLocation();
-//			connectionFeedback = createDummyConnection(request);
-//			connectionFeedback.setConnectionRouter(getDummyConnectionRouter(request));
-//			connectionFeedback.setSourceAnchor(getSourceConnectionAnchor(request));
-//			feedbackHelper.setConnection(connectionFeedback);
-//			addFeedback(connectionFeedback);
-//			feedbackHelper.update(null, p);
-//		}
-//		return feedbackHelper;
-//	}
 }
