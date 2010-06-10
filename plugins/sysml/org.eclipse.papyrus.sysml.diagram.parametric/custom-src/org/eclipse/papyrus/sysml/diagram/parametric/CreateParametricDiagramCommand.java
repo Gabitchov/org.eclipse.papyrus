@@ -60,22 +60,22 @@ public class CreateParametricDiagramCommand extends AbstractPapyrusGmfCreateDiag
 		return super.openDiagramNameDialog("ParametricDiagram");
 	}
 
-	@Override
-	protected EObject createRootElement() {
-		return UMLFactory.eINSTANCE.createModel();
-	}
-
-	@Override
-	protected void initializeModel(EObject owner) {
-		EObject eObject = getSelectedElement();
-		if(eObject == null) {
-			eObject = owner;
-		}
-
-		if(eObject instanceof Class) {
-			this.selectedElement = (Class)eObject;
-		}
-	}
+//	@Override
+//	protected EObject createRootElement() {
+//		return UMLFactory.eINSTANCE.createModel();
+//	}
+//
+//	@Override
+//	protected void initializeModel(EObject owner) {
+//		EObject eObject = getSelectedElement();
+//		if(eObject == null) {
+//			eObject = owner;
+//		}
+//
+//		if(eObject instanceof Class) {
+//			this.selectedElement = (Class)eObject;
+//		}
+//	}
 
 	@Override
 	protected void initializeDiagram(EObject diagram) {

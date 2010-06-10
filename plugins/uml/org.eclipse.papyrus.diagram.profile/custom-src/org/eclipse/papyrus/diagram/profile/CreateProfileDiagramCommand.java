@@ -57,24 +57,4 @@ public class CreateProfileDiagramCommand extends AbstractUMLCreateDiagramCommand
 		return UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
 	}
 
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler#createRootElement()
-	 * 
-	 * @return
-	 */
-	@Override
-	protected EObject createRootElement() {
-		return UMLFactory.eINSTANCE.createProfile();
-	}
-	
-	/**
-	 * @see org.eclipse.papyrus.diagram.common.commands.AbstractUMLCreateDiagramCommand#getModelName()
-	 *
-	 * @return
-	 */
-	@Override
-	protected String getModelName() {
-		return "Profile";
-	}
 }

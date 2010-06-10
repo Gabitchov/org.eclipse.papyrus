@@ -29,20 +29,22 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	/** index for several file creation */
 	private static int fileCount = 1;
 
+	/** The create from semantic model. */
 	protected boolean createFromSemanticModel;
 
+	/** The Constant DEFAULT_NAME. */
 	public static final String DEFAULT_NAME = "model";
 
+	/** The Constant DIAGRAM_EXTENSION. */
 	public static final String DIAGRAM_EXTENSION = "di";
 
 	/**
-	 * Create a new wizard page instance.
-	 * 
-	 * @param workbench
-	 *        the current workbench
-	 * @param selection
-	 *        the current object selection
-	 * @see PapyrusCreationWizard#init(IWorkbench, IStructuredSelection)
+	 * Instantiates a new new model file page.
+	 *
+	 * @param title the title
+	 * @param description the description
+	 * @param selection the selection
+	 * @param createFromSemanticModel the create from semantic model
 	 */
 	public NewModelFilePage(String title, String description, IStructuredSelection selection,
 			boolean createFromSemanticModel) {

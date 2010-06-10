@@ -13,15 +13,22 @@
  *****************************************************************************/
 package org.eclipse.papyrus.wizards;
 
+import static org.eclipse.papyrus.wizards.Activator.log;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExtension;
-import org.eclipse.core.runtime.IExtensionPoint;
-import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.papyrus.core.editor.BackboneException;
+import org.eclipse.papyrus.core.utils.DiResourceSet;
+import org.eclipse.papyrus.wizards.category.DiagramCategoryDescriptor;
+import org.eclipse.papyrus.wizards.category.DiagramCategoryRegistry;
+import org.eclipse.papyrus.wizards.category.NewPapyrusModelCommand;
+import org.eclipse.papyrus.wizards.category.PapyrusModelFromExistingDomainModelCommand;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -31,7 +38,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 
 /**
@@ -42,41 +48,21 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	/** The my diagram kind buttons. */
 	final List<Button> myDiagramKindButtons = new ArrayList<Button>();
 
-	/** The diagram categories. */
-	private List<DiagramCategoryDescriptor> diagramCategories;
-
-	/** The Constant CATEGORY_EXTENSION_POINT_NAME. */
-	private static final String CATEGORY_EXTENSION_POINT_NAME = "org.eclipse.papyrus.core.papyrusDiagram";
-
-	/** ID of the editor extension (schema filename) */
-	public static final String CATEGORY_ELEMENT_NAME = "diagramCategory";
-
-	/** The Constant CATEGORY_ID. */
-	private static final String CATEGORY_ID = "id";
-
-	/** The Constant CATEGORY_LABEL. */
-	private static final String CATEGORY_LABEL = "label";
-	
-	/** The Constant CATEGORY_DESCRIPTION. */
-	private static final String CATEGORY_DESCRIPTION = "description";
-
-	/** The Constant CATEGORY_ICON. */
-	private static final String CATEGORY_ICON = "icon";
 
 	/** The diagram category. */
-	private String diagramCategory;
+	private DiagramCategoryDescriptor mySelectedDiagramCategory;
 
 
 	/**
 	 * Instantiates a new select diagram category page.
-	 *
-	 * @param pageName the page name
+	 * 
+	 * @param pageName
+	 *        the page name
 	 */
 	public SelectDiagramCategoryPage(String pageName) {
 		super(pageName);
 		setTitle("Initialization information");
 		setDescription("Select language of the diagram");
-		diagramCategories = buildDiagramCategories();
 	}
 
 	/**
@@ -97,20 +83,56 @@ public class SelectDiagramCategoryPage extends WizardPage {
 
 		setPageComplete(validatePage());
 	}
-	
+
 	/**
 	 * Gets the diagram category.
-	 *
+	 * 
 	 * @return the diagram category
 	 */
 	public String getDiagramCategory() {
-		return diagramCategory;
+		return mySelectedDiagramCategory!= null ? mySelectedDiagramCategory.getId() : null;
+	}
+
+	/**
+	 * Initialize model resource.
+	 * 
+	 * @param diResourceSet
+	 *        the di resource set
+	 * @param newFile
+	 *        the new file
+	 * @param root
+	 *        the root
+	 * @param modelContentType
+	 *        the model content type
+	 * @param modelFileExtension
+	 *        the model file extension
+	 */
+	public void initDomainModel(final DiResourceSet diResourceSet, final IFile newFile, final EObject root, final String modelContentType, final String modelFileExtension) {
+		RecordingCommand command = (root != null) ? new PapyrusModelFromExistingDomainModelCommand(diResourceSet, newFile, root) : new NewPapyrusModelCommand(diResourceSet, newFile);
+		diResourceSet.getTransactionalEditingDomain().getCommandStack().execute(command);
+		if(root == null) {
+			try {
+				mySelectedDiagramCategory.getCommand().createModel(diResourceSet);
+			} catch (BackboneException e) {
+				log.error(e);
+			}
+		}
+	}
+
+	/**
+	 * Validate page.
+	 * 
+	 * @return true, if successful
+	 */
+	private boolean validatePage() {
+		return mySelectedDiagramCategory != null;
 	}
 
 	/**
 	 * Creates the diagram language form.
-	 *
-	 * @param composite the composite
+	 * 
+	 * @param composite
+	 *        the composite
 	 */
 	private void createDiagramLanguageForm(Composite composite) {
 		Group group = createGroup(composite, "Diagram Language:");
@@ -122,7 +144,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 					button.setSelection(false);
 				}
 				((Button)e.widget).setSelection(true);
-				diagramCategory = (String)((Button)e.widget).getData();
+				mySelectedDiagramCategory = (DiagramCategoryDescriptor)((Button)e.widget).getData();
 				setPageComplete(validatePage());
 			}
 
@@ -130,11 +152,11 @@ public class SelectDiagramCategoryPage extends WizardPage {
 			}
 		};
 
-		for(DiagramCategoryDescriptor diagramCategoryDescriptor : getDiagramCategories()) {
+		for(DiagramCategoryDescriptor diagramCategoryDescriptor : DiagramCategoryRegistry.getInstance().getDiagramCategories()) {
 			Button button = new Button(group, SWT.CHECK);
 			button.addSelectionListener(listener);
 			button.setText(diagramCategoryDescriptor.getLabel());
-			button.setData(diagramCategoryDescriptor.getId());
+			button.setData(diagramCategoryDescriptor);
 			Image image = getImage(diagramCategoryDescriptor.getIcon());
 			if(image != null) {
 				button.setImage(image);
@@ -144,7 +166,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		}
 
 	}
-	
+
 	private static Image getImage(ImageDescriptor imageDescriptor) {
 		if(imageDescriptor != null) {
 			return new Image(null, imageDescriptor.getImageData());
@@ -154,9 +176,11 @@ public class SelectDiagramCategoryPage extends WizardPage {
 
 	/**
 	 * Creates the group.
-	 *
-	 * @param parent the parent
-	 * @param name the name
+	 * 
+	 * @param parent
+	 *        the parent
+	 * @param name
+	 *        the name
 	 * @return the group
 	 */
 	private static Group createGroup(Composite parent, String name) {
@@ -171,89 +195,5 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		return group;
 	}
 
-	/**
-	 * Gets the diagram categories.
-	 *
-	 * @return the diagram categories
-	 */
-	private List<DiagramCategoryDescriptor> getDiagramCategories() {
-		if(diagramCategories == null) {
-			diagramCategories = buildDiagramCategories();
-		}
-		return diagramCategories;
-	}
-
-	/**
-	 * Builds the diagram categories.
-	 *
-	 * @return the hash map
-	 */
-	private List<DiagramCategoryDescriptor> buildDiagramCategories() {
-		List<DiagramCategoryDescriptor> result = new ArrayList<DiagramCategoryDescriptor>();
-
-		IExtensionPoint extensionPoint = Platform.getExtensionRegistry().getExtensionPoint(CATEGORY_EXTENSION_POINT_NAME);
-		for(IExtension extension : extensionPoint.getExtensions()) {
-			for(IConfigurationElement ele : extension.getConfigurationElements()) {
-				if(CATEGORY_ELEMENT_NAME.equals(ele.getName())) {
-					DiagramCategoryDescriptor diagramCategoryDescriptor = new DiagramCategoryDescriptor(ele.getAttribute(CATEGORY_ID), ele.getAttribute(CATEGORY_LABEL));
-					diagramCategoryDescriptor.setDescription(ele.getAttribute(CATEGORY_DESCRIPTION));
-					String iconPath = ele.getAttribute(CATEGORY_ICON);
-					if (iconPath != null) {
-						diagramCategoryDescriptor.setIcon(AbstractUIPlugin.imageDescriptorFromPlugin(ele.getNamespaceIdentifier(), iconPath));
-					}
-					result.add(diagramCategoryDescriptor);
-				}
-			}
-		}
-		return result;
-
-	}
-	
-	/**
-	 * Validate page.
-	 *
-	 * @return true, if successful
-	 */
-	protected boolean validatePage() {
-		return diagramCategory != null;
-	}
-	
-	private static class DiagramCategoryDescriptor {
-		private String myId;
-		private String myLabel;
-		private String myDescription;
-		private ImageDescriptor myIcon;
-		
-		public DiagramCategoryDescriptor(String id, String label) {
-			myId = id;
-			myLabel = label;
-		}
-		
-		public String getId() {
-			return myId;
-		}
-		
-		public String getLabel() {
-			return myLabel;
-		}
-
-		public String getDescription() {
-			return myDescription;
-		}
-
-		public ImageDescriptor getIcon() {
-			return myIcon;
-		}
-		
-		public void setDescription(String description) {
-			myDescription = description;
-		}
-		
-		public void setIcon(ImageDescriptor icon) {
-			myIcon = icon;
-		}
-		
-
-	}
 
 }

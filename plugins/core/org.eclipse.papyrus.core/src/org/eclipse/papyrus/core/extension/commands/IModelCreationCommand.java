@@ -8,20 +8,24 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Tatiana Fesenko - Initial API and implementation
+ *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.common.commands;
+package org.eclipse.papyrus.core.extension.commands;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
-import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.papyrus.core.utils.DiResourceSet;
 
 
 /**
- * The Class AbstractUMLCreateDiagramCommand.
+ * The Interface IModelCreationCommand.
  */
-public abstract class AbstractUMLCreateDiagramCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
-
+public interface IModelCreationCommand {
+	
+	/**
+	 * Creates the model.
+	 *
+	 * @param diResourceSet the di resource set
+	 */
+	void createModel(final DiResourceSet diResourceSet);
 
 }

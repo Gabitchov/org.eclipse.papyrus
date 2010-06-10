@@ -59,12 +59,11 @@ public abstract class CreateBehavioredClassifierDiagramCommand extends AbstractU
 	protected abstract Behavior createBehavior();
 
 	
+	
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	protected void initializeModel(EObject owner) {
-		super.initializeModel(owner);
 		if(behavior == null){
 			behavior = createBehavior();
 		}

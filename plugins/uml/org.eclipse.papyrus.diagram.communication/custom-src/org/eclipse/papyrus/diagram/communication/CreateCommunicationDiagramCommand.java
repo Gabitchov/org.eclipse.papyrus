@@ -104,29 +104,29 @@ public class CreateCommunicationDiagramCommand extends AbstractPapyrusGmfCreateD
 		}
 	}
 
-	/**
-	 * Initialize the model.
-	 */
-	@Override
-	protected void initializeModel(EObject owner) {
-		// If the interaction is null, it means we are creating a diagram from a
-		// package. So we need to create the interaction
-		if(interaction == null && owner instanceof org.eclipse.uml2.uml.Package) {
-			org.eclipse.uml2.uml.Package pack = (org.eclipse.uml2.uml.Package)owner;
-			interaction = UMLFactory.eINSTANCE.createInteraction();
-			interaction = (Interaction)pack.createPackagedElement(null, interaction.eClass());
-			ElementInitializers.init_NamedElement(interaction);
-		}
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler#createRootElement()
-	 * 
-	 * @return
-	 */
-	@Override
-	protected EObject createRootElement() {
-		return UMLFactory.eINSTANCE.createModel();
-	}
+//	/**
+//	 * Initialize the model.
+//	 */
+//	@Override
+//	protected void initializeModel(EObject owner) {
+//		// If the interaction is null, it means we are creating a diagram from a
+//		// package. So we need to create the interaction
+//		if(interaction == null && owner instanceof org.eclipse.uml2.uml.Package) {
+//			org.eclipse.uml2.uml.Package pack = (org.eclipse.uml2.uml.Package)owner;
+//			interaction = UMLFactory.eINSTANCE.createInteraction();
+//			interaction = (Interaction)pack.createPackagedElement(null, interaction.eClass());
+//			ElementInitializers.init_NamedElement(interaction);
+//		}
+//	}
+//
+//	/**
+//	 * 
+//	 * @see org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler#createRootElement()
+//	 * 
+//	 * @return
+//	 */
+//	@Override
+//	protected EObject createRootElement() {
+//		return UMLFactory.eINSTANCE.createModel();
+//	}
 }

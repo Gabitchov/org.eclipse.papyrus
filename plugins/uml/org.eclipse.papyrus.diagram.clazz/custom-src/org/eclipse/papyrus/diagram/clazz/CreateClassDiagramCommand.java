@@ -31,11 +31,6 @@ import org.eclipse.uml2.uml.UMLFactory;
 public class CreateClassDiagramCommand extends AbstractUMLCreateDiagramCommand {
 
 	@Override
-	protected EObject createRootElement() {
-		return UMLFactory.eINSTANCE.createModel();
-	}
-
-	@Override
 	protected String getDefaultDiagramName() {
 		return openDiagramNameDialog("ClassDiagram");
 	}

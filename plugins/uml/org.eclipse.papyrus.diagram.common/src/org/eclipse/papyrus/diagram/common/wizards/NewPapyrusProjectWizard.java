@@ -118,12 +118,12 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 		// create a new file, result != null if successful
 		final IFile newFile = createFile();
 		EObject root = null;
-		myDiagramKindPage.initializeModelResource(diResourceSet, newFile, root, getModelContentType(), getModelFileExtension());
+		selectDiagramCategoryPage.initDomainModel(diResourceSet, newFile, root, getModelContentType(), getModelFileExtension());
 		if(newFile == null) {
 			return false;
 		}
 
-		myDiagramKindPage.createDiagram(diResourceSet, root);
+		myDiagramKindPage.initDiagramModel(diResourceSet, root);
 
 		IWorkbenchPage page = getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		if(page != null) {

@@ -65,10 +65,18 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 	 */
 	private DiResourceSet diResourceSet;
 
+	/**
+	 * Instantiates a new creates the model wizard.
+	 */
 	public CreateModelWizard() {
 		this(null);
 	}
 
+	/**
+	 * Instantiates a new creates the model wizard.
+	 *
+	 * @param domainModelURI the domain model uri
+	 */
 	public CreateModelWizard(URI domainModelURI) {
 		super();
 		setWindowTitle("New Papyrus Model");
@@ -126,6 +134,11 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 		selectDiagramKindPage = getSelectDiagramKindPage();
 	}
 	
+	/**
+	 * Gets the select diagram kind page.
+	 *
+	 * @return the select diagram kind page
+	 */
 	protected SelectDiagramKindPage getSelectDiagramKindPage() {
 		return new SelectDiagramKindPage();
 	}
@@ -140,12 +153,12 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 		// create a new file, result != null if successful
 		EObject root = domainModelURI != null ? selectRootElementPage.getModelElement() : null;
 		final IFile newFile = newModelFilePage.createNewFile();
-		selectDiagramKindPage.initializeModelResource(diResourceSet, newFile, root, getModelContentType(), getModelFileExtension());
+		selectDiagramCategoryPage.initDomainModel(diResourceSet, newFile, root, getModelContentType(), getModelFileExtension());
 		if(newFile == null) {
 			return false;
 		}
 
-		selectDiagramKindPage.createDiagram(diResourceSet, root);
+		selectDiagramKindPage.initDiagramModel(diResourceSet, root);
 
 		IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
 		if(page != null) {

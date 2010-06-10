@@ -335,5 +335,14 @@
 	</page>	
 
 </extension>
+   <extension
+         point="org.eclipse.papyrus.core.papyrusDiagram">
+      <diagramCategory
+            class="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateSysMLModelCommand"
+            description="SysML diagrams"
+            id="sysml"
+            label="SysML">
+      </diagramCategory>      
+   </extension>
 
 </plugin>

@@ -7,7 +7,7 @@
     		name="Papyrus">
 		</category>
 	</extension>
-   <extension
+   <!--<extension
          point="org.eclipse.papyrus.core.papyrusDiagram">
       <diagramCategory
             description="UML diagrams"
@@ -27,7 +27,7 @@
             id="profile"
             label="Profile">
       </diagramCategory>      
-   </extension>
+   </extension>-->
 	
    
 </plugin>

@@ -739,8 +739,15 @@
       </popupContribution>
    </contributionItemProvider>
 </extension>
-
-
+   <extension
+         point="org.eclipse.papyrus.core.papyrusDiagram">
+      <diagramCategory
+            class="org.eclipse.papyrus.diagram.common.commands.CreateUMLModelCommand"
+            description="UML diagrams"
+            id="uml"
+            label="UML">
+      </diagramCategory>      
+   </extension>
 
 
 </plugin>

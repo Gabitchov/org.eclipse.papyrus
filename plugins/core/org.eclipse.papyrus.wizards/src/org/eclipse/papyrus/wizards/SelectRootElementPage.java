@@ -129,6 +129,11 @@ public class SelectRootElementPage extends WizardPage {
 		setPageComplete(validatePage());
 	}
 
+	/**
+	 * Update selection.
+	 *
+	 * @param selection the selection
+	 */
 	protected void updateSelection(IStructuredSelection selection) {
 		selectedModelElement = null;
 		if(selection.size() == 1) {
@@ -146,16 +151,31 @@ public class SelectRootElementPage extends WizardPage {
 		setPageComplete(validatePage());
 	}
 
+	/**
+	 * Validate page.
+	 *
+	 * @return true, if successful
+	 */
 	protected boolean validatePage() {
 		return selectedModelElement != null;
 	}
 
+	/**
+	 * Creates the adapter factory.
+	 *
+	 * @return the composed adapter factory
+	 */
 	protected ComposedAdapterFactory createAdapterFactory() {
 		List<AdapterFactory> factories = new ArrayList<AdapterFactory>();
 		fillItemProviderFactories(factories);
 		return new ComposedAdapterFactory(factories);
 	}
 
+	/**
+	 * Fill item provider factories.
+	 *
+	 * @param factories the factories
+	 */
 	protected void fillItemProviderFactories(List<AdapterFactory> factories) {
 		// custom icons for model elements
 		factories.add(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));

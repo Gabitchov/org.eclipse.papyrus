@@ -87,6 +87,12 @@ public abstract class InitDiagramAction implements IObjectActionDelegate {
 		}
 	}
 
+	/**
+	 * Gets the creates the model wizard.
+	 *
+	 * @param domainModelURI the domain model uri
+	 * @return the creates the model wizard
+	 */
 	protected abstract CreateModelWizard getCreateModelWizard(URI domainModelURI);
 
 }

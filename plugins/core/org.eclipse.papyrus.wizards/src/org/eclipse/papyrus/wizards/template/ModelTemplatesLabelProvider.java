@@ -27,7 +27,6 @@ public class ModelTemplatesLabelProvider implements ITableLabelProvider {
 	 * 
 	 * @param element
 	 * @param columnIndex
-	 * @return
 	 */
 	public Image getColumnImage(Object element, int columnIndex) {
 		return null;
@@ -38,7 +37,6 @@ public class ModelTemplatesLabelProvider implements ITableLabelProvider {
 	 * 
 	 * @param element
 	 * @param columnIndex
-	 * @return
 	 */
 	public String getColumnText(Object element, int columnIndex) {
 		if(element instanceof ModelTemplateDescription) {
@@ -70,7 +68,6 @@ public class ModelTemplatesLabelProvider implements ITableLabelProvider {
 	 *
 	 * @param element
 	 * @param property
-	 * @return
 	 */
 	public boolean isLabelProperty(Object element, String property) {
 

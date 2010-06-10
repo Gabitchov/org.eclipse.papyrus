@@ -17,11 +17,11 @@ import org.eclipse.uml2.uml.UMLFactory;
 
 public class BlockDefinitionDiagramCreateCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
 
-	@Override
-	protected EObject createRootElement() {
-		return UMLFactory.eINSTANCE.createModel();
-
-	}
+//	@Override
+//	protected EObject createRootElement() {
+//		return UMLFactory.eINSTANCE.createModel();
+//
+//	}
 
 	@Override
 	protected String getDefaultDiagramName() {

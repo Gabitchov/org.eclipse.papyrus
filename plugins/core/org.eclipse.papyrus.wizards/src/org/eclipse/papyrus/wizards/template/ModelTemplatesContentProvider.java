@@ -89,7 +89,6 @@ public class ModelTemplatesContentProvider implements IStructuredContentProvider
 	 * @see org.eclipse.jface.viewers.IStructuredContentProvider#getElements(java.lang.Object)
 	 *
 	 * @param inputElement
-	 * @return
 	 */
 	public Object[] getElements(Object inputElement) {
 		if(inputElement instanceof String) {
