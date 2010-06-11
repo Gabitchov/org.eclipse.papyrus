@@ -20,6 +20,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.wizards.NewModelFilePage;
 import org.eclipse.papyrus.wizards.SelectDiagramCategoryPage;
@@ -66,6 +67,11 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 
 	}
 	
+	/**
+	 * Gets the select diagram kind page.
+	 *
+	 * @return the select diagram kind page
+	 */
 	protected SelectDiagramKindPage getSelectDiagramKindPage() {
 		return new SelectDiagramKindPage() {
 			
@@ -92,6 +98,22 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 		addPage(selectDiagramCategoryPage);
 		addPage(myDiagramKindPage);
 		
+	}
+	
+	/**
+	 * @see org.eclipse.jface.wizard.Wizard#getNextPage(org.eclipse.jface.wizard.IWizardPage)
+	 *
+	 * @param page
+	 * @return
+	 */
+	@Override
+	public IWizardPage getNextPage(IWizardPage page) {
+		IWizardPage next = super.getNextPage(page);
+		// 316160 [Wizard] Do not display WizardNewProjectReferencePage in New Papyrus Project Wizard  
+		if (next != null && "basicReferenceProjectPage".equals(next.getName())) {
+			return super.getNextPage(next);
+		}
+		return next;
 	}
 
 	/**
