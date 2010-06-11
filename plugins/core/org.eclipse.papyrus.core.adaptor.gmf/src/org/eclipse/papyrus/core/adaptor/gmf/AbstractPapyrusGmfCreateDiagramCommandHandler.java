@@ -130,7 +130,12 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 						throws ExecutionException {
 
 					CommandResult commandResult = CommandResult.newErrorCommandResult("Error during diagram creation");
-					EObject model = modelResource.getContents().get(0);
+					EObject model = container;
+					if(model == null) {
+						model = getRootElement(modelResource);
+						attachModelToResource(model, modelResource);
+					}
+
 					Diagram diagram = createDiagram(diagramResource, model, diagramName);
 
 					if(diagram != null) {
@@ -150,6 +155,29 @@ public abstract class AbstractPapyrusGmfCreateDiagramCommandHandler extends Abst
 		}
 	}
 
+	/**
+	 * Get the root element associated with canvas.
+	 */
+	protected EObject getRootElement(Resource modelResource) {
+		EObject rootElement = null;
+		if(modelResource != null && modelResource.getContents() != null&& modelResource.getContents().size() > 0) {
+				Object root = modelResource.getContents().get(0);
+				if(root instanceof EObject) {
+					rootElement = (EObject)root;
+			}
+		}
+//		else {
+//			rootElement = createRootElement();
+//		}
+		return rootElement;
+	}
+
+	/**
+	 * Store model element in the resource.
+	 */
+	protected void attachModelToResource(EObject root, Resource resource) {
+		resource.getContents().add(root);
+	}
 	/**
 	 * Open the specified diagram.
 	 * 
