@@ -6069,176 +6069,6 @@
       </compartments>
       <palette>
         <groups
-            title="Edges"
-            description="Edges"
-            largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-            smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
-            id="&quot;clazz.group.relationships&quot;"
-            stack="true"
-            collapse="true">
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Abstraction"
-              description="Create an Abstraction"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif"
-              id="&quot;clazz.tool.abstraction&quot;"
-              genLinks="/0/@diagram/@links.8"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Association"
-              description="Create an association"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
-              id="&quot;clazz.tool.association&quot;"
-              genLinks="/0/@diagram/@links.2"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="AssociationBranch"
-              description="Create an association branch"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
-              id="&quot;clazz.tool.associationbranch&quot;"
-              genLinks="/0/@diagram/@links.3"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="AssociationClass"
-              description="AssociationClass"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AssociationClass.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AssociationClass.gif"
-              id="&quot;clazz.tool.associationclass&quot;"
-              genLinks="/0/@diagram/@links.1"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="ContainmentLink"
-              description="Create a ContainmentLink"
-              largeIconPath="icons/obj16/ContainmentConnection.gif"
-              smallIconPath="icons/obj16/ContainmentConnection.gif"
-              id="&quot;clazz.tool.containmentlink&quot;"
-              genLinks="/0/@diagram/@links.22"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Dependency"
-              description="Create a dependency"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
-              id="&quot;clazz.tool.dependency&quot;"
-              genLinks="/0/@diagram/@links.10"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="DependencyBranch"
-              description="Create a dependency branch"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
-              id="&quot;clazz.tool.dependencybranch&quot;"
-              genLinks="/0/@diagram/@links.11"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="ElementImport"
-              description="Create a  elementImport"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ElementImport.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ElementImport.gif"
-              id="&quot;clazz.tool.elementimport&quot;"
-              genLinks="/0/@diagram/@links.12"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Generalization"
-              description=" Create a generalization"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
-              id="&quot;clazz.tool.generalization&quot;"
-              genLinks="/0/@diagram/@links.4"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="GeneralizationSet"
-              description="GeneralizationSet"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralizationSet.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralizationSet.gif"
-              id="&quot;clazz.tool.generalizationset&quot;"
-              genLinks="/0/@diagram/@links.19"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="InstanceSpecification link"
-              description="Create an InstanceSpecification link"
-              largeIconPath="icons/obj16/InstanceLink.gif"
-              smallIconPath="icons/obj16/InstanceLink.gif"
-              createMethodName="createInstanceSpecificationLinkCreationTool"
-              id="&quot;clazz.tool.instancespecificationlink&quot;"
-              genLinks="/0/@diagram/@links.20"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="InterfaceRealization"
-              description="Create an InterfaceRealization"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterfaceRealization.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterfaceRealization.gif"
-              id="&quot;clazz.tool.interfacerealization&quot;"
-              genLinks="/0/@diagram/@links.5"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Link"
-              description="Creation of a link for comment, constraint, TimeObservation, DurationObservation"
-              largeIconPath="icons/obj16/Link.gif"
-              smallIconPath="icons/obj16/Link.gif"
-              id="&quot;clazz.tool.link&quot;"
-              genLinks="/0/@diagram/@links.16 /0/@diagram/@links.23 /0/@diagram/@links.24 /0/@diagram/@links.17"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="PackageImport"
-              description=" Create a packageImport"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageImport.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageImport.gif"
-              id="&quot;clazz.tool.packageimport&quot;"
-              genLinks="/0/@diagram/@links.13"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="PackageMerge"
-              description="Create a packageMerge"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageMerge.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageMerge.gif"
-              id="&quot;clazz.tool.packagemerge&quot;"
-              genLinks="/0/@diagram/@links.14"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="ProfileApplication"
-              description="Create a profileApplication"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProfileApplication.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProfileApplication.gif"
-              id="&quot;clazz.tool.profileapplication&quot;"
-              genLinks="/0/@diagram/@links.15"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Realization"
-              description="Create a Realization"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif"
-              id="&quot;clazz.tool.realization&quot;"
-              genLinks="/0/@diagram/@links.7"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Substitution"
-              description="Create a substitution"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Substitution.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Substitution.gif"
-              id="&quot;clazz.tool.substitution&quot;"
-              genLinks="/0/@diagram/@links.6"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Usage"
-              description="Create an Usage"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif"
-              id="&quot;clazz.tool.usage&quot;"
-              genLinks="/0/@diagram/@links.9"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="TemplateBinding"
-              description="Create a TemplateBinding"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateBinding.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateBinding.gif"
-              id="&quot;clazz.tool.templatebinding&quot;"
-              genLinks="/0/@diagram/@links.18"/>
-        </groups>
-        <groups
             title="Nodes"
             description="Nodes"
             largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
@@ -6421,6 +6251,176 @@
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
               genNodes="/0/@diagram/@topLevelNodes.17"/>
+        </groups>
+        <groups
+            title="Edges"
+            description="Edges"
+            largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+            smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
+            id="&quot;clazz.group.relationships&quot;"
+            stack="true"
+            collapse="true">
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Abstraction"
+              description="Create an Abstraction"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif"
+              id="&quot;clazz.tool.abstraction&quot;"
+              genLinks="/0/@diagram/@links.8"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Association"
+              description="Create an association"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
+              id="&quot;clazz.tool.association&quot;"
+              genLinks="/0/@diagram/@links.2"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="AssociationBranch"
+              description="Create an association branch"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
+              id="&quot;clazz.tool.associationbranch&quot;"
+              genLinks="/0/@diagram/@links.3"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="AssociationClass"
+              description="AssociationClass"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AssociationClass.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AssociationClass.gif"
+              id="&quot;clazz.tool.associationclass&quot;"
+              genLinks="/0/@diagram/@links.1"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="ContainmentLink"
+              description="Create a ContainmentLink"
+              largeIconPath="icons/obj16/ContainmentConnection.gif"
+              smallIconPath="icons/obj16/ContainmentConnection.gif"
+              id="&quot;clazz.tool.containmentlink&quot;"
+              genLinks="/0/@diagram/@links.22"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Dependency"
+              description="Create a dependency"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
+              id="&quot;clazz.tool.dependency&quot;"
+              genLinks="/0/@diagram/@links.10"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="DependencyBranch"
+              description="Create a dependency branch"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
+              id="&quot;clazz.tool.dependencybranch&quot;"
+              genLinks="/0/@diagram/@links.11"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="ElementImport"
+              description="Create a  elementImport"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ElementImport.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ElementImport.gif"
+              id="&quot;clazz.tool.elementimport&quot;"
+              genLinks="/0/@diagram/@links.12"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Generalization"
+              description=" Create a generalization"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
+              id="&quot;clazz.tool.generalization&quot;"
+              genLinks="/0/@diagram/@links.4"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="GeneralizationSet"
+              description="GeneralizationSet"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralizationSet.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralizationSet.gif"
+              id="&quot;clazz.tool.generalizationset&quot;"
+              genLinks="/0/@diagram/@links.19"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="InstanceSpecification link"
+              description="Create an InstanceSpecification link"
+              largeIconPath="icons/obj16/InstanceLink.gif"
+              smallIconPath="icons/obj16/InstanceLink.gif"
+              createMethodName="createInstanceSpecificationLinkCreationTool"
+              id="&quot;clazz.tool.instancespecificationlink&quot;"
+              genLinks="/0/@diagram/@links.20"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="InterfaceRealization"
+              description="Create an InterfaceRealization"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterfaceRealization.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterfaceRealization.gif"
+              id="&quot;clazz.tool.interfacerealization&quot;"
+              genLinks="/0/@diagram/@links.5"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Link"
+              description="Creation of a link for comment, constraint, TimeObservation, DurationObservation"
+              largeIconPath="icons/obj16/Link.gif"
+              smallIconPath="icons/obj16/Link.gif"
+              id="&quot;clazz.tool.link&quot;"
+              genLinks="/0/@diagram/@links.16 /0/@diagram/@links.23 /0/@diagram/@links.24 /0/@diagram/@links.17"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="PackageImport"
+              description=" Create a packageImport"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageImport.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageImport.gif"
+              id="&quot;clazz.tool.packageimport&quot;"
+              genLinks="/0/@diagram/@links.13"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="PackageMerge"
+              description="Create a packageMerge"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageMerge.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PackageMerge.gif"
+              id="&quot;clazz.tool.packagemerge&quot;"
+              genLinks="/0/@diagram/@links.14"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="ProfileApplication"
+              description="Create a profileApplication"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProfileApplication.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProfileApplication.gif"
+              id="&quot;clazz.tool.profileapplication&quot;"
+              genLinks="/0/@diagram/@links.15"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Realization"
+              description="Create a Realization"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif"
+              id="&quot;clazz.tool.realization&quot;"
+              genLinks="/0/@diagram/@links.7"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Substitution"
+              description="Create a substitution"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Substitution.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Substitution.gif"
+              id="&quot;clazz.tool.substitution&quot;"
+              genLinks="/0/@diagram/@links.6"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Usage"
+              description="Create an Usage"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif"
+              id="&quot;clazz.tool.usage&quot;"
+              genLinks="/0/@diagram/@links.9"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="TemplateBinding"
+              description="Create a TemplateBinding"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateBinding.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateBinding.gif"
+              id="&quot;clazz.tool.templatebinding&quot;"
+              genLinks="/0/@diagram/@links.18"/>
         </groups>
       </palette>
       <preferencePages
