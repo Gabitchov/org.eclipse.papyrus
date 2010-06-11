@@ -26,20 +26,18 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
-import org.eclipse.papyrus.diagram.common.commands.AbstractUMLCreateDiagramCommand;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * Define a command to create a new Composite Diagram. This command is used by all UI (toolbar,
  * outline, creation wizards) to create a new Composite Diagram.
  * 
  */
-public class CreateCompositeDiagramCommand extends AbstractUMLCreateDiagramCommand {
+public class CreateCompositeDiagramCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler  {
 
 	/** Domain Element referenced by canvas if it differs from {@link Package} */
 	protected EObject canvasDomainElement = null;

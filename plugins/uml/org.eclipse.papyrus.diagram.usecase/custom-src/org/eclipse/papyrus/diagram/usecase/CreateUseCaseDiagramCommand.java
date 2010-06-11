@@ -11,7 +11,7 @@
 package org.eclipse.papyrus.diagram.usecase;
 
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
-import org.eclipse.papyrus.diagram.common.commands.AbstractUMLCreateDiagramCommand;
+import org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
 import org.eclipse.papyrus.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
 import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin;
 
@@ -21,7 +21,7 @@ import org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorPlugin;
  * 
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public class CreateUseCaseDiagramCommand extends AbstractUMLCreateDiagramCommand {
+public class CreateUseCaseDiagramCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
 
 	@Override
 	protected String getDiagramNotationID() {

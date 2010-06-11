@@ -15,7 +15,7 @@
 package org.eclipse.papyrus.diagram.statemachine;
 
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
-import org.eclipse.papyrus.diagram.common.commands.AbstractUMLCreateDiagramCommand;
+import org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin;
 
@@ -26,7 +26,7 @@ import org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin;
  * @author dumoulin
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public class CreateStateMachineDiagramCommand extends AbstractUMLCreateDiagramCommand {
+public class CreateStateMachineDiagramCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler  {
 
 	/**
 	 * {@inheritDoc}

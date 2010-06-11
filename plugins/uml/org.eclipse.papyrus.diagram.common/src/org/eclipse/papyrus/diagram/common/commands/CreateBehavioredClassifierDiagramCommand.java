@@ -23,14 +23,13 @@ import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.BehavioredClassifier;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * Define a command to create a new Behavioral Diagram. This command is used by all UI (toolbar,
  * outline, creation wizards) to create a new Behavioral Diagram.
  * This class should be extended by behavioral diagram only. 
  */
-public abstract class CreateBehavioredClassifierDiagramCommand extends AbstractUMLCreateDiagramCommand {
+public abstract class CreateBehavioredClassifierDiagramCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
 
 	private Behavior behavior = null;
 	
