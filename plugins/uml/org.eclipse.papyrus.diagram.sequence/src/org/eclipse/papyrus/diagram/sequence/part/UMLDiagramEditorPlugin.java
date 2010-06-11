@@ -33,6 +33,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.expressions.UMLOCLFactory;
+import org.eclipse.papyrus.diagram.sequence.preferences.DiagramPreferenceInitializer;
 import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.papyrus.log.LogHelper;
 import org.eclipse.papyrus.preferences.Activator;
@@ -106,6 +107,8 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT, getPreferenceStore());
 		adapterFactory = createAdapterFactory();
 		log = new LogHelper(instance);
+		DiagramPreferenceInitializer diagramPreferenceInitializer = new DiagramPreferenceInitializer();
+		diagramPreferenceInitializer.initializeDefaultPreferences();
 	}
 
 	/**
