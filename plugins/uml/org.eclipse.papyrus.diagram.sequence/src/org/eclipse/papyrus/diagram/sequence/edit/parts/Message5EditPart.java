@@ -13,14 +13,18 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.parts;
 
+import org.eclipse.draw2d.AutomaticRouter;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.ConnectionLayer;
+import org.eclipse.draw2d.ConnectionRouter;
 import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.LayerConstants;
 import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
@@ -28,9 +32,15 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.draw2d.ui.internal.figures.ConnectionLayerEx;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.Routing;
+import org.eclipse.gmf.runtime.notation.RoutingStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.papyrus.diagram.sequence.draw2d.routers.MessageRouter;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.CreationOnMessageEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineChildGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.Message5ItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.MessageConnectionEditPolicy;
 import org.eclipse.swt.SWT;
@@ -72,6 +82,42 @@ implements ITreeBranchEditPart {
 	 */
 	public Message5EditPart(View view) {
 		super(view);
+	}
+
+	/**
+	 * Installs a router on the edit part, depending on the <code>RoutingStyle</code> Use the specific message router rather than the default oblique
+	 * one.
+	 * 
+	 * @generated NOT
+	 */
+	protected void installRouter() {
+		ConnectionLayer cLayer = (ConnectionLayer)getLayer(LayerConstants.CONNECTION_LAYER);
+		RoutingStyle style = (RoutingStyle)((View)getModel()).getStyle(NotationPackage.Literals.ROUTING_STYLE);
+
+		if(style != null && cLayer instanceof ConnectionLayerEx) {
+
+			ConnectionLayerEx cLayerEx = (ConnectionLayerEx)cLayer;
+			Routing routing = style.getRouting();
+			if(Routing.MANUAL_LITERAL == routing) {
+				ConnectionRouter router = cLayerEx.getObliqueRouter();
+				// replace the oblique router by the message router
+				if(router instanceof AutomaticRouter) {
+					if(LifelineChildGraphicalNodeEditPolicy.messageRouter == null) {
+
+						LifelineChildGraphicalNodeEditPolicy.messageRouter = new MessageRouter();
+					}
+					((AutomaticRouter)router).setNextRouter(LifelineChildGraphicalNodeEditPolicy.messageRouter);
+				}
+				getConnectionFigure().setConnectionRouter(router);
+			} else if(Routing.RECTILINEAR_LITERAL == routing) {
+				getConnectionFigure().setConnectionRouter(cLayerEx.getRectilinearRouter());
+			} else if(Routing.TREE_LITERAL == routing) {
+				getConnectionFigure().setConnectionRouter(cLayerEx.getTreeRouter());
+			}
+
+		}
+
+		refreshRouterChange();
 	}
 
 	/**

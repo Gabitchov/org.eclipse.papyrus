@@ -67,7 +67,7 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 	private Polyline durationCreationFeedback = null;
 
 	/** the router to use for messages */
-	private static MessageRouter messageRouter;
+	public static MessageRouter messageRouter;
 
 	/**
 	 * Get the command to reconnect the source and move associated time/duration constraints/observation.
