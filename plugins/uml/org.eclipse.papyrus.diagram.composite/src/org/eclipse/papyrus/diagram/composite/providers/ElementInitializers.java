@@ -767,6 +767,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Port_3069(instance);
 			instance.setName((String)value_0);
+			instance.setAggregation(org.eclipse.uml2.uml.AggregationKind.COMPOSITE_LITERAL);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}

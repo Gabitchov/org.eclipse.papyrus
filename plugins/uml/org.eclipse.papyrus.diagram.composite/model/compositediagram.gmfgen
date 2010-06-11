@@ -101,6 +101,12 @@
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.1/@expressions.0">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Property/aggregation"/>
+            </initializers>
           </modelElementInitializer>
         </modelFacet>
         <labels
@@ -9988,6 +9994,11 @@
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="// Creation constraint for TopLevelNodes&#xD;&#xA;&#x9;if(! (getElementToEdit() instanceof org.eclipse.uml2.uml.Package)) {&#xD;&#xA;&#x9;&#x9;return false;&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;return true;"/>
+      </providers>
+      <providers
+          xsi:type="gmfgen:GenLiteralExpressionProvider">
+        <expressions
+            body="org.eclipse.uml2.uml.AggregationKind.COMPOSITE_LITERAL"/>
       </providers>
     </expressionProviders>
     <labelParsers
