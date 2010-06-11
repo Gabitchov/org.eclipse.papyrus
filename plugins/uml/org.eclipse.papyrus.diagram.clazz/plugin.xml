@@ -1337,6 +1337,22 @@
             adaptable="true"
             id="org.eclipse.papyrus.diagram.clazz.papyrusmenu"
             objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart">
+         <visibility>
+            <or>
+               <objectClass
+                     name="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndTargetEditPart">
+               </objectClass>
+               <objectClass
+                     name="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndSourceEditPart">
+               </objectClass>
+               <objectClass
+                     name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart">
+               </objectClass>
+               <objectClass
+                     name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleSourceEditPart">
+               </objectClass>
+            </or>
+         </visibility>
          <menu
                icon="icons/obj16/native_lib_path_attrib.png"
                id="org.eclipse.papyrus.diagram.clazz.popupmenu.associationend"
@@ -1355,22 +1371,6 @@
                id="org.eclipse.papyrus.diagram.clazz.setclassifierpropertyowner"
                label="owned by the classifier"
                menubarPath="org.eclipse.papyrus.diagram.clazz.popupmenu.associationend/group1">
-            <enablement>
-               <or>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndTargetEditPart">
-                  </objectClass>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndSourceEditPart">
-                  </objectClass>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart">
-                  </objectClass>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleSourceEditPart">
-                  </objectClass>
-               </or>
-            </enablement>
          </action>
          <action
                class="org.eclipse.papyrus.diagram.clazz.custom.action.SetAssociationPropertyOwnerAction"
@@ -1378,22 +1378,6 @@
                id="org.eclipse.papyrus.diagram.clazz.setassociationpropertyowneraction"
                label="owned by the association"
                menubarPath="org.eclipse.papyrus.diagram.clazz.popupmenu.associationend/group1">
-            <enablement>
-               <or>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndTargetEditPart">
-                  </objectClass>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndSourceEditPart">
-                  </objectClass>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart">
-                  </objectClass>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleSourceEditPart">
-                  </objectClass>
-               </or>
-            </enablement>
          </action>
          <menu
                icon="icons/obj16/css_propertyvalue_function.gif"
@@ -1410,22 +1394,6 @@
                id="org.eclipse.papyrus.diagram.clazz.setnavigablepropertyaction"
                label="set navigable"
                menubarPath="org.eclipse.papyrus.diagram.clazz.popupmenu.associationnavigation/group3">
-            <enablement>
-               <or>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndTargetEditPart">
-                  </objectClass>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndSourceEditPart">
-                  </objectClass>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart">
-                  </objectClass>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleSourceEditPart">
-                  </objectClass>
-               </or>
-            </enablement>
          </action>
          <action
                class="org.eclipse.papyrus.diagram.clazz.custom.action.SetNonNavigablePropertyAction"
@@ -1433,22 +1401,6 @@
                id="org.eclipse.papyrus.diagram.clazz.setnonnavigablepropertyaction"
                label="set non navigable"
                menubarPath="org.eclipse.papyrus.diagram.clazz.popupmenu.associationnavigation/group3">
-            <enablement>
-               <or>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndTargetEditPart">
-                  </objectClass>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndSourceEditPart">
-                  </objectClass>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart">
-                  </objectClass>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleSourceEditPart">
-                  </objectClass>
-               </or>
-            </enablement>
          </action>
          <menu
                icon="icons/obj16/Association_composite.gif"
@@ -1466,22 +1418,6 @@
                id="org.eclipse.papyrus.diagram.clazz.SetNoneAggregationPropertyAction"
                label="none"
                menubarPath="org.eclipse.papyrus.diagram.clazz.popupmenu.associationaggregation/group4">
-            <enablement>
-               <or>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndTargetEditPart">
-                  </objectClass>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndSourceEditPart">
-                  </objectClass>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart">
-                  </objectClass>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleSourceEditPart">
-                  </objectClass>
-               </or>
-            </enablement>
          </action>
          <action
                class="org.eclipse.papyrus.diagram.clazz.custom.action.SetCompositePropertyAction"
@@ -1490,22 +1426,6 @@
                id="org.eclipse.papyrus.diagram.clazz.SetCompositePropertyAction"
                label="composite"
                menubarPath="org.eclipse.papyrus.diagram.clazz.popupmenu.associationaggregation/group4">
-            <enablement>
-               <or>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndTargetEditPart">
-                  </objectClass>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndSourceEditPart">
-                  </objectClass>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart">
-                  </objectClass>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleSourceEditPart">
-                  </objectClass>
-               </or>
-            </enablement>
          </action>
          <action
                class="org.eclipse.papyrus.diagram.clazz.custom.action.SetSharedPropertyAction"
@@ -1514,22 +1434,6 @@
                id="org.eclipse.papyrus.diagram.clazz.SetSharedPropertyAction"
                label="shared"
                menubarPath="org.eclipse.papyrus.diagram.clazz.popupmenu.associationaggregation/group4">
-            <enablement>
-               <or>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndTargetEditPart">
-                  </objectClass>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.custom.edit.part.AssociationEndSourceEditPart">
-                  </objectClass>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart">
-                  </objectClass>
-                  <objectClass
-                        name="org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleSourceEditPart">
-                  </objectClass>
-               </or>
-            </enablement>
          </action>
       </objectContribution>
 </extension>
