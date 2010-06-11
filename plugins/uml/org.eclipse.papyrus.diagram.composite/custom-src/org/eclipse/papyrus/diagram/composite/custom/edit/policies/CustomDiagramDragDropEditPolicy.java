@@ -35,8 +35,8 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ShapeCompartmentFigure;
-import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
+import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
@@ -210,7 +210,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		droppableElementsVisualId.add(IntervalConstraintEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(InteractionConstraintEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(ConstraintEditPart.VISUAL_ID);
-		
+
 		// Class CN
 		droppableElementsVisualId.add(ActivityCompositeEditPartCN.VISUAL_ID);
 		droppableElementsVisualId.add(InteractionCompositeEditPartCN.VISUAL_ID);
@@ -224,7 +224,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		droppableElementsVisualId.add(NodeCompositeEditPartCN.VISUAL_ID);
 		droppableElementsVisualId.add(ClassCompositeEditPartCN.VISUAL_ID);
 		droppableElementsVisualId.add(CollaborationCompositeEditPartCN.VISUAL_ID);
-		
+
 		droppableElementsVisualId.add(CollaborationCompositeEditPartCN.VISUAL_ID);
 		droppableElementsVisualId.add(DependencyEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(RoleBindingEditPart.VISUAL_ID);
@@ -234,7 +234,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		droppableElementsVisualId.add(org.eclipse.papyrus.diagram.composite.edit.parts.PropertyPartEditPartCN.VISUAL_ID);
 		droppableElementsVisualId.add(TimeObservationEditPart.VISUAL_ID);
 		droppableElementsVisualId.add(DurationObservationEditPart.VISUAL_ID);
-		
+
 		return droppableElementsVisualId;
 	}
 
@@ -449,14 +449,15 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		// Port inherits from Property this case should be excluded and treated separately
 		if(!(droppedElement instanceof Port)) {
 
-			if((graphicalParentObject instanceof Classifier) && (((Classifier)graphicalParentObject).getAttributes().contains(droppedElement))) {
+			if((graphicalParentObject instanceof Classifier) && (((Classifier)graphicalParentObject).getAllAttributes().contains(droppedElement))) {
 				// The graphical parent is the real owner of the dropped property.
+				// The dropped property may also be an inherited attribute of the graphical parent.
 				return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, droppedElement));
 
 			} else if(graphicalParentObject instanceof ConnectableElement) {
 				Type type = ((ConnectableElement)graphicalParentObject).getType();
-				if((type != null) && (type instanceof Classifier) && (((Classifier)type).getAttributes().contains(droppedElement))) {
-					// The graphical parent is a Property typed by a Classifier that owns of the
+				if((type != null) && (type instanceof Classifier) && (((Classifier)type).getAllAttributes().contains(droppedElement))) {
+					// The graphical parent is a Property typed by a Classifier that owns or inherits the
 					// dropped property.
 					return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, location, droppedElement));
 				}
@@ -467,8 +468,13 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	}
 
 	/**
+	 * <pre>
 	 * Returns the drop command for Affixed nodes (Parameter, Port).
 	 * This method uses PortPositionLocator used by both Port and Parameter.
+	 * If the dropped element is a Port, the graphical parent can be :
+	 * - a Class that owns or inherits the Port
+	 * - a Property which type owns or inherits the Port
+	 * </pre>
 	 * 
 	 * @param dropRequest
 	 *        the drop request
@@ -537,7 +543,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
 
-		if((graphicalParentObject instanceof EncapsulatedClassifier) && (((EncapsulatedClassifier)graphicalParentObject).getOwnedPorts().contains(droppedElement))) {
+		if((graphicalParentObject instanceof EncapsulatedClassifier) && (((EncapsulatedClassifier)graphicalParentObject).getAllAttributes().contains(droppedElement))) {
 			// Drop Port on StructuredClassifier
 			if(isCompartmentTarget) {
 				return getDropAffixedNodeInCompartmentCommand(nodeVISUALID, dropLocation, droppedElement);
@@ -548,7 +554,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			// Drop Port on Part
 			Type type = ((ConnectableElement)graphicalParentObject).getType();
 
-			if((type != null) && (type instanceof EncapsulatedClassifier) && (((EncapsulatedClassifier)type).getOwnedPorts().contains(droppedElement))) {
+			if((type != null) && (type instanceof EncapsulatedClassifier) && (((EncapsulatedClassifier)type).getAllAttributes().contains(droppedElement))) {
 				if(isCompartmentTarget) {
 					return getDropAffixedNodeInCompartmentCommand(nodeVISUALID, dropLocation, droppedElement);
 				}
@@ -622,8 +628,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	}
 
 	/**
-	 * This method return a drop command for TopLevelNode. It returns an {@link org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand} in
+	 * <pre>
+	 * This method return a drop command for TopLevelNode. 
+	 * It returns an {@link org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand} in
 	 * case the element is dropped on a canvas referencing a domain element that is not a Package.
+	 * </pre>
 	 * 
 	 * @param dropRequest
 	 *        the drop request
@@ -647,7 +656,10 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	}
 
 	/**
-	 * This method returns the drop command for AffixedNode (Port, Parameter) in case the node is dropped on a ShapeCompartmentEditPart.
+	 * <pre>
+	 * This method returns the drop command for AffixedNode (Port, Parameter) 
+	 * in case the node is dropped on a ShapeCompartmentEditPart.
+	 * </pre>
 	 * 
 	 * @param nodeVISUALID
 	 *        the node visual identifier
@@ -673,10 +685,14 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	}
 
 	/**
+	 * <pre>
 	 * This method is overridden to provide DND support to element that are not
 	 * expected relatively to GMF declarations (e.g. : Drop Class on Collaboration).
 	 * In such a case, the VisualID of the dropped element cannot be retrieved, because
-	 * not expected to be created on the underlying graphical node. Such behavior should be externalized (with extension point) in order to be easily modified in derived diagrams.
+	 * not expected to be created on the underlying graphical node. 
+	 * Such behavior should be externalized (with extension point) in order to be easily
+	 * modified in derived diagrams.
+	 * </pre>
 	 * 
 	 * @see org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy#getDropObjectsCommand(org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest)
 	 * 
@@ -744,5 +760,5 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		return super.getDropObjectsCommand(dropRequest);
 	}
 
-	
+
 }
