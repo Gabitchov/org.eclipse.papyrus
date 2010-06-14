@@ -15,12 +15,13 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
 
 
 /**
  * Interface that manages conversion of values from String (coming from editors) and the model itself
  */
-public interface IEMFModelHandler {
+public interface IEMFModelHandler extends IConfigurableDescriptor {
 
 	/**
 	 * Returns the value to edit from the model
@@ -65,4 +66,9 @@ public interface IEMFModelHandler {
 	 */
 	public String getId();
 
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public IEMFModelHandlerState createState(boolean readOnly);
 }

@@ -15,7 +15,9 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
+import org.eclipse.swt.graphics.Image;
 
 
 /**
@@ -91,6 +93,27 @@ public abstract class EMFFeatureModelHandler implements IEMFModelHandler {
 		// retrieve the feature
 		EStructuralFeature feature = getFeatureByName(objectsToEdit.get(0));
 		return (feature != null) ? feature.isChangeable() : false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getText() {
+		return "EMF Handler \"" + getId() + "\" -> " + getFeatureName();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Image getImage() {
+		return Activator.getImage("/icons/ModelHandler.gif");
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public IEMFModelHandlerState createState(boolean readOnly) {
+		return new EMFFeatureModelHandlerState(this, readOnly);
 	}
 
 }

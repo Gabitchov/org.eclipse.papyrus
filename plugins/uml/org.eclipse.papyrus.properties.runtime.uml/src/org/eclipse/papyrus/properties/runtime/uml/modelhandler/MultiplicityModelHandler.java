@@ -15,12 +15,13 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.modelhandler.emf.EMFUtils;
 import org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandler;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IBoundedValuesPropertyEditorDescriptor;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
+import org.eclipse.papyrus.properties.runtime.uml.Activator;
 import org.eclipse.papyrus.umlutils.MultiplicityElementUtil;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.MultiplicityElement;
 
 
@@ -30,7 +31,7 @@ import org.eclipse.uml2.uml.MultiplicityElement;
 public class MultiplicityModelHandler implements IEMFModelHandler {
 
 	/** list of available values */
-	protected final List<String> availableValues;
+	private final List<String> availableValues;
 
 	/** id of this model handler */
 	public final static String ID = "Multiplicity";
@@ -84,7 +85,7 @@ public class MultiplicityModelHandler implements IEMFModelHandler {
 	 */
 	public void completeEditorDescriptor(IPropertyEditorDescriptor descriptor, List<EObject> objectToEdit) {
 		if(descriptor instanceof IBoundedValuesPropertyEditorDescriptor) {
-			((IBoundedValuesPropertyEditorDescriptor)descriptor).setAvailableValues(availableValues);
+			((IBoundedValuesPropertyEditorDescriptor)descriptor).setAvailableValues(getAvailableValues());
 		} else {
 			Activator.log.info("Warning: " + descriptor + "could not be completed.");
 		}
@@ -113,5 +114,35 @@ public class MultiplicityModelHandler implements IEMFModelHandler {
 	 */
 	public String getId() {
 		return ID;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getText() {
+		return "MultiplicityHandler";
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Image getImage() {
+		return Activator.getImage("/icons/MultiplicityHandler.gif");
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public MultiplicityHandlerState createState(boolean readOnly) {
+		return new MultiplicityHandlerState(this, readOnly);
+	}
+
+	/**
+	 * Returns the availableValues for the multiplicity controller
+	 * 
+	 * @return the availableValues for the multiplicity controller
+	 */
+	public List<String> getAvailableValues() {
+		return availableValues;
 	}
 }

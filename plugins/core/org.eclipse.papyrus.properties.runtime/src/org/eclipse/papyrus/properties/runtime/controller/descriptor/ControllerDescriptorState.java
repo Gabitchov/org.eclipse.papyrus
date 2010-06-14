@@ -114,7 +114,7 @@ public class ControllerDescriptorState extends AbstractState {
 	/**
 	 * {@inheritDoc}
 	 */
-	public List<ITraversableModelElement> getChildren() {
+	public List<? extends ITraversableModelElement> getChildren() {
 		return Collections.emptyList();
 	}
 

@@ -12,12 +12,15 @@
 package org.eclipse.papyrus.properties.runtime.controller.descriptor;
 
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandler;
+import org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandlerState;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 import org.eclipse.papyrus.properties.runtime.state.IState;
+import org.eclipse.papyrus.properties.runtime.state.ITraversableModelElement;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.w3c.dom.Document;
@@ -149,7 +152,7 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 		private String featureNameState;
 
 		/** model handler state */
-		private String modelHandlerState;
+		private IEMFModelHandlerState modelHandlerState;
 
 		/** multi selection state */
 		private boolean multiSelectionState;
@@ -166,7 +169,7 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 			super(descriptor, readOnly);
 			featureNameState = descriptor.getFeatureNameToEdit();
 			multiSelectionState = descriptor.acceptMultiSelection();
-			modelHandlerState = descriptor.getHandler().getId();
+			modelHandlerState = descriptor.getHandler().createState(true); // read only element
 			editorState = descriptor.getEditorDescriptor().createState(readOnly);
 			// register change support
 			changeSupport = new PropertyChangeSupport(this);
@@ -227,7 +230,7 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 		 * 
 		 * @return the modelHandler for this state
 		 */
-		public String getModelHandlerState() {
+		public IEMFModelHandlerState getModelHandlerState() {
 			return modelHandlerState;
 		}
 
@@ -237,8 +240,8 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 		 * @param modelHandlerState
 		 *        the modelHandler to set
 		 */
-		public void setModelHandler(String modelHandlerState) {
-			String oldHandlerState = this.modelHandlerState;
+		public void setModelHandler(IEMFModelHandlerState modelHandlerState) {
+			IEMFModelHandlerState oldHandlerState = this.modelHandlerState;
 			this.modelHandlerState = modelHandlerState;
 
 			changeSupport.firePropertyChange("modelHandler", oldHandlerState, this.modelHandlerState);
@@ -269,6 +272,16 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 		 * {@inheritDoc}
 		 */
 		@Override
+		public List<? extends ITraversableModelElement> getChildren() {
+			List<ITraversableModelElement> children = new ArrayList<ITraversableModelElement>(1);
+			children.add(modelHandlerState);
+			return children;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
 		public Node generateNode(Document document) {
 			Element node = document.createElement("controller");
 			node.setAttribute("id", getId());
@@ -280,26 +293,10 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 			//			</editor>
 			//			</controller>
 
-			Element featureNode = document.createElement("feature");
-			featureNode.setAttribute("name", getFeatureNameState());
-
-			generateModelHandlerAttributes(featureNode, document);
+			node.appendChild(modelHandlerState.generateNode(document));
 
 			generateEditorNode(node, document);
 			return node;
-		}
-
-
-		/**
-		 * Generates the attributes to the feature node for the model handler
-		 * 
-		 * @param featureNode
-		 *        the node to complete
-		 * @param document
-		 *        the document used to create elements in the file
-		 */
-		protected void generateModelHandlerAttributes(Element featureNode, Document document) {
-			featureNode.setAttribute("handlerID", modelHandlerState);
 		}
 
 		/**
