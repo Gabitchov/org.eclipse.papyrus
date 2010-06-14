@@ -11,17 +11,27 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.core.view.subfeatures;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
+import org.eclipse.papyrus.properties.tabbed.core.Activator;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 
 /**
  * Creates an expandable container
  */
 public class ExpandableContainerDescriptor extends SubFeatureContainerDescriptor {
+
+	/** constant for serialization of the type of container */
+	public static final String EXPANDABLE_CONTAINER_TYPE = "expandableContainer";
 
 	/** label of the bar */
 	protected final String label;
@@ -62,6 +72,108 @@ public class ExpandableContainerDescriptor extends SubFeatureContainerDescriptor
 		if(section != null && !section.isDisposed()) {
 			section.dispose();
 			section = null;
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getText() {
+		return "SubFeature Expandable Container: " + label;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Image getImage() {
+		return Activator.getImage("/icons/SubFeatureExpandableContainer.gif");
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public ExpandableContainerDescriptorState createState(boolean readOnly) {
+		return new ExpandableContainerDescriptorState(this, readOnly);
+	}
+
+	/**
+	 * Returns the label of the container
+	 * 
+	 * @return the label of the container
+	 */
+	public String getLabel() {
+		return label;
+	}
+
+
+	/**
+	 * state for {@link ExpandableContainerDescriptor}
+	 */
+	public class ExpandableContainerDescriptorState extends SubFeatureContainerDescriptorState {
+
+		/** label cached by this state */
+		private String label;
+
+		/** change support */
+		private PropertyChangeSupport changeSupport;
+
+		/**
+		 * Creates a new ExpandableContainerDescriptorState.
+		 * 
+		 * @param descriptor
+		 *        the descriptor managed by this state
+		 * @param readOnly
+		 *        the read only mode
+		 */
+		public ExpandableContainerDescriptorState(ExpandableContainerDescriptor descriptor, boolean readOnly) {
+			super(descriptor, readOnly);
+
+			label = descriptor.getLabel();
+			changeSupport = new PropertyChangeSupport(this);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void addPropertyChangeListener(PropertyChangeListener listener) {
+			changeSupport.addPropertyChangeListener(listener);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void removePropertyChangeListener(PropertyChangeListener listener) {
+			changeSupport.removePropertyChangeListener(listener);
+		}
+
+		/**
+		 * Returns the label of the descriptor managed by this state
+		 * 
+		 * @return the label of the descriptor managed by this state
+		 */
+		public String getLabel() {
+			return label;
+		}
+
+		/**
+		 * Sets the label of the descriptor managed by this state
+		 * 
+		 * @param label
+		 *        the label to set
+		 */
+		public void setLabel(String label) {
+			changeSupport.firePropertyChange("label", this.label, this.label = label);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		protected void generateAttributes(Element node, Document document) {
+			node.setAttribute("label", label);
+			node.setAttribute("type", EXPANDABLE_CONTAINER_TYPE);
 		}
 	}
 }

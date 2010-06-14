@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.core.view.subfeatures;
 
+import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
@@ -18,7 +19,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 /**
  * Descriptor for containers for subfeatures section
  */
-public abstract class SubFeatureContainerDescriptor {
+public abstract class SubFeatureContainerDescriptor implements IConfigurableDescriptor {
 
 	/**
 	 * Creates the container for the section (sub feature)
@@ -35,5 +36,10 @@ public abstract class SubFeatureContainerDescriptor {
 	 * Dispose the main container managed by this descriptor
 	 */
 	public abstract void disposeContainer();
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public abstract SubFeatureContainerDescriptorState createState(boolean readOnly);
 
 }

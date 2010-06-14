@@ -88,7 +88,7 @@ public class EMFSimpleSubFeatureDescriptor extends SubFeatureDescriptor {
 	 * {@inheritDoc}
 	 */
 	public Image getImage() {
-		return null;
+		return org.eclipse.papyrus.properties.tabbed.core.Activator.getImage("/icons/EMFFeatureDescriptor.gif");
 	}
 
 	/**

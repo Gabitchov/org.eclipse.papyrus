@@ -11,14 +11,21 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.core.view.subfeatures;
 
+import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.papyrus.properties.runtime.state.ITraversableModelElement;
 import org.eclipse.papyrus.properties.runtime.view.IFragmentDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.DynamicSectionDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.SubFeatureDescriptor.SubFeatureDescriptorState;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.views.properties.tabbed.ISection;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 
 /**
@@ -97,7 +104,17 @@ public class DynamicSubFeatureSectionDescriptor extends DynamicSectionDescriptor
 	 */
 	public class SubFeatureSectionDescriptorState extends SectionDescriptorState {
 
+		/** state for the {@link SubFeatureDescriptor} */
 		private SubFeatureDescriptorState subFeatureDescriptorState;
+
+		/** state for the {@link SubFeatureContainerDescriptor} */
+		private SubFeatureContainerDescriptorState subFeatureContainerDescriptorState;
+
+		/** number max of column for this sub feature section */
+		private int maxColumn;
+
+		/** change support for this bean */
+		private PropertyChangeSupport changeSupport;
 
 		/**
 		 * Creates a new SubFeatureSectionDescriptorState.
@@ -107,9 +124,25 @@ public class DynamicSubFeatureSectionDescriptor extends DynamicSectionDescriptor
 		public SubFeatureSectionDescriptorState(DynamicSubFeatureSectionDescriptor sectionDescriptor, boolean readOnly) {
 			super(sectionDescriptor, readOnly);
 
+			maxColumn = sectionDescriptor.getMaxColumn();
+
 			subFeatureDescriptorState = sectionDescriptor.getSubFeatureDescriptor().createState(readOnly);
+			subFeatureContainerDescriptorState = sectionDescriptor.getSubFeatureContainerDescriptor().createState(readOnly);
+			// register change support
+			changeSupport = new PropertyChangeSupport(this);
 		}
 
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public List<? extends ITraversableModelElement> getChildren() {
+			List<ITraversableModelElement> list = new ArrayList<ITraversableModelElement>();
+			list.add(subFeatureDescriptorState);
+			list.add(subFeatureContainerDescriptorState);
+			list.addAll(super.getChildren());
+			return list;
+		}
 
 		/**
 		 * Returns the subFeatureDescriptorState for this state
@@ -118,6 +151,58 @@ public class DynamicSubFeatureSectionDescriptor extends DynamicSectionDescriptor
 		 */
 		public SubFeatureDescriptorState getSubFeatureDescriptorState() {
 			return subFeatureDescriptorState;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public Node generateNode(Document document) {
+			Element node = document.createElement("subFeatureSection");
+			node.setAttribute("id", getId());
+			node.setAttribute("tabId", getTargetTab());
+			node.setAttribute("adapterId", getAdapterId());
+			node.setAttribute("maxColumn", "" + maxColumn);
+
+			node.appendChild(subFeatureDescriptorState.generateNode(document));
+			node.appendChild(subFeatureContainerDescriptorState.generateNode(document));
+
+			generateFragmentDescriptorStateNodes(node, document);
+			return node;
+		}
+
+		/**
+		 * Sets the maxColumn for this state
+		 * 
+		 * @param maxColumn
+		 *        the maxColumn to set
+		 */
+		public void setMaxColumn(int maxColumn) {
+			changeSupport.firePropertyChange("maxColumn", this.maxColumn, this.maxColumn = maxColumn);
+		}
+
+		/**
+		 * Returns the maxColumn for this state
+		 * 
+		 * @return the maxColumn for this state
+		 */
+		public int getMaxColumn() {
+			return maxColumn;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public String getText() {
+			return "Sub-Feature Section: " + getId() + " in tab: " + getTargetTab() + " (max column:" + getMaxColumn() + ")";
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public Image getImage() {
+			return org.eclipse.papyrus.properties.tabbed.core.Activator.getImage("/icons/Section.gif");
 		}
 
 	}

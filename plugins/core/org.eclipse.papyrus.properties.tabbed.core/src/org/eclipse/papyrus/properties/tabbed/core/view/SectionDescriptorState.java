@@ -198,8 +198,6 @@ public class SectionDescriptorState extends AbstractState {
 		return getFragmentDescriptorStates();
 	}
 
-
-
 	/**
 	 * Adds a fragment descriptor state and throws an event using the change support
 	 * 

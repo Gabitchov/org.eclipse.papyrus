@@ -11,6 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.core.view.subfeatures;
 
+import org.eclipse.papyrus.properties.tabbed.core.Activator;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
@@ -41,5 +43,26 @@ public class SimpleContainerDescriptor extends SubFeatureContainerDescriptor {
 			composite.dispose();
 			composite = null;
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getText() {
+		return "Simple container";
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Image getImage() {
+		return Activator.getImage("/icons/SubFeatureContainer.gif");
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public SubFeatureContainerDescriptorState createState(boolean readOnly) {
+		return new SubFeatureContainerDescriptorState(this, readOnly);
 	}
 }

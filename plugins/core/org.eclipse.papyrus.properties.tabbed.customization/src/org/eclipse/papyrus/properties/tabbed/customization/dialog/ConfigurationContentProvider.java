@@ -21,8 +21,6 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.properties.runtime.state.AbstractState;
 import org.eclipse.papyrus.properties.runtime.state.ITraversableModelElement;
-import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptorState;
-import org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
 import org.eclipse.swt.graphics.Image;
@@ -96,13 +94,15 @@ public class ConfigurationContentProvider implements ITreeContentProvider, Prope
 		}
 		if(parentElement instanceof ConstraintHolder) {
 			return sectionSetDescriptorState.getConstraintDescriptorStates().toArray();
-		} else if(parentElement instanceof ContentHolder) {
-			return sectionSetDescriptorState.getSectionDescriptorStates().toArray();
-		} else if(parentElement instanceof SectionDescriptorState) {
-			return ((SectionDescriptorState)parentElement).getFragmentDescriptorStates().toArray();
-		} else if(parentElement instanceof FragmentDescriptorState) {
-			return ((FragmentDescriptorState)parentElement).getContainerDescriptorStates().toArray();
-		} else if(parentElement instanceof ITraversableModelElement) {
+		} /*
+		 * else if(parentElement instanceof ContentHolder) {
+		 * return sectionSetDescriptorState.getSectionDescriptorStates().toArray();
+		 * } else if(parentElement instanceof SectionDescriptorState) {
+		 * return ((SectionDescriptorState)parentElement).getFragmentDescriptorStates().toArray();
+		 * } else if(parentElement instanceof FragmentDescriptorState) {
+		 * return ((FragmentDescriptorState)parentElement).getContainerDescriptorStates().toArray();
+		 * }
+		 */else if(parentElement instanceof ITraversableModelElement) {
 			return ((ITraversableModelElement)parentElement).getChildren().toArray();
 		}
 		return new Object[0];

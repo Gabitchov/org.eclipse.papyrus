@@ -370,7 +370,7 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 
 		if("simpleContainer".equals(type)) {
 			return new SimpleContainerDescriptor();
-		} else if("groupContainer".equals(type)) {
+		} else if(GroupContainerDescriptor.GROUP_CONTAINER_TYPE.equals(type)) {
 			String label = "";
 			// attributes are not null, otherwise, the method would have already returned new simpleContainer
 			Node labelNode = attributes.getNamedItem("label");
@@ -378,7 +378,7 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 				label = labelNode.getNodeValue();
 			}
 			return new GroupContainerDescriptor(label);
-		} else if("expandableContainer".equals(type)) {
+		} else if(ExpandableContainerDescriptor.EXPANDABLE_CONTAINER_TYPE.equals(type)) {
 			String label = "";
 			Node labelNode = attributes.getNamedItem("label");
 			if(labelNode != null) {
