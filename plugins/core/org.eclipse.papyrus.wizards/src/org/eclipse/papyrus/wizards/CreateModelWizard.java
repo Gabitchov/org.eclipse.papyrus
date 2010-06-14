@@ -17,6 +17,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
@@ -53,6 +54,9 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 
 	/** Current workbench */
 	private IWorkbench workbench;
+	
+	/** The Constant NEW_MODEL_SETTINGS. */
+	public static final String NEW_MODEL_SETTINGS = "NewModelWizard";
 
 	/**
 	 * The URI of the selected domain model. Do not create a new uml model, but
@@ -81,6 +85,7 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 		super();
 		setWindowTitle("New Papyrus Model");
 		this.domainModelURI = domainModelURI;
+
 	}
 
 	/**
@@ -111,6 +116,15 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
+		
+		IDialogSettings workbenchSettings = Activator.getDefault().getDialogSettings();
+        IDialogSettings section = workbenchSettings
+                .getSection(NEW_MODEL_SETTINGS);
+        if (section == null) {
+			section = workbenchSettings.addNewSection(NEW_MODEL_SETTINGS);
+		}
+        setDialogSettings(section);
+
 		this.diResourceSet = new DiResourceSet();
 		IFile file = getSelectedFile(selection);
 		// builds a new Papyrus Model for an existing domain model
@@ -121,7 +135,7 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 
 			// I don't understand a need to load the model during initialization, 
 			// I rather expect it to be loaded when wizard is finished and executed or
-			// when the page that needs the model is initialized 
+			// when the page that needs the model is initialized
 			Resource resource = diResourceSet.loadModelResource(file);
 
 			EObject diagramRoot = resource.getContents().get(0);
@@ -168,6 +182,12 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 				log.error(e);
 				return false;
 			}
+		}
+		
+		IDialogSettings settings = getDialogSettings();
+		if (settings != null) {
+			selectDiagramCategoryPage.saveSettings(settings);
+			selectDiagramKindPage.saveSettings(settings);
 		}
 
 		return true;

@@ -19,9 +19,12 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
+import org.eclipse.papyrus.wizards.Activator;
+import org.eclipse.papyrus.wizards.CreateModelWizard;
 import org.eclipse.papyrus.wizards.NewModelFilePage;
 import org.eclipse.papyrus.wizards.SelectDiagramCategoryPage;
 import org.eclipse.papyrus.wizards.SelectDiagramKindPage;
@@ -62,7 +65,16 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		super.init(workbench, selection);
 		setWindowTitle("New Papyrus Project");
-		selectDiagramCategoryPage = new SelectDiagramCategoryPage("Select language of the diagram");
+		
+		IDialogSettings workbenchSettings = Activator.getDefault().getDialogSettings();
+        IDialogSettings section = workbenchSettings
+                .getSection(CreateModelWizard.NEW_MODEL_SETTINGS);
+        if (section == null) {
+			section = workbenchSettings.addNewSection(CreateModelWizard.NEW_MODEL_SETTINGS);
+		}
+        setDialogSettings(section);
+
+        selectDiagramCategoryPage = new SelectDiagramCategoryPage("Select language of the diagram");
 		myDiagramKindPage = getSelectDiagramKindPage();
 
 	}
@@ -73,13 +85,8 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 	 * @return the select diagram kind page
 	 */
 	protected SelectDiagramKindPage getSelectDiagramKindPage() {
-		return new SelectDiagramKindPage() {
-			
-			protected boolean validatePage() {
-				return true;
-			};
-
-		}; 
+		return new SelectDiagramKindPage();
+		
 	}
 
 	/**
@@ -155,6 +162,12 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 				log.error(e);
 				return false;
 			}
+		}
+
+		IDialogSettings settings = getDialogSettings();
+		if (settings != null) {
+			selectDiagramCategoryPage.saveSettings(settings);
+			myDiagramKindPage.saveSettings(settings);
 		}
 
 		return true;

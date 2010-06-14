@@ -19,6 +19,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
@@ -125,6 +126,9 @@ public class SelectDiagramKindPage extends WizardPage {
 		initDiagrams(diResourceSet, root);
 		saveDiagram(diResourceSet);
 		return true;
+	}
+	
+	public void saveSettings(IDialogSettings settings) {
 	}
 
 	private void saveDiagram(final DiResourceSet diResourceSet) {

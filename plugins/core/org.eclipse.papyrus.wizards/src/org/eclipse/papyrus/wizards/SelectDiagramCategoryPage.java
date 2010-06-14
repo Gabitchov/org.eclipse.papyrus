@@ -21,6 +21,7 @@ import java.util.List;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
@@ -54,6 +55,8 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	private DiagramCategoryDescriptor mySelectedDiagramCategory;
 
 
+	private static final String LAST_SELECTED_CATEGORY = "diagramCategory";
+
 	/**
 	 * Instantiates a new select diagram category page.
 	 * 
@@ -68,10 +71,10 @@ public class SelectDiagramCategoryPage extends WizardPage {
 
 	/**
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
-	 *
+	 * 
 	 * @param parent
 	 */
-	
+
 	public void createControl(Composite parent) {
 		Composite plate = new Composite(parent, SWT.NONE);
 		plate.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -82,7 +85,32 @@ public class SelectDiagramCategoryPage extends WizardPage {
 
 		createDiagramLanguageForm(plate);
 
+		IDialogSettings settings = getDialogSettings();
+		if(settings != null) {
+			String category = settings.get(LAST_SELECTED_CATEGORY);
+			setDiagramCategory(category);
+		}
+
+
 		setPageComplete(validatePage());
+	}
+
+	private void setDiagramCategory(String category) {
+		if(category == null) {
+			return;
+		}
+		for (DiagramCategoryDescriptor descriptor: DiagramCategoryRegistry.getInstance().getDiagramCategories()) {
+			if (category.equals(descriptor.getId())) {
+				mySelectedDiagramCategory = descriptor;
+			}
+		}
+
+		for(Button button : myDiagramKindButtons) {
+			// we take categories from the same registry, so we can use here for performance reasons  "==" instead of "equals" 
+			if(mySelectedDiagramCategory == (DiagramCategoryDescriptor)button.getData()) {
+				button.setSelection(true);
+			}
+		}
 	}
 
 	/**
@@ -91,7 +119,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 * @return the diagram category
 	 */
 	public String getDiagramCategory() {
-		return mySelectedDiagramCategory!= null ? mySelectedDiagramCategory.getId() : null;
+		return mySelectedDiagramCategory != null ? mySelectedDiagramCategory.getId() : null;
 	}
 
 	/**
@@ -120,9 +148,14 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		}
 	}
 
+	public void saveSettings(IDialogSettings settings) {
+		String category = getDiagramCategory();
+		settings.put(LAST_SELECTED_CATEGORY, category);
+	}
+
 	/**
 	 * Use template.
-	 *
+	 * 
 	 * @return true, if successful
 	 */
 	private boolean useTemplate() {
