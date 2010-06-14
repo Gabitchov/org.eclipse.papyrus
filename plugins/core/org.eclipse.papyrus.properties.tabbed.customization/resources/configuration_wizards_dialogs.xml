@@ -187,5 +187,20 @@
 			<fragment predefinedId="fragment_single_EMFSimpleSubFeatureDescriptorState"/>
 		</content>
 	</dialog>
-	
+	<dialog id="ReplacedSectionStateDialog"><!-- Dialog for single emf feature descriptor state -->
+		<context enablesFor="1">
+			<elementClass
+				name="org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState$ReplacedSectionState">
+			</elementClass>
+		</context>
+		<title>
+			<string value="Edit Replaced Section"/>
+		</title>
+		<message>
+			<string value="Edit Replaced Section Message"/>
+		</message>
+		<content>
+			<fragment predefinedId="fragment_single_ReplacedSectionState"/>
+		</content>
+	</dialog>
 </dialogs>

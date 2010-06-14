@@ -42,6 +42,7 @@ import org.eclipse.papyrus.properties.runtime.view.XMLParseException;
 import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.core.view.PropertyServiceUtil;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState;
+import org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState.ReplacedSectionState;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.ContainerMenuCreator;
@@ -50,6 +51,7 @@ import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.Contro
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.EClassifierMenuCreator;
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.FragmentMenuCreator;
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.PredefinedFragmentMenuCreator;
+import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.ReplacedSectionMenuCreator;
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.SectionMenuCreator;
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.SectionSetMenuCreator;
 import org.eclipse.papyrus.properties.tabbed.customization.state.StatePropertyTabViewProviderParser;
@@ -309,6 +311,8 @@ public class CustomizeContentWizardPage extends WizardPage {
 					menu = new ControllerMenuCreator(((ControllerDescriptorState)selectedObject)).getMenu(configurationViewer.getTree());
 				} else if(selectedObject instanceof ContentHolder) {
 					menu = new ContentHolderMenuCreator(((ContentHolder)selectedObject)).getMenu(configurationViewer.getTree());
+				} else if(selectedObject instanceof ReplacedSectionState) {
+					menu = new ReplacedSectionMenuCreator(((ReplacedSectionState)selectedObject)).getMenu(configurationViewer.getTree());
 				}
 
 				if(menu != null) {

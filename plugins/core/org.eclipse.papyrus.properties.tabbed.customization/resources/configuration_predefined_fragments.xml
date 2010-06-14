@@ -168,4 +168,19 @@
 			</container>
 		</content>
 	</fragment>
+	<fragment id="fragment_single_ReplacedSectionState">
+		<context enablesFor="1">
+			<elementClass name="org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState$ReplacedSectionState"/>
+		</context>
+		<content>
+			<container>
+				 <layout kind="Grid" numColumns="1" sameWidth="false"/>
+				 <controller id="stateBeanPropertyEditorController">
+					<property name="id"/>
+					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Id:" labelPosition="16384"/>
+				</controller>
+			</container>
+		</content>
+	</fragment>
+	
 </fragments>

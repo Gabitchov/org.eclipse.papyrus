@@ -161,6 +161,19 @@ public class SectionMenuCreator extends AbstractMenuCreator {
 		manager.appendToGroup(ADD_GROUP, addFragmentAction);
 		// adds a fragment to the current element
 
+		IAction addReplacedSectionAction = new Action("Add New replaced section", Activator.imageDescriptorFromPlugin(Activator.ID, "/icons/NewReplacedSection.gif")) {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public void run() {
+				// adds a fragment to the current element
+				sectionDescriptorState.addReplacedSectionState(sectionDescriptorState.new ReplacedSectionState(""));
+			}
+
+		};
+		manager.appendToGroup(ADD_GROUP, addReplacedSectionAction);
 
 
 		Map<String, FragmentDescriptor> availableFragmentDescriptors = PropertyViewService.getInstance().getAllFragmentDescriptors();

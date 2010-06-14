@@ -332,7 +332,10 @@ public class SectionDescriptorState extends AbstractState {
 	public class ReplacedSectionState implements IState, ITraversableModelElement {
 
 		/** id of the replaced section */
-		private final String id;
+		private String id;
+
+		/** change support for this bean */
+		private PropertyChangeSupport changeSupport;
 
 		/**
 		 * Creates a new SectionDescriptorState.ReplacedSectionState.
@@ -340,6 +343,8 @@ public class SectionDescriptorState extends AbstractState {
 		 */
 		public ReplacedSectionState(String id) {
 			this.id = id;
+
+			changeSupport = new PropertyChangeSupport(this);
 		}
 
 		/**
@@ -367,19 +372,21 @@ public class SectionDescriptorState extends AbstractState {
 		 * {@inheritDoc}
 		 */
 		public String getEditionDialogId() {
-			return null;
+			return "ReplacedSectionStateDialog";
 		}
 
 		/**
 		 * {@inheritDoc}
 		 */
 		public void addPropertyChangeListener(PropertyChangeListener listener) {
+			changeSupport.addPropertyChangeListener(listener);
 		}
 
 		/**
 		 * {@inheritDoc}
 		 */
 		public void removePropertyChangeListener(PropertyChangeListener listener) {
+			changeSupport.removePropertyChangeListener(listener);
 		}
 
 		/**
@@ -413,6 +420,17 @@ public class SectionDescriptorState extends AbstractState {
 		 */
 		public String getId() {
 			return id;
+		}
+
+
+		/**
+		 * Sets the id
+		 * 
+		 * @param id
+		 *        the id to set
+		 */
+		public void setId(String id) {
+			changeSupport.firePropertyChange("id", this.id, this.id = id);
 		}
 
 	}
