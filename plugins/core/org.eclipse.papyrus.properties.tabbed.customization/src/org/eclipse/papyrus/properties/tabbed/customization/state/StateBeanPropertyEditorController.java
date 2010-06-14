@@ -12,7 +12,7 @@
 package org.eclipse.papyrus.properties.tabbed.customization.state;
 
 import java.beans.PropertyChangeEvent;
-import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 
@@ -63,6 +63,21 @@ public class StateBeanPropertyEditorController extends BeanPropertyEditorControl
 					return;
 				}
 			}
+
+			Class<?> currentClass = state.getClass();
+			// retrieve method in super classes...
+			while(retrieveSuperClass(currentClass) != null) {
+				currentClass = retrieveSuperClass(currentClass);
+				methods = state.getClass().getDeclaredMethods();
+				searchMethodName = "set" + propertyName;
+				for(Method method : methods) {
+					if(searchMethodName.equalsIgnoreCase(method.getName())) {
+						method.setAccessible(true);
+						method.invoke(state, value);
+						return;
+					}
+				}
+			}
 		} catch (IllegalArgumentException e) {
 			Activator.log.error(e);
 		} catch (SecurityException e) {
@@ -82,19 +97,41 @@ public class StateBeanPropertyEditorController extends BeanPropertyEditorControl
 		IState state = getObjectsToEdit().get(0);
 		String propertyName = getDescriptor().getPropertyName();
 		try {
-			Field field = state.getClass().getDeclaredField(propertyName);
-			field.setAccessible(true);
-			return field.get(state);
+			Method[] methods = state.getClass().getDeclaredMethods();
+			String searchMethodName = "get" + propertyName;
+			for(Method method : methods) {
+				if(searchMethodName.equalsIgnoreCase(method.getName())) {
+					method.setAccessible(true);
+					return method.invoke(state);
+				}
+			}
+			Class<?> currentClass = state.getClass();
+			// retrieve method in super classes...
+			while(retrieveSuperClass(currentClass) != null) {
+				currentClass = retrieveSuperClass(currentClass);
+				methods = currentClass.getDeclaredMethods();
+				searchMethodName = "get" + propertyName;
+				for(Method method : methods) {
+					if(searchMethodName.equalsIgnoreCase(method.getName())) {
+						method.setAccessible(true);
+						return method.invoke(state);
+					}
+				}
+			}
 		} catch (IllegalArgumentException e) {
 			Activator.log.error(e);
 		} catch (SecurityException e) {
 			Activator.log.error(e);
 		} catch (IllegalAccessException e) {
 			Activator.log.error(e);
-		} catch (NoSuchFieldException e) {
+		} catch (InvocationTargetException e) {
 			Activator.log.error(e);
 		}
 		return null;
+	}
+
+	protected Class<?> retrieveSuperClass(Class<?> class_) {
+		return class_.getSuperclass();
 	}
 
 	/**

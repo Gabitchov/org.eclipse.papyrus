@@ -128,6 +128,14 @@ public class GroupContainerDescriptor extends SubFeatureContainerDescriptor {
 		 * {@inheritDoc}
 		 */
 		@Override
+		public String getEditionDialogId() {
+			return "GroupContainerDescriptorStateDialog";
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
 		public void addPropertyChangeListener(PropertyChangeListener listener) {
 			changeSupport.addPropertyChangeListener(listener);
 		}
@@ -157,6 +165,13 @@ public class GroupContainerDescriptor extends SubFeatureContainerDescriptor {
 		 */
 		public void setLabel(String label) {
 			changeSupport.firePropertyChange("label", this.label, this.label = label);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public String getText() {
+			return "SubFeature Group Container: " + label;
 		}
 
 		/**

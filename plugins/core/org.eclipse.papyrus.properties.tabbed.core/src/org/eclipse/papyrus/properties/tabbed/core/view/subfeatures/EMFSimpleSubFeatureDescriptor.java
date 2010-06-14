@@ -134,6 +134,20 @@ public class EMFSimpleSubFeatureDescriptor extends SubFeatureDescriptor {
 		/**
 		 * {@inheritDoc}
 		 */
+		public String getText() {
+			return "EMF Feature: " + featureNameState;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public String getEditionDialogId() {
+			return "EMFSimpleSubFeatureDescriptorStateDialog";
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
 		public void addPropertyChangeListener(PropertyChangeListener listener) {
 			changeSupport.addPropertyChangeListener(listener);
 		}

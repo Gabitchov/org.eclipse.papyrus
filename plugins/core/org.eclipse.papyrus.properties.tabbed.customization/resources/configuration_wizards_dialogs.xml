@@ -120,4 +120,72 @@
 			<fragment predefinedId="fragment_single_GridLayoutDescriptorState"/>
 		</content>
 	</dialog>
+	
+	<!-- Sub Feature Section -->
+	<dialog id="SubFeatureSectionDescriptorStateDialog"><!-- Dialog for single sub feature descriptor state -->
+		<context enablesFor="1">
+			<elementClass
+				name="org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.DynamicSubFeatureSectionDescriptor$SubFeatureSectionDescriptorState">
+			</elementClass>
+		</context>
+		<title>
+			<string value="Edit Subfeature section Descriptor"/>
+		</title>
+		<message>
+			<string value="Edit Subfeature section Descriptor Message"/>
+		</message>
+		<content>
+			<fragment predefinedId="fragment_single_SectionDescriptorState"/>
+			<fragment predefinedId="fragment_single_SubFeatureSectionDescriptorState"/>
+		</content>
+	</dialog>
+	<dialog id="GroupContainerDescriptorStateDialog"><!-- Dialog for single group container descriptor state -->
+		<context enablesFor="1">
+			<elementClass
+				name="org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.GroupContainerDescriptor$GroupContainerDescriptorState">
+			</elementClass>
+		</context>
+		<title>
+			<string value="Edit Group container subFeature section Descriptor"/>
+		</title>
+		<message>
+			<string value="Edit Group container subFeature section Descriptor Message"/>
+		</message>
+		<content>
+			<fragment predefinedId="fragment_single_GroupContainerSubFeatureSectionDescriptorState"/>
+		</content>
+	</dialog>
+	<dialog id="ExpandableContainerDescriptorStateDialog"><!-- Dialog for single expandable container descriptor state -->
+		<context enablesFor="1">
+			<elementClass
+				name="org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.ExpandableContainerDescriptor$ExpandableContainerDescriptorState">
+			</elementClass>
+		</context>
+		<title>
+			<string value="Edit Expandable container subFeature section Descriptor"/>
+		</title>
+		<message>
+			<string value="Edit Expandable container subFeature section Descriptor Message"/>
+		</message>
+		<content>
+			<fragment predefinedId="fragment_single_ExpandableContainerSubFeatureSectionDescriptorState"/>
+		</content>
+	</dialog>
+	<dialog id="EMFSimpleSubFeatureDescriptorStateDialog"><!-- Dialog for single emf feature descriptor state -->
+		<context enablesFor="1">
+			<elementClass
+				name="org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.EMFSimpleSubFeatureDescriptor$EMFSimpleSubFeatureDescriptorState">
+			</elementClass>
+		</context>
+		<title>
+			<string value="Edit EMF Feature Descriptor"/>
+		</title>
+		<message>
+			<string value="Edit EMF Feature Descriptor Message"/>
+		</message>
+		<content>
+			<fragment predefinedId="fragment_single_EMFSimpleSubFeatureDescriptorState"/>
+		</content>
+	</dialog>
+	
 </dialogs>

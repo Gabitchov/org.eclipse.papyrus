@@ -136,6 +136,16 @@ public class ExpandableContainerDescriptor extends SubFeatureContainerDescriptor
 		 * {@inheritDoc}
 		 */
 		@Override
+		public String getEditionDialogId() {
+			return "ExpandableContainerDescriptorStateDialog";
+		}
+
+
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
 		public void addPropertyChangeListener(PropertyChangeListener listener) {
 			changeSupport.addPropertyChangeListener(listener);
 		}
@@ -155,6 +165,13 @@ public class ExpandableContainerDescriptor extends SubFeatureContainerDescriptor
 		 */
 		public String getLabel() {
 			return label;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public String getText() {
+			return "SubFeature Expandable Container: " + label;
 		}
 
 		/**

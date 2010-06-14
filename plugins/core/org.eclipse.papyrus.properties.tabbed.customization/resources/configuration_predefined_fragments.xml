@@ -110,4 +110,62 @@
 			</container>
 		</content>
 	</fragment>
+	
+	<!-- Sub feature section and cie -->
+	<fragment id="fragment_single_SubFeatureSectionDescriptorState">
+		<context enablesFor="1">
+			<elementClass name="org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.DynamicSubFeatureSectionDescriptor$SubFeatureSectionDescriptorState"/>
+		</context>
+		<content>
+			<container>
+				 <layout kind="Grid" numColumns="1" sameWidth="false"/>
+				 <controller id="integerStateBeanPropertyEditorController">
+					<property name="maxColumn"/>
+					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Maximum number of Columns:" labelPosition="16384"/>
+				</controller>
+			</container>
+		</content>
+	</fragment>
+	<fragment id="fragment_single_GroupContainerSubFeatureSectionDescriptorState">
+		<context enablesFor="1">
+			<elementClass name="org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.GroupContainerDescriptor$GroupContainerDescriptorState"/>
+		</context>
+		<content>
+			<container>
+				 <layout kind="Grid" numColumns="1" sameWidth="false"/>
+				 <controller id="stateBeanPropertyEditorController">
+					<property name="label"/>
+					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Label:" labelPosition="16384"/>
+				</controller>
+			</container>
+		</content>
+	</fragment>
+	<fragment id="fragment_single_ExpandableContainerSubFeatureSectionDescriptorState">
+		<context enablesFor="1">
+			<elementClass name="org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.ExpandableContainerDescriptor$ExpandableContainerDescriptorState"/>
+		</context>
+		<content>
+			<container>
+				 <layout kind="Grid" numColumns="1" sameWidth="false"/>
+				 <controller id="stateBeanPropertyEditorController">
+					<property name="label"/>
+					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Label:" labelPosition="16384"/>
+				</controller>
+			</container>
+		</content>
+	</fragment>
+	<fragment id="fragment_single_EMFSimpleSubFeatureDescriptorState">
+		<context enablesFor="1">
+			<elementClass name="org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.EMFSimpleSubFeatureDescriptor$EMFSimpleSubFeatureDescriptorState"/>
+		</context>
+		<content>
+			<container>
+				 <layout kind="Grid" numColumns="1" sameWidth="false"/>
+				 <controller id="stateBeanPropertyEditorController">
+					<property name="featureNameState"/>
+					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Feature Name:" labelPosition="16384"/>
+				</controller>
+			</container>
+		</content>
+	</fragment>
 </fragments>

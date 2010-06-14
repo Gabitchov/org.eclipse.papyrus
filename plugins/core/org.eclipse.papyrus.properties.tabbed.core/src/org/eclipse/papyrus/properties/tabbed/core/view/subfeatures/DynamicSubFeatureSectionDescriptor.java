@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.core.view.subfeatures;
 
+import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
@@ -136,6 +137,32 @@ public class DynamicSubFeatureSectionDescriptor extends DynamicSectionDescriptor
 		 * {@inheritDoc}
 		 */
 		@Override
+		public String getEditionDialogId() {
+			return "SubFeatureSectionDescriptorStateDialog";
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public synchronized void addPropertyChangeListener(PropertyChangeListener listener) {
+			super.addPropertyChangeListener(listener);
+			changeSupport.addPropertyChangeListener(listener);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public synchronized void removePropertyChangeListener(PropertyChangeListener listener) {
+			super.removePropertyChangeListener(listener);
+			changeSupport.removePropertyChangeListener(listener);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
 		public List<? extends ITraversableModelElement> getChildren() {
 			List<ITraversableModelElement> list = new ArrayList<ITraversableModelElement>();
 			list.add(subFeatureDescriptorState);
@@ -195,7 +222,7 @@ public class DynamicSubFeatureSectionDescriptor extends DynamicSectionDescriptor
 		 */
 		@Override
 		public String getText() {
-			return "Sub-Feature Section: " + getId() + " in tab: " + getTargetTab() + " (max column:" + getMaxColumn() + ")";
+			return "Sub-Feature Section: " + getId() + " in tab: " + getTargetTab() + " (max column:" + maxColumn + ")";
 		}
 
 		/**

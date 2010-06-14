@@ -46,7 +46,7 @@ public class SectionDescriptorState extends AbstractState {
 	protected String targetTab;
 
 	/** adapter Identifier for the descriptor */
-	private String adapterId;
+	protected String adapterId;
 
 	/**
 	 * Creates a new SectionDescriptorState.
