@@ -120,6 +120,11 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		}
 	}
 
+	/**
+	 * Use template.
+	 *
+	 * @return true, if successful
+	 */
 	private boolean useTemplate() {
 		IWizardPage nextPage = getNextPage();
 		if(nextPage == null || false == nextPage instanceof SelectDiagramKindPage) {
