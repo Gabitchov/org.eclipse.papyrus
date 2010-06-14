@@ -11,7 +11,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.state;
 
+import java.util.List;
+
 import org.eclipse.papyrus.properties.runtime.view.IFragmentDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptorState;
 
 
 /**
@@ -23,5 +26,12 @@ public interface IFragmentDescriptorState extends IState, ITraversableModelEleme
 	 * {@inheritDoc}
 	 */
 	public IFragmentDescriptor getDescriptor();
+
+	/**
+	 * returns the list of container descriptor states for this fragment
+	 * 
+	 * @return the list of container descriptor states for this fragment
+	 */
+	public List<ContainerDescriptorState> getContainerDescriptorStates();
 
 }

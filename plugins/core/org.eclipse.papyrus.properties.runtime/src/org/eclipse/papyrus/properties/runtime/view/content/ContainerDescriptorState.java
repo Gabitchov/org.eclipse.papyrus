@@ -19,6 +19,8 @@ import java.util.List;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.ControllerDescriptorState;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
 import org.eclipse.papyrus.properties.runtime.state.AbstractState;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Composite;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -39,7 +41,7 @@ public class ContainerDescriptorState extends AbstractState {
 	private PropertyChangeSupport changeSupport;
 
 	/** Layout descriptor state */
-	private final LayoutDescriptorState layoutDescriptorState;
+	protected final LayoutDescriptorState layoutDescriptorState;
 
 	/**
 	 * Creates a new ContainerDescriptorState.
@@ -191,6 +193,20 @@ public class ContainerDescriptorState extends AbstractState {
 		for(ControllerDescriptorState state : getControllerDescriptorStates()) {
 			node.appendChild(state.generateNode(document));
 		}
+	}
+
+	/**
+	 * Creates the preview for this state
+	 * 
+	 * @param parent
+	 *        the parent for the created preview
+	 * @return the created composite
+	 */
+	public Composite createPreview(Composite parent) {
+		Composite composite = new Composite(parent, SWT.NONE);
+		// add layout
+		composite.setLayout(layoutDescriptorState.createLayout());
+		return composite;
 	}
 
 }

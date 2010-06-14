@@ -48,7 +48,7 @@ public class PredefinedFragmentDescriptorState extends AbstractState implements 
 		this.predefinedFragmentDescriptor = predefinedFragmentDescriptor;
 
 		for(ContainerDescriptor containerDescriptor : predefinedFragmentDescriptor.getContainerDescriptors()) {
-			containerDescriptorStates.add(containerDescriptor.createState(true));
+			getContainerDescriptorStates().add(containerDescriptor.createState(true));
 		}
 	}
 
@@ -56,7 +56,7 @@ public class PredefinedFragmentDescriptorState extends AbstractState implements 
 	 * {@inheritDoc}
 	 */
 	public List<? extends ITraversableModelElement> getChildren() {
-		return containerDescriptorStates;
+		return getContainerDescriptorStates();
 	}
 
 	/**
@@ -86,6 +86,13 @@ public class PredefinedFragmentDescriptorState extends AbstractState implements 
 	 */
 	public void removePropertyChangeListener(PropertyChangeListener listener) {
 		// nothing here, read only
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public List<ContainerDescriptorState> getContainerDescriptorStates() {
+		return containerDescriptorStates;
 	}
 
 	/**

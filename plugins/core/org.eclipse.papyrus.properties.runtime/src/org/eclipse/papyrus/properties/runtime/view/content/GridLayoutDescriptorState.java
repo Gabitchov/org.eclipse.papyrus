@@ -14,6 +14,7 @@ package org.eclipse.papyrus.properties.runtime.view.content;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+import org.eclipse.swt.layout.GridLayout;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -147,6 +148,13 @@ public class GridLayoutDescriptorState extends LayoutDescriptorState {
 		buffer.append(getSameWidth());
 		buffer.append(")");
 		return buffer.toString();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public GridLayout createLayout() {
+		return new GridLayout(numColumns, sameWidth);
 	}
 
 }

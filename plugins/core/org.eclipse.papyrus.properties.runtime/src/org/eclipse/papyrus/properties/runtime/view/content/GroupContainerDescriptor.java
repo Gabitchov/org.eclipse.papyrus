@@ -192,5 +192,15 @@ public class GroupContainerDescriptor extends ContainerDescriptor {
 			return "GroupContainerDescriptorStateDialog";
 		}
 
+		/**
+		 * {@inheritDoc}
+		 */
+		public Composite createPreview(Composite parent) {
+			Group composite = new Group(parent, SWT.NONE);
+			composite.setText(name);
+			// add layout
+			composite.setLayout(layoutDescriptorState.createLayout());
+			return composite;
+		}
 	}
 }

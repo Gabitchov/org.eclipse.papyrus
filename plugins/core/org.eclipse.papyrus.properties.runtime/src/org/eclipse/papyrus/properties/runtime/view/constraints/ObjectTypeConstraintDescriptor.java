@@ -145,6 +145,15 @@ public class ObjectTypeConstraintDescriptor implements IConstraintDescriptor, IC
 			node.setAttribute("name", elementClassState.getName());
 			return node;
 		}
+
+		/**
+		 * Returns the elementClassState
+		 * 
+		 * @return the elementClassState
+		 */
+		public Class<?> getElementClassState() {
+			return elementClassState;
+		}
 	}
 
 }

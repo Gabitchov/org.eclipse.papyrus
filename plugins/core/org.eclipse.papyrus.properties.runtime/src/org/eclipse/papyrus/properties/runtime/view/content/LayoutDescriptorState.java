@@ -16,6 +16,7 @@ import java.util.List;
 
 import org.eclipse.papyrus.properties.runtime.state.AbstractState;
 import org.eclipse.papyrus.properties.runtime.state.ITraversableModelElement;
+import org.eclipse.swt.widgets.Layout;
 
 
 /**
@@ -50,5 +51,12 @@ public abstract class LayoutDescriptorState extends AbstractState {
 	public List<? extends ITraversableModelElement> getChildren() {
 		return Collections.emptyList();
 	}
+
+	/**
+	 * Creates the layout for the preview
+	 * 
+	 * @return the layout for the preview
+	 */
+	public abstract Layout createLayout();
 
 }

@@ -21,6 +21,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.ui.forms.widgets.ExpandableComposite;
 import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
@@ -209,6 +210,17 @@ public class ExpandableContainerDescriptor extends ContainerDescriptor {
 		 */
 		public String getEditionDialogId() {
 			return "ExpandableContainerDescriptorStateDialog";
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public Composite createPreview(Composite parent) {
+			Group composite = new Group(parent, SWT.NONE);
+			composite.setText("Expandable > " + name);
+			// add layout
+			composite.setLayout(layoutDescriptorState.createLayout());
+			return composite;
 		}
 
 	}

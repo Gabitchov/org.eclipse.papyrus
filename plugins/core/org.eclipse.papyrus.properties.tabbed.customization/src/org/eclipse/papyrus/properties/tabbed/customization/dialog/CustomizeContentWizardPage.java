@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
@@ -24,22 +23,31 @@ import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredContentProvider;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeSelection;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.ControllerDescriptorState;
 import org.eclipse.papyrus.properties.runtime.dialogs.PropertyDialog;
+import org.eclipse.papyrus.properties.runtime.state.IFragmentDescriptorState;
 import org.eclipse.papyrus.properties.runtime.state.IState;
 import org.eclipse.papyrus.properties.runtime.view.DialogDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.PredefinedFragmentDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
 import org.eclipse.papyrus.properties.runtime.view.XMLParseException;
+import org.eclipse.papyrus.properties.runtime.view.constraints.ConstraintDescriptorState;
+import org.eclipse.papyrus.properties.runtime.view.constraints.ObjectTypeConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptorState;
+import org.eclipse.papyrus.properties.tabbed.core.view.DynamicTabDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.PropertyServiceUtil;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState.ReplacedSectionState;
@@ -67,6 +75,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
@@ -104,6 +113,15 @@ public class CustomizeContentWizardPage extends WizardPage {
 
 	/** tree viewer for the configuration area */
 	protected TreeViewer configurationViewer;
+
+	/** viewer for tabs */
+	protected TableViewer tabViewer;
+
+	/** current tab selection */
+	protected DynamicTabDescriptor selectedTab;
+
+	/** preview area */
+	protected Composite previewArea;
 
 	/**
 	 * Creates a new CustomizeContentWizardPage.
@@ -156,6 +174,8 @@ public class CustomizeContentWizardPage extends WizardPage {
 			metamodelViewer.setContentProvider(new MetamodelContentProvider(sectionSetDescriptorStates));
 			metamodelViewer.setLabelProvider(new MetamodelLabelProvider());
 			metamodelViewer.setInput(UMLPackage.eINSTANCE.eContents());
+
+			tabViewer.setInput(PropertyServiceUtil.getTabDescriptors());
 		} catch (XMLParseException e) {
 			Activator.log.error(e);
 		}
@@ -353,16 +373,124 @@ public class CustomizeContentWizardPage extends WizardPage {
 	 */
 	protected void createPreviewArea(Composite composite) {
 		Composite previewAreaComposite = new Composite(composite, SWT.NONE);
-		previewAreaComposite.setLayout(new GridLayout(1, false));
+		previewAreaComposite.setLayout(new GridLayout(2, false));
 
 		// title of this area
 		Label titleLabel = new Label(previewAreaComposite, SWT.NONE);
 		titleLabel.setText("Preview:");
+		titleLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1));
 
-		// content tree and viewer on this tree
-		Tree previewTree = new Tree(previewAreaComposite, SWT.BORDER);
-		previewTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		// TreeViewer contentViewer = new TreeViewer(previewTree);
+		Table table = new Table(previewAreaComposite, SWT.BORDER);
+		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
+		table.setLayoutData(data);
+		tabViewer = new TableViewer(table);
+		tabViewer.setLabelProvider(new LabelProvider() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public String getText(Object element) {
+				if(element instanceof DynamicTabDescriptor) {
+					return ((DynamicTabDescriptor)element).getLabel();
+				}
+				return super.getText(element);
+			}
+		});
+		tabViewer.setContentProvider(new IStructuredContentProvider() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void dispose() {
+
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public Object[] getElements(Object inputElement) {
+				List<Object> results = new ArrayList<Object>();
+				if(inputElement instanceof List<?>) {
+					List<?> elements = (List<?>)inputElement;
+					for(Object o : elements) {
+						if(o instanceof List<?>) {
+							results.addAll((List<?>)o);
+						}
+					}
+					return results.toArray();
+				}
+				return new Object[0];
+			}
+		});
+
+		tabViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+
+			public void selectionChanged(SelectionChangedEvent event) {
+				selectedTab = (DynamicTabDescriptor)((IStructuredSelection)event.getSelection()).getFirstElement();
+				updatePreview();
+			}
+		});
+
+		// real preview area
+		previewArea = new Composite(previewAreaComposite, SWT.BORDER);
+		previewArea.setLayout(new GridLayout(1, true));
+		previewArea.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+	}
+
+	protected boolean isSectionSetDescriptorStateValid(SectionSetDescriptorState state) {
+		List<ConstraintDescriptorState> constraintDescriptorStates = state.getConstraintDescriptorStates();
+		for(ConstraintDescriptorState constraintDescriptorState : constraintDescriptorStates) {
+			if(constraintDescriptorState instanceof ObjectTypeConstraintDescriptor.ObjectTypeConstraintDescriptorState) {
+				Class<?> elementClass = ((ObjectTypeConstraintDescriptor.ObjectTypeConstraintDescriptorState)constraintDescriptorState).getElementClassState();
+				if(elementClass.isAssignableFrom(getCurrentMetaClass().getInstanceClass())) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * update the preview area
+	 */
+	protected void updatePreview() {
+		if(selectedTab != null && getCurrentMetaClass() != null && previewArea != null && !previewArea.isDisposed()) {
+			List<SectionDescriptorState> displayedSections = new ArrayList<SectionDescriptorState>();
+			String selectedTabName = selectedTab.getId();
+			Composite parent = previewArea.getParent();
+			previewArea.dispose();
+			previewArea = new Composite(parent, SWT.BORDER);
+			previewArea.setLayout(new GridLayout(1, true));
+			previewArea.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+			for(SectionSetDescriptorState sectionSetDescriptorState : sectionSetDescriptorStates) {
+				if(isSectionSetDescriptorStateValid(sectionSetDescriptorState)) {
+					// check the content of this section set: sections give the constraints 
+					for(SectionDescriptorState state : sectionSetDescriptorState.getSectionDescriptorStates()) {
+						if(selectedTabName.equals(state.getTargetTab())) {
+							displayedSections.add(state);
+						}
+					}
+				}
+			}
+
+			for(SectionDescriptorState state : displayedSections) {
+				for(IFragmentDescriptorState fragmentDescriptorState : state.getFragmentDescriptorStates()) {
+					for(ContainerDescriptorState containerDescriptorState : fragmentDescriptorState.getContainerDescriptorStates()) {
+						containerDescriptorState.createPreview(previewArea);
+					}
+				}
+			}
+			// previewArea.redraw();
+			previewArea.getParent().layout(true);
+		}
 	}
 
 	/**
@@ -426,9 +554,9 @@ public class CustomizeContentWizardPage extends WizardPage {
 				TreeSelection selection = ((TreeSelection)event.getSelection());
 				Object selectedElement = selection.getFirstElement();
 				// this can be a metaclass or a section set descriptor.
-				if(selectedElement instanceof EClass) {
+				if(selectedElement instanceof ModelElementItem) {
 					setCurrentSectionSetDescriptorState(null);
-					setCurrentMetaClass((EClass)selectedElement);
+					setCurrentMetaClass((EClassifier)((ModelElementItem)selectedElement).getEObject());
 				} else if(selectedElement instanceof SectionSetDescriptorState) {
 					// retrieve the metaclass using the TreePath of the selection
 					TreePath[] paths = selection.getPathsFor(selectedElement);
@@ -436,8 +564,8 @@ public class CustomizeContentWizardPage extends WizardPage {
 					if(paths.length > 0) {
 						TreePath treePath = paths[0];
 						Object firstSegment = treePath.getSegment(0);
-						if(firstSegment instanceof EClassifier) {
-							currentMetaClass = (EClassifier)firstSegment;
+						if(firstSegment instanceof ModelElementItem) {
+							currentMetaClass = (EClassifier)((ModelElementItem)firstSegment).getEObject();
 						}
 					}
 					currentSectionSetDescriptorState = (SectionSetDescriptorState)selectedElement;
