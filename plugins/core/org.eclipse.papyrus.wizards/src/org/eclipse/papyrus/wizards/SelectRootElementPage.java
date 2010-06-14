@@ -91,6 +91,12 @@ public class SelectRootElementPage extends WizardPage {
 		}
 	}
 
+	/**
+	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
+	 *
+	 * @param parent
+	 */
+	
 	public void createControl(Composite parent) {
 		initializeDialogUnits(parent);
 
