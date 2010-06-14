@@ -14,12 +14,17 @@ package org.eclipse.papyrus.properties.tabbed.core.view;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.papyrus.properties.runtime.state.AbstractState;
 import org.eclipse.papyrus.properties.runtime.state.IFragmentDescriptorState;
+import org.eclipse.papyrus.properties.runtime.state.IState;
 import org.eclipse.papyrus.properties.runtime.state.ITraversableModelElement;
+import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.IFragmentDescriptor;
+import org.eclipse.papyrus.properties.tabbed.core.Activator;
+import org.eclipse.swt.graphics.Image;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -35,6 +40,9 @@ public class SectionDescriptorState extends AbstractState {
 
 	/** list of fragment descriptor states */
 	private List<IFragmentDescriptorState> fragmentDescriptorStates = new ArrayList<IFragmentDescriptorState>();
+
+	/** list of replaced sections */
+	private List<ReplacedSectionState> replacedSectionStates = new ArrayList<ReplacedSectionState>();
 
 	/** change support for this bean */
 	private PropertyChangeSupport changeSupport;
@@ -60,6 +68,11 @@ public class SectionDescriptorState extends AbstractState {
 		id = sectionDescriptor.getId();
 		targetTab = sectionDescriptor.getTargetTab();
 		adapterId = sectionDescriptor.getAdapterId();
+
+		List<String> replaceSections = sectionDescriptor.getReplacedSectionIds();
+		for(String replacedSectionId : replaceSections) {
+			getReplacedSectionStates().add(new ReplacedSectionState(replacedSectionId));
+		}
 
 		List<IFragmentDescriptor> fragmentDescriptors = sectionDescriptor.getFragmentDescriptors();
 		for(IFragmentDescriptor fragmentDescriptor : fragmentDescriptors) {
@@ -195,7 +208,10 @@ public class SectionDescriptorState extends AbstractState {
 	 * {@inheritDoc}
 	 */
 	public List<? extends ITraversableModelElement> getChildren() {
-		return getFragmentDescriptorStates();
+		List<ITraversableModelElement> children = new ArrayList<ITraversableModelElement>();
+		children.addAll(getReplacedSectionStates());
+		children.addAll(getFragmentDescriptorStates());
+		return children;
 	}
 
 	/**
@@ -236,9 +252,35 @@ public class SectionDescriptorState extends AbstractState {
 		node.setAttribute("tabId", getTargetTab());
 		node.setAttribute("adapterId", getAdapterId());
 
+		generateReplacedSectionStates(node, document);
+
 		generateFragmentDescriptorStateNodes(node, document);
 
 		return node;
+	}
+
+	/**
+	 * generates the replaced sections ids
+	 * 
+	 * @param node
+	 *        the node where to add the generated nodes
+	 * @param document
+	 *        the document used to create XML elements
+	 */
+	protected void generateReplacedSectionStates(Element node, Document document) {
+		/*
+		 * <replacedSections>
+		 * <replacedSection id="singleClassifierSection"/>
+		 * </replacedSections>
+		 */
+		if(getReplacedSectionStates() != null && !getReplacedSectionStates().isEmpty()) {
+			Element root = document.createElement("replacedSections");
+			for(ReplacedSectionState state : getReplacedSectionStates()) {
+				root.appendChild(state.generateNode(document));
+			}
+			node.appendChild(root);
+		}
+
 	}
 
 	/**
@@ -255,4 +297,123 @@ public class SectionDescriptorState extends AbstractState {
 		}
 	}
 
+	/**
+	 * Returns the replacedSectionStates
+	 * 
+	 * @return the replacedSectionStates
+	 */
+	public List<ReplacedSectionState> getReplacedSectionStates() {
+		return replacedSectionStates;
+	}
+
+	/**
+	 * Adds the id to the list of replaced sections
+	 * 
+	 * @param id
+	 *        the id to add
+	 */
+	public void addReplacedSectionState(ReplacedSectionState id) {
+		replacedSectionStates.add(id);
+		changeSupport.firePropertyChange(PROPERTY_ADD_CHILD, null, replacedSectionStates);
+	}
+
+	/**
+	 * Removes the id from the list of replaced sections
+	 * 
+	 * @param id
+	 *        the id to remove
+	 */
+	public void removeReplacedSectionState(ReplacedSectionState id) {
+		replacedSectionStates.remove(id);
+		changeSupport.firePropertyChange(PROPERTY_REMOVE_CHILD, null, replacedSectionStates);
+	}
+
+
+	public class ReplacedSectionState implements IState, ITraversableModelElement {
+
+		/** id of the replaced section */
+		private final String id;
+
+		/**
+		 * Creates a new SectionDescriptorState.ReplacedSectionState.
+		 * 
+		 */
+		public ReplacedSectionState(String id) {
+			this.id = id;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public String getText() {
+			return "Replaced Section: " + getId();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public Image getImage() {
+			return Activator.getImage("/icons/ReplacedSection.gif");
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public IConfigurableDescriptor getDescriptor() {
+			return null;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public String getEditionDialogId() {
+			return null;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public void addPropertyChangeListener(PropertyChangeListener listener) {
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public void removePropertyChangeListener(PropertyChangeListener listener) {
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public Node generateNode(Document document) {
+			Element node = document.createElement("replacedSection");
+			node.setAttribute("id", id);
+			return node;
+
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public boolean isReadOnly() {
+			return false;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public List<? extends ITraversableModelElement> getChildren() {
+			return Collections.emptyList();
+		}
+
+		/**
+		 * Returns the id
+		 * 
+		 * @return the id
+		 */
+		public String getId() {
+			return id;
+		}
+
+	}
 }

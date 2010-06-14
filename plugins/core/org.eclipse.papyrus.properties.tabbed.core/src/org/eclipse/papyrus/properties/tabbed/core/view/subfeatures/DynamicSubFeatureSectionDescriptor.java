@@ -194,6 +194,8 @@ public class DynamicSubFeatureSectionDescriptor extends DynamicSectionDescriptor
 			node.appendChild(subFeatureDescriptorState.generateNode(document));
 			node.appendChild(subFeatureContainerDescriptorState.generateNode(document));
 
+			generateReplacedSectionStates(node, document);
+
 			generateFragmentDescriptorStateNodes(node, document);
 			return node;
 		}
