@@ -319,10 +319,10 @@ public class SelectDiagramKindPage extends WizardPage {
 			updateStatus("The diagram name should not be empty.");
 			return false;
 		}
-		if(getCreationCommands().isEmpty()) {
-			updateStatus("At least one diagram kind should be selected.");
-			return false;
-		}
+//		if(getCreationCommands().isEmpty()) {
+//			updateStatus("At least one diagram kind should be selected.");
+//			return false;
+//		}
 		updateStatus(null);
 		return true;
 	}
