@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+<extension point="org.eclipse.ui.newWizards">
+	<wizard
+         category="org.eclipse.papyrus.wizards.category"
+         class="org.eclipse.papyrus.sysml.diagram.ui.NewSysMLProjectWizard"
+         finalPerspective="org.eclipse.papyrus.core.perspective"
+         icon="icons/papyrus/new_sysml_project.gif"
+         id="org.eclipse.papyrus.wizards.1createproject"
+         name="SysML Project"
+         project="true">
+      <description>
+         New SysML Project
+      </description>
+	</wizard>
+    <wizard
+         category="org.eclipse.papyrus.wizards.category"
+         class="org.eclipse.papyrus.sysml.diagram.ui.NewSysMLModelWizard"
+         finalPerspective="org.eclipse.papyrus.core.perspective"
+         icon="icons/papyrus/new_sysml_model.gif"
+         id="org.eclipse.papyrus.wizards.2createumlmodel"
+         name="SysML Model">
+      <selection
+            class="org.eclipse.core.resources.IResource">
+      </selection>
+   </wizard>
+</extension>
+
+<extension-point id="templates" name="UML2 Model Templates" schema="schema/templates.exsd"/>
+
+</plugin>
