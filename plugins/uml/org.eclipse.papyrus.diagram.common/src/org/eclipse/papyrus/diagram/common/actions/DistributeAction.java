@@ -88,14 +88,6 @@ public class DistributeAction extends DiagramAction {
 	/** a margin used between the editpart and its container */
 	private double margin = 10;
 
-	/** the horizontal values, used when it's a port selection */
-	private List<Integer> horizontalValuesList = createArrayList(new int[]{ PositionConstants.NORTH, PositionConstants.SOUTH, PositionConstants.NORTH_EAST, PositionConstants.NORTH_WEST, PositionConstants.SOUTH_EAST, PositionConstants.SOUTH_WEST });
-
-	/** the vertical values, used when it's a port selection */
-	private List<Integer> verticalValuesList = createArrayList(new int[]{ PositionConstants.EAST, PositionConstants.WEST, PositionConstants.NORTH_EAST, PositionConstants.NORTH_WEST, PositionConstants.SOUTH_EAST, PositionConstants.SOUTH_WEST });
-
-
-
 	/**
 	 * 
 	 * Constructor.
@@ -346,10 +338,6 @@ public class DistributeAction extends DiagramAction {
 					//we sort the EditpartTree following x or y value (it depends on the action)
 					Collections.sort(children, new CustomComparator());
 
-
-					//					int side = ((BorderNamedElementEditPart)children.get(0).getEditPart()).getBorderItemLocator().getCurrentSideOfParent();
-
-
 					//variable containing the new position for the editpart (x or y following the distribution) 
 					double newPosition = 0;
 					//we determine the location for the first editpart
@@ -369,7 +357,7 @@ public class DistributeAction extends DiagramAction {
 					default:
 						break;
 					}
-					//these 4 booleans indicates if we have already consider a port located on a bad side for the choosen action
+					//these 4 booleans indicates if we have already consider a port located on a bad side for the chosen action
 					boolean eastPort = false;
 					boolean westPort = false;
 					boolean northPort = false;
@@ -394,13 +382,13 @@ public class DistributeAction extends DiagramAction {
 								int side = ((BorderNamedElementEditPart)editPartTree.getEditPart()).getBorderItemLocator().getCurrentSideOfParent();
 								switch(this.distribution) {
 								case DistributionConstants.DISTRIBUTE_H_CONTAINER_INT:
-									if(horizontalValuesList.contains(side)) {
+									if(DistributionConstants.horizontalValuesList.contains(side)) {
 										ptLocation = new PrecisionPoint(newPosition, absolutePosition.preciseY);
 										newPosition += absolutePosition.preciseWidth() + hSpaceAndvSpace[0];
 									}
 									break;
 								case DistributionConstants.DISTRIBUTE_H_NODES_INT:
-									if(horizontalValuesList.contains(side)) {
+									if(DistributionConstants.horizontalValuesList.contains(side)) {
 										ptLocation = new PrecisionPoint(newPosition, absolutePosition.preciseY);
 										newPosition += absolutePosition.preciseWidth() + hSpaceAndvSpace[0];
 									} else if(eastPort == false && side == PositionConstants.EAST) {
@@ -414,13 +402,13 @@ public class DistributeAction extends DiagramAction {
 									}
 									break;
 								case DistributionConstants.DISTRIBUTE_V_CONTAINER_INT:
-									if(verticalValuesList.contains(side)) {
+									if(DistributionConstants.verticalValuesList.contains(side)) {
 										ptLocation = new PrecisionPoint(absolutePosition.preciseX, newPosition);
 										newPosition += absolutePosition.preciseHeight() + hSpaceAndvSpace[1];
 									}
 									break;
 								case DistributionConstants.DISTRIBUTE_V_NODES_INT:
-									if(verticalValuesList.contains(side)) {
+									if(DistributionConstants.verticalValuesList.contains(side)) {
 										ptLocation = new PrecisionPoint(absolutePosition.preciseX, newPosition);
 										newPosition += absolutePosition.preciseHeight() + hSpaceAndvSpace[1];
 									} else if(northPort == false && side == PositionConstants.NORTH) {
@@ -595,14 +583,14 @@ public class DistributeAction extends DiagramAction {
 					int side = loc.getCurrentSideOfParent();
 					switch(this.distribution) {
 					case DistributionConstants.DISTRIBUTE_H_CONTAINER_INT:
-						if(horizontalValuesList.contains(side)) {
+						if(DistributionConstants.horizontalValuesList.contains(side)) {
 							vertical += rect.preciseHeight();
 							horizontal += rect.preciseWidth();
 							nbPort++;
 						}
 						break;
 					case DistributionConstants.DISTRIBUTE_H_NODES_INT:
-						if(horizontalValuesList.contains(side)) {
+						if(DistributionConstants.horizontalValuesList.contains(side)) {
 							vertical += rect.preciseHeight();
 							horizontal += rect.preciseWidth();
 							nbPort++;
@@ -628,14 +616,14 @@ public class DistributeAction extends DiagramAction {
 						}
 						break;
 					case DistributionConstants.DISTRIBUTE_V_CONTAINER_INT:
-						if(verticalValuesList.contains(side)) {
+						if(DistributionConstants.verticalValuesList.contains(side)) {
 							vertical += rect.preciseHeight();
 							horizontal += rect.preciseWidth();
 							nbPort++;
 						}
 						break;
 					case DistributionConstants.DISTRIBUTE_V_NODES_INT:
-						if(verticalValuesList.contains(side)) {
+						if(DistributionConstants.verticalValuesList.contains(side)) {
 							vertical += rect.preciseHeight();
 							horizontal += rect.preciseWidth();
 							nbPort++;
@@ -721,11 +709,11 @@ public class DistributeAction extends DiagramAction {
 				IBorderItemLocator loc = ((BorderNamedElementEditPart)editPart).getBorderItemLocator();
 				int side = loc.getCurrentSideOfParent();
 				if(this.distribution == DistributionConstants.DISTRIBUTE_H_CONTAINER_INT || this.distribution == DistributionConstants.DISTRIBUTE_H_NODES_INT) {
-					if(horizontalValuesList.contains(side)) {
+					if(DistributionConstants.horizontalValuesList.contains(side)) {
 						answer = true;
 					}
 				} else {//vertical distribution
-					if(verticalValuesList.contains(side)) {
+					if(DistributionConstants.verticalValuesList.contains(side)) {
 						answer = true;
 					}
 
@@ -737,23 +725,6 @@ public class DistributeAction extends DiagramAction {
 		}
 		return answer;
 	}
-
-	/**
-	 * Returns an {@link ArrayList}<{@link Integer}> filled with {@code array}
-	 * 
-	 * @param array
-	 *        the array used to create an {@link ArrayList}<{@link Integer}>
-	 * @return
-	 *         an {@link ArrayList}<{@link Integer}> filled with {@code array}
-	 */
-	private static List<Integer> createArrayList(int[] array) {
-		ArrayList<Integer> values = new ArrayList<Integer>();
-		for(int i = 0; i < array.length; i++) {
-			values.add(array[i]);
-		}
-		return values;
-	}
-
 
 
 	/**

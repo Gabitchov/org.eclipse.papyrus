@@ -77,14 +77,16 @@ public class AlignementHandler extends AbstractHandler {
 	 * 
 	 * @param event
 	 * @return
-	 * @throws ExecutionException
+	 * 
 	 */
 	public Object execute(ExecutionEvent event) {
 		init(event);
-		if(this.alignment != PositionConstants.NONE && workbenchPage != null && ((StructuredSelection)this.selection).size() > 1) {
+		if(this.alignment != PositionConstants.NONE && workbenchPage != null && ((StructuredSelection)this.selection).size() >= 1) {
 			CustomAlignAction action = new CustomAlignAction(workbenchPage, id, alignment, false);
 			action.init();
-			action.run();
+			if(action.isEnabled()) {
+				action.run();
+			}
 		}
 		return null;
 	}
