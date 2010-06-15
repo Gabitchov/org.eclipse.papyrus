@@ -1165,7 +1165,7 @@
             icon="platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/ProfileDiagramEditorIcons/ProfileDiagramEditorIcon_16x16-32.bmp"
             id="org.eclipse.papyrus.diagram.profile.CreateProfileDiagramCommand"
             language="profile"
-            label="UML Profile Diagram">
+            label="Create UML Profile Diagrams">
       </creationCommand>
    </extension>
 <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor" id="prop-contrib">

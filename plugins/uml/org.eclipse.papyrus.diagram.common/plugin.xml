@@ -717,7 +717,7 @@
          point="org.eclipse.papyrus.core.papyrusDiagram">
       <diagramCategory
             class="org.eclipse.papyrus.diagram.common.commands.CreateUMLModelCommand"
-            description="UML diagrams"
+            description="Create Unified Modeling Language diagrams"
             icon="icons/category_uml.gif"
             id="uml"
             label="UML">
