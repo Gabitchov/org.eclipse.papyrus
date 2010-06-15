@@ -6,9 +6,8 @@ Bundle-Version: 0.7.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.uml.service.creation.Activator
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.ui;bundle-version="3.6.0",
- org.eclipse.gmf.runtime.emf.type.core;bundle-version="1.4.0",
- org.eclipse.uml2.uml;bundle-version="3.1.0",
+ org.eclipse.ui,
+ org.eclipse.uml2.uml,
  org.eclipse.papyrus.umlutils;bundle-version="0.7.0",
  org.eclipse.papyrus.core;bundle-version="0.7.0",
  org.eclipse.papyrus.diagram.common;bundle-version="0.7.0",
