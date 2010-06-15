@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.service.creation;
 
 import org.eclipse.core.runtime.Plugin;
@@ -6,9 +19,11 @@ import org.osgi.framework.BundleContext;
 /**
  * The activator class controls the plug-in life cycle
  */
-public class Activator extends Plugin {
+public class Activator extends Plugin implements org.eclipse.ui.IStartup{
 
-	// The plug-in ID
+	/**
+	 * this is the plugin ID
+	 */
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.uml.service.creation"; //$NON-NLS-1$
 
 	// The shared instance
@@ -45,6 +60,11 @@ public class Activator extends Plugin {
 	 */
 	public static Activator getDefault() {
 		return plugin;
+	}
+
+	public void earlyStartup() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

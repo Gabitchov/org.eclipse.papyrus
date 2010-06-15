@@ -16,6 +16,7 @@
    <extension
          point="org.eclipse.ui.navigator.viewer">
       <viewer
+            popupMenuId="org.eclipse.papyrus.modelexplorer.modelexplorer.popup"
             viewerId="org.eclipse.papyrus.modelexplorer.modelexplorer">
       </viewer>
       <viewerContentBinding
@@ -56,17 +57,6 @@
                <instanceof value="org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem"/> 
             </or>
          </possibleChildren>
-         <actionProvider
-               class="org.eclipse.papyrus.modelexplorer.actionprovider.CreateChildActionProvider"
-               id="org.eclipse.papyrus.modelexplorer.actionprovider.CreateChildActionProvider">
-            <enablement>
-               <or>
-                  <adapt
-                        type="org.eclipse.emf.ecore.EObject">
-                  </adapt>
-               </or>
-            </enablement>
-         </actionProvider>
          <actionProvider
                class="org.eclipse.papyrus.modelexplorer.actionprovider.GenericTransformActionProvider"
                id="org.eclipse.papyrus.modelexplorer.actionprovider.GenericTransformActionProvider">
@@ -129,16 +119,6 @@
          </dropAssistant>
     
       </navigatorContent>
-   </extension>
-   <extension
-         point="org.eclipse.papyrus.modelexplorer.actionHandler">
-      
-      <customAction
-            actionHandler="org.eclipse.papyrus.modelexplorer.factory.DefaultEMFActionsFactory"
-            actionId="org.eclipse.papyrus.modelexplorer.factory.defaultEMFActions"
-            afterAction="org.eclipse.papyrus.modelexplorer.factory.renameAction"
-            needSeparator="true">
-      </customAction>
    </extension>
     <extension
          point="org.eclipse.ui.popupMenus">
