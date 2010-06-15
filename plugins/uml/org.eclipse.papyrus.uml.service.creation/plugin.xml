@@ -2801,1097 +2801,1238 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
    id="org.eclipse.papyrus.uml.service.creation.associationclass.Handler"
    name="Create a new AssociationClass"/>
 </extension>
-<extension
-      point="org.eclipse.ui.menus">
+<extension point="org.eclipse.ui.menus">
    <menuContribution
-         allPopups="false"
-         locationURI="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup">
+      allPopups="false"
+      locationURI="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup">
       <menu
-            id="org.eclipse.papyrus.diagram.ui.popup.children"
-            label="New UML Child">
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.comment.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
-               label="Create a new Comment"
-               style="push"
-               tooltip="Create a new Comment">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.package.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
-               label="Create a new Package"
-               style="push"
-               tooltip="Create a new Package">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.constraint.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
-               label="Create a new Constraint"
-               style="push"
-               tooltip="Create a new Constraint">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.templatesignature.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateSignature.gif"
-               label="Create a new TemplateSignature"
-               style="push"
-               tooltip="Create a new TemplateSignature">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.templateparameter.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateParameter.gif"
-               label="Create a new TemplateParameter"
-               style="push"
-               tooltip="Create a new TemplateParameter">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.templateparametersubstitution.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateParameterSubstitution.gif"
-               label="Create a new TemplateParameterSubstitution"
-               style="push"
-               tooltip="Create a new TemplateParameterSubstitution">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.parameter.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Parameter.gif"
-               label="Create a new Parameter"
-               style="push"
-               tooltip="Create a new Parameter">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.property.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
-               label="Create a new Property"
-               style="push"
-               tooltip="Create a new Property">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.artifact.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Artifact.gif"
-               label="Create a new Artifact"
-               style="push"
-               tooltip="Create a new Artifact">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.operation.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Operation.gif"
-               label="Create a new Operation"
-               style="push"
-               tooltip="Create a new Operation">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.class.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
-               label="Create a new Class"
-               style="push"
-               tooltip="Create a new Class">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.interface.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif"
-               label="Create a new Interface"
-               style="push"
-               tooltip="Create a new Interface">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.reception.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Reception.gif"
-               label="Create a new Reception"
-               style="push"
-               tooltip="Create a new Reception">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.signal.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Signal.gif"
-               label="Create a new Signal"
-               style="push"
-               tooltip="Create a new Signal">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.protocolstatemachine.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProtocolStateMachine.gif"
-               label="Create a new ProtocolStateMachine"
-               style="push"
-               tooltip="Create a new ProtocolStateMachine">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.statemachine.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateMachine.gif"
-               label="Create a new StateMachine"
-               style="push"
-               tooltip="Create a new StateMachine">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.region.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Region.gif"
-               label="Create a new Region"
-               style="push"
-               tooltip="Create a new Region">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.port.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif"
-               label="Create a new Port"
-               style="push"
-               tooltip="Create a new Port">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.state.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/State.gif"
-               label="Create a new State"
-               style="push"
-               tooltip="Create a new State">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.connectionpointreference.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectionPointReference.gif"
-               label="Create a new ConnectionPointReference"
-               style="push"
-               tooltip="Create a new ConnectionPointReference">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.pseudostate.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate.gif"
-               label="Create a new Pseudostate"
-               style="push"
-               tooltip="Create a new Pseudostate">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.stereotype.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Stereotype.gif"
-               label="Create a new Stereotype"
-               style="push"
-               tooltip="Create a new Stereotype">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.image.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Image.gif"
-               label="Create a new Image"
-               style="push"
-               tooltip="Create a new Image">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.profile.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Profile.gif"
-               label="Create a new Profile"
-               style="push"
-               tooltip="Create a new Profile">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.model.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
-               label="Create a new Model"
-               style="push"
-               tooltip="Create a new Model">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.parameterset.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ParameterSet.gif"
-               label="Create a new ParameterSet"
-               style="push"
-               tooltip="Create a new ParameterSet">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.datatype.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataType.gif"
-               label="Create a new DataType"
-               style="push"
-               tooltip="Create a new DataType">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.operationtemplateparameter.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OperationTemplateParameter.gif"
-               label="Create a new OperationTemplateParameter"
-               style="push"
-               tooltip="Create a new OperationTemplateParameter">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.collaborationuse.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CollaborationUse.gif"
-               label="Create a new CollaborationUse"
-               style="push"
-               tooltip="Create a new CollaborationUse">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.collaboration.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Collaboration.gif"
-               label="Create a new Collaboration"
-               style="push"
-               tooltip="Create a new Collaboration">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.usecase.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/UseCase.gif"
-               label="Create a new UseCase"
-               style="push"
-               tooltip="Create a new UseCase">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.extensionpoint.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExtensionPoint.gif"
-               label="Create a new ExtensionPoint"
-               style="push"
-               tooltip="Create a new ExtensionPoint">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.redefinabletemplatesignature.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RedefinableTemplateSignature.gif"
-               label="Create a new RedefinableTemplateSignature"
-               style="push"
-               tooltip="Create a new RedefinableTemplateSignature">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.classifiertemplateparameter.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClassifierTemplateParameter.gif"
-               label="Create a new ClassifierTemplateParameter"
-               style="push"
-               tooltip="Create a new ClassifierTemplateParameter">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.enumeration.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Enumeration.gif"
-               label="Create a new Enumeration"
-               style="push"
-               tooltip="Create a new Enumeration">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.enumerationliteral.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/EnumerationLiteral.gif"
-               label="Create a new EnumerationLiteral"
-               style="push"
-               tooltip="Create a new EnumerationLiteral">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.instancespecification.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceSpecification.gif"
-               label="Create a new InstanceSpecification"
-               style="push"
-               tooltip="Create a new InstanceSpecification">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.slot.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Slot.gif"
-               label="Create a new Slot"
-               style="push"
-               tooltip="Create a new Slot">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.primitivetype.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PrimitiveType.gif"
-               label="Create a new PrimitiveType"
-               style="push"
-               tooltip="Create a new PrimitiveType">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.opaquebehavior.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueBehavior.gif"
-               label="Create a new OpaqueBehavior"
-               style="push"
-               tooltip="Create a new OpaqueBehavior">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.opaqueaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueAction.gif"
-               label="Create a new OpaqueAction"
-               style="push"
-               tooltip="Create a new OpaqueAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.activity.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Activity.gif"
-               label="Create a new Activity"
-               style="push"
-               tooltip="Create a new Activity">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.variable.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Variable.gif"
-               label="Create a new Variable"
-               style="push"
-               tooltip="Create a new Variable">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.activitypartition.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityPartition.gif"
-               label="Create a new ActivityPartition"
-               style="push"
-               tooltip="Create a new ActivityPartition">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.outputpin.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OutputPin.gif"
-               label="Create a new OutputPin"
-               style="push"
-               tooltip="Create a new OutputPin">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.inputpin.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InputPin.gif"
-               label="Create a new InputPin"
-               style="push"
-               tooltip="Create a new InputPin">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.sendsignalaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendSignalAction.gif"
-               label="Create a new SendSignalAction"
-               style="push"
-               tooltip="Create a new SendSignalAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.calloperationaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallOperationAction.gif"
-               label="Create a new CallOperationAction"
-               style="push"
-               tooltip="Create a new CallOperationAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.callbehavioraction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallBehaviorAction.gif"
-               label="Create a new CallBehaviorAction"
-               style="push"
-               tooltip="Create a new CallBehaviorAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.sequencenode.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SequenceNode.gif"
-               label="Create a new SequenceNode"
-               style="push"
-               tooltip="Create a new SequenceNode">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.initialnode.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InitialNode.gif"
-               label="Create a new InitialNode"
-               style="push"
-               tooltip="Create a new InitialNode">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.activityparameternode.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityParameterNode.gif"
-               label="Create a new ActivityParameterNode"
-               style="push"
-               tooltip="Create a new ActivityParameterNode">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.valuepin.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValuePin.gif"
-               label="Create a new ValuePin"
-               style="push"
-               tooltip="Create a new ValuePin">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.lifeline.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Lifeline.gif"
-               label="Create a new Lifeline"
-               style="push"
-               tooltip="Create a new Lifeline">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.interactionuse.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionUse.gif"
-               label="Create a new InteractionUse"
-               style="push"
-               tooltip="Create a new InteractionUse">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.generalordering.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/GeneralOrdering.gif"
-               label="Create a new GeneralOrdering"
-               style="push"
-               tooltip="Create a new GeneralOrdering">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.actor.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Actor.gif"
-               label="Create a new Actor"
-               style="push"
-               tooltip="Create a new Actor">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.forknode.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ForkNode.gif"
-               label="Create a new ForkNode"
-               style="push"
-               tooltip="Create a new ForkNode">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.flowfinalnode.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FlowFinalNode.gif"
-               label="Create a new FlowFinalNode"
-               style="push"
-               tooltip="Create a new FlowFinalNode">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.centralbuffernode.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CentralBufferNode.gif"
-               label="Create a new CentralBufferNode"
-               style="push"
-               tooltip="Create a new CentralBufferNode">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.mergenode.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/MergeNode.gif"
-               label="Create a new MergeNode"
-               style="push"
-               tooltip="Create a new MergeNode">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.decisionnode.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DecisionNode.gif"
-               label="Create a new DecisionNode"
-               style="push"
-               tooltip="Create a new DecisionNode">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.activityfinalnode.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityFinalNode.gif"
-               label="Create a new ActivityFinalNode"
-               style="push"
-               tooltip="Create a new ActivityFinalNode">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.component.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Component.gif"
-               label="Create a new Component"
-               style="push"
-               tooltip="Create a new Component">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.node.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif"
-               label="Create a new Node"
-               style="push"
-               tooltip="Create a new Node">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.device.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif"
-               label="Create a new Device"
-               style="push"
-               tooltip="Create a new Device">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.executionenvironment.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif"
-               label="Create a new ExecutionEnvironment"
-               style="push"
-               tooltip="Create a new ExecutionEnvironment">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.combinedfragment.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CombinedFragment.gif"
-               label="Create a new CombinedFragment"
-               style="push"
-               tooltip="Create a new CombinedFragment">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.continuation.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Continuation.gif"
-               label="Create a new Continuation"
-               style="push"
-               tooltip="Create a new Continuation">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.considerignorefragment.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConsiderIgnoreFragment.gif"
-               label="Create a new ConsiderIgnoreFragment"
-               style="push"
-               tooltip="Create a new ConsiderIgnoreFragment">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.createobjectaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateObjectAction.gif"
-               label="Create a new CreateObjectAction"
-               style="push"
-               tooltip="Create a new CreateObjectAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.destroyobjectaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestroyObjectAction.gif"
-               label="Create a new DestroyObjectAction"
-               style="push"
-               tooltip="Create a new DestroyObjectAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.testidentityaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TestIdentityAction.gif"
-               label="Create a new TestIdentityAction"
-               style="push"
-               tooltip="Create a new TestIdentityAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.readselfaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadSelfAction.gif"
-               label="Create a new ReadSelfAction"
-               style="push"
-               tooltip="Create a new ReadSelfAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.readstructuralfeatureaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadStructuralFeatureAction.gif"
-               label="Create a new ReadStructuralFeatureAction"
-               style="push"
-               tooltip="Create a new ReadStructuralFeatureAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.clearstructuralfeatureaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClearStructuralFeatureAction.gif"
-               label="Create a new ClearStructuralFeatureAction"
-               style="push"
-               tooltip="Create a new ClearStructuralFeatureAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.removestructuralfeaturevalueaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RemoveStructuralFeatureValueAction.gif"
-               label="Create a new RemoveStructuralFeatureValueAction"
-               style="push"
-               tooltip="Create a new RemoveStructuralFeatureValueAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.addstructuralfeaturevalueaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddStructuralFeatureValueAction.gif"
-               label="Create a new AddStructuralFeatureValueAction"
-               style="push"
-               tooltip="Create a new AddStructuralFeatureValueAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.destroylinkaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestroyLinkAction.gif"
-               label="Create a new DestroyLinkAction"
-               style="push"
-               tooltip="Create a new DestroyLinkAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.linkenddestructiondata.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LinkEndDestructionData.gif"
-               label="Create a new LinkEndDestructionData"
-               style="push"
-               tooltip="Create a new LinkEndDestructionData">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.clearassociationaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClearAssociationAction.gif"
-               label="Create a new ClearAssociationAction"
-               style="push"
-               tooltip="Create a new ClearAssociationAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.broadcastsignalaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/BroadcastSignalAction.gif"
-               label="Create a new BroadcastSignalAction"
-               style="push"
-               tooltip="Create a new BroadcastSignalAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.sendobjectaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendObjectAction.gif"
-               label="Create a new SendObjectAction"
-               style="push"
-               tooltip="Create a new SendObjectAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.valuespecificationaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValueSpecificationAction.gif"
-               label="Create a new ValueSpecificationAction"
-               style="push"
-               tooltip="Create a new ValueSpecificationAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.timeobservation.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
-               label="Create a new TimeObservation"
-               style="push"
-               tooltip="Create a new TimeObservation">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.durationobservation.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif"
-               label="Create a new DurationObservation"
-               style="push"
-               tooltip="Create a new DurationObservation">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.finalstate.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FinalState.gif"
-               label="Create a new FinalState"
-               style="push"
-               tooltip="Create a new FinalState">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.readvariableaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadVariableAction.gif"
-               label="Create a new ReadVariableAction"
-               style="push"
-               tooltip="Create a new ReadVariableAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.clearvariableaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClearVariableAction.gif"
-               label="Create a new ClearVariableAction"
-               style="push"
-               tooltip="Create a new ClearVariableAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.addvariablevalueaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddVariableValueAction.gif"
-               label="Create a new AddVariableValueAction"
-               style="push"
-               tooltip="Create a new AddVariableValueAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.removevariablevalueaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RemoveVariableValueAction.gif"
-               label="Create a new RemoveVariableValueAction"
-               style="push"
-               tooltip="Create a new RemoveVariableValueAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.removevariablevalueaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RemoveVariableValueAction.gif"
-               label="Create a new RemoveVariableValueAction"
-               style="push"
-               tooltip="Create a new RemoveVariableValueAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.raiseexceptionaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RaiseExceptionAction.gif"
-               label="Create a new RaiseExceptionAction"
-               style="push"
-               tooltip="Create a new RaiseExceptionAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.actioninputpin.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionInputPin.gif"
-               label="Create a new ActionInputPin"
-               style="push"
-               tooltip="Create a new ActionInputPin">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.informationitem.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationItem.gif"
-               label="Create a new InformationItem"
-               style="push"
-               tooltip="Create a new InformationItem">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.readextentaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadExtentAction.gif"
-               label="Create a new ReadExtentAction"
-               style="push"
-               tooltip="Create a new ReadExtentAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.reclassifyobjectaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReclassifyObjectAction.gif"
-               label="Create a new ReclassifyObjectAction"
-               style="push"
-               tooltip="Create a new ReclassifyObjectAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.readisclassifiedobjectaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadIsClassifiedObjectAction.gif"
-               label="Create a new ReadIsClassifiedObjectAction"
-               style="push"
-               tooltip="Create a new ReadIsClassifiedObjectAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.startclassifierbehavioraction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StartClassifierBehaviorAction.gif"
-               label="Create a new StartClassifierBehaviorAction"
-               style="push"
-               tooltip="Create a new StartClassifierBehaviorAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.readlinkobjectendaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadLinkObjectEndAction.gif"
-               label="Create a new ReadLinkObjectEndAction"
-               style="push"
-               tooltip="Create a new ReadLinkObjectEndAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.readlinkobjectendqualifieraction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadLinkObjectEndQualifierAction.gif"
-               label="Create a new ReadLinkObjectEndQualifierAction"
-               style="push"
-               tooltip="Create a new ReadLinkObjectEndQualifierAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.accepteventaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AcceptEventAction.gif"
-               label="Create a new AcceptEventAction"
-               style="push"
-               tooltip="Create a new AcceptEventAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.acceptcallaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AcceptCallAction.gif"
-               label="Create a new AcceptCallAction"
-               style="push"
-               tooltip="Create a new AcceptCallAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.replyaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReplyAction.gif"
-               label="Create a new ReplyAction"
-               style="push"
-               tooltip="Create a new ReplyAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.unmarshallaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/UnmarshallAction.gif"
-               label="Create a new UnmarshallAction"
-               style="push"
-               tooltip="Create a new UnmarshallAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.reduceaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReduceAction.gif"
-               label="Create a new ReduceAction"
-               style="push"
-               tooltip="Create a new ReduceAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.clause.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Clause.gif"
-               label="Create a new Clause"
-               style="push"
-               tooltip="Create a new Clause">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
-         <command
-               commandId="org.eclipse.papyrus.uml.service.creation.removevariablevalueaction.Handler"
-               icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RemoveVariableValueAction.gif"
-               label="Create a new RemoveVariableValueAction"
-               style="push"
-               tooltip="Create a new RemoveVariableValueAction">
-            <visibleWhen
-                  checkEnabled="true">
-            </visibleWhen>
-         </command>
+         id="org.eclipse.papyrus.diagram.ui.popup.children"
+         label="New Child">
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.acceptcallaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AcceptCallAction.gif"
+                label="Create a new AcceptCallAction"
+                style="push"
+	             tooltip="Create a new AcceptCallAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.accepteventaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AcceptEventAction.gif"
+                label="Create a new AcceptEventAction"
+                style="push"
+	             tooltip="Create a new AcceptEventAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.actionexecutionspecification.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionExecutionSpecification.gif"
+                label="Create a new ActionExecutionSpecification"
+                style="push"
+	             tooltip="Create a new ActionExecutionSpecification">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.actioninputpin.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionInputPin.gif"
+                label="Create a new ActionInputPin"
+                style="push"
+	             tooltip="Create a new ActionInputPin">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.activity.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Activity.gif"
+                label="Create a new Activity"
+                style="push"
+	             tooltip="Create a new Activity">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.activityfinalnode.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityFinalNode.gif"
+                label="Create a new ActivityFinalNode"
+                style="push"
+	             tooltip="Create a new ActivityFinalNode">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.activityparameternode.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityParameterNode.gif"
+                label="Create a new ActivityParameterNode"
+                style="push"
+	             tooltip="Create a new ActivityParameterNode">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.activitypartition.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityPartition.gif"
+                label="Create a new ActivityPartition"
+                style="push"
+	             tooltip="Create a new ActivityPartition">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.actor.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Actor.gif"
+                label="Create a new Actor"
+                style="push"
+	             tooltip="Create a new Actor">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.addstructuralfeaturevalueaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddStructuralFeatureValueAction.gif"
+                label="Create a new AddStructuralFeatureValueAction"
+                style="push"
+	             tooltip="Create a new AddStructuralFeatureValueAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.addvariablevalueaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddVariableValueAction.gif"
+                label="Create a new AddVariableValueAction"
+                style="push"
+	             tooltip="Create a new AddVariableValueAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.artifact.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Artifact.gif"
+                label="Create a new Artifact"
+                style="push"
+	             tooltip="Create a new Artifact">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.broadcastsignalaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/BroadcastSignalAction.gif"
+                label="Create a new BroadcastSignalAction"
+                style="push"
+	             tooltip="Create a new BroadcastSignalAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.callbehavioraction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallBehaviorAction.gif"
+                label="Create a new CallBehaviorAction"
+                style="push"
+	             tooltip="Create a new CallBehaviorAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.calloperationaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallOperationAction.gif"
+                label="Create a new CallOperationAction"
+                style="push"
+	             tooltip="Create a new CallOperationAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.centralbuffernode.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CentralBufferNode.gif"
+                label="Create a new CentralBufferNode"
+                style="push"
+	             tooltip="Create a new CentralBufferNode">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.class.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
+                label="Create a new Class"
+                style="push"
+	             tooltip="Create a new Class">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.classifiertemplateparameter.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClassifierTemplateParameter.gif"
+                label="Create a new ClassifierTemplateParameter"
+                style="push"
+	             tooltip="Create a new ClassifierTemplateParameter">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.clause.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Clause.gif"
+                label="Create a new Clause"
+                style="push"
+	             tooltip="Create a new Clause">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.clearassociationaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClearAssociationAction.gif"
+                label="Create a new ClearAssociationAction"
+                style="push"
+	             tooltip="Create a new ClearAssociationAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.clearstructuralfeatureaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClearStructuralFeatureAction.gif"
+                label="Create a new ClearStructuralFeatureAction"
+                style="push"
+	             tooltip="Create a new ClearStructuralFeatureAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.clearvariableaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClearVariableAction.gif"
+                label="Create a new ClearVariableAction"
+                style="push"
+	             tooltip="Create a new ClearVariableAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.collaboration.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Collaboration.gif"
+                label="Create a new Collaboration"
+                style="push"
+	             tooltip="Create a new Collaboration">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.collaborationuse.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CollaborationUse.gif"
+                label="Create a new CollaborationUse"
+                style="push"
+	             tooltip="Create a new CollaborationUse">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.comment.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
+                label="Create a new Comment"
+                style="push"
+	             tooltip="Create a new Comment">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.component.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Component.gif"
+                label="Create a new Component"
+                style="push"
+	             tooltip="Create a new Component">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.componentrealization.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ComponentRealization.gif"
+                label="Create a new ComponentRealization"
+                style="push"
+	             tooltip="Create a new ComponentRealization">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.conditionalnode.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConditionalNode.gif"
+                label="Create a new ConditionalNode"
+                style="push"
+	             tooltip="Create a new ConditionalNode">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.connectionpointreference.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectionPointReference.gif"
+                label="Create a new ConnectionPointReference"
+                style="push"
+	             tooltip="Create a new ConnectionPointReference">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.connector.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif"
+                label="Create a new Connector"
+                style="push"
+	             tooltip="Create a new Connector">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.connectorend.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectorEnd.gif"
+                label="Create a new ConnectorEnd"
+                style="push"
+	             tooltip="Create a new ConnectorEnd">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.considerignorefragment.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConsiderIgnoreFragment.gif"
+                label="Create a new ConsiderIgnoreFragment"
+                style="push"
+	             tooltip="Create a new ConsiderIgnoreFragment">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.constraint.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+                label="Create a new Constraint"
+                style="push"
+	             tooltip="Create a new Constraint">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.createlinkaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateLinkAction.gif"
+                label="Create a new CreateLinkAction"
+                style="push"
+	             tooltip="Create a new CreateLinkAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.createlinkobjectaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateLinkObjectAction.gif"
+                label="Create a new CreateLinkObjectAction"
+                style="push"
+	             tooltip="Create a new CreateLinkObjectAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.createobjectaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateObjectAction.gif"
+                label="Create a new CreateObjectAction"
+                style="push"
+	             tooltip="Create a new CreateObjectAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.creationevent.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreationEvent.gif"
+                label="Create a new CreationEvent"
+                style="push"
+	             tooltip="Create a new CreationEvent">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.datastorenode.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataStoreNode.gif"
+                label="Create a new DataStoreNode"
+                style="push"
+	             tooltip="Create a new DataStoreNode">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.datatype.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataType.gif"
+                label="Create a new DataType"
+                style="push"
+	             tooltip="Create a new DataType">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.decisionnode.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DecisionNode.gif"
+                label="Create a new DecisionNode"
+                style="push"
+	             tooltip="Create a new DecisionNode">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.deployment.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif"
+                label="Create a new Deployment"
+                style="push"
+	             tooltip="Create a new Deployment">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.deploymentspecification.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DeploymentSpecification.gif"
+                label="Create a new DeploymentSpecification"
+                style="push"
+	             tooltip="Create a new DeploymentSpecification">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.destroylinkaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestroyLinkAction.gif"
+                label="Create a new DestroyLinkAction"
+                style="push"
+	             tooltip="Create a new DestroyLinkAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.destroyobjectaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestroyObjectAction.gif"
+                label="Create a new DestroyObjectAction"
+                style="push"
+	             tooltip="Create a new DestroyObjectAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.device.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif"
+                label="Create a new Device"
+                style="push"
+	             tooltip="Create a new Device">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.enumeration.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Enumeration.gif"
+                label="Create a new Enumeration"
+                style="push"
+	             tooltip="Create a new Enumeration">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.enumerationliteral.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/EnumerationLiteral.gif"
+                label="Create a new EnumerationLiteral"
+                style="push"
+	             tooltip="Create a new EnumerationLiteral">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.exceptionhandler.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExceptionHandler.gif"
+                label="Create a new ExceptionHandler"
+                style="push"
+	             tooltip="Create a new ExceptionHandler">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.executionenvironment.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif"
+                label="Create a new ExecutionEnvironment"
+                style="push"
+	             tooltip="Create a new ExecutionEnvironment">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.expansionnode.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExpansionNode.gif"
+                label="Create a new ExpansionNode"
+                style="push"
+	             tooltip="Create a new ExpansionNode">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.expansionregion.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExpansionRegion.gif"
+                label="Create a new ExpansionRegion"
+                style="push"
+	             tooltip="Create a new ExpansionRegion">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.extensionend.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExtensionEnd.gif"
+                label="Create a new ExtensionEnd"
+                style="push"
+	             tooltip="Create a new ExtensionEnd">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.extensionpoint.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExtensionPoint.gif"
+                label="Create a new ExtensionPoint"
+                style="push"
+	             tooltip="Create a new ExtensionPoint">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.finalstate.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FinalState.gif"
+                label="Create a new FinalState"
+                style="push"
+	             tooltip="Create a new FinalState">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.flowfinalnode.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FlowFinalNode.gif"
+                label="Create a new FlowFinalNode"
+                style="push"
+	             tooltip="Create a new FlowFinalNode">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.forknode.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ForkNode.gif"
+                label="Create a new ForkNode"
+                style="push"
+	             tooltip="Create a new ForkNode">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.functionbehavior.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FunctionBehavior.gif"
+                label="Create a new FunctionBehavior"
+                style="push"
+	             tooltip="Create a new FunctionBehavior">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.image.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Image.gif"
+                label="Create a new Image"
+                style="push"
+	             tooltip="Create a new Image">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.initialnode.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InitialNode.gif"
+                label="Create a new InitialNode"
+                style="push"
+	             tooltip="Create a new InitialNode">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.inputpin.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InputPin.gif"
+                label="Create a new InputPin"
+                style="push"
+	             tooltip="Create a new InputPin">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.instancespecification.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceSpecification.gif"
+                label="Create a new InstanceSpecification"
+                style="push"
+	             tooltip="Create a new InstanceSpecification">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.instancevalue.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InstanceValue.gif"
+                label="Create a new InstanceValue"
+                style="push"
+	             tooltip="Create a new InstanceValue">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.interaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interaction.gif"
+                label="Create a new Interaction"
+                style="push"
+	             tooltip="Create a new Interaction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.interface.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif"
+                label="Create a new Interface"
+                style="push"
+	             tooltip="Create a new Interface">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.interruptibleactivityregion.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterruptibleActivityRegion.gif"
+                label="Create a new InterruptibleActivityRegion"
+                style="push"
+	             tooltip="Create a new InterruptibleActivityRegion">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.joinnode.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/JoinNode.gif"
+                label="Create a new JoinNode"
+                style="push"
+	             tooltip="Create a new JoinNode">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.lifeline.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Lifeline.gif"
+                label="Create a new Lifeline"
+                style="push"
+	             tooltip="Create a new Lifeline">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.linkenddata.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LinkEndData.gif"
+                label="Create a new LinkEndData"
+                style="push"
+	             tooltip="Create a new LinkEndData">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.loopnode.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LoopNode.gif"
+                label="Create a new LoopNode"
+                style="push"
+	             tooltip="Create a new LoopNode">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.mergenode.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/MergeNode.gif"
+                label="Create a new MergeNode"
+                style="push"
+	             tooltip="Create a new MergeNode">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.model.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
+                label="Create a new Model"
+                style="push"
+	             tooltip="Create a new Model">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.node.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif"
+                label="Create a new Node"
+                style="push"
+	             tooltip="Create a new Node">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.opaqueaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueAction.gif"
+                label="Create a new OpaqueAction"
+                style="push"
+	             tooltip="Create a new OpaqueAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.operation.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Operation.gif"
+                label="Create a new Operation"
+                style="push"
+	             tooltip="Create a new Operation">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.operationtemplateparameter.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OperationTemplateParameter.gif"
+                label="Create a new OperationTemplateParameter"
+                style="push"
+	             tooltip="Create a new OperationTemplateParameter">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.outputpin.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OutputPin.gif"
+                label="Create a new OutputPin"
+                style="push"
+	             tooltip="Create a new OutputPin">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.package.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
+                label="Create a new Package"
+                style="push"
+	             tooltip="Create a new Package">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.parameter.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Parameter.gif"
+                label="Create a new Parameter"
+                style="push"
+	             tooltip="Create a new Parameter">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.parameterset.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ParameterSet.gif"
+                label="Create a new ParameterSet"
+                style="push"
+	             tooltip="Create a new ParameterSet">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.pin.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pin.gif"
+                label="Create a new Pin"
+                style="push"
+	             tooltip="Create a new Pin">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.port.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif"
+                label="Create a new Port"
+                style="push"
+	             tooltip="Create a new Port">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.primitivetype.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/PrimitiveType.gif"
+                label="Create a new PrimitiveType"
+                style="push"
+	             tooltip="Create a new PrimitiveType">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.profile.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Profile.gif"
+                label="Create a new Profile"
+                style="push"
+	             tooltip="Create a new Profile">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.property.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
+                label="Create a new Property"
+                style="push"
+	             tooltip="Create a new Property">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.protocolstatemachine.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProtocolStateMachine.gif"
+                label="Create a new ProtocolStateMachine"
+                style="push"
+	             tooltip="Create a new ProtocolStateMachine">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.pseudostate.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate.gif"
+                label="Create a new Pseudostate"
+                style="push"
+	             tooltip="Create a new Pseudostate">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.raiseexceptionaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RaiseExceptionAction.gif"
+                label="Create a new RaiseExceptionAction"
+                style="push"
+	             tooltip="Create a new RaiseExceptionAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.readextentaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadExtentAction.gif"
+                label="Create a new ReadExtentAction"
+                style="push"
+	             tooltip="Create a new ReadExtentAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.readisclassifiedobjectaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadIsClassifiedObjectAction.gif"
+                label="Create a new ReadIsClassifiedObjectAction"
+                style="push"
+	             tooltip="Create a new ReadIsClassifiedObjectAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.readlinkaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadLinkAction.gif"
+                label="Create a new ReadLinkAction"
+                style="push"
+	             tooltip="Create a new ReadLinkAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.readlinkobjectendaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadLinkObjectEndAction.gif"
+                label="Create a new ReadLinkObjectEndAction"
+                style="push"
+	             tooltip="Create a new ReadLinkObjectEndAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.readlinkobjectendqualifieraction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadLinkObjectEndQualifierAction.gif"
+                label="Create a new ReadLinkObjectEndQualifierAction"
+                style="push"
+	             tooltip="Create a new ReadLinkObjectEndQualifierAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.readselfaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadSelfAction.gif"
+                label="Create a new ReadSelfAction"
+                style="push"
+	             tooltip="Create a new ReadSelfAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.readstructuralfeatureaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadStructuralFeatureAction.gif"
+                label="Create a new ReadStructuralFeatureAction"
+                style="push"
+	             tooltip="Create a new ReadStructuralFeatureAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.readvariableaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadVariableAction.gif"
+                label="Create a new ReadVariableAction"
+                style="push"
+	             tooltip="Create a new ReadVariableAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.realization.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif"
+                label="Create a new Realization"
+                style="push"
+	             tooltip="Create a new Realization">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.reception.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Reception.gif"
+                label="Create a new Reception"
+                style="push"
+	             tooltip="Create a new Reception">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.reclassifyobjectaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReclassifyObjectAction.gif"
+                label="Create a new ReclassifyObjectAction"
+                style="push"
+	             tooltip="Create a new ReclassifyObjectAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.reduceaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReduceAction.gif"
+                label="Create a new ReduceAction"
+                style="push"
+	             tooltip="Create a new ReduceAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.region.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Region.gif"
+                label="Create a new Region"
+                style="push"
+	             tooltip="Create a new Region">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.removestructuralfeaturevalueaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RemoveStructuralFeatureValueAction.gif"
+                label="Create a new RemoveStructuralFeatureValueAction"
+                style="push"
+	             tooltip="Create a new RemoveStructuralFeatureValueAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.removevariablevalueaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/RemoveVariableValueAction.gif"
+                label="Create a new RemoveVariableValueAction"
+                style="push"
+	             tooltip="Create a new RemoveVariableValueAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.replyaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReplyAction.gif"
+                label="Create a new ReplyAction"
+                style="push"
+	             tooltip="Create a new ReplyAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.sendobjectaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendObjectAction.gif"
+                label="Create a new SendObjectAction"
+                style="push"
+	             tooltip="Create a new SendObjectAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.sendsignalaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendSignalAction.gif"
+                label="Create a new SendSignalAction"
+                style="push"
+	             tooltip="Create a new SendSignalAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.sequencenode.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SequenceNode.gif"
+                label="Create a new SequenceNode"
+                style="push"
+	             tooltip="Create a new SequenceNode">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.signal.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Signal.gif"
+                label="Create a new Signal"
+                style="push"
+	             tooltip="Create a new Signal">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.slot.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Slot.gif"
+                label="Create a new Slot"
+                style="push"
+	             tooltip="Create a new Slot">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.startclassifierbehavioraction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StartClassifierBehaviorAction.gif"
+                label="Create a new StartClassifierBehaviorAction"
+                style="push"
+	             tooltip="Create a new StartClassifierBehaviorAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.state.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/State.gif"
+                label="Create a new State"
+                style="push"
+	             tooltip="Create a new State">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.stateinvariant.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateInvariant.gif"
+                label="Create a new StateInvariant"
+                style="push"
+	             tooltip="Create a new StateInvariant">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.statemachine.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateMachine.gif"
+                label="Create a new StateMachine"
+                style="push"
+	             tooltip="Create a new StateMachine">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.stereotype.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Stereotype.gif"
+                label="Create a new Stereotype"
+                style="push"
+	             tooltip="Create a new Stereotype">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.structuredactivitynode.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StructuredActivityNode.gif"
+                label="Create a new StructuredActivityNode"
+                style="push"
+	             tooltip="Create a new StructuredActivityNode">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.templateparameter.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateParameter.gif"
+                label="Create a new TemplateParameter"
+                style="push"
+	             tooltip="Create a new TemplateParameter">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.templateparametersubstitution.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateParameterSubstitution.gif"
+                label="Create a new TemplateParameterSubstitution"
+                style="push"
+	             tooltip="Create a new TemplateParameterSubstitution">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.templatesignature.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TemplateSignature.gif"
+                label="Create a new TemplateSignature"
+                style="push"
+	             tooltip="Create a new TemplateSignature">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.testidentityaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TestIdentityAction.gif"
+                label="Create a new TestIdentityAction"
+                style="push"
+	             tooltip="Create a new TestIdentityAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.unmarshallaction.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/UnmarshallAction.gif"
+                label="Create a new UnmarshallAction"
+                style="push"
+	             tooltip="Create a new UnmarshallAction">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.usecase.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/UseCase.gif"
+                label="Create a new UseCase"
+                style="push"
+	             tooltip="Create a new UseCase">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.valuepin.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValuePin.gif"
+                label="Create a new ValuePin"
+                style="push"
+	             tooltip="Create a new ValuePin">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
+            <command
+                commandId="org.eclipse.papyrus.uml.service.creation.variable.Handler"
+                icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Variable.gif"
+                label="Create a new Variable"
+                style="push"
+	             tooltip="Create a new Variable">
+                   <visibleWhen
+                      checkEnabled="true">
+                   </visibleWhen>
+ </command>
       </menu>
    </menuContribution>
 </extension>
+
+
 <extension
       point="org.eclipse.ui.startup">
    <startup
