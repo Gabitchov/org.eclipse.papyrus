@@ -42,7 +42,7 @@ public class FragmentDescriptorState extends AbstractState implements IFragmentD
 	private final List<ConstraintDescriptorState> constraintDescriptorStates = new ArrayList<ConstraintDescriptorState>();
 
 	/** selection size state */
-	private int selectionSizeState;
+	private int selectionSize;
 
 	/** change support for this bean */
 	private PropertyChangeSupport changeSupport;
@@ -74,7 +74,7 @@ public class FragmentDescriptorState extends AbstractState implements IFragmentD
 			getConstraintDescriptorStates().add(constraintDescriptor.createState(readOnly));
 		}
 
-		selectionSizeState = descriptor.getSelectionSize();
+		selectionSize = descriptor.getSelectionSize();
 
 		// register change support
 		changeSupport = new PropertyChangeSupport(this);
@@ -90,21 +90,21 @@ public class FragmentDescriptorState extends AbstractState implements IFragmentD
 	 * 
 	 * @return the state for the selection size
 	 */
-	public int getSelectionSizeState() {
-		return selectionSizeState;
+	public int getSelectionSize() {
+		return selectionSize;
 	}
 
 	/**
 	 * Sets the state for the selection size
 	 * 
-	 * @param selectionSizeState
+	 * @param selectionSize
 	 *        the selectionSize to set
 	 */
-	public void setSelectionSizeState(int selectionSizeState) {
-		int oldSize = this.selectionSizeState;
-		this.selectionSizeState = selectionSizeState;
+	public void setSelectionSizeState(int selectionSize) {
+		int oldSize = this.selectionSize;
+		this.selectionSize = selectionSize;
 
-		changeSupport.firePropertyChange("selectionSize", oldSize, this.selectionSizeState);
+		changeSupport.firePropertyChange("selectionSize", oldSize, this.selectionSize);
 	}
 
 	/**
@@ -130,6 +130,13 @@ public class FragmentDescriptorState extends AbstractState implements IFragmentD
 	 */
 	public String getEditionDialogId() {
 		return "FragmentDescriptorStateDialog";
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getText() {
+		return "Fragment: " + getId() + " (size: " + getSelectionSize() + ")";
 	}
 
 	/**
@@ -246,7 +253,7 @@ public class FragmentDescriptorState extends AbstractState implements IFragmentD
 	protected void generateConstraints(Element node, Document document) {
 		Element contentElement = document.createElement("context");
 		// add the enables for attribute
-		contentElement.setAttribute("enablesFor", "" + getSelectionSizeState());
+		contentElement.setAttribute("enablesFor", "" + getSelectionSize());
 
 		// generate for each constraint
 		for(ConstraintDescriptorState state : getConstraintDescriptorStates()) {

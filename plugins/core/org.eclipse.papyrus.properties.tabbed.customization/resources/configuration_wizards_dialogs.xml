@@ -48,6 +48,22 @@
 			<fragment predefinedId="fragment_single_SectionSetDescriptorState"/>	<!-- fragment for section set descriptor state -->
 		</content>
 	</dialog>
+	<dialog id="FragmentDescriptorStateDialog"><!-- Dialog for single fragment descriptor state -->
+		<context enablesFor="1">
+			<elementClass
+				name="org.eclipse.papyrus.properties.runtime.view.FragmentDescriptorState">
+			</elementClass>
+		</context>
+		<title>
+			<string value="Edit Fragment Descriptor"/>
+		</title>
+		<message>
+			<string value="Edit Fragment Descriptor Message"/>
+		</message>
+		<content>
+			<fragment predefinedId="fragment_single_FragmentDescriptorState"/>
+		</content>
+	</dialog>
 	<dialog id="ContainerDescriptorStateDialog"><!-- Dialog for single container descriptor state -->
 		<context enablesFor="1">
 			<elementClass
