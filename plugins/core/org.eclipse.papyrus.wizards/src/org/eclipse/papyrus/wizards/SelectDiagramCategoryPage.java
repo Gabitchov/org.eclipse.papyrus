@@ -53,6 +53,8 @@ public class SelectDiagramCategoryPage extends WizardPage {
 
 	/** The diagram category. */
 	private DiagramCategoryDescriptor mySelectedDiagramCategory;
+	
+	public static final String PAGE_ID = "SelectDiagramCategory";
 
 
 	private static final String LAST_SELECTED_CATEGORY = "diagramCategory";
@@ -63,8 +65,8 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 * @param pageName
 	 *        the page name
 	 */
-	public SelectDiagramCategoryPage(String pageName) {
-		super(pageName);
+	public SelectDiagramCategoryPage() {
+		super(PAGE_ID);
 		setTitle("Initialization information");
 		setDescription("Select language of the diagram");
 	}

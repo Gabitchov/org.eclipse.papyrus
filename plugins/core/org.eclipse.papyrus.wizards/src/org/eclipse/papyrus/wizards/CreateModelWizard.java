@@ -41,7 +41,7 @@ import org.eclipse.ui.ide.IDE;
 public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/** New model file page for the file */
-	private NewModelFilePage newModelFilePage;
+	protected NewModelFilePage newModelFilePage;
 
 	/** Select kind of new diagram the wizard must create */
 	private SelectDiagramKindPage selectDiagramKindPage;
@@ -147,7 +147,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		if(domainModelURI == null) {
 			this.newModelFilePage = new NewModelFilePage("Create a new Papyrus model", "Create a new empty Papyrus model", selection, false);
 		}
-		selectDiagramCategoryPage = new SelectDiagramCategoryPage("Select language of the diagram");
+		selectDiagramCategoryPage = new SelectDiagramCategoryPage();
 		selectDiagramKindPage = getSelectDiagramKindPage();
 	}
 	

@@ -176,7 +176,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * 
 	 * @return the diagram category
 	 */
-	private String getDiagramCategory() {
+	protected String getDiagramCategory() {
 		IWizardPage previousPage = getPreviousPage();
 		if(previousPage == null || false == previousPage instanceof SelectDiagramCategoryPage) {
 			return null;

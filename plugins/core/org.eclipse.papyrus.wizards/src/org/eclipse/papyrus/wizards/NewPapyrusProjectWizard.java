@@ -36,7 +36,7 @@ import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
 public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 
 	/** The new project page. */
-	private WizardNewProjectCreationPage myNewProjectPage;
+	protected WizardNewProjectCreationPage myNewProjectPage;
 
 	/** The diagram kind page. */
 	private SelectDiagramKindPage myDiagramKindPage;
@@ -46,8 +46,6 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 
 	/** The initial project name. */
 	private String initialProjectName;
-	
-	
 
 	/**
 	 * @see org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard#init(org.eclipse.ui.IWorkbench,
@@ -68,7 +66,7 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 		}
         setDialogSettings(section);
 
-        selectDiagramCategoryPage = new SelectDiagramCategoryPage("Select language of the diagram");
+        selectDiagramCategoryPage = new SelectDiagramCategoryPage();
 		myDiagramKindPage = getSelectDiagramKindPage();
 
 	}
@@ -116,7 +114,7 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 		}
 		return next;
 	}
-
+	
 	/**
 	 * Creates the file.
 	 * 
