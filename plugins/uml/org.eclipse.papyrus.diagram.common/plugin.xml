@@ -160,17 +160,6 @@
       point="org.eclipse.ui.newWizards">
    <wizard
          category="org.eclipse.papyrus.wizards.category"
-         class="org.eclipse.papyrus.diagram.common.wizards.CreateUMLModelWizard"
-         finalPerspective="org.eclipse.papyrus.core.perspective"
-         icon="icons/papyrus/PapyrusLogo16x16.gif"
-         id="org.eclipse.papyrus.wizards.createumlmodel"
-         name="Papyrus Model">
-      <selection
-            class="org.eclipse.core.resources.IResource">
-      </selection>
-   </wizard>
-   <wizard
-         category="org.eclipse.ui.Basic"
          class="org.eclipse.papyrus.diagram.common.wizards.NewPapyrusProjectWizard"
          finalPerspective="org.eclipse.papyrus.core.perspective"
          icon="icons/papyrus/PapyrusLogo16x16.gif"
@@ -180,6 +169,17 @@
       <description>
          %NewWizards.project.description
       </description>
+   </wizard>
+   <wizard
+         category="org.eclipse.papyrus.wizards.category"
+         class="org.eclipse.papyrus.diagram.common.wizards.CreateUMLModelWizard"
+         finalPerspective="org.eclipse.papyrus.core.perspective"
+         icon="icons/papyrus/PapyrusLogo16x16.gif"
+         id="org.eclipse.papyrus.wizards.createumlmodel"
+         name="Papyrus Model">
+      <selection
+            class="org.eclipse.core.resources.IResource">
+      </selection>
    </wizard>
 </extension>
 
