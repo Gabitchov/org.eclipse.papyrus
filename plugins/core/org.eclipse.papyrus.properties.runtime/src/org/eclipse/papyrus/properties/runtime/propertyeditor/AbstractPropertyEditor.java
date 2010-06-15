@@ -203,7 +203,6 @@ public abstract class AbstractPropertyEditor implements IDisposable {
 		GridData data = new GridData(SWT.FILL, SWT.CENTER, false, false);
 		data.minimumWidth = 80;
 		data.widthHint = 80;
-		// data.widthHint = 80;
 		return createLabel(parent, data);
 	}
 

@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.view.content;
 
+import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.List;
 
@@ -150,6 +151,24 @@ public class GroupContainerDescriptor extends ContainerDescriptor {
 		}
 
 		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public synchronized void addPropertyChangeListener(PropertyChangeListener listener) {
+			super.addPropertyChangeListener(listener);
+			changeSupport.addPropertyChangeListener(listener);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public synchronized void removePropertyChangeListener(PropertyChangeListener listener) {
+			super.removePropertyChangeListener(listener);
+			changeSupport.removePropertyChangeListener(listener);
+		}
+
+		/**
 		 * Sets the name of the expandable composite
 		 * 
 		 * @param name
@@ -161,6 +180,13 @@ public class GroupContainerDescriptor extends ContainerDescriptor {
 
 			// fire change event
 			changeSupport.firePropertyChange("label", oldName, this.name);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public String getText() {
+			return "Group \"" + getName() + "\"";
 		}
 
 		/**

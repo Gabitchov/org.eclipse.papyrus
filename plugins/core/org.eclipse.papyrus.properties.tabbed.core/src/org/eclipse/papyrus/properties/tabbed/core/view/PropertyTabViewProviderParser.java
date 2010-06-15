@@ -31,6 +31,7 @@ import org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.GroupContaine
 import org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.SimpleContainerDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.SubFeatureContainerDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.SubFeatureDescriptor;
+import org.eclipse.ui.views.properties.tabbed.ISectionDescriptor;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
@@ -340,7 +341,18 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 			// this means that the descriptor for the tab should already exist.
 			for(ITabDescriptor tabDescriptor : tabDescriptors) {
 				if(tabDescriptor.getId().equals(tabId)) {
-					tabDescriptor.getSectionDescriptors().add(descriptor);
+					// should check if the tab descriptor already contains this section descriptor
+					boolean contains = false;
+					for(ISectionDescriptor dynamicSectionDescriptor : (List<ISectionDescriptor>)tabDescriptor.getSectionDescriptors()) {
+						String sectionId = dynamicSectionDescriptor.getId();
+						if(id.equals(sectionId)) {
+							contains = true;
+							Activator.log.error("Trying to add a section which already exists", null);
+						}
+					}
+					if(!contains) {
+						tabDescriptor.getSectionDescriptors().add(descriptor);
+					}
 					return descriptor;
 				}
 			}

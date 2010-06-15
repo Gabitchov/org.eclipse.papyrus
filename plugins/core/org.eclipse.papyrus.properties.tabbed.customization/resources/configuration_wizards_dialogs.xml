@@ -139,7 +139,7 @@
 			<fragment predefinedId="fragment_single_SubFeatureSectionDescriptorState"/>
 		</content>
 	</dialog>
-	<dialog id="GroupContainerDescriptorStateDialog"><!-- Dialog for single group container descriptor state -->
+	<dialog id="SubFeatureGroupContainerDescriptorStateDialog"><!-- Dialog for single group container descriptor state -->
 		<context enablesFor="1">
 			<elementClass
 				name="org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.GroupContainerDescriptor$GroupContainerDescriptorState">
@@ -155,7 +155,7 @@
 			<fragment predefinedId="fragment_single_GroupContainerSubFeatureSectionDescriptorState"/>
 		</content>
 	</dialog>
-	<dialog id="ExpandableContainerDescriptorStateDialog"><!-- Dialog for single expandable container descriptor state -->
+	<dialog id="SubFeatureExpandableContainerDescriptorStateDialog"><!-- Dialog for single expandable container descriptor state -->
 		<context enablesFor="1">
 			<elementClass
 				name="org.eclipse.papyrus.properties.tabbed.core.view.subfeatures.ExpandableContainerDescriptor$ExpandableContainerDescriptorState">

@@ -129,7 +129,7 @@ public class GroupContainerDescriptor extends SubFeatureContainerDescriptor {
 		 */
 		@Override
 		public String getEditionDialogId() {
-			return "GroupContainerDescriptorStateDialog";
+			return "SubFeatureGroupContainerDescriptorStateDialog";
 		}
 
 		/**

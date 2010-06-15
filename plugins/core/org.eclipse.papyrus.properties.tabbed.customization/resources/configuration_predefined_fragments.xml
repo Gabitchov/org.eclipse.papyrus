@@ -135,7 +135,7 @@
 				 <layout kind="Grid" numColumns="1" sameWidth="false"/>
 				 <controller id="stateBeanPropertyEditorController">
 					<property name="label"/>
-					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Label:" labelPosition="16384"/>
+					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="CLabel:" labelPosition="16384"/>
 				</controller>
 			</container>
 		</content>
@@ -149,7 +149,7 @@
 				 <layout kind="Grid" numColumns="1" sameWidth="false"/>
 				 <controller id="stateBeanPropertyEditorController">
 					<property name="label"/>
-					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Label:" labelPosition="16384"/>
+					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="CLabel:" labelPosition="16384"/>
 				</controller>
 			</container>
 		</content>

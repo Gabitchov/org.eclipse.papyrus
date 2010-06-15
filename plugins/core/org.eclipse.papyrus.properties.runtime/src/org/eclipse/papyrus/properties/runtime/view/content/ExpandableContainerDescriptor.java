@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.view.content;
 
+import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.List;
 
@@ -180,7 +181,7 @@ public class ExpandableContainerDescriptor extends ContainerDescriptor {
 			this.name = name;
 
 			// fire change event
-			changeSupport.firePropertyChange("label", oldName, this.name);
+			changeSupport.firePropertyChange("name", oldName, this.name);
 		}
 
 		/**
@@ -209,6 +210,24 @@ public class ExpandableContainerDescriptor extends ContainerDescriptor {
 		/**
 		 * {@inheritDoc}
 		 */
+		@Override
+		public synchronized void addPropertyChangeListener(PropertyChangeListener listener) {
+			super.addPropertyChangeListener(listener);
+			changeSupport.addPropertyChangeListener(listener);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public synchronized void removePropertyChangeListener(PropertyChangeListener listener) {
+			super.removePropertyChangeListener(listener);
+			changeSupport.removePropertyChangeListener(listener);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
 		public String getEditionDialogId() {
 			return "ExpandableContainerDescriptorStateDialog";
 		}
@@ -227,6 +246,13 @@ public class ExpandableContainerDescriptor extends ContainerDescriptor {
 				controllerDescriptorState.createPreview(composite);
 			}
 			return composite;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public String getText() {
+			return "Expandable \"" + getName() + "\"";
 		}
 	}
 }

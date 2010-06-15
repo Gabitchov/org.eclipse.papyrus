@@ -137,7 +137,7 @@ public class ExpandableContainerDescriptor extends SubFeatureContainerDescriptor
 		 */
 		@Override
 		public String getEditionDialogId() {
-			return "ExpandableContainerDescriptorStateDialog";
+			return "SubFeatureExpandableContainerDescriptorStateDialog";
 		}
 
 
