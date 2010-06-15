@@ -19,6 +19,7 @@ import java.util.List;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.state.AbstractState;
 import org.eclipse.papyrus.properties.runtime.state.ITraversableModelElement;
+import org.eclipse.swt.widgets.Composite;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
@@ -127,4 +128,23 @@ public class ControllerDescriptorState extends AbstractState {
 		return null;
 	}
 
+	/**
+	 * Generates the preview for this controller
+	 * 
+	 * @param composite
+	 *        the parent composite where to create the view for this controller
+	 */
+	public void createPreview(Composite composite) {
+		Activator.log.error("not implements...", null);
+	}
+
+	/**
+	 * Checks the multi selection state for the preview
+	 * 
+	 * @return
+	 */
+	private boolean checkMultiSelection() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

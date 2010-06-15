@@ -74,7 +74,7 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 		while(it2.hasNext() && editingDomain == null) {
 			editingDomain = TransactionUtil.getEditingDomain(it2.next());
 		}
-		if(editingDomain == null) {
+		if(editingDomain == null && !objectsToEdit.isEmpty()) {
 			return new Status(IStatus.ERROR, Activator.ID, "impossible to find an editing domain for the controller.");
 		}
 		setEditingDomain(editingDomain);
@@ -149,8 +149,11 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 	protected Object getValueToEdit() {
 		// when editing multiple objects, the value returned is the value of the first element
 		// it has already been asserted in the contructor that the list is not empty. get(0) should never throw an exception 
-		EObject object = getObjectsToEdit().get(0);
-		return getModelHandler().getValueToEdit(object);
+		if(!getObjectsToEdit().isEmpty()) {
+			EObject object = getObjectsToEdit().get(0);
+			return getModelHandler().getValueToEdit(object);
+		}
+		return new Object();
 	}
 
 	/**

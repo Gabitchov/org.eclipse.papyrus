@@ -13,9 +13,12 @@ package org.eclipse.papyrus.properties.runtime.controller.descriptor;
 
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.papyrus.properties.runtime.Activator;
+import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorController;
+import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorControllerService;
 import org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandler;
 import org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandlerState;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
@@ -311,5 +314,19 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 			Node editorNode = editorState.generateNode(document);
 			node.appendChild(editorNode);
 		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void createPreview(org.eclipse.swt.widgets.Composite composite) {
+			PropertyEditorController controller = PropertyEditorControllerService.getInstance().createPropertyEditorController(Collections.emptyList(), composite, descriptor);
+
+			if(controller != null) {
+				// use the state to create this
+				controller.createPropertyEditor(this.getDescriptor().getEditorDescriptor());
+			}
+		}
 	}
+
 }

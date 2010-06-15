@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.properties.tabbed.customization.dialog;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -69,8 +70,11 @@ import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.events.MenuDetectEvent;
 import org.eclipse.swt.events.MenuDetectListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Menu;
@@ -122,6 +126,18 @@ public class CustomizeContentWizardPage extends WizardPage {
 
 	/** preview area */
 	protected Composite previewArea;
+
+	/** widget factory for preview area */
+	protected TabbedPropertySheetWidgetFactory factory = new TabbedPropertySheetWidgetFactory();
+
+	/** current selection size for the preview */
+	private int currentSelectionsize = 1;
+
+	/** area displaying the current selection size */
+	protected Combo sizeArea;
+
+	/** values in the selection size combo */
+	private final static List<String> sizeValues = Arrays.asList("1", "-1");
 
 	/**
 	 * Creates a new CustomizeContentWizardPage.
@@ -374,15 +390,54 @@ public class CustomizeContentWizardPage extends WizardPage {
 	protected void createPreviewArea(Composite composite) {
 		Composite previewAreaComposite = new Composite(composite, SWT.NONE);
 		previewAreaComposite.setLayout(new GridLayout(2, false));
+		// previewAreaComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 
 		// title of this area
 		Label titleLabel = new Label(previewAreaComposite, SWT.NONE);
 		titleLabel.setText("Preview:");
-		titleLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1));
+		titleLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
+
+		Composite selectionSize = new Composite(previewAreaComposite, SWT.NONE);
+		GridLayout layout = new GridLayout(2, false);
+		layout.marginHeight = 0;
+		layout.marginWidth = 0;
+		selectionSize.setLayout(layout);
+		GridData data = new GridData(SWT.FILL, SWT.FILL, false, false);
+		selectionSize.setLayoutData(data);
+
+		Label sizeLabel = new Label(selectionSize, SWT.NONE);
+		sizeLabel.setText("Size:");
+
+		sizeArea = new Combo(selectionSize, SWT.BORDER | SWT.READ_ONLY);
+		sizeArea.setItems(sizeValues.toArray(new String[0]));
+		sizeArea.addSelectionListener(new SelectionListener() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void widgetSelected(SelectionEvent e) {
+				int index = sizeArea.getSelectionIndex();
+				if(index >= 0) {
+					setCurrentSelectionsize(Integer.parseInt(sizeValues.get(index)));
+				} else {
+					Activator.log.error("Wrong index for selection size", null);
+				}
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void widgetDefaultSelected(SelectionEvent e) {
+				// nothing to do here
+			}
+		});
+		updateSizeArea();
 
 		Table table = new Table(previewAreaComposite, SWT.BORDER);
-		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
-		table.setLayoutData(data);
+		GridData data2 = new GridData(SWT.FILL, SWT.FILL, false, true);
+		data2.widthHint = 60;
+		data2.minimumWidth = 60;
+		table.setLayoutData(data2);
 		tabViewer = new TableViewer(table);
 		tabViewer.setLabelProvider(new LabelProvider() {
 
@@ -440,12 +495,27 @@ public class CustomizeContentWizardPage extends WizardPage {
 		});
 
 		// real preview area
-		previewArea = new Composite(previewAreaComposite, SWT.BORDER);
+		previewArea = factory.createComposite(previewAreaComposite, SWT.BORDER);
 		previewArea.setLayout(new GridLayout(1, true));
 		previewArea.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 	}
 
+	/**
+	 * updates the content of the size area
+	 */
+	private void updateSizeArea() {
+		if(sizeArea != null && !sizeArea.isDisposed()) {
+			sizeArea.select(sizeValues.indexOf("" + currentSelectionsize));
+		}
+		updatePreview();
+
+	}
+
 	protected boolean isSectionSetDescriptorStateValid(SectionSetDescriptorState state) {
+		// check size
+		if(state.getSelectionSize() > getCurrentSelectionsize()) {
+			return false;
+		}
 		List<ConstraintDescriptorState> constraintDescriptorStates = state.getConstraintDescriptorStates();
 		for(ConstraintDescriptorState constraintDescriptorState : constraintDescriptorStates) {
 			if(constraintDescriptorState instanceof ObjectTypeConstraintDescriptor.ObjectTypeConstraintDescriptorState) {
@@ -467,7 +537,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 			String selectedTabName = selectedTab.getId();
 			Composite parent = previewArea.getParent();
 			previewArea.dispose();
-			previewArea = new Composite(parent, SWT.BORDER);
+			previewArea = factory.createComposite(parent, SWT.BORDER);
 			previewArea.setLayout(new GridLayout(1, true));
 			previewArea.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 			for(SectionSetDescriptorState sectionSetDescriptorState : sectionSetDescriptorStates) {
@@ -481,7 +551,25 @@ public class CustomizeContentWizardPage extends WizardPage {
 				}
 			}
 
-			for(SectionDescriptorState state : displayedSections) {
+			List<SectionDescriptorState> filteredSectionstates = new ArrayList<SectionDescriptorState>();
+			for(SectionDescriptorState sectionDescriptorState : displayedSections) {
+				boolean isRemoved = false;
+				String currentId = sectionDescriptorState.getId();
+				// is this descriptor removed by another one ?
+				for(SectionDescriptorState state : displayedSections) {
+					for(ReplacedSectionState replacedSectionState : state.getReplacedSectionStates()) {
+						if(replacedSectionState.getId().equals(currentId)) {
+							isRemoved = true;
+						}
+					}
+				}
+
+				if(!isRemoved) {
+					filteredSectionstates.add(sectionDescriptorState);
+				}
+			}
+
+			for(SectionDescriptorState state : filteredSectionstates) {
 				for(IFragmentDescriptorState fragmentDescriptorState : state.getFragmentDescriptorStates()) {
 					for(ContainerDescriptorState containerDescriptorState : fragmentDescriptorState.getContainerDescriptorStates()) {
 						containerDescriptorState.createPreview(previewArea);
@@ -565,7 +653,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 						TreePath treePath = paths[0];
 						Object firstSegment = treePath.getSegment(0);
 						if(firstSegment instanceof ModelElementItem) {
-							currentMetaClass = (EClassifier)((ModelElementItem)firstSegment).getEObject();
+							setCurrentMetaClass((EClassifier)((ModelElementItem)firstSegment).getEObject());
 						}
 					}
 					currentSectionSetDescriptorState = (SectionSetDescriptorState)selectedElement;
@@ -684,5 +772,29 @@ public class CustomizeContentWizardPage extends WizardPage {
 	 */
 	public void setCurrentMetaClass(EClassifier currentMetaClass) {
 		this.currentMetaClass = currentMetaClass;
+		updatePreview();
+	}
+
+	/**
+	 * Sets the currentSelectionsize and updates the size area
+	 * 
+	 * @param currentSelectionsize
+	 *        the currentSelectionsize to set
+	 */
+	protected void setCurrentSelectionsize(int currentSelectionsize) {
+		this.currentSelectionsize = currentSelectionsize;
+		if(sizeArea != null && !sizeArea.isDisposed()) {
+			sizeArea.select(sizeValues.indexOf(currentSelectionsize));
+		}
+		updateSizeArea();
+	}
+
+	/**
+	 * Returns the currentSelectionsize
+	 * 
+	 * @return the currentSelectionsize
+	 */
+	public int getCurrentSelectionsize() {
+		return currentSelectionsize;
 	}
 }

@@ -20,7 +20,9 @@ import org.eclipse.papyrus.properties.runtime.controller.descriptor.ControllerDe
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
 import org.eclipse.papyrus.properties.runtime.state.AbstractState;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -203,9 +205,14 @@ public class ContainerDescriptorState extends AbstractState {
 	 * @return the created composite
 	 */
 	public Composite createPreview(Composite parent) {
-		Composite composite = new Composite(parent, SWT.NONE);
+		Composite composite = new TabbedPropertySheetWidgetFactory().createComposite(parent, SWT.NONE);
 		// add layout
 		composite.setLayout(layoutDescriptorState.createLayout());
+		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		// create the content for the controllers
+		for(ControllerDescriptorState controllerDescriptorState : controllerDescriptorStates) {
+			controllerDescriptorState.createPreview(composite);
+		}
 		return composite;
 	}
 

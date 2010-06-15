@@ -144,8 +144,10 @@ public class RadioBoxPropertyEditor extends AbstractPropertyEditor {
 	public IStatus init(IPropertyEditorDescriptor descriptor) {
 		setDescriptor(descriptor);
 		if(descriptor instanceof IBoundedValuesPropertyEditorDescriptor) {
-			for(Object object : ((IBoundedValuesPropertyEditorDescriptor)descriptor).getAvailableValues()) {
-				this.values.add(object.toString());
+			if(((IBoundedValuesPropertyEditorDescriptor)descriptor).getAvailableValues() != null) {
+				for(Object object : ((IBoundedValuesPropertyEditorDescriptor)descriptor).getAvailableValues()) {
+					this.values.add(object.toString());
+				}
 			}
 			return Status.OK_STATUS;
 		}

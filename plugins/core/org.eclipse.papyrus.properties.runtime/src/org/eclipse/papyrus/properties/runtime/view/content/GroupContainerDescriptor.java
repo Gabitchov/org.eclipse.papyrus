@@ -16,6 +16,7 @@ import java.util.List;
 
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorController;
+import org.eclipse.papyrus.properties.runtime.controller.descriptor.ControllerDescriptorState;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
@@ -196,10 +197,15 @@ public class GroupContainerDescriptor extends ContainerDescriptor {
 		 * {@inheritDoc}
 		 */
 		public Composite createPreview(Composite parent) {
-			Group composite = new Group(parent, SWT.NONE);
-			composite.setText(name);
+			Group composite = new TabbedPropertySheetWidgetFactory().createGroup(parent, name);
 			// add layout
 			composite.setLayout(layoutDescriptorState.createLayout());
+			composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+
+			// create the content for the controllers
+			for(ControllerDescriptorState controllerDescriptorState : controllerDescriptorStates) {
+				controllerDescriptorState.createPreview(composite);
+			}
 			return composite;
 		}
 	}

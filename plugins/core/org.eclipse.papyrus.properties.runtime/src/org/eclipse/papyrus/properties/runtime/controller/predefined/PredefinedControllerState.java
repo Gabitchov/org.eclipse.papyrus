@@ -13,9 +13,12 @@ package org.eclipse.papyrus.properties.runtime.controller.predefined;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.Collections;
 
+import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorController;
 import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorControllerService;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.ControllerDescriptorState;
+import org.eclipse.swt.widgets.Composite;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -108,6 +111,19 @@ public class PredefinedControllerState extends ControllerDescriptorState {
 	 */
 	public String getPredefinedIdState() {
 		return predefinedIdState;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void createPreview(Composite composite) {
+		PropertyEditorController controller = PropertyEditorControllerService.getInstance().createPropertyEditorController(Collections.emptyList(), composite, descriptor);
+
+		if(controller != null) {
+			// use the state to create this
+			controller.createPropertyEditor(this.getDescriptor().getEditorDescriptor());
+		}
 	}
 
 }
