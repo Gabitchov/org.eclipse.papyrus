@@ -156,32 +156,6 @@
          realization="org.eclipse.papyrus.diagram.common.editparts.PapyrusStereotypeListener">
    </listener>
 </extension>
-<extension
-      point="org.eclipse.ui.newWizards">
-   <wizard
-         category="org.eclipse.papyrus.wizards.category"
-         class="org.eclipse.papyrus.diagram.common.wizards.NewPapyrusProjectWizard"
-         finalPerspective="org.eclipse.papyrus.core.perspective"
-         icon="icons/papyrus/PapyrusLogo16x16.gif"
-         id="org.eclipse.ui.wizards.new.project"
-         name="Papyrus Project"
-         project="true">
-      <description>
-         %NewWizards.project.description
-      </description>
-   </wizard>
-   <wizard
-         category="org.eclipse.papyrus.wizards.category"
-         class="org.eclipse.papyrus.diagram.common.wizards.CreateUMLModelWizard"
-         finalPerspective="org.eclipse.papyrus.core.perspective"
-         icon="icons/papyrus/PapyrusLogo16x16.gif"
-         id="org.eclipse.papyrus.wizards.createumlmodel"
-         name="Papyrus Model">
-      <selection
-            class="org.eclipse.core.resources.IResource">
-      </selection>
-   </wizard>
-</extension>
 
 <extension
       point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders">

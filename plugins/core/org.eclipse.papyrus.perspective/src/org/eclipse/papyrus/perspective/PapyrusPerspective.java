@@ -13,8 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.perspective;
 
-import org.eclipse.papyrus.diagram.common.wizards.CreateUMLModelWizard;
 import org.eclipse.papyrus.navigator.ModelNavigator;
+import org.eclipse.papyrus.wizards.CreateModelWizard;
 import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;
@@ -50,7 +50,7 @@ public class PapyrusPerspective implements IPerspectiveFactory {
 		layout.addNewWizardShortcut("org.eclipse.ui.wizards.new.project");
 		layout.addNewWizardShortcut("org.eclipse.papyrus.wizards.createumlmodel");
 		layout.addNewWizardShortcut("org.eclipse.ui.wizards.new.folder");
-		layout.addNewWizardShortcut(CreateUMLModelWizard.ID_UMLWIZARD);
+		layout.addNewWizardShortcut(CreateModelWizard.WIZARD_ID);
 		// Add "show views".
 		layout.addShowViewShortcut(IPageLayout.ID_RES_NAV);
 		layout.addShowViewShortcut(ModelNavigator.ID_MODELNAVIGATOR);

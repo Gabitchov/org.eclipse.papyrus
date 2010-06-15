@@ -38,7 +38,7 @@ import org.eclipse.ui.ide.IDE;
  * 
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public abstract class CreateModelWizard extends Wizard implements INewWizard {
+public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/** New model file page for the file */
 	private NewModelFilePage newModelFilePage;
@@ -54,6 +54,9 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 
 	/** Current workbench */
 	private IWorkbench workbench;
+	
+	/** The Constant WIZARD_ID. */
+	public static final String WIZARD_ID = "org.eclipse.papyrus.wizards.2createumlmodel";
 	
 	/** The Constant NEW_MODEL_SETTINGS. */
 	public static final String NEW_MODEL_SETTINGS = "NewModelWizard";
@@ -167,7 +170,7 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 		// create a new file, result != null if successful
 		EObject root = domainModelURI != null ? selectRootElementPage.getModelElement() : null;
 		final IFile newFile = newModelFilePage.createNewFile();
-		selectDiagramCategoryPage.initDomainModel(diResourceSet, newFile, root, getModelContentType(), getModelFileExtension());
+		selectDiagramCategoryPage.initDomainModel(diResourceSet, newFile, root);
 		if(newFile == null) {
 			return false;
 		}
@@ -209,6 +212,10 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 		return file != null && getModelFileExtension().equals(file.getFileExtension());
 	}
 
+	private String getModelFileExtension() {
+		return "uml";
+	}
+
 	/**
 	 * Returns the first file from the given selection
 	 */
@@ -218,19 +225,5 @@ public abstract class CreateModelWizard extends Wizard implements INewWizard {
 		}
 		return null;
 	}
-
-	/**
-	 * Gets the model content type.
-	 * 
-	 * @return the model content type
-	 */
-	protected abstract String getModelContentType();
-
-	/**
-	 * Gets the model file extension.
-	 * 
-	 * @return the model file extension
-	 */
-	protected abstract String getModelFileExtension();
 
 }

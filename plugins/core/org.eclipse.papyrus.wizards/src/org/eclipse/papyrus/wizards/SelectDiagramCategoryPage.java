@@ -131,12 +131,8 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 *        the new file
 	 * @param root
 	 *        the root
-	 * @param modelContentType
-	 *        the model content type
-	 * @param modelFileExtension
-	 *        the model file extension
 	 */
-	public void initDomainModel(final DiResourceSet diResourceSet, final IFile newFile, final EObject root, final String modelContentType, final String modelFileExtension) {
+	public void initDomainModel(final DiResourceSet diResourceSet, final IFile newFile, final EObject root) {
 		RecordingCommand command = (root != null) ? new PapyrusModelFromExistingDomainModelCommand(diResourceSet, newFile, root) : new NewPapyrusModelCommand(diResourceSet, newFile);
 		diResourceSet.getTransactionalEditingDomain().getCommandStack().execute(command);
 		if(root == null && !useTemplate()) {

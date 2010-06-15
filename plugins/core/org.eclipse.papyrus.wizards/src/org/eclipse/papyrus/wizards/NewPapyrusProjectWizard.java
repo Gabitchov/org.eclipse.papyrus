@@ -11,9 +11,9 @@
  *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.common.wizards;
+package org.eclipse.papyrus.wizards;
 
-import static org.eclipse.papyrus.diagram.common.Activator.log;
+import static org.eclipse.papyrus.wizards.Activator.log;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -23,18 +23,12 @@ import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
-import org.eclipse.papyrus.wizards.Activator;
-import org.eclipse.papyrus.wizards.CreateModelWizard;
-import org.eclipse.papyrus.wizards.NewModelFilePage;
-import org.eclipse.papyrus.wizards.SelectDiagramCategoryPage;
-import org.eclipse.papyrus.wizards.SelectDiagramKindPage;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * The Wizard creates a Papyrus Project and a Papyrus Model inside it.
@@ -147,7 +141,7 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 		// create a new file, result != null if successful
 		final IFile newFile = createFile();
 		EObject root = null;
-		selectDiagramCategoryPage.initDomainModel(diResourceSet, newFile, root, getModelContentType(), getModelFileExtension());
+		selectDiagramCategoryPage.initDomainModel(diResourceSet, newFile, root);
 		if(newFile == null) {
 			return false;
 		}
@@ -183,24 +177,4 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 	public void setInitialProjectName(String initialProjectName) {
 		this.initialProjectName = initialProjectName;
 	}
-
-	/**
-	 * Gets the model content type.
-	 * 
-	 * @return the model content type
-	 */
-	protected String getModelContentType() {
-		return UMLPackage.eCONTENT_TYPE;
-	}
-
-	/**
-	 * Gets the model file extension.
-	 * 
-	 * @return the model file extension
-	 */
-	protected String getModelFileExtension() {
-		return "uml";
-	}
-
-
 }
