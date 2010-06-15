@@ -29,6 +29,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
 
 
 
@@ -124,9 +125,12 @@ public class ModelSet extends ResourceSetImpl {
 	 * @return the transactional editing domain
 	 */
 	public TransactionalEditingDomain getTransactionalEditingDomain() {
-		transactionalEditingDomain = TransactionalEditingDomain.Factory.INSTANCE.getEditingDomain(this);
+//		transactionalEditingDomain = TransactionalEditingDomain.Factory.INSTANCE.getEditingDomain(this);
+		transactionalEditingDomain = WorkspaceEditingDomainFactory.INSTANCE.getEditingDomain(this);
+
 		if(transactionalEditingDomain == null) {
-			transactionalEditingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(this);
+//			transactionalEditingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(this);
+			transactionalEditingDomain = WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain(this);
 			// What for?
 			transactionalEditingDomain.setID("SharedEditingDomain"); //$NON-NLS-1$
 		}
