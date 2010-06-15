@@ -52,8 +52,9 @@ public abstract class AbstractPropertyEditor implements IDisposable {
 
 	/**
 	 * Creates a new {@link AbstractPropertyEditor}.
+	 * 
 	 * @param widgetFactory
-	 * 		  widget factory used to create {@link Control}
+	 *        widget factory used to create {@link Control}
 	 */
 	public AbstractPropertyEditor(TabbedPropertySheetWidgetFactory widgetFactory) {
 		this.widgetFactory = widgetFactory;
@@ -200,8 +201,9 @@ public abstract class AbstractPropertyEditor implements IDisposable {
 	 */
 	protected Control createLabel(Composite parent) {
 		GridData data = new GridData(SWT.FILL, SWT.CENTER, false, false);
-		// data.minimumWidth = 80;
+		data.minimumWidth = 80;
 		data.widthHint = 80;
+		// data.widthHint = 80;
 		return createLabel(parent, data);
 	}
 

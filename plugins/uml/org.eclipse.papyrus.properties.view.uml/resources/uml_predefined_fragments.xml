@@ -6,7 +6,7 @@
 		</context>
 		<content>
 			<container>
-				<layout kind="Grid" numColumns="2" sameWidth="false"/>
+				<layout kind="Grid" numColumns="2" sameWidth="true"/>
 				<controller predefinedId="UML_NamedElement_name"/>
 				<controller predefinedId="UML_NamedElement_visibility"/>
 				<!-- <controller id="emftStructuralFeatureController">
