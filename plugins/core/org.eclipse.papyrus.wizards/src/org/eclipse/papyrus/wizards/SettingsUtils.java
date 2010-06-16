@@ -14,6 +14,12 @@ public class SettingsUtils {
 
 	private static final String TEMPLATE_SEPARATOR = ",";
 	
+	private static final String SETTINGS_KEY_REMEMBER_CURRENT_SELECTION = "RememberCurrentSelection";
+
+	private static final String SETTINGS_KEY_DIAGRAM_KINDS = "DiagramKindsFor_";
+	
+	private static final String SETTINGS_KEY_DIAGRAM_TEMPLATES = "DiagramTemplatesFor_";
+	
 	public static List<String> getDefaultDiagramKinds(IDialogSettings settings, String category) {
 		String csl = settings.get(getKeyForDiagramKind(category));
 		if (csl == null || csl == "") {
@@ -38,7 +44,6 @@ public class SettingsUtils {
 
 	public static List<String> getDefaultTemplates(IDialogSettings settings, String category) {
 		String csl = settings.get(getKeyForTemplate(category));
-		System.out.println("get templates " + csl);
 		if (csl == null || csl == "") {
 			return Collections.emptyList();
 		}
@@ -56,16 +61,23 @@ public class SettingsUtils {
 			value += template ;
 			value += TEMPLATE_SEPARATOR;
 		}
-		System.out.println("set templates " + value);
 		settings.put(getKeyForTemplate(category), value);
 	}
 
+	public static void saveRememberCurrentSelection(IDialogSettings settings, boolean remember) {
+		settings.put(SETTINGS_KEY_REMEMBER_CURRENT_SELECTION, remember);
+	}
+
+	public static boolean rememberCurrentSelection(IDialogSettings settings) {
+		return settings.getBoolean(SETTINGS_KEY_REMEMBER_CURRENT_SELECTION);
+	}
+
 	private static String getKeyForDiagramKind(String category) {
-		return "DiagramKindsFor_" + category;
+		return SETTINGS_KEY_DIAGRAM_KINDS + category;
 	}
 	
 	private static String getKeyForTemplate(String category) {
-		return "DiagramTemplatesFor_" + category;
+		return SETTINGS_KEY_DIAGRAM_TEMPLATES + category;
 	}
 
 }
