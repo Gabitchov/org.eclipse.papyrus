@@ -11,11 +11,25 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.customization.dialog;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
@@ -139,6 +153,8 @@ public class CustomizeContentWizardPage extends WizardPage {
 
 	/** values in the selection size combo */
 	private final static List<String> sizeValues = Arrays.asList("1", "-1");
+
+	private File file;
 
 	/**
 	 * Creates a new CustomizeContentWizardPage.
@@ -396,7 +412,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 		// previewAreaComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 
 		Composite titleArea = new Composite(previewAreaComposite, SWT.NONE);
-		GridLayout layout = new GridLayout(3, false);
+		GridLayout layout = new GridLayout(4, false);
 		layout.marginHeight = 0;
 		layout.marginWidth = 0;
 		titleArea.setLayout(layout);
@@ -453,6 +469,26 @@ public class CustomizeContentWizardPage extends WizardPage {
 			 */
 			public void widgetSelected(SelectionEvent e) {
 				updatePreview();
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void widgetDefaultSelected(SelectionEvent e) {
+				// nothing to do here
+			}
+		});
+
+		Button saveButton = new Button(titleArea, SWT.NONE);
+		saveButton.setImage(Activator.getImage("/icons/Save.gif"));
+		saveButton.setToolTipText("Saves the current configuration");
+		saveButton.addSelectionListener(new SelectionListener() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void widgetSelected(SelectionEvent e) {
+				serializeContent();
 			}
 
 			/**
@@ -533,7 +569,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 	/**
 	 * updates the content of the size area
 	 */
-	private void updateSizeArea() {
+	protected void updateSizeArea() {
 		if(sizeArea != null && !sizeArea.isDisposed()) {
 			sizeArea.select(sizeValues.indexOf("" + currentSelectionsize));
 		}
@@ -842,5 +878,70 @@ public class CustomizeContentWizardPage extends WizardPage {
 	 */
 	public int getCurrentSelectionsize() {
 		return currentSelectionsize;
+	}
+
+	/**
+	 * Sets the file where the content will be serialized
+	 * 
+	 * @param file
+	 *        the file in which the content will be serialized
+	 */
+	public void setNewFile(File file) {
+		this.file = file;
+	}
+
+
+	/**
+	 * Returns the file in which the content will be serialized
+	 * 
+	 * @return the file in which the content will be serialized
+	 */
+	public File getFile() {
+		return file;
+	}
+
+	/**
+	 * Serializes the content of the configuration
+	 * 
+	 * @return <code>true</code> if serialization finished well
+	 */
+	public boolean serializeContent() {
+		Job job = new Job("Saving configuration file") {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			protected IStatus run(IProgressMonitor monitor) {
+
+				try {
+					final Document document = getFinalContent();
+					final File file = getFile();
+					// final File file = ResourcesPlugin.getWorkspace().getRoot().getRawLocation().append("test/test.xml").toFile();
+					if(!file.exists()) {
+						file.createNewFile();
+					}
+					TransformerFactory factory = TransformerFactory.newInstance();
+					Transformer transformer = factory.newTransformer();
+
+					Source source = new DOMSource(document);
+					Result result = new StreamResult(file);
+
+					transformer.transform(source, result);
+					return Status.OK_STATUS;
+				} catch (TransformerException e) {
+					Activator.log.error(e);
+					return new Status(Status.ERROR, Activator.ID, e.getLocalizedMessage());
+				} catch (IOException e) {
+					Activator.log.error(e);
+					return new Status(Status.ERROR, Activator.ID, e.getLocalizedMessage());
+				}
+
+			}
+		};
+		job.schedule();
+
+		// there, the xml file should be serialized
+		return true;
 	}
 }

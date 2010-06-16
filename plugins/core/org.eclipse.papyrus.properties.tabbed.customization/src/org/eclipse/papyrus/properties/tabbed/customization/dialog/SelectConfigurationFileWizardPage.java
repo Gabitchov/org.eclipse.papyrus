@@ -215,6 +215,7 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 			Document initialDocument = getEnableConfigurationArea().generateInitialContent();
 			newPage.setInitialContent(initialDocument);
 			file = getEnableConfigurationArea().getNewFile();
+			newPage.setNewFile(file);
 			return newPage;
 		}
 		return null;
