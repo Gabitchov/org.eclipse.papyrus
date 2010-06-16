@@ -1206,7 +1206,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		availableToolsViewer.addFilter(new DrawerFilter());
 		// add drag support
 		addAvailableToolsDragSupport();
-		availableToolsViewer.setInput(getAllStandardEntries());
+		availableToolsViewer.setInput(getAllVisibleStandardEntries());
 	}
 
 	/**
@@ -1323,7 +1323,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 				ToolItem item = ((ToolItem)event.widget);
 				// retrieve current profile selected in the combo profile
 				int index = profileCombo.getSelectionIndex();
-				Collection<PaletteEntry> standardEntries = getAllStandardEntries();
+				Collection<PaletteEntry> standardEntries = getAllVisibleStandardEntries();
 				Profile profile = getAllAppliedProfiles().get(index);
 
 				if(item.getSelection()) {
@@ -2059,7 +2059,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			int index = profileCombo.getSelectionIndex();
 			String name = profileComboList.get(index);
 
-			Collection<PaletteEntry> standardEntries = getAllStandardEntries();
+			Collection<PaletteEntry> standardEntries = getAllVisibleStandardEntries();
 			// retrieve the profile or uml standards tools to display
 			if(UML_TOOLS_LABEL.equals(name)) {
 				// change content provider
@@ -2367,6 +2367,40 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 		PaletteRoot root = new PaletteRoot();
 		Map<String, PaletteEntry> entries = PapyrusPaletteService.getInstance().getAllContributionsIds(editorPart, editorPart.getEditorInput(), root);
 		return entries.values();
+	}
+
+	/**
+	 * Returns the list of all visible palette entries
+	 * 
+	 * @return the list of all visible palette entries
+	 */
+	protected Collection<PaletteEntry> getAllVisibleStandardEntries() {
+		HashSet<PaletteEntry> result = new HashSet<PaletteEntry>();
+		for(PaletteEntry entry : getAllStandardEntries()) {
+			// the entry is not just a defineOnly entry but a visible one
+			if(getRootParent(entry) != null) {
+				result.add(entry);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Returns the Root element for the palette entry. It searches recursively from parent to parent, until it find the root element
+	 * 
+	 * @param entry
+	 *        the palette entry for which root element is searched
+	 * @return the root element or <code>null</code> if none was found
+	 */
+	protected PaletteRoot getRootParent(PaletteEntry entry) {
+		PaletteContainer parent = entry.getParent();
+		if(parent instanceof PaletteRoot) {
+			return (PaletteRoot)parent;
+		} else if(parent != null) {
+			return getRootParent(parent);
+		} else {
+			return null;
+		}
 	}
 
 	/**

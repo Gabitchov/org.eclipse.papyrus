@@ -240,7 +240,6 @@
 				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
 				«EXPAND predefinedEntryDefinition FOREACH collectTools(diagram.palette)»
 			</contribution>
-			<editor id="«plugin.iD»"/>
 		</paletteProvider>	
 			
 	</extension>

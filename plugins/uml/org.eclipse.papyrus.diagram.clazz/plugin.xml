@@ -2346,7 +2346,6 @@
  	</entry>
 
 			</contribution>
-			<editor id="org.eclipse.papyrus.diagram.clazz"/>
 		</paletteProvider>	
 			
 	</extension>
