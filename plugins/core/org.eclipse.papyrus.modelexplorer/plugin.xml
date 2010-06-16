@@ -144,6 +144,16 @@
       </objectContribution>
    </extension>
     <extension
+         point="org.eclipse.papyrus.modelexplorer.actionHandler">
+      
+      <customAction
+            actionHandler="org.eclipse.papyrus.modelexplorer.factory.DefaultEMFActionsFactory"
+            actionId="org.eclipse.papyrus.modelexplorer.factory.defaultEMFActions"
+            afterAction="org.eclipse.papyrus.modelexplorer.factory.renameAction"
+            needSeparator="true">
+      </customAction>
+   </extension>
+    <extension
           point="org.eclipse.ui.menus">
        <menuContribution
              allPopups="false"
