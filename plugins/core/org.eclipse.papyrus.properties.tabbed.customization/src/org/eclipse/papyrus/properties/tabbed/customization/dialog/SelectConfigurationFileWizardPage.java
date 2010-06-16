@@ -36,6 +36,7 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
 import org.eclipse.papyrus.properties.tabbed.customization.Messages;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.BusyIndicator;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
@@ -91,6 +92,9 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 
 	/** empty string */
 	protected static final String EMPTY_STRING = ""; //$NON-NLS-1$
+
+	/** next page to be displayed */
+	private IWizardPage nextPage;
 
 	/**
 	 * Creates a new SelectConfigurationFileWizardPage.
@@ -210,15 +214,32 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 	@Override
 	public IWizardPage getNextPage() {
 		if(getWizard() instanceof CustomizePropertyViewWizard) {
-			CustomizeContentWizardPage newPage = ((CustomizePropertyViewWizard)getWizard()).customizeContentPage;
-			// newPage.setInitialContent();
-			Document initialDocument = getEnableConfigurationArea().generateInitialContent();
-			newPage.setInitialContent(initialDocument);
-			file = getEnableConfigurationArea().getNewFile();
-			newPage.setNewFile(file);
-			return newPage;
+
+			BusyIndicator.showWhile(getShell().getDisplay(), new Runnable() {
+
+				public void run() {
+					CustomizeContentWizardPage newPage = ((CustomizePropertyViewWizard)getWizard()).customizeContentPage;
+					// newPage.setInitialContent();
+					Document initialDocument = getEnableConfigurationArea().generateInitialContent();
+					newPage.setInitialContent(initialDocument);
+					file = getEnableConfigurationArea().getNewFile();
+					newPage.setNewFile(file);
+					setNextPage(newPage);
+				}
+			});
+			return nextPage;
 		}
 		return null;
+	}
+
+	/**
+	 * Sets the next page
+	 * 
+	 * @param page
+	 *        the next page to set
+	 */
+	protected void setNextPage(IWizardPage page) {
+		this.nextPage = page;
 	}
 
 	/**
