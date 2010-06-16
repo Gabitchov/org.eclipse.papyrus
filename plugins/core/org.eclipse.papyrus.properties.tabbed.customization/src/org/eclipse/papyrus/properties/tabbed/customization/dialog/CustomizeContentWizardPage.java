@@ -676,9 +676,8 @@ public class CustomizeContentWizardPage extends WizardPage {
 						}
 					}
 					currentSectionSetDescriptorState = (SectionSetDescriptorState)selectedElement;
-
-					updateConfigurationArea();
 				}
+				updateConfigurationArea();
 			}
 		});
 		metamodelViewer.addDoubleClickListener(new IDoubleClickListener() {
