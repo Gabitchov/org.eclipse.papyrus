@@ -74,6 +74,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
@@ -394,17 +395,24 @@ public class CustomizeContentWizardPage extends WizardPage {
 		previewAreaComposite.setLayout(new GridLayout(2, false));
 		// previewAreaComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 
-		// title of this area
-		Label titleLabel = new Label(previewAreaComposite, SWT.NONE);
-		titleLabel.setText("Preview:");
-		titleLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
+		Composite titleArea = new Composite(previewAreaComposite, SWT.NONE);
+		GridLayout layout = new GridLayout(3, false);
+		layout.marginHeight = 0;
+		layout.marginWidth = 0;
+		titleArea.setLayout(layout);
+		titleArea.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1));
 
-		Composite selectionSize = new Composite(previewAreaComposite, SWT.NONE);
-		GridLayout layout = new GridLayout(2, false);
+		// title of this area
+		Label titleLabel = new Label(titleArea, SWT.NONE);
+		titleLabel.setText("Preview:");
+		titleLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+
+		Composite selectionSize = new Composite(titleArea, SWT.NONE);
+		layout = new GridLayout(2, false);
 		layout.marginHeight = 0;
 		layout.marginWidth = 0;
 		selectionSize.setLayout(layout);
-		GridData data = new GridData(SWT.FILL, SWT.FILL, false, false);
+		GridData data = new GridData(SWT.FILL, SWT.CENTER, false, false);
 		selectionSize.setLayoutData(data);
 
 		Label sizeLabel = new Label(selectionSize, SWT.NONE);
@@ -434,6 +442,26 @@ public class CustomizeContentWizardPage extends WizardPage {
 			}
 		});
 		updateSizeArea();
+
+		Button button = new Button(titleArea, SWT.NONE);
+		button.setImage(Activator.getImage("/icons/Refresh.gif"));
+		button.setToolTipText("Refresh the content of the preview area");
+		button.addSelectionListener(new SelectionListener() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void widgetSelected(SelectionEvent e) {
+				updatePreview();
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void widgetDefaultSelected(SelectionEvent e) {
+				// nothing to do here
+			}
+		});
 
 		Table table = new Table(previewAreaComposite, SWT.BORDER);
 		GridData data2 = new GridData(SWT.FILL, SWT.FILL, false, true);
