@@ -715,9 +715,15 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 			DocumentBuilder documentBuilder;
 			try {
 				documentBuilder = documentBuilderFactory.newDocumentBuilder();
-				final File file = ResourcesPlugin.getWorkspace().getRoot().getRawLocation().append(createFromExistingConfigurationText.getText()).toFile();
-				Document document = documentBuilder.parse(file);
-				return document;
+				IFile iFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(createFromExistingConfigurationText.getText()));
+				if(iFile.exists()) {
+					IPath location = iFile.getLocation();
+					if(location != null) {
+						final File file = location.toFile();
+						Document document = documentBuilder.parse(file);
+						return document;
+					}
+				}
 			} catch (ParserConfigurationException e) {
 				Activator.log.error(e);
 			} catch (SAXException e) {
@@ -829,9 +835,18 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 			DocumentBuilder documentBuilder;
 			try {
 				documentBuilder = documentBuilderFactory.newDocumentBuilder();
-				final File file = ResourcesPlugin.getWorkspace().getRoot().getRawLocation().append(modifyExistingConfigurationText.getText()).toFile();
-				Document document = documentBuilder.parse(file);
-				return document;
+				IFile iFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(modifyExistingConfigurationText.getText()));
+				if(iFile.exists()) {
+					IPath location = iFile.getLocation();
+					if(location != null) {
+						final File file = location.toFile();
+						Document document = documentBuilder.parse(file);
+						return document;
+					}
+				}
+				//				final File file = ResourcesPlugin.getWorkspace().getRoot().getRawLocation().append(modifyExistingConfigurationText.getText()).toFile();
+				//				Document document = documentBuilder.parse(file);
+				//				return document;
 			} catch (ParserConfigurationException e) {
 				Activator.log.error(e);
 			} catch (SAXException e) {

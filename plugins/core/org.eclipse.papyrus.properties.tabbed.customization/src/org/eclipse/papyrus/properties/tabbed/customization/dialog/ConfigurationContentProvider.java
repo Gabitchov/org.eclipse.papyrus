@@ -94,15 +94,7 @@ public class ConfigurationContentProvider implements ITreeContentProvider, Prope
 		}
 		if(parentElement instanceof ConstraintHolder) {
 			return sectionSetDescriptorState.getConstraintDescriptorStates().toArray();
-		} /*
-		 * else if(parentElement instanceof ContentHolder) {
-		 * return sectionSetDescriptorState.getSectionDescriptorStates().toArray();
-		 * } else if(parentElement instanceof SectionDescriptorState) {
-		 * return ((SectionDescriptorState)parentElement).getFragmentDescriptorStates().toArray();
-		 * } else if(parentElement instanceof FragmentDescriptorState) {
-		 * return ((FragmentDescriptorState)parentElement).getContainerDescriptorStates().toArray();
-		 * }
-		 */else if(parentElement instanceof ITraversableModelElement) {
+		} else if(parentElement instanceof ITraversableModelElement) {
 			return ((ITraversableModelElement)parentElement).getChildren().toArray();
 		}
 		return new Object[0];

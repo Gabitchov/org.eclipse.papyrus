@@ -189,6 +189,8 @@ public class CustomizeContentWizardPage extends WizardPage {
 			sectionSetDescriptorStates = parser.getSectionSetDescriptorStates();
 			metamodelViewer.setContentProvider(new MetamodelContentProvider(sectionSetDescriptorStates));
 			metamodelViewer.setLabelProvider(new MetamodelLabelProvider());
+
+			// load by default the metamodel
 			metamodelViewer.setInput(UMLPackage.eINSTANCE.eContents());
 
 			tabViewer.setInput(PropertyServiceUtil.getTabDescriptors());
@@ -599,6 +601,23 @@ public class CustomizeContentWizardPage extends WizardPage {
 		CCombo metamodelSelectionCombo = new CCombo(mainContentAreaComposite, SWT.BORDER | SWT.READ_ONLY);
 		metamodelSelectionCombo.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		metamodelSelectionCombo.setItems(retrieveAvailableMetamodels());
+		metamodelSelectionCombo.addSelectionListener(new SelectionListener() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void widgetSelected(SelectionEvent e) {
+				// update the input of the content view
+
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void widgetDefaultSelected(SelectionEvent e) {
+				// nothing here
+			}
+		});
 
 		// content tree and viewer on this tree
 		Tree contentTree = new Tree(mainContentAreaComposite, SWT.BORDER);
