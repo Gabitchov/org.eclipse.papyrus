@@ -14,6 +14,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.tabbedproperties.appearance;
 
+import java.util.List;
+
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
@@ -103,35 +106,7 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 		comboQualifiedNameAppearanceListener = new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent e) {
-				if(namedElementEditPart != null) {
-					if(((View)namedElementEditPart.getModel()).getElement() != null
-							&& ((View)namedElementEditPart.getModel()).getElement() instanceof NamedElement) {
-
-						String currentQualifiedNameDepth = comboQualifiedNameAppearance.getText();
-						String currentQualifiedNameSpec;
-
-						if("Full".equals(currentQualifiedNameDepth)) {
-							currentQualifiedNameSpec = "0";
-						} else if("None".equals(currentQualifiedNameDepth)) {
-							NamedElement ne = (NamedElement)((View)namedElementEditPart.getModel()).getElement();
-							currentQualifiedNameSpec = "" + NamedElementUtil.getQualifiedNameMaxDepth(ne);
-						} else {
-							currentQualifiedNameSpec = currentQualifiedNameDepth.substring(1);
-						}
-
-						// createProperty value
-						// updateStereotypeLocationProperty(diagramElement,currentQualifiedNameSpec);
-						// command creation
-						if(editingDomain != null) {
-							editingDomain.getCommandStack().execute(
-									new SetQualifiedNameDepthCommand(editingDomain,
-									((EModelElement)namedElementEditPart.getModel()), Integer
-									.parseInt(currentQualifiedNameSpec)));
-						}
-
-						refresh();
-					}
-				}
+				updateSelectedElements();
 			}
 
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -276,6 +251,57 @@ public class QualifiedNameAppearanceSection extends AbstractPropertySection {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	/**
+	 * Create and execute commands that change the selected elements.
+	 */
+	private void updateSelectedElements() {
+		
+		IStructuredSelection selection;
+		
+		if( getSelection() instanceof IStructuredSelection ) {
+			selection = (IStructuredSelection)getSelection();
+		}
+		else {
+			return;
+		}
+		
+		// Iterate over selected elements
+		CompoundCommand cc = new CompoundCommand();
+		List<Object> selectedElements = selection.toList();
+		for( Object element : selectedElements) {
+
+			if(element instanceof GraphicalEditPart) {
+				GraphicalEditPart namedElementEditPart = ((GraphicalEditPart)element);
+				// selectionChanged(selection);
+
+				String currentQualifiedNameDepth = comboQualifiedNameAppearance.getText();
+				String currentQualifiedNameSpec;
+
+				if("Full".equals(currentQualifiedNameDepth)) {
+					currentQualifiedNameSpec = "0";
+				} else if("None".equals(currentQualifiedNameDepth)) {
+					NamedElement ne = (NamedElement)((View)namedElementEditPart.getModel()).getElement();
+					currentQualifiedNameSpec = "" + NamedElementUtil.getQualifiedNameMaxDepth(ne);
+				} else {
+					currentQualifiedNameSpec = currentQualifiedNameDepth.substring(1);
+				}
+
+				int qualifiedNameDepth = Integer.parseInt(currentQualifiedNameSpec);
+
+				// Add command
+				cc.append(new SetQualifiedNameDepthCommand(editingDomain,((EModelElement)namedElementEditPart.getModel()), qualifiedNameDepth));
+			}
+
+		}
+		
+		if(editingDomain != null) {
+			editingDomain.getCommandStack().execute( cc.unwrap() );
+			
+		}
+
+		refresh();
 	}
 
 }
