@@ -94,7 +94,7 @@ public class EClassifierMenuCreator extends AbstractMenuCreator {
 		// create a new SectionSetDescriptor state
 		menu = manager.createContextMenu(parent);
 
-		IAction createAction = new Action("Create Section Set", Activator.imageDescriptorFromPlugin(Activator.ID, "/icons/NewSectionSet.gif")) {
+		IAction createAction = new Action("Create Section Set for single selection", Activator.imageDescriptorFromPlugin(Activator.ID, "/icons/NewSectionSet.gif")) {
 
 			/**
 			 * {@inheritDoc}
@@ -112,7 +112,7 @@ public class EClassifierMenuCreator extends AbstractMenuCreator {
 					metamodelClass = Class.forName(qualifiedInstanceClassName);
 					ObjectTypeConstraintDescriptor constraintDescriptor = new ObjectTypeConstraintDescriptor(metamodelClass);
 					constraints.add(constraintDescriptor);
-					SectionSetDescriptor descriptor = new SectionSetDescriptor(getNewSectionSetName(), new ArrayList<DynamicSectionDescriptor>(), constraints, 1);
+					SectionSetDescriptor descriptor = new SectionSetDescriptor(getNewSectionSetName(1), new ArrayList<DynamicSectionDescriptor>(), constraints, 1);
 					SectionSetDescriptorState state = descriptor.createState(false);
 					sectionSetDescriptorStates.add(state);
 					treeViewer.refresh();
@@ -127,13 +127,69 @@ public class EClassifierMenuCreator extends AbstractMenuCreator {
 		manager.add(new Separator(ADD_GROUP));
 		manager.appendToGroup(ADD_GROUP, createAction);
 
+		IAction createMultipleElementAction = new Action("Create Section Set for multiple selection", Activator.imageDescriptorFromPlugin(Activator.ID, "/icons/NewSectionSet.gif")) {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public void run() {
+				// remove this section descriptor set state from its parent
+				// create the constraint for the kind of object
+				List<IConstraintDescriptor> constraints = new ArrayList<IConstraintDescriptor>();
+
+				EClassifier classifier = ((EClassifier)item.getEObject());
+				String qualifiedInstanceClassName = classifier.getInstanceClassName();
+				Class<?> metamodelClass;
+				try {
+					metamodelClass = Class.forName(qualifiedInstanceClassName);
+					ObjectTypeConstraintDescriptor constraintDescriptor = new ObjectTypeConstraintDescriptor(metamodelClass);
+					constraints.add(constraintDescriptor);
+					SectionSetDescriptor descriptor = new SectionSetDescriptor(getNewSectionSetName(-1), new ArrayList<DynamicSectionDescriptor>(), constraints, -1);
+					SectionSetDescriptorState state = descriptor.createState(false);
+					sectionSetDescriptorStates.add(state);
+					treeViewer.refresh();
+					// try to select the new element
+					treeViewer.setSelection(new TreeSelection(new TreePath(new Object[]{ item, state })));
+				} catch (ClassNotFoundException e) {
+					Activator.log.error(e);
+				}
+
+			}
+		};
+		manager.appendToGroup(ADD_GROUP, createMultipleElementAction);
+
 		return menu;
 	}
 
-	protected String getNewSectionSetName() {
+	protected String getNewSectionSetName(int selectionSize) {
 		for(int i = 0; i < 100; i++) { // no need to go to more than 100, because 100 is already a very big number of fragments
 			boolean found = false; // indicates if the id has been found in already fragments or not
-			String name = "sectionSet_" + i;
+
+
+			StringBuffer buffer = new StringBuffer();
+			buffer.append("sectionSet_");
+			if(selectionSize == 1) {
+				buffer.append("single");
+			} else if(selectionSize < 0) {
+				buffer.append("multi");
+			} else {
+				buffer.append(selectionSize);
+			}
+			buffer.append("_");
+
+			Class<?> selectionClass = (item.getEObject() instanceof EClassifier) ? ((EClassifier)item.getEObject()).getInstanceClass() : null;
+
+			if(selectionClass != null && selectionClass.getSimpleName() != null) {
+				buffer.append(selectionClass.getSimpleName());
+			} else {
+				buffer.append("NoName");
+			}
+			if(i > 0) {
+				buffer.append(i);
+			}
+			String name = buffer.toString();
+
 			Iterator<SectionSetDescriptorState> it = sectionSetDescriptorStates.iterator();
 			while(it.hasNext()) {
 				SectionSetDescriptorState sectionSetDescriptorState = it.next();

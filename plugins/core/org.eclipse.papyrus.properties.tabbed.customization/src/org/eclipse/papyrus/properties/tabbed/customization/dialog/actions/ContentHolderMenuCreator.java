@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.properties.tabbed.customization.dialog.actions;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -23,16 +24,21 @@ import org.eclipse.papyrus.properties.runtime.state.IState;
 import org.eclipse.papyrus.properties.runtime.view.DialogDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.IFragmentDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
+import org.eclipse.papyrus.properties.runtime.view.constraints.ConstraintDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
+import org.eclipse.papyrus.properties.runtime.view.constraints.ObjectTypeConstraintDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.DynamicSectionDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.PropertyServiceUtil;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState;
+import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.ContentHolder;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 
@@ -73,6 +79,26 @@ public class ContentHolderMenuCreator extends AbstractMenuCreator {
 		}
 		manager.removeAll();
 		menu = manager.createContextMenu(parent);
+
+		Class<?> selectionClass = null;
+		final List<ConstraintDescriptorState> constraintDescriptorStates = getConstraintDescriptorStates(parent);
+		if(constraintDescriptorStates != null) {
+			for(ConstraintDescriptorState constraintDescriptorState : constraintDescriptorStates) {
+				IConstraintDescriptor descriptor = constraintDescriptorState.getDescriptor();
+				if(descriptor instanceof ObjectTypeConstraintDescriptor) { // check only class compatibility. Should also check the other constraints...
+					selectionClass = ((ObjectTypeConstraintDescriptor)descriptor).getElementClass();
+				}
+			}
+		}
+		final Class<?> finalSelectionClass = selectionClass;
+		SectionSetDescriptorState currentSectionSetDescriptorState = getCurrentSectionSetDescriptorState(parent);
+		if(currentSectionSetDescriptorState == null) {
+			return menu;
+		}
+
+		final int selectionSize = currentSectionSetDescriptorState.getSelectionSize();
+
+
 		IAction action = new Action("Add Section", Activator.imageDescriptorFromPlugin(Activator.ID, "/icons/NewSection.gif")) {
 
 			/**
@@ -81,7 +107,7 @@ public class ContentHolderMenuCreator extends AbstractMenuCreator {
 			@Override
 			public void run() {
 				// should add a section here, using a new Section and pop-up the dialog on the section to create
-				DynamicSectionDescriptor descriptor = new DynamicSectionDescriptor(getNewSectionId(), getDefaultTabId(), new ArrayList<IConstraintDescriptor>(), 1, DynamicSectionDescriptor.SEMANTIC_RESOLVER, new ArrayList<String>(), new ArrayList<IFragmentDescriptor>());
+				DynamicSectionDescriptor descriptor = new DynamicSectionDescriptor(getNewSectionId(finalSelectionClass, selectionSize), getDefaultTabId(), new ArrayList<IConstraintDescriptor>(), 1, DynamicSectionDescriptor.SEMANTIC_RESOLVER, new ArrayList<String>(), new ArrayList<IFragmentDescriptor>());
 				SectionDescriptorState sectionDescriptorState = new SectionDescriptorState(descriptor, false);
 				contentHolder.getSectionSetDescriptorState().addSectionDescriptorState(sectionDescriptorState);
 			}
@@ -117,12 +143,38 @@ public class ContentHolderMenuCreator extends AbstractMenuCreator {
 	/**
 	 * Returns the new Id for the section
 	 * 
+	 * @param selectionSize
+	 *        size of the selection
+	 * @param metaclass
+	 *        metaclass for the section
+	 * 
 	 * @return the new Id for the section
 	 */
-	protected String getNewSectionId() {
+	protected String getNewSectionId(Class<?> metaclass, int selectionSize) {
 		for(int i = 0; i < 100; i++) { // no need to go to more than 100, because 100 is already a very big number of sections
 			boolean found = false; // indicates if the id has been found in already sections or not
-			String name = "section_" + i;
+
+			StringBuffer buffer = new StringBuffer();
+			buffer.append("section_");
+			if(selectionSize == 1) {
+				buffer.append("single");
+			} else if(selectionSize < 0) {
+				buffer.append("multi");
+			} else {
+				buffer.append(selectionSize);
+			}
+			buffer.append("_");
+
+			if(metaclass != null && metaclass.getSimpleName() != null) {
+				buffer.append(metaclass.getSimpleName());
+			} else {
+				buffer.append("NoName");
+			}
+			if(i > 0) {
+				buffer.append(i);
+			}
+			String name = buffer.toString();
+
 			Iterator<SectionDescriptorState> it = contentHolder.getSectionSetDescriptorState().getSectionDescriptorStates().iterator();
 			while(it.hasNext()) {
 				SectionDescriptorState sectionDescriptorState = it.next();
@@ -169,4 +221,57 @@ public class ContentHolderMenuCreator extends AbstractMenuCreator {
 		}
 	}
 
+	/**
+	 * returns the current {@link SectionSetDescriptorState}
+	 * 
+	 * @param parent
+	 *        the tree element
+	 * @return the current section set descriptor state edited or <code>null</code>.
+	 */
+	protected SectionSetDescriptorState getCurrentSectionSetDescriptorState(Object parent) {
+		if(parent instanceof Tree) {
+			Tree tree = (Tree)parent;
+			TreeItem[] items = tree.getSelection();
+			if(items.length < 1) {
+				Activator.log.warn("impossible to find an element in the selection");
+				return null;
+			}
+			TreeItem root = retrieveRoot(items[0]);
+			if(root != null) {
+				Object rootElement = root.getData();
+				if(rootElement instanceof ContentHolder) {
+					return ((ContentHolder)rootElement).getSectionSetDescriptorState();
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Retrieves the root item in the tree
+	 * 
+	 * @param item
+	 *        the current item
+	 * @return the root item in the tree
+	 */
+	protected TreeItem retrieveRoot(TreeItem item) {
+		if(item.getParentItem() == null) {
+			return item;
+		}
+		return retrieveRoot(item.getParentItem());
+	}
+
+	/**
+	 * Returns the list of constraint descriptor states for the current selected section set descriptor state
+	 * 
+	 * @return the list of constraint descriptor states for the current selected section set descriptor state or an empty list
+	 */
+	private List<ConstraintDescriptorState> getConstraintDescriptorStates(Object parent) {
+		SectionSetDescriptorState state = getCurrentSectionSetDescriptorState(parent);
+
+		if(state != null) {
+			return state.getConstraintDescriptorStates();
+		}
+		return Collections.emptyList();
+	}
 }

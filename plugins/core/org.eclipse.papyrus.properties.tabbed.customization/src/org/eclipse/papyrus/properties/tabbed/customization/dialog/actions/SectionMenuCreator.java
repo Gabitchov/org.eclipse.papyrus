@@ -126,7 +126,6 @@ public class SectionMenuCreator extends AbstractMenuCreator {
 
 		Class<?> selectionClass = null;
 		final List<ConstraintDescriptorState> constraintDescriptorStates = getConstraintDescriptorStates(parent);
-
 		if(constraintDescriptorStates != null) {
 			for(ConstraintDescriptorState constraintDescriptorState : constraintDescriptorStates) {
 				IConstraintDescriptor descriptor = constraintDescriptorState.getDescriptor();
@@ -135,10 +134,14 @@ public class SectionMenuCreator extends AbstractMenuCreator {
 				}
 			}
 		}
-
-		if(getCurrentSectionSetDescriptorState(parent) == null) {
+		final Class<?> finalSelectionClass = selectionClass;
+		SectionSetDescriptorState currentSectionSetDescriptorState = getCurrentSectionSetDescriptorState(parent);
+		if(currentSectionSetDescriptorState == null) {
 			return menu;
 		}
+
+		final int selectionSize = currentSectionSetDescriptorState.getSelectionSize();
+
 		IAction addFragmentAction = new Action("Add New Fragment", Activator.imageDescriptorFromPlugin(Activator.ID, "/icons/NewFragment.gif")) {
 
 			/**
@@ -147,7 +150,7 @@ public class SectionMenuCreator extends AbstractMenuCreator {
 			@Override
 			public void run() {
 				// adds a fragment to the current element
-				FragmentDescriptor fragmentDescriptor = new FragmentDescriptor(getNewFragmentId(), new ArrayList<IConstraintDescriptor>(), new ArrayList<ContainerDescriptor>(), getCurrentSectionSetDescriptorState(parent).getSelectionSize());
+				FragmentDescriptor fragmentDescriptor = new FragmentDescriptor(getNewFragmentId(finalSelectionClass, selectionSize), new ArrayList<IConstraintDescriptor>(), new ArrayList<ContainerDescriptor>(), getCurrentSectionSetDescriptorState(parent).getSelectionSize());
 				FragmentDescriptorState fragmentDescriptorState = new FragmentDescriptorState(fragmentDescriptor, false);
 
 				// retrieve constraints from current section set
@@ -274,12 +277,38 @@ public class SectionMenuCreator extends AbstractMenuCreator {
 	/**
 	 * Returns the new Id for the section
 	 * 
+	 * @param selectionClass
+	 *        the selected class
+	 * @param selectionSize
+	 *        size of the selection
+	 * 
 	 * @return the new Id for the section
 	 */
-	protected String getNewFragmentId() {
+	protected String getNewFragmentId(Class<?> selectionClass, int selectionSize) {
 		for(int i = 0; i < 100; i++) { // no need to go to more than 100, because 100 is already a very big number of fragments
 			boolean found = false; // indicates if the id has been found in already fragments or not
-			String name = "fragment_" + i;
+
+			StringBuffer buffer = new StringBuffer();
+			buffer.append("fragment_");
+			if(selectionSize == 1) {
+				buffer.append("single");
+			} else if(selectionSize < 0) {
+				buffer.append("multi");
+			} else {
+				buffer.append(selectionSize);
+			}
+			buffer.append("_");
+
+			if(selectionClass != null && selectionClass.getSimpleName() != null) {
+				buffer.append(selectionClass.getSimpleName());
+			} else {
+				buffer.append("NoName");
+			}
+			if(i > 0) {
+				buffer.append(i);
+			}
+			String name = buffer.toString();
+
 			Iterator<IFragmentDescriptorState> it = sectionDescriptorState.getFragmentDescriptorStates().iterator();
 			while(it.hasNext()) {
 				IFragmentDescriptorState fragmentDescriptorState = it.next();
@@ -295,6 +324,4 @@ public class SectionMenuCreator extends AbstractMenuCreator {
 		}
 		return "";
 	}
-
-
 }
