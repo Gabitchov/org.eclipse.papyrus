@@ -337,6 +337,8 @@ public class SelectDiagramKindPage extends WizardPage {
 		rememberCurrentSelection = new Button(plate, SWT.CHECK);
 		rememberCurrentSelection.setText("Remember current selection");
 		rememberCurrentSelection.setToolTipText("The current selection will be used when you open the wizard next time");
+		
+		rememberCurrentSelection.setSelection(SettingsUtils.rememberCurrentSelection(getDialogSettings()));
 	}
 
 	/**
@@ -379,6 +381,7 @@ public class SelectDiagramKindPage extends WizardPage {
 			saveDefaultDiagramKinds(settings);
 			saveDefaultTemplates(settings);
 		}
+		saveRememberCurrentSelection(settings);
 	}
 	
 	private boolean rememberCurrentSelection() {
@@ -399,6 +402,10 @@ public class SelectDiagramKindPage extends WizardPage {
 		SettingsUtils.saveDefaultTemplates(settings, getDiagramCategory(), Collections.singletonList(path));
 	}
 	
+	private void saveRememberCurrentSelection(IDialogSettings settings) {
+		SettingsUtils.saveRememberCurrentSelection(settings, rememberCurrentSelection());
+	}
+
 	private void selectDefaultDiagramKinds(String category) {
 		List<String> kinds = SettingsUtils.getDefaultDiagramKinds(getDialogSettings(), category);
 		List<CreationCommandDescriptor> result = new ArrayList<CreationCommandDescriptor>();
