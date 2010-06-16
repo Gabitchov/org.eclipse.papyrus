@@ -13,10 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.edit.part;
 
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartTN;
+import org.eclipse.papyrus.diagram.common.Activator;
+import org.eclipse.papyrus.diagram.common.figure.node.PackageFigure;
 import org.eclipse.papyrus.diagram.common.figure.node.PackageNodePlateFigure;
 
 /**
@@ -24,6 +27,8 @@ import org.eclipse.papyrus.diagram.common.figure.node.PackageNodePlateFigure;
  */
 public class CModelEditPart extends ModelEditPartTN {
 
+	protected static final String ICONS_PATH = "icons/Triangle.gif"; //$NON-NLS-1$
+	
 	public CModelEditPart(View view) {
 		super(view);
 	}
@@ -35,5 +40,13 @@ public class CModelEditPart extends ModelEditPartTN {
 
 		DefaultSizeNodeFigure result = new PackageNodePlateFigure(200, 100);
 		return result;
+	}
+	/**
+	 * {@inheritDoc}
+	 */
+	protected IFigure createNodeShape() {
+	 primaryShape = new PackageFigure();
+	 ((PackageFigure)primaryShape).setTagIcon(Activator.getPluginIconImage(Activator.ID,ICONS_PATH));
+	 return primaryShape;
 	}
 }

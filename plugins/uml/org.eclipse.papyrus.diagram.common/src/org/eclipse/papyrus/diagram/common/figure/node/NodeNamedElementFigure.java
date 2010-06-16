@@ -54,7 +54,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 */
 	protected WrappingLabel nameLabel;
 
-	private Image nameLabelIcon = null;
+	protected Image nameLabelIcon = null;
 
 	/**
 	 * The qualified label.

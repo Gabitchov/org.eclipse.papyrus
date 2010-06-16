@@ -15,13 +15,18 @@ import java.util.List;
 import org.eclipse.draw2d.AbstractLayout;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ShapeCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
+import org.eclipse.gmf.runtime.draw2d.ui.render.figures.ScalableImageFigure;
 import org.eclipse.gmf.runtime.notation.GradientStyle;
+import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Image;
 
 /**
  * Figure for a package element
@@ -44,7 +49,8 @@ public class PackageFigure extends NodeNamedElementFigure {
 	 * this is the layout manager in charge to place element in the enumeration
 	 * 
 	 */
-	private class ClassifierLayoutManager extends AbstractLayout {
+	private class PackageLayoutManager extends AbstractLayout {
+
 
 		/**
 		 * 
@@ -75,15 +81,22 @@ public class PackageFigure extends NodeNamedElementFigure {
 			for(int i = 0; i < container.getChildren().size(); i++) {
 				Rectangle bound = new Rectangle(((IFigure)childrenList.get(i)).getBounds());
 				bound.setSize(((IFigure)childrenList.get(i)).getPreferredSize());
-				if(i > 0) {
-					bound.y = ((IFigure)childrenList.get(i - 1)).getBounds().getBottomLeft().y + 1;
-					bound.x = getBounds().x + GAP_X;
-				} else {
-					bound.x = getBounds().x + GAP_X;
-					bound.y = getBounds().y + GAP_Y;
-
+				if(((IFigure)childrenList.get(i)).equals(iconPackage) ){
+					Rectangle boundName=getNameLabel().getBounds().getCopy();
+					boundName.x+=GAP_X/2;
+					iconPackage.setBounds(new Rectangle(boundName.getTopRight(), new Dimension(16, 16)));
 				}
-				((IFigure)childrenList.get(i)).setBounds(bound);
+				else{
+					if(i > 0) {
+						bound.y = ((IFigure)childrenList.get(i - 1)).getBounds().getBottomLeft().y + 1;
+						bound.x = getBounds().x + GAP_X;
+					} else {
+						bound.x = getBounds().x + GAP_X;
+						bound.y = getBounds().y + GAP_Y;
+
+					}
+					((IFigure)childrenList.get(i)).setBounds(bound);
+				}
 			}
 			// container
 			Rectangle lastRectangle = getPackageableElementFigure().getBounds();
@@ -97,13 +110,15 @@ public class PackageFigure extends NodeNamedElementFigure {
 		}
 
 	}
-
+	/** this is a label used to display a specific icon for this element**/
+	protected Label iconPackage= null;
 	/**
 	 * Creates a new PackageFigure.
 	 */
 	public PackageFigure() {
 		super();
-		setLayoutManager(new ClassifierLayoutManager());
+
+		setLayoutManager(new PackageLayoutManager());
 		setOpaque(false);
 
 		shapeCompartment = new RectangleFigure();
@@ -111,6 +126,20 @@ public class PackageFigure extends NodeNamedElementFigure {
 
 		setBorder(null);
 		getPackageableElementFigure().setFill(false);
+		
+
+
+	}
+
+	/**
+	 * this method is used to display a symabol image for an element package as triangle for the model
+	 * @param image
+	 */
+	public void setTagIcon(Image image){
+		iconPackage= new Label();
+		iconPackage.setIcon(image);
+		add(iconPackage);
+
 	}
 
 	/**
@@ -150,6 +179,9 @@ public class PackageFigure extends NodeNamedElementFigure {
 		headerBound.x = this.getBounds().x;
 		headerBound.y = this.getBounds().y;
 		headerBound.height = getPackageableElementFigure().getBounds().y - headerBound.y;
+		if(iconPackage!=null){
+			headerBound.width+=iconPackage.getBounds().width;
+		}
 		return headerBound;
 	}
 
@@ -168,6 +200,7 @@ public class PackageFigure extends NodeNamedElementFigure {
 		graphics.drawRectangle(getHeader());
 		super.paintBorder(graphics);
 	}
+
 
 	/**
 	 * 
