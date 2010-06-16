@@ -22,6 +22,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
@@ -496,6 +497,15 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 		 * {@inheritDoc}
 		 */
 		public File getNewFile() {
+			// retrieve the folder where to create the file
+			IPath path = new Path(folderText.getText());
+			IContainer iContainer = (IContainer)ResourcesPlugin.getWorkspace().getRoot().findMember(path);
+			if(iContainer.exists()) {
+				IPath location = iContainer.getLocation();
+				File file = location.append(Character.toString(IPath.SEPARATOR)).append(nameText.getText()).addFileExtension("xml").toFile();
+				return file;
+			}
+			Activator.log.warn("should never enter here");
 			File file = ResourcesPlugin.getWorkspace().getRoot().getRawLocation().append(folderText.getText()).append(Character.toString(IPath.SEPARATOR)).append(nameText.getText()).addFileExtension("xml").toFile();
 			return file;
 		}
@@ -738,6 +748,15 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 		 * {@inheritDoc}
 		 */
 		public File getNewFile() {
+			// retrieve the folder where to create the file
+			IPath path = new Path(folderText.getText());
+			IContainer iContainer = (IContainer)ResourcesPlugin.getWorkspace().getRoot().findMember(path);
+			if(iContainer.exists()) {
+				IPath location = iContainer.getLocation();
+				File file = location.append(Character.toString(IPath.SEPARATOR)).append(nameText.getText()).addFileExtension("xml").toFile();
+				return file;
+			}
+			Activator.log.warn("should never enter here");
 			File file = ResourcesPlugin.getWorkspace().getRoot().getRawLocation().append(folderText.getText()).append(Character.toString(IPath.SEPARATOR)).append(nameText.getText()).addFileExtension("xml").toFile();
 			return file;
 		}
@@ -862,6 +881,15 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 		 */
 		public File getNewFile() {
 			// returns the file itself
+			IFile iFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(modifyExistingConfigurationText.getText()));
+			if(iFile.exists()) {
+				IPath location = iFile.getLocation();
+				if(location != null) {
+					return location.toFile();
+				}
+			}
+			// should never be used
+			Activator.log.warn("should not get the file using this method");
 			return ResourcesPlugin.getWorkspace().getRoot().getRawLocation().append(modifyExistingConfigurationText.getText()).toFile();
 		}
 	}
