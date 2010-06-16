@@ -27,6 +27,7 @@ import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.PaletteSeparator;
 import org.eclipse.gef.palette.PaletteStack;
 import org.eclipse.gmf.runtime.diagram.ui.internal.services.palette.PaletteToolEntry;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.diagram.common.Activator;
 import org.w3c.dom.Node;
 
@@ -148,15 +149,11 @@ public class XMLDefinitionPaletteFactory extends AbstractXMLDefinitionPaletteFac
 	@Override
 	public void traverseAspectToolEntryNode(Node node) {
 		final String id = node.getAttributes().getNamedItem(ID).getNodeValue();
-		final String name = node.getAttributes().getNamedItem(NAME).getNodeValue();
-		final String desc = node.getAttributes().getNamedItem(DESCRIPTION).getNodeValue();
-		Node iconPathNode = node.getAttributes().getNamedItem(ICON_PATH);
-		String iconPath = null;
-		if(iconPathNode != null) {
-			iconPath = iconPathNode.getNodeValue();
-		}
-
 		final String refToolID = node.getAttributes().getNamedItem(REF_TOOL_ID).getNodeValue();
+		
+		Node nameNode = node.getAttributes().getNamedItem(NAME);
+		Node descNode = node.getAttributes().getNamedItem(DESCRIPTION);
+		Node iconPathNode = node.getAttributes().getNamedItem(ICON_PATH);
 
 		final Map<Object, Object> properties = new HashMap<Object, Object>();
 		if(node.getChildNodes().getLength() > 0) {
@@ -168,12 +165,28 @@ public class XMLDefinitionPaletteFactory extends AbstractXMLDefinitionPaletteFac
 			Activator.log.error("could not find entry " + refToolID, null);
 			return;
 		}
-		CombinedTemplateCreationEntry realEntry;
-		if(iconPath != null && !iconPath.equals("")) {
-			realEntry = new AspectCreationEntry(name, desc, id, iconPath, entry, properties);
+		
+		ImageDescriptor iconDesc = null;
+		String name = null;
+		String desc = null;
+
+		if(iconPathNode != null) {
+			iconDesc = Activator.getImageDescriptor(iconPathNode.getNodeValue());
 		} else {
-			realEntry = new AspectCreationEntry(name, desc, id, entry.getSmallIcon(), entry, properties);
+			iconDesc = entry.getSmallIcon();
 		}
+		if (nameNode != null) {
+			name = nameNode.getNodeValue();
+		} else {
+			name = entry.getLabel();
+		}
+		if (descNode != null) {
+			desc = descNode.getNodeValue();
+		} else {
+			desc = entry.getDescription();
+		}
+
+		CombinedTemplateCreationEntry realEntry = new AspectCreationEntry(name, desc, id, iconDesc, entry, properties);
 
 		predefinedEntries.put(id, realEntry);
 		appendPaletteEntry(root, predefinedEntries, computePath(node), realEntry);
