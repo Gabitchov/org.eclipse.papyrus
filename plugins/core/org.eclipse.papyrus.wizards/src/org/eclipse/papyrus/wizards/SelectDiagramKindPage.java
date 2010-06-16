@@ -373,13 +373,15 @@ public class SelectDiagramKindPage extends WizardPage {
 	/**
 	 * Save settings.
 	 * 
-	 * @param settings
-	 *        the settings
 	 */
-	public void saveSettings(IDialogSettings settings) {
+	public void saveSettings() {
+		IDialogSettings settings = getDialogSettings();
 		if (rememberCurrentSelection()) {
 			saveDefaultDiagramKinds(settings);
 			saveDefaultTemplates(settings);
+		} else {
+			resetDefaultDiagramKinds(settings);
+			resetDefaultTemplates(settings);
 		}
 		saveRememberCurrentSelection(settings);
 	}
@@ -402,6 +404,14 @@ public class SelectDiagramKindPage extends WizardPage {
 		SettingsUtils.saveDefaultTemplates(settings, getDiagramCategory(), Collections.singletonList(path));
 	}
 	
+	private void resetDefaultDiagramKinds(IDialogSettings settings) {
+		SettingsUtils.saveDefaultDiagramKinds(settings, getDiagramCategory(), Collections.<String>emptyList());
+	}
+
+	private void resetDefaultTemplates(IDialogSettings settings) {
+		SettingsUtils.saveDefaultTemplates(settings, getDiagramCategory(), Collections.<String>emptyList());
+	}
+
 	private void saveRememberCurrentSelection(IDialogSettings settings) {
 		SettingsUtils.saveRememberCurrentSelection(settings, rememberCurrentSelection());
 	}

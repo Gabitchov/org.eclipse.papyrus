@@ -190,7 +190,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		IDialogSettings settings = getDialogSettings();
 		if (settings != null) {
 			selectDiagramCategoryPage.saveSettings(settings);
-			selectDiagramKindPage.saveSettings(settings);
+			selectDiagramKindPage.saveSettings();
 		}
 
 		return true;

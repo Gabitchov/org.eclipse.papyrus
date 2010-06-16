@@ -159,7 +159,7 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 		IDialogSettings settings = getDialogSettings();
 		if (settings != null) {
 			selectDiagramCategoryPage.saveSettings(settings);
-			myDiagramKindPage.saveSettings(settings);
+			myDiagramKindPage.saveSettings();
 		}
 
 		return true;
