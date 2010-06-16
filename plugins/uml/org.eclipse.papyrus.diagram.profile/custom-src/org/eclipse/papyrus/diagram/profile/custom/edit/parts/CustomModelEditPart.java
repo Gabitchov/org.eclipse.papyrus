@@ -12,9 +12,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.custom.edit.parts;
 
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.Activator;
+import org.eclipse.papyrus.diagram.common.figure.node.PackageFigure;
 import org.eclipse.papyrus.diagram.common.figure.node.PackageNodePlateFigure;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ModelEditPartTN;
 
@@ -22,6 +25,10 @@ import org.eclipse.papyrus.diagram.profile.edit.parts.ModelEditPartTN;
  * this a specific editpart used to overload the method createNodePlate
  */
 public class CustomModelEditPart extends ModelEditPartTN {
+	
+	protected static final String ICONS_PATH = "icons/Triangle.gif"; //$NON-NLS-1$
+
+
 
 	public CustomModelEditPart(View view) {
 		super(view);
@@ -35,5 +42,13 @@ public class CustomModelEditPart extends ModelEditPartTN {
 
 		DefaultSizeNodeFigure result = new PackageNodePlateFigure(200, 100);
 		return result;
+	}
+	/**
+	 * {@inheritDoc}
+	 */
+	protected IFigure createNodeShape() {
+		primaryShape = new PackageFigure();
+		((PackageFigure)primaryShape).setTagIcon(Activator.getPluginIconImage(Activator.ID,ICONS_PATH));
+		return primaryShape;
 	}
 }
