@@ -108,13 +108,18 @@ public class Configuration {
 			}
 		} else {//new version
 
-			Node stereotypesToApplyNode = configurationNode.getFirstChild();//stereotypesToApply Node
-			if(!IPapyrusPaletteConstant.STEREOTYPES_TO_APPLY.equals(stereotypesToApplyNode.getLocalName())) {
-				//the first node must be STEREOTYPE_TO_APPLY
-				return;
+			NodeList configurationChildren = configurationNode.getChildNodes();//stereotypesToApply Node
+			Node stereotypesToApplyNode = null;
+			
+			for (int i = 0 ; i < configurationChildren.getLength() ; i++) {
+				Node configurationChild = configurationChildren.item(i);
+				if(IPapyrusPaletteConstant.STEREOTYPES_TO_APPLY.equals(configurationChild.getLocalName())) {
+					stereotypesToApplyNode = configurationChild;
+				}
 			}
-			NodeList childNodes = stereotypesToApplyNode.getChildNodes();
-			if(stereotypesToApplyNode.hasChildNodes()) {
+
+			if(stereotypesToApplyNode != null && stereotypesToApplyNode.hasChildNodes()) {
+				NodeList childNodes = stereotypesToApplyNode.getChildNodes();
 				for(int iter = 0; iter < childNodes.getLength(); iter++) {
 					Node steNode = childNodes.item(iter);
 					if(STEREOTYPE.equals(steNode.getLocalName())) {//this node is really a stereotype?
@@ -133,8 +138,8 @@ public class Configuration {
 							NodeList properties = steNode.getChildNodes();
 							for(int i = 0; i < properties.getLength(); i++) {//we iterate on the properties
 								Node propertyNode = properties.item(i);
-								String propertyName = propertyNode.getAttributes().getNamedItem(PROPERTY_NAME).getNodeValue();
 								if(PROPERTY.equals(propertyNode.getLocalName())) {//ist' a property node?
+									String propertyName = propertyNode.getAttributes().getNamedItem(PROPERTY_NAME).getNodeValue();
 									PropertyRepresentation proper = null;
 									if(mySte.getPropertyRepresentation(stereotypeName, propertyName) != null) {
 										proper = mySte.getPropertyRepresentation(stereotypeName, propertyName);
@@ -155,6 +160,7 @@ public class Configuration {
 									}
 
 								} else if(RUNTIME_PROPERTY.equals(propertyNode.getLocalName())) {//it's a runtime property
+									String propertyName = propertyNode.getAttributes().getNamedItem(PROPERTY_NAME).getNodeValue();
 									propertyName = propertyNode.getAttributes().getNamedItem(PROPERTY_NAME).getNodeValue();
 									PropertyRepresentation prop = null;
 									if(mySte.getPropertyRepresentation(stereotypeName, propertyName) != null) {
