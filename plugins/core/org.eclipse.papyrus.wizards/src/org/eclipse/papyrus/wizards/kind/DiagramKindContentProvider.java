@@ -30,12 +30,23 @@ public class DiagramKindContentProvider implements IStructuredContentProvider {
 	/**
 	 * The creation command registry
 	 */
-	ICreationCommandRegistry creationCommandRegistry;
+	private ICreationCommandRegistry creationCommandRegistry;
 
 
+	/**
+	 * @see org.eclipse.jface.viewers.IContentProvider#dispose()
+	 *
+	 */
 	public void dispose() {
 	}
 
+	/**
+	 * @see org.eclipse.jface.viewers.IContentProvider#inputChanged(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
+	 *
+	 * @param viewer
+	 * @param oldInput
+	 * @param newInput
+	 */
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 	}
 
@@ -49,7 +60,7 @@ public class DiagramKindContentProvider implements IStructuredContentProvider {
 			String diagramCategory = (String)inputElement;
 			List<CreationCommandDescriptor> result = new ArrayList<CreationCommandDescriptor>();
 			for(CreationCommandDescriptor desc : getCreationCommandRegistry().getCommandDescriptors()) {
-				if(diagramCategory == null || diagramCategory.equals(desc.getLanguage())) {
+				if(diagramCategory != null && diagramCategory.equals(desc.getLanguage())) {
 					result.add(desc);
 				}
 			}
@@ -57,7 +68,7 @@ public class DiagramKindContentProvider implements IStructuredContentProvider {
 		}
 		return null;
 	}
-
+	
 	/**
 	 * Gets the creation command registry.
 	 * 

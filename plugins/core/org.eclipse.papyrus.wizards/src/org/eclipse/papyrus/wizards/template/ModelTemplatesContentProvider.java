@@ -41,6 +41,8 @@ public class ModelTemplatesContentProvider implements IStructuredContentProvider
 
 	/** The Constant ATTRIBUTE_LANGUAGE. */
 	private static final String ATTRIBUTE_LANGUAGE = "language";
+	
+	private ModelTemplateDescription[] myTemplateDescriptions;
 
 	/**
 	 * @see org.eclipse.jface.viewers.IContentProvider#dispose()
@@ -57,16 +59,19 @@ public class ModelTemplatesContentProvider implements IStructuredContentProvider
 	 * @return the templates description
 	 */
 	private ModelTemplateDescription[] getTemplatesDescription() {
-		List<ModelTemplateDescription> templates = new ArrayList<ModelTemplateDescription>();
+		if (myTemplateDescriptions == null) {
+			List<ModelTemplateDescription> templates = new ArrayList<ModelTemplateDescription>();
 
-		IExtensionRegistry registry = Platform.getExtensionRegistry();
-		IExtension[] extensions = registry.getExtensionPoint(EXTENSION_POINT_ID).getExtensions();
+			IExtensionRegistry registry = Platform.getExtensionRegistry();
+			IExtension[] extensions = registry.getExtensionPoint(EXTENSION_POINT_ID).getExtensions();
 
-		for(IExtension extension : extensions) {
-			templates.addAll(processExtension(extension));
+			for(IExtension extension : extensions) {
+				templates.addAll(processExtension(extension));
+			}
+
+			myTemplateDescriptions = templates.toArray(new ModelTemplateDescription[templates.size()]);
 		}
-
-		return templates.toArray(new ModelTemplateDescription[templates.size()]);
+		return myTemplateDescriptions;
 	}
 
 	/**

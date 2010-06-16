@@ -15,6 +15,7 @@ import static org.eclipse.papyrus.wizards.Activator.log;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -30,6 +31,7 @@ import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.wizards.kind.DiagramKindContentProvider;
 import org.eclipse.papyrus.wizards.kind.DiagramKindLabelProvider;
 import org.eclipse.papyrus.wizards.template.InitFromTemplateCommand;
+import org.eclipse.papyrus.wizards.template.ModelTemplateDescription;
 import org.eclipse.papyrus.wizards.template.SelectModelTemplateComposite;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -38,6 +40,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Table;
@@ -63,6 +66,8 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/** The select template composite. */
 	private SelectModelTemplateComposite selectTemplateComposite;
+
+	private Button rememberCurrentSelection;
 
 	/**
 	 * Instantiates a new select diagram kind page.
@@ -95,6 +100,8 @@ public class SelectDiagramKindPage extends WizardPage {
 		createDiagramKindForm(plate);
 
 		createModelTemplateComposite(plate);
+		
+		createRememberCurrentSelectionForm(plate);
 
 	}
 
@@ -106,11 +113,13 @@ public class SelectDiagramKindPage extends WizardPage {
 	@Override
 	public void setVisible(boolean visible) {
 		super.setVisible(visible);
-		diagramKindTableViewer.setInput(getDiagramCategory());
-		selectTemplateComposite.setInput(getDiagramCategory());
+		String category = getDiagramCategory();
+		diagramKindTableViewer.setInput(category);
+		selectTemplateComposite.setInput(category);
+		selectDefaultDiagramKinds(category);
+		selectDefaultDiagramTemplates(category);
 		validatePage();
 	}
-
 
 	/**
 	 * Creates the diagram.
@@ -127,10 +136,13 @@ public class SelectDiagramKindPage extends WizardPage {
 		saveDiagram(diResourceSet);
 		return true;
 	}
-	
-	public void saveSettings(IDialogSettings settings) {
-	}
 
+	/**
+	 * Save diagram.
+	 * 
+	 * @param diResourceSet
+	 *        the di resource set
+	 */
 	private void saveDiagram(final DiResourceSet diResourceSet) {
 		try {
 			diResourceSet.save(new NullProgressMonitor());
@@ -160,10 +172,10 @@ public class SelectDiagramKindPage extends WizardPage {
 			diResourceSet.getTransactionalEditingDomain().getCommandStack().execute(new InitFromTemplateCommand(diResourceSet, selectTemplateComposite.getTemplatePluginId(), selectTemplateComposite.getTemplatePath()));
 		}
 	}
-	
+
 	/**
 	 * Use template.
-	 *
+	 * 
 	 * @return true, if successful
 	 */
 	protected boolean useTemplate() {
@@ -313,6 +325,20 @@ public class SelectDiagramKindPage extends WizardPage {
 		});
 	}
 
+	private void createRememberCurrentSelectionForm(Composite composite) {
+		Composite plate = new Composite(composite, SWT.NONE);
+		GridLayout layout = new GridLayout(1, false);
+		layout.marginHeight = 5;
+		layout.marginWidth = 5;
+		plate.setLayout(layout);
+		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
+		plate.setLayoutData(data);
+
+		rememberCurrentSelection = new Button(plate, SWT.CHECK);
+		rememberCurrentSelection.setText("Remember current selection");
+		rememberCurrentSelection.setToolTipText("The current selection will be used when you open the wizard next time");
+	}
+
 	/**
 	 * Validate page.
 	 * 
@@ -323,10 +349,10 @@ public class SelectDiagramKindPage extends WizardPage {
 			updateStatus("The diagram name should not be empty.");
 			return false;
 		}
-//		if(getCreationCommands().isEmpty()) {
-//			updateStatus("At least one diagram kind should be selected.");
-//			return false;
-//		}
+		//		if(getCreationCommands().isEmpty()) {
+		//			updateStatus("At least one diagram kind should be selected.");
+		//			return false;
+		//		}
 		updateStatus(null);
 		return true;
 	}
@@ -340,6 +366,62 @@ public class SelectDiagramKindPage extends WizardPage {
 	private void updateStatus(String message) {
 		setErrorMessage(message);
 		setPageComplete(message == null);
+	}
+
+	/**
+	 * Save settings.
+	 * 
+	 * @param settings
+	 *        the settings
+	 */
+	public void saveSettings(IDialogSettings settings) {
+		if (rememberCurrentSelection()) {
+			saveDefaultDiagramKinds(settings);
+			saveDefaultTemplates(settings);
+		}
+	}
+	
+	private boolean rememberCurrentSelection() {
+		return rememberCurrentSelection.getSelection();
+	}
+
+	private void saveDefaultDiagramKinds(IDialogSettings settings) {
+		List<String> kinds = new ArrayList<String>();
+		for(Object selected : diagramKindTableViewer.getCheckedElements()) {
+			CreationCommandDescriptor element = (CreationCommandDescriptor)selected;
+			kinds.add(element.getCommandId());
+		}
+		SettingsUtils.saveDefaultDiagramKinds(settings, getDiagramCategory(), kinds);
+	}
+
+	private void saveDefaultTemplates(IDialogSettings settings) {
+		String path = selectTemplateComposite.getTemplatePath();
+		SettingsUtils.saveDefaultTemplates(settings, getDiagramCategory(), Collections.singletonList(path));
+	}
+	
+	private void selectDefaultDiagramKinds(String category) {
+		List<String> kinds = SettingsUtils.getDefaultDiagramKinds(getDialogSettings(), category);
+		List<CreationCommandDescriptor> result = new ArrayList<CreationCommandDescriptor>();
+		for(Object next : ((DiagramKindContentProvider)diagramKindTableViewer.getContentProvider()).getElements(category)) {
+			CreationCommandDescriptor desc = (CreationCommandDescriptor)next;
+			if(kinds.contains(desc.getCommandId())) {
+				result.add(desc);
+			}
+		}
+
+		diagramKindTableViewer.setCheckedElements(result.toArray(new CreationCommandDescriptor[result.size()]));
+	}
+
+	private void selectDefaultDiagramTemplates(String category) {
+		List<String> templates = SettingsUtils.getDefaultTemplates(getDialogSettings(), category);
+		for (Object next: selectTemplateComposite.getContentProvider().getElements(category)) {
+			ModelTemplateDescription desc = (ModelTemplateDescription)next;
+			if (templates.contains(desc.getPath())) {
+				selectTemplateComposite.selectElement(desc);
+				return;
+			}
+		}		
+
 	}
 
 }

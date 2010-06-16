@@ -13,17 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.wizards.template;
 
-import static org.eclipse.papyrus.wizards.Activator.log;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.jface.viewers.CheckboxTableViewer;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.papyrus.core.extension.NotFoundException;
-import org.eclipse.papyrus.core.extension.commands.CreationCommandDescriptor;
-import org.eclipse.papyrus.core.extension.commands.ICreationCommand;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -98,6 +88,24 @@ public class SelectModelTemplateComposite extends Composite {
 			return ((ModelTemplateDescription)selected[0]).getPluginId();
 		}
 		return null;
+	}
+	
+	/**
+	 * Select template.
+	 *
+	 * @param toSelect the to select
+	 */
+	public void selectElement(Object toSelect) {
+		templateTableViewer.setCheckedElements(new Object[]{toSelect});
+	}
+	
+	/**
+	 * Gets the content provider.
+	 *
+	 * @return the content provider
+	 */
+	public ModelTemplatesContentProvider getContentProvider() {
+		return (ModelTemplatesContentProvider)templateTableViewer.getContentProvider();
 	}
 
 	/**
