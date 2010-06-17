@@ -21,6 +21,7 @@
             <element ref="editorDiagram" minOccurs="0" maxOccurs="unbounded"/>
             <element ref="creationCommand" minOccurs="0" maxOccurs="unbounded"/>
             <element ref="actionBarContributor" minOccurs="0" maxOccurs="unbounded"/>
+			<element ref="diagramCategory" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
