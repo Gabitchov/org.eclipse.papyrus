@@ -173,19 +173,33 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 */
 	private boolean validatePage() {
 		//316943 -  [Wizard] Wrong suffix for file name when creating a profile model
-		NewModelFilePage newModelFilePage = ((NewModelFilePage)getPreviousPage());
-		String newExtension = getDiagramFileExtension();
-		String currentExtension = newModelFilePage.getFileExtension();
-		if(!currentExtension.equals(newExtension)) {
-			newModelFilePage.setFileName(NewModelFilePage.getUniqueFileName(newModelFilePage.getContainerFullPath(), newModelFilePage.getFileName(), newExtension));
-			newModelFilePage.setFileExtension(newExtension);
+		NewModelFilePage newModelFilePage = getNewModelFilePage();
+		if (newModelFilePage != null) {
+			String newExtension = getDiagramFileExtension();
+			String currentExtension = newModelFilePage.getFileExtension();
+			if(!currentExtension.equals(newExtension)) {
+				newModelFilePage.setFileName(NewModelFilePage.getUniqueFileName(newModelFilePage.getContainerFullPath(), newModelFilePage.getFileName(), newExtension));
+				newModelFilePage.setFileExtension(newExtension);
 
-			String errorMessage = newModelFilePage.getErrorMessage();
-			if(errorMessage != null) {
-				setErrorMessage(errorMessage);
+				String errorMessage = newModelFilePage.getErrorMessage();
+				if(errorMessage != null) {
+					setErrorMessage(errorMessage);
+				}
 			}
 		}
 		return mySelectedDiagramCategory != null;
+	}
+	
+	private NewModelFilePage getNewModelFilePage() {
+		IWizardPage prev = getPreviousPage();
+		if (prev instanceof NewModelFilePage) {
+			return (NewModelFilePage)prev;
+		}
+		prev = prev.getPreviousPage();
+		if (prev instanceof NewModelFilePage) {
+			return (NewModelFilePage)prev;
+		}
+		return null;
 	}
 	
 	/**
