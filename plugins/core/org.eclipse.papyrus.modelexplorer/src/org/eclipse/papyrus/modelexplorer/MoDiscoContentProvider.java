@@ -16,7 +16,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmt.modisco.infra.browser.uicore.CustomizableModelContentProvider;
 import org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem;
@@ -62,9 +61,9 @@ public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 			}
 		}
 		if (parentElement instanceof ModelElementItem
-				&& ((ModelElementItem) (parentElement)).getEObject() instanceof EObject) {
+			&& ((ModelElementItem) (parentElement)).getEObject() instanceof EObject) {
 			List<Diagram> diagramList = findAllExistingDiagrams((EObject) ((ModelElementItem) parentElement)
-					.getEObject());
+				.getEObject());
 			Iterator<Diagram> iterator = diagramList.iterator();
 			while (iterator.hasNext()) {
 				result.add(iterator.next());
@@ -102,21 +101,19 @@ public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 		// we are standing for the multi editor
 		try {
 			IWorkbenchWindow workbenchWindow = PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow();
+			.getActiveWorkbenchWindow();
 			if (workbenchWindow == null) {
 				return null;
 			}
 			IWorkbenchPage page = workbenchWindow.getActivePage();
 			if (page != null && page.getActiveEditor() instanceof IMultiDiagramEditor) {
 				EList<EObject> contents = EditorUtils.getDiResourceSet()
-						.getModelResource().getContents();
+				.getModelResource().getContents();
 				ArrayList<EObject> result = new ArrayList<EObject>();
 				Iterator<EObject> iterator = contents.iterator();
 				while (iterator.hasNext()) {
 					EObject eObject = (EObject) iterator.next();
-					if (!(eObject instanceof DynamicEObjectImpl)) {
-						result.add(eObject);
-					}
+					result.add(eObject);
 				}
 				return result.toArray(new EObject[result.size()]);
 			}

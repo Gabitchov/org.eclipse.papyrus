@@ -23,7 +23,7 @@
             viewerId="org.eclipse.papyrus.modelexplorer.modelexplorer">
          <includes>
             <contentExtension
-                  pattern="org.eclipse.papyrus.modelexplorer.navigatorContent">
+                  pattern="org.eclipse.papyrus.modelexplorer.*">
             </contentExtension></includes>
       </viewerContentBinding>
       <dragAssistant
@@ -34,12 +34,12 @@
    <extension
          point="org.eclipse.ui.navigator.navigatorContent">
       <navigatorContent
+            activeByDefault="false"
             contentProvider="org.eclipse.papyrus.modelexplorer.MoDiscoContentProvider"
-            icon="icons/PapyrusLogo16x16.gif"
             id="org.eclipse.papyrus.modelexplorer.navigatorContent"
             labelProvider="org.eclipse.papyrus.modelexplorer.MoDiscoLabelProvider"
             name="Model Contents"
-            priority="normal">
+            priority="lowest">
          <triggerPoints>
             <or>
                <instanceof
