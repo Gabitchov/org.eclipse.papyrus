@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -36,12 +37,16 @@ import org.eclipse.papyrus.diagram.profile.custom.requests.CustomCreateViewReque
 import org.eclipse.papyrus.diagram.profile.edit.parts.MetaclassEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.MetaclassEditPartCN;
 import org.eclipse.papyrus.diagram.profile.providers.UMLViewProvider;
+import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
+import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
 
 /**
  * A custom creation view command for the metaclass that creates a <code>View</code>.
  */
 
-public class CustomCreateCommand extends org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand {
+public class CustomMetaClassCreateCommand extends org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand {
 
 	/** height of a title package, approximatively */
 	final static private int HEIGHT_TITLE_PACKAGE = 35;
@@ -68,7 +73,7 @@ public class CustomCreateCommand extends org.eclipse.gmf.runtime.diagram.ui.comm
 	 *        the location of the new metaclass
 	 */
 
-	public CustomCreateCommand(TransactionalEditingDomain editingDomain, CustomCreateViewRequest.ViewDescriptor descriptor, View containerView, Point location) {
+	public CustomMetaClassCreateCommand(TransactionalEditingDomain editingDomain, CustomCreateViewRequest.ViewDescriptor descriptor, View containerView, Point location) {
 
 
 		// /!\ Warning
@@ -127,6 +132,10 @@ public class CustomCreateCommand extends org.eclipse.gmf.runtime.diagram.ui.comm
 				notationLocation.setX(location.x);
 				notationLocation.setY(location.y + iterNbAddedMetaclasses++ * HEIGHT_BETWEEN_TWO_METACLASS);
 				node.setLayoutConstraint(notationLocation);
+				//display stereotype
+				Element UMLelement= (Element)adapter.getAdapter(EObject.class);
+				String stereotypeName=UMLelement.getAppliedStereotypes().get(0).getQualifiedName();
+				AppliedStereotypeHelper.getAddAppliedStereotypeCommand(getEditingDomain(), node, stereotypeName, VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION);
 			}
 			return CommandResult.newOKCommandResult(myViewDescriptor);
 		}

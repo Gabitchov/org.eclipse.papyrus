@@ -49,7 +49,7 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
-import org.eclipse.papyrus.diagram.profile.custom.commands.CustomCreateCommand;
+import org.eclipse.papyrus.diagram.profile.custom.commands.CustomMetaClassCreateCommand;
 import org.eclipse.papyrus.diagram.profile.custom.commands.CustomSemanticCreateCommand;
 import org.eclipse.papyrus.diagram.profile.custom.helper.MetaclassHelper;
 import org.eclipse.papyrus.diagram.profile.custom.requests.CustomCreateElementRequestAdapter;
@@ -256,7 +256,7 @@ public class CustomCreationRoleEditPolicy extends org.eclipse.gmf.runtime.diagra
 		Iterator descriptors = request.getViewDescriptors().iterator();
 		while(descriptors.hasNext()) {
 			CustomCreateViewRequest.ViewDescriptor descriptorNEW = (CustomCreateViewRequest.ViewDescriptor)descriptors.next();
-			CustomCreateCommand createCommand = new CustomCreateCommand(editingDomain, descriptorNEW, (View)(getHost().getModel()), request.getLocation());
+			CustomMetaClassCreateCommand createCommand = new CustomMetaClassCreateCommand(editingDomain, descriptorNEW, (View)(getHost().getModel()), request.getLocation());
 			cc.compose(createCommand);
 		}
 		return new ICommandProxy(cc.reduce());
