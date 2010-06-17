@@ -6,7 +6,7 @@
  * available at http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: Francisco Javier Cano Muñoz (Prodevelop) - Initial implementation
- *
+ * Modification: Patrick Tessier (CEA LIST)
  ******************************************************************************/
 package org.eclipse.papyrus.uml.modelexplorer.actions;
 
@@ -25,6 +25,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.modelexplorer.NavigatorUtils;
+import org.eclipse.papyrus.uml.modelexplorer.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPart;
@@ -34,8 +35,6 @@ import org.eclipse.uml2.uml.NamedElement;
  * Action to rename a {@link NamedElement} in the Model Explorer. This action is binded to the "F2"
  * key.
  * 
- * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Muñoz</a>
- * @see <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=290514">Bug #290514</a>
  */
 public class RenameNamedElementAction extends CommandActionHandler {
 
@@ -45,7 +44,7 @@ public class RenameNamedElementAction extends CommandActionHandler {
 	 * @param editingDomain
 	 */
 	public RenameNamedElementAction(EditingDomain editingDomain) {
-		super(editingDomain, "Rename...");
+		super(editingDomain, Messages.rename);
 		setAccelerator(SWT.F2);
 	}
 
@@ -109,7 +108,7 @@ public class RenameNamedElementAction extends CommandActionHandler {
 			@Override
 			protected void doExecute() {
 				InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(),
-						"Rename an existing diagram", "New name:", getSelectedNamedElement().getName(), null);
+						Messages.rename_element, Messages.new_name, getSelectedNamedElement().getName(), null);
 				if(dialog.open() == Window.OK) {
 					final String name = dialog.getValue();
 					getSelectedNamedElement().setName(name);
