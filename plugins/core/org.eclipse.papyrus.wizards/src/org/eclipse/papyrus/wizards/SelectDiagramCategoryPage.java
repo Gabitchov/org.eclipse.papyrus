@@ -22,6 +22,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.dialogs.IDialogSettings;
+import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
@@ -178,13 +179,23 @@ public class SelectDiagramCategoryPage extends WizardPage {
 			String newExtension = getDiagramFileExtension();
 			String currentExtension = newModelFilePage.getFileExtension();
 			if(!currentExtension.equals(newExtension)) {
-				newModelFilePage.setFileName(NewModelFilePage.getUniqueFileName(newModelFilePage.getContainerFullPath(), newModelFilePage.getFileName(), newExtension));
+
+				String oldFileName = newModelFilePage.getFileName();
+				String newFileName = NewModelFilePage.getUniqueFileName(newModelFilePage.getContainerFullPath(), newModelFilePage.getFileName(), newExtension);
+				
+				newModelFilePage.setFileName(newFileName);
 				newModelFilePage.setFileExtension(newExtension);
+				
+				String message = String.format("The %s diagram category requires a specific diagram file extension. " + 
+					"Thus, the diagram file has been renamed from %s to %s ", mySelectedDiagramCategory.getLabel(), oldFileName, newFileName);
+				setMessage(message, IMessageProvider.INFORMATION);
 
 				String errorMessage = newModelFilePage.getErrorMessage();
 				if(errorMessage != null) {
 					setErrorMessage(errorMessage);
 				}
+			} else {
+				setMessage(null);
 			}
 		}
 		return mySelectedDiagramCategory != null;
