@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -135,7 +136,8 @@ public class CustomMetaClassCreateCommand extends org.eclipse.gmf.runtime.diagra
 				//display stereotype
 				Element UMLelement= (Element)adapter.getAdapter(EObject.class);
 				String stereotypeName=UMLelement.getAppliedStereotypes().get(0).getQualifiedName();
-				AppliedStereotypeHelper.getAddAppliedStereotypeCommand(getEditingDomain(), node, stereotypeName, VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION);
+				Command command=AppliedStereotypeHelper.getAddAppliedStereotypeCommand(getEditingDomain(), node, stereotypeName, VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION);
+				 command.execute();
 			}
 			return CommandResult.newOKCommandResult(myViewDescriptor);
 		}
