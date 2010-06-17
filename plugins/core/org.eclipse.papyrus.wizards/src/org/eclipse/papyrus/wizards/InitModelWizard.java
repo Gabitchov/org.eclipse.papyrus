@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.wizards;
 
 import org.eclipse.core.resources.IFile;
@@ -6,6 +19,9 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbench;
 
 
+/**
+ * The Class InitModelWizard.
+ */
 public class InitModelWizard extends CreateModelWizard {
 
 	/** Select the root element containing the new diagram */
@@ -59,6 +75,15 @@ public class InitModelWizard extends CreateModelWizard {
 	@Override
 	protected EObject getRoot() {
 		return selectRootElementPage.getModelElement();
+	}
+
+	/**
+	 * Suggests a name of diagram file for the domain model file
+	 */
+	private String getDiagramFileName(IFile domainModel) {
+		String diModelFileName = (domainModel.getLocation().removeFileExtension().lastSegment());
+		diModelFileName += ".di";
+		return diModelFileName;
 	}
 
 }

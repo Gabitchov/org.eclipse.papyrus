@@ -61,11 +61,6 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 
 	/**
-	 * ResourceSet used to link all Resource (Model and DI)
-	 */
-	protected DiResourceSet diResourceSet;
-
-	/**
 	 * Instantiates a new creates the model wizard.
 	 */
 	public CreateModelWizard() {
@@ -108,7 +103,6 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		}
         setDialogSettings(section);
 
-		this.diResourceSet = new DiResourceSet();
 		this.newModelFilePage = new NewModelFilePage("Create a new Papyrus model", "Create a new empty Papyrus model", selection, false);
 		selectDiagramCategoryPage = new SelectDiagramCategoryPage();
 		selectDiagramKindPage = getSelectDiagramKindPage();
@@ -130,6 +124,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 */
 	@Override
 	public boolean performFinish() {
+		DiResourceSet diResourceSet = new DiResourceSet();
 		// create a new file, result != null if successful
 		EObject root = getRoot();
 		final IFile newFile = newModelFilePage.createNewFile();
@@ -159,17 +154,13 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		return true;
 	}
 	
+	/**
+	 * Gets the root.
+	 *
+	 * @return the root
+	 */
 	protected EObject getRoot() {
 		return null;
-	}
-
-	/**
-	 * Suggests a name of diagram file for the domain model file
-	 */
-	protected String getDiagramFileName(IFile domainModel) {
-		String diModelFileName = (domainModel.getLocation().removeFileExtension().lastSegment());
-		diModelFileName += ".di";
-		return diModelFileName;
 	}
 
 
