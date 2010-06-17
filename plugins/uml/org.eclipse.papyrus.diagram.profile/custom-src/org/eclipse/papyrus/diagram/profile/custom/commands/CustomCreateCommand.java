@@ -123,7 +123,7 @@ public class CustomCreateCommand extends org.eclipse.gmf.runtime.diagram.ui.comm
 			while(adapterIterator.hasNext()) {
 				CreateElementRequestAdapter adapter = (CreateElementRequestAdapter)adapterIterator.next();
 				Node node = viewProvider.createNode(adapter, containerView, myViewDescriptor.getSemanticHint(), myViewDescriptor.getIndex(), myViewDescriptor.isPersisted(), myViewDescriptor.getPreferencesHint());
-				Location notationLocation = NotationFactory.eINSTANCE.createLocation();
+				Location notationLocation = NotationFactory.eINSTANCE.createBounds();
 				notationLocation.setX(location.x);
 				notationLocation.setY(location.y + iterNbAddedMetaclasses++ * HEIGHT_BETWEEN_TWO_METACLASS);
 				node.setLayoutConstraint(notationLocation);
