@@ -16,6 +16,7 @@ import org.eclipse.papyrus.properties.tabbed.core.view.DynamicSectionDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.uml2.uml.NamedElement;
 
 
 /**
@@ -46,6 +47,8 @@ public class MetamodelLabelProvider extends CustomizableModelLabelProvider {
 		} else if(object instanceof SectionSetDescriptorState) {
 			SectionSetDescriptorState state = (SectionSetDescriptorState)object;
 			return state.getLabel();
+		} else if(object instanceof NamedElement) {
+			return ((NamedElement)object).getQualifiedName();
 		} else {
 			return super.getText(object);
 		}

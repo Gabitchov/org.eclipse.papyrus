@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -32,6 +33,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem;
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -59,6 +61,7 @@ import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.PredefinedFragmentDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
 import org.eclipse.papyrus.properties.runtime.view.XMLParseException;
+import org.eclipse.papyrus.properties.runtime.view.constraints.AppliedStereotypeConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.ConstraintDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.constraints.ObjectTypeConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptorState;
@@ -79,6 +82,7 @@ import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.Sectio
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.SectionSetMenuCreator;
 import org.eclipse.papyrus.properties.tabbed.customization.state.StatePropertyTabViewProviderParser;
 import org.eclipse.papyrus.umlutils.PackageUtil;
+import org.eclipse.papyrus.umlutils.StereotypeUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.SashForm;
@@ -100,6 +104,7 @@ import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -146,15 +151,25 @@ public class CustomizeContentWizardPage extends WizardPage {
 	protected TabbedPropertySheetWidgetFactory factory = new TabbedPropertySheetWidgetFactory();
 
 	/** current selection size for the preview */
-	private int currentSelectionsize = 1;
+	protected int currentSelectionsize = 1;
 
 	/** area displaying the current selection size */
 	protected Combo sizeArea;
 
 	/** values in the selection size combo */
-	private final static List<String> sizeValues = Arrays.asList("1", "-1");
+	protected final static List<String> sizeValues = Arrays.asList("1", "-1");
 
-	private File file;
+	/** file where to save the content of the configuration */
+	protected File file;
+
+	/** list of available metamodels or profile */
+	protected List<EObject> metamodels = new ArrayList<EObject>();
+
+	/** combo to select metamodel being edited */
+	protected CCombo metamodelSelectionCombo;
+
+	/** current selected stereotype */
+	private Stereotype currentStereoype;
 
 	/**
 	 * Creates a new CustomizeContentWizardPage.
@@ -208,8 +223,8 @@ public class CustomizeContentWizardPage extends WizardPage {
 			metamodelViewer.setLabelProvider(new MetamodelLabelProvider());
 
 			// load by default the metamodel
-			metamodelViewer.setInput(UMLPackage.eINSTANCE.eContents());
-
+			metamodelViewer.setInput(UMLPackage.eINSTANCE);
+			metamodelSelectionCombo.select(0);
 			tabViewer.setInput(PropertyServiceUtil.getTabDescriptors());
 		} catch (XMLParseException e) {
 			Activator.log.error(e);
@@ -584,12 +599,36 @@ public class CustomizeContentWizardPage extends WizardPage {
 		}
 		List<ConstraintDescriptorState> constraintDescriptorStates = state.getConstraintDescriptorStates();
 		for(ConstraintDescriptorState constraintDescriptorState : constraintDescriptorStates) {
-			if(constraintDescriptorState instanceof ObjectTypeConstraintDescriptor.ObjectTypeConstraintDescriptorState) {
-				Class<?> elementClass = ((ObjectTypeConstraintDescriptor.ObjectTypeConstraintDescriptorState)constraintDescriptorState).getElementClassState();
-				if(elementClass.isAssignableFrom(getCurrentMetaClass().getInstanceClass())) {
-					return true;
+			// check the object type constraint if the current selected element is a metaclass
+			if(getCurrentMetaClass() != null) {
+				if(constraintDescriptorState instanceof ObjectTypeConstraintDescriptor.ObjectTypeConstraintDescriptorState) {
+					Class<?> elementClass = ((ObjectTypeConstraintDescriptor.ObjectTypeConstraintDescriptorState)constraintDescriptorState).getElementClassState();
+					if(elementClass.isAssignableFrom(getCurrentMetaClass().getInstanceClass())) {
+						return true;
+					}
 				}
+			} else if(getCurrentStereoype() != null) {
+				if(constraintDescriptorState instanceof AppliedStereotypeConstraintDescriptor.AppliedStereotypeConstraintDescriptorState) {
+					List<String> stereotypesToApply = ((AppliedStereotypeConstraintDescriptor.AppliedStereotypeConstraintDescriptorState)constraintDescriptorState).getStereotypesToApply();
+					if(stereotypesToApply.size() > 0) {
+						String stereotypeName = stereotypesToApply.get(0);
+						// we have the stereotype qualified name. Now, should check if it fits to the current stereotype or one of its parent
+						if(stereotypeName.equals(getCurrentStereoype().getQualifiedName())) {
+							return true;
+						}
+						// check in the general stereotypes list
+						List<Stereotype> generalStereotypes = StereotypeUtil.getAllSuperStereotypes(getCurrentStereoype());
+						for(Stereotype stereotype : generalStereotypes) {
+							if(stereotypeName.equals(stereotype.getQualifiedName())) {
+								return true;
+							}
+						}
+					}
+				}
+			} else {
+				Activator.log.warn("either selected metaclass or selected stereotype should not be null");
 			}
+
 		}
 		return false;
 	}
@@ -598,7 +637,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 	 * update the preview area
 	 */
 	protected void updatePreview() {
-		if(selectedTab != null && getCurrentMetaClass() != null && previewArea != null && !previewArea.isDisposed()) {
+		if(selectedTab != null && !(getCurrentMetaClass() == null && getCurrentStereoype() == null) && previewArea != null && !previewArea.isDisposed()) {
 			List<SectionDescriptorState> displayedSections = new ArrayList<SectionDescriptorState>();
 			String selectedTabName = selectedTab.getId();
 			Composite parent = previewArea.getParent();
@@ -662,9 +701,11 @@ public class CustomizeContentWizardPage extends WizardPage {
 		Label contentLabel = new Label(mainContentAreaComposite, SWT.NONE);
 		contentLabel.setText("Content:");
 
-		CCombo metamodelSelectionCombo = new CCombo(mainContentAreaComposite, SWT.BORDER | SWT.READ_ONLY);
+		metamodelSelectionCombo = new CCombo(mainContentAreaComposite, SWT.BORDER | SWT.READ_ONLY);
 		metamodelSelectionCombo.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
-		metamodelSelectionCombo.setItems(retrieveAvailableMetamodels());
+		metamodels = retrieveAvailableMetamodels();
+		String[] metamodelNames = retrieveMetamodelNames();
+		metamodelSelectionCombo.setItems(metamodelNames);
 		metamodelSelectionCombo.addSelectionListener(new SelectionListener() {
 
 			/**
@@ -672,6 +713,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 			 */
 			public void widgetSelected(SelectionEvent e) {
 				// update the input of the content view
+				metamodelViewer.setInput(metamodels.get(metamodelSelectionCombo.getSelectionIndex()));
 
 			}
 
@@ -727,7 +769,16 @@ public class CustomizeContentWizardPage extends WizardPage {
 				// this can be a metaclass or a section set descriptor.
 				if(selectedElement instanceof ModelElementItem) {
 					setCurrentSectionSetDescriptorState(null);
-					setCurrentMetaClass((EClassifier)((ModelElementItem)selectedElement).getEObject());
+					EObject selectedEObject = ((ModelElementItem)selectedElement).getEObject();
+					if(selectedEObject instanceof EClassifier) {
+						setCurrentMetaClass((EClassifier)selectedEObject);
+						setCurrentStereotype(null);
+					} else if(selectedEObject instanceof Stereotype) {
+						setCurrentMetaClass(null);
+						setCurrentStereotype((Stereotype)selectedEObject);
+					} else {
+						Activator.log.error("selection should be either stereotype or EClassifier, not " + selectedEObject, null);
+					}
 				} else if(selectedElement instanceof SectionSetDescriptorState) {
 					// retrieve the metaclass using the TreePath of the selection
 					TreePath[] paths = selection.getPathsFor(selectedElement);
@@ -736,11 +787,21 @@ public class CustomizeContentWizardPage extends WizardPage {
 						TreePath treePath = paths[0];
 						Object firstSegment = treePath.getSegment(0);
 						if(firstSegment instanceof ModelElementItem) {
-							setCurrentMetaClass((EClassifier)((ModelElementItem)firstSegment).getEObject());
+							EObject selectedEObject = ((ModelElementItem)firstSegment).getEObject();
+							if(selectedEObject instanceof EClassifier) {
+								setCurrentMetaClass((EClassifier)selectedEObject);
+								setCurrentStereotype(null);
+							} else if(selectedEObject instanceof Stereotype) {
+								setCurrentMetaClass(null);
+								setCurrentStereotype((Stereotype)selectedEObject);
+							} else {
+								Activator.log.error("selection should be either stereotype or EClassifier, not " + selectedEObject, null);
+							}
 						}
 					}
 					currentSectionSetDescriptorState = (SectionSetDescriptorState)selectedElement;
 				}
+				updatePreview();
 				updateConfigurationArea();
 			}
 		});
@@ -764,6 +825,27 @@ public class CustomizeContentWizardPage extends WizardPage {
 	}
 
 	/**
+	 * Returns the list of metamodels names for the list of available metamodels
+	 * 
+	 * @return the list of metamodels names for the list of available metamodels
+	 */
+	protected String[] retrieveMetamodelNames() {
+		List<String> names = new ArrayList<String>();
+		for(EObject object : metamodels) {
+			if(object instanceof EPackage) {
+				names.add(((EPackage)object).getName());
+			} else if(object instanceof Profile) {
+				names.add(((Profile)object).getName());
+			} else {
+				// should not happen
+				names.add(object.toString());
+			}
+		}
+
+		return names.toArray(new String[0]);
+	}
+
+	/**
 	 * Updates the configuration area
 	 */
 	protected void updateConfigurationArea() {
@@ -776,31 +858,31 @@ public class CustomizeContentWizardPage extends WizardPage {
 	 * 
 	 * @return the list of metamodels, never <code>null</code>.
 	 */
-	protected String[] retrieveAvailableMetamodels() {
-		List<String> availableMetamodels = new ArrayList<String>();
+	protected List<EObject> retrieveAvailableMetamodels() {
+		List<EObject> metamodels = new ArrayList<EObject>();
 		// retrieve current editor, and current resources
 		DiagramEditor editor = EditorUtils.lookupActiveDiagramEditor();
 		if(editor == null) {
 			Activator.log.warn("Impossible to find the active diagram editor");
-			return new String[0];
+			return Collections.emptyList();
 		}
 		EObject eObject = editor.getDiagram().getElement();
 		if(eObject == null) {
 			Activator.log.warn("Impossible to find the active diagram object");
-			return new String[0];
+			return Collections.emptyList();
 		}
 
 		if(eObject instanceof Element) {
 			// retrieve the top package, and the applied profiles
-			availableMetamodels.add(UML_METAMODEL);
+			metamodels.add(UMLPackage.eINSTANCE);
 
 			org.eclipse.uml2.uml.Package rootPackage = PackageUtil.getRootPackage(((Element)eObject));
 			List<Profile> profilesApplied = rootPackage.getAllAppliedProfiles();
 			for(Profile profile : profilesApplied) {
-				availableMetamodels.add(getProfileDisplayName(profile));
+				metamodels.add(profile);
 			}
 		}
-		return availableMetamodels.toArray(new String[]{});
+		return metamodels;
 	}
 
 	/**
@@ -845,7 +927,6 @@ public class CustomizeContentWizardPage extends WizardPage {
 		return currentMetaClass;
 	}
 
-
 	/**
 	 * Sets the current selected MetaClass
 	 * 
@@ -854,7 +935,25 @@ public class CustomizeContentWizardPage extends WizardPage {
 	 */
 	public void setCurrentMetaClass(EClassifier currentMetaClass) {
 		this.currentMetaClass = currentMetaClass;
-		updatePreview();
+	}
+
+	/**
+	 * Sets the current selected Stereotype
+	 * 
+	 * @param currentStereoype
+	 *        the current Stereotype to set
+	 */
+	public void setCurrentStereotype(Stereotype currentStereoype) {
+		this.currentStereoype = currentStereoype;
+	}
+
+	/**
+	 * Returns the currentStereoype
+	 * 
+	 * @return the currentStereoype
+	 */
+	public Stereotype getCurrentStereoype() {
+		return currentStereoype;
 	}
 
 	/**

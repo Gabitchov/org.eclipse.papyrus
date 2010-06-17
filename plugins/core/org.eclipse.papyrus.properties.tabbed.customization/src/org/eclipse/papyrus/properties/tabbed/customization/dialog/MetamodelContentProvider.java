@@ -27,10 +27,14 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.core.utils.FilteredCollectionView;
 import org.eclipse.papyrus.core.utils.IFilter;
+import org.eclipse.papyrus.properties.runtime.view.constraints.AppliedStereotypeConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.ObjectTypeConstraintDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
+import org.eclipse.papyrus.umlutils.StereotypeUtil;
+import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.Stereotype;
 
 
 /**
@@ -74,6 +78,8 @@ public class MetamodelContentProvider extends CustomizableModelContentProvider i
 	public EObject[] getRootElements(Object inputElement) {
 		if(inputElement instanceof EPackage) {
 			return ((EPackage)inputElement).getEClassifiers().toArray(new EClassifier[]{});
+		} else if(inputElement instanceof Profile) {
+			return ((Profile)inputElement).getOwnedStereotypes().toArray(new EObject[]{});
 		} else if(inputElement instanceof EObject) {
 			return ((EObject)inputElement).eContents().toArray(new EObject[]{});
 		} else if(inputElement instanceof List<?>) {
@@ -103,13 +109,46 @@ public class MetamodelContentProvider extends CustomizableModelContentProvider i
 	 * {@inheritDoc}
 	 */
 	public Object[] getChildren(Object parentElement) {
-		if(parentElement instanceof ModelElementItem && ((ModelElementItem)(parentElement)).getEObject() instanceof EClassifier) {
-			EClassifier parentClassifier = (EClassifier)((ModelElementItem)(parentElement)).getEObject();
-			// List<SectionSetDescriptorState> sectionSetDescriptorStates = new ArrayList<SectionSetDescriptorState>();
-			String qualifiedInstanceClassName = parentClassifier.getInstanceClassName();
-			try {
-				final Class<?> metamodelClass = Class.forName(qualifiedInstanceClassName);
+		if(parentElement instanceof ModelElementItem) {
+			if(((ModelElementItem)(parentElement)).getEObject() instanceof EClassifier) {
+				EClassifier parentClassifier = (EClassifier)((ModelElementItem)(parentElement)).getEObject();
+				// List<SectionSetDescriptorState> sectionSetDescriptorStates = new ArrayList<SectionSetDescriptorState>();
+				String qualifiedInstanceClassName = parentClassifier.getInstanceClassName();
+				try {
+					final Class<?> metamodelClass = Class.forName(qualifiedInstanceClassName);
 
+					// populate the section sets
+					FilteredCollectionView<SectionSetDescriptorState> filteredList = new FilteredCollectionView<SectionSetDescriptorState>(availableSectionSets, new IFilter() {
+
+						/**
+						 * {@inheritDoc}
+						 */
+						public boolean isAllowed(Object object) {
+							if(object instanceof SectionSetDescriptorState) {
+								List<IConstraintDescriptor> constraintDescriptors = ((SectionSetDescriptorState)object).getDescriptor().getConstraintDescriptors();
+								for(IConstraintDescriptor constraintDescriptor : constraintDescriptors) {
+									if(constraintDescriptor instanceof ObjectTypeConstraintDescriptor) {
+										Class<?> elementClass = ((ObjectTypeConstraintDescriptor)constraintDescriptor).getElementClass();
+										if(elementClass.isAssignableFrom(metamodelClass)) {
+											return true;
+										}
+									}
+								}
+							}
+							return false;
+						}
+
+					});
+					return filteredList.toArray();
+
+				} catch (ClassNotFoundException e) {
+					// Activator.log.error(e);
+					return new Object[0];
+				}
+
+			} else if(((ModelElementItem)(parentElement)).getEObject() instanceof Stereotype) {
+				final Stereotype parentStereotype = (Stereotype)((ModelElementItem)(parentElement)).getEObject();
+				// List<SectionSetDescriptorState> sectionSetDescriptorStates = new ArrayList<SectionSetDescriptorState>();
 				// populate the section sets
 				FilteredCollectionView<SectionSetDescriptorState> filteredList = new FilteredCollectionView<SectionSetDescriptorState>(availableSectionSets, new IFilter() {
 
@@ -120,11 +159,24 @@ public class MetamodelContentProvider extends CustomizableModelContentProvider i
 						if(object instanceof SectionSetDescriptorState) {
 							List<IConstraintDescriptor> constraintDescriptors = ((SectionSetDescriptorState)object).getDescriptor().getConstraintDescriptors();
 							for(IConstraintDescriptor constraintDescriptor : constraintDescriptors) {
-								if(constraintDescriptor instanceof ObjectTypeConstraintDescriptor) {
-									Class<?> elementClass = ((ObjectTypeConstraintDescriptor)constraintDescriptor).getElementClass();
-									if(elementClass.isAssignableFrom(metamodelClass)) {
-										return true;
+								if(constraintDescriptor instanceof AppliedStereotypeConstraintDescriptor) {
+									List<String> stereotypeNames = ((AppliedStereotypeConstraintDescriptor)constraintDescriptor).getStereotypeQualifiedNames();
+									// look only for the first one, this could lead to bugs...
+									if(stereotypeNames.size() > 0) {
+										String stereotypeName = stereotypeNames.get(0);
+										// we have the stereotype qualified name. Now, should check if it fits to the current stereotype or one of its parent
+										if(stereotypeName.equals(parentStereotype.getQualifiedName())) {
+											return true;
+										}
+										// check in the general stereotypes list
+										List<Stereotype> generalStereotypes = StereotypeUtil.getAllSuperStereotypes(parentStereotype);
+										for(Stereotype stereotype : generalStereotypes) {
+											if(stereotypeName.equals(stereotype.getQualifiedName())) {
+												return true;
+											}
+										}
 									}
+
 								}
 							}
 						}
@@ -133,13 +185,9 @@ public class MetamodelContentProvider extends CustomizableModelContentProvider i
 
 				});
 				return filteredList.toArray();
-
-			} catch (ClassNotFoundException e) {
-				// Activator.log.error(e);
-				return new Object[0];
 			}
-
 		}
+
 		return new Object[0];
 	}
 
