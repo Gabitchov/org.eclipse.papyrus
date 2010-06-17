@@ -73,7 +73,6 @@ public class MetaclassItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPo
 		super(UMLElementTypes.Class_3028);
 	}
 
-
 	/**
 	 * @generated
 	 */

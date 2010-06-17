@@ -105,8 +105,6 @@ public class AssociationMultiplicityTargetLabelEditPart extends LabelEditPart im
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -120,8 +118,6 @@ public class AssociationMultiplicityTargetLabelEditPart extends LabelEditPart im
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -589,8 +585,6 @@ public class AssociationMultiplicityTargetLabelEditPart extends LabelEditPart im
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -694,8 +688,6 @@ public class AssociationMultiplicityTargetLabelEditPart extends LabelEditPart im
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -725,9 +717,6 @@ public class AssociationMultiplicityTargetLabelEditPart extends LabelEditPart im
 				}
 			}
 		}
-
-
-
 
 		super.handleNotificationEvent(event);
 	}

@@ -51,8 +51,6 @@ public class ProfileDiagramEditPart extends DiagramEditPart {
 	 */
 	public static final int VISUAL_ID = 1000;
 
-
-
 	/**
 	 * @generated
 	 */
@@ -74,7 +72,6 @@ public class ProfileDiagramEditPart extends DiagramEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CustomCreationRoleEditPolicy());
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
-
 
 	/**
 	 * @generated
@@ -106,7 +103,6 @@ public class ProfileDiagramEditPart extends DiagramEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -123,10 +119,6 @@ public class ProfileDiagramEditPart extends DiagramEditPart {
 		}
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -142,7 +134,6 @@ public class ProfileDiagramEditPart extends DiagramEditPart {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -153,7 +144,5 @@ public class ProfileDiagramEditPart extends DiagramEditPart {
 		}
 		return super.getAdapter(adapter);
 	}
-
-
 
 }

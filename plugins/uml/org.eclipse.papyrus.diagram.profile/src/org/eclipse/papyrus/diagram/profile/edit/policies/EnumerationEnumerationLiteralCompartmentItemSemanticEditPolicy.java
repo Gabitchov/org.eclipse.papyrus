@@ -30,7 +30,6 @@ public class EnumerationEnumerationLiteralCompartmentItemSemanticEditPolicy exte
 		super(UMLElementTypes.Enumeration_2006);
 	}
 
-
 	/**
 	 * @generated
 	 */

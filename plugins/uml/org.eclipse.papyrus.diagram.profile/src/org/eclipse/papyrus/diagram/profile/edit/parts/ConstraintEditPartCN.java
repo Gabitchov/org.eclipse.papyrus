@@ -99,10 +99,6 @@ ShapeNodeEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -151,10 +147,8 @@ ShapeNodeEditPart {
 			return true;
 		}
 
-
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -193,7 +187,6 @@ ShapeNodeEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -206,7 +199,6 @@ ShapeNodeEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -623,27 +615,20 @@ ShapeNodeEditPart {
 		return types;
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
 	public class CornerBentDescriptor extends CornerBentFigure {
-
 
 		/**
 		 * @generated
 		 */
 		private WrappingLabel fCornerBentContentLabel;
 
-
 		/**
 		 * @generated
 		 */
 		public CornerBentDescriptor() {
-
 
 			this.setForegroundColor(ColorConstants.black);
 			this.setBackgroundColor(THIS_BACK);
@@ -655,21 +640,14 @@ ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-
 			fCornerBentContentLabel = new WrappingLabel();
 			fCornerBentContentLabel.setText("");
 
 			fCornerBentContentLabel.setFont(FCORNERBENTCONTENTLABEL_FONT);
 
-
-
 			this.add(fCornerBentContentLabel);
 
-
 		}
-
-
-
 
 		/**
 		 * @generated
@@ -690,15 +668,12 @@ ShapeNodeEditPart {
 			myUseLocalCoordinates = useLocalCoordinates;
 		}
 
-
-
 		/**
 		 * @generated
 		 */
 		public WrappingLabel getCornerBentContentLabel() {
 			return fCornerBentContentLabel;
 		}
-
 
 	}
 
@@ -711,9 +686,6 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	static final Font FCORNERBENTCONTENTLABEL_FONT = new Font(Display.getCurrent(), "Arial", 8, SWT.NORMAL);
-
-
-
 
 	/**
 	 * @generated

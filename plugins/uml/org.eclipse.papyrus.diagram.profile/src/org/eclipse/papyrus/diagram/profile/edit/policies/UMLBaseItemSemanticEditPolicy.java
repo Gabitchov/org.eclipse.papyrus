@@ -267,9 +267,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
 
-
 		return getGEFWrapper(new MoveElementsCommand(req));
-
 
 	}
 
@@ -319,7 +317,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -331,7 +328,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		return cached;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -340,10 +336,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		protected LinkConstraints() {
+		LinkConstraints() {
 			// use static method #getLinkConstraints() to access instance
 		}
-
 
 		/**
 		 * @generated
@@ -352,14 +347,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistExtension_1013(container, null, source, target);
 		}
 
-
 		/**
 		 * @generated
 		 */
 		public boolean canCreateAssociation_4001(Package container, Type source, Type target) {
 			return canExistAssociation_4001(container, null, source, target);
 		}
-
 
 		/**
 		 * @generated
@@ -368,14 +361,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistProfileApplication_1045(container, null, source, target);
 		}
 
-
 		/**
 		 * @generated
 		 */
 		public boolean canCreateAssociation_4019(Package container, Type source, Type target) {
 			return canExistAssociation_4019(container, null, source, target);
 		}
-
 
 		/**
 		 * @generated
@@ -384,14 +375,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistGeneralization_4002(null, source, target);
 		}
 
-
 		/**
 		 * @generated
 		 */
 		public boolean canCreateDependency_4008(Package container, NamedElement source, NamedElement target) {
 			return canExistDependency_4008(container, null, source, target);
 		}
-
 
 		/**
 		 * @generated
@@ -400,7 +389,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistDependency_4018(container, null, source, target);
 		}
 
-
 		/**
 		 * @generated
 		 */
@@ -408,14 +396,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistElementImport_1064(container, null, source, target);
 		}
 
-
 		/**
 		 * @generated
 		 */
 		public boolean canCreatePackageImport_1065(Namespace container, Namespace source, Package target) {
 			return canExistPackageImport_1065(container, null, source, target);
 		}
-
 
 		/**
 		 * @generated
@@ -430,7 +416,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistCommentAnnotatedElement_1022(source, target);
 		}
 
-
 		/**
 		 * @generated
 		 */
@@ -443,7 +428,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 			return canExistConstraintConstrainedElement_4014(source, target);
 		}
-
 
 		/**
 		 * @generated

@@ -58,7 +58,6 @@ public class ConstraintItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditP
 		super(UMLElementTypes.Constraint_1028);
 	}
 
-
 	/**
 	 * @generated
 	 */

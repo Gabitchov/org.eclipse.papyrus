@@ -73,7 +73,6 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateGeneralization_4002(getSource(), getTarget());
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -90,7 +89,6 @@ public class GeneralizationCreateCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult(newElement);
 
 	}
-
 
 	/**
 	 * @generated

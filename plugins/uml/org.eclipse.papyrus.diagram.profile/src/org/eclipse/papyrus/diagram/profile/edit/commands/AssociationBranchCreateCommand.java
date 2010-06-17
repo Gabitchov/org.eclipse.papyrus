@@ -44,7 +44,6 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 	 */
 	private final EObject target;
 
-
 	/**
 	 * @generated
 	 */
@@ -83,7 +82,6 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateAssociation_4019(getContainer(), getSource(), getTarget());
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -95,7 +93,6 @@ public class AssociationBranchCreateCommand extends EditElementCommand {
 		throw new UnsupportedOperationException();
 
 	}
-
 
 	/**
 	 * @generated

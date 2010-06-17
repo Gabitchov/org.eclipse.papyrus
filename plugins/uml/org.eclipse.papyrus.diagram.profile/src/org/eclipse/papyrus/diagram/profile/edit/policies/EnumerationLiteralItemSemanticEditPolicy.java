@@ -34,7 +34,6 @@ public class EnumerationLiteralItemSemanticEditPolicy extends UMLBaseItemSemanti
 		super(UMLElementTypes.EnumerationLiteral_1037);
 	}
 
-
 	/**
 	 * @generated
 	 */

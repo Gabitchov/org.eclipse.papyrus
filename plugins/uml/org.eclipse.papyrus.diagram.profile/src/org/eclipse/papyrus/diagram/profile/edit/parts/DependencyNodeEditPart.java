@@ -102,10 +102,6 @@ AbstractBorderedShapeEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -157,7 +153,6 @@ AbstractBorderedShapeEditPart {
 		return (DependencyNodeDescriptor)primaryShape;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -183,7 +178,6 @@ AbstractBorderedShapeEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -513,17 +507,10 @@ AbstractBorderedShapeEditPart {
 		return types;
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
 	public class DependencyNodeDescriptor extends Ellipse {
-
-
-
 
 		/**
 		 * @generated
@@ -534,7 +521,6 @@ AbstractBorderedShapeEditPart {
 			this.setMaximumSize(new Dimension(getMapMode().DPtoLP(10), getMapMode().DPtoLP(10)));
 			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(10), getMapMode().DPtoLP(10)));
 		}
-
 
 		/**
 		 * @generated
@@ -555,14 +541,7 @@ AbstractBorderedShapeEditPart {
 			myUseLocalCoordinates = useLocalCoordinates;
 		}
 
-
-
-
-
 	}
-
-
-
 
 	/**
 	 * @generated

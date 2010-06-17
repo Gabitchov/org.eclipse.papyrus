@@ -62,7 +62,6 @@ import org.eclipse.swt.graphics.Color;
  */
 public class MetaclassEditPart extends
 
-
 ClassifierEditPart {
 
 	/**
@@ -102,9 +101,6 @@ ClassifierEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -121,10 +117,6 @@ ClassifierEditPart {
 			}
 		}
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -174,10 +166,8 @@ ClassifierEditPart {
 			return true;
 		}
 
-
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -216,7 +206,6 @@ ClassifierEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -229,7 +218,6 @@ ClassifierEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -810,10 +798,6 @@ ClassifierEditPart {
 		}
 		return types;
 	}
-
-
-
-
 
 	/**
 	 * @generated

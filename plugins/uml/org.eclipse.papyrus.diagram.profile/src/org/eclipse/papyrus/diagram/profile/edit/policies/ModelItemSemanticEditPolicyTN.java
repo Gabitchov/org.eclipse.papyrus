@@ -77,7 +77,6 @@ public class ModelItemSemanticEditPolicyTN extends UMLBaseItemSemanticEditPolicy
 		super(UMLElementTypes.Model_2005);
 	}
 
-
 	/**
 	 * @generated
 	 */

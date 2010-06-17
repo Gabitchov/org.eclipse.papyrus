@@ -74,7 +74,6 @@ public class ShortCutDiagramCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -97,8 +96,6 @@ public class ShortCutDiagramCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		// Uncomment to put "phantom" objects into the diagram file.		
 		// org.eclipse.emf.ecore.resource.Resource resource = 
 		// 		((org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest) getRequest()).getContainer().eResource();
@@ -110,16 +107,11 @@ public class ShortCutDiagramCreateCommand extends EditElementCommand {
 
 		resource.getContents().add(newElement);
 
-
-
 		doConfigure(newElement, monitor, info);
 
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

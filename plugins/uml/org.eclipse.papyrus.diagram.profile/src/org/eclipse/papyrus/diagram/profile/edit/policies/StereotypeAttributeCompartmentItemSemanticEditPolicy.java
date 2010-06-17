@@ -30,7 +30,6 @@ public class StereotypeAttributeCompartmentItemSemanticEditPolicy extends UMLBas
 		super(UMLElementTypes.Stereotype_1026);
 	}
 
-
 	/**
 	 * @generated
 	 */

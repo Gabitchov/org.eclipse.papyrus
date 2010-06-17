@@ -52,10 +52,6 @@ implements ITreeBranchEditPart {
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 	}
 
-
-
-
-
 	/**
 	 * Creates figure for this edit part.
 	 * 
@@ -76,14 +72,10 @@ implements ITreeBranchEditPart {
 		return (CommentLinkDescriptor)getFigure();
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public class CommentLinkDescriptor extends PolylineConnectionEx {
-
-
-
 
 		/**
 		 * @generated
@@ -93,11 +85,6 @@ implements ITreeBranchEditPart {
 
 		}
 
-
-
-
 	}
-
-
 
 }

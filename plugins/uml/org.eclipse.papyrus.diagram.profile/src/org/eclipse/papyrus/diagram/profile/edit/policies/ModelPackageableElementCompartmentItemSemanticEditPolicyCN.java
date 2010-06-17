@@ -36,7 +36,6 @@ public class ModelPackageableElementCompartmentItemSemanticEditPolicyCN extends 
 		super(UMLElementTypes.Model_1027);
 	}
 
-
 	/**
 	 * @generated
 	 */

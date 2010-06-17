@@ -106,8 +106,6 @@ public class AssociationBranchRoleEditPart extends LabelEditPart implements ITex
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -121,8 +119,6 @@ public class AssociationBranchRoleEditPart extends LabelEditPart implements ITex
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -345,10 +341,8 @@ public class AssociationBranchRoleEditPart extends LabelEditPart implements ITex
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = ParserService.getInstance().getParser(new ParserHintAdapter(/*
-																				 * org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes.
-																				 * Association_4019,
-																				 */getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.profile.edit.parts.AssociationBranchRoleEditPart.VISUAL_ID)));
+			parser = ParserService.getInstance().getParser(new ParserHintAdapter(
+			/* org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes.Association_4019, */getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.profile.edit.parts.AssociationBranchRoleEditPart.VISUAL_ID)));
 		}
 		return parser;
 	}
@@ -593,8 +587,6 @@ public class AssociationBranchRoleEditPart extends LabelEditPart implements ITex
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -698,8 +690,6 @@ public class AssociationBranchRoleEditPart extends LabelEditPart implements ITex
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -729,9 +719,6 @@ public class AssociationBranchRoleEditPart extends LabelEditPart implements ITex
 				}
 			}
 		}
-
-
-
 
 		super.handleNotificationEvent(event);
 	}

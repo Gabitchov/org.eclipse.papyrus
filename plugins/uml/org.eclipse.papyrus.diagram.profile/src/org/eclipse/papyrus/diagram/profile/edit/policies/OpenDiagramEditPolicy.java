@@ -56,7 +56,6 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
  */
 public class OpenDiagramEditPolicy extends OpenEditPolicy {
 
-
 	/**
 	 * @generated
 	 */
@@ -72,7 +71,6 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 		}
 		return new ICommandProxy(new OpenDiagramCommand((HintedDiagramLinkStyle)link));
 	}
-
 
 	/**
 	 * @generated

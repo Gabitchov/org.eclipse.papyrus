@@ -63,7 +63,6 @@ import org.eclipse.swt.graphics.Color;
  */
 public class ModelEditPartTN extends
 
-
 NamedElementEditPart {
 
 	/**
@@ -105,9 +104,6 @@ NamedElementEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -117,10 +113,6 @@ NamedElementEditPart {
 		super.handleNotificationEvent(event);
 
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -170,7 +162,6 @@ NamedElementEditPart {
 			return true;
 		}
 
-
 		if(childEditPart instanceof ModelPackageableElementCompartmentEditPartTN) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
@@ -180,7 +171,6 @@ NamedElementEditPart {
 
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -228,7 +218,6 @@ NamedElementEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -241,7 +230,6 @@ NamedElementEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -702,10 +690,6 @@ NamedElementEditPart {
 		}
 		return types;
 	}
-
-
-
-
 
 	/**
 	 * @generated

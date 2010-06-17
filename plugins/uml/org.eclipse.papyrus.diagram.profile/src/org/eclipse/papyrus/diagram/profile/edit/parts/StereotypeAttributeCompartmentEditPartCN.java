@@ -40,8 +40,6 @@ import org.eclipse.papyrus.diagram.profile.part.Messages;
  */
 public class StereotypeAttributeCompartmentEditPartCN
 
-
-
 extends ResizeableListCompartmentEditPart
 
 {
@@ -95,9 +93,6 @@ extends ResizeableListCompartmentEditPart
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ProfileDiagramDragDropEditPolicy());
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -106,8 +101,6 @@ extends ResizeableListCompartmentEditPart
 			super.setRatio(ratio);
 		}
 	}
-
-
 
 	/**
 	 * @generated

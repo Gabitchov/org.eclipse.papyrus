@@ -46,7 +46,6 @@ public class ProfileDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticEdi
 		super(UMLElementTypes.Profile_1000);
 	}
 
-
 	/**
 	 * @generated
 	 */

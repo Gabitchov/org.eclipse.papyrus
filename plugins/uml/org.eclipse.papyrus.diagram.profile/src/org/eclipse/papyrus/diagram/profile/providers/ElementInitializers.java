@@ -558,7 +558,6 @@ public class ElementInitializers {
 		return "elementimport";
 	}
 
-
 	/**
 	 * @generated
 	 */

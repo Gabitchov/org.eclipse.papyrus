@@ -41,8 +41,6 @@ import org.eclipse.papyrus.diagram.profile.part.Messages;
  */
 public class ModelPackageableElementCompartmentEditPartTN
 
-
-
 extends ShapeCompartmentEditPart
 
 {
@@ -58,7 +56,6 @@ extends ShapeCompartmentEditPart
 	public ModelPackageableElementCompartmentEditPartTN(View view) {
 		super(view);
 	}
-
 
 	/**
 	 * @generated
@@ -91,9 +88,6 @@ extends ShapeCompartmentEditPart
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CustomCreationRoleEditPolicy());
 	}
 
-
-
-
 	/**
 	 * @generated
 	 */
@@ -102,8 +96,6 @@ extends ShapeCompartmentEditPart
 			super.setRatio(ratio);
 		}
 	}
-
-
 
 	/**
 	 * @generated

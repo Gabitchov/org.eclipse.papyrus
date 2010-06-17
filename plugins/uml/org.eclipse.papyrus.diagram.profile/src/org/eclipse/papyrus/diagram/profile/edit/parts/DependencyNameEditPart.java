@@ -104,8 +104,6 @@ public class DependencyNameEditPart extends LabelEditPart implements ITextAwareE
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -119,8 +117,6 @@ public class DependencyNameEditPart extends LabelEditPart implements ITextAwareE
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -587,8 +583,6 @@ public class DependencyNameEditPart extends LabelEditPart implements ITextAwareE
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -692,8 +686,6 @@ public class DependencyNameEditPart extends LabelEditPart implements ITextAwareE
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -723,9 +715,6 @@ public class DependencyNameEditPart extends LabelEditPart implements ITextAwareE
 				}
 			}
 		}
-
-
-
 
 		super.handleNotificationEvent(event);
 	}

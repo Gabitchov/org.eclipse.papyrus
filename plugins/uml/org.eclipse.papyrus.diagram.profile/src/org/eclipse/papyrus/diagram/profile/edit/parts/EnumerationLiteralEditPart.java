@@ -112,8 +112,6 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -127,8 +125,6 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -592,8 +588,6 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 		return (View)getModel();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -697,8 +691,6 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -714,8 +706,6 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
-
 
 	/**
 	 * @generated
@@ -765,14 +755,10 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 		return new LiteralEnumerationDescriptor();
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public class LiteralEnumerationDescriptor extends WrappingLabel {
-
-
-
 
 		/**
 		 * @generated
@@ -782,12 +768,7 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 
 			this.setFont(THIS_FONT);
 
-
 		}
-
-
-
-
 
 	}
 
@@ -795,7 +776,5 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 	 * @generated
 	 */
 	static final Font THIS_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.NORMAL);
-
-
 
 }

@@ -45,7 +45,6 @@ public class ExtensionCreateCommand extends EditElementCommand {
 	 */
 	private final EObject target;
 
-
 	/**
 	 * @generated
 	 */
@@ -84,7 +83,6 @@ public class ExtensionCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateExtension_1013(getContainer(), getSource(), getTarget());
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -96,7 +94,6 @@ public class ExtensionCreateCommand extends EditElementCommand {
 		throw new UnsupportedOperationException();
 
 	}
-
 
 	/**
 	 * @generated

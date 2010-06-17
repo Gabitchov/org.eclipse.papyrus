@@ -104,8 +104,6 @@ public class AssociationNameEditPart extends LabelEditPart implements ITextAware
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -119,8 +117,6 @@ public class AssociationNameEditPart extends LabelEditPart implements ITextAware
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -587,8 +583,6 @@ public class AssociationNameEditPart extends LabelEditPart implements ITextAware
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -692,8 +686,6 @@ public class AssociationNameEditPart extends LabelEditPart implements ITextAware
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -723,9 +715,6 @@ public class AssociationNameEditPart extends LabelEditPart implements ITextAware
 				}
 			}
 		}
-
-
-
 
 		super.handleNotificationEvent(event);
 	}

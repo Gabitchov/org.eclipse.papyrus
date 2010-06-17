@@ -38,7 +38,6 @@ public class ProfilePackageableElementCompartmentItemSemanticEditPolicyCN extend
 		super(UMLElementTypes.Profile_1024);
 	}
 
-
 	/**
 	 * @generated
 	 */

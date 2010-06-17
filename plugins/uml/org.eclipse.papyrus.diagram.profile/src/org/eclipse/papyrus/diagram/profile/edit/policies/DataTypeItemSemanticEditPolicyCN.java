@@ -76,7 +76,6 @@ public class DataTypeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPol
 		super(UMLElementTypes.DataType_3027);
 	}
 
-
 	/**
 	 * @generated
 	 */

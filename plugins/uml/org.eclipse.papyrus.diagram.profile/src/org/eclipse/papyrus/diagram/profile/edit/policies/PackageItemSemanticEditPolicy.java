@@ -77,7 +77,6 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 		super(UMLElementTypes.Package_2007);
 	}
 
-
 	/**
 	 * @generated
 	 */

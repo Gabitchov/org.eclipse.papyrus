@@ -115,8 +115,6 @@ public class ClassOperationEditPart extends CompartmentEditPart implements IText
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -130,8 +128,6 @@ public class ClassOperationEditPart extends CompartmentEditPart implements IText
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -597,8 +593,6 @@ public class ClassOperationEditPart extends CompartmentEditPart implements IText
 		return (View)getModel();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -702,8 +696,6 @@ public class ClassOperationEditPart extends CompartmentEditPart implements IText
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -719,8 +711,6 @@ public class ClassOperationEditPart extends CompartmentEditPart implements IText
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
-
 
 	/**
 	 * @generated
@@ -770,14 +760,10 @@ public class ClassOperationEditPart extends CompartmentEditPart implements IText
 		return new OperationFigureDescriptor();
 	}
 
-
 	/**
 	 * @generated
 	 */
 	public class OperationFigureDescriptor extends WrappingLabel {
-
-
-
 
 		/**
 		 * @generated
@@ -787,12 +773,7 @@ public class ClassOperationEditPart extends CompartmentEditPart implements IText
 
 			this.setFont(THIS_FONT);
 
-
 		}
-
-
-
-
 
 	}
 
@@ -800,7 +781,5 @@ public class ClassOperationEditPart extends CompartmentEditPart implements IText
 	 * @generated
 	 */
 	static final Font THIS_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.NORMAL);
-
-
 
 }

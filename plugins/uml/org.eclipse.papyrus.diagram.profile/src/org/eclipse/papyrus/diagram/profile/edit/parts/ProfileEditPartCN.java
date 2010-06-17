@@ -47,6 +47,7 @@ import org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayo
 import org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.PackageFigure;
+import org.eclipse.papyrus.diagram.common.figure.node.ProfileFigure;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.diagram.profile.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.profile.edit.policies.OpenDiagramEditPolicy;
@@ -62,7 +63,6 @@ import org.eclipse.swt.graphics.Color;
  * @generated
  */
 public class ProfileEditPartCN extends
-
 
 NamedElementEditPart {
 
@@ -105,9 +105,6 @@ NamedElementEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -117,10 +114,6 @@ NamedElementEditPart {
 		super.handleNotificationEvent(event);
 
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -151,14 +144,14 @@ NamedElementEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new PackageFigure();
+		return primaryShape = new ProfileFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public PackageFigure getPrimaryShape() {
-		return (PackageFigure)primaryShape;
+	public ProfileFigure getPrimaryShape() {
+		return (ProfileFigure)primaryShape;
 	}
 
 	/**
@@ -170,7 +163,6 @@ NamedElementEditPart {
 			return true;
 		}
 
-
 		if(childEditPart instanceof ProfilePackageableElementCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
@@ -180,7 +172,6 @@ NamedElementEditPart {
 
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -228,7 +219,6 @@ NamedElementEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -241,7 +231,6 @@ NamedElementEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -710,10 +699,6 @@ NamedElementEditPart {
 		}
 		return types;
 	}
-
-
-
-
 
 	/**
 	 * @generated

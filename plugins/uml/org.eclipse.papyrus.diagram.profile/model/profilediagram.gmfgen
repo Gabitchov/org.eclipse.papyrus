@@ -327,7 +327,7 @@
             editHelperClassName="StereotypeEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ClassifierFigure">
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.profile.custom.figure.StereotypeFigure">
           <attributes
               xsi:type="gmfgen:DefaultSizeAttributes"
               width="100"
@@ -629,7 +629,7 @@
             metamodelType="/0/@diagram/@topLevelNodes.7/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.PackageFigure">
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ProfileFigure">
           <attributes
               xsi:type="gmfgen:DefaultSizeAttributes"
               width="200"
@@ -1497,7 +1497,7 @@
             editHelperClassName="ProfileEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.PackageFigure">
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ProfileFigure">
           <attributes
               xsi:type="gmfgen:DefaultSizeAttributes"
               width="200"

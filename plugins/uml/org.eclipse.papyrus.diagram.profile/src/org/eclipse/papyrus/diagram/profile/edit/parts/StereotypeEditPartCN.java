@@ -50,6 +50,7 @@ import org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPoli
 import org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.ClassifierFigure;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
+import org.eclipse.papyrus.diagram.profile.custom.figure.StereotypeFigure;
 import org.eclipse.papyrus.diagram.profile.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.profile.custom.policies.itemsemantic.CustomStereotypeItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.diagram.profile.edit.policies.StereotypeItemSemanticEditPolicyCN;
@@ -64,7 +65,6 @@ import org.eclipse.swt.graphics.Color;
  * @generated
  */
 public class StereotypeEditPartCN extends
-
 
 ClassifierEditPart {
 
@@ -107,9 +107,6 @@ ClassifierEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -126,10 +123,6 @@ ClassifierEditPart {
 			}
 		}
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -160,14 +153,14 @@ ClassifierEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new ClassifierFigure();
+		return primaryShape = new StereotypeFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public ClassifierFigure getPrimaryShape() {
-		return (ClassifierFigure)primaryShape;
+	public StereotypeFigure getPrimaryShape() {
+		return (StereotypeFigure)primaryShape;
 	}
 
 	/**
@@ -178,7 +171,6 @@ ClassifierEditPart {
 			((StereotypeNameEditPartCN)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
 
 		if(childEditPart instanceof StereotypeAttributeCompartmentEditPartCN) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
@@ -196,7 +188,6 @@ ClassifierEditPart {
 
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -253,7 +244,6 @@ ClassifierEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -266,7 +256,6 @@ ClassifierEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -848,7 +837,6 @@ ClassifierEditPart {
 		return types;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -865,10 +853,6 @@ ClassifierEditPart {
 		}
 		return super.getTargetEditPart(request);
 	}
-
-
-
-
 
 	/**
 	 * @generated

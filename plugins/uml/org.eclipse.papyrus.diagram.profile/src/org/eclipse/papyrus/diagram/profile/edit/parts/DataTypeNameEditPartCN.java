@@ -102,8 +102,6 @@ public class DataTypeNameEditPartCN extends CompartmentEditPart implements IText
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -117,8 +115,6 @@ public class DataTypeNameEditPartCN extends CompartmentEditPart implements IText
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -571,8 +567,6 @@ public class DataTypeNameEditPartCN extends CompartmentEditPart implements IText
 		return (View)getModel();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -676,8 +670,6 @@ public class DataTypeNameEditPartCN extends CompartmentEditPart implements IText
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -693,7 +685,6 @@ public class DataTypeNameEditPartCN extends CompartmentEditPart implements IText
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
 
 	/**
 	 * @generated
@@ -726,7 +717,6 @@ public class DataTypeNameEditPartCN extends CompartmentEditPart implements IText
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -738,13 +728,10 @@ public class DataTypeNameEditPartCN extends CompartmentEditPart implements IText
 		return null;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
 
 	/**
 	 * @generated
@@ -771,7 +758,6 @@ public class DataTypeNameEditPartCN extends CompartmentEditPart implements IText
 
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -779,6 +765,5 @@ public class DataTypeNameEditPartCN extends CompartmentEditPart implements IText
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
-
 
 }

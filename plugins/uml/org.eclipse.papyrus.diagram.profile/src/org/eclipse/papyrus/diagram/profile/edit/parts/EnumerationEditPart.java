@@ -109,10 +109,6 @@ ShapeNodeEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -161,7 +157,6 @@ ShapeNodeEditPart {
 			return true;
 		}
 
-
 		if(childEditPart instanceof EnumerationEnumerationLiteralCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getEnumerationLiteralCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
@@ -171,7 +166,6 @@ ShapeNodeEditPart {
 
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -219,7 +213,6 @@ ShapeNodeEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -232,7 +225,6 @@ ShapeNodeEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -814,7 +806,6 @@ ShapeNodeEditPart {
 		return types;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -828,10 +819,6 @@ ShapeNodeEditPart {
 		}
 		return super.getTargetEditPart(request);
 	}
-
-
-
-
 
 	/**
 	 * @generated

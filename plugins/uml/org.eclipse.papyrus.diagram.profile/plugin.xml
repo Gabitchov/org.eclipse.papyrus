@@ -20,7 +20,7 @@
       <editor
          id="org.eclipse.papyrus.diagram.profile.part.UMLDiagramEditorID"
          name="%editorName"
-         icon="platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/ProfileDiagramEditorIcons/ProfileDiagramEditorIcon_16x16-32.bmp"
+         icon="icons/obj16/UMLDiagramFile.gif"
          extensions="PapyrusUMLProfile_diagram"
          default="true"
          class="org.eclipse.papyrus.diagram.profile.part.UMLDiagramEditor"
@@ -43,7 +43,7 @@
       <?gmfgen generated="true"?>
   	  <wizard
   	     name="%newWizardName"
-  	     icon="platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/ProfileDiagramEditorIcons/ProfileDiagramEditorIcon_16x16-32.bmp"
+  	     icon="icons/obj16/UMLDiagramFile.gif"
   	     category="org.eclipse.ui.Examples"
   	     class="org.eclipse.papyrus.diagram.profile.part.UMLCreationWizard"
   	     id="org.eclipse.papyrus.diagram.profile.part.UMLCreationWizardID">
@@ -71,10 +71,10 @@
    <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders" id="global-actions">
       <?gmfgen generated="true"?>
       <GlobalActionHandlerProvider
-         class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
+         class="org.eclipse.papyrus.diagram.common.providers.PapyrusGlobalActionHandlerProvider"
          id="PapyrusUMLProfileDiagramPresentation">
-         <Priority name="Lowest"/>
-         <ViewId id="org.eclipse.papyrus.diagram.profile.part.UMLDiagramEditorID">
+         <Priority name="Highest"/>
+         <ViewId id="org.eclipse.papyrus.core.papyrusEditor">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
                <GlobalActionId actionId="delete"/>
             </ElementType>
@@ -86,18 +86,18 @@
       <GlobalActionHandlerProvider
          class="org.eclipse.gmf.runtime.diagram.ui.providers.ide.providers.DiagramIDEGlobalActionHandlerProvider"
          id="PapyrusUMLProfileDiagramPresentationIDE">
-         <Priority name="Lowest"/>
-         <ViewId id="org.eclipse.papyrus.diagram.profile.part.UMLDiagramEditorID">
+         <Priority name="Low"/>
+         <ViewId id="org.eclipse.papyrus.core.papyrusEditor">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
                <GlobalActionId actionId="bookmark"/>
             </ElementType>
          </ViewId>
       </GlobalActionHandlerProvider>
       <GlobalActionHandlerProvider
-            class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
+            class="org.eclipse.papyrus.diagram.common.providers.PapyrusGlobalActionHandlerProvider"
             id="PapyrusUMLProfileDiagramRender">
-         <Priority name="Lowest"/>
-         <ViewId id="org.eclipse.papyrus.diagram.profile.part.UMLDiagramEditorID">
+         <Priority name="Highest"/>
+         <ViewId id="org.eclipse.papyrus.core.papyrusEditor">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
                <GlobalActionId actionId="cut"/>
                <GlobalActionId actionId="copy"/>
@@ -1137,7 +1137,10 @@
    </extension>
    <extension point="org.eclipse.ui.menus" id="context-menus">
       <?gmfgen generated="true"?>
-     
+      <!-- menuContribution locationURI="menu:org.eclipse.ui.main.menu?after=">
+      </menuContribution>
+      <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=">
+      </menuContribution -->
       <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
          <command commandId="org.eclipse.papyrus.diagram.profile.LoadResourceAction">
             <visibleWhen>
@@ -1295,7 +1298,7 @@
             priority="normal" 
             contentProvider="org.eclipse.papyrus.diagram.profile.navigator.UMLNavigatorContentProvider" 
             labelProvider="org.eclipse.papyrus.diagram.profile.navigator.UMLNavigatorLabelProvider"
-            icon="platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/ProfileDiagramEditorIcons/ProfileDiagramEditorIcon_16x16-32.bmp"
+            icon="icons/obj16/UMLDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
             <or>
@@ -1331,7 +1334,7 @@
             priority="normal" 
             contentProvider="org.eclipse.papyrus.diagram.profile.navigator.UMLDomainNavigatorContentProvider" 
             labelProvider="org.eclipse.papyrus.diagram.profile.navigator.UMLDomainNavigatorLabelProvider"
-            icon="platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/ProfileDiagramEditorIcons/ProfileDiagramEditorIcon_16x16-32.bmp"
+            icon="icons/obj16/UMLDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
             <or>

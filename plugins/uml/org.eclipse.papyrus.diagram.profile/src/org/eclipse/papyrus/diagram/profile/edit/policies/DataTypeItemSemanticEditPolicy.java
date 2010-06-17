@@ -76,7 +76,6 @@ public class DataTypeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		super(UMLElementTypes.DataType_2010);
 	}
 
-
 	/**
 	 * @generated
 	 */

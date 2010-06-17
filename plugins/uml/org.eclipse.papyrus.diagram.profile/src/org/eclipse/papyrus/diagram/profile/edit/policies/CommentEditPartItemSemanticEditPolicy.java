@@ -48,7 +48,6 @@ public class CommentEditPartItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		super(UMLElementTypes.Comment_1002);
 	}
 
-
 	/**
 	 * @generated
 	 */

@@ -23,7 +23,6 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributo
  */
 public abstract class UMLAbstractNavigatorItem extends PlatformObject {
 
-
 	/**
 	 * @generated
 	 */

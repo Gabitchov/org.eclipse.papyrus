@@ -105,8 +105,6 @@ public class AssociationRoleSourceLabelEditPart extends LabelEditPart implements
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -120,8 +118,6 @@ public class AssociationRoleSourceLabelEditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -589,8 +585,6 @@ public class AssociationRoleSourceLabelEditPart extends LabelEditPart implements
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -694,8 +688,6 @@ public class AssociationRoleSourceLabelEditPart extends LabelEditPart implements
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -725,9 +717,6 @@ public class AssociationRoleSourceLabelEditPart extends LabelEditPart implements
 				}
 			}
 		}
-
-
-
 
 		super.handleNotificationEvent(event);
 	}

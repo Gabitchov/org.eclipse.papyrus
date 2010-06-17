@@ -75,7 +75,6 @@ public class DataTypeOperationCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -91,10 +90,7 @@ public class DataTypeOperationCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -103,13 +99,10 @@ public class DataTypeOperationCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		Operation newElement = UMLFactory.eINSTANCE.createOperation();
 
 		DataType owner = (DataType)getElementToEdit();
 		owner.getOwnedOperations().add(newElement);
-
 
 		ElementInitializers.getInstance().init_Operation_3019(newElement);
 
@@ -118,9 +111,6 @@ public class DataTypeOperationCreateCommand extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

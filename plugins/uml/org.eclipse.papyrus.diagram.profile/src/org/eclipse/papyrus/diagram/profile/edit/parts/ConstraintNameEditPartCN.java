@@ -102,8 +102,6 @@ public class ConstraintNameEditPartCN extends CompartmentEditPart implements ITe
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -117,8 +115,6 @@ public class ConstraintNameEditPartCN extends CompartmentEditPart implements ITe
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -571,8 +567,6 @@ public class ConstraintNameEditPartCN extends CompartmentEditPart implements ITe
 		return getPrimaryView();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -676,8 +670,6 @@ public class ConstraintNameEditPartCN extends CompartmentEditPart implements ITe
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -693,7 +685,6 @@ public class ConstraintNameEditPartCN extends CompartmentEditPart implements ITe
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
-
 
 	/**
 	 * @generated
@@ -726,7 +717,6 @@ public class ConstraintNameEditPartCN extends CompartmentEditPart implements ITe
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 
@@ -738,13 +728,10 @@ public class ConstraintNameEditPartCN extends CompartmentEditPart implements ITe
 		return null;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
-
 
 	/**
 	 * @generated
@@ -771,7 +758,6 @@ public class ConstraintNameEditPartCN extends CompartmentEditPart implements ITe
 
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -779,6 +765,5 @@ public class ConstraintNameEditPartCN extends CompartmentEditPart implements ITe
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
-
 
 }

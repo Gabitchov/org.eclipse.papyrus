@@ -34,7 +34,6 @@ public class ShortCutDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		super(UMLElementTypes.Diagram_2016);
 	}
 
-
 	/**
 	 * @generated
 	 */

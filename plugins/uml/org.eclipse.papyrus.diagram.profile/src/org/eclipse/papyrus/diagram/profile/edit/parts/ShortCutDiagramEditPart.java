@@ -60,7 +60,6 @@ import org.eclipse.swt.graphics.Color;
  */
 public class ShortCutDiagramEditPart extends
 
-
 AbstractShortCutDiagramEditPart {
 
 	/**
@@ -98,9 +97,6 @@ AbstractShortCutDiagramEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -110,10 +106,6 @@ AbstractShortCutDiagramEditPart {
 		super.handleNotificationEvent(event);
 
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -166,7 +158,6 @@ AbstractShortCutDiagramEditPart {
 		return (DiagramNodeFigure)primaryShape;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -192,7 +183,6 @@ AbstractShortCutDiagramEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -266,10 +256,6 @@ AbstractShortCutDiagramEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(DiagramNameEditPart.VISUAL_ID));
 	}
-
-
-
-
 
 	/**
 	 * @generated

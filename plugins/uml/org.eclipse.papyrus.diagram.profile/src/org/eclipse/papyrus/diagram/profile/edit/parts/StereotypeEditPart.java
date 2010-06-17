@@ -67,7 +67,6 @@ import org.eclipse.swt.graphics.Color;
  */
 public class StereotypeEditPart extends
 
-
 ClassifierEditPart {
 
 	/**
@@ -110,9 +109,6 @@ ClassifierEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
 	/**
 	 * Papyrus codeGen
 	 * 
@@ -129,10 +125,6 @@ ClassifierEditPart {
 			}
 		}
 	}
-
-
-
-
 
 	/**
 	 * @generated
@@ -182,7 +174,6 @@ ClassifierEditPart {
 			return true;
 		}
 
-
 		if(childEditPart instanceof StereotypeAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
@@ -199,7 +190,6 @@ ClassifierEditPart {
 
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -256,7 +246,6 @@ ClassifierEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -269,7 +258,6 @@ ClassifierEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -851,7 +839,6 @@ ClassifierEditPart {
 		return types;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -868,10 +855,6 @@ ClassifierEditPart {
 		}
 		return super.getTargetEditPart(request);
 	}
-
-
-
-
 
 	/**
 	 * @generated

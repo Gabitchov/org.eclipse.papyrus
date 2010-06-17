@@ -79,7 +79,6 @@ public class StereotypeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditP
 		super(UMLElementTypes.Stereotype_1023);
 	}
 
-
 	/**
 	 * @generated
 	 */

@@ -74,7 +74,6 @@ public class EnumerationItemSemanticEditPolicy extends UMLBaseItemSemanticEditPo
 		super(UMLElementTypes.Enumeration_2006);
 	}
 
-
 	/**
 	 * @generated
 	 */

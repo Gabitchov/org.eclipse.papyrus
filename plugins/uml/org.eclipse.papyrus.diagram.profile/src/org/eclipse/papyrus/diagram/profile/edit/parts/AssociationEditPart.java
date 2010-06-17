@@ -79,7 +79,6 @@ AbstractAssociationEditPart implements ITreeBranchEditPart {
 		return false;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -89,7 +88,6 @@ AbstractAssociationEditPart implements ITreeBranchEditPart {
 		}
 		super.addChildVisual(childEditPart, -1);
 	}
-
 
 	/**
 	 * @generated
@@ -110,7 +108,6 @@ AbstractAssociationEditPart implements ITreeBranchEditPart {
 		return false;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -120,7 +117,6 @@ AbstractAssociationEditPart implements ITreeBranchEditPart {
 		}
 		super.removeChildVisual(childEditPart);
 	}
-
 
 	/**
 	 * Creates figure for this edit part.

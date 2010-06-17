@@ -75,12 +75,10 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 */
 	private UMLBaseItemSemanticEditPolicy.LinkConstraints linkConstraints;
 
-
 	/**
 	 * @generated
 	 */
 	private ElementInitializers initializers;
-
 
 	/**
 	 * @generated
@@ -260,7 +258,6 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	public void setElementInitializers(ElementInitializers i) {
 		this.initializers = i;
 	}
-
 
 	/**
 	 * @generated

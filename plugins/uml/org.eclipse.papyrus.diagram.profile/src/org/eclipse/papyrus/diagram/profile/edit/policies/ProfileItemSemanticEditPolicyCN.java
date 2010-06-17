@@ -80,7 +80,6 @@ public class ProfileItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 		super(UMLElementTypes.Profile_1024);
 	}
 
-
 	/**
 	 * @generated
 	 */

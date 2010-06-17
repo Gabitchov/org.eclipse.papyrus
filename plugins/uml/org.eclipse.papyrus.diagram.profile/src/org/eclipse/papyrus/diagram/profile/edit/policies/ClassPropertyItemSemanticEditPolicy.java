@@ -34,7 +34,6 @@ public class ClassPropertyItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 		super(UMLElementTypes.Property_3002);
 	}
 
-
 	/**
 	 * @generated
 	 */

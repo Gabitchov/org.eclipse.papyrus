@@ -75,7 +75,6 @@ public class StereotypeCreateCommandCN extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -91,10 +90,7 @@ public class StereotypeCreateCommandCN extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -103,13 +99,10 @@ public class StereotypeCreateCommandCN extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		Stereotype newElement = UMLFactory.eINSTANCE.createStereotype();
 
 		Profile owner = (Profile)getElementToEdit();
 		owner.getOwnedStereotypes().add(newElement);
-
 
 		ElementInitializers.getInstance().init_Stereotype_1023(newElement);
 
@@ -118,9 +111,6 @@ public class StereotypeCreateCommandCN extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated
