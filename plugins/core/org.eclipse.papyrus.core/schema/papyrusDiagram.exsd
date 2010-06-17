@@ -199,10 +199,34 @@ An ActionBarContributor can be shared among several Editors or Views.
                </documentation>
             </annotation>
          </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  A creation command class used to create a newdomain model for the given category.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.extension.commands.IModelCreationCommand"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="extensionPrefix" type="string">
+            <annotation>
+               <documentation>
+                  The file extension
+               </documentation>
+            </annotation>
+         </attribute>
          <attribute name="label" type="string" use="required">
             <annotation>
                <documentation>
                   
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  Description of the diagram category is to be displayed next ti its label in UI.
                </documentation>
             </annotation>
          </attribute>
@@ -213,23 +237,6 @@ An ActionBarContributor can be shared among several Editors or Views.
                </documentation>
                <appinfo>
                   <meta.attribute kind="resource"/>
-               </appinfo>
-            </annotation>
-         </attribute>
-         <attribute name="description" type="string">
-            <annotation>
-               <documentation>
-                  Description of the diagram category is to be displayed next ti its label in UI.
-               </documentation>
-            </annotation>
-         </attribute>
-         <attribute name="class" type="string" use="required">
-            <annotation>
-               <documentation>
-                  A creation command class used to create a newdomain model for the given category.
-               </documentation>
-               <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.extension.commands.IModelCreationCommand"/>
                </appinfo>
             </annotation>
          </attribute>
