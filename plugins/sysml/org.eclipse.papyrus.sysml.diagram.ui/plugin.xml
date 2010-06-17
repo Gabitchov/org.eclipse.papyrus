@@ -6,7 +6,7 @@
          class="org.eclipse.papyrus.sysml.diagram.ui.NewSysMLProjectWizard"
          finalPerspective="org.eclipse.papyrus.core.perspective"
          icon="icons/papyrus/new_sysml_project.gif"
-         id="org.eclipse.papyrus.wizards.1createproject"
+         id="org.eclipse.papyrus.wizards.createsysmlproject"
          name="SysML Project"
          project="true">
       <description>
@@ -18,7 +18,7 @@
          class="org.eclipse.papyrus.sysml.diagram.ui.NewSysMLModelWizard"
          finalPerspective="org.eclipse.papyrus.core.perspective"
          icon="icons/papyrus/new_sysml_model.gif"
-         id="org.eclipse.papyrus.wizards.2createumlmodel"
+         id="org.eclipse.papyrus.wizards.createsysmlmodel"
          name="SysML Model">
       <selection
             class="org.eclipse.core.resources.IResource">

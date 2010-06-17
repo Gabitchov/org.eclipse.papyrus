@@ -54,7 +54,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	private IWorkbench workbench;
 	
 	/** The Constant WIZARD_ID. */
-	public static final String WIZARD_ID = "org.eclipse.papyrus.wizards.2createumlmodel";
+	public static final String WIZARD_ID = "org.eclipse.papyrus.wizards.createmodel";
 	
 	/** The Constant NEW_MODEL_SETTINGS. */
 	public static final String NEW_MODEL_SETTINGS = "NewModelWizard";

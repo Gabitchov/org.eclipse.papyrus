@@ -35,6 +35,7 @@ import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
  */
 public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 
+	public static final String WIZARD_ID = "org.eclipse.papyrus.wizards.1createproject";
 	/** The new project page. */
 	protected WizardNewProjectCreationPage myNewProjectPage;
 

@@ -8,7 +8,7 @@
 	<wizard
          category="org.eclipse.papyrus.wizards.category"
          class="org.eclipse.papyrus.wizards.NewPapyrusProjectWizard"
-         finalPerspective="org.eclipse.papyrus.core.perspective"
+         finalPerspective="org.eclipse.papyrus.core.perspective"         
          icon="icons/papyrus/new_papyrus_project.gif"
          id="org.eclipse.papyrus.wizards.1createproject"
          name="Papyrus Project"
@@ -22,7 +22,7 @@
          class="org.eclipse.papyrus.wizards.CreateModelWizard"
          finalPerspective="org.eclipse.papyrus.core.perspective"
          icon="icons/papyrus/new_papyrus_model.gif"
-         id="org.eclipse.papyrus.wizards.2createumlmodel"
+         id="org.eclipse.papyrus.wizards.createmodel"
          name="Papyrus Model">
       <selection
             class="org.eclipse.core.resources.IFolder">
