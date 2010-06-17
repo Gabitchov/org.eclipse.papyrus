@@ -414,4 +414,8 @@ public static final IHintedType PROTOCOLTRANSITION = (IHintedType)getElementType
 /** IHintedType of UML currentEClass.getName()**/
 public static final IHintedType ASSOCIATIONCLASS = (IHintedType)getElementType("org.eclipse.papyrus.uml.AssociationClass");
 
+
+/** IHintedType of UML currentEClass.getName()**/
+public static final IHintedType NAMEDELEMENT = (IHintedType)getElementType("org.eclipse.papyrus.uml.NamedElement");
+
 }

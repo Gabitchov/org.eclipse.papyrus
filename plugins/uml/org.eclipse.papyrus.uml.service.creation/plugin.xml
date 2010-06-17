@@ -8,7 +8,7 @@
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Comment">
- <param  name="service.creationHint" value="UML::Comment">
+ <param  name="semanticHint" value="UML::Comment">
   </param>
 </metamodelType>
  <metamodelType   eclass="Package"
@@ -16,7 +16,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Package">
- <param  name="service.creationHint" value="UML::Package">
+ <param  name="semanticHint" value="UML::Package">
   </param>
 </metamodelType>
  <metamodelType   eclass="Dependency"
@@ -24,7 +24,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Dependency">
- <param  name="service.creationHint" value="UML::Dependency">
+ <param  name="semanticHint" value="UML::Dependency">
   </param>
 </metamodelType>
  <metamodelType   eclass="ElementImport"
@@ -32,7 +32,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ElementImport">
- <param  name="service.creationHint" value="UML::ElementImport">
+ <param  name="semanticHint" value="UML::ElementImport">
   </param>
 </metamodelType>
  <metamodelType   eclass="PackageImport"
@@ -40,7 +40,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::PackageImport">
- <param  name="service.creationHint" value="UML::PackageImport">
+ <param  name="semanticHint" value="UML::PackageImport">
   </param>
 </metamodelType>
  <metamodelType   eclass="Constraint"
@@ -48,7 +48,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Constraint">
- <param  name="service.creationHint" value="UML::Constraint">
+ <param  name="semanticHint" value="UML::Constraint">
   </param>
 </metamodelType>
  <metamodelType   eclass="Association"
@@ -56,7 +56,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Association">
- <param  name="service.creationHint" value="UML::Association">
+ <param  name="semanticHint" value="UML::Association">
   </param>
 </metamodelType>
  <metamodelType   eclass="TemplateBinding"
@@ -64,7 +64,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::TemplateBinding">
- <param  name="service.creationHint" value="UML::TemplateBinding">
+ <param  name="semanticHint" value="UML::TemplateBinding">
   </param>
 </metamodelType>
  <metamodelType   eclass="TemplateSignature"
@@ -72,7 +72,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::TemplateSignature">
- <param  name="service.creationHint" value="UML::TemplateSignature">
+ <param  name="semanticHint" value="UML::TemplateSignature">
   </param>
 </metamodelType>
  <metamodelType   eclass="TemplateParameter"
@@ -80,7 +80,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::TemplateParameter">
- <param  name="service.creationHint" value="UML::TemplateParameter">
+ <param  name="semanticHint" value="UML::TemplateParameter">
   </param>
 </metamodelType>
  <metamodelType   eclass="TemplateParameterSubstitution"
@@ -88,7 +88,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::TemplateParameterSubstitution">
- <param  name="service.creationHint" value="UML::TemplateParameterSubstitution">
+ <param  name="semanticHint" value="UML::TemplateParameterSubstitution">
   </param>
 </metamodelType>
  <metamodelType   eclass="Generalization"
@@ -96,7 +96,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Generalization">
- <param  name="service.creationHint" value="UML::Generalization">
+ <param  name="semanticHint" value="UML::Generalization">
   </param>
 </metamodelType>
  <metamodelType   eclass="GeneralizationSet"
@@ -104,7 +104,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::GeneralizationSet">
- <param  name="service.creationHint" value="UML::GeneralizationSet">
+ <param  name="semanticHint" value="UML::GeneralizationSet">
   </param>
 </metamodelType>
  <metamodelType   eclass="Substitution"
@@ -112,7 +112,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Substitution">
- <param  name="service.creationHint" value="UML::Substitution">
+ <param  name="semanticHint" value="UML::Substitution">
   </param>
 </metamodelType>
  <metamodelType   eclass="Realization"
@@ -120,7 +120,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Realization">
- <param  name="service.creationHint" value="UML::Realization">
+ <param  name="semanticHint" value="UML::Realization">
   </param>
 </metamodelType>
  <metamodelType   eclass="Abstraction"
@@ -128,7 +128,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Abstraction">
- <param  name="service.creationHint" value="UML::Abstraction">
+ <param  name="semanticHint" value="UML::Abstraction">
   </param>
 </metamodelType>
  <metamodelType   eclass="OpaqueExpression"
@@ -136,7 +136,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::OpaqueExpression">
- <param  name="service.creationHint" value="UML::OpaqueExpression">
+ <param  name="semanticHint" value="UML::OpaqueExpression">
   </param>
 </metamodelType>
  <metamodelType   eclass="Parameter"
@@ -144,7 +144,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Parameter">
- <param  name="service.creationHint" value="UML::Parameter">
+ <param  name="semanticHint" value="UML::Parameter">
   </param>
 </metamodelType>
  <metamodelType   eclass="ConnectableElementTemplateParameter"
@@ -152,7 +152,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ConnectableElementTemplateParameter">
- <param  name="service.creationHint" value="UML::ConnectableElementTemplateParameter">
+ <param  name="semanticHint" value="UML::ConnectableElementTemplateParameter">
   </param>
 </metamodelType>
  <metamodelType   eclass="ConnectorEnd"
@@ -160,7 +160,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ConnectorEnd">
- <param  name="service.creationHint" value="UML::ConnectorEnd">
+ <param  name="semanticHint" value="UML::ConnectorEnd">
   </param>
 </metamodelType>
  <metamodelType   eclass="Property"
@@ -168,7 +168,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Property">
- <param  name="service.creationHint" value="UML::Property">
+ <param  name="semanticHint" value="UML::Property">
   </param>
 </metamodelType>
  <metamodelType   eclass="Deployment"
@@ -176,7 +176,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Deployment">
- <param  name="service.creationHint" value="UML::Deployment">
+ <param  name="semanticHint" value="UML::Deployment">
   </param>
 </metamodelType>
  <metamodelType   eclass="DeploymentSpecification"
@@ -184,7 +184,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::DeploymentSpecification">
- <param  name="service.creationHint" value="UML::DeploymentSpecification">
+ <param  name="semanticHint" value="UML::DeploymentSpecification">
   </param>
 </metamodelType>
  <metamodelType   eclass="Artifact"
@@ -192,7 +192,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Artifact">
- <param  name="service.creationHint" value="UML::Artifact">
+ <param  name="semanticHint" value="UML::Artifact">
   </param>
 </metamodelType>
  <metamodelType   eclass="Manifestation"
@@ -200,7 +200,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Manifestation">
- <param  name="service.creationHint" value="UML::Manifestation">
+ <param  name="semanticHint" value="UML::Manifestation">
   </param>
 </metamodelType>
  <metamodelType   eclass="Operation"
@@ -208,7 +208,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Operation">
- <param  name="service.creationHint" value="UML::Operation">
+ <param  name="semanticHint" value="UML::Operation">
   </param>
 </metamodelType>
  <metamodelType   eclass="Class"
@@ -216,7 +216,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Class">
- <param  name="service.creationHint" value="UML::Class">
+ <param  name="semanticHint" value="UML::Class">
   </param>
 </metamodelType>
  <metamodelType   eclass="InterfaceRealization"
@@ -224,7 +224,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::InterfaceRealization">
- <param  name="service.creationHint" value="UML::InterfaceRealization">
+ <param  name="semanticHint" value="UML::InterfaceRealization">
   </param>
 </metamodelType>
  <metamodelType   eclass="Interface"
@@ -232,7 +232,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Interface">
- <param  name="service.creationHint" value="UML::Interface">
+ <param  name="semanticHint" value="UML::Interface">
   </param>
 </metamodelType>
  <metamodelType   eclass="Reception"
@@ -240,7 +240,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Reception">
- <param  name="service.creationHint" value="UML::Reception">
+ <param  name="semanticHint" value="UML::Reception">
   </param>
 </metamodelType>
  <metamodelType   eclass="Signal"
@@ -248,7 +248,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Signal">
- <param  name="service.creationHint" value="UML::Signal">
+ <param  name="semanticHint" value="UML::Signal">
   </param>
 </metamodelType>
  <metamodelType   eclass="ProtocolStateMachine"
@@ -256,7 +256,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ProtocolStateMachine">
- <param  name="service.creationHint" value="UML::ProtocolStateMachine">
+ <param  name="semanticHint" value="UML::ProtocolStateMachine">
   </param>
 </metamodelType>
  <metamodelType   eclass="StateMachine"
@@ -264,7 +264,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::StateMachine">
- <param  name="service.creationHint" value="UML::StateMachine">
+ <param  name="semanticHint" value="UML::StateMachine">
   </param>
 </metamodelType>
  <metamodelType   eclass="Region"
@@ -272,7 +272,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Region">
- <param  name="service.creationHint" value="UML::Region">
+ <param  name="semanticHint" value="UML::Region">
   </param>
 </metamodelType>
  <metamodelType   eclass="Transition"
@@ -280,7 +280,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Transition">
- <param  name="service.creationHint" value="UML::Transition">
+ <param  name="semanticHint" value="UML::Transition">
   </param>
 </metamodelType>
  <metamodelType   eclass="Trigger"
@@ -288,7 +288,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Trigger">
- <param  name="service.creationHint" value="UML::Trigger">
+ <param  name="semanticHint" value="UML::Trigger">
   </param>
 </metamodelType>
  <metamodelType   eclass="Port"
@@ -296,7 +296,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Port">
- <param  name="service.creationHint" value="UML::Port">
+ <param  name="semanticHint" value="UML::Port">
   </param>
 </metamodelType>
  <metamodelType   eclass="State"
@@ -304,7 +304,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::State">
- <param  name="service.creationHint" value="UML::State">
+ <param  name="semanticHint" value="UML::State">
   </param>
 </metamodelType>
  <metamodelType   eclass="ConnectionPointReference"
@@ -312,7 +312,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ConnectionPointReference">
- <param  name="service.creationHint" value="UML::ConnectionPointReference">
+ <param  name="semanticHint" value="UML::ConnectionPointReference">
   </param>
 </metamodelType>
  <metamodelType   eclass="Pseudostate"
@@ -320,7 +320,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Pseudostate">
- <param  name="service.creationHint" value="UML::Pseudostate">
+ <param  name="semanticHint" value="UML::Pseudostate">
   </param>
 </metamodelType>
  <metamodelType   eclass="ProtocolConformance"
@@ -328,7 +328,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ProtocolConformance">
- <param  name="service.creationHint" value="UML::ProtocolConformance">
+ <param  name="semanticHint" value="UML::ProtocolConformance">
   </param>
 </metamodelType>
  <metamodelType   eclass="Connector"
@@ -336,7 +336,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Connector">
- <param  name="service.creationHint" value="UML::Connector">
+ <param  name="semanticHint" value="UML::Connector">
   </param>
 </metamodelType>
  <metamodelType   eclass="Extension"
@@ -344,7 +344,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Extension">
- <param  name="service.creationHint" value="UML::Extension">
+ <param  name="semanticHint" value="UML::Extension">
   </param>
 </metamodelType>
  <metamodelType   eclass="ExtensionEnd"
@@ -352,7 +352,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ExtensionEnd">
- <param  name="service.creationHint" value="UML::ExtensionEnd">
+ <param  name="semanticHint" value="UML::ExtensionEnd">
   </param>
 </metamodelType>
  <metamodelType   eclass="Stereotype"
@@ -360,7 +360,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Stereotype">
- <param  name="service.creationHint" value="UML::Stereotype">
+ <param  name="semanticHint" value="UML::Stereotype">
   </param>
 </metamodelType>
  <metamodelType   eclass="Image"
@@ -368,7 +368,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Image">
- <param  name="service.creationHint" value="UML::Image">
+ <param  name="semanticHint" value="UML::Image">
   </param>
 </metamodelType>
  <metamodelType   eclass="Profile"
@@ -376,7 +376,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Profile">
- <param  name="service.creationHint" value="UML::Profile">
+ <param  name="semanticHint" value="UML::Profile">
   </param>
 </metamodelType>
  <metamodelType   eclass="Model"
@@ -384,7 +384,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Model">
- <param  name="service.creationHint" value="UML::Model">
+ <param  name="semanticHint" value="UML::Model">
   </param>
 </metamodelType>
  <metamodelType   eclass="ParameterSet"
@@ -392,7 +392,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ParameterSet">
- <param  name="service.creationHint" value="UML::ParameterSet">
+ <param  name="semanticHint" value="UML::ParameterSet">
   </param>
 </metamodelType>
  <metamodelType   eclass="DataType"
@@ -400,7 +400,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::DataType">
- <param  name="service.creationHint" value="UML::DataType">
+ <param  name="semanticHint" value="UML::DataType">
   </param>
 </metamodelType>
  <metamodelType   eclass="OperationTemplateParameter"
@@ -408,7 +408,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::OperationTemplateParameter">
- <param  name="service.creationHint" value="UML::OperationTemplateParameter">
+ <param  name="semanticHint" value="UML::OperationTemplateParameter">
   </param>
 </metamodelType>
  <metamodelType   eclass="CollaborationUse"
@@ -416,7 +416,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::CollaborationUse">
- <param  name="service.creationHint" value="UML::CollaborationUse">
+ <param  name="semanticHint" value="UML::CollaborationUse">
   </param>
 </metamodelType>
  <metamodelType   eclass="Collaboration"
@@ -424,7 +424,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Collaboration">
- <param  name="service.creationHint" value="UML::Collaboration">
+ <param  name="semanticHint" value="UML::Collaboration">
   </param>
 </metamodelType>
  <metamodelType   eclass="UseCase"
@@ -432,7 +432,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::UseCase">
- <param  name="service.creationHint" value="UML::UseCase">
+ <param  name="semanticHint" value="UML::UseCase">
   </param>
 </metamodelType>
  <metamodelType   eclass="Include"
@@ -440,7 +440,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Include">
- <param  name="service.creationHint" value="UML::Include">
+ <param  name="semanticHint" value="UML::Include">
   </param>
 </metamodelType>
  <metamodelType   eclass="Extend"
@@ -448,7 +448,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Extend">
- <param  name="service.creationHint" value="UML::Extend">
+ <param  name="semanticHint" value="UML::Extend">
   </param>
 </metamodelType>
  <metamodelType   eclass="ExtensionPoint"
@@ -456,7 +456,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ExtensionPoint">
- <param  name="service.creationHint" value="UML::ExtensionPoint">
+ <param  name="semanticHint" value="UML::ExtensionPoint">
   </param>
 </metamodelType>
  <metamodelType   eclass="RedefinableTemplateSignature"
@@ -464,7 +464,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::RedefinableTemplateSignature">
- <param  name="service.creationHint" value="UML::RedefinableTemplateSignature">
+ <param  name="semanticHint" value="UML::RedefinableTemplateSignature">
   </param>
 </metamodelType>
  <metamodelType   eclass="ClassifierTemplateParameter"
@@ -472,7 +472,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ClassifierTemplateParameter">
- <param  name="service.creationHint" value="UML::ClassifierTemplateParameter">
+ <param  name="semanticHint" value="UML::ClassifierTemplateParameter">
   </param>
 </metamodelType>
  <metamodelType   eclass="StringExpression"
@@ -480,7 +480,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::StringExpression">
- <param  name="service.creationHint" value="UML::StringExpression">
+ <param  name="semanticHint" value="UML::StringExpression">
   </param>
 </metamodelType>
  <metamodelType   eclass="Expression"
@@ -488,7 +488,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Expression">
- <param  name="service.creationHint" value="UML::Expression">
+ <param  name="semanticHint" value="UML::Expression">
   </param>
 </metamodelType>
  <metamodelType   eclass="Usage"
@@ -496,7 +496,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Usage">
- <param  name="service.creationHint" value="UML::Usage">
+ <param  name="semanticHint" value="UML::Usage">
   </param>
 </metamodelType>
  <metamodelType   eclass="PackageMerge"
@@ -504,7 +504,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::PackageMerge">
- <param  name="service.creationHint" value="UML::PackageMerge">
+ <param  name="semanticHint" value="UML::PackageMerge">
   </param>
 </metamodelType>
  <metamodelType   eclass="ProfileApplication"
@@ -512,7 +512,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ProfileApplication">
- <param  name="service.creationHint" value="UML::ProfileApplication">
+ <param  name="semanticHint" value="UML::ProfileApplication">
   </param>
 </metamodelType>
  <metamodelType   eclass="Enumeration"
@@ -520,7 +520,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Enumeration">
- <param  name="service.creationHint" value="UML::Enumeration">
+ <param  name="semanticHint" value="UML::Enumeration">
   </param>
 </metamodelType>
  <metamodelType   eclass="EnumerationLiteral"
@@ -528,7 +528,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::EnumerationLiteral">
- <param  name="service.creationHint" value="UML::EnumerationLiteral">
+ <param  name="semanticHint" value="UML::EnumerationLiteral">
   </param>
 </metamodelType>
  <metamodelType   eclass="InstanceSpecification"
@@ -536,7 +536,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::InstanceSpecification">
- <param  name="service.creationHint" value="UML::InstanceSpecification">
+ <param  name="semanticHint" value="UML::InstanceSpecification">
   </param>
 </metamodelType>
  <metamodelType   eclass="Slot"
@@ -544,7 +544,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Slot">
- <param  name="service.creationHint" value="UML::Slot">
+ <param  name="semanticHint" value="UML::Slot">
   </param>
 </metamodelType>
  <metamodelType   eclass="PrimitiveType"
@@ -552,7 +552,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::PrimitiveType">
- <param  name="service.creationHint" value="UML::PrimitiveType">
+ <param  name="semanticHint" value="UML::PrimitiveType">
   </param>
 </metamodelType>
  <metamodelType   eclass="LiteralInteger"
@@ -560,7 +560,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::LiteralInteger">
- <param  name="service.creationHint" value="UML::LiteralInteger">
+ <param  name="semanticHint" value="UML::LiteralInteger">
   </param>
 </metamodelType>
  <metamodelType   eclass="LiteralString"
@@ -568,7 +568,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::LiteralString">
- <param  name="service.creationHint" value="UML::LiteralString">
+ <param  name="semanticHint" value="UML::LiteralString">
   </param>
 </metamodelType>
  <metamodelType   eclass="LiteralBoolean"
@@ -576,7 +576,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::LiteralBoolean">
- <param  name="service.creationHint" value="UML::LiteralBoolean">
+ <param  name="semanticHint" value="UML::LiteralBoolean">
   </param>
 </metamodelType>
  <metamodelType   eclass="LiteralNull"
@@ -584,7 +584,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::LiteralNull">
- <param  name="service.creationHint" value="UML::LiteralNull">
+ <param  name="semanticHint" value="UML::LiteralNull">
   </param>
 </metamodelType>
  <metamodelType   eclass="InstanceValue"
@@ -592,7 +592,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::InstanceValue">
- <param  name="service.creationHint" value="UML::InstanceValue">
+ <param  name="semanticHint" value="UML::InstanceValue">
   </param>
 </metamodelType>
  <metamodelType   eclass="LiteralUnlimitedNatural"
@@ -600,7 +600,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::LiteralUnlimitedNatural">
- <param  name="service.creationHint" value="UML::LiteralUnlimitedNatural">
+ <param  name="semanticHint" value="UML::LiteralUnlimitedNatural">
   </param>
 </metamodelType>
  <metamodelType   eclass="OpaqueBehavior"
@@ -608,7 +608,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::OpaqueBehavior">
- <param  name="service.creationHint" value="UML::OpaqueBehavior">
+ <param  name="semanticHint" value="UML::OpaqueBehavior">
   </param>
 </metamodelType>
  <metamodelType   eclass="FunctionBehavior"
@@ -616,7 +616,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::FunctionBehavior">
- <param  name="service.creationHint" value="UML::FunctionBehavior">
+ <param  name="semanticHint" value="UML::FunctionBehavior">
   </param>
 </metamodelType>
  <metamodelType   eclass="OpaqueAction"
@@ -624,7 +624,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::OpaqueAction">
- <param  name="service.creationHint" value="UML::OpaqueAction">
+ <param  name="semanticHint" value="UML::OpaqueAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="StructuredActivityNode"
@@ -632,7 +632,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::StructuredActivityNode">
- <param  name="service.creationHint" value="UML::StructuredActivityNode">
+ <param  name="semanticHint" value="UML::StructuredActivityNode">
   </param>
 </metamodelType>
  <metamodelType   eclass="Activity"
@@ -640,7 +640,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Activity">
- <param  name="service.creationHint" value="UML::Activity">
+ <param  name="semanticHint" value="UML::Activity">
   </param>
 </metamodelType>
  <metamodelType   eclass="Variable"
@@ -648,7 +648,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Variable">
- <param  name="service.creationHint" value="UML::Variable">
+ <param  name="semanticHint" value="UML::Variable">
   </param>
 </metamodelType>
  <metamodelType   eclass="ActivityPartition"
@@ -656,7 +656,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ActivityPartition">
- <param  name="service.creationHint" value="UML::ActivityPartition">
+ <param  name="semanticHint" value="UML::ActivityPartition">
   </param>
 </metamodelType>
  <metamodelType   eclass="InterruptibleActivityRegion"
@@ -664,7 +664,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::InterruptibleActivityRegion">
- <param  name="service.creationHint" value="UML::InterruptibleActivityRegion">
+ <param  name="semanticHint" value="UML::InterruptibleActivityRegion">
   </param>
 </metamodelType>
  <metamodelType   eclass="ExceptionHandler"
@@ -672,7 +672,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ExceptionHandler">
- <param  name="service.creationHint" value="UML::ExceptionHandler">
+ <param  name="semanticHint" value="UML::ExceptionHandler">
   </param>
 </metamodelType>
  <metamodelType   eclass="OutputPin"
@@ -680,7 +680,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::OutputPin">
- <param  name="service.creationHint" value="UML::OutputPin">
+ <param  name="semanticHint" value="UML::OutputPin">
   </param>
 </metamodelType>
  <metamodelType   eclass="Pin"
@@ -688,7 +688,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Pin">
- <param  name="service.creationHint" value="UML::Pin">
+ <param  name="semanticHint" value="UML::Pin">
   </param>
 </metamodelType>
  <metamodelType   eclass="InputPin"
@@ -696,7 +696,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::InputPin">
- <param  name="service.creationHint" value="UML::InputPin">
+ <param  name="semanticHint" value="UML::InputPin">
   </param>
 </metamodelType>
  <metamodelType   eclass="SendSignalAction"
@@ -704,7 +704,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::SendSignalAction">
- <param  name="service.creationHint" value="UML::SendSignalAction">
+ <param  name="semanticHint" value="UML::SendSignalAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="CallOperationAction"
@@ -712,7 +712,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::CallOperationAction">
- <param  name="service.creationHint" value="UML::CallOperationAction">
+ <param  name="semanticHint" value="UML::CallOperationAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="CallBehaviorAction"
@@ -720,7 +720,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::CallBehaviorAction">
- <param  name="service.creationHint" value="UML::CallBehaviorAction">
+ <param  name="semanticHint" value="UML::CallBehaviorAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="SequenceNode"
@@ -728,7 +728,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::SequenceNode">
- <param  name="service.creationHint" value="UML::SequenceNode">
+ <param  name="semanticHint" value="UML::SequenceNode">
   </param>
 </metamodelType>
  <metamodelType   eclass="ControlFlow"
@@ -736,7 +736,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ControlFlow">
- <param  name="service.creationHint" value="UML::ControlFlow">
+ <param  name="semanticHint" value="UML::ControlFlow">
   </param>
 </metamodelType>
  <metamodelType   eclass="InitialNode"
@@ -744,7 +744,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::InitialNode">
- <param  name="service.creationHint" value="UML::InitialNode">
+ <param  name="semanticHint" value="UML::InitialNode">
   </param>
 </metamodelType>
  <metamodelType   eclass="ActivityParameterNode"
@@ -752,7 +752,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ActivityParameterNode">
- <param  name="service.creationHint" value="UML::ActivityParameterNode">
+ <param  name="semanticHint" value="UML::ActivityParameterNode">
   </param>
 </metamodelType>
  <metamodelType   eclass="ValuePin"
@@ -760,7 +760,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ValuePin">
- <param  name="service.creationHint" value="UML::ValuePin">
+ <param  name="semanticHint" value="UML::ValuePin">
   </param>
 </metamodelType>
  <metamodelType   eclass="Message"
@@ -768,7 +768,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Message">
- <param  name="service.creationHint" value="UML::Message">
+ <param  name="semanticHint" value="UML::Message">
   </param>
 </metamodelType>
  <metamodelType   eclass="Interaction"
@@ -776,7 +776,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Interaction">
- <param  name="service.creationHint" value="UML::Interaction">
+ <param  name="semanticHint" value="UML::Interaction">
   </param>
 </metamodelType>
  <metamodelType   eclass="Lifeline"
@@ -784,7 +784,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Lifeline">
- <param  name="service.creationHint" value="UML::Lifeline">
+ <param  name="semanticHint" value="UML::Lifeline">
   </param>
 </metamodelType>
  <metamodelType   eclass="PartDecomposition"
@@ -792,7 +792,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::PartDecomposition">
- <param  name="service.creationHint" value="UML::PartDecomposition">
+ <param  name="semanticHint" value="UML::PartDecomposition">
   </param>
 </metamodelType>
  <metamodelType   eclass="InteractionUse"
@@ -800,7 +800,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::InteractionUse">
- <param  name="service.creationHint" value="UML::InteractionUse">
+ <param  name="semanticHint" value="UML::InteractionUse">
   </param>
 </metamodelType>
  <metamodelType   eclass="Gate"
@@ -808,7 +808,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Gate">
- <param  name="service.creationHint" value="UML::Gate">
+ <param  name="semanticHint" value="UML::Gate">
   </param>
 </metamodelType>
  <metamodelType   eclass="GeneralOrdering"
@@ -816,7 +816,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::GeneralOrdering">
- <param  name="service.creationHint" value="UML::GeneralOrdering">
+ <param  name="semanticHint" value="UML::GeneralOrdering">
   </param>
 </metamodelType>
  <metamodelType   eclass="OccurrenceSpecification"
@@ -824,7 +824,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::OccurrenceSpecification">
- <param  name="service.creationHint" value="UML::OccurrenceSpecification">
+ <param  name="semanticHint" value="UML::OccurrenceSpecification">
   </param>
 </metamodelType>
  <metamodelType   eclass="InteractionOperand"
@@ -832,7 +832,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::InteractionOperand">
- <param  name="service.creationHint" value="UML::InteractionOperand">
+ <param  name="semanticHint" value="UML::InteractionOperand">
   </param>
 </metamodelType>
  <metamodelType   eclass="InteractionConstraint"
@@ -840,7 +840,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::InteractionConstraint">
- <param  name="service.creationHint" value="UML::InteractionConstraint">
+ <param  name="semanticHint" value="UML::InteractionConstraint">
   </param>
 </metamodelType>
  <metamodelType   eclass="StateInvariant"
@@ -848,7 +848,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::StateInvariant">
- <param  name="service.creationHint" value="UML::StateInvariant">
+ <param  name="semanticHint" value="UML::StateInvariant">
   </param>
 </metamodelType>
  <metamodelType   eclass="ActionExecutionSpecification"
@@ -856,7 +856,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ActionExecutionSpecification">
- <param  name="service.creationHint" value="UML::ActionExecutionSpecification">
+ <param  name="semanticHint" value="UML::ActionExecutionSpecification">
   </param>
 </metamodelType>
  <metamodelType   eclass="BehaviorExecutionSpecification"
@@ -864,7 +864,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::BehaviorExecutionSpecification">
- <param  name="service.creationHint" value="UML::BehaviorExecutionSpecification">
+ <param  name="semanticHint" value="UML::BehaviorExecutionSpecification">
   </param>
 </metamodelType>
  <metamodelType   eclass="ExecutionEvent"
@@ -872,7 +872,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ExecutionEvent">
- <param  name="service.creationHint" value="UML::ExecutionEvent">
+ <param  name="semanticHint" value="UML::ExecutionEvent">
   </param>
 </metamodelType>
  <metamodelType   eclass="CreationEvent"
@@ -880,7 +880,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::CreationEvent">
- <param  name="service.creationHint" value="UML::CreationEvent">
+ <param  name="semanticHint" value="UML::CreationEvent">
   </param>
 </metamodelType>
  <metamodelType   eclass="DestructionEvent"
@@ -888,7 +888,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::DestructionEvent">
- <param  name="service.creationHint" value="UML::DestructionEvent">
+ <param  name="semanticHint" value="UML::DestructionEvent">
   </param>
 </metamodelType>
  <metamodelType   eclass="SendOperationEvent"
@@ -896,7 +896,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::SendOperationEvent">
- <param  name="service.creationHint" value="UML::SendOperationEvent">
+ <param  name="semanticHint" value="UML::SendOperationEvent">
   </param>
 </metamodelType>
  <metamodelType   eclass="SendSignalEvent"
@@ -904,7 +904,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::SendSignalEvent">
- <param  name="service.creationHint" value="UML::SendSignalEvent">
+ <param  name="semanticHint" value="UML::SendSignalEvent">
   </param>
 </metamodelType>
  <metamodelType   eclass="MessageOccurrenceSpecification"
@@ -912,7 +912,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::MessageOccurrenceSpecification">
- <param  name="service.creationHint" value="UML::MessageOccurrenceSpecification">
+ <param  name="semanticHint" value="UML::MessageOccurrenceSpecification">
   </param>
 </metamodelType>
  <metamodelType   eclass="ExecutionOccurrenceSpecification"
@@ -920,7 +920,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ExecutionOccurrenceSpecification">
- <param  name="service.creationHint" value="UML::ExecutionOccurrenceSpecification">
+ <param  name="semanticHint" value="UML::ExecutionOccurrenceSpecification">
   </param>
 </metamodelType>
  <metamodelType   eclass="ReceiveOperationEvent"
@@ -928,7 +928,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ReceiveOperationEvent">
- <param  name="service.creationHint" value="UML::ReceiveOperationEvent">
+ <param  name="semanticHint" value="UML::ReceiveOperationEvent">
   </param>
 </metamodelType>
  <metamodelType   eclass="ReceiveSignalEvent"
@@ -936,7 +936,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ReceiveSignalEvent">
- <param  name="service.creationHint" value="UML::ReceiveSignalEvent">
+ <param  name="semanticHint" value="UML::ReceiveSignalEvent">
   </param>
 </metamodelType>
  <metamodelType   eclass="Actor"
@@ -944,7 +944,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Actor">
- <param  name="service.creationHint" value="UML::Actor">
+ <param  name="semanticHint" value="UML::Actor">
   </param>
 </metamodelType>
  <metamodelType   eclass="CallEvent"
@@ -952,7 +952,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::CallEvent">
- <param  name="service.creationHint" value="UML::CallEvent">
+ <param  name="semanticHint" value="UML::CallEvent">
   </param>
 </metamodelType>
  <metamodelType   eclass="ChangeEvent"
@@ -960,7 +960,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ChangeEvent">
- <param  name="service.creationHint" value="UML::ChangeEvent">
+ <param  name="semanticHint" value="UML::ChangeEvent">
   </param>
 </metamodelType>
  <metamodelType   eclass="SignalEvent"
@@ -968,7 +968,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::SignalEvent">
- <param  name="service.creationHint" value="UML::SignalEvent">
+ <param  name="semanticHint" value="UML::SignalEvent">
   </param>
 </metamodelType>
  <metamodelType   eclass="AnyReceiveEvent"
@@ -976,7 +976,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::AnyReceiveEvent">
- <param  name="service.creationHint" value="UML::AnyReceiveEvent">
+ <param  name="semanticHint" value="UML::AnyReceiveEvent">
   </param>
 </metamodelType>
  <metamodelType   eclass="ForkNode"
@@ -984,7 +984,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ForkNode">
- <param  name="service.creationHint" value="UML::ForkNode">
+ <param  name="semanticHint" value="UML::ForkNode">
   </param>
 </metamodelType>
  <metamodelType   eclass="FlowFinalNode"
@@ -992,7 +992,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::FlowFinalNode">
- <param  name="service.creationHint" value="UML::FlowFinalNode">
+ <param  name="semanticHint" value="UML::FlowFinalNode">
   </param>
 </metamodelType>
  <metamodelType   eclass="CentralBufferNode"
@@ -1000,7 +1000,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::CentralBufferNode">
- <param  name="service.creationHint" value="UML::CentralBufferNode">
+ <param  name="semanticHint" value="UML::CentralBufferNode">
   </param>
 </metamodelType>
  <metamodelType   eclass="MergeNode"
@@ -1008,7 +1008,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::MergeNode">
- <param  name="service.creationHint" value="UML::MergeNode">
+ <param  name="semanticHint" value="UML::MergeNode">
   </param>
 </metamodelType>
  <metamodelType   eclass="DecisionNode"
@@ -1016,7 +1016,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::DecisionNode">
- <param  name="service.creationHint" value="UML::DecisionNode">
+ <param  name="semanticHint" value="UML::DecisionNode">
   </param>
 </metamodelType>
  <metamodelType   eclass="ActivityFinalNode"
@@ -1024,7 +1024,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ActivityFinalNode">
- <param  name="service.creationHint" value="UML::ActivityFinalNode">
+ <param  name="semanticHint" value="UML::ActivityFinalNode">
   </param>
 </metamodelType>
  <metamodelType   eclass="ComponentRealization"
@@ -1032,7 +1032,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ComponentRealization">
- <param  name="service.creationHint" value="UML::ComponentRealization">
+ <param  name="semanticHint" value="UML::ComponentRealization">
   </param>
 </metamodelType>
  <metamodelType   eclass="Component"
@@ -1040,7 +1040,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Component">
- <param  name="service.creationHint" value="UML::Component">
+ <param  name="semanticHint" value="UML::Component">
   </param>
 </metamodelType>
  <metamodelType   eclass="Node"
@@ -1048,7 +1048,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Node">
- <param  name="service.creationHint" value="UML::Node">
+ <param  name="semanticHint" value="UML::Node">
   </param>
 </metamodelType>
  <metamodelType   eclass="Device"
@@ -1056,7 +1056,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Device">
- <param  name="service.creationHint" value="UML::Device">
+ <param  name="semanticHint" value="UML::Device">
   </param>
 </metamodelType>
  <metamodelType   eclass="ExecutionEnvironment"
@@ -1064,7 +1064,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ExecutionEnvironment">
- <param  name="service.creationHint" value="UML::ExecutionEnvironment">
+ <param  name="semanticHint" value="UML::ExecutionEnvironment">
   </param>
 </metamodelType>
  <metamodelType   eclass="CommunicationPath"
@@ -1072,7 +1072,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::CommunicationPath">
- <param  name="service.creationHint" value="UML::CommunicationPath">
+ <param  name="semanticHint" value="UML::CommunicationPath">
   </param>
 </metamodelType>
  <metamodelType   eclass="CombinedFragment"
@@ -1080,7 +1080,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::CombinedFragment">
- <param  name="service.creationHint" value="UML::CombinedFragment">
+ <param  name="semanticHint" value="UML::CombinedFragment">
   </param>
 </metamodelType>
  <metamodelType   eclass="Continuation"
@@ -1088,7 +1088,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Continuation">
- <param  name="service.creationHint" value="UML::Continuation">
+ <param  name="semanticHint" value="UML::Continuation">
   </param>
 </metamodelType>
  <metamodelType   eclass="ConsiderIgnoreFragment"
@@ -1096,7 +1096,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ConsiderIgnoreFragment">
- <param  name="service.creationHint" value="UML::ConsiderIgnoreFragment">
+ <param  name="semanticHint" value="UML::ConsiderIgnoreFragment">
   </param>
 </metamodelType>
  <metamodelType   eclass="CreateObjectAction"
@@ -1104,7 +1104,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::CreateObjectAction">
- <param  name="service.creationHint" value="UML::CreateObjectAction">
+ <param  name="semanticHint" value="UML::CreateObjectAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="DestroyObjectAction"
@@ -1112,7 +1112,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::DestroyObjectAction">
- <param  name="service.creationHint" value="UML::DestroyObjectAction">
+ <param  name="semanticHint" value="UML::DestroyObjectAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="TestIdentityAction"
@@ -1120,7 +1120,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::TestIdentityAction">
- <param  name="service.creationHint" value="UML::TestIdentityAction">
+ <param  name="semanticHint" value="UML::TestIdentityAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="ReadSelfAction"
@@ -1128,7 +1128,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ReadSelfAction">
- <param  name="service.creationHint" value="UML::ReadSelfAction">
+ <param  name="semanticHint" value="UML::ReadSelfAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="ReadStructuralFeatureAction"
@@ -1136,7 +1136,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ReadStructuralFeatureAction">
- <param  name="service.creationHint" value="UML::ReadStructuralFeatureAction">
+ <param  name="semanticHint" value="UML::ReadStructuralFeatureAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="ClearStructuralFeatureAction"
@@ -1144,7 +1144,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ClearStructuralFeatureAction">
- <param  name="service.creationHint" value="UML::ClearStructuralFeatureAction">
+ <param  name="semanticHint" value="UML::ClearStructuralFeatureAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="RemoveStructuralFeatureValueAction"
@@ -1152,7 +1152,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::RemoveStructuralFeatureValueAction">
- <param  name="service.creationHint" value="UML::RemoveStructuralFeatureValueAction">
+ <param  name="semanticHint" value="UML::RemoveStructuralFeatureValueAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="AddStructuralFeatureValueAction"
@@ -1160,7 +1160,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::AddStructuralFeatureValueAction">
- <param  name="service.creationHint" value="UML::AddStructuralFeatureValueAction">
+ <param  name="semanticHint" value="UML::AddStructuralFeatureValueAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="LinkEndData"
@@ -1168,7 +1168,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::LinkEndData">
- <param  name="service.creationHint" value="UML::LinkEndData">
+ <param  name="semanticHint" value="UML::LinkEndData">
   </param>
 </metamodelType>
  <metamodelType   eclass="QualifierValue"
@@ -1176,7 +1176,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::QualifierValue">
- <param  name="service.creationHint" value="UML::QualifierValue">
+ <param  name="semanticHint" value="UML::QualifierValue">
   </param>
 </metamodelType>
  <metamodelType   eclass="ReadLinkAction"
@@ -1184,7 +1184,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ReadLinkAction">
- <param  name="service.creationHint" value="UML::ReadLinkAction">
+ <param  name="semanticHint" value="UML::ReadLinkAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="LinkEndCreationData"
@@ -1192,7 +1192,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::LinkEndCreationData">
- <param  name="service.creationHint" value="UML::LinkEndCreationData">
+ <param  name="semanticHint" value="UML::LinkEndCreationData">
   </param>
 </metamodelType>
  <metamodelType   eclass="CreateLinkAction"
@@ -1200,7 +1200,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::CreateLinkAction">
- <param  name="service.creationHint" value="UML::CreateLinkAction">
+ <param  name="semanticHint" value="UML::CreateLinkAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="DestroyLinkAction"
@@ -1208,7 +1208,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::DestroyLinkAction">
- <param  name="service.creationHint" value="UML::DestroyLinkAction">
+ <param  name="semanticHint" value="UML::DestroyLinkAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="LinkEndDestructionData"
@@ -1216,7 +1216,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::LinkEndDestructionData">
- <param  name="service.creationHint" value="UML::LinkEndDestructionData">
+ <param  name="semanticHint" value="UML::LinkEndDestructionData">
   </param>
 </metamodelType>
  <metamodelType   eclass="ClearAssociationAction"
@@ -1224,7 +1224,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ClearAssociationAction">
- <param  name="service.creationHint" value="UML::ClearAssociationAction">
+ <param  name="semanticHint" value="UML::ClearAssociationAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="BroadcastSignalAction"
@@ -1232,7 +1232,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::BroadcastSignalAction">
- <param  name="service.creationHint" value="UML::BroadcastSignalAction">
+ <param  name="semanticHint" value="UML::BroadcastSignalAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="SendObjectAction"
@@ -1240,7 +1240,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::SendObjectAction">
- <param  name="service.creationHint" value="UML::SendObjectAction">
+ <param  name="semanticHint" value="UML::SendObjectAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="ValueSpecificationAction"
@@ -1248,7 +1248,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ValueSpecificationAction">
- <param  name="service.creationHint" value="UML::ValueSpecificationAction">
+ <param  name="semanticHint" value="UML::ValueSpecificationAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="TimeExpression"
@@ -1256,7 +1256,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::TimeExpression">
- <param  name="service.creationHint" value="UML::TimeExpression">
+ <param  name="semanticHint" value="UML::TimeExpression">
   </param>
 </metamodelType>
  <metamodelType   eclass="Duration"
@@ -1264,7 +1264,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Duration">
- <param  name="service.creationHint" value="UML::Duration">
+ <param  name="semanticHint" value="UML::Duration">
   </param>
 </metamodelType>
  <metamodelType   eclass="DurationInterval"
@@ -1272,7 +1272,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::DurationInterval">
- <param  name="service.creationHint" value="UML::DurationInterval">
+ <param  name="semanticHint" value="UML::DurationInterval">
   </param>
 </metamodelType>
  <metamodelType   eclass="Interval"
@@ -1280,7 +1280,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Interval">
- <param  name="service.creationHint" value="UML::Interval">
+ <param  name="semanticHint" value="UML::Interval">
   </param>
 </metamodelType>
  <metamodelType   eclass="TimeConstraint"
@@ -1288,7 +1288,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::TimeConstraint">
- <param  name="service.creationHint" value="UML::TimeConstraint">
+ <param  name="semanticHint" value="UML::TimeConstraint">
   </param>
 </metamodelType>
  <metamodelType   eclass="IntervalConstraint"
@@ -1296,7 +1296,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::IntervalConstraint">
- <param  name="service.creationHint" value="UML::IntervalConstraint">
+ <param  name="semanticHint" value="UML::IntervalConstraint">
   </param>
 </metamodelType>
  <metamodelType   eclass="TimeInterval"
@@ -1304,7 +1304,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::TimeInterval">
- <param  name="service.creationHint" value="UML::TimeInterval">
+ <param  name="semanticHint" value="UML::TimeInterval">
   </param>
 </metamodelType>
  <metamodelType   eclass="DurationConstraint"
@@ -1312,7 +1312,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::DurationConstraint">
- <param  name="service.creationHint" value="UML::DurationConstraint">
+ <param  name="semanticHint" value="UML::DurationConstraint">
   </param>
 </metamodelType>
  <metamodelType   eclass="TimeObservation"
@@ -1320,7 +1320,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::TimeObservation">
- <param  name="service.creationHint" value="UML::TimeObservation">
+ <param  name="semanticHint" value="UML::TimeObservation">
   </param>
 </metamodelType>
  <metamodelType   eclass="DurationObservation"
@@ -1328,7 +1328,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::DurationObservation">
- <param  name="service.creationHint" value="UML::DurationObservation">
+ <param  name="semanticHint" value="UML::DurationObservation">
   </param>
 </metamodelType>
  <metamodelType   eclass="FinalState"
@@ -1336,7 +1336,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::FinalState">
- <param  name="service.creationHint" value="UML::FinalState">
+ <param  name="semanticHint" value="UML::FinalState">
   </param>
 </metamodelType>
  <metamodelType   eclass="TimeEvent"
@@ -1344,7 +1344,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::TimeEvent">
- <param  name="service.creationHint" value="UML::TimeEvent">
+ <param  name="semanticHint" value="UML::TimeEvent">
   </param>
 </metamodelType>
  <metamodelType   eclass="ReadVariableAction"
@@ -1352,7 +1352,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ReadVariableAction">
- <param  name="service.creationHint" value="UML::ReadVariableAction">
+ <param  name="semanticHint" value="UML::ReadVariableAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="ClearVariableAction"
@@ -1360,7 +1360,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ClearVariableAction">
- <param  name="service.creationHint" value="UML::ClearVariableAction">
+ <param  name="semanticHint" value="UML::ClearVariableAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="AddVariableValueAction"
@@ -1368,7 +1368,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::AddVariableValueAction">
- <param  name="service.creationHint" value="UML::AddVariableValueAction">
+ <param  name="semanticHint" value="UML::AddVariableValueAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="RemoveVariableValueAction"
@@ -1376,7 +1376,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::RemoveVariableValueAction">
- <param  name="service.creationHint" value="UML::RemoveVariableValueAction">
+ <param  name="semanticHint" value="UML::RemoveVariableValueAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="RaiseExceptionAction"
@@ -1384,7 +1384,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::RaiseExceptionAction">
- <param  name="service.creationHint" value="UML::RaiseExceptionAction">
+ <param  name="semanticHint" value="UML::RaiseExceptionAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="ActionInputPin"
@@ -1392,7 +1392,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ActionInputPin">
- <param  name="service.creationHint" value="UML::ActionInputPin">
+ <param  name="semanticHint" value="UML::ActionInputPin">
   </param>
 </metamodelType>
  <metamodelType   eclass="InformationItem"
@@ -1400,7 +1400,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::InformationItem">
- <param  name="service.creationHint" value="UML::InformationItem">
+ <param  name="semanticHint" value="UML::InformationItem">
   </param>
 </metamodelType>
  <metamodelType   eclass="InformationFlow"
@@ -1408,7 +1408,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::InformationFlow">
- <param  name="service.creationHint" value="UML::InformationFlow">
+ <param  name="semanticHint" value="UML::InformationFlow">
   </param>
 </metamodelType>
  <metamodelType   eclass="ReadExtentAction"
@@ -1416,7 +1416,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ReadExtentAction">
- <param  name="service.creationHint" value="UML::ReadExtentAction">
+ <param  name="semanticHint" value="UML::ReadExtentAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="ReclassifyObjectAction"
@@ -1424,7 +1424,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ReclassifyObjectAction">
- <param  name="service.creationHint" value="UML::ReclassifyObjectAction">
+ <param  name="semanticHint" value="UML::ReclassifyObjectAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="ReadIsClassifiedObjectAction"
@@ -1432,7 +1432,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ReadIsClassifiedObjectAction">
- <param  name="service.creationHint" value="UML::ReadIsClassifiedObjectAction">
+ <param  name="semanticHint" value="UML::ReadIsClassifiedObjectAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="StartClassifierBehaviorAction"
@@ -1440,7 +1440,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::StartClassifierBehaviorAction">
- <param  name="service.creationHint" value="UML::StartClassifierBehaviorAction">
+ <param  name="semanticHint" value="UML::StartClassifierBehaviorAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="ReadLinkObjectEndAction"
@@ -1448,7 +1448,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ReadLinkObjectEndAction">
- <param  name="service.creationHint" value="UML::ReadLinkObjectEndAction">
+ <param  name="semanticHint" value="UML::ReadLinkObjectEndAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="ReadLinkObjectEndQualifierAction"
@@ -1456,7 +1456,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ReadLinkObjectEndQualifierAction">
- <param  name="service.creationHint" value="UML::ReadLinkObjectEndQualifierAction">
+ <param  name="semanticHint" value="UML::ReadLinkObjectEndQualifierAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="CreateLinkObjectAction"
@@ -1464,7 +1464,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::CreateLinkObjectAction">
- <param  name="service.creationHint" value="UML::CreateLinkObjectAction">
+ <param  name="semanticHint" value="UML::CreateLinkObjectAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="AcceptEventAction"
@@ -1472,7 +1472,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::AcceptEventAction">
- <param  name="service.creationHint" value="UML::AcceptEventAction">
+ <param  name="semanticHint" value="UML::AcceptEventAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="AcceptCallAction"
@@ -1480,7 +1480,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::AcceptCallAction">
- <param  name="service.creationHint" value="UML::AcceptCallAction">
+ <param  name="semanticHint" value="UML::AcceptCallAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="ReplyAction"
@@ -1488,7 +1488,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ReplyAction">
- <param  name="service.creationHint" value="UML::ReplyAction">
+ <param  name="semanticHint" value="UML::ReplyAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="UnmarshallAction"
@@ -1496,7 +1496,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::UnmarshallAction">
- <param  name="service.creationHint" value="UML::UnmarshallAction">
+ <param  name="semanticHint" value="UML::UnmarshallAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="ReduceAction"
@@ -1504,7 +1504,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ReduceAction">
- <param  name="service.creationHint" value="UML::ReduceAction">
+ <param  name="semanticHint" value="UML::ReduceAction">
   </param>
 </metamodelType>
  <metamodelType   eclass="JoinNode"
@@ -1512,7 +1512,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::JoinNode">
- <param  name="service.creationHint" value="UML::JoinNode">
+ <param  name="semanticHint" value="UML::JoinNode">
   </param>
 </metamodelType>
  <metamodelType   eclass="DataStoreNode"
@@ -1520,7 +1520,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::DataStoreNode">
- <param  name="service.creationHint" value="UML::DataStoreNode">
+ <param  name="semanticHint" value="UML::DataStoreNode">
   </param>
 </metamodelType>
  <metamodelType   eclass="ObjectFlow"
@@ -1528,7 +1528,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ObjectFlow">
- <param  name="service.creationHint" value="UML::ObjectFlow">
+ <param  name="semanticHint" value="UML::ObjectFlow">
   </param>
 </metamodelType>
  <metamodelType   eclass="ConditionalNode"
@@ -1536,7 +1536,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ConditionalNode">
- <param  name="service.creationHint" value="UML::ConditionalNode">
+ <param  name="semanticHint" value="UML::ConditionalNode">
   </param>
 </metamodelType>
  <metamodelType   eclass="Clause"
@@ -1544,7 +1544,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::Clause">
- <param  name="service.creationHint" value="UML::Clause">
+ <param  name="semanticHint" value="UML::Clause">
   </param>
 </metamodelType>
  <metamodelType   eclass="LoopNode"
@@ -1552,7 +1552,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::LoopNode">
- <param  name="service.creationHint" value="UML::LoopNode">
+ <param  name="semanticHint" value="UML::LoopNode">
   </param>
 </metamodelType>
  <metamodelType   eclass="ExpansionNode"
@@ -1560,7 +1560,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ExpansionNode">
- <param  name="service.creationHint" value="UML::ExpansionNode">
+ <param  name="semanticHint" value="UML::ExpansionNode">
   </param>
 </metamodelType>
  <metamodelType   eclass="ExpansionRegion"
@@ -1568,7 +1568,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ExpansionRegion">
- <param  name="service.creationHint" value="UML::ExpansionRegion">
+ <param  name="semanticHint" value="UML::ExpansionRegion">
   </param>
 </metamodelType>
  <metamodelType   eclass="ProtocolTransition"
@@ -1576,7 +1576,7 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::ProtocolTransition">
- <param  name="service.creationHint" value="UML::ProtocolTransition">
+ <param  name="semanticHint" value="UML::ProtocolTransition">
   </param>
 </metamodelType>
  <metamodelType   eclass="AssociationClass"
@@ -1584,8 +1584,20 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
   kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
   name="UML::AssociationClass">
- <param  name="service.creationHint" value="UML::AssociationClass">
+ <param  name="semanticHint" value="UML::AssociationClass">
   </param>
+  
+  
+</metamodelType>
+
+  <metamodelType   eclass="NamedElement"
+  id="org.eclipse.papyrus.uml.NamedElement"
+  kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+  name="UML::NamedElement">
+ <param  name="semanticHint" value="UML::NamedElement">
+  </param>
+  
+  
 </metamodelType>
  <adviceBinding
        class="org.eclipse.papyrus.uml.service.creation.helper.NamedElementInitializerHelperAdvice"
@@ -1601,14 +1613,13 @@ edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
 	<!-- Context  declaration -->
 	<clientContext id="org.eclipse.papyrus.uml.service.creation.TypeContext">
 		<enablement>
-
 		</enablement>
 	</clientContext>	
 
 	<!-- Bindings declaration -->
 	<binding context="org.eclipse.papyrus.uml.service.creation.TypeContext">
 		<elementType pattern="org.eclipse.papyrus.uml.*" />
-		<advice ref="org.eclipse.papyrus.uml.advice.NamedElementInitializer" />
+		<advice ref="org.eclipse.papyrus.uml.advice.NameElementInitializer" />
 	</binding>
 </extension>   
 <extension point="org.eclipse.ui.commands">

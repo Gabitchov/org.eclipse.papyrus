@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.uml.service.creation.handler.UMLHandler;
 import org.eclipse.papyrus.diagram.common.command.wrappers.GMFtoEMFCommandWrapper;
@@ -44,6 +45,7 @@ public class ModelHandler extends UMLHandler implements IHandler {
 			throw new ExecutionException(e.getMessage());
 		}
 		IElementType type = ElementTypeRegistry.getInstance().getElementType(getSelectedElement(), context);
+
 		if(type == null) {
 			throw new ExecutionException("Could not retrieve IElementType for : " + getSelectedElement());
 		}

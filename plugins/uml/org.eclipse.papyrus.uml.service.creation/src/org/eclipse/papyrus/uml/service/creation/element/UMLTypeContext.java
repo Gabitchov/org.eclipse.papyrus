@@ -32,9 +32,9 @@ public class UMLTypeContext {
  * @throws Exception if the context is not found 
  */
 	public static IClientContext getContext() throws Exception {
-		IClientContext context = ClientContextManager.getInstance().getClientContext("org.eclipse.papyrus.uml.service.creation.TypeContext");
+		IClientContext context = ClientContextManager.getInstance().getClientContext(ID);
 		if(context == null) {
-			throw new Exception("Could not retrieve context : org.eclipse.papyrus.uml.service.creation.TypeContext.");
+			throw new Exception("Could not retrieve context : "+ID+".");
 		}
 
 		return context;
