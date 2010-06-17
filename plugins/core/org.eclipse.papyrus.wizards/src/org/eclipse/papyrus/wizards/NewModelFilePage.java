@@ -57,14 +57,6 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	@Override
 	public void createControl(Composite parent) {
 		super.createControl(parent);
-		
-		SelectDiagramCategoryPage selectDiagramCategoryPage = (SelectDiagramCategoryPage) getNextPage();
-		String newExtension = selectDiagramCategoryPage.getDiagramFileExtension();
-		String currentExtension = getFileExtension();
-		if (newExtension!= null && !newExtension.equals(currentExtension)) {
-			setFileExtension(newExtension);
-		}
-
 		setFileName(getUniqueFileName(getContainerFullPath(), getFileName(), getFileExtension()));
 		setPageComplete(validatePage());
 	}
@@ -77,19 +69,26 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	 * @param extension the extension
 	 * @return the unique file name
 	 */
-	private static String getUniqueFileName(IPath containerFullPath, String fileName, String extension) {
+	public static String getUniqueFileName(IPath containerFullPath, String fileName, String extension) {
+		if (extension == null) {
+			extension = "";
+		}
+
 		if(containerFullPath == null) {
 			containerFullPath = new Path(""); //$NON-NLS-1$
 		}
 		if(fileName == null || fileName.trim().length() == 0) {
 			fileName = DEFAULT_NAME;
 		}
-		IPath filePath = containerFullPath.append(fileName);
-		if(extension != null && !extension.equals(filePath.getFileExtension())) {
-			filePath = filePath.addFileExtension(extension);
+		
+		if (fileName.contains(".")) {
+			fileName = fileName.substring(0, fileName.indexOf("."));
 		}
-		extension = filePath.getFileExtension();
-		fileName = filePath.removeFileExtension().lastSegment();
+		
+		IPath filePath = containerFullPath.append(fileName);
+		filePath = containerFullPath.append(fileName);
+		filePath = filePath.addFileExtension(extension);
+
 		int i = 1;
 		while(ResourcesPlugin.getWorkspace().getRoot().exists(filePath)) {
 			i++;

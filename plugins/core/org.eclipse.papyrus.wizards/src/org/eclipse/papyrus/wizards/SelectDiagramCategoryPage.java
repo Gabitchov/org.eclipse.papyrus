@@ -177,12 +177,9 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		String newExtension = getDiagramFileExtension();
 		String currentExtension = newModelFilePage.getFileExtension();
 		if(!currentExtension.equals(newExtension)) {
-			String fileName = newModelFilePage.getFileName();
-			if (fileName.endsWith("." + currentExtension)) {
-				String pathWithoutExtension = fileName.substring(0, fileName.length() - currentExtension.length() - 1);
-				newModelFilePage.setFileName(pathWithoutExtension);
-			}
+			newModelFilePage.setFileName(NewModelFilePage.getUniqueFileName(newModelFilePage.getContainerFullPath(), newModelFilePage.getFileName(), newExtension));
 			newModelFilePage.setFileExtension(newExtension);
+
 			String errorMessage = newModelFilePage.getErrorMessage();
 			if(errorMessage != null) {
 				setErrorMessage(errorMessage);
