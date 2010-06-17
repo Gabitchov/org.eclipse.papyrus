@@ -10,13 +10,11 @@
  *******************************************************************************/
 package org.eclipse.papyrus.wizards;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 
 /**
@@ -59,6 +57,14 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	@Override
 	public void createControl(Composite parent) {
 		super.createControl(parent);
+		
+		SelectDiagramCategoryPage selectDiagramCategoryPage = (SelectDiagramCategoryPage) getNextPage();
+		String newExtension = selectDiagramCategoryPage.getDiagramFileExtension();
+		String currentExtension = getFileExtension();
+		if (newExtension!= null && !newExtension.equals(currentExtension)) {
+			setFileExtension(newExtension);
+		}
+
 		setFileName(getUniqueFileName(getContainerFullPath(), getFileName(), getFileExtension()));
 		setPageComplete(validatePage());
 	}

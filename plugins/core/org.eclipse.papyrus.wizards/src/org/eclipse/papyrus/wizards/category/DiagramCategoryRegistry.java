@@ -53,6 +53,8 @@ public class DiagramCategoryRegistry extends ExtensionUtils{
 
 	/** The Constant CATEGORY_CLASS. */
 	private static final String CATEGORY_CLASS = "class";
+	
+	private static final String CATEGORY_FILE_EXTENSION_PREFIX = "extensionPrefix";	
 
 	/** The diagram categories. */
 	private static List<DiagramCategoryDescriptor> diagramCategories;
@@ -102,6 +104,7 @@ public class DiagramCategoryRegistry extends ExtensionUtils{
 						commandClazz = (Class<IModelCreationCommand>)parseClass(ele, CATEGORY_CLASS, CATEGORY_ELEMENT_NAME);
 						DiagramCategoryDescriptor diagramCategoryDescriptor = new DiagramCategoryDescriptor(ele.getAttribute(CATEGORY_ID), ele.getAttribute(CATEGORY_LABEL), commandClazz);
 						diagramCategoryDescriptor.setDescription(ele.getAttribute(CATEGORY_DESCRIPTION));
+						diagramCategoryDescriptor.setExtensionPrefix(ele.getAttribute(CATEGORY_FILE_EXTENSION_PREFIX));
 						String iconPath = ele.getAttribute(CATEGORY_ICON);
 						if(iconPath != null) {
 							diagramCategoryDescriptor.setIcon(AbstractUIPlugin.imageDescriptorFromPlugin(ele.getNamespaceIdentifier(), iconPath));

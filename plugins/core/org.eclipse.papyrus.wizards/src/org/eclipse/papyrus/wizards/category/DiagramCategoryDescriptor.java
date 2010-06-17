@@ -29,6 +29,8 @@ public class DiagramCategoryDescriptor {
 
 	private String myDescription;
 
+	private String myFileExtension;
+
 	private ImageDescriptor myIcon;
 	
 	private IModelCreationCommand instance;
@@ -117,6 +119,15 @@ public class DiagramCategoryDescriptor {
 	}
 
 	/**
+	 * Gets the file extension.
+	 *
+	 * @return the file extension
+	 */
+	public String getExtensionPrefix() {
+		return myFileExtension;
+	}
+
+	/**
 	 * Sets the description.
 	 *
 	 * @param description the new description
@@ -132,6 +143,15 @@ public class DiagramCategoryDescriptor {
 	 */
 	public void setIcon(ImageDescriptor icon) {
 		myIcon = icon;
+	}
+	
+	/**
+	 * Sets the file extension.
+	 *
+	 * @param fileExtension the new file extension
+	 */
+	public void setExtensionPrefix(String fileExtension) {
+		myFileExtension = fileExtension;
 	}
 
 
