@@ -9,22 +9,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.requirement;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
 import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.RequirementDiagramEditPart;
-import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * Creation commands for the SysML Requirement Diagram
  */
 public class RequirementDiagramCreateCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
-
-	@Override
-	protected EObject createRootElement() {
-		return UMLFactory.eINSTANCE.createModel();
-
-	}
 
 	@Override
 	protected String getDefaultDiagramName() {
