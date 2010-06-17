@@ -198,7 +198,7 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	 */
 	public String getDiagramFileExtension() {
 		String extensionPrefix = mySelectedDiagramCategory != null ? mySelectedDiagramCategory.getExtensionPrefix() : null;
-		return (extensionPrefix != null)? extensionPrefix + "." + NewModelFilePage.DIAGRAM_EXTENSION : NewModelFilePage.DIAGRAM_EXTENSION;
+		return (extensionPrefix != null)? extensionPrefix + "." + NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION : NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION;
 	}
 
 

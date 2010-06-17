@@ -32,7 +32,7 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	public static final String DEFAULT_NAME = "model";
 
 	/** The Constant DIAGRAM_EXTENSION. */
-	public static final String DIAGRAM_EXTENSION = "di";
+	public static final String DEFAULT_DIAGRAM_EXTENSION = "di";
 
 	/**
 	 * Instantiates a new new model file page.
@@ -47,7 +47,7 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 		super(title, selection);
 		setTitle(title);
 		setDescription(description);
-		setFileExtension(DIAGRAM_EXTENSION);
+		setFileExtension(DEFAULT_DIAGRAM_EXTENSION);
 		this.createFromSemanticModel = createFromSemanticModel;
 	}
 

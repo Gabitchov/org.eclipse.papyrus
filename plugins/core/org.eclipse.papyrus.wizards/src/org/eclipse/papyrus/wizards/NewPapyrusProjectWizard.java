@@ -121,7 +121,7 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 	 * @return the file
 	 */
 	private IFile createFile() {
-		IPath newFilePath = myNewProjectPage.getProjectHandle().getFullPath().append(NewModelFilePage.DEFAULT_NAME + "." + NewModelFilePage.DIAGRAM_EXTENSION);
+		IPath newFilePath = myNewProjectPage.getProjectHandle().getFullPath().append(NewModelFilePage.DEFAULT_NAME + "." + NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION);
 		return ResourcesPlugin.getWorkspace().getRoot().getFile(newFilePath);
 	}
 
