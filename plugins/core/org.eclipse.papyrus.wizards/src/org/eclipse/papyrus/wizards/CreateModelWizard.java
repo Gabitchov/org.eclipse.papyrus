@@ -49,8 +49,6 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	/** The select diagram category page. */
 	private SelectDiagramCategoryPage selectDiagramCategoryPage;
 
-	/** Select the root element containing the new diagram */
-	private SelectRootElementPage selectRootElementPage;
 
 	/** Current workbench */
 	private IWorkbench workbench;
@@ -61,35 +59,20 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	/** The Constant NEW_MODEL_SETTINGS. */
 	public static final String NEW_MODEL_SETTINGS = "NewModelWizard";
 
-	/**
-	 * The URI of the selected domain model. Do not create a new uml model, but
-	 * use the selected
-	 */
-	private URI domainModelURI;
 
 	/**
 	 * ResourceSet used to link all Resource (Model and DI)
 	 */
-	private DiResourceSet diResourceSet;
+	protected DiResourceSet diResourceSet;
 
 	/**
 	 * Instantiates a new creates the model wizard.
 	 */
 	public CreateModelWizard() {
-		this(null);
-	}
-
-	/**
-	 * Instantiates a new creates the model wizard.
-	 *
-	 * @param domainModelURI the domain model uri
-	 */
-	public CreateModelWizard(URI domainModelURI) {
 		super();
 		setWindowTitle("New Papyrus Model");
-		this.domainModelURI = domainModelURI;
-
 	}
+
 
 	/**
 	 * {@inheritDoc}
@@ -100,9 +83,6 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		addPage(selectDiagramCategoryPage);
 		// fjcano #293135 :: support model templates
 		addPage(selectDiagramKindPage);
-		if(domainModelURI != null) {
-			addPage(selectRootElementPage);
-		}
 	}
 
 	/**
@@ -129,24 +109,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
         setDialogSettings(section);
 
 		this.diResourceSet = new DiResourceSet();
-		IFile file = getSelectedFile(selection);
-		// builds a new Papyrus Model for an existing domain model
-		if(isSupportedDomainModelFile(file)) {
-			this.domainModelURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
-			this.newModelFilePage = new NewModelFilePage("Create a new Papyrus model", "Create a new Papyrus model from an existing semantic model", selection, true);
-			this.newModelFilePage.setFileName(getDiagramFileName(file));
-
-			// I don't understand a need to load the model during initialization, 
-			// I rather expect it to be loaded when wizard is finished and executed or
-			// when the page that needs the model is initialized
-			Resource resource = diResourceSet.loadModelResource(file);
-
-			EObject diagramRoot = resource.getContents().get(0);
-			this.selectRootElementPage = new SelectRootElementPage("Select the root element", diagramRoot);
-		}
-		if(domainModelURI == null) {
-			this.newModelFilePage = new NewModelFilePage("Create a new Papyrus model", "Create a new empty Papyrus model", selection, false);
-		}
+		this.newModelFilePage = new NewModelFilePage("Create a new Papyrus model", "Create a new empty Papyrus model", selection, false);
 		selectDiagramCategoryPage = new SelectDiagramCategoryPage();
 		selectDiagramKindPage = getSelectDiagramKindPage();
 	}
@@ -168,7 +131,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	@Override
 	public boolean performFinish() {
 		// create a new file, result != null if successful
-		EObject root = domainModelURI != null ? selectRootElementPage.getModelElement() : null;
+		EObject root = getRoot();
 		final IFile newFile = newModelFilePage.createNewFile();
 		selectDiagramCategoryPage.initDomainModel(diResourceSet, newFile, root);
 		if(newFile == null) {
@@ -195,6 +158,10 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 		return true;
 	}
+	
+	protected EObject getRoot() {
+		return null;
+	}
 
 	/**
 	 * Suggests a name of diagram file for the domain model file
@@ -205,25 +172,5 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		return diModelFileName;
 	}
 
-	/**
-	 * Returns true is the file can be served as a model model for the diagram
-	 */
-	protected boolean isSupportedDomainModelFile(IFile file) {
-		return file != null && getModelFileExtension().equals(file.getFileExtension());
-	}
-
-	private String getModelFileExtension() {
-		return "uml";
-	}
-
-	/**
-	 * Returns the first file from the given selection
-	 */
-	private IFile getSelectedFile(IStructuredSelection selection) {
-		if(selection != null && !selection.isEmpty() && selection.getFirstElement() instanceof IFile) {
-			return (IFile)selection.getFirstElement();
-		}
-		return null;
-	}
 
 }

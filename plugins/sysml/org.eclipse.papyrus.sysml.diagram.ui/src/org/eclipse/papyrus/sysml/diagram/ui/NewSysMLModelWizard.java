@@ -49,16 +49,6 @@ public class NewSysMLModelWizard extends CreateModelWizard {
 	}
 
 	/**
-	 * Instantiates a new new sys ml model wizard.
-	 * 
-	 * @param domainModelURI
-	 *        the domain model uri
-	 */
-	public NewSysMLModelWizard(URI domainModelURI) {
-		super(domainModelURI);
-	}
-
-	/**
 	 * @see org.eclipse.jface.wizard.Wizard#getNextPage(org.eclipse.jface.wizard.IWizardPage)
 	 * 
 	 * @param page

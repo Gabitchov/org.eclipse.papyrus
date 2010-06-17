@@ -13,9 +13,12 @@ package org.eclipse.papyrus.wizards;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IWrapperItemProvider;
@@ -28,6 +31,7 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -50,6 +54,8 @@ public class SelectRootElementPage extends WizardPage {
 	 * TreeViewer use to display the content of the domain model
 	 */
 	private TreeViewer modelViewer;
+	
+	private IFile myDomainModelFile;
 
 	/**
 	 * Constructor
@@ -59,11 +65,13 @@ public class SelectRootElementPage extends WizardPage {
 	 * @param diagramRoot
 	 *        the root model element use to initialize the TreeViewer
 	 */
-	protected SelectRootElementPage(String pageName, EObject diagramRoot) {
+	protected SelectRootElementPage(String pageName, IFile file) {
 		super(pageName);
 		setTitle(pageName);
 		setDescription(pageName);
-		this.setModelElement(diagramRoot);
+		
+		myDomainModelFile = file;
+
 	}
 
 	/**
@@ -71,24 +79,6 @@ public class SelectRootElementPage extends WizardPage {
 	 */
 	public EObject getModelElement() {
 		return selectedModelElement;
-	}
-
-	/**
-	 * Set the selected model element
-	 * 
-	 * @param modelElement
-	 */
-	public void setModelElement(EObject modelElement) {
-		selectedModelElement = modelElement;
-		if(modelViewer != null) {
-			if(selectedModelElement != null) {
-				modelViewer.setInput(selectedModelElement.eResource());
-				modelViewer.setSelection(new StructuredSelection(selectedModelElement));
-			} else {
-				modelViewer.setInput(null);
-			}
-			setPageComplete(validatePage());
-		}
 	}
 
 	/**
@@ -120,10 +110,12 @@ public class SelectRootElementPage extends WizardPage {
 		AdapterFactory adapterFactory = createAdapterFactory();
 		modelViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 		modelViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
-		if(selectedModelElement != null) {
-			modelViewer.setInput(selectedModelElement.eResource());
-			modelViewer.setSelection(new StructuredSelection(selectedModelElement));
-		}
+		
+		Resource modelResource = getResourceForFile(myDomainModelFile);
+		modelViewer.setInput(modelResource);
+		
+		selectedModelElement = getModelRoot(modelResource);
+		modelViewer.setSelection(new StructuredSelection(selectedModelElement));
 
 		modelViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
@@ -133,6 +125,14 @@ public class SelectRootElementPage extends WizardPage {
 		});
 
 		setPageComplete(validatePage());
+	}
+	
+	private EObject getModelRoot(Resource modelResource) {
+		return modelResource.getContents().get(0);
+	}
+	
+	private Resource getResourceForFile(IFile file) {
+		return new ModelSet().getResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true), true);
 	}
 
 	/**

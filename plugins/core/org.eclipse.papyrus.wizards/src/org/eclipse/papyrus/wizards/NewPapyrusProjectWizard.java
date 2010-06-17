@@ -57,28 +57,27 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		super.init(workbench, selection);
 		setWindowTitle("New Papyrus Project");
-		
+
 		IDialogSettings workbenchSettings = Activator.getDefault().getDialogSettings();
-        IDialogSettings section = workbenchSettings
-                .getSection(CreateModelWizard.NEW_MODEL_SETTINGS);
-        if (section == null) {
+		IDialogSettings section = workbenchSettings.getSection(CreateModelWizard.NEW_MODEL_SETTINGS);
+		if(section == null) {
 			section = workbenchSettings.addNewSection(CreateModelWizard.NEW_MODEL_SETTINGS);
 		}
-        setDialogSettings(section);
+		setDialogSettings(section);
 
-        selectDiagramCategoryPage = new SelectDiagramCategoryPage();
+		selectDiagramCategoryPage = new SelectDiagramCategoryPage();
 		myDiagramKindPage = getSelectDiagramKindPage();
 
 	}
-	
+
 	/**
 	 * Gets the select diagram kind page.
-	 *
+	 * 
 	 * @return the select diagram kind page
 	 */
 	protected SelectDiagramKindPage getSelectDiagramKindPage() {
 		return new SelectDiagramKindPage();
-		
+
 	}
 
 	/**
@@ -93,15 +92,15 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 			myNewProjectPage.setTitle("Papyrus Project");
 			myNewProjectPage.setDescription("Create a New Papyrus Project");
 		}
-		
+
 		addPage(selectDiagramCategoryPage);
 		addPage(myDiagramKindPage);
-		
+
 	}
-	
+
 	/**
 	 * @see org.eclipse.jface.wizard.Wizard#getNextPage(org.eclipse.jface.wizard.IWizardPage)
-	 *
+	 * 
 	 * @param page
 	 * @return
 	 */
@@ -109,12 +108,29 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 	public IWizardPage getNextPage(IWizardPage page) {
 		IWizardPage next = super.getNextPage(page);
 		// 316160 [Wizard] Do not display WizardNewProjectReferencePage in New Papyrus Project Wizard  
-		if (next != null && "basicReferenceProjectPage".equals(next.getName())) {
+		if(next != null && "basicReferenceProjectPage".equals(next.getName())) {
 			return super.getNextPage(next);
 		}
 		return next;
 	}
-	
+
+	/**
+	 * @see org.eclipse.jface.wizard.Wizard#getPreviousPage(org.eclipse.jface.wizard.IWizardPage)
+	 *
+	 * @param page
+	 * @return
+	 */
+	@Override
+	public IWizardPage getPreviousPage(IWizardPage page) {
+		IWizardPage prev = super.getPreviousPage(page);
+		// 316160 [Wizard] Do not display WizardNewProjectReferencePage in New Papyrus Project Wizard  
+		if(prev != null && "basicReferenceProjectPage".equals(prev.getName())) {
+			return super.getPreviousPage(prev);
+		}
+		return prev;
+	}
+
+
 	/**
 	 * Creates the file.
 	 * 
@@ -157,13 +173,13 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 		}
 
 		IDialogSettings settings = getDialogSettings();
-		if (settings != null) {
+		if(settings != null) {
 			selectDiagramCategoryPage.saveSettings(settings);
 			myDiagramKindPage.saveSettings();
 		}
 
 		return true;
-		
+
 	}
 
 	/**
