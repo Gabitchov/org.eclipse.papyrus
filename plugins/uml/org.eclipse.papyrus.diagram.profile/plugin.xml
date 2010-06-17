@@ -355,7 +355,6 @@
  	</entry>
 
 			</contribution>
-			<editor id="org.eclipse.papyrus.diagram.profile"/>
 		</paletteProvider>	
 			
 	</extension>

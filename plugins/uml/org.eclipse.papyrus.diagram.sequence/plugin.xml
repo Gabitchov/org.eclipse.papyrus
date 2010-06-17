@@ -1244,7 +1244,6 @@
  	</entry>
 
 			</contribution>
-			<editor id="org.eclipse.papyrus.diagram.sequence"/>
 		</paletteProvider>	
 			
 	</extension>

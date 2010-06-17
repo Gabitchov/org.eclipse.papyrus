@@ -2953,7 +2953,6 @@ and self.decisionInput.ownedParameter->select(
  	</entry>
 
 			</contribution>
-			<editor id="org.eclipse.papyrus.diagram.activity"/>
 		</paletteProvider>	
 			
 	</extension>

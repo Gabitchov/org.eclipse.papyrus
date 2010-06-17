@@ -1266,7 +1266,6 @@
  	</entry>
 
 			</contribution>
-			<editor id="org.eclipse.papyrus.diagram.usecase"/>
 		</paletteProvider>	
 			
 	</extension>

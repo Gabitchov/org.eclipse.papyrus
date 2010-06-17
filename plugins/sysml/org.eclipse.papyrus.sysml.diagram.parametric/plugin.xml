@@ -158,7 +158,6 @@
  </entry>
 
 			</contribution>
-			<editor id="org.eclipse.papyrus.sysml.diagram.parametric"/>
 		</paletteProvider>	
 			
 	</extension>

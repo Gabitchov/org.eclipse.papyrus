@@ -706,7 +706,6 @@
  	</entry>
 
 			</contribution>
-			<editor id="org.eclipse.papyrus.diagram.statemachine"/>
 		</paletteProvider>	
 			
 	</extension>
