@@ -50,8 +50,8 @@ public class LoadingStrategyPreferencePage extends AbstractPapyrusNodePreference
 	@Override
 	public boolean performOk() {
 		boolean result = super.performOk();
-		StrategyChooser.setCurrentStrategy(CorePlugin.getDefault().getPreferenceStore().getInt(ICorePreferenceConstants.PREF_CORE_DEFINE_LOADING_STRATEGY));
-		return result ;
+		StrategyChooser.setCurrentStrategy(getPreferenceStore().getInt(ICorePreferenceConstants.PREF_CORE_DEFINE_LOADING_STRATEGY));
+		return result;
 	}
 
 }

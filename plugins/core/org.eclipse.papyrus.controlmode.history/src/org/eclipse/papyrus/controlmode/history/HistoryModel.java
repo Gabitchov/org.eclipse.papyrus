@@ -11,13 +11,13 @@ import org.eclipse.papyrus.resource.sasheditor.SashModel;
 
 
 /**
- * The trace model entry point that can be registered to 
+ * The trace model entry point that can be registered to
  * Trace model is used for the ControlMode.
- * This model is located in the same {@link Resource} than the {@link SashModel}. The SashModel is master 
+ * This model is located in the same {@link Resource} than the {@link SashModel}. The SashModel is master
  * while this model is slave: it doesn't perform the save.
  * 
  * @author cedric dumoulin
- *
+ * 
  */
 public class HistoryModel extends AbstractModelWithSharedResource<ControledResource> {
 
@@ -27,15 +27,15 @@ public class HistoryModel extends AbstractModelWithSharedResource<ControledResou
 	public static final String MODEL_FILE_EXTENSION = "di"; //$NON-NLS-1$
 
 	/**
-	 *  Model ID.
+	 * Model ID.
 	 */
 	public static final String MODEL_ID = "org.eclipse.papyrus.controlmode.history.HistoryModel"; //$NON-NLS-1$
 
-	
 	/**
 	 * Identifier used to retrieve the model from the ModelManager
+	 * 
 	 * @see org.eclipse.papyrus.resource.AbstractBaseModel#getIdentifier()
-	 *
+	 * 
 	 * @return
 	 */
 	@Override
@@ -45,8 +45,9 @@ public class HistoryModel extends AbstractModelWithSharedResource<ControledResou
 
 	/**
 	 * Get the extension used for TraceModel resources
+	 * 
 	 * @see org.eclipse.papyrus.resource.AbstractBaseModel#getModelFileExtension()
-	 *
+	 * 
 	 * @return
 	 */
 	@Override

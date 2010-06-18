@@ -41,7 +41,9 @@ public class UmlSnippet implements IModelSnippet {
 		UmlModel umlModel = (UmlModel)stoppingModel;
 		// add adapters
 		try {
-			umlModel.getResource().eAdapters().remove(modelListenerManager);
+			if(umlModel.getResource() != null) {
+				umlModel.getResource().eAdapters().remove(modelListenerManager);
+			}
 		} catch (NullPointerException e) {
 			// resource is already disposed, or not loaded. Do nothing
 		}

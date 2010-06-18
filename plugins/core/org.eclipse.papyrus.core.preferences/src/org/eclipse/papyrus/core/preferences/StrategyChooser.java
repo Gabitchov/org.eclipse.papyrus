@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.core.preferences;
 
 import org.eclipse.papyrus.core.resourceloading.IStrategyChooser;
+import org.eclipse.papyrus.preferences.Activator;
 
 
 /**
@@ -22,7 +23,7 @@ import org.eclipse.papyrus.core.resourceloading.IStrategyChooser;
 public class StrategyChooser implements IStrategyChooser {
 
 	/** The current strategy. */
-	private static int currentStrategy = -1;
+	private static Integer currentStrategy = -1;
 
 	/**
 	 * Instantiates a new strategy chooser.
@@ -36,7 +37,7 @@ public class StrategyChooser implements IStrategyChooser {
 	public int getCurrentStrategy() {
 		if(currentStrategy == -1) {
 			// set the current strategy at the first time
-			currentStrategy = CorePlugin.getDefault().getPreferenceStore().getInt(ICorePreferenceConstants.PREF_CORE_DEFINE_LOADING_STRATEGY);
+			currentStrategy = Activator.getDefault().getPreferenceStore().getInt(ICorePreferenceConstants.PREF_CORE_DEFINE_LOADING_STRATEGY);
 		}
 		return currentStrategy;
 	}
@@ -44,10 +45,13 @@ public class StrategyChooser implements IStrategyChooser {
 	/**
 	 * Sets the current strategy.
 	 * 
-	 * @param strategy the new current strategy ID
+	 * @param strategy
+	 *        the new current strategy ID
 	 */
 	public static void setCurrentStrategy(int strategy) {
 		currentStrategy = strategy;
 	}
+
+
 
 }

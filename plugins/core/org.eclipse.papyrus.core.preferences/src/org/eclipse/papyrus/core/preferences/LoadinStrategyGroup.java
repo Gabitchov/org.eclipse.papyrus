@@ -17,7 +17,7 @@ import java.util.Map;
 
 import org.eclipse.jface.dialogs.DialogPage;
 import org.eclipse.jface.preference.ComboFieldEditor;
-import org.eclipse.papyrus.core.resourceloading.ProxyManager;
+import org.eclipse.papyrus.core.resourceloading.impl.ProxyManager;
 import org.eclipse.papyrus.preferences.ui.AbstractGroup;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
@@ -53,7 +53,7 @@ public class LoadinStrategyGroup extends AbstractGroup {
 
 	/**
 	 * Gets the strategies value from extension point.
-	 *
+	 * 
 	 * @return the strategies value
 	 */
 	private static String[][] getValuesFromExtensionPoint() {
@@ -67,5 +67,7 @@ public class LoadinStrategyGroup extends AbstractGroup {
 		}
 		return result;
 	}
+
+
 
 }

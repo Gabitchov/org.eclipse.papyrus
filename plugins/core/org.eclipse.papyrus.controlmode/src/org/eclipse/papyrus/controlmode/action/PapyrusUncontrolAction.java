@@ -77,12 +77,14 @@ public class PapyrusUncontrolAction extends CommandActionHandler {
 				object = (EObject)((IAdaptable)object).getAdapter(EObject.class);
 			}
 			// Check whether the selected object is controllable
-			result = domain.isControllable(object);
-			if(result) {
-				eObject = (EObject)object;
-				result = AdapterFactoryEditingDomain.isControlled(eObject);
-			} else {
-				eObject = null;
+			if(domain != null) {
+				result = domain.isControllable(object);
+				if(result) {
+					eObject = (EObject)object;
+					result = AdapterFactoryEditingDomain.isControlled(eObject);
+				} else {
+					eObject = null;
+				}
 			}
 		}
 		return result;

@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.papyrus.core" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.papyrus.core.resourceloading" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
-      <appInfo>
-         <meta.schema plugin="org.eclipse.papyrus.core" id="currentStrategyChooser" name="Current Strategy Chooser"/>
-      </appInfo>
+      <appinfo>
+         <meta.schema plugin="org.eclipse.papyrus.core.resourceloading" id="currentStrategyChooser" name="Current Strategy Chooser"/>
+      </appinfo>
       <documentation>
          Extension point that provides the current loading strategy to the proxy manager.
 Proxy manager load the resource if needed, according to the current strategy
@@ -13,9 +13,9 @@ Proxy manager load the resource if needed, according to the current strategy
 
    <element name="extension">
       <annotation>
-         <appInfo>
+         <appinfo>
             <meta.element />
-         </appInfo>
+         </appinfo>
       </annotation>
       <complexType>
          <sequence>
@@ -40,9 +40,9 @@ Proxy manager load the resource if needed, according to the current strategy
                <documentation>
                   
                </documentation>
-               <appInfo>
+               <appinfo>
                   <meta.attribute translatable="true"/>
-               </appInfo>
+               </appinfo>
             </annotation>
          </attribute>
       </complexType>
@@ -55,54 +55,54 @@ Proxy manager load the resource if needed, according to the current strategy
                <documentation>
                   
                </documentation>
-               <appInfo>
+               <appinfo>
                   <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.core.resourceloading.IStrategyChooser"/>
-               </appInfo>
+               </appinfo>
             </annotation>
          </attribute>
       </complexType>
    </element>
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="since"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          MDT Papyrus 0.7.0 M7
       </documentation>
    </annotation>
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="examples"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          StrategyChooser is implemenred to set up preferences mecanism. User can choose a specified strategy to load its models
       </documentation>
    </annotation>
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="apiinfo"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          The concrete strategy class must implement the interface IStrategyChooser
       </documentation>
    </annotation>
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="implementation"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          none
       </documentation>
    </annotation>
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="copyright"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          Copyright (c) 2010 Atos Origin.
 All rights reserved. This program and the accompanying materials

@@ -15,8 +15,11 @@ package org.eclipse.papyrus.controlmode.commands;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
@@ -50,11 +53,16 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.EditingDomainUndoContex
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.controlmode.commands.IUncontrolCommand.STATE_CONTROL;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
+import org.eclipse.papyrus.controlmode.history.HistoryModel;
+import org.eclipse.papyrus.controlmode.history.utils.HistoryUtils;
+import org.eclipse.papyrus.controlmode.mm.history.ControledResource;
+import org.eclipse.papyrus.controlmode.mm.history.historyPackage;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.notation.NotationModel;
 import org.eclipse.papyrus.resource.notation.NotationUtils;
 import org.eclipse.papyrus.resource.sasheditor.DiModel;
+import org.eclipse.papyrus.resource.uml.UmlUtils;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 
@@ -75,7 +83,7 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 
 	private EObject eObject;
 
-	private DiResourceSet diResourceSet;
+	private ModelSet diResourceSet;
 
 	private Resource controlledModel;
 
@@ -173,13 +181,16 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 	 */
 	private void uncontrolModel(CompoundCommand compoundCommand) {
 		// PRE uncontrol operation
-		uncontrol(getEditingDomain(), eObject, controlledModel, diResourceSet.getModelResource(), compoundCommand, STATE_CONTROL.PRE_MODEL);
+		Resource resource = UmlUtils.getUmlModel(diResourceSet).getResource();
+		uncontrol(getEditingDomain(), eObject, controlledModel, resource, compoundCommand, STATE_CONTROL.PRE_MODEL);
 
 		// Create the Command to Uncontrol the model object
 		compoundCommand.append(new RemoveCommand(getEditingDomain(), eObject.eResource().getContents(), eObject));
 
+		unassignCntrolledResourceOfCurrentElement(getEditingDomain(), compoundCommand, HistoryUtils.getHistoryModel(diResourceSet), eObject.eResource().getURI().toString(), resource.getURI().toString());
+
 		// POST uncontrol operation
-		uncontrol(getEditingDomain(), eObject, controlledModel, diResourceSet.getModelResource(), compoundCommand, STATE_CONTROL.POST_MODEL);
+		uncontrol(getEditingDomain(), eObject, controlledModel, resource, compoundCommand, STATE_CONTROL.POST_MODEL);
 	}
 
 	/**
@@ -193,16 +204,54 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 
 		if(!controlledDiagrams.isEmpty()) {
 			// PRE uncontrol operation
+			Resource notationResource = NotationUtils.getNotationModel(diResourceSet).getResource();
 			for(Diagram diag : controlledDiagrams) {
-				uncontrol(getEditingDomain(), diag, controlledNotation, diResourceSet.getNotationResource(), compoundCommand, STATE_CONTROL.PRE_NOTATION);
+				uncontrol(getEditingDomain(), diag, controlledNotation, notationResource, compoundCommand, STATE_CONTROL.PRE_NOTATION);
 			}
 
 			// uncontrol the Notation model
-			compoundCommand.append(new AddCommand(getEditingDomain(), diResourceSet.getNotationResource().getContents(), controlledDiagrams));
+			compoundCommand.append(new AddCommand(getEditingDomain(), notationResource.getContents(), controlledDiagrams));
+			Set<Resource> resources = new HashSet<Resource>(controlledDiagrams.size());
+			for(Diagram d : controlledDiagrams) {
+				resources.add(d.eResource());
+			}
+			for(Resource r : resources) {
+				unassignCntrolledResourceOfCurrentElement(getEditingDomain(), compoundCommand, HistoryUtils.getHistoryModel(diResourceSet), r.getURI().toString(), notationResource.getURI().toString());
+			}
 
 			// POST uncontrol operation
 			for(Diagram diag : controlledDiagrams) {
-				uncontrol(getEditingDomain(), diag, controlledNotation, diResourceSet.getNotationResource(), compoundCommand, STATE_CONTROL.POST_NOTATION);
+				uncontrol(getEditingDomain(), diag, controlledNotation, notationResource, compoundCommand, STATE_CONTROL.POST_NOTATION);
+			}
+		}
+	}
+
+	/**
+	 * Analyse the history model to update the controlled children
+	 * 
+	 * @param domain
+	 * @param compoundCommand
+	 * @param model
+	 * @param currentURL
+	 * @param newURL
+	 */
+	private void unassignCntrolledResourceOfCurrentElement(EditingDomain domain, CompoundCommand compoundCommand, HistoryModel model, String oldURL, String newURL) {
+		if(model == null) {
+			return;
+		}
+		URI uriPath = HistoryUtils.getURIFullPath(newURL);
+		newURL = HistoryUtils.resolve(uriPath, newURL);
+		oldURL = HistoryUtils.resolve(uriPath, oldURL);
+		List<ControledResource> controled = HistoryUtils.getControledResourcesForURL(diResourceSet, oldURL);
+		for(ControledResource resource : controled) {
+			if(resource.getChildren().isEmpty()) {
+				compoundCommand.append(RemoveCommand.create(domain, resource.eContainer(), historyPackage.Literals.CONTROLED_RESOURCE__CHILDREN, resource));
+			} else {
+				if(resource.eContainer() instanceof ControledResource) {
+					compoundCommand.append(AddCommand.create(domain, resource.eContainer(), historyPackage.Literals.CONTROLED_RESOURCE__CHILDREN, Collections.singleton(resource)));
+				} else {
+					compoundCommand.append(new AddCommand(getEditingDomain(), resource.eResource().getContents(), resource));
+				}
 			}
 		}
 	}

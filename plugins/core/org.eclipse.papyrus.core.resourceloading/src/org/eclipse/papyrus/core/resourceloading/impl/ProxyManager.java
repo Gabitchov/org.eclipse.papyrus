@@ -11,7 +11,7 @@
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.core.resourceloading;
+package org.eclipse.papyrus.core.resourceloading.impl;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -28,13 +28,18 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.papyrus.core.Activator;
+import org.eclipse.papyrus.core.resourceloading.HistoryRoutingManager;
+import org.eclipse.papyrus.core.resourceloading.ILoadingStrategy;
+import org.eclipse.papyrus.core.resourceloading.ILoadingStrategyExtension;
+import org.eclipse.papyrus.core.resourceloading.IProxyManager;
+import org.eclipse.papyrus.core.resourceloading.IStrategyChooser;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.sasheditor.SashModel;
 
 /**
  * The Class ProxyManager that manages the proxy resolving according to a specific strategy.
  */
-public class ProxyManager {
+public class ProxyManager implements IProxyManager {
 
 	// === Manage strategies
 
@@ -67,7 +72,7 @@ public class ProxyManager {
 	// === Manage strategy chooser extension
 
 	/** extension point ID for strategy chooser extension */
-	private static final String STRATEGY_CHOOSER_EXTENSION_POINT_ID = "org.eclipse.papyrus.core.currentStrategyChooser";
+	private static final String STRATEGY_CHOOSER_EXTENSION_POINT_ID = "org.eclipse.papyrus.core.resourceloading.currentStrategyChooser";
 
 	/** attribute ID for the implementation of the strategy chooser extension used in preferences */
 	private static final String STRATEGY_CHOOSER_CHOOSER_ATTRIBUTE = "chooser";
@@ -87,12 +92,19 @@ public class ProxyManager {
 
 	private ModelSet modelSet;
 
+	private HistoryRoutingManager routeManager = new HistoryRoutingManager(this);
+
 	public ProxyManager(ModelSet modelSet) {
 		super();
 		this.modelSet = modelSet;
 	}
 
-	private boolean loadResource(URI uri) {
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.papyrus.core.resourceloading.IProxyManager#loadResource(URI)
+	 */
+	public boolean loadResource(URI uri) {
 		boolean result = availableStrategies.get(getCurrentStrategy()).loadResource(modelSet, uri);
 		Iterator<ILoadingStrategyExtension> iterator = strategyExtensions.iterator();
 		while(!result && iterator.hasNext()) {
@@ -118,7 +130,8 @@ public class ProxyManager {
 			URI trimFragment = uri.trimFragment();
 			Resource resource = modelSet.getResource(trimFragment, loadOnDemand);
 			if(resource != null) {
-				EObject object = resource.getEObject(uri.fragment());
+				String fragment = uri.fragment();
+				EObject object = resource.getEObject(fragment);
 				if(object != null) {
 					// object find in the resource
 					return object;
@@ -148,7 +161,11 @@ public class ProxyManager {
 						// TODO algo de parcours à définir: largeur ou profondeur
 						// RouterManager will find the object
 						// return RouteManager.getEObject(uri, context);
-						return null;
+						EObject eobject = routeManager.getEObject(modelSet, trimFragment.toString(), fragment);
+						if(eobject == null) {
+							throw new MissingResourceException(CommonPlugin.INSTANCE.getString("_UI_StringResourceNotFound_exception", new Object[]{ resourceName }), getClass().getName(), resourceName);
+						}
+						return eobject;
 
 					} else {
 						// resource di not found
@@ -260,6 +277,16 @@ public class ProxyManager {
 			}
 		}
 		return result;
+	}
+
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.papyrus.core.resourceloading.IProxyManager#dispose()
+	 */
+	public void dispose() {
+		routeManager.unload();
 	}
 
 }
