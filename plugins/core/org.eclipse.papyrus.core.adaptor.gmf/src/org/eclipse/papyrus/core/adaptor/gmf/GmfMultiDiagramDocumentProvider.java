@@ -75,7 +75,6 @@ import org.eclipse.ui.part.FileEditorInput;
 public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider implements IDiagramDocumentProvider,
 		IEditingDomainProvider {
 
-	// public static String EditingDomainID = "org.eclipse.uml2.diagram.clazz.EditingDomain";
 	public static String EditingDomainID = "com.cea.papyrus.core.PapyrusEditingDomainID"; //$NON-NLS-1$
 
 	/**
