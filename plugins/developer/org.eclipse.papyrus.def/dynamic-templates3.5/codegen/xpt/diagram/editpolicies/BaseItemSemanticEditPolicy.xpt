@@ -316,7 +316,7 @@ protected org.eclipse.gef.commands.Command getReorientRelationshipCommand(org.ec
 public static class «getLinkCreationConstraintsClassName()» {
 
 «EXPAND xpt::Common::generatedMemberComment»
-	«getLinkCreationConstraintsClassName()»() {«REM»package-local for the BaseItemSemanticEditPolicy to instantiate. Perhaps, protected is better (i.e. if someone subclasses it?)«ENDREM»
+	public «getLinkCreationConstraintsClassName()»() {«REM»package-local for the BaseItemSemanticEditPolicy to instantiate. Perhaps, protected is better (i.e. if someone subclasses it?)«ENDREM»
 		// use static method #getLinkConstraints() to access instance
 	}
 
