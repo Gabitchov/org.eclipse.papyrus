@@ -67,6 +67,7 @@ lastPromoteDateN=`stat --format=%Y $lastPromoteFileN`
 lastPromoteDateI=`stat --format=%Y $lastPromoteFileI`
 
 if [ $signalDateN -gt $lastPromoteDateN ]; then
+        touch $lastPromoteFileN
         echo "$DATE: removing old nightlies" >> $logFile
         prune N $BUILDS_DIR 4
         echo "$DATE: getting last successful build" >> $logFile
@@ -84,13 +85,13 @@ if [ $signalDateN -gt $lastPromoteDateN ]; then
                 f=build/N20*
                 if [ -d $f ]; then
                         /usr/bin/rsync -a --exclude=eclipse/ $f $drops_nightly
+                        rm -rf $updates_nightly/*
                         unzip -o $f/*-Update-*.zip -d $updates_nightly
                         cp index.php $updates_nightly/
                         chmod -R 755 $drops_nightly
                         chmod -R 755 $updates_nightly
                 fi
                 #$ANT -f $RELENG_DIR/promote.xml -Dpromote.properties=$RELENG_DIR/promote-N.properties 2>/dev/null 1> $PROMO_LOGS_DIR/cbi-papyrus-0.7-nightly-promo-${DATE}.txt
-                touch $lastPromoteFileN
         fi
         echo "$DATE: done" >> $logFile
         trimLog
