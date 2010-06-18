@@ -8,68 +8,87 @@
   <logRotator>
     <daysToKeep>5</daysToKeep>
     <numToKeep>5</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
   </logRotator>
   <keepDependencies>false</keepDependencies>
   <properties>
     <hudson.security.AuthorizationMatrixProperty>
-      <useProjectSecurity>true</useProjectSecurity>
-      <permission>hudson.model.Run.Delete:cmraidha</permission>
-      <permission>hudson.model.Run.Delete:sgerard</permission>
-      <permission>hudson.model.Run.Delete:rschnekenbu</permission>
-      <permission>hudson.model.Run.Delete:ptessier</permission>
-      <permission>hudson.model.Run.Delete:cdumoulin</permission>
-      <permission>hudson.model.Run.Delete:ytanguy</permission>
-      <permission>hudson.model.Run.Delete:eperico</permission>
-      <permission>hudson.model.Run.Delete:tlandre</permission>
-      <permission>hudson.model.Run.Delete:ROLE_CALLISTO-DEV</permission>
-      <permission>hudson.model.Item.Configure:cmraidha</permission>
-      <permission>hudson.model.Item.Configure:sgerard</permission>
-      <permission>hudson.model.Item.Configure:rschnekenbu</permission>
-      <permission>hudson.model.Item.Configure:ptessier</permission>
-      <permission>hudson.model.Item.Configure:cdumoulin</permission>
-      <permission>hudson.model.Item.Configure:ytanguy</permission>
-      <permission>hudson.model.Item.Configure:eperico</permission>
-      <permission>hudson.model.Item.Configure:tlandre</permission>
-      <permission>hudson.model.Item.Configure:ROLE_CALLISTO-DEV</permission>
-      <permission>hudson.model.Item.Workspace:cmraidha</permission>
-      <permission>hudson.model.Item.Workspace:sgerard</permission>
-      <permission>hudson.model.Item.Workspace:rschnekenbu</permission>
-      <permission>hudson.model.Item.Workspace:ptessier</permission>
-      <permission>hudson.model.Item.Workspace:cdumoulin</permission>
-      <permission>hudson.model.Item.Workspace:ytanguy</permission>
-      <permission>hudson.model.Item.Workspace:eperico</permission>
-      <permission>hudson.model.Item.Workspace:tlandre</permission>
-      <permission>hudson.model.Item.Workspace:anonymous</permission>
-      <permission>hudson.model.Item.Workspace:ROLE_CALLISTO-DEV</permission>
-      <permission>hudson.model.Item.Build:cmraidha</permission>
-      <permission>hudson.model.Item.Build:sgerard</permission>
-      <permission>hudson.model.Item.Build:rschnekenbu</permission>
-      <permission>hudson.model.Item.Build:ptessier</permission>
-      <permission>hudson.model.Item.Build:cdumoulin</permission>
-      <permission>hudson.model.Item.Build:ytanguy</permission>
-      <permission>hudson.model.Item.Build:eperico</permission>
-      <permission>hudson.model.Item.Build:tlandre</permission>
-      <permission>hudson.model.Item.Build:ROLE_CALLISTO-DEV</permission>
-      <permission>hudson.model.Run.Update:cmraidha</permission>
+      <permission>hudson.model.Item.Delete:ROLE_CALLISTO-DEV</permission>
+      <permission>hudson.model.Run.Update:vhemery</permission>
+      <permission>hudson.model.Run.Update:tlandre</permission>
       <permission>hudson.model.Run.Update:sgerard</permission>
-      <permission>hudson.model.Run.Update:rschnekenbu</permission>
-      <permission>hudson.model.Run.Update:ptessier</permission>
+      <permission>hudson.model.Run.Update:rfaudou</permission>
       <permission>hudson.model.Run.Update:cdumoulin</permission>
       <permission>hudson.model.Run.Update:ytanguy</permission>
-      <permission>hudson.model.Run.Update:eperico</permission>
-      <permission>hudson.model.Run.Update:tlandre</permission>
       <permission>hudson.model.Run.Update:ROLE_CALLISTO-DEV</permission>
-      <permission>hudson.model.Item.Delete:ROLE_CALLISTO-DEV</permission>
-      <permission>hudson.model.Item.Read:cmraidha</permission>
-      <permission>hudson.model.Item.Read:sgerard</permission>
-      <permission>hudson.model.Item.Read:rschnekenbu</permission>
-      <permission>hudson.model.Item.Read:ptessier</permission>
-      <permission>hudson.model.Item.Read:cdumoulin</permission>
+      <permission>hudson.model.Run.Update:ptessier</permission>
+      <permission>hudson.model.Run.Update:tfaure</permission>
+      <permission>hudson.model.Run.Update:rschnekenbu</permission>
+      <permission>hudson.model.Run.Update:eperico</permission>
+      <permission>hudson.model.Run.Update:cmraidha</permission>
+      <permission>hudson.model.Run.Delete:vhemery</permission>
+      <permission>hudson.model.Run.Delete:tlandre</permission>
+      <permission>hudson.model.Run.Delete:sgerard</permission>
+      <permission>hudson.model.Run.Delete:rfaudou</permission>
+      <permission>hudson.model.Run.Delete:cdumoulin</permission>
+      <permission>hudson.model.Run.Delete:ytanguy</permission>
+      <permission>hudson.model.Run.Delete:ROLE_CALLISTO-DEV</permission>
+      <permission>hudson.model.Run.Delete:ptessier</permission>
+      <permission>hudson.model.Run.Delete:tfaure</permission>
+      <permission>hudson.model.Run.Delete:rschnekenbu</permission>
+      <permission>hudson.model.Run.Delete:eperico</permission>
+      <permission>hudson.model.Run.Delete:cmraidha</permission>
+      <permission>hudson.model.Item.Workspace:rfaudou</permission>
+      <permission>hudson.model.Item.Workspace:ytanguy</permission>
+      <permission>hudson.model.Item.Workspace:rschnekenbu</permission>
+      <permission>hudson.model.Item.Workspace:anonymous</permission>
+      <permission>hudson.model.Item.Workspace:cmraidha</permission>
+      <permission>hudson.model.Item.Workspace:cdumoulin</permission>
+      <permission>hudson.model.Item.Workspace:sgerard</permission>
+      <permission>hudson.model.Item.Workspace:tlandre</permission>
+      <permission>hudson.model.Item.Workspace:vhemery</permission>
+      <permission>hudson.model.Item.Workspace:ROLE_CALLISTO-DEV</permission>
+      <permission>hudson.model.Item.Workspace:ptessier</permission>
+      <permission>hudson.model.Item.Workspace:tfaure</permission>
+      <permission>hudson.model.Item.Workspace:eperico</permission>
+      <permission>hudson.model.Item.Build:vhemery</permission>
+      <permission>hudson.model.Item.Build:tlandre</permission>
+      <permission>hudson.model.Item.Build:sgerard</permission>
+      <permission>hudson.model.Item.Build:rfaudou</permission>
+      <permission>hudson.model.Item.Build:cdumoulin</permission>
+      <permission>hudson.model.Item.Build:ytanguy</permission>
+      <permission>hudson.model.Item.Build:ROLE_CALLISTO-DEV</permission>
+      <permission>hudson.model.Item.Build:ptessier</permission>
+      <permission>hudson.model.Item.Build:tfaure</permission>
+      <permission>hudson.model.Item.Build:rschnekenbu</permission>
+      <permission>hudson.model.Item.Build:eperico</permission>
+      <permission>hudson.model.Item.Build:cmraidha</permission>
+      <permission>hudson.model.Item.Read:rfaudou</permission>
       <permission>hudson.model.Item.Read:ytanguy</permission>
-      <permission>hudson.model.Item.Read:eperico</permission>
-      <permission>hudson.model.Item.Read:tlandre</permission>
+      <permission>hudson.model.Item.Read:rschnekenbu</permission>
       <permission>hudson.model.Item.Read:anonymous</permission>
+      <permission>hudson.model.Item.Read:cmraidha</permission>
+      <permission>hudson.model.Item.Read:cdumoulin</permission>
+      <permission>hudson.model.Item.Read:sgerard</permission>
+      <permission>hudson.model.Item.Read:tlandre</permission>
+      <permission>hudson.model.Item.Read:vhemery</permission>
       <permission>hudson.model.Item.Read:ROLE_CALLISTO-DEV</permission>
+      <permission>hudson.model.Item.Read:ptessier</permission>
+      <permission>hudson.model.Item.Read:tfaure</permission>
+      <permission>hudson.model.Item.Read:eperico</permission>
+      <permission>hudson.model.Item.Configure:vhemery</permission>
+      <permission>hudson.model.Item.Configure:tlandre</permission>
+      <permission>hudson.model.Item.Configure:sgerard</permission>
+      <permission>hudson.model.Item.Configure:rfaudou</permission>
+      <permission>hudson.model.Item.Configure:cdumoulin</permission>
+      <permission>hudson.model.Item.Configure:ytanguy</permission>
+      <permission>hudson.model.Item.Configure:ROLE_CALLISTO-DEV</permission>
+      <permission>hudson.model.Item.Configure:ptessier</permission>
+      <permission>hudson.model.Item.Configure:tfaure</permission>
+      <permission>hudson.model.Item.Configure:rschnekenbu</permission>
+      <permission>hudson.model.Item.Configure:eperico</permission>
+      <permission>hudson.model.Item.Configure:cmraidha</permission>
     </hudson.security.AuthorizationMatrixProperty>
     <hudson.model.ParametersDefinitionProperty>
       <parameterDefinitions>
@@ -113,12 +132,16 @@ add  -localSourceCheckoutDir /opt/users/hudsonbuild/.hudson/jobs/cbi-papyrus-0.7
       </hudson.scm.SubversionSCM_-ModuleLocation>
     </locations>
     <useUpdate>false</useUpdate>
+    <doRevert>false</doRevert>
     <excludedRegions></excludedRegions>
+    <includedRegions></includedRegions>
     <excludedUsers></excludedUsers>
     <excludedRevprop></excludedRevprop>
+    <excludedCommitMessages></excludedCommitMessages>
   </scm>
   <canRoam>true</canRoam>
   <disabled>false</disabled>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
   <jdk>Base Java 5.0 Installation (/shared/common)</jdk>
   <triggers class="vector">
     <hudson.triggers.TimerTrigger>
@@ -133,21 +156,23 @@ add  -localSourceCheckoutDir /opt/users/hudsonbuild/.hudson/jobs/cbi-papyrus-0.7
 export PROJRELENGROOT=&apos;-projRelengRoot svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk&apos;
 export PROJRELENGPATH=&apos;-projRelengPath org.eclipse.papyrus.releng&apos;
 
+# log file 
+lastBuildLogFile=/opt/public/modeling/mdt/papyrus/lastBuildLogN
+
+# promote signal (file being touched in case of successfull build)
+promoteSignal=/opt/public/modeling/mdt/papyrus/papyrusBuildPromoteSignalN
+
 # set workspace
 hudsonWorkspace=/opt/users/hudsonbuild/.hudson/jobs/cbi-papyrus-0.7-nightly/workspace
-#SVN=/usr/local/bin/svn
+SVN=/usr/local/bin/svn
+
 # parameters
 #export SNAPSHOT=&amp;quot;true&amp;quot;
 
+# bug 106396
+export JAVA_HIGH_ZIPFDS=500
 
-#rm -rf $hudsonWorkspace/PapyrusTree
-#mkdir $hudsonWorkspace/PapyrusTree
-
-#$SVN export svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features/ $hudsonWorkspace/PapyrusTree/features
-#$SVN export svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core/ $hudsonWorkspace/PapyrusTree/plugins
-#$SVN export svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml/ $hudsonWorkspace/PapyrusTree/plugins --force
-#$SVN export svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/others/ $hudsonWorkspace/PapyrusTree/plugins --force
-#$SVN export svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/profile-tool/ $hudsonWorkspace/PapyrusTree/plugins --force
+buildNumber=$BUILD_NUMBER
 
 # run the build
 . /opt/public/cbi/build/org.eclipse.dash.common.releng/hudson/run.sh
@@ -163,6 +188,18 @@ hudsonWorkspace=/opt/users/hudsonbuild/.hudson/jobs/cbi-papyrus-0.7-nightly/work
 
 # run the build
 #. /opt/public/cbi/build/org.eclipse.dash.common.releng/hudson/run.sh
+
+# Test if build succeeded. If not, then exit with error 1.
+# Copy the log, because the commands appear in the grepped log...
+# read nextBuildNumber &lt; /opt/users/hudsonbuild/.hudson/jobs/cbi-papyrus-0.7-nightly/nextBuildNumber
+# buildNumber=$((nextBuildNumber-1))
+wget --quiet --no-check-certificate https://build.eclipse.org/hudson/job/cbi-papyrus-0.7-nightly/$buildNumber/consoleText -O &quot;$lastBuildLogFile&quot;
+
+cat $lastBuildLogFile | grep &quot;BUILD FAILED&quot; &amp;&amp; exit 1
+cat $lastBuildLogFile | grep &quot;BUILD SUCCESSFUL&quot; || exit 1
+
+#triggers promoting the build by a script waiting for the modification date of this file to change
+touch $promoteSignal
 </command>
     </hudson.tasks.Shell>
   </builders>
@@ -172,30 +209,11 @@ hudsonWorkspace=/opt/users/hudsonbuild/.hudson/jobs/cbi-papyrus-0.7-nightly/work
       <excludes>build/?20*/eclipse, build/?20*/eclipse/**, build/?20*/testing, build/?20*/testing/**, build/?20*/*-AllFeaturesAndPlugins-*.zip*, build/?20*/*-Master-*.zip*, build/?20*/noclean</excludes>
       <latestOnly>true</latestOnly>
     </hudson.tasks.ArtifactArchiver>
-    <hudson.plugins.warnings.WarningsPublisher>
-      <threshold></threshold>
-      <newThreshold></newThreshold>
-      <failureThreshold></failureThreshold>
-      <newFailureThreshold></newFailureThreshold>
-      <healthy></healthy>
-      <unHealthy></unHealthy>
-      <pluginName>[WARNINGS] </pluginName>
-      <thresholdLimit>low</thresholdLimit>
-      <defaultEncoding></defaultEncoding>
-      <pattern></pattern>
-      <parserNames>
-        <string>Eclipse Java Compiler</string>
-      </parserNames>
-      <canRunOnFailed>false</canRunOnFailed>
-      <ignoreConsole>false</ignoreConsole>
-    </hudson.plugins.warnings.WarningsPublisher>
-    <hudson.plugins.emotional__hudson.EmotionalHudsonPublisher/>
     <hudson.tasks.Mailer>
       <recipients>remi.schnekenburger@cea.fr</recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
-      <sendToIndividuals>false</sendToIndividuals>
+      <sendToIndividuals>true</sendToIndividuals>
     </hudson.tasks.Mailer>
-    <hudson.plugins.cigame.GamePublisher/>
   </publishers>
   <buildWrappers/>
 </project>
