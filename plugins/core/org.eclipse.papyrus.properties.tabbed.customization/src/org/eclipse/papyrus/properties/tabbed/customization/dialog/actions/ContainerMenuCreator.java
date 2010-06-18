@@ -23,6 +23,7 @@ import org.eclipse.papyrus.properties.runtime.controller.descriptor.ControllerDe
 import org.eclipse.papyrus.properties.runtime.controller.predefined.PredefinedControllerDescriptor;
 import org.eclipse.papyrus.properties.runtime.controller.predefined.PredefinedControllerState;
 import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptorState;
+import org.eclipse.papyrus.properties.runtime.view.constraints.AppliedStereotypeConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.ConstraintDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.ObjectTypeConstraintDescriptor;
@@ -122,6 +123,7 @@ public class ContainerMenuCreator extends AbstractMenuCreator {
 		}
 
 		Class<?> selectionClass = null;
+		List<String> appliedStereotypes = null;
 		if(parent instanceof Tree) {
 			Tree tree = (Tree)parent;
 			TreeItem[] items = tree.getSelection();
@@ -138,6 +140,8 @@ public class ContainerMenuCreator extends AbstractMenuCreator {
 						IConstraintDescriptor descriptor = constraintDescriptorState.getDescriptor();
 						if(descriptor instanceof ObjectTypeConstraintDescriptor) { // check class compatibility. Should also check the other constraints...
 							selectionClass = ((ObjectTypeConstraintDescriptor)descriptor).getElementClass();
+						} else if(descriptor instanceof AppliedStereotypeConstraintDescriptor) {
+							appliedStereotypes = ((AppliedStereotypeConstraintDescriptor)descriptor).getStereotypeQualifiedNames();
 						}
 					}
 				}
@@ -150,34 +154,57 @@ public class ContainerMenuCreator extends AbstractMenuCreator {
 
 		for(final String predefinedId : predefinedDescriptors.keySet()) {
 			final PredefinedControllerDescriptor propertyEditorControllerDescriptor = predefinedDescriptors.get(predefinedId);
-			for(IConstraintDescriptor constraintDescriptor : propertyEditorControllerDescriptor.getConstraintDescriptors()) {
-				if(constraintDescriptor instanceof ObjectTypeConstraintDescriptor) {
+			List<IConstraintDescriptor> constraints = propertyEditorControllerDescriptor.getConstraintDescriptors();
+			for(IConstraintDescriptor constraintDescriptor : constraints) {
+				boolean isValid = false;
+				// check the class constraint if selection  class is not null
+				if(constraintDescriptor instanceof ObjectTypeConstraintDescriptor && selectionClass != null) {
 					Class<?> elementClass = ((ObjectTypeConstraintDescriptor)constraintDescriptor).getElementClass();
 					// check element class is compatible
 					if(elementClass.isAssignableFrom(selectionClass)) {
-						// build the action to add the controller
-						IAction action = new Action("Add Predefined Controller " + propertyEditorControllerDescriptor.getText(), Activator.imageDescriptorFromPlugin(Activator.ID, "/icons/NewPredefinedController.gif")) {
-
-							/**
-							 * {@inheritDoc}
-							 */
-							@Override
-							public void run() {
-								// add this section descriptor state from its parent
-								if(parent instanceof Tree) {
-									TreeItem[] selectedItems = ((Tree)parent).getSelection();
-									if(selectedItems.length < 1) {
-										Activator.log.warn("Impossible to find the current selection in the tree");
-										return;
-									}
-									ControllerDescriptorState state = new PredefinedControllerState(propertyEditorControllerDescriptor, false);
-									containerDescriptorState.addPropertyEditorControllerState(state);
-								}
-							}
-
-						};
-						manager.appendToGroup(ADD_GROUP, action);
+						isValid = true;
 					}
+				} else if(constraintDescriptor instanceof AppliedStereotypeConstraintDescriptor && appliedStereotypes != null) {
+					List<String> stereotypeNames = ((AppliedStereotypeConstraintDescriptor)constraintDescriptor).getStereotypeQualifiedNames();
+
+					boolean stereotypesMatch = false;
+					// check the stereotype constraints from the controller and compare with the constraints from the section set
+					for(String controllerStereotypeName : stereotypeNames) {
+						boolean localMatch = false;
+						for(String sectionStereotypeName : appliedStereotypes) {
+							// we have the stereotype qualified name. Now, should check if it fits to the current stereotype or one of its parent
+							if(controllerStereotypeName.equals(sectionStereotypeName)) {
+								localMatch = true;
+							}
+						}
+						stereotypesMatch = stereotypesMatch & localMatch;
+					}
+					isValid = isValid & stereotypesMatch;
+				}
+
+				if(isValid) {
+					// build the action to add the controller
+					IAction action = new Action("Add Predefined " + propertyEditorControllerDescriptor.getText() + " (" + propertyEditorControllerDescriptor.getPredefinedId() + ")", Activator.imageDescriptorFromPlugin(Activator.ID, "/icons/NewPredefinedController.gif")) {
+
+						/**
+						 * {@inheritDoc}
+						 */
+						@Override
+						public void run() {
+							// add this section descriptor state from its parent
+							if(parent instanceof Tree) {
+								TreeItem[] selectedItems = ((Tree)parent).getSelection();
+								if(selectedItems.length < 1) {
+									Activator.log.warn("Impossible to find the current selection in the tree");
+									return;
+								}
+								ControllerDescriptorState state = new PredefinedControllerState(propertyEditorControllerDescriptor, false);
+								containerDescriptorState.addPropertyEditorControllerState(state);
+							}
+						}
+
+					};
+					manager.appendToGroup(ADD_GROUP, action);
 				}
 			}
 		}

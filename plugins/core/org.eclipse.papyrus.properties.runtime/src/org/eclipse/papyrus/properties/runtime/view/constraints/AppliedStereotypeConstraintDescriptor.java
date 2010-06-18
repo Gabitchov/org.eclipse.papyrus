@@ -118,6 +118,15 @@ public class AppliedStereotypeConstraintDescriptor implements IConstraintDescrip
 		}
 
 		/**
+		 * Returns the stereotypesToApply
+		 * 
+		 * @return the stereotypesToApply
+		 */
+		public List<String> getStereotypesToApply() {
+			return stereotypesToApply;
+		}
+
+		/**
 		 * Adds a stereotype to the list of required stereotypes
 		 * 
 		 * @param qualifiedName
