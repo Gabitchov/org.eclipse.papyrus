@@ -21,6 +21,40 @@ public class Messages extends NLS {
 	/** name of the bundle */
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.properties.tabbed.customization.messages"; //$NON-NLS-1$
 
+	public static String CustomizeContentWizardPage_ConfigurationArea_Label;
+
+	public static String CustomizeContentWizardPage_ContentArea_Label;
+
+	public static String CustomizeContentWizardPage_Error_NoActiveDiagram;
+
+	public static String CustomizeContentWizardPage_Error_NoEditorForElement;
+
+	public static String CustomizeContentWizardPage_Error_NoRootNode;
+
+	public static String CustomizeContentWizardPage_Error_NoSelectionForMenuCreation;
+
+	public static String CustomizeContentWizardPage_Error_NoSelectionFound;
+
+	public static String CustomizeContentWizardPage_Error_OutOfBoundExceptionIndex;
+
+	public static String CustomizeContentWizardPage_Error_SelectionStereotypeOrClassifier;
+
+	public static String CustomizeContentWizardPage_Job_SavingConfiguration;
+
+	public static String CustomizeContentWizardPage_Message;
+
+	public static String CustomizeContentWizardPage_PreviewArea_Label;
+
+	public static String CustomizeContentWizardPage_PreviewArea_RefreshButtonTooltip;
+
+	public static String CustomizeContentWizardPage_PreviewArea_SaveButtonTooltip;
+
+	public static String CustomizeContentWizardPage_PreviewArea_SelectionSizeLabel;
+
+	public static String CustomizeContentWizardPage_Title;
+
+	public static String CustomizeContentWizardPage_Warning_NoStereotypeNeitherMetaclass;
+
 	public static String CustomizePropertyViewDialog_Title;
 
 	public static String SelectConfigurationFileWizardPage_ErrorMessage_NoValidTextArea;

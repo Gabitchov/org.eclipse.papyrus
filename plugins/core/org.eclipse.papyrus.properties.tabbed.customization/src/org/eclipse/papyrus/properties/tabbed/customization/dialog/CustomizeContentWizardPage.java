@@ -71,6 +71,7 @@ import org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState.ReplacedSectionState;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
+import org.eclipse.papyrus.properties.tabbed.customization.Messages;
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.ContainerMenuCreator;
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.ContentHolderMenuCreator;
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.ControllerMenuCreator;
@@ -121,7 +122,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 	protected Document document;
 
 	/** UML metamodel label for the metamodel selection combo */
-	protected static final String UML_METAMODEL = "UML";
+	protected static final String UML_METAMODEL = "UML"; //$NON-NLS-1$
 
 	/** available section states for this wizard page */
 	protected List<SectionSetDescriptorState> sectionSetDescriptorStates;
@@ -157,7 +158,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 	protected Combo sizeArea;
 
 	/** values in the selection size combo */
-	protected final static List<String> sizeValues = Arrays.asList("1", "-1");
+	protected final static List<String> sizeValues = Arrays.asList("1", "-1"); //$NON-NLS-1$ //$NON-NLS-2$
 
 	/** file where to save the content of the configuration */
 	protected File file;
@@ -175,7 +176,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 	 * Creates a new CustomizeContentWizardPage.
 	 */
 	public CustomizeContentWizardPage() {
-		super("Customize Property View", "Customize property view Wizard", null);
+		super(Messages.CustomizeContentWizardPage_Title, Messages.CustomizeContentWizardPage_Message, null);
 	}
 
 	/**
@@ -279,7 +280,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 				return childNode;
 			}
 		}
-		Activator.log.error("no propertyTabView node was found for this document", null);
+		Activator.log.error(Messages.CustomizeContentWizardPage_Error_NoRootNode, null);
 		return null;
 	}
 
@@ -329,7 +330,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 
 		// title of this area
 		Label titleLabel = new Label(configurationAreaComposite, SWT.NONE);
-		titleLabel.setText("Configuration:");
+		titleLabel.setText(Messages.CustomizeContentWizardPage_ConfigurationArea_Label);
 
 		// content tree and viewer on this tree
 		Tree configurationTree = new Tree(configurationAreaComposite, SWT.BORDER);
@@ -362,7 +363,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 				// retrieve current selection, this should be a state or a contentHolder/constraintholder
 				ITreeSelection selection = (ITreeSelection)configurationViewer.getSelection();
 				if(selection == null || selection.size() < 1) {
-					Activator.log.warn("Impossible to find the selection to create the menu");
+					Activator.log.warn(Messages.CustomizeContentWizardPage_Error_NoSelectionFound);
 					return;
 				}
 
@@ -410,7 +411,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 			PropertyDialog dialog = new PropertyDialog(parentShell, descriptor, objectsToEdit, new TabbedPropertySheetWidgetFactory());
 			dialog.open();
 		} else {
-			Activator.log.warn("impossible to find an editor for element: " + iState);
+			Activator.log.warn(Messages.CustomizeContentWizardPage_Error_NoEditorForElement + iState);
 		}
 	}
 
@@ -435,7 +436,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 
 		// title of this area
 		Label titleLabel = new Label(titleArea, SWT.NONE);
-		titleLabel.setText("Preview:");
+		titleLabel.setText(Messages.CustomizeContentWizardPage_PreviewArea_Label);
 		titleLabel.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 
 		Composite selectionSize = new Composite(titleArea, SWT.NONE);
@@ -447,7 +448,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 		selectionSize.setLayoutData(data);
 
 		Label sizeLabel = new Label(selectionSize, SWT.NONE);
-		sizeLabel.setText("Size:");
+		sizeLabel.setText(Messages.CustomizeContentWizardPage_PreviewArea_SelectionSizeLabel);
 
 		sizeArea = new Combo(selectionSize, SWT.BORDER | SWT.READ_ONLY);
 		sizeArea.setItems(sizeValues.toArray(new String[0]));
@@ -461,7 +462,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 				if(index >= 0) {
 					setCurrentSelectionsize(Integer.parseInt(sizeValues.get(index)));
 				} else {
-					Activator.log.error("Wrong index for selection size", null);
+					Activator.log.error(Messages.CustomizeContentWizardPage_Error_OutOfBoundExceptionIndex, null);
 				}
 			}
 
@@ -475,8 +476,8 @@ public class CustomizeContentWizardPage extends WizardPage {
 		updateSizeArea();
 
 		Button button = new Button(titleArea, SWT.NONE);
-		button.setImage(Activator.getImage("/icons/Refresh.gif"));
-		button.setToolTipText("Refresh the content of the preview area");
+		button.setImage(Activator.getImage("/icons/Refresh.gif")); //$NON-NLS-1$
+		button.setToolTipText(Messages.CustomizeContentWizardPage_PreviewArea_RefreshButtonTooltip);
 		button.addSelectionListener(new SelectionListener() {
 
 			/**
@@ -495,8 +496,8 @@ public class CustomizeContentWizardPage extends WizardPage {
 		});
 
 		Button saveButton = new Button(titleArea, SWT.NONE);
-		saveButton.setImage(Activator.getImage("/icons/Save.gif"));
-		saveButton.setToolTipText("Saves the current configuration");
+		saveButton.setImage(Activator.getImage("/icons/Save.gif")); //$NON-NLS-1$
+		saveButton.setToolTipText(Messages.CustomizeContentWizardPage_PreviewArea_SaveButtonTooltip);
 		saveButton.addSelectionListener(new SelectionListener() {
 
 			/**
@@ -586,7 +587,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 	 */
 	protected void updateSizeArea() {
 		if(sizeArea != null && !sizeArea.isDisposed()) {
-			sizeArea.select(sizeValues.indexOf("" + currentSelectionsize));
+			sizeArea.select(sizeValues.indexOf("" + currentSelectionsize)); //$NON-NLS-1$
 		}
 		updatePreview();
 
@@ -626,7 +627,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 					}
 				}
 			} else {
-				Activator.log.warn("either selected metaclass or selected stereotype should not be null");
+				Activator.log.warn(Messages.CustomizeContentWizardPage_Warning_NoStereotypeNeitherMetaclass);
 			}
 
 		}
@@ -699,7 +700,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 
 		// title of this area
 		Label contentLabel = new Label(mainContentAreaComposite, SWT.NONE);
-		contentLabel.setText("Content:");
+		contentLabel.setText(Messages.CustomizeContentWizardPage_ContentArea_Label);
 
 		metamodelSelectionCombo = new CCombo(mainContentAreaComposite, SWT.BORDER | SWT.READ_ONLY);
 		metamodelSelectionCombo.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
@@ -737,7 +738,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 				// retrieve current selection, this should be an EObject or a SectionSetDescriptorState
 				ITreeSelection selection = (ITreeSelection)metamodelViewer.getSelection();
 				if(selection == null || selection.size() < 1) {
-					Activator.log.warn("Impossible to find the selection to create the menu");
+					Activator.log.warn(Messages.CustomizeContentWizardPage_Error_NoSelectionForMenuCreation);
 					return;
 				}
 
@@ -777,7 +778,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 						setCurrentMetaClass(null);
 						setCurrentStereotype((Stereotype)selectedEObject);
 					} else {
-						Activator.log.error("selection should be either stereotype or EClassifier, not " + selectedEObject, null);
+						Activator.log.error(Messages.CustomizeContentWizardPage_Error_SelectionStereotypeOrClassifier + selectedEObject, null);
 					}
 				} else if(selectedElement instanceof SectionSetDescriptorState) {
 					// retrieve the metaclass using the TreePath of the selection
@@ -795,7 +796,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 								setCurrentMetaClass(null);
 								setCurrentStereotype((Stereotype)selectedEObject);
 							} else {
-								Activator.log.error("selection should be either stereotype or EClassifier, not " + selectedEObject, null);
+								Activator.log.error(Messages.CustomizeContentWizardPage_Error_SelectionStereotypeOrClassifier + selectedEObject, null);
 							}
 						}
 					}
@@ -863,12 +864,12 @@ public class CustomizeContentWizardPage extends WizardPage {
 		// retrieve current editor, and current resources
 		DiagramEditor editor = EditorUtils.lookupActiveDiagramEditor();
 		if(editor == null) {
-			Activator.log.warn("Impossible to find the active diagram editor");
+			Activator.log.warn(Messages.CustomizeContentWizardPage_Error_NoActiveDiagram);
 			return Collections.emptyList();
 		}
 		EObject eObject = editor.getDiagram().getElement();
 		if(eObject == null) {
-			Activator.log.warn("Impossible to find the active diagram object");
+			Activator.log.warn(Messages.CustomizeContentWizardPage_Error_NoActiveDiagram);
 			return Collections.emptyList();
 		}
 
@@ -1005,7 +1006,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 	 * @return <code>true</code> if serialization finished well
 	 */
 	public boolean serializeContent() {
-		Job job = new Job("Saving configuration file") {
+		Job job = new Job(Messages.CustomizeContentWizardPage_Job_SavingConfiguration) {
 
 			/**
 			 * {@inheritDoc}
