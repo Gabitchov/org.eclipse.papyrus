@@ -184,7 +184,7 @@ public class ContainerMenuCreator extends AbstractMenuCreator {
 
 				if(isValid) {
 					// build the action to add the controller
-					IAction action = new Action("Add Predefined " + propertyEditorControllerDescriptor.getText() + " (" + propertyEditorControllerDescriptor.getPredefinedId() + ")", Activator.imageDescriptorFromPlugin(Activator.ID, "/icons/NewPredefinedController.gif")) {
+					IAction action = new Action("Add " + propertyEditorControllerDescriptor.getText() + " (" + propertyEditorControllerDescriptor.getPredefinedId() + ")", Activator.imageDescriptorFromPlugin(Activator.ID, "/icons/NewPredefinedController.gif")) {
 
 						/**
 						 * {@inheritDoc}
