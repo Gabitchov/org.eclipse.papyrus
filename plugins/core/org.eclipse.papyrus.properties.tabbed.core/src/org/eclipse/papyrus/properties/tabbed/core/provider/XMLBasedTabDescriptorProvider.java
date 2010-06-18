@@ -15,6 +15,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.eclipse.jface.viewers.ISelection;
@@ -24,6 +26,7 @@ import org.eclipse.papyrus.properties.tabbed.core.view.PropertyServiceUtil;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.internal.views.properties.tabbed.view.TabbedPropertyRegistry;
 import org.eclipse.ui.internal.views.properties.tabbed.view.TabbedPropertyRegistryFactory;
+import org.eclipse.ui.views.properties.tabbed.ISectionDescriptor;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptorProvider;
 
@@ -75,8 +78,38 @@ public class XMLBasedTabDescriptorProvider implements ITabDescriptorProvider {
 				Activator.log.error(e);
 			}
 
+
+			// for all descriptors, section should be ordered at this time... Could be time consuming!
+			for(ITabDescriptor descriptor : descriptors) {
+				orderSectionInTabDescriptor(descriptor);
+			}
+
 			this.descriptors = descriptors.toArray(new ITabDescriptor[descriptors.size()]);
 		}
 		return (descriptors != null) ? descriptors : new ITabDescriptor[0];
+	}
+
+	/**
+	 * Orders the section descriptors present in the specified tab descriptor
+	 * 
+	 * @param tabDescriptor
+	 *        the descriptor to order
+	 */
+	@SuppressWarnings("unchecked")
+	protected void orderSectionInTabDescriptor(ITabDescriptor tabDescriptor) {
+		Collections.sort(tabDescriptor.getSectionDescriptors(), new Comparator<ISectionDescriptor>() {
+
+			/**
+			 * @param section0
+			 *        the first section descriptor to compare
+			 * @param section1
+			 *        the second section descriptor to compare
+			 * @return an integer greater than 1 if the first section should be placed before the second
+			 */
+			public int compare(ISectionDescriptor arg0, ISectionDescriptor arg1) {
+				// FIXME compare the 2 sections...
+				return 0;
+			}
+		});
 	}
 }

@@ -25,6 +25,7 @@ import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.IFragmentDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.Activator;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.ui.views.properties.tabbed.AbstractSectionDescriptor;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -39,13 +40,13 @@ public class SectionDescriptorState extends AbstractState {
 	protected DynamicSectionDescriptor sectionDescriptor;
 
 	/** list of fragment descriptor states */
-	private List<IFragmentDescriptorState> fragmentDescriptorStates = new ArrayList<IFragmentDescriptorState>();
+	protected List<IFragmentDescriptorState> fragmentDescriptorStates = new ArrayList<IFragmentDescriptorState>();
 
 	/** list of replaced sections */
-	private List<ReplacedSectionState> replacedSectionStates = new ArrayList<ReplacedSectionState>();
+	protected List<ReplacedSectionState> replacedSectionStates = new ArrayList<ReplacedSectionState>();
 
 	/** change support for this bean */
-	private PropertyChangeSupport changeSupport;
+	protected PropertyChangeSupport changeSupport;
 
 	/** id of the section managed by this state */
 	protected String id;
@@ -55,6 +56,9 @@ public class SectionDescriptorState extends AbstractState {
 
 	/** adapter Identifier for the descriptor */
 	protected String adapterId;
+
+	/** id of the section which should be before this one */
+	protected String afterSection;
 
 	/**
 	 * Creates a new SectionDescriptorState.
@@ -68,6 +72,7 @@ public class SectionDescriptorState extends AbstractState {
 		id = sectionDescriptor.getId();
 		targetTab = sectionDescriptor.getTargetTab();
 		adapterId = sectionDescriptor.getAdapterId();
+		afterSection = sectionDescriptor.getAfterSection();
 
 		List<String> replaceSections = sectionDescriptor.getReplacedSectionIds();
 		for(String replacedSectionId : replaceSections) {
@@ -198,10 +203,40 @@ public class SectionDescriptorState extends AbstractState {
 	}
 
 	/**
+	 * Sets the afterSection
+	 * 
+	 * @param afterSection
+	 *        the afterSection to set
+	 */
+	public void setAfterSection(String afterSection) {
+		changeSupport.firePropertyChange("afterSection", this.afterSection, this.afterSection = afterSection);
+	}
+
+	/**
+	 * Returns the afterSection
+	 * 
+	 * @return the afterSection
+	 */
+	public String getAfterSection() {
+		return afterSection;
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
 	public String getText() {
-		return "Section: " + getId() + " in tab: " + getTargetTab();
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("Section: ");
+		buffer.append(getId());
+		buffer.append(" in tab: ");
+		buffer.append(getTargetTab());
+		if(getAfterSection() != AbstractSectionDescriptor.TOP) {
+			buffer.append(" after section: ");
+			buffer.append(getAfterSection());
+		} else {
+			buffer.append(" (unordered)");
+		}
+		return buffer.toString();
 	}
 
 	/**
@@ -251,6 +286,7 @@ public class SectionDescriptorState extends AbstractState {
 		node.setAttribute("id", getId());
 		node.setAttribute("tabId", getTargetTab());
 		node.setAttribute("adapterId", getAdapterId());
+		node.setAttribute("afterSection", getAfterSection());
 
 		generateReplacedSectionStates(node, document);
 

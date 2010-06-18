@@ -71,6 +71,10 @@
 					<property name="targetTab"/>
 					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Tab Identifier" labelPosition="16384"/>
 				</controller>
+				<controller id="stateBeanPropertyEditorController">
+					<property name="afterSection"/>
+					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="After Section" labelPosition="16384"/>
+				</controller>
 			</container>
 		</content>
 	</fragment>

@@ -68,6 +68,9 @@ public class DynamicSectionDescriptor extends AbstractSectionDescriptor implemen
 	/** list of replaced ids */
 	protected final List<String> replacedSectionIds;
 
+	/** section which should be before this one */
+	protected final String afterSectionId;
+
 	/** list of fragments to display in the section */
 	protected final List<IFragmentDescriptor> fragmentDescriptors;
 
@@ -78,13 +81,14 @@ public class DynamicSectionDescriptor extends AbstractSectionDescriptor implemen
 	 *        fragments to display in the section
 	 * 
 	 */
-	public DynamicSectionDescriptor(String id, String tabId, List<IConstraintDescriptor> constraints, int selectionSize, String adapterID, List<String> replacedSectionIds, List<IFragmentDescriptor> fragmentDescriptors) {
+	public DynamicSectionDescriptor(String id, String tabId, List<IConstraintDescriptor> constraints, int selectionSize, String adapterID, List<String> replacedSectionIds, String afterSectionId, List<IFragmentDescriptor> fragmentDescriptors) {
 		this.id = id;
 		this.tabId = tabId;
 		this.constraints = constraints;
 		this.selectionSize = selectionSize;
 		this.adapterId = adapterID;
 		this.replacedSectionIds = replacedSectionIds;
+		this.afterSectionId = afterSectionId;
 		this.fragmentDescriptors = fragmentDescriptors;
 	}
 
@@ -101,6 +105,17 @@ public class DynamicSectionDescriptor extends AbstractSectionDescriptor implemen
 	 */
 	public String getId() {
 		return id;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getAfterSection() {
+		if(afterSectionId == null) {
+			return super.getAfterSection();
+		}
+		return afterSectionId;
 	}
 
 	/**

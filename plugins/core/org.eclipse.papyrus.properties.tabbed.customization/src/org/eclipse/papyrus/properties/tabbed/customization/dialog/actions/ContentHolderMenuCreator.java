@@ -107,7 +107,7 @@ public class ContentHolderMenuCreator extends AbstractMenuCreator {
 			@Override
 			public void run() {
 				// should add a section here, using a new Section and pop-up the dialog on the section to create
-				DynamicSectionDescriptor descriptor = new DynamicSectionDescriptor(getNewSectionId(finalSelectionClass, selectionSize), getDefaultTabId(), new ArrayList<IConstraintDescriptor>(), 1, DynamicSectionDescriptor.SEMANTIC_RESOLVER, new ArrayList<String>(), new ArrayList<IFragmentDescriptor>());
+				DynamicSectionDescriptor descriptor = new DynamicSectionDescriptor(getNewSectionId(finalSelectionClass, selectionSize), getDefaultTabId(), new ArrayList<IConstraintDescriptor>(), 1, DynamicSectionDescriptor.SEMANTIC_RESOLVER, new ArrayList<String>(), null, new ArrayList<IFragmentDescriptor>());
 				SectionDescriptorState sectionDescriptorState = new SectionDescriptorState(descriptor, false);
 				contentHolder.getSectionSetDescriptorState().addSectionDescriptorState(sectionDescriptorState);
 			}
@@ -266,7 +266,7 @@ public class ContentHolderMenuCreator extends AbstractMenuCreator {
 	 * 
 	 * @return the list of constraint descriptor states for the current selected section set descriptor state or an empty list
 	 */
-	private List<ConstraintDescriptorState> getConstraintDescriptorStates(Object parent) {
+	protected List<ConstraintDescriptorState> getConstraintDescriptorStates(Object parent) {
 		SectionSetDescriptorState state = getCurrentSectionSetDescriptorState(parent);
 
 		if(state != null) {

@@ -50,8 +50,8 @@ public class DynamicSubFeatureSectionDescriptor extends DynamicSectionDescriptor
 	 *        id of the views to display in the section
 	 * 
 	 */
-	public DynamicSubFeatureSectionDescriptor(String id, String tabId, List<IConstraintDescriptor> constraints, int selectionSize, String adapterID, List<String> replacedSectionIds, List<IFragmentDescriptor> fragmentDescriptors, SubFeatureDescriptor subFeatureDescriptor, int maxColumn, SubFeatureContainerDescriptor containerDescriptor) {
-		super(id, tabId, constraints, selectionSize, adapterID, replacedSectionIds, fragmentDescriptors);
+	public DynamicSubFeatureSectionDescriptor(String id, String tabId, List<IConstraintDescriptor> constraints, int selectionSize, String adapterID, List<String> replacedSectionIds, String afterSectionId, List<IFragmentDescriptor> fragmentDescriptors, SubFeatureDescriptor subFeatureDescriptor, int maxColumn, SubFeatureContainerDescriptor containerDescriptor) {
+		super(id, tabId, constraints, selectionSize, adapterID, replacedSectionIds, afterSectionId, fragmentDescriptors);
 		this.maxColumn = maxColumn;
 		this.subFeatureDescriptor = subFeatureDescriptor;
 		this.subFeatureContainerDescriptor = containerDescriptor;

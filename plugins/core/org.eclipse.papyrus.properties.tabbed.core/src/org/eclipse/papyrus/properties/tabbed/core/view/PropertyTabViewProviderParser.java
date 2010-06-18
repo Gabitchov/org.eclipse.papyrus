@@ -80,6 +80,9 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 	/** node name for sub feature sections */
 	protected static final String NODE_NAME_SECTION_SUBFEATURE = "subFeatureSection";
 
+	/** name of the attribute: after section */
+	protected static final String AFTER_SECTION_ID = "afterSection";
+
 	/** link to the list of all available tab descriptors */
 	protected List<ITabDescriptor> tabDescriptors;
 
@@ -265,6 +268,7 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 		String id = null;
 		String tabId = null;
 		String adapterId = null;
+		String afterSection = null;
 		if(attributes != null) {
 			Node node = attributes.getNamedItem(ID);
 			if(node != null) {
@@ -279,6 +283,11 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 			node = attributes.getNamedItem(ADAPTER_ID);
 			if(node != null) {
 				adapterId = node.getNodeValue();
+			}
+
+			node = attributes.getNamedItem(AFTER_SECTION_ID);
+			if(node != null) {
+				afterSection = node.getNodeValue();
 			}
 		}
 
@@ -323,8 +332,7 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 					subFeatureContainerDescriptor = parseSubFeatureContainerDescriptorNode(childNode);
 				}
 			}
-
-			DynamicSectionDescriptor descriptor = new DynamicSubFeatureSectionDescriptor(id, tabId, constraints, selectionSize, adapterId, replacedSectionsId, fragmentDescriptors, subFeatureDescriptor, maxColumn, subFeatureContainerDescriptor);
+			DynamicSectionDescriptor descriptor = new DynamicSubFeatureSectionDescriptor(id, tabId, constraints, selectionSize, adapterId, replacedSectionsId, afterSection, fragmentDescriptors, subFeatureDescriptor, maxColumn, subFeatureContainerDescriptor);
 			descriptor.setUnparsedContent(sectionNode);
 			// retrieve the tab to add section to it.
 			// this means that the descriptor for the tab should already exist.
@@ -335,7 +343,7 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 				}
 			}
 		} else {
-			DynamicSectionDescriptor descriptor = new DynamicSectionDescriptor(id, tabId, constraints, selectionSize, adapterId, replacedSectionsId, fragmentDescriptors);
+			DynamicSectionDescriptor descriptor = new DynamicSectionDescriptor(id, tabId, constraints, selectionSize, adapterId, replacedSectionsId, afterSection, fragmentDescriptors);
 			descriptor.setUnparsedContent(sectionNode);
 			// retrieve the tab to add section to it.
 			// this means that the descriptor for the tab should already exist.
@@ -347,7 +355,7 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 						String sectionId = dynamicSectionDescriptor.getId();
 						if(id.equals(sectionId)) {
 							contains = true;
-							Activator.log.error("Trying to add a section which already exists", null);
+							//Activator.log.error("Trying to add a section which already exists", null);
 						}
 					}
 					if(!contains) {
