@@ -336,7 +336,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		LinkConstraints() {
+		public LinkConstraints() {
 			// use static method #getLinkConstraints() to access instance
 		}
 
