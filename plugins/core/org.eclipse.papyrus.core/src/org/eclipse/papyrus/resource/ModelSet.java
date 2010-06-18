@@ -239,7 +239,7 @@ public class ModelSet extends ResourceSetImpl {
 	 * @return the i model
 	 * @throws ModelException 
 	 * @returns The loaded model.
-	 * @deprecated Use {@link #importModels(ModelIdentifiers, IFile)}
+	 * @deprecated Use {@link #importModel(ModelIdentifier, IFile)}
 	 */
 	public IModel loadModel(String modelIdentifier, IFile file) throws ModelException {
 
@@ -303,6 +303,23 @@ public class ModelSet extends ResourceSetImpl {
 			model.importModel(path);
 			model.changeModelPath(filenameWithoutExtension);
 		}
+	}
+
+	/**
+	 * Import only the specified model. ModelSetSnippets are not called.
+	 * 
+	 * @param modelIdentifier
+	 *        the model identifier
+	 * @param file
+	 *        the file
+	 * @throws ModelException 
+	 * @returns The loaded model.
+	 */
+	public IModel importModel(String modelIdentifier, IFile file) throws ModelException {
+
+		importModels(new ModelIdentifiers(modelIdentifier), file);
+		
+		return getModel(modelIdentifier);
 	}
 
 	/**

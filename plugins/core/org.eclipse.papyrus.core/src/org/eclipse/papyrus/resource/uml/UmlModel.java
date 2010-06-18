@@ -4,8 +4,10 @@
 package org.eclipse.papyrus.resource.uml;
 
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.resource.AbstractBaseModel;
 import org.eclipse.papyrus.resource.IModel;
+import org.eclipse.papyrus.resource.NotFoundException;
 
 
 /**
@@ -70,5 +72,20 @@ public class UmlModel extends AbstractBaseModel implements IModel {
 	public String getIdentifier() {
 		return MODEL_ID;
 	}
+
+	/**
+	 * Lookup the root of the model. Throw an exception if not found.
+	 * @return
+	 */
+	public EObject lookupRoot() throws NotFoundException {
+		// TODO Auto-generated method stub
+		try {
+			return resource.getContents().get(0);
+		} catch (IndexOutOfBoundsException e) {
+			// The root doesn't exist.
+			throw new NotFoundException("No root defined in the model");
+		}
+	}
+
 
 }
