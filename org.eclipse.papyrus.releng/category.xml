@@ -9,10 +9,9 @@
    <feature url="features/org.eclipse.papyrus.uml_${org.eclipse.papyrus.uml.version}.jar" id="org.eclipse.papyrus.uml" version="${org.eclipse.papyrus.uml.version}">
       <category name="Papyrus UML"/>
    </feature>
-   <!--<feature url="features/org.eclipse.papyrus.diagram.activity_${org.eclipse.papyrus.diagram.activity.version}.jar" id="org.eclipse.papyrus.diagram.activity" version="${org.eclipse.papyrus.diagram.activity.version}">
+   <feature url="features/org.eclipse.papyrus.diagram.activity_${org.eclipse.papyrus.diagram.activity.version}.jar" id="org.eclipse.papyrus.diagram.activity" version="${org.eclipse.papyrus.diagram.activity.version}">
       <category name="Papyrus UML"/>
    </feature>
-   -->
    <feature url="features/org.eclipse.papyrus.diagram.clazz_${org.eclipse.papyrus.diagram.clazz.version}.jar" id="org.eclipse.papyrus.diagram.clazz" version="${org.eclipse.papyrus.diagram.clazz.version}">
       <category name="Papyrus UML"/>
    </feature>
