@@ -13,7 +13,7 @@
    <element name="extension">
       <annotation>
          <appinfo>
-            <meta.element />
+            <meta.element deprecated="true" />
          </appinfo>
       </annotation>
       <complexType>
@@ -48,6 +48,11 @@
    </element>
 
    <element name="customAction">
+      <annotation>
+         <appinfo>
+            <meta.element deprecated="true"/>
+         </appinfo>
+      </annotation>
       <complexType>
          <attribute name="actionId" type="string" use="required">
             <annotation>
@@ -108,6 +113,7 @@ See registered extension org.eclipse.papyrus.navigator.actionHandler
       </appinfo>
       <documentation>
          The class must implement interface org.eclipse.papyrus.navigator.factory.IActionHandlerFactory
+Deprecrated extension point. Use org.eclipse.ui.commands instead
       </documentation>
    </annotation>
 
