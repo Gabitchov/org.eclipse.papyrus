@@ -25,15 +25,15 @@
          </property>
          <property
                name="aboutImage"
-               value="icons/PapyrusLogo16x16.gif">
+               value="icons/PapyrusLogo16x16.png">
          </property>
          <property
                name="windowImages"
-               value="icons/PapyrusLogo16x16.gif,icons/PapyrusLogo32x32.gif,icons/PapyrusLogo48x48.gif">
+               value="icons/PapyrusLogo16x16.png,icons/PapyrusLogo32x32.png,icons/PapyrusLogo48x48.png">
          </property>
          <property
               name="introBrandingImage"
-              value="product:icons/PapyrusLogo48x48.gif"/>
+              value="product:icons/PapyrusLogo48x48.png"/>
          <property
                name="introTitle"
                value="Welcome to Papyrus - UML and SysML editors">
