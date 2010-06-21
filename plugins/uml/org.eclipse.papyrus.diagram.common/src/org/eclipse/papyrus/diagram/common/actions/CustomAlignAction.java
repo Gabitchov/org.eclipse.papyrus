@@ -70,8 +70,11 @@ public class CustomAlignAction extends AlignAction {
 	/** The alignment. */
 	private int alignment;
 
-	/** the request type */
+	/** The request type */
 	private Object requestType = null;
+
+	/** Indicates if this action is a toolabr item */
+	private boolean isToolbarItem = true;
 
 	/**
 	 * Constructs a CustomAlignAction with the given part and alignment ID. The alignment ID
@@ -95,6 +98,9 @@ public class CustomAlignAction extends AlignAction {
 	public CustomAlignAction(IWorkbenchPage workbenchPage, String id, int align) {
 		super(workbenchPage, id, align);
 		this.alignment = align;
+		if(isToolbarItem) {
+			this.setAccelerator();
+		}
 	}
 
 	/**
@@ -111,7 +117,37 @@ public class CustomAlignAction extends AlignAction {
 	 */
 	public CustomAlignAction(IWorkbenchPage workbenchPage, String id, int align, boolean isToolbarItem) {
 		super(workbenchPage, id, align, isToolbarItem);
+		this.isToolbarItem = isToolbarItem;
 		this.alignment = align;
+		if(isToolbarItem) {
+			this.setAccelerator();
+		}
+	}
+
+	/**
+	 * Adds the accelerators in the menu message {@link CustomAlignAction#setAccelerator()} seems doesn't work. keyBinding is done with the
+	 * org.eclipse.ui.binding extension point
+	 */
+	protected void setAccelerator() {
+		String text = getText();
+		switch(alignment) {
+		case PositionConstants.LEFT:
+			text += "\t Ctrl+Arrow Left"; //$NON-NLS-1$
+			break;
+		case PositionConstants.RIGHT:
+			text += "\t Ctrl+Arrow Right"; //$NON-NLS-1$
+			break;
+		case PositionConstants.TOP:
+			text += "\t Ctrl+Arrow Up"; //$NON-NLS-1$
+			break;
+		case PositionConstants.BOTTOM:
+			text += "\t Ctrl+Arrow Bottom"; //$NON-NLS-1$
+			break;
+		default:
+			break;
+
+		}
+		setText(text);
 	}
 
 	/**

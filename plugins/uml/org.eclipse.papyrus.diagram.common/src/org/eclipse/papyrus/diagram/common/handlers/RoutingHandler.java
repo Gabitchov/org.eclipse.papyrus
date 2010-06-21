@@ -16,11 +16,11 @@ package org.eclipse.papyrus.diagram.common.handlers;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.gef.ui.actions.GEFActionConstants;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.papyrus.diagram.common.actions.CustomAlignAction;
+import org.eclipse.papyrus.diagram.common.actions.RouteAction;
 import org.eclipse.papyrus.diagram.common.layout.LayoutUtils;
+import org.eclipse.papyrus.diagram.common.layout.RoutingConstants;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 
@@ -29,23 +29,21 @@ import org.eclipse.ui.PlatformUI;
  * 
  * This class provides keybinding for the alignment actions. The allowed parameters are :
  * <ul>
- * <li> {@link AlignementHandler#LEFT}</li>
- * <li> {@link AlignementHandler#CENTER}</li>
- * <li> {@link AlignementHandler#RIGHT}</li>
- * <li> {@link AlignementHandler#BOTTOM}</li>
- * <li> {@link AlignementHandler#MIDDLE}</li>
- * <li> {@link AlignementHandler#TOP}</li>
+ * <li> {@link RoutingHandler#LEFT}</li>
+ * <li> {@link RoutingHandler#CENTER}</li>
+ * <li> {@link RoutingHandler#RIGHT}</li>
+ * <li> {@link RoutingHandler#TOP}</li>
  * 
  * </ul>
  * 
  */
-public class AlignementHandler extends AbstractHandler {
+public class RoutingHandler extends AbstractHandler {
 
 
 	/** the alignment */
-	private int alignment = PositionConstants.NONE;
+	private int route = PositionConstants.NONE;
 
-	/** the id for this alignment */
+	/** the id for this routing action */
 	private String id = null;
 
 	/** the workbenchpage */
@@ -64,8 +62,8 @@ public class AlignementHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) {
 		init(event);
-		if(this.alignment != PositionConstants.NONE && workbenchPage != null && ((StructuredSelection)this.selection).size() >= 1) {
-			CustomAlignAction action = new CustomAlignAction(workbenchPage, id, alignment, false);
+		if(this.route != PositionConstants.NONE && workbenchPage != null && ((StructuredSelection)this.selection).size() >= 1) {
+			RouteAction action = new RouteAction(workbenchPage, id, route, false);
 			action.init();
 			if(action.isEnabled()) {
 				action.run();
@@ -77,7 +75,7 @@ public class AlignementHandler extends AbstractHandler {
 	/**
 	 * This function initializes the following fields :
 	 * <ul>
-	 * <li>{@link #alignment}</li>
+	 * <li>{@link #route}</li>
 	 * <li> {@link #id}</li>
 	 * <li> {@link #selection}</li>
 	 * <li> {@link #workbenchPage}</li>
@@ -89,30 +87,20 @@ public class AlignementHandler extends AbstractHandler {
 	protected void init(ExecutionEvent evt) {
 		workbenchPage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		this.selection = workbenchPage.getSelection();
-		String param = evt.getParameter("org.eclipse.papyrus.diagram.common.commandAlignmentParameter");
-		if(param.equals(LayoutUtils.LEFT)) {
-			this.alignment = PositionConstants.LEFT;
-			this.id = GEFActionConstants.ALIGN_LEFT;
-
-		} else if(param.equals(LayoutUtils.CENTER)) {
-			this.alignment = PositionConstants.CENTER;
-			this.id = GEFActionConstants.ALIGN_CENTER;
-
-		} else if(param.equals(LayoutUtils.RIGHT)) {
-			this.alignment = PositionConstants.RIGHT;
-			this.id = GEFActionConstants.ALIGN_RIGHT;
-
-		} else if(param.equals(LayoutUtils.BOTTOM)) {
-			this.alignment = PositionConstants.BOTTOM;
-			this.id = GEFActionConstants.ALIGN_BOTTOM;
-
-		} else if(param.equals(LayoutUtils.MIDDLE)) {
-			this.alignment = PositionConstants.MIDDLE;
-			this.id = GEFActionConstants.ALIGN_MIDDLE;
-
-		} else if(param.equals(LayoutUtils.TOP)) {
-			this.alignment = PositionConstants.TOP;
-			this.id = GEFActionConstants.ALIGN_TOP;
+		String param = evt.getParameter("org.eclipse.papyrus.diagram.common.commandRoutingParameter"); //$NON-NLS-1$
+		if(LayoutUtils.LEFT.equals(param)) {
+			this.route = PositionConstants.LEFT;
+			this.id = RoutingConstants.ROUTING_HORIZONTALLY_BY_LEFT;
+		} else if(LayoutUtils.RIGHT.equals(param)) {
+			this.route = PositionConstants.RIGHT;
+			this.id = RoutingConstants.ROUTING_HORIZONTALLY_BY_RIGHT;
+		} else if(LayoutUtils.TOP.equals(param)) {
+			this.route = PositionConstants.TOP;
+			this.id = RoutingConstants.ROUTING_VERTICALLY_BY_TOP;
+		} else if(LayoutUtils.BOTTOM.equals(param)) {
+			this.route = PositionConstants.BOTTOM;
+			this.id = RoutingConstants.ROUTING_VERTICALLY_BY_BOTTOM;
 		}
+
 	}
 }

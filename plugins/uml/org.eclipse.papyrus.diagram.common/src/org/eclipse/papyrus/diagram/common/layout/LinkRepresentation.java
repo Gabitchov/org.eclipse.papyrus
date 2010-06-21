@@ -3,10 +3,12 @@ package org.eclipse.papyrus.diagram.common.layout;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
@@ -14,6 +16,7 @@ import org.eclipse.gef.editparts.AbstractConnectionEditPart;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.requests.SetAllBendpointRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.papyrus.diagram.common.figure.edge.UMLEdgeFigure;
 
@@ -125,6 +128,10 @@ public class LinkRepresentation {
 		if(cmd.canExecute()) {
 			command.add(cmd);
 		}
+
+		//we want zero bendpoint, and keep the current source and target
+		Request onlyTwoBendpoints = new SetAllBendpointRequest(org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_SET_ALL_BENDPOINT, new PointList(), null, null);
+		command.add(link.getCommand(onlyTwoBendpoints));
 
 		return command;
 	}
@@ -273,7 +280,7 @@ public class LinkRepresentation {
 		PolylineConnectionEx figure = (PolylineConnectionEx)((AbstractConnectionEditPart)link).getFigure();
 		Point sourcePoint = figure.getStart();
 		figure.translateToAbsolute(sourcePoint);
-		return getCurrentSideOfParent(source, sourcePoint);
+		return LayoutUtils.getAnchorPosition(source.getRepresentedEditPart(), sourcePoint);
 	}
 
 	/**
@@ -287,68 +294,7 @@ public class LinkRepresentation {
 		PolylineConnectionEx figure = (PolylineConnectionEx)((AbstractConnectionEditPart)link).getFigure();
 		Point targetPoint = figure.getEnd();
 		figure.translateToAbsolute(targetPoint);
-		return getCurrentSideOfParent(target, targetPoint);
-	}
-
-	/***
-	 * Returns the side on which the anchor is on the {@link EditPart}
-	 * 
-	 * @param epr
-	 *        the {@link EditPartRepresentation}
-	 * @param anchor
-	 *        the connection anchor to test
-	 * @return
-	 *         the side on which the anchor is on the {@link EditPart} The returned values can be :
-	 *         <ul>
-	 *         <li>{@linkplain PositionConstants#NORTH}</li>
-	 *         <li> {@linkplain PositionConstants#SOUTH}</li>
-	 *         <li> {@linkplain PositionConstants#EAST}</li>
-	 *         <li> {@linkplain PositionConstants#WEST}</li>
-	 *         <li> {@linkplain PositionConstants#NORTH_EAST}</li>
-	 *         <li> {@linkplain PositionConstants#NORTH_WEST}</li>
-	 *         <li> {@linkplain PositionConstants#SOUTH_EAST}</li>
-	 *         <li> {@linkplain PositionConstants#SOUTH_WEST}</li>
-	 *         </ul>
-	 */
-	protected int getCurrentSideOfParent(EditPartRepresentation epr, Point anchor) {
-		EditPart ep = epr.getRepresentedEditPart();
-
-		int position = PositionConstants.NONE;
-		PrecisionRectangle bounds = LayoutUtils.getAbsolutePosition(ep);
-
-		//we are not on EAST, not on WEST, but we are on the NORTH
-		if((anchor.y == bounds.y) && (anchor.x != bounds.x) && (anchor.x != bounds.getRight().x)) {
-			position = PositionConstants.NORTH;
-
-			//we are not on the EAST and not on the WEST, but we are on the SOUTH			
-		} else if((anchor.y == bounds.getBottom().y) && (anchor.x != bounds.x) && (anchor.x != bounds.getRight().x)) {
-			position = PositionConstants.SOUTH;
-
-			//we are on the EAST, but we are not on the NORTH and not on the SOUTH
-		} else if((anchor.x == bounds.getRight().x) && (anchor.y != bounds.y) && (anchor.y != bounds.getBottom().y)) {
-			position = PositionConstants.EAST;
-
-			//we are on the WEST, but we are not on the on the NORTH and not on the SOUTH
-		} else if((anchor.x == bounds.x) && (anchor.y != bounds.getTop().y) && (anchor.y != bounds.getBottom().y)) {
-			position = PositionConstants.WEST;
-
-			//we are on the NORTH and on the EAST
-		} else if(anchor.equals(bounds.getLeft())) {
-			position = PositionConstants.NORTH_EAST;
-
-			//we are on the NORTH and on the WEST
-		} else if(anchor.equals(bounds.getRight())) {
-			position = PositionConstants.NORTH_WEST;
-
-			//we are on the EAST and on the SOUTH
-		} else if(anchor.equals(bounds.getBottomRight())) {
-			position = PositionConstants.SOUTH_EAST;
-
-			//we are on the WEST and on the SOUTH
-		} else if(anchor.equals(bounds.getBottomLeft())) {
-			position = PositionConstants.SOUTH_WEST;
-		}
-		return position;
+		return LayoutUtils.getAnchorPosition(target.getRepresentedEditPart(), targetPoint);
 	}
 
 	/**

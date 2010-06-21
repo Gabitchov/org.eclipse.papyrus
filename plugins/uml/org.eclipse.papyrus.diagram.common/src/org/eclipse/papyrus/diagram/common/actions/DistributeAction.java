@@ -36,6 +36,7 @@ import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.actions.DiagramAction;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.IBorderItemLocator;
+import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.editparts.BorderNamedElementEditPart;
 import org.eclipse.papyrus.diagram.common.layout.DistributionConstants;
 import org.eclipse.papyrus.diagram.common.layout.DistributionTree;
@@ -155,12 +156,6 @@ public class DistributeAction extends DiagramAction {
 		String text = null;
 		String toolTipText = null;
 
-		DistributionAction papyrusDistributionAction = new DistributionAction(getWorkbenchPart(), distribution);
-		setHoverImageDescriptor(papyrusDistributionAction.getHoverImageDescriptor());
-		setImageDescriptor(papyrusDistributionAction.getImageDescriptor());
-		setDisabledImageDescriptor(papyrusDistributionAction.getDisabledImageDescriptor());
-		papyrusDistributionAction.dispose();
-
 		switch(distribution) {
 		case DistributionConstants.DISTRIBUTE_H_CONTAINER_INT:
 		{
@@ -172,6 +167,7 @@ public class DistributeAction extends DiagramAction {
 				text = DistributionConstants.DistributeHorizontally;
 				toolTipText = DistributionConstants.DistributeHorizontally;
 			}
+			setImageDescriptor(Activator.getImageDescriptor(DistributionConstants.ICON_D_HORIZONTALLY));
 			break;
 		}
 		case DistributionConstants.DISTRIBUTE_H_NODES_INT:
@@ -183,6 +179,7 @@ public class DistributeAction extends DiagramAction {
 				text = DistributionConstants.DistributeHorizontallyBetweenNodes;
 				toolTipText = DistributionConstants.DistributeHorizontallyBetweenNodes;
 			}
+			setImageDescriptor(Activator.getImageDescriptor(DistributionConstants.ICON_D_HORIZONTALLY_WITHIN_BOUNDS));
 			break;
 		}
 		case DistributionConstants.DISTRIBUTE_V_CONTAINER_INT:
@@ -194,6 +191,7 @@ public class DistributeAction extends DiagramAction {
 				text = DistributionConstants.DistributeVertically;
 				toolTipText = DistributionConstants.DistributeVertically;
 			}
+			setImageDescriptor(Activator.getImageDescriptor(DistributionConstants.ICON_D_VERTICALLY));
 			break;
 		}
 		case DistributionConstants.DISTRIBUTE_V_NODES_INT:
@@ -205,6 +203,7 @@ public class DistributeAction extends DiagramAction {
 				text = DistributionConstants.DistributeVerticallyBetweenNodes;
 				toolTipText = DistributionConstants.DistributeVerticallyBetweenNodes;
 			}
+			setImageDescriptor(Activator.getImageDescriptor(DistributionConstants.ICON_D_VERTICALLY_WITHIN_BOUNDS));
 			break;
 		}
 

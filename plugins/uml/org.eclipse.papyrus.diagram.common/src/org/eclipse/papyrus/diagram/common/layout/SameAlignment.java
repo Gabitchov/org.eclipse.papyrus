@@ -211,7 +211,7 @@ public class SameAlignment {
 	public void removeBadSideLink() {
 		List<LinkRepresentation> linksToRemove = new ArrayList<LinkRepresentation>();
 
-		//we test if the selected link are on a correct side for the align action
+		//we test if the tow anchors for the selected link are opposite or not
 		for(LinkRepresentation link : linksRepresentation) {
 			int side1 = link.getLinkSideOnSource();
 			int side2 = link.getLinkSideOnTarget();

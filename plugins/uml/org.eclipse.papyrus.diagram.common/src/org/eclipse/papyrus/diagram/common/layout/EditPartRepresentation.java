@@ -22,7 +22,7 @@ import org.eclipse.gef.requests.ChangeBoundsRequest;
 
 /**
  * 
- * This class provides element to represent an EditPart.
+ * This class provides methods to represent an EditPart.
  * 
  */
 public class EditPartRepresentation {

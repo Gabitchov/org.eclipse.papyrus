@@ -63,6 +63,7 @@ public class Messages extends NLS {
 	public static String UMLNewDiagramFileWizard_DiagramKindDescription;
 
 	public static String RotateAction_rotate_command;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
@@ -186,14 +187,19 @@ public class Messages extends NLS {
 	/** tooltip for the edit palette button */
 	public static String Dialog_Edit_Palette_Tooltip;
 
+	/** Message for horizontal distribution */
 	public static String DistributionConstants_Distribute_Horizontally;
 
+	/** Message for horizontal distribution between nodes */
 	public static String DistributionConstants_Distribute_Horizontally_Between_Nodes;
 
+	/** Message for vertical distribution */
 	public static String DistributionConstants_Distribute_Vertically;
 
+	/** Message for vertical distribution between nodes */
 	public static String DistributionConstants_Distribute_Vertically_Between_Nodes;
 
+	/** Title for the distribution menu */
 	public static String DistributionConstants_DistributionTitle;
 
 	/** tooltip for the create drawer button */
@@ -333,4 +339,37 @@ public class Messages extends NLS {
 
 	/** title for the runtime dialog */
 	public static String SetDynamicValueCommand_DialogTile;
+
+	/** Message for horizontal routing by bottom action */
+	public static String RoutingConstants_Bottom;
+
+	/** Message for horizontal routing by left */
+	public static String RoutingConstants_HorizontalByLeft;
+
+	/** Message for horizontal routing by right */
+	public static String RoutingConstants_HorizontalByRight;
+
+	/** Message for horizontal routing by left action */
+	public static String RoutingConstants_Left;
+
+	/** Menu title for the routing action */
+	public static String RoutingConstants_MenuTitle;
+
+	/** Menu ToolTip for the routing action */
+	public static String RoutingConstants_MenuToolTip;
+
+	/** Message for horizontal routing by right action */
+	public static String RoutingConstants_Right;
+
+	/** Message for horizontal routing by top action */
+	public static String RoutingConstants_Top;
+
+	/** Message for horizontal routing by bottom */
+	public static String RoutingConstants_VerticalByBottom;
+
+	/** Message for horizontal routing by top */
+	public static String RoutingConstants_VerticalByTop;
+
+
+
 }

@@ -250,6 +250,19 @@
             optional="true">
       </commandParameter>
    </command>
+   <command
+         category="Papyrus "
+         categoryId="org.eclipse.papyrus.core.papyrusEditor"
+         defaultHandler="org.eclipse.papyrus.diagram.common.handlers.RoutingHandler"
+         description="Call the routing action"
+         id="org.eclipse.papyrus.diagram.common.commands.RoutingCommand"
+         name="RoutingCommand">
+      <commandParameter
+            id="org.eclipse.papyrus.diagram.common.commandRoutingParameter"
+            name="routingParameter"
+            optional="true">
+      </commandParameter>
+   </command>
 </extension>
 <extension
       point="org.eclipse.ui.popupMenus">
@@ -432,39 +445,39 @@
       </parameter>
    </key>
    <key
-         commandId="org.eclipse.papyrus.diagram.common.commands.AlignmentCommand"
-         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-         sequence="CTRL+SHIFT+ARROW_DOWN">
-      <parameter
-            id="org.eclipse.papyrus.diagram.common.commandAlignmentParameter"
-            value="parameter_middle">
-      </parameter>
-   </key>
-   <key
-         commandId="org.eclipse.papyrus.diagram.common.commands.AlignmentCommand"
-         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-         sequence="CTRL+SHIFT+ARROW_UP">
-      <parameter
-            id="org.eclipse.papyrus.diagram.common.commandAlignmentParameter"
-            value="parameter_middle">
-      </parameter>
-   </key>
-   <key
-         commandId="org.eclipse.papyrus.diagram.common.commands.AlignmentCommand"
-         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-         sequence="CTRL+SHIFT+ARROW_RIGHT">
-      <parameter
-            id="org.eclipse.papyrus.diagram.common.commandAlignmentParameter"
-            value="parameter_center">
-      </parameter>
-   </key>
-   <key
-         commandId="org.eclipse.papyrus.diagram.common.commands.AlignmentCommand"
+         commandId="org.eclipse.papyrus.diagram.common.commands.RoutingCommand"
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="CTRL+SHIFT+ARROW_LEFT">
       <parameter
-            id="org.eclipse.papyrus.diagram.common.commandAlignmentParameter"
-            value="parameter_center">
+            id="org.eclipse.papyrus.diagram.common.commandRoutingParameter"
+            value="parameter_left">
+      </parameter>
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.RoutingCommand"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+SHIFT+ARROW_RIGHT">
+      <parameter
+            id="org.eclipse.papyrus.diagram.common.commandRoutingParameter"
+            value="parameter_right">
+      </parameter>
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.RoutingCommand"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+SHIFT+ARROW_UP">
+      <parameter
+            id="org.eclipse.papyrus.diagram.common.commandRoutingParameter"
+            value="parameter_top">
+      </parameter>
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.RoutingCommand"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+SHIFT+ARROW_DOWN">
+      <parameter
+            id="org.eclipse.papyrus.diagram.common.commandRoutingParameter"
+            value="parameter_bottom">
       </parameter>
    </key>
 </extension>
@@ -650,13 +663,13 @@
          <partMenuGroup
                id="distributeHorizontallyGroup"
                menubarPath="/diagramMenu/distributeMenu/"
-               separator="false"
+               separator="true"
                toolbarPath="/distributeMenu/">
          </partMenuGroup>
          <partMenuGroup
                id="distributeVerticallyGroup"
                menubarPath="/diagramMenu/distributeMenu/"
-               separator="false"
+               separator="true"
                toolbarPath="/distributeMenu/">
          </partMenuGroup>
          <partAction
@@ -688,11 +701,13 @@
          </popupMenu>
          <popupMenuGroup
                id="distributeHorizontallyMenuAction"
-               path="/formatMenu/distributeMenu/">
+               path="/formatMenu/distributeMenu/"
+               separator="true">
          </popupMenuGroup>
          <popupMenuGroup
                id="distributeVerticallyMenuAction"
-               path="/formatMenu/distributeMenu/">
+               path="/formatMenu/distributeMenu/"
+               separator="true">
          </popupMenuGroup>
          <popupAction
                id="org.eclipse.papyrus.diagram.common.distribute_horizontally_action"
@@ -709,6 +724,89 @@
          <popupAction
                id="org.eclipse.papyrus.diagram.common.distribute_vertically_between_nodes_action"
                path="/formatMenu/distributeMenu/distributeVerticallyMenuAction">
+         </popupAction>
+      </popupContribution>
+   </contributionItemProvider>
+</extension>
+<extension
+      point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+   <contributionItemProvider
+         checkPluginLoaded="true"
+         class="org.eclipse.papyrus.diagram.common.actions.RoutingContributionItemProvider">
+      <Priority
+            name="Medium">
+      </Priority>
+      <partContribution
+            class="org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart">
+         <partMenu
+               id="routingMenu"
+               menubarPath="/diagramMenu/formatGroup"
+               toolbarPath="/toolbarViewGroup">
+         </partMenu>
+         <partMenuGroup
+               id="routingHorizontallyGroup"
+               menubarPath="/diagramMenu/routingMenu/"
+               separator="true"
+               toolbarPath="/routingMenu/">
+         </partMenuGroup>
+         <partMenuGroup
+               id="routingVerticallyGroup"
+               menubarPath="/diagramMenu/routingMenu/"
+               separator="true"
+               toolbarPath="/routingMenu/">
+         </partMenuGroup>
+         <partAction
+               id="org.eclipse.papyrus.diagram.common.routing_horizontally_by_left"
+               menubarPath="/diagramMenu/routingMenu/routingHorizontallyGroup"
+               toolbarPath="/routingMenu/routingHorizontallyGroup">
+         </partAction>
+         <partAction
+               id="org.eclipse.papyrus.diagram.common.routing_horizontally_by_right"
+               menubarPath="/diagramMenu/routingMenu/routingHorizontallyGroup"
+               toolbarPath="/routingMenu/routingHorizontallyGroup">
+         </partAction>
+         <partAction
+               id="org.eclipse.papyrus.diagram.common.routing_vertically_by_top"
+               menubarPath="/diagramMenu/routingMenu/routingVerticallyGroup"
+               toolbarPath="/routingMenu/routingVerticallyGroup">
+         </partAction>
+         <partAction
+               id="org.eclipse.papyrus.diagram.common.routing_vertically_by_bottom"
+               menubarPath="/diagramMenu/routingMenu/routingVerticallyGroup"
+               toolbarPath="/routingMenu/routingVerticallyGroup">
+         </partAction>
+      </partContribution>
+      <popupContribution
+            class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+         <popupMenu
+               id="routingMenu"
+               path="/formatMenu/miscellaneousGroup">
+         </popupMenu>
+         <popupMenuGroup
+               id="routingHorizontallyMenuAction"
+               path="/formatMenu/routingMenu/"
+               separator="true">
+         </popupMenuGroup>
+         <popupMenuGroup
+               id="routingVerticallyMenuAction"
+               path="/formatMenu/routingMenu/"
+               separator="true">
+         </popupMenuGroup>
+         <popupAction
+               id="org.eclipse.papyrus.diagram.common.routing_horizontally_by_left_action"
+               path="/formatMenu/routingMenu/routingHorizontallyMenuAction">
+         </popupAction>
+         <popupAction
+               id="org.eclipse.papyrus.diagram.common.routing_horizontally_by_right_action"
+               path="/formatMenu/routingMenu/routingHorizontallyMenuAction">
+         </popupAction>
+         <popupAction
+               id="org.eclipse.papyrus.diagram.common.routing_vertically_by_top_action"
+               path="/formatMenu/routingMenu/routingVerticallyMenuAction">
+         </popupAction>
+         <popupAction
+               id="org.eclipse.papyrus.diagram.common.routing_vertically_by_bottom_action"
+               path="/formatMenu/routingMenu/routingVerticallyMenuAction">
          </popupAction>
       </popupContribution>
    </contributionItemProvider>
