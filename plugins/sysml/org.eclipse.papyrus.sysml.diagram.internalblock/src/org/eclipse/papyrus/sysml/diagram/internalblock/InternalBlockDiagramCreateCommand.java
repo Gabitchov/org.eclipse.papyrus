@@ -17,7 +17,7 @@ public class InternalBlockDiagramCreateCommand extends AbstractPapyrusGmfCreateD
 
 	@Override
 	protected String getDefaultDiagramName() {
-		return openDiagramNameDialog("InternalBlockDiagram");
+		return openDiagramNameDialog("NewDiagram");
 	}
 
 	/**

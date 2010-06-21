@@ -30,19 +30,23 @@ public class InheritedElementEditPartProvider extends UMLEditPartProvider {
 
 			// Test supported inherited types
 			String hint = view.getType();
-			if(InternalBlockDiagramElementTypes.CLASS.getSemanticHint().equals(hint)) {
+			if(InternalBlockDiagramElementTypes.CLASS.getSemanticHint().equals(hint) || InternalBlockDiagramElementTypes.CLASS_NAME_LABEL_HINT.equals(hint) || InternalBlockDiagramElementTypes.CLASS_COMPARTMENT_HINT.equals(hint)) {
 				return true;
 			}
 
-			if(InternalBlockDiagramElementTypes.PROPERTY.getSemanticHint().equals(hint)) {
+			if(InternalBlockDiagramElementTypes.CLASS_CN.getSemanticHint().equals(hint) || InternalBlockDiagramElementTypes.CLASS_CN_NAME_LABEL_HINT.equals(hint) || InternalBlockDiagramElementTypes.CLASS_CN_COMPARTMENT_HINT.equals(hint)) {
 				return true;
 			}
 
-			if(InternalBlockDiagramElementTypes.PORT.getSemanticHint().equals(hint)) {
+			if(InternalBlockDiagramElementTypes.PROPERTY_CN.getSemanticHint().equals(hint) || InternalBlockDiagramElementTypes.PROPERTY_CN_NAME_LABEL_HINT.equals(hint) || InternalBlockDiagramElementTypes.PROPERTY_CN_COMPARTMENT_HINT.equals(hint)) {
 				return true;
 			}
 
-			if(InternalBlockDiagramElementTypes.CONNECTOR.getSemanticHint().equals(hint)) {
+			if(InternalBlockDiagramElementTypes.PORT_CN.getSemanticHint().equals(hint) || InternalBlockDiagramElementTypes.PORT_CN_NAME_LABEL_HINT.equals(hint) || InternalBlockDiagramElementTypes.PORT_CN_STEREOTYPE_LABEL_HINT.equals(hint)) {
+				return true;
+			}
+
+			if(InternalBlockDiagramElementTypes.CONNECTOR.getSemanticHint().equals(hint) || InternalBlockDiagramElementTypes.CONNECTOR_STEREOTYPE_LABEL_HINT.equals(hint)) {
 				return true;
 			}
 		}

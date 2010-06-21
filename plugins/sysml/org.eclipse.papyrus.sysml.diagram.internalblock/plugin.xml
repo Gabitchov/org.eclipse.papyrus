@@ -109,60 +109,6 @@
 			small_icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_IN_A.gif">
 		</entry> 		
 	</contribution>	
-				
-	<!-- Internal Block Diagram inherited (from Composite Structure Diagram here) tool definition -->
-	<contribution
-		factoryClass="org.eclipse.papyrus.diagram.composite.part.UMLPaletteFactory">
-		<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
-		<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
-		<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
-		
-		<!-- TODO: Rename CSD tools -->
-		<entry
-			defineOnly="true"
-			description="Create new Class"
-			id="composite.tool.class"
-			kind="tool"
-			label="Class"
-			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
-			path=""
-			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif">
-		</entry>
-		
-		<entry
-			defineOnly="true"
-			description="Create new Property"
-			id="composite.tool.property"
-			kind="tool"
-			label="Property"
-			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
-			path=""
-			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
-		</entry>
-		
-		<entry
-			defineOnly="true"
-			description="Create new Port"
-			id="composite.tool.port"
-			kind="tool"
-			label="Port"
-			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif"
-			path=""
-			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif">
-		</entry>
-		
-		<entry
-			defineOnly="true"
-			description="Create new Connector"
-			id="composite.tool.connector"
-			kind="tool"
-			label="Connector"
-			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif"
-			path=""
-			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif">
-		</entry>
-		
-	</contribution>
 	
 	<!-- Specify diagram this palette tools relate to -->	
 	<editor id="org.eclipse.papyrus.sysml.diagram.internalblock"/>
@@ -188,7 +134,7 @@
 	<!-- ViewProvider for inherited elements (from CompositeStructureDiagramm UMLViewProvider) -->
 	<viewProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.InheritedElementViewProvider">
 		<Priority name="Low"/>
-		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2073, 3070, 3069"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2073, 3085, 3070, 3069"/>
 		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4013"/>
 	</viewProvider>
 	
@@ -222,27 +168,51 @@
 		<Priority name="Low"/>
 		
 		<!-- 
+			The semantic hints given here are used in case the provider is not already loaded.
+			As soon as the provider is loaded its provides method is used.
 			"2073" = Class
 			"5156" = Class composite name label
 			"7073" = Class composite compartment
+			"3085" = Class (Child Node)
+			"5155" = Class (Child Node) composite name label
+			"7060" = Class (Child Node) composite compartment
 			"3070" = Property (part)
 			"5126" = Property (part) name label
 			"7077" = Property (part) compartment
 			"3069" = Port 
-			"5125" = Port name label -->			
+			"5125" = Port name label 
+			"6029" = Port applied stereotype label -->			
 		<object
-			id="org.eclipse.papyrus.sysml.diagram.internalblock.InheritedNodes"
+			id="ClassComposite"
 			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="2073, 5156, 7073, 3070, 5126, 7077, 3069, 5025"/>
+			<method name="getType()" value="2073, 5156, 7073"/>
+		</object>
+		<object
+			id="ClassComposite_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3085, 5155, 7060"/>
+		</object>
+		<object
+			id="PropertyPart_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3070, 5126, 7077"/>
+		</object>
+		<object
+			id="Port_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3069, 5125, 6029"/>
 		</object>
 
 		<!-- 
-			"4013" = Connector -->			
+			"4013" = Connector
+			"6029" = Connector applied stereotype label -->					
 		<object
-			id="org.eclipse.papyrus.sysml.diagram.internalblock.InheritedEdges"
+			id="Connector"
 			class="org.eclipse.gmf.runtime.notation.Edge">
-			<method name="getType()" value="4013"/>
+			<method name="getType()" value="4013, 6025"/>
 		</object>
+		<context views="ClassComposite, ClassComposite_CN, PropertyPart_CN, Port_CN"/>
+		<context views="Connector"/>
 	</editpartProvider>
 	
 </extension>
@@ -261,17 +231,6 @@
 <!-- A kind type should be created for diagram elements       -->
 <extension
 	point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
-        
-	<metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-		<metamodelType
-			id="org.eclipse.papyrus.sysml.diagram.internalblock.Port"
-			name="Port"
-			kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-			eclass="Port"
-			edithelper="org.eclipse.papyrus.sysml.diagram.internalblock.helper.PortHelper">
-			<param name="semanticHint" value="Port"/>
-		</metamodelType>
-	</metamodel>
             
 	<specializationType
 		id="org.eclipse.papyrus.sysml.diagram.internalblock.FlowPortIN"
@@ -279,7 +238,7 @@
 		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
 		icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/portandflows/FlowPort_IN_A.gif"
 		edithelperadvice="org.eclipse.papyrus.sysml.diagram.internalblock.helper.FlowPortINHelperAdvice">
-		<specializes id="org.eclipse.papyrus.sysml.diagram.internalblock.Port"/>
+		<specializes id="org.eclipse.papyrus.uml.Port"/>
 		<param name="semanticHint" value="FlowPortIN"/>
 		<matcher class = "org.eclipse.papyrus.sysml.diagram.internalblock.matcher.FlowPortINMatcher" />
 	</specializationType>  

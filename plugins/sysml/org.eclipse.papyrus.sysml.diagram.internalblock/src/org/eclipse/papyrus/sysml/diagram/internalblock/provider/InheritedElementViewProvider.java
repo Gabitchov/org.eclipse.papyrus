@@ -72,11 +72,15 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 			return true;
 		}
 
-		if(elementType == InternalBlockDiagramElementTypes.PROPERTY) {
+		if(elementType == InternalBlockDiagramElementTypes.CLASS_CN) {
 			return true;
 		}
 
-		if(elementType == InternalBlockDiagramElementTypes.PORT) {
+		if(elementType == InternalBlockDiagramElementTypes.PROPERTY_CN) {
+			return true;
+		}
+
+		if(elementType == InternalBlockDiagramElementTypes.PORT_CN) {
 			return true;
 		}
 
