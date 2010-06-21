@@ -9,23 +9,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.papyrus.core.adaptor.gmf.AbstractPapyrusGmfCreateDiagramCommandHandler;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockDefinitionDiagramEditPart;
-import org.eclipse.uml2.uml.UMLFactory;
 
 public class BlockDefinitionDiagramCreateCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
 
-//	@Override
-//	protected EObject createRootElement() {
-//		return UMLFactory.eINSTANCE.createModel();
-//
-//	}
-
 	@Override
 	protected String getDefaultDiagramName() {
-		return openDiagramNameDialog("BlockDefinitionDiagram");
+		return openDiagramNameDialog("NewDiagram");
 	}
 
 	/**

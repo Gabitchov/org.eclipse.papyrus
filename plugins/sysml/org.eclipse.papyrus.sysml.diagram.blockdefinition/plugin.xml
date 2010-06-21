@@ -110,50 +110,6 @@
 		</entry> 		
 	</contribution>	
 
-	<!-- Block Definition Diagram inherited (from Class Diagram here) tool definition -->
-	<contribution
-		factoryClass="org.eclipse.papyrus.diagram.clazz.part.UMLPaletteFactory">
-		<predefinedEntry id="standardGroup/noteStack/noteTool" remove="true"/> 
-		<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
-		<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>	
-		
-		<!-- clazz.tool.package -->
-		<entry
-			defineOnly="true"
-			description="Create a new Package"
-			id="clazz.tool.package"
-			kind="tool"
-			label="Package"
-			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
-			path=""
-			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif">
-		</entry>
-		
-		<!-- clazz.tool.property -->
-		<entry
-			defineOnly="true"
-			description="Create a new Property"
-			id="clazz.tool.property"
-			kind="tool"
-			label="Property"
-			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
-			path=""
-			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
-		</entry>
-		
-		<!-- clazz.tool.usage -->
-		<entry
-			defineOnly="true"
-			description="Create a new Usage"
-			id="clazz.tool.usage"
-			kind="tool"
-			label="Usage"
-			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif"
-			path=""
-			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif">
-		</entry>		
-	</contribution>
-
 	<!-- Specify diagram this palette tools relate to -->
 	<editor id="org.eclipse.papyrus.sysml.diagram.blockdefinition"/>	
 	</paletteProvider>	
@@ -249,18 +205,7 @@
 <!-- A kind type should be created for diagram elements       -->
    <extension
          point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
-<!--        
-      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Class"
-               name="Class"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Class"
-               edithelper="org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.ClassHelper">
-            <param name="semanticHint" value="Class"/>
-         </metamodelType>
-      </metamodel>
-  -->            
+        
       <specializationType
             id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Block"
             name="Block"
@@ -268,7 +213,6 @@
             icon="platform:/plugin/org.eclipse.papyrus.sysml/icons/blocks/Block.gif"
             edithelperadvice="org.eclipse.papyrus.sysml.diagram.blockdefinition.helper.BlockHelperAdvice">
          <specializes id="org.eclipse.papyrus.uml.Class"/>
-         <!--<specializes id="org.eclipse.papyrus.sysml.diagram.blockdefinition.Class"/>-->
 		 <param name="semanticHint" value="Block"/>
          <matcher class = "org.eclipse.papyrus.sysml.diagram.blockdefinition.matcher.BlockMatcher" />
       </specializationType>  
@@ -287,7 +231,6 @@
 	
 	<binding context="org.eclipse.papyrus.sysml.diagram.blockdefinition.TypeContext">
 		<elementType pattern="org.eclipse.papyrus.uml.*" />	
-		<!--<elementType ref="org.eclipse.papyrus.sysml.diagram.blockdefinition.Class"/>-->
 		<elementType ref="org.eclipse.papyrus.sysml.diagram.blockdefinition.Block"/>
 		<elementType ref="org.eclipse.papyrus.diagram.clazz.Package_2007"/>      
 		<elementType ref="org.eclipse.papyrus.diagram.clazz.Property_3012"/>
