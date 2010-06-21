@@ -8,7 +8,7 @@ feature@org.eclipse.papyrus.diagram.composite=SVN,,svn://dev.eclipse.org/svnroot
 feature@org.eclipse.papyrus.diagram.internalblock=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.diagram.internalblock-feature
 feature@org.eclipse.papyrus.diagram.parametric=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.diagram.parametric-feature
 feature@org.eclipse.papyrus.diagram.profile=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.diagram.profile-feature
-feature@org.eclipse.papyrus.diagram.block=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.diagram.block-feature
+feature@org.eclipse.papyrus.diagram.blockdefinition=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.diagram.blockdefinition-feature
 feature@org.eclipse.papyrus.diagram.sequence=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.diagram.sequence-feature
 feature@org.eclipse.papyrus.diagram.usecase=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.diagram.usecase-feature
 feature@org.eclipse.papyrus.layouttool=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.layouttool-feature
@@ -66,7 +66,7 @@ plugin@org.eclipse.papyrus.sysml.diagram.common=SVN,,svn://dev.eclipse.org/svnro
 plugin@org.eclipse.papyrus.sysml.diagram.internalblock=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml,,org.eclipse.papyrus.sysml.diagram.internalblock
 plugin@org.eclipse.papyrus.sysml.diagram.parametric=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml,,org.eclipse.papyrus.sysml.diagram.parametric
 plugin@org.eclipse.papyrus.sysml.edit=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml,,org.eclipse.papyrus.sysml.edit
-plugin@org.eclipse.papyrus.sysml.diagram.blockdiagram=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml,,org.eclipse.papyrus.sysml.diagram.blockdiagram
+plugin@org.eclipse.papyrus.sysml.diagram.blockdefinition=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml,,org.eclipse.papyrus.sysml.diagram.blockdefinition
 
 # uml
 plugin@org.eclipse.papyrus.diagram.activity=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.diagram.activity
