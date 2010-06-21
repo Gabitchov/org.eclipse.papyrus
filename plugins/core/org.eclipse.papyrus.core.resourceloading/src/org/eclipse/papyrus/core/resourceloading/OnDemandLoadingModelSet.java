@@ -10,6 +10,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.core.resourceloading.impl.ProxyManager;
 import org.eclipse.papyrus.resource.ModelSet;
+import org.eclipse.papyrus.resource.ModelsReader;
 import org.eclipse.papyrus.resource.notation.NotationUtils;
 import org.eclipse.papyrus.resource.sasheditor.SashModelUtils;
 import org.eclipse.papyrus.resource.uml.UmlUtils;
@@ -41,11 +42,9 @@ public class OnDemandLoadingModelSet extends ModelSet {
 	public OnDemandLoadingModelSet() {
 		super();
 		// Register declared models
-		//		ModelsReader reader = new ModelsReader();
-		//		reader.readModel(this);
-
+		ModelsReader reader = new ModelsReader();
+		reader.readModel(this);
 		proxyManager = new ProxyManager(this);
-
 	}
 
 

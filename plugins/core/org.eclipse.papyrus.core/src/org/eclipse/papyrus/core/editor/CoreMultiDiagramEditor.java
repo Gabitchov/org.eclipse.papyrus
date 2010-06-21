@@ -19,7 +19,6 @@ import static org.eclipse.papyrus.core.Activator.log;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.EventObject;
 import java.util.List;
 
@@ -54,10 +53,6 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.core.Activator;
 import org.eclipse.papyrus.core.contentoutline.ContentOutlineRegistry;
-import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
-import org.eclipse.papyrus.core.editorsfactory.PageIconsRegistry;
-import org.eclipse.papyrus.core.editorsfactory.PageModelFactoryRegistry;
-import org.eclipse.papyrus.core.extension.diagrameditor.PluggableEditorFactoryReader;
 import org.eclipse.papyrus.core.lifecycleevents.DoSaveEvent;
 import org.eclipse.papyrus.core.lifecycleevents.ILifeCycleEventsProvider;
 import org.eclipse.papyrus.core.lifecycleevents.LifeCycleEventsProvider;
@@ -68,7 +63,8 @@ import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServiceMultiException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.BusinessModelResolver;
-import org.eclipse.papyrus.core.utils.DiResourceSet;
+import org.eclipse.papyrus.resource.ModelMultiException;
+import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
@@ -132,7 +128,7 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	/**
 	 * Object managing models lifeCycle.
 	 */
-	protected DiResourceSet resourceSet ;
+	protected ModelSet resourceSet ;
 
 	/**
 	 * Class used to propagate life cycle events.
@@ -503,14 +499,16 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		try {
 			// Start the ModelSet first, and load if from the specified File
 			List<Class<?>> servicesToStart = new ArrayList<Class<?>>(1);
-			servicesToStart.add(DiResourceSet.class);
+			servicesToStart.add(ModelSet.class);
 			
 			servicesRegistry.startServicesByClassKeys( servicesToStart );
-			resourceSet = servicesRegistry.getService(DiResourceSet.class);
-			resourceSet.loadResources(file);
+			resourceSet = servicesRegistry.getService(ModelSet.class);
+			resourceSet.loadModels(file);
 			
 			// start remaining services
 			servicesRegistry.startRegistry();
+		} catch (ModelMultiException e) {
+			log.error(e);
 		} catch (ServiceException e) {
 			log.error(e);
 		}

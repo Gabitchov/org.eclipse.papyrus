@@ -53,7 +53,6 @@ public class HistoryRoutingManager {
 		EObject result = null;
 		HistoryModel historyModel = HistoryUtils.getHistoryModel(modelSet);
 		if(historyModel != null) {
-			// TO CONTINUE
 			List<ControledResource> res = adapter.getControledResource(resourceURI);
 			if(res != null) {
 				for(ControledResource controled : res) {
