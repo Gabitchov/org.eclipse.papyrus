@@ -49,7 +49,7 @@ public class CAssociationReorientCommand extends AssociationReorientCommand {
 			return false;
 		}
 		// if (getLink().getEndTypes().size() != 1) {
-		if(getLink().getEndTypes().size() == 1) {
+		if(getLink().getEndTypes().size() == 0) {
 			return false;
 		}
 		Type target = (Type)getLink().getEndTypes().get(0);
@@ -70,8 +70,8 @@ public class CAssociationReorientCommand extends AssociationReorientCommand {
 			return false;
 		}
 
-		// if (getLink().getEndTypes().size() != 1) {
-		if(getLink().getEndTypes().size() == 1) {
+		//if getLink().getEndTypes().size() == 1 the source and the target is the same classe
+		if(getLink().getEndTypes().size() ==0 ) {
 			return false;
 		}
 		Type source = (Type)getLink().getEndTypes().get(0);
