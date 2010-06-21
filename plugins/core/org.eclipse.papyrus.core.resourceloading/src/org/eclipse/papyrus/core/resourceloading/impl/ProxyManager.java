@@ -136,8 +136,7 @@ public class ProxyManager implements IProxyManager {
 					// object find in the resource
 					return object;
 				}
-				// explore routes in historic
-				// RouteManager should be used for that
+				// use HistoryRoutingManager to explore routes in di resource historic
 				else {
 					String fileExtension = uri.fileExtension();
 					Resource diResource = null;
@@ -148,20 +147,14 @@ public class ProxyManager implements IProxyManager {
 						resourceName = trimFragment.toString();
 					} else {
 						// retrieve the DI resource from the uri to get the historic
-						// TODO check if it needs to add the dot
 						URI newURI = trimFragment.trimFileExtension().appendFileExtension(SashModel.MODEL_FILE_EXTENSION);
 						diResource = modelSet.getResource(newURI.trimFragment(), loadOnDemand);
 						resourceName = newURI.trimFragment().toString();
 					}
-
-					// get the historic from the Di resource
 					if(diResource != null) {
-						// TODO resource.getHistoric();	
-						// call the RouteManager to get the EObject
-						// TODO algo de parcours à définir: largeur ou profondeur
-						// RouterManager will find the object
-						// return RouteManager.getEObject(uri, context);
-						EObject eobject = routeManager.getEObject(modelSet, trimFragment.toString(), fragment);
+						// call the HistoryRoutingManager to get the EObject
+						// we assume di/notation are at the same level in folder hierarchy
+						EObject eobject = routeManager.getEObject(modelSet, uri.lastSegment().toString(), fragment);
 						if(eobject == null) {
 							throw new MissingResourceException(CommonPlugin.INSTANCE.getString("_UI_StringResourceNotFound_exception", new Object[]{ resourceName }), getClass().getName(), resourceName);
 						}

@@ -38,8 +38,6 @@ public class HistoryRoutingManager {
 		this.proxyManager = proxyManager;
 	}
 
-
-
 	/**
 	 * Returns the eobject navigating through the history
 	 * 
@@ -58,7 +56,8 @@ public class HistoryRoutingManager {
 				for(ControledResource controled : res) {
 					for(ControledResource child : controled.getChildren()) {
 						URI locationURI = URI.createURI(child.getResourceURL());
-						Resource resource = modelSet.getResource(locationURI, proxyManager.loadResource(locationURI));
+						URI toGet = locationURI.resolve(HistoryUtils.getURIFullPath(child.eResource().getURI()));
+						Resource resource = modelSet.getResource(toGet, proxyManager.loadResource(locationURI));
 						if(resource != null) {
 							result = resource.getEObject(fragment);
 							if(result != null) {
