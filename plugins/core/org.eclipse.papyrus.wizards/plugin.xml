@@ -19,29 +19,12 @@
 	</wizard>
     <wizard
          category="org.eclipse.papyrus.wizards.category"
-         class="org.eclipse.papyrus.wizards.CreateModelWizard"
+         class="org.eclipse.papyrus.wizards.InitModelWizard"
          finalPerspective="org.eclipse.papyrus.core.perspective"
          icon="icons/papyrus/new_papyrus_model.gif"
          id="org.eclipse.papyrus.wizards.createmodel"
          name="Papyrus Model">
-      <selection
-            class="org.eclipse.core.resources.IFolder">
-      </selection>
-      <selection
-            class="org.eclipse.core.resources.IProject">
-      </selection>
    </wizard>
-    <!--<wizard
-         category="org.eclipse.papyrus.wizards.category"
-         class="org.eclipse.papyrus.wizards.InitModelWizard"
-         finalPerspective="org.eclipse.papyrus.core.perspective"
-         icon="icons/papyrus/new_papyrus_model.gif"
-         id="org.eclipse.papyrus.wizards.2createumlmodel"
-         name="Init Papyrus Model">
-      <selection
-            class="org.eclipse.core.resources.IFile">
-      </selection>
-   </wizard>-->
 </extension>
 
 <extension-point id="templates" name="UML2 Model Templates" schema="schema/templates.exsd"/>

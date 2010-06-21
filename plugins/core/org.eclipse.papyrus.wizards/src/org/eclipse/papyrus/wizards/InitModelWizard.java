@@ -16,6 +16,7 @@ package org.eclipse.papyrus.wizards;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.resource.uml.UmlModel;
 import org.eclipse.ui.IWorkbench;
 
 
@@ -29,7 +30,9 @@ public class InitModelWizard extends CreateModelWizard {
 	
 	public void addPages() {
 		super.addPages();
-		addPage(selectRootElementPage);
+		if (isInitNotCreateModel()) {
+			addPage(selectRootElementPage);
+		}
 	}
 	
 	/**
@@ -45,27 +48,26 @@ public class InitModelWizard extends CreateModelWizard {
 		if(isSupportedDomainModelFile(file)) {
 			this.newModelFilePage = new NewModelFilePage("Create a new Papyrus model", "Create a new Papyrus model from an existing semantic model", selection, true);
 			this.newModelFilePage.setFileName(getDiagramFileName(file));
-
 			selectRootElementPage = new SelectRootElementPage("Select the root element", file);
-
 		}
 	}
 
 	/**
 	 * Returns true is the file can be served as a model model for the diagram
 	 */
-	protected boolean isSupportedDomainModelFile(IFile file) {
-		return file != null && getModelFileExtension().equals(file.getFileExtension());
+	public static boolean isSupportedDomainModelFile(IFile file) {
+		return file != null && UmlModel.UML_FILE_EXTENSION.equals(file.getFileExtension());
 	}
 
-	private String getModelFileExtension() {
-		return "uml";
+	public static boolean isSupportedDomainModelFile(IStructuredSelection sselection) {
+		IFile file = getSelectedFile(sselection);
+		return isSupportedDomainModelFile(file);
 	}
 
 	/**
 	 * Returns the first file from the given selection
 	 */
-	private IFile getSelectedFile(IStructuredSelection selection) {
+	private static IFile getSelectedFile(IStructuredSelection selection) {
 		if(selection != null && !selection.isEmpty() && selection.getFirstElement() instanceof IFile) {
 			return (IFile)selection.getFirstElement();
 		}
@@ -74,7 +76,10 @@ public class InitModelWizard extends CreateModelWizard {
 	
 	@Override
 	protected EObject getRoot() {
-		return selectRootElementPage.getModelElement();
+		if (isInitNotCreateModel()) {
+			return selectRootElementPage.getModelElement();
+		}
+		return super.getRoot();
 	}
 
 	/**
@@ -85,5 +90,9 @@ public class InitModelWizard extends CreateModelWizard {
 		diModelFileName += ".di";
 		return diModelFileName;
 	}
-
+	
+	private boolean isInitNotCreateModel() {
+		return selectRootElementPage != null;
+	}
 }
+
