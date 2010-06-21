@@ -17,7 +17,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
@@ -26,6 +28,7 @@ import org.eclipse.papyrus.properties.tabbed.core.view.PropertyServiceUtil;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.internal.views.properties.tabbed.view.TabbedPropertyRegistry;
 import org.eclipse.ui.internal.views.properties.tabbed.view.TabbedPropertyRegistryFactory;
+import org.eclipse.ui.views.properties.tabbed.AbstractTabDescriptor;
 import org.eclipse.ui.views.properties.tabbed.ISectionDescriptor;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptorProvider;
@@ -97,6 +100,12 @@ public class XMLBasedTabDescriptorProvider implements ITabDescriptorProvider {
 	 */
 	@SuppressWarnings("unchecked")
 	protected void orderSectionInTabDescriptor(ITabDescriptor tabDescriptor) {
+		// generates the map (id, sectiondescriptor) to speed up the search
+		final Map<String, ISectionDescriptor> map = new HashMap<String, ISectionDescriptor>();
+		for(ISectionDescriptor descriptor : (List<ISectionDescriptor>)tabDescriptor.getSectionDescriptors()) {
+			map.put(descriptor.getId(), descriptor);
+		}
+
 		Collections.sort(tabDescriptor.getSectionDescriptors(), new Comparator<ISectionDescriptor>() {
 
 			/**
@@ -106,9 +115,44 @@ public class XMLBasedTabDescriptorProvider implements ITabDescriptorProvider {
 			 *        the second section descriptor to compare
 			 * @return an integer greater than 1 if the first section should be placed before the second
 			 */
-			public int compare(ISectionDescriptor arg0, ISectionDescriptor arg1) {
-				// FIXME compare the 2 sections...
+			public int compare(ISectionDescriptor section0, ISectionDescriptor section1) {
+				// retrieve the list of previous section for first section
+				int delta = 0;
+				ISectionDescriptor previousSection0 = getPreviousSection(section0);
+				while(previousSection0 != null) {
+					delta++;
+					if(section1.equals(previousSection0)) {
+						return delta;
+					}
+					previousSection0 = getPreviousSection(previousSection0);
+				}
+				delta = 0;
+				ISectionDescriptor previousSection1 = getPreviousSection(section1);
+				while(previousSection1 != null) {
+					delta--;
+					if(section0.equals(previousSection1)) {
+						return delta;
+					}
+					previousSection1 = getPreviousSection(previousSection1);
+
+				}
 				return 0;
+			}
+
+			/**
+			 * Returns the list of sections which are before section0
+			 * 
+			 * @param section0
+			 *        the section to test
+			 * @return the list of sections which are before section0
+			 */
+			public ISectionDescriptor getPreviousSection(ISectionDescriptor section) {
+				String afterId = section.getAfterSection();
+				if(afterId == AbstractTabDescriptor.TOP) {
+					return null;
+				} else {
+					return map.get(afterId);
+				}
 			}
 		});
 	}
