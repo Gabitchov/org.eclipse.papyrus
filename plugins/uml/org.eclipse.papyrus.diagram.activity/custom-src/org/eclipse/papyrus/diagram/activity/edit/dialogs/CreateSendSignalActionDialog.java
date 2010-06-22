@@ -20,7 +20,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.papyrus.core.resourceloading.caches.TypeCacheAdapter;
+import org.eclipse.papyrus.cache.types.TypeCacheAdapter;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.preferences.IActivityPreferenceConstants;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;

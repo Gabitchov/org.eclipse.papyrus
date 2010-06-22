@@ -24,13 +24,6 @@
       </service>
    </extension>
    <extension
-         point="org.eclipse.papyrus.core.model">
-      <modelSetSnippet
-            classname="org.eclipse.papyrus.core.resourceloading.caches.TypeCacheInitializer"
-            description="Adapter attached to the ModelSet (aka ResourceSet)">
-      </modelSetSnippet>
-   </extension>
-   <extension
          point="org.eclipse.papyrus.core.resourceloading.loadingStrategy">
       <loadingStrategy
             description="Load all the needed resources"

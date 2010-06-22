@@ -14,7 +14,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.core,
  org.eclipse.papyrus.controlmode.history,
  org.eclipse.papyrus.ui.toolbox,
- org.eclipse.papyrus.core.resourceloading
+ org.eclipse.papyrus.core.resourceloading,
+ org.eclipse.papyrus.cache
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.controlmode,
