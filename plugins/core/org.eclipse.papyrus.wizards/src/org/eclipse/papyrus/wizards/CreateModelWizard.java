@@ -50,10 +50,10 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 
 	/** Current workbench */
 	private IWorkbench workbench;
-	
+
 	/** The Constant WIZARD_ID. */
 	public static final String WIZARD_ID = "org.eclipse.papyrus.wizards.createmodel";
-	
+
 	/** The Constant NEW_MODEL_SETTINGS. */
 	public static final String NEW_MODEL_SETTINGS = "NewModelWizard";
 
@@ -91,28 +91,28 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
-		
+
 		IDialogSettings workbenchSettings = Activator.getDefault().getDialogSettings();
-        IDialogSettings section = workbenchSettings
-                .getSection(NEW_MODEL_SETTINGS);
-        if (section == null) {
+		IDialogSettings section = workbenchSettings.getSection(NEW_MODEL_SETTINGS);
+		if(section == null) {
 			section = workbenchSettings.addNewSection(NEW_MODEL_SETTINGS);
 		}
-        setDialogSettings(section);
+		setDialogSettings(section);
 
 		newModelFilePage = new NewModelFilePage(selection);
 		selectDiagramCategoryPage = new SelectDiagramCategoryPage();
 		selectDiagramKindPage = getSelectDiagramKindPage();
 	}
-	
+
 	/**
 	 * Gets the select diagram kind page.
-	 *
+	 * 
 	 * @return the select diagram kind page
 	 */
 	protected SelectDiagramKindPage getSelectDiagramKindPage() {
 		return new SelectDiagramKindPage();
 	}
+
 	/**
 	 * This method will be invoked, when the "Finish" button is pressed.
 	 * 
@@ -141,19 +141,19 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 				return false;
 			}
 		}
-		
+
 		IDialogSettings settings = getDialogSettings();
-		if (settings != null) {
+		if(settings != null) {
 			selectDiagramCategoryPage.saveSettings(settings);
 			selectDiagramKindPage.saveSettings();
 		}
 
 		return true;
 	}
-	
+
 	/**
 	 * Gets the root.
-	 *
+	 * 
 	 * @return the root
 	 */
 	protected EObject getRoot() {

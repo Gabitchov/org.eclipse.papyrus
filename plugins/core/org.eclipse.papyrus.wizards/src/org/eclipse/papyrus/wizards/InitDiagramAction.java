@@ -48,10 +48,9 @@ public abstract class InitDiagramAction implements IObjectActionDelegate {
 	 * {@inheritDoc}
 	 */
 	public void selectionChanged(IAction action, ISelection selection) {
-		IStructuredSelection sselection = (IStructuredSelection) selection;
+		IStructuredSelection sselection = (IStructuredSelection)selection;
 		mySelection = sselection;
-		action.setEnabled(InitModelWizard
-				.isSupportedDomainModelFile(sselection));
+		action.setEnabled(InitModelWizard.isSupportedDomainModelFile(sselection));
 	}
 
 	/**
@@ -66,12 +65,10 @@ public abstract class InitDiagramAction implements IObjectActionDelegate {
 	 */
 	public void run(IAction action) {
 		InitModelWizard wizard = new InitModelWizard();
-		wizard.init(targetPart.getSite().getWorkbenchWindow().getWorkbench(),
-				mySelection);
+		wizard.init(targetPart.getSite().getWorkbenchWindow().getWorkbench(), mySelection);
 		WizardDialog dialog = new WizardDialog(getShell(), wizard);
 		dialog.create();
-		dialog.getShell().setSize(Math.max(500, dialog.getShell().getSize().x),
-				500);
+		dialog.getShell().setSize(Math.max(500, dialog.getShell().getSize().x), 500);
 		dialog.open();
 	}
 

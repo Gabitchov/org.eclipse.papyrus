@@ -54,9 +54,9 @@ public class SelectRootElementPage extends WizardPage {
 	 * TreeViewer use to display the content of the domain model
 	 */
 	private TreeViewer modelViewer;
-	
+
 	private IFile myDomainModelFile;
-	
+
 	public static final String PAGE_ID = "SelectRootPage";
 
 	/**
@@ -71,7 +71,7 @@ public class SelectRootElementPage extends WizardPage {
 		super(PAGE_ID);
 		setTitle("Select the root element");
 		setDescription("Select the root element");
-		
+
 		myDomainModelFile = file;
 
 	}
@@ -85,10 +85,10 @@ public class SelectRootElementPage extends WizardPage {
 
 	/**
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
-	 *
+	 * 
 	 * @param parent
 	 */
-	
+
 	public void createControl(Composite parent) {
 		initializeDialogUnits(parent);
 
@@ -112,10 +112,10 @@ public class SelectRootElementPage extends WizardPage {
 		AdapterFactory adapterFactory = createAdapterFactory();
 		modelViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
 		modelViewer.setLabelProvider(new AdapterFactoryLabelProvider(adapterFactory));
-		
+
 		Resource modelResource = getResourceForFile(myDomainModelFile);
 		modelViewer.setInput(modelResource);
-		
+
 		selectedModelElement = getModelRoot(modelResource);
 		modelViewer.setSelection(new StructuredSelection(selectedModelElement));
 
@@ -128,19 +128,20 @@ public class SelectRootElementPage extends WizardPage {
 
 		setPageComplete(validatePage());
 	}
-	
+
 	private EObject getModelRoot(Resource modelResource) {
 		return modelResource.getContents().get(0);
 	}
-	
+
 	private Resource getResourceForFile(IFile file) {
 		return new ModelSet().getResource(URI.createPlatformResourceURI(file.getFullPath().toString(), true), true);
 	}
 
 	/**
 	 * Update selection.
-	 *
-	 * @param selection the selection
+	 * 
+	 * @param selection
+	 *        the selection
 	 */
 	protected void updateSelection(IStructuredSelection selection) {
 		selectedModelElement = null;
@@ -161,7 +162,7 @@ public class SelectRootElementPage extends WizardPage {
 
 	/**
 	 * Validate page.
-	 *
+	 * 
 	 * @return true, if successful
 	 */
 	protected boolean validatePage() {
@@ -170,7 +171,7 @@ public class SelectRootElementPage extends WizardPage {
 
 	/**
 	 * Creates the adapter factory.
-	 *
+	 * 
 	 * @return the composed adapter factory
 	 */
 	protected ComposedAdapterFactory createAdapterFactory() {
@@ -181,8 +182,9 @@ public class SelectRootElementPage extends WizardPage {
 
 	/**
 	 * Fill item provider factories.
-	 *
-	 * @param factories the factories
+	 * 
+	 * @param factories
+	 *        the factories
 	 */
 	protected void fillItemProviderFactories(List<AdapterFactory> factories) {
 		// custom icons for model elements

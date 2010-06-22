@@ -36,13 +36,13 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	 * Instantiates a new new model file page.
 	 * 
 	 * @param title
-	 *            the title
+	 *        the title
 	 * @param description
-	 *            the description
+	 *        the description
 	 * @param selection
-	 *            the selection
+	 *        the selection
 	 * @param createFromSemanticModel
-	 *            the create from semantic model
+	 *        the create from semantic model
 	 */
 	public NewModelFilePage(IStructuredSelection selection) {
 		super(PAGE_ID, selection);
@@ -57,36 +57,34 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	@Override
 	public void createControl(Composite parent) {
 		super.createControl(parent);
-		setFileName(getUniqueFileName(getContainerFullPath(), getFileName(),
-				getFileExtension()));
+		setFileName(getUniqueFileName(getContainerFullPath(), getFileName(), getFileExtension()));
 		setPageComplete(validatePage());
 	}
-	
+
 	/**
 	 * Gets the unique file name.
 	 * 
 	 * @param containerFullPath
-	 *            the container full path
+	 *        the container full path
 	 * @param fileName
-	 *            the file name
+	 *        the file name
 	 * @param extension
-	 *            the extension
+	 *        the extension
 	 * @return the unique file name
 	 */
-	public static String getUniqueFileName(IPath containerFullPath,
-			String fileName, String extension) {
-		if (extension == null) {
+	public static String getUniqueFileName(IPath containerFullPath, String fileName, String extension) {
+		if(extension == null) {
 			extension = "";
 		}
 
-		if (containerFullPath == null) {
+		if(containerFullPath == null) {
 			containerFullPath = new Path(""); //$NON-NLS-1$
 		}
-		if (fileName == null || fileName.trim().length() == 0) {
+		if(fileName == null || fileName.trim().length() == 0) {
 			fileName = DEFAULT_NAME;
 		}
 
-		if (fileName.contains(".")) {
+		if(fileName.contains(".")) {
 			fileName = fileName.substring(0, fileName.indexOf("."));
 		}
 
@@ -95,10 +93,10 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 		filePath = filePath.addFileExtension(extension);
 
 		int i = 1;
-		while (ResourcesPlugin.getWorkspace().getRoot().exists(filePath)) {
+		while(ResourcesPlugin.getWorkspace().getRoot().exists(filePath)) {
 			i++;
 			filePath = containerFullPath.append(fileName + i);
-			if (extension != null) {
+			if(extension != null) {
 				filePath = filePath.addFileExtension(extension);
 			}
 		}

@@ -104,8 +104,8 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		if(category == null) {
 			return;
 		}
-		for (DiagramCategoryDescriptor descriptor: DiagramCategoryRegistry.getInstance().getDiagramCategories()) {
-			if (category.equals(descriptor.getId())) {
+		for(DiagramCategoryDescriptor descriptor : DiagramCategoryRegistry.getInstance().getDiagramCategories()) {
+			if(category.equals(descriptor.getId())) {
 				mySelectedDiagramCategory = descriptor;
 			}
 		}
@@ -175,19 +175,18 @@ public class SelectDiagramCategoryPage extends WizardPage {
 	private boolean validatePage() {
 		//316943 -  [Wizard] Wrong suffix for file name when creating a profile model
 		NewModelFilePage newModelFilePage = getNewModelFilePage();
-		if (newModelFilePage != null) {
+		if(newModelFilePage != null) {
 			String newExtension = getDiagramFileExtension();
 			String currentExtension = newModelFilePage.getFileExtension();
 			if(!currentExtension.equals(newExtension)) {
 
 				String oldFileName = newModelFilePage.getFileName();
 				String newFileName = NewModelFilePage.getUniqueFileName(newModelFilePage.getContainerFullPath(), newModelFilePage.getFileName(), newExtension);
-				
+
 				newModelFilePage.setFileName(newFileName);
 				newModelFilePage.setFileExtension(newExtension);
-				
-				String message = String.format("The %s diagram category requires a specific diagram file extension. " + 
-					"Thus, the diagram file has been renamed from %s to %s ", mySelectedDiagramCategory.getLabel(), oldFileName, newFileName);
+
+				String message = String.format("The %s diagram category requires a specific diagram file extension. " + "Thus, the diagram file has been renamed from %s to %s ", mySelectedDiagramCategory.getLabel(), oldFileName, newFileName);
 				setMessage(message, IMessageProvider.INFORMATION);
 
 				String errorMessage = newModelFilePage.getErrorMessage();
@@ -200,27 +199,27 @@ public class SelectDiagramCategoryPage extends WizardPage {
 		}
 		return mySelectedDiagramCategory != null;
 	}
-	
+
 	private NewModelFilePage getNewModelFilePage() {
 		IWizardPage prev = getPreviousPage();
-		if (prev instanceof NewModelFilePage) {
+		if(prev instanceof NewModelFilePage) {
 			return (NewModelFilePage)prev;
 		}
 		prev = prev.getPreviousPage();
-		if (prev instanceof NewModelFilePage) {
+		if(prev instanceof NewModelFilePage) {
 			return (NewModelFilePage)prev;
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Gets the diagram file extension.
-	 *
+	 * 
 	 * @return the diagram file extension
 	 */
 	public String getDiagramFileExtension() {
 		String extensionPrefix = mySelectedDiagramCategory != null ? mySelectedDiagramCategory.getExtensionPrefix() : null;
-		return (extensionPrefix != null)? extensionPrefix + "." + NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION : NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION;
+		return (extensionPrefix != null) ? extensionPrefix + "." + NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION : NewModelFilePage.DEFAULT_DIAGRAM_EXTENSION;
 	}
 
 

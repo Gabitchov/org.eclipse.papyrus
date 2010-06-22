@@ -68,7 +68,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	private SelectModelTemplateComposite selectTemplateComposite;
 
 	private Button rememberCurrentSelection;
-	
+
 	private boolean disableTemplates;
 
 	/**
@@ -102,11 +102,11 @@ public class SelectDiagramKindPage extends WizardPage {
 		createDiagramKindForm(plate);
 
 		createModelTemplateComposite(plate);
-		
+
 		createRememberCurrentSelectionForm(plate);
-		
+
 	}
-	
+
 	protected void setDisableTemplates() {
 		disableTemplates = true;
 	}
@@ -123,7 +123,7 @@ public class SelectDiagramKindPage extends WizardPage {
 		diagramKindTableViewer.setInput(category);
 		selectTemplateComposite.setInput(category);
 		selectDefaultDiagramKinds(category);
-		if (disableTemplates) {
+		if(disableTemplates) {
 			selectTemplateComposite.disable();
 		} else {
 			selectDefaultDiagramTemplates(category);
@@ -347,7 +347,7 @@ public class SelectDiagramKindPage extends WizardPage {
 		rememberCurrentSelection = new Button(plate, SWT.CHECK);
 		rememberCurrentSelection.setText("Remember current selection");
 		rememberCurrentSelection.setToolTipText("The current selection will be used when you open the wizard next time");
-		
+
 		rememberCurrentSelection.setSelection(SettingsUtils.rememberCurrentSelection(getDialogSettings()));
 	}
 
@@ -386,7 +386,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	 */
 	public void saveSettings() {
 		IDialogSettings settings = getDialogSettings();
-		if (rememberCurrentSelection()) {
+		if(rememberCurrentSelection()) {
 			saveDefaultDiagramKinds(settings);
 			saveDefaultTemplates(settings);
 		} else {
@@ -395,7 +395,7 @@ public class SelectDiagramKindPage extends WizardPage {
 		}
 		saveRememberCurrentSelection(settings);
 	}
-	
+
 	private boolean rememberCurrentSelection() {
 		return rememberCurrentSelection.getSelection();
 	}
@@ -410,19 +410,19 @@ public class SelectDiagramKindPage extends WizardPage {
 	}
 
 	private void saveDefaultTemplates(IDialogSettings settings) {
-		if (disableTemplates) {
+		if(disableTemplates) {
 			return;
 		}
 		String path = selectTemplateComposite.getTemplatePath();
 		SettingsUtils.saveDefaultTemplates(settings, getDiagramCategory(), Collections.singletonList(path));
 	}
-	
+
 	private void resetDefaultDiagramKinds(IDialogSettings settings) {
-		SettingsUtils.saveDefaultDiagramKinds(settings, getDiagramCategory(), Collections.<String>emptyList());
+		SettingsUtils.saveDefaultDiagramKinds(settings, getDiagramCategory(), Collections.<String> emptyList());
 	}
 
 	private void resetDefaultTemplates(IDialogSettings settings) {
-		SettingsUtils.saveDefaultTemplates(settings, getDiagramCategory(), Collections.<String>emptyList());
+		SettingsUtils.saveDefaultTemplates(settings, getDiagramCategory(), Collections.<String> emptyList());
 	}
 
 	private void saveRememberCurrentSelection(IDialogSettings settings) {
@@ -444,13 +444,13 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	private void selectDefaultDiagramTemplates(String category) {
 		List<String> templates = SettingsUtils.getDefaultTemplates(getDialogSettings(), category);
-		for (Object next: selectTemplateComposite.getContentProvider().getElements(category)) {
+		for(Object next : selectTemplateComposite.getContentProvider().getElements(category)) {
 			ModelTemplateDescription desc = (ModelTemplateDescription)next;
-			if (templates.contains(desc.getPath())) {
+			if(templates.contains(desc.getPath())) {
 				selectTemplateComposite.selectElement(desc);
 				return;
 			}
-		}		
+		}
 
 	}
 
