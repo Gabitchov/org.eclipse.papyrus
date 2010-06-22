@@ -4,22 +4,22 @@
    <extension
          point="org.eclipse.core.runtime.preferences">
       <initializer
-            class="org.eclipse.papyrus.core.preferences.CorePreferenceInitializer">
+            class="org.eclipse.papyrus.core.resourceloading.preferences.CorePreferenceInitializer">
       </initializer>
    </extension>
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
       		category="org.eclipse.papyrus.preferences.generalcategory"
-            class="org.eclipse.papyrus.core.preferences.LoadingStrategyPreferencePage"
-            id="org.eclipse.papyrus.core.preferences.ModelLoadingPreferencePage"
+            class="org.eclipse.papyrus.core.resourceloading.preferences.LoadingStrategyPreferencePage"
+            id="org.eclipse.papyrus.core.resourceloading.preferences.ModelLoadingPreferencePage"
             name="Model loading">
       </page>
    </extension>
    <extension
          point="org.eclipse.papyrus.core.resourceloading.currentStrategyChooser">
       <CurrentStrategyChooser
-            chooser="org.eclipse.papyrus.core.preferences.StrategyChooser">
+            chooser="org.eclipse.papyrus.core.resourceloading.preferences.StrategyChooser">
       </CurrentStrategyChooser>
    </extension>
 

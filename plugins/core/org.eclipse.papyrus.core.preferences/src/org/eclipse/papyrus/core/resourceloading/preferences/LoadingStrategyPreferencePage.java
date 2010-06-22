@@ -11,7 +11,7 @@
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.core.preferences;
+package org.eclipse.papyrus.core.resourceloading.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage;

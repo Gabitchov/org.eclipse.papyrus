@@ -11,7 +11,7 @@
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
   *****************************************************************************/
-package org.eclipse.papyrus.core.preferences;
+package org.eclipse.papyrus.core.resourceloading.preferences;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -22,7 +22,7 @@ import org.osgi.framework.BundleContext;
 public class CorePlugin extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.core.preferences"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.core.resourceloading.preferences"; //$NON-NLS-1$
 
 	// The shared instance
 	private static CorePlugin plugin;

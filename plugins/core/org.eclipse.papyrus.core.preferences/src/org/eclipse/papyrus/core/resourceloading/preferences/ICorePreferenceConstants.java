@@ -11,7 +11,7 @@
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.core.preferences;
+package org.eclipse.papyrus.core.resourceloading.preferences;
 
 /**
  * Defines specific preference constants for papyrus core.
@@ -23,5 +23,5 @@ public interface ICorePreferenceConstants {
 	/**
 	 * the preference to define the model loading strategy.
 	 */
-	public static final String PREF_CORE_DEFINE_LOADING_STRATEGY = "org.eclipse.papyrus.core.preferences.loadingStrategy"; //$NON-NLS-1$
+	public static final String PREF_CORE_DEFINE_LOADING_STRATEGY = "org.eclipse.papyrus.core.resourceloading.preferences.loadingStrategy"; //$NON-NLS-1$
 }
