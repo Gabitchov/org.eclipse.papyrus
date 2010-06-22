@@ -109,6 +109,13 @@
                </documentation>
             </annotation>
          </attribute>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Unique identifier for this contribution. It is used by preferences to check if this contribution has been customized or not, so this should be unique among all providers
+               </documentation>
+            </annotation>
+         </attribute>
          <attribute name="path" type="string" use="required">
             <annotation>
                <documentation>

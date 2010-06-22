@@ -85,6 +85,11 @@ public class XMLPropertyTabViewProvider extends XMLPropertyViewProvider implemen
 			if(PROPERTY_VIEW_CONTRIBUTION.equals(child.getName())) {
 				// this is one of the configuration, parses the config itself, i.e. retrieve the xml file
 				name = child.getAttribute(NAME);
+				id = child.getAttribute(ID);
+				if(id == null) {
+					Activator.log.error("impossible to find id for this contribution: " + name, null);
+					return;
+				}
 				description = child.getAttribute(DESCRIPTION);
 				String iconPath = child.getAttribute(ICON);
 				if(iconPath != null) {
@@ -96,6 +101,8 @@ public class XMLPropertyTabViewProvider extends XMLPropertyViewProvider implemen
 					DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
 
 					// retrieve xml file from path
+					// this path can be the path given in the plugin.xml file, but it could also be given by preferences..
+					// first, check if a preference is present for this contribution 
 					String path = child.getAttribute(XML_PATH);
 					InputStream stream = getXmlFile(child, path, bundle);
 					// the file should never be null in this implementation, but sub-classes could return null

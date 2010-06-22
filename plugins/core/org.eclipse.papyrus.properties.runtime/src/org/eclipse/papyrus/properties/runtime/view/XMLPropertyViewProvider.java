@@ -92,6 +92,9 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 	/** name of the contribution */
 	protected String name;
 
+	/** id of the contribution */
+	protected String id;
+
 	/** icon of the contribution */
 	protected ImageDescriptor iconDescriptor = null;
 

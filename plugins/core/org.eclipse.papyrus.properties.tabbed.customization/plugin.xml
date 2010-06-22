@@ -40,6 +40,7 @@
          </Priority>
          <PropertyViewContribution
          	   name="Property Editor configuration dialogs"
+         	   id="propertyview.customization.dialogs"
                icon="/icons/Provider.gif"
                path="resources/configuration_wizards_dialogs.xml">
          </PropertyViewContribution>
@@ -81,6 +82,7 @@
          </Priority>
          <PropertyViewContribution
                description="Predefined fragments for Configuraiton of property view"
+               id="propertyview.customization.fragments"
                icon="icons/Provider.gif"
                name="Predefined Fragments For Configuration"
                path="resources/configuration_predefined_fragments.xml">

@@ -18,6 +18,7 @@
       </Priority>
       <PropertyViewContribution
             description="This is the generic view for uml tabbed properties"
+            id="propertyview.uml.sections"
             icon="icons/tool.gif"
             name="UML"
             path="resources/uml_generic_sections.xml">
@@ -33,6 +34,7 @@
       </Priority>
       <PropertyViewContribution
             description="Test configuration for UML property dialogs"
+            id="propertyview.uml.testdialogs"
             icon="icons/UMLDialogs.gif"
             name="UML Dialogs"
             path="resources/uml_generic_dialogs_test.xml">
