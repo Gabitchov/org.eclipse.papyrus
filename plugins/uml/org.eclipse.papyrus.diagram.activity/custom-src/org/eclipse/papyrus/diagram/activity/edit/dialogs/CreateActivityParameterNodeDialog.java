@@ -32,7 +32,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.cache.types.TypeCacheAdapter;
+import org.eclipse.papyrus.cache.query.ModelSetQuery;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
@@ -415,7 +415,7 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 	 * 
 	 */
 	private void handleChooseParameter() {
-		Collection<EObject> elements = TypeCacheAdapter.getExistingTypeCacheAdapter(activityOwner).getReachableObjectsOfType(activityOwner, getParameterFeature().getEType());
+		Collection<EObject> elements = ModelSetQuery.getObjectsOfType(activityOwner, getParameterFeature().getEType());
 		// only keep parameter that are children of the activity
 		for(Iterator<EObject> it = elements.iterator(); it.hasNext();) {
 			EObject eObject = (EObject)it.next();
@@ -559,7 +559,7 @@ public class CreateActivityParameterNodeDialog extends FormDialog {
 	 * @return the available types
 	 */
 	private Set<Object> getAvailableTypes() {
-		Collection<EObject> types = TypeCacheAdapter.getExistingTypeCacheAdapter(activityOwner).getReachableObjectsOfType(activityOwner, UMLPackage.eINSTANCE.getTypedElement_Type().getEType());
+		Collection<EObject> types = ModelSetQuery.getObjectsOfType(activityOwner, UMLPackage.eINSTANCE.getTypedElement_Type().getEType());
 		Set<Object> result = new HashSet<Object>();
 		result.add("");
 		result.addAll(types);

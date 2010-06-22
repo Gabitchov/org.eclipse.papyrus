@@ -30,7 +30,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.cache.types.TypeCacheAdapter;
+import org.eclipse.papyrus.cache.query.ModelSetQuery;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
@@ -374,7 +374,7 @@ public class CreateAttributeDialog extends FormDialog {
 	 * @return the possible types
 	 */
 	private Set<Object> getPossibleTypes() {
-		Collection<EObject> types = TypeCacheAdapter.getExistingTypeCacheAdapter(attributeOwner).getReachableObjectsOfType(attributeOwner, UMLPackage.eINSTANCE.getTypedElement_Type().getEType());
+		Collection<EObject> types = ModelSetQuery.getObjectsOfType(attributeOwner, UMLPackage.eINSTANCE.getTypedElement_Type().getEType());
 		Set<Object> result = new HashSet<Object>();
 		result.add("");
 		result.addAll(types);

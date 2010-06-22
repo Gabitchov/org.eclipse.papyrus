@@ -43,10 +43,10 @@ public class UMLProfileStrategyExtension implements ILoadingStrategyExtension {
 	public boolean loadResource(ModelSet modelSet, URI uri) {
 		Resource modelResource = UmlUtils.getUmlModel().getResource();
 		if(modelResource != null && UMLResource.FILE_EXTENSION.equals(modelResource.getURI().fileExtension())) {
-			org.eclipse.papyrus.cache.types.TypeCacheAdapter adapter = null;
+			org.eclipse.papyrus.cache.impl.TypeCacheAdapter adapter = null;
 			for(Adapter a : modelSet.eAdapters()) {
-				if(a instanceof org.eclipse.papyrus.cache.types.TypeCacheAdapter) {
-					adapter = (org.eclipse.papyrus.cache.types.TypeCacheAdapter)a;
+				if(a instanceof org.eclipse.papyrus.cache.impl.TypeCacheAdapter) {
+					adapter = (org.eclipse.papyrus.cache.impl.TypeCacheAdapter)a;
 					break;
 				}
 			}

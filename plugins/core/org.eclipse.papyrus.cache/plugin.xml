@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.papyrus.core.model">
       <modelSetSnippet
-            classname="org.eclipse.papyrus.cache.types.TypeCacheInitializer"
+            classname="org.eclipse.papyrus.cache.impl.TypeCacheInitializer"
             description="Adapter attached to the ModelSet (aka ResourceSet)">
       </modelSetSnippet>
    </extension>

@@ -33,7 +33,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.cache.types.TypeCacheAdapter;
+import org.eclipse.papyrus.cache.query.ModelSetQuery;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
@@ -504,7 +504,7 @@ public abstract class CreateInvocationActionDialog extends FormDialog {
 	 * 
 	 */
 	private void handleChooseInvoked() {
-		Collection<EObject> elements = TypeCacheAdapter.getExistingTypeCacheAdapter(actionParent).getReachableObjectsOfType(actionParent, getInvocationFeature().getEType());
+		Collection<EObject> elements = ModelSetQuery.getObjectsOfType(actionParent, getInvocationFeature().getEType());
 		ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), labelProvider);
 		dialog.setMessage(Messages.UMLModelingAssistantProviderMessage);
 		dialog.setTitle(Messages.UMLModelingAssistantProviderTitle);

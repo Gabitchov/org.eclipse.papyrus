@@ -20,7 +20,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.papyrus.cache.types.TypeCacheAdapter;
+import org.eclipse.papyrus.cache.query.ModelSetQuery;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.preferences.IActivityPreferenceConstants;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
@@ -112,7 +112,7 @@ public class CreateCallOperationActionDialog extends CreateCallActionDialog {
 	 */
 	@Override
 	protected Set<EObject> getPossibleInvokedParents(EObject actionParent) {
-		Collection<EObject> classes = TypeCacheAdapter.getExistingTypeCacheAdapter(actionParent).getReachableObjectsOfType(actionParent, UMLPackage.eINSTANCE.getClass_());
+		Collection<EObject> classes = ModelSetQuery.getObjectsOfType(actionParent, UMLPackage.eINSTANCE.getClass_());
 		Set<EObject> result = new HashSet<EObject>(classes);
 		return result;
 	}

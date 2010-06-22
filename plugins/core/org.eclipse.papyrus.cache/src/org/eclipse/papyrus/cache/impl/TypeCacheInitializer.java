@@ -8,7 +8,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  *****************************************************************************/
-package org.eclipse.papyrus.cache.types;
+package org.eclipse.papyrus.cache.impl;
 
 import org.eclipse.papyrus.resource.IModelSetSnippet;
 import org.eclipse.papyrus.resource.ModelSet;

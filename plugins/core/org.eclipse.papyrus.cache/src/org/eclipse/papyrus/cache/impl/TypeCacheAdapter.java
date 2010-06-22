@@ -11,7 +11,7 @@
  *  Tristan FAURE tristan.faure@atosorigin.com - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.cache.types;
+package org.eclipse.papyrus.cache.impl;
 
 import java.util.Collection;
 import java.util.Collections;

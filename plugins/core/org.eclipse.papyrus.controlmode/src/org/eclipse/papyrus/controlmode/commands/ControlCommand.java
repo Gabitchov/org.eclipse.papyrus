@@ -47,7 +47,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.emf.commands.core.command.EditingDomainUndoContext;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.papyrus.cache.types.TypeCacheAdapter;
+import org.eclipse.papyrus.cache.query.ModelSetQuery;
 import org.eclipse.papyrus.controlmode.commands.IControlCommand.STATE_CONTROL;
 import org.eclipse.papyrus.controlmode.history.HistoryModel;
 import org.eclipse.papyrus.controlmode.history.utils.HistoryUtils;
@@ -242,7 +242,7 @@ public class ControlCommand extends AbstractTransactionalCommand {
 				parent = resource;
 			}
 			if(parent == null) {
-				Collection<EObject> controled = TypeCacheAdapter.getExistingTypeCacheAdapter(model.getResource().getResourceSet()).getReachableObjectsOfType(model.getModelRoot(), historyPackage.Literals.CONTROLED_RESOURCE);
+				Collection<EObject> controled = ModelSetQuery.getObjectsOfType(model.getModelRoot(), historyPackage.Literals.CONTROLED_RESOURCE);
 				for(EObject next : controled) {
 					if(next instanceof ControledResource) {
 						ControledResource tmp = (ControledResource)next;
