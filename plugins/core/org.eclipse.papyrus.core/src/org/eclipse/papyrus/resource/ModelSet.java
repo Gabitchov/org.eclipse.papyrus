@@ -298,15 +298,18 @@ public class ModelSet extends ResourceSetImpl {
 		// Walk all registered models
 		for(String modelId : modelIdentifiers) {
 			IModel model = getModel(modelId);
-			
+
 			// Load models using the default path
 			model.importModel(path);
-			model.changeModelPath(filenameWithoutExtension);
+			if( filenameWithoutExtension != null)
+				model.changeModelPath(filenameWithoutExtension);
 		}
 	}
 
 	/**
 	 * Import only the specified model. ModelSetSnippets are not called.
+	 * An import can be performed after model are loaded. Normally, it should not be done
+	 * before a model is loaded.
 	 * 
 	 * @param modelIdentifier
 	 *        the model identifier
