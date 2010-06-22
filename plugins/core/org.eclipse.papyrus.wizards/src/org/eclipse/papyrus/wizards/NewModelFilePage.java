@@ -24,31 +24,31 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
  */
 public class NewModelFilePage extends WizardNewFileCreationPage {
 
-
-	/** The create from semantic model. */
-	protected boolean createFromSemanticModel;
-
 	/** The Constant DEFAULT_NAME. */
 	public static final String DEFAULT_NAME = "model";
 
 	/** The Constant DIAGRAM_EXTENSION. */
 	public static final String DEFAULT_DIAGRAM_EXTENSION = "di";
 
+	public static final String PAGE_ID = "NewPapyrusModel";
+
 	/**
 	 * Instantiates a new new model file page.
-	 *
-	 * @param title the title
-	 * @param description the description
-	 * @param selection the selection
-	 * @param createFromSemanticModel the create from semantic model
+	 * 
+	 * @param title
+	 *            the title
+	 * @param description
+	 *            the description
+	 * @param selection
+	 *            the selection
+	 * @param createFromSemanticModel
+	 *            the create from semantic model
 	 */
-	public NewModelFilePage(String title, String description, IStructuredSelection selection,
-			boolean createFromSemanticModel) {
-		super(title, selection);
-		setTitle(title);
-		setDescription(description);
+	public NewModelFilePage(IStructuredSelection selection) {
+		super(PAGE_ID, selection);
+		setTitle("Create a new Papyrus model");
+		setDescription("Create a new empty Papyrus model");
 		setFileExtension(DEFAULT_DIAGRAM_EXTENSION);
-		this.createFromSemanticModel = createFromSemanticModel;
 	}
 
 	/**
@@ -57,43 +57,48 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	@Override
 	public void createControl(Composite parent) {
 		super.createControl(parent);
-		setFileName(getUniqueFileName(getContainerFullPath(), getFileName(), getFileExtension()));
+		setFileName(getUniqueFileName(getContainerFullPath(), getFileName(),
+				getFileExtension()));
 		setPageComplete(validatePage());
 	}
-
+	
 	/**
 	 * Gets the unique file name.
-	 *
-	 * @param containerFullPath the container full path
-	 * @param fileName the file name
-	 * @param extension the extension
+	 * 
+	 * @param containerFullPath
+	 *            the container full path
+	 * @param fileName
+	 *            the file name
+	 * @param extension
+	 *            the extension
 	 * @return the unique file name
 	 */
-	public static String getUniqueFileName(IPath containerFullPath, String fileName, String extension) {
+	public static String getUniqueFileName(IPath containerFullPath,
+			String fileName, String extension) {
 		if (extension == null) {
 			extension = "";
 		}
 
-		if(containerFullPath == null) {
+		if (containerFullPath == null) {
 			containerFullPath = new Path(""); //$NON-NLS-1$
 		}
-		if(fileName == null || fileName.trim().length() == 0) {
+		if (fileName == null || fileName.trim().length() == 0) {
 			fileName = DEFAULT_NAME;
 		}
-		
+
 		if (fileName.contains(".")) {
 			fileName = fileName.substring(0, fileName.indexOf("."));
 		}
-		
+
 		IPath filePath = containerFullPath.append(fileName);
 		filePath = containerFullPath.append(fileName);
 		filePath = filePath.addFileExtension(extension);
 
 		int i = 1;
-		while(ResourcesPlugin.getWorkspace().getRoot().exists(filePath)) {
+		while (ResourcesPlugin.getWorkspace().getRoot().exists(filePath)) {
 			i++;
 			filePath = containerFullPath.append(fileName + i);
-			if(extension != null) {
+			if (extension != null) {
 				filePath = filePath.addFileExtension(extension);
 			}
 		}

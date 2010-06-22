@@ -56,6 +56,8 @@ public class SelectRootElementPage extends WizardPage {
 	private TreeViewer modelViewer;
 	
 	private IFile myDomainModelFile;
+	
+	public static final String PAGE_ID = "SelectRootPage";
 
 	/**
 	 * Constructor
@@ -65,10 +67,10 @@ public class SelectRootElementPage extends WizardPage {
 	 * @param diagramRoot
 	 *        the root model element use to initialize the TreeViewer
 	 */
-	protected SelectRootElementPage(String pageName, IFile file) {
-		super(pageName);
-		setTitle(pageName);
-		setDescription(pageName);
+	protected SelectRootElementPage(IFile file) {
+		super(PAGE_ID);
+		setTitle("Select the root element");
+		setDescription("Select the root element");
 		
 		myDomainModelFile = file;
 

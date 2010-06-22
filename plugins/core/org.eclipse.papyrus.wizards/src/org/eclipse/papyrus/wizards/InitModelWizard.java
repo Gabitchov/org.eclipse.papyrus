@@ -14,11 +14,11 @@
 package org.eclipse.papyrus.wizards;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.resource.uml.UmlModel;
 import org.eclipse.ui.IWorkbench;
-
 
 /**
  * The Class InitModelWizard.
@@ -27,28 +27,41 @@ public class InitModelWizard extends CreateModelWizard {
 
 	/** Select the root element containing the new diagram */
 	private SelectRootElementPage selectRootElementPage;
-	
-	public void addPages() {
-		super.addPages();
-		if (isInitNotCreateModel()) {
-			addPage(selectRootElementPage);
-		}
-	}
-	
+
 	/**
-	 * @see org.eclipse.papyrus.wizards.CreateModelWizard#init(org.eclipse.ui.IWorkbench, org.eclipse.jface.viewers.IStructuredSelection)
-	 *
+	 * @see org.eclipse.papyrus.wizards.CreateModelWizard#init(org.eclipse.ui.IWorkbench,
+	 *      org.eclipse.jface.viewers.IStructuredSelection)
+	 * 
 	 * @param workbench
 	 * @param selection
 	 */
-	
+
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		super.init(workbench, selection);
 		IFile file = getSelectedFile(selection);
-		if(isSupportedDomainModelFile(file)) {
-			this.newModelFilePage = new NewModelFilePage("Create a new Papyrus model", "Create a new Papyrus model from an existing semantic model", selection, true);
-			this.newModelFilePage.setFileName(getDiagramFileName(file));
-			selectRootElementPage = new SelectRootElementPage("Select the root element", file);
+		if (isSupportedDomainModelFile(file)) {
+			setWindowTitle("Init Papyrus Diagram");
+			newModelFilePage.setTitle("Init a new Papyrus model");
+			newModelFilePage
+					.setDescription("Init a new Papyrus model from the existing domain model");
+
+			final String diagramFileName = getDiagramFileName(file);
+			newModelFilePage = new NewModelFilePage(selection) {
+				protected boolean validatePage() {
+					if (!super.validatePage()) {
+						return false;
+					}
+					if (!diagramFileName.equals(getFileName())) {
+						setErrorMessage(String
+								.format("Diagram file name should be the same as domain model file name (%s)",
+										diagramFileName));
+						return false;
+					}
+					return true;
+				};
+			};
+			newModelFilePage.setFileName(diagramFileName);
+			selectRootElementPage = new SelectRootElementPage(file);
 		}
 	}
 
@@ -56,10 +69,12 @@ public class InitModelWizard extends CreateModelWizard {
 	 * Returns true is the file can be served as a model model for the diagram
 	 */
 	public static boolean isSupportedDomainModelFile(IFile file) {
-		return file != null && UmlModel.UML_FILE_EXTENSION.equals(file.getFileExtension());
+		return file != null
+				&& UmlModel.UML_FILE_EXTENSION.equals(file.getFileExtension());
 	}
 
-	public static boolean isSupportedDomainModelFile(IStructuredSelection sselection) {
+	public static boolean isSupportedDomainModelFile(
+			IStructuredSelection sselection) {
 		IFile file = getSelectedFile(sselection);
 		return isSupportedDomainModelFile(file);
 	}
@@ -68,12 +83,13 @@ public class InitModelWizard extends CreateModelWizard {
 	 * Returns the first file from the given selection
 	 */
 	private static IFile getSelectedFile(IStructuredSelection selection) {
-		if(selection != null && !selection.isEmpty() && selection.getFirstElement() instanceof IFile) {
-			return (IFile)selection.getFirstElement();
+		if (selection != null && !selection.isEmpty()
+				&& selection.getFirstElement() instanceof IFile) {
+			return (IFile) selection.getFirstElement();
 		}
 		return null;
 	}
-	
+
 	@Override
 	protected EObject getRoot() {
 		if (isInitNotCreateModel()) {
@@ -86,13 +102,13 @@ public class InitModelWizard extends CreateModelWizard {
 	 * Suggests a name of diagram file for the domain model file
 	 */
 	private String getDiagramFileName(IFile domainModel) {
-		String diModelFileName = (domainModel.getLocation().removeFileExtension().lastSegment());
-		diModelFileName += ".di";
-		return diModelFileName;
+		IPath filePath = domainModel.getLocation().removeFileExtension();
+		filePath = filePath.addFileExtension(selectDiagramCategoryPage
+				.getDiagramFileExtension());
+		return filePath.lastSegment();
 	}
-	
+
 	private boolean isInitNotCreateModel() {
 		return selectRootElementPage != null;
 	}
 }
-

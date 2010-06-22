@@ -14,9 +14,7 @@ package org.eclipse.papyrus.wizards;
 import static org.eclipse.papyrus.wizards.Activator.log;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
@@ -47,7 +45,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	private SelectDiagramKindPage selectDiagramKindPage;
 
 	/** The select diagram category page. */
-	private SelectDiagramCategoryPage selectDiagramCategoryPage;
+	protected SelectDiagramCategoryPage selectDiagramCategoryPage;
 
 
 	/** Current workbench */
@@ -76,7 +74,6 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	public void addPages() {
 		addPage(newModelFilePage);
 		addPage(selectDiagramCategoryPage);
-		// fjcano #293135 :: support model templates
 		addPage(selectDiagramKindPage);
 	}
 
@@ -103,7 +100,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 		}
         setDialogSettings(section);
 
-		this.newModelFilePage = new NewModelFilePage("Create a new Papyrus model", "Create a new empty Papyrus model", selection, false);
+		newModelFilePage = new NewModelFilePage(selection);
 		selectDiagramCategoryPage = new SelectDiagramCategoryPage();
 		selectDiagramKindPage = getSelectDiagramKindPage();
 	}
