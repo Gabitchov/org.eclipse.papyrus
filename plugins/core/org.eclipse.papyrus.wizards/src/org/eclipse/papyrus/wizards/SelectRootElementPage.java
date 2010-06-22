@@ -57,6 +57,7 @@ public class SelectRootElementPage extends WizardPage {
 
 	private IFile myDomainModelFile;
 
+	/** The Constant PAGE_ID. */
 	public static final String PAGE_ID = "SelectRootPage";
 
 	/**

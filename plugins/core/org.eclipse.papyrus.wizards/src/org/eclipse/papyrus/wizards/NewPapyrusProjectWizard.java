@@ -35,6 +35,7 @@ import org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard;
  */
 public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 
+	/** The Constant WIZARD_ID. */
 	public static final String WIZARD_ID = "org.eclipse.papyrus.wizards.1createproject";
 
 	/** The new project page. */
@@ -101,10 +102,11 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 	}
 
 	/**
+	 * Gets the next page.
+	 *
+	 * @param page the page
+	 * @return the next page
 	 * @see org.eclipse.jface.wizard.Wizard#getNextPage(org.eclipse.jface.wizard.IWizardPage)
-	 * 
-	 * @param page
-	 * @return
 	 */
 	@Override
 	public IWizardPage getNextPage(IWizardPage page) {
@@ -117,10 +119,11 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 	}
 
 	/**
+	 * Gets the previous page.
+	 *
+	 * @param page the page
+	 * @return the previous page
 	 * @see org.eclipse.jface.wizard.Wizard#getPreviousPage(org.eclipse.jface.wizard.IWizardPage)
-	 * 
-	 * @param page
-	 * @return
 	 */
 	@Override
 	public IWizardPage getPreviousPage(IWizardPage page) {
@@ -144,9 +147,10 @@ public class NewPapyrusProjectWizard extends BasicNewProjectResourceWizard {
 	}
 
 	/**
+	 * Perform finish.
+	 *
+	 * @return true, if successful
 	 * @see org.eclipse.ui.wizards.newresource.BasicNewProjectResourceWizard#performFinish()
-	 * 
-	 * @return
 	 */
 	public boolean performFinish() {
 		boolean created = super.performFinish();

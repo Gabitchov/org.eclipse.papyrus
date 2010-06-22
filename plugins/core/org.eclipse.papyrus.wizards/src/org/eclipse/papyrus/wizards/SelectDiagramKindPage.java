@@ -73,9 +73,7 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/**
 	 * Instantiates a new select diagram kind page.
-	 * 
-	 * @param pageName
-	 *        the page name
+	 *
 	 */
 	public SelectDiagramKindPage() {
 		super("Select kind of diagram");
@@ -107,6 +105,9 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	}
 
+	/**
+	 * Sets the disable templates.
+	 */
 	protected void setDisableTemplates() {
 		disableTemplates = true;
 	}

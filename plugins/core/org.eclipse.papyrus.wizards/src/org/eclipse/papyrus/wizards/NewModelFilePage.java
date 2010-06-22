@@ -7,6 +7,7 @@
  * 
  * Contributors:
  *     Obeo - initial API and implementation
+ *     Tatiana Fesenko(CEA) - initial API and implementation
  *******************************************************************************/
 package org.eclipse.papyrus.wizards;
 
@@ -30,19 +31,13 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	/** The Constant DIAGRAM_EXTENSION. */
 	public static final String DEFAULT_DIAGRAM_EXTENSION = "di";
 
+	/** The Constant PAGE_ID. */
 	public static final String PAGE_ID = "NewPapyrusModel";
 
 	/**
 	 * Instantiates a new new model file page.
-	 * 
-	 * @param title
-	 *        the title
-	 * @param description
-	 *        the description
-	 * @param selection
-	 *        the selection
-	 * @param createFromSemanticModel
-	 *        the create from semantic model
+	 *
+	 * @param selection the selection
 	 */
 	public NewModelFilePage(IStructuredSelection selection) {
 		super(PAGE_ID, selection);

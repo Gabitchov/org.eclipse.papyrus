@@ -66,12 +66,21 @@ public class InitModelWizard extends CreateModelWizard {
 	}
 
 	/**
-	 * Returns true is the file can be served as a model model for the diagram
+	 * Returns true is the file can be served as a model model for the diagram.
+	 *
+	 * @param file the file
+	 * @return true, if is supported domain model file
 	 */
 	public static boolean isSupportedDomainModelFile(IFile file) {
 		return file != null && UmlModel.UML_FILE_EXTENSION.equals(file.getFileExtension());
 	}
 
+	/**
+	 * Checks if is supported domain model file.
+	 *
+	 * @param sselection the sselection
+	 * @return true, if is supported domain model file
+	 */
 	public static boolean isSupportedDomainModelFile(IStructuredSelection sselection) {
 		IFile file = getSelectedFile(sselection);
 		return isSupportedDomainModelFile(file);
