@@ -42,7 +42,7 @@ public class CreateModelWizard extends Wizard implements INewWizard {
 	protected NewModelFilePage newModelFilePage;
 
 	/** Select kind of new diagram the wizard must create */
-	private SelectDiagramKindPage selectDiagramKindPage;
+	protected SelectDiagramKindPage selectDiagramKindPage;
 
 	/** The select diagram category page. */
 	protected SelectDiagramCategoryPage selectDiagramCategoryPage;

@@ -40,6 +40,9 @@ public class InitModelWizard extends CreateModelWizard {
 		super.init(workbench, selection);
 		IFile file = getSelectedFile(selection);
 		if (isSupportedDomainModelFile(file)) {
+			// Init Model not Create a new one
+			selectRootElementPage = new SelectRootElementPage(file);
+			
 			setWindowTitle("Init Papyrus Diagram");
 			newModelFilePage.setTitle("Init a new Papyrus model");
 			newModelFilePage
@@ -61,7 +64,7 @@ public class InitModelWizard extends CreateModelWizard {
 				};
 			};
 			newModelFilePage.setFileName(diagramFileName);
-			selectRootElementPage = new SelectRootElementPage(file);
+			selectDiagramKindPage.setDisableTemplates();
 		}
 	}
 

@@ -68,6 +68,8 @@ public class SelectDiagramKindPage extends WizardPage {
 	private SelectModelTemplateComposite selectTemplateComposite;
 
 	private Button rememberCurrentSelection;
+	
+	private boolean disableTemplates;
 
 	/**
 	 * Instantiates a new select diagram kind page.
@@ -102,7 +104,11 @@ public class SelectDiagramKindPage extends WizardPage {
 		createModelTemplateComposite(plate);
 		
 		createRememberCurrentSelectionForm(plate);
-
+		
+	}
+	
+	protected void setDisableTemplates() {
+		disableTemplates = true;
 	}
 
 	/**
@@ -117,7 +123,11 @@ public class SelectDiagramKindPage extends WizardPage {
 		diagramKindTableViewer.setInput(category);
 		selectTemplateComposite.setInput(category);
 		selectDefaultDiagramKinds(category);
-		selectDefaultDiagramTemplates(category);
+		if (disableTemplates) {
+			selectTemplateComposite.disable();
+		} else {
+			selectDefaultDiagramTemplates(category);
+		}
 		validatePage();
 	}
 
@@ -400,6 +410,9 @@ public class SelectDiagramKindPage extends WizardPage {
 	}
 
 	private void saveDefaultTemplates(IDialogSettings settings) {
+		if (disableTemplates) {
+			return;
+		}
 		String path = selectTemplateComposite.getTemplatePath();
 		SettingsUtils.saveDefaultTemplates(settings, getDiagramCategory(), Collections.singletonList(path));
 	}

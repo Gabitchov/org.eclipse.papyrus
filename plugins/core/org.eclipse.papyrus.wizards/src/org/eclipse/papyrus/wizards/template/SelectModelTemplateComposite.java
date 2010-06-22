@@ -44,7 +44,11 @@ public class SelectModelTemplateComposite extends Composite {
 		setLayout(layout);
 		createTemplatesViewer(this);
 	}
-
+	
+	public void disable() {
+		templateTableViewer.getTable().setEnabled(false);
+	}
+	
 	/**
 	 * Creates the templates viewer.
 	 * 
