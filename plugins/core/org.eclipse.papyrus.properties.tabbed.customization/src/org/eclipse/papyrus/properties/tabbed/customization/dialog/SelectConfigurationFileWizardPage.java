@@ -885,9 +885,6 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 						return document;
 					}
 				}
-				//				final File file = ResourcesPlugin.getWorkspace().getRoot().getRawLocation().append(modifyExistingConfigurationText.getText()).toFile();
-				//				Document document = documentBuilder.parse(file);
-				//				return document;
 			} catch (ParserConfigurationException e) {
 				Activator.log.error(e);
 			} catch (SAXException e) {

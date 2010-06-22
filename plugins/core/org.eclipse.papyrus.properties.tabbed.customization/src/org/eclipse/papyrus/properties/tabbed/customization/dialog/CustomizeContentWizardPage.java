@@ -87,6 +87,7 @@ import org.eclipse.papyrus.umlutils.StereotypeUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.custom.SashForm;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.MenuDetectEvent;
 import org.eclipse.swt.events.MenuDetectListener;
 import org.eclipse.swt.events.SelectionEvent;
@@ -146,7 +147,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 	protected DynamicTabDescriptor selectedTab;
 
 	/** preview area */
-	protected Composite previewArea;
+	protected ScrolledComposite previewArea;
 
 	/** widget factory for preview area */
 	protected TabbedPropertySheetWidgetFactory factory = new TabbedPropertySheetWidgetFactory();
@@ -292,7 +293,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 	 */
 	protected void removeAllExistingSectionSetDescriptors(Node topNode) {
 		NodeList children = topNode.getChildNodes();
-		for(int i = 0; i < children.getLength(); i++) {
+		for(int i = children.getLength() - 1; i >= 0; i--) {
 			Node child = children.item(i);
 			if("sectionSet".equals(child.getNodeName())) {
 				topNode.removeChild(child);
@@ -577,9 +578,16 @@ public class CustomizeContentWizardPage extends WizardPage {
 		});
 
 		// real preview area
-		previewArea = factory.createComposite(previewAreaComposite, SWT.BORDER);
+		previewArea = factory.createScrolledComposite(previewAreaComposite, SWT.BORDER);
+		previewArea.setAlwaysShowScrollBars(false);
 		previewArea.setLayout(new GridLayout(1, true));
 		previewArea.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		Composite content = factory.createComposite(previewArea);
+		content.setLayout(new GridLayout(1, true));
+		content.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		previewArea.setContent(content);
+		previewArea.setExpandVertical(true);
+		previewArea.setExpandHorizontal(true);
 	}
 
 	/**
@@ -643,9 +651,14 @@ public class CustomizeContentWizardPage extends WizardPage {
 			String selectedTabName = selectedTab.getId();
 			Composite parent = previewArea.getParent();
 			previewArea.dispose();
-			previewArea = factory.createComposite(parent, SWT.BORDER);
-			previewArea.setLayout(new GridLayout(1, true));
+			previewArea = null;
+			previewArea = factory.createScrolledComposite(parent, SWT.VERTICAL | SWT.HORIZONTAL | SWT.NO_FOCUS | SWT.BORDER);
 			previewArea.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+			Composite content = factory.createComposite(previewArea);
+			content.setLayout(new GridLayout(1, true));
+			// content.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+			previewArea.setExpandVertical(true);
+			previewArea.setExpandHorizontal(true);
 			for(SectionSetDescriptorState sectionSetDescriptorState : sectionSetDescriptorStates) {
 				if(isSectionSetDescriptorStateValid(sectionSetDescriptorState)) {
 					// check the content of this section set: sections give the constraints 
@@ -682,6 +695,10 @@ public class CustomizeContentWizardPage extends WizardPage {
 					}
 				}
 			}
+
+			previewArea.setContent(content);
+			previewArea.setMinSize(content.computeSize(SWT.DEFAULT, SWT.DEFAULT, true));
+			//content.layout(true);
 			// previewArea.redraw();
 			previewArea.getParent().layout(true);
 		}
@@ -1018,6 +1035,8 @@ public class CustomizeContentWizardPage extends WizardPage {
 					final Document document = getFinalContent();
 					final File file = getFile();
 					// final File file = ResourcesPlugin.getWorkspace().getRoot().getRawLocation().append("test/test.xml").toFile();
+					file.delete();
+
 					if(!file.exists()) {
 						file.createNewFile();
 					}
