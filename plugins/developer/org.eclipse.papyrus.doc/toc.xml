@@ -2,7 +2,7 @@
 <?NLS TYPE="org.eclipse.help.toc"?>
 
 <toc label="Papyrus Guide">
-	<topic href="http://wiki.eclipse.org/Papyrus_Developer_Guide" label="Developer GuideGuide">
+	<topic href="http://wiki.eclipse.org/Papyrus_Developer_Guide" label="Developer Guide">
   <topic href="http://wiki.eclipse.org/Papyrus_Developer_Guide/Build_Process" label="Build Process">
   </topic>
   <topic href="http://wiki.eclipse.org/Papyrus_Developer_Guide/Papyrus_Log" label="Papyrus Log">
@@ -11,7 +11,7 @@
   </topic>
   <topic href="tutorials/XText/PapyrusDevelopperTutorial_OnXtext_v0 3_d2010-06-04.html" label="Papyrus Integration with xText">
   </topic>
-  <topic href="tutorials/SashEditor/sashAndCoreArchitecture.htm" label="Sash Editor">
+  <topic href="tutorials/SashEditor/sashAndCoreArchitecture.htm" label="Sash Editor Architecture">
   </topic>
 	</topic>
  <topic label="User GuideGuide">
