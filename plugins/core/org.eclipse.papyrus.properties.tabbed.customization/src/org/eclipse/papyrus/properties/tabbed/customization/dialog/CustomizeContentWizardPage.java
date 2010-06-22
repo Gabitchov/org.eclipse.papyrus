@@ -652,13 +652,16 @@ public class CustomizeContentWizardPage extends WizardPage {
 			Composite parent = previewArea.getParent();
 			previewArea.dispose();
 			previewArea = null;
-			previewArea = factory.createScrolledComposite(parent, SWT.VERTICAL | SWT.HORIZONTAL | SWT.NO_FOCUS | SWT.BORDER);
+			previewArea = factory.createScrolledComposite(parent, SWT.VERTICAL | SWT.HORIZONTAL | SWT.BORDER);
 			previewArea.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 			Composite content = factory.createComposite(previewArea);
 			content.setLayout(new GridLayout(1, true));
 			// content.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 			previewArea.setExpandVertical(true);
 			previewArea.setExpandHorizontal(true);
+			previewArea.getHorizontalBar().setIncrement(20);
+			previewArea.getVerticalBar().setIncrement(20);
+
 			for(SectionSetDescriptorState sectionSetDescriptorState : sectionSetDescriptorStates) {
 				if(isSectionSetDescriptorStateValid(sectionSetDescriptorState)) {
 					// check the content of this section set: sections give the constraints 
@@ -691,7 +694,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 			for(SectionDescriptorState state : filteredSectionstates) {
 				for(IFragmentDescriptorState fragmentDescriptorState : state.getFragmentDescriptorStates()) {
 					for(ContainerDescriptorState containerDescriptorState : fragmentDescriptorState.getContainerDescriptorStates()) {
-						containerDescriptorState.createPreview(previewArea);
+						containerDescriptorState.createPreview(content);
 					}
 				}
 			}
