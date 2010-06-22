@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -100,7 +101,11 @@ public class EMFObjectLabelProvider extends AdapterFactoryLabelProvider implemen
 			} else if(o instanceof IGraphicalEditPart) {
 				IGraphicalEditPart editPart = (IGraphicalEditPart)o;
 				eObject = editPart.resolveSemanticElement();
+			} // try to adapt into EObject
+			else if(o instanceof IAdaptable) {
+				eObject = (EObject)((IAdaptable)o).getAdapter(EObject.class);
 			}
+
 		}
 		return eObject;
 	}
