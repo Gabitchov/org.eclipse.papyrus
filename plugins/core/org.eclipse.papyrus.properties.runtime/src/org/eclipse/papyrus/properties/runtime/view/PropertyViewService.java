@@ -63,6 +63,15 @@ public class PropertyViewService extends Service {
 	}
 
 	/**
+	 * Returns the list of property view Providers
+	 * 
+	 * @return the list of property view Providers
+	 */
+	public List<?> getPropertyViewProviders() {
+		return findAllProviders();
+	}
+
+	/**
 	 * Creates a new Property editor controller given its configuration
 	 * 
 	 * @param objectsToEdit

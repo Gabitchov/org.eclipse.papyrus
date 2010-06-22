@@ -113,6 +113,8 @@ public class Messages extends NLS {
 
 	public static String SelectConfigurationFileWizardPage_PageName;
 
+	public static String SelectConfigurationFileWizardPage_UserGroup_Label;
+
 	public static String SelectConfigurationFileWizardPage_SourceGroup_Label;
 
 	public static String SelectConfigurationFileWizardPage_Title;

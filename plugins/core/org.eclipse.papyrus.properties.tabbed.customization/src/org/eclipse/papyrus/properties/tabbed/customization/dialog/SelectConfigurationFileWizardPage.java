@@ -13,9 +13,12 @@ package org.eclipse.papyrus.properties.tabbed.customization.dialog;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -25,14 +28,21 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.jface.dialogs.Dialog;
+import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
+import org.eclipse.papyrus.properties.tabbed.core.view.XMLPropertyTabViewProvider;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
 import org.eclipse.papyrus.properties.tabbed.customization.Messages;
 import org.eclipse.swt.SWT;
@@ -48,8 +58,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.ContainerSelectionDialog;
+import org.eclipse.ui.dialogs.FilteredItemsSelectionDialog;
 import org.w3c.dom.Comment;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -87,14 +99,17 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 	/** content area for the modify exiting configuration */
 	protected ModifyExistingConfigurationArea modifyExistingConfigurationArea = new ModifyExistingConfigurationArea();
 
+	/** content area for the modify plugin contribution */
+	protected ModifyPluginConfigurationArea modifyPluginConfigurationArea = new ModifyPluginConfigurationArea();
+
 	/** file where to serialize configuration */
-	private File file;
+	protected File file;
 
 	/** empty string */
 	protected static final String EMPTY_STRING = ""; //$NON-NLS-1$
 
 	/** next page to be displayed */
-	private IWizardPage nextPage;
+	protected IWizardPage nextPage;
 
 	/**
 	 * Creates a new SelectConfigurationFileWizardPage.
@@ -129,25 +144,32 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 	 */
 	protected void createContentArea(Composite composite) {
 
-		Group group = new Group(composite, SWT.NONE);
-		group.setText(Messages.SelectConfigurationFileWizardPage_SourceGroup_Label);
+		Group userGroup = new Group(composite, SWT.NONE);
+		userGroup.setText(Messages.SelectConfigurationFileWizardPage_UserGroup_Label);
+		userGroup.setLayout(new GridLayout(1, false));
+		userGroup.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1));
+		modifyPluginConfigurationArea = new ModifyPluginConfigurationArea();
+		modifyPluginConfigurationArea.createContent(userGroup);
+
+		Group devGroup = new Group(composite, SWT.NONE);
+		devGroup.setText(Messages.SelectConfigurationFileWizardPage_SourceGroup_Label);
 		GridLayout layout = new GridLayout(1, false);
-		group.setLayout(layout);
+		devGroup.setLayout(layout);
 		GridData groupData = new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1);
-		group.setLayoutData(groupData);
+		devGroup.setLayoutData(groupData);
 
 		// create content for the group
 		createFromScratchArea = new CreateFromScratchArea();
-		createFromScratchArea.createContent(group);
+		createFromScratchArea.createContent(devGroup);
 
 		createFromExistingConfigurationArea = new CreateFromExistingConfigurationArea();
-		createFromExistingConfigurationArea.createContent(group);
+		createFromExistingConfigurationArea.createContent(devGroup);
 
 		modifyExistingConfigurationArea = new ModifyExistingConfigurationArea();
-		modifyExistingConfigurationArea.createContent(group);
+		modifyExistingConfigurationArea.createContent(devGroup);
 
 		// create a new one by default
-		enableConfigurationArea(createFromScratchArea);
+		enableConfigurationArea(modifyPluginConfigurationArea);
 	}
 
 	/**
@@ -398,6 +420,7 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 			if(isValid(createFromScratchButton)) {
 				createFromScratchButton.setSelection(enable);
 				nameText.setEnabled(enable);
+				pluginIdText.setEnabled(enable);
 				folderButton.setEnabled(enable);
 				if(enable) {
 					nameText.selectAll();
@@ -914,6 +937,147 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 	}
 
 	/**
+	 * Area for the "modify a plugin contribution" in the dialog
+	 */
+	public class ModifyPluginConfigurationArea implements IConfigurationArea {
+
+		/** text area that display the id of the provider to modify */
+		protected Text modifyPluginConfigurationText;
+
+		/** button that opens dialog to select configuration to modify */
+		protected Button modifyPluginConfigurationSelectionButton;
+
+		/** Button used to modify an existing configuration */
+		protected Button modifyPluginConfigurationButton;
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public void setEnable(boolean enable) {
+			if(isValid(modifyPluginConfigurationButton)) {
+				modifyPluginConfigurationButton.setSelection(enable);
+				modifyPluginConfigurationText.setEnabled(enable);
+				modifyPluginConfigurationSelectionButton.setEnabled(enable);
+			}
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public void validatePage() {
+			if(isValid(modifyPluginConfigurationText)) {
+				if(modifyPluginConfigurationText.getText() == null || modifyPluginConfigurationText.getText().equals(EMPTY_STRING)) {
+					setPageComplete(false);
+					setMessage(Messages.SelectConfigurationFileWizardPage_ErrorMessage_NoValidExistingConfiguration, ERROR);
+				} else {
+					setMessage(EMPTY_STRING, NONE);
+					setPageComplete(true);
+				}
+			}
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public Composite createContent(Composite parent) {
+			// modify an existing configuration composite
+			Composite modifyExistingConfigurationComposite = new Composite(parent, SWT.BORDER);
+			modifyExistingConfigurationComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1));
+			modifyExistingConfigurationComposite.setLayout(new GridLayout(3, false));
+			modifyPluginConfigurationButton = new Button(modifyExistingConfigurationComposite, SWT.RADIO);
+			modifyPluginConfigurationButton.addSelectionListener(selectionListener);
+			radioButtonsMapping.put(modifyPluginConfigurationButton, this);
+			Label modifyExistingConfigurationLabel = new Label(modifyExistingConfigurationComposite, SWT.NONE);
+			modifyExistingConfigurationLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1));
+			modifyExistingConfigurationLabel.setText("Modify plugin contribution");
+			modifyPluginConfigurationText = new Text(modifyExistingConfigurationComposite, SWT.BORDER | SWT.READ_ONLY);
+			modifyPluginConfigurationText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1));
+			modifyPluginConfigurationSelectionButton = new Button(modifyExistingConfigurationComposite, SWT.NONE);
+			modifyPluginConfigurationSelectionButton.setText(Messages.SelectConfigurationFileWizardPage_ModifyExistingConfigurationSelectionButton_Label);
+			modifyPluginConfigurationSelectionButton.addSelectionListener(new SelectionListener() {
+
+				/**
+				 * {@inheritDoc}
+				 */
+				public void widgetSelected(SelectionEvent e) {
+					// open a dialog which allows to select a contribution among all available contributions
+					List<XMLPropertyTabViewProvider> tabViewProviders = new ArrayList<XMLPropertyTabViewProvider>();
+					for(Object provider : PropertyViewService.getInstance().getPropertyViewProviders()) {
+						if(provider instanceof XMLPropertyTabViewProvider) {
+							tabViewProviders.add((XMLPropertyTabViewProvider)provider);
+						}
+					}
+
+					// open a dialog to choose among the provider
+					ProviderSelectionDialog dialog = new ProviderSelectionDialog(getShell(), tabViewProviders);
+					if(Dialog.OK == dialog.open()) {
+						// get the selection of the dialog
+						if(dialog.getFirstResult() != null) {
+							modifyPluginConfigurationText.setText(((XMLPropertyTabViewProvider)dialog.getFirstResult()).getId());
+						}
+
+					}
+
+					validatePage();
+				}
+
+				/**
+				 * {@inheritDoc}
+				 */
+				public void widgetDefaultSelected(SelectionEvent e) {
+					// nothing to do here
+				}
+			});
+			return modifyExistingConfigurationComposite;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public Document generateInitialContent() {
+			DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+			documentBuilderFactory.setNamespaceAware(true);
+			DocumentBuilder documentBuilder;
+			try {
+				documentBuilder = documentBuilderFactory.newDocumentBuilder();
+				IFile iFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(modifyPluginConfigurationText.getText()));
+				if(iFile.exists()) {
+					IPath location = iFile.getLocation();
+					if(location != null) {
+						final File file = location.toFile();
+						Document document = documentBuilder.parse(file);
+						return document;
+					}
+				}
+			} catch (ParserConfigurationException e) {
+				Activator.log.error(e);
+			} catch (SAXException e) {
+				Activator.log.error(e);
+			} catch (IOException e) {
+				Activator.log.error(e);
+			}
+			return null;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public File getNewFile() {
+			// returns the file itself
+			IFile iFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(modifyPluginConfigurationText.getText()));
+			if(iFile.exists()) {
+				IPath location = iFile.getLocation();
+				if(location != null) {
+					return location.toFile();
+				}
+			}
+			// should never be used
+			Activator.log.warn("should not get the file using this method");
+			return ResourcesPlugin.getWorkspace().getRoot().getRawLocation().append(modifyPluginConfigurationText.getText()).toFile();
+		}
+	}
+
+	/**
 	 * Returns the new file, where the content of the configuration will be serialized
 	 * 
 	 * @return the new file, where the content of the configuration will be serialized
@@ -921,4 +1085,92 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 	public File getNewFile() {
 		return file;
 	}
+
+	/**
+	 * selection dialog for tab view provider
+	 */
+	public class ProviderSelectionDialog extends FilteredItemsSelectionDialog {
+
+		/** list of providers in which the edited provider will be selected */
+		private final List<XMLPropertyTabViewProvider> providers;
+
+		/**
+		 * Creates a new ProviderSelectionDialog.
+		 * 
+		 * @param shell
+		 *        the shell where to create the dialog
+		 */
+		public ProviderSelectionDialog(Shell shell, List<XMLPropertyTabViewProvider> providers) {
+			super(shell, false);
+			this.providers = providers;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		protected IStatus validateItem(Object item) {
+			return Status.OK_STATUS;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		protected Comparator<?> getItemsComparator() {
+			return null;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public String getElementName(Object item) {
+			if(item instanceof XMLPropertyTabViewProvider) {
+				return ((XMLPropertyTabViewProvider)item).getContributionName();
+			}
+			return "<Unknown type>";
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		protected IDialogSettings getDialogSettings() {
+			return Activator.getDefault().getDialogSettings();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		protected void fillContentProvider(AbstractContentProvider contentProvider, ItemsFilter itemsFilter, IProgressMonitor progressMonitor) throws CoreException {
+			if(progressMonitor != null) {
+				progressMonitor.beginTask("Displaying Providers elements", providers.size());
+			}
+			for(XMLPropertyTabViewProvider provider : providers) {
+				contentProvider.add(provider, itemsFilter);
+				progressMonitor.worked(1);
+			}
+			if(progressMonitor != null)
+				progressMonitor.done();
+
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		protected ItemsFilter createFilter() {
+			return null;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		protected Control createExtendedContentArea(Composite parent) {
+			return null;
+		}
+	};
 }
