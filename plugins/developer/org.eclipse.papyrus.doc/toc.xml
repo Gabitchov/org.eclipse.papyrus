@@ -2,12 +2,14 @@
 <?NLS TYPE="org.eclipse.help.toc"?>
 
 <toc label="Papyrus Guide">
-	<topic href="http://wiki.eclipse.org/Papyrus_Developer_Guide" label="Developer&apos;s GuideGuide">
+	<topic href="http://wiki.eclipse.org/Papyrus_Developer_Guide" label="Developer&apos;s Guide">
   <topic href="http://wiki.eclipse.org/Papyrus_Developer_Guide/Build_Process" label="Build Process">
   </topic>
   <topic href="http://wiki.eclipse.org/Papyrus_Developer_Guide/Papyrus_Log" label="Papyrus Log">
   </topic>
   <topic href="tutorials/CreatingNewPlugin/PapyrusDevelopperTutorial_OnCreating&amp;AddingNewPluginInPapyrus_v1.0_d2010-05-07.html" label="Creating and Adding New Plugins in Papyrus">
+  </topic>
+  <topic href="tutorials/XText/PapyrusDevelopperTutorial_OnXtext_v0 3_d2010-06-04.html" label="Papyrus Integration with xText">
   </topic>
 	</topic>
  <topic label="User&apos;s Guide">
