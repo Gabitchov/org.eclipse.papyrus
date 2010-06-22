@@ -192,4 +192,11 @@ public abstract class EMFStereotypeFeatureModelHandler extends EMFFeatureModelHa
 		Activator.log.warn("No feature fond with name:" + getFeatureName() + " for stereotype " + stereotypeName);
 		return null;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public IEMFModelHandlerState createState(boolean readOnly) {
+		return new EMFStereotypeFeatureModelHandlerState(this, readOnly);
+	}
 }

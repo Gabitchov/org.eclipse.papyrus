@@ -16,7 +16,6 @@ import java.beans.PropertyChangeSupport;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.papyrus.properties.runtime.state.AbstractState;
 import org.eclipse.papyrus.properties.runtime.state.ITraversableModelElement;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -25,89 +24,77 @@ import org.w3c.dom.Element;
 /**
  * State for model handlers
  */
-public class EMFFeatureModelHandlerState extends AbstractState implements IEMFModelHandlerState {
+public class EMFStereotypeFeatureModelHandlerState extends EMFFeatureModelHandlerState {
 
 	/** managed model handler */
-	private EMFFeatureModelHandler modelHandler;
+	private String stereotypeName;
 
 	/** change support */
 	private PropertyChangeSupport changeSupport;
-
-	/** name of the feature to edit */
-	private String name;
-
-	/** id of the model handler */
-	private String id;
 
 	/**
 	 * Creates a new EMFFeatureModelHandlerState.
 	 * 
 	 * @param readOnly
 	 */
-	public EMFFeatureModelHandlerState(IEMFModelHandler modelHandler, boolean readOnly) {
-		super(readOnly);
-		assert (modelHandler instanceof EMFFeatureModelHandler);
-		this.modelHandler = (EMFFeatureModelHandler)modelHandler;
-		this.name = ((EMFFeatureModelHandler)modelHandler).getFeatureName();
-		this.id = ((EMFFeatureModelHandler)modelHandler).getId();
+	public EMFStereotypeFeatureModelHandlerState(IEMFModelHandler modelHandler, boolean readOnly) {
+		super(modelHandler, readOnly);
+		stereotypeName = getDescriptor().getStereotypeName();
 		changeSupport = new PropertyChangeSupport(this);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public EMFFeatureModelHandler getDescriptor() {
-		return modelHandler;
+	@Override
+	public EMFStereotypeFeatureModelHandler getDescriptor() {
+		return (EMFStereotypeFeatureModelHandler)super.getDescriptor();
 	}
 
 	/**
-	 * Sets the name
+	 * Sets the stereotypeName
 	 * 
-	 * @param name
-	 *        the name to set
+	 * @param stereotypeName
+	 *        the stereotypeName to set
 	 */
-	public void setName(String name) {
-		changeSupport.firePropertyChange("name", this.name, this.name = name);
-	}
-
-	/**
-	 * Returns the name
-	 * 
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
+	public void setStereotypeName(String stereotypeName) {
+		changeSupport.firePropertyChange("stereotypeName", this.stereotypeName, this.stereotypeName = stereotypeName);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public String getEditionDialogId() {
-		return null;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
+	@Override
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
+		super.addPropertyChangeListener(listener);
 		changeSupport.addPropertyChangeListener(listener);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void removePropertyChangeListener(PropertyChangeListener listener) {
+		super.removePropertyChangeListener(listener);
 		changeSupport.removePropertyChangeListener(listener);
+	}
+
+
+	/**
+	 * Returns the stereotypeName
+	 * 
+	 * @return the stereotypeName
+	 */
+	public String getStereotypeName() {
+		return stereotypeName;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public Element generateNode(Document document) {
-		//<feature name="ownedAttribute" handlerID="Reference"/>
-		Element element = document.createElement("feature");
-		element.setAttribute("name", name);
-		element.setAttribute("handlerID", id);
+		Element element = super.generateNode(document);
+		element.setAttribute("stereotypeName", stereotypeName);
 		return element;
 	}
 
@@ -116,25 +103,6 @@ public class EMFFeatureModelHandlerState extends AbstractState implements IEMFMo
 	 */
 	public List<? extends ITraversableModelElement> getChildren() {
 		return Collections.emptyList();
-	}
-
-	/**
-	 * Sets the id
-	 * 
-	 * @param id
-	 *        the id to set
-	 */
-	public void setId(String id) {
-		changeSupport.firePropertyChange("id", this.id, this.id = id);
-	}
-
-	/**
-	 * Returns the id
-	 * 
-	 * @return the id
-	 */
-	public String getId() {
-		return id;
 	}
 
 }
