@@ -46,7 +46,7 @@ plugin@org.eclipse.papyrus.wizards=SVN,,svn://dev.eclipse.org/svnroot/modeling/o
 # developer
 #plugin@org.eclipse.papyrus.codegen=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer,,org.eclipse.papyrus.codegen
 #plugin@org.eclipse.papyrus.def=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer,,org.eclipse.papyrus.def
-#plugin@org.eclipse.papyrus.doc=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer,,org.eclipse.papyrus.doc
+plugin@org.eclipse.papyrus.doc=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer,,org.eclipse.papyrus.doc
 #plugin@org.eclipse.papyrus.gmfgenextension=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer,,org.eclipse.papyrus.gmfgenextension
 #plugin@org.eclipse.papyrus.java.reverse=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer,,org.eclipse.papyrus.java.reverse
 #plugin@org.eclipse.papyrus.java.reverse.ui=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer,,org.eclipse.papyrus.java.reverse.ui
