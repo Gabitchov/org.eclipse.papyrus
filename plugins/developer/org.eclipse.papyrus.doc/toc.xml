@@ -3,21 +3,25 @@
 
 <toc label="Papyrus Guide">
 	<topic href="http://wiki.eclipse.org/Papyrus_Developer_Guide" label="Developer Guide">
-  <topic href="http://wiki.eclipse.org/Papyrus_Developer_Guide/Build_Process" label="Build Process">
-  </topic>
-  <topic href="http://wiki.eclipse.org/Papyrus_Developer_Guide/Papyrus_Log" label="Papyrus Log">
-  </topic>
-  <topic href="tutorials/CreatingNewPlugin/PapyrusDevelopperTutorial_OnCreating&amp;AddingNewPluginInPapyrus_v1.0_d2010-05-07.html" label="Creating and Adding New Plugins in Papyrus">
-  </topic>
   <topic href="tutorials/XText/PapyrusDevelopperTutorial_OnXtext_v0 3_d2010-06-04.html" label="Papyrus Integration with xText">
   </topic>
   <topic href="tutorials/SashEditor/sashAndCoreArchitecture.htm" label="Sash Editor Architecture">
   </topic>
 	</topic>
- <topic label="User GuideGuide">
+ <topic label="User Guide">
     <topic href="tutorials/PaletteCustomization/PapyrusDevelopperTutorial_OnPaletteCustomization_v1.0_d2010-05-10.html" label="Palette Customization">
     </topic>
  </topic>
- <topic label="Customizer GuideGuide">
+ <topic label="Customizer Guide">
+ </topic>
+ <topic label="Online Help">
+    <topic href="http://wiki.eclipse.org/Papyrus-FAQ" label="FAQ">
+    </topic>
+    <topic href="http://wiki.eclipse.org/Papyrus_Developer_Guide/Build_Process" label="Build Process">
+    </topic>
+	<topic href="http://wiki.eclipse.org/Papyrus_Developer_Guide/Papyrus_Log" label="Papyrus Log">
+    </topic>
+    <topic href="tutorials/CreatingNewPlugin/PapyrusDevelopperTutorial_OnCreating&amp;AddingNewPluginInPapyrus_v1.0_d2010-05-07.html" label="Creating and Adding New Plugins in Papyrus">
+    </topic>
  </topic>
 </toc>
