@@ -41,6 +41,7 @@ public class Activator extends AbstractUIPlugin {
 
 	// The shared instance
 	private static Activator plugin;
+
 	/** The shared log helper. */
 	public static LogHelper log;
 
@@ -71,14 +72,14 @@ public class Activator extends AbstractUIPlugin {
 	 * get the image descriptor from a string path
 	 * 
 	 * @param pathString
-	 *            path of the image
+	 *        path of the image
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getImageDescriptor(String pathString) {
 
 		IPath path = new Path(pathString);
 		URL uri = FileLocator.find(Activator.plugin.getBundle(), path, null);
-		if (uri == null) {
+		if(uri == null) {
 			return null;
 		}
 		return ImageDescriptor.createFromURL(uri);
@@ -110,7 +111,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @return the customization manager in charge to adapt element in modisco
 	 */
 	public CustomizationManager getCustomizationManager() {
-		if (this.fCustomizationManager == null) {
+		if(this.fCustomizationManager == null) {
 			this.fCustomizationManager = new CustomizationManager();
 			init(this.fCustomizationManager);
 		}
@@ -121,6 +122,9 @@ public class Activator extends AbstractUIPlugin {
 		// the appearance can be customized here:
 		// customizationManager.setShowEmptyLinks(true);
 		// customizationManager.setShowAttributes(true);
+
+		customizationManager.setShowDerivedLinks(true);
+
 		try {
 			// FacetSet facetSet = FacetSetCatalog.getSingleton().getFacetSet(
 			//					"MyFacet"); //$NON-NLS-1$
@@ -133,16 +137,14 @@ public class Activator extends AbstractUIPlugin {
 
 			// load customizations defined as default through the customization
 			// extension
-			List<MetamodelView> registryDefaultCustomizations = CustomizationsCatalog
-					.getInstance().getRegistryDefaultCustomizations();
-			for (MetamodelView metamodelView : registryDefaultCustomizations) {
+			List<MetamodelView> registryDefaultCustomizations = CustomizationsCatalog.getInstance().getRegistryDefaultCustomizations();
+			for(MetamodelView metamodelView : registryDefaultCustomizations) {
 				customizationManager.registerCustomization(metamodelView);
 			}
 			customizationManager.loadCustomizations();
+
 		} catch (Throwable e) {
-			Activator.getDefault().getLog().log(
-					new Status(IStatus.ERROR, Activator.PLUGIN_ID,
-							"Error initializing customizations", e)); //$NON-NLS-1$
+			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error initializing customizations", e)); //$NON-NLS-1$
 		}
 	}
 
