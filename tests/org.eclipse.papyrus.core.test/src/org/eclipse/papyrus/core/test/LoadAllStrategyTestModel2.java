@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.Node;
-import org.eclipse.papyrus.core.preferences.StrategyChooser;
+import org.eclipse.papyrus.core.resourceloading.preferences.StrategyChooser;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Type;
