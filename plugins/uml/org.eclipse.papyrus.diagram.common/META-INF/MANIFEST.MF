@@ -67,3 +67,4 @@ Ant-Version: Apache Ant 1.7.0
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Activator: org.eclipse.papyrus.diagram.common.Activator
+Import-Package: org.eclipse.gmf.runtime.lite.ui.actions

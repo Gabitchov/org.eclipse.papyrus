@@ -263,6 +263,14 @@
             optional="true">
       </commandParameter>
    </command>
+   <command
+         category="Papyrus"
+         categoryId="org.eclipse.papyrus.core.papyrusEditor"
+         defaultHandler="org.eclipse.papyrus.diagram.common.handlers.DeleteFromModelHandler"
+         description="Call the delete from model action"
+         id="org.eclipse.papyrus.diagram.common.commands.DeleteFromModelCommand"
+         name="DeleteFromModelCommand">
+   </command>
 </extension>
 <extension
       point="org.eclipse.ui.popupMenus">
@@ -276,7 +284,7 @@
             enablesFor="1"
             id="org.eclipse.papyrus.common.cleandiagram"
             label="Clean invalid views"
-            menubarPath="editGroup">
+            menubarPath="editMenu/editGroup">
       </action>
    </objectContribution>
    <objectContribution
@@ -291,6 +299,19 @@
             id="org.eclipse.papyrus.diagram.common.objectContribution.pastewithmodelaction"
             label="Paste with model"
             menubarPath="editMenu/editGroup">
+      </action>
+   </objectContribution>
+   <objectContribution
+         adaptable="false"
+         id="org.eclipse.papyrus.diagram.common.deletefrommodelaction"
+         objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+      <action
+            class="org.eclipse.papyrus.diagram.common.handlers.DeleteFromModelHandler"
+            definitionId="org.eclipse.papyrus.diagram.common.commands.DeleteFromModelCommand"
+            icon="icons/delete.gif"
+            id="org.eclipse.papyrus.diagram.common.objectContribution.deletefrommodelaction"
+            label="Delete From Model"
+            menubarPath="editMenu">
       </action>
    </objectContribution>
 </extension>
@@ -479,6 +500,11 @@
             id="org.eclipse.papyrus.diagram.common.commandRoutingParameter"
             value="parameter_bottom">
       </parameter>
+   </key>
+   <key
+         commandId="org.eclipse.papyrus.diagram.common.commands.DeleteFromModelCommand"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="CTRL+DEL">
    </key>
 </extension>
 <extension
