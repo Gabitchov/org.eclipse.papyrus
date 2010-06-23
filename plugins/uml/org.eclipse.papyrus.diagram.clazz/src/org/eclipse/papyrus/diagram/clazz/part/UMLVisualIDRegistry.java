@@ -26,8 +26,9 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
- * This registry is used to determine which type of visual object should be created for the
- * corresponding Diagram, Node, ChildNode or Link represented by a domain model object.
+ * This registry is used to determine which type of visual object should be
+ * created for the corresponding Diagram, Node, ChildNode or Link represented by
+ * a domain model object.
  * 
  * @generated
  */
@@ -1046,6 +1047,9 @@ public class UMLVisualIDRegistry {
 			if(ConstraintNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ConstraintBodyEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case CommentEditPart.VISUAL_ID:
 			if(CommentBodyEditPart.VISUAL_ID == nodeVisualID) {
@@ -1214,6 +1218,9 @@ public class UMLVisualIDRegistry {
 			break;
 		case Constraint2EditPart.VISUAL_ID:
 			if(ConstraintName2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConstraintBodyEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1751,8 +1758,8 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
-	 * User can change implementation of this method to handle some specific situations not covered
-	 * by default logic.
+	 * User can change implementation of this method to handle some specific
+	 * situations not covered by default logic.
 	 * 
 	 * @generated
 	 */

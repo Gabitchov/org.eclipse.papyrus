@@ -42,6 +42,9 @@ public class AssociationEndSourceLabelHelper extends PropertyLabelHelper {
 	 */
 	public Property getUMLElement(GraphicalEditPart editPart) {
 		if((View)editPart.getModel() != null && ((View)editPart.getModel()).eContainer() != null) {
+			if((Classifier)((Edge)((View)editPart.getModel()).eContainer()).getSource()==null){
+				return null;
+			}
 			Classifier source = (Classifier)((Edge)((View)editPart.getModel()).eContainer()).getSource().getElement();
 			Property propertyToDisplay = null;
 			if(((View)editPart.getModel()) != null && (((View)editPart.getModel()).getElement() instanceof Association)) {

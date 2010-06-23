@@ -90,8 +90,8 @@ public class ElementImportItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 	}
 
 	/**
-	 * Returns command to reorient EClass based link. New link target or source should be the domain
-	 * model element associated with this node.
+	 * Returns command to reorient EClass based link. New link target or source
+	 * should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */
@@ -104,8 +104,8 @@ public class ElementImportItemSemanticEditPolicy extends UMLBaseItemSemanticEdit
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source should be the
-	 * domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or
+	 * source should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */

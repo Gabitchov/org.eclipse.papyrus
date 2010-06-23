@@ -15,19 +15,33 @@ package org.eclipse.papyrus.diagram.common.figure.node;
 
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.text.FlowPage;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.draw2d.ui.text.TextFlowEx;
+import org.eclipse.swt.graphics.Image;
 
 /**
  * this class is used to display the a constraint with the possibility of gradient qualified name
  *
  */
-public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNamedElementFigure{
+public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNamedElementFigure, ILabelFigure, IMultilineEditableFigure{
+	protected static final String LEFT_BRACE = "{";
+
+	protected static final String RIGHT_BRACE = "}";
+
+	protected String toRemove="fjdskfgsdmjgkhqsdmkhg jih hsdg hkshd hg hsdjhq hqhsd qksdg qsdhj hhqsgh sqdh";
+	protected TextFlowEx textFlow ;
 
 	private WrappingLabel nameLabel;
 	private Label qualifiedLabel;
 	/** the depth of the qualified name **/
 	private int depth = 0;
-	
+
+	/** main flow page */
+	protected FlowPage page;
+
 	/**
 	 * Calculate the partial qualified name with a specified depth.
 	 * 
@@ -58,7 +72,12 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 		}
 
 	}
-
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeNamedElementFigure#setQualifiedName(java.lang.String)
+	 *
+	 * @param qualifiedName
+	 */
 	public void setQualifiedName(String qualifiedName) {
 		String tmpQualifiedName = getQualifiedName(qualifiedName, depth);
 		// two raisons to remove label!
@@ -89,8 +108,13 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 
 	}
 
-	
-	
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeNamedElementFigure#getQualifiedNameLabel()
+	 *
+	 * @return
+	 */
+
 	public Label getQualifiedNameLabel() {
 		// TODO Auto-generated method stub
 		return null;
@@ -103,26 +127,56 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 		nameLabel.setOpaque(false);
 		nameLabel.setAlignment(PositionConstants.MIDDLE);
 		add(nameLabel);
+		page = new FlowPage();
+		page.setOpaque(false);
+
+		this.add(page);
+
+		textFlow= new TextFlowEx("");
+		page.add(textFlow);
 
 	}
-
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeNamedElementFigure#getTaggedLabel()
+	 *
+	 * @return
+	 */
 	public Label getTaggedLabel() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeNamedElementFigure#setDepth(int)
+	 *
+	 * @param depth
+	 */
 	public void setDepth(int depth) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeNamedElementFigure#getNameLabel()
+	 *
+	 * @return
+	 */
 	public WrappingLabel getNameLabel() {
 		return nameLabel;
 	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeNamedElementFigure#setNameLabelIcon(boolean)
+	 *
+	 * @param displayNameLabelIcon
+	 */
 	public void setNameLabelIcon(boolean displayNameLabelIcon) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	/**
@@ -143,6 +197,87 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 			position++;
 		}
 		return position;
+	}
+
+	/**
+	 * use to obtain the reference of this figure
+	 * (use in order to launch an edit request)
+	 * @return the constraintfigure
+	 */
+	public ConstraintFigure getConstraintFigure(){
+		return this;
+	}
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure#setText(java.lang.String)
+	 *
+	 * @param text
+	 */
+	public void setText(String text) {
+		// generates new ones
+		textFlow.setText(LEFT_BRACE +text+RIGHT_BRACE);
+	}
+	/**
+	 * 
+	 * @return the textflow of the constraint that contain the string of the specification
+	 */
+	public TextFlowEx getTextFlow(){
+		return textFlow;
+	}
+	/**
+	 * 
+	 * @return the container of the text flow
+	 */
+	public FlowPage getPageFlow() {
+		return page;
+
+	}
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure#getText()
+	 *
+	 * @return the display string that  represents the specification
+	 */
+	public String getText() {
+		return textFlow.getText();
+	}
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure#setIcon(org.eclipse.swt.graphics.Image)
+	 *
+	 * @param icon
+	 */
+	public void setIcon(Image icon) {
+		// TODO Auto-generated method stub
+
+	}
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure#getIcon()
+	 *
+	 * @return
+	 */
+	public Image getIcon() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	/**
+	 * 	
+	 * @see org.eclipse.draw2d.Figure#getMinimumSize(int, int)
+	 *
+	 * 
+	 */
+	public Dimension getMinimumSize(int wHint, int hHint) {
+		// TODO Auto-generated method stub
+		return new Dimension(20,20);
+	}
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.diagram.common.figure.node.IMultilineEditableFigure#getEditionLocation()
+	 *
+	 */
+	public Point getEditionLocation() {
+		return page.getLocation();
 	}
 
 }

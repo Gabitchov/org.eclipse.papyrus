@@ -476,22 +476,22 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String createEdges1Group_title;
+	public static String createNodes1Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createEdges1Group_desc;
+	public static String createNodes1Group_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createNodes2Group_title;
+	public static String createEdges2Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createNodes2Group_desc;
+	public static String createEdges2Group_desc;
 
 	/**
 	 * @generated

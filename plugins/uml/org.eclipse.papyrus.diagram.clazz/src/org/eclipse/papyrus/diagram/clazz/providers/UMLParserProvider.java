@@ -58,6 +58,8 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentBody2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentBodyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ComponentNameEditPartCN;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintBodyEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintBodyEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintLabelEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintNameEditPart;
@@ -94,7 +96,6 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.PropertyEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.RealizationName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ReceptionEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ShapeNamedElementNameEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ShapeNamedElementStereotypeLabelEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SignalNameEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.SlotEditPart;
@@ -106,6 +107,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.UsageNameEditPart;
 import org.eclipse.papyrus.diagram.clazz.parsers.MessageFormatParser;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.common.parser.CommentParser;
+import org.eclipse.papyrus.diagram.common.parser.ConstraintParser;
 import org.eclipse.papyrus.diagram.common.parser.packageimport.PackageImportVisibilityParser;
 import org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -691,6 +693,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private ConstraintParser constraintSpecification_5159Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConstraintSpecification_5159Parser() {
+		if(constraintSpecification_5159Parser == null) {
+			constraintSpecification_5159Parser = new ConstraintParser();
+		}
+		return constraintSpecification_5159Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser getConstraintName_5064Parser() {
 		if(constraintName_5064Parser == null) {
 			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
@@ -698,6 +715,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			constraintName_5064Parser = parser;
 		}
 		return constraintName_5064Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ConstraintParser constraintSpecification_5160Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConstraintSpecification_5160Parser() {
+		if(constraintSpecification_5160Parser == null) {
+			constraintSpecification_5160Parser = new ConstraintParser();
+		}
+		return constraintSpecification_5160Parser;
 	}
 
 	/**
@@ -1229,6 +1261,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getDataTypeName_5035Parser();
 		case ConstraintNameEditPart.VISUAL_ID:
 			return getConstraintName_5037Parser();
+		case ConstraintBodyEditPart.VISUAL_ID:
+			return getConstraintSpecification_5159Parser();
 		case CommentBodyEditPart.VISUAL_ID:
 			return getCommentBody_5038Parser();
 		case DiagramNameEditPart.VISUAL_ID:
@@ -1297,6 +1331,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getCommentBody_5063Parser();
 		case ConstraintName2EditPart.VISUAL_ID:
 			return getConstraintName_5064Parser();
+		case ConstraintBodyEditPartCN.VISUAL_ID:
+			return getConstraintSpecification_5160Parser();
 		case SlotEditPart.VISUAL_ID:
 			return getSlot_3030Parser();
 		case AssociationClassRoleSourceEditPart.VISUAL_ID:

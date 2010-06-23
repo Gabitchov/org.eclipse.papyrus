@@ -32,6 +32,7 @@ import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.InterfaceRealization;
+import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
@@ -42,8 +43,10 @@ import org.eclipse.uml2.uml.Reception;
 import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.Substitution;
 import org.eclipse.uml2.uml.TimeObservation;
+import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.Usage;
+import org.eclipse.uml2.uml.ValueSpecification;
 
 /**
  * @generated
@@ -273,6 +276,8 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Constraint_2011(instance);
 			instance.setName((String)value_0);
+			Object value_1 = specification_Constraint_2011(instance);
+			instance.setSpecification((ValueSpecification)value_1);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -285,6 +290,8 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Constraint_3029(instance);
 			instance.setName((String)value_0);
+			Object value_1 = specification_Constraint_3029(instance);
+			instance.setSpecification((ValueSpecification)value_1);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -787,6 +794,15 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	private ValueSpecification specification_Constraint_2011(Constraint self) {
+		LiteralString literalString = UMLFactory.eINSTANCE.createLiteralString();
+		literalString.setValue("");
+		return literalString;
+	}
+
+	/**
+	 * @generated
+	 */
 	private String name_DurationObservation_2095(DurationObservation self) {
 		return org.eclipse.papyrus.diagram.common.helper.NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
@@ -803,6 +819,15 @@ public class ElementInitializers {
 	 */
 	private String name_Constraint_3029(Constraint self) {
 		return getName(self);
+	}
+
+	/**
+	 * @generated
+	 */
+	private ValueSpecification specification_Constraint_3029(Constraint self) {
+		LiteralString literalString = UMLFactory.eINSTANCE.createLiteralString();
+		literalString.setValue("");
+		return literalString;
 	}
 
 	/**

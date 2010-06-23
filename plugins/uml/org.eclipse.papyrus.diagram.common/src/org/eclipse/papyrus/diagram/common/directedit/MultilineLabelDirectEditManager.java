@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure;
+import org.eclipse.papyrus.diagram.common.figure.node.IMultilineEditableFigure;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 
@@ -58,7 +59,7 @@ public class MultilineLabelDirectEditManager extends TextDirectEditManager {
 	public static Class getTextCellEditorClass(GraphicalEditPart source) {
 		IFigure figure = source.getFigure();
 
-		if(figure instanceof HTMLCornerBentFigure) {
+		if(figure instanceof IMultilineEditableFigure) {
 			return MultiLineCellEditor.class;
 		} else {
 			return TextDirectEditManager.getTextCellEditorClass(source);

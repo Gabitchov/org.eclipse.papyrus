@@ -25,6 +25,7 @@ import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.ToolbarLayout;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.text.BlockFlow;
 import org.eclipse.draw2d.text.FlowPage;
 import org.eclipse.gmf.runtime.common.ui.util.DisplayUtils;
@@ -47,7 +48,7 @@ import org.w3c.dom.NodeList;
 /**
  * Corner bend figure able to display styled text formatted in html
  */
-public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigure {
+public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigure, IMultilineEditableFigure{
 	
 	/** indicates if the figure should use local coordinates or not */
 	protected boolean useLocalCoordinates = false;
@@ -659,5 +660,13 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 		public Map<String, Object> getData() {
 			return data;
 		}
+	}
+/**
+ * 
+ * @see org.eclipse.papyrus.diagram.common.figure.node.IMultilineEditableFigure#getEditionLocation()
+ *
+ */
+	public Point getEditionLocation() {
+		return getBounds().getTopLeft();
 	}
 }

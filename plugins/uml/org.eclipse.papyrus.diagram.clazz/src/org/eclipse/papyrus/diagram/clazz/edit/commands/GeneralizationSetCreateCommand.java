@@ -36,8 +36,8 @@ import org.eclipse.uml2.uml.UMLFactory;
 public class GeneralizationSetCreateCommand extends EditElementCommand {
 
 	/**
-	 * Default approach is to traverse ancestors of the source to find instance of container. Modify
-	 * with appropriate logic.
+	 * Default approach is to traverse ancestors of the source to find instance
+	 * of container. Modify with appropriate logic.
 	 * 
 	 * @generated
 	 */
@@ -92,7 +92,8 @@ public class GeneralizationSetCreateCommand extends EditElementCommand {
 			return false;
 		}
 		if(getSource() == null) {
-			return true; // link creation is in progress; source is not defined yet
+			return true; // link creation is in progress; source is not defined
+							// yet
 		}
 		// target may be null here but it's possible to check constraint
 		if(getContainer() == null) {

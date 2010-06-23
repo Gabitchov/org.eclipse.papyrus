@@ -86,8 +86,9 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 		 * @generated
 		 */
 		OpenDiagramCommand(HintedDiagramLinkStyle linkStyle) {
-			// editing domain is taken for original diagram, 
-			// if we open diagram from another file, we should use another editing domain
+			// editing domain is taken for original diagram,
+			// if we open diagram from another file, we should use another
+			// editing domain
 			super(TransactionUtil.getEditingDomain(linkStyle), Messages.CommandName_OpenDiagram, null);
 			diagramFacet = linkStyle;
 		}

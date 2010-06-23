@@ -249,66 +249,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	public Tool createTool(String toolId) {
-		if(toolId.equals(CLAZZ_TOOL_ABSTRACTION)) {
-			return createAbstraction1CreationTool();
-		}
-		if(toolId.equals(CLAZZ_TOOL_ASSOCIATION)) {
-			return createAssociation2CreationTool();
-		}
-		if(toolId.equals(CLAZZ_TOOL_ASSOCIATIONBRANCH)) {
-			return createAssociationBranch3CreationTool();
-		}
-		if(toolId.equals(CLAZZ_TOOL_ASSOCIATIONCLASS)) {
-			return createAssociationClass4CreationTool();
-		}
-		if(toolId.equals(CLAZZ_TOOL_CONTAINMENTLINK)) {
-			return createContainmentLink5CreationTool();
-		}
-		if(toolId.equals(CLAZZ_TOOL_DEPENDENCY)) {
-			return createDependency6CreationTool();
-		}
-		if(toolId.equals(CLAZZ_TOOL_DEPENDENCYBRANCH)) {
-			return createDependencyBranch7CreationTool();
-		}
-		if(toolId.equals(CLAZZ_TOOL_ELEMENTIMPORT)) {
-			return createElementImport8CreationTool();
-		}
-		if(toolId.equals(CLAZZ_TOOL_GENERALIZATION)) {
-			return createGeneralization9CreationTool();
-		}
-		if(toolId.equals(CLAZZ_TOOL_GENERALIZATIONSET)) {
-			return createGeneralizationSet10CreationTool();
-		}
-		if(toolId.equals(CLAZZ_TOOL_INSTANCESPECIFICATIONLINK)) {
-			return createInstanceSpecificationLinkCreationTool();
-		}
-		if(toolId.equals(CLAZZ_TOOL_INTERFACEREALIZATION)) {
-			return createInterfaceRealization12CreationTool();
-		}
-		if(toolId.equals(CLAZZ_TOOL_LINK)) {
-			return createLink13CreationTool();
-		}
-		if(toolId.equals(CLAZZ_TOOL_PACKAGEIMPORT)) {
-			return createPackageImport14CreationTool();
-		}
-		if(toolId.equals(CLAZZ_TOOL_PACKAGEMERGE)) {
-			return createPackageMerge15CreationTool();
-		}
-		if(toolId.equals(CLAZZ_TOOL_PROFILEAPPLICATION)) {
-			return createProfileApplication16CreationTool();
-		}
-		if(toolId.equals(CLAZZ_TOOL_REALIZATION)) {
-			return createRealization17CreationTool();
-		}
-		if(toolId.equals(CLAZZ_TOOL_SUBSTITUTION)) {
-			return createSubstitution18CreationTool();
-		}
-		if(toolId.equals(CLAZZ_TOOL_USAGE)) {
-			return createUsage19CreationTool();
-		}
-		if(toolId.equals(CLAZZ_TOOL_TEMPLATEBINDING)) {
-			return createTemplateBinding20CreationTool();
-		}
 		if(toolId.equals(CLAZZ_TOOL_CLASS)) {
 			return createClass1CreationTool();
 		}
@@ -374,6 +314,66 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		}
 		if(toolId.equals(CREATETIMEOBSERVATION22CREATIONTOOL)) {
 			return createTimeObservation22CreationTool();
+		}
+		if(toolId.equals(CLAZZ_TOOL_ABSTRACTION)) {
+			return createAbstraction1CreationTool();
+		}
+		if(toolId.equals(CLAZZ_TOOL_ASSOCIATION)) {
+			return createAssociation2CreationTool();
+		}
+		if(toolId.equals(CLAZZ_TOOL_ASSOCIATIONBRANCH)) {
+			return createAssociationBranch3CreationTool();
+		}
+		if(toolId.equals(CLAZZ_TOOL_ASSOCIATIONCLASS)) {
+			return createAssociationClass4CreationTool();
+		}
+		if(toolId.equals(CLAZZ_TOOL_CONTAINMENTLINK)) {
+			return createContainmentLink5CreationTool();
+		}
+		if(toolId.equals(CLAZZ_TOOL_DEPENDENCY)) {
+			return createDependency6CreationTool();
+		}
+		if(toolId.equals(CLAZZ_TOOL_DEPENDENCYBRANCH)) {
+			return createDependencyBranch7CreationTool();
+		}
+		if(toolId.equals(CLAZZ_TOOL_ELEMENTIMPORT)) {
+			return createElementImport8CreationTool();
+		}
+		if(toolId.equals(CLAZZ_TOOL_GENERALIZATION)) {
+			return createGeneralization9CreationTool();
+		}
+		if(toolId.equals(CLAZZ_TOOL_GENERALIZATIONSET)) {
+			return createGeneralizationSet10CreationTool();
+		}
+		if(toolId.equals(CLAZZ_TOOL_INSTANCESPECIFICATIONLINK)) {
+			return createInstanceSpecificationLinkCreationTool();
+		}
+		if(toolId.equals(CLAZZ_TOOL_INTERFACEREALIZATION)) {
+			return createInterfaceRealization12CreationTool();
+		}
+		if(toolId.equals(CLAZZ_TOOL_LINK)) {
+			return createLink13CreationTool();
+		}
+		if(toolId.equals(CLAZZ_TOOL_PACKAGEIMPORT)) {
+			return createPackageImport14CreationTool();
+		}
+		if(toolId.equals(CLAZZ_TOOL_PACKAGEMERGE)) {
+			return createPackageMerge15CreationTool();
+		}
+		if(toolId.equals(CLAZZ_TOOL_PROFILEAPPLICATION)) {
+			return createProfileApplication16CreationTool();
+		}
+		if(toolId.equals(CLAZZ_TOOL_REALIZATION)) {
+			return createRealization17CreationTool();
+		}
+		if(toolId.equals(CLAZZ_TOOL_SUBSTITUTION)) {
+			return createSubstitution18CreationTool();
+		}
+		if(toolId.equals(CLAZZ_TOOL_USAGE)) {
+			return createUsage19CreationTool();
+		}
+		if(toolId.equals(CLAZZ_TOOL_TEMPLATEBINDING)) {
+			return createTemplateBinding20CreationTool();
 		}
 
 		// default return: null

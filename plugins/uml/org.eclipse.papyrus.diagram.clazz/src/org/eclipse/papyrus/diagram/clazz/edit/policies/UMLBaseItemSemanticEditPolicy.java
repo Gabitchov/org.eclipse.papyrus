@@ -92,7 +92,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		LinkConstraints() {
+		public LinkConstraints() {
 			// use static method #getLinkConstraints() to access instance
 		}
 
@@ -526,10 +526,11 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	}
 
 	/**
-	 * Extended request data key to hold editpart visual id. Add visual id of edited editpart to
-	 * extended data of the request so command switch can decide what kind of diagram element is
-	 * being edited. It is done in those cases when it's not possible to deduce diagram element kind
-	 * from domain element.
+	 * Extended request data key to hold editpart visual id. Add visual id of
+	 * edited editpart to extended data of the request so command switch can
+	 * decide what kind of diagram element is being edited. It is done in those
+	 * cases when it's not possible to deduce diagram element kind from domain
+	 * element.
 	 * 
 	 * @generated
 	 */
