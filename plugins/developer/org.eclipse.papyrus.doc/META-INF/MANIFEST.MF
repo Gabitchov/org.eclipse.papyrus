@@ -6,4 +6,6 @@ Bundle-Version: 0.7.0.qualifier
 Bundle-Vendor: CEA LIST
 Require-Bundle: org.eclipse.equinox.app,
  org.eclipse.ui,
- org.eclipse.help
+ org.eclipse.help,
+ org.eclipse.ui.intro,
+ org.eclipse.pde.ui;bundle-version="3.6.0"

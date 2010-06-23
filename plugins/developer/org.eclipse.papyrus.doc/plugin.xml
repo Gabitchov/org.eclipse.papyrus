@@ -54,6 +54,12 @@
    
   <extension point="org.eclipse.help.toc">
     <toc file="toc.xml" primary="true"/>
-	<index path="index"/>
+  </extension>
+  <extension
+        point="org.eclipse.ui.intro.configExtension">
+     <configExtension
+           configId="org.eclipse.ui.intro.universalConfig"
+           content="intro/firststeps.xml">
+     </configExtension>
   </extension>
 </plugin>
