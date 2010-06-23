@@ -4,7 +4,7 @@ Bundle-Name: SysML Block Definition Diagram
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.diagram.blockdefinition;singleton:=true
 Bundle-Version: 0.7.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.sysml.diagram.blockdefinition.Activator
-Bundle-Vendor: CEA LIST
+Bundle-Vendor: Eclipse.org
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.sysml;bundle-version="0.7.0",
