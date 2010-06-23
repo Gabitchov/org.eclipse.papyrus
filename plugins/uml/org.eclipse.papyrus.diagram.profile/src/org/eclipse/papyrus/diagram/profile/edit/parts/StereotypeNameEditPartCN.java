@@ -717,6 +717,7 @@ public class StereotypeNameEditPartCN extends CompartmentEditPart implements ITe
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 

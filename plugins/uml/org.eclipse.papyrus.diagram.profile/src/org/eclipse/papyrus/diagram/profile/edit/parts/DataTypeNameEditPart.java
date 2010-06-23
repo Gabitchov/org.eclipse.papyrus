@@ -717,6 +717,7 @@ public class DataTypeNameEditPart extends CompartmentEditPart implements ITextAw
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 

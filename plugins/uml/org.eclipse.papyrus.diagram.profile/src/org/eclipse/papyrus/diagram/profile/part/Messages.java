@@ -356,12 +356,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String createMetaclass3CreationTool_title;
+	public static String createImportMetaclass3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createMetaclass3CreationTool_desc;
+	public static String createImportMetaclass3CreationTool_desc;
 
 	/**
 	 * @generated

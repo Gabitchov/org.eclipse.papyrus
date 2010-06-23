@@ -26,6 +26,7 @@ import org.eclipse.papyrus.diagram.profile.edit.parts.ModelEditPartCN;
  * this a specific editpart used to overload the method createNodePlate
  */
 public class CustomModelEditPartCN extends ModelEditPartCN {
+
 	protected static final String ICONS_PATH = "icons/Triangle.gif"; //$NON-NLS-1$
 
 
@@ -43,12 +44,13 @@ public class CustomModelEditPartCN extends ModelEditPartCN {
 		DefaultSizeNodeFigure result = new PackageNodePlateFigure(200, 100);
 		return result;
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
 	protected IFigure createNodeShape() {
 		primaryShape = new PackageFigure();
-		((PackageFigure)primaryShape).setTagIcon(Activator.getPluginIconImage(Activator.ID,ICONS_PATH));
+		((PackageFigure)primaryShape).setTagIcon(Activator.getPluginIconImage(Activator.ID, ICONS_PATH));
 		return primaryShape;
 	}
 }

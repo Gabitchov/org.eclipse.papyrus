@@ -716,6 +716,9 @@ public class GeneralizationAppliedStereotypeEditPart extends LabelEditPart imple
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 

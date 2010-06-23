@@ -768,6 +768,7 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 
 			this.setFont(THIS_FONT);
 
+
 		}
 
 	}

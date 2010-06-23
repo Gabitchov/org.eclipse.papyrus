@@ -717,6 +717,7 @@ public class ProfileNameEditPartTN extends CompartmentEditPart implements ITextA
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 

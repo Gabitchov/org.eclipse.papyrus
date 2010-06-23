@@ -718,6 +718,7 @@ public class CommentBodyEditPart extends CompartmentEditPart implements ITextAwa
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 

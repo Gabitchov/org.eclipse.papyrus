@@ -134,10 +134,10 @@ public class CustomMetaClassCreateCommand extends org.eclipse.gmf.runtime.diagra
 				notationLocation.setY(location.y + iterNbAddedMetaclasses++ * HEIGHT_BETWEEN_TWO_METACLASS);
 				node.setLayoutConstraint(notationLocation);
 				//display stereotype
-				Element UMLelement= (Element)adapter.getAdapter(EObject.class);
-				String stereotypeName=UMLelement.getAppliedStereotypes().get(0).getQualifiedName();
-				Command command=AppliedStereotypeHelper.getAddAppliedStereotypeCommand(getEditingDomain(), node, stereotypeName, VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION);
-				 command.execute();
+				Element UMLelement = (Element)adapter.getAdapter(EObject.class);
+				String stereotypeName = UMLelement.getAppliedStereotypes().get(0).getQualifiedName();
+				Command command = AppliedStereotypeHelper.getAddAppliedStereotypeCommand(getEditingDomain(), node, stereotypeName, VisualInformationPapyrusConstant.STEREOTYPE_TEXT_HORIZONTAL_PRESENTATION);
+				command.execute();
 			}
 			return CommandResult.newOKCommandResult(myViewDescriptor);
 		}

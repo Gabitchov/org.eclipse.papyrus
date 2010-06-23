@@ -186,9 +186,9 @@
 	<entry
        defineOnly="true"
        description="Import a new Metaclass"
-       id="createMetaclass3CreationTool"
+       id="createImportMetaclass3CreationTool"
        kind="tool"
-       label="Metaclass"
+       label="Import Metaclass"
        large_icon="/icons/Metaclass.gif"
        path=""
        small_icon="/icons/Metaclass.gif">
@@ -423,7 +423,7 @@
           path="/createClassifiers2Group">
     </predefinedEntry>
  	<predefinedEntry
-          id="createMetaclass3CreationTool"
+          id="createImportMetaclass3CreationTool"
           path="/createClassifiers2Group">
     </predefinedEntry>
  	<predefinedEntry
@@ -1100,7 +1100,7 @@
                id="org.eclipse.papyrus.diagram.ui.toolbar">
             <command
                   commandId="org.eclipse.papyrus.diagram.profile.CreateProfileDiagramCommand"
-                  icon="platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/ProfileDiagramEditorIcons/ProfileDiagramEditorIcon_16x16-32.bmp"
+                  icon="platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/ProfileDiagramEditorIcons/ProfileDiagramEditorIcon_16x16-32.gif"
                   label="Create a new Profile Diagram"
                   style="push"
                   tooltip="Create a new Profile Diagram">
@@ -1122,7 +1122,7 @@
                label="Diagrams">
             <command
                   commandId="org.eclipse.papyrus.diagram.profile.CreateProfileDiagramCommand"
-                  icon="platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/ProfileDiagramEditorIcons/ProfileDiagramEditorIcon_16x16-32.bmp"
+                  icon="platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/ProfileDiagramEditorIcons/ProfileDiagramEditorIcon_16x16-32.gif"
                   label="Create a new Profile Diagram"
                   style="push"
                   tooltip="Create a new Profile Diagram">
@@ -1159,12 +1159,12 @@
       <editorDiagram
             actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
             factoryClass="org.eclipse.papyrus.diagram.profile.ProfileDiagramEditorFactory"
-            icon="platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/ProfileDiagramEditorIcons/ProfileDiagramEditorIcon_16x16-32.bmp">
+            icon="platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/ProfileDiagramEditorIcons/ProfileDiagramEditorIcon_16x16-32.gif">
       </editorDiagram>
       <creationCommand
             creationCommandClass="org.eclipse.papyrus.diagram.profile.CreateProfileDiagramCommand"
             creationCondition="org.eclipse.papyrus.diagram.profile.ProfileDiagramCreationCondition"
-            icon="platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/ProfileDiagramEditorIcons/ProfileDiagramEditorIcon_16x16-32.bmp"
+            icon="platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/ProfileDiagramEditorIcons/ProfileDiagramEditorIcon_16x16-32.gif"
             id="org.eclipse.papyrus.diagram.profile.CreateProfileDiagramCommand"
             language="profile"
             label="Create UML Profile Diagrams">

@@ -61,7 +61,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private final static String CREATEMETACLASS3CREATIONTOOL = "createMetaclass3CreationTool"; //$NON-NLS-1$
+	private final static String CREATEIMPORTMETACLASS3CREATIONTOOL = "createImportMetaclass3CreationTool"; //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -172,8 +172,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		if(toolId.equals(CREATESTEREOTYPE2CREATIONTOOL)) {
 			return createStereotype2CreationTool();
 		}
-		if(toolId.equals(CREATEMETACLASS3CREATIONTOOL)) {
-			return createMetaclass3CreationTool();
+		if(toolId.equals(CREATEIMPORTMETACLASS3CREATIONTOOL)) {
+			return createImportMetaclass3CreationTool();
 		}
 		if(toolId.equals(CREATEENUMERATION4CREATIONTOOL)) {
 			return createEnumeration4CreationTool();
@@ -312,7 +312,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createMetaclass3CreationTool() {
+	private Tool createImportMetaclass3CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.Class_1031);
 		types.add(UMLElementTypes.Class_3028);

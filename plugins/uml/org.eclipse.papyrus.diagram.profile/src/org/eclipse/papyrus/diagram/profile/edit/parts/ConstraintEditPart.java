@@ -151,6 +151,7 @@ ShapeNodeEditPart {
 			return true;
 		}
 
+
 		return false;
 	}
 
@@ -634,6 +635,7 @@ ShapeNodeEditPart {
 		 */
 		public CornerBentDescriptor() {
 
+
 			this.setForegroundColor(ColorConstants.black);
 			this.setBackgroundColor(THIS_BACK);
 			createContents();
@@ -644,12 +646,16 @@ ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
+
 			fCornerBentContentLabel = new WrappingLabel();
 			fCornerBentContentLabel.setText("");
 
 			fCornerBentContentLabel.setFont(FCORNERBENTCONTENTLABEL_FONT);
 
+
+
 			this.add(fCornerBentContentLabel);
+
 
 		}
 

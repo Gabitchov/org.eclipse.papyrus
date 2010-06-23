@@ -212,6 +212,7 @@ public class UMLParserProvider {
 		return diagramName_2Parser;
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -448,6 +449,7 @@ public class UMLParserProvider {
 		return dataTypeName_5061Parser;
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -612,6 +614,7 @@ public class UMLParserProvider {
 		}
 		return packageImportVisibility_6022Parser;
 	}
+
 
 	private static org.eclipse.papyrus.diagram.profile.providers.UMLParserProvider ourInstance;
 

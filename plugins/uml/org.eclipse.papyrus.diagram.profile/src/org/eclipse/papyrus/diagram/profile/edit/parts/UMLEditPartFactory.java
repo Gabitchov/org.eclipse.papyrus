@@ -234,6 +234,7 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ExtensionEditPart.VISUAL_ID:
 				return new ExtensionEditPart(view);
 
+
 			case AssociationEditPart.VISUAL_ID:
 				return new AssociationEditPart(view);
 
@@ -249,8 +250,10 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case AssociationMultiplicityTargetLabelEditPart.VISUAL_ID:
 				return new AssociationMultiplicityTargetLabelEditPart(view);
 
+
 			case ProfileApplicationEditPart.VISUAL_ID:
 				return new ProfileApplicationEditPart(view);
+
 
 			case AssociationBranchEditPart.VISUAL_ID:
 				return new AssociationBranchEditPart(view);
@@ -258,11 +261,13 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case AssociationBranchRoleEditPart.VISUAL_ID:
 				return new AssociationBranchRoleEditPart(view);
 
+
 			case GeneralizationEditPart.VISUAL_ID:
 				return new GeneralizationEditPart(view);
 
 			case GeneralizationAppliedStereotypeEditPart.VISUAL_ID:
 				return new GeneralizationAppliedStereotypeEditPart(view);
+
 
 			case DependencyEditPart.VISUAL_ID:
 				return new DependencyEditPart(view);
@@ -273,8 +278,10 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case DependencyAppliedStereotypeEditPart.VISUAL_ID:
 				return new DependencyAppliedStereotypeEditPart(view);
 
+
 			case DependencyBranchEditPart.VISUAL_ID:
 				return new DependencyBranchEditPart(view);
+
 
 			case ElementImportEditPart.VISUAL_ID:
 				return new ElementImportEditPart(view);
@@ -285,14 +292,17 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case AppliedStereotypeElementImportEditPart.VISUAL_ID:
 				return new AppliedStereotypeElementImportEditPart(view);
 
+
 			case PackageImportEditPart.VISUAL_ID:
 				return new PackageImportEditPart(view);
 
 			case PackageImportAppliedStereotypeEditPart.VISUAL_ID:
 				return new PackageImportAppliedStereotypeEditPart(view);
 
+
 			case CommentAnnotatedElementEditPart.VISUAL_ID:
 				return new CommentAnnotatedElementEditPart(view);
+
 
 			case ConstraintConstrainedElementEditPart.VISUAL_ID:
 				return new ConstraintConstrainedElementEditPart(view);

@@ -717,6 +717,7 @@ public class ModelNameEditPartCN extends CompartmentEditPart implements ITextAwa
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 

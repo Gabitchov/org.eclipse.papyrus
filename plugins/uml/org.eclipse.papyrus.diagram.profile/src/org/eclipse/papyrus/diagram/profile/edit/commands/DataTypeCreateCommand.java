@@ -75,6 +75,7 @@ public class DataTypeCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -90,7 +91,10 @@ public class DataTypeCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
+
 		return true;
+
+
 
 	}
 
@@ -99,10 +103,13 @@ public class DataTypeCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		DataType newElement = UMLFactory.eINSTANCE.createDataType();
 
 		Package owner = (Package)getElementToEdit();
 		owner.getPackagedElements().add(newElement);
+
 
 		ElementInitializers.getInstance().init_DataType_2010(newElement);
 

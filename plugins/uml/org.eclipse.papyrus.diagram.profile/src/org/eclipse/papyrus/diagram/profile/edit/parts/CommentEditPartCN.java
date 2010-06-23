@@ -145,6 +145,7 @@ ShapeNodeEditPart {
 			return true;
 		}
 
+
 		return false;
 	}
 

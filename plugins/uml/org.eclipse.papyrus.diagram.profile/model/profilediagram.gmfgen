@@ -3005,7 +3005,7 @@
               genNodes="/0/@diagram/@childNodes.5 /0/@diagram/@topLevelNodes.2"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
-              title="Metaclass"
+              title="Import Metaclass"
               description="Import a new Metaclass"
               largeIconPath="/icons/Metaclass.gif"
               smallIconPath="/icons/Metaclass.gif"

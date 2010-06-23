@@ -717,6 +717,7 @@ public class PackageNameEditPartCN extends CompartmentEditPart implements ITextA
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 

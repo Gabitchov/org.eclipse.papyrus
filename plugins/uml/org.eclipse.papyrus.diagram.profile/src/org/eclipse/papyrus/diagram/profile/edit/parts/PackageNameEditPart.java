@@ -717,6 +717,7 @@ public class PackageNameEditPart extends CompartmentEditPart implements ITextAwa
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 
