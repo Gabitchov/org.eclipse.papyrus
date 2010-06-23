@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+<!-- Diagram declaration -->
+<extension point="org.eclipse.papyrus.core.papyrusDiagram">
+	<creationCommand
+		creationCommandClass="org.eclipse.papyrus.uml.diagram.pkg.PackageDiagramCreateCommand"
+		icon="icons/diagram/PackageDiagramEditorIcon_16x16-32.gif"
+		id="org.eclipse.papyrus.uml.diagram.pkg.CreateCommand"
+		language="uml"
+		label="UML Package Diagram"/>
+	<editorDiagram
+		actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
+		factoryClass="org.eclipse.papyrus.uml.diagram.pkg.PackageDiagramEditorFactory"
+		icon="icons/diagram/PackageDiagramEditorIcon_16x16-32.gif" />
+</extension>
+
+<!-- Diagram creation command and handler -->
+<extension point="org.eclipse.ui.commands">
+	<command id="org.eclipse.papyrus.uml.diagram.pkg.CreateCommand"
+		name="Create a new Package Diagram"
+		description="Create a new Package Diagram"
+		categoryId="org.eclipse.papyrus.editor.category"/>
+</extension>
+
+<extension point="org.eclipse.ui.handlers">
+	<handler
+		class="org.eclipse.papyrus.uml.diagram.pkg.PackageDiagramCreateCommand"
+		commandId="org.eclipse.papyrus.uml.diagram.pkg.CreateCommand">
+		<activeWhen>
+			<with variable="activeEditorId">
+				<equals value="org.eclipse.papyrus.core.papyrusEditor" />
+			</with>
+		</activeWhen>
+	</handler>
+</extension>
+
+<!-- Diagram creation command registration in menu and toolbar -->
+<extension point="org.eclipse.ui.menus">
+
+	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
+	<menu id="org.eclipse.papyrus.diagram.ui.menu.diagrams" label="Diagrams">
+		<command commandId="org.eclipse.papyrus.uml.diagram.pkg.CreateCommand"
+			icon="icons/diagram/PackageDiagramEditorIcon_16x16-32.gif" label="Create a new Package Diagram"
+			style="push" tooltip="Create a new Package Diagram">
+			<visibleWhen>
+				<with variable="activeEditorId">
+					<equals value="org.eclipse.papyrus.core.papyrusEditor" />
+				</with>
+			</visibleWhen>
+		</command>
+	</menu>
+	</menuContribution>
+	
+	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
+	<toolbar id="org.eclipse.papyrus.diagram.ui.toolbar">
+		<command commandId="org.eclipse.papyrus.uml.diagram.pkg.CreateCommand"
+			icon="icons/diagram/PackageDiagramEditorIcon_16x16-32.gif" label="Create a new Package Diagram"
+			style="push" tooltip="Create a new Package Diagram">
+			<visibleWhen>
+				<with variable="activeEditorId">
+					<equals value="org.eclipse.papyrus.core.papyrusEditor" />
+				</with>
+			</visibleWhen>
+		</command>
+	</toolbar>
+	</menuContribution>
+</extension>
+
+<!-- Palette tool declaration (declares the real palette containment) -->
+<extension point="org.eclipse.papyrus.diagram.common.paletteDefinition"
+	name="UML_Package">
+	
+	<paletteDefinition ID="UML_Package"
+		class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+		name="UML_Package" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" 
+		path="palettes/package.palette.xml"
+		provider="Eclipse.org">
+		<Priority name="Low"/>
+		
+		<!-- Specify diagram this palette tools relate to -->						
+		<editor id="org.eclipse.papyrus.uml.diagram.pkg"/>
+	</paletteDefinition>
+</extension>
+
+
+<!-- Diagram view providers declaration -->
+<extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders">
+
+	<!-- Diagram view provider -->
+	<viewProvider class="org.eclipse.papyrus.uml.diagram.pkg.provider.PackageDiagramViewProvider">
+		<Priority name="Low"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Package"/>
+	</viewProvider>
+
+	<!-- ViewProvider for inherited elements (from ClassDiagramm UMLViewProvider) -->
+	<viewProvider class="org.eclipse.papyrus.uml.diagram.pkg.provider.InheritedElementViewProvider">
+		<Priority name="Low"/>
+		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2007, 3009"/> <!-- "2007, 3009" = Package / Package_CN -->
+		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4008, 4010"/> <!-- "4008" = Dependency, "4010" = PackageImport -->		
+	</viewProvider>	
+		
+</extension>
+
+<!-- Diagram edit part providers declaration -->
+<extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
+
+	<!-- Diagram edit part provider -->
+	<editpartProvider class="org.eclipse.papyrus.uml.diagram.pkg.provider.PackageDiagramEditPartProvider">
+		<Priority name="Low"/>
+		<object 
+			id="org.eclipse.papyrus.uml.diagram.package.Diagram"
+			class="org.eclipse.gmf.runtime.notation.Diagram">
+			<method name="getType()" value="Package"/>
+		</object>
+	</editpartProvider>
+
+	<!-- EditPartProvider for inherited elements (from Class Diagram) -->
+	<editpartProvider class="org.eclipse.papyrus.uml.diagram.pkg.provider.InheritedElementEditPartProvider">
+		<Priority name="Low"/>
+		
+		<!-- 
+			The semantic hints given here are used in case the provider is not already loaded.
+			As soon as the provider is loaded its provides method is used.
+			"2007" = Package
+			"5026" = Package name label
+			"7016" = Package packageable element compartment
+			"3009" = Package (Child Node)
+			"5017" = Package (Child Node) name label
+			"7010" = Package (Child Node) packageable element compartment -->			
+		<object
+			id="Package"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="2007, 5026, 7016"/>
+		</object>
+		<object
+			id="Package_CN"
+			class="org.eclipse.gmf.runtime.notation.Node">
+			<method name="getType()" value="3009, 5017, 7010"/>
+		</object>
+
+		<!-- 
+			"4008" = Dependency
+			"6026" = Dependency name label
+			"6027" = Dependency applied stereotype label
+			"4010" = PackageImport 
+			"6022" = PackageImport applied stereotype label -->					
+		<object
+			id="Dependency"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4008, 6026, 6027"/>
+		</object>
+		<object
+			id="PackageImport"
+			class="org.eclipse.gmf.runtime.notation.Edge">
+			<method name="getType()" value="4010, 6022"/>
+		</object>
+		
+		<context views="Package, Package_CN"/>
+		<context views="Dependency, PackageImport"/>
+		
+	</editpartProvider>
+		
+</extension>
+
+<!-- Preference pages declaration -->
+<extension point="org.eclipse.ui.preferencePages" id="prefpages">
+
+	<!-- Diagram Preference pages declaration -->
+	<page
+		id="org.eclipse.papyrus.uml.diagram.package.preferences"
+		name="Package Diagram"
+		category="org.eclipse.papyrus.preferences.diagrams"
+		class="org.eclipse.papyrus.uml.diagram.pkg.preferences.DiagramGeneralPreferencePage">
+	</page>
+
+	<page
+		id="org.eclipse.papyrus.uml.diagram.pkg.preferences.DiagramPrintingPreferencePage"
+		name="Printing"
+		category="org.eclipse.papyrus.uml.diagram.package.preferences"
+		class="org.eclipse.papyrus.uml.diagram.pkg.preferences.DiagramPrintingPreferencePage">
+	</page>
+
+	<page
+		id="org.eclipse.papyrus.uml.diagram.pkg.preferences.DiagramRulersAndGridPreferencePage"
+		name="Rulers and Grid"
+		category="org.eclipse.papyrus.uml.diagram.package.preferences"
+		class="org.eclipse.papyrus.uml.diagram.pkg.preferences.DiagramRulersAndGridPreferencePage">
+	</page>
+
+	<!-- Element Preference pages declaration -->
+	<page  	category="org.eclipse.papyrus.uml.diagram.package.preferences"
+		class="org.eclipse.papyrus.uml.diagram.pkg.preferences.PackagePreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.pkg.preferences.PackagePreferencePage"
+		name="Package">
+	</page>
+
+	<page  	category="org.eclipse.papyrus.uml.diagram.package.preferences"
+		class="org.eclipse.papyrus.uml.diagram.pkg.preferences.DependencyPreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.pkg.preferences.DependencyPreferencePage"
+		name="Dependency">
+	</page>
+			
+	<page  	category="org.eclipse.papyrus.uml.diagram.package.preferences"
+		class="org.eclipse.papyrus.uml.diagram.pkg.preferences.PackageImportPreferencePage"
+		id="org.eclipse.papyrus.uml.diagram.pkg.preferences.PackageImportPreferencePage"
+		name="PackageImport">
+	</page>	
+
+</extension>
+
+</plugin>
