@@ -89,6 +89,16 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 	/** key for the label attribute */
 	protected static final String LABEL = "label";
 
+	/** id for the node that stores the path to the file in the memento */
+	public static final String MEMENTO_PATH = "path";
+
+	/** identifier for preferences */
+	public static final String PROPERTY_VIEW_CUSTOMIZATIONS_ID = "propertyViewCustomizations"; // //$NON-NLS-1$
+
+	/** identifier for local paths */
+	public static final String PROPERTY_VIEW_CUSTOMIZATION = "propertyViewCustomization"; // //$NON-NLS-1$;
+
+
 	/** name of the contribution */
 	protected String name;
 

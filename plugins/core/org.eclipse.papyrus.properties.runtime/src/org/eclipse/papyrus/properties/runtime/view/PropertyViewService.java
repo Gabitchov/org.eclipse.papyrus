@@ -17,9 +17,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences.IPreferenceChangeListener;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences.PreferenceChangeEvent;
+import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.gmf.runtime.common.core.service.ExecutionStrategy;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.common.core.service.IProvider;
+import org.eclipse.gmf.runtime.common.core.service.ProviderChangeEvent;
 import org.eclipse.gmf.runtime.common.core.service.Service;
 import org.eclipse.gmf.runtime.common.ui.services.util.ActivityFilterProviderDescriptor;
 import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorController;
@@ -32,7 +37,7 @@ import org.eclipse.swt.widgets.Composite;
 /**
  * Service to provide property views providers.
  */
-public class PropertyViewService extends Service {
+public class PropertyViewService extends Service implements IPreferenceChangeListener {
 
 	/** instance of this service */
 	protected static PropertyViewService instance;
@@ -42,6 +47,8 @@ public class PropertyViewService extends Service {
 	 */
 	protected PropertyViewService() {
 		super();
+		IEclipsePreferences prefs = new InstanceScope().getNode(org.eclipse.papyrus.properties.runtime.Activator.ID);
+		prefs.addPreferenceChangeListener(this);
 	}
 
 	/**
@@ -67,8 +74,9 @@ public class PropertyViewService extends Service {
 	 * 
 	 * @return the list of property view Providers
 	 */
-	public List<?> getPropertyViewProviders() {
-		return findAllProviders();
+	@SuppressWarnings("unchecked")
+	public List<PropertyViewService.ProviderDescriptor> getPropertyViewProviders() {
+		return (List<PropertyViewService.ProviderDescriptor>)findAllProviders();
 	}
 
 	/**
@@ -210,6 +218,13 @@ public class PropertyViewService extends Service {
 		}
 
 		/**
+		 * Resets the provider
+		 */
+		public void resetProvider() {
+			provider = null;
+		}
+
+		/**
 		 * @see org.eclipse.ogmf.runtime.common.core.service.Service.ProviderDescriptor#getProvider()
 		 */
 		public IProvider getProvider() {
@@ -264,5 +279,17 @@ public class PropertyViewService extends Service {
 		return flattenMap;
 	}
 
-
+	/**
+	 * {@inheritDoc}
+	 */
+	public void preferenceChange(PreferenceChangeEvent event) {
+		if(XMLPropertyViewProvider.PROPERTY_VIEW_CUSTOMIZATIONS_ID.equals(event.getKey())) {
+			for(Object descriptor : getAllProviders()) {
+				if(descriptor instanceof ProviderDescriptor) {
+					((ProviderDescriptor)descriptor).resetProvider();
+				}
+			}
+			providerChanged(new ProviderChangeEvent(this));
+		}
+	}
 }

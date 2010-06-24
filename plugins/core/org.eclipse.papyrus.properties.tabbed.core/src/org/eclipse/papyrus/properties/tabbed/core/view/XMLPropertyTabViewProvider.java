@@ -46,14 +46,15 @@ import org.xml.sax.SAXException;
  */
 public class XMLPropertyTabViewProvider extends XMLPropertyViewProvider implements IPropertyTabViewProvider {
 
-	/** identifier for preferences */
-	public static final String PROPERTY_VIEW_CUSTOMIZATIONS_ID = "propertyViewCustomizations"; // //$NON-NLS-1$
-
-	/** identifier for local paths */
-	public static final String PROPERTY_VIEW_CUSTOMIZATION = "propertyViewCustomization"; // //$NON-NLS-1$;
-
 	/** list of tab descriptors provided by this provider */
 	protected List<ITabDescriptor> tabDescriptors = new ArrayList<ITabDescriptor>();
+
+	/** stores the configuration child, need in case of customization */
+	protected IConfigurationElement properyViewContributionConfigurationElement;
+
+	/** bundle that declares this extension */
+	protected Bundle bundle;
+
 
 	/**
 	 * {@inheritDoc}
@@ -100,7 +101,7 @@ public class XMLPropertyTabViewProvider extends XMLPropertyViewProvider implemen
 	public void configure(IConfigurationElement element) {
 		// 1. retrieve path of the xml file
 		IConfigurationElement[] children = element.getChildren();
-		Bundle bundle = Platform.getBundle(element.getContributor().getName());
+		bundle = Platform.getBundle(element.getContributor().getName());
 		if(bundle == null) {
 			Activator.log.warn("Ignoring extension " + element + ". Impossible to find bundle " + bundle); //$NON-NLS-1$ //$NON-NLS-2$  
 			return;
@@ -108,6 +109,8 @@ public class XMLPropertyTabViewProvider extends XMLPropertyViewProvider implemen
 		for(IConfigurationElement child : children) {
 			if(PROPERTY_VIEW_CONTRIBUTION.equals(child.getName())) {
 				// this is one of the configuration, parses the config itself, i.e. retrieve the xml file
+				// there is only one property view contribution child, it is possible to store this to reuse this later during customization exercise.
+				properyViewContributionConfigurationElement = child;
 				name = child.getAttribute(NAME);
 				id = child.getAttribute(ID);
 				if(id == null) {
@@ -128,15 +131,7 @@ public class XMLPropertyTabViewProvider extends XMLPropertyViewProvider implemen
 					// this path can be the path given in the plugin.xml file, but it could also be given by preferences..
 					// first, check if a preference is present for this contribution
 					String path = getCustomization(id);
-					InputStream stream = null;
-					if(path != null) {
-						// load the local file
-						stream = getLocalXmlfile(child, path, bundle);
-					} else {
-						// no custom for this file. Use the one in the plugin jar file
-						Activator.log.debug("Loading local file for provider: " + id + " in: " + path); // $NON-NLS-1$ $NON-NLS-2$
-						stream = getXmlFile(child, child.getAttribute(XML_PATH), bundle);
-					}
+					InputStream stream = getConfigurationContent();
 					// the file should never be null in this implementation, but sub-classes could return null
 					if(stream == null) {
 						throw new IOException("Impossible to load file: " + path); //$NON-NLS-1$
@@ -158,6 +153,33 @@ public class XMLPropertyTabViewProvider extends XMLPropertyViewProvider implemen
 	}
 
 	/**
+	 * Returns the file that defines the content of the property view defined by this provider
+	 * 
+	 * @return the file, located either in the plugin defining the provider, or in the preference area of the plugin
+	 * @throws IOException
+	 *         exception thrown when configuration file could not be found
+	 */
+	public InputStream getConfigurationContent() throws IOException {
+		// check if there is a local definition for the content of the property view
+		String path = getCustomization(id);
+		InputStream stream = null;
+		if(path != null) {
+			// load the local file
+			Activator.log.debug("Loading local file for provider: " + id + " in: " + path); // $NON-NLS-1$ $NON-NLS-2$
+			stream = getLocalXmlfileContent(properyViewContributionConfigurationElement, path, bundle);
+		} else {
+			// no custom for this file. Use the one in the plugin jar file
+			stream = getXmlFile(properyViewContributionConfigurationElement, properyViewContributionConfigurationElement.getAttribute(XML_PATH), bundle);
+		}
+		// the file should never be null in this implementation, but sub-classes could return null
+		if(stream == null) {
+			throw new IOException("Impossible to load file: " + path); //$NON-NLS-1$
+		} else {
+			return stream;
+		}
+	}
+
+	/**
 	 * Returns the content of the file, in the preference area
 	 * 
 	 * @param child
@@ -167,18 +189,26 @@ public class XMLPropertyTabViewProvider extends XMLPropertyViewProvider implemen
 	 * @param bundle
 	 *        the bundle which defines the extension
 	 * @return the content of the file
+	 * @throws FileNotFoundException
 	 */
-	protected InputStream getLocalXmlfile(IConfigurationElement child, String path, Bundle bundle) {
+	protected InputStream getLocalXmlfileContent(IConfigurationElement child, String path, Bundle bundle) throws FileNotFoundException {
+		return new FileInputStream(getLocalXmlfile(path));
+	}
+
+	/**
+	 * Returns the file, in the preference area
+	 * 
+	 * @param child
+	 *        the configuration element
+	 * @param path
+	 *        the path to the file, from the plugin preference place in .metadata place.
+	 * @param bundle
+	 *        the bundle which defines the extension
+	 * @return the file in the preference area
+	 */
+	public File getLocalXmlfile(String path) {
 		File file = Activator.getDefault().getStateLocation().append(path).toFile();
-		if(file.exists() && file.canRead()) {
-			try {
-				return new FileInputStream(file);
-			} catch (FileNotFoundException e) {
-				Activator.log.error("File not Found Exception! Impossible to read the file for path: " + path, e);
-			}
-		}
-		Activator.log.error("Impossible to find or read the file for path: " + path, null);
-		return null;
+		return file;
 	}
 
 	/**
@@ -242,11 +272,78 @@ public class XMLPropertyTabViewProvider extends XMLPropertyViewProvider implemen
 			// check the id
 			String id = memento.getString(ID);
 			if(providerId.equals(id)) {
-				return memento.getString("path");
+				return memento.getString(MEMENTO_PATH);
 			}
 		}
 		return null;
 
+	}
+
+	/**
+	 * Updates the configuration file for the content of the property view.
+	 * 
+	 * @param file
+	 *        the new file that contains the content
+	 */
+	public void setConfigurationFile(File file) {
+		XMLMemento root = getExistingCustomizations();
+		IMemento memento = retrieveMemento(root);
+
+		if(memento == null) {
+			memento = createMemento(root);
+		}
+
+		updateMemento(memento, file.getName());
+
+		// saving customization. The preferences being updated, this should allow providers to update
+		saveCustomizations(root);
+	}
+
+	/**
+	 * Updates the memento, giving the new path for this provider
+	 * 
+	 * @param memento
+	 *        the memento to update
+	 * @param file
+	 *        the path to the new file
+	 */
+	protected void updateMemento(IMemento memento, String filePath) {
+		memento.putString(MEMENTO_PATH, filePath);
+	}
+
+	/**
+	 * Creates a memento, and appends it to the specified memento
+	 * 
+	 * @param root
+	 *        the root memento where to add the created memento
+	 * @return the newly created memento
+	 */
+	protected IMemento createMemento(XMLMemento root) {
+		IMemento newMemento = root.createChild(PROPERTY_VIEW_CUSTOMIZATION);
+		newMemento.putString(ID, getId());
+		return newMemento;
+	}
+
+	/**
+	 * Retrieves the memento from the specified memento
+	 * 
+	 * @param root
+	 *        the root memento where to look for the memento
+	 * @return <code>null</code> if not found, the found memento in other case.
+	 */
+	protected IMemento retrieveMemento(XMLMemento root) {
+		IMemento[] mementos = root.getChildren(PROPERTY_VIEW_CUSTOMIZATION);
+
+		// retrieve memento. If not existing, create a new one
+		for(int i = 0; i < mementos.length; i++) {
+			IMemento memento = mementos[i];
+			// check the id
+			String id = memento.getString(ID);
+			if(getId().equals(id)) {
+				return memento;
+			}
+		}
+		return null;
 	}
 
 }

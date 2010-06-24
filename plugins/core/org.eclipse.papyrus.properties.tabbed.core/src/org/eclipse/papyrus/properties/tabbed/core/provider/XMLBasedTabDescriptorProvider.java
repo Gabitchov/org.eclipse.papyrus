@@ -21,10 +21,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.preferences.IEclipsePreferences;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences.IPreferenceChangeListener;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences.PreferenceChangeEvent;
+import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.properties.tabbed.core.Activator;
 import org.eclipse.papyrus.properties.tabbed.core.view.PropertyServiceUtil;
+import org.eclipse.papyrus.properties.tabbed.core.view.XMLPropertyTabViewProvider;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.internal.views.properties.tabbed.view.TabbedPropertyRegistry;
 import org.eclipse.ui.internal.views.properties.tabbed.view.TabbedPropertyRegistryFactory;
@@ -38,7 +43,17 @@ import org.eclipse.ui.views.properties.tabbed.ITabDescriptorProvider;
  * Provider for {@link ITabDescriptor} published in the xml file for properties view.
  */
 @SuppressWarnings("restriction")
-public class XMLBasedTabDescriptorProvider implements ITabDescriptorProvider {
+public class XMLBasedTabDescriptorProvider implements ITabDescriptorProvider, IPreferenceChangeListener {
+
+	/**
+	 * Creates a new XMLBasedTabDescriptorProvider.
+	 * 
+	 */
+	public XMLBasedTabDescriptorProvider() {
+		// register listener on preferences for the proeprties runtime plugin
+		IEclipsePreferences prefs = new InstanceScope().getNode(org.eclipse.papyrus.properties.runtime.Activator.ID);
+		prefs.addPreferenceChangeListener(this);
+	}
 
 	/** list of available tab descriptors */
 	protected ITabDescriptor[] descriptors = null;
@@ -155,5 +170,15 @@ public class XMLBasedTabDescriptorProvider implements ITabDescriptorProvider {
 				}
 			}
 		});
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void preferenceChange(PreferenceChangeEvent event) {
+		if(XMLPropertyTabViewProvider.PROPERTY_VIEW_CUSTOMIZATIONS_ID.equals(event.getKey())) {
+			// reset cache
+			descriptors = null;
+		}
 	}
 }

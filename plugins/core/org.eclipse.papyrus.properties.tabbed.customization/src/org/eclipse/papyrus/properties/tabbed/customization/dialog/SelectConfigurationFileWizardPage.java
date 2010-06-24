@@ -35,13 +35,16 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
+import org.eclipse.gmf.runtime.common.core.service.IProvider;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogSettings;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
+import org.eclipse.papyrus.properties.runtime.view.PropertyViewService.ProviderDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.XMLPropertyTabViewProvider;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
 import org.eclipse.papyrus.properties.tabbed.customization.Messages;
@@ -51,6 +54,7 @@ import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -345,6 +349,11 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 		 * @return the new file where the content will be serialized
 		 */
 		public File getNewFile();
+
+		/**
+		 * 
+		 */
+		public void performPostSerializationAction();
 	}
 
 	/**
@@ -595,6 +604,13 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 				}
 			}
 		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public void performPostSerializationAction() {
+			// nothing here
+		}
 	}
 
 	/**
@@ -805,6 +821,13 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 			File file = ResourcesPlugin.getWorkspace().getRoot().getRawLocation().append(folderText.getText()).append(Character.toString(IPath.SEPARATOR)).append(nameText.getText()).addFileExtension("xml").toFile();
 			return file;
 		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public void performPostSerializationAction() {
+			// nothing here
+		}
 	}
 
 	/**
@@ -934,6 +957,13 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 			Activator.log.warn("should not get the file using this method");
 			return ResourcesPlugin.getWorkspace().getRoot().getRawLocation().append(modifyExistingConfigurationText.getText()).toFile();
 		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public void performPostSerializationAction() {
+			// nothing here
+		}
 	}
 
 	/**
@@ -949,6 +979,8 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 
 		/** Button used to modify an existing configuration */
 		protected Button modifyPluginConfigurationButton;
+
+		private File file;
 
 		/**
 		 * {@inheritDoc}
@@ -1003,8 +1035,9 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 					// open a dialog which allows to select a contribution among all available contributions
 					List<XMLPropertyTabViewProvider> tabViewProviders = new ArrayList<XMLPropertyTabViewProvider>();
 					for(Object provider : PropertyViewService.getInstance().getPropertyViewProviders()) {
-						if(provider instanceof XMLPropertyTabViewProvider) {
-							tabViewProviders.add((XMLPropertyTabViewProvider)provider);
+						PropertyViewService.ProviderDescriptor descriptor = (PropertyViewService.ProviderDescriptor)provider;
+						if(descriptor.getProvider() instanceof XMLPropertyTabViewProvider) {
+							tabViewProviders.add((XMLPropertyTabViewProvider)descriptor.getProvider());
 						}
 					}
 
@@ -1040,14 +1073,13 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 			DocumentBuilder documentBuilder;
 			try {
 				documentBuilder = documentBuilderFactory.newDocumentBuilder();
-				IFile iFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(modifyPluginConfigurationText.getText()));
-				if(iFile.exists()) {
-					IPath location = iFile.getLocation();
-					if(location != null) {
-						final File file = location.toFile();
-						Document document = documentBuilder.parse(file);
-						return document;
-					}
+				// try to find the file for the given provider...
+				XMLPropertyTabViewProvider provider = retrieveProvider();
+				if(provider != null) {
+					Document document = documentBuilder.parse(provider.getConfigurationContent());
+					return document;
+				} else {
+					Activator.log.error("provider niot found. Impossible to edit", null);
 				}
 			} catch (ParserConfigurationException e) {
 				Activator.log.error(e);
@@ -1060,20 +1092,73 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 		}
 
 		/**
+		 * @return
+		 */
+		protected XMLPropertyTabViewProvider retrieveProvider() {
+			for(ProviderDescriptor descriptor : PropertyViewService.getInstance().getPropertyViewProviders()) {
+				IProvider provider = descriptor.getProvider();
+				if(provider instanceof XMLPropertyTabViewProvider) {
+					//	check this is the one we are looking for.
+					String id = ((XMLPropertyTabViewProvider)provider).getId();
+					if(id.equals(modifyPluginConfigurationText.getText())) {
+						return ((XMLPropertyTabViewProvider)provider);
+					}
+				}
+			}
+			return null;
+		}
+
+		/**
+		 * Retrieves the descriptor of the provider to remove
+		 * 
+		 * @return the descriptor of the provider to remove
+		 */
+		protected ProviderDescriptor retrieveProviderDescriptor() {
+			for(ProviderDescriptor descriptor : PropertyViewService.getInstance().getPropertyViewProviders()) {
+				IProvider provider = descriptor.getProvider();
+				if(provider instanceof XMLPropertyTabViewProvider) {
+					//	check this is the one we are looking for.
+					String id = ((XMLPropertyTabViewProvider)provider).getId();
+					if(id.equals(modifyPluginConfigurationText.getText())) {
+						return descriptor;
+					}
+				}
+			}
+			return null;
+		}
+
+		/**
 		 * {@inheritDoc}
 		 */
 		public File getNewFile() {
-			// returns the file itself
-			IFile iFile = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(modifyPluginConfigurationText.getText()));
-			if(iFile.exists()) {
-				IPath location = iFile.getLocation();
-				if(location != null) {
-					return location.toFile();
-				}
+			// retrieves the file in the metadata place
+			XMLPropertyTabViewProvider provider = retrieveProvider();
+			if(provider == null) {
+				return null;
 			}
-			// should never be used
-			Activator.log.warn("should not get the file using this method");
-			return ResourcesPlugin.getWorkspace().getRoot().getRawLocation().append(modifyPluginConfigurationText.getText()).toFile();
+			// look if the file was already compute. If not, compute it now
+			if(file == null) {
+				file = provider.getLocalXmlfile(provider.getId() + "_" + System.currentTimeMillis() + ".xml");
+			}
+			return file;
+		}
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public void performPostSerializationAction() {
+			// retrieve provider and updates the preferences to point to the new place
+			XMLPropertyTabViewProvider provider = retrieveProvider();
+			if(provider == null) {
+				Activator.log.error("Impossible to find the provider to customize...", null);
+				return;
+			}
+
+			// updates the provider
+			provider.setConfigurationFile(getNewFile());
+
+			// no need to force update, the properties provider listens for preferences changes
+			// PropertyViewService.getInstance().resetTabViewProvider(retrieveProviderDescriptor());
 		}
 	}
 
@@ -1094,6 +1179,12 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 		/** list of providers in which the edited provider will be selected */
 		private final List<XMLPropertyTabViewProvider> providers;
 
+		/** label provider for the list viewer */
+		private ProviderLabelProvider providerLabelProvider;
+
+		/** label provider for the details area */
+		private ProviderDetailsLabelProvider providerDetailsLabelProvider;
+
 		/**
 		 * Creates a new ProviderSelectionDialog.
 		 * 
@@ -1103,6 +1194,11 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 		public ProviderSelectionDialog(Shell shell, List<XMLPropertyTabViewProvider> providers) {
 			super(shell, false);
 			this.providers = providers;
+			setInitialPattern("**");
+			providerLabelProvider = new ProviderLabelProvider();
+			providerDetailsLabelProvider = new ProviderDetailsLabelProvider();
+			setListLabelProvider(providerLabelProvider);
+			setDetailsLabelProvider(providerDetailsLabelProvider);
 		}
 
 		/**
@@ -1126,10 +1222,7 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 		 */
 		@Override
 		public String getElementName(Object item) {
-			if(item instanceof XMLPropertyTabViewProvider) {
-				return ((XMLPropertyTabViewProvider)item).getContributionName();
-			}
-			return "<Unknown type>";
+			return providerLabelProvider.getText(item);
 		}
 
 		/**
@@ -1162,7 +1255,25 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 		 */
 		@Override
 		protected ItemsFilter createFilter() {
-			return null;
+			return new ItemsFilter() {
+
+				@Override
+				public boolean matchItem(Object item) {
+					if(!(item instanceof XMLPropertyTabViewProvider)) {
+						return false;
+					}
+					return matches(providerLabelProvider.getText((XMLPropertyTabViewProvider)item));
+				}
+
+				@Override
+				public boolean isConsistentItem(Object item) {
+					if(item instanceof XMLPropertyTabViewProvider) {
+						return true;
+					}
+					return false;
+				}
+
+			};
 		}
 
 		/**
@@ -1172,5 +1283,58 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 		protected Control createExtendedContentArea(Composite parent) {
 			return null;
 		}
+
+		/**
+		 * label provider for the list viewer
+		 */
+		protected class ProviderLabelProvider extends LabelProvider {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public String getText(Object element) {
+				if(element instanceof XMLPropertyTabViewProvider) {
+					return ((XMLPropertyTabViewProvider)element).getContributionName();
+				}
+				return super.getText(element);
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public Image getImage(Object element) {
+				if(element instanceof XMLPropertyTabViewProvider) {
+					return Activator.getImage("/icons/plugin_desc.gif");
+				}
+				return super.getImage(element);
+			}
+		}
+
+		/**
+		 * label provider for the list viewer
+		 */
+		protected class ProviderDetailsLabelProvider extends ProviderLabelProvider {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			@Override
+			public String getText(Object element) {
+				if(element instanceof XMLPropertyTabViewProvider) {
+					return ((XMLPropertyTabViewProvider)element).getContributionName() + " - " + ((XMLPropertyTabViewProvider)element).getId();
+				}
+				return super.getText(element);
+			}
+		}
+	}
+
+	/**
+	 * Perform actions after file serialization. Hook added to be able to modify preferences when modifying an in-place file
+	 */
+	public void performPostSerializationAction() {
+		getEnableConfigurationArea().performPostSerializationAction();
+
 	};
 }

@@ -49,7 +49,9 @@ public class CustomizePropertyViewWizard extends Wizard {
 	 */
 	@Override
 	public boolean performFinish() {
-		return customizeContentPage.serializeContent();
+		boolean returnCode = customizeContentPage.serializeContent();
+		selectXmlFilePage.performPostSerializationAction();
+		return returnCode;
 	}
 
 }
