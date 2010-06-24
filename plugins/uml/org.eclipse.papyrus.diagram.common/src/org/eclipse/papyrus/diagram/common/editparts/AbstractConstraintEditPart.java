@@ -14,6 +14,10 @@
 package org.eclipse.papyrus.diagram.common.editparts;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
+import org.eclipse.gmf.runtime.notation.FillStyle;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.figure.node.ConstraintFigure;
 import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeFigure;
@@ -40,6 +44,7 @@ public class AbstractConstraintEditPart extends NamedElementEditPart {
 	protected void addAssociationEndListeners() {
 		
 	}
+	
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.diagram.common.editparts.NodeEditPart#getPrimaryShape()
@@ -58,6 +63,30 @@ public class AbstractConstraintEditPart extends NamedElementEditPart {
 			((ConstraintFigure)getPrimaryShape()).getTextFlow().setFont(font);
 		}
 	}
+	 protected void refreshBackgroundColor() {
+	        FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
+	        if ( style != null ) {
+	        	if (style.getGradient() == null || !supportsGradient()) { 
+	        		setBackgroundColor(DiagramColorRegistry.getInstance().getColor(new Integer(style.getFillColor())));
+	        	} else {
+	        		setGradient(style.getGradient());
+	        	}        	
+	        }
+	    }
+	    
+	    /**
+	     * Refresh figure's background transparency.
+	     * @since 1.2
+	     */
+	    protected void refreshTransparency() {
+	        FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
+	        if (style.getGradient() != null) {   	
+	        	setTransparency(style.getTransparency());
+	        }
+	        else{
+	        	setTransparency(0);
+	        }
+	    }
 	/**
 	 * 
 	 * @see org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart#setFontColor(org.eclipse.swt.graphics.Color)

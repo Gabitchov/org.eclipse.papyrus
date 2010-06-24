@@ -15,6 +15,7 @@ package org.eclipse.papyrus.diagram.common.editparts;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
+import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
@@ -49,6 +50,20 @@ public class AbstractCommentEditPart extends NodeEditPart {
 			
 		}
 	}
+	
+	/**
+     * Refresh figure's background transparency.
+     * @since 1.2
+     */
+    protected void refreshTransparency() {
+        FillStyle style = (FillStyle)getPrimaryView().getStyle(NotationPackage.Literals.FILL_STYLE);
+        if (style.getGradient() != null) {   	
+        	setTransparency(style.getTransparency());
+        }
+        else{
+        	setTransparency(0);
+        }
+    }
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshFontColor();
