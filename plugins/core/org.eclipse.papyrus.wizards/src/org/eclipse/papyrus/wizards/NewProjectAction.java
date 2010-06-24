@@ -16,6 +16,7 @@ import java.util.Properties;
 
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.ui.internal.intro.impl.IntroPlugin;
 import org.eclipse.ui.intro.IIntroSite;
 import org.eclipse.ui.intro.config.IIntroAction;
 
@@ -31,6 +32,8 @@ public class NewProjectAction implements IIntroAction {
 	 * @param params
 	 */
 	public void run(IIntroSite site, Properties params) {
+		IntroPlugin.getDefault().closeIntro();
+		
 		NewPapyrusProjectWizard wizard = new NewPapyrusProjectWizard();
 		wizard.init(site.getWorkbenchWindow().getWorkbench(), new StructuredSelection());
 		WizardDialog dialog = new WizardDialog(site.getShell(), wizard);
