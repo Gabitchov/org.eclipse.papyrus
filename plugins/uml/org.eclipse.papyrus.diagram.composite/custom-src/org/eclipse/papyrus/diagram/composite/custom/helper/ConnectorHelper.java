@@ -9,15 +9,18 @@
  *
  * Contributors:
  *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.composite.custom.helper;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PrecisionRectangle;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
@@ -26,6 +29,8 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
@@ -38,6 +43,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.helper.ElementHelper;
+import org.eclipse.papyrus.diagram.common.layout.LayoutUtils;
+import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
@@ -79,11 +86,14 @@ public class ConnectorHelper extends ElementHelper {
 
 		CompositeCommand cc = new CompositeCommand("drop Connector");
 
-		//
 		ConnectableElement sourceRole = connector.getEnds().get(0).getRole();
 		ConnectableElement targetRole = connector.getEnds().get(1).getRole();
 		Property sourcePartWithPort = connector.getEnds().get(0).getPartWithPort();
 		Property targetPartWithPort = connector.getEnds().get(1).getPartWithPort();
+
+		if(sourceRole == null || targetRole == null) {//if an end is deleted, and the connector is still in the model (see bug 293168)
+			return cc;
+		}
 
 		// look for editpart
 		GraphicalEditPart sourceEditPart = resolveRoleEditPart(sourceRole, sourcePartWithPort, viewer);
@@ -94,28 +104,94 @@ public class ConnectorHelper extends ElementHelper {
 
 		IAdaptable sourceAdapter = null;
 		IAdaptable targetAdapter = null;
+
+		//the parents of the ports, we use them when the PortEditPart are not on the diagram
+		EditPart sourceParent = null;
+		EditPart targetParent = null;
+
+
+
+
+		/*
+		 * when the ports are not represented on the diagram,
+		 * we look for their parents.
+		 */
+		DiagramEditPart diagram = DiagramEditPartsUtil.getDiagramEditPart(host);
+		if(sourceEditPart == null || targetEditPart == null) {
+
+			List<IGraphicalEditPart> AllEP = DiagramEditPartsUtil.getAllEditParts(diagram);
+			EObject srcParent = sourceRole.eContainer();
+			EObject tgtParent = targetRole.eContainer();
+			for(IGraphicalEditPart iGraphicalEditPart : AllEP) {
+				EObject object = ViewUtil.resolveSemanticElement((View)(iGraphicalEditPart).getModel());//method getHostObject
+				if(object == srcParent && !(iGraphicalEditPart instanceof CompartmentEditPart)) {
+					sourceParent = iGraphicalEditPart;
+				}
+				if(object == tgtParent && !(iGraphicalEditPart instanceof CompartmentEditPart)) {
+					targetParent = iGraphicalEditPart;
+				}
+				if(targetParent != null && sourceParent != null) {
+					break;
+				}
+			}
+
+
+			/*
+			 * the parent of the port are not represented on the diagram
+			 * we do nothing
+			 */
+			if(targetParent == null || sourceParent == null) {
+				return cc;
+			}
+		}
+
+		//set the location to absolute
+		Point absolutePosition = location.getCopy();
+		PrecisionRectangle hostBounds = LayoutUtils.getAbsolutePosition(host);
+		if(!hostBounds.equals(LayoutUtils.getAbsolutePosition(diagram))) {
+			absolutePosition = absolutePosition.translate(hostBounds.getLocation());//OK, the location is now in absolute!
+		}
+
+
 		if(sourceEditPart == null) {
+
+			//translate the point to relative (with the source editpart)
+			Point portLocation = absolutePosition.getCopy();
+			PrecisionRectangle parentBounds = LayoutUtils.getAbsolutePosition(sourceParent);
+			if(!sourceParent.equals(LayoutUtils.getAbsolutePosition(diagram))) {
+				portLocation = portLocation.translate(parentBounds.getLocation().getNegated());
+			}
+
 			// creation of the node
 			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(sourceRole), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)host).getDiagramPreferencesHint());
 
 			// get the command and execute it.
-			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)host).getEditingDomain(), descriptor, ((View)host.getModel()));
+			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)host).getEditingDomain(), descriptor, ((View)sourceParent.getModel()));
 			cc.compose(nodeCreationCommand);
-			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y + 100));
+			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), portLocation);
 			cc.compose(setBoundsCommand);
 
 			sourceAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
 		} else {
 			sourceAdapter = new SemanticAdapter(null, sourceEditPart.getModel());
 		}
+
+
 		if(targetEditPart == null) {
+			//translate the location in relative (with the target editpart)
+			Point portLocation = absolutePosition.getCopy();
+			PrecisionRectangle parentBounds = LayoutUtils.getAbsolutePosition(targetParent);
+			if(!targetParent.equals(LayoutUtils.getAbsolutePosition(diagram))) {
+				portLocation = portLocation.translate(parentBounds.getLocation().getNegated());
+			}
+
 			// creation of the node
 			ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(targetRole), Node.class, null, ViewUtil.APPEND, false, ((IGraphicalEditPart)host).getDiagramPreferencesHint());
 
 			// get the command and execute it.
-			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)host).getEditingDomain(), descriptor, ((View)host.getModel()));
+			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)host).getEditingDomain(), descriptor, ((View)targetParent.getModel()));
 			cc.compose(nodeCreationCommand);
-			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y - 100));
+			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), portLocation);
 			cc.compose(setBoundsCommand);
 			targetAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
 
@@ -166,4 +242,5 @@ public class ConnectorHelper extends ElementHelper {
 		}
 		return (ShapeNodeEditPart)foundEditPart;
 	}
+
 }
