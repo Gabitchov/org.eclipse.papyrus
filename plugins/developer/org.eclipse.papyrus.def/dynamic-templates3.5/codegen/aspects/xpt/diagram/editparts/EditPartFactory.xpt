@@ -67,7 +67,7 @@ public class «editPartFactoryClassName» implements org.eclipse.gef.EditPartFac
 		private org.eclipse.papyrus.diagram.common.figure.node.IMultilineEditableFigure multilineEditableFigure;
 
 		«EXPAND xpt::Common::generatedClassComment»
-		public MultilineCellEditorLocator(IMultilineEditableFigure figure) {
+		public MultilineCellEditorLocator(org.eclipse.papyrus.diagram.common.figure.node.IMultilineEditableFigure figure) {
 			this.multilineEditableFigure = figure;
 		}
 
