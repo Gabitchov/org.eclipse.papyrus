@@ -49,8 +49,9 @@ public class «editPartFactoryClassName» implements org.eclipse.gef.EditPartFac
 	«EXPAND xpt::Common::generatedMemberComment»
 	public static org.eclipse.gef.tools.CellEditorLocator getTextCellEditorLocator(
 			org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart source) {
-         if (source.getFigure() instanceof org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure)
-            return new CommentCellEditorLocator((org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure) source.getFigure());
+         if (source.getFigure() instanceof org.eclipse.papyrus.diagram.common.figure.node.IMultilineEditableFigure)
+			return new MultilineCellEditorLocator(
+					(org.eclipse.papyrus.diagram.common.figure.node.IMultilineEditableFigure) source.getFigure());
         else if (source.getFigure() instanceof org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel)
             return new TextCellEditorLocator((org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel) source.getFigure());
         else {
@@ -58,36 +59,40 @@ public class «editPartFactoryClassName» implements org.eclipse.gef.EditPartFac
         }
     }
     
+    
     «EXPAND xpt::Common::generatedClassComment»
-	static private class CommentCellEditorLocator implements org.eclipse.gef.tools.CellEditorLocator {
+    static private class MultilineCellEditorLocator implements CellEditorLocator {
 
-		«EXPAND xpt::Common::generatedMemberComment»
-		private org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure commentFigure;
+		«EXPAND xpt::Common::generatedClassComment»
+		private org.eclipse.papyrus.diagram.common.figure.node.IMultilineEditableFigure multilineEditableFigure;
 
-		«EXPAND xpt::Common::generatedMemberComment»
-		public CommentCellEditorLocator(org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure commentFigure) {
-			this.commentFigure = commentFigure;
+		«EXPAND xpt::Common::generatedClassComment»
+		public MultilineCellEditorLocator(IMultilineEditableFigure figure) {
+			this.multilineEditableFigure = figure;
 		}
 
-		«EXPAND xpt::Common::generatedMemberComment»
-		public org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure getCommentFigure() {
-			return commentFigure;
+		«EXPAND xpt::Common::generatedClassComment»
+		public org.eclipse.papyrus.diagram.common.figure.node.IMultilineEditableFigure getMultilineEditableFigure() {
+			return multilineEditableFigure;
 		}
 
-		«EXPAND xpt::Common::generatedMemberComment»
-		public void relocate(org.eclipse.jface.viewers.CellEditor celleditor) {
-			org.eclipse.swt.widgets.Text text = (org.eclipse.swt.widgets.Text) celleditor.getControl();
-			org.eclipse.draw2d.geometry.Rectangle rect = getCommentFigure().getBounds().getCopy();
-			getCommentFigure().translateToAbsolute(rect);
-			if (getCommentFigure().getText().length() > 0) {
-				rect.setSize(new org.eclipse.draw2d.geometry.Dimension(
-					text.computeSize(rect.width, org.eclipse.swt.SWT.DEFAULT)));
+		«EXPAND xpt::Common::generatedClassComment»
+		public void relocate(CellEditor celleditor) {
+			Text text = (Text) celleditor.getControl();
+			Rectangle rect = getMultilineEditableFigure().getBounds().getCopy();
+			rect.x=getMultilineEditableFigure().getEditionLocation().x;
+			rect.y=getMultilineEditableFigure().getEditionLocation().y;
+			getMultilineEditableFigure().translateToAbsolute(rect);
+			if (getMultilineEditableFigure().getText().length() > 0) {
+				rect.setSize(new Dimension(text.computeSize(rect.width,
+						SWT.DEFAULT)));
 			}
-			if (!rect.equals(new org.eclipse.draw2d.geometry.Rectangle(text.getBounds()))) {
+			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
 			}
 		}
 	}
+    
 
 	«EXPAND xpt::Common::generatedClassComment»
 	static private class TextCellEditorLocator implements org.eclipse.gef.tools.CellEditorLocator {
