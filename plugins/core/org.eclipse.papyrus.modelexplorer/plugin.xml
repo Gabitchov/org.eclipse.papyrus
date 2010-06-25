@@ -8,6 +8,14 @@
             category="org.eclipse.papyrus.views.category"
             class="org.eclipse.papyrus.modelexplorer.ModelExplorer"
             icon="icons/ModelExplorer.gif"
+            id="org.eclipse.papyrus.modelexplorer.modelexplorer-orig"
+            name="Papyrus Model Explorer (orig - to be removed)"
+            restorable="true">
+      </view>
+      <view
+            category="org.eclipse.papyrus.views.category"
+            class="org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView"
+            icon="icons/ModelExplorer.gif"
             id="org.eclipse.papyrus.modelexplorer.modelexplorer"
             name="Papyrus Model Explorer"
             restorable="true">
@@ -171,6 +179,14 @@
                 style="push">
           </command>
        </menuContribution>
+       <menuContribution
+             allPopups="false"
+             locationURI="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup">
+          <menu
+                id="org.eclipse.papyrus.modelexplorer.popupmenu.createchild"
+                label="New Child">
+          </menu>
+       </menuContribution>
     </extension>
     <extension
           point="org.eclipse.ui.commands">
@@ -199,7 +215,7 @@
       		category="org.eclipse.papyrus.preferences.generalcategory"
             class="org.eclipse.papyrus.modelexplorer.preferences.NavigatorPreferencePage"
             id="org.eclipse.papyrus.modelexplorer.preferences.NavigatorPreferencePage"
-            name="Model Explorer">
+            name="Papyrus Model Explorer">
       </page>
    </extension>
 

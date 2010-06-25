@@ -2345,9 +2345,9 @@
 			name="Create a new AssociationClass" />
 	</extension>
 	<extension point="org.eclipse.ui.menus">
-		<menuContribution allPopups="false"
-			locationURI="popup:org.eclipse.papyrus.modelexplorer.modelexplorer.popup">
-			<menu id="org.eclipse.papyrus.diagram.ui.popup.children" label="New Child">
+   <menuContribution
+         allPopups="false"
+         locationURI="popup:org.eclipse.papyrus.modelexplorer.popupmenu.createchild">
 				<command
 					commandId="org.eclipse.papyrus.uml.service.creation.acceptcallaction.Handler"
 					icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AcceptCallAction.gif"
@@ -3241,8 +3241,8 @@
 					<visibleWhen checkEnabled="true">
 					</visibleWhen>
 				</command>
-			</menu>
-		</menuContribution>
+			
+   </menuContribution>
 	</extension>
 
 

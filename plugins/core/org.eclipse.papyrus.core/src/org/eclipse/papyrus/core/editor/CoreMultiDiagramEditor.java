@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
 
+import org.eclipse.core.commands.operations.IUndoContext;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
@@ -47,6 +48,7 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
+import org.eclipse.gmf.runtime.emf.commands.core.command.EditingDomainUndoContext;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
@@ -217,6 +219,13 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	};
 
 	/**
+	 * Unod context used to have the same undo context in all Papyrus related views and editors.
+	 * TODO : move away, use a version independant of GMF, add a listener that will add 
+	 * the context to all commands modifying attached Resources (==> linked to ModelSet ?)
+	 */
+	private EditingDomainUndoContext undoContext;
+
+	/**
 	 * Get the contentOutlineRegistry. Create it if needed.
 	 * 
 	 * @return the contentOutlineRegistry
@@ -384,6 +393,19 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 			return transactionalEditingDomain;
 		}
 
+		/**
+		 * Return context used for undo/redo.
+		 * All papyrus views should use this context.
+		 */
+		if( IUndoContext.class == adapter)
+		{
+			if( undoContext != null)
+				return undoContext;
+			
+			undoContext = new EditingDomainUndoContext(transactionalEditingDomain);
+			return undoContext;
+		}
+		
 		// EMF requirements
 		if(IEditingDomainProvider.class == adapter) {
 

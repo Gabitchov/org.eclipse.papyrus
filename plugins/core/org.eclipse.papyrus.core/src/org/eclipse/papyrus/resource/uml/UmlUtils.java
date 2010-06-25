@@ -3,7 +3,10 @@
  */
 package org.eclipse.papyrus.resource.uml;
 
+import javax.imageio.spi.ServiceRegistry;
+
 import org.eclipse.papyrus.core.services.ServiceException;
+import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.resource.ModelUtils;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.sasheditor.SashModel;
@@ -52,13 +55,38 @@ public class UmlUtils {
 	 * Gets the UmlModel from the {@link ModelSet}. 
 	 * <br>
 	 * 
-	 * @param modelsManager The modelManager containing the requested model.
+	 * @param modelSet The modelManager containing the requested model.
 	 * 
 	 * @return The {@link SashModel} registered in modelManager, or null if not found.
 	 */
-	public static UmlModel getUmlModel(ModelSet modelsManager) {
+	public static UmlModel getUmlModel(ModelSet modelSet) {
 
-		return (UmlModel)modelsManager.getModel(UmlModel.MODEL_ID);
+		return (UmlModel)modelSet.getModel(UmlModel.MODEL_ID);
 	}
+
+	/**
+	 * Gets the UmlModel from the {@link ServiceRegistry}.
+	 * 
+	 * @return ServicesRegistry The service registry under which the ModelSet is registered.
+	 */
+	public static UmlModel getUmlModel(ServicesRegistry servicesRegistry) {
+
+		try {
+			return getUmlModelChecked(servicesRegistry);
+		} catch (ServiceException e) {
+			return null;
+		}
+	}
+
+	/**
+	 * Gets the UmlModel from the {@link ServiceRegistry}.
+	 * 
+	 * @return ServicesRegistry The service registry under which the ModelSet is registered.
+	 * @throws ServiceException If the service can't be returned.
+	 */
+	public static UmlModel getUmlModelChecked(ServicesRegistry servicesRegistry) throws ServiceException {
+			return (UmlModel)ModelUtils.getModelSetChecked(servicesRegistry).getModel(UmlModel.MODEL_ID);
+	}
+
 
 }

@@ -256,4 +256,15 @@
             name="Model Explorer">
       </page>
    </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.eclipse.papyrus.navigator.modelExplorer">
+         <menu
+               id="org.eclipse.papyrus.modelexplorer.popupmenu.createchild"
+               label="Create Child ...">
+         </menu>
+      </menuContribution>
+   </extension>
 </plugin>

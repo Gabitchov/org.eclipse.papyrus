@@ -20,6 +20,7 @@ import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.actions.ActionContext;
 import org.eclipse.ui.navigator.CommonActionProvider;
 import org.eclipse.ui.navigator.CommonNavigator;
+import org.eclipse.ui.navigator.CommonViewer;
 
 /**
  * Specialization of <CommonActionProvider> to be used as Papyrus action
@@ -48,12 +49,14 @@ public abstract class AbstractCommonActionProvider extends CommonActionProvider 
 	 * @return the common navigator
 	 */
 	protected CommonNavigator getCommonNavigator() {
-		IViewPart part = org.eclipse.papyrus.modelexplorer.NavigatorUtils
-				.findViewPart(getViewerID());
-		if (part instanceof CommonNavigator) {
-			return ((CommonNavigator) part);
-		}
-		return null;
+		
+		return ((CommonViewer)getActionSite().getStructuredViewer()).getCommonNavigator();
+//		IViewPart part = org.eclipse.papyrus.modelexplorer.NavigatorUtils
+//				.findViewPart(getViewerID());
+//		if (part instanceof CommonNavigator) {
+//			return ((CommonNavigator) part);
+//		}
+//		return null;
 	}
 
 	/**

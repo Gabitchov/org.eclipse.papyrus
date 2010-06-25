@@ -3,6 +3,8 @@
  */
 package org.eclipse.papyrus.resource;
 
+import javax.imageio.spi.ServiceRegistry;
+
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.EditorUtils;
@@ -48,7 +50,7 @@ public class ModelUtils {
 	}
 	
 	/**
-	 * Gets the TraceModel for the currently selected editor.
+	 * Gets the ModelSet from the {@link ServiceRegistry}.
 	 * 
 	 * @return ServicesRegistry The service registry under which the ModelSet is registered.
 	 */
@@ -62,7 +64,7 @@ public class ModelUtils {
 	}
 
 	/**
-	 * Gets the TraceModel for the currently selected editor.
+	 * Gets the ModelSet from the {@link ServiceRegistry}.
 	 * 
 	 * @return ServicesRegistry The service registry under which the ModelSet is registered.
 	 * @throws ServiceException If the service can't be returned.

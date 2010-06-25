@@ -23,8 +23,10 @@ import org.eclipse.jface.dialogs.TrayDialog;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
@@ -44,8 +46,9 @@ import org.eclipse.ui.navigator.CommonNavigator;
 /**
  * A dialog that allows searching elements in the Model navigator by name.
  * 
- * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano
- *         Muñoz</a>
+ * @author <a href="mailto:fjcano@prodevelop.es">Francisco Javier Cano Munoz</a>
+ * 
+ * @author cedric dumoulin
  */
 public class NavigatorSearchDialog extends TrayDialog {
 
@@ -55,7 +58,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 
 	private Object root = null;
 
-	private Viewer viewer = null;
+	private ISelectionProvider viewer = null;
 
 	private List<Object> matchedObjects = Collections.emptyList();
 
@@ -69,20 +72,84 @@ public class NavigatorSearchDialog extends TrayDialog {
 
 	private Button caseButton;
 
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param shell
+	 * @param modelNavigator
+	 * @deprecated Use {@link #NavigatorSearchDialog(Shell, TreeViewer)}
+	 */
 	public NavigatorSearchDialog(Shell shell, CommonNavigator modelNavigator) {
 		super(shell);
 		IContentProvider cprovider = modelNavigator.getCommonViewer()
 				.getContentProvider();
-		if (cprovider instanceof ITreeContentProvider) {
-			contentProvider = (ITreeContentProvider) cprovider;
+		if(cprovider instanceof ITreeContentProvider) {
+			contentProvider = (ITreeContentProvider)cprovider;
 		}
 		root = modelNavigator.getCommonViewer().getInput();
 		viewer = modelNavigator.getCommonViewer();
-		labelProvider = (ILabelProvider) modelNavigator.getCommonViewer()
+		labelProvider = (ILabelProvider)modelNavigator.getCommonViewer()
 				.getLabelProvider();
 
 	}
 
+	/**
+	 * Constructor.
+	 *
+	 * @param shell Shell used to show this Dialog
+	 * @param viewer 
+	 * @param contentProvider
+	 * @param labelProvider
+	 * @param root
+	 */
+	public NavigatorSearchDialog(Shell shell, TreeViewer viewer) {
+		super(shell);
+		this.viewer = viewer;
+		try {
+			this.labelProvider = (ILabelProvider)viewer.getLabelProvider();
+			this.contentProvider = (ITreeContentProvider)viewer.getContentProvider();
+		} catch (ClassCastException e) {
+			// Content or label provider are not of appropriate type.
+			// let them null
+		}
+		this.root = viewer.getInput();
+	}
+
+	
+	/**
+	 * Constructor.
+	 *
+	 * @param shell Shell used to show this Dialog
+	 * @param viewer 
+	 * @param contentProvider
+	 * @param labelProvider
+	 * @param root
+	 */
+	public NavigatorSearchDialog(Shell shell, Viewer viewer, ITreeContentProvider contentProvider, ILabelProvider labelProvider, Object root) {
+		super(shell);
+		this.viewer = viewer;
+		this.contentProvider = contentProvider;
+		this.labelProvider = labelProvider;
+		this.root = root;
+	}
+
+   /**
+    * Sets a new selection for the associated {@link ISelectionProvider} and optionally makes it visible.
+    * <p>
+    * Subclasses must implement this method.
+    * </p>
+    *
+    * @param selection the new selection
+    * @param reveal <code>true</code> if the selection is to be made
+    *   visible, and <code>false</code> otherwise
+    */
+	private void fireSetSelection( ISelection selection, boolean reveal) {
+		// Note : if we want to force reveal, it is possible to check if 
+		// selectionProvider instanceof Viewer, and then call selectionProvider.setSelection(selection, true).
+		// By default a TreeViewer reveal the selection.
+		viewer.setSelection(selection);
+	}
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -131,18 +198,17 @@ public class NavigatorSearchDialog extends TrayDialog {
 
 			public void widgetSelected(SelectionEvent e) {
 				ISelection sel = viewer.getSelection();
-				if (!(sel instanceof StructuredSelection)) {
+				if(!(sel instanceof StructuredSelection)) {
 					return;
 				}
-				StructuredSelection ssel = (StructuredSelection) sel;
+				StructuredSelection ssel = (StructuredSelection)sel;
 
 				int index = matchedObjects.lastIndexOf(ssel.getFirstElement());
-				if (index == matchedObjects.size() - 1) {
+				if(index == matchedObjects.size() - 1) {
 					index = -1;
 				}
 				index++;
-				viewer.setSelection(new StructuredSelection(matchedObjects
-						.get(index)), true);
+				fireSetSelection(new StructuredSelection(matchedObjects.get(index)), true);
 			}
 
 		});
@@ -154,18 +220,17 @@ public class NavigatorSearchDialog extends TrayDialog {
 
 			public void widgetSelected(SelectionEvent e) {
 				ISelection sel = viewer.getSelection();
-				if (!(sel instanceof StructuredSelection)) {
+				if(!(sel instanceof StructuredSelection)) {
 					return;
 				}
-				StructuredSelection ssel = (StructuredSelection) sel;
+				StructuredSelection ssel = (StructuredSelection)sel;
 
 				int index = matchedObjects.lastIndexOf(ssel.getFirstElement());
-				if (index == 0) {
+				if(index == 0) {
 					index = matchedObjects.size() - 1;
 				}
 				index--;
-				viewer.setSelection(new StructuredSelection(matchedObjects
-						.get(index)), true);
+				fireSetSelection(new StructuredSelection(matchedObjects.get(index)), true);
 			}
 
 		});
@@ -212,12 +277,12 @@ public class NavigatorSearchDialog extends TrayDialog {
 	}
 
 	private void updateMatches() {
-		if (contentProvider == null && labelProvider == null) {
+		if(contentProvider == null && labelProvider == null) {
 			return;
 		}
 
 		String pattern = searchText.getText();
-		if (pattern.length() == 0) {
+		if(pattern.length() == 0) {
 			matchedObjects = Collections.emptyList();
 			backButton.setEnabled(false);
 			nextButton.setEnabled(false);
@@ -225,7 +290,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 			return;
 		}
 
-		if (!caseButton.getSelection()) {
+		if(!caseButton.getSelection()) {
 			pattern = pattern.toUpperCase();
 		}
 
@@ -236,9 +301,8 @@ public class NavigatorSearchDialog extends TrayDialog {
 		matchesLabel.setText(matchedObjects.size() + " matches found");
 
 		// Select first match and update buttons
-		if (!matchedObjects.isEmpty()) {
-			viewer.setSelection(new StructuredSelection(matchedObjects.get(0)),
-					true);
+		if(!matchedObjects.isEmpty()) {
+			fireSetSelection(new StructuredSelection(matchedObjects.get(0)), true);
 			nextButton.setEnabled(true);
 			backButton.setEnabled(true);
 		} else {
@@ -254,26 +318,26 @@ public class NavigatorSearchDialog extends TrayDialog {
 		List<Object> childs = new ArrayList<Object>();
 		String objectLabel;
 		boolean caseSensitive = caseButton.getSelection();
-		for (Object o : objects) {
+		for(Object o : objects) {
 			// Search matches in this level
-			if (!(o instanceof Diagram)) {
+			if(!(o instanceof Diagram)) {
 				objectLabel = caseSensitive ? labelProvider.getText(o)
 						: labelProvider.getText(o).toUpperCase();
 
-				if (objectLabel.contains(pattern)) {
+				if(objectLabel.contains(pattern)) {
 					matches.add(o);
 				}
 
 				// Find childs
 
-				for (int i = 0; i < contentProvider.getChildren(o).length; i++) {
-					if (contentProvider.getChildren(o)[i] instanceof IAdaptable) {
+				for(int i = 0; i < contentProvider.getChildren(o).length; i++) {
+					if(contentProvider.getChildren(o)[i] instanceof IAdaptable) {
 
-						EObject eObject = (EObject) ((IAdaptable) contentProvider
+						EObject eObject = (EObject)((IAdaptable)contentProvider
 								.getChildren(o)[i]).getAdapter(EObject.class);
 
-						if (eObject.eContainer().equals(
-								(EObject) ((IAdaptable) o)
+						if(eObject.eContainer().equals(
+								(EObject)((IAdaptable)o)
 										.getAdapter(EObject.class))) {
 							childs.add(contentProvider.getChildren(o)[i]);
 						}
@@ -281,7 +345,7 @@ public class NavigatorSearchDialog extends TrayDialog {
 				}
 			}
 		}
-		if (!childs.isEmpty()) {
+		if(!childs.isEmpty()) {
 			matches.addAll(searchPattern(pattern, childs));
 		}
 

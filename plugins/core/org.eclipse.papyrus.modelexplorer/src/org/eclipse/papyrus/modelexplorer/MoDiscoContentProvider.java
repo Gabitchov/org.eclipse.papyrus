@@ -20,9 +20,17 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmt.modisco.infra.browser.uicore.CustomizableModelContentProvider;
 import org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
+import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.resource.ModelSet;
+import org.eclipse.papyrus.resource.ModelUtils;
+import org.eclipse.papyrus.resource.sasheditor.SashModel;
+import org.eclipse.papyrus.resource.sasheditor.SashModelUtils;
+import org.eclipse.papyrus.resource.uml.UmlModel;
+import org.eclipse.papyrus.resource.uml.UmlUtils;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
+import org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
@@ -33,8 +41,13 @@ import org.eclipse.ui.PlatformUI;
 @SuppressWarnings("restriction")
 public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 
-	protected DiResourceSet diResourceSet;
-
+	
+	/**
+	 * The ModelSet containing all the models.
+	 * This is the initial input.
+	 */
+	protected ModelSet modelSet;
+	
 	/** The list of open pages (diagrams) */
 	protected IPageMngr pageMngr;
 
@@ -49,8 +62,6 @@ public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 
 	@Override
 	public Object[] getChildren(final Object parentElement) {
-		this.diResourceSet = getDiResourceSet();
-		pageMngr = EditorUtils.getIPageMngr(diResourceSet.getDiResource());
 
 		ArrayList<Object> result = new ArrayList<Object>();
 
@@ -96,31 +107,53 @@ public class MoDiscoContentProvider extends CustomizableModelContentProvider {
 		return diagrams;
 	}
 
+	/**
+	 * Return the initial values from the input.
+	 * Input should be of type {@link UmlModel}.
+	 * @see org.eclipse.gmt.modisco.infra.browser.uicore.CustomizableModelContentProvider#getRootElements(java.lang.Object)
+	 *
+	 * @param inputElement
+	 * @return
+	 */
 	@Override
 	public EObject[] getRootElements(Object inputElement) {
-		// we are standing for the multi editor
+
 		try {
-			IWorkbenchWindow workbenchWindow = PlatformUI.getWorkbench()
-			.getActiveWorkbenchWindow();
-			if (workbenchWindow == null) {
+			if(! (inputElement instanceof ServicesRegistry) )
+			{
 				return null;
 			}
-			IWorkbenchPage page = workbenchWindow.getActivePage();
-			if (page != null && page.getActiveEditor() instanceof IMultiDiagramEditor) {
-				EList<EObject> contents = EditorUtils.getDiResourceSet()
-				.getModelResource().getContents();
-				ArrayList<EObject> result = new ArrayList<EObject>();
-				Iterator<EObject> iterator = contents.iterator();
-				while (iterator.hasNext()) {
-					EObject eObject = (EObject) iterator.next();
-					result.add(eObject);
-				}
-				return result.toArray(new EObject[result.size()]);
-			}
+
+			ServicesRegistry servicesRegistry = (ServicesRegistry)inputElement;
+			
+			modelSet = ModelUtils.getModelSetChecked(servicesRegistry);
+			pageMngr = servicesRegistry.getService(DiSashModelMngr.class).getIPageMngr();
+			
+			return getRootElements(modelSet);
 		} catch (Exception e) {
 			Activator.log.error(e);
 		}
+		
 		return new EObject[0];
+}
 
+	/**
+	 * Get the roots elements from the {@link ModelSet} provided as input.
+	 * @return
+	 */
+	protected EObject[] getRootElements( ModelSet modelSet) {
+		UmlModel umlModel = (UmlUtils.getUmlModel(modelSet));
+
+		if( umlModel == null)
+			return null;
+
+		EList<EObject> contents = umlModel.getResource().getContents();
+		ArrayList<EObject> result = new ArrayList<EObject>();
+		Iterator<EObject> iterator = contents.iterator();
+		while (iterator.hasNext()) {
+			EObject eObject = (EObject) iterator.next();
+			result.add(eObject);
+		}
+		return result.toArray(new EObject[result.size()]);
 	}
 }

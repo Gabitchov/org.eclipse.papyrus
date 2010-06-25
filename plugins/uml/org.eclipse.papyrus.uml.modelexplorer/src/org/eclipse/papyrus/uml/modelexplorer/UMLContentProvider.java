@@ -22,6 +22,9 @@ import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.modelexplorer.Activator;
 import org.eclipse.papyrus.modelexplorer.MoDiscoContentProvider;
+import org.eclipse.papyrus.resource.ModelSet;
+import org.eclipse.papyrus.resource.uml.UmlModel;
+import org.eclipse.papyrus.resource.uml.UmlUtils;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
@@ -34,34 +37,31 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 public class UMLContentProvider extends MoDiscoContentProvider {
 
 	
+	/**
+	 * Return the initial values from the input.
+	 * Input should be of type {@link UmlModel}.
+	 * @see org.eclipse.gmt.modisco.infra.browser.uicore.CustomizableModelContentProvider#getRootElements(java.lang.Object)
+	 *
+	 * @param inputElement
+	 * @return
+	 */
 	@Override
-	public EObject[] getRootElements(Object inputElement) {
-		// we are standing for the multi editor
-		try {
-			IWorkbenchWindow workbenchWindow = PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow();
-			if (workbenchWindow == null) {
-				return null;
-			}
-			IWorkbenchPage page = workbenchWindow.getActivePage();
-			if (page != null && page.getActiveEditor() instanceof IMultiDiagramEditor) {
-				EList<EObject> contents = EditorUtils.getDiResourceSet()
-						.getModelResource().getContents();
-				ArrayList<EObject> result = new ArrayList<EObject>();
-				Iterator<EObject> iterator = contents.iterator();
-				while (iterator.hasNext()) {
-					EObject eObject = (EObject) iterator.next();
-					//functionality that comes from UML2 plugins
-					if(UMLUtil.getStereotype(eObject) == null){
-						result.add(eObject);
-					}
-				}
-				return result.toArray(new EObject[result.size()]);
-			}
-		} catch (Exception e) {
-			Activator.log.error(e);
-		}
-		return new EObject[0];
+	protected EObject[] getRootElements(ModelSet modelSet) {
+		UmlModel umlModel = (UmlUtils.getUmlModel(modelSet));
 
+		if( umlModel == null)
+			return null;
+
+		EList<EObject> contents = umlModel.getResource().getContents();
+		ArrayList<EObject> result = new ArrayList<EObject>();
+		Iterator<EObject> iterator = contents.iterator();
+		while (iterator.hasNext()) {
+			EObject eObject = (EObject) iterator.next();
+			//functionality that comes from UML2 plugins
+			if(UMLUtil.getStereotype(eObject) == null){
+				result.add(eObject);
+			}
+		}
+		return result.toArray(new EObject[result.size()]);
 	}
 }

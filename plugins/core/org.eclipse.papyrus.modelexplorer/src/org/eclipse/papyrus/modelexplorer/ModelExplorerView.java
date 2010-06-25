@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.modelexplorer;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import org.eclipse.core.commands.operations.IUndoContext;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
@@ -22,82 +24,71 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IMemento;
-import org.eclipse.ui.IPartListener2;
 import org.eclipse.ui.IViewSite;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.actions.ActionFactory;
 import org.eclipse.ui.navigator.CommonNavigator;
+import org.eclipse.ui.operations.RedoActionHandler;
+import org.eclipse.ui.operations.UndoActionHandler;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 
 /**
- * Papyrus Model Explorer.
+ * Papyrus Model Explorer associated to a {@link IMultiDiagramEditor}.
  * 
  * This model explorer is linked to Papyrus editors.
  */
-public class ModelExplorer extends CommonNavigator /* implements IEditingDomainProvider */{
+public class ModelExplorerView extends CommonNavigator {
 
 	private IMultiDiagramEditor editorPart;
 
 	private TransactionalEditingDomain editingDomain;
 
-	private IWorkbenchPage page = null;
-
+	/**
+	 * Flag to avoid reentrant call to refresh.
+	 */
+	private AtomicBoolean isRefreshing = new AtomicBoolean(false);
 
 	/**
-	 * Listener on parts lifecycle.
-	 * This listener is called whenever an event happens
+	 * Undo action handler
 	 */
-	private IPartListener2 partListener = new IPartListener2() {
+	UndoActionHandler undoHandler;
 
-		public void partActivated(IWorkbenchPartReference partRef) {
-			handlePartActivated(partRef);
-		}
+	/**
+	 * Redo action handler
+	 */
+	RedoActionHandler redoHandler;
 
-		public void partBroughtToTop(IWorkbenchPartReference partRef) {
-		}
-
-		public void partClosed(IWorkbenchPartReference partRef) {
-			handlePartDeactivated(partRef);
-		}
-
-		public void partDeactivated(IWorkbenchPartReference partRef) {
-			//			handlePartDeactivated(partRef);
-		}
-
-		public void partHidden(IWorkbenchPartReference partRef) {
-		}
-
-		public void partInputChanged(IWorkbenchPartReference partRef) {
-			handlePartActivated(partRef);
-		}
-
-		public void partOpened(IWorkbenchPartReference partRef) {
-			handlePartActivated(partRef);
-		}
-
-		public void partVisible(IWorkbenchPartReference partRef) {
-			handlePartActivated(partRef);
-		}
-
-	};;
 
 	/**
 	 * The {@link IPropertySheetPage} this model explorer will use.
 	 */
 	private IPropertySheetPage propertySheetPage = null;
 
-	public void selectReveal(ISelection selection) {
-		if(getCommonViewer() != null) {
-			getCommonViewer().setSelection(selection, true);
-		}
+	/**
+	 * 
+	 * Constructor.
+	 * 
+	 * @param part
+	 *        The part associated to this ModelExplorer
+	 */
+	public ModelExplorerView(IMultiDiagramEditor part) {
+		this.editorPart = part;
 	}
 
-	public ModelExplorer() {
+	/**
+	 * Return the control used to render this View
+	 * 
+	 * @see org.eclipse.papyrus.core.ui.pagebookview.IPageBookNestableViewPart#getControl()
+	 * 
+	 * @return
+	 */
+	public Control getControl() {
+		return getCommonViewer().getControl();
 	}
 
 	@Override
@@ -105,15 +96,26 @@ public class ModelExplorer extends CommonNavigator /* implements IEditingDomainP
 			throws PartInitException {
 		// TODO Auto-generated method stub
 		super.init(site, aMemento);
-		page = site.getPage();
-
 
 		// Hook undo/redo action
 		//		hookGlobalHistoryHandler(site);
 
-		page.addPartListener(partListener);
+		//		page.addPartListener(partListener);
 		activate();
 
+	}
+
+	/**
+	 * Hook the global undo/redi actions.
+	 */
+	private void hookGlobalHistoryHandler(IViewSite site) {
+		undoHandler = new UndoActionHandler(site, null);
+		redoHandler = new RedoActionHandler(site, null);
+
+		IActionBars actionBars = site.getActionBars();
+
+		actionBars.setGlobalActionHandler(ActionFactory.UNDO.getId(), undoHandler);
+		actionBars.setGlobalActionHandler(ActionFactory.REDO.getId(), redoHandler);
 	}
 
 	/**
@@ -129,9 +131,32 @@ public class ModelExplorer extends CommonNavigator /* implements IEditingDomainP
 		}
 	};
 
-	// a revoir eviter de rafrachier le root
+	/**
+	 * 
+	 * @param event
+	 */
 	private void handleResourceSetChanged(ResourceSetChangeEvent event) {
-		getCommonViewer().refresh();
+
+		refresh();
+	}
+
+	/**
+	 * refresh the view.
+	 */
+	public void refresh() {
+		// Skip if control is disposed or not visible
+		if(getControl().isDisposed() || !getControl().isVisible())
+			return;
+
+		// avoid reentrant call
+		// Refresh only of we are not already refreshing.
+		if(isRefreshing.compareAndSet(false, true)) {
+			if(!getCommonViewer().isBusy())
+				getCommonViewer().refresh();
+
+			isRefreshing.set(false);
+		}
+
 	}
 
 	/**
@@ -144,9 +169,8 @@ public class ModelExplorer extends CommonNavigator /* implements IEditingDomainP
 	@Override
 	protected Object getInitialInput() {
 
-		IMultiDiagramEditor part = EditorUtils.getMultiDiagramEditor();
-		if(part != null) {
-			return part.getServicesRegistry();
+		if(editorPart != null) {
+			return editorPart.getServicesRegistry();
 		} else {
 			return super.getInitialInput();
 		}
@@ -154,37 +178,19 @@ public class ModelExplorer extends CommonNavigator /* implements IEditingDomainP
 	}
 
 	/**
-	 * Activate the Model Explorer.
-	 * Lookup for the associated {@link IMultiDiagramEditor}
+	 * Activate specified Part.
 	 */
 	private void activate() {
 
-		IMultiDiagramEditor part = EditorUtils.getMultiDiagramEditor();
-		if(part != null)
-			activate(part);
-	}
-
-	/**
-	 * Activate specified Part.
-	 */
-	private void activate(IMultiDiagramEditor part) {
-
-		System.out.println("activate " + part.getTitle());
-		// Skip if there is no change.
-		if(part == editorPart)
-			return;
-
-		this.editorPart = part;
-
-		if(part != null) {
-			this.editingDomain = EditorUtils.getTransactionalEditingDomain(part.getServicesRegistry());
+		if(editorPart != null) {
+			this.editingDomain = EditorUtils.getTransactionalEditingDomain(editorPart.getServicesRegistry());
 
 
 			if(editingDomain != null) {
 
 				// Set Viewer input if it already exist
 				if(getCommonViewer() != null) {
-					getCommonViewer().setInput(part.getServicesRegistry());
+					getCommonViewer().setInput(editorPart.getServicesRegistry());
 				}
 				editingDomain.addResourceSetListener(resourceSetListener);
 			}
@@ -199,9 +205,19 @@ public class ModelExplorer extends CommonNavigator /* implements IEditingDomainP
 			//			}
 		}
 		if(this.getCommonViewer() != null) {
-			this.getCommonViewer().refresh();
+			refresh();
 		}
 
+	}
+
+	/**
+	 * Get the undo context associated to the part.
+	 * 
+	 * @param part
+	 * @return
+	 */
+	private IUndoContext getUndoContext(IMultiDiagramEditor part) {
+		return (IUndoContext)part.getAdapter(IUndoContext.class);
 	}
 
 	/**
@@ -228,39 +244,10 @@ public class ModelExplorer extends CommonNavigator /* implements IEditingDomainP
 		}
 	}
 
-	/**
-	 * An {@link IWorkbenchPart} has been deactivated, refresh.
-	 * 
-	 * @param partRef
-	 */
-	private void handlePartDeactivated(IWorkbenchPartReference partRef) {
-		IWorkbenchPart part = partRef.getPart(false);
-		if(editorPart != null && editorPart.equals(part)) {
-			deactivate();
-		}
-	}
-
-	/**
-	 * A new {@link IWorkbenchPart} has been activated, refresh.
-	 * 
-	 * @param partRef
-	 */
-	private void handlePartActivated(IWorkbenchPartReference partRef) {
-		final IWorkbenchPart part = partRef.getPart(false);
-
-
-
-
-		if(part instanceof IMultiDiagramEditor) {
-			activate((IMultiDiagramEditor)part);
-		}
-	}
-
 	@Override
 	public void dispose() {
 		super.dispose();
 		deactivate();
-		page.removePartListener(partListener);
 
 	}
 
@@ -312,4 +299,18 @@ public class ModelExplorer extends CommonNavigator /* implements IEditingDomainP
 	public EditingDomain getEditingDomain() {
 		return editingDomain;
 	}
+
+	/**
+	 * 
+	 * @see org.eclipse.ui.navigator.CommonNavigator#selectReveal(org.eclipse.jface.viewers.ISelection)
+	 * 
+	 * @param selection
+	 */
+	public void selectReveal(ISelection selection) {
+		if(getCommonViewer() != null) {
+			getCommonViewer().setSelection(selection, true);
+		}
+	}
+
+
 }

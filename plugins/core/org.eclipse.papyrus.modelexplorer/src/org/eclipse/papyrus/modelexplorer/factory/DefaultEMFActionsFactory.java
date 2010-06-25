@@ -26,6 +26,8 @@ import org.eclipse.emf.edit.ui.action.LoadResourceAction;
 import org.eclipse.emf.edit.ui.action.PasteAction;
 import org.eclipse.emf.edit.ui.action.RedoAction;
 import org.eclipse.emf.edit.ui.action.UndoAction;
+import org.eclipse.emf.workspace.ui.actions.RedoActionWrapper;
+import org.eclipse.emf.workspace.ui.actions.UndoActionWrapper;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -55,9 +57,9 @@ public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 
 	protected PasteAction pasteAction;
 
-	protected UndoAction undoAction;
+	protected UndoActionWrapper undoAction;
 
-	protected RedoAction redoAction;
+	protected RedoActionWrapper redoAction;
 
 	protected LoadResourceAction loadResourceAction;
 
@@ -97,13 +99,13 @@ public class DefaultEMFActionsFactory implements IActionHandlerFactory {
 		actions.add(deleteAction);
 
 		// Undo action
-		this.undoAction = new UndoAction();
+		this.undoAction = new UndoActionWrapper();
 		this.undoAction.setImageDescriptor(sharedImages
 				.getImageDescriptor(ISharedImages.IMG_TOOL_UNDO));
 		actions.add(undoAction);
 
 		// Redo action
-		this.redoAction = new RedoAction();
+		this.redoAction = new RedoActionWrapper();
 		this.redoAction.setImageDescriptor(sharedImages
 				.getImageDescriptor(ISharedImages.IMG_TOOL_REDO));
 		actions.add(redoAction);
