@@ -397,7 +397,14 @@ public abstract class EditPartTree extends DefaultMutableTreeNode {
 						break; //on sort du while
 					} else {
 						//we add all the parent in this list!
-						if(!(parent instanceof CompartmentEditPart)) {
+						/*
+						 * we don't add the parent if it's a comparment , except if the parent is the selected element (property, enumeration
+						 * literal...),
+						 * of course, a property or a enumeration literal can't move in there compartment (in class diagram) but this choice allows
+						 * avoid some NullPointerException.
+						 * (see bug 317691)
+						 */
+						if(!(parent instanceof CompartmentEditPart) || (parent instanceof CompartmentEditPart && parent == currentEP)) {
 							if(!(parent instanceof RootEditPart)) {
 								if(!(parent.getParent() instanceof RootEditPart)) {
 									parentsList.add(i, parent);
