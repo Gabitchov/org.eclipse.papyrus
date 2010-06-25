@@ -32,6 +32,9 @@ public class InputListDialog {
 	/** Message to be show */
 	private String message;
 
+	/** Message to be show */
+	private String tooltips;
+
 	/** List of fields to show */
 	private List<String> fieldList;
 
@@ -52,6 +55,16 @@ public class InputListDialog {
 		this.message = msg;
 		this.fieldList = list;
 	}
+
+	
+	
+	/**
+	 * @param tooltips the tooltips to set
+	 */
+	public void setTooltips(String tooltips) {
+		this.tooltips = tooltips;
+	}
+
 
 	/**
 	 * Return the selected list.
@@ -80,6 +93,7 @@ public class InputListDialog {
 			//	            data.widthHint = convertHorizontalDLUsToPixels(IDialogConstants.MINIMUM_MESSAGE_AREA_WIDTH);
 			label.setLayoutData(data);
 			label.setFont(parent.getFont());
+			setToolTip( label, tooltips );;
 		}
 
 		// button
@@ -92,6 +106,7 @@ public class InputListDialog {
 
 		listData.heightHint = 100;
 		listWidget.setLayoutData(listData);
+		setToolTip( listWidget, tooltips );
 		if(fieldList != null)
 			for(String item : fieldList) {
 				listWidget.add(item);
@@ -101,6 +116,16 @@ public class InputListDialog {
 		return composite;
 	}
 
+
+	/**
+	 * Set the tooltips if not null.
+	 * @param parent
+	 * @param tooltips
+	 */
+	private void setToolTip(Control parent, String tooltips) {
+		if( tooltips != null)
+			parent.setToolTipText(tooltips);
+	}
 
 	/**
 	 * Returns the style bits that should be used for the input text field.

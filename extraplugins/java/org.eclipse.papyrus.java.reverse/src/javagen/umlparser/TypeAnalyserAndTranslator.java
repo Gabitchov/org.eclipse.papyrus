@@ -12,6 +12,8 @@ import japa.parser.ast.type.Type;
  * Allows to analyse an ast type, and to translate it according to recognized
  * patterns.
  * For example, this allow to translate from List<Xxx> to Xxx[0..1].
+ * TODO : improve to take into account Map, Set, ...
+ * Use an enum rather than a boolean. Allow to create association class specifying the real type used.
  * 
  * @author dumoulin
  * 
@@ -99,6 +101,10 @@ public class TypeAnalyserAndTranslator extends TypeAnalyser {
 		/** is the type denoting a collection ? */
 		public boolean isCollection = false;
 
+		/**
+		 * Get the Real name, taking into account if it is a generic.
+		 * @return
+		 */
 		public List<String> getTranslatedQualifiedName() {
 			if(isTranslatable)
 				return genericData.get(0).qualifiedName;

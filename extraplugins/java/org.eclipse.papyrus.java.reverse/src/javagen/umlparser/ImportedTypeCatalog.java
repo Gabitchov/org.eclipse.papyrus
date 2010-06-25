@@ -29,9 +29,14 @@ public class ImportedTypeCatalog {
 			"Integer", "datatype.Integer",
 			"Boolean", "datatype.Boolean",
 			"Long", "datatype.Long",
-			"Char", "datatype.Char"
+			"Char", "datatype.Char",
+			"Byte", "datatype.Byte",
+			"Runnable", "java.lang.Runnable",
+			"Throwable", "java.lang.Throwable",
+			"Thread", "java.lang.Thread",
 			};
 
+	
 	/**
 	 * Constructor.
 	 */
@@ -96,6 +101,26 @@ public class ImportedTypeCatalog {
 		} else
 			return possiblyQualifiedName;
 	}
+
+	/**
+	 * Return true if the specified qualifiedName denote an imported name.
+	 * Return false otherwise.
+	 * 
+	 * @param qualifiedName
+	 * @return
+	 */
+	public boolean isImportedType(List<String> qualifiedName) {
+		
+		String lastName = qualifiedName.get(qualifiedName.size() - 1);
+
+		// Check if the last name is in the catalog, and compare package names
+		List<String> found = map.get(lastName);
+		if( found != null && found.equals( qualifiedName ) )
+			return true;
+		
+		return false;
+	}
+
 
 	/**
 	 * Add an import

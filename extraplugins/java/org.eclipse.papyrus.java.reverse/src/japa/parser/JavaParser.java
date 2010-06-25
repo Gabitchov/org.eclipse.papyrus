@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Reader;
 
 /**
  * <p>
@@ -144,4 +145,30 @@ public final class JavaParser {
 	public static CompilationUnit parse(File file) throws ParseException, IOException {
 		return parse(file, null);
 	}
+	
+	/**
+	 * Parses the Java code contained in the {@link InputStream} and returns
+	 * a {@link CompilationUnit} that represents it.
+	 * 
+	 * @param in
+	 *        {@link InputStream} containing Java source code
+	 * @param encoding
+	 *        encoding of the source code
+	 * @return CompilationUnit representing the Java source code
+	 * @throws ParseException
+	 *         if the source code has parser errors
+	 */
+	public static CompilationUnit parse(Reader in) throws ParseException {
+		if(cacheParser) {
+			if(parser == null) {
+				parser = new ASTParser(in);
+			} else {
+				parser.ReInit(in);
+			}
+			return parser.CompilationUnit();
+		}
+		return new ASTParser(in).CompilationUnit();
+	}
+
+
 }

@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.core.ICompilationUnit;
+import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.viewers.ISelection;
@@ -50,10 +51,19 @@ public class ReverseCodeHandler extends AbstractHandler implements IHandler {
 		final Resource umlResource = getUmlResource();
 		//        String rootModelName = getRootModelName(umlResource);
 
+		// Try to compute a uid identifying the model. Used to store user settings.
+		String modelUid = umlResource.getURI().toPlatformString(true);
+		if( modelUid == null)
+		{
+			System.err.println("Can't compute relatif model uid. Use absolute one");
+			modelUid = umlResource.getURI().path();
+		}
+		System.out.println("Model uid :" + modelUid);
+		
 		// Get reverse parameters from a dialog
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart().getSite().getShell();
 		//    	ReverseCodeDialog dialog = new ReverseCodeDialog(shell, DefaultGenerationPackageName, Arrays.asList("generated") );
-		ReverseCodeDialog dialog = new ReverseCodeDialog(shell, null, null);
+		ReverseCodeDialog dialog = new ReverseCodeDialog(shell, modelUid, null, null);
 
 		int res = dialog.open();
 		//    	System.out.println("dialog result =" + res);
@@ -126,18 +136,34 @@ public class ReverseCodeHandler extends AbstractHandler implements IHandler {
 					e.printStackTrace();
 				}
 			}
-			if(obj instanceof IPackageFragment) {
+        	if(obj instanceof IPackageFragment)
+        	{
 				IPackageFragment u = (IPackageFragment)obj;
 				try {
-					obj = u.getCorrespondingResource();
+					IResource res = u.getCorrespondingResource();
+					if(res != null)
+						obj = res;
 				} catch (JavaModelException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
-			//        	System.out.println("obj=" + obj.getClass());
-			if(obj instanceof IResource) {
+        	// This happen when selection is an element from a jar
+        	if(obj instanceof IJavaElement)
+        	{
+        		IJavaElement u = (IJavaElement)obj;
 				try {
+        			
+				codeReverse.reverseJavaElement(u);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+        	}
+        	// This is a regular java file
+         	if(obj instanceof IResource )
+        	{
+        		try {
 					codeReverse.reverseResource((IResource)obj);
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
@@ -149,6 +175,7 @@ public class ReverseCodeHandler extends AbstractHandler implements IHandler {
 			}
 		}
 
+    	System.out.println("reverse done");
 
 	}
 

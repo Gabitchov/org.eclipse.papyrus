@@ -5,6 +5,7 @@ package javagen.umlparser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
@@ -22,6 +23,8 @@ import org.eclipse.uml2.uml.Package;
  * @TODO rename to ClasspathCatalog
  */
 public class ClassifierCatalog {
+
+	public static final String WILDCARD = "*";
 
 	/** Model containing the paths */
 	protected Resource model;
@@ -42,21 +45,23 @@ public class ClassifierCatalog {
 	 */
 	public ClassifierCatalog(Resource model) {
 		this.model = model;
-		paths.add(new ResourceSearcPackage());
+		paths.add(new ResourceSearchPackage());
 	}
 
 	/**
 	 * Constructor.
+	 * Not used anymore
+	 * @param model The Resource containing the packages
 	 */
 	public ClassifierCatalog(Resource model, List<String> packageNames) {
 		this.model = model;
 		for(String name : packageNames) {
 			if("/".equals(name)) {
-				paths.add(new ResourceSearcPackage());
+				paths.add(new ResourceSearchPackage());
 			} else {
 				List<String> qualifiedName = dirToQualifiedName(name);
 				// Get corresponding package if any
-				paths.add(new AbsoluteSearchPackage(qualifiedName));
+				paths.add(new ResourceRelativeSearchPackage(qualifiedName));
 			}
 
 		}
@@ -65,16 +70,26 @@ public class ClassifierCatalog {
 	/**
 	 * Constructor.
 	 * search paths are relative to the specified package.
+	 * 
+	 * @param modelRootPackage The model Package used as root.
 	 */
 	public ClassifierCatalog(Package modelRootPackage, List<String> packageNames) {
 		this.modelRootPackage = modelRootPackage;
 		for(String name : packageNames) {
 			if("/".equals(name)) {
-				paths.add(new ResourceSearcPackage());
+				paths.add(new ResourceSearchPackage());
 			} else {
 				List<String> qualifiedName = dirToQualifiedName(name);
-				// Get corresponding package if any
-				paths.add(new RelativeSearchPackage(qualifiedName));
+				if( name.contains(WILDCARD)) {
+					// Use search path with wildcard
+					paths.add(new RelativeSearchPackageWithWildcard(qualifiedName));
+				}
+				else {
+					// Get corresponding package if any
+					paths.add(new RelativeSearchPackage(qualifiedName));
+				}
+				
+				
 			}
 
 		}
@@ -168,8 +183,14 @@ public class ClassifierCatalog {
 	 */
 	abstract private class SearchPackage {
 
+		/**
+		 * Cached value. Can be null.
+		 */
 		protected Package umlPackage;
 
+		/**
+		 * Search path
+		 */
 		protected List<String> packageQualifiedName;
 
 		/**
@@ -184,14 +205,14 @@ public class ClassifierCatalog {
 	}
 
 	/**
-	 * This represent a searchpackage whose name is absolute from the resource.
+	 * This class allows to search for uml element in specified packages relative to the Resource.
 	 * 
 	 * @author dumoulin
 	 * 
 	 */
-	private class AbsoluteSearchPackage extends SearchPackage {
+	private class ResourceRelativeSearchPackage extends SearchPackage {
 
-		public AbsoluteSearchPackage(List<String> qualifiedName) {
+		public ResourceRelativeSearchPackage(List<String> qualifiedName) {
 			super(qualifiedName);
 		}
 
@@ -201,10 +222,12 @@ public class ClassifierCatalog {
 		 * @return
 		 */
 		private Package getPathPackage() {
+			
+			// Check if in cache
 			if(umlPackage != null)
 				return umlPackage;
 
-			// Try to find package
+			// No, Try to find package using the resource
 			umlPackage = UmlUtils.lookupPackage(model, packageQualifiedName);
 			return umlPackage;
 		}
@@ -223,7 +246,7 @@ public class ClassifierCatalog {
 	}
 
 	/**
-	 * This represent search package relative to the modelRootPackage..
+	 * This class allows to search for uml element in packages relative to the modelRootPackage.
 	 * 
 	 * @author dumoulin
 	 * 
@@ -241,10 +264,11 @@ public class ClassifierCatalog {
 		 * @return
 		 */
 		private Package getPathPackage() {
+			// Check if in cache
 			if(umlPackage != null)
 				return umlPackage;
 
-			// Try to find package
+			// No, Try to find package using the root package
 			umlPackage = UmlUtils.lookupPackage(modelRootPackage, packageQualifiedName);
 			return umlPackage;
 		}
@@ -264,14 +288,83 @@ public class ClassifierCatalog {
 	}
 
 	/**
-	 * Search is done in the resource directly.
+	 * This class allows to search for uml element in packages relative to the modelRootPackage.
 	 * 
 	 * @author dumoulin
 	 * 
 	 */
-	private class ResourceSearcPackage extends SearchPackage {
+	private class RelativeSearchPackageWithWildcard extends SearchPackage {
 
-		public ResourceSearcPackage() {
+		/**
+		 * 
+		 * Constructor.
+		 *
+		 * @param searchpath Search path, with a wildcard.
+		 */
+		public RelativeSearchPackageWithWildcard(List<String> searchpath) {
+			super(searchpath);
+		}
+
+		/**
+		 * Lookup the uml package corresponding to the path with WILDCARD.
+		 * Search from the modelRootPackage.
+		 * 
+		 * @return
+		 */
+		private List<Package> lookupExistingPackages() {
+			
+			
+			// Lookup the package containing the wildcard, and put it in cache
+			if(umlPackage == null) {
+				umlPackage = UmlUtils.lookupPackageBeforeWildcard(modelRootPackage, packageQualifiedName);
+			}
+
+			if(umlPackage == null)
+				return Collections.emptyList();
+			
+			// No, Try to find package using the root package
+			// Look for existing packages at the place of the wildcard.
+			List<Package> existingPackages = umlPackage.getNestedPackages();
+			
+			return existingPackages;
+		}
+
+		/**
+		 * lookup for the classifier in this searchpath.
+		 */
+		@Override
+		public Classifier getUmlClassifier(List<String> qualifiedName, EClass expectedType) {
+			
+			// Iterate on possible searchpaths
+			int wildcardIndex = packageQualifiedName.indexOf(WILDCARD);	
+			// Get existing packages for the path, untill the wildcard
+			List<Package> existingPackages = lookupExistingPackages();
+			
+			// Get the remaining path from ]index, size]
+			List<String> remainingPath = qualifiedName.subList(wildcardIndex+1, qualifiedName.size());
+			// Now do searching from the existing packages
+			for(Package nestedPackage : existingPackages) {
+				
+				Classifier res = UmlUtils.lookupClassifier(nestedPackage, qualifiedName, expectedType);
+				if(res != null)
+					return res;
+			}
+
+			// Not found
+			return null;
+		}
+
+	}
+
+	/**
+	 * This class allows to search for uml element in the resource.
+	 * 
+	 * @author dumoulin
+	 * 
+	 */
+	private class ResourceSearchPackage extends SearchPackage {
+
+		public ResourceSearchPackage() {
 			super(null);
 			// TODO Auto-generated constructor stub
 		}

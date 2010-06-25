@@ -34,6 +34,17 @@
             </command>
          </menu>
       </menuContribution>
+      <menuContribution
+            locationURI="popup:org.eclipse.sash.ui.folder">
+         <menu
+               id="org.eclipse.papyrus.java.ui.sash.menu"
+               label="java">
+            <command
+                  commandId="org.eclipse.papyrus.java.reverse.ui.reverseCodeCommand"
+                  style="push">
+            </command>
+         </menu>
+      </menuContribution>
    </extension>
    <extension
          point="org.eclipse.ui.commands">

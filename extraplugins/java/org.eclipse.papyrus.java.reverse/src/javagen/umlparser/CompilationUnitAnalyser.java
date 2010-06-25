@@ -24,7 +24,6 @@ import japa.parser.ast.type.PrimitiveType;
 import japa.parser.ast.type.ReferenceType;
 import japa.parser.ast.type.VoidType;
 import japa.parser.ast.type.WildcardType;
-import japa.parser.ast.visitor.GenericVisitorAdapter;
 import japa.parser.ast.visitor.VoidVisitorAdapter;
 
 import java.util.ArrayList;
@@ -35,12 +34,14 @@ import javagen.umlparser.TypeAnalyserAndTranslator.TranslatedTypeData;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.uml2.uml.BehavioredClassifier;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Feature;
 import org.eclipse.uml2.uml.Interface;
+import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
@@ -75,9 +76,14 @@ public class CompilationUnitAnalyser {
 	 */
 	private CreationPackageCatalog creationPackageCatalog;
 
-	/** */
+	/** Catalog used to lookup for a classifier. The catalog specifies a collection of models 
+	 * containing the java packages
+	 */
 	private ClassifierCatalog classifierCatalog;
 
+	/**
+	 * Catalog used to store the imports and to lookup for the qualified name of an element.
+	 */
 	private ImportedTypeCatalog importedTypes;
 
 	/**
@@ -85,6 +91,12 @@ public class CompilationUnitAnalyser {
 	 * Initialized at the beginning of exploreCompilationUnit()
 	 */
 	private Package currentCompilationUnitPackage;
+	
+	/**
+	 * Enclosing namespaces of the currently processed class.
+	 * The first element is always the current package.
+	 */
+	private List<Namespace> enclosingNamespaces = new ArrayList<Namespace>();
 
 	/**
 	 * Visitor used to parse qualified names.
@@ -199,7 +211,8 @@ public class CompilationUnitAnalyser {
 	 */
 	private void createDefaultGenerationPackage(Package rootModelElement) {
 
-		Package p = UmlUtils.getPackage(rootModelElement, generationPackageQualifiedName);
+//		Package p = UmlUtils.getPackage(rootModelElement, generationPackageQualifiedName);
+		Package p = UmlUtils.getModel(rootModelElement, generationPackageQualifiedName);
 		defaultGenerationPackage = p;
 	}
 
@@ -211,8 +224,7 @@ public class CompilationUnitAnalyser {
 	public void processCompilationUnit(CompilationUnit cu) {
 
 		// First, find the parent Package
-		Package cuPackage = getCuPackage(cu.getPakage());
-		currentCompilationUnitPackage = cuPackage;
+		currentCompilationUnitPackage = getCuPackage(cu.getPakage());;
 		classifierCatalog.setCurrentCompilationUnitPackage(currentCompilationUnitPackage);
 
 		// Add imports
@@ -224,9 +236,13 @@ public class CompilationUnitAnalyser {
 		if(cu.getTypes() != null) {
 			// for (Iterator<TypeDeclaration> i = cu.getTypes().iterator();
 			// i.hasNext();)
+			// Process all types
 			for(TypeDeclaration typeDecl : cu.getTypes()) {
-				// Process each kind of type
-				processTypedeclaration(cuPackage, typeDecl);
+				// Build the enclosing namespaces. Add the package as parent
+				enclosingNamespaces.add(currentCompilationUnitPackage);
+				processTypedeclaration(enclosingNamespaces, typeDecl);
+				// Reset the list of enclosing parents, in case of errors
+				enclosingNamespaces.clear();
 			} // end loop
 		} // end if
 
@@ -236,23 +252,23 @@ public class CompilationUnitAnalyser {
 	 * Process Typedeclaration 2 Classifier.
 	 * Process common parts : modifiers, members, ...
 	 * 
-	 * @param parentPackage
+	 * @param enclosingParents The package, followed by nested classes if any.
 	 * @param typeDecl
 	 */
-	private void processTypedeclaration(final Package parentPackage, TypeDeclaration typeDecl) {
+	private void processTypedeclaration(final List<Namespace> enclosingParents, TypeDeclaration typeDecl) {
 		Classifier classifier;
 
 		// Process right type
 		// Create the corresponding type.
-		classifier = new GenericSwitchVisitor<Classifier, Package>() {
+		classifier = new GenericSwitchVisitor<Classifier, List<Namespace>>() {
 
 			@Override
-			public Classifier visit(ClassOrInterfaceDeclaration n, Package parentPackage) {
-				return processClassOrInterfaceDeclaration(n, parentPackage);
+			public Classifier visit(ClassOrInterfaceDeclaration n, List<Namespace> enclosingParents) {
+				return processClassOrInterfaceDeclaration(n, enclosingParents);
 			}
 
 			// TODO Other kind of types
-		}.doSwitch(typeDecl, parentPackage);
+		}.doSwitch(typeDecl, enclosingParents);
 
 		// Set Visibility
 		createModifiers(classifier, typeDecl.getModifiers());
@@ -282,12 +298,16 @@ public class CompilationUnitAnalyser {
 					 * @param arg
 					 */
 					@Override
-					public void visit(ClassOrInterfaceDeclaration n, Type arg) {
+					public void visit(ClassOrInterfaceDeclaration n, Type classifier) {
 						System.out.println("Found nested class (ClassOrInterface)'" + n.getName() + "'");
-						// TODO Create nested classes in the parent Class.
-						processTypedeclaration(parentPackage, n);
+						
+						// Process nested classifier, and create it in its nested namespace
+						// So, increase the enclosing parents.
+						enclosingParents.add((Classifier)classifier);
+						processTypedeclaration(enclosingParents, n);
+						enclosingParents.remove((Classifier)classifier);
 						//					    processClassOrInterfaceDeclaration(n, parent)
-						super.visit(n, arg);
+						super.visit(n, classifier);
 					}
 					// TODO Other kind of members
 				}.doSwitch(member, classifier);
@@ -328,6 +348,7 @@ public class CompilationUnitAnalyser {
 	private Classifier getUmlClassifier(List<String> qualifiedName, boolean isInterface) {
 		// Get the corresponding type
 		// TODO specify requested type
+		// Lookup if it exist in the catalog (under one of the specified path)
 		Classifier foundClass = classifierCatalog.getClassifier(qualifiedName);
 
 		// If nothing found, create it
@@ -339,17 +360,34 @@ public class CompilationUnitAnalyser {
 				expectedType = UMLPackage.eINSTANCE.getClass_();
 
 			// Check where to create
-			if(qualifiedName.size() == 1 && currentCompilationUnitPackage != null) { // No scope in qname, create it in current namespace.
-				// TODO use current namespace instead of current package.
-				// TODO change to create (avoid second lookup)
-				foundClass = UmlUtils.getClassifier(currentCompilationUnitPackage, qualifiedName, expectedType);
-			} else {
-				//create with specified qname
+			if(importedTypes.isImportedType(qualifiedName)) { 
+				//This is an imported type, create it in its dedicated model
 				// First get the package where to create it, according to its name
 				Package creationPackage = creationPackageCatalog.getCreationPackage(qualifiedName);
 				// Now, create it.
 				foundClass = UmlUtils.getClassifier(creationPackage, qualifiedName, expectedType);
+			} else {
+				// The qualified name is relative to one of the enclosing namespace.
+				// Check if it exist, or create it.
+				foundClass = UmlUtils.getGuessedClassifier(enclosingNamespaces, qualifiedName, expectedType);
 			}
+			
+			
+			
+//			if(qualifiedName.size() == 1 && currentCompilationUnitPackage != null) { 
+//				// No scope in qname, create it in current namespace.
+//				// TODO use current namespace instead of current package.
+//				
+//				// TODO change to create (avoid second lookup)
+////				foundClass = UmlUtils.getClassifier(currentCompilationUnitPackage, qualifiedName, expectedType);
+//				foundClass = UmlUtils.getGuessedClassifier(enclosingNamespaces, qualifiedName.get(0), expectedType);
+//			} else {
+//				//create with specified qname
+//				// First get the package where to create it, according to its name
+//				Package creationPackage = creationPackageCatalog.getCreationPackage(qualifiedName);
+//				// Now, create it.
+//				foundClass = UmlUtils.getClassifier(creationPackage, qualifiedName, expectedType);
+//			}
 		}
 		return foundClass;
 	}
@@ -363,7 +401,7 @@ public class CompilationUnitAnalyser {
 	private List<String> getQualifiedName(ClassOrInterfaceType astType) {
 		QualifiedNameParser visitor = new QualifiedNameParser();
 
-		List res = visitor.getClassOrInterfaceQualifiedName(astType);
+		List<String> res = visitor.getClassOrInterfaceQualifiedName(astType);
 		return res;
 	}
 
@@ -378,7 +416,9 @@ public class CompilationUnitAnalyser {
 		System.out.println("getAttributeType( from:" + n.getType().getClass().getName() + ")");
 
 		// Get data about the type
+		// Get the qualified name, and other info on type
 		TranslatedTypeData typeData = processType(n.getType());
+		// Get the uml element from the qualified name
 		Type umlType = getUmlType(typeData);
 
 		// walk on variable declarations.
@@ -389,6 +429,9 @@ public class CompilationUnitAnalyser {
 	}
 
 	/**
+	 * Get the qualified name, and other info on type.
+	 * Lookup in imports to resolve names.
+	 * 
 	 * @param n
 	 * @return
 	 */
@@ -422,6 +465,7 @@ public class CompilationUnitAnalyser {
 			boolean isInterface = false;
 			String shortName = qualifiedName.get(qualifiedName.size() - 1);
 
+			// Try to guess if it is an interface.
 			if(shortName.length() > 2 && shortName.startsWith("I") && Character.isUpperCase(shortName.charAt(1)))
 				isInterface = true;
 
@@ -871,28 +915,36 @@ public class CompilationUnitAnalyser {
 
 	/**
 	 * Create an interface and return it.
+	 * The Classifier is created exactly in the directly enclosing namespace.
+	 * First, a lookup is done to check if it has been created elsewhere in the namespaces. If true, correct the location
+	 * and maybe the type.
+	 * 
 	 * Only need to create the object and fill it with data available at this level.
 	 * 
-	 * @param parent
+	 * @param enclosingParents enclosing parent, Package included, in case of nested declaration.
 	 * @param n
 	 * @return
 	 */
-	protected Class createClass(Package parent, ClassOrInterfaceDeclaration n) {
+	protected Class createClass(List<Namespace> enclosingParents, ClassOrInterfaceDeclaration n) {
 		System.out.println("getClass( " + n.getName() + " )");
-		return UmlUtils.getClass(parent, n.getName());
+		return UmlUtils.getClass(enclosingParents, n.getName());
 	}
 
 	/**
 	 * Create an interface and return it.
+	 * The Classifier is created exactly in the directly enclosing namespace.
+	 * First, a lookup is done to check if it has been created elsewhere in the namespaces. If true, correct the location
+	 * and maybe the type.
+
 	 * Only need to create the object and fill it with data available at this level.
 	 * 
 	 * @param parent
 	 * @param n
 	 * @return
 	 */
-	protected Interface createInterface(Package parent, ClassOrInterfaceDeclaration n) {
+	protected Interface createInterface(List<Namespace> enclosingParents, ClassOrInterfaceDeclaration n) {
 		System.out.println("getInterface( " + n.getName() + " )");
-		return UmlUtils.getInterface(parent, n.getName());
+		return UmlUtils.getInterface(enclosingParents, n.getName());
 	}
 
 	/**
@@ -908,10 +960,20 @@ public class CompilationUnitAnalyser {
 			return defaultGenerationPackage;
 		}
 
-		CreatePackage visitor = new CreatePackage();
-		Package res = visitor.getPackage(packageDecl, defaultGenerationPackage);
+		// Get the name
+		List<String> qualifiedName = qualifiedNameParser.getPackageQualifiedName(packageDecl);
+		// Get the creation model
+		Package creationPackage = creationPackageCatalog.getCreationPackage(qualifiedName);
+		// Get the current unit package (where the element are created)
+		Package p = UmlUtils.getPackage(creationPackage, qualifiedName);
+		
+		return p;
+		//question
+		// How to let the creationPackageCatalog create the package for a specified name ?
+//		CreatePackage visitor = new CreatePackage();
+//		Package res = visitor.getPackage(packageDecl, defaultGenerationPackage);
 
-		return res;
+//		return res;
 	}
 
 	private void createModifiers(Classifier c, int modifiers) {
@@ -953,19 +1015,21 @@ public class CompilationUnitAnalyser {
 	}
 
 
+
 	/**
-	 * Process Class or Interface declaration
+	 * Process Class or Interface declaration (only the head of the class, not the members).
 	 * 
 	 * @param n
 	 * @param parent
 	 * @return
 	 */
-	private Classifier processClassOrInterfaceDeclaration(ClassOrInterfaceDeclaration n, Package parent) {
+	private Classifier processClassOrInterfaceDeclaration(ClassOrInterfaceDeclaration n, List<Namespace> enclosingParents) {
+		
 		Classifier processedClass;
 		if(n.isInterface()) {
-			processedClass = createInterface(parent, n);
+			processedClass = createInterface(enclosingParents, n);
 		} else {
-			processedClass = createClass(parent, n);
+			processedClass = createClass(enclosingParents, n);
 		}
 
 		// Comments
@@ -989,7 +1053,17 @@ public class CompilationUnitAnalyser {
 				qualifiedName = importedTypes.getQualifiedName(qualifiedName);
 				Classifier generalization = getUmlClassifier(qualifiedName, true);
 				// create the generalization
-				UmlUtils.getRealization(parent, processedClass, generalization);
+				Package parentPackage = (Package)enclosingParents.get(0);
+				// TODO use InterfaceRealization instead of Realization
+				// Need to store the InterfaceRealization in the right parent 
+//				UmlUtils.getRealization(parentPackage, processedClass, generalization);
+				if( generalization instanceof Interface && processedClass instanceof BehavioredClassifier)
+				  UmlUtils.getInterfaceRealization((BehavioredClassifier)processedClass, (Interface)generalization);
+				else
+				{
+					// should not happen
+					UmlUtils.getGeneralization(processedClass, generalization);
+				}
 			}
 		}
 
@@ -997,52 +1071,6 @@ public class CompilationUnitAnalyser {
 		return processedClass;
 	}
 
-
-	/**
-	 * Visitor used to create Types
-	 * 
-	 * @author dumoulin
-	 * 
-	 */
-	protected class CreateVisitor extends GenericVisitorAdapter<Type, Package> {
-
-		/**
-		 * Create the type corresponding to the provided declaration.
-		 * Main entry point i
-		 * 
-		 * @param parent
-		 * @param typeDecl
-		 * @return
-		 */
-		public Type createType(Package parent, TypeDeclaration typeDecl) {
-			CreateVisitor visitor = new CreateVisitor();
-
-			Type res = typeDecl.accept(visitor, parent);
-			return res;
-		}
-
-		/**
-		 * Create class or interface
-		 */
-		@Override
-		public Type visit(ClassOrInterfaceDeclaration n, Package parent) {
-
-			Classifier res;
-			// Create the class
-			if(n.isInterface()) {
-				System.out.println("getInterface( " + n.getName() + " )");
-				res = UmlUtils.getInterface(parent, n.getName());
-			} else {
-				System.out.println("getClass( " + n.getName() + " )");
-				res = UmlUtils.getClass(parent, n.getName());
-			}
-
-			// Set Visibility
-			createModifiers(res, n.getModifiers());
-			return res;
-		}
-
-	}
 
 	/**
 	 * Visitor used to create Package from a qualified names
