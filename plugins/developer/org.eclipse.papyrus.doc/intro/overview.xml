@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <introContent>
-	<extensionContent id="org.eclipse.team.papyrus.firststeps" name="Papyrus First Steps" style="css/firststeps.css" path="firststeps/@">
-		<group label="Papyrus" style-id="content-group" id="org.eclipse.papyrus-firststeps-group">
+	<extensionContent id="org.eclipse.team.papyrus.overview" name="Papyrus overview" style="css/overview.css" path="overview/@">
+		<group style-id="content-group" id="org.eclipse.papyrus-firststeps-group">
     		<link label="New Papyrus Project" 
  	    		url="http://org.eclipse.ui.intro/runAction?pluginId=org.eclipse.papyrus.wizards&#38;class=org.eclipse.papyrus.wizards.NewProjectAction"    	
     			id="newpapyrusproject-introLink" style-id="content-link">
