@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
+ *  Vincent Lorenzo (CEA-LIST) vincent.lorenzo@cea.fr - Allow the alignment Request
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.editpolicies;
 
@@ -20,7 +20,6 @@ import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.requests.AlignmentRequest;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
@@ -46,12 +45,6 @@ public class BorderItemResizableEditPolicy extends ResizableShapeEditPolicy {
 		if((REQ_MOVE.equals(request.getType()) && isDragAllowed()) || REQ_CLONE.equals(request.getType()) || REQ_ADD.equals(request.getType()) || RequestConstants.REQ_DROP.equals(request.getType()) || REQ_RESIZE.equals(request.getType()))
 			eraseChangeBoundsFeedback((ChangeBoundsRequest)request);
 
-	}
-
-	/** Return <tt>null</tt> to avoid handling the request. */
-	@Override
-	protected Command getAlignCommand(AlignmentRequest request) {
-		return null;
 	}
 
 	/**
