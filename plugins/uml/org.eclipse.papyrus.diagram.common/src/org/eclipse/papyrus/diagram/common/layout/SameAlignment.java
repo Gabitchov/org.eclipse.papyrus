@@ -24,7 +24,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.editparts.AbstractConnectionEditPart;
-import org.eclipse.papyrus.diagram.common.figure.edge.UMLEdgeFigure;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 
 /**
  * 
@@ -65,7 +65,7 @@ public class SameAlignment {
 		if(this.alignment == PositionConstants.RIGHT || this.alignment == PositionConstants.BOTTOM) {//we need to inverse the selection to do the correct action
 			Collections.reverse(linksRepresentation);
 		}
-		//we remove the selected link which are not on a correct side
+		//we remove the selected link which are not interesting
 		removeBadSideLink();
 
 		CompoundCommand cmd = new CompoundCommand("command for alignment"); //$NON-NLS-1$
@@ -155,7 +155,6 @@ public class SameAlignment {
 	 *        adds this {@code family} to the family
 	 */
 	public void addFamily(SameAlignment family) {
-		assert (this.alignment == family.getAlignment());
 		for(LinkRepresentation currentLink : family.getLinks()) {
 			addEditPartRepresentation(currentLink.getSource());
 			addEditPartRepresentation(currentLink.getTarget());
@@ -206,9 +205,13 @@ public class SameAlignment {
 	}
 
 	/**
-	 * This method removes the links which are not on a correct side to do the action
+	 * This method removes the following links :
+	 * <ul>
+	 * <li>links which are not on a correct side to do the action</li>
+	 * <li>links whose Figure is not an instanceof PolylineConnectionEx</li>
+	 * </ul>
 	 */
-	public void removeBadSideLink() {
+	protected void removeBadSideLink() {
 		List<LinkRepresentation> linksToRemove = new ArrayList<LinkRepresentation>();
 
 		//we test if the tow anchors for the selected link are opposite or not
@@ -224,6 +227,9 @@ public class SameAlignment {
 				if(!DistributionConstants.horizontalValuesList.contains(side1) || !DistributionConstants.horizontalValuesList.contains(side2)) {
 					linksToRemove.add(link);
 				}
+			}
+			if(!(((AbstractConnectionEditPart)link.getLink()).getFigure() instanceof PolylineConnectionEx)) {
+				linksToRemove.add(link);
 			}
 		}
 		linksRepresentation.removeAll(linksToRemove);
@@ -246,14 +252,14 @@ public class SameAlignment {
 		 * @return
 		 */
 		public int compare(Object o1, Object o2) {
-
-			//the tow figure to compare
-			UMLEdgeFigure figure1 = (UMLEdgeFigure)((AbstractConnectionEditPart)((LinkRepresentation)o1).getLink()).getFigure();
-			UMLEdgeFigure figure2 = (UMLEdgeFigure)((AbstractConnectionEditPart)((LinkRepresentation)o2).getLink()).getFigure();
+			//the two figures to compare
+			PolylineConnectionEx figure1 = (PolylineConnectionEx)((AbstractConnectionEditPart)((LinkRepresentation)o1).getLink()).getFigure();
+			PolylineConnectionEx figure2 = (PolylineConnectionEx)((AbstractConnectionEditPart)((LinkRepresentation)o2).getLink()).getFigure();
 
 			//the point for the first figure
 			Point pt11;
 			Point pt12;
+
 			//the point for the second figure 
 			Point pt21;
 			Point pt22;

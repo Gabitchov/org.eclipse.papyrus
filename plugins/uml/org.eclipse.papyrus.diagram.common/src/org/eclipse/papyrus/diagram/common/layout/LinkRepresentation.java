@@ -18,7 +18,6 @@ import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.GraphicalNodeEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.SetAllBendpointRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
-import org.eclipse.papyrus.diagram.common.figure.edge.UMLEdgeFigure;
 
 /**
  * 
@@ -213,7 +212,6 @@ public class LinkRepresentation {
 	 * It determines the reference point and the reference editpart for the alignment
 	 */
 	protected void initializeReferences() {
-		assert (((AbstractConnectionEditPart)link).getFigure() instanceof UMLEdgeFigure);
 		PrecisionRectangle absolutePositionSource = LayoutUtils.getAbsolutePosition(source.getRepresentedEditPart());
 		PrecisionRectangle absolutePositionTarget = LayoutUtils.getAbsolutePosition(target.getRepresentedEditPart());
 
@@ -338,7 +336,7 @@ public class LinkRepresentation {
 			cmd = target.getRepresentedEditPart().getCommand(reconnectRequest);
 			command.add(cmd);
 
-			//the fixed editpaet is the source
+			//the fixed editpart is the source
 			ReconnectRequest reconnectRequestTarget = new ReconnectRequest();
 			reconnectRequestTarget.setType(GraphicalNodeEditPolicy.REQ_RECONNECT_SOURCE);
 			reconnectRequestTarget.setConnectionEditPart((ConnectionEditPart)this.link);
