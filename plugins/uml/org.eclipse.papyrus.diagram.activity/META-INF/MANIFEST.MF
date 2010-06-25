@@ -38,8 +38,7 @@ Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
  org.eclipse.emf.validation;visibility:=reexport,
  org.eclipse.gef,
- org.eclipse.papyrus.diagram.common.groups,
- org.eclipse.papyrus.cache
+ org.eclipse.papyrus.diagram.common.groups
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin
 Bundle-Vendor: %providerName

@@ -176,6 +176,10 @@
             classname="org.eclipse.papyrus.resource.sasheditor.SashModel"
             description="Model for sash system">
       </model>
+      <modelSetSnippet
+            classname="org.eclipse.papyrus.core.modelsetquery.impl.ModelSetQueryInitializer"
+            description="Adapter attached to the ModelSet (aka ResourceSet)">
+      </modelSetSnippet>
    </extension>
    <extension
          point="org.eclipse.papyrus.core.service">

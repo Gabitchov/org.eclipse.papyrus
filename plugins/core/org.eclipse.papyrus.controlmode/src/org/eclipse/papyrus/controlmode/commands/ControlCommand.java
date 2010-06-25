@@ -47,13 +47,13 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.emf.commands.core.command.EditingDomainUndoContext;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.papyrus.cache.query.ModelSetQuery;
 import org.eclipse.papyrus.controlmode.commands.IControlCommand.STATE_CONTROL;
 import org.eclipse.papyrus.controlmode.history.HistoryModel;
 import org.eclipse.papyrus.controlmode.history.utils.HistoryUtils;
 import org.eclipse.papyrus.controlmode.mm.history.ControledResource;
 import org.eclipse.papyrus.controlmode.mm.history.historyFactory;
 import org.eclipse.papyrus.controlmode.mm.history.historyPackage;
+import org.eclipse.papyrus.core.modelsetquery.ModelSetQuery;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.resource.ModelIdentifiers;
 import org.eclipse.papyrus.resource.ModelSet;
