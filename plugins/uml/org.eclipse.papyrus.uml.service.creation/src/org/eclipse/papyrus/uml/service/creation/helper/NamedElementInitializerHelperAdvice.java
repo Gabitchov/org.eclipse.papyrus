@@ -21,7 +21,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
-import org.eclipse.papyrus.umlutils.NamedElementUtil;
+import org.eclipse.papyrus.diagram.common.helper.NamedElementHelper;
 import org.eclipse.uml2.uml.NamedElement;
 
 
@@ -41,7 +41,7 @@ public class NamedElementInitializerHelperAdvice extends AbstractEditHelperAdvic
 					NamedElement element = (NamedElement)request.getElementToConfigure();
 
 					// Initialize the element name based on the created IElementType
-					String initializedName = NamedElementUtil.getName((NamedElement)getElementToEdit());
+					String initializedName = NamedElementHelper.EINSTANCE.getNewUMLElementName(element.getOwner(), element.eClass());
 					element.setName(initializedName);
 				}
 
