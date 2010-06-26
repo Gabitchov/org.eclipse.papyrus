@@ -25,11 +25,11 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
  * @author dumoulin
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public class CreateClassDiagramCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler  {
+public class CreateClassDiagramCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
 
 	@Override
 	protected String getDefaultDiagramName() {
-		return openDiagramNameDialog("ClassDiagram");
+		return openDiagramNameDialog("NewDiagram");
 	}
 
 	/**

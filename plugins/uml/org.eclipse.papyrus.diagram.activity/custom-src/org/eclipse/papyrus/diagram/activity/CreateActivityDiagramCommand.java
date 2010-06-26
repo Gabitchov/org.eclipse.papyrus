@@ -10,12 +10,12 @@
  *******************************************************************************/
 package org.eclipse.papyrus.diagram.activity;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityDiagramEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.common.commands.CreateBehavioredClassifierDiagramCommand;
-import org.eclipse.uml2.uml.Behavior;
-import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Define a command to create a new Activity Diagram. This command is used by all UI (toolbar,
@@ -40,12 +40,9 @@ public class CreateActivityDiagramCommand extends CreateBehavioredClassifierDiag
 		return UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
-	protected Behavior createBehavior() {
-		return UMLFactory.eINSTANCE.createActivity();
+	protected EClass getBehaviorEClass() {
+		return UMLPackage.eINSTANCE.getActivity();
 	}
 
 	/**
@@ -53,8 +50,6 @@ public class CreateActivityDiagramCommand extends CreateBehavioredClassifierDiag
 	 */
 	@Override
 	protected String getDefaultDiagramName() {
-		return super.openDiagramNameDialog("ActivityDiagram"); //$NON-NLS-1$
+		return super.openDiagramNameDialog("NewDiagram"); //$NON-NLS-1$
 	}
-
-
 }

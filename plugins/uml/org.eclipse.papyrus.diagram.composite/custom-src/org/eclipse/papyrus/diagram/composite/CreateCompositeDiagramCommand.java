@@ -37,7 +37,7 @@ import org.eclipse.uml2.uml.Package;
  * outline, creation wizards) to create a new Composite Diagram.
  * 
  */
-public class CreateCompositeDiagramCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler  {
+public class CreateCompositeDiagramCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
 
 	/** Domain Element referenced by canvas if it differs from {@link Package} */
 	protected EObject canvasDomainElement = null;
@@ -54,7 +54,7 @@ public class CreateCompositeDiagramCommand extends AbstractPapyrusGmfCreateDiagr
 	/**
 	 * Name of the Diagram
 	 */
-	protected static final String CSD_DEFAULT_NAME = "CompositeDiagram"; //$NON-NLS-1$
+	protected static final String CSD_DEFAULT_NAME = "NewDiagram"; //$NON-NLS-1$
 
 	/**
 	 * {@inheritDoc}

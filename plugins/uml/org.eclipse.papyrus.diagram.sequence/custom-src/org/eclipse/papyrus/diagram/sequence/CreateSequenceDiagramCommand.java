@@ -13,12 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.papyrus.diagram.common.commands.CreateBehavioredClassifierDiagramCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
-import org.eclipse.uml2.uml.Behavior;
-import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * Define a command to create a new Sequence Diagram. This command is used by all UI (toolbar,
@@ -47,16 +47,11 @@ public class CreateSequenceDiagramCommand extends CreateBehavioredClassifierDiag
 	 */
 	@Override
 	protected String getDefaultDiagramName() {
-		return super.openDiagramNameDialog("SequenceDiagram"); //$NON-NLS-1$
+		return super.openDiagramNameDialog("NewDiagram"); //$NON-NLS-1$
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
-	protected Behavior createBehavior() {
-		return UMLFactory.eINSTANCE.createInteraction();
+	protected EClass getBehaviorEClass() {
+		return UMLPackage.eINSTANCE.getInteraction();
 	}
-
-
 }
