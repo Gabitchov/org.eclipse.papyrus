@@ -8,7 +8,7 @@
             categoryId="org.eclipse.papyrus.editor.category"
             description="Create a new UseCase Diagram (Papyrus II)"
             id="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand"
-            name="Create UseCase Diagram">
+            name="Create a new UseCase Diagram">
       </command>
    </extension>
    
@@ -38,7 +38,7 @@
                id="org.eclipse.papyrus.diagram.ui.toolbar">
             <command
                   commandId="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand"
-                  icon="icons/UseCaseDiagram.gif"
+                  icon="icons/obj16/Diagram_UseCase.gif"
                   label="Create a new UseCase Diagram"
                   style="push"
                   tooltip="Create a new UseCase Diagram">
@@ -60,8 +60,8 @@
                label="Diagrams">
             <command
                   commandId="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand"
-                  icon="icons/UseCaseDiagram.gif"
-                  label="Create UseCase Diagram"
+                  icon="icons/obj16/Diagram_UseCase.gif"
+                  label="Create a new UseCase Diagram"
                   style="push"
                   tooltip="Create a new UML2 UseCase Diagram  (Papyrus II)">
             </command>
@@ -75,12 +75,12 @@
             actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
             contextId="com.cea.papyrus.gmf.editor.context"
             factoryClass="org.eclipse.papyrus.diagram.usecase.UseCaseDiagramEditorFactory"
-            icon="icons/UseCaseDiagram.gif">
+            icon="icons/obj16/Diagram_UseCase.gif">
       </editorDiagram>
       <creationCommand
             creationCommandClass="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand"
             creationCondition="org.eclipse.papyrus.diagram.usecase.UseCaseDiagramCreationCondition"
-            icon="icons/UseCaseDiagram.gif"
+            icon="icons/obj16/Diagram_UseCase.gif"
             id="org.eclipse.papyrus.diagram.usecase.CreateUseCaseDiagramCommand"
             label="UML UseCase Diagram"
             language="uml">
@@ -105,7 +105,7 @@
       <editor
          id="org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditorID"
          name="%editorName"
-         icon="icons/obj16/UMLDiagramFile.gif"
+         icon="icons/obj16/Diagram_UseCase.gif"
          extensions="PapyrusUMLUsecase_diagram"
          default="true"
          class="org.eclipse.papyrus.diagram.usecase.part.UMLDiagramEditor"
@@ -128,7 +128,7 @@
       <?gmfgen generated="true"?>
   	  <wizard
   	     name="%newWizardName"
-  	     icon="icons/obj16/UMLDiagramFile.gif"
+  	     icon="icons/obj16/Diagram_UseCase.gif"
   	     category="org.eclipse.ui.Examples"
   	     class="org.eclipse.papyrus.diagram.usecase.part.UMLCreationWizard"
   	     id="org.eclipse.papyrus.diagram.usecase.part.UMLCreationWizardID">
@@ -736,7 +736,7 @@
             priority="normal" 
             contentProvider="org.eclipse.papyrus.diagram.usecase.navigator.UMLNavigatorContentProvider" 
             labelProvider="org.eclipse.papyrus.diagram.usecase.navigator.UMLNavigatorLabelProvider"
-            icon="icons/obj16/UMLDiagramFile.gif"
+            icon="icons/obj16/Diagram_UseCase.gif"
             activeByDefault="true">
          <triggerPoints>
             <or>
@@ -772,7 +772,7 @@
             priority="normal" 
             contentProvider="org.eclipse.papyrus.diagram.usecase.navigator.UMLDomainNavigatorContentProvider" 
             labelProvider="org.eclipse.papyrus.diagram.usecase.navigator.UMLDomainNavigatorLabelProvider"
-            icon="icons/obj16/UMLDiagramFile.gif"
+            icon="icons/obj16/Diagram_UseCase.gif"
             activeByDefault="true">
          <triggerPoints>
             <or>

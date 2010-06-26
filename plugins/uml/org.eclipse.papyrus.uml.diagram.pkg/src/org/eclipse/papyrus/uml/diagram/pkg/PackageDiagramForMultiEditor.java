@@ -39,7 +39,7 @@ public class PackageDiagramForMultiEditor extends PackageDiagramEditor {
 	/**
 	 * The location of diagram icon in the plug-in
 	 */
-	private static final String DIAG_IMG_PATH = "icons/diagram/PackageDiagramEditorIcon_16x16-32.gif";
+	private static final String DIAG_IMG_PATH = "icons/obj16/Diagram_Package.gif";
 
 	/**
 	 * The image descriptor of the diagram icon

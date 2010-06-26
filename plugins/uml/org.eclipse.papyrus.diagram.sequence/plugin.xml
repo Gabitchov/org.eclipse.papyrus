@@ -7,7 +7,7 @@
             categoryId="org.eclipse.papyrus.editor.category"
             description="Create a new Sequence Diagram (Papyrus II)"
             id="org.eclipse.papyrus.diagram.sequence.CreateSequenceDiagramCommand"
-            name="Create Sequence Diagram">
+            name="Create a new Sequence Diagram">
       </command>
    </extension>
    
@@ -37,7 +37,7 @@
                id="org.eclipse.papyrus.diagram.ui.toolbar">
             <command
                   commandId="org.eclipse.papyrus.diagram.sequence.CreateSequenceDiagramCommand"
-                  icon="icons/SequenceDiagram.gif"
+                  icon="icons/obj16/Diagram_Sequence.gif"
                   label="Create a new Sequence Diagram"
                   style="push"
                   tooltip="Create a new Sequence Diagram">
@@ -59,8 +59,8 @@
                label="Diagrams">
             <command
                   commandId="org.eclipse.papyrus.diagram.sequence.CreateSequenceDiagramCommand"
-                  icon="icons/SequenceDiagram.gif"
-                  label="Create Sequence Diagram"
+                  icon="icons/obj16/Diagram_Sequence.gif"
+                  label="Create a new Sequence Diagram"
                   style="push"
                   tooltip="Create a new UML2 Sequence Diagram  (Papyrus II)">
             </command>
@@ -74,12 +74,12 @@
     	    actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
             contextId="com.cea.papyrus.gmf.editor.context"
             factoryClass="org.eclipse.papyrus.diagram.sequence.SequenceDiagramEditorFactory"
-            icon="icons/SequenceDiagram.gif">
+            icon="icons/obj16/Diagram_Sequence.gif">
       </editorDiagram>
       <creationCommand
             creationCommandClass="org.eclipse.papyrus.diagram.sequence.CreateSequenceDiagramCommand"
             creationCondition="org.eclipse.papyrus.diagram.sequence.SequenceDiagramCreationCondition"
-            icon="icons/SequenceDiagram.gif"
+            icon="icons/obj16/Diagram_Sequence.gif"
             id="org.eclipse.papyrus.diagram.sequence.CreateSequenceDiagramCommand"
             label="UML Sequence Diagram"
             language="uml">
@@ -104,7 +104,7 @@
       <editor
          id="org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorID"
          name="%editorName"
-         icon="icons/obj16/UMLDiagramFile.gif"
+         icon="icons/obj16/Diagram_Sequence.gif"
          extensions="PapyrusUMLSequence_diagram"
          default="true"
          class="org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditor"
@@ -127,7 +127,7 @@
       <?gmfgen generated="true"?>
   	  <wizard
   	     name="%newWizardName"
-  	     icon="icons/obj16/UMLDiagramFile.gif"
+  	     icon="icons/obj16/Diagram_Sequence.gif"
   	     category="org.eclipse.ui.Examples"
   	     class="org.eclipse.papyrus.diagram.sequence.part.UMLCreationWizard"
   	     id="org.eclipse.papyrus.diagram.sequence.part.UMLCreationWizardID">
@@ -682,7 +682,7 @@
             priority="normal" 
             contentProvider="org.eclipse.papyrus.diagram.sequence.navigator.UMLNavigatorContentProvider" 
             labelProvider="org.eclipse.papyrus.diagram.sequence.navigator.UMLNavigatorLabelProvider"
-            icon="icons/obj16/UMLDiagramFile.gif"
+            icon="icons/obj16/Diagram_Sequence.gif"
             activeByDefault="true">
          <triggerPoints>
             <or>
@@ -718,7 +718,7 @@
             priority="normal" 
             contentProvider="org.eclipse.papyrus.diagram.sequence.navigator.UMLDomainNavigatorContentProvider" 
             labelProvider="org.eclipse.papyrus.diagram.sequence.navigator.UMLDomainNavigatorLabelProvider"
-            icon="icons/obj16/UMLDiagramFile.gif"
+            icon="icons/obj16/Diagram_Sequence.gif"
             activeByDefault="true">
          <triggerPoints>
             <or>

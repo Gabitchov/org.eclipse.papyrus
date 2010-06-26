@@ -42,7 +42,7 @@ public class UmlCommunicationDiagramForMultiEditor extends UMLDiagramEditor {
 	/**
 	 * The location of diagram icon in the plug-in
 	 */
-	private static final String DIAG_IMG_PATH = "icons/UMLDiagramFile.gif"; //$NON-NLS-1$
+	private static final String DIAG_IMG_PATH = "icons/obj16/Diagram_Communication.gif"; //$NON-NLS-1$
 
 	/**
 	 * The EditingDomain ID for this diagram

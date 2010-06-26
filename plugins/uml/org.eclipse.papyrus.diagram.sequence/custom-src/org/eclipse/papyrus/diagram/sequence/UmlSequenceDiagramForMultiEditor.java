@@ -38,7 +38,7 @@ public class UmlSequenceDiagramForMultiEditor extends UMLDiagramEditor {
 	/**
 	 * The location of diagram icon in the plug-in
 	 */
-	private static final String DIAG_IMG_PATH = "icons/SequenceDiagram.gif";
+	private static final String DIAG_IMG_PATH = "icons/obj16/Diagram_Sequence.gif";
 
 	/**
 	 * The image descriptor of the diagram icon

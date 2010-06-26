@@ -38,7 +38,7 @@ public class UmlClassDiagramForMultiEditor extends org.eclipse.papyrus.diagram.c
 	/**
 	 * The location of diagram icon in the plug-in
 	 */
-	private static final String DIAG_IMG_PATH = "icons/ClassDiagram.gif";
+	private static final String DIAG_IMG_PATH = "icons/obj16/Diagram_Class.gif";
 
 	/**
 	 * The image descriptor of the diagram icon

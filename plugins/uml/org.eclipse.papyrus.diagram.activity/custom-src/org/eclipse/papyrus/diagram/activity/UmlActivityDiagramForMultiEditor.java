@@ -53,7 +53,7 @@ public class UmlActivityDiagramForMultiEditor extends UMLDiagramEditor {
 	/**
 	 * The location of diagram icon in the plug-in
 	 */
-	private static final String DIAG_IMG_PATH = "icons/ActivityDiagram.gif";
+	private static final String DIAG_IMG_PATH = "icons/obj16/Diagram_Activity.gif";
 
 	/**
 	 * The image descriptor of the diagram icon

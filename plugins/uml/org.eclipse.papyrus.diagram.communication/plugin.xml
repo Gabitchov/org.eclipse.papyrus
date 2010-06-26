@@ -5,11 +5,13 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            description="Create a new Communication  Diagram "
+			categoryId="org.eclipse.papyrus.editor.category"
+            description="Create a new Communication Diagram "
             id="org.eclipse.papyrus.diagram.communication.CreateCommunicationDiagramCommand"
-            name="Create Communication Diagram">
+            name="Create a new Communication Diagram">
       </command>
    </extension>
+   
    <extension
          point="org.eclipse.ui.handlers">
       <handler
@@ -35,10 +37,10 @@
                id="org.eclipse.papyrus.diagram.ui.toolbar">
             <command
                   commandId="org.eclipse.papyrus.diagram.communication.CreateCommunicationDiagramCommand"
-                  icon="platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/CommunicationDiagramEditorIcons/CommunicationDiagramEditorIcon_16x16-32.bmp"
-                  label="Create a new communication diagram"
+                  icon="icons/obj16/Diagram_Communication.gif"
+                  label="Create a new Communication Diagram"
                   style="push"
-                  tooltip="Create a new communication diagram">
+                  tooltip="Create a new Communication Diagram">
                <visibleWhen>
                   <with
                         variable="activeEditorId">
@@ -57,10 +59,10 @@
                label="Diagrams">
             <command
                   commandId="org.eclipse.papyrus.diagram.communication.CreateCommunicationDiagramCommand"
-                  icon="platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/CommunicationDiagramEditorIcons/CommunicationDiagramEditorIcon_16x16-32.bmp"
-                  label="Create a new communication diagram"
+                  icon="icons/obj16/Diagram_Communication.gif"
+                  label="Create a new Communication Diagram"
                   style="push"
-                  tooltip="Create a new  Communication  Diagram  (Papyrus II)">
+                  tooltip="Create a new Communication Diagram">
                   <visibleWhen>
                   <with
                         variable="activeEditorId">
@@ -73,21 +75,22 @@
          </menu>
       </menuContribution>
    </extension>
+   
    <extension
          point="org.eclipse.papyrus.core.papyrusDiagram">
       <editorDiagram
-            contextId="com.cea.papyrus.gmf.editor.context"
             factoryClass="org.eclipse.papyrus.diagram.communication.CommunicationDiagramEditorFactory"
-            icon="platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/CommunicationDiagramEditorIcons/CommunicationDiagramEditorIcon_16x16-32.bmp">
+            icon="icons/obj16/Diagram_Communication.gif">
       </editorDiagram>
       <creationCommand
             creationCommandClass="org.eclipse.papyrus.diagram.communication.CreateCommunicationDiagramCommand"
-            icon="platform:/plugin/org.eclipse.papyrus.diagram.icons.uml/resource/CommunicationDiagramEditorIcons/CommunicationDiagramEditorIcon_16x16-32.bmp"
-            id="org.eclipse.papyrus.diagram.communication.creationCommand"
+            icon="icons/obj16/Diagram_Communication.gif"
+            id="org.eclipse.papyrus.diagram.communication.CreateCommunicationDiagramCommand"
             language="uml"
-            label="UML communication Diagram">
+            label="UML Communication Diagram">
       </creationCommand>
    </extension>
+   
 <extension point="org.eclipse.team.core.fileTypes" id="repo-ftype">
       <?gmfgen generated="true"?>
       <fileTypes type="text" extension="PapyrusUMLCommunication_diagram"/>
@@ -106,7 +109,7 @@
       <editor
          id="org.eclipse.papyrus.diagram.communication.part.UMLDiagramEditorID"
          name="%editorName"
-         icon="icons/obj16/CommunicationDiagramEditorIcon_32x32-32.bmp"
+         icon="icons/obj16/Diagram_Communication.gif"
          extensions="PapyrusUMLCommunication_diagram"
          default="true"
          class="org.eclipse.papyrus.diagram.communication.part.UMLDiagramEditor"
@@ -129,7 +132,7 @@
       <?gmfgen generated="true"?>
   	  <wizard
   	     name="%newWizardName"
-  	     icon="icons/obj16/CommunicationDiagramEditorIcon_32x32-32.bmp"
+  	     icon="icons/obj16/Diagram_Communication.gif"
   	     category="org.eclipse.ui.Examples"
   	     class="org.eclipse.papyrus.diagram.communication.part.UMLCreationWizard"
   	     id="org.eclipse.papyrus.diagram.communication.part.UMLCreationWizardID">
@@ -418,14 +421,6 @@
 			class="org.eclipse.papyrus.diagram.communication.preferences.MessagePreferencePage"
             id="org.eclipse.papyrus.diagram.communication.preferences.MessagePreferencePage"
             name="Message" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.org.eclipse.papyrus.diagram.communication"
-			class="org.eclipse.papyrus.diagram.communication.preferences.UndefinedPreferencePage"
-            id="org.eclipse.papyrus.diagram.communication.preferences.UndefinedPreferencePage"
-            name="Undefined" />	
-	
 
 </extension>
 
@@ -672,7 +667,7 @@
             priority="normal" 
             contentProvider="org.eclipse.papyrus.diagram.communication.navigator.UMLNavigatorContentProvider" 
             labelProvider="org.eclipse.papyrus.diagram.communication.navigator.UMLNavigatorLabelProvider"
-            icon="icons/obj16/UMLDiagramFile.gif"
+            icon="icons/obj16/Diagram_Communication.gif"
             activeByDefault="true">
          <triggerPoints>
             <or>
@@ -708,7 +703,7 @@
             priority="normal" 
             contentProvider="org.eclipse.papyrus.diagram.communication.navigator.UMLDomainNavigatorContentProvider" 
             labelProvider="org.eclipse.papyrus.diagram.communication.navigator.UMLDomainNavigatorLabelProvider"
-            icon="icons/obj16/UMLDiagramFile.gif"
+            icon="icons/obj16/Diagram_Communication.gif"
             activeByDefault="true">
          <triggerPoints>
             <or>

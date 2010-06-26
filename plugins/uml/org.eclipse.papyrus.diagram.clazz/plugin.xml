@@ -21,7 +21,7 @@
          class="org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditor"
          default="true"
          extensions="PapyrusUMLClass_diagram"
-         icon="icons/obj16/UMLDiagramFile.gif"
+         icon="icons/obj16/Diagram_Class.gif"
          id="org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorID"
          matchingStrategy="org.eclipse.papyrus.diagram.clazz.part.UMLMatchingStrategy"
          name="%editorName">
@@ -40,7 +40,7 @@
       <?gmfgen generated="true"?>
   	  <wizard
   	     name="%newWizardName"
-  	     icon="icons/obj16/UMLDiagramFile.gif"
+  	     icon="icons/obj16/Diagram_Class.gif"
   	     category="org.eclipse.ui.Examples"
   	     class="org.eclipse.papyrus.diagram.clazz.part.UMLCreationWizard"
   	     id="org.eclipse.papyrus.diagram.clazz.part.UMLCreationWizardID">
@@ -1088,7 +1088,7 @@
             priority="normal" 
             contentProvider="org.eclipse.papyrus.diagram.clazz.navigator.UMLNavigatorContentProvider" 
             labelProvider="org.eclipse.papyrus.diagram.clazz.navigator.UMLNavigatorLabelProvider"
-            icon="icons/obj16/UMLDiagramFile.gif"
+            icon="icons/obj16/Diagram_Class.gif"
             activeByDefault="true">
          <triggerPoints>
             <or>
@@ -1124,7 +1124,7 @@
             priority="normal" 
             contentProvider="org.eclipse.papyrus.diagram.clazz.navigator.UMLDomainNavigatorContentProvider" 
             labelProvider="org.eclipse.papyrus.diagram.clazz.navigator.UMLDomainNavigatorLabelProvider"
-            icon="icons/obj16/UMLDiagramFile.gif"
+            icon="icons/obj16/Diagram_Class.gif"
             activeByDefault="true">
          <triggerPoints>
             <or>
@@ -1217,7 +1217,7 @@
                label="Diagrams">
             <command
                   commandId="org.eclipse.papyrus.diagram.clazz.CreateClassDiagramCommand"
-                  icon="icons/ClassDiagram.gif"
+                  icon="icons/obj16/Diagram_Class.gif"
                   label="Create a new Class Diagram"
                   style="push"
                   tooltip="Create a new Class Diagram">
@@ -1238,7 +1238,7 @@
                id="org.eclipse.papyrus.diagram.ui.toolbar">
             <command
                   commandId="org.eclipse.papyrus.diagram.clazz.CreateClassDiagramCommand"
-                  icon="icons/ClassDiagram.gif"
+                  icon="icons/obj16/Diagram_Class.gif"
                   label="Create a new Class Diagram"
                   style="push"
                   tooltip="Create a new Class Diagram">
@@ -1260,12 +1260,12 @@
             actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
             contextId="com.cea.papyrus.gmf.editor.context"
             factoryClass="org.eclipse.papyrus.diagram.clazz.ClassDiagramEditorFactory"
-            icon="icons/ClassDiagram.gif">
+            icon="icons/obj16/Diagram_Class.gif">
       </editorDiagram>
       <creationCommand
             creationCommandClass="org.eclipse.papyrus.diagram.clazz.CreateClassDiagramCommand"
             creationCondition="org.eclipse.papyrus.diagram.clazz.ClassDiagramCreationCondition"
-            icon="icons/ClassDiagram.gif"
+            icon="icons/obj16/Diagram_Class.gif"
             id="org.eclipse.papyrus.diagram.clazz.CreateClassDiagramCommand"
             language="uml"
             label="UML Class Diagram">
@@ -1283,7 +1283,7 @@
       <?gmfgen generated="true"?>
   	  <wizard
   	     name="%newWizardName"
-  	     icon="icons/obj16/UMLDiagramFile.gif"
+  	     icon="icons/obj16/Diagram_Class.gif"
   	     category="org.eclipse.ui.Examples"
   	     class="org.eclipse.papyrus.diagram.clazz.part.UMLCreationWizard"
   	     id="org.eclipse.papyrus.diagram.clazz.part.UMLCreationWizardID">

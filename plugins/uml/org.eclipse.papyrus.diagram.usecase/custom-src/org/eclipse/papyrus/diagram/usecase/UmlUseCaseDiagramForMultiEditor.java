@@ -41,7 +41,7 @@ public class UmlUseCaseDiagramForMultiEditor extends UMLDiagramEditor {
 	/**
 	 * The location of diagram icon in the plug-in
 	 */
-	private static final String DIAG_IMG_PATH = "icons/UseCaseDiagram.gif";
+	private static final String DIAG_IMG_PATH = "icons/obj16/Diagram_UseCase.gif";
 
 	/**
 	 * The image descriptor of the diagram icon

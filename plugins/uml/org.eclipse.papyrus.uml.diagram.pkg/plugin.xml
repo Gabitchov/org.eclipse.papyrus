@@ -6,14 +6,14 @@
 <extension point="org.eclipse.papyrus.core.papyrusDiagram">
 	<creationCommand
 		creationCommandClass="org.eclipse.papyrus.uml.diagram.pkg.PackageDiagramCreateCommand"
-		icon="icons/diagram/PackageDiagramEditorIcon_16x16-32.gif"
+		icon="icons/obj16/Diagram_Package.gif"
 		id="org.eclipse.papyrus.uml.diagram.pkg.CreateCommand"
 		language="uml"
 		label="UML Package Diagram"/>
 	<editorDiagram
 		actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
 		factoryClass="org.eclipse.papyrus.uml.diagram.pkg.PackageDiagramEditorFactory"
-		icon="icons/diagram/PackageDiagramEditorIcon_16x16-32.gif" />
+		icon="icons/obj16/Diagram_Package.gif" />
 </extension>
 
 <!-- Diagram creation command and handler -->
@@ -42,7 +42,7 @@
 	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
 	<menu id="org.eclipse.papyrus.diagram.ui.menu.diagrams" label="Diagrams">
 		<command commandId="org.eclipse.papyrus.uml.diagram.pkg.CreateCommand"
-			icon="icons/diagram/PackageDiagramEditorIcon_16x16-32.gif" label="Create a new Package Diagram"
+			icon="icons/obj16/Diagram_Package.gif" label="Create a new Package Diagram"
 			style="push" tooltip="Create a new Package Diagram">
 			<visibleWhen>
 				<with variable="activeEditorId">
@@ -56,7 +56,7 @@
 	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
 	<toolbar id="org.eclipse.papyrus.diagram.ui.toolbar">
 		<command commandId="org.eclipse.papyrus.uml.diagram.pkg.CreateCommand"
-			icon="icons/diagram/PackageDiagramEditorIcon_16x16-32.gif" label="Create a new Package Diagram"
+			icon="icons/obj16/Diagram_Package.gif" label="Create a new Package Diagram"
 			style="push" tooltip="Create a new Package Diagram">
 			<visibleWhen>
 				<with variable="activeEditorId">

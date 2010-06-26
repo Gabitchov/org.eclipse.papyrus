@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.composite.preferences;
 
+import org.eclipse.papyrus.diagram.composite.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.DiagramPreferencePage;
 
@@ -26,5 +27,7 @@ public class DiagramGeneralPreferencePage extends DiagramPreferencePage {
 	 */
 	public DiagramGeneralPreferencePage() {
 		setPreferenceStore(UMLDiagramEditorPlugin.getInstance().getPreferenceStore());
+		setPreferenceKey(PackageEditPart.MODEL_ID);
+
 	}
 }

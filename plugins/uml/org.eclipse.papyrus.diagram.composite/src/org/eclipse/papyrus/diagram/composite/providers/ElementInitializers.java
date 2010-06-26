@@ -18,6 +18,7 @@ import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.uml2.uml.Abstraction;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Actor;
+import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.AnyReceiveEvent;
 import org.eclipse.uml2.uml.Artifact;
 import org.eclipse.uml2.uml.CallEvent;
@@ -767,7 +768,7 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Port_3069(instance);
 			instance.setName((String)value_0);
-			instance.setAggregation(org.eclipse.uml2.uml.AggregationKind.COMPOSITE_LITERAL);
+			instance.setAggregation(AggregationKind.COMPOSITE_LITERAL);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}

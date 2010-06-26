@@ -43,7 +43,7 @@ public class UmlCompositeDiagramForMultiEditor extends UMLDiagramEditor {
 	/**
 	 * The location of diagram icon in the plug-in
 	 */
-	private static final String DIAG_IMG_PATH = "icons/obj16/Diagram_CompositeStructureDiagram.gif"; //$NON-NLS-1$
+	private static final String DIAG_IMG_PATH = "icons/obj16/Diagram_CompositeStructure.gif"; //$NON-NLS-1$
 
 	/**
 	 * The EditingDomain ID for this diagram

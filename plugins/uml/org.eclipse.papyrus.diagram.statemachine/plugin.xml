@@ -20,7 +20,7 @@
       <editor
          id="org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorID"
          name="%editorName"
-         icon="icons/UMLDiagramFile.gif"
+         icon="icons/obj16/Diagram_StateMachine.gif"
          extensions="PapyrusUMLStateMachine_diagram"
          default="true"
          class="org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditor"
@@ -43,7 +43,7 @@
       <?gmfgen generated="true"?>
   	  <wizard
   	     name="%newWizardName"
-  	     icon="icons/UMLDiagramFile.gif"
+  	     icon="icons/obj16/Diagram_StateMachine.gif"
   	     category="org.eclipse.ui.Examples"
   	     class="org.eclipse.papyrus.diagram.statemachine.part.UMLCreationWizard"
   	     id="org.eclipse.papyrus.diagram.statemachine.part.UMLCreationWizardID">
@@ -433,7 +433,7 @@
             priority="normal" 
             contentProvider="org.eclipse.papyrus.diagram.statemachine.navigator.UMLNavigatorContentProvider" 
             labelProvider="org.eclipse.papyrus.diagram.statemachine.navigator.UMLNavigatorLabelProvider"
-            icon="icons/UMLDiagramFile.gif"
+            icon="icons/obj16/Diagram_StateMachine.gif"
             activeByDefault="true">
          <triggerPoints>
             <or>
@@ -469,7 +469,7 @@
             priority="normal" 
             contentProvider="org.eclipse.papyrus.diagram.statemachine.navigator.UMLDomainNavigatorContentProvider" 
             labelProvider="org.eclipse.papyrus.diagram.statemachine.navigator.UMLDomainNavigatorLabelProvider"
-            icon="icons/UMLDiagramFile.gif"
+            icon="icons/obj16/Diagram_StateMachine.gif"
             activeByDefault="true">
          <triggerPoints>
             <or>
@@ -559,22 +559,70 @@
          defaultHandler="org.eclipse.papyrus.diagram.statemachine.part.LoadResourceAction"/>
    </extension>
 
-   <extension point="org.eclipse.ui.handlers" id="menu-handlers">
-      <?gmfgen generated="true"?>
+<!-- Diagram creation command and handler -->
+<extension point="org.eclipse.ui.commands">
+	<command id="org.eclipse.papyrus.diagram.statemachine.CreationCommand"
+		name="Create a new StateMachine Diagram"
+		description="Create a new StateMachine Diagram"
+		categoryId="org.eclipse.papyrus.editor.category"/>
+</extension>
+
+   <extension point="org.eclipse.ui.handlers">
+	<handler
+		class="org.eclipse.papyrus.diagram.statemachine.CreateStateMachineDiagramCommand"
+		commandId="org.eclipse.papyrus.diagram.statemachine.CreationCommand">
+		<activeWhen>
+			<with variable="activeEditorId">
+				<equals value="org.eclipse.papyrus.core.papyrusEditor" />
+			</with>
+		</activeWhen>
+	</handler>
    </extension>
+
+<!-- Diagram creation command registration in menu and toolbar -->
+<extension point="org.eclipse.ui.menus">
+
+	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
+	<menu id="org.eclipse.papyrus.diagram.ui.menu.diagrams" label="Diagrams">
+		<command commandId="org.eclipse.papyrus.diagram.statemachine.CreationCommand"
+			icon="icons/obj16/Diagram_StateMachine.gif" label="Create a new StateMachine Diagram"
+			style="push" tooltip="Create a new StateMachine Diagram">
+			<visibleWhen>
+				<with variable="activeEditorId">
+					<equals value="org.eclipse.papyrus.core.papyrusEditor" />
+				</with>
+			</visibleWhen>
+		</command>
+	</menu>
+	</menuContribution>
+	
+	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
+	<toolbar id="org.eclipse.papyrus.diagram.ui.toolbar">
+		<command commandId="org.eclipse.papyrus.diagram.statemachine.CreationCommand"
+			icon="icons/obj16/Diagram_StateMachine.gif" label="Create a new StateMachine Diagram"
+			style="push" tooltip="Create a new StateMachine Diagram">
+			<visibleWhen>
+				<with variable="activeEditorId">
+					<equals value="org.eclipse.papyrus.core.papyrusEditor" />
+				</with>
+			</visibleWhen>
+		</command>
+	</toolbar>
+	</menuContribution>
+</extension>
+   
    <extension
          point="org.eclipse.papyrus.core.papyrusDiagram">
       <editorDiagram
             actionBarContributorId="org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramActionBarContributor"
-            contextId="com.cea.papyrus.gmf.editor.context"
             factoryClass="org.eclipse.papyrus.diagram.statemachine.StateMachineDiagramEditorFactory"
-            icon="icons/StateMachineDiagram.gif">
+            icon="icons/obj16/Diagram_StateMachine.gif">
       </editorDiagram>
       <creationCommand
             creationCommandClass="org.eclipse.papyrus.diagram.statemachine.CreateStateMachineDiagramCommand"
             creationCondition="org.eclipse.papyrus.diagram.statemachine.StateMachineDiagramCreationCondition"
-            icon="icons/StateMachineDiagram.gif"
-            id="org.eclipse.papyrus.diagram.statemachine.action.CreationCommand"
+            icon="icons/obj16/Diagram_StateMachine.gif"
+            id="org.eclipse.papyrus.diagram.statemachine.CreationCommand"
             language="uml"
             label="UML StateMachine Diagram">
       </creationCommand>
@@ -828,7 +876,7 @@
    <paletteDefinition
          ID="org.eclipse.papyrus.diagram.statemachine.palette"
          class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
-         icon="icons/StateMachineDiagram.gif"
+         icon="icons/obj16/Diagram_StateMachine.gif"
          name="State Machine Palette"
          path="/resource/Palette.xml"
          provider="CEA LIST">

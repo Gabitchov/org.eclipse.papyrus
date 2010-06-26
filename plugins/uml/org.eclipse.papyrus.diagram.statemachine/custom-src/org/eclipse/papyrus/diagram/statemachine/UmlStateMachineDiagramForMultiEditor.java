@@ -45,13 +45,12 @@ public class UmlStateMachineDiagramForMultiEditor extends UMLDiagramEditor {
 	/**
 	 * The location of diagram icon in the plug-in
 	 */
-	private static final String DIAG_IMG_PATH = "icons/StateMachineDiagram.gif";
+	private static final String DIAG_IMG_PATH = "icons/obj16/Diagram_StateMachine.gif";
 
 	/**
 	 * The image descriptor of the diagram icon
 	 */
-	private static final ImageDescriptor DIAG_IMG_DESC = UMLDiagramEditorPlugin
-			.getBundledImageDescriptor(UmlStateMachineDiagramForMultiEditor.DIAG_IMG_PATH);
+	private static final ImageDescriptor DIAG_IMG_DESC = UMLDiagramEditorPlugin.getBundledImageDescriptor(UmlStateMachineDiagramForMultiEditor.DIAG_IMG_PATH);
 
 	/** The editor splitter. */
 	private Composite splitter;
@@ -65,8 +64,7 @@ public class UmlStateMachineDiagramForMultiEditor extends UMLDiagramEditor {
 	 * 
 	 * @generated NOT
 	 */
-	public UmlStateMachineDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram)
-			throws BackboneException, ServiceException {
+	public UmlStateMachineDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws BackboneException, ServiceException {
 		super(servicesRegistry, diagram);
 	}
 
@@ -102,19 +100,18 @@ public class UmlStateMachineDiagramForMultiEditor extends UMLDiagramEditor {
 		super.initializeGraphicalViewer();
 
 		// Enable Drop
-		getDiagramGraphicalViewer().addDropTargetListener(
-				new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
+		getDiagramGraphicalViewer().addDropTargetListener(new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
 
-					@Override
-					protected Object getJavaObject(TransferData data) {
-						return LocalSelectionTransfer.getTransfer().nativeToJava(data);
-					}
+			@Override
+			protected Object getJavaObject(TransferData data) {
+				return LocalSelectionTransfer.getTransfer().nativeToJava(data);
+			}
 
-					@Override
-					protected TransactionalEditingDomain getTransactionalEditingDomain() {
-						return getEditingDomain();
-					}
-				});
+			@Override
+			protected TransactionalEditingDomain getTransactionalEditingDomain() {
+				return getEditingDomain();
+			}
+		});
 
 	}
 

@@ -16,7 +16,7 @@
             description="Create a new Activity Diagram (Papyrus II)"
             categoryId="org.eclipse.papyrus.editor.category"            
             id="org.eclipse.papyrus.diagram.activity.CreateActivityDiagramCommand"
-            name="Create Activity Diagram">
+            name="Create a new Activity Diagram">
       </command>
    </extension>
    <extension
@@ -44,7 +44,7 @@
                id="org.eclipse.papyrus.diagram.ui.toolbar">
             <command
                   commandId="org.eclipse.papyrus.diagram.activity.CreateActivityDiagramCommand"
-                  icon="icons/ActivityDiagram.gif"
+                  icon="icons/obj16/Diagram_Activity.gif"
                   label="Create a new Activity Diagram"
                   style="push"
                   tooltip="Create a new Activity Diagram">
@@ -66,7 +66,7 @@
                label="Diagrams">
             <command
                   commandId="org.eclipse.papyrus.diagram.activity.CreateActivityDiagramCommand"
-                  icon="icons/ActivityDiagram.gif"
+                  icon="icons/obj16/Diagram_Activity.gif"
                   label="Create a new Activity Diagram"
                   style="push"
                   tooltip="Create a new Activity Diagram">
@@ -79,12 +79,12 @@
       <editorDiagram
             contextId="com.cea.papyrus.gmf.editor.context"
             factoryClass="org.eclipse.papyrus.diagram.activity.ActivityDiagramEditorFactory"
-            icon="icons/ActivityDiagram.gif">
+            icon="icons/obj16/Diagram_Activity.gif">
       </editorDiagram>
       <creationCommand
             creationCommandClass="org.eclipse.papyrus.diagram.activity.CreateActivityDiagramCommand"
             creationCondition="org.eclipse.papyrus.diagram.activity.ActivityDiagramCreationCondition"
-            icon="icons/ActivityDiagram.gif"
+            icon="icons/obj16/Diagram_Activity.gif"
             language="uml"
             id="org.eclipse.papyrus.diagram.activity.CreateActivityDiagramCommand"
             label="UML Activity Diagram">
@@ -109,7 +109,7 @@
       <editor
          id="org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorID"
          name="%editorName"
-         icon="icons/obj16/UMLDiagramFile.gif"
+         icon="icons/obj16/Diagram_Activity.gif"
          extensions="PapyrusUMLActivity_diagram"
          default="true"
          class="org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditor"
@@ -132,7 +132,7 @@
       <?gmfgen generated="true"?>
   	  <wizard
   	     name="%newWizardName"
-  	     icon="icons/obj16/UMLDiagramFile.gif"
+  	     icon="icons/obj16/Diagram_Activity.gif"
   	     category="org.eclipse.ui.Examples"
   	     class="org.eclipse.papyrus.diagram.activity.part.UMLCreationWizard"
   	     id="org.eclipse.papyrus.diagram.activity.part.UMLCreationWizardID">
@@ -1628,7 +1628,7 @@
             priority="normal" 
             contentProvider="org.eclipse.papyrus.diagram.activity.navigator.UMLNavigatorContentProvider" 
             labelProvider="org.eclipse.papyrus.diagram.activity.navigator.UMLNavigatorLabelProvider"
-            icon="icons/obj16/UMLDiagramFile.gif"
+            icon="icons/obj16/Diagram_Activity.gif"
             activeByDefault="true">
          <triggerPoints>
             <or>
@@ -1664,7 +1664,7 @@
             priority="normal" 
             contentProvider="org.eclipse.papyrus.diagram.activity.navigator.UMLDomainNavigatorContentProvider" 
             labelProvider="org.eclipse.papyrus.diagram.activity.navigator.UMLDomainNavigatorLabelProvider"
-            icon="icons/obj16/UMLDiagramFile.gif"
+            icon="icons/obj16/Diagram_Activity.gif"
             activeByDefault="true">
          <triggerPoints>
             <or>
