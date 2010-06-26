@@ -19,6 +19,7 @@
         canonicalEditPolicyClassName="PackageCanonicalEditPolicy"
         iconProviderPriority="Low"
         baseEditHelperClassName="UMLBaseEditHelper"
+        creationWizardIconPath="icons/obj16/Diagram_CompositeStructure.gif"
         validationProviderPriority="Low"
         synchronized="false">
       <diagramRunTimeClass
