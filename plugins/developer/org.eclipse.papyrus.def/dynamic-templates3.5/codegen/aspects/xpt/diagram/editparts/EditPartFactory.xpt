@@ -61,7 +61,7 @@ public class «editPartFactoryClassName» implements org.eclipse.gef.EditPartFac
     
     
     «EXPAND xpt::Common::generatedClassComment»
-    static private class MultilineCellEditorLocator implements CellEditorLocator {
+    static private class MultilineCellEditorLocator implements org.eclipse.gef.tools.CellEditorLocator {
 
 		«EXPAND xpt::Common::generatedClassComment»
 		private org.eclipse.papyrus.diagram.common.figure.node.IMultilineEditableFigure multilineEditableFigure;
@@ -77,17 +77,17 @@ public class «editPartFactoryClassName» implements org.eclipse.gef.EditPartFac
 		}
 
 		«EXPAND xpt::Common::generatedClassComment»
-		public void relocate(CellEditor celleditor) {
-			Text text = (Text) celleditor.getControl();
-			Rectangle rect = getMultilineEditableFigure().getBounds().getCopy();
+		public void relocate(org.eclipse.jface.viewers.CellEditor celleditor) {
+			org.eclipse.swt.widgets.Text text = (org.eclipse.swt.widgets.Text) celleditor.getControl();
+			org.eclipse.draw2d.geometry.Rectangle rect = getMultilineEditableFigure().getBounds().getCopy();
 			rect.x=getMultilineEditableFigure().getEditionLocation().x;
 			rect.y=getMultilineEditableFigure().getEditionLocation().y;
 			getMultilineEditableFigure().translateToAbsolute(rect);
 			if (getMultilineEditableFigure().getText().length() > 0) {
-				rect.setSize(new Dimension(text.computeSize(rect.width,
+				rect.setSize(new org.eclipse.draw2d.geometry.Dimension(text.computeSize(rect.width,
 						SWT.DEFAULT)));
 			}
-			if (!rect.equals(new Rectangle(text.getBounds()))) {
+			if (!rect.equals(new org.eclipse.draw2d.geometry.Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
 			}
 		}

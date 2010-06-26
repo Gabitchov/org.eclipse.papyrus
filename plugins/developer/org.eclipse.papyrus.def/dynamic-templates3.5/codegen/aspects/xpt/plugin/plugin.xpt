@@ -29,9 +29,9 @@
 <?eclipse version="3.0"?>
 «EXPAND xpt::Common::xcopyright FOR editorGen-»
 <plugin>
-«EXPAND fileTypes-»
-«EXPAND extension_parser-»
-«EXPAND xpt::editor::extensions::extensions FOR editorGen-»
+«REM»YT (not used): «EXPAND fileTypes-»«ENDREM»
+«REM»YT (not used): «EXPAND extension_parser-»«ENDREM»
+«REM»YT (not used): «EXPAND xpt::editor::extensions::extensions FOR editorGen-»«ENDREM»
 «EXPAND xpt::plugin::plugin::menu-»
 «EXPAND xpt::plugin::plugin::validation FOR editorGen.diagram-»
 «EXPAND xpt::plugin::plugin::metrics FOR editorGen.metrics-»
