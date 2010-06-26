@@ -90,73 +90,7 @@
             label="UML Activity Diagram">
       </creationCommand>
    </extension>
-
-   <extension point="org.eclipse.team.core.fileTypes" id="repo-ftype">
-      <?gmfgen generated="true"?>
-      <fileTypes type="text" extension="PapyrusUMLActivity_diagram"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.extension_parser" id="resource-factory">
-      <?gmfgen generated="true"?>
-      <parser
-         type="PapyrusUMLActivity_diagram"
-         class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
-      </parser>
-   </extension>
-
-   <extension point="org.eclipse.ui.editors" id="gmf-editor">
-      <?gmfgen generated="true"?>
-      <editor
-         id="org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorID"
-         name="%editorName"
-         icon="icons/obj16/Diagram_Activity.gif"
-         extensions="PapyrusUMLActivity_diagram"
-         default="true"
-         class="org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditor"
-         matchingStrategy="org.eclipse.papyrus.diagram.activity.part.UMLMatchingStrategy"
-         contributorClass="org.eclipse.papyrus.diagram.activity.part.UMLDiagramActionBarContributor">
-      </editor>
-   </extension>
-   
-   <extension point="org.eclipse.ui.contexts" id="ui-context">
-      <?gmfgen generated="true"?>
-      <context
-         description="%context.description"
-         id="org.eclipse.papyrus.diagram.activity.ui.diagramContext"
-         name="%context.name"
-         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
-      </context>
-   </extension>
-
-   <extension point="org.eclipse.ui.newWizards" id="creation-wizard">
-      <?gmfgen generated="true"?>
-  	  <wizard
-  	     name="%newWizardName"
-  	     icon="icons/obj16/Diagram_Activity.gif"
-  	     category="org.eclipse.ui.Examples"
-  	     class="org.eclipse.papyrus.diagram.activity.part.UMLCreationWizard"
-  	     id="org.eclipse.papyrus.diagram.activity.part.UMLCreationWizardID">
-  	  	 <description>%newWizardDesc</description>  
-      </wizard>
-   </extension>
-
-   <extension point="org.eclipse.ui.popupMenus" id="init-diagram-action">
-      <?gmfgen generated="false"?>
-      <!-- FIX Bug 314257-->
-      <!--objectContribution
-            id="org.eclipse.papyrus.diagram.activity.InitDiagram"
-            nameFilter="*.uml"
-            objectClass="org.eclipse.core.resources.IFile">
-         <action
-               label="%initDiagramActionLabel"
-               class="org.eclipse.papyrus.diagram.activity.part.UMLInitDiagramFileAction"
-               menubarPath="additions"
-               enablesFor="1"
-               id="org.eclipse.papyrus.diagram.activity.InitDiagramAction">
-         </action>
-      </objectContribution-->
-   </extension>
-	
+   	
    <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders" id="global-actions">
       <?gmfgen generated="true"?>
       <GlobalActionHandlerProvider

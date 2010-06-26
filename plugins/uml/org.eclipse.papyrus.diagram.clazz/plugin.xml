@@ -2,67 +2,6 @@
 <?eclipse version="3.0"?>
 <plugin> 
 
-   
-<extension point="org.eclipse.team.core.fileTypes" id="repo-ftype">
-      <?gmfgen generated="true"?>
-      <fileTypes type="text" extension="PapyrusUMLClass_diagram"/>
-   </extension>
-<extension point="org.eclipse.emf.ecore.extension_parser" id="resource-factory">
-      <?gmfgen generated="true"?>
-      <parser
-         type="PapyrusUMLClass_diagram"
-         class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
-      </parser>
-   </extension>
-<extension
-      id="gmf-editor"
-      point="org.eclipse.ui.editors">
-   <editor
-         class="org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditor"
-         default="true"
-         extensions="PapyrusUMLClass_diagram"
-         icon="icons/obj16/Diagram_Class.gif"
-         id="org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorID"
-         matchingStrategy="org.eclipse.papyrus.diagram.clazz.part.UMLMatchingStrategy"
-         name="%editorName">
-   </editor>
-</extension>
-<extension point="org.eclipse.ui.contexts" id="ui-context">
-      <?gmfgen generated="true"?>
-      <context
-         description="%context.description"
-         id="org.eclipse.papyrus.diagram.clazz.ui.diagramContext"
-         name="%context.name"
-         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
-      </context>
-   </extension>
-<!--extension point="org.eclipse.ui.newWizards">
-      <?gmfgen generated="true"?>
-  	  <wizard
-  	     name="%newWizardName"
-  	     icon="icons/obj16/Diagram_Class.gif"
-  	     category="org.eclipse.ui.Examples"
-  	     class="org.eclipse.papyrus.diagram.clazz.part.UMLCreationWizard"
-  	     id="org.eclipse.papyrus.diagram.clazz.part.UMLCreationWizardID">
-  	  	 <description>%newWizardDesc</description>  
-      </wizard>
-   </extension-->
-<extension point="org.eclipse.ui.popupMenus" id="init-diagram-action">
-      <?gmfgen generated="false"?>
-       <!-- FIX Bug 314257-->
-      <!--objectContribution
-            id="org.eclipse.papyrus.diagram.clazz.InitDiagram"
-            nameFilter="*.PapyrusUMLClass"
-            objectClass="org.eclipse.core.resources.IFile">
-         <action
-               label="%initDiagramActionLabel"
-               class="org.eclipse.papyrus.diagram.clazz.part.UMLInitDiagramFileAction"
-               menubarPath="additions"
-               enablesFor="1"
-               id="org.eclipse.papyrus.diagram.clazz.InitDiagramAction">
-         </action>
-      </objectContribution-->
-   </extension>
 <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders" id="global-actions">
       <?gmfgen generated="true"?>
       <GlobalActionHandlerProvider
