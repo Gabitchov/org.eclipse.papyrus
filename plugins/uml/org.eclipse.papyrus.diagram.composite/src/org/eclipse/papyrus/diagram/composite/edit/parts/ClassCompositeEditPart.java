@@ -99,7 +99,6 @@ NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		super.createDefaultEditPolicies();
@@ -125,11 +124,12 @@ NamedElementEditPart {
 	 * 
 	 * @generated
 	 **/
-	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
 	}
+
+
 
 
 
@@ -139,7 +139,6 @@ NamedElementEditPart {
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
-			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				View childView = (View)child.getModel();
 				switch(UMLVisualIDRegistry.getVisualID(childView)) {
@@ -155,12 +154,10 @@ NamedElementEditPart {
 				return result;
 			}
 
-			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
-			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -178,7 +175,6 @@ NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	public ClassCompositeFigure getPrimaryShape() {
 		return (ClassCompositeFigure)primaryShape;
 	}
@@ -241,7 +237,6 @@ NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if(addFixedChild(childEditPart)) {
 			return;
@@ -252,7 +247,6 @@ NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if(removeFixedChild(childEditPart)) {
 			return;
@@ -263,7 +257,6 @@ NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 		if(editPart instanceof ClassCompositeCompartmentEditPart) {
 			return getPrimaryShape().getCompositeCompartmentFigure();
@@ -297,7 +290,6 @@ NamedElementEditPart {
 	 * 
 	 * @generated
 	 */
-	@Override
 	protected NodeFigure createMainFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -327,7 +319,6 @@ NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	public IFigure getContentPane() {
 		if(contentPane != null) {
 			return contentPane;
@@ -338,7 +329,6 @@ NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setForegroundColor(Color color) {
 		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -348,7 +338,6 @@ NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineWidth(int width) {
 		if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineWidth(width);
@@ -358,7 +347,6 @@ NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineType(int style) {
 		if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineStyle(style);
@@ -368,7 +356,6 @@ NamedElementEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ClassCompositeNameEditPart.VISUAL_ID));
 	}
@@ -5185,7 +5172,7 @@ NamedElementEditPart {
 			} else if(feature == NotationPackage.eINSTANCE.getFillStyle_FillColor()) {
 				prefColor = PreferenceConstantHelper.getElementConstant("Class", PreferenceConstantHelper.COLOR_FILL);
 			}
-			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor(preferenceStore, prefColor));
+			result = FigureUtilities.RGBToInteger(PreferenceConverter.getColor((IPreferenceStore)preferenceStore, prefColor));
 		} else if(feature == NotationPackage.eINSTANCE.getFillStyle_Transparency() || feature == NotationPackage.eINSTANCE.getFillStyle_Gradient()) {
 			String prefGradient = PreferenceConstantHelper.getElementConstant("Class", PreferenceConstantHelper.COLOR_GRADIENT);
 			GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(preferenceStore.getString(prefGradient));
