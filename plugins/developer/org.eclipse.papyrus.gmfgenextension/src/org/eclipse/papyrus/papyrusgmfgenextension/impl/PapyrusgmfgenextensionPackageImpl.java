@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.codegen.gmfgen.GMFGenPackage;
+import org.eclipse.papyrus.papyrusgmfgenextension.AdditionalEditPartCandies;
 import org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas;
 import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenLink;
 import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenTopLevelNode;
@@ -138,6 +139,14 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	 * @generated
 	 */
 	private EClass specificLocatorExternalLabelEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass additionalEditPartCandiesEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
@@ -570,6 +579,26 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getAdditionalEditPartCandies() {
+		return additionalEditPartCandiesEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getAdditionalEditPartCandies_BaseEditHelperPackage() {
+		return (EAttribute)additionalEditPartCandiesEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -651,6 +680,9 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 		specificLocatorExternalLabelEClass = createEClass(SPECIFIC_LOCATOR_EXTERNAL_LABEL);
 		createEReference(specificLocatorExternalLabelEClass, SPECIFIC_LOCATOR_EXTERNAL_LABEL__GEN_EXTERNAL_NODE_LABEL);
+
+		additionalEditPartCandiesEClass = createEClass(ADDITIONAL_EDIT_PART_CANDIES);
+		createEAttribute(additionalEditPartCandiesEClass, ADDITIONAL_EDIT_PART_CANDIES__BASE_EDIT_HELPER_PACKAGE);
 	}
 
 	/**
@@ -700,6 +732,7 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 		specificDiagramUpdaterEClass.getESuperTypes().add(this.getExternalHook());
 		genNodeConstraintEClass.getESuperTypes().add(this.getCommentedElement());
 		specificLocatorExternalLabelEClass.getESuperTypes().add(this.getExternalHook());
+		additionalEditPartCandiesEClass.getESuperTypes().add(this.getCommentedElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(extendedGenViewEClass, ExtendedGenView.class, "ExtendedGenView", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -755,6 +788,9 @@ public class PapyrusgmfgenextensionPackageImpl extends EPackageImpl implements P
 
 		initEClass(specificLocatorExternalLabelEClass, SpecificLocatorExternalLabel.class, "SpecificLocatorExternalLabel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSpecificLocatorExternalLabel_GenExternalNodeLabel(), theGMFGenPackage.getGenExternalNodeLabel(), null, "genExternalNodeLabel", null, 0, -1, SpecificLocatorExternalLabel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(additionalEditPartCandiesEClass, AdditionalEditPartCandies.class, "AdditionalEditPartCandies", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAdditionalEditPartCandies_BaseEditHelperPackage(), theEcorePackage.getEString(), "baseEditHelperPackage", null, 0, 1, AdditionalEditPartCandies.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

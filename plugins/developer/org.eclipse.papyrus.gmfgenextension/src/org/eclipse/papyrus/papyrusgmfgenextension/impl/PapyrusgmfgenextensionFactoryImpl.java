@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.papyrusgmfgenextension.AdditionalEditPartCandies;
 import org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas;
 import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenLink;
 import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenTopLevelNode;
@@ -104,6 +105,8 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 			return createGenNodeConstraint();
 		case PapyrusgmfgenextensionPackage.SPECIFIC_LOCATOR_EXTERNAL_LABEL:
 			return createSpecificLocatorExternalLabel();
+		case PapyrusgmfgenextensionPackage.ADDITIONAL_EDIT_PART_CANDIES:
+			return createAdditionalEditPartCandies();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -261,6 +264,17 @@ public class PapyrusgmfgenextensionFactoryImpl extends EFactoryImpl implements P
 	public SpecificLocatorExternalLabel createSpecificLocatorExternalLabel() {
 		SpecificLocatorExternalLabelImpl specificLocatorExternalLabel = new SpecificLocatorExternalLabelImpl();
 		return specificLocatorExternalLabel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public AdditionalEditPartCandies createAdditionalEditPartCandies() {
+		AdditionalEditPartCandiesImpl additionalEditPartCandies = new AdditionalEditPartCandiesImpl();
+		return additionalEditPartCandies;
 	}
 
 	/**

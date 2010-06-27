@@ -169,6 +169,16 @@ public interface PapyrusgmfgenextensionFactory extends EFactory {
 	SpecificLocatorExternalLabel createSpecificLocatorExternalLabel();
 
 	/**
+	 * Returns a new object of class '<em>Additional Edit Part Candies</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Additional Edit Part Candies</em>'.
+	 * @generated
+	 */
+	AdditionalEditPartCandies createAdditionalEditPartCandies();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

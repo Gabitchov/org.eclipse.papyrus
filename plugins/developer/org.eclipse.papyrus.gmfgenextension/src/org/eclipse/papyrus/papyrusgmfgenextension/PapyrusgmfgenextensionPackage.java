@@ -810,6 +810,49 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.AdditionalEditPartCandiesImpl
+	 * <em>Additional Edit Part Candies</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.AdditionalEditPartCandiesImpl
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getAdditionalEditPartCandies()
+	 * @generated
+	 */
+	int ADDITIONAL_EDIT_PART_CANDIES = 14;
+
+	/**
+	 * The feature id for the '<em><b>Comment</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ADDITIONAL_EDIT_PART_CANDIES__COMMENT = COMMENTED_ELEMENT__COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Base Edit Helper Package</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ADDITIONAL_EDIT_PART_CANDIES__BASE_EDIT_HELPER_PACKAGE = COMMENTED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Additional Edit Part Candies</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ADDITIONAL_EDIT_PART_CANDIES_FEATURE_COUNT = COMMENTED_ELEMENT_FEATURE_COUNT + 1;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView <em>Extended Gen View</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1300,6 +1343,31 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 	EReference getSpecificLocatorExternalLabel_GenExternalNodeLabel();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.papyrusgmfgenextension.AdditionalEditPartCandies
+	 * <em>Additional Edit Part Candies</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Additional Edit Part Candies</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.AdditionalEditPartCandies
+	 * @generated
+	 */
+	EClass getAdditionalEditPartCandies();
+
+	/**
+	 * Returns the meta object for the attribute '
+	 * {@link org.eclipse.papyrus.papyrusgmfgenextension.AdditionalEditPartCandies#getBaseEditHelperPackage <em>Base Edit Helper Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>Base Edit Helper Package</em>'.
+	 * @see org.eclipse.papyrus.papyrusgmfgenextension.AdditionalEditPartCandies#getBaseEditHelperPackage()
+	 * @see #getAdditionalEditPartCandies()
+	 * @generated
+	 */
+	EAttribute getAdditionalEditPartCandies_BaseEditHelperPackage();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1723,6 +1791,27 @@ public interface PapyrusgmfgenextensionPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SPECIFIC_LOCATOR_EXTERNAL_LABEL__GEN_EXTERNAL_NODE_LABEL = eINSTANCE.getSpecificLocatorExternalLabel_GenExternalNodeLabel();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.papyrusgmfgenextension.impl.AdditionalEditPartCandiesImpl
+		 * <em>Additional Edit Part Candies</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.AdditionalEditPartCandiesImpl
+		 * @see org.eclipse.papyrus.papyrusgmfgenextension.impl.PapyrusgmfgenextensionPackageImpl#getAdditionalEditPartCandies()
+		 * @generated
+		 */
+		EClass ADDITIONAL_EDIT_PART_CANDIES = eINSTANCE.getAdditionalEditPartCandies();
+
+		/**
+		 * The meta object literal for the '<em><b>Base Edit Helper Package</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute ADDITIONAL_EDIT_PART_CANDIES__BASE_EDIT_HELPER_PACKAGE = eINSTANCE.getAdditionalEditPartCandies_BaseEditHelperPackage();
 
 	}
 

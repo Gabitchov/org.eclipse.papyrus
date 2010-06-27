@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.papyrusgmfgenextension.AdditionalEditPartCandies;
 import org.eclipse.papyrus.papyrusgmfgenextension.AlternateCanvas;
 import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenLink;
 import org.eclipse.papyrus.papyrusgmfgenextension.AlternateGenTopLevelNode;
@@ -246,6 +247,16 @@ public class PapyrusgmfgenextensionSwitch<T> {
 				result = caseExternalHook(specificLocatorExternalLabel);
 			if(result == null)
 				result = caseCommentedElement(specificLocatorExternalLabel);
+			if(result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case PapyrusgmfgenextensionPackage.ADDITIONAL_EDIT_PART_CANDIES:
+		{
+			AdditionalEditPartCandies additionalEditPartCandies = (AdditionalEditPartCandies)theEObject;
+			T result = caseAdditionalEditPartCandies(additionalEditPartCandies);
+			if(result == null)
+				result = caseCommentedElement(additionalEditPartCandies);
 			if(result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -490,6 +501,23 @@ public class PapyrusgmfgenextensionSwitch<T> {
 	 * @generated
 	 */
 	public T caseSpecificLocatorExternalLabel(SpecificLocatorExternalLabel object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Additional Edit Part Candies</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *        the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Additional Edit Part Candies</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAdditionalEditPartCandies(AdditionalEditPartCandies object) {
 		return null;
 	}
 
