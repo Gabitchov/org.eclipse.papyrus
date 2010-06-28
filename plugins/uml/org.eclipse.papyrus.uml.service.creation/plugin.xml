@@ -250,7 +250,7 @@
 				</param>
 			</metamodelType>
 			<metamodelType eclass="Port" id="org.eclipse.papyrus.uml.Port"
-				edithelper="org.eclipse.papyrus.uml.service.creation.helper.DefaultUMLHelper"
+				edithelper="org.eclipse.papyrus.uml.service.creation.helper.PortEditHelper"
 				kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" name="UML::Port">
 				<param name="semanticHint" value="UML::Port">
 				</param>
