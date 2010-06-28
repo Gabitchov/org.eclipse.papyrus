@@ -31,12 +31,12 @@
             strategy="org.eclipse.papyrus.core.resourceloading.strategies.LoadAllResources">
       </loadingStrategy>
       <loadingStrategy
-            description="Load the addtionnal resources (profile and pathmap). Controlled resources are not loaded"
+            description="Load the additional resources (profile and pathmap). Controlled resources are not loaded"
             id="1"
             strategy="org.eclipse.papyrus.core.resourceloading.strategies.LoadCurrentResource">
       </loadingStrategy>
       <loadingStrategy
-            description="Load the additionnal resources (profile and pathmap) and the needed controlled resources"
+            description="Load the additional resources (profile and pathmap) and the needed controlled resources"
             id="2"
             strategy="org.eclipse.papyrus.core.resourceloading.strategies.LoadControlledResources">
       </loadingStrategy>
