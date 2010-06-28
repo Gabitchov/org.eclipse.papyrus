@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.commands;
 
+import java.util.List;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -27,6 +29,10 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
+import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
+import org.eclipse.uml2.uml.MessageSort;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.TimeObservation;
@@ -92,8 +98,21 @@ public class TimeObservationCreateCommand extends EditElementCommand {
 	 * @generated NOT enable only if there is an occurrence specification
 	 */
 	public boolean canExecute() {
-		Object occurrence = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
-		return occurrence instanceof OccurrenceSpecification;
+		Object paramOccurrence = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
+		List<OccurrenceSpecification> occList = SequenceUtil.getAsOccSpecList(paramOccurrence);
+		if(!occList.isEmpty()) {
+			for(OccurrenceSpecification occurrence : occList) {
+				if(occurrence instanceof MessageOccurrenceSpecification) {
+					Message mess = ((MessageOccurrenceSpecification)occurrence).getMessage();
+					if(mess.getReceiveEvent().equals(occurrence) && MessageSort.SYNCH_CALL_LITERAL.equals(mess.getMessageSort())) {
+						// filter receive event, we prefer the corresponding start event at the same location
+						continue;
+					}
+				}
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -120,9 +139,21 @@ public class TimeObservationCreateCommand extends EditElementCommand {
 		ElementInitializers.getInstance().init_TimeObservation_3020(newElement);
 
 		// assign the occurrence specification
-		Object occurrence = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
-		if(occurrence instanceof OccurrenceSpecification) {
-			newElement.setEvent((OccurrenceSpecification)occurrence);
+		Object paramOccurrence = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
+		List<OccurrenceSpecification> occList = SequenceUtil.getAsOccSpecList(paramOccurrence);
+		if(!occList.isEmpty()) {
+			for(OccurrenceSpecification occurrence : occList) {
+				if(occurrence instanceof MessageOccurrenceSpecification) {
+					Message mess = ((MessageOccurrenceSpecification)occurrence).getMessage();
+					if(mess.getReceiveEvent().equals(occurrence) && MessageSort.SYNCH_CALL_LITERAL.equals(mess.getMessageSort())) {
+						// filter receive event, we prefer the corresponding start event at the same location
+						continue;
+					}
+				}
+				// otherwise, first occ is just fine
+				newElement.setEvent(occurrence);
+				break;
+			}
 		}
 
 		doConfigure(newElement, monitor, info);

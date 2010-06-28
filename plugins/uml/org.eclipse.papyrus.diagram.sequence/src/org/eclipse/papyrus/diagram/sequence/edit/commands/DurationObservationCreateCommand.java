@@ -13,6 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.commands;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -28,6 +31,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.helper.DurationObservationHelper;
 import org.eclipse.papyrus.diagram.sequence.providers.ElementInitializers;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.Package;
@@ -97,24 +101,30 @@ public class DurationObservationCreateCommand extends EditElementCommand {
 		if(!getRequest().getParameters().containsKey(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION)) {
 			return true; // duration creation is in progress; source is not defined yet
 		}
-		Object occurrence = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
-		if(!(occurrence instanceof OccurrenceSpecification)) {
+		Object paramOccurrence1 = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
+		List<OccurrenceSpecification> occ1List = SequenceUtil.getAsOccSpecList(paramOccurrence1);
+		if(occ1List.isEmpty()) {
 			return false;
 		}
 		// check second occurrence specification
 		if(!getRequest().getParameters().containsKey(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2)) {
 			return true; // duration creation is in progress; target is not defined yet
 		}
-		Object occurrence2 = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2);
-		if(!(occurrence2 instanceof OccurrenceSpecification)) {
+		Object paramOccurrence2 = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2);
+		List<OccurrenceSpecification> occ2List = SequenceUtil.getAsOccSpecList(paramOccurrence2);
+		if(occ2List.isEmpty()) {
 			return false;
 		}
 		// disable duration observation on a same event
-		if(occurrence.equals(occurrence2)) {
+		if(!Collections.disjoint(occ1List, occ2List)) {
 			return false;
 		}
 		// enable duration observation only on a message
-		return DurationObservationHelper.endsOfSameMessage((OccurrenceSpecification)occurrence, (OccurrenceSpecification)occurrence2);
+		OccurrenceSpecification[] pair = SequenceUtil.getPairOfCorrespondingOccSpec(occ1List, occ2List);
+		if(pair != null && pair.length > 1) {
+			return DurationObservationHelper.endsOfSameMessage(pair[0], pair[1]);
+		}
+		return false;
 	}
 
 	/**
@@ -141,13 +151,14 @@ public class DurationObservationCreateCommand extends EditElementCommand {
 		ElementInitializers.getInstance().init_DurationObservation_3024(newElement);
 
 		// assign the occurrence specification
-		Object occurrence1 = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
-		Object occurrence2 = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2);
-		if(occurrence1 instanceof OccurrenceSpecification) {
-			newElement.getEvents().add((OccurrenceSpecification)occurrence1);
-			if(occurrence2 instanceof OccurrenceSpecification) {
-				newElement.getEvents().add((OccurrenceSpecification)occurrence2);
-			}
+		Object paramOcc1 = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
+		List<OccurrenceSpecification> occ1List = SequenceUtil.getAsOccSpecList(paramOcc1);
+		Object paramOcc2 = getRequest().getParameter(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2);
+		List<OccurrenceSpecification> occ2List = SequenceUtil.getAsOccSpecList(paramOcc2);
+		OccurrenceSpecification[] pair = SequenceUtil.getPairOfCorrespondingOccSpec(occ1List, occ2List);
+		if(pair != null && pair.length > 1) {
+			newElement.getEvents().add(pair[0]);
+			newElement.getEvents().add(pair[1]);
 		}
 
 		doConfigure(newElement, monitor, info);

@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -425,14 +426,21 @@ public class DurationCreationTool extends AspectUnspecifiedTypeCreationTool {
 			Request req = getTargetRequest();
 			LifelineEditPart lifelinePart = SequenceUtil.getParentLifelinePart(targetPart);
 			if(lifelinePart instanceof LifelineEditPart) {
-				Object occ1 = req.getExtendedData().get(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
-				Object occ2 = req.getExtendedData().get(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2);
-				if(occ1 instanceof OccurrenceSpecification && occ2 instanceof OccurrenceSpecification) {
-					if(!occ1.equals(occ2) && DurationConstraintHelper.endsOfSameMessage((OccurrenceSpecification)occ1, (OccurrenceSpecification)occ2)) {
-						// call request on the link
-						EditPart part = SequenceUtil.getLinkedEditPart(lifelinePart, (OccurrenceSpecification)occ2);
-						if(part != null) {
-							return part.getCommand(req);
+				Object paramOcc1 = req.getExtendedData().get(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION);
+				List<OccurrenceSpecification> occ1List = SequenceUtil.getAsOccSpecList(paramOcc1);
+				Object paramOcc2 = req.getExtendedData().get(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2);
+				List<OccurrenceSpecification> occ2List = SequenceUtil.getAsOccSpecList(paramOcc2);
+				if(!occ1List.isEmpty() && !occ2List.isEmpty() && Collections.disjoint(occ1List, occ2List)) {
+					OccurrenceSpecification[] pair = SequenceUtil.getPairOfCorrespondingOccSpec(occ1List, occ2List);
+					if(pair != null && pair.length > 1) {
+						OccurrenceSpecification occ1 = pair[0];
+						OccurrenceSpecification occ2 = pair[1];
+						if(DurationConstraintHelper.endsOfSameMessage(occ1, occ2)) {
+							// call request on the link
+							EditPart part = SequenceUtil.getLinkedEditPart(lifelinePart, occ2);
+							if(part != null) {
+								return part.getCommand(req);
+							}
 						}
 					}
 				}

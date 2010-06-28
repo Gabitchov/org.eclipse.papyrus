@@ -81,6 +81,7 @@ import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
+import org.eclipse.uml2.uml.MessageSort;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
 import org.eclipse.uml2.uml.TimeConstraint;
@@ -242,14 +243,14 @@ public class SequenceUtil {
 	 *        the location
 	 * @param lifelineEditPart
 	 *        the Lifeline edit part
-	 * @return an entry with the nearest OccurrenceSpecification and its corresponding location or null if none is close enough
+	 * @return an entry with the nearest OccurrenceSpecification(s) and its corresponding location or null if none is close enough
 	 */
-	public static Entry<OccurrenceSpecification, Point> findNearestEvent(Point location, LifelineEditPart lifelineEditPart) {
+	public static Entry<Point, List<OccurrenceSpecification>> findNearestEvent(Point location, LifelineEditPart lifelineEditPart) {
 		if(lifelineEditPart == null) {
 			return null;
 		}
 		// Map referencing children occurrences by their location on the lifeline.
-		Map<OccurrenceSpecification, Point> occurrences = new HashMap<OccurrenceSpecification, Point>();
+		Map<Point, List<OccurrenceSpecification>> occurrences = new HashMap<Point, List<OccurrenceSpecification>>();
 		// graphical children of the lifeline
 		List<?> children = lifelineEditPart.getChildren();
 		for(Object child : children) {
@@ -260,8 +261,15 @@ public class SequenceUtil {
 					// find start and finish events of the execution
 					Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
 					lifelineEditPart.getFigure().translateToAbsolute(bounds);
-					occurrences.put(((ExecutionSpecification)element).getStart(), bounds.getTop());
-					occurrences.put(((ExecutionSpecification)element).getFinish(), bounds.getBottom());
+					if(!occurrences.containsKey(bounds.getTop())) {
+						// there should be at most 2 occurrences (with starting message)
+						occurrences.put(bounds.getTop(), new ArrayList<OccurrenceSpecification>(2));
+					}
+					occurrences.get(bounds.getTop()).add(((ExecutionSpecification)element).getStart());
+					if(!occurrences.containsKey(bounds.getBottom())) {
+						occurrences.put(bounds.getBottom(), new ArrayList<OccurrenceSpecification>(1));
+					}
+					occurrences.get(bounds.getBottom()).add(((ExecutionSpecification)element).getFinish());
 					// messages to and from the execution
 					completeOccurrencesMapWithMessages((GraphicalEditPart)child, occurrences);
 				}
@@ -277,7 +285,10 @@ public class SequenceUtil {
 							if(destructionEvent.equals(event)) {
 								Rectangle bounds = ((GraphicalEditPart)child).getFigure().getBounds().getCopy();
 								lifelineEditPart.getFigure().translateToAbsolute(bounds);
-								occurrences.put((OccurrenceSpecification)occurence, bounds.getCenter());
+								if(!occurrences.containsKey(bounds.getCenter())) {
+									occurrences.put(bounds.getCenter(), new ArrayList<OccurrenceSpecification>(2));
+								}
+								occurrences.get(bounds.getCenter()).add((OccurrenceSpecification)occurence);
 								break;
 							}
 						}
@@ -290,17 +301,17 @@ public class SequenceUtil {
 
 		// Find the nearest object within acceptable distance
 		double smallerDistance = MAXIMAL_DISTANCE_FROM_EVENT;
-		Entry<OccurrenceSpecification, Point> nearestObject = null;
-		for(Entry<OccurrenceSpecification, Point> entry : occurrences.entrySet()) {
-			double distance = location.getDistance(entry.getValue());
+		Entry<Point, List<OccurrenceSpecification>> nearestObject = null;
+		for(Entry<Point, List<OccurrenceSpecification>> entry : occurrences.entrySet()) {
+			double distance = location.getDistance(entry.getKey());
 			if(distance < smallerDistance) {
 				smallerDistance = distance;
 				nearestObject = entry;
-			} else if(distance == smallerDistance) {
-				// two events at the exact same position. Should not be a coincidence
-				// take the message occurrence for being able to create a duration constraint on a message
-				if(entry.getKey() instanceof MessageOccurrenceSpecification) {
-					nearestObject = entry;
+			} else if(distance == smallerDistance && nearestObject != null) {
+				// two events at the exact same distance.
+				// Keep both so the best one can be used
+				if(entry.getValue() instanceof MessageOccurrenceSpecification) {
+					nearestObject.getValue().addAll(entry.getValue());
 				}
 			}
 		}
@@ -316,7 +327,7 @@ public class SequenceUtil {
 	 * @param occurrencesMap
 	 *        the map to complete
 	 */
-	private static void completeOccurrencesMapWithMessages(GraphicalEditPart nodeEditPart, Map<OccurrenceSpecification, Point> occurrencesMap) {
+	private static void completeOccurrencesMapWithMessages(GraphicalEditPart nodeEditPart, Map<Point, List<OccurrenceSpecification>> occurrencesMap) {
 		// messages to the node
 		List<?> targetConnections = nodeEditPart.getTargetConnections();
 		for(Object conn : targetConnections) {
@@ -328,7 +339,10 @@ public class SequenceUtil {
 					if(figure instanceof AbstractPointListShape) {
 						Point end = ((AbstractPointListShape)figure).getEnd().getCopy();
 						((AbstractPointListShape)figure).getParent().translateToAbsolute(end);
-						occurrencesMap.put((MessageOccurrenceSpecification)((Message)element).getReceiveEvent(), end);
+						if(!occurrencesMap.containsKey(end)) {
+							occurrencesMap.put(end, new ArrayList<OccurrenceSpecification>(1));
+						}
+						occurrencesMap.get(end).add((MessageOccurrenceSpecification)((Message)element).getReceiveEvent());
 					}
 				}
 			}
@@ -344,7 +358,10 @@ public class SequenceUtil {
 					if(figure instanceof AbstractPointListShape) {
 						Point start = ((AbstractPointListShape)figure).getStart().getCopy();
 						((AbstractPointListShape)figure).getParent().translateToAbsolute(start);
-						occurrencesMap.put((MessageOccurrenceSpecification)((Message)element).getSendEvent(), start);
+						if(!occurrencesMap.containsKey(start)) {
+							occurrencesMap.put(start, new ArrayList<OccurrenceSpecification>(1));
+						}
+						occurrencesMap.get(start).add((MessageOccurrenceSpecification)((Message)element).getSendEvent());
 					}
 				}
 			}
@@ -893,5 +910,72 @@ public class SequenceUtil {
 			}
 		}
 		return deleteViewsCmd;
+	}
+
+	/**
+	 * Get the object safely casted as a list of OccurrenceSpecification
+	 * 
+	 * @param occurrenceSpecificationList
+	 *        the object which is supposed to be a list of OccurrenceSpecification
+	 */
+	public static List<OccurrenceSpecification> getAsOccSpecList(Object occurrenceSpecificationList) {
+		if(occurrenceSpecificationList instanceof List<?>) {
+			List<?> list = (List<?>)occurrenceSpecificationList;
+			if(!list.isEmpty()) {
+				List<OccurrenceSpecification> newList = new ArrayList<OccurrenceSpecification>(list.size());
+				for(Object elt : list) {
+					if(elt instanceof OccurrenceSpecification) {
+						newList.add((OccurrenceSpecification)elt);
+					}
+				}
+				return newList;
+			}
+		}
+		return Collections.emptyList();
+	}
+
+	/**
+	 * Get the pair of OccurrenceSpecification which a duration constraint or observation should be created between
+	 * 
+	 * @param occ1List
+	 *        the list of occurrences at the same time, among which the first one must be chosen
+	 * @param occ2List
+	 *        the list of occurrences at the same time, among which the second one must be chosen
+	 * @return size two array of OccurrenceSpecification which can be linked or null
+	 */
+	public static OccurrenceSpecification[] getPairOfCorrespondingOccSpec(List<OccurrenceSpecification> occ1List, List<OccurrenceSpecification> occ2List) {
+		// check for occurrences linked by a message
+		for(OccurrenceSpecification occ1 : occ1List) {
+			for(OccurrenceSpecification occ2 : occ2List) {
+				if(DurationConstraintHelper.endsOfSameMessage(occ1, occ2)) {
+					// we must link occurrences of a message
+					return new OccurrenceSpecification[]{ occ1, occ2 };
+				}
+			}
+		}
+		// check for occurrences on a same lifeline
+		for(OccurrenceSpecification occ1 : occ1List) {
+			if(occ1 instanceof MessageOccurrenceSpecification) {
+				Message mess = ((MessageOccurrenceSpecification)occ1).getMessage();
+				if(mess.getReceiveEvent().equals(occ1) && MessageSort.SYNCH_CALL_LITERAL.equals(mess.getMessageSort())) {
+					// filter receive event, we prefer the corresponding start event at the same location
+					continue;
+				}
+			}
+			for(OccurrenceSpecification occ2 : occ2List) {
+				if(occ2 instanceof MessageOccurrenceSpecification) {
+					Message mess = ((MessageOccurrenceSpecification)occ2).getMessage();
+					if(mess.getReceiveEvent().equals(occ2) && MessageSort.SYNCH_CALL_LITERAL.equals(mess.getMessageSort())) {
+						// filter receive event, we prefer the corresponding start event at the same location
+						continue;
+					}
+				}
+				if(DurationConstraintHelper.coversSameLifeline(occ1, occ2)) {
+					// we must link occurrences on a same lifeline
+					return new OccurrenceSpecification[]{ occ1, occ2 };
+				}
+			}
+		}
+		return null;
 	}
 }

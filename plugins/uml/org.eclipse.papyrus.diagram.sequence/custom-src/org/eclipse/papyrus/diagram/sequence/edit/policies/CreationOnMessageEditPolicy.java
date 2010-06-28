@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -52,7 +54,7 @@ public class CreationOnMessageEditPolicy extends CreationEditPolicy {
 			if(hostPart instanceof ConnectionNodeEditPart) {
 				LifelineEditPart sourceLifeline = SequenceUtil.getParentLifelinePart(((ConnectionNodeEditPart)hostPart).getSource());
 				LifelineEditPart targetLifeline = SequenceUtil.getParentLifelinePart(((ConnectionNodeEditPart)hostPart).getTarget());
-				Entry<OccurrenceSpecification, Point> eventAndLocation = null;
+				Entry<Point, List<OccurrenceSpecification>> eventAndLocation = null;
 				if(sourceLifeline != null) {
 					eventAndLocation = SequenceUtil.findNearestEvent(request.getLocation(), sourceLifeline);
 				}
@@ -60,16 +62,16 @@ public class CreationOnMessageEditPolicy extends CreationEditPolicy {
 					eventAndLocation = SequenceUtil.findNearestEvent(request.getLocation(), targetLifeline);
 				}
 				// find an event near enough to create the constraint or observation
-				OccurrenceSpecification event = null;
+				List<OccurrenceSpecification> events = Collections.emptyList();
 				Point location = null;
 				if(eventAndLocation != null) {
-					event = eventAndLocation.getKey();
-					location = eventAndLocation.getValue();
+					location = eventAndLocation.getKey();
+					events = eventAndLocation.getValue();
 				}
 				if(extendedData.containsKey(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2)) {
-					extendedData.put(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2, event);
+					extendedData.put(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2, events);
 				} else {
-					extendedData.put(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION, event);
+					extendedData.put(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION, events);
 				}
 				if(extendedData.containsKey(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION_2)) {
 					extendedData.put(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION_2, location);

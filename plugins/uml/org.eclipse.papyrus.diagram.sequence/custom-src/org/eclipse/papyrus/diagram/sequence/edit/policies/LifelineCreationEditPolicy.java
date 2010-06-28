@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -86,18 +87,18 @@ public class LifelineCreationEditPolicy extends CreationEditPolicy {
 		if(isTimeHint(requestHint)) {
 			EditPart hostPart = getHost();
 			if(hostPart instanceof LifelineEditPart) {
-				Entry<OccurrenceSpecification, Point> eventAndLocation = SequenceUtil.findNearestEvent(request.getLocation(), (LifelineEditPart)hostPart);
+				Entry<Point, List<OccurrenceSpecification>> eventAndLocation = SequenceUtil.findNearestEvent(request.getLocation(), (LifelineEditPart)hostPart);
 				// find an event near enough to create the constraint or observation
-				OccurrenceSpecification event = null;
+				List<OccurrenceSpecification> events = Collections.emptyList();
 				Point location = null;
 				if(eventAndLocation != null) {
-					event = eventAndLocation.getKey();
-					location = eventAndLocation.getValue();
+					location = eventAndLocation.getKey();
+					events = eventAndLocation.getValue();
 				}
 				if(extendedData.containsKey(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2)) {
-					extendedData.put(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2, event);
+					extendedData.put(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION_2, events);
 				} else {
-					extendedData.put(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION, event);
+					extendedData.put(SequenceRequestConstant.NEAREST_OCCURRENCE_SPECIFICATION, events);
 				}
 				if(extendedData.containsKey(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION_2)) {
 					extendedData.put(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION_2, location);
