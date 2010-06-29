@@ -47,7 +47,24 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.eclipse.papyrus.diagram.communication.edit.parts,
+Export-Package: org.eclipse.papyrus.diagram.communication,
+ org.eclipse.papyrus.diagram.communication.custom.commands,
+ org.eclipse.papyrus.diagram.communication.custom.edit.parts,
+ org.eclipse.papyrus.diagram.communication.custom.edit.policies,
+ org.eclipse.papyrus.diagram.communication.custom.factory,
+ org.eclipse.papyrus.diagram.communication.custom.figures,
+ org.eclipse.papyrus.diagram.communication.custom.parser,
+ org.eclipse.papyrus.diagram.communication.custom.policies.itemsemantic,
+ org.eclipse.papyrus.diagram.communication.custom.providers,
+ org.eclipse.papyrus.diagram.communication.custom.util,
+ org.eclipse.papyrus.diagram.communication.edit.commands,
+ org.eclipse.papyrus.diagram.communication.edit.helpers,
+ org.eclipse.papyrus.diagram.communication.edit.parts,
+ org.eclipse.papyrus.diagram.communication.edit.policies,
+ org.eclipse.papyrus.diagram.communication.expressions,
+ org.eclipse.papyrus.diagram.communication.navigator,
+ org.eclipse.papyrus.diagram.communication.parsers,
  org.eclipse.papyrus.diagram.communication.part,
+ org.eclipse.papyrus.diagram.communication.preferences,
  org.eclipse.papyrus.diagram.communication.providers
 Eclipse-LazyStart: true
