@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.core.modelsetquery.impl.ModelSetQueryAdapter;
 import org.eclipse.papyrus.core.resourceloading.ILoadingStrategyExtension;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.uml.UmlUtils;
@@ -49,6 +50,10 @@ public class UMLProfileStrategyExtension implements ILoadingStrategyExtension {
 					adapter = (org.eclipse.papyrus.core.modelsetquery.impl.ModelSetQueryAdapter)a;
 					break;
 				}
+			}
+			if(adapter == null) {
+				adapter = new ModelSetQueryAdapter();
+				modelSet.eAdapters().add(adapter);
 			}
 			if(!modelResource.getContents().isEmpty()) {
 				if(adapter != null) {
@@ -91,8 +96,6 @@ public class UMLProfileStrategyExtension implements ILoadingStrategyExtension {
 							}
 						}
 					}
-				} else {
-					// throw new Exception("Problem loading resource " + uri.toString() + ": no cache adapter found");
 				}
 			}
 		}
