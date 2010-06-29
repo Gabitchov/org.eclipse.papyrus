@@ -13,6 +13,7 @@ package org.eclipse.papyrus.properties.tabbed.customization.dialog.actions;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.MenuManager;
@@ -22,15 +23,13 @@ import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptorState
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
+import org.eclipse.uml2.uml.Stereotype;
 
 
 /**
  * Menu creator for section sets
  */
 public class SectionSetMenuCreator extends AbstractMenuCreator {
-
-	/** element on which the menu should be created */
-	private final SectionSetDescriptorState sectionSetDescriptorState;
 
 	/** list of states */
 	private final List<SectionSetDescriptorState> sectionSetDescriptorStates;
@@ -47,8 +46,8 @@ public class SectionSetMenuCreator extends AbstractMenuCreator {
 	 * @param sectionSetDescriptorState
 	 *        state on which the menu is created
 	 */
-	public SectionSetMenuCreator(SectionSetDescriptorState sectionSetDescriptorState, List<SectionSetDescriptorState> sectionSetDescriptorStates, TreeViewer metamodelViewer) {
-		this.sectionSetDescriptorState = sectionSetDescriptorState;
+	public SectionSetMenuCreator(List<SectionSetDescriptorState> sectionSetDescriptorStates, TreeViewer metamodelViewer, SectionSetDescriptorState sectionSetDescriptorState, EClassifier currentMetaclass, Stereotype currentStereotype) {
+		super(sectionSetDescriptorState, currentMetaclass, currentStereotype);
 		this.sectionSetDescriptorStates = sectionSetDescriptorStates;
 		this.metamodelViewer = metamodelViewer;
 	}
@@ -88,7 +87,7 @@ public class SectionSetMenuCreator extends AbstractMenuCreator {
 			@Override
 			public void run() {
 				// remove this section descriptor set state from its parent
-				sectionSetDescriptorStates.remove(sectionSetDescriptorState);
+				sectionSetDescriptorStates.remove(getSectionSetDescriptorState());
 				metamodelViewer.refresh();
 			}
 

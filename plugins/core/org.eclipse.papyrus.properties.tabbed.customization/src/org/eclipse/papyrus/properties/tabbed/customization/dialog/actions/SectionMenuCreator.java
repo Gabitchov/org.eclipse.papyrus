@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.MenuManager;
@@ -39,6 +40,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.uml2.uml.Stereotype;
 
 
 /**
@@ -58,7 +60,8 @@ public class SectionMenuCreator extends AbstractMenuCreator {
 	 * @param sectionDescriptorState
 	 *        the state on which this menu is created
 	 */
-	public SectionMenuCreator(SectionDescriptorState sectionDescriptorState) {
+	public SectionMenuCreator(SectionDescriptorState sectionDescriptorState, SectionSetDescriptorState sectionSetDescriptorState, EClassifier currentMetaclass, Stereotype currentStereotype) {
+		super(sectionSetDescriptorState, currentMetaclass, currentStereotype);
 		this.sectionDescriptorState = sectionDescriptorState;
 	}
 

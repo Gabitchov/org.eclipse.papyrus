@@ -13,6 +13,7 @@ package org.eclipse.papyrus.properties.tabbed.customization.dialog.actions;
 
 import java.util.ArrayList;
 
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.MenuManager;
@@ -25,11 +26,13 @@ import org.eclipse.papyrus.properties.runtime.view.content.ExpandableContainerDe
 import org.eclipse.papyrus.properties.runtime.view.content.GridLayoutDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.GroupContainerDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState;
+import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.uml2.uml.Stereotype;
 
 
 /**
@@ -49,7 +52,8 @@ public class FragmentMenuCreator extends AbstractMenuCreator {
 	 * @param fragmentDescriptorState
 	 *        the state on which this menu is created
 	 */
-	public FragmentMenuCreator(FragmentDescriptorState fragmentDescriptorState) {
+	public FragmentMenuCreator(FragmentDescriptorState fragmentDescriptorState, SectionSetDescriptorState sectionSetDescriptorState, EClassifier currentMetaclass, Stereotype currentStereotype) {
+		super(sectionSetDescriptorState, currentMetaclass, currentStereotype);
 		this.fragmentDescriptorState = fragmentDescriptorState;
 	}
 

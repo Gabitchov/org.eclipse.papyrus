@@ -81,6 +81,7 @@ import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.Predef
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.ReplacedSectionMenuCreator;
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.SectionMenuCreator;
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.SectionSetMenuCreator;
+import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.StereotypeMenuCreator;
 import org.eclipse.papyrus.properties.tabbed.customization.state.StatePropertyTabViewProviderParser;
 import org.eclipse.papyrus.umlutils.PackageUtil;
 import org.eclipse.papyrus.umlutils.StereotypeUtil;
@@ -171,7 +172,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 	protected CCombo metamodelSelectionCombo;
 
 	/** current selected stereotype */
-	private Stereotype currentStereoype;
+	protected Stereotype currentStereoype;
 
 	/**
 	 * Creates a new CustomizeContentWizardPage.
@@ -372,19 +373,19 @@ public class CustomizeContentWizardPage extends WizardPage {
 				Menu menu = null;
 				// awful code, should delegate to each state which menu should be created
 				if(selectedObject instanceof SectionDescriptorState) {
-					menu = new SectionMenuCreator(((SectionDescriptorState)selectedObject)).getMenu(configurationViewer.getTree());
+					menu = new SectionMenuCreator(((SectionDescriptorState)selectedObject), getCurrentSectionSetDescriptorState(), getCurrentMetaClass(), getCurrentStereoype()).getMenu(configurationViewer.getTree());
 				} else if(selectedObject instanceof FragmentDescriptorState) {
-					menu = new FragmentMenuCreator(((FragmentDescriptorState)selectedObject)).getMenu(configurationViewer.getTree());
+					menu = new FragmentMenuCreator(((FragmentDescriptorState)selectedObject), getCurrentSectionSetDescriptorState(), getCurrentMetaClass(), getCurrentStereoype()).getMenu(configurationViewer.getTree());
 				} else if(selectedObject instanceof PredefinedFragmentDescriptorState) {
-					menu = new PredefinedFragmentMenuCreator(((PredefinedFragmentDescriptorState)selectedObject)).getMenu(configurationViewer.getTree());
+					menu = new PredefinedFragmentMenuCreator(((PredefinedFragmentDescriptorState)selectedObject), getCurrentSectionSetDescriptorState(), getCurrentMetaClass(), getCurrentStereoype()).getMenu(configurationViewer.getTree());
 				} else if(selectedObject instanceof ContainerDescriptorState) {
-					menu = new ContainerMenuCreator(((ContainerDescriptorState)selectedObject)).getMenu(configurationViewer.getTree());
+					menu = new ContainerMenuCreator(((ContainerDescriptorState)selectedObject), getCurrentSectionSetDescriptorState(), getCurrentMetaClass(), getCurrentStereoype()).getMenu(configurationViewer.getTree());
 				} else if(selectedObject instanceof ControllerDescriptorState) {
-					menu = new ControllerMenuCreator(((ControllerDescriptorState)selectedObject)).getMenu(configurationViewer.getTree());
+					menu = new ControllerMenuCreator(((ControllerDescriptorState)selectedObject), getCurrentSectionSetDescriptorState(), getCurrentMetaClass(), getCurrentStereoype()).getMenu(configurationViewer.getTree());
 				} else if(selectedObject instanceof ContentHolder) {
-					menu = new ContentHolderMenuCreator(((ContentHolder)selectedObject)).getMenu(configurationViewer.getTree());
+					menu = new ContentHolderMenuCreator(((ContentHolder)selectedObject), getCurrentSectionSetDescriptorState(), getCurrentMetaClass(), getCurrentStereoype()).getMenu(configurationViewer.getTree());
 				} else if(selectedObject instanceof ReplacedSectionState) {
-					menu = new ReplacedSectionMenuCreator(((ReplacedSectionState)selectedObject)).getMenu(configurationViewer.getTree());
+					menu = new ReplacedSectionMenuCreator(((ReplacedSectionState)selectedObject), getCurrentSectionSetDescriptorState(), getCurrentMetaClass(), getCurrentStereoype()).getMenu(configurationViewer.getTree());
 				}
 
 				if(menu != null) {
@@ -766,9 +767,15 @@ public class CustomizeContentWizardPage extends WizardPage {
 				Menu menu = null;
 				// awful code, should delegate to each state which menu should be created
 				if(selectedObject instanceof SectionSetDescriptorState) {
-					menu = new SectionSetMenuCreator((SectionSetDescriptorState)selectedObject, sectionSetDescriptorStates, metamodelViewer).getMenu(metamodelViewer.getTree());
+					menu = new SectionSetMenuCreator(sectionSetDescriptorStates, metamodelViewer, (SectionSetDescriptorState)selectedObject, getCurrentMetaClass(), getCurrentStereoype()).getMenu(metamodelViewer.getTree());
 				} else if(selectedObject instanceof ModelElementItem) {
-					menu = new EClassifierMenuCreator((ModelElementItem)selectedObject, sectionSetDescriptorStates, metamodelViewer).getMenu(metamodelViewer.getTree());
+					ModelElementItem item = (ModelElementItem)selectedObject;
+					EObject selectedEObject = item.getEObject();
+					if(selectedEObject instanceof EClassifier) {
+						menu = new EClassifierMenuCreator((ModelElementItem)selectedObject, sectionSetDescriptorStates, metamodelViewer, getCurrentSectionSetDescriptorState(), getCurrentMetaClass(), getCurrentStereoype()).getMenu(metamodelViewer.getTree());
+					} else if(selectedEObject instanceof Stereotype) {
+						menu = new StereotypeMenuCreator((ModelElementItem)selectedObject, sectionSetDescriptorStates, metamodelViewer, getCurrentSectionSetDescriptorState(), getCurrentMetaClass(), getCurrentStereoype()).getMenu(metamodelViewer.getTree());
+					}
 				}
 
 				if(menu != null) {

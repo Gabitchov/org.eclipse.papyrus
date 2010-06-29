@@ -11,17 +11,20 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.customization.dialog.actions;
 
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.ControllerDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptorState;
+import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.uml2.uml.Stereotype;
 
 
 /**
@@ -41,7 +44,8 @@ public class ControllerMenuCreator extends AbstractMenuCreator {
 	 * @param controllerDescriptorState
 	 *        the state on which this menu is created
 	 */
-	public ControllerMenuCreator(ControllerDescriptorState controllerDescriptorState) {
+	public ControllerMenuCreator(ControllerDescriptorState controllerDescriptorState, SectionSetDescriptorState sectionSetDescriptorState, EClassifier currentMetaclass, Stereotype currentStereotype) {
+		super(sectionSetDescriptorState, currentMetaclass, currentStereotype);
 		this.controllerDescriptorState = controllerDescriptorState;
 	}
 

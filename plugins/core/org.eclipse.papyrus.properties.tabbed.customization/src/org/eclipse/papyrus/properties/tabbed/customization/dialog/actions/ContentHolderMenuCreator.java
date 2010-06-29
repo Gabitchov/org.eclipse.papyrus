@@ -16,6 +16,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.MenuManager;
@@ -41,6 +42,7 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
+import org.eclipse.uml2.uml.Stereotype;
 
 
 /**
@@ -60,7 +62,8 @@ public class ContentHolderMenuCreator extends AbstractMenuCreator {
 	 * @param contentHolder
 	 *        the content Holder on which this menu is created
 	 */
-	public ContentHolderMenuCreator(ContentHolder contentHolder) {
+	public ContentHolderMenuCreator(ContentHolder contentHolder, SectionSetDescriptorState sectionSetDescriptorState, EClassifier currentMetaclass, Stereotype currentStereotype) {
+		super(sectionSetDescriptorState, currentMetaclass, currentStereotype);
 		this.contentHolder = contentHolder;
 	}
 

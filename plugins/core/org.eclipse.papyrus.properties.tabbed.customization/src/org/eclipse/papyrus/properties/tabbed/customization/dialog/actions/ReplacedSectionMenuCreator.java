@@ -11,16 +11,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.customization.dialog.actions;
 
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState.ReplacedSectionState;
+import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.uml2.uml.Stereotype;
 
 
 /**
@@ -40,7 +43,8 @@ public class ReplacedSectionMenuCreator extends AbstractMenuCreator {
 	 * @param ReplacedSectionState
 	 *        the state on which this menu is created
 	 */
-	public ReplacedSectionMenuCreator(ReplacedSectionState replacedSectionState) {
+	public ReplacedSectionMenuCreator(ReplacedSectionState replacedSectionState, SectionSetDescriptorState sectionSetDescriptorState, EClassifier currentMetaclass, Stereotype currentStereotype) {
+		super(sectionSetDescriptorState, currentMetaclass, currentStereotype);
 		this.replacedSectionState = replacedSectionState;
 	}
 

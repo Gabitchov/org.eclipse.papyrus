@@ -14,6 +14,7 @@ package org.eclipse.papyrus.properties.tabbed.customization.dialog.actions;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.MenuManager;
@@ -28,12 +29,14 @@ import org.eclipse.papyrus.properties.runtime.view.constraints.ConstraintDescrip
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.ObjectTypeConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptorState;
+import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.ContentHolder;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.uml2.uml.Stereotype;
 
 
 /**
@@ -53,7 +56,8 @@ public class ContainerMenuCreator extends AbstractMenuCreator {
 	 * @param containerDescriptorState
 	 *        the state on which this menu is created
 	 */
-	public ContainerMenuCreator(ContainerDescriptorState containerDescriptorState) {
+	public ContainerMenuCreator(ContainerDescriptorState containerDescriptorState, SectionSetDescriptorState sectionSetDescriptorState, EClassifier currentMetaclass, Stereotype currentStereotype) {
+		super(sectionSetDescriptorState, currentMetaclass, currentStereotype);
 		this.containerDescriptorState = containerDescriptorState;
 	}
 

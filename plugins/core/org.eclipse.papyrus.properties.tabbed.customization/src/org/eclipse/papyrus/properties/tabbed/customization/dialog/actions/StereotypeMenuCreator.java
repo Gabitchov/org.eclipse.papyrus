@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.properties.tabbed.customization.dialog.actions;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -24,8 +25,8 @@ import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.papyrus.properties.runtime.view.constraints.AppliedStereotypeConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
-import org.eclipse.papyrus.properties.runtime.view.constraints.ObjectTypeConstraintDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.DynamicSectionDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptorState;
@@ -39,7 +40,7 @@ import org.eclipse.uml2.uml.Stereotype;
  * Menu creator for section sets
  */
 @SuppressWarnings("restriction")
-public class EClassifierMenuCreator extends AbstractMenuCreator {
+public class StereotypeMenuCreator extends AbstractMenuCreator {
 
 	/** element on which the menu should be created */
 	private final ModelElementItem item;
@@ -59,7 +60,7 @@ public class EClassifierMenuCreator extends AbstractMenuCreator {
 	 * @param object
 	 *        object on which the menu is created
 	 */
-	public EClassifierMenuCreator(ModelElementItem item, List<SectionSetDescriptorState> sectionSetDescriptorStates, TreeViewer treeViewer, SectionSetDescriptorState sectionSetDescriptorState, EClassifier currentMetaclass, Stereotype currentStereotype) {
+	public StereotypeMenuCreator(ModelElementItem item, List<SectionSetDescriptorState> sectionSetDescriptorStates, TreeViewer treeViewer, SectionSetDescriptorState sectionSetDescriptorState, EClassifier currentMetaclass, Stereotype currentStereotype) {
 		super(sectionSetDescriptorState, currentMetaclass, currentStereotype);
 		this.item = item;
 		this.sectionSetDescriptorStates = sectionSetDescriptorStates;
@@ -107,22 +108,14 @@ public class EClassifierMenuCreator extends AbstractMenuCreator {
 				// create the constraint for the kind of object
 				List<IConstraintDescriptor> constraints = new ArrayList<IConstraintDescriptor>();
 
-				EClassifier classifier = ((EClassifier)item.getEObject());
-				String qualifiedInstanceClassName = classifier.getInstanceClassName();
-				Class<?> metamodelClass;
-				try {
-					metamodelClass = Class.forName(qualifiedInstanceClassName);
-					ObjectTypeConstraintDescriptor constraintDescriptor = new ObjectTypeConstraintDescriptor(metamodelClass);
-					constraints.add(constraintDescriptor);
-					SectionSetDescriptor descriptor = new SectionSetDescriptor(getNewSectionSetName(1), new ArrayList<DynamicSectionDescriptor>(), constraints, 1);
-					SectionSetDescriptorState state = descriptor.createState(false);
-					sectionSetDescriptorStates.add(state);
-					treeViewer.refresh();
-					// try to select the new element
-					treeViewer.setSelection(new TreeSelection(new TreePath(new Object[]{ item, state })));
-				} catch (ClassNotFoundException e) {
-					Activator.log.error(e);
-				}
+				AppliedStereotypeConstraintDescriptor constraintDescriptor = new AppliedStereotypeConstraintDescriptor(Arrays.asList(getCurrentStereotype().getQualifiedName()));
+				constraints.add(constraintDescriptor);
+				SectionSetDescriptor descriptor = new SectionSetDescriptor(getNewSectionSetName(1), new ArrayList<DynamicSectionDescriptor>(), constraints, 1);
+				SectionSetDescriptorState state = descriptor.createState(false);
+				sectionSetDescriptorStates.add(state);
+				treeViewer.refresh();
+				// try to select the new element
+				treeViewer.setSelection(new TreeSelection(new TreePath(new Object[]{ item, state })));
 
 			}
 		};
@@ -140,22 +133,14 @@ public class EClassifierMenuCreator extends AbstractMenuCreator {
 				// create the constraint for the kind of object
 				List<IConstraintDescriptor> constraints = new ArrayList<IConstraintDescriptor>();
 
-				EClassifier classifier = ((EClassifier)item.getEObject());
-				String qualifiedInstanceClassName = classifier.getInstanceClassName();
-				Class<?> metamodelClass;
-				try {
-					metamodelClass = Class.forName(qualifiedInstanceClassName);
-					ObjectTypeConstraintDescriptor constraintDescriptor = new ObjectTypeConstraintDescriptor(metamodelClass);
-					constraints.add(constraintDescriptor);
-					SectionSetDescriptor descriptor = new SectionSetDescriptor(getNewSectionSetName(-1), new ArrayList<DynamicSectionDescriptor>(), constraints, -1);
-					SectionSetDescriptorState state = descriptor.createState(false);
-					sectionSetDescriptorStates.add(state);
-					treeViewer.refresh();
-					// try to select the new element
-					treeViewer.setSelection(new TreeSelection(new TreePath(new Object[]{ item, state })));
-				} catch (ClassNotFoundException e) {
-					Activator.log.error(e);
-				}
+				AppliedStereotypeConstraintDescriptor constraintDescriptor = new AppliedStereotypeConstraintDescriptor(Arrays.asList(getCurrentStereotype().getQualifiedName()));
+				constraints.add(constraintDescriptor);
+				SectionSetDescriptor descriptor = new SectionSetDescriptor(getNewSectionSetName(-1), new ArrayList<DynamicSectionDescriptor>(), constraints, -1);
+				SectionSetDescriptorState state = descriptor.createState(false);
+				sectionSetDescriptorStates.add(state);
+				treeViewer.refresh();
+				// try to select the new element
+				treeViewer.setSelection(new TreeSelection(new TreePath(new Object[]{ item, state })));
 
 			}
 		};
@@ -180,10 +165,8 @@ public class EClassifierMenuCreator extends AbstractMenuCreator {
 			}
 			buffer.append("_");
 
-			Class<?> selectionClass = (item.getEObject() instanceof EClassifier) ? ((EClassifier)item.getEObject()).getInstanceClass() : null;
-
-			if(selectionClass != null && selectionClass.getSimpleName() != null) {
-				buffer.append(selectionClass.getSimpleName());
+			if(getCurrentStereotype() != null && getCurrentStereotype().getQualifiedName() != null) {
+				buffer.append(getCurrentStereotype().getQualifiedName());
 			} else {
 				buffer.append("NoName");
 			}
