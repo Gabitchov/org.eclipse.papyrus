@@ -10,6 +10,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.core.modelsetquery.impl;
 
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.resource.IModelSetSnippet;
 import org.eclipse.papyrus.resource.ModelSet;
 
@@ -27,7 +29,7 @@ public class ModelSetQueryInitializer implements IModelSetSnippet {
 	/**
 	 * The type cache adapter used to reference elements from a type
 	 */
-	private ModelSetQueryAdapter typeCacheAdapter = new ModelSetQueryAdapter();
+	private ModelSetQueryAdapter modelQueryAdapter ;
 
 	/**
 	 * @see org.eclipse.papyrus.resource.IModelSetSnippet#start(org.eclipse.papyrus.resource.ModelSet)
@@ -35,7 +37,21 @@ public class ModelSetQueryInitializer implements IModelSetSnippet {
 	 * @param modelsManager
 	 */
 	public void start(ModelSet modelsManager) {
-		modelsManager.eAdapters().add(typeCacheAdapter);
+		EList<Adapter> eAdapters = modelsManager.eAdapters();
+		boolean found = false ;
+		for (Adapter adapter : eAdapters)
+		{
+			if (adapter instanceof IModelSetQueryAdapter)
+			{
+				found = true ;
+				modelQueryAdapter = (ModelSetQueryAdapter)adapter;
+			}
+		}
+		if (!found)
+		{
+			modelQueryAdapter = new ModelSetQueryAdapter();
+			eAdapters.add(modelQueryAdapter);
+		}
 
 	}
 
@@ -45,7 +61,10 @@ public class ModelSetQueryInitializer implements IModelSetSnippet {
 	 * @param modelsManager
 	 */
 	public void dispose(ModelSet modelsManager) {
-		modelsManager.eAdapters().remove(typeCacheAdapter);
+		if (modelQueryAdapter != null)
+		{
+			modelsManager.eAdapters().remove(modelQueryAdapter);
+		}
 
 	}
 
