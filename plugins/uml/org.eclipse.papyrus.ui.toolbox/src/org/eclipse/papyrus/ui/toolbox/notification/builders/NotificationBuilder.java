@@ -49,6 +49,8 @@ public class NotificationBuilder {
 	/** The parameters of the notification with the corresponding values */
 	protected Map<String, Object> parameters = new HashMap<String, Object>();
 
+
+
 	/** The builders creating the notification */
 	protected static Map<Class<? extends IBuilder>, IBuilder> builders = getBuilders();
 
@@ -397,6 +399,41 @@ public class NotificationBuilder {
 			public void run(IContext context) {
 				if(no != null) {
 					no.run();
+				}
+			}
+
+			public String getLabel() {
+				return "No";
+			}
+		});
+	}
+
+	/**
+	 * Creates a notification builder already configured to display a yes no question
+	 * 
+	 * @param yes
+	 *        , the action to launch if yes is selected
+	 * @param no
+	 *        , the action to launch if no is selected
+	 * @return a notification builder
+	 */
+	public static NotificationBuilder createYesNo(String message, final NotificationRunnable yes, final NotificationRunnable no) {
+		return new NotificationBuilder().setType(Type.QUESTION).setAsynchronous(true).setTemporary(false).setMessage(message).addAction(new NotificationRunnable() {
+
+			public void run(IContext context) {
+				if(yes != null) {
+					yes.run(context);
+				}
+			}
+
+			public String getLabel() {
+				return "Yes";
+			}
+		}).addAction(new NotificationRunnable() {
+
+			public void run(IContext context) {
+				if(no != null) {
+					no.run(context);
 				}
 			}
 

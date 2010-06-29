@@ -21,5 +21,7 @@ Export-Package: org.eclipse.papyrus.ui.toolbox,
  org.eclipse.papyrus.ui.toolbox.notification.dialogs,
  org.eclipse.papyrus.ui.toolbox.notification.exception,
  org.eclipse.papyrus.ui.toolbox.notification.popups,
- org.eclipse.papyrus.ui.toolbox.notification.view
+ org.eclipse.papyrus.ui.toolbox.notification.utils,
+ org.eclipse.papyrus.ui.toolbox.notification.view,
+ org.eclipse.papyrus.ui.toolbox.utils
 Bundle-Vendor: %providerName

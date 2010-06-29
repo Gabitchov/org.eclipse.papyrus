@@ -31,14 +31,14 @@ import org.eclipse.papyrus.core.services.ServicesRegistry;
  */
 public class PluggableEditorFactoryReader {
 
+	/** list of editor descriptors */
+	protected List<EditorDescriptor> editorDescriptors;
+
 	/** ID of the editor extension (schema filename) */
 	public static final String EDITOR_EXTENSION_ID = "papyrusDiagram";
 
 	/** Namespace where to look for the extension points. */
 	protected String extensionPointNamespace;
-
-	/** list of editor descriptors */
-	protected List<EditorDescriptor> editorDescriptors;
 
 	/** indicates if extension is loaded or not */
 	private boolean isExtensionLoaded = false;

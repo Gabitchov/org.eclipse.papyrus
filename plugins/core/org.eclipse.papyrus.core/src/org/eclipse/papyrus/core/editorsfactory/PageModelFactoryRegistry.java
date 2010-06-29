@@ -12,8 +12,7 @@ import org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory;
 
 
 /**
- * Concrete implementation of the {@link IPageModelFactory} required by the di implementation of
- * {@link ISashWindowsContentProvider}.
+ * Concrete implementation of the {@link IPageModelFactory} required by the di implementation of {@link ISashWindowsContentProvider}.
  * This implementation allows to add and remove {@link IEditorFactory}.
  * 
  * 
@@ -44,7 +43,7 @@ public class PageModelFactoryRegistry implements IPageModelFactory {
 	 * @see org.eclipse.papyrus.sasheditor.contentprovider.di.IPageModelFactory#createIPageModel(java.lang.Object)
 	 */
 	public IPageModel createIPageModel(Object pageIdentifier) {
-		
+
 		for(IEditorFactory factory : getEditorFactories()) {
 			if(factory.isPageModelFactoryFor(pageIdentifier)) {
 				{
@@ -58,7 +57,7 @@ public class PageModelFactoryRegistry implements IPageModelFactory {
 		return null;
 	}
 
-	
+
 	/**
 	 * @return the editorFactories
 	 */
@@ -68,23 +67,23 @@ public class PageModelFactoryRegistry implements IPageModelFactory {
 
 	/**
 	 * Add the specified {@link IEditorFactory}
+	 * 
 	 * @param editorFactory
 	 */
-	public void add(IEditorFactory editorFactory)
-	{
+	public void add(IEditorFactory editorFactory) {
 		// This should never happen
-		if( editorFactory==null)
+		if(editorFactory == null)
 			throw new RuntimeException("Parameter should not be null.");
-		
+
 		editorFactories.add(editorFactory);
 	}
-	
+
 	/**
 	 * Remove the specified {@link IEditorFactory}
+	 * 
 	 * @param editorFactory
 	 */
-	public void remove(IEditorFactory editorFactory)
-	{
+	public void remove(IEditorFactory editorFactory) {
 		editorFactories.remove(editorFactory);
 	}
 }

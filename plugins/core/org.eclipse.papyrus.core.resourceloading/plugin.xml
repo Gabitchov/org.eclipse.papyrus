@@ -40,6 +40,17 @@
             id="2"
             strategy="org.eclipse.papyrus.core.resourceloading.strategies.LoadControlledResources">
       </loadingStrategy>
+      <loadingStrategy
+            description="Ask the user if a resource has to be loaded"
+            id="3"
+            strategy="org.eclipse.papyrus.core.resourceloading.strategies.AskUserStrategy">
+      </loadingStrategy>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.core.papyrusDiagram">
+      <editorDiagram
+            factoryClass="org.eclipse.papyrus.core.resourceloading.editor.UnloadResourcesEditorFactory">
+      </editorDiagram>
    </extension>
 
 </plugin>
