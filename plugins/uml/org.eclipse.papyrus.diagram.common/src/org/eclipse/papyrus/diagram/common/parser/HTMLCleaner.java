@@ -296,6 +296,9 @@ public class HTMLCleaner {
 	 * @return the cleaned string
 	 */
 	public static String preClean(String htmlString) {
+		if(htmlString == null) {
+			return "";
+		}
 		StringBuffer buffer = new StringBuffer();
 
 		// indicating if parser is in special character
