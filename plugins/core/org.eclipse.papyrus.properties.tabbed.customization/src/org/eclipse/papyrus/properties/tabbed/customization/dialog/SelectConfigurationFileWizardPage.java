@@ -1194,11 +1194,11 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 		public ProviderSelectionDialog(Shell shell, List<XMLPropertyTabViewProvider> providers) {
 			super(shell, false);
 			this.providers = providers;
-			setInitialPattern("**");
 			providerLabelProvider = new ProviderLabelProvider();
 			providerDetailsLabelProvider = new ProviderDetailsLabelProvider();
 			setListLabelProvider(providerLabelProvider);
 			setDetailsLabelProvider(providerDetailsLabelProvider);
+			setInitialPattern("**");
 		}
 
 		/**
@@ -1213,8 +1213,14 @@ public class SelectConfigurationFileWizardPage extends WizardPage {
 		 * {@inheritDoc}
 		 */
 		@Override
-		protected Comparator<?> getItemsComparator() {
-			return null;
+		protected Comparator<XMLPropertyTabViewProvider> getItemsComparator() {
+			return new Comparator<XMLPropertyTabViewProvider>() {
+
+				public int compare(XMLPropertyTabViewProvider o1, XMLPropertyTabViewProvider o2) {
+					return o1.getContributionName().compareTo(o2.getContributionName());
+				}
+
+			};
 		}
 
 		/**
