@@ -38,9 +38,11 @@ import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributo
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 
 /**
- * Papyrus Model Explorer associated to a {@link IMultiDiagramEditor}.
+ * Papyrus Model Explorer associated to one {@link IMultiDiagramEditor}.
+ * This ModelExplorer is linked to one single {@link IMultiDiagramEditor}. It doesn't change its
+ * source when the current Editor change. To allow to explore different Model, use a 
+ * {@link ModelExplorerPageBookView}.
  * 
- * This model explorer is linked to Papyrus editors.
  */
 public class ModelExplorerView extends CommonNavigator {
 

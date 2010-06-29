@@ -38,6 +38,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
  * Papyrus Model Explorer.
  * 
  * This model explorer is linked to Papyrus editors.
+ * @deprecated Use {@link ModelExplorerView} instead.
  */
 public class ModelExplorer extends CommonNavigator /* implements IEditingDomainProvider */{
 

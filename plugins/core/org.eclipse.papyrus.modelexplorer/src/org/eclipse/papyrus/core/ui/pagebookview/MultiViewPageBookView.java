@@ -31,6 +31,7 @@ import org.eclipse.ui.part.PageBookView;
 
 /**
  * Base class for PageBookView in Papyrus.
+ * The PageBook mechanism can be moved in the core, as it can be reused by other Views.
  * 
  * @author cedric dumoulin
  * 
