@@ -41,7 +41,7 @@ public class UMLProfileStrategyExtension implements ILoadingStrategyExtension {
 	 * {@inheritDoc} Load a profile resource if it used in the model
 	 */
 	public boolean loadResource(ModelSet modelSet, URI uri) {
-		Resource modelResource = UmlUtils.getUmlModel().getResource();
+		Resource modelResource = UmlUtils.getUmlModel(modelSet).getResource();
 		if(modelResource != null && UMLResource.FILE_EXTENSION.equals(modelResource.getURI().fileExtension())) {
 			org.eclipse.papyrus.core.modelsetquery.impl.ModelSetQueryAdapter adapter = null;
 			for(Adapter a : modelSet.eAdapters()) {

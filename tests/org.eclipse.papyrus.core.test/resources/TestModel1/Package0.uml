@@ -1,28 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
-  <uml:Package xmi:id="_gb1S0FEMEd-2krC_WR-1xA" name="Package0">
-    <packagedElement xmi:type="uml:Class" xmi:id="_iyx8EFEMEd-2krC_WR-1xA" name="Class1">
-      <eAnnotations xmi:id="_v8QeUFENEd-KU8D5rCZoaQ" source="Stereotype_Annotation">
-        <details xmi:id="_v8QeUVENEd-KU8D5rCZoaQ" key="StereotypeWithQualifiedNameList" value=""/>
-        <details xmi:id="_v8QeUlENEd-KU8D5rCZoaQ" key="StereotypeList" value="Ecore::EClass"/>
-        <details xmi:id="_v8QeU1ENEd-KU8D5rCZoaQ" key="Stereotype_Presentation_Kind" value="HorizontalStereo"/>
-        <details xmi:id="_v8QeVFENEd-KU8D5rCZoaQ" key="PropStereoDisplay" value=""/>
-        <details xmi:id="_v8QeVVENEd-KU8D5rCZoaQ" key="StereotypePropertyLocation" value="Compartment"/>
-      </eAnnotations>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Package" href="Package1.uml#_jk2SMFEMEd-2krC_WR-1xA"/>
-    <profileApplication xmi:id="_RcqS4FEOEd-KU8D5rCZoaQ">
-      <eAnnotations xmi:id="_RdZ5wFEOEd-KU8D5rCZoaQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
-      </eAnnotations>
-      <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
-    </profileApplication>
-    <profileApplication xmi:id="_RdZ5wlEOEd-KU8D5rCZoaQ">
-      <eAnnotations xmi:id="_RdjDsFEOEd-KU8D5rCZoaQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+  <uml:Package xmi:id="_SvAKEH04Ed-RG-XtCG9Nmw" name="Package0">
+    <packagedElement xmi:type="uml:Class" xmi:id="_nQhGUH04Ed-RG-XtCG9Nmw" name="Class1"/>
+    <packagedElement xmi:type="uml:Package" href="Package1.uml#_n20RUH04Ed-RG-XtCG9Nmw"/>
+    <profileApplication xmi:id="_83DJ4H04Ed-RG-XtCG9Nmw">
+      <eAnnotations xmi:id="_84PcsH04Ed-RG-XtCG9Nmw" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="MyProfile.uml#_G-2QMlEOEd-HP48oAvsvCg"/>
       </eAnnotations>
       <appliedProfile href="MyProfile.uml#_XkGiwB07Ed-QQ4mYkrb7Gg"/>
     </profileApplication>
+    <profileApplication xmi:id="_84Pcsn04Ed-RG-XtCG9Nmw">
+      <eAnnotations xmi:id="_85k5cH04Ed-RG-XtCG9Nmw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
+    </profileApplication>
   </uml:Package>
-  <Ecore:EClass xmi:id="_v7g3cFENEd-KU8D5rCZoaQ" base_Class="_iyx8EFEMEd-2krC_WR-1xA"/>
+  <Ecore:EClass xmi:id="_xcvpwH04Ed-RG-XtCG9Nmw" base_Class="_nQhGUH04Ed-RG-XtCG9Nmw"/>
 </xmi:XMI>
