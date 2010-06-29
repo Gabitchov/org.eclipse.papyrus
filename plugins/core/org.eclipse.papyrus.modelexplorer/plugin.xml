@@ -17,7 +17,7 @@
             class="org.eclipse.papyrus.modelexplorer.ModelExplorerPageBookView"
             icon="icons/ModelExplorer.gif"
             id="org.eclipse.papyrus.modelexplorer.modelexplorer"
-            name="Papyrus Model Explorer"
+            name="Model Explorer"
             restorable="true">
       </view>
    </extension>
@@ -36,7 +36,7 @@
       </viewerContentBinding>
       <dragAssistant
             class="org.eclipse.papyrus.modelexplorer.dnd.CommonDragAdapterAssistant"
-            viewerId="org.eclipse.papyrus.modelexplorer.dnd.CommonDragAdapterAssistant">
+            viewerId="org.eclipse.papyrus.modelexplorer.modelexplorer">
       </dragAssistant>
    </extension>
    <extension

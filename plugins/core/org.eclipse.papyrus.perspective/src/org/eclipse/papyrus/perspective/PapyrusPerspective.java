@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.perspective;
 
-import org.eclipse.papyrus.navigator.ModelNavigator;
 import org.eclipse.papyrus.wizards.CreateModelWizard;
 import org.eclipse.papyrus.wizards.NewPapyrusProjectWizard;
 import org.eclipse.ui.IFolderLayout;
@@ -22,10 +21,11 @@ import org.eclipse.ui.IPerspectiveFactory;
 
 /**
  * Perspective for the Papyrus tool.
- * 
- * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
 public class PapyrusPerspective implements IPerspectiveFactory {
+
+	/** constant for the definition of papyrus model explorer **/
+	protected static final String ID_MODELEXPLORER = "org.eclipse.papyrus.modelexplorer.modelexplorer";
 
 	/**
 	 * 
@@ -53,7 +53,6 @@ public class PapyrusPerspective implements IPerspectiveFactory {
 		layout.addNewWizardShortcut(CreateModelWizard.WIZARD_ID);
 		// Add "show views".
 		layout.addShowViewShortcut(IPageLayout.ID_PROJECT_EXPLORER);
-		layout.addShowViewShortcut(ModelNavigator.ID_MODELNAVIGATOR);
 		layout.addShowViewShortcut(IPageLayout.ID_OUTLINE);
 		layout.addShowViewShortcut(IPageLayout.ID_PROP_SHEET);
 
@@ -78,8 +77,8 @@ public class PapyrusPerspective implements IPerspectiveFactory {
 
 		// Place the Model Explorer and the Resource Navigator to the left of editor area.
 		IFolderLayout left = layout.createFolder("left", IPageLayout.LEFT, (float)0.20, editorArea);
-		left.addView(ModelNavigator.ID_MODELNAVIGATOR);
-		left.addView(IPageLayout.ID_RES_NAV);
+		left.addView(ID_MODELEXPLORER);
+		left.addView(IPageLayout.ID_PROJECT_EXPLORER);
 		// place outline under the navigator
 		IFolderLayout left_bottom = layout.createFolder("left_bottom", IPageLayout.BOTTOM, (float)0.70, "left");
 		left_bottom.addView(IPageLayout.ID_OUTLINE);

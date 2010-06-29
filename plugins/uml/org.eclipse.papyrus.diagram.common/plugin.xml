@@ -508,12 +508,6 @@
    </key>
 </extension>
 <extension
-      point="org.eclipse.papyrus.navigator.providerAdapterFactory">
-   <providerAdapterFactory
-         adapterFactoryClass="org.eclipse.papyrus.diagram.common.providers.UMLComposedAdapterFactory">
-   </providerAdapterFactory>
-</extension>
-<extension
       point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
    <contributionItemProvider
          checkPluginLoaded="true"
