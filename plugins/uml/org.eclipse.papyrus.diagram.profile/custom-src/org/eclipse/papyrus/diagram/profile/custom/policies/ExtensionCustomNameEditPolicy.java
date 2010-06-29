@@ -124,15 +124,21 @@ public class ExtensionCustomNameEditPolicy extends AbstractEditPolicy implements
 								Display.getCurrent().asyncExec(new Runnable() {
 
 									public void run() {
+										String oldName = ((Extension)hostSemanticElement).getName();
+										String deducedName = ExtensionHelper.deduceExtensionNameFromProperties(((Extension)hostSemanticElement));
+
 										CompositeCommand cc = new CompositeCommand("Change Extension Name"); //$NON-NLS-1$
 										Extension ext = ((Extension)hostSemanticElement);
 										Stereotype ste = ((Extension)hostSemanticElement).getStereotype();
 										String newName = ExtensionHelper.EXTENSION + ste.getName();
 
 										//Command to change the Extension's name
-										SetRequest setRequestExt = new SetRequest(domain, ext, UMLPackage.eINSTANCE.getNamedElement_Name(), newName);
-										SetValueCommand setValueCommandExt = new SetValueCommand(setRequestExt);
-										cc.add(setValueCommandExt);
+										//only if the used doesn't have modify its name
+										if(oldName.equals(deducedName)) {
+											SetRequest setRequestExt = new SetRequest(domain, ext, UMLPackage.eINSTANCE.getNamedElement_Name(), newName);
+											SetValueCommand setValueCommandExt = new SetValueCommand(setRequestExt);
+											cc.add(setValueCommandExt);
+										}
 										//command to change the ExtensionEnd's name 
 
 										//There is only ONE ExtensionEnd
@@ -157,5 +163,4 @@ public class ExtensionCustomNameEditPolicy extends AbstractEditPolicy implements
 
 
 	}
-
 }

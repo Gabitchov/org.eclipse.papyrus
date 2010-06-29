@@ -27,11 +27,13 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.profile.custom.commands.CustomAssociationReorientCommand;
 import org.eclipse.papyrus.diagram.profile.custom.commands.CustomExtensionCreateCommand;
+import org.eclipse.papyrus.diagram.profile.custom.commands.CustomExtensionReorientCommand;
 import org.eclipse.papyrus.diagram.profile.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.diagram.profile.edit.commands.ConstraintConstrainedElementReorientCommand;
 import org.eclipse.papyrus.diagram.profile.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ConstraintConstrainedElementEditPart;
+import org.eclipse.papyrus.diagram.profile.edit.parts.ExtensionEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.policies.StereotypeItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Association;
@@ -48,7 +50,10 @@ public class CustomStereotypeItemSemanticEditPolicy extends StereotypeItemSemant
 
 	/**
 	 * 
-	 * {@inheritDoc}
+	 * @see org.eclipse.papyrus.diagram.profile.edit.policies.StereotypeItemSemanticEditPolicy#getCompleteCreateRelationshipCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest)
+	 * 
+	 * @param req
+	 * @return
 	 */
 	@Override
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
@@ -70,7 +75,10 @@ public class CustomStereotypeItemSemanticEditPolicy extends StereotypeItemSemant
 		switch(getVisualID(req)) {
 		case AssociationEditPart.VISUAL_ID:
 			return getGEFWrapper(new CustomAssociationReorientCommand(req));
+		case ExtensionEditPart.VISUAL_ID:
+			return getGEFWrapper(new CustomExtensionReorientCommand(req));
 		}
+
 		return super.getReorientRelationshipCommand(req);
 	}
 
@@ -99,7 +107,10 @@ public class CustomStereotypeItemSemanticEditPolicy extends StereotypeItemSemant
 
 	/**
 	 * 
-	 * {@inheritDoc}
+	 * @see org.eclipse.papyrus.diagram.profile.edit.policies.StereotypeItemSemanticEditPolicy#getReorientReferenceRelationshipCommand(org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest)
+	 * 
+	 * @param req
+	 * @return
 	 */
 	@Override
 	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
@@ -139,4 +150,5 @@ public class CustomStereotypeItemSemanticEditPolicy extends StereotypeItemSemant
 		cc.add(super.getDestroyElementCommand(req));
 		return cc;
 	}
+
 }

@@ -65,7 +65,6 @@ public class StereotypeHelper extends ElementHelper {
 		 * Destroy the property in the stereotype
 		 */
 		if(type instanceof Stereotype) {
-			String tmp = type.getQualifiedName();
 			ste = (Stereotype)type;
 			EList<Property> propertyList = ste.getOwnedAttributes();
 			for(int iterProperty = 0; iterProperty < propertyList.size(); iterProperty++) {

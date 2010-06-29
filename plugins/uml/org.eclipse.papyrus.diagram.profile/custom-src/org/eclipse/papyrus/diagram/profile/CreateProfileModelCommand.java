@@ -52,6 +52,6 @@ public class CreateProfileModelCommand extends ModelCreationCommandBase {
 	 * @return the model name
 	 */
 	protected String getModelName() {
-		return "profile";
+		return "profile"; //$NON-NLS-1$
 	}
 }

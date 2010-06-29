@@ -18,30 +18,39 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.profile.custom.commands.CustomExtensionCreateCommand;
+import org.eclipse.papyrus.diagram.profile.custom.commands.CustomExtensionReorientCommand;
 import org.eclipse.papyrus.diagram.profile.custom.helper.MetaclassHelper;
+import org.eclipse.papyrus.diagram.profile.edit.parts.ExtensionEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.policies.MetaclassItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes;
 
 /**
  * 
  * This class provides a custom Item Semantic for the metaclass
- * - allow the creation of the ExtensionLink
- * - manage the deletion of a metaclass figure in the diagram
+ * <ul>
+ * <li>allow the creation of the Extension link</li>
+ * <li>retarget an extension link</li>
+ * <li>manage the deletion of a metaclass figure in the diagram</li>
+ * </ul>
+ * 
  * 
  */
 public class CustomMetaclassItemSemanticEditPolicy extends MetaclassItemSemanticEditPolicy {
 
 	/**
-	 * @generated
+	 * 
+	 * @see org.eclipse.papyrus.diagram.profile.edit.policies.MetaclassItemSemanticEditPolicy#getCompleteCreateRelationshipCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest)
+	 * 
+	 * @param req
+	 * @return
 	 */
 	@Override
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 
 		if(UMLElementTypes.Extension_1013 == req.getElementType()) {
 			//The metaclass Stereotype can't be stereotyped (cf p656 from UML SuperstructureSpecification v2.2)
-
-
 			return getGEFWrapper(new CustomExtensionCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 
@@ -72,5 +81,22 @@ public class CustomMetaclassItemSemanticEditPolicy extends MetaclassItemSemantic
 		}
 
 		return cc;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.diagram.profile.edit.policies.MetaclassItemSemanticEditPolicy#getReorientRelationshipCommand(org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest)
+	 * 
+	 * @param req
+	 * @return
+	 */
+	@Override
+	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
+		switch(getVisualID(req)) {
+		case ExtensionEditPart.VISUAL_ID:
+			return getGEFWrapper(new CustomExtensionReorientCommand(req));
+		default:
+		}
+		return super.getReorientRelationshipCommand(req);
 	}
 }

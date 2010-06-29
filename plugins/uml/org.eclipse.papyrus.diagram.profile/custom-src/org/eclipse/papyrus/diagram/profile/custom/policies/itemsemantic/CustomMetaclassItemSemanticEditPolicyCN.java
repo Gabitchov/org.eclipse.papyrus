@@ -18,22 +18,32 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.profile.custom.commands.CustomExtensionCreateCommand;
+import org.eclipse.papyrus.diagram.profile.custom.commands.CustomExtensionReorientCommand;
 import org.eclipse.papyrus.diagram.profile.custom.helper.MetaclassHelper;
+import org.eclipse.papyrus.diagram.profile.edit.parts.ExtensionEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.policies.MetaclassItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes;
 
 /**
  * 
  * This class provides a custom Item Semantic for the metaclass
- * - allow the creation of the ExtensionLink
- * - manage the deletion of a metaclass figure in the diagram
+ * <ul>
+ * <li>allow the creation of the Extension link</li>
+ * <li>retarget an extension link</li>
+ * <li>manage the deletion of a metaclass figure in the diagram</li>
+ * </ul>
  * 
  */
 public class CustomMetaclassItemSemanticEditPolicyCN extends MetaclassItemSemanticEditPolicyCN {
 
 	/**
-	 * @generated
+	 * 
+	 * @see org.eclipse.papyrus.diagram.profile.edit.policies.MetaclassItemSemanticEditPolicyCN#getCompleteCreateRelationshipCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest)
+	 * 
+	 * @param req
+	 * @return
 	 */
 	@Override
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
@@ -69,5 +79,22 @@ public class CustomMetaclassItemSemanticEditPolicyCN extends MetaclassItemSemant
 		}
 
 		return cc;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.diagram.profile.edit.policies.MetaclassItemSemanticEditPolicy#getReorientRelationshipCommand(org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest)
+	 * 
+	 * @param req
+	 * @return
+	 */
+	@Override
+	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
+		switch(getVisualID(req)) {
+		case ExtensionEditPart.VISUAL_ID:
+			return getGEFWrapper(new CustomExtensionReorientCommand(req));
+		default:
+		}
+		return super.getReorientRelationshipCommand(req);
 	}
 }

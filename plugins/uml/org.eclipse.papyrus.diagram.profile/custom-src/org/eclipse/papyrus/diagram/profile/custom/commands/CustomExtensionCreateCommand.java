@@ -63,11 +63,6 @@ public class CustomExtensionCreateCommand extends ExtensionCreateCommand {
 	protected Property sourcePartWithPort = null;
 
 	/**
-	 * @generated
-	 */
-	//private final Component container;
-
-	/**
 	 * Constructor of Extension custom creation command
 	 * 
 	 * @param req
@@ -118,11 +113,9 @@ public class CustomExtensionCreateCommand extends ExtensionCreateCommand {
 			return false;
 		}
 
-
 		if(_getSource() == null) {
 			return true; // link creation is in progress; source is not defined yet
 		}
-
 
 		return CUMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateExtension_1013(getContainer(), _getSource(), getTarget());
 	}
@@ -142,7 +135,6 @@ public class CustomExtensionCreateCommand extends ExtensionCreateCommand {
 
 		//create the extension
 		Extension newExtension = UMLFactory.eINSTANCE.createExtension();
-		newExtension.setName(ExtensionHelper.EXTENSION + _getSource().getName());
 
 		//create the endSource
 		ExtensionEnd endSource = UMLFactory.eINSTANCE.createExtensionEnd();
@@ -165,9 +157,7 @@ public class CustomExtensionCreateCommand extends ExtensionCreateCommand {
 			property.setAssociation(newExtension); // Set the association link
 			property.setAggregation(AggregationKind.NONE_LITERAL);
 
-			//Association End à la place de la property
 			newExtension.getMemberEnds().add(property);
-
 
 			_getSource().getOwnedAttributes().add(property);
 
@@ -182,6 +172,9 @@ public class CustomExtensionCreateCommand extends ExtensionCreateCommand {
 
 		doConfigure(newExtension, monitor, info);
 		getContainer().getPackagedElements().add(newExtension);
+
+		//set the extension name
+		newExtension.setName(ExtensionHelper.getExtensionName(getContainer(), _getSource(), getTarget()));
 
 		((CreateElementRequest)getRequest()).setNewElement(newExtension);
 		return CommandResult.newOKCommandResult(newExtension);

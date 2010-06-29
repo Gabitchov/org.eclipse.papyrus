@@ -367,7 +367,7 @@ public class CustomCreationRoleEditPolicy extends org.eclipse.gmf.runtime.diagra
 			return super.getReparentViewCommand(gep);
 		}
 
-		CompositeCommand deleteViewCmd = new CompositeCommand("Reparent one metaclass view and delete the others");
+		CompositeCommand deleteViewCmd = new CompositeCommand("Reparent one metaclass view and delete the others"); //$NON-NLS-1$
 
 
 		/*
