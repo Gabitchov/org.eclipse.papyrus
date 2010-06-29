@@ -1103,7 +1103,4 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 		return sharedEditingDomain;
 	}
 
-	public static String getEditingDomainID() {
-		return "org.eclipse.uml2.diagram.clazz.EditingDomain"; //$NON-NLS-1$
-	}
 }
