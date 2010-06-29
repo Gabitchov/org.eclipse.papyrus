@@ -11,8 +11,10 @@ package org.eclipse.papyrus.sysml.diagram.internalblock.preferences;
 
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.part.InternalBlockDiagramEditPart;
 
-public class PropertyPreferencePage extends InternalBlockDiagramElementPreferencePage {
+public class PropertyPreferencePage extends InternalBlockDiagramNodePreferencePage {
 
-	protected String key = InternalBlockDiagramEditPart.DIAGRAM_ID + "_Property"; //$NON-NLS-1$
-
+	public PropertyPreferencePage() {
+		super();
+		setPreferenceKey(InternalBlockDiagramEditPart.DIAGRAM_ID + "_Property"); //$NON-NLS-1$
+	}
 }

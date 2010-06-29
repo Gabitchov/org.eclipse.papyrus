@@ -27,23 +27,24 @@ public class BlockViewProvider extends AbstractViewProvider {
 	private Map<String, Class<?>> nodeMap = new HashMap<String, Class<?>>();
 	{
 		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK.getSemanticHint(), BlockViewFactory.class);
-		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_NAME_LABEL_HINT, NameLabelViewFactory.class);
-		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_PROPERTY_COMPARTMENT_HINT, BlockCompartmentViewFactory.class);
-		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_OPERATION_COMPARTMENT_HINT, BlockCompartmentViewFactory.class);
-		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_NESTEDCLASSIFIER_COMPARTMENT_HINT, BlockCompartmentViewFactory.class);
-		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_COMPARTMENT_HINT, BlockCompartmentViewFactory.class);
+		nodeMap.put(BlockDefinitionDiagramElementTypes.CLASS_NAME_LABEL_HINT, NameLabelViewFactory.class);
+		nodeMap.put(BlockDefinitionDiagramElementTypes.CLASS_COMPARTMENT_PROP_HINT, BlockCompartmentViewFactory.class);
+		nodeMap.put(BlockDefinitionDiagramElementTypes.CLASS_COMPARTMENT_OPER_HINT, BlockCompartmentViewFactory.class);
+		nodeMap.put(BlockDefinitionDiagramElementTypes.CLASS_COMPARTMENT_NEST_HINT, BlockCompartmentViewFactory.class);
+		nodeMap.put(BlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_COMPARTMENT_HINT,
+				BlockCompartmentViewFactory.class);
 	}
 
 	@Override
 	protected boolean provides(CreateNodeViewOperation operation) {
 		View view = operation.getContainerView();
-		if(!BlockDefinitionDiagramEditPart.DIAGRAM_ID.equals(view.getDiagram().getType())) {
+		if (!BlockDefinitionDiagramEditPart.DIAGRAM_ID.equals(view.getDiagram().getType())) {
 			return false;
 		}
 
 		// Provides view for BLOCK and its owned Label and Compartment
-		IElementType elementType = (IElementType)operation.getSemanticAdapter().getAdapter(IElementType.class);
-		if(BlockDefinitionDiagramElementTypes.BLOCK == elementType) {
+		IElementType elementType = (IElementType) operation.getSemanticAdapter().getAdapter(IElementType.class);
+		if (BlockDefinitionDiagramElementTypes.BLOCK == elementType) {
 			return true;
 		}
 

@@ -7,14 +7,15 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  *****************************************************************************/
-package org.eclipse.papyrus.sysml.diagram.internalblock.preferences;
+package org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences;
 
-import org.eclipse.papyrus.sysml.diagram.internalblock.edit.part.InternalBlockDiagramEditPart;
+import org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.Activator;
 
-public class BlockPreferencePage extends InternalBlockDiagramNodePreferencePage {
+public class BlockDefinitionDiagramLinkPreferencePage extends AbstractPapyrusLinkPreferencePage {
 
-	public BlockPreferencePage() {
-		super();
-		setPreferenceKey(InternalBlockDiagramEditPart.DIAGRAM_ID + "_Class"); //$NON-NLS-1$
+	@Override
+	protected String getBundleId() {
+		return Activator.PLUGIN_ID;
 	}
 }

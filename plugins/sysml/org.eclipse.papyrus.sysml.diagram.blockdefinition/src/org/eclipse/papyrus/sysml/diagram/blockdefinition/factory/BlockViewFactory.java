@@ -29,10 +29,10 @@ public class BlockViewFactory extends AbstractShapeViewFactory {
 
 		view.setType(BlockDefinitionDiagramElementTypes.BLOCK.getSemanticHint());
 
-		getViewService().createNode(element, view, BlockDefinitionDiagramElementTypes.BLOCK_NAME_LABEL_HINT, ViewUtil.APPEND, persisted, getPreferencesHint());
-		getViewService().createNode(element, view, BlockDefinitionDiagramElementTypes.BLOCK_PROPERTY_COMPARTMENT_HINT, ViewUtil.APPEND, persisted, getPreferencesHint());
-		getViewService().createNode(element, view, BlockDefinitionDiagramElementTypes.BLOCK_OPERATION_COMPARTMENT_HINT, ViewUtil.APPEND, persisted, getPreferencesHint());
-		getViewService().createNode(element, view, BlockDefinitionDiagramElementTypes.BLOCK_NESTEDCLASSIFIER_COMPARTMENT_HINT, ViewUtil.APPEND, persisted, getPreferencesHint());
+		getViewService().createNode(element, view, BlockDefinitionDiagramElementTypes.CLASS_NAME_LABEL_HINT, ViewUtil.APPEND, persisted, getPreferencesHint());
+		getViewService().createNode(element, view, BlockDefinitionDiagramElementTypes.CLASS_COMPARTMENT_PROP_HINT, ViewUtil.APPEND, persisted, getPreferencesHint());
+		getViewService().createNode(element, view, BlockDefinitionDiagramElementTypes.CLASS_COMPARTMENT_OPER_HINT, ViewUtil.APPEND, persisted, getPreferencesHint());
+		getViewService().createNode(element, view, BlockDefinitionDiagramElementTypes.CLASS_COMPARTMENT_NEST_HINT, ViewUtil.APPEND, persisted, getPreferencesHint());
 		getViewService().createNode(element, view, BlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_COMPARTMENT_HINT, ViewUtil.APPEND, persisted, getPreferencesHint());
 
 	}

@@ -26,7 +26,8 @@ import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockDefiniti
 public class InheritedElementViewProvider extends UMLViewProvider {
 
 	@Override
-	public Edge createEdge(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Edge createEdge(IAdaptable semanticAdapter, View containerView, String semanticHint, int index,
+			boolean persisted, PreferencesHint preferencesHint) {
 		// No need to override here, assuming provides is correctly implemented.
 		return super.createEdge(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
 	}
@@ -35,18 +36,25 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 	protected boolean provides(CreateEdgeViewOperation op) {
 
 		// Must have a container
-		if(op.getContainerView() == null) {
+		if (op.getContainerView() == null) {
 			return false;
 		}
 
 		// This provider is registered for Block Definition Diagram only
 		String diagramType = op.getContainerView().getDiagram().getType();
-		if(!BlockDefinitionDiagramEditPart.DIAGRAM_ID.equals(diagramType)) {
+		if (!BlockDefinitionDiagramEditPart.DIAGRAM_ID.equals(diagramType)) {
 			return false;
 		}
 
 		IElementType elementType = getSemanticElementType(op.getSemanticAdapter());
-		if(elementType == BlockDefinitionDiagramElementTypes.Usage_4007) {
+		if ((elementType == BlockDefinitionDiagramElementTypes.DEPENDENCY)
+				|| (elementType == BlockDefinitionDiagramElementTypes.USAGE)
+				|| (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_REALIZATION)
+				|| (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION)
+				|| (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS_EDGE)
+				|| (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS_LINK)
+				|| (elementType == BlockDefinitionDiagramElementTypes.GENERALIZATION)) {
+
 			return true;
 		}
 
@@ -57,22 +65,53 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 	protected boolean provides(CreateNodeViewOperation op) {
 
 		// Must have a container
-		if(op.getContainerView() == null) {
+		if (op.getContainerView() == null) {
 			return false;
 		}
 
 		// This provider is registered for Block Definition Diagram only
 		String diagramType = op.getContainerView().getDiagram().getType();
-		if(!BlockDefinitionDiagramEditPart.DIAGRAM_ID.equals(diagramType)) {
+		if (!BlockDefinitionDiagramEditPart.DIAGRAM_ID.equals(diagramType)) {
 			return false;
 		}
 
-		IElementType elementType = (IElementType)op.getSemanticAdapter().getAdapter(IElementType.class);
-		if(elementType == BlockDefinitionDiagramElementTypes.Package_2007) {
-			return true;
-		}
+		IElementType elementType = (IElementType) op.getSemanticAdapter().getAdapter(IElementType.class);
+		if ((elementType == BlockDefinitionDiagramElementTypes.PACKAGE)
+				|| (elementType == BlockDefinitionDiagramElementTypes.PACKAGE_CN)
 
-		if(elementType == BlockDefinitionDiagramElementTypes.Property_3012) {
+				|| (elementType == BlockDefinitionDiagramElementTypes.CLASS)
+				|| (elementType == BlockDefinitionDiagramElementTypes.CLASS_CN)
+				|| (elementType == BlockDefinitionDiagramElementTypes.CLASS_PROP_CLN)
+				|| (elementType == BlockDefinitionDiagramElementTypes.CLASS_OPER_CLN)
+				|| (elementType == BlockDefinitionDiagramElementTypes.CLASS_RECP_CLN)
+				|| (elementType == BlockDefinitionDiagramElementTypes.CLASS_NEST_CLN)
+
+				|| (elementType == BlockDefinitionDiagramElementTypes.INTERFACE)
+				|| (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_CN)
+				|| (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_PROP_CLN)
+				|| (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_OPER_CLN)
+				|| (elementType == BlockDefinitionDiagramElementTypes.INTERFACE_NEST_CLN)
+
+				|| (elementType == BlockDefinitionDiagramElementTypes.PRIMITIVETYPE)
+				|| (elementType == BlockDefinitionDiagramElementTypes.PRIMITIVETYPE_CN)
+
+				|| (elementType == BlockDefinitionDiagramElementTypes.ENUMERATION)
+				|| (elementType == BlockDefinitionDiagramElementTypes.ENUMERATION_CN)
+				|| (elementType == BlockDefinitionDiagramElementTypes.ENUMERATION_LITERAL_CLN)
+
+				|| (elementType == BlockDefinitionDiagramElementTypes.DATATYPE)
+				|| (elementType == BlockDefinitionDiagramElementTypes.DATATYPE_CN)
+				|| (elementType == BlockDefinitionDiagramElementTypes.DATATYPE_PROP_CLN)
+				|| (elementType == BlockDefinitionDiagramElementTypes.DATATYPE_OPER_CLN)
+
+				|| (elementType == BlockDefinitionDiagramElementTypes.INSTANCE_SPEC)
+				|| (elementType == BlockDefinitionDiagramElementTypes.INSTANCE_SPEC_CN)
+				|| (elementType == BlockDefinitionDiagramElementTypes.INSTANCE_SPEC_SLOT_CLN)
+
+				|| (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS)
+				|| (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS_PROP_CLN)
+				|| (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS_OPER_CLN)
+				|| (elementType == BlockDefinitionDiagramElementTypes.ASSOCIATION_CLASS_NEST_CLN)) {
 			return true;
 		}
 
@@ -81,20 +120,19 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 	}
 
 	@Override
-	public Node createNode(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createNode(IAdaptable semanticAdapter, View containerView, String semanticHint, int index,
+			boolean persisted, PreferencesHint preferencesHint) {
 
-		if(semanticHint != null) {
+		if (semanticHint != null) {
 			return super.createNode(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
 		}
 
-		// Log a warning here
-		System.err.println("Unable to create view for : (hint) " + semanticHint);
 		return null;
 	}
-	
+
 	@Override
 	protected void stampShortcut(View containerView, Node target) {
-		if(!BlockDefinitionDiagramEditPart.DIAGRAM_ID.equals(UMLVisualIDRegistry.getModelID(containerView))) {
+		if (!BlockDefinitionDiagramEditPart.DIAGRAM_ID.equals(UMLVisualIDRegistry.getModelID(containerView))) {
 			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
 			shortcutAnnotation.getDetails().put("modelID", BlockDefinitionDiagramEditPart.DIAGRAM_ID); //$NON-NLS-1$

@@ -20,33 +20,51 @@ public class InheritedElementEditPartProvider extends UMLEditPartProvider {
 
 	@Override
 	public synchronized boolean provides(IOperation operation) {
-		if(operation instanceof CreateGraphicEditPartOperation) {
-			View view = ((IEditPartOperation)operation).getView();
+		if (operation instanceof CreateGraphicEditPartOperation) {
+			View view = ((IEditPartOperation) operation).getView();
 
 			// Ensure current diagram is an InternalBlock Diagram
-			if(!InternalBlockDiagramEditPart.DIAGRAM_ID.equals(view.getDiagram().getType())) {
+			if (!InternalBlockDiagramEditPart.DIAGRAM_ID.equals(view.getDiagram().getType())) {
 				return false;
 			}
 
 			// Test supported inherited types
 			String hint = view.getType();
-			if(InternalBlockDiagramElementTypes.CLASS.getSemanticHint().equals(hint) || InternalBlockDiagramElementTypes.CLASS_NAME_LABEL_HINT.equals(hint) || InternalBlockDiagramElementTypes.CLASS_COMPARTMENT_HINT.equals(hint)) {
+
+			/** Nodes *********** */
+
+			/** Class */
+			if (InternalBlockDiagramElementTypes.CLASS.getSemanticHint().equals(hint)
+					|| InternalBlockDiagramElementTypes.CLASS_NAME_LABEL_HINT.equals(hint)
+					|| InternalBlockDiagramElementTypes.CLASS_COMPARTMENT_HINT.equals(hint)) {
 				return true;
 			}
 
-			if(InternalBlockDiagramElementTypes.CLASS_CN.getSemanticHint().equals(hint) || InternalBlockDiagramElementTypes.CLASS_CN_NAME_LABEL_HINT.equals(hint) || InternalBlockDiagramElementTypes.CLASS_CN_COMPARTMENT_HINT.equals(hint)) {
+			if (InternalBlockDiagramElementTypes.CLASS_CN.getSemanticHint().equals(hint)
+					|| InternalBlockDiagramElementTypes.CLASS_CN_NAME_LABEL_HINT.equals(hint)
+					|| InternalBlockDiagramElementTypes.CLASS_CN_COMPARTMENT_HINT.equals(hint)) {
 				return true;
 			}
 
-			if(InternalBlockDiagramElementTypes.PROPERTY_CN.getSemanticHint().equals(hint) || InternalBlockDiagramElementTypes.PROPERTY_CN_NAME_LABEL_HINT.equals(hint) || InternalBlockDiagramElementTypes.PROPERTY_CN_COMPARTMENT_HINT.equals(hint)) {
+			/** Property */
+			if (InternalBlockDiagramElementTypes.PROPERTY_CN.getSemanticHint().equals(hint)
+					|| InternalBlockDiagramElementTypes.PROPERTY_CN_NAME_LABEL_HINT.equals(hint)
+					|| InternalBlockDiagramElementTypes.PROPERTY_CN_COMPARTMENT_HINT.equals(hint)) {
 				return true;
 			}
 
-			if(InternalBlockDiagramElementTypes.PORT_CN.getSemanticHint().equals(hint) || InternalBlockDiagramElementTypes.PORT_CN_NAME_LABEL_HINT.equals(hint) || InternalBlockDiagramElementTypes.PORT_CN_STEREOTYPE_LABEL_HINT.equals(hint)) {
+			/** Port */
+			if (InternalBlockDiagramElementTypes.PORT_CN.getSemanticHint().equals(hint)
+					|| InternalBlockDiagramElementTypes.PORT_CN_NAME_LABEL_HINT.equals(hint)
+					|| InternalBlockDiagramElementTypes.PORT_CN_STEREOTYPE_LABEL_HINT.equals(hint)) {
 				return true;
 			}
 
-			if(InternalBlockDiagramElementTypes.CONNECTOR.getSemanticHint().equals(hint) || InternalBlockDiagramElementTypes.CONNECTOR_STEREOTYPE_LABEL_HINT.equals(hint)) {
+			/** Edges *********** */
+
+			/** Connector */
+			if (InternalBlockDiagramElementTypes.CONNECTOR.getSemanticHint().equals(hint)
+					|| InternalBlockDiagramElementTypes.CONNECTOR_STEREOTYPE_LABEL_HINT.equals(hint)) {
 				return true;
 			}
 		}

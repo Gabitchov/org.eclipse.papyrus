@@ -9,12 +9,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.preferences;
 
-import org.eclipse.papyrus.sysml.diagram.internalblock.edit.part.InternalBlockDiagramEditPart;
+import org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage;
+import org.eclipse.papyrus.sysml.diagram.internalblock.Activator;
 
-public class BlockPreferencePage extends InternalBlockDiagramNodePreferencePage {
+public class InternalBlockDiagramNodePreferencePage extends AbstractPapyrusNodePreferencePage {
 
-	public BlockPreferencePage() {
-		super();
-		setPreferenceKey(InternalBlockDiagramEditPart.DIAGRAM_ID + "_Class"); //$NON-NLS-1$
+	@Override
+	protected String getBundleId() {
+		return Activator.PLUGIN_ID;
 	}
 }

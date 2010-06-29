@@ -9,10 +9,21 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.preferences;
 
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.part.InternalBlockDiagramEditPart;
 
-public class PortPreferencePage extends InternalBlockDiagramElementPreferencePage {
+public class PortPreferencePage extends InternalBlockDiagramNodePreferencePage {
 
-	protected String key = InternalBlockDiagramEditPart.DIAGRAM_ID + "_Port"; //$NON-NLS-1$
+	public static String prefKey = InternalBlockDiagramEditPart.DIAGRAM_ID + "_Port";
 
+	public PortPreferencePage() {
+		super();
+		setPreferenceKey(InternalBlockDiagramEditPart.DIAGRAM_ID + "_Port"); //$NON-NLS-1$
+	}
+
+	public static void initDefaults(IPreferenceStore store) {
+		store.setDefault(PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.WIDTH), 20);
+		store.setDefault(PreferenceConstantHelper.getElementConstant(prefKey, PreferenceConstantHelper.HEIGHT), 20);
+	}
 }

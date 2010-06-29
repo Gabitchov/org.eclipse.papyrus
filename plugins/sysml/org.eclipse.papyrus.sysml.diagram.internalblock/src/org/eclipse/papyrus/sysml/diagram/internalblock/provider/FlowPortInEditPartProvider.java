@@ -21,13 +21,13 @@ public class FlowPortInEditPartProvider extends AbstractEditPartProvider {
 
 	@Override
 	public boolean provides(IOperation operation) {
-		if(operation instanceof CreateGraphicEditPartOperation) {
-			View view = ((IEditPartOperation)operation).getView();
-			if(!InternalBlockDiagramEditPart.DIAGRAM_ID.equals(view.getDiagram().getType())) {
+		if (operation instanceof CreateGraphicEditPartOperation) {
+			View view = ((IEditPartOperation) operation).getView();
+			if (!InternalBlockDiagramEditPart.DIAGRAM_ID.equals(view.getDiagram().getType())) {
 				return false;
 			}
 
-			if(InternalBlockDiagramElementTypes.FLOWPORT_IN.getSemanticHint().equals(view.getType())) {
+			if (InternalBlockDiagramElementTypes.FLOWPORT_IN.getSemanticHint().equals(view.getType())) {
 				return true;
 			}
 		}
@@ -37,11 +37,10 @@ public class FlowPortInEditPartProvider extends AbstractEditPartProvider {
 	@Override
 	protected Class<?> getNodeEditPartClass(View view) {
 
-		if(InternalBlockDiagramElementTypes.FLOWPORT_IN.getSemanticHint().equals(view.getType())) {
+		if (InternalBlockDiagramElementTypes.FLOWPORT_IN.getSemanticHint().equals(view.getType())) {
 			return PortEditPart.class;
 		}
 
-		System.err.println("WAR : not edit part for type : " + view.getType());
 		return null;
 	}
 }

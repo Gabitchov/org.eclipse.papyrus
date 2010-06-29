@@ -26,7 +26,8 @@ import org.eclipse.papyrus.sysml.diagram.internalblock.edit.part.InternalBlockDi
 public class InheritedElementViewProvider extends UMLViewProvider {
 
 	@Override
-	public Edge createEdge(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Edge createEdge(IAdaptable semanticAdapter, View containerView, String semanticHint, int index,
+			boolean persisted, PreferencesHint preferencesHint) {
 		// No need to override here, assuming provides is correctly implemented.
 		return super.createEdge(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
 	}
@@ -35,18 +36,18 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 	protected boolean provides(CreateEdgeViewOperation op) {
 
 		// Must have a container
-		if(op.getContainerView() == null) {
+		if (op.getContainerView() == null) {
 			return false;
 		}
 
 		// This provider is registered for Block Definition Diagram only
 		String diagramType = op.getContainerView().getDiagram().getType();
-		if(!InternalBlockDiagramEditPart.DIAGRAM_ID.equals(diagramType)) {
+		if (!InternalBlockDiagramEditPart.DIAGRAM_ID.equals(diagramType)) {
 			return false;
 		}
 
 		IElementType elementType = getSemanticElementType(op.getSemanticAdapter());
-		if(elementType == InternalBlockDiagramElementTypes.CONNECTOR) {
+		if (elementType == InternalBlockDiagramElementTypes.CONNECTOR) {
 			return true;
 		}
 
@@ -57,30 +58,21 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 	protected boolean provides(CreateNodeViewOperation op) {
 
 		// Must have a container
-		if(op.getContainerView() == null) {
+		if (op.getContainerView() == null) {
 			return false;
 		}
 
 		// This provider is registered for Block Definition Diagram only
 		String diagramType = op.getContainerView().getDiagram().getType();
-		if(!InternalBlockDiagramEditPart.DIAGRAM_ID.equals(diagramType)) {
+		if (!InternalBlockDiagramEditPart.DIAGRAM_ID.equals(diagramType)) {
 			return false;
 		}
 
-		IElementType elementType = (IElementType)op.getSemanticAdapter().getAdapter(IElementType.class);
-		if(elementType == InternalBlockDiagramElementTypes.CLASS) {
-			return true;
-		}
-
-		if(elementType == InternalBlockDiagramElementTypes.CLASS_CN) {
-			return true;
-		}
-
-		if(elementType == InternalBlockDiagramElementTypes.PROPERTY_CN) {
-			return true;
-		}
-
-		if(elementType == InternalBlockDiagramElementTypes.PORT_CN) {
+		IElementType elementType = (IElementType) op.getSemanticAdapter().getAdapter(IElementType.class);
+		if ((elementType == InternalBlockDiagramElementTypes.CLASS)
+				|| (elementType == InternalBlockDiagramElementTypes.CLASS_CN)
+				|| (elementType == InternalBlockDiagramElementTypes.PROPERTY_CN)
+				|| (elementType == InternalBlockDiagramElementTypes.PORT_CN)) {
 			return true;
 		}
 
@@ -89,20 +81,19 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 	}
 
 	@Override
-	public Node createNode(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
+	public Node createNode(IAdaptable semanticAdapter, View containerView, String semanticHint, int index,
+			boolean persisted, PreferencesHint preferencesHint) {
 
-		if(semanticHint != null) {
+		if (semanticHint != null) {
 			return super.createNode(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
 		}
 
-		// Log a warning here
-		System.err.println("Unable to create view for : (hint) " + semanticHint);
 		return null;
 	}
 
 	@Override
 	protected void stampShortcut(View containerView, Node target) {
-		if(!InternalBlockDiagramEditPart.DIAGRAM_ID.equals(UMLVisualIDRegistry.getModelID(containerView))) {
+		if (!InternalBlockDiagramEditPart.DIAGRAM_ID.equals(UMLVisualIDRegistry.getModelID(containerView))) {
 			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
 			shortcutAnnotation.getDetails().put("modelID", InternalBlockDiagramEditPart.DIAGRAM_ID); //$NON-NLS-1$

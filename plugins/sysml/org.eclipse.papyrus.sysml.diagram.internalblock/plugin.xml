@@ -134,7 +134,15 @@
 	<!-- ViewProvider for inherited elements (from CompositeStructureDiagramm UMLViewProvider) -->
 	<viewProvider class="org.eclipse.papyrus.sysml.diagram.internalblock.provider.InheritedElementViewProvider">
 		<Priority name="Low"/>
+		<!-- 
+			"2073, 3085" = Class
+			"3070"       = Property
+			"3069"       = Port										
+		  -->			
 		<context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2073, 3085, 3070, 3069"/>
+		<!-- 
+			"4013" = Connector											
+		  -->		
 		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4013"/>
 	</viewProvider>
 	
@@ -185,20 +193,15 @@
 		<object
 			id="ClassComposite"
 			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="2073, 5156, 7073"/>
+			<method name="getType()" value="2073, 5156, 7073, 3085, 5155, 7060"/>
 		</object>
 		<object
-			id="ClassComposite_CN"
-			class="org.eclipse.gmf.runtime.notation.Node">
-			<method name="getType()" value="3085, 5155, 7060"/>
-		</object>
-		<object
-			id="PropertyPart_CN"
+			id="PropertyPart"
 			class="org.eclipse.gmf.runtime.notation.Node">
 			<method name="getType()" value="3070, 5126, 7077"/>
 		</object>
 		<object
-			id="Port_CN"
+			id="Port"
 			class="org.eclipse.gmf.runtime.notation.Node">
 			<method name="getType()" value="3069, 5125, 6029"/>
 		</object>
@@ -211,7 +214,7 @@
 			class="org.eclipse.gmf.runtime.notation.Edge">
 			<method name="getType()" value="4013, 6025"/>
 		</object>
-		<context views="ClassComposite, ClassComposite_CN, PropertyPart_CN, Port_CN"/>
+		<context views="ClassComposite, PropertyPart, Port"/>
 		<context views="Connector"/>
 	</editpartProvider>
 	
@@ -295,6 +298,12 @@
 		name="Port">
 	</page>	
 
+	<page  	category="org.eclipse.papyrus.sysml.diagram.internalblock.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.ConnectorPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.internalblock.preferences.ConnectorPreferencePage"
+		name="Connector">
+	</page>	
+	
 </extension>
    
 </plugin>
