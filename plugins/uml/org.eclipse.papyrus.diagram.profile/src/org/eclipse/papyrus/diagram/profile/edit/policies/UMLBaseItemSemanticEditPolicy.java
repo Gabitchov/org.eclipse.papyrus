@@ -44,7 +44,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.profile.edit.helpers.UMLBaseEditHelper;
 import org.eclipse.papyrus.diagram.profile.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.profile.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes;
@@ -152,13 +151,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	private Command getEditHelperCommand(IEditCommandRequest request, Command editPolicyCommand) {
 		if(editPolicyCommand != null) {
 			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy)editPolicyCommand).getICommand() : new CommandProxy(editPolicyCommand);
-			request.setParameter(UMLBaseEditHelper.EDIT_POLICY_COMMAND, command);
+			request.setParameter(org.eclipse.papyrus.diagram.common.helper.UMLBaseEditHelper.EDIT_POLICY_COMMAND, command);
 		}
 		IElementType requestContextElementType = getContextElementType(request);
-		request.setParameter(UMLBaseEditHelper.CONTEXT_ELEMENT_TYPE, requestContextElementType);
+		request.setParameter(org.eclipse.papyrus.diagram.common.helper.UMLBaseEditHelper.CONTEXT_ELEMENT_TYPE, requestContextElementType);
 		ICommand command = requestContextElementType.getEditCommand(request);
-		request.setParameter(UMLBaseEditHelper.EDIT_POLICY_COMMAND, null);
-		request.setParameter(UMLBaseEditHelper.CONTEXT_ELEMENT_TYPE, null);
+		request.setParameter(org.eclipse.papyrus.diagram.common.helper.UMLBaseEditHelper.EDIT_POLICY_COMMAND, null);
+		request.setParameter(org.eclipse.papyrus.diagram.common.helper.UMLBaseEditHelper.CONTEXT_ELEMENT_TYPE, null);
 		if(command != null) {
 			if(!(command instanceof CompositeTransactionalCommand)) {
 				command = new CompositeTransactionalCommand(getEditingDomain(), command.getLabel()).compose(command);
@@ -267,9 +266,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
 
-
 		return getGEFWrapper(new MoveElementsCommand(req));
-
 
 	}
 

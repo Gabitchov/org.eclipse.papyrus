@@ -773,7 +773,6 @@ public class DataTypePropertyEditPart extends CompartmentEditPart implements ITe
 
 			this.setFont(THIS_FONT);
 
-
 		}
 
 	}

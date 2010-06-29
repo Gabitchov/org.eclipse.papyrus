@@ -773,7 +773,6 @@ public class ClassOperationEditPart extends CompartmentEditPart implements IText
 
 			this.setFont(THIS_FONT);
 
-
 		}
 
 	}

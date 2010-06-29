@@ -36,6 +36,8 @@ import org.eclipse.papyrus.diagram.profile.edit.parts.CommentBodyEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.CommentBodyEditPartCN;
 import org.eclipse.papyrus.diagram.profile.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.CommentEditPartCN;
+import org.eclipse.papyrus.diagram.profile.edit.parts.ConstraintBodyEditPart;
+import org.eclipse.papyrus.diagram.profile.edit.parts.ConstraintBondyEditPartCN;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ConstraintEditPartCN;
 import org.eclipse.papyrus.diagram.profile.edit.parts.ConstraintNameEditPart;
@@ -679,6 +681,9 @@ public class UMLVisualIDRegistry {
 			if(ConstraintNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ConstraintBodyEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case ModelEditPartTN.VISUAL_ID:
 			if(ModelNameEditPart.VISUAL_ID == nodeVisualID) {
@@ -778,6 +783,9 @@ public class UMLVisualIDRegistry {
 			break;
 		case ConstraintEditPartCN.VISUAL_ID:
 			if(ConstraintNameEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConstraintBondyEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1058,63 +1066,45 @@ public class UMLVisualIDRegistry {
 		}
 		if(UMLPackage.eINSTANCE.getExtension().isSuperTypeOf(domainElement.eClass())
 
-
-
 		) {
 			return ExtensionEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getAssociation().isSuperTypeOf(domainElement.eClass())
-
-
 
 		) {
 			return AssociationEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getProfileApplication().isSuperTypeOf(domainElement.eClass())
 
-
-
 		) {
 			return ProfileApplicationEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getAssociation().isSuperTypeOf(domainElement.eClass())
-
-
 
 		) {
 			return AssociationBranchEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getGeneralization().isSuperTypeOf(domainElement.eClass())
 
-
-
 		) {
 			return GeneralizationEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getDependency().isSuperTypeOf(domainElement.eClass())
-
-
 
 		) {
 			return DependencyEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getDependency().isSuperTypeOf(domainElement.eClass())
 
-
-
 		) {
 			return DependencyBranchEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getElementImport().isSuperTypeOf(domainElement.eClass())
 
-
-
 		) {
 			return ElementImportEditPart.VISUAL_ID;
 		}
 		if(UMLPackage.eINSTANCE.getPackageImport().isSuperTypeOf(domainElement.eClass())
-
-
 
 		) {
 			return PackageImportEditPart.VISUAL_ID;
@@ -1193,90 +1183,68 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(1013, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(4001, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
 
 		labelInfo = new BaseViewInfo(6001, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		labelInfo = new BaseViewInfo(6002, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		labelInfo = new BaseViewInfo(6003, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		labelInfo = new BaseViewInfo(6005, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		viewInfo = new BaseViewInfo(1045, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(4019, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
 
 		labelInfo = new BaseViewInfo(6024, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		viewInfo = new BaseViewInfo(4002, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
 
 		labelInfo = new BaseViewInfo(6007, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		viewInfo = new BaseViewInfo(4008, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
 
 		labelInfo = new BaseViewInfo(6026, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		labelInfo = new BaseViewInfo(6027, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		viewInfo = new BaseViewInfo(4018, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(1064, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
 
 		labelInfo = new BaseViewInfo(6020, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
 		labelInfo = new BaseViewInfo(6021, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		viewInfo = new BaseViewInfo(1065, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
 		labelInfo = new BaseViewInfo(6022, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
-
 
 		viewInfo = new BaseViewInfo(1022, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(4014, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3019, ViewInfo.Node, "Operation");
 
@@ -1284,13 +1252,11 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(1068, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(1037, ViewInfo.Node, "EnumerationLiteral");
 
 		root.addNode(1063, viewInfo);
 
 		root.addNode(1062, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3018, ViewInfo.Node, "Property");
 
@@ -1298,13 +1264,11 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(1069, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3002, ViewInfo.Node, "Property");
 
 		root.addNode(1052, viewInfo);
 
 		root.addNode(1071, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3020, ViewInfo.Node, "Operation");
 
@@ -1312,20 +1276,17 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(1019, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(1023, ViewInfo.Node, "Stereotype");
 
 		root.addNode(1051, viewInfo);
 
 		root.addNode(1042, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3028, ViewInfo.Node, "Class");
 
 		root.addNode(1042, viewInfo);
 
 		root.addNode(1051, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(1007, ViewInfo.Node, "Comment");
 
@@ -1341,7 +1302,6 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(1057, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(1027, ViewInfo.Node, "Model");
 
 		root.addNode(1057, viewInfo);
@@ -1356,7 +1316,6 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(11, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(1024, ViewInfo.Node, "Profile");
 
 		root.addNode(11, viewInfo);
@@ -1370,7 +1329,6 @@ public class UMLVisualIDRegistry {
 		root.addNode(1057, viewInfo);
 
 		root.addNode(1058, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(1012, ViewInfo.Node, "Package");
 
@@ -1388,7 +1346,6 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(1057, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(1028, ViewInfo.Node, "Constraint");
 
 		root.addNode(1058, viewInfo);
@@ -1403,7 +1360,6 @@ public class UMLVisualIDRegistry {
 
 		root.addNode(1005, viewInfo);
 
-
 		viewInfo = new BaseViewInfo(3025, ViewInfo.Node, "Enumeration");
 
 		root.addNode(1058, viewInfo);
@@ -1417,7 +1373,6 @@ public class UMLVisualIDRegistry {
 		root.addNode(11, viewInfo);
 
 		root.addNode(1005, viewInfo);
-
 
 		viewInfo = new BaseViewInfo(3027, ViewInfo.Node, "DataType");
 

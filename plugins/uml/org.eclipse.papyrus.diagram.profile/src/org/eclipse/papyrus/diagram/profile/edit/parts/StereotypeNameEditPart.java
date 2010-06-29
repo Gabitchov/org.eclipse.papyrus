@@ -717,7 +717,6 @@ public class StereotypeNameEditPart extends CompartmentEditPart implements IText
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

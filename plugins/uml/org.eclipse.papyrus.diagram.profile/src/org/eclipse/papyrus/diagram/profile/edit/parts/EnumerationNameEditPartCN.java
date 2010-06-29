@@ -717,7 +717,6 @@ public class EnumerationNameEditPartCN extends CompartmentEditPart implements IT
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

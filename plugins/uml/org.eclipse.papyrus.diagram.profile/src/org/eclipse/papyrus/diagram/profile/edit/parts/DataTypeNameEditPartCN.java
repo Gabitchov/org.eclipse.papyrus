@@ -717,7 +717,6 @@ public class DataTypeNameEditPartCN extends CompartmentEditPart implements IText
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

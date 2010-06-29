@@ -717,7 +717,6 @@ public class ConstraintNameEditPart extends CompartmentEditPart implements IText
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

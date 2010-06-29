@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.edit.parts;
 
 import java.util.Collections;
@@ -53,6 +40,7 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.diagram.common.figure.node.ConstraintFigure;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.diagram.profile.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.profile.providers.UMLParserProvider;
@@ -75,12 +63,12 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class ModelNameEditPartCN extends CompartmentEditPart implements ITextAwareEditPart {
+public class ConstraintBodyEditPart extends CompartmentEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 1056;
+	public static final int VISUAL_ID = 5063;
 
 	/**
 	 * @generated
@@ -119,7 +107,7 @@ public class ModelNameEditPartCN extends CompartmentEditPart implements ITextAwa
 	/**
 	 * @generated
 	 */
-	public ModelNameEditPartCN(View view) {
+	public ConstraintBodyEditPart(View view) {
 		super(view);
 	}
 
@@ -188,7 +176,7 @@ public class ModelNameEditPartCN extends CompartmentEditPart implements ITextAwa
 	/**
 	 * @generated
 	 */
-	public void setLabel(WrappingLabel figure) {
+	public void setLabel(ConstraintFigure figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -322,7 +310,7 @@ public class ModelNameEditPartCN extends CompartmentEditPart implements ITextAwa
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.get().getModelName_1056Parser();
+			parser = UMLParserProvider.get().getConstraintSpecification_5063Parser();
 		}
 		return parser;
 	}
@@ -564,7 +552,7 @@ public class ModelNameEditPartCN extends CompartmentEditPart implements ITextAwa
 	 * @generated
 	 */
 	private View getFontStyleOwnerView() {
-		return (View)getModel();
+		return getPrimaryView();
 	}
 
 	/**

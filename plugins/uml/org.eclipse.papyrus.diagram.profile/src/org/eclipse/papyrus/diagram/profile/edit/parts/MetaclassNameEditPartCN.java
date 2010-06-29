@@ -717,7 +717,6 @@ public class MetaclassNameEditPartCN extends CompartmentEditPart implements ITex
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

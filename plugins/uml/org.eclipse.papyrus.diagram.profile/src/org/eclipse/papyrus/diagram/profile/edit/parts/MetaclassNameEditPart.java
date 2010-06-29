@@ -717,7 +717,6 @@ public class MetaclassNameEditPart extends CompartmentEditPart implements ITextA
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

@@ -24,7 +24,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.CellEditor;
-import org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure;
+import org.eclipse.papyrus.diagram.common.figure.node.IMultilineEditableFigure;
 import org.eclipse.papyrus.diagram.profile.part.UMLVisualIDRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
@@ -77,6 +77,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case ConstraintNameEditPart.VISUAL_ID:
 				return new ConstraintNameEditPart(view);
+
+			case ConstraintBodyEditPart.VISUAL_ID:
+				return new ConstraintBodyEditPart(view);
 
 			case ModelEditPartTN.VISUAL_ID:
 				return new ModelEditPartTN(view);
@@ -171,6 +174,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ConstraintNameEditPartCN.VISUAL_ID:
 				return new ConstraintNameEditPartCN(view);
 
+			case ConstraintBondyEditPartCN.VISUAL_ID:
+				return new ConstraintBondyEditPartCN(view);
+
 			case EnumerationEditPartCN.VISUAL_ID:
 				return new EnumerationEditPartCN(view);
 
@@ -234,7 +240,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case ExtensionEditPart.VISUAL_ID:
 				return new ExtensionEditPart(view);
 
-
 			case AssociationEditPart.VISUAL_ID:
 				return new AssociationEditPart(view);
 
@@ -250,10 +255,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case AssociationMultiplicityTargetLabelEditPart.VISUAL_ID:
 				return new AssociationMultiplicityTargetLabelEditPart(view);
 
-
 			case ProfileApplicationEditPart.VISUAL_ID:
 				return new ProfileApplicationEditPart(view);
-
 
 			case AssociationBranchEditPart.VISUAL_ID:
 				return new AssociationBranchEditPart(view);
@@ -261,13 +264,11 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case AssociationBranchRoleEditPart.VISUAL_ID:
 				return new AssociationBranchRoleEditPart(view);
 
-
 			case GeneralizationEditPart.VISUAL_ID:
 				return new GeneralizationEditPart(view);
 
 			case GeneralizationAppliedStereotypeEditPart.VISUAL_ID:
 				return new GeneralizationAppliedStereotypeEditPart(view);
-
 
 			case DependencyEditPart.VISUAL_ID:
 				return new DependencyEditPart(view);
@@ -278,10 +279,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case DependencyAppliedStereotypeEditPart.VISUAL_ID:
 				return new DependencyAppliedStereotypeEditPart(view);
 
-
 			case DependencyBranchEditPart.VISUAL_ID:
 				return new DependencyBranchEditPart(view);
-
 
 			case ElementImportEditPart.VISUAL_ID:
 				return new ElementImportEditPart(view);
@@ -292,17 +291,14 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case AppliedStereotypeElementImportEditPart.VISUAL_ID:
 				return new AppliedStereotypeElementImportEditPart(view);
 
-
 			case PackageImportEditPart.VISUAL_ID:
 				return new PackageImportEditPart(view);
 
 			case PackageImportAppliedStereotypeEditPart.VISUAL_ID:
 				return new PackageImportAppliedStereotypeEditPart(view);
 
-
 			case CommentAnnotatedElementEditPart.VISUAL_ID:
 				return new CommentAnnotatedElementEditPart(view);
-
 
 			case ConstraintConstrainedElementEditPart.VISUAL_ID:
 				return new ConstraintConstrainedElementEditPart(view);
@@ -324,8 +320,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 	 * @generated
 	 */
 	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
-		if(source.getFigure() instanceof HTMLCornerBentFigure)
-			return new CommentCellEditorLocator((HTMLCornerBentFigure)source.getFigure());
+		if(source.getFigure() instanceof IMultilineEditableFigure)
+			return new MultilineCellEditorLocator((IMultilineEditableFigure)source.getFigure());
 		else if(source.getFigure() instanceof WrappingLabel)
 			return new TextCellEditorLocator((WrappingLabel)source.getFigure());
 		else {
@@ -336,25 +332,25 @@ public class UMLEditPartFactory implements EditPartFactory {
 	/**
 	 * @generated
 	 */
-	static private class CommentCellEditorLocator implements CellEditorLocator {
+	static private class MultilineCellEditorLocator implements CellEditorLocator {
 
 		/**
 		 * @generated
 		 */
-		private HTMLCornerBentFigure commentFigure;
+		private IMultilineEditableFigure multilineEditableFigure;
 
 		/**
 		 * @generated
 		 */
-		public CommentCellEditorLocator(HTMLCornerBentFigure commentFigure) {
-			this.commentFigure = commentFigure;
+		public MultilineCellEditorLocator(IMultilineEditableFigure figure) {
+			this.multilineEditableFigure = figure;
 		}
 
 		/**
 		 * @generated
 		 */
-		public HTMLCornerBentFigure getCommentFigure() {
-			return commentFigure;
+		public IMultilineEditableFigure getMultilineEditableFigure() {
+			return multilineEditableFigure;
 		}
 
 		/**
@@ -362,9 +358,11 @@ public class UMLEditPartFactory implements EditPartFactory {
 		 */
 		public void relocate(CellEditor celleditor) {
 			Text text = (Text)celleditor.getControl();
-			Rectangle rect = getCommentFigure().getBounds().getCopy();
-			getCommentFigure().translateToAbsolute(rect);
-			if(getCommentFigure().getText().length() > 0) {
+			Rectangle rect = getMultilineEditableFigure().getBounds().getCopy();
+			rect.x = getMultilineEditableFigure().getEditionLocation().x;
+			rect.y = getMultilineEditableFigure().getEditionLocation().y;
+			getMultilineEditableFigure().translateToAbsolute(rect);
+			if(getMultilineEditableFigure().getText().length() > 0) {
 				rect.setSize(new Dimension(text.computeSize(rect.width, SWT.DEFAULT)));
 			}
 			if(!rect.equals(new Rectangle(text.getBounds()))) {

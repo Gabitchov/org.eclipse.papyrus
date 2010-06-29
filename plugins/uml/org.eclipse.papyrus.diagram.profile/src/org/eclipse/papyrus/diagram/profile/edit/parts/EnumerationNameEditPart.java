@@ -717,7 +717,6 @@ public class EnumerationNameEditPart extends CompartmentEditPart implements ITex
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

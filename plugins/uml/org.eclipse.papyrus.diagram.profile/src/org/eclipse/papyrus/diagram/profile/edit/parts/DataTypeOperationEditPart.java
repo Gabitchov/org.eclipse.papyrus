@@ -773,7 +773,6 @@ public class DataTypeOperationEditPart extends CompartmentEditPart implements IT
 
 			this.setFont(THIS_FONT);
 
-
 		}
 
 	}

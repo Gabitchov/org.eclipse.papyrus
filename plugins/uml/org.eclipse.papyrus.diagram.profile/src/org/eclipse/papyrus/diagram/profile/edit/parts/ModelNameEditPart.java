@@ -717,7 +717,6 @@ public class ModelNameEditPart extends CompartmentEditPart implements ITextAware
 			}
 		}
 
-
 		super.handleNotificationEvent(event);
 	}
 

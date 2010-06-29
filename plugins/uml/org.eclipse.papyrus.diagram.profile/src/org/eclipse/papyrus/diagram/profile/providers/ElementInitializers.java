@@ -24,12 +24,15 @@ import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.EnumerationLiteral;
+import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.ValueSpecification;
 
 /**
  * @generated
@@ -83,6 +86,8 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Constraint_1014(instance);
 			instance.setName((String)value_0);
+			Object value_1 = specification_Constraint_1014(instance);
+			instance.setSpecification((ValueSpecification)value_1);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -287,6 +292,8 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Constraint_1028(instance);
 			instance.setName((String)value_0);
+			Object value_1 = specification_Constraint_1028(instance);
+			instance.setSpecification((ValueSpecification)value_1);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -391,6 +398,15 @@ public class ElementInitializers {
 	 */
 	private String name_Constraint_1014(Constraint self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private ValueSpecification specification_Constraint_1014(Constraint self) {
+		LiteralString literalString = UMLFactory.eINSTANCE.createLiteralString();
+		literalString.setValue("");
+		return literalString;
 	}
 
 	/**
@@ -516,6 +532,15 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	private ValueSpecification specification_Constraint_1028(Constraint self) {
+		LiteralString literalString = UMLFactory.eINSTANCE.createLiteralString();
+		literalString.setValue("");
+		return literalString;
+	}
+
+	/**
+	 * @generated
+	 */
 	private String name_Enumeration_3025(Enumeration self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
@@ -557,7 +582,6 @@ public class ElementInitializers {
 		}
 		return "elementimport";
 	}
-
 
 	/**
 	 * @generated

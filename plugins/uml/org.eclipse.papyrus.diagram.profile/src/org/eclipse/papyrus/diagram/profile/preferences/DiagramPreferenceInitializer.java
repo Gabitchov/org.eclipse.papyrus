@@ -28,95 +28,63 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
 
-		PackageCNPreferencePage.initDefaults(store);
-
-
 		DataTypePreferencePage.initDefaults(store);
-
-
-		ModelPreferencePage.initDefaults(store);
-
-
-		AssociationPreferencePage.initDefaults(store);
-
-
-		ShortCutDiagramPreferencePage.initDefaults(store);
-
-
-		ConstraintPreferencePage.initDefaults(store);
-
-
-		ConstraintCNPreferencePage.initDefaults(store);
-
-
-		CommentCNPreferencePage.initDefaults(store);
-
-
-		EnumerationLiteralPreferencePage.initDefaults(store);
-
-
-		StereotypePreferencePage.initDefaults(store);
-
-
-		DependencyPreferencePage.initDefaults(store);
-
-
-		EnumerationCNPreferencePage.initDefaults(store);
-
-
-		PackagePreferencePage.initDefaults(store);
-
-
-		DataTypePropertyPreferencePage.initDefaults(store);
-
-
-		ProfileCNPreferencePage.initDefaults(store);
-
-
-		ClassPropertyPreferencePage.initDefaults(store);
-
-
-		CommentPreferencePage.initDefaults(store);
-
-
-		ProfilePreferencePage.initDefaults(store);
-
-
-		EnumerationPreferencePage.initDefaults(store);
-
-
-		ClassOperationPreferencePage.initDefaults(store);
-
 
 		DataTypeOperationPreferencePage.initDefaults(store);
 
+		CommentPreferencePage.initDefaults(store);
 
-		MetaclassPreferencePage.initDefaults(store);
+		DataTypePropertyPreferencePage.initDefaults(store);
 
+		EnumerationLiteralPreferencePage.initDefaults(store);
 
+		PackagePreferencePage.initDefaults(store);
 
+		ProfileCNPreferencePage.initDefaults(store);
 
-		PackageImportPreferencePage.initDefaults(store);
+		EnumerationCNPreferencePage.initDefaults(store);
 
+		ClassPropertyPreferencePage.initDefaults(store);
 
-		ExtensionPreferencePage.initDefaults(store);
-
-
-		AssociationPreferencePage.initDefaults(store);
-
-
-		GeneralizationPreferencePage.initDefaults(store);
-
-
-		ElementImportPreferencePage.initDefaults(store);
-
-
-		ProfileApplicationPreferencePage.initDefaults(store);
-
-
+		ShortCutDiagramPreferencePage.initDefaults(store);
 
 		DependencyPreferencePage.initDefaults(store);
 
+		EnumerationPreferencePage.initDefaults(store);
+
+		PackageCNPreferencePage.initDefaults(store);
+
+		ConstraintPreferencePage.initDefaults(store);
+
+		AssociationPreferencePage.initDefaults(store);
+
+		ProfilePreferencePage.initDefaults(store);
+
+		ModelPreferencePage.initDefaults(store);
+
+		MetaclassPreferencePage.initDefaults(store);
+
+		ClassOperationPreferencePage.initDefaults(store);
+
+		StereotypePreferencePage.initDefaults(store);
+
+		ConstraintCNPreferencePage.initDefaults(store);
+
+		CommentCNPreferencePage.initDefaults(store);
+
+		PackageImportPreferencePage.initDefaults(store);
+
+		ExtensionPreferencePage.initDefaults(store);
+
+		ElementImportPreferencePage.initDefaults(store);
+
+		DependencyPreferencePage.initDefaults(store);
+
+		GeneralizationPreferencePage.initDefaults(store);
+
+		ProfileApplicationPreferencePage.initDefaults(store);
+
+		AssociationPreferencePage.initDefaults(store);
 
 	}
 

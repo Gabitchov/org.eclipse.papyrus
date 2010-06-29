@@ -716,9 +716,6 @@ public class PackageImportAppliedStereotypeEditPart extends LabelEditPart implem
 			}
 		}
 
-
-
-
 		super.handleNotificationEvent(event);
 	}
 

@@ -773,7 +773,6 @@ public class ClassPropertyEditPart extends CompartmentEditPart implements ITextA
 
 			this.setFont(THIS_FONT);
 
-
 		}
 
 	}

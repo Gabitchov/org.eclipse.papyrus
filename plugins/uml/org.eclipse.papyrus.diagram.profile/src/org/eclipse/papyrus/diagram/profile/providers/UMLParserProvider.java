@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.papyrus.diagram.common.parser.CommentParser;
+import org.eclipse.papyrus.diagram.common.parser.ConstraintParser;
 import org.eclipse.papyrus.diagram.common.parser.packageimport.PackageImportVisibilityParser;
 import org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.papyrus.diagram.profile.parsers.MessageFormatParser;
@@ -108,6 +109,21 @@ public class UMLParserProvider {
 			constraintName_1015Parser = parser;
 		}
 		return constraintName_1015Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ConstraintParser constraintSpecification_5063Parser;
+
+	/**
+	 * @generated
+	 */
+	public IParser getConstraintSpecification_5063Parser() {
+		if(constraintSpecification_5063Parser == null) {
+			constraintSpecification_5063Parser = new ConstraintParser();
+		}
+		return constraintSpecification_5063Parser;
 	}
 
 	/**
@@ -211,7 +227,6 @@ public class UMLParserProvider {
 		}
 		return diagramName_2Parser;
 	}
-
 
 	/**
 	 * @generated
@@ -418,6 +433,21 @@ public class UMLParserProvider {
 	/**
 	 * @generated
 	 */
+	private ConstraintParser constraintSpecification_5064Parser;
+
+	/**
+	 * @generated
+	 */
+	public IParser getConstraintSpecification_5064Parser() {
+		if(constraintSpecification_5064Parser == null) {
+			constraintSpecification_5064Parser = new ConstraintParser();
+		}
+		return constraintSpecification_5064Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser enumerationName_5055Parser;
 
 	/**
@@ -448,7 +478,6 @@ public class UMLParserProvider {
 		}
 		return dataTypeName_5061Parser;
 	}
-
 
 	/**
 	 * @generated
@@ -614,7 +643,6 @@ public class UMLParserProvider {
 		}
 		return packageImportVisibility_6022Parser;
 	}
-
 
 	private static org.eclipse.papyrus.diagram.profile.providers.UMLParserProvider ourInstance;
 
