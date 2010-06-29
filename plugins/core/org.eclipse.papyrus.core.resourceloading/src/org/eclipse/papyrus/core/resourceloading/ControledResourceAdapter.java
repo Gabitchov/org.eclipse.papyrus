@@ -93,7 +93,7 @@ public class ControledResourceAdapter implements Adapter.Internal {
 	public List<ControledResource> getControledResource(String locationURL) {
 		List<ControledResource> list = resources.get(locationURL);
 		if(list == null) {
-			return Collections.EMPTY_LIST;
+			return Collections.emptyList();
 		}
 		return list;
 	}

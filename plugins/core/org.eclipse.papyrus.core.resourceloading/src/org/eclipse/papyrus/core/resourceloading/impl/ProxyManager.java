@@ -61,7 +61,7 @@ public class ProxyManager implements IProxyManager {
 	// ==== Manage strategy extensions (for UML profile)
 
 	/** extension point ID for strategy extensions */
-	private static final String STRATEGY_EXTENDER_EXTENSION_POINT_ID = "org.eclipse.papyrus.core.loadingStrategyExtender";
+	private static final String STRATEGY_EXTENDER_EXTENSION_POINT_ID = "org.eclipse.papyrus.core.resourceloading.loadingStrategyExtender";
 
 	/** element ID for the loading strategy extension element */
 	private static final String STRATEGY_EXTENDER_ELEMENT_ID = "strategyExtender";
