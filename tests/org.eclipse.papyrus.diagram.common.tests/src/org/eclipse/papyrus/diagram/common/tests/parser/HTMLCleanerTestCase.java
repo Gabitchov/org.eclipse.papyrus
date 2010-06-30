@@ -40,7 +40,7 @@ public class HTMLCleanerTestCase extends TestCase {
 	public void testCleanHTMLTags1() {
 		final String test = "This is a simple example (no html).";
 		final String expectedResult = "This is a simple example (no html).";
-		final String result = HTMLCleaner.cleanHTMLTags(test);
+		final String result = HTMLCleaner.removeHTMLTags(test);
 		assertEquals(expectedResult, result);
 	}
 
@@ -51,7 +51,7 @@ public class HTMLCleanerTestCase extends TestCase {
 	public void testCleanHTMLTags2() {
 		final String test = "<strong>P0_a &lt; nnotateC0</strong>";
 		final String expectedResult = "P0_a < nnotateC0";
-		final String result = HTMLCleaner.cleanHTMLTags(test);
+		final String result = HTMLCleaner.removeHTMLTags(HTMLCleaner.preClean(test));
 		assertEquals(expectedResult, result);
 	}
 
@@ -63,7 +63,7 @@ public class HTMLCleanerTestCase extends TestCase {
 	public void testCleanHTMLTags3() {
 		final String test = "<h3>This is the title</h3><p>This is a part of the body.</p><p>This is the second part of the body.</p><br /><br />";
 		final String expectedResult = "This is the title\nThis is a part of the body.\nThis is the second part of the body.\n";
-		final String result = HTMLCleaner.cleanHTMLTags(test);
+		final String result = HTMLCleaner.removeHTMLTags(test);
 		assertEquals(expectedResult, result);
 	}
 
@@ -73,8 +73,8 @@ public class HTMLCleanerTestCase extends TestCase {
 	@Test
 	public void testCleanHTMLTags4() {
 		final String test = "<h3>\r\n" + "    Houston\r\n" + "</h3>";
-		final String expectedResult = "Houston\n";
-		final String result = HTMLCleaner.cleanHTMLTags(test);
+		final String expectedResult = " Houston\n";
+		final String result = HTMLCleaner.removeHTMLTags(test);
 		assertEquals(expectedResult, result);
 	}
 
@@ -85,7 +85,7 @@ public class HTMLCleanerTestCase extends TestCase {
 	public void testCleanHTMLTags5() {
 		final String test = "";
 		final String expectedResult = "";
-		final String result = HTMLCleaner.cleanHTMLTags(test);
+		final String result = HTMLCleaner.removeHTMLTags(test);
 		assertEquals(expectedResult, result);
 	}
 
@@ -96,7 +96,7 @@ public class HTMLCleanerTestCase extends TestCase {
 	public void testCleanHTMLTags6() {
 		final String test = "\n";
 		final String expectedResult = "";
-		final String result = HTMLCleaner.cleanHTMLTags(test);
+		final String result = HTMLCleaner.removeHTMLTags(test);
 		assertEquals(expectedResult, result);
 	}
 }
