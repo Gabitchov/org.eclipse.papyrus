@@ -12,7 +12,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.diagram.composite.custom.figures;
+package org.eclipse.papyrus.diagram.common.figure.node;
 
 import org.eclipse.draw2d.BorderLayout;
 import org.eclipse.draw2d.ImageFigure;

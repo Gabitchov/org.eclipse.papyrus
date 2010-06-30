@@ -14,6 +14,8 @@
 
 package org.eclipse.papyrus.diagram.composite.custom.figures;
 
+import org.eclipse.papyrus.diagram.common.figure.node.AffixedNamedElementFigure;
+
 
 /**
  * Figure for Parameter representation.

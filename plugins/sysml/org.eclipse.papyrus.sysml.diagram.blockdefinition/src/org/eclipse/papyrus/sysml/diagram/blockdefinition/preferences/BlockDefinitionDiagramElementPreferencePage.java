@@ -9,12 +9,21 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences;
 
-import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockDefinitionDiagramEditPart;
+import org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.Activator;
 
-public class AssociationClassEdgePreferencePage extends BlockDefinitionDiagramLinkPreferencePage {
+public class BlockDefinitionDiagramElementPreferencePage extends AbstractPapyrusNodePreferencePage {
 
-	public AssociationClassEdgePreferencePage() {
+	/** Element preference key (supposed to be initialized by subclasses) */
+	protected String key = ""; //$NON-NLS-1$
+
+	public BlockDefinitionDiagramElementPreferencePage() {
 		super();
-		setPreferenceKey(BlockDefinitionDiagramEditPart.DIAGRAM_ID + "_AssociationClass"); //$NON-NLS-1$
+		setPreferenceKey(key);
+	}
+
+	@Override
+	protected String getBundleId() {
+		return Activator.PLUGIN_ID;
 	}
 }

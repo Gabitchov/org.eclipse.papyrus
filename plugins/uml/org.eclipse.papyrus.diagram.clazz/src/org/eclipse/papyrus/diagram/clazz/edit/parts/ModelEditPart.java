@@ -41,9 +41,9 @@ import org.eclipse.papyrus.diagram.common.util.MDTUtil;
 public class ModelEditPart extends DiagramEditPart {
 
 	/**
-	 * @generated
+	 * @generated NOT remove final for hack in BDD
 	 */
-	public final static String MODEL_ID = "PapyrusUMLClassDiagram"; //$NON-NLS-1$
+	public static String MODEL_ID = "PapyrusUMLClassDiagram"; //$NON-NLS-1$
 
 	/**
 	 * @generated

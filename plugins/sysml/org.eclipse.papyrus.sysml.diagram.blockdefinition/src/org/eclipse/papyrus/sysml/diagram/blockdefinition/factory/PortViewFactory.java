@@ -1,10 +1,14 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010 Atos Origin.
  *
+ *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.factory;
@@ -18,22 +22,13 @@ import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElement
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockDefinitionDiagramElementTypes;
 
 
-public class BlockViewFactory extends AbstractShapeViewFactory {
-
-	/**
-	 * Creates Block view and add Label and Compartment nodes
-	 */
+public class PortViewFactory extends AbstractShapeViewFactory {
+	
 	@Override
 	protected void decorateView(View containerView, View view, IAdaptable element, String semanticHint, int index, boolean persisted) {
 		super.decorateView(containerView, view, element, semanticHint, index, persisted);
-
-		getViewService().createNode(element, view, BlockDefinitionDiagramElementTypes.BLOCK_NAME_LABEL_HINT, ViewUtil.APPEND, persisted, getPreferencesHint());
-		getViewService().createNode(element, view, BlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_COMPARTMENT_HINT, ViewUtil.APPEND, persisted, getPreferencesHint());
-		getViewService().createNode(element, view, BlockDefinitionDiagramElementTypes.BLOCK_OPERATION_COMPARTMENT_HINT, ViewUtil.APPEND, persisted, getPreferencesHint());
-		getViewService().createNode(element, view, BlockDefinitionDiagramElementTypes.BLOCK_PART_COMPARTMENT_HINT, ViewUtil.APPEND, persisted, getPreferencesHint());
-		getViewService().createNode(element, view, BlockDefinitionDiagramElementTypes.BLOCK_REFERENCE_COMPARTMENT_HINT, ViewUtil.APPEND, persisted, getPreferencesHint());
-		getViewService().createNode(element, view, BlockDefinitionDiagramElementTypes.BLOCK_VALUE_COMPARTMENT_HINT, ViewUtil.APPEND, persisted, getPreferencesHint());
-		getViewService().createNode(element, view, BlockDefinitionDiagramElementTypes.BLOCK_PROPERTY_COMPARTMENT_HINT, ViewUtil.APPEND, persisted, getPreferencesHint());
+		
+		getViewService().createNode(element, view, BlockDefinitionDiagramElementTypes.PORT_NAME_LABEL_HINT, ViewUtil.APPEND, persisted, getPreferencesHint());
 	}
 
 	/**
