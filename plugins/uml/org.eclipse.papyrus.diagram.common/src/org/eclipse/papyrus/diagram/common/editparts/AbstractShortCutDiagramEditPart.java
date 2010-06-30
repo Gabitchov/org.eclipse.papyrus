@@ -16,6 +16,11 @@ package org.eclipse.papyrus.diagram.common.editparts;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
@@ -35,11 +40,14 @@ import org.eclipse.ui.IWorkbenchPart;
 /**
  * this class is used to constraint the behavior of a node to obtain the behavior a short cut
  */
-public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedShapeEditPart {
+public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedShapeEditPart implements Adapter{
 
 	protected static final String DELETE_ICON = "icons/delete.gif";
 
 	private IPageIconsRegistry editorRegistry;
+
+	private Notifier target;
+	protected Resource resourceToListen;
 
 	public AbstractShortCutDiagramEditPart(View view) {
 		super(view);
@@ -87,6 +95,16 @@ public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedSh
 		}
 	}
 
+	@Override
+	public void activate() {
+		// TODO Auto-generated method stub
+		super.activate();
+		EObject eObject=resolveSemanticElement();
+		resourceToListen= eObject.eResource();
+		resourceToListen.eAdapters().add(this);
+		
+	
+	}
 	/**
 	 * Get the EditorRegistry used to create editor instances. This default implementation return
 	 * the singleton eINSTANCE. This method can be subclassed to return another registry.
@@ -118,6 +136,12 @@ public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedSh
 		super.refresh();
 	}
 
+	@Override
+	public void notifyChanged(Notification notification) {
+		// TODO Auto-generated method stub
+		super.notifyChanged(notification);
+		refreshIcons();
+	}
 	/**
 	 * 
 	 * {@inheritDoc}
@@ -136,12 +160,28 @@ public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedSh
 	 * refresh the icon by taking in account the type of the diagram
 	 */
 	private void refreshIcons() {
-		if(resolveSemanticElement() instanceof Diagram){
+		if(resolveSemanticElement() instanceof Diagram&& resolveSemanticElement().eResource()!=null){
 			getPrimaryShape().setIcon(getEditorRegistry().getEditorIcon((Diagram)resolveSemanticElement()));
 		}
 		else{
 			getPrimaryShape().setIcon(org.eclipse.papyrus.diagram.common.Activator.getPluginIconImage(org.eclipse.papyrus.diagram.common.Activator.ID, DELETE_ICON));
 		}
 	}
-
+	@Override
+	public void deactivate() {
+		// TODO Auto-generated method stub
+		super.deactivate();
+		resourceToListen.eAdapters().remove(this);
+	}
+	public void setTarget(Notifier target) { 
+	    this.target = target; 
+	  } 
+	 
+	  public Notifier getTarget() { 
+	    return target; 
+	  } 
+	 
+	  public boolean isAdapterForType(Object type) { 
+		  return (getModel().getClass() == type); 
+	  } 
 }

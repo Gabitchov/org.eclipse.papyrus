@@ -19,6 +19,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
@@ -78,9 +79,15 @@ public class ShortCutDiagramEditPolicy extends OpenEditPolicy {
 	 */
 	@Override
 	protected Command getOpenCommand(Request request) {
-		Diagram diagram = (Diagram)((GraphicalEditPart)getHost()).getNotationView().getElement();
-		OpenDiagramCommand openDiagramCommand = new OpenDiagramCommand(((GraphicalEditPart)getHost()).getEditingDomain(), diagram);
-		return new ICommandProxy(openDiagramCommand);
+		if(((GraphicalEditPart)getHost()).getNotationView().getElement() instanceof Diagram &&
+			((GraphicalEditPart)getHost()).getNotationView().getElement().eResource()!=null){
+			Diagram diagram = (Diagram)((GraphicalEditPart)getHost()).getNotationView().getElement();
+			OpenDiagramCommand openDiagramCommand = new OpenDiagramCommand(((GraphicalEditPart)getHost()).getEditingDomain(), diagram);
+			return new ICommandProxy(openDiagramCommand);
+		}
+		else{
+			return UnexecutableCommand.INSTANCE;
+		}
 	}
 
 }

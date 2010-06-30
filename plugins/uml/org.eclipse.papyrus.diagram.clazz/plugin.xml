@@ -1027,7 +1027,7 @@
             priority="normal" 
             contentProvider="org.eclipse.papyrus.diagram.clazz.navigator.UMLNavigatorContentProvider" 
             labelProvider="org.eclipse.papyrus.diagram.clazz.navigator.UMLNavigatorLabelProvider"
-            icon="icons/obj16/Diagram_Class.gif"
+            icon="icons/obj16/UMLDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
             <or>
@@ -1063,7 +1063,7 @@
             priority="normal" 
             contentProvider="org.eclipse.papyrus.diagram.clazz.navigator.UMLDomainNavigatorContentProvider" 
             labelProvider="org.eclipse.papyrus.diagram.clazz.navigator.UMLDomainNavigatorLabelProvider"
-            icon="icons/obj16/Diagram_Class.gif"
+            icon="icons/obj16/UMLDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
             <or>
@@ -1218,18 +1218,7 @@
                name="Highest">
          </Priority>
       </editpolicyProvider>
-   </extension--><extension point="org.eclipse.ui.newWizards" id="creation-wizard">
-      <?gmfgen generated="true"?>
-  	  <wizard
-  	     name="%newWizardName"
-  	     icon="icons/obj16/Diagram_Class.gif"
-  	     category="org.eclipse.ui.Examples"
-  	     class="org.eclipse.papyrus.diagram.clazz.part.UMLCreationWizard"
-  	     id="org.eclipse.papyrus.diagram.clazz.part.UMLCreationWizardID">
-  	  	 <description>%newWizardDesc</description>  
-      </wizard>
-   </extension>
-   <extension point="org.eclipse.ui.popupMenus">
+   </extension-->   <extension point="org.eclipse.ui.popupMenus">
       <objectContribution
             adaptable="false"
             id="org.eclipse.papyrus.diagram.clazz.objectContribution.dependencybranchdeletion"

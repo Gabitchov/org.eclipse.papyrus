@@ -24,7 +24,6 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParserProvider;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserService;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.parsers.ClassifierTemplateParameterParser;
 import org.eclipse.papyrus.diagram.clazz.custom.parsers.GeneralizationSetConstraintParser;
@@ -108,6 +107,7 @@ import org.eclipse.papyrus.diagram.clazz.parsers.MessageFormatParser;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.common.parser.CommentParser;
 import org.eclipse.papyrus.diagram.common.parser.ConstraintParser;
+import org.eclipse.papyrus.diagram.common.parser.ShortcutDiagramParser;
 import org.eclipse.papyrus.diagram.common.parser.packageimport.PackageImportVisibilityParser;
 import org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -286,7 +286,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private IParser diagramName_0Parser;
+	private ShortcutDiagramParser diagramName_0Parser;
 
 	/**
 	 * @generated
@@ -853,9 +853,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	 */
 	private IParser getDiagramName_0Parser() {
 		if(diagramName_0Parser == null) {
-			EAttribute[] features = new EAttribute[]{ NotationPackage.eINSTANCE.getDiagram_Name() };
-			MessageFormatParser parser = new MessageFormatParser(features);
-			diagramName_0Parser = parser;
+			diagramName_0Parser = new ShortcutDiagramParser();
 		}
 		return diagramName_0Parser;
 	}

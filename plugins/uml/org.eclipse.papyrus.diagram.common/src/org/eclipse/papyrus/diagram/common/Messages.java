@@ -369,6 +369,11 @@ public class Messages extends NLS {
 
 	/** Message for horizontal routing by top */
 	public static String RoutingConstants_VerticalByTop;
+	
+	/** Message for Diagram Not Found */
+	public static String DiagramNotFound;
+	/** Message Set Name Diagram */
+	public static String SetNameDiagram;
 
 
 

@@ -16,8 +16,10 @@ package org.eclipse.papyrus.diagram.common.helper;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -148,9 +150,14 @@ public class HyperlinkHelper {
 			if(currentAnnotation.getSource().equals(hyperlinkKind)) {
 				if(hyperlinkKind.equals(VisualInformationPapyrusConstant.HYPERLINK_DIAGRAM)) {
 					HyperLinkDiagram hyperLinkDiagram = new HyperLinkDiagram();
-					hyperLinkDiagram.setDiagram((Diagram)currentAnnotation.getReferences().get(0));
-					hyperLinkDiagram.setTooltipText(currentAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_TOOLTYPE_TEXT));
-					result.add(hyperLinkDiagram);
+					EList<EObject>list=currentAnnotation.getReferences();
+					if(list.size()>0){
+						if(currentAnnotation.getReferences().get(0).eResource()!=null){
+							hyperLinkDiagram.setDiagram((Diagram)currentAnnotation.getReferences().get(0));
+							hyperLinkDiagram.setTooltipText(currentAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_TOOLTYPE_TEXT));
+							result.add(hyperLinkDiagram);
+						}
+					}
 				} else if(hyperlinkKind.equals(VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT)) {
 					HyperlinkDocument hyperLinkDocument = new HyperlinkDocument();
 					hyperLinkDocument.setHyperlinkDocument(currentAnnotation.getDetails().get(VisualInformationPapyrusConstant.HYPERLINK_DOCUMENT_LOCALIZATION));
