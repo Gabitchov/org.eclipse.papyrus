@@ -18,26 +18,47 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
+import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramEditDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
+import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.common.figure.node.DiagramNodeFigure;
+import org.eclipse.papyrus.diagram.common.part.UmlGmfDiagramEditor;
+import org.eclipse.ui.IWorkbenchPart;
 
 /**
  * this class is used to constraint the behavior of a node to obtain the behavior a short cut
  */
 public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedShapeEditPart {
 
+	protected static final String DELETE_ICON = "icons/delete.gif";
+
 	private IPageIconsRegistry editorRegistry;
 
 	public AbstractShortCutDiagramEditPart(View view) {
 		super(view);
 	}
-
+	/**
+	 * 
+	 * @return the service registry from the backbone.
+	 * it can return null if it does not found the {@link DiagramEditDomain}
+	 */
+	public ServicesRegistry getServicesRegistry(){
+		IDiagramEditDomain domain=	getDiagramEditDomain();
+		if( domain instanceof DiagramEditDomain){
+			IWorkbenchPart part=((DiagramEditDomain)domain).getEditorPart().getEditorSite().getPart();
+			if (part instanceof UmlGmfDiagramEditor){
+				return ((UmlGmfDiagramEditor)part).getServicesRegistry();
+			}
+		}
+		return null;
+	}
 	/**
 	 * Return the EditorRegistry for nested editor descriptors. Subclass should implements this
 	 * method in order to return the registry associated to the extension point namespace.
@@ -47,7 +68,14 @@ public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedSh
 	 */
 	protected IPageIconsRegistry createEditorRegistry() {
 		try {
-			return EditorUtils.getServiceRegistry().getService(IPageIconsRegistry.class);
+			ServicesRegistry servicesRegistry= getServicesRegistry();
+
+			if(servicesRegistry!=null){
+				return servicesRegistry.getService(IPageIconsRegistry.class);
+			}
+			else{
+				return EditorUtils.getServiceRegistry().getService(IPageIconsRegistry.class);
+			}
 		} catch (ServiceException e) {
 			// Not found, return an empty one which return null for each request.
 			return new PageIconsRegistry();
@@ -108,7 +136,12 @@ public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedSh
 	 * refresh the icon by taking in account the type of the diagram
 	 */
 	private void refreshIcons() {
-		getPrimaryShape().setIcon(getEditorRegistry().getEditorIcon((Diagram)resolveSemanticElement()));
+		if(resolveSemanticElement() instanceof Diagram){
+			getPrimaryShape().setIcon(getEditorRegistry().getEditorIcon((Diagram)resolveSemanticElement()));
+		}
+		else{
+			getPrimaryShape().setIcon(org.eclipse.papyrus.diagram.common.Activator.getPluginIconImage(org.eclipse.papyrus.diagram.common.Activator.ID, DELETE_ICON));
+		}
 	}
 
 }

@@ -67,9 +67,13 @@ public abstract class ChangeStereotypedShapeEditPolicy extends GraphicalEditPoli
 	 * Returns the uml element controlled by the host edit part
 	 * 
 	 * @return the uml element controlled by the host edit part
+	 * can return null if this semantic element is not an uml element
 	 */
 	protected Element getUMLElement() {
-		return (Element)getView().getElement();
+		if(getView().getElement() instanceof Element){
+			return (Element)getView().getElement();
+		}
+		return null;
 	}
 
 	/**
@@ -91,7 +95,7 @@ public abstract class ChangeStereotypedShapeEditPolicy extends GraphicalEditPoli
 		// it must be changed only if:
 		// - the annotation corresponding to the display of the stereotype changes
 		// - the stereotype application list has changed
-	
+
 
 		// if element that has changed is a stereotype => refresh the label.
 		if(notification.getNotifier() instanceof EAnnotation) {
@@ -177,8 +181,8 @@ public abstract class ChangeStereotypedShapeEditPolicy extends GraphicalEditPoli
 	 * @param part the graphical editpart to change
 	 */
 	public  abstract void transformIntoShape(EditPart part);
-	
-	
+
+
 	/**
 	 * implementation to transform a shape editpart into normal editpart
 	 * @param part the graphical editpart to change

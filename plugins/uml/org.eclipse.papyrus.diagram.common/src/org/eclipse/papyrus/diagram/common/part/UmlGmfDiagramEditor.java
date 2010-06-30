@@ -34,6 +34,11 @@ public class UmlGmfDiagramEditor extends DiagramDocumentEditor {
 	private PartNameSynchronizer partNameSynchronizer;
 
 	/**
+	 * service registry of the backbone
+	 */
+	private ServicesRegistry servicesRegistry;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param servicesRegistry
@@ -43,11 +48,18 @@ public class UmlGmfDiagramEditor extends DiagramDocumentEditor {
 	public UmlGmfDiagramEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws ServiceException {
 		super(true);
 		this.diagram = diagram;
-		
+		this.servicesRegistry=servicesRegistry;
 		// Install synchronizer
 		partNameSynchronizer = new PartNameSynchronizer(diagram);
 	}
 
+	/**
+	 * 
+	 * @return  the backbone service registry. it cannot return null. 
+	 */
+	public ServicesRegistry getServicesRegistry(){
+		return servicesRegistry;
+	}
 	/**
 	 * Set the associated Diagram.
 	 */
