@@ -18,6 +18,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.papyrus.diagram.common.Activator;
+
 
 /**
  * Class that provides a html cleaner.
@@ -209,6 +211,9 @@ public class HTMLCleaner {
 
 				// replace the value with the specified 
 				String replacement = specials.get(specialCharacter);
+				if(replacement == null) {
+					replacement = xmlSpecials.get(specialCharacter);
+				}
 				if(replacement != null) {
 					buffer.append(replacement);
 				}
