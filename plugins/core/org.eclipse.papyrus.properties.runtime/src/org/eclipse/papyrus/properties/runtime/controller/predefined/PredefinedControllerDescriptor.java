@@ -55,7 +55,7 @@ public class PredefinedControllerDescriptor implements IPropertyEditorController
 	 * {@inheritDoc}
 	 */
 	public String getText() {
-		return "<Predefined> " + descriptor.getText();
+		return descriptor.getText();
 	}
 
 	/**

@@ -126,14 +126,14 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 	 * {@inheritDoc}
 	 */
 	public Image getImage() {
-		return Activator.getImage("/icons/EMFTController.gif");
+		return Activator.getImage("/icons/EMFTController.gif"); //$NON-NLS-1$
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public String getText() {
-		return "EMFTController for: " + getFeatureNameToEdit();
+		return "Property editor for: " + getFeatureNameToEdit();
 	}
 
 	/**
