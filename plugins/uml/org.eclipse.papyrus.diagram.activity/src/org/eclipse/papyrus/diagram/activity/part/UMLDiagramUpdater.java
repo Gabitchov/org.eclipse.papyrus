@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallOpActEditPart;
@@ -43,35 +42,30 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityActivityPreCondit
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityDiagramEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityParameterNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionActivityPartitionContentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeStructuredActivityNodeContentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ExceptionHandlerEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionNodeAsInEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionNodeAsOutEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionRegionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionRegionStructuredActivityNodeContentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.FlowFinalNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.FlowFinalNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ForkNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ForkNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActEditPart;
@@ -87,13 +81,11 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.InterruptibleActivityRegi
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.JoinNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.JoinNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.LoopNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.LoopNodeStructuredActivityNodeContentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.MergeNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.MergeNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInAcceptEventActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditPart;
@@ -101,11 +93,11 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOpaqueActEditP
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInValSpecActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ParameterEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeStructuredActivityNodeContentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallBeActEditPart;
@@ -117,7 +109,6 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendObjActAsTar
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValueSpecificationActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValueSpecificationActionInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.uml2.uml.Action;
@@ -127,6 +118,7 @@ import org.eclipse.uml2.uml.ActivityFinalNode;
 import org.eclipse.uml2.uml.ActivityGroup;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ActivityParameterNode;
+import org.eclipse.uml2.uml.ActivityPartition;
 import org.eclipse.uml2.uml.CallBehaviorAction;
 import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.ConditionalNode;
@@ -191,24 +183,10 @@ public class UMLDiagramUpdater {
 			return getSendSignalAction_3052SemanticChildren(view);
 		case AcceptEventActionEditPart.VISUAL_ID:
 			return getAcceptEventAction_3063SemanticChildren(view);
+		case ValueSpecificationActionEditPart.VISUAL_ID:
+			return getValueSpecificationAction_3076SemanticChildren(view);
 		case ExpansionRegionEditPart.VISUAL_ID:
 			return getExpansionRegion_3070SemanticChildren(view);
-		case OpaqueActionInIAREditPart.VISUAL_ID:
-			return getOpaqueAction_3082SemanticChildren(view);
-		case CallBehaviorActionInIAREditPart.VISUAL_ID:
-			return getCallBehaviorAction_3083SemanticChildren(view);
-		case CallOperationActionInIAREditPart.VISUAL_ID:
-			return getCallOperationAction_3084SemanticChildren(view);
-		case SendObjectActionInIAREditPart.VISUAL_ID:
-			return getSendObjectAction_3085SemanticChildren(view);
-		case SendSignalActionInIAREditPart.VISUAL_ID:
-			return getSendSignalAction_3086SemanticChildren(view);
-		case AcceptEventActionInIAREditPart.VISUAL_ID:
-			return getAcceptEventAction_3087SemanticChildren(view);
-		case ValueSpecificationActionInIAREditPart.VISUAL_ID:
-			return getValueSpecificationAction_3076SemanticChildren(view);
-		case ValueSpecificationActionEditPart.VISUAL_ID:
-			return getValueSpecificationAction_3088SemanticChildren(view);
 		case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 			return getActivityActivityParametersCompartment_7001SemanticChildren(view);
 		case ActivityActivityPreConditionsCompartmentEditPart.VISUAL_ID:
@@ -217,6 +195,18 @@ public class UMLDiagramUpdater {
 			return getActivityActivityPostConditionsCompartment_7003SemanticChildren(view);
 		case ActivityActivityContentCompartmentEditPart.VISUAL_ID:
 			return getActivityActivityContentCompartment_7004SemanticChildren(view);
+		case ConditionalNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
+			return getConditionalNodeStructuredActivityNodeContentCompartment_7008SemanticChildren(view);
+		case ExpansionRegionStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
+			return getExpansionRegionStructuredActivityNodeContentCompartment_7009SemanticChildren(view);
+		case LoopNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
+			return getLoopNodeStructuredActivityNodeContentCompartment_7010SemanticChildren(view);
+		case SequenceNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
+			return getSequenceNodeStructuredActivityNodeContentCompartment_7012SemanticChildren(view);
+		case StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID:
+			return getStructuredActivityNodeStructuredActivityNodeContentCompartment_7005SemanticChildren(view);
+		case ActivityPartitionActivityPartitionContentCompartmentEditPart.VISUAL_ID:
+			return getActivityPartitionActivityPartitionContentCompartment_7006SemanticChildren(view);
 		case InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID:
 			return getInterruptibleActivityRegionInterruptibleActivityRegionContentCompartment_7007SemanticChildren(view);
 		}
@@ -494,246 +484,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLNodeDescriptor> getOpaqueAction_3082SemanticChildren(View view) {
-		if(!view.isSetElement()) {
-			return Collections.EMPTY_LIST;
-		}
-		OpaqueAction modelElement = (OpaqueAction)view.getElement();
-		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getInputValues().iterator(); it.hasNext();) {
-			InputPin childElement = (InputPin)it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == ValuePinInOpaqueActEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-			if(visualID == ActionInputPinInOpaqueActEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-			if(visualID == InputPinInOpaqueActEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
-		for(Iterator<?> it = modelElement.getOutputValues().iterator(); it.hasNext();) {
-			OutputPin childElement = (OutputPin)it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == OutputPinInOpaqueActEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLNodeDescriptor> getCallBehaviorAction_3083SemanticChildren(View view) {
-		if(!view.isSetElement()) {
-			return Collections.EMPTY_LIST;
-		}
-		CallBehaviorAction modelElement = (CallBehaviorAction)view.getElement();
-		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getArguments().iterator(); it.hasNext();) {
-			InputPin childElement = (InputPin)it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == ValuePinInCallBeActEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-			if(visualID == ActionInputPinInCallBeActEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-			if(visualID == InputPinInCallBeActEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
-		for(Iterator<?> it = modelElement.getResults().iterator(); it.hasNext();) {
-			OutputPin childElement = (OutputPin)it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == OutputPinInCallBeActEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLNodeDescriptor> getCallOperationAction_3084SemanticChildren(View view) {
-		if(!view.isSetElement()) {
-			return Collections.EMPTY_LIST;
-		}
-		CallOperationAction modelElement = (CallOperationAction)view.getElement();
-		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getArguments().iterator(); it.hasNext();) {
-			InputPin childElement = (InputPin)it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == ActionInputPinInCallOpActEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-			if(visualID == ValuePinInCallOpActEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-			if(visualID == InputPinInCallOpActEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
-		for(Iterator<?> it = modelElement.getResults().iterator(); it.hasNext();) {
-			OutputPin childElement = (OutputPin)it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == OutputPinInCallOpActEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
-		{
-			InputPin childElement = modelElement.getTarget();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == ValuePinInCallOpActAsTargetEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-			}
-			if(visualID == ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-			}
-			if(visualID == InputPinInCallOpActAsTargetEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLNodeDescriptor> getSendObjectAction_3085SemanticChildren(View view) {
-		if(!view.isSetElement()) {
-			return Collections.EMPTY_LIST;
-		}
-		SendObjectAction modelElement = (SendObjectAction)view.getElement();
-		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		{
-			InputPin childElement = modelElement.getRequest();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == ValuePinInSendObjActAsReqEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-			}
-			if(visualID == ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-			}
-			if(visualID == InputPinInSendObjActAsReqEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-			}
-		}
-		{
-			InputPin childElement = modelElement.getTarget();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == ValuePinInSendObjActAsTargetEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-			}
-			if(visualID == ActionInputPinInSendObjActAsTargetEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-			}
-			if(visualID == InputPinInSendObjActAsTargetEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLNodeDescriptor> getSendSignalAction_3086SemanticChildren(View view) {
-		if(!view.isSetElement()) {
-			return Collections.EMPTY_LIST;
-		}
-		SendSignalAction modelElement = (SendSignalAction)view.getElement();
-		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getArguments().iterator(); it.hasNext();) {
-			InputPin childElement = (InputPin)it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == ActionInputPinInSendSigActEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-			if(visualID == ValuePinInSendSigActEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-			if(visualID == InputPinInSendSigActEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
-		{
-			InputPin childElement = modelElement.getTarget();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == ValuePinInSendSigActAsTargetEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-			}
-			if(visualID == ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-			}
-			if(visualID == InputPinInSendSigActAsTargetEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLNodeDescriptor> getAcceptEventAction_3087SemanticChildren(View view) {
-		if(!view.isSetElement()) {
-			return Collections.EMPTY_LIST;
-		}
-		AcceptEventAction modelElement = (AcceptEventAction)view.getElement();
-		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		for(Iterator<?> it = modelElement.getResults().iterator(); it.hasNext();) {
-			OutputPin childElement = (OutputPin)it.next();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == OutputPinInAcceptEventActionEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
 	public static List<UMLNodeDescriptor> getValueSpecificationAction_3076SemanticChildren(View view) {
-		if(!view.isSetElement()) {
-			return Collections.EMPTY_LIST;
-		}
-		ValueSpecificationAction modelElement = (ValueSpecificationAction)view.getElement();
-		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
-		{
-			OutputPin childElement = modelElement.getResult();
-			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == OutputPinInValSpecActEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLNodeDescriptor> getValueSpecificationAction_3088SemanticChildren(View view) {
 		if(!view.isSetElement()) {
 			return Collections.EMPTY_LIST;
 		}
@@ -881,6 +632,10 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
+			if(visualID == DataStoreNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
 			if(visualID == SendObjectActionEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
@@ -897,10 +652,7 @@ public class UMLDiagramUpdater {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == DataStoreNodeEditPart.VISUAL_ID) {
-				result.add(new UMLNodeDescriptor(childElement, visualID));
-				continue;
-			}
+			//add children actions' local conditions (2 blocks removed)
 		}
 		for(Iterator<?> it = modelElement.getGroups().iterator(); it.hasNext();) {
 			ActivityGroup childElement = (ActivityGroup)it.next();
@@ -938,7 +690,671 @@ public class UMLDiagramUpdater {
 	}
 
 	/**
+	 * @generated NOT (update at each gmf change) add children actions' local conditions, add structured activity group as nodes
+	 */
+	public static List<UMLNodeDescriptor> getConditionalNodeStructuredActivityNodeContentCompartment_7008SemanticChildren(View view) {
+		if(false == view.eContainer() instanceof View) {
+			return Collections.emptyList();
+		}
+		View containerView = (View)view.eContainer();
+		if(!containerView.isSetElement()) {
+			return Collections.emptyList();
+		}
+		ConditionalNode modelElement = (ConditionalNode)containerView.getElement();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		for(Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
+			ActivityNode childElement = (ActivityNode)it.next();
+			//add children actions' local conditions
+			if(childElement instanceof Action) {
+				result.addAll(getActionLocalConditionsDescriptors((Action)childElement, view));
+			}
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == InitialNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ActivityFinalNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == FlowFinalNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == OpaqueActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == CallBehaviorActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == CallOperationActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == DecisionNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == MergeNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ForkNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == JoinNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == DataStoreNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == SendObjectActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == SendSignalActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == AcceptEventActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ValueSpecificationActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			//add children actions' local conditions (2 blocks removed)
+			//add structured activity group as nodes
+			//		}
+			//		for(Iterator<?> it = modelElement.getGroups().iterator(); it.hasNext();) {
+			//			ActivityGroup childElement = (ActivityGroup)it.next();
+			//			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ConditionalNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ExpansionRegionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == LoopNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == SequenceNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == StructuredActivityNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
 	 * @generated NOT (update at each gmf change) add children actions' local conditions
+	 */
+	public static List<UMLNodeDescriptor> getExpansionRegionStructuredActivityNodeContentCompartment_7009SemanticChildren(View view) {
+		if(false == view.eContainer() instanceof View) {
+			return Collections.emptyList();
+		}
+		View containerView = (View)view.eContainer();
+		if(!containerView.isSetElement()) {
+			return Collections.emptyList();
+		}
+		ExpansionRegion modelElement = (ExpansionRegion)containerView.getElement();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		for(Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
+			ActivityNode childElement = (ActivityNode)it.next();
+			//add children actions' local conditions
+			if(childElement instanceof Action) {
+				result.addAll(getActionLocalConditionsDescriptors((Action)childElement, view));
+			}
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == InitialNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ActivityFinalNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == FlowFinalNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == OpaqueActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == CallBehaviorActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == CallOperationActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == DecisionNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == MergeNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ForkNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == JoinNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == DataStoreNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == SendObjectActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == SendSignalActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == AcceptEventActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ValueSpecificationActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			//add children actions' local conditions (2 blocks removed)
+			//add structured activity group as nodes
+			//		}
+			//		for(Iterator<?> it = modelElement.getGroups().iterator(); it.hasNext();) {
+			//			ActivityGroup childElement = (ActivityGroup)it.next();
+			//			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ConditionalNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ExpansionRegionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == LoopNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == SequenceNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == StructuredActivityNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated NOT (update at each gmf change) add children actions' local conditions, add structured activity group as nodes
+	 */
+	public static List<UMLNodeDescriptor> getLoopNodeStructuredActivityNodeContentCompartment_7010SemanticChildren(View view) {
+		if(false == view.eContainer() instanceof View) {
+			return Collections.emptyList();
+		}
+		View containerView = (View)view.eContainer();
+		if(!containerView.isSetElement()) {
+			return Collections.emptyList();
+		}
+		LoopNode modelElement = (LoopNode)containerView.getElement();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		for(Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
+			ActivityNode childElement = (ActivityNode)it.next();
+			//add children actions' local conditions
+			if(childElement instanceof Action) {
+				result.addAll(getActionLocalConditionsDescriptors((Action)childElement, view));
+			}
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == InitialNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ActivityFinalNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == FlowFinalNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == OpaqueActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == CallBehaviorActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == CallOperationActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == DecisionNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == MergeNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ForkNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == JoinNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == DataStoreNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == SendObjectActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == SendSignalActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == AcceptEventActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ValueSpecificationActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			//add children actions' local conditions (2 blocks removed)
+			//add structured activity group as nodes
+			//		}
+			//		for(Iterator<?> it = modelElement.getGroups().iterator(); it.hasNext();) {
+			//			ActivityGroup childElement = (ActivityGroup)it.next();
+			//			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ConditionalNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ExpansionRegionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == LoopNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == SequenceNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == StructuredActivityNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated NOT (update at each gmf change) add children actions' local conditions, add structured activity group as nodes
+	 */
+	public static List<UMLNodeDescriptor> getSequenceNodeStructuredActivityNodeContentCompartment_7012SemanticChildren(View view) {
+		if(false == view.eContainer() instanceof View) {
+			return Collections.emptyList();
+		}
+		View containerView = (View)view.eContainer();
+		if(!containerView.isSetElement()) {
+			return Collections.emptyList();
+		}
+		SequenceNode modelElement = (SequenceNode)containerView.getElement();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		for(Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
+			ActivityNode childElement = (ActivityNode)it.next();
+			//add children actions' local conditions
+			if(childElement instanceof Action) {
+				result.addAll(getActionLocalConditionsDescriptors((Action)childElement, view));
+			}
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == InitialNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ActivityFinalNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == FlowFinalNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == OpaqueActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == CallBehaviorActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == CallOperationActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == DecisionNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == MergeNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ForkNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == JoinNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == DataStoreNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == SendObjectActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == SendSignalActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == AcceptEventActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ValueSpecificationActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			//add children actions' local conditions (2 blocks removed)
+			//add structured activity group as nodes
+			//		}
+			//		for(Iterator<?> it = modelElement.getGroups().iterator(); it.hasNext();) {
+			//			ActivityGroup childElement = (ActivityGroup)it.next();
+			//			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ConditionalNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ExpansionRegionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == LoopNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == SequenceNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == StructuredActivityNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated NOT (update at each gmf change) add children actions' local conditions, add structured activity group as nodes
+	 */
+	public static List<UMLNodeDescriptor> getStructuredActivityNodeStructuredActivityNodeContentCompartment_7005SemanticChildren(View view) {
+		if(false == view.eContainer() instanceof View) {
+			return Collections.emptyList();
+		}
+		View containerView = (View)view.eContainer();
+		if(!containerView.isSetElement()) {
+			return Collections.emptyList();
+		}
+		StructuredActivityNode modelElement = (StructuredActivityNode)containerView.getElement();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		for(Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
+			ActivityNode childElement = (ActivityNode)it.next();
+			//add children actions' local conditions
+			if(childElement instanceof Action) {
+				result.addAll(getActionLocalConditionsDescriptors((Action)childElement, view));
+			}
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == InitialNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ActivityFinalNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == FlowFinalNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == OpaqueActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == CallBehaviorActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == CallOperationActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == DecisionNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == MergeNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ForkNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == JoinNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == DataStoreNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == SendObjectActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == SendSignalActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == AcceptEventActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ValueSpecificationActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			//add children actions' local conditions (2 blocks removed)
+			//add structured activity group as nodes
+			//		}
+			//		for(Iterator<?> it = modelElement.getGroups().iterator(); it.hasNext();) {
+			//			ActivityGroup childElement = (ActivityGroup)it.next();
+			//			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ConditionalNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ExpansionRegionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == LoopNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == SequenceNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == StructuredActivityNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated NOT (update at each gmf change) add children actions' local conditions, add structured activity group as nodes
+	 */
+	public static List<UMLNodeDescriptor> getActivityPartitionActivityPartitionContentCompartment_7006SemanticChildren(View view) {
+		if(false == view.eContainer() instanceof View) {
+			return Collections.emptyList();
+		}
+		View containerView = (View)view.eContainer();
+		if(!containerView.isSetElement()) {
+			return Collections.emptyList();
+		}
+		ActivityPartition modelElement = (ActivityPartition)containerView.getElement();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		for(Iterator<?> it = modelElement.getNodes().iterator(); it.hasNext();) {
+			ActivityNode childElement = (ActivityNode)it.next();
+			//add children actions' local conditions
+			if(childElement instanceof Action) {
+				result.addAll(getActionLocalConditionsDescriptors((Action)childElement, view));
+			}
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == InitialNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ActivityFinalNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == FlowFinalNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == OpaqueActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == CallBehaviorActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == CallOperationActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == DecisionNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == MergeNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ForkNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == JoinNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == DataStoreNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == SendObjectActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == SendSignalActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == AcceptEventActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ValueSpecificationActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			//add children actions' local conditions (2 blocks removed)
+			//add structured activity group as nodes
+			//		}
+			//		for(Iterator<?> it = modelElement.getGroups().iterator(); it.hasNext();) {
+			//			ActivityGroup childElement = (ActivityGroup)it.next();
+			//			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ConditionalNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ExpansionRegionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == LoopNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == SequenceNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == StructuredActivityNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ActivityPartitionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated NOT (update at each gmf change) add children actions' local conditions, add structured activity group as nodes
 	 */
 	public static List<UMLNodeDescriptor> getInterruptibleActivityRegionInterruptibleActivityRegionContentCompartment_7007SemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
@@ -957,63 +1373,89 @@ public class UMLDiagramUpdater {
 				result.addAll(getActionLocalConditionsDescriptors((Action)childElement, view));
 			}
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
-			if(visualID == InitialNodeInIAREditPart.VISUAL_ID) {
+			if(visualID == InitialNodeEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == ActivityFinalNodeInIAREditPart.VISUAL_ID) {
+			if(visualID == ActivityFinalNodeEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == FlowFinalNodeInIAREditPart.VISUAL_ID) {
+			if(visualID == FlowFinalNodeEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == OpaqueActionInIAREditPart.VISUAL_ID) {
+			if(visualID == OpaqueActionEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == CallBehaviorActionInIAREditPart.VISUAL_ID) {
+			if(visualID == CallBehaviorActionEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == CallOperationActionInIAREditPart.VISUAL_ID) {
+			if(visualID == CallOperationActionEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == SendObjectActionInIAREditPart.VISUAL_ID) {
+			if(visualID == DecisionNodeEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == SendSignalActionInIAREditPart.VISUAL_ID) {
+			if(visualID == MergeNodeEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == AcceptEventActionInIAREditPart.VISUAL_ID) {
+			if(visualID == ForkNodeEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == ValueSpecificationActionInIAREditPart.VISUAL_ID) {
+			if(visualID == JoinNodeEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == DecisionNodeInIAREditPart.VISUAL_ID) {
+			if(visualID == DataStoreNodeEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == MergeNodeInIAREditPart.VISUAL_ID) {
+			if(visualID == SendObjectActionEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == ForkNodeInIAREditPart.VISUAL_ID) {
+			if(visualID == SendSignalActionEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == JoinNodeInIAREditPart.VISUAL_ID) {
+			if(visualID == AcceptEventActionEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
-			if(visualID == DataStoreNodeInIAREditPart.VISUAL_ID) {
+			if(visualID == ValueSpecificationActionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			//add children actions' local conditions (2 blocks removed)
+			//add structured activity group as nodes
+			//		}
+			//		for(Iterator<?> it = modelElement.getGroups().iterator(); it.hasNext();) {
+			//			ActivityGroup childElement = (ActivityGroup)it.next();
+			//			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == ConditionalNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == ExpansionRegionEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == LoopNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == SequenceNodeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+			if(visualID == StructuredActivityNodeEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1195,6 +1637,8 @@ public class UMLDiagramUpdater {
 			return getForkNode_3040ContainedLinks(view);
 		case JoinNodeEditPart.VISUAL_ID:
 			return getJoinNode_3041ContainedLinks(view);
+		case DataStoreNodeEditPart.VISUAL_ID:
+			return getDataStoreNode_3078ContainedLinks(view);
 		case SendObjectActionEditPart.VISUAL_ID:
 			return getSendObjectAction_3042ContainedLinks(view);
 		case ValuePinInSendObjActAsReqEditPart.VISUAL_ID:
@@ -1229,6 +1673,10 @@ public class UMLDiagramUpdater {
 			return getAcceptEventAction_3063ContainedLinks(view);
 		case OutputPinInAcceptEventActionEditPart.VISUAL_ID:
 			return getOutputPin_3064ContainedLinks(view);
+		case ValueSpecificationActionEditPart.VISUAL_ID:
+			return getValueSpecificationAction_3076ContainedLinks(view);
+		case OutputPinInValSpecActEditPart.VISUAL_ID:
+			return getOutputPin_3077ContainedLinks(view);
 		case ConditionalNodeEditPart.VISUAL_ID:
 			return getConditionalNode_3069ContainedLinks(view);
 		case ExpansionRegionEditPart.VISUAL_ID:
@@ -1247,42 +1695,6 @@ public class UMLDiagramUpdater {
 			return getActivityPartition_3067ContainedLinks(view);
 		case InterruptibleActivityRegionEditPart.VISUAL_ID:
 			return getInterruptibleActivityRegion_3068ContainedLinks(view);
-		case InitialNodeInIAREditPart.VISUAL_ID:
-			return getInitialNode_3079ContainedLinks(view);
-		case ActivityFinalNodeInIAREditPart.VISUAL_ID:
-			return getActivityFinalNode_3080ContainedLinks(view);
-		case FlowFinalNodeInIAREditPart.VISUAL_ID:
-			return getFlowFinalNode_3081ContainedLinks(view);
-		case OpaqueActionInIAREditPart.VISUAL_ID:
-			return getOpaqueAction_3082ContainedLinks(view);
-		case CallBehaviorActionInIAREditPart.VISUAL_ID:
-			return getCallBehaviorAction_3083ContainedLinks(view);
-		case CallOperationActionInIAREditPart.VISUAL_ID:
-			return getCallOperationAction_3084ContainedLinks(view);
-		case SendObjectActionInIAREditPart.VISUAL_ID:
-			return getSendObjectAction_3085ContainedLinks(view);
-		case SendSignalActionInIAREditPart.VISUAL_ID:
-			return getSendSignalAction_3086ContainedLinks(view);
-		case AcceptEventActionInIAREditPart.VISUAL_ID:
-			return getAcceptEventAction_3087ContainedLinks(view);
-		case ValueSpecificationActionInIAREditPart.VISUAL_ID:
-			return getValueSpecificationAction_3076ContainedLinks(view);
-		case OutputPinInValSpecActEditPart.VISUAL_ID:
-			return getOutputPin_3077ContainedLinks(view);
-		case DecisionNodeInIAREditPart.VISUAL_ID:
-			return getDecisionNode_3089ContainedLinks(view);
-		case MergeNodeInIAREditPart.VISUAL_ID:
-			return getMergeNode_3090ContainedLinks(view);
-		case ForkNodeInIAREditPart.VISUAL_ID:
-			return getForkNode_3091ContainedLinks(view);
-		case JoinNodeInIAREditPart.VISUAL_ID:
-			return getJoinNode_3092ContainedLinks(view);
-		case DataStoreNodeInIAREditPart.VISUAL_ID:
-			return getDataStoreNode_3078ContainedLinks(view);
-		case ValueSpecificationActionEditPart.VISUAL_ID:
-			return getValueSpecificationAction_3088ContainedLinks(view);
-		case DataStoreNodeEditPart.VISUAL_ID:
-			return getDataStoreNode_3093ContainedLinks(view);
 		case ObjectFlowEditPart.VISUAL_ID:
 			return getObjectFlow_4003ContainedLinks(view);
 		case ControlFlowEditPart.VISUAL_ID:
@@ -1376,6 +1788,8 @@ public class UMLDiagramUpdater {
 			return getForkNode_3040IncomingLinks(view);
 		case JoinNodeEditPart.VISUAL_ID:
 			return getJoinNode_3041IncomingLinks(view);
+		case DataStoreNodeEditPart.VISUAL_ID:
+			return getDataStoreNode_3078IncomingLinks(view);
 		case SendObjectActionEditPart.VISUAL_ID:
 			return getSendObjectAction_3042IncomingLinks(view);
 		case ValuePinInSendObjActAsReqEditPart.VISUAL_ID:
@@ -1410,6 +1824,10 @@ public class UMLDiagramUpdater {
 			return getAcceptEventAction_3063IncomingLinks(view);
 		case OutputPinInAcceptEventActionEditPart.VISUAL_ID:
 			return getOutputPin_3064IncomingLinks(view);
+		case ValueSpecificationActionEditPart.VISUAL_ID:
+			return getValueSpecificationAction_3076IncomingLinks(view);
+		case OutputPinInValSpecActEditPart.VISUAL_ID:
+			return getOutputPin_3077IncomingLinks(view);
 		case ConditionalNodeEditPart.VISUAL_ID:
 			return getConditionalNode_3069IncomingLinks(view);
 		case ExpansionRegionEditPart.VISUAL_ID:
@@ -1428,42 +1846,6 @@ public class UMLDiagramUpdater {
 			return getActivityPartition_3067IncomingLinks(view);
 		case InterruptibleActivityRegionEditPart.VISUAL_ID:
 			return getInterruptibleActivityRegion_3068IncomingLinks(view);
-		case InitialNodeInIAREditPart.VISUAL_ID:
-			return getInitialNode_3079IncomingLinks(view);
-		case ActivityFinalNodeInIAREditPart.VISUAL_ID:
-			return getActivityFinalNode_3080IncomingLinks(view);
-		case FlowFinalNodeInIAREditPart.VISUAL_ID:
-			return getFlowFinalNode_3081IncomingLinks(view);
-		case OpaqueActionInIAREditPart.VISUAL_ID:
-			return getOpaqueAction_3082IncomingLinks(view);
-		case CallBehaviorActionInIAREditPart.VISUAL_ID:
-			return getCallBehaviorAction_3083IncomingLinks(view);
-		case CallOperationActionInIAREditPart.VISUAL_ID:
-			return getCallOperationAction_3084IncomingLinks(view);
-		case SendObjectActionInIAREditPart.VISUAL_ID:
-			return getSendObjectAction_3085IncomingLinks(view);
-		case SendSignalActionInIAREditPart.VISUAL_ID:
-			return getSendSignalAction_3086IncomingLinks(view);
-		case AcceptEventActionInIAREditPart.VISUAL_ID:
-			return getAcceptEventAction_3087IncomingLinks(view);
-		case ValueSpecificationActionInIAREditPart.VISUAL_ID:
-			return getValueSpecificationAction_3076IncomingLinks(view);
-		case OutputPinInValSpecActEditPart.VISUAL_ID:
-			return getOutputPin_3077IncomingLinks(view);
-		case DecisionNodeInIAREditPart.VISUAL_ID:
-			return getDecisionNode_3089IncomingLinks(view);
-		case MergeNodeInIAREditPart.VISUAL_ID:
-			return getMergeNode_3090IncomingLinks(view);
-		case ForkNodeInIAREditPart.VISUAL_ID:
-			return getForkNode_3091IncomingLinks(view);
-		case JoinNodeInIAREditPart.VISUAL_ID:
-			return getJoinNode_3092IncomingLinks(view);
-		case DataStoreNodeInIAREditPart.VISUAL_ID:
-			return getDataStoreNode_3078IncomingLinks(view);
-		case ValueSpecificationActionEditPart.VISUAL_ID:
-			return getValueSpecificationAction_3088IncomingLinks(view);
-		case DataStoreNodeEditPart.VISUAL_ID:
-			return getDataStoreNode_3093IncomingLinks(view);
 		case ObjectFlowEditPart.VISUAL_ID:
 			return getObjectFlow_4003IncomingLinks(view);
 		case ControlFlowEditPart.VISUAL_ID:
@@ -1557,6 +1939,8 @@ public class UMLDiagramUpdater {
 			return getForkNode_3040OutgoingLinks(view);
 		case JoinNodeEditPart.VISUAL_ID:
 			return getJoinNode_3041OutgoingLinks(view);
+		case DataStoreNodeEditPart.VISUAL_ID:
+			return getDataStoreNode_3078OutgoingLinks(view);
 		case SendObjectActionEditPart.VISUAL_ID:
 			return getSendObjectAction_3042OutgoingLinks(view);
 		case ValuePinInSendObjActAsReqEditPart.VISUAL_ID:
@@ -1591,6 +1975,10 @@ public class UMLDiagramUpdater {
 			return getAcceptEventAction_3063OutgoingLinks(view);
 		case OutputPinInAcceptEventActionEditPart.VISUAL_ID:
 			return getOutputPin_3064OutgoingLinks(view);
+		case ValueSpecificationActionEditPart.VISUAL_ID:
+			return getValueSpecificationAction_3076OutgoingLinks(view);
+		case OutputPinInValSpecActEditPart.VISUAL_ID:
+			return getOutputPin_3077OutgoingLinks(view);
 		case ConditionalNodeEditPart.VISUAL_ID:
 			return getConditionalNode_3069OutgoingLinks(view);
 		case ExpansionRegionEditPart.VISUAL_ID:
@@ -1609,42 +1997,6 @@ public class UMLDiagramUpdater {
 			return getActivityPartition_3067OutgoingLinks(view);
 		case InterruptibleActivityRegionEditPart.VISUAL_ID:
 			return getInterruptibleActivityRegion_3068OutgoingLinks(view);
-		case InitialNodeInIAREditPart.VISUAL_ID:
-			return getInitialNode_3079OutgoingLinks(view);
-		case ActivityFinalNodeInIAREditPart.VISUAL_ID:
-			return getActivityFinalNode_3080OutgoingLinks(view);
-		case FlowFinalNodeInIAREditPart.VISUAL_ID:
-			return getFlowFinalNode_3081OutgoingLinks(view);
-		case OpaqueActionInIAREditPart.VISUAL_ID:
-			return getOpaqueAction_3082OutgoingLinks(view);
-		case CallBehaviorActionInIAREditPart.VISUAL_ID:
-			return getCallBehaviorAction_3083OutgoingLinks(view);
-		case CallOperationActionInIAREditPart.VISUAL_ID:
-			return getCallOperationAction_3084OutgoingLinks(view);
-		case SendObjectActionInIAREditPart.VISUAL_ID:
-			return getSendObjectAction_3085OutgoingLinks(view);
-		case SendSignalActionInIAREditPart.VISUAL_ID:
-			return getSendSignalAction_3086OutgoingLinks(view);
-		case AcceptEventActionInIAREditPart.VISUAL_ID:
-			return getAcceptEventAction_3087OutgoingLinks(view);
-		case ValueSpecificationActionInIAREditPart.VISUAL_ID:
-			return getValueSpecificationAction_3076OutgoingLinks(view);
-		case OutputPinInValSpecActEditPart.VISUAL_ID:
-			return getOutputPin_3077OutgoingLinks(view);
-		case DecisionNodeInIAREditPart.VISUAL_ID:
-			return getDecisionNode_3089OutgoingLinks(view);
-		case MergeNodeInIAREditPart.VISUAL_ID:
-			return getMergeNode_3090OutgoingLinks(view);
-		case ForkNodeInIAREditPart.VISUAL_ID:
-			return getForkNode_3091OutgoingLinks(view);
-		case JoinNodeInIAREditPart.VISUAL_ID:
-			return getJoinNode_3092OutgoingLinks(view);
-		case DataStoreNodeInIAREditPart.VISUAL_ID:
-			return getDataStoreNode_3078OutgoingLinks(view);
-		case ValueSpecificationActionEditPart.VISUAL_ID:
-			return getValueSpecificationAction_3088OutgoingLinks(view);
-		case DataStoreNodeEditPart.VISUAL_ID:
-			return getDataStoreNode_3093OutgoingLinks(view);
 		case ObjectFlowEditPart.VISUAL_ID:
 			return getObjectFlow_4003OutgoingLinks(view);
 		case ControlFlowEditPart.VISUAL_ID:
@@ -2061,99 +2413,6 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getInitialNode_3079ContainedLinks(View view) {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getActivityFinalNode_3080ContainedLinks(View view) {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getFlowFinalNode_3081ContainedLinks(View view) {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getOpaqueAction_3082ContainedLinks(View view) {
-		OpaqueAction modelElement = (OpaqueAction)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getCallBehaviorAction_3083ContainedLinks(View view) {
-		CallBehaviorAction modelElement = (CallBehaviorAction)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getCallOperationAction_3084ContainedLinks(View view) {
-		CallOperationAction modelElement = (CallOperationAction)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getSendObjectAction_3085ContainedLinks(View view) {
-		SendObjectAction modelElement = (SendObjectAction)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getSendSignalAction_3086ContainedLinks(View view) {
-		SendSignalAction modelElement = (SendSignalAction)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getAcceptEventAction_3087ContainedLinks(View view) {
-		AcceptEventAction modelElement = (AcceptEventAction)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
 	public static List<UMLLinkDescriptor> getValueSpecificationAction_3076ContainedLinks(View view) {
 		ValueSpecificationAction modelElement = (ValueSpecificationAction)view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -2173,54 +2432,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getDecisionNode_3089ContainedLinks(View view) {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getMergeNode_3090ContainedLinks(View view) {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getForkNode_3091ContainedLinks(View view) {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getJoinNode_3092ContainedLinks(View view) {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * @generated
-	 */
 	public static List<UMLLinkDescriptor> getDataStoreNode_3078ContainedLinks(View view) {
-		return Collections.emptyList();
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getValueSpecificationAction_3088ContainedLinks(View view) {
-		ValueSpecificationAction modelElement = (ValueSpecificationAction)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
-		result.addAll(getContainedTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getDataStoreNode_3093ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
 
@@ -2977,114 +3189,6 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getInitialNode_3079IncomingLinks(View view) {
-		InitialNode modelElement = (InitialNode)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getActivityFinalNode_3080IncomingLinks(View view) {
-		ActivityFinalNode modelElement = (ActivityFinalNode)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getFlowFinalNode_3081IncomingLinks(View view) {
-		FlowFinalNode modelElement = (FlowFinalNode)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getOpaqueAction_3082IncomingLinks(View view) {
-		OpaqueAction modelElement = (OpaqueAction)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getCallBehaviorAction_3083IncomingLinks(View view) {
-		CallBehaviorAction modelElement = (CallBehaviorAction)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getCallOperationAction_3084IncomingLinks(View view) {
-		CallOperationAction modelElement = (CallOperationAction)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getSendObjectAction_3085IncomingLinks(View view) {
-		SendObjectAction modelElement = (SendObjectAction)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getSendSignalAction_3086IncomingLinks(View view) {
-		SendSignalAction modelElement = (SendSignalAction)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getAcceptEventAction_3087IncomingLinks(View view) {
-		AcceptEventAction modelElement = (AcceptEventAction)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
 	public static List<UMLLinkDescriptor> getValueSpecificationAction_3076IncomingLinks(View view) {
 		ValueSpecificationAction modelElement = (ValueSpecificationAction)view.getElement();
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
@@ -3110,80 +3214,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getDecisionNode_3089IncomingLinks(View view) {
-		DecisionNode modelElement = (DecisionNode)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getMergeNode_3090IncomingLinks(View view) {
-		MergeNode modelElement = (MergeNode)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getForkNode_3091IncomingLinks(View view) {
-		ForkNode modelElement = (ForkNode)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getJoinNode_3092IncomingLinks(View view) {
-		JoinNode modelElement = (JoinNode)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
 	public static List<UMLLinkDescriptor> getDataStoreNode_3078IncomingLinks(View view) {
-		DataStoreNode modelElement = (DataStoreNode)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ExceptionHandler_4005(modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getValueSpecificationAction_3088IncomingLinks(View view) {
-		ValueSpecificationAction modelElement = (ValueSpecificationAction)view.getElement();
-		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getIncomingTypeModelFacetLinks_ObjectFlow_4003(modelElement, crossReferences));
-		result.addAll(getIncomingTypeModelFacetLinks_ControlFlow_4004(modelElement, crossReferences));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getDataStoreNode_3093IncomingLinks(View view) {
 		DataStoreNode modelElement = (DataStoreNode)view.getElement();
 		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer.find(view.eResource().getResourceSet().getResources());
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -3937,123 +3968,6 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getInitialNode_3079OutgoingLinks(View view) {
-		InitialNode modelElement = (InitialNode)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getActivityFinalNode_3080OutgoingLinks(View view) {
-		ActivityFinalNode modelElement = (ActivityFinalNode)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getFlowFinalNode_3081OutgoingLinks(View view) {
-		FlowFinalNode modelElement = (FlowFinalNode)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getOpaqueAction_3082OutgoingLinks(View view) {
-		OpaqueAction modelElement = (OpaqueAction)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getCallBehaviorAction_3083OutgoingLinks(View view) {
-		CallBehaviorAction modelElement = (CallBehaviorAction)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getCallOperationAction_3084OutgoingLinks(View view) {
-		CallOperationAction modelElement = (CallOperationAction)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getSendObjectAction_3085OutgoingLinks(View view) {
-		SendObjectAction modelElement = (SendObjectAction)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getSendSignalAction_3086OutgoingLinks(View view) {
-		SendSignalAction modelElement = (SendSignalAction)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getAcceptEventAction_3087OutgoingLinks(View view) {
-		AcceptEventAction modelElement = (AcceptEventAction)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
 	public static List<UMLLinkDescriptor> getValueSpecificationAction_3076OutgoingLinks(View view) {
 		ValueSpecificationAction modelElement = (ValueSpecificationAction)view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
@@ -4079,76 +3993,7 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List<UMLLinkDescriptor> getDecisionNode_3089OutgoingLinks(View view) {
-		DecisionNode modelElement = (DecisionNode)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getMergeNode_3090OutgoingLinks(View view) {
-		MergeNode modelElement = (MergeNode)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getForkNode_3091OutgoingLinks(View view) {
-		ForkNode modelElement = (ForkNode)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getJoinNode_3092OutgoingLinks(View view) {
-		JoinNode modelElement = (JoinNode)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
 	public static List<UMLLinkDescriptor> getDataStoreNode_3078OutgoingLinks(View view) {
-		DataStoreNode modelElement = (DataStoreNode)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getValueSpecificationAction_3088OutgoingLinks(View view) {
-		ValueSpecificationAction modelElement = (ValueSpecificationAction)view.getElement();
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPrecondition_4001(modelElement));
-		result.addAll(getOutgoingFeatureModelFacetLinks_Action_LocalPostcondition_4002(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ControlFlow_4004(modelElement));
-		result.addAll(getOutgoingTypeModelFacetLinks_ExceptionHandler_4005(modelElement));
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static List<UMLLinkDescriptor> getDataStoreNode_3093OutgoingLinks(View view) {
 		DataStoreNode modelElement = (DataStoreNode)view.getElement();
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_ObjectFlow_4003(modelElement));

@@ -354,6 +354,9 @@ BorderedBorderItemEditPart {
 		if(targetEditPart instanceof JoinNodeEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof DataStoreNodeEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof SendObjectActionEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
@@ -405,6 +408,12 @@ BorderedBorderItemEditPart {
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInAcceptEventActionEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
+		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
+		if(targetEditPart instanceof OutputPinInValSpecActEditPart) {
+			types.add(UMLElementTypes.ObjectFlow_4003);
+		}
 		if(targetEditPart instanceof ConditionalNodeEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
@@ -424,60 +433,6 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
 		if(targetEditPart instanceof StructuredActivityNodeEditPart) {
-			types.add(UMLElementTypes.ObjectFlow_4003);
-		}
-		if(targetEditPart instanceof InitialNodeInIAREditPart) {
-			types.add(UMLElementTypes.ObjectFlow_4003);
-		}
-		if(targetEditPart instanceof ActivityFinalNodeInIAREditPart) {
-			types.add(UMLElementTypes.ObjectFlow_4003);
-		}
-		if(targetEditPart instanceof FlowFinalNodeInIAREditPart) {
-			types.add(UMLElementTypes.ObjectFlow_4003);
-		}
-		if(targetEditPart instanceof OpaqueActionInIAREditPart) {
-			types.add(UMLElementTypes.ObjectFlow_4003);
-		}
-		if(targetEditPart instanceof CallBehaviorActionInIAREditPart) {
-			types.add(UMLElementTypes.ObjectFlow_4003);
-		}
-		if(targetEditPart instanceof CallOperationActionInIAREditPart) {
-			types.add(UMLElementTypes.ObjectFlow_4003);
-		}
-		if(targetEditPart instanceof SendObjectActionInIAREditPart) {
-			types.add(UMLElementTypes.ObjectFlow_4003);
-		}
-		if(targetEditPart instanceof SendSignalActionInIAREditPart) {
-			types.add(UMLElementTypes.ObjectFlow_4003);
-		}
-		if(targetEditPart instanceof AcceptEventActionInIAREditPart) {
-			types.add(UMLElementTypes.ObjectFlow_4003);
-		}
-		if(targetEditPart instanceof ValueSpecificationActionInIAREditPart) {
-			types.add(UMLElementTypes.ObjectFlow_4003);
-		}
-		if(targetEditPart instanceof OutputPinInValSpecActEditPart) {
-			types.add(UMLElementTypes.ObjectFlow_4003);
-		}
-		if(targetEditPart instanceof DecisionNodeInIAREditPart) {
-			types.add(UMLElementTypes.ObjectFlow_4003);
-		}
-		if(targetEditPart instanceof MergeNodeInIAREditPart) {
-			types.add(UMLElementTypes.ObjectFlow_4003);
-		}
-		if(targetEditPart instanceof ForkNodeInIAREditPart) {
-			types.add(UMLElementTypes.ObjectFlow_4003);
-		}
-		if(targetEditPart instanceof JoinNodeInIAREditPart) {
-			types.add(UMLElementTypes.ObjectFlow_4003);
-		}
-		if(targetEditPart instanceof DataStoreNodeInIAREditPart) {
-			types.add(UMLElementTypes.ObjectFlow_4003);
-		}
-		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
-			types.add(UMLElementTypes.ObjectFlow_4003);
-		}
-		if(targetEditPart instanceof DataStoreNodeEditPart) {
 			types.add(UMLElementTypes.ObjectFlow_4003);
 		}
 		if(targetEditPart instanceof InitialNodeEditPart) {
@@ -555,6 +510,9 @@ BorderedBorderItemEditPart {
 		if(targetEditPart instanceof JoinNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
+		if(targetEditPart instanceof DataStoreNodeEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
 		if(targetEditPart instanceof SendObjectActionEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
@@ -606,6 +564,12 @@ BorderedBorderItemEditPart {
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInAcceptEventActionEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
+		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
+		if(targetEditPart instanceof OutputPinInValSpecActEditPart) {
+			types.add(UMLElementTypes.ControlFlow_4004);
+		}
 		if(targetEditPart instanceof ConditionalNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
@@ -625,60 +589,6 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
 		if(targetEditPart instanceof StructuredActivityNodeEditPart) {
-			types.add(UMLElementTypes.ControlFlow_4004);
-		}
-		if(targetEditPart instanceof InitialNodeInIAREditPart) {
-			types.add(UMLElementTypes.ControlFlow_4004);
-		}
-		if(targetEditPart instanceof ActivityFinalNodeInIAREditPart) {
-			types.add(UMLElementTypes.ControlFlow_4004);
-		}
-		if(targetEditPart instanceof FlowFinalNodeInIAREditPart) {
-			types.add(UMLElementTypes.ControlFlow_4004);
-		}
-		if(targetEditPart instanceof OpaqueActionInIAREditPart) {
-			types.add(UMLElementTypes.ControlFlow_4004);
-		}
-		if(targetEditPart instanceof CallBehaviorActionInIAREditPart) {
-			types.add(UMLElementTypes.ControlFlow_4004);
-		}
-		if(targetEditPart instanceof CallOperationActionInIAREditPart) {
-			types.add(UMLElementTypes.ControlFlow_4004);
-		}
-		if(targetEditPart instanceof SendObjectActionInIAREditPart) {
-			types.add(UMLElementTypes.ControlFlow_4004);
-		}
-		if(targetEditPart instanceof SendSignalActionInIAREditPart) {
-			types.add(UMLElementTypes.ControlFlow_4004);
-		}
-		if(targetEditPart instanceof AcceptEventActionInIAREditPart) {
-			types.add(UMLElementTypes.ControlFlow_4004);
-		}
-		if(targetEditPart instanceof ValueSpecificationActionInIAREditPart) {
-			types.add(UMLElementTypes.ControlFlow_4004);
-		}
-		if(targetEditPart instanceof OutputPinInValSpecActEditPart) {
-			types.add(UMLElementTypes.ControlFlow_4004);
-		}
-		if(targetEditPart instanceof DecisionNodeInIAREditPart) {
-			types.add(UMLElementTypes.ControlFlow_4004);
-		}
-		if(targetEditPart instanceof MergeNodeInIAREditPart) {
-			types.add(UMLElementTypes.ControlFlow_4004);
-		}
-		if(targetEditPart instanceof ForkNodeInIAREditPart) {
-			types.add(UMLElementTypes.ControlFlow_4004);
-		}
-		if(targetEditPart instanceof JoinNodeInIAREditPart) {
-			types.add(UMLElementTypes.ControlFlow_4004);
-		}
-		if(targetEditPart instanceof DataStoreNodeInIAREditPart) {
-			types.add(UMLElementTypes.ControlFlow_4004);
-		}
-		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
-			types.add(UMLElementTypes.ControlFlow_4004);
-		}
-		if(targetEditPart instanceof DataStoreNodeEditPart) {
 			types.add(UMLElementTypes.ControlFlow_4004);
 		}
 		return types;
@@ -715,6 +625,7 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.MergeNode_3039);
 			types.add(UMLElementTypes.ForkNode_3040);
 			types.add(UMLElementTypes.JoinNode_3041);
+			types.add(UMLElementTypes.DataStoreNode_3078);
 			types.add(UMLElementTypes.SendObjectAction_3042);
 			types.add(UMLElementTypes.ValuePin_3046);
 			types.add(UMLElementTypes.ActionInputPin_3047);
@@ -732,6 +643,8 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.ActivityParameterNode_3059);
 			types.add(UMLElementTypes.AcceptEventAction_3063);
 			types.add(UMLElementTypes.OutputPin_3064);
+			types.add(UMLElementTypes.ValueSpecificationAction_3076);
+			types.add(UMLElementTypes.OutputPin_3077);
 			types.add(UMLElementTypes.ConditionalNode_3069);
 			types.add(UMLElementTypes.ExpansionRegion_3070);
 			types.add(UMLElementTypes.ExpansionNode_3074);
@@ -739,24 +652,6 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
-			types.add(UMLElementTypes.InitialNode_3079);
-			types.add(UMLElementTypes.ActivityFinalNode_3080);
-			types.add(UMLElementTypes.FlowFinalNode_3081);
-			types.add(UMLElementTypes.OpaqueAction_3082);
-			types.add(UMLElementTypes.CallBehaviorAction_3083);
-			types.add(UMLElementTypes.CallOperationAction_3084);
-			types.add(UMLElementTypes.SendObjectAction_3085);
-			types.add(UMLElementTypes.SendSignalAction_3086);
-			types.add(UMLElementTypes.AcceptEventAction_3087);
-			types.add(UMLElementTypes.ValueSpecificationAction_3076);
-			types.add(UMLElementTypes.OutputPin_3077);
-			types.add(UMLElementTypes.DecisionNode_3089);
-			types.add(UMLElementTypes.MergeNode_3090);
-			types.add(UMLElementTypes.ForkNode_3091);
-			types.add(UMLElementTypes.JoinNode_3092);
-			types.add(UMLElementTypes.DataStoreNode_3078);
-			types.add(UMLElementTypes.ValueSpecificationAction_3088);
-			types.add(UMLElementTypes.DataStoreNode_3093);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -783,6 +678,7 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.MergeNode_3039);
 			types.add(UMLElementTypes.ForkNode_3040);
 			types.add(UMLElementTypes.JoinNode_3041);
+			types.add(UMLElementTypes.DataStoreNode_3078);
 			types.add(UMLElementTypes.SendObjectAction_3042);
 			types.add(UMLElementTypes.ValuePin_3046);
 			types.add(UMLElementTypes.ActionInputPin_3047);
@@ -800,6 +696,8 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.ActivityParameterNode_3059);
 			types.add(UMLElementTypes.AcceptEventAction_3063);
 			types.add(UMLElementTypes.OutputPin_3064);
+			types.add(UMLElementTypes.ValueSpecificationAction_3076);
+			types.add(UMLElementTypes.OutputPin_3077);
 			types.add(UMLElementTypes.ConditionalNode_3069);
 			types.add(UMLElementTypes.ExpansionRegion_3070);
 			types.add(UMLElementTypes.ExpansionNode_3074);
@@ -807,24 +705,6 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
-			types.add(UMLElementTypes.InitialNode_3079);
-			types.add(UMLElementTypes.ActivityFinalNode_3080);
-			types.add(UMLElementTypes.FlowFinalNode_3081);
-			types.add(UMLElementTypes.OpaqueAction_3082);
-			types.add(UMLElementTypes.CallBehaviorAction_3083);
-			types.add(UMLElementTypes.CallOperationAction_3084);
-			types.add(UMLElementTypes.SendObjectAction_3085);
-			types.add(UMLElementTypes.SendSignalAction_3086);
-			types.add(UMLElementTypes.AcceptEventAction_3087);
-			types.add(UMLElementTypes.ValueSpecificationAction_3076);
-			types.add(UMLElementTypes.OutputPin_3077);
-			types.add(UMLElementTypes.DecisionNode_3089);
-			types.add(UMLElementTypes.MergeNode_3090);
-			types.add(UMLElementTypes.ForkNode_3091);
-			types.add(UMLElementTypes.JoinNode_3092);
-			types.add(UMLElementTypes.DataStoreNode_3078);
-			types.add(UMLElementTypes.ValueSpecificationAction_3088);
-			types.add(UMLElementTypes.DataStoreNode_3093);
 		}
 		return types;
 	}
@@ -871,6 +751,7 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.MergeNode_3039);
 			types.add(UMLElementTypes.ForkNode_3040);
 			types.add(UMLElementTypes.JoinNode_3041);
+			types.add(UMLElementTypes.DataStoreNode_3078);
 			types.add(UMLElementTypes.SendObjectAction_3042);
 			types.add(UMLElementTypes.ValuePin_3046);
 			types.add(UMLElementTypes.ActionInputPin_3047);
@@ -888,6 +769,8 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.ActivityParameterNode_3059);
 			types.add(UMLElementTypes.AcceptEventAction_3063);
 			types.add(UMLElementTypes.OutputPin_3064);
+			types.add(UMLElementTypes.ValueSpecificationAction_3076);
+			types.add(UMLElementTypes.OutputPin_3077);
 			types.add(UMLElementTypes.ConditionalNode_3069);
 			types.add(UMLElementTypes.ExpansionRegion_3070);
 			types.add(UMLElementTypes.ExpansionNode_3074);
@@ -895,24 +778,6 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
-			types.add(UMLElementTypes.InitialNode_3079);
-			types.add(UMLElementTypes.ActivityFinalNode_3080);
-			types.add(UMLElementTypes.FlowFinalNode_3081);
-			types.add(UMLElementTypes.OpaqueAction_3082);
-			types.add(UMLElementTypes.CallBehaviorAction_3083);
-			types.add(UMLElementTypes.CallOperationAction_3084);
-			types.add(UMLElementTypes.SendObjectAction_3085);
-			types.add(UMLElementTypes.SendSignalAction_3086);
-			types.add(UMLElementTypes.AcceptEventAction_3087);
-			types.add(UMLElementTypes.ValueSpecificationAction_3076);
-			types.add(UMLElementTypes.OutputPin_3077);
-			types.add(UMLElementTypes.DecisionNode_3089);
-			types.add(UMLElementTypes.MergeNode_3090);
-			types.add(UMLElementTypes.ForkNode_3091);
-			types.add(UMLElementTypes.JoinNode_3092);
-			types.add(UMLElementTypes.DataStoreNode_3078);
-			types.add(UMLElementTypes.ValueSpecificationAction_3088);
-			types.add(UMLElementTypes.DataStoreNode_3093);
 		} else if(relationshipType == UMLElementTypes.ControlFlow_4004) {
 			types.add(UMLElementTypes.InitialNode_3004);
 			types.add(UMLElementTypes.ActivityFinalNode_3005);
@@ -939,6 +804,7 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.MergeNode_3039);
 			types.add(UMLElementTypes.ForkNode_3040);
 			types.add(UMLElementTypes.JoinNode_3041);
+			types.add(UMLElementTypes.DataStoreNode_3078);
 			types.add(UMLElementTypes.SendObjectAction_3042);
 			types.add(UMLElementTypes.ValuePin_3046);
 			types.add(UMLElementTypes.ActionInputPin_3047);
@@ -956,6 +822,8 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.ActivityParameterNode_3059);
 			types.add(UMLElementTypes.AcceptEventAction_3063);
 			types.add(UMLElementTypes.OutputPin_3064);
+			types.add(UMLElementTypes.ValueSpecificationAction_3076);
+			types.add(UMLElementTypes.OutputPin_3077);
 			types.add(UMLElementTypes.ConditionalNode_3069);
 			types.add(UMLElementTypes.ExpansionRegion_3070);
 			types.add(UMLElementTypes.ExpansionNode_3074);
@@ -963,24 +831,6 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
-			types.add(UMLElementTypes.InitialNode_3079);
-			types.add(UMLElementTypes.ActivityFinalNode_3080);
-			types.add(UMLElementTypes.FlowFinalNode_3081);
-			types.add(UMLElementTypes.OpaqueAction_3082);
-			types.add(UMLElementTypes.CallBehaviorAction_3083);
-			types.add(UMLElementTypes.CallOperationAction_3084);
-			types.add(UMLElementTypes.SendObjectAction_3085);
-			types.add(UMLElementTypes.SendSignalAction_3086);
-			types.add(UMLElementTypes.AcceptEventAction_3087);
-			types.add(UMLElementTypes.ValueSpecificationAction_3076);
-			types.add(UMLElementTypes.OutputPin_3077);
-			types.add(UMLElementTypes.DecisionNode_3089);
-			types.add(UMLElementTypes.MergeNode_3090);
-			types.add(UMLElementTypes.ForkNode_3091);
-			types.add(UMLElementTypes.JoinNode_3092);
-			types.add(UMLElementTypes.DataStoreNode_3078);
-			types.add(UMLElementTypes.ValueSpecificationAction_3088);
-			types.add(UMLElementTypes.DataStoreNode_3093);
 		} else if(relationshipType == UMLElementTypes.ExceptionHandler_4005) {
 			types.add(UMLElementTypes.OpaqueAction_3007);
 			types.add(UMLElementTypes.CallBehaviorAction_3008);
@@ -988,19 +838,12 @@ BorderedBorderItemEditPart {
 			types.add(UMLElementTypes.SendObjectAction_3042);
 			types.add(UMLElementTypes.SendSignalAction_3052);
 			types.add(UMLElementTypes.AcceptEventAction_3063);
+			types.add(UMLElementTypes.ValueSpecificationAction_3076);
 			types.add(UMLElementTypes.ConditionalNode_3069);
 			types.add(UMLElementTypes.ExpansionRegion_3070);
 			types.add(UMLElementTypes.LoopNode_3071);
 			types.add(UMLElementTypes.SequenceNode_3073);
 			types.add(UMLElementTypes.StructuredActivityNode_3065);
-			types.add(UMLElementTypes.OpaqueAction_3082);
-			types.add(UMLElementTypes.CallBehaviorAction_3083);
-			types.add(UMLElementTypes.CallOperationAction_3084);
-			types.add(UMLElementTypes.SendObjectAction_3085);
-			types.add(UMLElementTypes.SendSignalAction_3086);
-			types.add(UMLElementTypes.AcceptEventAction_3087);
-			types.add(UMLElementTypes.ValueSpecificationAction_3076);
-			types.add(UMLElementTypes.ValueSpecificationAction_3088);
 		}
 		return types;
 	}

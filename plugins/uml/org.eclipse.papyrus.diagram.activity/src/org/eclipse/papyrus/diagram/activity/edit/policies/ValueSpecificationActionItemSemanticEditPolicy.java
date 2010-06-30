@@ -66,7 +66,7 @@ public class ValueSpecificationActionItemSemanticEditPolicy extends UMLBaseItemS
 	 * @generated
 	 */
 	public ValueSpecificationActionItemSemanticEditPolicy() {
-		super(UMLElementTypes.ValueSpecificationAction_3088);
+		super(UMLElementTypes.ValueSpecificationAction_3076);
 	}
 
 

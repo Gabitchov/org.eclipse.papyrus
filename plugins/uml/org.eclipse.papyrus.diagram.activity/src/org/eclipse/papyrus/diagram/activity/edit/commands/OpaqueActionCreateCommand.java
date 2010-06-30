@@ -25,8 +25,8 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.activity.edit.commands.util.CreateCommandUtil;
 import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
-import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.UMLFactory;
 
@@ -87,19 +87,15 @@ public class OpaqueActionCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT check that there is a correct model container.
 	 */
 	public boolean canExecute() {
-
-
-		return true;
-
-
-
+		//check that there is a correct model container
+		return CreateCommandUtil.canCreateNode(getRequest(), getElementToEdit());
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT set appropriate parents
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
@@ -107,8 +103,12 @@ public class OpaqueActionCreateCommand extends EditElementCommand {
 
 		OpaqueAction newElement = UMLFactory.eINSTANCE.createOpaqueAction();
 
-		Activity owner = (Activity)getElementToEdit();
-		owner.getNodes().add(newElement);
+		// set appropriate parents
+		if(!CreateCommandUtil.setNodeParents(newElement, getRequest(), getElementToEdit())) {
+			return CommandResult.newCancelledCommandResult();
+		}
+		//		Activity owner = (Activity)getElementToEdit();
+		//		owner.getNodes().add(newElement);
 
 
 		ElementInitializers.getInstance().init_OpaqueAction_3007(newElement);

@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.papyrus.diagram.activity.edit.commands.util.CreateCommandUtil;
 import org.eclipse.papyrus.diagram.activity.edit.dialogs.CreateCallBehaviorActionDialog;
 import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
 import org.eclipse.swt.widgets.Display;
@@ -91,27 +92,31 @@ public class CallBehaviorActionCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT check that there is a correct model container.
 	 */
 	public boolean canExecute() {
-
-
-		return true;
-
-
-
+		//check that there is a correct model container
+		return CreateCommandUtil.canCreateNode(getRequest(), getElementToEdit());
 	}
 
 	/**
-	 * @generated NOT use the initialization popup
+	 * @generated NOT use the initialization popup, set appropriate parents
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		Activity owner = (Activity)getElementToEdit();
+		// get the activity containing the new element
+		Activity parentActivity = null;
+		EObject parent = getElementToEdit();
+		while(parent != null && parentActivity == null) {
+			if(parent instanceof Activity) {
+				parentActivity = (Activity)parent;
+			}
+			parent = parent.eContainer();
+		}
 
 		CallBehaviorAction newElement = UMLFactory.eINSTANCE.createCallBehaviorAction();
 
-		CreateCallBehaviorActionDialog dialog = new CreateCallBehaviorActionDialog(Display.getDefault().getActiveShell(), owner);
+		CreateCallBehaviorActionDialog dialog = new CreateCallBehaviorActionDialog(Display.getDefault().getActiveShell(), parentActivity);
 		if(IDialogConstants.OK_ID == dialog.open()) {
 			// initialize the invoked element (no need to use a command, since action is being created)
 			EObject behavior = dialog.getSelectedInvoked();
@@ -124,7 +129,12 @@ public class CallBehaviorActionCreateCommand extends EditElementCommand {
 			return CommandResult.newCancelledCommandResult();
 		}
 
-		owner.getNodes().add(newElement);
+		// set appropriate parents
+		if(!CreateCommandUtil.setNodeParents(newElement, getRequest(), getElementToEdit())) {
+			return CommandResult.newCancelledCommandResult();
+		}
+		//		Activity owner = (Activity)getElementToEdit();
+		//		owner.getNodes().add(newElement);
 
 		ElementInitializers.getInstance().init_CallBehaviorAction_3008(newElement);
 

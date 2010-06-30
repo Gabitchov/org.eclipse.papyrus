@@ -31,7 +31,6 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallOpActEditPart;
@@ -44,30 +43,22 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityActivityContentCo
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityDiagramEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityParameterNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionNodeAsInEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionNodeAsOutEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionRegionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.FlowFinalNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.FlowFinalNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ForkNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ForkNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActEditPart;
@@ -81,21 +72,16 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLo
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.JoinNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.JoinNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.LoopNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.MergeNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.MergeNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInAcceptEventActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOpaqueActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInValSpecActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
@@ -109,7 +95,6 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendObjActAsTar
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValueSpecificationActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValueSpecificationActionInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.part.Messages;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
@@ -301,6 +286,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof JoinNodeEditPart) {
 			return ((JoinNodeEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
+		if(sourceEditPart instanceof DataStoreNodeEditPart) {
+			return ((DataStoreNodeEditPart)sourceEditPart).getMARelTypesOnSource();
+		}
 		if(sourceEditPart instanceof SendObjectActionEditPart) {
 			return ((SendObjectActionEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
@@ -352,6 +340,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof OutputPinInAcceptEventActionEditPart) {
 			return ((OutputPinInAcceptEventActionEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
+		if(sourceEditPart instanceof ValueSpecificationActionEditPart) {
+			return ((ValueSpecificationActionEditPart)sourceEditPart).getMARelTypesOnSource();
+		}
+		if(sourceEditPart instanceof OutputPinInValSpecActEditPart) {
+			return ((OutputPinInValSpecActEditPart)sourceEditPart).getMARelTypesOnSource();
+		}
 		if(sourceEditPart instanceof ConditionalNodeEditPart) {
 			return ((ConditionalNodeEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
@@ -372,60 +366,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof StructuredActivityNodeEditPart) {
 			return ((StructuredActivityNodeEditPart)sourceEditPart).getMARelTypesOnSource();
-		}
-		if(sourceEditPart instanceof InitialNodeInIAREditPart) {
-			return ((InitialNodeInIAREditPart)sourceEditPart).getMARelTypesOnSource();
-		}
-		if(sourceEditPart instanceof ActivityFinalNodeInIAREditPart) {
-			return ((ActivityFinalNodeInIAREditPart)sourceEditPart).getMARelTypesOnSource();
-		}
-		if(sourceEditPart instanceof FlowFinalNodeInIAREditPart) {
-			return ((FlowFinalNodeInIAREditPart)sourceEditPart).getMARelTypesOnSource();
-		}
-		if(sourceEditPart instanceof OpaqueActionInIAREditPart) {
-			return ((OpaqueActionInIAREditPart)sourceEditPart).getMARelTypesOnSource();
-		}
-		if(sourceEditPart instanceof CallBehaviorActionInIAREditPart) {
-			return ((CallBehaviorActionInIAREditPart)sourceEditPart).getMARelTypesOnSource();
-		}
-		if(sourceEditPart instanceof CallOperationActionInIAREditPart) {
-			return ((CallOperationActionInIAREditPart)sourceEditPart).getMARelTypesOnSource();
-		}
-		if(sourceEditPart instanceof SendObjectActionInIAREditPart) {
-			return ((SendObjectActionInIAREditPart)sourceEditPart).getMARelTypesOnSource();
-		}
-		if(sourceEditPart instanceof SendSignalActionInIAREditPart) {
-			return ((SendSignalActionInIAREditPart)sourceEditPart).getMARelTypesOnSource();
-		}
-		if(sourceEditPart instanceof AcceptEventActionInIAREditPart) {
-			return ((AcceptEventActionInIAREditPart)sourceEditPart).getMARelTypesOnSource();
-		}
-		if(sourceEditPart instanceof ValueSpecificationActionInIAREditPart) {
-			return ((ValueSpecificationActionInIAREditPart)sourceEditPart).getMARelTypesOnSource();
-		}
-		if(sourceEditPart instanceof OutputPinInValSpecActEditPart) {
-			return ((OutputPinInValSpecActEditPart)sourceEditPart).getMARelTypesOnSource();
-		}
-		if(sourceEditPart instanceof DecisionNodeInIAREditPart) {
-			return ((DecisionNodeInIAREditPart)sourceEditPart).getMARelTypesOnSource();
-		}
-		if(sourceEditPart instanceof MergeNodeInIAREditPart) {
-			return ((MergeNodeInIAREditPart)sourceEditPart).getMARelTypesOnSource();
-		}
-		if(sourceEditPart instanceof ForkNodeInIAREditPart) {
-			return ((ForkNodeInIAREditPart)sourceEditPart).getMARelTypesOnSource();
-		}
-		if(sourceEditPart instanceof JoinNodeInIAREditPart) {
-			return ((JoinNodeInIAREditPart)sourceEditPart).getMARelTypesOnSource();
-		}
-		if(sourceEditPart instanceof DataStoreNodeInIAREditPart) {
-			return ((DataStoreNodeInIAREditPart)sourceEditPart).getMARelTypesOnSource();
-		}
-		if(sourceEditPart instanceof ValueSpecificationActionEditPart) {
-			return ((ValueSpecificationActionEditPart)sourceEditPart).getMARelTypesOnSource();
-		}
-		if(sourceEditPart instanceof DataStoreNodeEditPart) {
-			return ((DataStoreNodeEditPart)sourceEditPart).getMARelTypesOnSource();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -540,6 +480,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof JoinNodeEditPart) {
 			return ((JoinNodeEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
+		if(targetEditPart instanceof DataStoreNodeEditPart) {
+			return ((DataStoreNodeEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
 		if(targetEditPart instanceof SendObjectActionEditPart) {
 			return ((SendObjectActionEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
@@ -591,6 +534,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof OutputPinInAcceptEventActionEditPart) {
 			return ((OutputPinInAcceptEventActionEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
+		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
+			return ((ValueSpecificationActionEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof OutputPinInValSpecActEditPart) {
+			return ((OutputPinInValSpecActEditPart)targetEditPart).getMARelTypesOnTarget();
+		}
 		if(targetEditPart instanceof ConditionalNodeEditPart) {
 			return ((ConditionalNodeEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
@@ -611,60 +560,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(targetEditPart instanceof StructuredActivityNodeEditPart) {
 			return ((StructuredActivityNodeEditPart)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof InitialNodeInIAREditPart) {
-			return ((InitialNodeInIAREditPart)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof ActivityFinalNodeInIAREditPart) {
-			return ((ActivityFinalNodeInIAREditPart)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof FlowFinalNodeInIAREditPart) {
-			return ((FlowFinalNodeInIAREditPart)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof OpaqueActionInIAREditPart) {
-			return ((OpaqueActionInIAREditPart)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof CallBehaviorActionInIAREditPart) {
-			return ((CallBehaviorActionInIAREditPart)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof CallOperationActionInIAREditPart) {
-			return ((CallOperationActionInIAREditPart)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof SendObjectActionInIAREditPart) {
-			return ((SendObjectActionInIAREditPart)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof SendSignalActionInIAREditPart) {
-			return ((SendSignalActionInIAREditPart)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof AcceptEventActionInIAREditPart) {
-			return ((AcceptEventActionInIAREditPart)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof ValueSpecificationActionInIAREditPart) {
-			return ((ValueSpecificationActionInIAREditPart)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof OutputPinInValSpecActEditPart) {
-			return ((OutputPinInValSpecActEditPart)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof DecisionNodeInIAREditPart) {
-			return ((DecisionNodeInIAREditPart)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof MergeNodeInIAREditPart) {
-			return ((MergeNodeInIAREditPart)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof ForkNodeInIAREditPart) {
-			return ((ForkNodeInIAREditPart)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof JoinNodeInIAREditPart) {
-			return ((JoinNodeInIAREditPart)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof DataStoreNodeInIAREditPart) {
-			return ((DataStoreNodeInIAREditPart)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
-			return ((ValueSpecificationActionEditPart)targetEditPart).getMARelTypesOnTarget();
-		}
-		if(targetEditPart instanceof DataStoreNodeEditPart) {
-			return ((DataStoreNodeEditPart)targetEditPart).getMARelTypesOnTarget();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -750,6 +645,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof JoinNodeEditPart) {
 			return ((JoinNodeEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
+		if(sourceEditPart instanceof DataStoreNodeEditPart) {
+			return ((DataStoreNodeEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		if(sourceEditPart instanceof SendObjectActionEditPart) {
 			return ((SendObjectActionEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
@@ -801,6 +699,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof OutputPinInAcceptEventActionEditPart) {
 			return ((OutputPinInAcceptEventActionEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
+		if(sourceEditPart instanceof ValueSpecificationActionEditPart) {
+			return ((ValueSpecificationActionEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if(sourceEditPart instanceof OutputPinInValSpecActEditPart) {
+			return ((OutputPinInValSpecActEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		if(sourceEditPart instanceof ConditionalNodeEditPart) {
 			return ((ConditionalNodeEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
@@ -821,60 +725,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof StructuredActivityNodeEditPart) {
 			return ((StructuredActivityNodeEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof InitialNodeInIAREditPart) {
-			return ((InitialNodeInIAREditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof ActivityFinalNodeInIAREditPart) {
-			return ((ActivityFinalNodeInIAREditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof FlowFinalNodeInIAREditPart) {
-			return ((FlowFinalNodeInIAREditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof OpaqueActionInIAREditPart) {
-			return ((OpaqueActionInIAREditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof CallBehaviorActionInIAREditPart) {
-			return ((CallBehaviorActionInIAREditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof CallOperationActionInIAREditPart) {
-			return ((CallOperationActionInIAREditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof SendObjectActionInIAREditPart) {
-			return ((SendObjectActionInIAREditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof SendSignalActionInIAREditPart) {
-			return ((SendSignalActionInIAREditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof AcceptEventActionInIAREditPart) {
-			return ((AcceptEventActionInIAREditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof ValueSpecificationActionInIAREditPart) {
-			return ((ValueSpecificationActionInIAREditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof OutputPinInValSpecActEditPart) {
-			return ((OutputPinInValSpecActEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof DecisionNodeInIAREditPart) {
-			return ((DecisionNodeInIAREditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof MergeNodeInIAREditPart) {
-			return ((MergeNodeInIAREditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof ForkNodeInIAREditPart) {
-			return ((ForkNodeInIAREditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof JoinNodeInIAREditPart) {
-			return ((JoinNodeInIAREditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof DataStoreNodeInIAREditPart) {
-			return ((DataStoreNodeInIAREditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof ValueSpecificationActionEditPart) {
-			return ((ValueSpecificationActionEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
-		}
-		if(sourceEditPart instanceof DataStoreNodeEditPart) {
-			return ((DataStoreNodeEditPart)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -989,6 +839,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof JoinNodeEditPart) {
 			return ((JoinNodeEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
+		if(targetEditPart instanceof DataStoreNodeEditPart) {
+			return ((DataStoreNodeEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
 		if(targetEditPart instanceof SendObjectActionEditPart) {
 			return ((SendObjectActionEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
@@ -1040,6 +893,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof OutputPinInAcceptEventActionEditPart) {
 			return ((OutputPinInAcceptEventActionEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
+		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
+			return ((ValueSpecificationActionEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof OutputPinInValSpecActEditPart) {
+			return ((OutputPinInValSpecActEditPart)targetEditPart).getMATypesForSource(relationshipType);
+		}
 		if(targetEditPart instanceof ConditionalNodeEditPart) {
 			return ((ConditionalNodeEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
@@ -1060,60 +919,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(targetEditPart instanceof StructuredActivityNodeEditPart) {
 			return ((StructuredActivityNodeEditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if(targetEditPart instanceof InitialNodeInIAREditPart) {
-			return ((InitialNodeInIAREditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if(targetEditPart instanceof ActivityFinalNodeInIAREditPart) {
-			return ((ActivityFinalNodeInIAREditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if(targetEditPart instanceof FlowFinalNodeInIAREditPart) {
-			return ((FlowFinalNodeInIAREditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if(targetEditPart instanceof OpaqueActionInIAREditPart) {
-			return ((OpaqueActionInIAREditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if(targetEditPart instanceof CallBehaviorActionInIAREditPart) {
-			return ((CallBehaviorActionInIAREditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if(targetEditPart instanceof CallOperationActionInIAREditPart) {
-			return ((CallOperationActionInIAREditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if(targetEditPart instanceof SendObjectActionInIAREditPart) {
-			return ((SendObjectActionInIAREditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if(targetEditPart instanceof SendSignalActionInIAREditPart) {
-			return ((SendSignalActionInIAREditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if(targetEditPart instanceof AcceptEventActionInIAREditPart) {
-			return ((AcceptEventActionInIAREditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if(targetEditPart instanceof ValueSpecificationActionInIAREditPart) {
-			return ((ValueSpecificationActionInIAREditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if(targetEditPart instanceof OutputPinInValSpecActEditPart) {
-			return ((OutputPinInValSpecActEditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if(targetEditPart instanceof DecisionNodeInIAREditPart) {
-			return ((DecisionNodeInIAREditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if(targetEditPart instanceof MergeNodeInIAREditPart) {
-			return ((MergeNodeInIAREditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if(targetEditPart instanceof ForkNodeInIAREditPart) {
-			return ((ForkNodeInIAREditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if(targetEditPart instanceof JoinNodeInIAREditPart) {
-			return ((JoinNodeInIAREditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if(targetEditPart instanceof DataStoreNodeInIAREditPart) {
-			return ((DataStoreNodeInIAREditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if(targetEditPart instanceof ValueSpecificationActionEditPart) {
-			return ((ValueSpecificationActionEditPart)targetEditPart).getMATypesForSource(relationshipType);
-		}
-		if(targetEditPart instanceof DataStoreNodeEditPart) {
-			return ((DataStoreNodeEditPart)targetEditPart).getMATypesForSource(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -1198,6 +1003,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof JoinNodeEditPart) {
 			return ((JoinNodeEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
+		if(sourceEditPart instanceof DataStoreNodeEditPart) {
+			return ((DataStoreNodeEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
 		if(sourceEditPart instanceof SendObjectActionEditPart) {
 			return ((SendObjectActionEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
@@ -1249,6 +1057,12 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof OutputPinInAcceptEventActionEditPart) {
 			return ((OutputPinInAcceptEventActionEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
+		if(sourceEditPart instanceof ValueSpecificationActionEditPart) {
+			return ((ValueSpecificationActionEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof OutputPinInValSpecActEditPart) {
+			return ((OutputPinInValSpecActEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
 		if(sourceEditPart instanceof ConditionalNodeEditPart) {
 			return ((ConditionalNodeEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
@@ -1269,60 +1083,6 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof StructuredActivityNodeEditPart) {
 			return ((StructuredActivityNodeEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof InitialNodeInIAREditPart) {
-			return ((InitialNodeInIAREditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof ActivityFinalNodeInIAREditPart) {
-			return ((ActivityFinalNodeInIAREditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof FlowFinalNodeInIAREditPart) {
-			return ((FlowFinalNodeInIAREditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof OpaqueActionInIAREditPart) {
-			return ((OpaqueActionInIAREditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof CallBehaviorActionInIAREditPart) {
-			return ((CallBehaviorActionInIAREditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof CallOperationActionInIAREditPart) {
-			return ((CallOperationActionInIAREditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof SendObjectActionInIAREditPart) {
-			return ((SendObjectActionInIAREditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof SendSignalActionInIAREditPart) {
-			return ((SendSignalActionInIAREditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof AcceptEventActionInIAREditPart) {
-			return ((AcceptEventActionInIAREditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof ValueSpecificationActionInIAREditPart) {
-			return ((ValueSpecificationActionInIAREditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof OutputPinInValSpecActEditPart) {
-			return ((OutputPinInValSpecActEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof DecisionNodeInIAREditPart) {
-			return ((DecisionNodeInIAREditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof MergeNodeInIAREditPart) {
-			return ((MergeNodeInIAREditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof ForkNodeInIAREditPart) {
-			return ((ForkNodeInIAREditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof JoinNodeInIAREditPart) {
-			return ((JoinNodeInIAREditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof DataStoreNodeInIAREditPart) {
-			return ((DataStoreNodeInIAREditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof ValueSpecificationActionEditPart) {
-			return ((ValueSpecificationActionEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
-		}
-		if(sourceEditPart instanceof DataStoreNodeEditPart) {
-			return ((DataStoreNodeEditPart)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}

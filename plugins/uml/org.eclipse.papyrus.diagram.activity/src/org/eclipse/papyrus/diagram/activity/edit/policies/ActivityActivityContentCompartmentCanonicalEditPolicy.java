@@ -138,9 +138,11 @@ public class ActivityActivityContentCompartmentCanonicalEditPolicy extends Canon
 		case MergeNodeEditPart.VISUAL_ID:
 		case ForkNodeEditPart.VISUAL_ID:
 		case JoinNodeEditPart.VISUAL_ID:
+		case DataStoreNodeEditPart.VISUAL_ID:
 		case SendObjectActionEditPart.VISUAL_ID:
 		case SendSignalActionEditPart.VISUAL_ID:
 		case AcceptEventActionEditPart.VISUAL_ID:
+		case ValueSpecificationActionEditPart.VISUAL_ID:
 		case ConditionalNodeEditPart.VISUAL_ID:
 		case ExpansionRegionEditPart.VISUAL_ID:
 		case LoopNodeEditPart.VISUAL_ID:
@@ -148,8 +150,6 @@ public class ActivityActivityContentCompartmentCanonicalEditPolicy extends Canon
 		case StructuredActivityNodeEditPart.VISUAL_ID:
 		case ActivityPartitionEditPart.VISUAL_ID:
 		case InterruptibleActivityRegionEditPart.VISUAL_ID:
-		case ValueSpecificationActionEditPart.VISUAL_ID:
-		case DataStoreNodeEditPart.VISUAL_ID:
 			return true;
 		}
 		return false;

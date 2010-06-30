@@ -25,8 +25,8 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.activity.edit.commands.util.CreateCommandUtil;
 import org.eclipse.papyrus.diagram.activity.providers.ElementInitializers;
-import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.DataStoreNode;
 import org.eclipse.uml2.uml.UMLFactory;
 
@@ -87,19 +87,15 @@ public class DataStoreNodeCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT check that there is a correct model container.
 	 */
 	public boolean canExecute() {
-
-
-		return true;
-
-
-
+		//check that there is a correct model container
+		return CreateCommandUtil.canCreateNode(getRequest(), getElementToEdit());
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT set appropriate parents
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
@@ -107,11 +103,15 @@ public class DataStoreNodeCreateCommand extends EditElementCommand {
 
 		DataStoreNode newElement = UMLFactory.eINSTANCE.createDataStoreNode();
 
-		Activity owner = (Activity)getElementToEdit();
-		owner.getNodes().add(newElement);
+		// set appropriate parents
+		if(!CreateCommandUtil.setNodeParents(newElement, getRequest(), getElementToEdit())) {
+			return CommandResult.newCancelledCommandResult();
+		}
+		//		Activity owner = (Activity)getElementToEdit();
+		//		owner.getNodes().add(newElement);
 
 
-		ElementInitializers.getInstance().init_DataStoreNode_3093(newElement);
+		ElementInitializers.getInstance().init_DataStoreNode_3078(newElement);
 
 		doConfigure(newElement, monitor, info);
 

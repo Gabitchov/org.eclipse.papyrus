@@ -28,7 +28,6 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallOpActEditPart;
@@ -42,13 +41,10 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ActionLocalPreconditionEd
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityDiagramEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityParameterNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondEditPart;
@@ -56,9 +52,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPos
 import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintInActivityAsPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ControlFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ExceptionHandlerEditPart;
@@ -66,11 +60,8 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionNodeAsInEditPart
 import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionNodeAsOutEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionRegionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.FlowFinalNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.FlowFinalNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ForkNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ForkNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActEditPart;
@@ -85,13 +76,10 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.InterruptibleActivityRegi
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.JoinNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.JoinNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.LoopNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.MergeNodeEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.MergeNodeInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInAcceptEventActionEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallBeActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditPart;
@@ -99,9 +87,7 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInOpaqueActEditP
 import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInValSpecActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ParameterEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
@@ -115,7 +101,6 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendObjActAsTar
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActAsTargetEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInSendSigActEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ValueSpecificationActionEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValueSpecificationActionInIAREditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -409,51 +394,6 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType InitialNode_3079 = getElementType("org.eclipse.papyrus.diagram.activity.InitialNode_3079"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType ActivityFinalNode_3080 = getElementType("org.eclipse.papyrus.diagram.activity.ActivityFinalNode_3080"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType FlowFinalNode_3081 = getElementType("org.eclipse.papyrus.diagram.activity.FlowFinalNode_3081"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType OpaqueAction_3082 = getElementType("org.eclipse.papyrus.diagram.activity.OpaqueAction_3082"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType CallBehaviorAction_3083 = getElementType("org.eclipse.papyrus.diagram.activity.CallBehaviorAction_3083"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType CallOperationAction_3084 = getElementType("org.eclipse.papyrus.diagram.activity.CallOperationAction_3084"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType SendObjectAction_3085 = getElementType("org.eclipse.papyrus.diagram.activity.SendObjectAction_3085"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType SendSignalAction_3086 = getElementType("org.eclipse.papyrus.diagram.activity.SendSignalAction_3086"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType AcceptEventAction_3087 = getElementType("org.eclipse.papyrus.diagram.activity.AcceptEventAction_3087"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
 	public static final IElementType ValueSpecificationAction_3076 = getElementType("org.eclipse.papyrus.diagram.activity.ValueSpecificationAction_3076"); //$NON-NLS-1$
 
 	/**
@@ -464,37 +404,7 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	public static final IElementType DecisionNode_3089 = getElementType("org.eclipse.papyrus.diagram.activity.DecisionNode_3089"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType MergeNode_3090 = getElementType("org.eclipse.papyrus.diagram.activity.MergeNode_3090"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType ForkNode_3091 = getElementType("org.eclipse.papyrus.diagram.activity.ForkNode_3091"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType JoinNode_3092 = getElementType("org.eclipse.papyrus.diagram.activity.JoinNode_3092"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
 	public static final IElementType DataStoreNode_3078 = getElementType("org.eclipse.papyrus.diagram.activity.DataStoreNode_3078"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType ValueSpecificationAction_3088 = getElementType("org.eclipse.papyrus.diagram.activity.ValueSpecificationAction_3088"); //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	public static final IElementType DataStoreNode_3093 = getElementType("org.eclipse.papyrus.diagram.activity.DataStoreNode_3093"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -817,6 +727,9 @@ public class UMLElementTypes {
 			elements.put(JoinNode_3041, UMLPackage.eINSTANCE.getJoinNode());
 
 
+			elements.put(DataStoreNode_3078, UMLPackage.eINSTANCE.getDataStoreNode());
+
+
 			elements.put(SendObjectAction_3042, UMLPackage.eINSTANCE.getSendObjectAction());
 
 
@@ -868,6 +781,12 @@ public class UMLElementTypes {
 			elements.put(OutputPin_3064, UMLPackage.eINSTANCE.getOutputPin());
 
 
+			elements.put(ValueSpecificationAction_3076, UMLPackage.eINSTANCE.getValueSpecificationAction());
+
+
+			elements.put(OutputPin_3077, UMLPackage.eINSTANCE.getOutputPin());
+
+
 			elements.put(ConditionalNode_3069, UMLPackage.eINSTANCE.getConditionalNode());
 
 
@@ -893,60 +812,6 @@ public class UMLElementTypes {
 
 
 			elements.put(InterruptibleActivityRegion_3068, UMLPackage.eINSTANCE.getInterruptibleActivityRegion());
-
-
-			elements.put(InitialNode_3079, UMLPackage.eINSTANCE.getInitialNode());
-
-
-			elements.put(ActivityFinalNode_3080, UMLPackage.eINSTANCE.getActivityFinalNode());
-
-
-			elements.put(FlowFinalNode_3081, UMLPackage.eINSTANCE.getFlowFinalNode());
-
-
-			elements.put(OpaqueAction_3082, UMLPackage.eINSTANCE.getOpaqueAction());
-
-
-			elements.put(CallBehaviorAction_3083, UMLPackage.eINSTANCE.getCallBehaviorAction());
-
-
-			elements.put(CallOperationAction_3084, UMLPackage.eINSTANCE.getCallOperationAction());
-
-
-			elements.put(SendObjectAction_3085, UMLPackage.eINSTANCE.getSendObjectAction());
-
-
-			elements.put(SendSignalAction_3086, UMLPackage.eINSTANCE.getSendSignalAction());
-
-
-			elements.put(AcceptEventAction_3087, UMLPackage.eINSTANCE.getAcceptEventAction());
-
-
-			elements.put(ValueSpecificationAction_3076, UMLPackage.eINSTANCE.getValueSpecificationAction());
-
-
-			elements.put(OutputPin_3077, UMLPackage.eINSTANCE.getOutputPin());
-
-
-			elements.put(DecisionNode_3089, UMLPackage.eINSTANCE.getDecisionNode());
-
-
-			elements.put(MergeNode_3090, UMLPackage.eINSTANCE.getMergeNode());
-
-
-			elements.put(ForkNode_3091, UMLPackage.eINSTANCE.getForkNode());
-
-
-			elements.put(JoinNode_3092, UMLPackage.eINSTANCE.getJoinNode());
-
-
-			elements.put(DataStoreNode_3078, UMLPackage.eINSTANCE.getDataStoreNode());
-
-
-			elements.put(ValueSpecificationAction_3088, UMLPackage.eINSTANCE.getValueSpecificationAction());
-
-
-			elements.put(DataStoreNode_3093, UMLPackage.eINSTANCE.getDataStoreNode());
 
 			elements.put(ActionLocalPrecondition_4001, UMLPackage.eINSTANCE.getAction_LocalPrecondition());
 
@@ -1017,6 +882,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(MergeNode_3039);
 			KNOWN_ELEMENT_TYPES.add(ForkNode_3040);
 			KNOWN_ELEMENT_TYPES.add(JoinNode_3041);
+			KNOWN_ELEMENT_TYPES.add(DataStoreNode_3078);
 			KNOWN_ELEMENT_TYPES.add(SendObjectAction_3042);
 			KNOWN_ELEMENT_TYPES.add(ValuePin_3046);
 			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3047);
@@ -1034,6 +900,8 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(ActivityParameterNode_3059);
 			KNOWN_ELEMENT_TYPES.add(AcceptEventAction_3063);
 			KNOWN_ELEMENT_TYPES.add(OutputPin_3064);
+			KNOWN_ELEMENT_TYPES.add(ValueSpecificationAction_3076);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_3077);
 			KNOWN_ELEMENT_TYPES.add(ConditionalNode_3069);
 			KNOWN_ELEMENT_TYPES.add(ExpansionRegion_3070);
 			KNOWN_ELEMENT_TYPES.add(ExpansionNode_3074);
@@ -1043,24 +911,6 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(StructuredActivityNode_3065);
 			KNOWN_ELEMENT_TYPES.add(ActivityPartition_3067);
 			KNOWN_ELEMENT_TYPES.add(InterruptibleActivityRegion_3068);
-			KNOWN_ELEMENT_TYPES.add(InitialNode_3079);
-			KNOWN_ELEMENT_TYPES.add(ActivityFinalNode_3080);
-			KNOWN_ELEMENT_TYPES.add(FlowFinalNode_3081);
-			KNOWN_ELEMENT_TYPES.add(OpaqueAction_3082);
-			KNOWN_ELEMENT_TYPES.add(CallBehaviorAction_3083);
-			KNOWN_ELEMENT_TYPES.add(CallOperationAction_3084);
-			KNOWN_ELEMENT_TYPES.add(SendObjectAction_3085);
-			KNOWN_ELEMENT_TYPES.add(SendSignalAction_3086);
-			KNOWN_ELEMENT_TYPES.add(AcceptEventAction_3087);
-			KNOWN_ELEMENT_TYPES.add(ValueSpecificationAction_3076);
-			KNOWN_ELEMENT_TYPES.add(OutputPin_3077);
-			KNOWN_ELEMENT_TYPES.add(DecisionNode_3089);
-			KNOWN_ELEMENT_TYPES.add(MergeNode_3090);
-			KNOWN_ELEMENT_TYPES.add(ForkNode_3091);
-			KNOWN_ELEMENT_TYPES.add(JoinNode_3092);
-			KNOWN_ELEMENT_TYPES.add(DataStoreNode_3078);
-			KNOWN_ELEMENT_TYPES.add(ValueSpecificationAction_3088);
-			KNOWN_ELEMENT_TYPES.add(DataStoreNode_3093);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPrecondition_4001);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPostcondition_4002);
 			KNOWN_ELEMENT_TYPES.add(ObjectFlow_4003);
@@ -1155,6 +1005,8 @@ public class UMLElementTypes {
 			return ForkNode_3040;
 		case JoinNodeEditPart.VISUAL_ID:
 			return JoinNode_3041;
+		case DataStoreNodeEditPart.VISUAL_ID:
+			return DataStoreNode_3078;
 		case SendObjectActionEditPart.VISUAL_ID:
 			return SendObjectAction_3042;
 		case ValuePinInSendObjActAsReqEditPart.VISUAL_ID:
@@ -1189,6 +1041,10 @@ public class UMLElementTypes {
 			return AcceptEventAction_3063;
 		case OutputPinInAcceptEventActionEditPart.VISUAL_ID:
 			return OutputPin_3064;
+		case ValueSpecificationActionEditPart.VISUAL_ID:
+			return ValueSpecificationAction_3076;
+		case OutputPinInValSpecActEditPart.VISUAL_ID:
+			return OutputPin_3077;
 		case ConditionalNodeEditPart.VISUAL_ID:
 			return ConditionalNode_3069;
 		case ExpansionRegionEditPart.VISUAL_ID:
@@ -1207,42 +1063,6 @@ public class UMLElementTypes {
 			return ActivityPartition_3067;
 		case InterruptibleActivityRegionEditPart.VISUAL_ID:
 			return InterruptibleActivityRegion_3068;
-		case InitialNodeInIAREditPart.VISUAL_ID:
-			return InitialNode_3079;
-		case ActivityFinalNodeInIAREditPart.VISUAL_ID:
-			return ActivityFinalNode_3080;
-		case FlowFinalNodeInIAREditPart.VISUAL_ID:
-			return FlowFinalNode_3081;
-		case OpaqueActionInIAREditPart.VISUAL_ID:
-			return OpaqueAction_3082;
-		case CallBehaviorActionInIAREditPart.VISUAL_ID:
-			return CallBehaviorAction_3083;
-		case CallOperationActionInIAREditPart.VISUAL_ID:
-			return CallOperationAction_3084;
-		case SendObjectActionInIAREditPart.VISUAL_ID:
-			return SendObjectAction_3085;
-		case SendSignalActionInIAREditPart.VISUAL_ID:
-			return SendSignalAction_3086;
-		case AcceptEventActionInIAREditPart.VISUAL_ID:
-			return AcceptEventAction_3087;
-		case ValueSpecificationActionInIAREditPart.VISUAL_ID:
-			return ValueSpecificationAction_3076;
-		case OutputPinInValSpecActEditPart.VISUAL_ID:
-			return OutputPin_3077;
-		case DecisionNodeInIAREditPart.VISUAL_ID:
-			return DecisionNode_3089;
-		case MergeNodeInIAREditPart.VISUAL_ID:
-			return MergeNode_3090;
-		case ForkNodeInIAREditPart.VISUAL_ID:
-			return ForkNode_3091;
-		case JoinNodeInIAREditPart.VISUAL_ID:
-			return JoinNode_3092;
-		case DataStoreNodeInIAREditPart.VISUAL_ID:
-			return DataStoreNode_3078;
-		case ValueSpecificationActionEditPart.VISUAL_ID:
-			return ValueSpecificationAction_3088;
-		case DataStoreNodeEditPart.VISUAL_ID:
-			return DataStoreNode_3093;
 		case ActionLocalPreconditionEditPart.VISUAL_ID:
 			return ActionLocalPrecondition_4001;
 		case ActionLocalPostconditionEditPart.VISUAL_ID:

@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
-import org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure;
+import org.eclipse.papyrus.diagram.common.figure.node.IMultilineEditableFigure;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
 
@@ -348,6 +348,15 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case JoinNodeAppliedStereotypeEditPart.VISUAL_ID:
 				return new JoinNodeAppliedStereotypeEditPart(view);
 
+			case DataStoreNodeEditPart.VISUAL_ID:
+				return new DataStoreNodeEditPart(view);
+
+			case DataStoreNodeLabelEditPart.VISUAL_ID:
+				return new DataStoreNodeLabelEditPart(view);
+
+			case DataStoreSelectionEditPart.VISUAL_ID:
+				return new DataStoreSelectionEditPart(view);
+
 			case SendObjectActionEditPart.VISUAL_ID:
 				return new SendObjectActionEditPart(view);
 
@@ -519,6 +528,21 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case OutputPinInAcceptEventActionAppliedStereotypeEditPart.VISUAL_ID:
 				return new OutputPinInAcceptEventActionAppliedStereotypeEditPart(view);
 
+			case ValueSpecificationActionEditPart.VISUAL_ID:
+				return new ValueSpecificationActionEditPart(view);
+
+			case ValueSpecificationActionNameEditPart.VISUAL_ID:
+				return new ValueSpecificationActionNameEditPart(view);
+
+			case OutputPinInValSpecActEditPart.VISUAL_ID:
+				return new OutputPinInValSpecActEditPart(view);
+
+			case OutputPinInValSpecActLabelEditPart.VISUAL_ID:
+				return new OutputPinInValSpecActLabelEditPart(view);
+
+			case OutputPinInValSpecActAppliedStereotypeEditPart.VISUAL_ID:
+				return new OutputPinInValSpecActAppliedStereotypeEditPart(view);
+
 			case ConditionalNodeEditPart.VISUAL_ID:
 				return new ConditionalNodeEditPart(view);
 
@@ -563,135 +587,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case InterruptibleActivityRegionEditPart.VISUAL_ID:
 				return new InterruptibleActivityRegionEditPart(view);
-
-			case InitialNodeInIAREditPart.VISUAL_ID:
-				return new InitialNodeInIAREditPart(view);
-
-			case AppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
-				return new AppliedStereotypeWrappingLabelEditPart(view);
-
-			case ActivityFinalNodeInIAREditPart.VISUAL_ID:
-				return new ActivityFinalNodeInIAREditPart(view);
-
-			case ActivityFinalNodeInIARAppliedStereotypeEditPart.VISUAL_ID:
-				return new ActivityFinalNodeInIARAppliedStereotypeEditPart(view);
-
-			case FlowFinalNodeInIAREditPart.VISUAL_ID:
-				return new FlowFinalNodeInIAREditPart(view);
-
-			case FlowFinalNodeInIARAppliedStereotypeEditPart.VISUAL_ID:
-				return new FlowFinalNodeInIARAppliedStereotypeEditPart(view);
-
-			case OpaqueActionInIAREditPart.VISUAL_ID:
-				return new OpaqueActionInIAREditPart(view);
-
-			case OpaqueActionInIARNameEditPart.VISUAL_ID:
-				return new OpaqueActionInIARNameEditPart(view);
-
-			case CallBehaviorActionInIAREditPart.VISUAL_ID:
-				return new CallBehaviorActionInIAREditPart(view);
-
-			case CallBehaviorActionInIARNameEditPart.VISUAL_ID:
-				return new CallBehaviorActionInIARNameEditPart(view);
-
-			case CallOperationActionInIAREditPart.VISUAL_ID:
-				return new CallOperationActionInIAREditPart(view);
-
-			case CallOperationActionInIARNameEditPart.VISUAL_ID:
-				return new CallOperationActionInIARNameEditPart(view);
-
-			case SendObjectActionInIAREditPart.VISUAL_ID:
-				return new SendObjectActionInIAREditPart(view);
-
-			case SendObjectActionInIARNameEditPart.VISUAL_ID:
-				return new SendObjectActionInIARNameEditPart(view);
-
-			case SendSignalActionInIAREditPart.VISUAL_ID:
-				return new SendSignalActionInIAREditPart(view);
-
-			case SendSignalActionInIARNameEditPart.VISUAL_ID:
-				return new SendSignalActionInIARNameEditPart(view);
-
-			case AcceptEventActionInIAREditPart.VISUAL_ID:
-				return new AcceptEventActionInIAREditPart(view);
-
-			case AcceptEventActionInIARLabelEditPart.VISUAL_ID:
-				return new AcceptEventActionInIARLabelEditPart(view);
-
-			case AcceptTimeEventActionInIARLabelEditPart.VISUAL_ID:
-				return new AcceptTimeEventActionInIARLabelEditPart(view);
-
-			case AcceptTimeEventActionInIARAppliedStereotypeEditPart.VISUAL_ID:
-				return new AcceptTimeEventActionInIARAppliedStereotypeEditPart(view);
-
-			case ValueSpecificationActionInIAREditPart.VISUAL_ID:
-				return new ValueSpecificationActionInIAREditPart(view);
-
-			case ValueSpecificationActionInIARNameEditPart.VISUAL_ID:
-				return new ValueSpecificationActionInIARNameEditPart(view);
-
-			case OutputPinInValSpecActEditPart.VISUAL_ID:
-				return new OutputPinInValSpecActEditPart(view);
-
-			case OutputPinInValSpecActLabelEditPart.VISUAL_ID:
-				return new OutputPinInValSpecActLabelEditPart(view);
-
-			case OutputPinInValSpecActAppliedStereotypeEditPart.VISUAL_ID:
-				return new OutputPinInValSpecActAppliedStereotypeEditPart(view);
-
-			case DecisionNodeInIAREditPart.VISUAL_ID:
-				return new DecisionNodeInIAREditPart(view);
-
-			case DecisionInputInIAREditPart.VISUAL_ID:
-				return new DecisionInputInIAREditPart(view);
-
-			case DecisionNodeInIARAppliedStereotypeEditPart.VISUAL_ID:
-				return new DecisionNodeInIARAppliedStereotypeEditPart(view);
-
-			case MergeNodeInIAREditPart.VISUAL_ID:
-				return new MergeNodeInIAREditPart(view);
-
-			case MergeNodeInIARAppliedStereotypeEditPart.VISUAL_ID:
-				return new MergeNodeInIARAppliedStereotypeEditPart(view);
-
-			case ForkNodeInIAREditPart.VISUAL_ID:
-				return new ForkNodeInIAREditPart(view);
-
-			case ForkNodeInIARAppliedStereotypeEditPart.VISUAL_ID:
-				return new ForkNodeInIARAppliedStereotypeEditPart(view);
-
-			case JoinNodeInIAREditPart.VISUAL_ID:
-				return new JoinNodeInIAREditPart(view);
-
-			case JoinSpecInIAREditPart.VISUAL_ID:
-				return new JoinSpecInIAREditPart(view);
-
-			case JoinNodeInIARAppliedStereotypeEditPart.VISUAL_ID:
-				return new JoinNodeInIARAppliedStereotypeEditPart(view);
-
-			case DataStoreNodeInIAREditPart.VISUAL_ID:
-				return new DataStoreNodeInIAREditPart(view);
-
-			case DataStoreNodeInIARLabelEditPart.VISUAL_ID:
-				return new DataStoreNodeInIARLabelEditPart(view);
-
-			case DataStoreInIARSelectionEditPart.VISUAL_ID:
-				return new DataStoreInIARSelectionEditPart(view);
-
-			case ValueSpecificationActionEditPart.VISUAL_ID:
-				return new ValueSpecificationActionEditPart(view);
-
-			case ValueSpecificationActionNameEditPart.VISUAL_ID:
-				return new ValueSpecificationActionNameEditPart(view);
-
-			case DataStoreNodeEditPart.VISUAL_ID:
-				return new DataStoreNodeEditPart(view);
-
-			case DataStoreNodeLabelEditPart.VISUAL_ID:
-				return new DataStoreNodeLabelEditPart(view);
-
-			case DataStoreSelectionEditPart.VISUAL_ID:
-				return new DataStoreSelectionEditPart(view);
 
 			case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 				return new ActivityActivityParametersCompartmentEditPart(view);
@@ -798,8 +693,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 	 * @generated NOT handle LinkAndCornerBentWithTextFigure
 	 */
 	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
-		if(source.getFigure() instanceof HTMLCornerBentFigure)
-			return new CommentCellEditorLocator((HTMLCornerBentFigure)source.getFigure());
+		if(source.getFigure() instanceof IMultilineEditableFigure)
+			return new MultilineCellEditorLocator((IMultilineEditableFigure)source.getFigure());
 		else if(source.getFigure() instanceof WrappingLabel)
 			return new TextCellEditorLocator((WrappingLabel)source.getFigure());
 		else if(source.getFigure() instanceof DecisionInputEditPart.LinkAndCornerBentWithTextFigure) {
@@ -816,25 +711,25 @@ public class UMLEditPartFactory implements EditPartFactory {
 	/**
 	 * @generated
 	 */
-	static private class CommentCellEditorLocator implements CellEditorLocator {
+	static private class MultilineCellEditorLocator implements CellEditorLocator {
 
 		/**
 		 * @generated
 		 */
-		private HTMLCornerBentFigure commentFigure;
+		private IMultilineEditableFigure multilineEditableFigure;
 
 		/**
 		 * @generated
 		 */
-		public CommentCellEditorLocator(HTMLCornerBentFigure commentFigure) {
-			this.commentFigure = commentFigure;
+		public MultilineCellEditorLocator(IMultilineEditableFigure figure) {
+			this.multilineEditableFigure = figure;
 		}
 
 		/**
 		 * @generated
 		 */
-		public HTMLCornerBentFigure getCommentFigure() {
-			return commentFigure;
+		public IMultilineEditableFigure getMultilineEditableFigure() {
+			return multilineEditableFigure;
 		}
 
 		/**
@@ -842,9 +737,11 @@ public class UMLEditPartFactory implements EditPartFactory {
 		 */
 		public void relocate(CellEditor celleditor) {
 			Text text = (Text)celleditor.getControl();
-			Rectangle rect = getCommentFigure().getBounds().getCopy();
-			getCommentFigure().translateToAbsolute(rect);
-			if(getCommentFigure().getText().length() > 0) {
+			Rectangle rect = getMultilineEditableFigure().getBounds().getCopy();
+			rect.x = getMultilineEditableFigure().getEditionLocation().x;
+			rect.y = getMultilineEditableFigure().getEditionLocation().y;
+			getMultilineEditableFigure().translateToAbsolute(rect);
+			if(getMultilineEditableFigure().getText().length() > 0) {
 				rect.setSize(new Dimension(text.computeSize(rect.width, SWT.DEFAULT)));
 			}
 			if(!rect.equals(new Rectangle(text.getBounds()))) {

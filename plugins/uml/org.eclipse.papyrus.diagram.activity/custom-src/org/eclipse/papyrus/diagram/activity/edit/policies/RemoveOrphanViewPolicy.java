@@ -21,6 +21,13 @@ import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityActivityPostCondi
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityActivityPreConditionsCompartmentEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityEditPart;
 import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityNameEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionActivityPartitionContentCompartmentEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeStructuredActivityNodeContentCompartmentEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionRegionStructuredActivityNodeContentCompartmentEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.LoopNodeStructuredActivityNodeContentCompartmentEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeStructuredActivityNodeContentCompartmentEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy;
 
 /**
@@ -31,7 +38,7 @@ import org.eclipse.papyrus.diagram.common.editpolicies.OrphanViewPolicy;
  */
 public class RemoveOrphanViewPolicy extends OrphanViewPolicy {
 
-	public int[] notOrphanNode = { ActivityNameEditPart.VISUAL_ID, ActionLocalPreconditionEditPart.VISUAL_ID, ActionLocalPostconditionEditPart.VISUAL_ID, ActivityEditPart.VISUAL_ID, ActivityActivityContentCompartmentEditPart.VISUAL_ID, ActivityActivityParametersCompartmentEditPart.VISUAL_ID, ActivityActivityPreConditionsCompartmentEditPart.VISUAL_ID, ActivityActivityPostConditionsCompartmentEditPart.VISUAL_ID };
+	public int[] notOrphanNode = { ActivityNameEditPart.VISUAL_ID, ActionLocalPreconditionEditPart.VISUAL_ID, ActionLocalPostconditionEditPart.VISUAL_ID, ActivityEditPart.VISUAL_ID, ActivityActivityContentCompartmentEditPart.VISUAL_ID, ActivityActivityParametersCompartmentEditPart.VISUAL_ID, ActivityActivityPreConditionsCompartmentEditPart.VISUAL_ID, ActivityActivityPostConditionsCompartmentEditPart.VISUAL_ID, ActivityPartitionActivityPartitionContentCompartmentEditPart.VISUAL_ID, InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart.VISUAL_ID, ConditionalNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID, ExpansionRegionStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID, LoopNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID, SequenceNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID, StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart.VISUAL_ID };
 
 	public RemoveOrphanViewPolicy() {
 		super();

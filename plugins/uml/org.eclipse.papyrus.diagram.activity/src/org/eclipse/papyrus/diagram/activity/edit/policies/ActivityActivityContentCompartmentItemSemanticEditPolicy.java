@@ -115,6 +115,9 @@ public class ActivityActivityContentCompartmentItemSemanticEditPolicy extends UM
 		if(UMLElementTypes.JoinNode_3041 == req.getElementType()) {
 			return getGEFWrapper(new JoinNodeCreateCommand(req));
 		}
+		if(UMLElementTypes.DataStoreNode_3078 == req.getElementType()) {
+			return getGEFWrapper(new DataStoreNodeCreateCommand(req));
+		}
 		if(UMLElementTypes.SendObjectAction_3042 == req.getElementType()) {
 			return getGEFWrapper(new SendObjectActionCreateCommand(req));
 		}
@@ -123,6 +126,9 @@ public class ActivityActivityContentCompartmentItemSemanticEditPolicy extends UM
 		}
 		if(UMLElementTypes.AcceptEventAction_3063 == req.getElementType()) {
 			return getGEFWrapper(new AcceptEventActionCreateCommand(req));
+		}
+		if(UMLElementTypes.ValueSpecificationAction_3076 == req.getElementType()) {
+			return getGEFWrapper(new ValueSpecificationActionCreateCommand(req));
 		}
 		if(UMLElementTypes.ConditionalNode_3069 == req.getElementType()) {
 			return getGEFWrapper(new ConditionalNodeCreateCommand(req));
@@ -144,12 +150,6 @@ public class ActivityActivityContentCompartmentItemSemanticEditPolicy extends UM
 		}
 		if(UMLElementTypes.InterruptibleActivityRegion_3068 == req.getElementType()) {
 			return getGEFWrapper(new InterruptibleActivityRegionCreateCommand(req));
-		}
-		if(UMLElementTypes.ValueSpecificationAction_3088 == req.getElementType()) {
-			return getGEFWrapper(new ValueSpecificationActionCreateCommand(req));
-		}
-		if(UMLElementTypes.DataStoreNode_3093 == req.getElementType()) {
-			return getGEFWrapper(new DataStoreNodeCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

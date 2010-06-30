@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 Atos Origin.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *   Atos Origin - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.activity.edit.policies;
 
 import java.util.ArrayList;
@@ -44,13 +31,37 @@ import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallOpActAsTargetEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ActionInputPinInCallOpActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActAsTargetEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.InputPinInCallOpActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.OutputPinInCallOpActEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallOpActAsTargetEditPart;
-import org.eclipse.papyrus.diagram.activity.edit.parts.ValuePinInCallOpActEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.AcceptEventActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ActivityPartitionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.CallBehaviorActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.CallOperationActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ConditionalNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DataStoreNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DecisionNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ExpansionRegionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.FlowFinalNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ForkNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InitialNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.InteractionConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.JoinNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.LoopNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.MergeNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.OpaqueActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.SendObjectActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.SendSignalActionEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.SequenceNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.StructuredActivityNodeEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.diagram.activity.edit.parts.ValueSpecificationActionEditPart;
 import org.eclipse.papyrus.diagram.activity.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.activity.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.diagram.activity.part.UMLVisualIDRegistry;
@@ -59,7 +70,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class CallOperationActionInIARCanonicalEditPolicy extends CanonicalEditPolicy {
+public class ActivityPartitionActivityPartitionContentCompartmentCanonicalEditPolicy extends CanonicalEditPolicy {
 
 	/**
 	 * @generated
@@ -73,9 +84,10 @@ public class CallOperationActionInIARCanonicalEditPolicy extends CanonicalEditPo
 	protected Set getFeaturesToSynchronize() {
 		if(myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getInvocationAction_Argument());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getCallAction_Result());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getCallOperationAction_Target());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getActivity_Node());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getAction_LocalPrecondition());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getAction_LocalPostcondition());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getActivity_Group());
 		}
 		return myFeaturesToSynchronize;
 	}
@@ -87,7 +99,7 @@ public class CallOperationActionInIARCanonicalEditPolicy extends CanonicalEditPo
 	protected List getSemanticChildrenList() {
 		View viewObject = (View)getHost().getModel();
 		LinkedList<EObject> result = new LinkedList<EObject>();
-		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getCallOperationAction_3084SemanticChildren(viewObject);
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getActivityPartitionActivityPartitionContentCompartment_7006SemanticChildren(viewObject);
 		for(UMLNodeDescriptor d : childDescriptors) {
 			result.add(d.getModelElement());
 		}
@@ -107,13 +119,37 @@ public class CallOperationActionInIARCanonicalEditPolicy extends CanonicalEditPo
 	private boolean isMyDiagramElement(View view) {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
 		switch(visualID) {
-		case ActionInputPinInCallOpActEditPart.VISUAL_ID:
-		case ValuePinInCallOpActEditPart.VISUAL_ID:
-		case InputPinInCallOpActEditPart.VISUAL_ID:
-		case OutputPinInCallOpActEditPart.VISUAL_ID:
-		case ValuePinInCallOpActAsTargetEditPart.VISUAL_ID:
-		case ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID:
-		case InputPinInCallOpActAsTargetEditPart.VISUAL_ID:
+		case InitialNodeEditPart.VISUAL_ID:
+		case ActivityFinalNodeEditPart.VISUAL_ID:
+		case FlowFinalNodeEditPart.VISUAL_ID:
+		case OpaqueActionEditPart.VISUAL_ID:
+		case CallBehaviorActionEditPart.VISUAL_ID:
+		case CallOperationActionEditPart.VISUAL_ID:
+		case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
+		case DurationConstraintAsLocalPostcondEditPart.VISUAL_ID:
+		case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
+		case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
+		case InteractionConstraintAsLocalPrecondEditPart.VISUAL_ID:
+		case InteractionConstraintAsLocalPostcondEditPart.VISUAL_ID:
+		case IntervalConstraintAsLocalPrecondEditPart.VISUAL_ID:
+		case IntervalConstraintAsLocalPostcondEditPart.VISUAL_ID:
+		case ConstraintAsLocalPrecondEditPart.VISUAL_ID:
+		case ConstraintAsLocalPostcondEditPart.VISUAL_ID:
+		case DecisionNodeEditPart.VISUAL_ID:
+		case MergeNodeEditPart.VISUAL_ID:
+		case ForkNodeEditPart.VISUAL_ID:
+		case JoinNodeEditPart.VISUAL_ID:
+		case DataStoreNodeEditPart.VISUAL_ID:
+		case SendObjectActionEditPart.VISUAL_ID:
+		case SendSignalActionEditPart.VISUAL_ID:
+		case AcceptEventActionEditPart.VISUAL_ID:
+		case ValueSpecificationActionEditPart.VISUAL_ID:
+		case ConditionalNodeEditPart.VISUAL_ID:
+		case ExpansionRegionEditPart.VISUAL_ID:
+		case LoopNodeEditPart.VISUAL_ID:
+		case SequenceNodeEditPart.VISUAL_ID:
+		case StructuredActivityNodeEditPart.VISUAL_ID:
+		case ActivityPartitionEditPart.VISUAL_ID:
 			return true;
 		}
 		return false;
@@ -127,7 +163,7 @@ public class CallOperationActionInIARCanonicalEditPolicy extends CanonicalEditPo
 			return;
 		}
 		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
-		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getCallOperationAction_3084SemanticChildren((View)getHost().getModel());
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater.getActivityPartitionActivityPartitionContentCompartment_7006SemanticChildren((View)getHost().getModel());
 		LinkedList<View> orphaned = new LinkedList<View>();
 		// we care to check only views we recognize as ours
 		LinkedList<View> knownViewChildren = new LinkedList<View>();
