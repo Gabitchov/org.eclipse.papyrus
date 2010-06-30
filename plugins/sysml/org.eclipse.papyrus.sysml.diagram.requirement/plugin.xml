@@ -222,7 +222,7 @@
             name="Requirement Diagram">
       </page>
       <page
-            category="org.eclipse.papyrus.sysml.diagrams.requirement.preferences"
+            category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
             class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.DiagramPrintingPreferencePage"
             id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.DiagramPrintingPreferencePage"
             name="Printing">
