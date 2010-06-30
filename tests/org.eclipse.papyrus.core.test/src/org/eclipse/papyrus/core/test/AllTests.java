@@ -16,6 +16,13 @@ package org.eclipse.papyrus.core.test;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
+import org.eclipse.papyrus.core.test.testModel1.Strategy0TestModel1;
+import org.eclipse.papyrus.core.test.testModel1.Strategy1TestModel1;
+import org.eclipse.papyrus.core.test.testModel1.Strategy2TestModel1;
+import org.eclipse.papyrus.core.test.testModel2.Strategy0TestModel2;
+import org.eclipse.papyrus.core.test.testModel2.Strategy1TestModel2;
+import org.eclipse.papyrus.core.test.testModel2.Strategy2TestModel2;
+
 
 public class AllTests {
 	
@@ -23,8 +30,15 @@ public class AllTests {
     {
         TestSuite suite = new TestSuite("Test for org.eclipse.papyrus.core");
         //$JUnit-BEGIN$
-        suite.addTestSuite(LoadAllStrategyTestModel1.class);
-        suite.addTestSuite(LoadAllStrategyTestModel2.class);
+        // Test suite for TestModel1
+        suite.addTestSuite(Strategy0TestModel1.class);
+        suite.addTestSuite(Strategy1TestModel1.class);
+        suite.addTestSuite(Strategy2TestModel1.class);
+        
+        // Test suite for TestModel2
+        suite.addTestSuite(Strategy0TestModel2.class);
+        suite.addTestSuite(Strategy1TestModel2.class);
+        suite.addTestSuite(Strategy2TestModel2.class);
         //$JUnit-END$
         return suite;
     }

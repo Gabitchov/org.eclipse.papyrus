@@ -11,7 +11,7 @@
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.core.test;
+package org.eclipse.papyrus.core.test.testModel1;
 
 import java.net.URL;
 
@@ -30,66 +30,97 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.core.resourceloading.OnDemandLoadingModelSetServiceFactory;
 import org.eclipse.papyrus.core.resourceloading.preferences.StrategyChooser;
+import org.eclipse.papyrus.core.test.Activator;
 import org.eclipse.papyrus.resource.ModelSet;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Type;
+
 
 /**
- * Test the strategy with id 2 = Load the additional resources (profile and pathmap) and the needed controlled resources
+ * Abstract class to test all the strategies with TestModel1
  * - Check that all the controlled resources are loaded
  * - Check that all the needed profiles (resource and pathmap) are loaded
+ * - Check that all references to controlled resource are resolved
  * 
  * @author eperico
- *
+ * 
  */
-public class LoadAllStrategyTestModel1 extends TestCase {
+public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
 
 	public static final String RESOURCE_URI = "org.eclipse.papyrus.core.test/resources/TestModel1/";
 
-	private ModelSet modelSet;
+	private static final String INITIAL_PATH = "resources/TestModel1/";
+
+	private String[] resources = new String[]{ "model1", "Package0", "Package1" };
+
+	private String[] extensions = new String[]{ ".di", ".notation", ".uml" };
+
+	protected ModelSet modelSet;
 
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		// Load the additional resources (profile and pathmap) and the needed controlled resources
-		StrategyChooser.setCurrentStrategy(2);
-
+		StrategyChooser.setCurrentStrategy(getStrategy());
 		// first we need to create the test project from the plugin to the workspace test platform
+		IProject project = copyTestModelToThePlatform();
+		modelSet = (ModelSet)new OnDemandLoadingModelSetServiceFactory().createServiceInstance();
+		if(project != null) {
+			IFile modelFile = project.getFile(INITIAL_PATH + "model1.di");
+			modelSet.loadModels(modelFile);
+		}
+	}
+
+	/**
+	 * Copy test model from the test plugin to the platform where the tests are executed
+	 * 
+	 * @return the project in the runtime platform
+	 * @throws Exception
+	 */
+	private IProject copyTestModelToThePlatform() throws Exception {
 		IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject("org.eclipse.papyrus.core.test");
 		IProgressMonitor monitor = new NullProgressMonitor();
-		String[] resources = new String[] {"resources/TestModel1/model1.", "resources/TestModel1/Package0.", "resources/TestModel1/Package1."};
-		String[] extensions = new String[]{ "di", "notation", "uml" };
+
 		if(!project.exists()) {
 			project.create(monitor);
 			project.open(monitor);
-			for (String res : resources) {
+			for(String res : resources) {
 				for(String s : extensions) {
-					IFile file = project.getFile(res + s);
+					IFile file = project.getFile(INITIAL_PATH + res + s);
+					// link all the models resources
 					if(!file.exists()) {
 						createFolder(project, "resources/");
-						createFolder(project, "resources/TestModel1/");
-						URL url = FileLocator.find(Activator.getDefault().getBundle(), new Path(res + s), null);
+						createFolder(project, INITIAL_PATH);
+						URL url = FileLocator.find(Activator.getDefault().getBundle(), new Path(INITIAL_PATH + res + s), null);
 						URL newFile = FileLocator.resolve(url);
 						file.createLink(newFile.toURI(), IResource.REPLACE, monitor);
 					}
-				}				
+				}
 			}
-			String profilePath = "resources/TestModel1/MyProfile.uml";
+			// link the profile
+			String profilePath = INITIAL_PATH + "MyProfile.uml";
 			IFile file = project.getFile(profilePath);
 			if(!file.exists()) {
 				URL url = FileLocator.find(Activator.getDefault().getBundle(), new Path(profilePath), null);
 				URL newFile = FileLocator.resolve(url);
-				file.createLink(newFile.toURI(), IResource.REPLACE, monitor);				
+				file.createLink(newFile.toURI(), IResource.REPLACE, monitor);
 			}
 		}
 		project.refreshLocal(IResource.DEPTH_INFINITE, monitor);
-		IFile modelFile = project.getFile("resources/TestModel1/model1.di");
-		modelSet = (ModelSet)new OnDemandLoadingModelSetServiceFactory().createServiceInstance();
-		modelSet.loadModels(modelFile);
+		return project;
 	}
 
+	/**
+	 * Gets the current resource loading strategy.
+	 * 
+	 * @return the strategy
+	 */
+	public abstract int getStrategy();
 
 	/**
 	 * Gets objects of controlled resources.
@@ -102,15 +133,40 @@ public class LoadAllStrategyTestModel1 extends TestCase {
 		// level 0
 		URI uriClass0 = URI.createPlatformResourceURI(RESOURCE_URI + "model1.uml#_SEFk0H04Ed-RG-XtCG9Nmw", false);
 		EObject eObject = modelSet.getEObject(uriClass0, true);
-		assertNotNull("Load object of the current resource: ", eObject);
+		assertTestGetObjectOfControlledResource("Load object of the current resource: ", eObject, uriClass0);
 		// level 1
 		URI uriClass1 = URI.createPlatformResourceURI(RESOURCE_URI + "Package0.uml#_nQhGUH04Ed-RG-XtCG9Nmw", false);
 		EObject eObject2 = modelSet.getEObject(uriClass1, true);
-		assertNotNull("Load object in a controlled resource at level 1", eObject2);
+		assertTestGetObjectOfControlledResource("Load object in a controlled resource at level 1", eObject2, uriClass1);
 		// level 2
 		URI uriClass2 = URI.createPlatformResourceURI(RESOURCE_URI + "Package1.uml#_sRCZ4H04Ed-RG-XtCG9Nmw", false);
 		EObject eObject3 = modelSet.getEObject(uriClass2, true);
-		assertNotNull("Load object in a controlled resource at level 2", eObject3);
+		assertTestGetObjectOfControlledResource("Load object in a controlled resource at level 2", eObject3, uriClass2);
+	}
+
+	private void assertTestGetObjectOfControlledResource(String message, Object object, URI uri) {
+		switch(getStrategy()) {
+		case 0:
+			// Load all the needed resources
+			assertNotNull(message, object);
+			break;
+		case 1:
+			// Load the additional resources (profile and pathmap). Controlled resources are not loaded
+			if(uri.toString().contains("model1")) {
+				// object in current resource
+				assertNotNull(message, object);
+			} else {
+				// object in controlled resource
+				assertNull(message, object);
+			}
+			break;
+		case 2:
+			// Load the additional resources (profile and pathmap) and the needed controlled resources
+			assertNotNull(message, object);
+			break;
+		default:
+			break;
+		}
 	}
 
 	/**
@@ -124,23 +180,49 @@ public class LoadAllStrategyTestModel1 extends TestCase {
 		// level 0
 		URI uriNewDiagram = URI.createPlatformResourceURI(RESOURCE_URI + "model1.notation#_QtEHgH04Ed-RG-XtCG9Nmw", false);
 		EObject newDiagram = modelSet.getEObject(uriNewDiagram, true);
-		assertNotNull("Load diagram in a controlled resource at level 2", newDiagram);
+		assertTestGetDiagramOfControlledResource("Load diagram in a controlled resource at level 2", newDiagram, uriNewDiagram);
 		// level 1
 		URI uriDiagram0 = URI.createPlatformResourceURI(RESOURCE_URI + "Package0.notation#_mvutcH04Ed-RG-XtCG9Nmw", false);
 		EObject diagram0 = modelSet.getEObject(uriDiagram0, true);
-		assertNotNull("Load diagram in a controlled resource at level 2", diagram0);
+		assertTestGetDiagramOfControlledResource("Load diagram in a controlled resource at level 2", diagram0, uriDiagram0);
 		// level 2
 		URI uriDiagram1 = URI.createPlatformResourceURI(RESOURCE_URI + "Package1.notation#_r1npMH04Ed-RG-XtCG9Nmw", false);
 		EObject diagram1 = modelSet.getEObject(uriDiagram1, true);
-		assertNotNull("Load diagram in a controlled resource at level 2", diagram1);
+		assertTestGetDiagramOfControlledResource("Load diagram in a controlled resource at level 2", diagram1, uriDiagram1);
+	}
+
+	private void assertTestGetDiagramOfControlledResource(String message, Object object, URI uri) {
+		switch(getStrategy()) {
+		case 0:
+			// Load all the needed resources
+			assertNotNull(message, object);
+			break;
+		case 1:
+			// Load the additional resources (profile and pathmap). Controlled resources are not loaded
+			if(uri.toString().contains("model1")) {
+				// object in current resource
+				assertNotNull(message, object);
+			} else {
+				// object in controlled resource
+				assertNull(message, object);
+			}
+			break;
+		case 2:
+			// Load the additional resources (profile and pathmap) and the needed controlled resources
+			assertNotNull(message, object);
+			break;
+		default:
+			break;
+		}
 	}
 
 	/**
-	 * Gets a needed profile resource from the local project 
+	 * Gets a needed profile resource from the local project
 	 */
 	public void testGetObjectOfProfileResource() {
 		URI uriPlatformProfile = URI.createPlatformResourceURI(RESOURCE_URI + "MyProfile.uml#_XkGiwB07Ed-QQ4mYkrb7Gg", false);
 		EObject platformProfile = modelSet.getEObject(uriPlatformProfile, true);
+		// profile must be loaded with all the strategies
 		assertNotNull("Load a platform profile resource", platformProfile);
 	}
 
@@ -150,21 +232,46 @@ public class LoadAllStrategyTestModel1 extends TestCase {
 	public void testGetObjectOfPathmapResource() {
 		URI uriPathmapProfile = URI.createURI("pathmap://UML_PROFILES/Ecore.profile.uml#_0");
 		EObject pathmapProfile = modelSet.getEObject(uriPathmapProfile, true);
+		// pathmap must be loaded with all the strategies
 		assertNotNull("Load a pathmap profile resource", pathmapProfile);
-
 	}
 
 	/**
-	 * Tests that all the needed resources are loaded
+	 * Gets a reference which has been moved to another resource after control action
+	 * - Property0 from Class01 is typed with Class2 in Package2
+	 * - Control Package2 from Package1 resource
+	 * - try to get the property type from model1 resource to check the reference update
 	 */
-	public void testResolveAll() {
-		int nbResources = modelSet.getResources().size();
-		EcoreUtil.resolveAll(modelSet);
-		assertEquals(nbResources, modelSet.getResources().size());
+	public void testGetDanglingReferenceFromAControlledResource() {
+		URI uriProperty0 = URI.createPlatformResourceURI(RESOURCE_URI + "model1.uml#_RHuPYIQsEd-SDs-So_GGkw", false);
+		EObject property0 = modelSet.getEObject(uriProperty0, true);
+		if(property0 instanceof Property) {
+			Type type = ((Property)property0).getType();
+			assertTestGetDanglingReferenceFromAControlledResource("Get type from controlled resource is resolved", type);
+		}
+	}
+
+	private void assertTestGetDanglingReferenceFromAControlledResource(String message, EObject eObject) {
+		switch(getStrategy()) {
+		case 0:
+			// Load all the needed resources
+			assertTrue(message, !eObject.eIsProxy());
+			break;
+		case 1:
+			// Load the additional resources (profile and pathmap). Controlled resources are not loaded
+			assertTrue(message, eObject.eIsProxy());
+			break;
+		case 2:
+			// Load the additional resources (profile and pathmap) and the needed controlled resources
+			assertTrue(message, !eObject.eIsProxy());
+			break;
+		default:
+			break;
+		}
 	}
 
 	/**
-	 * @see junit.framework.TestCase#tearDown()
+	 * {@inheritDoc}
 	 */
 	@Override
 	protected void tearDown() throws Exception {
@@ -175,12 +282,15 @@ public class LoadAllStrategyTestModel1 extends TestCase {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}		
+		}
 		super.tearDown();
 	}
 
 	/**
+	 * Creates the folder name in the specified project
+	 * 
 	 * @param project
+	 * @param name
 	 * @throws CoreException
 	 */
 	private void createFolder(IProject project, String name) throws CoreException {
@@ -190,5 +300,4 @@ public class LoadAllStrategyTestModel1 extends TestCase {
 		}
 		assert (parent.exists());
 	}
-
 }
