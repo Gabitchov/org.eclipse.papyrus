@@ -18,6 +18,9 @@
    <feature url="features/org.eclipse.papyrus.diagram.composite_${org.eclipse.papyrus.diagram.composite.version}.jar" id="org.eclipse.papyrus.diagram.composite" version="${org.eclipse.papyrus.diagram.composite.version}">
       <category name="Papyrus UML"/>
    </feature>
+   <feature url="features/org.eclipse.papyrus.diagram.communication_${org.eclipse.papyrus.diagram.communication.version}.jar" id="org.eclipse.papyrus.diagram.communication" version="${org.eclipse.papyrus.diagram.communication.version}">
+      <category name="Papyrus UML"/>
+   </feature>
    <feature url="features/org.eclipse.papyrus.diagram.profile_${org.eclipse.papyrus.diagram.profile.version}.jar" id="org.eclipse.papyrus.diagram.profile" version="${org.eclipse.papyrus.diagram.profile.version}">
       <category name="Papyrus UML"/>
    </feature>
