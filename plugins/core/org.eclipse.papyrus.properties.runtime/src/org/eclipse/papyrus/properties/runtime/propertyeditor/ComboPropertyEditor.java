@@ -153,8 +153,11 @@ public class ComboPropertyEditor extends AbstractPropertyEditor {
 	public IStatus init(IPropertyEditorDescriptor descriptor) {
 		setDescriptor(descriptor);
 		if(descriptor instanceof IBoundedValuesPropertyEditorDescriptor) {
-			for(Object object : ((IBoundedValuesPropertyEditorDescriptor)descriptor).getAvailableValues()) {
-				this.values.add(object.toString());
+			List<?> values = ((IBoundedValuesPropertyEditorDescriptor)descriptor).getAvailableValues();
+			if(values != null) {
+				for(Object object : values) {
+					this.values.add(object.toString());
+				}
 			}
 			return Status.OK_STATUS;
 		}
@@ -171,6 +174,9 @@ public class ComboPropertyEditor extends AbstractPropertyEditor {
 		}
 		if(valueToEdit instanceof String) {
 			String newValue = (String)valueToEdit;
+			if(values == null) {
+				return;
+			}
 			int index = values.indexOf(newValue);
 			if(index >= 0) {
 				combo.select(values.indexOf(newValue));
