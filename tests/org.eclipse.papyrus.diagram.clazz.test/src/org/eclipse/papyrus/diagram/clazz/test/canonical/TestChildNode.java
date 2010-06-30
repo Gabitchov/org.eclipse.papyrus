@@ -23,12 +23,9 @@ import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
-import org.eclipse.gef.requests.DropRequest;
 import org.eclipse.gef.requests.GroupRequest;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
@@ -36,12 +33,8 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.UmlClassDiagramForMultiEditor;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
-import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditor;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Element;
-import org.junit.Test;
 
 
 
@@ -170,7 +163,7 @@ public class TestChildNode extends AbstractPapyrusTestCase {
 		
 		
 		DropObjectsRequest dropObjectsRequest= new DropObjectsRequest();
-		ArrayList list = new ArrayList();
+		ArrayList<Element> list = new ArrayList<Element>();
 		list.add(getRootSemanticModel().getOwnedElements().get(0));
 		dropObjectsRequest.setObjects(list);
 		dropObjectsRequest.setLocation(new Point(20,20));
@@ -317,11 +310,15 @@ public class TestChildNode extends AbstractPapyrusTestCase {
 	 */
 	public void testToManageChildNode(IElementType type, IElementType containerType) {
 		testToCreateANode(type);
-		testViewDeletion(type);
-		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
+		// the node is still present
 		testDestroy(type);
+		// the node has been destroyed, the UML element also
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
+		// the node and the UML element are present
+		testViewDeletion(type);
+		// The node has been deleted, the uml element is still present
 		testDrop(type);
+		// the node and element are present
 		testChangeContainer(type, containerType);
 	}
 	

@@ -15,7 +15,6 @@ package org.eclipse.papyrus.diagram.clazz.test.canonical;
 
 import java.util.ArrayList;
 
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
@@ -23,23 +22,16 @@ import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
-import org.eclipse.gef.requests.DropRequest;
 import org.eclipse.gef.requests.GroupRequest;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.eclipse.papyrus.diagram.clazz.UmlClassDiagramForMultiEditor;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
-import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditor;
-import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
-import org.junit.Test;
+import org.eclipse.uml2.uml.Element;
 
 
 
@@ -135,7 +127,7 @@ public class TestTopNode extends AbstractPapyrusTestCase {
 		assertTrue(DESTROY_DELETION +TEST_THE_EXECUTION,getDiagramEditPart().getChildren().size()==0);
 		assertTrue(DESTROY_DELETION +TEST_THE_EXECUTION,getRootSemanticModel().getOwnedElements().size()==0);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
-		//assertTrue(DESTROY_DELETION +TEST_THE_UNDO,getDiagramEditPart().getChildren().size()==1);
+		assertTrue(DESTROY_DELETION +TEST_THE_UNDO,getDiagramEditPart().getChildren().size()==1);
 		assertTrue(DESTROY_DELETION +TEST_THE_UNDO,getRootSemanticModel().getOwnedElements().size()==1);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
 		assertTrue(DESTROY_DELETION +TEST_THE_REDO,getDiagramEditPart().getChildren().size()==0);
@@ -155,7 +147,7 @@ public class TestTopNode extends AbstractPapyrusTestCase {
 		
 		
 		DropObjectsRequest dropObjectsRequest= new DropObjectsRequest();
-		ArrayList list = new ArrayList();
+		ArrayList<Element> list = new ArrayList<Element>();
 		list.add(getRootSemanticModel().getOwnedElements().get(0));
 		dropObjectsRequest.setObjects(list);
 		dropObjectsRequest.setLocation(new Point(20,20));
@@ -262,10 +254,9 @@ public class TestTopNode extends AbstractPapyrusTestCase {
 	 */
 	public void testToManageTopNode(IElementType type, IElementType containerType) {
 		testToCreateANode(type);
-		testViewDeletion(type);
-		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		testDestroy(type);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
+		testViewDeletion(type);
 		testDrop(type);
 		testChangeContainer(type, containerType);
 	}

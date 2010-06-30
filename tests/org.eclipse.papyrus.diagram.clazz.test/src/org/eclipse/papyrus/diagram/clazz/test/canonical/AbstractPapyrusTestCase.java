@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.test.canonical;
 
+import java.io.ByteArrayInputStream;
+
 import junit.framework.TestCase;
 
 import org.eclipse.core.resources.IFile;
@@ -29,6 +31,7 @@ import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.diagram.clazz.CreateClassDiagramCommand;
 import org.eclipse.papyrus.diagram.clazz.UmlClassDiagramForMultiEditor;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditor;
+import org.eclipse.papyrus.diagram.common.commands.CreateUMLModelCommand;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.ui.IEditorDescriptor;
@@ -42,6 +45,7 @@ import org.eclipse.uml2.uml.Element;
 /**
  * The Class AbstractPapyrusTestCase.
  */
+@SuppressWarnings("deprecation")
 public abstract class AbstractPapyrusTestCase extends TestCase {
 
 
@@ -111,10 +115,10 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 	 */
 	
 	protected void tearDown() throws Exception {
-		diagramEditor.doSave(new NullProgressMonitor());
+		papyrusEditor.doSave(new NullProgressMonitor());
 		//diResourceSet.save( new NullProgressMonitor());
 		//diagramEditor.close(true);
-		diagramEditor=null;
+		papyrusEditor=null;
 		page.closeAllEditors(true);
 		project.delete(true, new NullProgressMonitor());
 		
@@ -149,8 +153,15 @@ public abstract class AbstractPapyrusTestCase extends TestCase {
 			if (!project.exists()) project.create(null);
 			if (!project.isOpen()) project.open(null);
 
+			if(file.exists()) {
+				file.delete(true, new NullProgressMonitor());
+			}
+			
 			if (!file.exists()) {
+				file.create(new ByteArrayInputStream(new byte[0]), true, new NullProgressMonitor());
 				diResourceSet.createsModels(file);
+				new CreateUMLModelCommand().createModel((DiResourceSet)this.diResourceSet);
+				// diResourceSet.createsModels(file);
 				ICreationCommand command= new CreateClassDiagramCommand();
 				command.createDiagram((DiResourceSet)diResourceSet, null, "ClazzDiagram");
 				diResourceSet.save( new NullProgressMonitor());

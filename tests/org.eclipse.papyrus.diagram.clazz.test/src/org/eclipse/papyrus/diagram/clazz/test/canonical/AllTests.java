@@ -23,7 +23,7 @@ import junit.framework.TestSuite;
 /**
  * All tests together.
  */
-public class AllTests {
+public class AllTests extends TestSuite {
 
 	/**
 	 * Suite.
@@ -35,8 +35,8 @@ public class AllTests {
 		//$JUnit-BEGIN$
 		
 		suite.addTestSuite(TestClassDiagramTopNode.class);
-		//suite.addTestSuite(TestClassDiagramChildNode.class);
-		//suite.addTestSuite(TestClassDiagramChildLabel.class);
+		suite.addTestSuite(TestClassDiagramChildNode.class);
+		suite.addTestSuite(TestClassDiagramChildLabel.class);
 		//$JUnit-END$
 		return suite;
 	}
