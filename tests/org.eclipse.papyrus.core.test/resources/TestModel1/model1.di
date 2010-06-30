@@ -21,7 +21,7 @@
           <children xmi:id="_mvutc304Ed-RG-XtCG9Nmw">
             <emfPageIdentifier href="Package0.notation#_mvutcH04Ed-RG-XtCG9Nmw"/>
           </children>
-          <children xmi:id="_r1npM304Ed-RG-XtCG9Nmw">
+          <children xmi:id="_sNYCgIQ2Ed-SDs-So_GGkw">
             <emfPageIdentifier href="Package1.notation#_r1npMH04Ed-RG-XtCG9Nmw"/>
           </children>
         </children>
@@ -36,4 +36,8 @@
     <children xmi:id="_86UgUH04Ed-RG-XtCG9Nmw" resourceURL="Package0.notation"/>
   </history:ControledResource>
   <history:ControledResource xmi:id="__bxZUH1MEd-sWfJzbji7dg"/>
+  <history:ControledResource xmi:id="_V5d9kIQgEd-jzeHkjcT5dg"/>
+  <history:ControledResource xmi:id="_MpBPcIQsEd-SDs-So_GGkw"/>
+  <history:ControledResource xmi:id="_dAlvQIQ2Ed-SDs-So_GGkw"/>
+  <history:ControledResource xmi:id="_qyL24IQ2Ed-SDs-So_GGkw"/>
 </xmi:XMI>

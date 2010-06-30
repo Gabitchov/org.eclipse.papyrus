@@ -24,9 +24,11 @@
   </di:SashWindowsMngr>
   <history:ControledResource xmi:id="__QYYwH04Ed-RG-XtCG9Nmw"/>
   <history:ControledResource xmi:id="_BUQVAH05Ed-RG-XtCG9Nmw" resourceURL="Package0.uml">
-    <children xmi:id="_BcTdwH05Ed-RG-XtCG9Nmw" resourceURL="Package1.uml"/>
+    <children xmi:id="_bEw7wIQ2Ed-SDs-So_GGkw" resourceURL="Package1.uml"/>
   </history:ControledResource>
   <history:ControledResource xmi:id="_BUQVAX05Ed-RG-XtCG9Nmw" resourceURL="Package0.notation">
-    <children xmi:id="_BcmYsH05Ed-RG-XtCG9Nmw" resourceURL="Package1.notation"/>
+    <children xmi:id="_bFWxoIQ2Ed-SDs-So_GGkw" resourceURL="Package1.notation"/>
   </history:ControledResource>
+  <history:ControledResource xmi:id="_ANHIYIQsEd-SDs-So_GGkw"/>
+  <history:ControledResource xmi:id="_ZVAOUIQ2Ed-SDs-So_GGkw"/>
 </xmi:XMI>
