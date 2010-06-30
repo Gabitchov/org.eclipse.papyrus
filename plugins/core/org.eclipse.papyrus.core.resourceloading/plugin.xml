@@ -13,15 +13,6 @@
             priority="5"
             startKind="startup">
       </serviceFactory>
-      <service
-            classname="org.eclipse.papyrus.core.resourceloading.ExampleService"
-            description="An example loading HistoryModel"
-            priority="1"
-            startKind="startup">
-         <dependsOn
-               serviceKeyRef="org.eclipse.papyrus.resource.ModelSet">
-         </dependsOn>
-      </service>
    </extension>
    <extension
          point="org.eclipse.papyrus.core.resourceloading.loadingStrategy">
