@@ -9,7 +9,7 @@
          <propertyCategory category="org.eclipse.papyrus"/>
       </propertyContributor>
    </extension>
-	<extension
+<extension
       point="org.eclipse.papyrus.properties.runtime.propertyViewProvider">
    <propertyViewProvider
          class="org.eclipse.papyrus.properties.tabbed.core.view.XMLPropertyTabViewProvider">
@@ -25,6 +25,24 @@
       </PropertyViewContribution>
    </propertyViewProvider>
 </extension>
+<!--
+<extension
+      point="org.eclipse.papyrus.properties.runtime.propertyViewProvider">
+   <propertyViewProvider
+         class="org.eclipse.papyrus.properties.tabbed.core.view.XMLPropertyTabViewProvider">
+      <Priority
+            name="Lowest">
+      </Priority>
+      <PropertyViewContribution
+            description="This is the advanced graphical view for uml tabbed properties"
+            id="propertyview.fulluml.sections"
+            icon="icons/tool.gif"
+            name="Full UML"
+            path="resources/uml.ecore-full.xml">
+      </PropertyViewContribution>
+   </propertyViewProvider>
+</extension>
+-->
 <extension
       point="org.eclipse.papyrus.properties.runtime.propertyViewProvider">
    <propertyViewProvider
