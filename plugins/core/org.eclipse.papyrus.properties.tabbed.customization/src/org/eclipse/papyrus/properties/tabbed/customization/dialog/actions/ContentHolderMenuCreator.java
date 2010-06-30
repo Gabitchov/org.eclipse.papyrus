@@ -27,7 +27,6 @@ import org.eclipse.papyrus.properties.runtime.view.IFragmentDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.PropertyViewService;
 import org.eclipse.papyrus.properties.runtime.view.constraints.ConstraintDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.constraints.IConstraintDescriptor;
-import org.eclipse.papyrus.properties.runtime.view.constraints.ObjectTypeConstraintDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.DynamicSectionDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.PropertyServiceUtil;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState;
@@ -83,18 +82,23 @@ public class ContentHolderMenuCreator extends AbstractMenuCreator {
 		manager.removeAll();
 		menu = manager.createContextMenu(parent);
 
-		Class<?> selectionClass = null;
-		final List<ConstraintDescriptorState> constraintDescriptorStates = getConstraintDescriptorStates(parent);
-		if(constraintDescriptorStates != null) {
-			for(ConstraintDescriptorState constraintDescriptorState : constraintDescriptorStates) {
-				IConstraintDescriptor descriptor = constraintDescriptorState.getDescriptor();
-				if(descriptor instanceof ObjectTypeConstraintDescriptor) { // check only class compatibility. Should also check the other constraints...
-					selectionClass = ((ObjectTypeConstraintDescriptor)descriptor).getElementClass();
-				}
-			}
-		}
-		final Class<?> finalSelectionClass = selectionClass;
-		SectionSetDescriptorState currentSectionSetDescriptorState = getCurrentSectionSetDescriptorState(parent);
+		//		Class<?> selectionClass = get;
+		//		final List<ConstraintDescriptorState> constraintDescriptorStates = getConstraintDescriptorStates(parent);
+		//		if(constraintDescriptorStates != null) {
+		//			for(ConstraintDescriptorState constraintDescriptorState : constraintDescriptorStates) {
+		//				IConstraintDescriptor descriptor = constraintDescriptorState.getDescriptor();
+		//				if(descriptor instanceof ObjectTypeConstraintDescriptor) { // check only class compatibility. Should also check the other constraints...
+		//					selectionClass = ((ObjectTypeConstraintDescriptor)descriptor).getElementClass();
+		//				}
+		//			}
+		//		}
+		//		final Class<?> finalSelectionClass = selectionClass;
+		//		SectionSetDescriptorState currentSectionSetDescriptorState = getCurrentSectionSetDescriptorState(parent);
+		//		if(currentSectionSetDescriptorState == null) {
+		//			return menu;
+		//		}
+
+		SectionSetDescriptorState currentSectionSetDescriptorState = getSectionSetDescriptorState();
 		if(currentSectionSetDescriptorState == null) {
 			return menu;
 		}
@@ -110,7 +114,7 @@ public class ContentHolderMenuCreator extends AbstractMenuCreator {
 			@Override
 			public void run() {
 				// should add a section here, using a new Section and pop-up the dialog on the section to create
-				DynamicSectionDescriptor descriptor = new DynamicSectionDescriptor(getNewSectionId(finalSelectionClass, selectionSize), getDefaultTabId(), new ArrayList<IConstraintDescriptor>(), 1, DynamicSectionDescriptor.SEMANTIC_RESOLVER, new ArrayList<String>(), null, new ArrayList<IFragmentDescriptor>());
+				DynamicSectionDescriptor descriptor = new DynamicSectionDescriptor(getNewSectionId(getCurrentMetaclass(), getCurrentStereotype(), selectionSize), getDefaultTabId(), new ArrayList<IConstraintDescriptor>(), 1, DynamicSectionDescriptor.SEMANTIC_RESOLVER, new ArrayList<String>(), null, new ArrayList<IFragmentDescriptor>());
 				SectionDescriptorState sectionDescriptorState = new SectionDescriptorState(descriptor, false);
 				contentHolder.getSectionSetDescriptorState().addSectionDescriptorState(sectionDescriptorState);
 			}
@@ -153,8 +157,8 @@ public class ContentHolderMenuCreator extends AbstractMenuCreator {
 	 * 
 	 * @return the new Id for the section
 	 */
-	protected String getNewSectionId(Class<?> metaclass, int selectionSize) {
-		for(int i = 0; i < 100; i++) { // no need to go to more than 100, because 100 is already a very big number of sections
+	protected String getNewSectionId(EClassifier classifier, Stereotype stereotype, int selectionSize) {
+		for(int i = 0; i < 1000; i++) { // no need to go to more than 1000, because 1000 is already a very big number of sections
 			boolean found = false; // indicates if the id has been found in already sections or not
 
 			StringBuffer buffer = new StringBuffer();
@@ -168,8 +172,10 @@ public class ContentHolderMenuCreator extends AbstractMenuCreator {
 			}
 			buffer.append("_");
 
-			if(metaclass != null && metaclass.getSimpleName() != null) {
-				buffer.append(metaclass.getSimpleName());
+			if(classifier != null && classifier.getInstanceClass().getSimpleName() != null) {
+				buffer.append(classifier.getInstanceClass().getSimpleName());
+			} else if(stereotype != null && stereotype.getQualifiedName() != null) {
+				buffer.append(stereotype.getQualifiedName());
 			} else {
 				buffer.append("NoName");
 			}
