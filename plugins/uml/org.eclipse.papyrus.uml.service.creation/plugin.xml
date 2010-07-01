@@ -1389,8 +1389,9 @@
 	<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
 		<!-- Context declaration -->
 		<clientContext id="org.eclipse.papyrus.uml.service.creation.TypeContext">
-			<enablement>
-			</enablement>
+     <matcher
+           class="org.eclipse.papyrus.uml.service.creation.matcher.NoContextEnablementMatcher">
+     </matcher>
 		</clientContext>
 
 		<!-- Bindings declaration -->
