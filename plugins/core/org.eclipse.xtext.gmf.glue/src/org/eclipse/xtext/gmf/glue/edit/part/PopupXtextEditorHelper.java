@@ -254,8 +254,12 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 					if (!isDocumentHasErrors(xtextDocument)) {
 						int documentGrowth = xtextDocument.getLength() - initialDocumentSize ;
 						String newText = xtextDocument.get(editorOffset , initialEditorSize + documentGrowth) ;
+						//UpdateXtextResourceTextCommand.createUpdateCommand(xtextResource, editorOffset,
+						//		initialEditorSize, newText).execute(null, null);
+						
+						//TODO: test
 						UpdateXtextResourceTextCommand.createUpdateCommand(xtextResource, editorOffset,
-								initialEditorSize, newText).execute(null, null);
+								textToEdit.length(), newText).execute(null, null);
 
 						if (xtextResource.getAllContents().hasNext())
 							modelReconciler.reconcile(semanticElement, xtextResource.getAllContents().next()) ;
@@ -355,6 +359,8 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 			}
 		} ; 
 		page.addPartListener(this.addedPartListener);
+		
+		setEditorRegion() ;
 	}
 
 	private void registerKeyListener() {
@@ -419,7 +425,8 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 		} catch (BadLocationException exc) {
 			Activator.logError(exc);
 		}
-		int numLines = StringUtil.getNumLines(editString);
+		//int numLines = StringUtil.getNumLines(editString);
+		int numLines = StringUtil.getNumLines(textToEdit);
 		int numColumns = 0;
 		for (int i = 0 ; i<xtextDocument.getNumberOfLines();i++) {
 			try {
@@ -444,8 +451,8 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 		int fontHeightInPixel = fontData.getHeight();
 
 		// TODO: this needs some work...
-		int width = Math.max(fontHeightInPixel * (numColumns + 3), hostEditPart.getContentPane().getBounds().width);
-		int height = Math.max(fontHeightInPixel * (numLines + 4), MIN_EDITOR_HEIGHT);
+		int width = Math.max(fontHeightInPixel * (numColumns + 6), hostEditPart.getContentPane().getBounds().width);
+		int height = Math.max(fontHeightInPixel * (numLines + 6), MIN_EDITOR_HEIGHT);
 		
 		xtextEditorComposite.setBounds(bounds.x, bounds.y, width, height);
 	}
