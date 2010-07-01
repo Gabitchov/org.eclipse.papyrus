@@ -275,7 +275,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return types;
 		}
 		if(editPart instanceof ActivityCompositeCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(27);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(32);
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Parameter_3088);
 			types.add(UMLElementTypes.Property_3070);
@@ -303,10 +303,15 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
 			types.add(UMLElementTypes.Comment_3097);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 			return types;
 		}
 		if(editPart instanceof InteractionCompositeCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(27);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(32);
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Parameter_3088);
 			types.add(UMLElementTypes.Property_3070);
@@ -334,10 +339,15 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
 			types.add(UMLElementTypes.Comment_3097);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 			return types;
 		}
 		if(editPart instanceof ProtocolStateMachineCompositeCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(27);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(32);
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Parameter_3088);
 			types.add(UMLElementTypes.Property_3070);
@@ -365,10 +375,15 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
 			types.add(UMLElementTypes.Comment_3097);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 			return types;
 		}
 		if(editPart instanceof StateMachineCompositeCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(27);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(32);
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Parameter_3088);
 			types.add(UMLElementTypes.Property_3070);
@@ -396,10 +411,15 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
 			types.add(UMLElementTypes.Comment_3097);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 			return types;
 		}
 		if(editPart instanceof FunctionBehaviorCompositeCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(27);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(32);
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Parameter_3088);
 			types.add(UMLElementTypes.Property_3070);
@@ -427,10 +447,15 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
 			types.add(UMLElementTypes.Comment_3097);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 			return types;
 		}
 		if(editPart instanceof OpaqueBehaviorCompositeCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(27);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(32);
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Parameter_3088);
 			types.add(UMLElementTypes.Property_3070);
@@ -458,10 +483,15 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
 			types.add(UMLElementTypes.Comment_3097);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 			return types;
 		}
 		if(editPart instanceof ComponentCompositeCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(26);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
@@ -488,10 +518,15 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
 			types.add(UMLElementTypes.Comment_3097);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 			return types;
 		}
 		if(editPart instanceof DeviceCompositeCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(26);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
@@ -518,10 +553,15 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
 			types.add(UMLElementTypes.Comment_3097);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 			return types;
 		}
 		if(editPart instanceof ExecutionEnvironmentCompositeCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(26);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
@@ -548,10 +588,15 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
 			types.add(UMLElementTypes.Comment_3097);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 			return types;
 		}
 		if(editPart instanceof NodeCompositeCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(26);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
@@ -578,10 +623,15 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
 			types.add(UMLElementTypes.Comment_3097);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 			return types;
 		}
 		if(editPart instanceof ClassCompositeCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(26);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
@@ -608,18 +658,28 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
 			types.add(UMLElementTypes.Comment_3097);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 			return types;
 		}
 		if(editPart instanceof CollaborationCompositeCompartmentEditPartCN) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(4);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(9);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
 			types.add(UMLElementTypes.Comment_3097);
 			types.add(UMLElementTypes.ConnectableElement_3115);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 			return types;
 		}
 		if(editPart instanceof ActivityCompositeCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(27);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(32);
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Parameter_3088);
 			types.add(UMLElementTypes.Property_3070);
@@ -647,10 +707,15 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
 			types.add(UMLElementTypes.Comment_3097);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 			return types;
 		}
 		if(editPart instanceof InteractionCompositeCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(27);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(32);
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Parameter_3088);
 			types.add(UMLElementTypes.Property_3070);
@@ -678,10 +743,15 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
 			types.add(UMLElementTypes.Comment_3097);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 			return types;
 		}
 		if(editPart instanceof ProtocolStateMachineCompositeCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(27);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(32);
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Parameter_3088);
 			types.add(UMLElementTypes.Property_3070);
@@ -709,10 +779,15 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
 			types.add(UMLElementTypes.Comment_3097);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 			return types;
 		}
 		if(editPart instanceof StateMachineCompositeCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(27);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(32);
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Parameter_3088);
 			types.add(UMLElementTypes.Property_3070);
@@ -740,10 +815,15 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
 			types.add(UMLElementTypes.Comment_3097);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 			return types;
 		}
 		if(editPart instanceof FunctionBehaviorCompositeCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(27);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(32);
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Parameter_3088);
 			types.add(UMLElementTypes.Property_3070);
@@ -771,10 +851,15 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
 			types.add(UMLElementTypes.Comment_3097);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 			return types;
 		}
 		if(editPart instanceof OpaqueBehaviorCompositeCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(27);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(32);
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Parameter_3088);
 			types.add(UMLElementTypes.Property_3070);
@@ -802,10 +887,15 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
 			types.add(UMLElementTypes.Comment_3097);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 			return types;
 		}
 		if(editPart instanceof ComponentCompositeCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(26);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
@@ -832,10 +922,15 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
 			types.add(UMLElementTypes.Comment_3097);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 			return types;
 		}
 		if(editPart instanceof DeviceCompositeCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(26);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
@@ -862,10 +957,15 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
 			types.add(UMLElementTypes.Comment_3097);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 			return types;
 		}
 		if(editPart instanceof ExecutionEnvironmentCompositeCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(26);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
@@ -892,10 +992,15 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
 			types.add(UMLElementTypes.Comment_3097);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 			return types;
 		}
 		if(editPart instanceof NodeCompositeCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(26);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
@@ -922,10 +1027,15 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
 			types.add(UMLElementTypes.Comment_3097);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 			return types;
 		}
 		if(editPart instanceof ClassCompositeCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(26);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(31);
 			types.add(UMLElementTypes.Port_3069);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
@@ -952,14 +1062,24 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
 			types.add(UMLElementTypes.Comment_3097);
+			types.add(UMLElementTypes.Constraint_3120);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
 			return types;
 		}
 		if(editPart instanceof CollaborationCompositeCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(4);
+			ArrayList<IElementType> types = new ArrayList<IElementType>(9);
 			types.add(UMLElementTypes.Property_3070);
 			types.add(UMLElementTypes.CollaborationUse_3071);
 			types.add(UMLElementTypes.Comment_3097);
 			types.add(UMLElementTypes.ConnectableElement_3115);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 			return types;
 		}
 		if(editPart instanceof PropertyPartCompartmentEditPartCN) {
@@ -1226,6 +1346,21 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof CommentEditPartCN) {
 			return ((CommentEditPartCN)sourceEditPart).getMARelTypesOnSource();
 		}
+		if(sourceEditPart instanceof DurationConstraintEditPartCN) {
+			return ((DurationConstraintEditPartCN)sourceEditPart).getMARelTypesOnSource();
+		}
+		if(sourceEditPart instanceof TimeConstraintEditPartCN) {
+			return ((TimeConstraintEditPartCN)sourceEditPart).getMARelTypesOnSource();
+		}
+		if(sourceEditPart instanceof IntervalConstraintEditPartCN) {
+			return ((IntervalConstraintEditPartCN)sourceEditPart).getMARelTypesOnSource();
+		}
+		if(sourceEditPart instanceof InteractionConstraintEditPartCN) {
+			return ((InteractionConstraintEditPartCN)sourceEditPart).getMARelTypesOnSource();
+		}
+		if(sourceEditPart instanceof ConstraintEditPartCN) {
+			return ((ConstraintEditPartCN)sourceEditPart).getMARelTypesOnSource();
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -1482,6 +1617,21 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(targetEditPart instanceof CommentEditPartCN) {
 			return ((CommentEditPartCN)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof DurationConstraintEditPartCN) {
+			return ((DurationConstraintEditPartCN)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof TimeConstraintEditPartCN) {
+			return ((TimeConstraintEditPartCN)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof IntervalConstraintEditPartCN) {
+			return ((IntervalConstraintEditPartCN)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof InteractionConstraintEditPartCN) {
+			return ((InteractionConstraintEditPartCN)targetEditPart).getMARelTypesOnTarget();
+		}
+		if(targetEditPart instanceof ConstraintEditPartCN) {
+			return ((ConstraintEditPartCN)targetEditPart).getMARelTypesOnTarget();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -1741,6 +1891,21 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(sourceEditPart instanceof CommentEditPartCN) {
 			return ((CommentEditPartCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
+		if(sourceEditPart instanceof DurationConstraintEditPartCN) {
+			return ((DurationConstraintEditPartCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if(sourceEditPart instanceof TimeConstraintEditPartCN) {
+			return ((TimeConstraintEditPartCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if(sourceEditPart instanceof IntervalConstraintEditPartCN) {
+			return ((IntervalConstraintEditPartCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if(sourceEditPart instanceof InteractionConstraintEditPartCN) {
+			return ((InteractionConstraintEditPartCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		if(sourceEditPart instanceof ConstraintEditPartCN) {
+			return ((ConstraintEditPartCN)sourceEditPart).getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -1998,6 +2163,21 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		if(targetEditPart instanceof CommentEditPartCN) {
 			return ((CommentEditPartCN)targetEditPart).getMATypesForSource(relationshipType);
 		}
+		if(targetEditPart instanceof DurationConstraintEditPartCN) {
+			return ((DurationConstraintEditPartCN)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof TimeConstraintEditPartCN) {
+			return ((TimeConstraintEditPartCN)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof IntervalConstraintEditPartCN) {
+			return ((IntervalConstraintEditPartCN)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof InteractionConstraintEditPartCN) {
+			return ((InteractionConstraintEditPartCN)targetEditPart).getMATypesForSource(relationshipType);
+		}
+		if(targetEditPart instanceof ConstraintEditPartCN) {
+			return ((ConstraintEditPartCN)targetEditPart).getMATypesForSource(relationshipType);
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -2254,6 +2434,21 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 		}
 		if(sourceEditPart instanceof CommentEditPartCN) {
 			return ((CommentEditPartCN)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof DurationConstraintEditPartCN) {
+			return ((DurationConstraintEditPartCN)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof TimeConstraintEditPartCN) {
+			return ((TimeConstraintEditPartCN)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof IntervalConstraintEditPartCN) {
+			return ((IntervalConstraintEditPartCN)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof InteractionConstraintEditPartCN) {
+			return ((InteractionConstraintEditPartCN)sourceEditPart).getMATypesForTarget(relationshipType);
+		}
+		if(sourceEditPart instanceof ConstraintEditPartCN) {
+			return ((ConstraintEditPartCN)sourceEditPart).getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
 	}

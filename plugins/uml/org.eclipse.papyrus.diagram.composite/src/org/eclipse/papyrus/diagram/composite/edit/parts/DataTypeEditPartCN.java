@@ -603,6 +603,21 @@ NamedElementEditPart {
 		if(targetEditPart instanceof UseCaseEditPartCN) {
 			types.add(UMLElementTypes.ComponentRealization_4004);
 		}
+		if(targetEditPart instanceof DurationConstraintEditPartCN) {
+			types.add(UMLElementTypes.ComponentRealization_4004);
+		}
+		if(targetEditPart instanceof TimeConstraintEditPartCN) {
+			types.add(UMLElementTypes.ComponentRealization_4004);
+		}
+		if(targetEditPart instanceof IntervalConstraintEditPartCN) {
+			types.add(UMLElementTypes.ComponentRealization_4004);
+		}
+		if(targetEditPart instanceof InteractionConstraintEditPartCN) {
+			types.add(UMLElementTypes.ComponentRealization_4004);
+		}
+		if(targetEditPart instanceof ConstraintEditPartCN) {
+			types.add(UMLElementTypes.ComponentRealization_4004);
+		}
 		if(targetEditPart instanceof ActivityCompositeEditPart) {
 			types.add(UMLElementTypes.InterfaceRealization_4005);
 		}
@@ -846,6 +861,21 @@ NamedElementEditPart {
 		if(targetEditPart instanceof UseCaseEditPartCN) {
 			types.add(UMLElementTypes.InterfaceRealization_4005);
 		}
+		if(targetEditPart instanceof DurationConstraintEditPartCN) {
+			types.add(UMLElementTypes.InterfaceRealization_4005);
+		}
+		if(targetEditPart instanceof TimeConstraintEditPartCN) {
+			types.add(UMLElementTypes.InterfaceRealization_4005);
+		}
+		if(targetEditPart instanceof IntervalConstraintEditPartCN) {
+			types.add(UMLElementTypes.InterfaceRealization_4005);
+		}
+		if(targetEditPart instanceof InteractionConstraintEditPartCN) {
+			types.add(UMLElementTypes.InterfaceRealization_4005);
+		}
+		if(targetEditPart instanceof ConstraintEditPartCN) {
+			types.add(UMLElementTypes.InterfaceRealization_4005);
+		}
 		if(targetEditPart instanceof ActivityCompositeEditPart) {
 			types.add(UMLElementTypes.Substitution_4011);
 		}
@@ -1089,6 +1119,21 @@ NamedElementEditPart {
 		if(targetEditPart instanceof UseCaseEditPartCN) {
 			types.add(UMLElementTypes.Substitution_4011);
 		}
+		if(targetEditPart instanceof DurationConstraintEditPartCN) {
+			types.add(UMLElementTypes.Substitution_4011);
+		}
+		if(targetEditPart instanceof TimeConstraintEditPartCN) {
+			types.add(UMLElementTypes.Substitution_4011);
+		}
+		if(targetEditPart instanceof IntervalConstraintEditPartCN) {
+			types.add(UMLElementTypes.Substitution_4011);
+		}
+		if(targetEditPart instanceof InteractionConstraintEditPartCN) {
+			types.add(UMLElementTypes.Substitution_4011);
+		}
+		if(targetEditPart instanceof ConstraintEditPartCN) {
+			types.add(UMLElementTypes.Substitution_4011);
+		}
 		if(targetEditPart instanceof ActivityCompositeEditPart) {
 			types.add(UMLElementTypes.Realization_4006);
 		}
@@ -1332,6 +1377,21 @@ NamedElementEditPart {
 		if(targetEditPart instanceof UseCaseEditPartCN) {
 			types.add(UMLElementTypes.Realization_4006);
 		}
+		if(targetEditPart instanceof DurationConstraintEditPartCN) {
+			types.add(UMLElementTypes.Realization_4006);
+		}
+		if(targetEditPart instanceof TimeConstraintEditPartCN) {
+			types.add(UMLElementTypes.Realization_4006);
+		}
+		if(targetEditPart instanceof IntervalConstraintEditPartCN) {
+			types.add(UMLElementTypes.Realization_4006);
+		}
+		if(targetEditPart instanceof InteractionConstraintEditPartCN) {
+			types.add(UMLElementTypes.Realization_4006);
+		}
+		if(targetEditPart instanceof ConstraintEditPartCN) {
+			types.add(UMLElementTypes.Realization_4006);
+		}
 		if(targetEditPart instanceof ActivityCompositeEditPart) {
 			types.add(UMLElementTypes.Manifestation_4012);
 		}
@@ -1575,6 +1635,21 @@ NamedElementEditPart {
 		if(targetEditPart instanceof UseCaseEditPartCN) {
 			types.add(UMLElementTypes.Manifestation_4012);
 		}
+		if(targetEditPart instanceof DurationConstraintEditPartCN) {
+			types.add(UMLElementTypes.Manifestation_4012);
+		}
+		if(targetEditPart instanceof TimeConstraintEditPartCN) {
+			types.add(UMLElementTypes.Manifestation_4012);
+		}
+		if(targetEditPart instanceof IntervalConstraintEditPartCN) {
+			types.add(UMLElementTypes.Manifestation_4012);
+		}
+		if(targetEditPart instanceof InteractionConstraintEditPartCN) {
+			types.add(UMLElementTypes.Manifestation_4012);
+		}
+		if(targetEditPart instanceof ConstraintEditPartCN) {
+			types.add(UMLElementTypes.Manifestation_4012);
+		}
 		if(targetEditPart instanceof ActivityCompositeEditPart) {
 			types.add(UMLElementTypes.Abstraction_4007);
 		}
@@ -1818,6 +1893,21 @@ NamedElementEditPart {
 		if(targetEditPart instanceof UseCaseEditPartCN) {
 			types.add(UMLElementTypes.Abstraction_4007);
 		}
+		if(targetEditPart instanceof DurationConstraintEditPartCN) {
+			types.add(UMLElementTypes.Abstraction_4007);
+		}
+		if(targetEditPart instanceof TimeConstraintEditPartCN) {
+			types.add(UMLElementTypes.Abstraction_4007);
+		}
+		if(targetEditPart instanceof IntervalConstraintEditPartCN) {
+			types.add(UMLElementTypes.Abstraction_4007);
+		}
+		if(targetEditPart instanceof InteractionConstraintEditPartCN) {
+			types.add(UMLElementTypes.Abstraction_4007);
+		}
+		if(targetEditPart instanceof ConstraintEditPartCN) {
+			types.add(UMLElementTypes.Abstraction_4007);
+		}
 		if(targetEditPart instanceof ActivityCompositeEditPart) {
 			types.add(UMLElementTypes.Usage_4008);
 		}
@@ -2061,6 +2151,21 @@ NamedElementEditPart {
 		if(targetEditPart instanceof UseCaseEditPartCN) {
 			types.add(UMLElementTypes.Usage_4008);
 		}
+		if(targetEditPart instanceof DurationConstraintEditPartCN) {
+			types.add(UMLElementTypes.Usage_4008);
+		}
+		if(targetEditPart instanceof TimeConstraintEditPartCN) {
+			types.add(UMLElementTypes.Usage_4008);
+		}
+		if(targetEditPart instanceof IntervalConstraintEditPartCN) {
+			types.add(UMLElementTypes.Usage_4008);
+		}
+		if(targetEditPart instanceof InteractionConstraintEditPartCN) {
+			types.add(UMLElementTypes.Usage_4008);
+		}
+		if(targetEditPart instanceof ConstraintEditPartCN) {
+			types.add(UMLElementTypes.Usage_4008);
+		}
 		if(targetEditPart instanceof ActivityCompositeEditPart) {
 			types.add(UMLElementTypes.Deployment_4009);
 		}
@@ -2304,6 +2409,21 @@ NamedElementEditPart {
 		if(targetEditPart instanceof UseCaseEditPartCN) {
 			types.add(UMLElementTypes.Deployment_4009);
 		}
+		if(targetEditPart instanceof DurationConstraintEditPartCN) {
+			types.add(UMLElementTypes.Deployment_4009);
+		}
+		if(targetEditPart instanceof TimeConstraintEditPartCN) {
+			types.add(UMLElementTypes.Deployment_4009);
+		}
+		if(targetEditPart instanceof IntervalConstraintEditPartCN) {
+			types.add(UMLElementTypes.Deployment_4009);
+		}
+		if(targetEditPart instanceof InteractionConstraintEditPartCN) {
+			types.add(UMLElementTypes.Deployment_4009);
+		}
+		if(targetEditPart instanceof ConstraintEditPartCN) {
+			types.add(UMLElementTypes.Deployment_4009);
+		}
 		if(targetEditPart instanceof ActivityCompositeEditPart) {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
@@ -2547,6 +2667,21 @@ NamedElementEditPart {
 		if(targetEditPart instanceof UseCaseEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4017);
 		}
+		if(targetEditPart instanceof DurationConstraintEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4017);
+		}
+		if(targetEditPart instanceof TimeConstraintEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4017);
+		}
+		if(targetEditPart instanceof IntervalConstraintEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4017);
+		}
+		if(targetEditPart instanceof InteractionConstraintEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4017);
+		}
+		if(targetEditPart instanceof ConstraintEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4017);
+		}
 		if(targetEditPart instanceof ActivityCompositeEditPart) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
@@ -2790,6 +2925,21 @@ NamedElementEditPart {
 		if(targetEditPart instanceof UseCaseEditPartCN) {
 			types.add(UMLElementTypes.Dependency_4010);
 		}
+		if(targetEditPart instanceof DurationConstraintEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
+		if(targetEditPart instanceof TimeConstraintEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
+		if(targetEditPart instanceof IntervalConstraintEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
+		if(targetEditPart instanceof InteractionConstraintEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
+		if(targetEditPart instanceof ConstraintEditPartCN) {
+			types.add(UMLElementTypes.Dependency_4010);
+		}
 		if(targetEditPart instanceof ActivityCompositeEditPart) {
 			types.add(UMLElementTypes.Generalization_4015);
 		}
@@ -3166,6 +3316,21 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InformationFlow_4021);
 		}
 		if(targetEditPart instanceof UseCaseEditPartCN) {
+			types.add(UMLElementTypes.InformationFlow_4021);
+		}
+		if(targetEditPart instanceof DurationConstraintEditPartCN) {
+			types.add(UMLElementTypes.InformationFlow_4021);
+		}
+		if(targetEditPart instanceof TimeConstraintEditPartCN) {
+			types.add(UMLElementTypes.InformationFlow_4021);
+		}
+		if(targetEditPart instanceof IntervalConstraintEditPartCN) {
+			types.add(UMLElementTypes.InformationFlow_4021);
+		}
+		if(targetEditPart instanceof InteractionConstraintEditPartCN) {
+			types.add(UMLElementTypes.InformationFlow_4021);
+		}
+		if(targetEditPart instanceof ConstraintEditPartCN) {
 			types.add(UMLElementTypes.InformationFlow_4021);
 		}
 		return types;
@@ -3258,6 +3423,11 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InformationItem_3094);
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 		} else if(relationshipType == UMLElementTypes.InterfaceRealization_4005) {
 			types.add(UMLElementTypes.Activity_2060);
 			types.add(UMLElementTypes.Interaction_2061);
@@ -3340,6 +3510,11 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InformationItem_3094);
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 		} else if(relationshipType == UMLElementTypes.Substitution_4011) {
 			types.add(UMLElementTypes.Activity_2060);
 			types.add(UMLElementTypes.Interaction_2061);
@@ -3422,6 +3597,11 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InformationItem_3094);
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 		} else if(relationshipType == UMLElementTypes.Realization_4006) {
 			types.add(UMLElementTypes.Activity_2060);
 			types.add(UMLElementTypes.Interaction_2061);
@@ -3504,6 +3684,11 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InformationItem_3094);
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 		} else if(relationshipType == UMLElementTypes.Manifestation_4012) {
 			types.add(UMLElementTypes.Activity_2060);
 			types.add(UMLElementTypes.Interaction_2061);
@@ -3586,6 +3771,11 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InformationItem_3094);
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 		} else if(relationshipType == UMLElementTypes.Abstraction_4007) {
 			types.add(UMLElementTypes.Activity_2060);
 			types.add(UMLElementTypes.Interaction_2061);
@@ -3668,6 +3858,11 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InformationItem_3094);
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 		} else if(relationshipType == UMLElementTypes.Usage_4008) {
 			types.add(UMLElementTypes.Activity_2060);
 			types.add(UMLElementTypes.Interaction_2061);
@@ -3750,6 +3945,11 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InformationItem_3094);
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 		} else if(relationshipType == UMLElementTypes.Deployment_4009) {
 			types.add(UMLElementTypes.Activity_2060);
 			types.add(UMLElementTypes.Interaction_2061);
@@ -3832,6 +4032,11 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InformationItem_3094);
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 		} else if(relationshipType == UMLElementTypes.Dependency_4017) {
 			types.add(UMLElementTypes.Activity_2060);
 			types.add(UMLElementTypes.Interaction_2061);
@@ -3914,6 +4119,11 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InformationItem_3094);
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 		} else if(relationshipType == UMLElementTypes.Dependency_4010) {
 			types.add(UMLElementTypes.Activity_2060);
 			types.add(UMLElementTypes.Interaction_2061);
@@ -3996,6 +4206,11 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InformationItem_3094);
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 		} else if(relationshipType == UMLElementTypes.Generalization_4015) {
 			types.add(UMLElementTypes.Activity_2060);
 			types.add(UMLElementTypes.Interaction_2061);
@@ -4124,6 +4339,11 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InformationItem_3094);
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 		}
 		return types;
 	}
@@ -4167,6 +4387,11 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.IntervalConstraint_2112);
 			types.add(UMLElementTypes.InteractionConstraint_2113);
 			types.add(UMLElementTypes.Constraint_2114);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 		} else if(relationshipType == UMLElementTypes.ComponentRealization_4004) {
 			types.add(UMLElementTypes.Activity_2060);
 			types.add(UMLElementTypes.Interaction_2061);
@@ -4249,6 +4474,11 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InformationItem_3094);
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 		} else if(relationshipType == UMLElementTypes.InterfaceRealization_4005) {
 			types.add(UMLElementTypes.Activity_2060);
 			types.add(UMLElementTypes.Interaction_2061);
@@ -4331,6 +4561,11 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InformationItem_3094);
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 		} else if(relationshipType == UMLElementTypes.Substitution_4011) {
 			types.add(UMLElementTypes.Activity_2060);
 			types.add(UMLElementTypes.Interaction_2061);
@@ -4413,6 +4648,11 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InformationItem_3094);
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 		} else if(relationshipType == UMLElementTypes.Realization_4006) {
 			types.add(UMLElementTypes.Activity_2060);
 			types.add(UMLElementTypes.Interaction_2061);
@@ -4495,6 +4735,11 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InformationItem_3094);
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 		} else if(relationshipType == UMLElementTypes.Manifestation_4012) {
 			types.add(UMLElementTypes.Activity_2060);
 			types.add(UMLElementTypes.Interaction_2061);
@@ -4577,6 +4822,11 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InformationItem_3094);
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 		} else if(relationshipType == UMLElementTypes.Abstraction_4007) {
 			types.add(UMLElementTypes.Activity_2060);
 			types.add(UMLElementTypes.Interaction_2061);
@@ -4659,6 +4909,11 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InformationItem_3094);
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 		} else if(relationshipType == UMLElementTypes.Usage_4008) {
 			types.add(UMLElementTypes.Activity_2060);
 			types.add(UMLElementTypes.Interaction_2061);
@@ -4741,6 +4996,11 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InformationItem_3094);
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 		} else if(relationshipType == UMLElementTypes.Deployment_4009) {
 			types.add(UMLElementTypes.Activity_2060);
 			types.add(UMLElementTypes.Interaction_2061);
@@ -4823,6 +5083,11 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InformationItem_3094);
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 		} else if(relationshipType == UMLElementTypes.Dependency_4017) {
 			types.add(UMLElementTypes.Activity_2060);
 			types.add(UMLElementTypes.Interaction_2061);
@@ -4905,6 +5170,11 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InformationItem_3094);
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 		} else if(relationshipType == UMLElementTypes.Dependency_4010) {
 			types.add(UMLElementTypes.Activity_2060);
 			types.add(UMLElementTypes.Interaction_2061);
@@ -4987,6 +5257,11 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InformationItem_3094);
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 		} else if(relationshipType == UMLElementTypes.Generalization_4015) {
 			types.add(UMLElementTypes.Activity_2060);
 			types.add(UMLElementTypes.Interaction_2061);
@@ -5122,6 +5397,11 @@ NamedElementEditPart {
 			types.add(UMLElementTypes.InformationItem_3094);
 			types.add(UMLElementTypes.Signal_3095);
 			types.add(UMLElementTypes.UseCase_3096);
+			types.add(UMLElementTypes.DurationConstraint_3116);
+			types.add(UMLElementTypes.TimeConstraint_3117);
+			types.add(UMLElementTypes.IntervalConstraint_3118);
+			types.add(UMLElementTypes.InteractionConstraint_3119);
+			types.add(UMLElementTypes.Constraint_3120);
 		}
 		return types;
 	}

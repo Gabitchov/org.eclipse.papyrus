@@ -481,6 +481,31 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType DurationConstraint_3116 = getElementType("org.eclipse.papyrus.diagram.composite.DurationConstraint_3116"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType TimeConstraint_3117 = getElementType("org.eclipse.papyrus.diagram.composite.TimeConstraint_3117"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType IntervalConstraint_3118 = getElementType("org.eclipse.papyrus.diagram.composite.IntervalConstraint_3118"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InteractionConstraint_3119 = getElementType("org.eclipse.papyrus.diagram.composite.InteractionConstraint_3119"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Constraint_3120 = getElementType("org.eclipse.papyrus.diagram.composite.Constraint_3120"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType Property_3101 = getElementType("org.eclipse.papyrus.diagram.composite.Property_3101"); //$NON-NLS-1$
 
 	/**
@@ -1011,6 +1036,21 @@ public class UMLElementTypes {
 			elements.put(Comment_3097, UMLPackage.eINSTANCE.getComment());
 
 
+			elements.put(DurationConstraint_3116, UMLPackage.eINSTANCE.getDurationConstraint());
+
+
+			elements.put(TimeConstraint_3117, UMLPackage.eINSTANCE.getTimeConstraint());
+
+
+			elements.put(IntervalConstraint_3118, UMLPackage.eINSTANCE.getIntervalConstraint());
+
+
+			elements.put(InteractionConstraint_3119, UMLPackage.eINSTANCE.getInteractionConstraint());
+
+
+			elements.put(Constraint_3120, UMLPackage.eINSTANCE.getConstraint());
+
+
 			elements.put(Property_3101, UMLPackage.eINSTANCE.getProperty());
 
 
@@ -1207,6 +1247,11 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Signal_3095);
 			KNOWN_ELEMENT_TYPES.add(UseCase_3096);
 			KNOWN_ELEMENT_TYPES.add(Comment_3097);
+			KNOWN_ELEMENT_TYPES.add(DurationConstraint_3116);
+			KNOWN_ELEMENT_TYPES.add(TimeConstraint_3117);
+			KNOWN_ELEMENT_TYPES.add(IntervalConstraint_3118);
+			KNOWN_ELEMENT_TYPES.add(InteractionConstraint_3119);
+			KNOWN_ELEMENT_TYPES.add(Constraint_3120);
 			KNOWN_ELEMENT_TYPES.add(Property_3101);
 			KNOWN_ELEMENT_TYPES.add(Operation_3102);
 			KNOWN_ELEMENT_TYPES.add(Reception_3100);
@@ -1419,6 +1464,16 @@ public class UMLElementTypes {
 			return UseCase_3096;
 		case CommentEditPartCN.VISUAL_ID:
 			return Comment_3097;
+		case DurationConstraintEditPartCN.VISUAL_ID:
+			return DurationConstraint_3116;
+		case TimeConstraintEditPartCN.VISUAL_ID:
+			return TimeConstraint_3117;
+		case IntervalConstraintEditPartCN.VISUAL_ID:
+			return IntervalConstraint_3118;
+		case InteractionConstraintEditPartCN.VISUAL_ID:
+			return InteractionConstraint_3119;
+		case ConstraintEditPartCN.VISUAL_ID:
+			return Constraint_3120;
 		case PropertyEditPartCLN.VISUAL_ID:
 			return Property_3101;
 		case OperationEditPartCLN.VISUAL_ID:

@@ -87,8 +87,10 @@ import org.eclipse.uml2.uml.TimeEvent;
 import org.eclipse.uml2.uml.TimeExpression;
 import org.eclipse.uml2.uml.TimeInterval;
 import org.eclipse.uml2.uml.TimeObservation;
+import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.Usage;
 import org.eclipse.uml2.uml.UseCase;
+import org.eclipse.uml2.uml.ValueSpecification;
 
 /**
  * @generated
@@ -708,6 +710,8 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_DurationConstraint_2110(instance);
 			instance.setName((String)value_0);
+			Object value_1 = specification_DurationConstraint_2110(instance);
+			instance.setSpecification((ValueSpecification)value_1);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -720,6 +724,8 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_TimeConstraint_2111(instance);
 			instance.setName((String)value_0);
+			Object value_1 = specification_TimeConstraint_2111(instance);
+			instance.setSpecification((ValueSpecification)value_1);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -732,6 +738,8 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_IntervalConstraint_2112(instance);
 			instance.setName((String)value_0);
+			Object value_1 = specification_IntervalConstraint_2112(instance);
+			instance.setSpecification((ValueSpecification)value_1);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -744,6 +752,8 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_InteractionConstraint_2113(instance);
 			instance.setName((String)value_0);
+			Object value_1 = specification_InteractionConstraint_2113(instance);
+			instance.setSpecification((ValueSpecification)value_1);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -756,6 +766,8 @@ public class ElementInitializers {
 		try {
 			Object value_0 = name_Constraint_2114(instance);
 			instance.setName((String)value_0);
+			Object value_1 = specification_Constraint_2114(instance);
+			instance.setSpecification((ValueSpecification)value_1);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -1095,6 +1107,76 @@ public class ElementInitializers {
 		try {
 			Object value_0 = body_Comment_3097(instance);
 			instance.setBody((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_DurationConstraint_3116(DurationConstraint instance) {
+		try {
+			Object value_0 = name_DurationConstraint_3116(instance);
+			instance.setName((String)value_0);
+			Object value_1 = specification_DurationConstraint_3116(instance);
+			instance.setSpecification((ValueSpecification)value_1);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_TimeConstraint_3117(TimeConstraint instance) {
+		try {
+			Object value_0 = name_TimeConstraint_3117(instance);
+			instance.setName((String)value_0);
+			Object value_1 = specification_TimeConstraint_3117(instance);
+			instance.setSpecification((ValueSpecification)value_1);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_IntervalConstraint_3118(IntervalConstraint instance) {
+		try {
+			Object value_0 = name_IntervalConstraint_3118(instance);
+			instance.setName((String)value_0);
+			Object value_1 = specification_IntervalConstraint_3118(instance);
+			instance.setSpecification((ValueSpecification)value_1);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_InteractionConstraint_3119(InteractionConstraint instance) {
+		try {
+			Object value_0 = name_InteractionConstraint_3119(instance);
+			instance.setName((String)value_0);
+			Object value_1 = specification_InteractionConstraint_3119(instance);
+			instance.setSpecification((ValueSpecification)value_1);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_Constraint_3120(Constraint instance) {
+		try {
+			Object value_0 = name_Constraint_3120(instance);
+			instance.setName((String)value_0);
+			Object value_1 = specification_Constraint_3120(instance);
+			instance.setSpecification((ValueSpecification)value_1);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -1779,7 +1861,8 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String body_Comment_2109(Comment self) {
-		return self.getBody();
+		// Comment body init
+		return "";
 	}
 
 	/**
@@ -1792,8 +1875,28 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	private ValueSpecification specification_DurationConstraint_2110(DurationConstraint self) {
+		// Constraint specification init
+		LiteralString value = UMLFactory.eINSTANCE.createLiteralString();
+		value.setValue("");
+		return value;
+	}
+
+	/**
+	 * @generated
+	 */
 	private String name_TimeConstraint_2111(TimeConstraint self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private ValueSpecification specification_TimeConstraint_2111(TimeConstraint self) {
+		// Constraint specification init
+		LiteralString value = UMLFactory.eINSTANCE.createLiteralString();
+		value.setValue("");
+		return value;
 	}
 
 	/**
@@ -1806,6 +1909,16 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	private ValueSpecification specification_IntervalConstraint_2112(IntervalConstraint self) {
+		// Constraint specification init
+		LiteralString value = UMLFactory.eINSTANCE.createLiteralString();
+		value.setValue("");
+		return value;
+	}
+
+	/**
+	 * @generated
+	 */
 	private String name_InteractionConstraint_2113(InteractionConstraint self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
@@ -1813,8 +1926,28 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
+	private ValueSpecification specification_InteractionConstraint_2113(InteractionConstraint self) {
+		// Constraint specification init
+		LiteralString value = UMLFactory.eINSTANCE.createLiteralString();
+		value.setValue("");
+		return value;
+	}
+
+	/**
+	 * @generated
+	 */
 	private String name_Constraint_2114(Constraint self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private ValueSpecification specification_Constraint_2114(Constraint self) {
+		// Constraint specification init
+		LiteralString value = UMLFactory.eINSTANCE.createLiteralString();
+		value.setValue("");
+		return value;
 	}
 
 	/**
@@ -2018,7 +2151,93 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String body_Comment_3097(Comment self) {
-		return self.getBody();
+		// Comment body init
+		return "";
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_DurationConstraint_3116(DurationConstraint self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private ValueSpecification specification_DurationConstraint_3116(DurationConstraint self) {
+		// Constraint specification init
+		LiteralString value = UMLFactory.eINSTANCE.createLiteralString();
+		value.setValue("");
+		return value;
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_TimeConstraint_3117(TimeConstraint self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private ValueSpecification specification_TimeConstraint_3117(TimeConstraint self) {
+		// Constraint specification init
+		LiteralString value = UMLFactory.eINSTANCE.createLiteralString();
+		value.setValue("");
+		return value;
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_IntervalConstraint_3118(IntervalConstraint self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private ValueSpecification specification_IntervalConstraint_3118(IntervalConstraint self) {
+		// Constraint specification init
+		LiteralString value = UMLFactory.eINSTANCE.createLiteralString();
+		value.setValue("");
+		return value;
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_InteractionConstraint_3119(InteractionConstraint self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private ValueSpecification specification_InteractionConstraint_3119(InteractionConstraint self) {
+		// Constraint specification init
+		LiteralString value = UMLFactory.eINSTANCE.createLiteralString();
+		value.setValue("");
+		return value;
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Constraint_3120(Constraint self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private ValueSpecification specification_Constraint_3120(Constraint self) {
+		// Constraint specification init
+		LiteralString value = UMLFactory.eINSTANCE.createLiteralString();
+		value.setValue("");
+		return value;
 	}
 
 	/**

@@ -357,11 +357,17 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case DurationConstraintNameEditPart.VISUAL_ID:
 				return new DurationConstraintNameEditPart(view);
 
+			case DurationConstraintSpecificationEditPart.VISUAL_ID:
+				return new DurationConstraintSpecificationEditPart(view);
+
 			case TimeConstraintEditPart.VISUAL_ID:
 				return new TimeConstraintEditPart(view);
 
 			case TimeConstraintNameEditPart.VISUAL_ID:
 				return new TimeConstraintNameEditPart(view);
+
+			case TimeConstraintSpecificationEditPart.VISUAL_ID:
+				return new TimeConstraintSpecificationEditPart(view);
 
 			case IntervalConstraintEditPart.VISUAL_ID:
 				return new IntervalConstraintEditPart(view);
@@ -369,17 +375,26 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case IntervalConstraintNameEditPart.VISUAL_ID:
 				return new IntervalConstraintNameEditPart(view);
 
+			case IntervalConstraintSpecificationEditPart.VISUAL_ID:
+				return new IntervalConstraintSpecificationEditPart(view);
+
 			case InteractionConstraintEditPart.VISUAL_ID:
 				return new InteractionConstraintEditPart(view);
 
 			case InteractionConstraintNameEditPart.VISUAL_ID:
 				return new InteractionConstraintNameEditPart(view);
 
+			case InteractionConstraintSpecificationEditPart.VISUAL_ID:
+				return new InteractionConstraintSpecificationEditPart(view);
+
 			case ConstraintEditPart.VISUAL_ID:
 				return new ConstraintEditPart(view);
 
 			case ConstraintNameEditPart.VISUAL_ID:
 				return new ConstraintNameEditPart(view);
+
+			case ConstraintSpecificationEditPart.VISUAL_ID:
+				return new ConstraintSpecificationEditPart(view);
 
 			case PortEditPart.VISUAL_ID:
 				return new PortEditPart(view);
@@ -554,6 +569,51 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case CommentBodyEditPartCN.VISUAL_ID:
 				return new CommentBodyEditPartCN(view);
+
+			case DurationConstraintEditPartCN.VISUAL_ID:
+				return new DurationConstraintEditPartCN(view);
+
+			case DurationConstraintNameEditPartCN.VISUAL_ID:
+				return new DurationConstraintNameEditPartCN(view);
+
+			case DurationConstraintSpecificationEditPartCN.VISUAL_ID:
+				return new DurationConstraintSpecificationEditPartCN(view);
+
+			case TimeConstraintEditPartCN.VISUAL_ID:
+				return new TimeConstraintEditPartCN(view);
+
+			case TimeConstraintNameEditPartCN.VISUAL_ID:
+				return new TimeConstraintNameEditPartCN(view);
+
+			case TimeConstraintSpecificationEditPartCN.VISUAL_ID:
+				return new TimeConstraintSpecificationEditPartCN(view);
+
+			case IntervalConstraintEditPartCN.VISUAL_ID:
+				return new IntervalConstraintEditPartCN(view);
+
+			case IntervalConstraintNameEditPartCN.VISUAL_ID:
+				return new IntervalConstraintNameEditPartCN(view);
+
+			case IntervalConstraintSpecificationEditPartCN.VISUAL_ID:
+				return new IntervalConstraintSpecificationEditPartCN(view);
+
+			case InteractionConstraintEditPartCN.VISUAL_ID:
+				return new InteractionConstraintEditPartCN(view);
+
+			case InteractionConstraintNameEditPartCN.VISUAL_ID:
+				return new InteractionConstraintNameEditPartCN(view);
+
+			case InteractionConstraintSpecificationEditPartCN.VISUAL_ID:
+				return new InteractionConstraintSpecificationEditPartCN(view);
+
+			case ConstraintEditPartCN.VISUAL_ID:
+				return new ConstraintEditPartCN(view);
+
+			case ConstraintNameEditPartCN.VISUAL_ID:
+				return new ConstraintNameEditPartCN(view);
+
+			case ConstraintSpecificationEditPartCN.VISUAL_ID:
+				return new ConstraintSpecificationEditPartCN(view);
 
 			case PropertyEditPartCLN.VISUAL_ID:
 				return new PropertyEditPartCLN(view);

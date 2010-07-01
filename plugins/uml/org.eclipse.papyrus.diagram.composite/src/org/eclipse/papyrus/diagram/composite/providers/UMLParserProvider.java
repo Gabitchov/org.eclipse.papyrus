@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.parser.CommentParser;
+import org.eclipse.papyrus.diagram.common.parser.ConstraintParser;
 import org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.papyrus.diagram.composite.custom.parsers.RoleBindingRoleNameParser;
 import org.eclipse.papyrus.diagram.composite.edit.parts.*;
@@ -1077,6 +1078,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private ConstraintParser durationConstraintSpecification_6035Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDurationConstraintSpecification_6035Parser() {
+		if(durationConstraintSpecification_6035Parser == null) {
+			durationConstraintSpecification_6035Parser = new ConstraintParser();
+		}
+		return durationConstraintSpecification_6035Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser timeConstraintName_5194Parser;
 
 	/**
@@ -1089,6 +1105,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			timeConstraintName_5194Parser = parser;
 		}
 		return timeConstraintName_5194Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ConstraintParser timeConstraintSpecification_6036Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTimeConstraintSpecification_6036Parser() {
+		if(timeConstraintSpecification_6036Parser == null) {
+			timeConstraintSpecification_6036Parser = new ConstraintParser();
+		}
+		return timeConstraintSpecification_6036Parser;
 	}
 
 	/**
@@ -1111,6 +1142,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private ConstraintParser intervalConstraintSpecification_6037Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getIntervalConstraintSpecification_6037Parser() {
+		if(intervalConstraintSpecification_6037Parser == null) {
+			intervalConstraintSpecification_6037Parser = new ConstraintParser();
+		}
+		return intervalConstraintSpecification_6037Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser interactionConstraintName_5196Parser;
 
 	/**
@@ -1128,6 +1174,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private ConstraintParser interactionConstraintSpecification_6038Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInteractionConstraintSpecification_6038Parser() {
+		if(interactionConstraintSpecification_6038Parser == null) {
+			interactionConstraintSpecification_6038Parser = new ConstraintParser();
+		}
+		return interactionConstraintSpecification_6038Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser constraintName_5197Parser;
 
 	/**
@@ -1140,6 +1201,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			constraintName_5197Parser = parser;
 		}
 		return constraintName_5197Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ConstraintParser constraintSpecification_6039Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConstraintSpecification_6039Parser() {
+		if(constraintSpecification_6039Parser == null) {
+			constraintSpecification_6039Parser = new ConstraintParser();
+		}
+		return constraintSpecification_6039Parser;
 	}
 
 
@@ -1714,6 +1790,166 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			commentBody_5150Parser = new CommentParser();
 		}
 		return commentBody_5150Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser durationConstraintName_6040Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDurationConstraintName_6040Parser() {
+		if(durationConstraintName_6040Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			durationConstraintName_6040Parser = parser;
+		}
+		return durationConstraintName_6040Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ConstraintParser durationConstraintSpecification_6041Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDurationConstraintSpecification_6041Parser() {
+		if(durationConstraintSpecification_6041Parser == null) {
+			durationConstraintSpecification_6041Parser = new ConstraintParser();
+		}
+		return durationConstraintSpecification_6041Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser timeConstraintName_6042Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTimeConstraintName_6042Parser() {
+		if(timeConstraintName_6042Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			timeConstraintName_6042Parser = parser;
+		}
+		return timeConstraintName_6042Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ConstraintParser timeConstraintSpecification_6043Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTimeConstraintSpecification_6043Parser() {
+		if(timeConstraintSpecification_6043Parser == null) {
+			timeConstraintSpecification_6043Parser = new ConstraintParser();
+		}
+		return timeConstraintSpecification_6043Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser intervalConstraintName_6044Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getIntervalConstraintName_6044Parser() {
+		if(intervalConstraintName_6044Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			intervalConstraintName_6044Parser = parser;
+		}
+		return intervalConstraintName_6044Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ConstraintParser intervalConstraintSpecification_6045Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getIntervalConstraintSpecification_6045Parser() {
+		if(intervalConstraintSpecification_6045Parser == null) {
+			intervalConstraintSpecification_6045Parser = new ConstraintParser();
+		}
+		return intervalConstraintSpecification_6045Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser interactionConstraintName_6046Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInteractionConstraintName_6046Parser() {
+		if(interactionConstraintName_6046Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			interactionConstraintName_6046Parser = parser;
+		}
+		return interactionConstraintName_6046Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ConstraintParser interactionConstraintSpecification_6047Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getInteractionConstraintSpecification_6047Parser() {
+		if(interactionConstraintSpecification_6047Parser == null) {
+			interactionConstraintSpecification_6047Parser = new ConstraintParser();
+		}
+		return interactionConstraintSpecification_6047Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser constraintName_6048Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConstraintName_6048Parser() {
+		if(constraintName_6048Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			constraintName_6048Parser = parser;
+		}
+		return constraintName_6048Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ConstraintParser constraintSpecification_6049Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConstraintSpecification_6049Parser() {
+		if(constraintSpecification_6049Parser == null) {
+			constraintSpecification_6049Parser = new ConstraintParser();
+		}
+		return constraintSpecification_6049Parser;
 	}
 
 	/**
@@ -2512,14 +2748,24 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getCommentBody_5192Parser();
 		case DurationConstraintNameEditPart.VISUAL_ID:
 			return getDurationConstraintName_5193Parser();
+		case DurationConstraintSpecificationEditPart.VISUAL_ID:
+			return getDurationConstraintSpecification_6035Parser();
 		case TimeConstraintNameEditPart.VISUAL_ID:
 			return getTimeConstraintName_5194Parser();
+		case TimeConstraintSpecificationEditPart.VISUAL_ID:
+			return getTimeConstraintSpecification_6036Parser();
 		case IntervalConstraintNameEditPart.VISUAL_ID:
 			return getIntervalConstraintName_5195Parser();
+		case IntervalConstraintSpecificationEditPart.VISUAL_ID:
+			return getIntervalConstraintSpecification_6037Parser();
 		case InteractionConstraintNameEditPart.VISUAL_ID:
 			return getInteractionConstraintName_5196Parser();
+		case InteractionConstraintSpecificationEditPart.VISUAL_ID:
+			return getInteractionConstraintSpecification_6038Parser();
 		case ConstraintNameEditPart.VISUAL_ID:
 			return getConstraintName_5197Parser();
+		case ConstraintSpecificationEditPart.VISUAL_ID:
+			return getConstraintSpecification_6039Parser();
 		case PortNameEditPart.VISUAL_ID:
 			return getPortName_5125Parser();
 		case PortAppliedStereotypeEditPart.VISUAL_ID:
@@ -2580,6 +2826,26 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getUseCaseName_5149Parser();
 		case CommentBodyEditPartCN.VISUAL_ID:
 			return getCommentBody_5150Parser();
+		case DurationConstraintNameEditPartCN.VISUAL_ID:
+			return getDurationConstraintName_6040Parser();
+		case DurationConstraintSpecificationEditPartCN.VISUAL_ID:
+			return getDurationConstraintSpecification_6041Parser();
+		case TimeConstraintNameEditPartCN.VISUAL_ID:
+			return getTimeConstraintName_6042Parser();
+		case TimeConstraintSpecificationEditPartCN.VISUAL_ID:
+			return getTimeConstraintSpecification_6043Parser();
+		case IntervalConstraintNameEditPartCN.VISUAL_ID:
+			return getIntervalConstraintName_6044Parser();
+		case IntervalConstraintSpecificationEditPartCN.VISUAL_ID:
+			return getIntervalConstraintSpecification_6045Parser();
+		case InteractionConstraintNameEditPartCN.VISUAL_ID:
+			return getInteractionConstraintName_6046Parser();
+		case InteractionConstraintSpecificationEditPartCN.VISUAL_ID:
+			return getInteractionConstraintSpecification_6047Parser();
+		case ConstraintNameEditPartCN.VISUAL_ID:
+			return getConstraintName_6048Parser();
+		case ConstraintSpecificationEditPartCN.VISUAL_ID:
+			return getConstraintSpecification_6049Parser();
 		case PropertyEditPartCLN.VISUAL_ID:
 			return getProperty_3101Parser();
 		case OperationEditPartCLN.VISUAL_ID:

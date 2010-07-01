@@ -382,8 +382,9 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	private Tool createConstraintCreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
+		List<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(UMLElementTypes.Constraint_2114);
+		types.add(UMLElementTypes.Constraint_3120);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;

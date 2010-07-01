@@ -955,6 +955,51 @@ public class UMLDiagramContentInitializer {
 	/**
 	 * @generated
 	 */
+	private void createDurationConstraint_3116Children(View view) {
+		myDomain2NotationMap.put(view.getElement(), view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.getDurationConstraint_3116OutgoingLinks(view));
+
+	}
+
+	/**
+	 * @generated
+	 */
+	private void createTimeConstraint_3117Children(View view) {
+		myDomain2NotationMap.put(view.getElement(), view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.getTimeConstraint_3117OutgoingLinks(view));
+
+	}
+
+	/**
+	 * @generated
+	 */
+	private void createIntervalConstraint_3118Children(View view) {
+		myDomain2NotationMap.put(view.getElement(), view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.getIntervalConstraint_3118OutgoingLinks(view));
+
+	}
+
+	/**
+	 * @generated
+	 */
+	private void createInteractionConstraint_3119Children(View view) {
+		myDomain2NotationMap.put(view.getElement(), view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.getInteractionConstraint_3119OutgoingLinks(view));
+
+	}
+
+	/**
+	 * @generated
+	 */
+	private void createConstraint_3120Children(View view) {
+		myDomain2NotationMap.put(view.getElement(), view);
+		myLinkDescriptors.addAll(UMLDiagramUpdater.getConstraint_3120OutgoingLinks(view));
+
+	}
+
+	/**
+	 * @generated
+	 */
 	private void createProperty_3101Children(View view) {
 		myDomain2NotationMap.put(view.getElement(), view);
 		myLinkDescriptors.addAll(UMLDiagramUpdater.getProperty_3101OutgoingLinks(view));
@@ -1703,6 +1748,21 @@ public class UMLDiagramContentInitializer {
 			return;
 		case CommentEditPartCN.VISUAL_ID:
 			createComment_3097Children(node);
+			return;
+		case DurationConstraintEditPartCN.VISUAL_ID:
+			createDurationConstraint_3116Children(node);
+			return;
+		case TimeConstraintEditPartCN.VISUAL_ID:
+			createTimeConstraint_3117Children(node);
+			return;
+		case IntervalConstraintEditPartCN.VISUAL_ID:
+			createIntervalConstraint_3118Children(node);
+			return;
+		case InteractionConstraintEditPartCN.VISUAL_ID:
+			createInteractionConstraint_3119Children(node);
+			return;
+		case ConstraintEditPartCN.VISUAL_ID:
+			createConstraint_3120Children(node);
 			return;
 		case PropertyEditPartCLN.VISUAL_ID:
 			createProperty_3101Children(node);

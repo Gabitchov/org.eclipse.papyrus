@@ -23,15 +23,19 @@ import org.eclipse.papyrus.diagram.composite.edit.commands.CollaborationComposit
 import org.eclipse.papyrus.diagram.composite.edit.commands.CollaborationUseCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.edit.commands.CommentCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.edit.commands.ComponentCompositeCreateCommandCN;
+import org.eclipse.papyrus.diagram.composite.edit.commands.ConstraintCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.edit.commands.DataTypeCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.edit.commands.DeploymentSpecificationCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.edit.commands.DeviceCompositeCreateCommandCN;
+import org.eclipse.papyrus.diagram.composite.edit.commands.DurationConstraintCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.edit.commands.EnumerationCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.edit.commands.ExecutionEnvironmentCompositeCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.edit.commands.FunctionBehaviorCompositeCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.edit.commands.InformationItemCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.edit.commands.InteractionCompositeCreateCommandCN;
+import org.eclipse.papyrus.diagram.composite.edit.commands.InteractionConstraintCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.edit.commands.InterfaceCreateCommandCN;
+import org.eclipse.papyrus.diagram.composite.edit.commands.IntervalConstraintCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.edit.commands.NodeCompositeCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.edit.commands.OpaqueBehaviorCompositeCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.edit.commands.ParameterCreateCommand;
@@ -41,6 +45,7 @@ import org.eclipse.papyrus.diagram.composite.edit.commands.PropertyPartCreateCom
 import org.eclipse.papyrus.diagram.composite.edit.commands.ProtocolStateMachineCompositeCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.edit.commands.SignalCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.edit.commands.StateMachineCompositeCreateCommandCN;
+import org.eclipse.papyrus.diagram.composite.edit.commands.TimeConstraintCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.edit.commands.UseCaseCreateCommandCN;
 import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
 
@@ -141,6 +146,21 @@ public class InteractionCompositeCompartmentItemSemanticEditPolicy extends UMLBa
 		}
 		if(UMLElementTypes.Comment_3097 == req.getElementType()) {
 			return getGEFWrapper(new CommentCreateCommandCN(req));
+		}
+		if(UMLElementTypes.DurationConstraint_3116 == req.getElementType()) {
+			return getGEFWrapper(new DurationConstraintCreateCommandCN(req));
+		}
+		if(UMLElementTypes.TimeConstraint_3117 == req.getElementType()) {
+			return getGEFWrapper(new TimeConstraintCreateCommandCN(req));
+		}
+		if(UMLElementTypes.IntervalConstraint_3118 == req.getElementType()) {
+			return getGEFWrapper(new IntervalConstraintCreateCommandCN(req));
+		}
+		if(UMLElementTypes.InteractionConstraint_3119 == req.getElementType()) {
+			return getGEFWrapper(new InteractionConstraintCreateCommandCN(req));
+		}
+		if(UMLElementTypes.Constraint_3120 == req.getElementType()) {
+			return getGEFWrapper(new ConstraintCreateCommandCN(req));
 		}
 		return super.getCreateCommand(req);
 	}
