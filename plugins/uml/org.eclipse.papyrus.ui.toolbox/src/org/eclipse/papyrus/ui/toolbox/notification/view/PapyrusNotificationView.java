@@ -386,6 +386,12 @@ public class PapyrusNotificationView extends ViewPart implements ICallBack {
 					if(previous instanceof AbstractInsideComposite) {
 						AbstractInsideComposite compo = (AbstractInsideComposite)previous;
 						compo.setAfter(null);
+						FormData data = new FormData();
+						data.bottom = new FormAttachment(previous, -5);
+						data.left = new FormAttachment(0, 5);
+						data.right = new FormAttachment(100, -5);
+						compo.setLayoutData(data);
+						form.reflow(true);
 					}
 				}
 				inside.dispose();
