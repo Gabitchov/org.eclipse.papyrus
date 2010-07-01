@@ -1,0 +1,448 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+
+ */
+package org.eclipse.papyrus.property.editor.xtext.umlProperty.impl;
+
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import org.eclipse.papyrus.property.editor.xtext.umlProperty.BoundSpecification;
+import org.eclipse.papyrus.property.editor.xtext.umlProperty.ModifierKind;
+import org.eclipse.papyrus.property.editor.xtext.umlProperty.ModifierSpecification;
+import org.eclipse.papyrus.property.editor.xtext.umlProperty.ModifiersRule;
+import org.eclipse.papyrus.property.editor.xtext.umlProperty.MultiplicityRule;
+import org.eclipse.papyrus.property.editor.xtext.umlProperty.PropertyRule;
+import org.eclipse.papyrus.property.editor.xtext.umlProperty.UmlPropertyFactory;
+import org.eclipse.papyrus.property.editor.xtext.umlProperty.UmlPropertyPackage;
+import org.eclipse.papyrus.property.editor.xtext.umlProperty.VisibilityKind;
+
+import org.eclipse.uml2.uml.UMLPackage;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Package</b>.
+ * <!-- end-user-doc -->
+ * @generated
+ */
+public class UmlPropertyPackageImpl extends EPackageImpl implements UmlPropertyPackage
+{
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass propertyRuleEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass multiplicityRuleEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass boundSpecificationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass modifiersRuleEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass modifierSpecificationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum visibilityKindEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum modifierKindEEnum = null;
+
+  /**
+   * Creates an instance of the model <b>Package</b>, registered with
+   * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+   * package URI value.
+   * <p>Note: the correct way to create the package is via the static
+   * factory method {@link #init init()}, which also performs
+   * initialization of the package, or returns the registered package,
+   * if one already exists.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.emf.ecore.EPackage.Registry
+   * @see org.eclipse.papyrus.property.editor.xtext.umlProperty.UmlPropertyPackage#eNS_URI
+   * @see #init()
+   * @generated
+   */
+  private UmlPropertyPackageImpl()
+  {
+    super(eNS_URI, UmlPropertyFactory.eINSTANCE);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private static boolean isInited = false;
+
+  /**
+   * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+   * 
+   * <p>This method is used to initialize {@link UmlPropertyPackage#eINSTANCE} when that field is accessed.
+   * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #eNS_URI
+   * @see #createPackageContents()
+   * @see #initializePackageContents()
+   * @generated
+   */
+  public static UmlPropertyPackage init()
+  {
+    if (isInited) return (UmlPropertyPackage)EPackage.Registry.INSTANCE.getEPackage(UmlPropertyPackage.eNS_URI);
+
+    // Obtain or create and register package
+    UmlPropertyPackageImpl theUmlPropertyPackage = (UmlPropertyPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof UmlPropertyPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new UmlPropertyPackageImpl());
+
+    isInited = true;
+
+    // Initialize simple dependencies
+    UMLPackage.eINSTANCE.eClass();
+
+    // Create package meta-data objects
+    theUmlPropertyPackage.createPackageContents();
+
+    // Initialize created meta-data
+    theUmlPropertyPackage.initializePackageContents();
+
+    // Mark meta-data to indicate it can't be changed
+    theUmlPropertyPackage.freeze();
+
+  
+    // Update the registry and return the package
+    EPackage.Registry.INSTANCE.put(UmlPropertyPackage.eNS_URI, theUmlPropertyPackage);
+    return theUmlPropertyPackage;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPropertyRule()
+  {
+    return propertyRuleEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPropertyRule_Visibility()
+  {
+    return (EAttribute)propertyRuleEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPropertyRule_IsDerived()
+  {
+    return (EAttribute)propertyRuleEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPropertyRule_Name()
+  {
+    return (EAttribute)propertyRuleEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPropertyRule_Type()
+  {
+    return (EReference)propertyRuleEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPropertyRule_Multiplicity()
+  {
+    return (EReference)propertyRuleEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPropertyRule_Modifiers()
+  {
+    return (EReference)propertyRuleEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getMultiplicityRule()
+  {
+    return multiplicityRuleEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMultiplicityRule_Bounds()
+  {
+    return (EReference)multiplicityRuleEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getBoundSpecification()
+  {
+    return boundSpecificationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getBoundSpecification_Value()
+  {
+    return (EAttribute)boundSpecificationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getModifiersRule()
+  {
+    return modifiersRuleEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getModifiersRule_Values()
+  {
+    return (EReference)modifiersRuleEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getModifierSpecification()
+  {
+    return modifierSpecificationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getModifierSpecification_Value()
+  {
+    return (EAttribute)modifierSpecificationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EEnum getVisibilityKind()
+  {
+    return visibilityKindEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EEnum getModifierKind()
+  {
+    return modifierKindEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public UmlPropertyFactory getUmlPropertyFactory()
+  {
+    return (UmlPropertyFactory)getEFactoryInstance();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private boolean isCreated = false;
+
+  /**
+   * Creates the meta-model objects for the package.  This method is
+   * guarded to have no affect on any invocation but its first.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void createPackageContents()
+  {
+    if (isCreated) return;
+    isCreated = true;
+
+    // Create classes and their features
+    propertyRuleEClass = createEClass(PROPERTY_RULE);
+    createEAttribute(propertyRuleEClass, PROPERTY_RULE__VISIBILITY);
+    createEAttribute(propertyRuleEClass, PROPERTY_RULE__IS_DERIVED);
+    createEAttribute(propertyRuleEClass, PROPERTY_RULE__NAME);
+    createEReference(propertyRuleEClass, PROPERTY_RULE__TYPE);
+    createEReference(propertyRuleEClass, PROPERTY_RULE__MULTIPLICITY);
+    createEReference(propertyRuleEClass, PROPERTY_RULE__MODIFIERS);
+
+    multiplicityRuleEClass = createEClass(MULTIPLICITY_RULE);
+    createEReference(multiplicityRuleEClass, MULTIPLICITY_RULE__BOUNDS);
+
+    boundSpecificationEClass = createEClass(BOUND_SPECIFICATION);
+    createEAttribute(boundSpecificationEClass, BOUND_SPECIFICATION__VALUE);
+
+    modifiersRuleEClass = createEClass(MODIFIERS_RULE);
+    createEReference(modifiersRuleEClass, MODIFIERS_RULE__VALUES);
+
+    modifierSpecificationEClass = createEClass(MODIFIER_SPECIFICATION);
+    createEAttribute(modifierSpecificationEClass, MODIFIER_SPECIFICATION__VALUE);
+
+    // Create enums
+    visibilityKindEEnum = createEEnum(VISIBILITY_KIND);
+    modifierKindEEnum = createEEnum(MODIFIER_KIND);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private boolean isInitialized = false;
+
+  /**
+   * Complete the initialization of the package and its meta-model.  This
+   * method is guarded to have no affect on any invocation but its first.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void initializePackageContents()
+  {
+    if (isInitialized) return;
+    isInitialized = true;
+
+    // Initialize package
+    setName(eNAME);
+    setNsPrefix(eNS_PREFIX);
+    setNsURI(eNS_URI);
+
+    // Obtain other dependent packages
+    UMLPackage theUMLPackage = (UMLPackage)EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
+
+    // Create type parameters
+
+    // Set bounds for type parameters
+
+    // Add supertypes to classes
+
+    // Initialize classes and features; add operations and parameters
+    initEClass(propertyRuleEClass, PropertyRule.class, "PropertyRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPropertyRule_Visibility(), this.getVisibilityKind(), "visibility", null, 0, 1, PropertyRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPropertyRule_IsDerived(), ecorePackage.getEString(), "isDerived", null, 0, 1, PropertyRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPropertyRule_Name(), ecorePackage.getEString(), "name", null, 0, 1, PropertyRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPropertyRule_Type(), theUMLPackage.getClassifier(), null, "type", null, 0, 1, PropertyRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPropertyRule_Multiplicity(), this.getMultiplicityRule(), null, "multiplicity", null, 0, 1, PropertyRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPropertyRule_Modifiers(), this.getModifiersRule(), null, "modifiers", null, 0, 1, PropertyRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(multiplicityRuleEClass, MultiplicityRule.class, "MultiplicityRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getMultiplicityRule_Bounds(), this.getBoundSpecification(), null, "bounds", null, 0, -1, MultiplicityRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(boundSpecificationEClass, BoundSpecification.class, "BoundSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getBoundSpecification_Value(), ecorePackage.getEString(), "value", null, 0, 1, BoundSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(modifiersRuleEClass, ModifiersRule.class, "ModifiersRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getModifiersRule_Values(), this.getModifierSpecification(), null, "values", null, 0, -1, ModifiersRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(modifierSpecificationEClass, ModifierSpecification.class, "ModifierSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getModifierSpecification_Value(), this.getModifierKind(), "value", null, 0, 1, ModifierSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    // Initialize enums and add enum literals
+    initEEnum(visibilityKindEEnum, VisibilityKind.class, "VisibilityKind");
+    addEEnumLiteral(visibilityKindEEnum, VisibilityKind.PUBLIC);
+    addEEnumLiteral(visibilityKindEEnum, VisibilityKind.PRIVATE);
+    addEEnumLiteral(visibilityKindEEnum, VisibilityKind.PROTECTED);
+    addEEnumLiteral(visibilityKindEEnum, VisibilityKind.PACKAGE);
+
+    initEEnum(modifierKindEEnum, ModifierKind.class, "ModifierKind");
+    addEEnumLiteral(modifierKindEEnum, ModifierKind.READ_ONLY);
+    addEEnumLiteral(modifierKindEEnum, ModifierKind.UNION);
+    addEEnumLiteral(modifierKindEEnum, ModifierKind.ORDERED);
+    addEEnumLiteral(modifierKindEEnum, ModifierKind.UNIQUE);
+
+    // Create resource
+    createResource(eNS_URI);
+  }
+
+} //UmlPropertyPackageImpl
