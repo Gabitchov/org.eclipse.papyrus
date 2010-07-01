@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+  <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+      <propertyContributor
+            contributorId="TreeOutlinePage"
+            labelProvider="org.eclipse.papyrus.properties.tabbed.core.provider.EMFObjectLabelProvider"
+            tabDescriptorProvider="org.eclipse.papyrus.properties.tabbed.core.provider.XMLBasedTabDescriptorProvider">
+         <propertyCategory category="org.eclipse.papyrus"/>
+      </propertyContributor>
+   </extension>
+	<extension
+      point="org.eclipse.papyrus.properties.runtime.propertyViewProvider">
+   <propertyViewProvider
+         class="org.eclipse.papyrus.properties.tabbed.core.view.XMLPropertyTabViewProvider">
+      <Priority
+            name="Lowest">
+      </Priority>
+      <PropertyViewContribution
+            description="This is the generic view for sysml tabbed properties"
+            id="propertyview.sysml.basic"
+            icon="icons/tool.gif"
+            name="SysML"
+            path="resources/sysml_generic_sections.xml">
+      </PropertyViewContribution>
+   </propertyViewProvider>
+</extension>
+<extension
+      point="org.eclipse.papyrus.properties.runtime.propertyEditorControllerProvider">
+   <propertyEditorControllerProvider
+         class="org.eclipse.papyrus.properties.runtime.controller.predefined.PredefinedPropertyControllerProvider"
+         description="this is the basic provider for SysML features"
+            id="org.eclipse.papyrus.properties.view.sysml.structuralFeaturesEMFTPredefinedControllers">
+      <Priority name="Lowest"/>
+      <PredefinedControllers
+            id="org.eclipse.papyrus.properties.view.sysml.structuralFeaturesEMFTPredefinedControllers"
+            name="SysML Predefined Controllers for Structural Features"
+            path="resources/sysml_predefined_controllers.xml">
+      </PredefinedControllers>
+   </propertyEditorControllerProvider>
+</extension>
+</plugin>
