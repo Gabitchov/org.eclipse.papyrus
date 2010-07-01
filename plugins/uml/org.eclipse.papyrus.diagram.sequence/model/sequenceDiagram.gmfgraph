@@ -253,6 +253,9 @@
       </actualFigure>
       <accessors
           figure="//@figures.0/@descriptors.6/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getAppliedStereotypeLabel"
+          figure="//@figures.0/@descriptors.6/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="MessageAsync">
@@ -272,6 +275,9 @@
         </children>
       </actualFigure>
       <accessors
+          figure="//@figures.0/@descriptors.7/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getAppliedStereotypeLabel"
           figure="//@figures.0/@descriptors.7/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
@@ -295,6 +301,9 @@
       <accessors
           accessor="getFigureMessageReplyLabelFigure"
           figure="//@figures.0/@descriptors.8/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getAppliedStereotypeLabel"
+          figure="//@figures.0/@descriptors.8/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="MessageCreate">
@@ -317,6 +326,9 @@
       <accessors
           accessor="getFigureMessageCreateLabelFigure"
           figure="//@figures.0/@descriptors.9/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getAppliedStereotypeLabel"
+          figure="//@figures.0/@descriptors.9/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="MessageDelete">
@@ -338,6 +350,9 @@
       </actualFigure>
       <accessors
           figure="//@figures.0/@descriptors.10/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getAppliedStereotypeLabel"
+          figure="//@figures.0/@descriptors.10/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
         name="MessageLost">
@@ -357,6 +372,9 @@
         </children>
       </actualFigure>
       <accessors
+          figure="//@figures.0/@descriptors.11/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getAppliedStereotypeLabel"
           figure="//@figures.0/@descriptors.11/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
@@ -378,6 +396,9 @@
         </children>
       </actualFigure>
       <accessors
+          figure="//@figures.0/@descriptors.12/@actualFigure/@children.0"/>
+      <accessors
+          accessor="getAppliedStereotypeLabel"
           figure="//@figures.0/@descriptors.12/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors
@@ -639,6 +660,19 @@
         y="-13"/>
   </labels>
   <labels
+      name="MessageSyncStereotypeLabel"
+      figure="MessageSync"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.6/@accessors.1">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        x="1"
+        y="-33"/>
+  </labels>
+  <labels
       name="MessageAsyncLabel"
       figure="MessageAsync"
       elementIcon="false"
@@ -650,6 +684,19 @@
         xsi:type="gmfgraph:LabelOffsetFacet"
         x="1"
         y="-13"/>
+  </labels>
+  <labels
+      name="MessageAsyncStereotypeLabel"
+      figure="MessageAsync"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.7/@accessors.1">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        x="1"
+        y="-33"/>
   </labels>
   <labels
       name="MessageReplyLabel"
@@ -665,6 +712,19 @@
         y="-13"/>
   </labels>
   <labels
+      name="MessageReplyStereotypeLabel"
+      figure="MessageReply"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.8/@accessors.1">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        x="1"
+        y="-33"/>
+  </labels>
+  <labels
       name="MessageCreateLabel"
       figure="MessageCreate"
       elementIcon="false"
@@ -676,6 +736,19 @@
         xsi:type="gmfgraph:LabelOffsetFacet"
         x="1"
         y="-13"/>
+  </labels>
+  <labels
+      name="MessageCreateStereotypeLabel"
+      figure="MessageCreate"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.9/@accessors.1">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        x="1"
+        y="-33"/>
   </labels>
   <labels
       name="MessageDeleteLabel"
@@ -691,6 +764,19 @@
         y="-13"/>
   </labels>
   <labels
+      name="MessageDeleteStereotypeLabel"
+      figure="MessageDelete"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.10/@accessors.1">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        x="1"
+        y="-33"/>
+  </labels>
+  <labels
       name="MessageLostLabel"
       figure="MessageLost"
       elementIcon="false"
@@ -704,6 +790,19 @@
         y="-13"/>
   </labels>
   <labels
+      name="MessageLostStereotypeLabel"
+      figure="MessageLost"
+      elementIcon="false"
+      accessor="//@figures.0/@descriptors.11/@accessors.1">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        x="1"
+        y="-33"/>
+  </labels>
+  <labels
       name="MessageFoundLabel"
       figure="MessageFound"
       elementIcon="false"
@@ -715,6 +814,18 @@
         xsi:type="gmfgraph:LabelOffsetFacet"
         x="1"
         y="-13"/>
+  </labels>
+  <labels
+      name="MessageFoundStereotypeLabel"
+      figure="MessageFound"
+      accessor="//@figures.0/@descriptors.12/@accessors.1">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        x="1"
+        y="-33"/>
   </labels>
   <labels
       name="ContinuationLabel"

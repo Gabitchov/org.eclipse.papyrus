@@ -1184,7 +1184,6 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 
 			this.setFill(false);
 			this.setOutline(false);
-			this.setLineWidth(1);
 			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(100), getMapMode().DPtoLP(200)));
 			createContents();
 		}
@@ -1196,7 +1195,6 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 
 
 			fFigureLifelineNameContainerFigure = new RectangleFigure();
-			fFigureLifelineNameContainerFigure.setLineWidth(1);
 
 			fFigureLifelineNameContainerFigure.setBorder(new MarginBorder(getMapMode().DPtoLP(7), getMapMode().DPtoLP(7), getMapMode().DPtoLP(7), getMapMode().DPtoLP(7)));
 
@@ -1231,7 +1229,6 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 			fFigureExecutionsContainerFigure = new RectangleFigure();
 			fFigureExecutionsContainerFigure.setFill(false);
 			fFigureExecutionsContainerFigure.setOutline(false);
-			fFigureExecutionsContainerFigure.setLineWidth(1);
 
 			this.add(fFigureExecutionsContainerFigure, BorderLayout.CENTER);
 			fFigureExecutionsContainerFigure.setLayoutManager(new StackLayout());
@@ -1245,26 +1242,6 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 
 
 
-		}
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = false;
-
-		/**
-		 * @generated
-		 */
-		@Override
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
 		}
 
 		/**

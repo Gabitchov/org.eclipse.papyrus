@@ -651,6 +651,11 @@
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
     </labelMappings>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="sequenceDiagram.gmfgraph#MessageSyncStereotypeLabel"/>
+    </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/message"/>
     <tool
@@ -685,6 +690,11 @@
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
     </labelMappings>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="sequenceDiagram.gmfgraph#MessageAsyncStereotypeLabel"/>
+    </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/message"/>
     <tool
@@ -718,6 +728,11 @@
           href="sequenceDiagram.gmfgraph#MessageReplyLabel"/>
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+    </labelMappings>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="sequenceDiagram.gmfgraph#MessageReplyStereotypeLabel"/>
     </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/message"/>
@@ -754,6 +769,11 @@
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
     </labelMappings>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="sequenceDiagram.gmfgraph#MessageCreateStereotypeLabel"/>
+    </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/message"/>
     <tool
@@ -787,6 +807,11 @@
           href="sequenceDiagram.gmfgraph#MessageDeleteLabel"/>
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+    </labelMappings>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="sequenceDiagram.gmfgraph#MessageDeleteStereotypeLabel"/>
     </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/message"/>
@@ -823,6 +848,11 @@
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
     </labelMappings>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="sequenceDiagram.gmfgraph#MessageLostStereotypeLabel"/>
+    </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/message"/>
     <tool
@@ -856,6 +886,11 @@
           href="sequenceDiagram.gmfgraph#MessageFoundLabel"/>
       <features
           href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+    </labelMappings>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="sequenceDiagram.gmfgraph#MessageFoundStereotypeLabel"/>
     </labelMappings>
     <containmentFeature
         href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//Interaction/message"/>

@@ -741,26 +741,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_DurationConstraint_3023_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_DurationConstraint_3023_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_DurationObservation_3024_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_DurationObservation_3024_outgoinglinks;
-
-	/**
-	 * @generated
-	 */
 	public static String NavigatorGroupName_ConsiderIgnoreFragment_3007_incominglinks;
 
 	/**
@@ -776,7 +756,17 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_Message_4003_incominglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_Message_4003_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Message_4003_outgoinglinks;
 
 	/**
 	 * @generated
@@ -786,7 +776,17 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_Message_4004_incominglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_Message_4004_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Message_4004_outgoinglinks;
 
 	/**
 	 * @generated
@@ -796,7 +796,17 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_Message_4005_incominglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_Message_4005_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Message_4005_outgoinglinks;
 
 	/**
 	 * @generated
@@ -806,7 +816,17 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_Message_4006_incominglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_Message_4006_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Message_4006_outgoinglinks;
 
 	/**
 	 * @generated
@@ -816,7 +836,17 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_Message_4007_incominglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_Message_4007_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Message_4007_outgoinglinks;
 
 	/**
 	 * @generated
@@ -826,7 +856,17 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_Message_4008_incominglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_Message_4008_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Message_4008_outgoinglinks;
 
 	/**
 	 * @generated
@@ -836,7 +876,17 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_Message_4009_incominglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_Message_4009_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Message_4009_outgoinglinks;
 
 	/**
 	 * @generated

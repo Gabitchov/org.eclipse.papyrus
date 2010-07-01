@@ -31,7 +31,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.draw2d.ui.internal.figures.ConnectionLayerEx;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -39,6 +38,8 @@ import org.eclipse.gmf.runtime.notation.Routing;
 import org.eclipse.gmf.runtime.notation.RoutingStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.figure.edge.UMLEdgeFigure;
 import org.eclipse.papyrus.diagram.sequence.draw2d.routers.MessageRouter;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.CreationOnMessageEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineChildGraphicalNodeEditPolicy;
@@ -129,6 +130,7 @@ implements ITreeBranchEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new Message3ItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationOnMessageEditPolicy());
 		installEditPolicy(EditPolicy.CONNECTION_ROLE, new MessageConnectionEditPolicy());
+		installEditPolicy(AppliedStereotypeLinkLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
@@ -137,6 +139,10 @@ implements ITreeBranchEditPart {
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof MessageName3EditPart) {
 			((MessageName3EditPart)childEditPart).setLabel(getPrimaryShape().getFigureMessageReplyLabelFigure());
+			return true;
+		}
+		if(childEditPart instanceof MessageReplyAppliedStereotypeEditPart) {
+			((MessageReplyAppliedStereotypeEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 			return true;
 		}
 		return false;
@@ -157,6 +163,9 @@ implements ITreeBranchEditPart {
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof MessageName3EditPart) {
+			return true;
+		}
+		if(childEditPart instanceof MessageReplyAppliedStereotypeEditPart) {
 			return true;
 		}
 		return false;
@@ -192,9 +201,9 @@ implements ITreeBranchEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT inherits from UMLEdgeFigure to manage stereotype label
 	 */
-	public class MessageReply extends PolylineConnectionEx {
+	public class MessageReply extends UMLEdgeFigure {
 
 		/**
 		 * @generated
@@ -204,8 +213,13 @@ implements ITreeBranchEditPart {
 		/**
 		 * @generated
 		 */
+		private WrappingLabel fAppliedStereotypeLabel;
+
+		/**
+		 * @generated NOT call the super constructor
+		 */
 		public MessageReply() {
-			this.setLineWidth(1);
+			super();
 			this.setLineStyle(Graphics.LINE_DASH);
 			this.setForegroundColor(ColorConstants.black);
 
@@ -214,10 +228,10 @@ implements ITreeBranchEditPart {
 		}
 
 		/**
-		 * @generated
+		 * @generated NOT
 		 */
-		private void createContents() {
-
+		protected void createContents() {
+			super.createContents();
 
 			fFigureMessageReplyLabelFigure = new WrappingLabel();
 			fFigureMessageReplyLabelFigure.setText("");
@@ -236,7 +250,6 @@ implements ITreeBranchEditPart {
 		 */
 		private RotatableDecoration createTargetDecoration() {
 			PolylineDecoration df = new PolylineDecoration();
-			df.setLineWidth(1);
 			df.setForegroundColor(ColorConstants.black);
 			PointList pl = new PointList();
 			pl.addPoint(getMapMode().DPtoLP(-2), getMapMode().DPtoLP(2));
@@ -252,6 +265,13 @@ implements ITreeBranchEditPart {
 		 */
 		public WrappingLabel getFigureMessageReplyLabelFigure() {
 			return fFigureMessageReplyLabelFigure;
+		}
+
+		/**
+		 * @generated NOT get the stereotype label of super class
+		 */
+		public WrappingLabel getAppliedStereotypeLabel() {
+			return super.getAppliedStereotypeLabel();
 		}
 
 	}

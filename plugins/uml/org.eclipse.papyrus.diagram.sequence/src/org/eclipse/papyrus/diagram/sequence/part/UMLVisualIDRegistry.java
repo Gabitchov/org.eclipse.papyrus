@@ -56,7 +56,12 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.Message4EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message5EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message6EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message7EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageAsyncAppliedStereotypeEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageCreateAppliedStereotypeEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageDeleteAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageFoundAppliedStereotypeEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageLostAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName3EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName4EditPart;
@@ -64,6 +69,8 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName5EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName6EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageNameEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageReplyAppliedStereotypeEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageSyncAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantNameEditPart;
@@ -506,9 +513,15 @@ public class UMLVisualIDRegistry {
 			if(MessageNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(MessageSyncAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case Message2EditPart.VISUAL_ID:
 			if(MessageName2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(MessageAsyncAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -516,9 +529,15 @@ public class UMLVisualIDRegistry {
 			if(MessageName3EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(MessageReplyAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case Message4EditPart.VISUAL_ID:
 			if(MessageName4EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(MessageCreateAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -526,14 +545,23 @@ public class UMLVisualIDRegistry {
 			if(MessageName5EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(MessageDeleteAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case Message6EditPart.VISUAL_ID:
 			if(MessageName6EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(MessageLostAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case Message7EditPart.VISUAL_ID:
 			if(MessageName7EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(MessageFoundAppliedStereotypeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -702,11 +730,19 @@ public class UMLVisualIDRegistry {
 		viewInfo.getChildren().add(labelInfo);
 
 
+		labelInfo = new BaseViewInfo(6008, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
 		viewInfo = new BaseViewInfo(4004, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
 
 		labelInfo = new BaseViewInfo(6002, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
+		labelInfo = new BaseViewInfo(6009, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
 
@@ -718,11 +754,19 @@ public class UMLVisualIDRegistry {
 		viewInfo.getChildren().add(labelInfo);
 
 
+		labelInfo = new BaseViewInfo(6010, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
 		viewInfo = new BaseViewInfo(4006, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
 
 		labelInfo = new BaseViewInfo(6004, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
+		labelInfo = new BaseViewInfo(6011, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
 
@@ -734,6 +778,10 @@ public class UMLVisualIDRegistry {
 		viewInfo.getChildren().add(labelInfo);
 
 
+		labelInfo = new BaseViewInfo(6012, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
 		viewInfo = new BaseViewInfo(4008, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
@@ -742,11 +790,19 @@ public class UMLVisualIDRegistry {
 		viewInfo.getChildren().add(labelInfo);
 
 
+		labelInfo = new BaseViewInfo(6013, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
 		viewInfo = new BaseViewInfo(4009, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
 
 		labelInfo = new BaseViewInfo(6007, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
+		labelInfo = new BaseViewInfo(6014, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
 

@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.parser.CommentParser;
+import org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentBodyEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationNameEditPart;
@@ -36,6 +37,11 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseName2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionUseNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineNameEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageAsyncAppliedStereotypeEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageCreateAppliedStereotypeEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageDeleteAppliedStereotypeEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageFoundAppliedStereotypeEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageLostAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName3EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName4EditPart;
@@ -43,6 +49,8 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName5EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName6EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageNameEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageReplyAppliedStereotypeEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageSyncAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeConstraintLabelEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
@@ -290,6 +298,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private AppliedStereotypeParser messageLabel_6008Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageLabel_6008Parser() {
+		if(messageLabel_6008Parser == null) {
+			messageLabel_6008Parser = new AppliedStereotypeParser();
+		}
+		return messageLabel_6008Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private MessageCustomParser messageName_6002Parser;
 
 	/**
@@ -300,6 +323,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			messageName_6002Parser = new MessageCustomParser();
 		}
 		return messageName_6002Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser messageLabel_6009Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageLabel_6009Parser() {
+		if(messageLabel_6009Parser == null) {
+			messageLabel_6009Parser = new AppliedStereotypeParser();
+		}
+		return messageLabel_6009Parser;
 	}
 
 	/**
@@ -320,6 +358,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private AppliedStereotypeParser messageLabel_6010Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageLabel_6010Parser() {
+		if(messageLabel_6010Parser == null) {
+			messageLabel_6010Parser = new AppliedStereotypeParser();
+		}
+		return messageLabel_6010Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private MessageCustomParser messageName_6004Parser;
 
 	/**
@@ -330,6 +383,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			messageName_6004Parser = new MessageCustomParser();
 		}
 		return messageName_6004Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser messageLabel_6011Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageLabel_6011Parser() {
+		if(messageLabel_6011Parser == null) {
+			messageLabel_6011Parser = new AppliedStereotypeParser();
+		}
+		return messageLabel_6011Parser;
 	}
 
 	/**
@@ -350,6 +418,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private AppliedStereotypeParser messageLabel_6012Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageLabel_6012Parser() {
+		if(messageLabel_6012Parser == null) {
+			messageLabel_6012Parser = new AppliedStereotypeParser();
+		}
+		return messageLabel_6012Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private MessageCustomParser messageName_6006Parser;
 
 	/**
@@ -365,6 +448,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private AppliedStereotypeParser messageLabel_6013Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageLabel_6013Parser() {
+		if(messageLabel_6013Parser == null) {
+			messageLabel_6013Parser = new AppliedStereotypeParser();
+		}
+		return messageLabel_6013Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private MessageCustomParser messageName_6007Parser;
 
 	/**
@@ -375,6 +473,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			messageName_6007Parser = new MessageCustomParser();
 		}
 		return messageName_6007Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser messageLabel_6014Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageLabel_6014Parser() {
+		if(messageLabel_6014Parser == null) {
+			messageLabel_6014Parser = new AppliedStereotypeParser();
+		}
+		return messageLabel_6014Parser;
 	}
 
 	/**
@@ -410,18 +523,32 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getDurationObservation_3024Parser();
 		case MessageNameEditPart.VISUAL_ID:
 			return getMessageName_6001Parser();
+		case MessageSyncAppliedStereotypeEditPart.VISUAL_ID:
+			return getMessageLabel_6008Parser();
 		case MessageName2EditPart.VISUAL_ID:
 			return getMessageName_6002Parser();
+		case MessageAsyncAppliedStereotypeEditPart.VISUAL_ID:
+			return getMessageLabel_6009Parser();
 		case MessageName3EditPart.VISUAL_ID:
 			return getMessageName_6003Parser();
+		case MessageReplyAppliedStereotypeEditPart.VISUAL_ID:
+			return getMessageLabel_6010Parser();
 		case MessageName4EditPart.VISUAL_ID:
 			return getMessageName_6004Parser();
+		case MessageCreateAppliedStereotypeEditPart.VISUAL_ID:
+			return getMessageLabel_6011Parser();
 		case MessageName5EditPart.VISUAL_ID:
 			return getMessageName_6005Parser();
+		case MessageDeleteAppliedStereotypeEditPart.VISUAL_ID:
+			return getMessageLabel_6012Parser();
 		case MessageName6EditPart.VISUAL_ID:
 			return getMessageName_6006Parser();
+		case MessageLostAppliedStereotypeEditPart.VISUAL_ID:
+			return getMessageLabel_6013Parser();
 		case MessageName7EditPart.VISUAL_ID:
 			return getMessageName_6007Parser();
+		case MessageFoundAppliedStereotypeEditPart.VISUAL_ID:
+			return getMessageLabel_6014Parser();
 		}
 		return null;
 	}

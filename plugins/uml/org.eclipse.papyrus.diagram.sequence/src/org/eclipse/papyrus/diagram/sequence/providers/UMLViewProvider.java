@@ -87,7 +87,12 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.Message4EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message5EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message6EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message7EditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageAsyncAppliedStereotypeEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageCreateAppliedStereotypeEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageDeleteAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageFoundAppliedStereotypeEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageLostAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName3EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName4EditPart;
@@ -95,6 +100,8 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName5EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName6EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageName7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageNameEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageReplyAppliedStereotypeEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageSyncAppliedStereotypeEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantNameEditPart;
@@ -837,6 +844,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6001 = (Location)label6001.getLayoutConstraint();
 		location6001.setX(1);
 		location6001.setY(-13);
+		Node label6008 = createLabel(edge, UMLVisualIDRegistry.getType(MessageSyncAppliedStereotypeEditPart.VISUAL_ID));
+		label6008.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6008 = (Location)label6008.getLayoutConstraint();
+		location6008.setX(1);
+		location6008.setY(-33);
 		return edge;
 	}
 
@@ -874,6 +886,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6002 = (Location)label6002.getLayoutConstraint();
 		location6002.setX(1);
 		location6002.setY(-13);
+		Node label6009 = createLabel(edge, UMLVisualIDRegistry.getType(MessageAsyncAppliedStereotypeEditPart.VISUAL_ID));
+		label6009.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6009 = (Location)label6009.getLayoutConstraint();
+		location6009.setX(1);
+		location6009.setY(-33);
 		return edge;
 	}
 
@@ -911,6 +928,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6003 = (Location)label6003.getLayoutConstraint();
 		location6003.setX(1);
 		location6003.setY(-13);
+		Node label6010 = createLabel(edge, UMLVisualIDRegistry.getType(MessageReplyAppliedStereotypeEditPart.VISUAL_ID));
+		label6010.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6010 = (Location)label6010.getLayoutConstraint();
+		location6010.setX(1);
+		location6010.setY(-33);
 		return edge;
 	}
 
@@ -948,6 +970,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6004 = (Location)label6004.getLayoutConstraint();
 		location6004.setX(1);
 		location6004.setY(-13);
+		Node label6011 = createLabel(edge, UMLVisualIDRegistry.getType(MessageCreateAppliedStereotypeEditPart.VISUAL_ID));
+		label6011.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6011 = (Location)label6011.getLayoutConstraint();
+		location6011.setX(1);
+		location6011.setY(-33);
 		return edge;
 	}
 
@@ -985,6 +1012,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6005 = (Location)label6005.getLayoutConstraint();
 		location6005.setX(1);
 		location6005.setY(-13);
+		Node label6012 = createLabel(edge, UMLVisualIDRegistry.getType(MessageDeleteAppliedStereotypeEditPart.VISUAL_ID));
+		label6012.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6012 = (Location)label6012.getLayoutConstraint();
+		location6012.setX(1);
+		location6012.setY(-33);
 		return edge;
 	}
 
@@ -1022,6 +1054,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6006 = (Location)label6006.getLayoutConstraint();
 		location6006.setX(1);
 		location6006.setY(-13);
+		Node label6013 = createLabel(edge, UMLVisualIDRegistry.getType(MessageLostAppliedStereotypeEditPart.VISUAL_ID));
+		label6013.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6013 = (Location)label6013.getLayoutConstraint();
+		location6013.setX(1);
+		location6013.setY(-33);
 		return edge;
 	}
 
@@ -1059,6 +1096,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6007 = (Location)label6007.getLayoutConstraint();
 		location6007.setX(1);
 		location6007.setY(-13);
+		Node label6014 = createLabel(edge, UMLVisualIDRegistry.getType(MessageFoundAppliedStereotypeEditPart.VISUAL_ID));
+		label6014.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6014 = (Location)label6014.getLayoutConstraint();
+		location6014.setX(1);
+		location6014.setY(-33);
 		return edge;
 	}
 

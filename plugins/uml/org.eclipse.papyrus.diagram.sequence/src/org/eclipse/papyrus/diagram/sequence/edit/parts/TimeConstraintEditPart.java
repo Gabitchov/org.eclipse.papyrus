@@ -21,7 +21,7 @@ import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
-import org.eclipse.draw2d.Polyline;
+import org.eclipse.draw2d.PolylineShape;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
@@ -1065,7 +1065,7 @@ AbstractBorderItemEditPart {
 		/**
 		 * @generated
 		 */
-		private Polyline fTimeMark;
+		private PolylineShape fTimeMark;
 
 		/**
 		 * @generated
@@ -1092,7 +1092,6 @@ AbstractBorderItemEditPart {
 
 			this.setFill(false);
 			this.setOutline(false);
-			this.setLineWidth(1);
 			createContents();
 		}
 
@@ -1129,10 +1128,9 @@ AbstractBorderItemEditPart {
 		private void createContents() {
 
 
-			fTimeMark = new Polyline();
+			fTimeMark = new PolylineShape();
 			fTimeMark.addPoint(new Point(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0)));
 			fTimeMark.addPoint(new Point(getMapMode().DPtoLP(10), getMapMode().DPtoLP(0)));
-			fTimeMark.setLineWidth(1);
 
 			this.add(fTimeMark);
 
@@ -1162,28 +1160,7 @@ AbstractBorderItemEditPart {
 		/**
 		 * @generated
 		 */
-		private boolean myUseLocalCoordinates = true;
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
-		}
-
-
-
-		/**
-		 * @generated
-		 */
-		public Polyline getTimeMark() {
+		public PolylineShape getTimeMark() {
 			return fTimeMark;
 		}
 

@@ -16,11 +16,9 @@ package org.eclipse.papyrus.diagram.sequence.edit.parts;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -28,7 +26,6 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.AccessibleEditPart;
-import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.DirectEditRequest;
@@ -40,9 +37,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ListItemComponentEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
@@ -60,9 +55,6 @@ import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditMan
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
-import org.eclipse.papyrus.diagram.sequence.edit.policies.DurationObservationItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.sequence.edit.policies.MoveableNonResizableLabelEditPolicy;
-import org.eclipse.papyrus.diagram.sequence.edit.policies.UMLTextNonResizableEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
@@ -79,21 +71,19 @@ import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * @generated NOT extend LabelEditPart to make DurationConstraint as message label
+ * @generated
  */
-public class DurationObservationEditPart extends LabelEditPart implements ITextAwareEditPart {
+public class MessageLostAppliedStereotypeEditPart extends LabelEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3024;
+	public static final int VISUAL_ID = 6013;
 
 	/**
 	 * @generated
@@ -132,31 +122,19 @@ public class DurationObservationEditPart extends LabelEditPart implements ITextA
 	protected IDirectEditorConfiguration configuration;
 
 
-	/**
-	 * @generated NOT make duration constraint label under the name
-	 */
-	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationEditPart.VISUAL_ID), new Point(1, 13));
-	}
-
-
 
 	/**
 	 * @generated
 	 */
-	public DurationObservationEditPart(View view) {
-		super(view);
+	static {
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.sequence.edit.parts.MessageLostAppliedStereotypeEditPart.VISUAL_ID), new Point(1, -33));
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
-	public DragTracker getDragTracker(Request request) {
-		return super.getDragTracker(request);
-		//		if(request instanceof SelectionRequest && ((SelectionRequest)request).getLastButtonPressed() == 3) {
-		//			return null;
-		//		}
-		//		return new DragEditPartsTrackerEx(this);
+	public MessageLostAppliedStereotypeEditPart(View view) {
+		super(view);
 	}
 
 	/**
@@ -164,16 +142,13 @@ public class DurationObservationEditPart extends LabelEditPart implements ITextA
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DurationObservationItemSemanticEditPolicy());
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new UMLTextNonResizableEditPolicy());
-		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ListItemComponentEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new MoveableNonResizableLabelEditPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new PackageEditPart.LinkLabelDragPolicy());
 	}
 
 	/**
-	 * @generated NOT link to the middle of the message
+	 * @generated
 	 */
 	public int getKeyPoint() {
 		return ConnectionLocator.MIDDLE;
@@ -234,7 +209,7 @@ public class DurationObservationEditPart extends LabelEditPart implements ITextA
 	/**
 	 * @generated
 	 */
-	public void setLabel(IFigure figure) {
+	public void setLabel(WrappingLabel figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -314,7 +289,7 @@ public class DurationObservationEditPart extends LabelEditPart implements ITextA
 	 * @generated
 	 */
 	protected boolean isEditable() {
-		return getParser() != null;
+		return false;
 	}
 
 	/**
@@ -368,7 +343,7 @@ public class DurationObservationEditPart extends LabelEditPart implements ITextA
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.DurationObservation_3024, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.sequence.edit.parts.DurationObservationEditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.Message_4008, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.sequence.edit.parts.MessageLostAppliedStereotypeEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -723,24 +698,6 @@ public class DurationObservationEditPart extends LabelEditPart implements ITextA
 	/**
 	 * @generated
 	 */
-	protected void addNotationalListeners() {
-		super.addNotationalListeners();
-		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void removeNotationalListeners() {
-		super.removeNotationalListeners();
-		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
-	}
-
-
-
-	/**
-	 * @generated
-	 */
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
 		if(NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
@@ -767,6 +724,10 @@ public class DurationObservationEditPart extends LabelEditPart implements ITextA
 				}
 			}
 		}
+
+
+
+
 		super.handleNotificationEvent(event);
 	}
 
@@ -774,61 +735,8 @@ public class DurationObservationEditPart extends LabelEditPart implements ITextA
 	 * @generated
 	 */
 	protected IFigure createFigure() {
-		IFigure label = createFigurePrim();
-		defaultText = getLabelTextHelper(label);
-		return label;
+		// Parent should assign one using setLabel() method
+		return null;
 	}
-
-	/**
-	 * @generated
-	 */
-	protected IFigure createFigurePrim() {
-		return new DurationObservationConstraint();
-	}
-
-
-	/**
-	 * @generated
-	 */
-	public class DurationObservationConstraint extends WrappingLabel {
-
-
-
-
-		/**
-		 * @generated
-		 */
-		public DurationObservationConstraint() {
-
-
-
-
-			this.setTextWrap(true);
-
-
-
-
-			this.setTextJustification(PositionConstants.CENTER);
-
-
-			this.setForegroundColor(ColorConstants.black);
-
-			this.setFont(THIS_FONT);
-
-
-		}
-
-
-
-
-
-	}
-
-	/**
-	 * @generated
-	 */
-	static final Font THIS_FONT = new Font(Display.getCurrent(), "SANS", 9, SWT.NORMAL);
-
-
 
 }
