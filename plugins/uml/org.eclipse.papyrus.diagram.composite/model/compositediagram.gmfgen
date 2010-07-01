@@ -10643,7 +10643,7 @@
         comment="Manage named element figure relying on Affixed Node"
         genView="/0/@diagram/@childNodes.0 /0/@diagram/@childNodes.1"
         name="EP_NamedElement_AFF_NODE"
-        superOwnedEditPart="org.eclipse.papyrus.diagram.composite.custom.edit.parts.AbstractBorderEditPart"/>
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.AbstractBorderEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="Manages stereotype shown with External Label"
