@@ -16,14 +16,12 @@
 package org.eclipse.papyrus.profile.ui.section;
 
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.profile.ui.compositeforview.AppliedProfileCompositeWithView;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbenchPart;
@@ -82,34 +80,31 @@ public class AppliedProfileSection extends AbstractPropertySection {
 				if(view.getElement() != null) {
 					appliedProfileComposite.setSelection(selection);
 				}
-			} 
-			else{
-				EObject eObject= resolveSemanticObject(input);
-				if(eObject!=null &&eObject instanceof EObject) {
+			} else {
+				EObject eObject = resolveSemanticObject(input);
+				if(eObject != null && eObject instanceof EObject) {
 					appliedProfileComposite.setSelection(selection);
 				}
 			}
-				if(part instanceof IEditingDomainProvider) {
-					TransactionalEditingDomain editingDomain = (TransactionalEditingDomain)((IEditingDomainProvider)part).getEditingDomain();
-					appliedProfileComposite.setDomain(editingDomain);
-			
-			}
+
+			appliedProfileComposite.setDomain(EditorUtils.getTransactionalEditingDomain());
 		}
 	}
+
 	/**
 	 * Resolve semantic element
 	 * 
 	 * @param object
-	 *            the object to resolve
+	 *        the object to resolve
 	 * @return <code>null</code> or the semantic element associated to the specified object
 	 */
 	private EObject resolveSemanticObject(Object object) {
-		if (object instanceof EObject) {
-			return (EObject) object;
-		} else if (object instanceof IAdaptable) {
-			IAdaptable adaptable = (IAdaptable) object;
-			if (adaptable.getAdapter(EObject.class) != null) {
-				return (EObject) adaptable.getAdapter(EObject.class);
+		if(object instanceof EObject) {
+			return (EObject)object;
+		} else if(object instanceof IAdaptable) {
+			IAdaptable adaptable = (IAdaptable)object;
+			if(adaptable.getAdapter(EObject.class) != null) {
+				return (EObject)adaptable.getAdapter(EObject.class);
 			}
 		}
 		return null;

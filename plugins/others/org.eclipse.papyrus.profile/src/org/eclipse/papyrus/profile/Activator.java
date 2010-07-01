@@ -115,4 +115,16 @@ public class Activator extends AbstractUIPlugin {
 		getDefault().getLog().log(new Status(IStatus.ERROR, PLUGIN_ID, exception.getLocalizedMessage(), exception));
 	}
 
+	/**
+	 * Logs an exception into the plugin's log
+	 * 
+	 * @param exception
+	 *        the exception to log
+	 * @param message
+	 *        the message for the error
+	 */
+	public static void logException(Exception exception, String message) {
+		getDefault().getLog().log(new Status(IStatus.ERROR, PLUGIN_ID, message, exception));
+	}
+
 }

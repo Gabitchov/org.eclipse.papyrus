@@ -171,7 +171,7 @@ public class AppliedProfileCompositeOnModel extends Composite {
 				}
 			});
 		} catch (Exception e) {
-			System.err.println(e);
+			Activator.logException(e, "Unable to apply selected profile.");
 		}
 
 	}
@@ -441,13 +441,12 @@ public class AppliedProfileCompositeOnModel extends Composite {
 			}
 		} else if(input instanceof DiagramEditPart) {
 			DiagramEditPart diagramEditPart = (DiagramEditPart)input;
-			if(diagramEditPart.resolveSemanticElement() != null &&
-					diagramEditPart.resolveSemanticElement() instanceof Package) {
+			if(diagramEditPart.resolveSemanticElement() != null && diagramEditPart.resolveSemanticElement() instanceof Package) {
 				selectedPackage = (Package)diagramEditPart.resolveSemanticElement();
 			}
 		}
-		EObject eObject= resolveSemanticObject(input);
-		if(eObject!=null && eObject instanceof Package) {
+		EObject eObject = resolveSemanticObject(input);
+		if(eObject != null && eObject instanceof Package) {
 			//the selection is provided by the model explorer
 			selectedPackage = (Package)eObject;
 		}
@@ -523,8 +522,7 @@ public class AppliedProfileCompositeOnModel extends Composite {
 				String currentName = currentProfile.getQualifiedName();
 
 				if(currentName == null) {
-					Activator.getDefault().getLog().log(
-							new Status(IStatus.WARNING, Activator.PLUGIN_ID, "Warning a profile applied on " + currentPackage.getName() + " could not be found : \n\t" + currentProfile.toString()));
+					Activator.getDefault().getLog().log(new Status(IStatus.WARNING, Activator.PLUGIN_ID, "Warning a profile applied on " + currentPackage.getName() + " could not be found : \n\t" + currentProfile.toString()));
 				} else if(isDirty(currentPackage, currentProfile)) {
 					profiles.add(currentName + TAG_PROFILE_CHANGED);
 					profiles.setData(currentName, currentProfile);
@@ -652,20 +650,21 @@ public class AppliedProfileCompositeOnModel extends Composite {
 		}
 
 	}
+
 	/**
 	 * Resolve semantic element
 	 * 
 	 * @param object
-	 *            the object to resolve
+	 *        the object to resolve
 	 * @return <code>null</code> or the semantic element associated to the specified object
 	 */
 	private EObject resolveSemanticObject(Object object) {
-		if (object instanceof EObject) {
-			return (EObject) object;
-		} else if (object instanceof IAdaptable) {
-			IAdaptable adaptable = (IAdaptable) object;
-			if (adaptable.getAdapter(EObject.class) != null) {
-				return (EObject) adaptable.getAdapter(EObject.class);
+		if(object instanceof EObject) {
+			return (EObject)object;
+		} else if(object instanceof IAdaptable) {
+			IAdaptable adaptable = (IAdaptable)object;
+			if(adaptable.getAdapter(EObject.class) != null) {
+				return (EObject)adaptable.getAdapter(EObject.class);
 			}
 		}
 		return null;
