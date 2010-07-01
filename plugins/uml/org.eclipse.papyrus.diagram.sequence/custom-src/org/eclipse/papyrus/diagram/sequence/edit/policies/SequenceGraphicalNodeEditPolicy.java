@@ -59,6 +59,9 @@ import org.eclipse.uml2.uml.Message;
  */
 public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
+	/** A static margin to allow drawing of straight message */ 
+	private static final int MARGIN = 2;
+	
 	/**
 	 * Overrides to disable uphill message
 	 */
@@ -77,7 +80,7 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 			if(obj instanceof SetConnectionBendpointsCommand) {
 				SetConnectionBendpointsCommand sbbCommand = (SetConnectionBendpointsCommand)obj;
 				final PointList pointList = sbbCommand.getNewPointList();
-				if(pointList.getFirstPoint().y >= pointList.getLastPoint().y) {
+				if(pointList.getFirstPoint().y >= pointList.getLastPoint().y + MARGIN ) {
 					return UnexecutableCommand.INSTANCE;
 				}
 				request.getExtendedData().put(SequenceRequestConstant.SOURCE_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentAt(pointList.getFirstPoint(), getHost()));
@@ -137,11 +140,11 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
 					// look at the request rather than at both polyline ends which may not be up to date
 					if(REQ_RECONNECT_SOURCE.equals(request.getType())) {
-						return request.getLocation().y >= end.y;
+						return request.getLocation().y >= end.y + MARGIN;
 					} else if(REQ_RECONNECT_TARGET.equals(request.getType())) {
-						return start.y >= request.getLocation().y;
+						return start.y >= request.getLocation().y + MARGIN;
 					} else {
-						return start.y >= end.y;
+						return start.y >= end.y + MARGIN;
 					}
 				}
 			}
