@@ -38,7 +38,7 @@ public class LoadControlledResources implements ILoadingStrategy {
 			URI uriInitialTrimFragment = initialURI.trimFragment();
 			URI uritrimFragment = uri.trimFragment();
 			result = uritrimFragment.equals(uriInitialTrimFragment);
-			// if !result it is necesary to navigate into the history to find if the uri searched is a controled
+			// if !result it is necessary to navigate into the history to find if the uri searched is a controlled
 			if(!result) {
 				HistoryModel model = HistoryUtils.getHistoryModel(modelSet);
 				URI path = HistoryUtils.getURIFullPath(uriInitialTrimFragment);

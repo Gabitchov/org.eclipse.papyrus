@@ -48,30 +48,34 @@ public class AskUserStrategy implements ILoadingStrategy {
 	private URI initialURI;
 
 	public boolean loadResource(ModelSet modelSet, URI uri) {
-		URI lastInitialURI = SashModelUtils.getInitialURI(modelSet).trimFileExtension();
-		if(!lastInitialURI.equals(initialURI)) {
-			clear();
-			initialURI = lastInitialURI;
-		}
-		URI uritrimFragment = uri.trimFragment().trimFileExtension();
-		Set<String> extensions = mappingURIExtensions.get(uritrimFragment);
-		if(extensions == null) {
-			extensions = new HashSet<String>();
-			mappingURIExtensions.put(uritrimFragment, extensions);
-		}
-		extensions.add(uri.fileExtension());
-		boolean result = lastInitialURI.equals(uritrimFragment);
-		if(!result) {
-			result = alreadyValidated.contains(uritrimFragment);
-			if(!result) {
-				if(!alreadyGuessed.contains(uritrimFragment)) {
-					String message = new StringBuffer("<form><p>Your model is linked to an external resource (").append(uritrimFragment.toString()).append(").</p><p>Do you want to load it ?</p></form>").toString();
-					NotificationBuilder builder = getNotification(message, uritrimFragment, modelSet);
-					builder.run();
-					alreadyGuessed.add(uritrimFragment);
-					// notification
-				}
+		// pathmap resource are always loaded
+		boolean result = !uri.isPlatform() && !uri.isFile();
+		if (!result) {
+			URI lastInitialURI = SashModelUtils.getInitialURI(modelSet).trimFileExtension();
+			if(!lastInitialURI.equals(initialURI)) {
+				clear();
+				initialURI = lastInitialURI;
 			}
+			URI uritrimFragment = uri.trimFragment().trimFileExtension();
+			Set<String> extensions = mappingURIExtensions.get(uritrimFragment);
+			if(extensions == null) {
+				extensions = new HashSet<String>();
+				mappingURIExtensions.put(uritrimFragment, extensions);
+			}
+			extensions.add(uri.fileExtension());
+			result = lastInitialURI.equals(uritrimFragment);
+			if(!result) {
+				result = alreadyValidated.contains(uritrimFragment);
+				if(!result) {
+					if(!alreadyGuessed.contains(uritrimFragment)) {
+						String message = new StringBuffer("<form><p>Your model is linked to an external resource (").append(uritrimFragment.toString()).append(").</p><p>Do you want to load it ?</p></form>").toString();
+						NotificationBuilder builder = getNotification(message, uritrimFragment, modelSet);
+						builder.run();
+						alreadyGuessed.add(uritrimFragment);
+						// notification
+					}
+				}
+			}			
 		}
 		return result;
 	}
