@@ -10,7 +10,7 @@
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *
-  *****************************************************************************/
+ *****************************************************************************/
 package org.eclipse.papyrus.core.test.testModel2;
 
 import java.net.URL;
@@ -48,17 +48,19 @@ import org.eclipse.uml2.uml.Type;
  * 
  */
 public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
-	
+
 	public static final String RESOURCE_URI = "org.eclipse.papyrus.core.test/resources/TestModel2/";
 
-	private static final String INITIAL_PATH = "resources/TestModel2/";
+	public static final String INITIAL_PATH = "resources/TestModel2/";
 
 	private String[] resources = new String[]{ "model1", "Package0" };
 
 	private String[] extensions = new String[]{ ".di", ".notation", ".uml" };
 
 	protected ModelSet modelSet;
-	
+
+	private IFile resourceLoaded;
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -70,8 +72,8 @@ public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
 		IProject project = copyTestModelToThePlatform();
 		modelSet = (ModelSet)new OnDemandLoadingModelSetServiceFactory().createServiceInstance();
 		if(project != null) {
-			IFile modelFile = project.getFile(INITIAL_PATH + "model1.di");
-			modelSet.loadModels(modelFile);
+			resourceLoaded = getResourceToLoad(project);
+			modelSet.loadModels(resourceLoaded);
 		}
 	}
 
@@ -105,16 +107,23 @@ public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
 		project.refreshLocal(IResource.DEPTH_INFINITE, monitor);
 		return project;
 	}
-	
+
 	/**
 	 * Gets the current resource loading strategy.
 	 * 
 	 * @return the strategy
 	 */
 	public abstract int getStrategy();
-	
-	/** 
-	 * Gets an object (Class0) from a reference (type of property) to the high level resource (model1) 
+
+	/**
+	 * Gets the resource to load, the one it is opened with the papyrus editor
+	 * 
+	 * @return the resource to load
+	 */
+	public abstract IFile getResourceToLoad(IProject project);
+
+	/**
+	 * Gets an object (Class0) from a reference (type of property) to the high level resource (model1)
 	 */
 	public void testGetReferenceInControlledRessource() {
 		URI uriProperty0 = URI.createPlatformResourceURI(RESOURCE_URI + "Package0.uml#_57LlkIRSEd-ZSb15jhF0Qw", false);
@@ -124,12 +133,12 @@ public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
 			type = ((Property)property0).getType();
 			assertTestGetDanglingReferenceFromParentResource("Get type from controlled resource is resolved", type);
 		}
-		
+
 		URI uriClass0 = URI.createPlatformResourceURI(RESOURCE_URI + "model1.uml#_1766sIRSEd-ZSb15jhF0Qw", false);
 		EObject class0 = modelSet.getEObject(uriClass0, true);
 		assertTestGetReferenceInControlledRessource("Type of property is resolved ? :", type, class0);
 	}
-	
+
 	private void assertTestGetDanglingReferenceFromParentResource(String message, EObject eObject) {
 		switch(getStrategy()) {
 		case 0:
@@ -142,13 +151,18 @@ public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
 			break;
 		case 2:
 			// Load the additional resources (profile and pathmap) and the needed controlled resources
-			assertTrue(message, !eObject.eIsProxy());
+			if(resourceLoaded != null && resourceLoaded.getName().contains("model1")) {
+				assertTrue(message, !eObject.eIsProxy());
+			} else {
+				// when Package0 is opened, model1 is not loaded because it is not a controlled resource
+				assertTrue(message, eObject.eIsProxy());
+			}
 			break;
 		default:
 			break;
 		}
 	}
-	
+
 	private void assertTestGetReferenceInControlledRessource(String message, EObject eObject1, EObject eObject2) {
 		switch(getStrategy()) {
 		case 0:
@@ -161,39 +175,51 @@ public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
 			break;
 		case 2:
 			// Load the additional resources (profile and pathmap) and the needed controlled resources
-			assertSame(message, eObject1, eObject2);
+			if(resourceLoaded != null && resourceLoaded.getName().contains("model1")) {
+				assertSame(message, eObject1, eObject2);
+			} else {
+				// when Package0 is opened, model1 is not loaded because it is not a controlled resource
+				assertNotSame(message, eObject1, eObject2);
+			}
 			break;
 		default:
 			break;
 		}
 	}
-	
-	/** 
-	 * Gets a figure (figure of Class0) contains in the high level resource (model1) from a diagram in controlled resource (Package0) 
+
+	/**
+	 * Gets a figure (figure of Class0) contains in the high level resource (model1) from a diagram in controlled resource (Package0)
 	 */
 	public void testGetFigureInControlledRessource() {
 		URI uriFigurePackage0 = URI.createPlatformResourceURI(RESOURCE_URI + "Package0.notation#_-ig9EIRSEd-ZSb15jhF0Qw", false);
 		EObject figurePackage0 = modelSet.getEObject(uriFigurePackage0, true);
 		assertTestGetFigureInControlledRessource1("Get figure in Package0 resource", figurePackage0);
 		EObject element = null;
-		if (figurePackage0 instanceof Node) {
+		if(figurePackage0 instanceof Node) {
 			Node node = (Node)figurePackage0;
 			element = node.getElement();
-		}		
+		}
 		URI uriClass0 = URI.createPlatformResourceURI(RESOURCE_URI + "model1.uml#_1766sIRSEd-ZSb15jhF0Qw", false);
 		EObject class0 = modelSet.getEObject(uriClass0, true);
 		assertTestGetFigureInControlledRessource2("Load figure from high level resource", class0, element);
 	}
-	
+
 	private void assertTestGetFigureInControlledRessource1(String message, EObject eObject) {
 		switch(getStrategy()) {
 		case 0:
 			// Load all the needed resources
 			assertTrue(message, !eObject.eIsProxy());
 			break;
-		case 1:
+		case 1:			
 			// Load the additional resources (profile and pathmap). Controlled resources are not loaded
-			assertTrue(message, eObject.eIsProxy());
+			if(resourceLoaded != null && resourceLoaded.getName().contains("model1")) {
+				//assertTrue(message, eObject.eIsProxy());
+				// eObject is null, not a proxy
+				assertNull(message, eObject);
+			} else {
+				// when Package0 is opened, model1 is not loaded because it is not a controlled resource
+				assertTrue(message, !eObject.eIsProxy());
+			}
 			break;
 		case 2:
 			// Load the additional resources (profile and pathmap) and the needed controlled resources
@@ -203,7 +229,7 @@ public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
 			break;
 		}
 	}
-	
+
 	private void assertTestGetFigureInControlledRessource2(String message, EObject eObject1, EObject eObject2) {
 		switch(getStrategy()) {
 		case 0:
@@ -216,13 +242,18 @@ public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
 			break;
 		case 2:
 			// Load the additional resources (profile and pathmap) and the needed controlled resources
-			assertSame(message, eObject1, eObject2);
+			if(resourceLoaded != null && resourceLoaded.getName().contains("model1")) {
+				assertSame(message, eObject1, eObject2);
+			} else {
+				// when Package0 is opened, model1 is not loaded because it is not a controlled resource
+				assertNotSame(message, eObject1, eObject2);
+			}
 			break;
 		default:
 			break;
 		}
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -238,7 +269,7 @@ public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
 		}
 		super.tearDown();
 	}
-	
+
 	/**
 	 * Creates the folder name in the specified project
 	 * 

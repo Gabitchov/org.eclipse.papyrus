@@ -13,18 +13,27 @@
  *****************************************************************************/
 package org.eclipse.papyrus.core.test.testModel2;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
+
 /**
  * Test strategy 1 = Load the additional resources (profile and pathmap). Controlled resources are not loaded
+ * The model opened is Package0 (controlled resource)
  * 
  * @author eperico
  * 
  */
-public class Strategy1TestModel2 extends AbstractResourceLoadingTestModel2 {
+public class Strategy1TestModel2WithPackage0 extends AbstractResourceLoadingTestModel2 {
 
 	@Override
 	public int getStrategy() {
 		// Load the additional resources (profile and pathmap). Controlled resources are not loaded
 		return 1;
+	}
+
+	@Override
+	public IFile getResourceToLoad(IProject project) {
+		return project.getFile(INITIAL_PATH + "Package0.di");
 	}
 
 }
