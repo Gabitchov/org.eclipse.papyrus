@@ -31,7 +31,7 @@
 <plugin>
 «REM»YT (not used): «EXPAND fileTypes-»«ENDREM»
 «REM»YT (not used): «EXPAND extension_parser-»«ENDREM»
-«REM»YT (not used): «EXPAND xpt::editor::extensions::extensions FOR editorGen-»«ENDREM»
+«EXPAND xpt::editor::extensions::extensions FOR editorGen-»
 «EXPAND xpt::plugin::plugin::menu-»
 «EXPAND xpt::plugin::plugin::validation FOR editorGen.diagram-»
 «EXPAND xpt::plugin::plugin::metrics FOR editorGen.metrics-»
