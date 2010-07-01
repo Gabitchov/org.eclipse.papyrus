@@ -234,7 +234,9 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 		}
 
 		// parses constraints that will be given to each section
-		constraintDescriptors.addAll(parseConstraints(contextNode));
+		List<IConstraintDescriptor> constraintDescriptors2 = parseConstraints(contextNode);
+		assert (constraintDescriptors2 != null && !constraintDescriptors2.isEmpty()) : "constraints should not be null...";
+		constraintDescriptors.addAll(constraintDescriptors2);
 
 		// parse size
 		selectionSize = parseSelectionSize(contextNode);
