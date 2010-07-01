@@ -32,6 +32,7 @@ import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptorSt
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.ContentHolder;
+import org.eclipse.papyrus.properties.tabbed.customization.state.ConstraintStateUtils;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Tree;
@@ -159,57 +160,32 @@ public class ContainerMenuCreator extends AbstractMenuCreator {
 		for(final String predefinedId : predefinedDescriptors.keySet()) {
 			final PredefinedControllerDescriptor propertyEditorControllerDescriptor = predefinedDescriptors.get(predefinedId);
 			List<IConstraintDescriptor> constraints = propertyEditorControllerDescriptor.getConstraintDescriptors();
-			for(IConstraintDescriptor constraintDescriptor : constraints) {
-				boolean isValid = false;
-				// check the class constraint if selection  class is not null
-				if(constraintDescriptor instanceof ObjectTypeConstraintDescriptor && selectionClass != null) {
-					Class<?> elementClass = ((ObjectTypeConstraintDescriptor)constraintDescriptor).getElementClass();
-					// check element class is compatible
-					if(elementClass.isAssignableFrom(selectionClass)) {
-						isValid = true;
-					}
-				} else if(constraintDescriptor instanceof AppliedStereotypeConstraintDescriptor && appliedStereotypes != null) {
-					List<String> stereotypeNames = ((AppliedStereotypeConstraintDescriptor)constraintDescriptor).getStereotypeQualifiedNames();
 
-					boolean stereotypesMatch = false;
-					// check the stereotype constraints from the controller and compare with the constraints from the section set
-					for(String controllerStereotypeName : stereotypeNames) {
-						boolean localMatch = false;
-						for(String sectionStereotypeName : appliedStereotypes) {
-							// we have the stereotype qualified name. Now, should check if it fits to the current stereotype or one of its parent
-							if(controllerStereotypeName.equals(sectionStereotypeName)) {
-								localMatch = true;
+			boolean isValid = ConstraintStateUtils.areCompatible(constraints, getSectionSetDescriptorState().getConstraintDescriptorStates());
+
+			if(isValid) {
+				// build the action to add the controller
+				IAction action = new Action("Add " + propertyEditorControllerDescriptor.getText() + " (" + propertyEditorControllerDescriptor.getPredefinedId() + ")", Activator.imageDescriptorFromPlugin(Activator.ID, "/icons/NewPredefinedController.gif")) {
+
+					/**
+					 * {@inheritDoc}
+					 */
+					@Override
+					public void run() {
+						// add this section descriptor state from its parent
+						if(parent instanceof Tree) {
+							TreeItem[] selectedItems = ((Tree)parent).getSelection();
+							if(selectedItems.length < 1) {
+								Activator.log.warn("Impossible to find the current selection in the tree");
+								return;
 							}
+							ControllerDescriptorState state = new PredefinedControllerState(propertyEditorControllerDescriptor, false);
+							containerDescriptorState.addPropertyEditorControllerState(state);
 						}
-						stereotypesMatch = stereotypesMatch & localMatch;
 					}
-					isValid = isValid & stereotypesMatch;
-				}
 
-				if(isValid) {
-					// build the action to add the controller
-					IAction action = new Action("Add " + propertyEditorControllerDescriptor.getText() + " (" + propertyEditorControllerDescriptor.getPredefinedId() + ")", Activator.imageDescriptorFromPlugin(Activator.ID, "/icons/NewPredefinedController.gif")) {
-
-						/**
-						 * {@inheritDoc}
-						 */
-						@Override
-						public void run() {
-							// add this section descriptor state from its parent
-							if(parent instanceof Tree) {
-								TreeItem[] selectedItems = ((Tree)parent).getSelection();
-								if(selectedItems.length < 1) {
-									Activator.log.warn("Impossible to find the current selection in the tree");
-									return;
-								}
-								ControllerDescriptorState state = new PredefinedControllerState(propertyEditorControllerDescriptor, false);
-								containerDescriptorState.addPropertyEditorControllerState(state);
-							}
-						}
-
-					};
-					manager.appendToGroup(ADD_GROUP, action);
-				}
+				};
+				manager.appendToGroup(ADD_GROUP, action);
 			}
 		}
 
