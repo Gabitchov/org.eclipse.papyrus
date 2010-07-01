@@ -28,7 +28,7 @@ public class AllTests {
 	
 	public static Test suite()
     {
-        TestSuite suite = new TestSuite("Test for org.eclipse.papyrus.core");
+        TestSuite suite = new TestSuite("Test for org.eclipse.papyrus.core.resourceloading");
         //$JUnit-BEGIN$
         // Test suite for TestModel1
         suite.addTestSuite(Strategy0TestModel1.class);

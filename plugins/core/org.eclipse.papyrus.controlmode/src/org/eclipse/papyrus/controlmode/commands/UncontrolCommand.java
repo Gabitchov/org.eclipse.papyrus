@@ -187,7 +187,7 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 		// Create the Command to Uncontrol the model object
 		compoundCommand.append(new RemoveCommand(getEditingDomain(), eObject.eResource().getContents(), eObject));
 
-		unassignCntrolledResourceOfCurrentElement(getEditingDomain(), compoundCommand, HistoryUtils.getHistoryModel(diResourceSet), eObject.eResource().getURI().toString(), resource.getURI().toString());
+		unassignControlledResourceOfCurrentElement(getEditingDomain(), compoundCommand, HistoryUtils.getHistoryModel(diResourceSet), eObject.eResource().getURI().toString(), resource.getURI().toString());
 
 		// POST uncontrol operation
 		uncontrol(getEditingDomain(), eObject, controlledModel, resource, compoundCommand, STATE_CONTROL.POST_MODEL);
@@ -216,7 +216,7 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 				resources.add(d.eResource());
 			}
 			for(Resource r : resources) {
-				unassignCntrolledResourceOfCurrentElement(getEditingDomain(), compoundCommand, HistoryUtils.getHistoryModel(diResourceSet), r.getURI().toString(), notationResource.getURI().toString());
+				unassignControlledResourceOfCurrentElement(getEditingDomain(), compoundCommand, HistoryUtils.getHistoryModel(diResourceSet), r.getURI().toString(), notationResource.getURI().toString());
 			}
 
 			// POST uncontrol operation
@@ -227,7 +227,7 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 	}
 
 	/**
-	 * Analyse the history model to update the controlled children
+	 * Analyze the history model to update the controlled children
 	 * 
 	 * @param domain
 	 * @param compoundCommand
@@ -235,7 +235,7 @@ public class UncontrolCommand extends AbstractTransactionalCommand {
 	 * @param currentURL
 	 * @param newURL
 	 */
-	private void unassignCntrolledResourceOfCurrentElement(EditingDomain domain, CompoundCommand compoundCommand, HistoryModel model, String oldURL, String newURL) {
+	private void unassignControlledResourceOfCurrentElement(EditingDomain domain, CompoundCommand compoundCommand, HistoryModel model, String oldURL, String newURL) {
 		if(model == null) {
 			return;
 		}

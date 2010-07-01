@@ -30,7 +30,6 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.core.resourceloading.OnDemandLoadingModelSetServiceFactory;
 import org.eclipse.papyrus.core.resourceloading.preferences.StrategyChooser;
@@ -86,20 +85,20 @@ public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
 		IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject("org.eclipse.papyrus.core.test");
 		IProgressMonitor monitor = new NullProgressMonitor();
 
-		if(!project.exists()) {
+		if(project != null && !project.exists()) {
 			project.create(monitor);
-			project.open(monitor);
-			for(String res : resources) {
-				for(String s : extensions) {
-					IFile file = project.getFile(INITIAL_PATH + res + s);
-					// link all the models resources
-					if(!file.exists()) {
-						createFolder(project, "resources/");
-						createFolder(project, INITIAL_PATH);
-						URL url = FileLocator.find(Activator.getDefault().getBundle(), new Path(INITIAL_PATH + res + s), null);
-						URL newFile = FileLocator.resolve(url);
-						file.createLink(newFile.toURI(), IResource.REPLACE, monitor);
-					}
+		}
+		project.open(monitor);
+		for(String res : resources) {
+			for(String s : extensions) {
+				IFile file = project.getFile(INITIAL_PATH + res + s);
+				// link all the models resources
+				if(!file.exists()) {
+					createFolder(project, "resources/");
+					createFolder(project, INITIAL_PATH);
+					URL url = FileLocator.find(Activator.getDefault().getBundle(), new Path(INITIAL_PATH + res + s), null);
+					URL newFile = FileLocator.resolve(url);
+					file.createLink(newFile.toURI(), IResource.REPLACE, monitor);
 				}
 			}
 		}
@@ -128,7 +127,7 @@ public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
 		
 		URI uriClass0 = URI.createPlatformResourceURI(RESOURCE_URI + "model1.uml#_1766sIRSEd-ZSb15jhF0Qw", false);
 		EObject class0 = modelSet.getEObject(uriClass0, true);
-		assertEquals("Load object from a reference", type, class0);
+		assertTestGetReferenceInControlledRessource("Type of property is resolved ? :", type, class0);
 	}
 	
 	private void assertTestGetDanglingReferenceFromParentResource(String message, EObject eObject) {
@@ -150,28 +149,78 @@ public abstract class AbstractResourceLoadingTestModel2 extends TestCase {
 		}
 	}
 	
+	private void assertTestGetReferenceInControlledRessource(String message, EObject eObject1, EObject eObject2) {
+		switch(getStrategy()) {
+		case 0:
+			// Load all the needed resources
+			assertSame(message, eObject1, eObject2);
+			break;
+		case 1:
+			// Load the additional resources (profile and pathmap). Controlled resources are not loaded
+			assertNotSame(message, eObject1, eObject2);
+			break;
+		case 2:
+			// Load the additional resources (profile and pathmap) and the needed controlled resources
+			assertSame(message, eObject1, eObject2);
+			break;
+		default:
+			break;
+		}
+	}
+	
 	/** 
 	 * Gets a figure (figure of Class0) contains in the high level resource (model1) from a diagram in controlled resource (Package0) 
 	 */
 	public void testGetFigureInControlledRessource() {
 		URI uriFigurePackage0 = URI.createPlatformResourceURI(RESOURCE_URI + "Package0.notation#_-ig9EIRSEd-ZSb15jhF0Qw", false);
 		EObject figurePackage0 = modelSet.getEObject(uriFigurePackage0, true);
+		assertTestGetFigureInControlledRessource1("Get figure in Package0 resource", figurePackage0);
 		EObject element = null;
 		if (figurePackage0 instanceof Node) {
 			Node node = (Node)figurePackage0;
 			element = node.getElement();
-			assertNotNull("Element from the figure not null", element);
-		}
-		
+		}		
 		URI uriClass0 = URI.createPlatformResourceURI(RESOURCE_URI + "model1.uml#_1766sIRSEd-ZSb15jhF0Qw", false);
 		EObject class0 = modelSet.getEObject(uriClass0, true);
-		assertEquals("Load figure from high level resource", class0, element);
+		assertTestGetFigureInControlledRessource2("Load figure from high level resource", class0, element);
 	}
 	
-	public void testResolveAll() {
-		int nbResources = modelSet.getResources().size();
-		EcoreUtil.resolveAll(modelSet);
-		assertEquals(nbResources, modelSet.getResources().size());
+	private void assertTestGetFigureInControlledRessource1(String message, EObject eObject) {
+		switch(getStrategy()) {
+		case 0:
+			// Load all the needed resources
+			assertTrue(message, !eObject.eIsProxy());
+			break;
+		case 1:
+			// Load the additional resources (profile and pathmap). Controlled resources are not loaded
+			assertTrue(message, eObject.eIsProxy());
+			break;
+		case 2:
+			// Load the additional resources (profile and pathmap) and the needed controlled resources
+			assertTrue(message, !eObject.eIsProxy());
+			break;
+		default:
+			break;
+		}
+	}
+	
+	private void assertTestGetFigureInControlledRessource2(String message, EObject eObject1, EObject eObject2) {
+		switch(getStrategy()) {
+		case 0:
+			// Load all the needed resources
+			assertSame(message, eObject1, eObject2);
+			break;
+		case 1:
+			// Load the additional resources (profile and pathmap). Controlled resources are not loaded
+			assertNotSame(message, eObject1, eObject2);
+			break;
+		case 2:
+			// Load the additional resources (profile and pathmap) and the needed controlled resources
+			assertSame(message, eObject1, eObject2);
+			break;
+		default:
+			break;
+		}
 	}
 	
 	/**

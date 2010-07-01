@@ -86,30 +86,30 @@ public abstract class AbstractResourceLoadingTestModel1 extends TestCase {
 		IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject("org.eclipse.papyrus.core.test");
 		IProgressMonitor monitor = new NullProgressMonitor();
 
-		if(!project.exists()) {
+		if(project != null && !project.exists()) {
 			project.create(monitor);
-			project.open(monitor);
-			for(String res : resources) {
-				for(String s : extensions) {
-					IFile file = project.getFile(INITIAL_PATH + res + s);
-					// link all the models resources
-					if(!file.exists()) {
-						createFolder(project, "resources/");
-						createFolder(project, INITIAL_PATH);
-						URL url = FileLocator.find(Activator.getDefault().getBundle(), new Path(INITIAL_PATH + res + s), null);
-						URL newFile = FileLocator.resolve(url);
-						file.createLink(newFile.toURI(), IResource.REPLACE, monitor);
-					}
+		}
+		project.open(monitor);
+		for(String res : resources) {
+			for(String s : extensions) {
+				IFile file = project.getFile(INITIAL_PATH + res + s);
+				// link all the models resources
+				if(!file.exists()) {
+					createFolder(project, "resources/");
+					createFolder(project, INITIAL_PATH);
+					URL url = FileLocator.find(Activator.getDefault().getBundle(), new Path(INITIAL_PATH + res + s), null);
+					URL newFile = FileLocator.resolve(url);
+					file.createLink(newFile.toURI(), IResource.REPLACE, monitor);
 				}
 			}
-			// link the profile
-			String profilePath = INITIAL_PATH + "MyProfile.uml";
-			IFile file = project.getFile(profilePath);
-			if(!file.exists()) {
-				URL url = FileLocator.find(Activator.getDefault().getBundle(), new Path(profilePath), null);
-				URL newFile = FileLocator.resolve(url);
-				file.createLink(newFile.toURI(), IResource.REPLACE, monitor);
-			}
+		}
+		// link the profile
+		String profilePath = INITIAL_PATH + "MyProfile.uml";
+		IFile file = project.getFile(profilePath);
+		if(!file.exists()) {
+			URL url = FileLocator.find(Activator.getDefault().getBundle(), new Path(profilePath), null);
+			URL newFile = FileLocator.resolve(url);
+			file.createLink(newFile.toURI(), IResource.REPLACE, monitor);
 		}
 		project.refreshLocal(IResource.DEPTH_INFINITE, monitor);
 		return project;
