@@ -93,11 +93,13 @@ public class ContinuationCreateCommand extends EditElementCommand {
 	 * @generated NOT
 	 */
 	public boolean canExecute() {
-		InteractionOperand interactionOperand = (InteractionOperand)getElementToEdit();
-		CombinedFragment combinedFragment = getEnclosingCombinedFragment(interactionOperand);
-		if(combinedFragment != null) {
-			if(combinedFragment.getInteractionOperator() == InteractionOperatorKind.ALT_LITERAL) {
-				return true;
+		if(getElementToEdit() instanceof InteractionOperand){
+			InteractionOperand interactionOperand = (InteractionOperand)getElementToEdit();
+			CombinedFragment combinedFragment = getEnclosingCombinedFragment(interactionOperand);
+			if(combinedFragment != null) {
+				if(combinedFragment.getInteractionOperator() == InteractionOperatorKind.ALT_LITERAL) {
+					return true;
+				}
 			}
 		}
 		return false;
