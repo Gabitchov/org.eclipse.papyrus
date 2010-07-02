@@ -38,6 +38,11 @@ public class CustomReorientContainmentLinkCommand extends AbstractTransactionalC
 		req = request;
 
 	}
+	
+	@Override
+	public boolean canExecute() {
+		return false;
+	}
 
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
