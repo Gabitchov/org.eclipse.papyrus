@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Atos Origin - Enable extending with a composite figure, by adding overrideable methods.
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.figure.node;
@@ -21,6 +22,7 @@ import org.eclipse.draw2d.AbstractLayout;
 import org.eclipse.draw2d.FigureListener;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
+import org.eclipse.draw2d.LayoutManager;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -99,13 +101,210 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		super();
 
 		// creation of the nameLabel
+		createNameLabel();
+
+		initTagLabel(taggedLabelValue);
+	}
+
+	/**
+	 * Create a label that contains the name of the element.
+	 */
+	protected void createNameLabel() {
 		nameLabel = new WrappingLabel();
 
 		nameLabel.setOpaque(false);
 		nameLabel.setAlignment(PositionConstants.MIDDLE);
-		add(nameLabel);
+		getNameLabelContainer().add(nameLabel, getNameLabelConstraint(), -1);
+	}
 
-		initTagLabel(taggedLabelValue);
+	/**
+	 * Get the constraint for adding the name label.
+	 * Children should override and implement this method in case the label must be drawn with a specific constraint.
+	 * 
+	 * @return figure containing the name label
+	 * @see #getNameLabelContainer()
+	 * @see #getDefaultLabelsConstraint()
+	 */
+	protected Object getNameLabelConstraint() {
+		return getDefaultLabelsConstraint();
+	}
+
+	/**
+	 * Get the constraint for adding the icon label.
+	 * Children should override and implement this method in case the label must be drawn with a specific constraint.
+	 * 
+	 * @return figure containing the icon label
+	 * @see #getIconLabelContainer()
+	 * @see #getDefaultLabelsConstraint()
+	 */
+	protected Object getIconLabelConstraint() {
+		return getDefaultLabelsConstraint();
+	}
+
+	/**
+	 * Get the constraint for adding the qualified name label.
+	 * Children should override and implement this method in case the label must be drawn with a specific constraint.
+	 * 
+	 * @return figure containing the qualified name label
+	 * @see #getQualifiedNameLabelContainer()
+	 * @see #getDefaultLabelsConstraint()
+	 */
+	protected Object getQualifiedNameLabelConstraint() {
+		return getDefaultLabelsConstraint();
+	}
+
+	/**
+	 * Get the constraint for adding the stereotype label.
+	 * Children should override and implement this method in case the label must be drawn with a specific constraint.
+	 * 
+	 * @return figure containing the qualified name label
+	 * @see #getStereotypeLabelContainer()
+	 * @see #getDefaultLabelsConstraint()
+	 */
+	protected Object getStereotypeLabelConstraint() {
+		return getDefaultLabelsConstraint();
+	}
+
+	/**
+	 * Get the constraint for adding the stereotype properties in brace label.
+	 * Children should override and implement this method in case the label must be drawn with a specific constraint.
+	 * 
+	 * @return figure containing the stereotype properties in brace label
+	 * @see #getStereotypePropertiesInBraceLabelContainer()
+	 * @see #getDefaultLabelsConstraint()
+	 */
+	protected Object getStereotypePropertiesInBraceLabelConstraint() {
+		return getDefaultLabelsConstraint();
+	}
+
+	/**
+	 * Get the constraint for adding the stereotype properties compartment.
+	 * Children should override and implement this method in case the label must be drawn with a specific constraint.
+	 * 
+	 * @return figure containing the stereotype properties compartment
+	 * @see #getStereotypePropertiesCompartmentContainer()
+	 * @see #getDefaultLabelsConstraint()
+	 */
+	protected Object getStereotypePropertiesCompartmentConstraint() {
+		return getDefaultLabelsConstraint();
+	}
+
+	/**
+	 * Get the constraint for adding the tag label.
+	 * Children should override and implement this method in case the label must be drawn with a specific constraint.
+	 * 
+	 * @return figure containing the qualified name label
+	 * @see #getTagLabelContainer()
+	 * @see #getDefaultLabelsConstraint()
+	 */
+	protected Object getTagLabelConstraint() {
+		return getDefaultLabelsConstraint();
+	}
+
+	/**
+	 * Get the default constraint for all labels.
+	 * Children should override and implement this method in case the label must be drawn with a specific constraint.
+	 * 
+	 * @return constraint for all labels by default
+	 * @see #getDefaultLabelsContainer()
+	 */
+	protected Object getDefaultLabelsConstraint() {
+		return null;
+	}
+
+	/**
+	 * Get the container for the name label.
+	 * Children should override and implement this method in case the label must not be drawn in the overall figure. The returned figure shall be
+	 * created in the method {@link #createCompositeFigureStructure()}.
+	 * 
+	 * @return figure containing the name label
+	 * @see #getDefaultLabelsContainer()
+	 */
+	protected IFigure getNameLabelContainer() {
+		return getDefaultLabelsContainer();
+	}
+
+	/**
+	 * Get the container for the icon label.
+	 * Children should override and implement this method in case the label must not be drawn in the overall figure. The returned figure shall be
+	 * created in the method {@link #createCompositeFigureStructure()}.
+	 * 
+	 * @return figure containing the icon label
+	 * @see #getDefaultLabelsContainer()
+	 */
+	protected IFigure getIconLabelContainer() {
+		return getDefaultLabelsContainer();
+	}
+
+	/**
+	 * Get the container for the qualified name label.
+	 * Children should override and implement this method in case the label must not be drawn in the overall figure. The returned figure shall be
+	 * created in the method {@link #createCompositeFigureStructure()}.
+	 * 
+	 * @return figure containing the qualified name label
+	 * @see #getDefaultLabelsContainer()
+	 */
+	protected IFigure getQualifiedNameLabelContainer() {
+		return getDefaultLabelsContainer();
+	}
+
+	/**
+	 * Get the container for the stereotype label.
+	 * Children should override and implement this method in case the label must not be drawn in the overall figure. The returned figure shall be
+	 * created in the method {@link #createCompositeFigureStructure()}.
+	 * 
+	 * @return figure containing the qualified name label
+	 * @see #getDefaultLabelsContainer()
+	 */
+	protected IFigure getStereotypeLabelContainer() {
+		return getDefaultLabelsContainer();
+	}
+
+	/**
+	 * Get the container for the stereotype properties in brace label.
+	 * Children should override and implement this method in case the label must not be drawn in the overall figure. The returned figure shall be
+	 * created in the method {@link #createCompositeFigureStructure()}.
+	 * 
+	 * @return figure containing the stereotype properties in brace label
+	 * @see #getDefaultLabelsContainer()
+	 */
+	protected IFigure getStereotypePropertiesInBraceLabelContainer() {
+		return getDefaultLabelsContainer();
+	}
+
+	/**
+	 * Get the container for the stereotype properties compartment.
+	 * Children should override and implement this method in case the compartment must not be drawn in the overall figure. The returned figure shall
+	 * be created in the method {@link #createCompositeFigureStructure()}.
+	 * 
+	 * @return figure containing the stereotype properties compartment
+	 * @see #getDefaultLabelsContainer()
+	 */
+	protected IFigure getStereotypePropertiesCompartmentContainer() {
+		return getDefaultLabelsContainer();
+	}
+
+	/**
+	 * Get the container for the tag label.
+	 * Children should override and implement this method in case the label must not be drawn in the overall figure. The returned figure shall be
+	 * created in the method {@link #createCompositeFigureStructure()}.
+	 * 
+	 * @return figure containing the qualified name label
+	 * @see #getDefaultLabelsContainer()
+	 */
+	protected IFigure getTagLabelContainer() {
+		return getDefaultLabelsContainer();
+	}
+
+	/**
+	 * Get the default container for all labels.
+	 * Children should override and implement this method in case the label must not be drawn in the overall figure. The returned figure shall be
+	 * created in the method {@link #createCompositeFigureStructure()}.
+	 * 
+	 * @return figure containing labels by default
+	 */
+	protected IFigure getDefaultLabelsContainer() {
+		return this;
 	}
 
 	/**
@@ -129,7 +328,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	protected void createIconLabel() {
 		iconLabel = new Label();
 		// Add the label to the figure, at pos 0
-		add(iconLabel, getIconLabelPosition());
+		getIconLabelContainer().add(iconLabel, getIconLabelConstraint(), getIconLabelPosition());
 		iconLabel.setLabelAlignment(PositionConstants.LEFT);
 	}
 
@@ -142,7 +341,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		qualifiedLabel.setFont(getNameLabel().getFont());
 		qualifiedLabel.setForegroundColor(getNameLabel().getForegroundColor());
 		// Add the label to the figure, after the name
-		this.add(qualifiedLabel, getQualifiedNameLabelPosition());
+		getQualifiedNameLabelContainer().add(qualifiedLabel, getQualifiedNameLabelConstraint(), getQualifiedNameLabelPosition());
 	}
 
 	/**
@@ -154,7 +353,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		stereotypesLabel.setFont(getNameLabel().getFont());
 		stereotypesLabel.setForegroundColor(getNameLabel().getForegroundColor());
 		// Add the stereotype label to the figure at pos 0
-		this.add(stereotypesLabel, getStereotypeLabelPosition());
+		getStereotypeLabelContainer().add(stereotypesLabel, getStereotypeLabelConstraint(), getStereotypeLabelPosition());
 	}
 
 	/**
@@ -164,8 +363,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		stereotypePropertiesInBraceContent = new Label();
 		stereotypePropertiesInBraceContent.setOpaque(false);
 		// Add the stereotype label to the figure at pos 0
-		this.add(stereotypePropertiesInBraceContent, getStereotypePropertiesLabelPosition());
-
+		getStereotypePropertiesInBraceLabelContainer().add(stereotypePropertiesInBraceContent, getStereotypePropertiesInBraceLabelConstraint(), getStereotypePropertiesLabelPosition());
 	}
 
 	protected void createStereotypePropertiesContent() {
@@ -173,8 +371,18 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		stereotypePropertiesContent.setFill(false);
 		stereotypePropertiesContent.setLineWidth(0);
 		stereotypePropertiesContent.setBorder(null);
-		stereotypePropertiesContent.setLayoutManager(new PropertiesCompatmentLayoutManager());
-		this.add(stereotypePropertiesContent, getStereotypePropertiesCompartmentPosition());
+		stereotypePropertiesContent.setLayoutManager(getPropertiesCompartmentLayout());
+		getStereotypePropertiesCompartmentContainer().add(stereotypePropertiesContent, getStereotypePropertiesCompartmentConstraint(), getStereotypePropertiesCompartmentPosition());
+	}
+
+	/**
+	 * Get layout to display content of properties compartment.
+	 * Children may override this method.
+	 * 
+	 * @return the layout
+	 */
+	protected LayoutManager getPropertiesCompartmentLayout() {
+		return new PropertiesCompatmentLayoutManager();
 	}
 
 	private void fillStereotypePropertiesInCompartment(String stereotypeProperties) {
@@ -235,17 +443,8 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 			taggedLabel.setOpaque(false);
 			taggedLabel.setForegroundColor(getNameLabel().getForegroundColor());
 			taggedLabel.setFont(getNameLabel().getFont());
-			add(taggedLabel, 0);
+			getTagLabelContainer().add(taggedLabel, getTagLabelConstraint(), 0);
 		}
-	}
-
-	/**
-	 * 
-	 * 
-	 * @return
-	 */
-	protected int getIconLabelPosition() {
-		return 0;
 	}
 
 	public Dimension getMinimumDimension() {
@@ -275,13 +474,13 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	protected int getNameHeight() {
 		int nameHeight = this.getNameLabel().getPreferredSize().height;
 
-		if(this.getIconLabel() != null) {
+		if(this.getIconLabel() != null && getIconLabelContainer().equals(getNameLabelContainer())) {
 			nameHeight += this.getIconLabel().getPreferredSize().height;
 		}
-		if(this.getStereotypesLabel() != null) {
+		if(this.getStereotypesLabel() != null && getStereotypeLabelContainer().equals(getNameLabelContainer())) {
 			nameHeight += this.getStereotypesLabel().getPreferredSize().height;
 		}
-		if(this.getQualifiedNameLabel() != null) {
+		if(this.getQualifiedNameLabel() != null && getQualifiedNameLabelContainer().equals(getNameLabelContainer())) {
 			nameHeight += this.getQualifiedNameLabel().getPreferredSize().height;
 		}
 		nameHeight += 5;
@@ -305,20 +504,6 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	}
 
 	/**
-	 * 
-	 * 
-	 * @return
-	 */
-	// @unused
-	protected int getNameLabelPosition() {
-		int position = getQualifiedNameLabelPosition();
-		if(this.qualifiedLabel != null) {
-			position++;
-		}
-		return position;
-	}
-
-	/**
 	 * Calculate the partial qualified name with a specified depth.
 	 * 
 	 * @param qualifiedName
@@ -327,7 +512,9 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 */
 	public String getQualifiedName(String qualifiedName, int depth) {
 		int n = -1;
-		if( qualifiedName==null){return null;}
+		if(qualifiedName == null) {
+			return null;
+		}
 		int i = 0;
 		if(depth <= 0) {
 			return qualifiedName;
@@ -359,48 +546,147 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	}
 
 	/**
-	 * 
-	 * 
-	 * @return
+	 * @return the position of the icon label
 	 */
-	protected int getQualifiedNameLabelPosition() {
-		int position = getStereotypePropertiesLabelPosition();
-		if(this.stereotypePropertiesInBraceContent != null) {
-			position++;
-		}
-		return position;
+	protected int getIconLabelPosition() {
+		return 0;
 	}
 
 	/**
-	 * 
-	 * 
-	 * @return the position of the stereotype label in the figure
+	 * @return the position of the stereotype label
 	 */
 	protected int getStereotypeLabelPosition() {
-		int position = getIconLabelPosition();
-		if((this.iconLabel != null) && (this.iconLabel.getIcon() != null)) {
-			position++;
+		int position = 0;
+		if(getStereotypeLabelContainer().equals(getIconLabelContainer())) {
+			// located after icon label
+			position = getIconLabelPosition();
+			if((this.iconLabel != null) && (this.iconLabel.getIcon() != null)) {
+				position++;
+			}
 		}
 		return position;
+
 	}
 
 	/**
 	 * Returns the position of the stereotype properties location. this is just after stereotype
 	 * position
 	 * 
-	 * @return the position of the stereotype properties label in the figure
+	 * @return the position of the stereotype properties in brace label
 	 */
 	protected int getStereotypePropertiesLabelPosition() {
-		int position = getStereotypeLabelPosition();
-		if(this.stereotypesLabel != null) {
-			position++;
+		int position = 0;
+		if(getStereotypePropertiesInBraceLabelContainer().equals(getStereotypeLabelContainer())) {
+			// located after stereotype label
+			position = getStereotypeLabelPosition();
+			if(this.stereotypesLabel != null) {
+				position++;
+			}
+		} else if(getStereotypePropertiesInBraceLabelContainer().equals(getIconLabelContainer())) {
+			// located after icon label
+			position = getIconLabelPosition();
+			if((this.iconLabel != null) && (this.iconLabel.getIcon() != null)) {
+				position++;
+			}
 		}
 		return position;
 	}
 
+	/**
+	 * @return the position of the qualified name label
+	 */
+	protected int getQualifiedNameLabelPosition() {
+		int position = 0;
+		if(getQualifiedNameLabelContainer().equals(getStereotypePropertiesInBraceLabelContainer())) {
+			// located after stereotype properties in brace label
+			position = getStereotypePropertiesLabelPosition();
+			if(this.stereotypePropertiesInBraceContent != null) {
+				position++;
+			}
+		} else if(getQualifiedNameLabelContainer().equals(getStereotypeLabelContainer())) {
+			// located after stereotype label
+			position = getStereotypeLabelPosition();
+			if(this.stereotypesLabel != null) {
+				position++;
+			}
+		} else if(getQualifiedNameLabelContainer().equals(getIconLabelContainer())) {
+			// located after icon label
+			position = getIconLabelPosition();
+			if((this.iconLabel != null) && (this.iconLabel.getIcon() != null)) {
+				position++;
+			}
+		}
+		return position;
+	}
+
+	/**
+	 * @return the position of the name label
+	 */
+	// @unused
+	protected int getNameLabelPosition() {
+		int position = 0;
+		if(getNameLabelContainer().equals(getQualifiedNameLabelContainer())) {
+			// located after qualifed name label
+			position = getQualifiedNameLabelPosition();
+			if(this.qualifiedLabel != null) {
+				position++;
+			}
+		} else if(getQualifiedNameLabelContainer().equals(getStereotypePropertiesInBraceLabelContainer())) {
+			// located after stereotype properties in brace label
+			position = getStereotypePropertiesLabelPosition();
+			if(this.stereotypePropertiesInBraceContent != null) {
+				position++;
+			}
+		} else if(getQualifiedNameLabelContainer().equals(getStereotypeLabelContainer())) {
+			// located after stereotype label
+			position = getStereotypeLabelPosition();
+			if(this.stereotypesLabel != null) {
+				position++;
+			}
+		} else if(getQualifiedNameLabelContainer().equals(getIconLabelContainer())) {
+			// located after icon label
+			position = getIconLabelPosition();
+			if((this.iconLabel != null) && (this.iconLabel.getIcon() != null)) {
+				position++;
+			}
+		}
+		return position;
+	}
+
+	/**
+	 * @return the position of the stereotype properties compartment
+	 */
 	protected int getStereotypePropertiesCompartmentPosition() {
-		int position = getChildren().indexOf(nameLabel);
-		position++;
+		int position = 0;
+		if(getStereotypePropertiesCompartmentContainer().equals(getNameLabelContainer())) {
+			// locate after name label (which is never removed)
+			position = getNameLabelContainer().getChildren().indexOf(nameLabel);
+			position++;
+		} else if(getNameLabelContainer().equals(getQualifiedNameLabelContainer())) {
+			// located after qualifed name label
+			position = getQualifiedNameLabelPosition();
+			if(this.qualifiedLabel != null) {
+				position++;
+			}
+		} else if(getQualifiedNameLabelContainer().equals(getStereotypePropertiesInBraceLabelContainer())) {
+			// located after stereotype properties in brace label
+			position = getStereotypePropertiesLabelPosition();
+			if(this.stereotypePropertiesInBraceContent != null) {
+				position++;
+			}
+		} else if(getQualifiedNameLabelContainer().equals(getStereotypeLabelContainer())) {
+			// located after stereotype label
+			position = getStereotypeLabelPosition();
+			if(this.stereotypesLabel != null) {
+				position++;
+			}
+		} else if(getQualifiedNameLabelContainer().equals(getIconLabelContainer())) {
+			// located after icon label
+			position = getIconLabelPosition();
+			if((this.iconLabel != null) && (this.iconLabel.getIcon() != null)) {
+				position++;
+			}
+		}
 		return position;
 	}
 
@@ -522,12 +808,12 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		// two raisons to remove label!
 		// null
 		// or the qualified name is equal to 1
-		if(qualifiedName == null ||tmpQualifiedName==null|| !tmpQualifiedName.contains("::")) { // Remove
+		if(qualifiedName == null || tmpQualifiedName == null || !tmpQualifiedName.contains("::")) { // Remove
 			// label
 			// if
 			// any
 			if(this.qualifiedLabel != null) {
-				this.remove(this.qualifiedLabel);
+				getQualifiedNameLabelContainer().remove(this.qualifiedLabel);
 				this.qualifiedLabel = null;
 			}
 			return;
@@ -564,7 +850,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		if(stereotypeProperties == null) {
 			// Remove label if any
 			if(this.stereotypePropertiesInBraceContent != null) {
-				this.remove(this.stereotypePropertiesInBraceContent);
+				getStereotypePropertiesInBraceLabelContainer().remove(this.stereotypePropertiesInBraceContent);
 				this.stereotypePropertiesInBraceContent = null;
 			}
 			return;
@@ -596,7 +882,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		if(stereotypeProperties == null) {
 			// remove figure of stereotype properties compartment
 			if(this.stereotypePropertiesContent != null) {
-				this.remove(this.stereotypePropertiesContent);
+				getStereotypePropertiesCompartmentContainer().remove(this.stereotypePropertiesContent);
 				this.stereotypePropertiesContent = null;
 			}
 			return;
@@ -627,7 +913,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		if(stereotypes == null) {
 			// Remove label if any
 			if(this.stereotypesLabel != null) {
-				this.remove(this.stereotypesLabel);
+				getStereotypeLabelContainer().remove(this.stereotypesLabel);
 				this.stereotypesLabel = null;
 			}
 			return;
@@ -656,7 +942,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		if(image == null) {
 			// Remove label if any
 			if(this.iconLabel != null) {
-				this.remove(this.iconLabel);
+				getIconLabelContainer().remove(this.iconLabel);
 				this.iconLabel = null;
 			}
 			return;

@@ -9,12 +9,15 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Atos Origin - Enable extending with a composite figure, by adding overrideable methods.
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.figure.node;
 
+import org.eclipse.draw2d.Border;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
@@ -46,6 +49,7 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 
 	public PapyrusNodeFigure() {
 		super();
+		createCompositeFigureStructure();
 
 		// Initialize dash property for dashed border representation.
 		for(int i = 0; i < 10; i++) {
@@ -53,7 +57,46 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 		}
 
 		shadowborder = new RectangularShadowBorder(3, getForegroundColor());
-		setBorder(shadowborder);
+		setBorder(getBorderedFigure(), shadowborder);
+	}
+
+	/**
+	 * Create the composite structure of this figure, by adding it its necessary children.
+	 * Children should override and implement this method in case they have a composite figure, to add children forming the overall structure.
+	 */
+	protected void createCompositeFigureStructure() {
+		// By default, do nothing : the figure is not composite
+	}
+
+	/**
+	 * Get the figure on which the border must be drawn.
+	 * Children should override and implement this method in case the border must not be drawn on the overall figure. The returned figure shall be
+	 * created in the method {@link #createCompositeFigureStructure()}.
+	 * 
+	 * @return the figure to draw the border on
+	 * @see #createCompositeFigureStructure()
+	 */
+	protected IFigure getBorderedFigure() {
+		// by default, border is drawn on the overall figure
+		return this;
+	}
+
+	/**
+	 * Sets the border to the bordered figure.
+	 * This method is not intended to be overridden. Override {@link #getBorderedFigure()} instead.
+	 * 
+	 * @param borderedFigure
+	 *        the figure on which the border shall be drawn (or null for this figure)
+	 * @param border
+	 *        The new border
+	 * @see IFigure#setBorder(Border)
+	 */
+	protected void setBorder(IFigure borderedFigure, Border border) {
+		if(borderedFigure == null) {
+			super.setBorder(border);
+		} else {
+			borderedFigure.setBorder(border);
+		}
 	}
 
 	public boolean isShadow() {
@@ -63,9 +106,9 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 	public void setShadow(boolean shadow) {
 		this.shadow = shadow;
 		if(shadow == true) {
-			this.setBorder(shadowborder);
+			setBorder(getBorderedFigure(), shadowborder);
 		} else {
-			this.setBorder(new LineBorder());
+			setBorder(getBorderedFigure(), getDefaultBorder(null));
 		}
 	}
 
@@ -77,7 +120,24 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 	 */
 	public void setBorderColor(Color borderColor) {
 		this.borderColor = borderColor;
-		super.setBorder(new LineBorder(borderColor));
+		setBorder(getBorderedFigure(), getDefaultBorder(borderColor));
+	}
+
+	/**
+	 * Get the default non shadow border to use.
+	 * Children can override and implement this method if necessary, taking care not to fail if borderColor is null
+	 * 
+	 * @param borderColor
+	 *        the color of the border to take if possible or null
+	 * @return a non shadow border
+	 */
+	protected Border getDefaultBorder(Color borderColor) {
+		// default border is line border
+		if(borderColor != null) {
+			return new LineBorder(borderColor);
+		} else {
+			return new LineBorder();
+		}
 	}
 
 	/**
