@@ -52,7 +52,7 @@ import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
  * 
  */
 public class CustomClassItemSemanticEditPolicy extends ClassItemSemanticEditPolicy {
-
+	
 	/**
 	 * 
 	 * {@inheritDoc}
@@ -118,25 +118,10 @@ public class CustomClassItemSemanticEditPolicy extends ClassItemSemanticEditPoli
 	 */
 	@Override
 	protected Command getReorientRefRelationshipTargetCommand(ReconnectRequest request) {
-		int visualId = getVisualID(request);
-		if(AddedLinkEditPart.VISUAL_ID == visualId) {
-			Object view = request.getConnectionEditPart().getModel();
-			if(view instanceof View) {
-				request.getExtendedData().put(ContainmentHelper.KEY_CONNECTION_VIEW, view);
-			}
+		if(ContainmentHelper.isReorientContainmentLink(request)) {
+			request = ContainmentHelper.extendReorientTargetRequest(request);
 		}
-		return super.getReorientRefRelationshipSourceCommand(request);
-	}
-
-	/**
-	 * Gets the visual id.
-	 *
-	 * @param request the request
-	 * @return the visual id
-	 */
-	private int getVisualID(ReconnectRequest request) {
-		Object id = request.getExtendedData().get(VISUAL_ID_KEY);
-		return id instanceof Integer ? ((Integer)id).intValue() : -1;
+		return super.getReorientRefRelationshipTargetCommand(request);
 	}
 
 	/**

@@ -54,18 +54,4 @@ public class CustomAddedLinkItemSemanticEditPolicy extends AddedLinkItemSemantic
 		return new ICommandProxy(cc.reduce());
 	}
 
-
-	/**
-	 * 
-	 * 
-	 * 
-	 * {@inheritDoc}
-	 */
-	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
-		switch(getVisualID(req)) {
-		case AddedLinkEditPart.VISUAL_ID:
-			return getGEFWrapper(new ContainmentLinkReorientCommand(req, getHost()));
-		}
-		return super.getReorientReferenceRelationshipCommand(req);
-	}
 }

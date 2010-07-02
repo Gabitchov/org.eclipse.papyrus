@@ -24,6 +24,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
@@ -45,6 +46,7 @@ import org.eclipse.papyrus.diagram.clazz.custom.command.CustomContainmentLinkVie
 import org.eclipse.papyrus.diagram.clazz.custom.command.CustomDropAppliedStereotypeCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.custom.providers.CustomDeferredCreateConnectionViewCommand;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
@@ -52,6 +54,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartTN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN;
+import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.helper.ElementHelper;
@@ -260,8 +263,41 @@ public class ContainmentHelper extends ElementHelper {
 		return cc;
 	}
 
+	/**
+	 * Checks if is reorient containment link.
+	 *
+	 * @param request the request
+	 * @return true, if is reorient containment link
+	 */
+	public static boolean isReorientContainmentLink(ReconnectRequest request) {
+		int visualId = getVisualID(request);
+		return visualId == AddedLinkEditPart.VISUAL_ID;
+	}
+	
+	/**
+	 * Extend reorient target request.
+	 *
+	 * @param request the request
+	 * @return the reconnect request
+	 */
+	public static ReconnectRequest extendReorientTargetRequest(ReconnectRequest request) {
+		Object view = request.getConnectionEditPart().getModel();
+		if(view instanceof View) {
+			request.getExtendedData().put(ContainmentHelper.KEY_CONNECTION_VIEW, view);
+		}
+		return request;
+	}
 
-
+	/**
+	 * Gets the visual id.
+	 *
+	 * @param request the request
+	 * @return the visual id
+	 */
+	private static int getVisualID(ReconnectRequest request) {
+		Object id = request.getExtendedData().get(UMLBaseItemSemanticEditPolicy.VISUAL_ID_KEY);
+		return id instanceof Integer ? ((Integer)id).intValue() : -1;
+	}
 
 
 }
