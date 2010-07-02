@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
@@ -34,6 +35,7 @@ import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationClassCreateC
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.ContainmentLinkReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CContainmentCircleEditPart;
+import org.eclipse.papyrus.diagram.clazz.custom.helper.ContainmentHelper;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.ConstraintConstrainedElementReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
@@ -106,6 +108,35 @@ public class CustomClassItemSemanticEditPolicy extends ClassItemSemanticEditPoli
 			return getGEFWrapper(new ContainmentLinkReorientCommand(req, getHost()));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
+	}
+
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.SemanticEditPolicy#getReorientRefRelationshipTargetCommand(org.eclipse.gef.requests.ReconnectRequest)
+	 *
+	 * @param request
+	 * @return
+	 */
+	@Override
+	protected Command getReorientRefRelationshipTargetCommand(ReconnectRequest request) {
+		int visualId = getVisualID(request);
+		if(AddedLinkEditPart.VISUAL_ID == visualId) {
+			Object view = request.getConnectionEditPart().getModel();
+			if(view instanceof View) {
+				request.getExtendedData().put(ContainmentHelper.KEY_CONNECTION_VIEW, view);
+			}
+		}
+		return super.getReorientRefRelationshipSourceCommand(request);
+	}
+
+	/**
+	 * Gets the visual id.
+	 *
+	 * @param request the request
+	 * @return the visual id
+	 */
+	private int getVisualID(ReconnectRequest request) {
+		Object id = request.getExtendedData().get(VISUAL_ID_KEY);
+		return id instanceof Integer ? ((Integer)id).intValue() : -1;
 	}
 
 	/**

@@ -41,6 +41,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.command.ContainmentCircleViewCreateCommand;
+import org.eclipse.papyrus.diagram.clazz.custom.command.CustomContainmentLinkViewCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CustomDropAppliedStereotypeCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.custom.providers.CustomDeferredCreateConnectionViewCommand;
@@ -64,6 +65,8 @@ public class ContainmentHelper extends ElementHelper {
 	public static final String CONTAINMENT_CIRCLE_POSITION = "ContainmentCirclePosition";
 
 
+	/** The Constant CONNECTION_VIEW. */
+	public static final String KEY_CONNECTION_VIEW = "connection_view"; //$NON-NLS-1$
 
 	/**
 	 * Instantiates a new containment class helper.
@@ -87,69 +90,52 @@ public class ContainmentHelper extends ElementHelper {
 	 */
 	public Command getContainmentElementCommand(CreateConnectionViewRequest createConnectionViewRequest, Command command) {
 
-		CompoundCommand mycommand = new CompoundCommand();
 		if(command instanceof ICommandProxy) {
-
-			// Edit part of a eventual containment circle existing
-			CContainmentCircleEditPart containmentCircleExist = null;
-
-			// 1. *********************************************** Initialization of variable
-
-			GraphicalEditPart sourceEditPart = (GraphicalEditPart)createConnectionViewRequest.getSourceEditPart();
-			GraphicalEditPart parent = (GraphicalEditPart)sourceEditPart;
-
+			CompoundCommand compoundCommand = new CompoundCommand();
+			IGraphicalEditPart sourceEditPart = (GraphicalEditPart)createConnectionViewRequest.getSourceEditPart();
+			View sourceView = (View)sourceEditPart.getModel();
+			EditPartViewer editPartViewer = (EditPartViewer)sourceEditPart.getViewer();
+			PreferencesHint preferencesHint = sourceEditPart.getDiagramPreferencesHint();
+			
+			CContainmentCircleEditPart containmentCircle = findContainmentCircle(sourceEditPart);
+			
+			String linkHint = ((IHintedType)UMLElementTypes.Dependency_4022).getSemanticHint();
 			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes.Dependency_4022, ((IHintedType)org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes.Dependency_4022).getSemanticHint(), sourceEditPart.getDiagramPreferencesHint());
-			IAdaptable ContainmentLinkViewAdapter = new SemanticAdapter(null, createConnectionViewRequest.getTargetEditPart().getModel());
+			IAdaptable targetViewAdapter = new SemanticAdapter(null, createConnectionViewRequest.getTargetEditPart().getModel());
+			IAdaptable circleAdapter = null;
+			ContainmentCircleViewCreateCommand circleCommand = null;
 
-			// look of an existing containment circle 
-
-			Iterator<EditPart> childrenIterator = parent.getChildren().iterator();
-
-			while(childrenIterator.hasNext()) {
-				EditPart editPart = (EditPart)childrenIterator.next();
-				if(editPart instanceof CContainmentCircleEditPart) {
-					containmentCircleExist = (CContainmentCircleEditPart)editPart;
-				}
-			}
-
-			// 2. *********************************************** creation of the target element and the link 
-			// if a containment circle exists, only the dashedline will be create 
-
-			if(containmentCircleExist != null) {
-
-				/* recovery of the existing containment circle */
-				IGraphicalEditPart circle = parent.getChildBySemanticHint(((IHintedType)UMLElementTypes.Port_3032).getSemanticHint());
-				IAdaptable circleAdapter = new SemanticAdapter(null, circle.getModel());
-
-				/* Creation of the dashedline between the existing containment circle node and the target element */
-				ICommand dashedLineCmd = new org.eclipse.papyrus.diagram.clazz.custom.command.CustomContainmentLinkViewCommand(getEditingDomain(), ((IHintedType)org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes.Dependency_4022).getSemanticHint(), ContainmentLinkViewAdapter, circleAdapter, sourceEditPart.getViewer(), sourceEditPart.getDiagramPreferencesHint(), viewDescriptor, null);
-				mycommand.add(new ICommandProxy(dashedLineCmd));
-				return mycommand;
-			}
-
-			else {
-
-				/* Creation of the containment circle node without semantic element */
-				ContainmentCircleViewCreateCommand circleCommand = new ContainmentCircleViewCreateCommand(createConnectionViewRequest, getEditingDomain(), (View)parent.getModel(), (EditPartViewer)sourceEditPart.getViewer(), sourceEditPart.getDiagramPreferencesHint());
-				mycommand.add(new ICommandProxy(circleCommand));
-
-
-				/* Set the position of the containment circle node */
-
+			if(containmentCircle != null) {
+				IGraphicalEditPart circle = sourceEditPart.getChildBySemanticHint(((IHintedType)UMLElementTypes.Port_3032).getSemanticHint());
+				circleAdapter = new SemanticAdapter(null, circle.getModel());
+			} else {
+				circleCommand = new ContainmentCircleViewCreateCommand(createConnectionViewRequest, getEditingDomain(), sourceView, editPartViewer, preferencesHint);
+				compoundCommand.add(new ICommandProxy(circleCommand));
 				SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), CONTAINMENT_CIRCLE_POSITION, (IAdaptable)circleCommand.getCommandResult().getReturnValue(), createConnectionViewRequest.getLocation());
-				mycommand.add(new ICommandProxy(setBoundsCommand));
+				compoundCommand.add(new ICommandProxy(setBoundsCommand));
 
-				/* Creation of the dashedline between the containment circle node and the target element */
-				ICommand dashedLineCmd = new org.eclipse.papyrus.diagram.clazz.custom.command.CustomContainmentLinkViewCommand(getEditingDomain(), ((IHintedType)org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes.Dependency_4022).getSemanticHint(), ContainmentLinkViewAdapter, null, sourceEditPart.getViewer(), sourceEditPart.getDiagramPreferencesHint(), viewDescriptor, circleCommand);
-				mycommand.add(new ICommandProxy(dashedLineCmd));
-				return mycommand;
 			}
 
-
+			ICommand dashedLineCmd = new CustomContainmentLinkViewCommand(getEditingDomain(), linkHint, sourceView, circleAdapter, targetViewAdapter, editPartViewer, preferencesHint, viewDescriptor, circleCommand);
+			compoundCommand.add(new ICommandProxy(dashedLineCmd));
+			
+			return compoundCommand;
 		}
 
 		return null;
 	}
+
+	private CContainmentCircleEditPart findContainmentCircle(IGraphicalEditPart parent) {
+		for(Object next: parent.getChildren()) {
+			EditPart editPart = (EditPart)next;
+			if(editPart instanceof CContainmentCircleEditPart) {
+				return (CContainmentCircleEditPart)editPart;
+			}
+		}
+		return null;
+	}
+	
+	
 
 
 
