@@ -123,6 +123,19 @@ public class CustomClassItemSemanticEditPolicy extends ClassItemSemanticEditPoli
 	}
 	
 	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.SemanticEditPolicy#getReorientRefRelationshipSourceCommand(org.eclipse.gef.requests.ReconnectRequest)
+	 *
+	 * @param request
+	 * @return
+	 */
+	@Override
+	protected Command getReorientRefRelationshipSourceCommand(ReconnectRequest request) {
+		if(ContainmentHelper.isReorientContainmentLink(request)) {
+			request = ContainmentHelper.extendReorientSourceRequest(request);
+		}
+		return super.getReorientRefRelationshipSourceCommand(request);
+	}
+	/**
 	 * 
 	 * {@inheritDoc}
 	 */

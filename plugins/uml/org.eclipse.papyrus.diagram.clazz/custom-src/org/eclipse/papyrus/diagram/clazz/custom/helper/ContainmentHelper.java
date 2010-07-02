@@ -52,6 +52,7 @@ import org.eclipse.papyrus.diagram.clazz.custom.providers.CustomDeferredCreateCo
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AddedLinkEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartTN;
@@ -96,44 +97,38 @@ public class ContainmentHelper extends ElementHelper {
 	 * @return the containment element command
 	 */
 	public Command getContainmentElementCommand(CreateConnectionViewRequest createConnectionViewRequest, Command command) {
+		CompoundCommand compoundCommand = new CompoundCommand();
+		IGraphicalEditPart sourceEditPart = (GraphicalEditPart)createConnectionViewRequest.getSourceEditPart();
+		
+		View sourceView = (View)sourceEditPart.getModel();
+		EditPartViewer editPartViewer = (EditPartViewer)sourceEditPart.getViewer();
+		PreferencesHint preferencesHint = sourceEditPart.getDiagramPreferencesHint();
 
-		if(command instanceof ICommandProxy) {
-			CompoundCommand compoundCommand = new CompoundCommand();
-			IGraphicalEditPart sourceEditPart = (GraphicalEditPart)createConnectionViewRequest.getSourceEditPart();
-			View sourceView = (View)sourceEditPart.getModel();
-			EditPartViewer editPartViewer = (EditPartViewer)sourceEditPart.getViewer();
-			PreferencesHint preferencesHint = sourceEditPart.getDiagramPreferencesHint();
-			
-			CContainmentCircleEditPart containmentCircle = findContainmentCircle(sourceEditPart);
-			
-			String linkHint = ((IHintedType)UMLElementTypes.Dependency_4022).getSemanticHint();
-			ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes.Dependency_4022, ((IHintedType)org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes.Dependency_4022).getSemanticHint(), sourceEditPart.getDiagramPreferencesHint());
-			IAdaptable targetViewAdapter = new SemanticAdapter(null, createConnectionViewRequest.getTargetEditPart().getModel());
-			IAdaptable circleAdapter = null;
-			ContainmentCircleViewCreateCommand circleCommand = null;
+		String linkHint = ((IHintedType)UMLElementTypes.Dependency_4022).getSemanticHint();
+		ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes.Dependency_4022, ((IHintedType)org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes.Dependency_4022).getSemanticHint(), sourceEditPart.getDiagramPreferencesHint());
+		IAdaptable targetViewAdapter = new SemanticAdapter(null, createConnectionViewRequest.getTargetEditPart().getModel());
+		IAdaptable circleAdapter = null;
+		ContainmentCircleViewCreateCommand circleCommand = null;
 
-			if(containmentCircle != null) {
-				IGraphicalEditPart circle = sourceEditPart.getChildBySemanticHint(((IHintedType)UMLElementTypes.Port_3032).getSemanticHint());
-				circleAdapter = new SemanticAdapter(null, circle.getModel());
-			} else {
-				circleCommand = new ContainmentCircleViewCreateCommand(createConnectionViewRequest, getEditingDomain(), sourceView, editPartViewer, preferencesHint);
-				compoundCommand.add(new ICommandProxy(circleCommand));
-				SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), CONTAINMENT_CIRCLE_POSITION, (IAdaptable)circleCommand.getCommandResult().getReturnValue(), createConnectionViewRequest.getLocation());
-				compoundCommand.add(new ICommandProxy(setBoundsCommand));
+		if (ContainmentCircleEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(sourceEditPart.getNotationView())) {
+			circleAdapter = new SemanticAdapter(null, sourceEditPart.getNotationView());
+			sourceView = (View)sourceEditPart.getParent().getModel();
+		} else {
+			circleCommand = new ContainmentCircleViewCreateCommand(createConnectionViewRequest, getEditingDomain(), sourceView, editPartViewer, preferencesHint);
+			compoundCommand.add(new ICommandProxy(circleCommand));
+			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), CONTAINMENT_CIRCLE_POSITION, (IAdaptable)circleCommand.getCommandResult().getReturnValue(), createConnectionViewRequest.getLocation());
+			compoundCommand.add(new ICommandProxy(setBoundsCommand));
 
-			}
-
-			ICommand dashedLineCmd = new CustomContainmentLinkViewCommand(getEditingDomain(), linkHint, sourceView, circleAdapter, targetViewAdapter, editPartViewer, preferencesHint, viewDescriptor, circleCommand);
-			compoundCommand.add(new ICommandProxy(dashedLineCmd));
-			
-			return compoundCommand;
 		}
 
-		return null;
+		ICommand dashedLineCmd = new CustomContainmentLinkViewCommand(getEditingDomain(), linkHint, sourceView, circleAdapter, targetViewAdapter, editPartViewer, preferencesHint, viewDescriptor, circleCommand);
+		compoundCommand.add(new ICommandProxy(dashedLineCmd));
+
+		return compoundCommand;
 	}
 
 	private CContainmentCircleEditPart findContainmentCircle(IGraphicalEditPart parent) {
-		for(Object next: parent.getChildren()) {
+		for(Object next : parent.getChildren()) {
 			EditPart editPart = (EditPart)next;
 			if(editPart instanceof CContainmentCircleEditPart) {
 				return (CContainmentCircleEditPart)editPart;
@@ -141,8 +136,8 @@ public class ContainmentHelper extends ElementHelper {
 		}
 		return null;
 	}
-	
-	
+
+
 
 
 
@@ -269,19 +264,21 @@ public class ContainmentHelper extends ElementHelper {
 
 	/**
 	 * Checks if is reorient containment link.
-	 *
-	 * @param request the request
+	 * 
+	 * @param request
+	 *        the request
 	 * @return true, if is reorient containment link
 	 */
 	public static boolean isReorientContainmentLink(ReconnectRequest request) {
 		int visualId = getVisualID(request);
 		return visualId == AddedLinkEditPart.VISUAL_ID;
 	}
-	
+
 	/**
 	 * Extend reorient target request.
-	 *
-	 * @param request the request
+	 * 
+	 * @param request
+	 *        the request
 	 * @return the reconnect request
 	 */
 	public static ReconnectRequest extendReorientTargetRequest(ReconnectRequest request) {
@@ -293,9 +290,24 @@ public class ContainmentHelper extends ElementHelper {
 	}
 
 	/**
-	 * Gets the visual id.
+	 * Extend reorient source request.
 	 *
 	 * @param request the request
+	 * @return the reconnect request
+	 */
+	public static ReconnectRequest extendReorientSourceRequest(ReconnectRequest request) {
+		Object view = request.getConnectionEditPart().getModel();
+		if(view instanceof View) {
+			request.getExtendedData().put(ContainmentHelper.KEY_CONNECTION_VIEW, view);
+		}
+		return request;
+	}
+
+	/**
+	 * Gets the visual id.
+	 * 
+	 * @param request
+	 *        the request
 	 * @return the visual id
 	 */
 	private static int getVisualID(ReconnectRequest request) {
@@ -306,11 +318,11 @@ public class ContainmentHelper extends ElementHelper {
 	public static boolean isContainmentLink(Edge edge) {
 		return UMLVisualIDRegistry.getVisualID(edge) == AddedLinkEditPart.VISUAL_ID;
 	}
-	
+
 	private static boolean circleHasOtherLinks(View containmentCircle) {
 		return containmentCircle.getSourceEdges().size() == 1;
 	}
-	
+
 	public static IUndoableOperation deleteIncomingContainmentLinkCommand(TransactionalEditingDomain editingDomain, Edge incomingLink) {
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(editingDomain, "Delete Incoming Containment Link");
 		cmd.add(new DeleteCommand(editingDomain, incomingLink));
@@ -321,7 +333,7 @@ public class ContainmentHelper extends ElementHelper {
 		return cmd;
 	}
 
-	public static  IUndoableOperation deleteOutgoingContainmentLinkCommand(TransactionalEditingDomain editingDomain, Edge outgoingLink) {
+	public static IUndoableOperation deleteOutgoingContainmentLinkCommand(TransactionalEditingDomain editingDomain, Edge outgoingLink) {
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(editingDomain, "Delete Outgoing Containment Link");
 		cmd.add(new DeleteCommand(editingDomain, outgoingLink));
 		//delete target view as it actually contained by the source object and will be deleted 
