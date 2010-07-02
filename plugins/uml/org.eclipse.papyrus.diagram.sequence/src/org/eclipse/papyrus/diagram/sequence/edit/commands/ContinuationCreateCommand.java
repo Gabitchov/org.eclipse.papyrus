@@ -109,7 +109,7 @@ public class ContinuationCreateCommand extends EditElementCommand {
 		if(interactionFragment.eContainer() instanceof CombinedFragment) {
 			return (CombinedFragment)interactionFragment.eContainer();
 		} else if(interactionFragment.eContainer() instanceof InteractionFragment) {
-			return getEnclosingCombinedFragment(interactionFragment);
+			return getEnclosingCombinedFragment((InteractionFragment)interactionFragment.eContainer());
 		}
 		return null;
 	}
