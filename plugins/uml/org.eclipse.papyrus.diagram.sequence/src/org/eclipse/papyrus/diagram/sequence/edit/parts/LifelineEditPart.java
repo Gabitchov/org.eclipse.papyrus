@@ -17,15 +17,17 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.draw2d.Border;
 import org.eclipse.draw2d.BorderLayout;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.LayoutManager;
 import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -45,7 +47,6 @@ import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
@@ -66,7 +67,11 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
+import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
 import org.eclipse.papyrus.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineChildGraphicalNodeEditPolicy;
@@ -97,7 +102,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class LifelineEditPart extends AbstractBorderedShapeEditPart {
+public class LifelineEditPart extends NamedElementEditPart {
 
 	/**
 	 * @generated
@@ -172,6 +177,7 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new LifelineCreationEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new LifelineChildGraphicalNodeEditPolicy());
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -1152,7 +1158,7 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 	/**
 	 * @generated
 	 */
-	public class LifelineFigure extends RectangleFigure {
+	public class LifelineFigure extends NodeNamedElementFigure {
 
 		/**
 		 * @generated
@@ -1175,21 +1181,83 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 		private LifelineDotLineCustomFigure fFigureLifelineDotLineFigure;
 
 		/**
-		 * @generated
+		 * @generated NOT call super, remove createContents, moved overall configuration to createCompositeFigureStructure
 		 */
 		public LifelineFigure() {
+			// call super
+			super();
 
+			// moved overall configuration to createCompositeFigureStructure
+			//BorderLayout layoutThis = new BorderLayout();
+			//this.setLayoutManager(layoutThis);
+			//this.setMaximumSize(new Dimension(getMapMode().DPtoLP(100), getMapMode().DPtoLP(200)));
+			// remove createContents
+			//createContents();
+		}
+
+		/**
+		 * Get the rectangle which contains all labels
+		 * 
+		 * @see org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure#getDefaultLabelsContainer()
+		 * @return lifeline labels rectangle
+		 */
+		@Override
+		protected IFigure getDefaultLabelsContainer() {
+			return getFigureLifelineNameContainerFigure();
+		}
+
+		/**
+		 * Create the composite structure.
+		 * 
+		 * @see org.eclipse.papyrus.diagram.common.figure.node.PapyrusNodeFigure#createCompositeFigureStructure()
+		 */
+		@Override
+		protected void createCompositeFigureStructure() {
 			BorderLayout layoutThis = new BorderLayout();
 			this.setLayoutManager(layoutThis);
-
-			this.setFill(false);
-			this.setOutline(false);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(100), getMapMode().DPtoLP(200)));
+			//this.setMaximumSize(new Dimension(getMapMode().DPtoLP(100), getMapMode().DPtoLP(200)));
 			createContents();
 		}
 
 		/**
-		 * @generated
+		 * Get the figure on which the border must be drawn.
+		 * 
+		 * @see org.eclipse.papyrus.diagram.common.figure.node.PapyrusNodeFigure#getBorderedFigure()
+		 * @return the rectangle containing labels
+		 */
+		@Override
+		protected IFigure getBorderedFigure() {
+			return getFigureLifelineNameContainerFigure();
+		}
+
+		/**
+		 * Construct the appropriate border
+		 * 
+		 * @see org.eclipse.papyrus.diagram.common.figure.node.PapyrusNodeFigure#getDefaultBorder(org.eclipse.swt.graphics.Color)
+		 * @param borderColor
+		 *        the color of the border
+		 * @return the border
+		 */
+		@Override
+		protected Border getDefaultBorder(Color borderColor) {
+			int margin = getMapMode().DPtoLP(7);
+			MarginBorder defaultBorder = new MarginBorder(margin, margin, margin, margin);
+			return defaultBorder;
+		}
+
+		/**
+		 * Get layout to display content of properties compartment.
+		 * 
+		 * @return the layout
+		 */
+		protected LayoutManager getPropertiesCompartmentLayout() {
+			ToolbarLayout layout = new ToolbarLayout(false);
+			layout.setStretchMinorAxis(true);
+			return layout;
+		}
+
+		/**
+		 * @generated NOT remove label creation, change layout
 		 */
 		private void createContents() {
 
@@ -1199,29 +1267,32 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 			fFigureLifelineNameContainerFigure.setBorder(new MarginBorder(getMapMode().DPtoLP(7), getMapMode().DPtoLP(7), getMapMode().DPtoLP(7), getMapMode().DPtoLP(7)));
 
 			this.add(fFigureLifelineNameContainerFigure, BorderLayout.TOP);
-			fFigureLifelineNameContainerFigure.setLayoutManager(new StackLayout());
+			// change layout
+			ToolbarLayout layout = new ToolbarLayout(false);
+			layout.setMinorAlignment(ToolbarLayout.ALIGN_CENTER);
+			fFigureLifelineNameContainerFigure.setLayoutManager(layout);
 
-
-			fFigureLifelineLabelFigure = new WrappingLabel();
-
-
-
-
-			fFigureLifelineLabelFigure.setText("<...>");
-
-
-
-
-			fFigureLifelineLabelFigure.setTextWrap(true);
-
-
-
-
-			fFigureLifelineLabelFigure.setAlignment(PositionConstants.CENTER);
-
-
-
-			fFigureLifelineNameContainerFigure.add(fFigureLifelineLabelFigure);
+			// remove label creation (created by parent figure)
+			//			fFigureLifelineLabelFigure = new WrappingLabel();
+			//
+			//
+			//
+			//
+			//			fFigureLifelineLabelFigure.setText("<...>");
+			//
+			//
+			//
+			//
+			//			fFigureLifelineLabelFigure.setTextWrap(true);
+			//
+			//
+			//
+			//
+			//			fFigureLifelineLabelFigure.setAlignment(PositionConstants.CENTER);
+			//
+			//
+			//
+			//			fFigureLifelineNameContainerFigure.add(fFigureLifelineLabelFigure);
 
 
 
@@ -1245,10 +1316,10 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 		}
 
 		/**
-		 * @generated
+		 * @generated NOT get label from super figure
 		 */
 		public WrappingLabel getFigureLifelineLabelFigure() {
-			return fFigureLifelineLabelFigure;
+			return getNameLabel();
 		}
 
 		/**
@@ -1271,7 +1342,6 @@ public class LifelineEditPart extends AbstractBorderedShapeEditPart {
 		public LifelineDotLineCustomFigure getFigureLifelineDotLineFigure() {
 			return fFigureLifelineDotLineFigure;
 		}
-
 	}
 
 	/**

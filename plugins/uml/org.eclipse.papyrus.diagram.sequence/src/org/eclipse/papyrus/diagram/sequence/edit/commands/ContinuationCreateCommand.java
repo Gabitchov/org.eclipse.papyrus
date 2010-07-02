@@ -93,7 +93,7 @@ public class ContinuationCreateCommand extends EditElementCommand {
 	 * @generated NOT
 	 */
 	public boolean canExecute() {
-		if(getElementToEdit() instanceof InteractionOperand){
+		if(getElementToEdit() instanceof InteractionOperand) {
 			InteractionOperand interactionOperand = (InteractionOperand)getElementToEdit();
 			CombinedFragment combinedFragment = getEnclosingCombinedFragment(interactionOperand);
 			if(combinedFragment != null) {
