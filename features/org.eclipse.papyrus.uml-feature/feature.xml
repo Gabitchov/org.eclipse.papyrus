@@ -51,7 +51,6 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.jface.text"/>
       <import plugin="org.eclipse.ui.editors"/>
       <import plugin="org.antlr.runtime" version="3.0.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.papyrus.navigator" version="0.7.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.papyrus.diagram.common" version="0.7.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.papyrus.extensionpoints.uml2" version="0.7.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.gmf.runtime.diagram.ui.properties" version="1.1.0" match="greaterOrEqual"/>
