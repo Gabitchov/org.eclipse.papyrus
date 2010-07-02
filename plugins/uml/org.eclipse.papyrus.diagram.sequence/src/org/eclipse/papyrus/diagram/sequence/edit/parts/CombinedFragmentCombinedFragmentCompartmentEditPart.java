@@ -34,6 +34,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.CombinedFragmentCombinedFragmentCompartmentItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.diagram.sequence.part.Messages;
 
 /**
@@ -95,7 +96,8 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 	}
 
 	/**
-	 * @generated
+	 * Add RemoveOrphanView role
+	 * @generated NOT
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
@@ -103,6 +105,8 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
+		
+		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 
 
 		//in Papyrus diagrams are not strongly synchronised
