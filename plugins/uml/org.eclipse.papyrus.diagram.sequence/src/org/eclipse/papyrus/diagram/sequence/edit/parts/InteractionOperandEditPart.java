@@ -209,6 +209,20 @@ AbstractBorderedShapeEditPart {
 	public CustomInteractionOperandFigure getPrimaryShape() {
 		return (CustomInteractionOperandFigure)primaryShape;
 	}
+	
+	/**
+	 * Overrides to return the contentPane instead of the main figure in case the editPart is not a IBorderItemEditPart. 
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#getContentPaneFor(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart)
+	 */
+	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
+		if (editPart instanceof IBorderItemEditPart) {
+			return getBorderedFigure().getBorderItemContainer();
+		} else {
+			return getContentPane();
+		}
+	}
 
 	/**
 	 * @generated
