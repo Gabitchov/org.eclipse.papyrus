@@ -29,7 +29,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
-import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationClassCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationReorientCommand;
@@ -44,7 +43,6 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ClassItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 
 /**
@@ -123,7 +121,7 @@ public class CustomClassItemSemanticEditPolicy extends ClassItemSemanticEditPoli
 		}
 		return super.getReorientRefRelationshipTargetCommand(request);
 	}
-
+	
 	/**
 	 * 
 	 * {@inheritDoc}
@@ -132,31 +130,19 @@ public class CustomClassItemSemanticEditPolicy extends ClassItemSemanticEditPoli
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
-		for(Iterator it = view.getTargetEdges().iterator(); it.hasNext();) {
-			Edge incomingLink = (Edge)it.next();
-			if(UMLVisualIDRegistry.getVisualID(incomingLink) == AddedLinkEditPart.VISUAL_ID) {
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				Shape containmentCircle = (Shape)incomingLink.getSource();
-				if(((View)containmentCircle).getSourceEdges().size() == 1) {
-					cmd.add(new DeleteCommand(getEditingDomain(), (View)containmentCircle));
-				}
-				continue;
-			} else {
-				return super.getDestroyElementCommand(req);
+		for(Object next: view.getTargetEdges()) {
+			Edge incomingLink = (Edge)next;
+			if(ContainmentHelper.isContainmentLink(incomingLink)) {
+				cmd.add(ContainmentHelper.deleteIncomingContainmentLinkCommand(getEditingDomain(), incomingLink));
 			}
 		}
-		for(Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
-			Edge outgoingLink = (Edge)it.next();
-			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == AddedLinkEditPart.VISUAL_ID) {
-
-				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-				continue;
-			} else {
-				return super.getDestroyElementCommand(req);
+		for(Object next: view.getSourceEdges()) {
+			Edge outgoingLink = (Edge)next;
+			if(ContainmentHelper.isContainmentLink(outgoingLink)) {
+				cmd.add(ContainmentHelper.deleteOutgoingContainmentLinkCommand(getEditingDomain(), outgoingLink));
 			}
-
-
 		}
+		
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
 			addDestroyShortcutsCommand(cmd, view);

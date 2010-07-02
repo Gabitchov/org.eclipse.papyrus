@@ -16,6 +16,7 @@ package org.eclipse.papyrus.diagram.clazz.custom.helper;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.util.EList;
@@ -37,8 +38,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
+import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.command.ContainmentCircleViewCreateCommand;
@@ -55,6 +58,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartTN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.helper.ElementHelper;
@@ -299,5 +303,30 @@ public class ContainmentHelper extends ElementHelper {
 		return id instanceof Integer ? ((Integer)id).intValue() : -1;
 	}
 
+	public static boolean isContainmentLink(Edge edge) {
+		return UMLVisualIDRegistry.getVisualID(edge) == AddedLinkEditPart.VISUAL_ID;
+	}
+	
+	private static boolean circleHasOtherLinks(View containmentCircle) {
+		return containmentCircle.getSourceEdges().size() == 1;
+	}
+	
+	public static IUndoableOperation deleteIncomingContainmentLinkCommand(TransactionalEditingDomain editingDomain, Edge incomingLink) {
+		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(editingDomain, "Delete Incoming Containment Link");
+		cmd.add(new DeleteCommand(editingDomain, incomingLink));
+		View containmentCircle = incomingLink.getSource();
+		if(circleHasOtherLinks(containmentCircle)) {
+			cmd.add(new DeleteCommand(editingDomain, (View)containmentCircle));
+		}
+		return cmd;
+	}
+
+	public static  IUndoableOperation deleteOutgoingContainmentLinkCommand(TransactionalEditingDomain editingDomain, Edge outgoingLink) {
+		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(editingDomain, "Delete Outgoing Containment Link");
+		cmd.add(new DeleteCommand(editingDomain, outgoingLink));
+		//delete target view as it actually contained by the source object and will be deleted 
+		cmd.add(new DeleteCommand(editingDomain, outgoingLink.getTarget()));
+		return cmd;
+	}
 
 }
