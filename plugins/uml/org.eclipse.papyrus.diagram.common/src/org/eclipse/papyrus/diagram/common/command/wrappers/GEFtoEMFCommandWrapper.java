@@ -92,7 +92,16 @@ public class GEFtoEMFCommandWrapper extends AbstractCommand {
 	 * @see org.eclipse.emf.common.command.Command#redo()
 	 */
 	public void redo() {
-
 		gefCommand.redo();
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.emf.common.command.AbstractCommand#undo()
+	 * 
+	 */
+	@Override
+	public void undo() {
+		gefCommand.undo();
 	}
 }
