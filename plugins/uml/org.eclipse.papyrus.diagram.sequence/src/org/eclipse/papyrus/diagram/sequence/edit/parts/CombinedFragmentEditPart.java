@@ -1044,7 +1044,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 			CombinedFragment combinedFragment = (CombinedFragment)resolveSemanticElement();
 			String newStringValue = notification.getNewStringValue();
 			if(notification.getOldValue() instanceof InteractionOperatorKind && !isAllowedInteractionOperator(newStringValue)) {
-				MessageDialog.openError(Display.getCurrent().getActiveShell(), FORBIDDEN_ACTION, BLOCK_OPERATOR_MODIFICATION_MSG);
+				MessageDialog.openError(Display.getCurrent().getActiveShell(), FORBIDDEN_ACTION, FORBIDEN_OPERATOR_MODIFICATION_MSG);
 				CommandHelper.executeCommandWithoutHistory(getEditingDomain(), SetCommand.create(getEditingDomain(), combinedFragment, feature, notification.getOldValue()));
 				return;
 			}
@@ -1053,7 +1053,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 				// If CombinedFragment have no operand, we can change the OperatorKind
 				updateHeaderLabel();
 			} else if(notification.getOldValue() instanceof InteractionOperatorKind && !newStringValue.equals(getPrimaryShape().getHeaderLabel().getText())) {
-				MessageDialog.openError(Display.getCurrent().getActiveShell(), FORBIDDEN_ACTION, FORBIDEN_OPERATOR_MODIFICATION_MSG);
+				MessageDialog.openError(Display.getCurrent().getActiveShell(), FORBIDDEN_ACTION, BLOCK_OPERATOR_MODIFICATION_MSG);
 				CommandHelper.executeCommandWithoutHistory(getEditingDomain(), SetCommand.create(getEditingDomain(), combinedFragment, feature, notification.getOldValue()));
 				return;
 			}
