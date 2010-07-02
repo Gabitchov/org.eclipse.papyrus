@@ -89,15 +89,11 @@ public class ConsiderIgnoreFragmentCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * The creation command can only be executed if the elementToEdit (i.e the container) is an Interaction or an InteractionOperand
+	 * @generated NOT
 	 */
 	public boolean canExecute() {
-
-
-		return true;
-
-
-
+		return getElementToEdit() instanceof Interaction || getElementToEdit() instanceof InteractionOperand;
 	}
 
 	/**
