@@ -1150,8 +1150,8 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 	 */
 	public void activate() {
 		super.activate();
-		InteractionUse interactionUse = (InteractionUse)resolveSemanticElement();
-		if(interactionUse != null) {
+		if(resolveSemanticElement() instanceof InteractionUse) {
+			InteractionUse interactionUse = (InteractionUse)resolveSemanticElement();
 			Interaction interaction = interactionUse.getRefersTo();
 			if(interaction != null) {
 				// activate the listener on the referred interaction
@@ -1164,6 +1164,7 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			for(Gate actualGate : interactionUse.getActualGates()) {
 				notifier.listenObject(actualGate);
 			}
+
 		}
 	}
 
