@@ -682,38 +682,42 @@ public class SequenceUtil {
 				Message message = (Message)obj;
 
 				MessageEnd messageStart = message.getSendEvent();
-				if(!(messageStart instanceof Gate && messageStart.eContainer() instanceof InteractionUse)) {
-					cmd.add(new DestroyElementCommand(new DestroyElementRequest(messageStart, false)));
-					// delete linked time elements
-					List<TimeObservation> timeObs = TimeObservationHelper.getTimeObservations(messageStart);
-					List<TimeConstraint> timeCst = TimeConstraintHelper.getTimeConstraintsOn(messageStart);
-					List<DurationObservation> durObs = DurationObservationHelper.getDurationObservationsOn(messageStart);
-					List<DurationConstraint> durCst = DurationConstraintHelper.getDurationConstraintsOn(messageStart);
-					List<NamedElement> timeElements = new ArrayList<NamedElement>(timeObs.size() + durObs.size() + timeCst.size() + durCst.size());
-					timeElements.addAll(timeObs);
-					timeElements.addAll(timeCst);
-					timeElements.addAll(durObs);
-					timeElements.addAll(durCst);
-					for(NamedElement elt : timeElements) {
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(elt, false)));
+				if(messageStart != null){
+					if(!(messageStart instanceof Gate && messageStart.eContainer() instanceof InteractionUse)) {
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(messageStart, false)));
+						// delete linked time elements
+						List<TimeObservation> timeObs = TimeObservationHelper.getTimeObservations(messageStart);
+						List<TimeConstraint> timeCst = TimeConstraintHelper.getTimeConstraintsOn(messageStart);
+						List<DurationObservation> durObs = DurationObservationHelper.getDurationObservationsOn(messageStart);
+						List<DurationConstraint> durCst = DurationConstraintHelper.getDurationConstraintsOn(messageStart);
+						List<NamedElement> timeElements = new ArrayList<NamedElement>(timeObs.size() + durObs.size() + timeCst.size() + durCst.size());
+						timeElements.addAll(timeObs);
+						timeElements.addAll(timeCst);
+						timeElements.addAll(durObs);
+						timeElements.addAll(durCst);
+						for(NamedElement elt : timeElements) {
+							cmd.add(new DestroyElementCommand(new DestroyElementRequest(elt, false)));
+						}
 					}
 				}
 
 				MessageEnd messageEnd = message.getReceiveEvent();
-				if(!(messageEnd instanceof Gate && messageEnd.eContainer() instanceof InteractionUse)) {
-					cmd.add(new DestroyElementCommand(new DestroyElementRequest(messageEnd, false)));
-					// delete linked time elements
-					List<TimeObservation> timeObs = TimeObservationHelper.getTimeObservations(messageEnd);
-					List<TimeConstraint> timeCst = TimeConstraintHelper.getTimeConstraintsOn(messageEnd);
-					List<DurationObservation> durObs = DurationObservationHelper.getDurationObservationsOn(messageEnd);
-					List<DurationConstraint> durCst = DurationConstraintHelper.getDurationConstraintsOn(messageEnd);
-					List<NamedElement> timeElements = new ArrayList<NamedElement>(timeObs.size() + durObs.size() + timeCst.size() + durCst.size());
-					timeElements.addAll(timeObs);
-					timeElements.addAll(timeCst);
-					timeElements.addAll(durObs);
-					timeElements.addAll(durCst);
-					for(NamedElement elt : timeElements) {
-						cmd.add(new DestroyElementCommand(new DestroyElementRequest(elt, false)));
+				if(messageEnd != null){
+					if(!(messageEnd instanceof Gate && messageEnd.eContainer() instanceof InteractionUse)) {
+						cmd.add(new DestroyElementCommand(new DestroyElementRequest(messageEnd, false)));
+						// delete linked time elements
+						List<TimeObservation> timeObs = TimeObservationHelper.getTimeObservations(messageEnd);
+						List<TimeConstraint> timeCst = TimeConstraintHelper.getTimeConstraintsOn(messageEnd);
+						List<DurationObservation> durObs = DurationObservationHelper.getDurationObservationsOn(messageEnd);
+						List<DurationConstraint> durCst = DurationConstraintHelper.getDurationConstraintsOn(messageEnd);
+						List<NamedElement> timeElements = new ArrayList<NamedElement>(timeObs.size() + durObs.size() + timeCst.size() + durCst.size());
+						timeElements.addAll(timeObs);
+						timeElements.addAll(timeCst);
+						timeElements.addAll(durObs);
+						timeElements.addAll(durCst);
+						for(NamedElement elt : timeElements) {
+							cmd.add(new DestroyElementCommand(new DestroyElementRequest(elt, false)));
+						}
 					}
 				}
 			}
