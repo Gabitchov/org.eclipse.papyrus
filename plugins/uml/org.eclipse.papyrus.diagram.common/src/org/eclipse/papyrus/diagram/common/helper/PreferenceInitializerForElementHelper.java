@@ -57,14 +57,20 @@ public class PreferenceInitializerForElementHelper {
 		}
 		//shadow
 		RecordingCommand shadowcommand=ShadowFigureHelper.getShadowColorCommand(EditorUtils.getTransactionalEditingDomain(), view, store.getBoolean(shadowConstant));
-		shadowcommand.execute();
+		if(shadowcommand.canExecute()){
+			shadowcommand.execute();
+		}
 		//icon label
 		RecordingCommand namelabelIconCommand=NameLabelIconHelper.getNameLabelIconCommand(EditorUtils.getTransactionalEditingDomain(), view, store.getBoolean(elementIcon));
-		namelabelIconCommand.execute();
+		if(namelabelIconCommand.canExecute()){
+			namelabelIconCommand.execute();
+		}
 		//qualified name
 		if(!store.getBoolean(qualifiedName)){
 			RecordingCommand qualifiedNameCommand=QualifiedNameHelper.getSetQualifedNameDepthCommand(EditorUtils.getTransactionalEditingDomain(), view, 1000);
-			qualifiedNameCommand.execute();
+			if(qualifiedNameCommand.canExecute()){
+				qualifiedNameCommand.execute();
+			}
 		}
 	}
 	/**
