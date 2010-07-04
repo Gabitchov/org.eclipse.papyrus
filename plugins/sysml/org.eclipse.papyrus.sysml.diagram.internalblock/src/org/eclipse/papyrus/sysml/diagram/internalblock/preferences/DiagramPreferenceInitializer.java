@@ -23,7 +23,6 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
 
-		FlowPortPreferencePage.initDefaults(store);
 		PortPreferencePage.initDefaults(store);
 	}
 }

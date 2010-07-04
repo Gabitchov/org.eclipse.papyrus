@@ -11,6 +11,7 @@ package org.eclipse.papyrus.sysml.diagram.internalblock.provider;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateEdgeViewOperation;
@@ -22,6 +23,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.composite.providers.UMLViewProvider;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.part.InternalBlockDiagramEditPart;
+import org.eclipse.uml2.uml.Port;
+import org.eclipse.uml2.uml.Property;
 
 public class InheritedElementViewProvider extends UMLViewProvider {
 
@@ -68,6 +71,16 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 			return false;
 		}
 
+		// SemanticHint may be null (especially when drop from ModelExplorer
+		EObject eobject = (EObject) op.getSemanticAdapter().getAdapter(EObject.class);
+		if ((eobject instanceof org.eclipse.uml2.uml.Class) || (eobject instanceof org.eclipse.uml2.uml.Property)) {
+			// Port is a Property, no need to test both here
+			return true;
+		}
+
+		// This can probably be simplified as previous test should be sufficient
+		// in most cases
+		// This is probably required at least for purely graphical element
 		IElementType elementType = (IElementType) op.getSemanticAdapter().getAdapter(IElementType.class);
 		if ((elementType == InternalBlockDiagramElementTypes.CLASS)
 				|| (elementType == InternalBlockDiagramElementTypes.CLASS_CN)
@@ -86,6 +99,18 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 
 		if (semanticHint != null) {
 			return super.createNode(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
+		}
+
+		// SemanticHint may be null when the element is created indirectly by
+		// DND from model explorer
+		// ex: Drag and drop a Connector may require to show ConnectorEnd first.
+		EObject eobject = (EObject) semanticAdapter.getAdapter(EObject.class);
+		if (eobject instanceof Port) {
+			return super.createNode(semanticAdapter, containerView,
+					InternalBlockDiagramElementTypes.PORT_CN.getSemanticHint(), index, persisted, preferencesHint);
+		} else if (eobject instanceof Property) {
+			return super.createNode(semanticAdapter, containerView,
+					InternalBlockDiagramElementTypes.PROPERTY_CN.getSemanticHint(), index, persisted, preferencesHint);
 		}
 
 		return null;

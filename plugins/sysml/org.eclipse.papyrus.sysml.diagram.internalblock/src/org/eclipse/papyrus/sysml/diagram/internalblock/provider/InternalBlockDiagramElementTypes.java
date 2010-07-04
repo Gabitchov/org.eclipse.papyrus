@@ -20,7 +20,4 @@ public class InternalBlockDiagramElementTypes extends InheritedElementTypes {
 	/** Internal Block Diagram :: Diagram */
 	public static final IHintedType INTERNAL_BLOCK_DIAGRAM = (IHintedType) getElementType("InternalBlock"); //$NON-NLS-1$
 
-	/** Internal Block Diagram :: FlowPort IN */
-	public static final IHintedType FLOWPORT_IN = (IHintedType) getElementType("org.eclipse.papyrus.sysml.diagram.internalblock.FlowPortIN"); //$NON-NLS-1$
-	public static final String FLOWPORT_IN_NAME_LABEL_HINT = PORT_CN_NAME_LABEL_HINT;
 }
