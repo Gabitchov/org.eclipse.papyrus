@@ -38,7 +38,7 @@ public class CustomDragDropEditPolicy extends CustomDiagramDragDropEditPolicy {
 				semanticHint = InternalBlockDiagramElementTypes.PORT_CN.getSemanticHint();
 			} else if (domainElement instanceof Property) {
 				semanticHint = InternalBlockDiagramElementTypes.PROPERTY_CN.getSemanticHint();
-			} else if (domainElement instanceof Property) {
+			} else if (domainElement instanceof org.eclipse.uml2.uml.Class) {
 				semanticHint = InternalBlockDiagramElementTypes.CLASS_CN.getSemanticHint();
 			}
 		}
