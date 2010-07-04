@@ -9,6 +9,9 @@
         <condition xsi:type="query:JavaModelQuery" href="modisco:/query/SysMLDefaultExplorerQueries#hasImage"/>
       </valueCases>
     </customizedFeatures>
+    <customizedFeatures customizedFeature="hideMetaclassName">
+      <defaultValue xsi:type="uicustom:StaticFeatureValue" value="true"/>
+    </customizedFeatures>
     <references referenceName="owner">
       <customizedFeatures>
         <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
@@ -86,6 +89,11 @@
     </references>
   </types>
   <types metaclassName="uml.NamedElement">
+    <customizedFeatures customizedFeature="label">
+      <defaultValue xsi:type="uicustom:DerivedFeatureValue">
+        <valueCalculator xsi:type="query:JavaModelQuery" href="modisco:/query/SysMLDefaultExplorerQueries#getLabel"/>
+      </defaultValue>
+    </customizedFeatures>
     <references referenceName="eAnnotations">
       <customizedFeatures>
         <defaultValue xsi:type="uicustom:StaticFeatureValue" value="false"/>
