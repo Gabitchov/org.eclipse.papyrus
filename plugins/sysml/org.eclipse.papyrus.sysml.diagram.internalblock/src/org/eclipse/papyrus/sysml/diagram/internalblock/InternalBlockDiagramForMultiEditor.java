@@ -29,9 +29,9 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 
-
 /**
- * An editor to be used in multitabs editor. This editor extends the original UML Diagram.
+ * An editor to be used in multitabs editor. This editor extends the original
+ * UML Diagram.
  * 
  */
 public class InternalBlockDiagramForMultiEditor extends InternalBlockDiagramEditor {
@@ -39,25 +39,27 @@ public class InternalBlockDiagramForMultiEditor extends InternalBlockDiagramEdit
 	/**
 	 * The location of diagram icon in the plug-in
 	 */
-	private static final String DIAG_IMG_PATH = "icons/diagram/Diagram_InternalBlockDiagram.gif";
+	private static final String DIAG_IMG_PATH = "icons/obj16/Diagram_InternalBlock.gif";
 
 	/**
 	 * The image descriptor of the diagram icon
 	 */
-	private static final ImageDescriptor DIAG_IMG_DESC = Activator.getBundledImageDescriptor(InternalBlockDiagramForMultiEditor.DIAG_IMG_PATH);
+	private static final ImageDescriptor DIAG_IMG_DESC = Activator
+			.getBundledImageDescriptor(InternalBlockDiagramForMultiEditor.DIAG_IMG_PATH);
 
 	/** The editor splitter. */
 	private Composite splitter;
 
 	/**
-	 * Constructor for SashSystem v2. Context and required objects are retrieved from the
-	 * ServiceRegistry.
+	 * Constructor for SashSystem v2. Context and required objects are retrieved
+	 * from the ServiceRegistry.
 	 * 
 	 * @throws BackboneException
 	 * @throws ServiceException
 	 * 
 	 */
-	public InternalBlockDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws BackboneException, ServiceException {
+	public InternalBlockDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram)
+			throws BackboneException, ServiceException {
 		super(servicesRegistry, diagram);
 	}
 

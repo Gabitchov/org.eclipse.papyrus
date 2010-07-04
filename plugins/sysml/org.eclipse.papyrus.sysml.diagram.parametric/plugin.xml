@@ -28,7 +28,7 @@
       <editor
          id="org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditorID"
          name="%editorName"
-         icon="icons/obj16/ResourceDiagramFile.gif"
+         icon="icons/obj16/Diagram_Parametric.gif"
          extensions="sysml_diagram"
          default="true"
          class="org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlDiagramEditor"
@@ -51,7 +51,7 @@
       <?gmfgen generated="true"?>
   	  <wizard
   	     name="%newWizardName"
-  	     icon="icons/obj16/ResourceDiagramFile.gif"
+  	     icon="icons/obj16/Diagram_Parametric.gif"
   	     category="org.eclipse.ui.Examples"
   	     class="org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlCreationWizard"
   	     id="org.eclipse.papyrus.sysml.diagram.parametric.part.SysmlCreationWizardID">
@@ -609,12 +609,12 @@
          point="org.eclipse.papyrus.core.papyrusDiagram">
       <editorDiagram
             factoryClass="org.eclipse.papyrus.sysml.diagram.parametric.ParametricDiagramEditorFactory"
-            icon="icons/obj16/ResourceDiagramFile.gif">
+            icon="icons/obj16/Diagram_Parametric.gif">
       </editorDiagram>
       <creationCommand
             creationCommandClass="org.eclipse.papyrus.sysml.diagram.parametric.CreateParametricDiagramCommand"
             creationCondition="org.eclipse.papyrus.sysml.diagram.parametric.ParametricDiagramCondition"
-            icon="icons/obj16/ResourceDiagramFile.gif"
+            icon="icons/obj16/Diagram_Parametric.gif"
             id="org.eclipse.papyrus.sysml.diagram.parametric.CreateParametricDiagramCommand"
             language="sysml"
             label="SysML Parametric Diagram">

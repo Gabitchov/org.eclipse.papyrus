@@ -26,7 +26,8 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 
 /**
- * An editor to be used in multitabs editor. This editor extends the original UML Diagram.
+ * An editor to be used in multitabs editor. This editor extends the original
+ * UML Diagram.
  * 
  */
 public class RequirementDiagramForMultiEditor extends RequirementDiagramEditor {
@@ -34,20 +35,20 @@ public class RequirementDiagramForMultiEditor extends RequirementDiagramEditor {
 	/**
 	 * The location of diagram icon in the plug-in
 	 */
-	private static final String DIAG_IMG_PATH = "icons/RequirementDiagramSysML.gif";
+	private static final String DIAG_IMG_PATH = "icons/obj16/Diagram_Requirement.gif";
 
 	/**
 	 * The image descriptor of the diagram icon
 	 */
-	private static final ImageDescriptor DIAG_IMG_DESC = Activator.getBundledImageDescriptor(RequirementDiagramForMultiEditor.DIAG_IMG_PATH);
-
+	private static final ImageDescriptor DIAG_IMG_DESC = Activator
+			.getBundledImageDescriptor(RequirementDiagramForMultiEditor.DIAG_IMG_PATH);
 
 	/** The editor splitter. */
 	private Composite splitter;
 
 	/**
-	 * Constructor for SashSystem v2. Context and required objects are retrieved from the
-	 * ServiceRegistry.
+	 * Constructor for SashSystem v2. Context and required objects are retrieved
+	 * from the ServiceRegistry.
 	 * 
 	 * @param servicesRegistry
 	 * @param diagram
@@ -56,7 +57,8 @@ public class RequirementDiagramForMultiEditor extends RequirementDiagramEditor {
 	 * @throws ServiceException
 	 * 
 	 */
-	public RequirementDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws BackboneException, ServiceException {
+	public RequirementDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram)
+			throws BackboneException, ServiceException {
 		super(servicesRegistry, diagram);
 	}
 

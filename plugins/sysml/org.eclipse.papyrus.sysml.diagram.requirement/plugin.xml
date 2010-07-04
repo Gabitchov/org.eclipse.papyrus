@@ -28,7 +28,7 @@
                label="Diagrams">
             <command
                   commandId="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand"
-                  icon="icons/RequirementDiagramSysML.gif"
+                  icon="icons/obj16/Diagram_Requirement.gif"
                   label="SysML Requirement Diagram"
                   style="push"
                   tooltip="SysML Requirement Diagram">
@@ -41,7 +41,7 @@
                id="org.eclipse.papyrus.diagram.ui.toolbar">
             <command
                   commandId="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand"
-                  icon="icons/RequirementDiagramSysML.gif"
+                  icon="icons/obj16/Diagram_Requirement.gif"
                   label="Create a new Requirement Diagram"
                   style="push"
                   tooltip="Create a new Requirement Diagram">
@@ -71,11 +71,11 @@
       <editorDiagram
             actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
             factoryClass="org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramEditorFactory"
-            icon="icons/RequirementDiagramSysML.gif">
+            icon="icons/obj16/Diagram_Requirement.gif">
       </editorDiagram>
       <creationCommand
             creationCommandClass="org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramCreateCommand"
-            icon="icons/RequirementDiagramSysML.gif"
+            icon="icons/obj16/Diagram_Requirement.gif"
             id="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand"
             label="SysML Requirement Diagram"
             language="sysml">

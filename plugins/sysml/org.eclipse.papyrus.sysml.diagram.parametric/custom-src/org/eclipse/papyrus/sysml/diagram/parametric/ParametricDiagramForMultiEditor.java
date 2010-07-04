@@ -35,7 +35,7 @@ public class ParametricDiagramForMultiEditor extends SysmlDiagramEditor {
 	/**
 	 * The location of diagram icon in the plug-in
 	 */
-	private static final String DIAG_IMG_PATH = "icons/obj16/ResourceDiagramFile.gif";
+	private static final String DIAG_IMG_PATH = "icons/obj16/Diagram_Parametric.gif";
 
 	/**
 	 * The image descriptor of the diagram icon
@@ -47,8 +47,8 @@ public class ParametricDiagramForMultiEditor extends SysmlDiagramEditor {
 	private Composite splitter;
 
 	/**
-	 * Constructor for SashSystem v2. Context and required objects are retrieved from the
-	 * ServiceRegistry.
+	 * Constructor for SashSystem v2. Context and required objects are retrieved
+	 * from the ServiceRegistry.
 	 * 
 	 * @throws BackboneException
 	 * @throws ServiceException
