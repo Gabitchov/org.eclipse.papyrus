@@ -11,7 +11,7 @@
  *   Atos Origin - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.sequence.util;
+package org.eclipse.papyrus.diagram.common.util;
 
 /**
  * Enum for message direction (in or out)
