@@ -65,6 +65,7 @@ plugin@org.eclipse.papyrus.resource.migration=SVN,,svn://dev.eclipse.org/svnroot
 
 # sysml
 plugin@org.eclipse.papyrus.properties.tabbed.sysml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml,,org.eclipse.papyrus.properties.tabbed.sysml
+plugin@org.eclipse.papyrus.properties.view.sysml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml,,org.eclipse.papyrus.properties.view.sysml
 plugin@org.eclipse.papyrus.sysml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml,,org.eclipse.papyrus.sysml
 plugin@org.eclipse.papyrus.sysml.diagram.blockdefinition=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml,,org.eclipse.papyrus.sysml.diagram.blockdefinition
 plugin@org.eclipse.papyrus.sysml.diagram.common=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/sysml,,org.eclipse.papyrus.sysml.diagram.common
