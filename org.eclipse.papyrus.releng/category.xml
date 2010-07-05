@@ -39,6 +39,12 @@
    <feature url="features/org.eclipse.papyrus.diagram.parametric_${org.eclipse.papyrus.diagram.parametric.version}.jar" id="org.eclipse.papyrus.diagram.parametric" version="${org.eclipse.papyrus.diagram.parametric.version}">
       <category name="Papyrus SysML"/>
    </feature>
+   <feature url="features/org.eclipse.papyrus.diagram.blockdefinition_${org.eclipse.papyrus.diagram.blockdefinition.version}.jar" id="org.eclipse.papyrus.diagram.blockdefinition" version="${org.eclipse.papyrus.diagram.blockdefinition.version}">
+      <category name="Papyrus SysML"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.diagram.internalblock_${org.eclipse.papyrus.diagram.internalblock.version}.jar" id="org.eclipse.papyrus.diagram.internalblock" version="${org.eclipse.papyrus.diagram.internalblock.version}">
+      <category name="Papyrus SysML"/>
+   </feature>
    <feature url="features/org.eclipse.papyrus.layouttool_${org.eclipse.papyrus.layouttool.version}.jar" id="org.eclipse.papyrus.layouttool" version="${org.eclipse.papyrus.layouttool.version}">
       <category name="Papyrus Third-Party"/>
    </feature>
