@@ -16,6 +16,10 @@ package org.eclipse.papyrus.preferences;
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.preferences.pages.PapyrusAllDiagramsPreferencePage;
+import org.eclipse.papyrus.preferences.pages.internal.PapyrusPathmapsPreferencePage;
+import org.eclipse.papyrus.preferences.pages.internal.PapyrusPrintingPreferencePage;
+import org.eclipse.papyrus.preferences.pages.internal.PapyrusRulersAndGridPreferencePage;
+import org.eclipse.papyrus.preferences.pages.internal.PapyrusUML2PreferencePage;
 /**
  * This class is use to initialize the preference at the level Papyrus editor
  *
@@ -35,6 +39,9 @@ public class PapyrusPreferenceInitializer extends AbstractPreferenceInitializer 
 	@Override
 	public void initializeDefaultPreferences() {
 		PapyrusAllDiagramsPreferencePage.initDefaults(store);
+		PapyrusRulersAndGridPreferencePage.initDefaults(store);
+		PapyrusPrintingPreferencePage.initDefaults(store);
+		PapyrusUML2PreferencePage.initDefaults(store);
 
 	}
 
