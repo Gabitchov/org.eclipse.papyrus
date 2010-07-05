@@ -25,18 +25,4 @@
       </PropertyViewContribution>
    </propertyViewProvider>
 </extension>
-<extension
-      point="org.eclipse.papyrus.properties.runtime.propertyEditorControllerProvider">
-   <propertyEditorControllerProvider
-         class="org.eclipse.papyrus.properties.runtime.controller.predefined.PredefinedPropertyControllerProvider"
-         description="this is the basic provider for SysML features"
-            id="org.eclipse.papyrus.properties.view.sysml.structuralFeaturesEMFTPredefinedControllers">
-      <Priority name="Lowest"/>
-      <PredefinedControllers
-            id="org.eclipse.papyrus.properties.view.sysml.structuralFeaturesEMFTPredefinedControllers"
-            name="SysML Predefined Controllers for Structural Features"
-            path="resources/sysml_predefined_controllers.xml">
-      </PredefinedControllers>
-   </propertyEditorControllerProvider>
-</extension>
 </plugin>
