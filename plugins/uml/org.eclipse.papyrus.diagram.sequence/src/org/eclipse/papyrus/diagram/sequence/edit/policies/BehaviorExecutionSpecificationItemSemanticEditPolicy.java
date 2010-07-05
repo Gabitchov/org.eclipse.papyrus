@@ -192,7 +192,7 @@ public class BehaviorExecutionSpecificationItemSemanticEditPolicy extends UMLBas
 			cmd.add(new DeleteCommand(getEditingDomain(), view));
 		}
 		// add deletion of Start and Finish events
-		SequenceUtil.completeDestroyExecutionSpecificationCommand(cmd, req, getEditingDomain(), getHost());
+		SequenceUtil.completeDestroyExecutionSpecificationCommand(cmd, getHost());
 		return getGEFWrapper(cmd.reduce());
 	}
 

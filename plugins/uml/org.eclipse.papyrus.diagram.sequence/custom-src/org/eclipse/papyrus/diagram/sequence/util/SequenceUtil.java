@@ -734,6 +734,52 @@ public class SequenceUtil {
 		}
 		return cmd;
 	}
+	
+	/**
+	 * Complete an ICommand which destroys an ExecutionSpecification element to also destroy dependent finish and start events and time/duration
+	 * constraint/observation linked with these ends
+	 * 
+	 * @param cmd
+	 *        the command to complete
+	 * @param execution
+	 *        the execution specification on which the request is called
+	 * @return the deletion ICommand cmd for convenience
+	 */
+	public static ICommand completeDestroyExecutionSpecificationCommand(CompositeTransactionalCommand cmd, ExecutionSpecification execution) {
+		OccurrenceSpecification start = execution.getStart();
+		cmd.add(new DestroyElementCommand(new DestroyElementRequest(start, false)));
+		// delete linked time elements
+		List<TimeObservation> timeObs = TimeObservationHelper.getTimeObservations(start);
+		List<TimeConstraint> timeCst = TimeConstraintHelper.getTimeConstraintsOn(start);
+		List<DurationObservation> durObs = DurationObservationHelper.getDurationObservationsOn(start);
+		List<DurationConstraint> durCst = DurationConstraintHelper.getDurationConstraintsOn(start);
+		List<NamedElement> timeElements = new ArrayList<NamedElement>(timeObs.size() + durObs.size() + timeCst.size() + durCst.size());
+		timeElements.addAll(timeObs);
+		timeElements.addAll(timeCst);
+		timeElements.addAll(durObs);
+		timeElements.addAll(durCst);
+		for(NamedElement elt : timeElements) {
+			cmd.add(new DestroyElementCommand(new DestroyElementRequest(elt, false)));
+		}
+
+		OccurrenceSpecification finish = execution.getFinish();
+		cmd.add(new DestroyElementCommand(new DestroyElementRequest(finish, false)));
+		// delete linked time elements
+		timeObs = TimeObservationHelper.getTimeObservations(finish);
+		timeCst = TimeConstraintHelper.getTimeConstraintsOn(finish);
+		durObs = DurationObservationHelper.getDurationObservationsOn(finish);
+		durCst = DurationConstraintHelper.getDurationConstraintsOn(finish);
+		timeElements = new ArrayList<NamedElement>(timeObs.size() + durObs.size() + timeCst.size() + durCst.size());
+		timeElements.addAll(timeObs);
+		timeElements.addAll(timeCst);
+		timeElements.addAll(durObs);
+		timeElements.addAll(durCst);
+		for(NamedElement elt : timeElements) {
+			cmd.add(new DestroyElementCommand(new DestroyElementRequest(elt, false)));
+		}
+		
+		return cmd;
+	}
 
 	/**
 	 * Complete an ICommand which destroys an ExecutionSpecification element to also destroy dependent finish and start events and time/duration
@@ -741,53 +787,18 @@ public class SequenceUtil {
 	 * 
 	 * @param cmd
 	 *        the command to complete
-	 * @param req
-	 *        the request to destroy the element
-	 * @param editingDomain
-	 *        the editing domain
 	 * @param executionPart
 	 *        the execution specification edit part on which the request is called
 	 * @return the deletion ICommand cmd for convenience
 	 */
-	public static ICommand completeDestroyExecutionSpecificationCommand(CompositeTransactionalCommand cmd, DestroyElementRequest req, TransactionalEditingDomain editingDomain, EditPart executionPart) {
+	public static ICommand completeDestroyExecutionSpecificationCommand(CompositeTransactionalCommand cmd, EditPart executionPart) {
 		Object model = executionPart.getModel();
 		if(model instanceof Node) {
 			EObject obj = ((Node)model).getElement();
 
 			if(obj instanceof ExecutionSpecification) {
 				ExecutionSpecification execution = (ExecutionSpecification)obj;
-
-				OccurrenceSpecification start = execution.getStart();
-				cmd.add(new DestroyElementCommand(new DestroyElementRequest(start, false)));
-				// delete linked time elements
-				List<TimeObservation> timeObs = TimeObservationHelper.getTimeObservations(start);
-				List<TimeConstraint> timeCst = TimeConstraintHelper.getTimeConstraintsOn(start);
-				List<DurationObservation> durObs = DurationObservationHelper.getDurationObservationsOn(start);
-				List<DurationConstraint> durCst = DurationConstraintHelper.getDurationConstraintsOn(start);
-				List<NamedElement> timeElements = new ArrayList<NamedElement>(timeObs.size() + durObs.size() + timeCst.size() + durCst.size());
-				timeElements.addAll(timeObs);
-				timeElements.addAll(timeCst);
-				timeElements.addAll(durObs);
-				timeElements.addAll(durCst);
-				for(NamedElement elt : timeElements) {
-					cmd.add(new DestroyElementCommand(new DestroyElementRequest(elt, false)));
-				}
-
-				OccurrenceSpecification finish = execution.getFinish();
-				cmd.add(new DestroyElementCommand(new DestroyElementRequest(finish, false)));
-				// delete linked time elements
-				timeObs = TimeObservationHelper.getTimeObservations(finish);
-				timeCst = TimeConstraintHelper.getTimeConstraintsOn(finish);
-				durObs = DurationObservationHelper.getDurationObservationsOn(finish);
-				durCst = DurationConstraintHelper.getDurationConstraintsOn(finish);
-				timeElements = new ArrayList<NamedElement>(timeObs.size() + durObs.size() + timeCst.size() + durCst.size());
-				timeElements.addAll(timeObs);
-				timeElements.addAll(timeCst);
-				timeElements.addAll(durObs);
-				timeElements.addAll(durCst);
-				for(NamedElement elt : timeElements) {
-					cmd.add(new DestroyElementCommand(new DestroyElementRequest(elt, false)));
-				}
+				return completeDestroyExecutionSpecificationCommand(cmd, execution);
 			}
 		}
 		return cmd;

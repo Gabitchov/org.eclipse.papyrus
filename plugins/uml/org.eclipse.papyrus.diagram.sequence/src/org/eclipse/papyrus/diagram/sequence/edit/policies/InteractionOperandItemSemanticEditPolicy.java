@@ -77,6 +77,8 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.Message;
@@ -166,30 +168,35 @@ public class InteractionOperandItemSemanticEditPolicy extends UMLBaseItemSemanti
 			}
 		}
 		
-		// Get InteractionOperand associated Message
+		// Get InteractionOperand associated elements
 		EObject eObject = view.getElement();
-		Set<Message> messages = new HashSet<Message>();
+		Set<Element> elements = new HashSet<Element>();
 		if(eObject instanceof InteractionOperand){
 			InteractionOperand interactionOperand = (InteractionOperand)eObject;
 			for(InteractionFragment itf : interactionOperand.getFragments()){
+				elements.add(itf);
 				if(itf instanceof MessageOccurrenceSpecification){
 					MessageOccurrenceSpecification mos = (MessageOccurrenceSpecification)itf;
 					if(mos.getMessage() != null)
-					messages.add(mos.getMessage());
+					elements.add(mos.getMessage());
 				}
 			}
 		}
 		
 		// Delete InteractionOperand AssociatedMessage
-		for(Message message : messages){
+		for(Element element : elements){
 			
 			// Destroy the element
-			DestroyElementRequest r = new DestroyElementRequest(message, false);
+			DestroyElementRequest r = new DestroyElementRequest(element, false);
 			cmd.add(new DestroyElementCommand(r));
-			SequenceUtil.completeDestroyMessageCommand(message, cmd);
+			if(element instanceof Message){
+				SequenceUtil.completeDestroyMessageCommand((Message)element, cmd);
+			}else if(element instanceof ExecutionSpecification){
+				SequenceUtil.completeDestroyExecutionSpecificationCommand(cmd, (ExecutionSpecification)element);
+			}
 			
 			// Destroy its views
-			List views = DiagramEditPartsUtil.getEObjectViews(message);
+			List views = DiagramEditPartsUtil.getEObjectViews(element);
 			for(Object object : views){
 				if(object instanceof View){
 					cmd.add(new DeleteCommand(getEditingDomain(), (View)object));
