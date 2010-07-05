@@ -20,6 +20,7 @@ import java.util.List;
 import org.eclipse.draw2d.Border;
 import org.eclipse.draw2d.BorderLayout;
 import org.eclipse.draw2d.ConnectionAnchor;
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.LayoutManager;
 import org.eclipse.draw2d.MarginBorder;
@@ -28,6 +29,7 @@ import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.ToolbarLayout;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -1215,8 +1217,25 @@ public class LifelineEditPart extends NamedElementEditPart {
 		protected void createCompositeFigureStructure() {
 			BorderLayout layoutThis = new BorderLayout();
 			this.setLayoutManager(layoutThis);
-			//this.setMaximumSize(new Dimension(getMapMode().DPtoLP(100), getMapMode().DPtoLP(200)));
+			this.setOpaque(false);
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(100), getMapMode().DPtoLP(200)));
 			createContents();
+		}
+
+
+		/**
+		 * Paint the label rectangle as background instead of the whole figure
+		 * 
+		 * @see org.eclipse.papyrus.diagram.common.figure.node.PapyrusNodeFigure#paintBackground(org.eclipse.draw2d.Graphics,
+		 *      org.eclipse.draw2d.geometry.Rectangle)
+		 * @param graphics
+		 *        graphics tool
+		 * @param rectangle
+		 *        unused
+		 */
+		@Override
+		protected void paintBackground(Graphics graphics, Rectangle rectangle) {
+			super.paintBackground(graphics, getFigureLifelineNameContainerFigure().getBounds());
 		}
 
 		/**
@@ -1257,12 +1276,25 @@ public class LifelineEditPart extends NamedElementEditPart {
 		}
 
 		/**
+		 * Create the name label with width wrap
+		 * 
+		 * @see org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure#createNameLabel()
+		 */
+		@Override
+		protected void createNameLabel() {
+			super.createNameLabel();
+			nameLabel.setTextWrap(true);
+		}
+
+		/**
 		 * @generated NOT remove label creation, change layout
 		 */
 		private void createContents() {
 
 
 			fFigureLifelineNameContainerFigure = new RectangleFigure();
+			// do not fill to enable gradient
+			fFigureLifelineNameContainerFigure.setFill(false);
 
 			fFigureLifelineNameContainerFigure.setBorder(new MarginBorder(getMapMode().DPtoLP(7), getMapMode().DPtoLP(7), getMapMode().DPtoLP(7), getMapMode().DPtoLP(7)));
 
@@ -1300,6 +1332,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 			fFigureExecutionsContainerFigure = new RectangleFigure();
 			fFigureExecutionsContainerFigure.setFill(false);
 			fFigureExecutionsContainerFigure.setOutline(false);
+			fFigureExecutionsContainerFigure.setLineWidth(1);
 
 			this.add(fFigureExecutionsContainerFigure, BorderLayout.CENTER);
 			fFigureExecutionsContainerFigure.setLayoutManager(new StackLayout());
@@ -1545,10 +1578,11 @@ public class LifelineEditPart extends NamedElementEditPart {
 	 */
 	@Override
 	protected void setBackgroundColor(Color c) {
-		NodeFigure fig = (NodeFigure)getFigure();
-		fig.setBackgroundColor(c);
-		fig.setIsUsingGradient(false);
-		fig.setGradientData(-1, -1, 0);
+		super.setBackgroundColor(c);
+		//		NodeFigure fig = getPrimaryShape();
+		//		fig.setBackgroundColor(c);
+		//		fig.setIsUsingGradient(false);
+		//		fig.setGradientData(-1, -1, 0);
 	}
 
 	/**
@@ -1558,13 +1592,14 @@ public class LifelineEditPart extends NamedElementEditPart {
 	 */
 	@Override
 	protected void setGradient(GradientData gradient) {
-		NodeFigure fig = (NodeFigure)getFigure();
-		if(gradient != null) {
-			fig.setIsUsingGradient(true);
-			fig.setGradientData(gradient.getGradientColor1(), gradient.getGradientColor2(), gradient.getGradientStyle());
-		} else {
-			fig.setIsUsingGradient(false);
-		}
+		super.setGradient(gradient);
+		//		NodeFigure fig = getPrimaryShape();
+		//		if(gradient != null) {
+		//			fig.setIsUsingGradient(true);
+		//			fig.setGradientData(gradient.getGradientColor1(), gradient.getGradientColor2(), gradient.getGradientStyle());
+		//		} else {
+		//			fig.setIsUsingGradient(false);
+		//		}
 	}
 
 	/**
@@ -1574,8 +1609,9 @@ public class LifelineEditPart extends NamedElementEditPart {
 	 */
 	@Override
 	protected void setTransparency(int transp) {
-		NodeFigure fig = (NodeFigure)getFigure();
-		fig.setTransparency(transp);
+		super.setTransparency(transp);
+		//		NodeFigure fig = getPrimaryShape();
+		//		fig.setTransparency(transp);
 	}
 
 	/**
