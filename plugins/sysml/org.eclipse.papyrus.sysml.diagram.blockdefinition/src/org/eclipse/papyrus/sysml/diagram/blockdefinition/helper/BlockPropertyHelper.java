@@ -45,9 +45,13 @@ public class BlockPropertyHelper extends NotificationHelper {
 		private EList<View> compartments;
 
 		private View referenceCompartment = null;
+
 		private View partCompartment = null;
+
 		private View valueCompartment = null;
+
 		private View propertyCompartment = null;
+
 		private View constraintCompartment = null;
 
 		@SuppressWarnings("unchecked")
@@ -56,16 +60,16 @@ public class BlockPropertyHelper extends NotificationHelper {
 			// retrieve the different compartments
 			compartments = blockNode.getChildren();
 
-			for (View compartment : compartments) {
-				if (compartment.getType().equals(BlockDefinitionDiagramElementTypes.BLOCK_REFERENCE_COMPARTMENT_HINT)) {
+			for(View compartment : compartments) {
+				if(compartment.getType().equals(BlockDefinitionDiagramElementTypes.BLOCK_REFERENCE_COMPARTMENT_HINT)) {
 					referenceCompartment = compartment;
-				} else if (compartment.getType().equals(BlockDefinitionDiagramElementTypes.BLOCK_PART_COMPARTMENT_HINT)) {
+				} else if(compartment.getType().equals(BlockDefinitionDiagramElementTypes.BLOCK_PART_COMPARTMENT_HINT)) {
 					partCompartment = compartment;
-				} else if (compartment.getType().equals(BlockDefinitionDiagramElementTypes.BLOCK_VALUE_COMPARTMENT_HINT)) {
+				} else if(compartment.getType().equals(BlockDefinitionDiagramElementTypes.BLOCK_VALUE_COMPARTMENT_HINT)) {
 					valueCompartment = compartment;
-				} else if (compartment.getType().equals(BlockDefinitionDiagramElementTypes.BLOCK_PROPERTY_COMPARTMENT_HINT)) {
+				} else if(compartment.getType().equals(BlockDefinitionDiagramElementTypes.BLOCK_PROPERTY_COMPARTMENT_HINT)) {
 					propertyCompartment = compartment;
-				} else if (compartment.getType().equals(BlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_COMPARTMENT_HINT)) {
+				} else if(compartment.getType().equals(BlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_COMPARTMENT_HINT)) {
 					constraintCompartment = compartment;
 				}
 			}
@@ -81,27 +85,26 @@ public class BlockPropertyHelper extends NotificationHelper {
 			Property property = (Property)msg.getNotifier();
 
 			// only SET notifications
-			if (msg.getEventType() == Notification.SET) {	
+			if(msg.getEventType() == Notification.SET) {
 				newCompartment = getCompartmentFromNotification(msg);
-			}else if (msg.getEventType() == PapyrusStereotypeListener.APPLIED_STEREOTYPE
-				|| msg.getEventType() == PapyrusStereotypeListener.UNAPPLIED_STEREOTYPE) {
-				if (property.getAppliedStereotype(SysmlResource.CONSTRAINT_PROPERTY_ID) != null) {
+			} else if(msg.getEventType() == PapyrusStereotypeListener.APPLIED_STEREOTYPE || msg.getEventType() == PapyrusStereotypeListener.UNAPPLIED_STEREOTYPE) {
+				if(property.getAppliedStereotype(SysmlResource.CONSTRAINT_PROPERTY_ID) != null) {
 					newCompartment = constraintCompartment;
 				}
 			}
 
-			if (newCompartment != null) {
-				for (View compartment : compartments) {
+			if(newCompartment != null) {
+				for(View compartment : compartments) {
 					EList<View> compartmentChildren = compartment.getChildren();
-					for (View compartmentChild : compartmentChildren) {
-						if (compartmentChild.getElement().equals(msg.getNotifier())) {
+					for(View compartmentChild : compartmentChildren) {
+						if(compartmentChild.getElement().equals(msg.getNotifier())) {
 							oldCompartment = compartment;
 							propertyView = compartmentChild;
 						}
 					}
 				}
 
-				if (oldCompartment != null && !oldCompartment.equals(newCompartment)) {
+				if(oldCompartment != null && !oldCompartment.equals(newCompartment)) {
 					oldCompartment.removeChild(propertyView);
 					newCompartment.insertChild(propertyView);
 				}
@@ -112,11 +115,10 @@ public class BlockPropertyHelper extends NotificationHelper {
 			// TODO check getFeatureID usage
 
 			// monitor change of type
-			if (msg.getFeatureID(Property.class) == UMLPackage.PROPERTY__TYPE) {
+			if(msg.getFeatureID(Property.class) == UMLPackage.PROPERTY__TYPE) {
 				Object newValue = msg.getNewValue();
-				if (newValue instanceof Class
-					&& ((Class)newValue).getAppliedStereotype(SysmlResource.BLOCK_ID) != null) {
-					if (((Property)msg.getNotifier()).getAggregation().equals(AggregationKind.COMPOSITE_LITERAL)) {
+				if(newValue instanceof Class && ((Class)newValue).getAppliedStereotype(SysmlResource.BLOCK_ID) != null) {
+					if(((Property)msg.getNotifier()).getAggregation().equals(AggregationKind.COMPOSITE_LITERAL)) {
 						return partCompartment;
 					} else {
 						return referenceCompartment;
@@ -126,12 +128,11 @@ public class BlockPropertyHelper extends NotificationHelper {
 				} else {
 					return propertyCompartment;
 				}
-			// monitor change of aggregation kind
-			} else if (msg.getFeatureID(Property.class) == UMLPackage.PROPERTY__AGGREGATION) {
+				// monitor change of aggregation kind
+			} else if(msg.getFeatureID(Property.class) == UMLPackage.PROPERTY__AGGREGATION) {
 				Type type = ((Property)msg.getNotifier()).getType();
-				if (type instanceof Class
-					&& ((Class)type).getAppliedStereotype(SysmlResource.BLOCK_ID) != null) {
-					if (((AggregationKind)msg.getNewValue()).equals(AggregationKind.COMPOSITE_LITERAL)) {
+				if(type instanceof Class && ((Class)type).getAppliedStereotype(SysmlResource.BLOCK_ID) != null) {
+					if(((AggregationKind)msg.getNewValue()).equals(AggregationKind.COMPOSITE_LITERAL)) {
 						return partCompartment;
 					} else {
 						return referenceCompartment;

@@ -48,6 +48,7 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.papyrus.diagram.clazz,
  org.eclipse.papyrus.diagram.clazz.custom.factory,
  org.eclipse.papyrus.diagram.clazz.custom.policies,
+ org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic,
  org.eclipse.papyrus.diagram.clazz.custom.providers,
  org.eclipse.papyrus.diagram.clazz.edit.commands,
  org.eclipse.papyrus.diagram.clazz.edit.helpers,

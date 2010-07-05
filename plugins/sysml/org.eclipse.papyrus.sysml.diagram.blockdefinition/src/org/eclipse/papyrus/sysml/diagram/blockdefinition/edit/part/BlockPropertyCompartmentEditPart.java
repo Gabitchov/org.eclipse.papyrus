@@ -19,7 +19,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassAttributeCompartment2Ed
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.BlockPropertyCompartmentItemSemanticEditPolicy;
 
 public class BlockPropertyCompartmentEditPart extends ClassAttributeCompartment2EditPart {
-	
+
 	public final static String COMPARTMENT_NAME = "PropertyCompartment";
 
 	public BlockPropertyCompartmentEditPart(View view) {
@@ -31,7 +31,7 @@ public class BlockPropertyCompartmentEditPart extends ClassAttributeCompartment2
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new BlockPropertyCompartmentItemSemanticEditPolicy());
 	}
-	
+
 	@Override
 	public String getCompartmentName() {
 		return COMPARTMENT_NAME;

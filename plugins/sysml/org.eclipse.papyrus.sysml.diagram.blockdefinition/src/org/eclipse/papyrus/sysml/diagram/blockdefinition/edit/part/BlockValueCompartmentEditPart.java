@@ -22,11 +22,11 @@ import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockDefinitio
 public class BlockValueCompartmentEditPart extends ClassAttributeCompartment2EditPart {
 
 	public final static String COMPARTMENT_NAME = "BlockValueCompartment";
-	
+
 	public BlockValueCompartmentEditPart(View view) {
 		super(view);
 	}
-	
+
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();

@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy;
 
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.command.ConstraintCreateCommand;
@@ -25,12 +26,12 @@ public class BlockConstraintCompartmentItemSemanticEditPolicy extends UMLBaseIte
 	public BlockConstraintCompartmentItemSemanticEditPolicy() {
 		super(BlockDefinitionDiagramElementTypes.BLOCK);
 	}
-	
+
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if(BlockDefinitionDiagramElementTypes.CONSTRAINT == req.getElementType()) {
+		if(BlockDefinitionDiagramElementTypes.BLOCK_CONSTRAINT_CLN == req.getElementType()) {
 			return getGEFWrapper(new ConstraintCreateCommand(req));
 		}
-		return super.getCreateCommand(req);
+		return UnexecutableCommand.INSTANCE;
 	}
 
 }

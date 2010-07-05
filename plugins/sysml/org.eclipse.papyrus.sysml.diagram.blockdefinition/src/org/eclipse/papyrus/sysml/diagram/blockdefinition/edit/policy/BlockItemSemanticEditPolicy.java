@@ -13,28 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy;
 
-import org.eclipse.gef.commands.Command;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPolicy;
-import org.eclipse.papyrus.sysml.diagram.blockdefinition.command.FlowPortCreateCommand;
-import org.eclipse.papyrus.sysml.diagram.blockdefinition.command.PortCreateCommand;
-import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockDefinitionDiagramElementTypes;
+import org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomClassItemSemanticEditPolicy;
 
 
-public class BlockItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
-
-	public BlockItemSemanticEditPolicy() {
-		super(BlockDefinitionDiagramElementTypes.BLOCK);
-	}
-	
-	protected Command getCreateCommand(CreateElementRequest req) {
-		if(BlockDefinitionDiagramElementTypes.FLOW_PORT == req.getElementType()) {
-			return getGEFWrapper(new FlowPortCreateCommand(req));
-		}
-		if(BlockDefinitionDiagramElementTypes.PORT == req.getElementType()) {
-			return getGEFWrapper(new PortCreateCommand(req));
-		}
-		return super.getCreateCommand(req);
-	}
+public class BlockItemSemanticEditPolicy extends CustomClassItemSemanticEditPolicy {
 
 }

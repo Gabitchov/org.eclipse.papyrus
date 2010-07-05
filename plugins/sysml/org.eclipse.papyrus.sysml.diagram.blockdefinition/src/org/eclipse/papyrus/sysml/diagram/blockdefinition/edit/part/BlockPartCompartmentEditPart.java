@@ -20,13 +20,13 @@ import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.DefaultItem
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockDefinitionDiagramElementTypes;
 
 public class BlockPartCompartmentEditPart extends ClassAttributeCompartment2EditPart {
-	
+
 	public final static String COMPARTMENT_NAME = "BlockPartCompartment";
-	
+
 	public BlockPartCompartmentEditPart(View view) {
 		super(view);
 	}
-	
+
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();

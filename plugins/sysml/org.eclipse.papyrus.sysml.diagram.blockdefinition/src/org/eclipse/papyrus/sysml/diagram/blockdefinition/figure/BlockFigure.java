@@ -18,8 +18,8 @@ import java.util.List;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.papyrus.diagram.common.figure.node.ClassifierFigure;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockConstraintCompartmentEditPart;
-import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockReferenceCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockPartCompartmentEditPart;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockReferenceCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockValueCompartmentEditPart;
 
 /** FIXME : ClassifierFigure to be corrected to support inheritance */
@@ -44,15 +44,15 @@ public class BlockFigure extends ClassifierFigure {
 	public IFigure getBlockConstraintCompartmentFigure() {
 		return getCompartment(BlockConstraintCompartmentEditPart.COMPARTMENT_NAME);
 	}
-	
+
 	public IFigure getBlockPartCompartmentFigure() {
 		return getCompartment(BlockPartCompartmentEditPart.COMPARTMENT_NAME);
 	}
-	
+
 	public IFigure getBlockReferenceCompartmentFigure() {
 		return getCompartment(BlockReferenceCompartmentEditPart.COMPARTMENT_NAME);
 	}
-	
+
 	public IFigure getBlockValueCompartmentFigure() {
 		return getCompartment(BlockValueCompartmentEditPart.COMPARTMENT_NAME);
 	}

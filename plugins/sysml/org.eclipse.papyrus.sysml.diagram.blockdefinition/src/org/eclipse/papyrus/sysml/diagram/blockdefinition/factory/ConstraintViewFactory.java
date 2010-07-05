@@ -7,7 +7,7 @@ import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElement
 
 
 public class ConstraintViewFactory extends AbstractShapeViewFactory {
-	
+
 	/**
 	 * Should be moved in a common abstract class...
 	 */

@@ -10,17 +10,20 @@
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.provider;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateEdgeViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperation;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
-import org.eclipse.papyrus.diagram.clazz.providers.UMLViewProvider;
+import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.diagram.composite.providers.UMLViewProvider;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockDefinitionDiagramEditPart;
 
-public class InheritedElementViewProvider extends UMLViewProvider {
+public class InheritedCompositeDiagramElementViewProvider extends UMLViewProvider {
 
 	@Override
 	public Edge createEdge(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
@@ -42,6 +45,11 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 			return false;
 		}
 
+		IElementType elementType = getSemanticElementType(op.getSemanticAdapter());
+		if(elementType == BlockDefinitionDiagramElementTypes.CONNECTOR) {
+			return true;
+		}
+
 		return false;
 	}
 
@@ -59,29 +67,33 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 			return false;
 		}
 
-		// This hack avoids to repeat the inherited elements from the parent diagram
-		String oldValue = ModelEditPart.MODEL_ID;
-		ModelEditPart.MODEL_ID = BlockDefinitionDiagramEditPart.DIAGRAM_ID;
-		boolean result =  super.provides(op);
-		ModelEditPart.MODEL_ID = oldValue;
-		
-		return result;
+		IElementType elementType = (IElementType)op.getSemanticAdapter().getAdapter(IElementType.class);
+		if(elementType == BlockDefinitionDiagramElementTypes.PORT_CN) {
+			return true;
+		}
+
+		// else : unknown element
+		return false;
 	}
 
 	@Override
 	public Node createNode(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
 
 		if(semanticHint != null) {
-			String oldValue = ModelEditPart.MODEL_ID;
-			ModelEditPart.MODEL_ID = BlockDefinitionDiagramEditPart.DIAGRAM_ID;
-			Node result = super.createNode(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
-			ModelEditPart.MODEL_ID = oldValue;
-			
-			return result;
+			return super.createNode(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
 		}
 
-		// Log a warning here
-		System.err.println("Unable to create view for : (hint) " + semanticHint);
+		System.err.println("WAR : InheritedCompositeDiagramElementViewProvider::createNode - not view for type : " + semanticHint);
 		return null;
+	}
+
+	@Override
+	protected void stampShortcut(View containerView, Node target) {
+		if(!BlockDefinitionDiagramEditPart.DIAGRAM_ID.equals(UMLVisualIDRegistry.getModelID(containerView))) {
+			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
+			shortcutAnnotation.getDetails().put("modelID", BlockDefinitionDiagramEditPart.DIAGRAM_ID); //$NON-NLS-1$
+			target.getEAnnotations().add(shortcutAnnotation);
+		}
 	}
 }

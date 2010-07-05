@@ -29,13 +29,13 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 
 public class BlockConstraintEditPart extends OperationEditPart {
-	
+
 	protected IParser parser_;
-	
+
 	public BlockConstraintEditPart(View view) {
 		super(view);
 	}
-	
+
 	protected void createDefaultEditPolicies() {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultItemSemanticEditPolicy(UMLElementTypes.Constraint_3029));
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new UMLTextNonResizableEditPolicy());

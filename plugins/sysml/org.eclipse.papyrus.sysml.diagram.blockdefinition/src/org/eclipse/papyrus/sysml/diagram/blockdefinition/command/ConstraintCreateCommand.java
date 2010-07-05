@@ -32,7 +32,7 @@ import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 
 public class ConstraintCreateCommand extends EditElementCommand {
-	
+
 	/**
 	 * @generated
 	 */
@@ -59,7 +59,7 @@ public class ConstraintCreateCommand extends EditElementCommand {
 	public ConstraintCreateCommand(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
-	
+
 	protected EObject getElementToEdit() {
 
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
@@ -75,19 +75,19 @@ public class ConstraintCreateCommand extends EditElementCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		Constraint newConstraint = UMLFactory.eINSTANCE.createConstraint();
-		
+
 		Class owner = (Class)getElementToEdit();
 		owner.getOwnedRules().add(newConstraint);
-		
+
 		String newElementName = NamedElementHelper.EINSTANCE.getNewUMLElementName(newConstraint.getOwner(), UMLPackage.eINSTANCE.getConstraint());
 		newConstraint.setName(newElementName);
 
 		((CreateElementRequest)getRequest()).setNewElement(newConstraint);
-		
+
 		doConfigure(newConstraint, monitor, info);
 		return CommandResult.newOKCommandResult(newConstraint);
 	}
-	
+
 	protected void doConfigure(Element newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);

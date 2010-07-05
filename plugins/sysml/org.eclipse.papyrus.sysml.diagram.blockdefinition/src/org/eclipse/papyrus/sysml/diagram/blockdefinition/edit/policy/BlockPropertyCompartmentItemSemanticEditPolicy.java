@@ -14,10 +14,10 @@
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy;
 
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.diagram.clazz.edit.commands.Property4CreateCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.BlockDefinitionDiagramElementTypes;
 
 
@@ -26,12 +26,12 @@ public class BlockPropertyCompartmentItemSemanticEditPolicy extends UMLBaseItemS
 	public BlockPropertyCompartmentItemSemanticEditPolicy() {
 		super(BlockDefinitionDiagramElementTypes.BLOCK);
 	}
-	
+
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if(UMLElementTypes.Property_3012 == req.getElementType()) {
+		if(BlockDefinitionDiagramElementTypes.CLASS_PROP_CLN == req.getElementType()) {
 			return getGEFWrapper(new Property4CreateCommand(req));
 		}
-		return super.getCreateCommand(req);
-	}
 
+		return UnexecutableCommand.INSTANCE;
+	}
 }

@@ -24,16 +24,16 @@ import org.eclipse.uml2.uml.Property;
 public class BlockPropertyEditPart extends PropertyEditPart {
 
 	BlockPropertyHelper notifier;
-	
+
 	public BlockPropertyEditPart(View view) {
 		super(view);
 		// get the block node (the second parent because of the compartment)
 		EObject blockNode = view.eContainer().eContainer();
-		if (blockNode instanceof Node) {
+		if(blockNode instanceof Node) {
 			notifier = new BlockPropertyHelper((Node)blockNode);
 		}
 	}
-	
+
 	/**
 	 * Activate a listener to handle notification
 	 */
@@ -44,10 +44,10 @@ public class BlockPropertyEditPart extends PropertyEditPart {
 			notifier.listenObject(property);
 		}
 	}
-	
+
 	@Override
 	public void deactivate() {
-		if (notifier != null) {
+		if(notifier != null) {
 			notifier.unlistenAll();
 		}
 		super.deactivate();
@@ -59,7 +59,7 @@ public class BlockPropertyEditPart extends PropertyEditPart {
 	 */
 	@Override
 	public void removeNotify() {
-		if (notifier != null) {
+		if(notifier != null) {
 			notifier.unlistenAll();
 		}
 		super.removeNotify();
