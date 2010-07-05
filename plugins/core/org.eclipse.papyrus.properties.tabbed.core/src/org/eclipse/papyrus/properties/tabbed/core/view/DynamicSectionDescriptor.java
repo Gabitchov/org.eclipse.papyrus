@@ -11,7 +11,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.tabbed.core.view;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -25,8 +24,6 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.views.properties.tabbed.AbstractSectionDescriptor;
 import org.eclipse.ui.views.properties.tabbed.ISection;
-import org.eclipse.ui.views.properties.tabbed.ISectionDescriptor;
-import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
 import org.w3c.dom.Node;
 
 
@@ -173,41 +170,7 @@ public class DynamicSectionDescriptor extends AbstractSectionDescriptor implemen
 	@Override
 	public boolean appliesTo(IWorkbenchPart part, ISelection selection) {
 		// check all 
-		List<DynamicSectionDescriptor> availableSectionDescriptors = new ArrayList<DynamicSectionDescriptor>();
-		List<DynamicSectionDescriptor> filteredDescriptors = new ArrayList<DynamicSectionDescriptor>();
-
-		// retrieve the tab descriptors for the given description.
-		// for all section descriptors in the tab descriptor, check if the section should be displayed or not.
-		// then, remove from the visible list the elements which are filtered by other sections
-		for(List<ITabDescriptor> tabDescriptors : PropertyServiceUtil.getTabDescriptors()) {
-			for(ITabDescriptor tabDescriptor : tabDescriptors) {
-				for(Object descriptor : tabDescriptor.getSectionDescriptors()) {
-					ISectionDescriptor sectionDescriptor = (ISectionDescriptor)descriptor;
-					if(sectionDescriptor instanceof DynamicSectionDescriptor) {
-						boolean enable = ((DynamicSectionDescriptor)sectionDescriptor).appliesToWithoutSectionInheritance(part, selection);;
-						if(enable) {
-							availableSectionDescriptors.add((DynamicSectionDescriptor)sectionDescriptor);
-						}
-					}
-				}
-			}
-		}
-
-		// the list of available descriptors is now available, now remove from the list the section descriptors which are erased by others
-		for(DynamicSectionDescriptor currentDescriptor : availableSectionDescriptors) {
-			boolean isRemoved = false;
-			String currentId = currentDescriptor.getId();
-			// is this descriptor removed by another one ?
-			for(DynamicSectionDescriptor descriptor : availableSectionDescriptors) {
-				if(descriptor.getReplacedSectionIds().contains(currentId)) {
-					isRemoved = true;
-				}
-			}
-
-			if(!isRemoved) {
-				filteredDescriptors.add(currentDescriptor);
-			}
-		}
+		List<DynamicSectionDescriptor> filteredDescriptors = SectionDispatcher.getInstance().getDisplayedSections(part, selection);
 
 		// now, compare the current descriptor. Is it in the list of filtered descriptors ?
 		return filteredDescriptors.contains(this);
