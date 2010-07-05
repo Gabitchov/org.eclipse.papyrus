@@ -17,6 +17,7 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.papyrus.diagram.common.figure.node.InteractionRectangleFigure;
 
 /**
  * The figure of the InteractionUse

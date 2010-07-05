@@ -11,7 +11,7 @@
  *   Atos Origin - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.sequence.figures;
+package org.eclipse.papyrus.diagram.common.figure.node;
 
 import org.eclipse.draw2d.BorderLayout;
 import org.eclipse.draw2d.MarginBorder;
@@ -20,7 +20,6 @@ import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.papyrus.diagram.common.draw2d.InteractionFigure;
 import org.eclipse.papyrus.diagram.common.draw2d.LeftToolbarLayout;
-import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
 
 public class InteractionRectangleFigure extends NodeNamedElementFigure {
 

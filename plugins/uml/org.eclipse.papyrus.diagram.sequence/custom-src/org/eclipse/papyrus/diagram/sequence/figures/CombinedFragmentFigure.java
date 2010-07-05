@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.figures;
 
+import org.eclipse.papyrus.diagram.common.figure.node.InteractionRectangleFigure;
+
 public class CombinedFragmentFigure extends InteractionRectangleFigure {
 
 	@Override
