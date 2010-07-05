@@ -9,20 +9,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences;
 
-import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
-import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.preferences.pages.AbstractPapyrusLinkPreferencePage;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.Activator;
 
-public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer {
-
-	protected IPreferenceStore getPreferenceStore() {
-		return Activator.getDefault().getPreferenceStore();
-	}
+public class BlockDefinitionDiagramLinkPreferencePage extends AbstractPapyrusLinkPreferencePage {
 
 	@Override
-	public void initializeDefaultPreferences() {
-		IPreferenceStore store = getPreferenceStore();
-
-		PortPreferencePage.initDefaults(store);
+	protected String getBundleId() {
+		return Activator.PLUGIN_ID;
 	}
 }

@@ -11,10 +11,10 @@ package org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences;
 
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockDefinitionDiagramEditPart;
 
-public class BlockPreferencePage extends BlockDefinitionDiagramNodePreferencePage {
+public class GeneralizationPreferencePage extends BlockDefinitionDiagramLinkPreferencePage {
 
-	public BlockPreferencePage() {
+	public GeneralizationPreferencePage() {
 		super();
-		setPreferenceKey(BlockDefinitionDiagramEditPart.DIAGRAM_ID + "_Block"); //$NON-NLS-1$
+		setPreferenceKey(BlockDefinitionDiagramEditPart.DIAGRAM_ID + "_Generalization"); //$NON-NLS-1$
 	}
 }

@@ -296,6 +296,121 @@
             id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PackagePreferencePage"
             name="Package">
 	</page>	
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ModelPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ModelPreferencePage"
+            name="Model">
+	</page>	
+		
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ClassPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ClassPreferencePage"
+            name="Class">
+	</page>			
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PrimitiveTypePreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PrimitiveTypePreferencePage"
+            name="PrimitiveType">
+	</page>	
+
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DataTypePreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DataTypePreferencePage"
+            name="DataType">
+	</page>	
+
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.EnumerationPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.EnumerationPreferencePage"
+            name="Enumeration">
+	</page>	
+
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.InterfacePreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.InterfacePreferencePage"
+            name="Interface">
+	</page>	
+
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.InstanceSpecificationPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.InstanceSpecificationPreferencePage"
+            name="InstanceSpecification">
+	</page>	
+
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationClassNodePreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationClassNodePreferencePage"
+            name="AssociationClass (Node)">
+	</page>	
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.CommentPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.CommentPreferencePage"
+            name="Comment">
+	</page>	
+
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ConstraintPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ConstraintPreferencePage"
+            name="Constraint">
+	</page>	
+			
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PortPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.PortPreferencePage"
+            name="Port">
+	</page>	
+				
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.UsagePreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.UsagePreferencePage"
+            name="Usage">
+	</page>				
+
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DependencyPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DependencyPreferencePage"
+            name="Dependency">
+	</page>		
+
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.InterfaceRealizationPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.InterfaceRealizationPreferencePage"
+            name="InterfaceRealization">
+	</page>	
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationPreferencePage"
+            name="Association">
+	</page>	
+
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.GeneralizationPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.GeneralizationPreferencePage"
+            name="Generalization">
+	</page>	
+
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.GeneralizationSetPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.GeneralizationSetPreferencePage"
+            name="GeneralizationSet">
+	</page>	
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationClassEdgePreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationClassEdgePreferencePage"
+            name="AssociationClass (Edge)">
+	</page>	
+
+	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
+			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ConnectorPreferencePage"
+            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ConnectorPreferencePage"
+            name="Connector">
+	</page>	
+					
 </extension>
 
 </plugin>
