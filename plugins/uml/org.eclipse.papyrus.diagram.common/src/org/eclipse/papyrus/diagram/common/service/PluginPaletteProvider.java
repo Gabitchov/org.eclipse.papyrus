@@ -13,13 +13,17 @@
 
 package org.eclipse.papyrus.diagram.common.service;
 
-import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.papyrus.diagram.common.Activator;
 import org.osgi.framework.Bundle;
 
 
@@ -45,7 +49,7 @@ public class PluginPaletteProvider extends LocalPaletteProvider {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public File getXmlFile(String path) throws IOException {
+	public InputStream getXmlFile(String path) throws IOException {
 		// try to read it in a plugin...
 		Bundle bundle = Platform.getBundle(getProviderID());
 		if(bundle != null) {
@@ -53,7 +57,23 @@ public class PluginPaletteProvider extends LocalPaletteProvider {
 			urlFile = FileLocator.resolve(urlFile);
 			urlFile = FileLocator.toFileURL(urlFile);
 			if("file".equals(urlFile.getProtocol())) { //$NON-NLS-1$
-				return new File(urlFile.getFile());
+				return new FileInputStream(urlFile.getFile());
+			} else if("jar".equals(urlFile.getProtocol())) { //$NON-NLS-1$
+				String filePath = urlFile.getPath();
+				if(filePath.startsWith("file:")) {
+					// strip off the file: and the !/
+					int jarPathEndIndex = filePath.indexOf("!/");
+					if(jarPathEndIndex < 0) {
+						Activator.log.error("Impossible to find the jar path end", null);
+						return null;
+					}
+					String jarPath = filePath.substring("file:".length(), jarPathEndIndex);
+					ZipFile zipFile = new ZipFile(jarPath);
+					filePath = filePath.substring(jarPathEndIndex + 2, filePath.length());
+					ZipEntry entry = zipFile.getEntry(filePath);
+					return zipFile.getInputStream(entry);
+					// return new File(filePath);
+				}
 			}
 		}
 		return null;

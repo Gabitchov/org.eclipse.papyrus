@@ -14,7 +14,9 @@
 package org.eclipse.papyrus.diagram.common.service;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -106,14 +108,12 @@ public class LocalPaletteProvider extends AbstractProvider implements IPalettePr
 		try {
 			DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
 
-			File file = getXmlFile(path);
+			InputStream inputStream = getXmlFile(path);
 			// the file should never be null in this implementation, but sub-classes could return null
-			if(file == null) {
+			if(inputStream == null) {
 				throw new IOException("Impossible to load file: " + path);
-			} else if(!file.exists()) {
-				throw new IOException("Impossible to load file: " + file);
 			} else {
-				Document document = documentBuilder.parse(file);
+				Document document = documentBuilder.parse(inputStream);
 				contributions = document.getChildNodes();
 			}
 		} catch (ParserConfigurationException e) {
@@ -136,8 +136,8 @@ public class LocalPaletteProvider extends AbstractProvider implements IPalettePr
 	 * @return the file using the specified path in the plugin state location, even if it does not exists. In the latter case, the method
 	 *         {@link File#exists()} returns <code>false</code>.
 	 */
-	public File getXmlFile(String path) throws IOException {
-		return Activator.getDefault().getStateLocation().append(path).toFile();
+	public InputStream getXmlFile(String path) throws IOException {
+		return new FileInputStream(Activator.getDefault().getStateLocation().append(path).toFile());
 	}
 
 	/**
