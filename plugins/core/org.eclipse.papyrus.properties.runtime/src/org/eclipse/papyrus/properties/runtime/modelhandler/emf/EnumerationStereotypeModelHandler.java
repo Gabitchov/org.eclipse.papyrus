@@ -14,6 +14,7 @@ package org.eclipse.papyrus.properties.runtime.modelhandler.emf;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IBoundedValuesPropertyEditorDescriptor;
@@ -60,7 +61,6 @@ public class EnumerationStereotypeModelHandler extends EMFStereotypeFeatureModel
 				StructuralFeature featureToEdit = retrieveStructuralFeature(elementToEdit, stereotype);
 				Enumeration type = (Enumeration)featureToEdit.getType();
 				EnumerationLiteral literal = type.getOwnedLiteral((String)newValue);
-				System.err.println(literal);
 				elementToEdit.setValue(stereotype, getFeatureName(), literal);
 			}
 		}
@@ -84,6 +84,8 @@ public class EnumerationStereotypeModelHandler extends EMFStereotypeFeatureModel
 		Object value = elementToEdit.getValue(stereotype, getFeatureName());
 		if(value instanceof EnumerationLiteral) {
 			return ((EnumerationLiteral)value).getName();
+		} else if(value instanceof Enumerator) {
+			return ((Enumerator)value).getLiteral();
 		}
 		return value;
 	}
