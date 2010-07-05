@@ -775,31 +775,7 @@
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="F5"/>
    </extension>
-   <extension
-         point="org.eclipse.ui.propertyPages">
-      <page
-            category="org.eclipse.papyrus.preferences.properties.diagrams"
-            class="org.eclipse.papyrus.diagram.usecase.preferences.UseCaseDiagramPreferencePage"
-            id="org.eclipse.papyrus.preferences.properties.diagrams.usecase"
-            name="UseCase Diagram">
-         <enabledWhen>
-            <adapt
-                  type="org.eclipse.core.resources.IProject">
-            </adapt>
-         </enabledWhen>
-      </page>
-      <page
-            category="org.eclipse.papyrus.preferences.properties.diagrams.usecase"
-            class="org.eclipse.papyrus.diagram.usecase.preferences.DiagramAppearancePreferencePage"
-            id="org.eclipse.uml2.uml.diagram.properties.appearance"
-            name="%preference.page.title.org.eclipse.uml2.uml.diagram.appearance">
-         <enabledWhen>
-            <adapt
-                  type="org.eclipse.core.resources.IProject">
-            </adapt>
-         </enabledWhen>
-      </page>
-   </extension><extension point="org.eclipse.core.runtime.preferences">
+  <extension point="org.eclipse.core.runtime.preferences">
 		<?gmfgen generated="true"?>
 		<initializer class="org.eclipse.papyrus.diagram.usecase.preferences.DiagramPreferenceInitializer"/>
 	</extension>
