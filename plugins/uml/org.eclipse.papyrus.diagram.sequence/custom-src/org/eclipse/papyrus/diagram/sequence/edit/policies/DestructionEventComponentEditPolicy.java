@@ -19,7 +19,7 @@ import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ComponentEditPolicy;
-import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceDeleteHelper;
 
 /**
  * This edit policy also deletes time/duration edit parts which are linked with the deleted edit part.
@@ -36,7 +36,7 @@ public class DestructionEventComponentEditPolicy extends ComponentEditPolicy {
 		deleteViewsCommand.add(deleteViewCommand);
 		if(getHost() instanceof ShapeNodeEditPart) {
 			TransactionalEditingDomain editingDomain = ((ShapeNodeEditPart)getHost()).getEditingDomain();
-			SequenceUtil.completeDeleteDestructionEventViewCommand(deleteViewsCommand, editingDomain, getHost());
+			SequenceDeleteHelper.completeDeleteDestructionEventViewCommand(deleteViewsCommand, editingDomain, getHost());
 		}
 		return deleteViewsCommand;
 	}

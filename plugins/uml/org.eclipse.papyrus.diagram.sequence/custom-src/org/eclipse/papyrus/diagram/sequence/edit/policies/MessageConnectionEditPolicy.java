@@ -19,7 +19,7 @@ import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.internal.editpolicies.ConnectionEditPolicy;
-import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceDeleteHelper;
 
 /**
  * This edit policy also deletes time/duration edit parts which are linked with the deleted edit part.
@@ -36,7 +36,7 @@ public class MessageConnectionEditPolicy extends ConnectionEditPolicy {
 		deleteViewsCommand.add(deleteViewCommand);
 		if(getHost() instanceof ConnectionNodeEditPart) {
 			TransactionalEditingDomain editingDomain = ((ConnectionNodeEditPart)getHost()).getEditingDomain();
-			SequenceUtil.completeDeleteMessageViewCommand(deleteViewsCommand, editingDomain, getHost());
+			SequenceDeleteHelper.completeDeleteMessageViewCommand(deleteViewsCommand, editingDomain, getHost());
 		}
 		return deleteViewsCommand;
 	}

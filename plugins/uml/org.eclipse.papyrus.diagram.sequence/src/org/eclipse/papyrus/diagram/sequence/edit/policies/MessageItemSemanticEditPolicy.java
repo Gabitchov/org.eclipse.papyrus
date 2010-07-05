@@ -55,7 +55,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.Message6EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceDeleteHelper;
 
 /**
  * @generated
@@ -93,7 +93,7 @@ public class MessageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
 		cmd.add(new DestroyElementCommand(req));
-		SequenceUtil.completeDestroyMessageCommand(cmd, getHost());
+		SequenceDeleteHelper.completeDestroyMessageCommand(cmd, getHost());
 		return getGEFWrapper(cmd.reduce());
 	}
 
@@ -106,7 +106,7 @@ public class MessageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 		CompoundCommand deleteViewsCommand = new CompoundCommand();
 		Command deleteViewCommand = getGEFWrapper(new DeleteCommand(getEditingDomain(), (View)getHost().getModel()));
 		deleteViewsCommand.add(deleteViewCommand);
-		SequenceUtil.completeDeleteMessageViewCommand(deleteViewsCommand, getEditingDomain(), getHost());
+		SequenceDeleteHelper.completeDeleteMessageViewCommand(deleteViewsCommand, getEditingDomain(), getHost());
 		if(mainCommand == null) {
 			return deleteViewsCommand;
 		} else {

@@ -35,7 +35,7 @@ import org.eclipse.papyrus.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.diagram.common.helper.DurationObservationHelper;
 import org.eclipse.papyrus.diagram.common.helper.TimeConstraintHelper;
 import org.eclipse.papyrus.diagram.common.helper.TimeObservationHelper;
-import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceDeleteHelper;
 import org.eclipse.uml2.uml.DestructionEvent;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.DurationObservation;
@@ -131,7 +131,7 @@ public class DestructionEventCompleteItemSemanticEditPolicy extends DestructionE
 		CompoundCommand deleteViewsCommand = new CompoundCommand();
 		Command deleteViewCommand = getGEFWrapper(new DeleteCommand(getEditingDomain(), (View)getHost().getModel()));
 		deleteViewsCommand.add(deleteViewCommand);
-		SequenceUtil.completeDeleteDestructionEventViewCommand(deleteViewsCommand, getEditingDomain(), getHost());
+		SequenceDeleteHelper.completeDeleteDestructionEventViewCommand(deleteViewsCommand, getEditingDomain(), getHost());
 		if(mainCommand == null) {
 			return deleteViewsCommand;
 		} else {

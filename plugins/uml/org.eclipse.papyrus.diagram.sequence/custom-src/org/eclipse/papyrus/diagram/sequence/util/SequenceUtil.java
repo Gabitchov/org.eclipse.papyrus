@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -33,8 +34,6 @@ import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
@@ -44,18 +43,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
-import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.eclipse.gmf.runtime.notation.Edge;
-import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.helper.DurationConstraintHelper;
-import org.eclipse.papyrus.diagram.common.helper.DurationObservationHelper;
-import org.eclipse.papyrus.diagram.common.helper.TimeConstraintHelper;
-import org.eclipse.papyrus.diagram.common.helper.TimeObservationHelper;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
@@ -66,20 +57,16 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.DestructionEvent;
 import org.eclipse.uml2.uml.DurationConstraint;
-import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Event;
 import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
-import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
-import org.eclipse.uml2.uml.InteractionUse;
 import org.eclipse.uml2.uml.IntervalConstraint;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
-import org.eclipse.uml2.uml.MessageEnd;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.MessageSort;
 import org.eclipse.uml2.uml.NamedElement;
@@ -660,284 +647,6 @@ public class SequenceUtil {
 	}
 
 	/**
-	 * Complete an ICommand which destroys a Message element to also destroy dependent message ends and time/duration constraint/observation linked
-	 * with these ends
-	 * 
-	 * @param cmd
-	 *        the command to complete
-	 * @param message
-	 *        the message on which the request is called
-	 * @return the deletion ICommand cmd for convenience
-	 */
-	public static ICommand completeDestroyMessageCommand(Message message, CompositeTransactionalCommand cmd){
-		MessageEnd messageStart = message.getSendEvent();
-		if(messageStart != null){
-			if(!(messageStart instanceof Gate && messageStart.eContainer() instanceof InteractionUse)) {
-				cmd.add(new DestroyElementCommand(new DestroyElementRequest(messageStart, false)));
-				// delete linked time elements
-				List<TimeObservation> timeObs = TimeObservationHelper.getTimeObservations(messageStart);
-				List<TimeConstraint> timeCst = TimeConstraintHelper.getTimeConstraintsOn(messageStart);
-				List<DurationObservation> durObs = DurationObservationHelper.getDurationObservationsOn(messageStart);
-				List<DurationConstraint> durCst = DurationConstraintHelper.getDurationConstraintsOn(messageStart);
-				List<NamedElement> timeElements = new ArrayList<NamedElement>(timeObs.size() + durObs.size() + timeCst.size() + durCst.size());
-				timeElements.addAll(timeObs);
-				timeElements.addAll(timeCst);
-				timeElements.addAll(durObs);
-				timeElements.addAll(durCst);
-				for(NamedElement elt : timeElements) {
-					cmd.add(new DestroyElementCommand(new DestroyElementRequest(elt, false)));
-				}
-			}
-		}
-
-		MessageEnd messageEnd = message.getReceiveEvent();
-		if(messageEnd != null){
-			if(!(messageEnd instanceof Gate && messageEnd.eContainer() instanceof InteractionUse)) {
-				cmd.add(new DestroyElementCommand(new DestroyElementRequest(messageEnd, false)));
-				// delete linked time elements
-				List<TimeObservation> timeObs = TimeObservationHelper.getTimeObservations(messageEnd);
-				List<TimeConstraint> timeCst = TimeConstraintHelper.getTimeConstraintsOn(messageEnd);
-				List<DurationObservation> durObs = DurationObservationHelper.getDurationObservationsOn(messageEnd);
-				List<DurationConstraint> durCst = DurationConstraintHelper.getDurationConstraintsOn(messageEnd);
-				List<NamedElement> timeElements = new ArrayList<NamedElement>(timeObs.size() + durObs.size() + timeCst.size() + durCst.size());
-				timeElements.addAll(timeObs);
-				timeElements.addAll(timeCst);
-				timeElements.addAll(durObs);
-				timeElements.addAll(durCst);
-				for(NamedElement elt : timeElements) {
-					cmd.add(new DestroyElementCommand(new DestroyElementRequest(elt, false)));
-				}
-			}
-		}
-		return cmd;
-	}
-
-	/**
-	 * Complete an ICommand which destroys a Message element to also destroy dependent message ends and time/duration constraint/observation linked
-	 * with these ends
-	 * 
-	 * @param cmd
-	 *        the command to complete
-	 * @param messagePart
-	 *        the message edit part on which the request is called
-	 * @return the deletion ICommand cmd for convenience
-	 */
-	public static ICommand completeDestroyMessageCommand(CompositeTransactionalCommand cmd, EditPart messagePart) {
-		Object model = messagePart.getModel();
-		if(model instanceof Edge) {
-			EObject obj = ((Edge)model).getElement();
-
-			if(obj instanceof Message) {
-				Message message = (Message)obj;
-				return completeDestroyMessageCommand(message, cmd);
-			}
-		}
-		return cmd;
-	}
-	
-	/**
-	 * Complete an ICommand which destroys an ExecutionSpecification element to also destroy dependent finish and start events and time/duration
-	 * constraint/observation linked with these ends
-	 * 
-	 * @param cmd
-	 *        the command to complete
-	 * @param execution
-	 *        the execution specification on which the request is called
-	 * @return the deletion ICommand cmd for convenience
-	 */
-	public static ICommand completeDestroyExecutionSpecificationCommand(CompositeTransactionalCommand cmd, ExecutionSpecification execution) {
-		OccurrenceSpecification start = execution.getStart();
-		cmd.add(new DestroyElementCommand(new DestroyElementRequest(start, false)));
-		// delete linked time elements
-		List<TimeObservation> timeObs = TimeObservationHelper.getTimeObservations(start);
-		List<TimeConstraint> timeCst = TimeConstraintHelper.getTimeConstraintsOn(start);
-		List<DurationObservation> durObs = DurationObservationHelper.getDurationObservationsOn(start);
-		List<DurationConstraint> durCst = DurationConstraintHelper.getDurationConstraintsOn(start);
-		List<NamedElement> timeElements = new ArrayList<NamedElement>(timeObs.size() + durObs.size() + timeCst.size() + durCst.size());
-		timeElements.addAll(timeObs);
-		timeElements.addAll(timeCst);
-		timeElements.addAll(durObs);
-		timeElements.addAll(durCst);
-		for(NamedElement elt : timeElements) {
-			cmd.add(new DestroyElementCommand(new DestroyElementRequest(elt, false)));
-		}
-
-		OccurrenceSpecification finish = execution.getFinish();
-		cmd.add(new DestroyElementCommand(new DestroyElementRequest(finish, false)));
-		// delete linked time elements
-		timeObs = TimeObservationHelper.getTimeObservations(finish);
-		timeCst = TimeConstraintHelper.getTimeConstraintsOn(finish);
-		durObs = DurationObservationHelper.getDurationObservationsOn(finish);
-		durCst = DurationConstraintHelper.getDurationConstraintsOn(finish);
-		timeElements = new ArrayList<NamedElement>(timeObs.size() + durObs.size() + timeCst.size() + durCst.size());
-		timeElements.addAll(timeObs);
-		timeElements.addAll(timeCst);
-		timeElements.addAll(durObs);
-		timeElements.addAll(durCst);
-		for(NamedElement elt : timeElements) {
-			cmd.add(new DestroyElementCommand(new DestroyElementRequest(elt, false)));
-		}
-		
-		return cmd;
-	}
-
-	/**
-	 * Complete an ICommand which destroys an ExecutionSpecification element to also destroy dependent finish and start events and time/duration
-	 * constraint/observation linked with these ends
-	 * 
-	 * @param cmd
-	 *        the command to complete
-	 * @param executionPart
-	 *        the execution specification edit part on which the request is called
-	 * @return the deletion ICommand cmd for convenience
-	 */
-	public static ICommand completeDestroyExecutionSpecificationCommand(CompositeTransactionalCommand cmd, EditPart executionPart) {
-		Object model = executionPart.getModel();
-		if(model instanceof Node) {
-			EObject obj = ((Node)model).getElement();
-
-			if(obj instanceof ExecutionSpecification) {
-				ExecutionSpecification execution = (ExecutionSpecification)obj;
-				return completeDestroyExecutionSpecificationCommand(cmd, execution);
-			}
-		}
-		return cmd;
-	}
-
-	/**
-	 * Complete an ICommand which destroys an ExecutionSpecification element to also destroy dependent finish and start events and time/duration
-	 * constraint/observation linked with these ends
-	 * 
-	 * @param deleteViewsCmd
-	 *        the command to complete
-	 * @param editingDomain
-	 *        the editing domain
-	 * @param executionPart
-	 *        the execution specification edit part on which the request is called
-	 * @return the deletion command deleteViewsCmd for convenience
-	 */
-	public static CompoundCommand completeDeleteExecutionSpecificationViewCommand(CompoundCommand deleteViewsCmd, TransactionalEditingDomain editingDomain, EditPart executionPart) {
-		Object model = executionPart.getModel();
-		if(model instanceof Node) {
-			EObject obj = ((Node)model).getElement();
-
-			if(obj instanceof ExecutionSpecification) {
-				ExecutionSpecification execution = (ExecutionSpecification)obj;
-				LifelineEditPart lifelinePart = getParentLifelinePart(executionPart);
-				if(lifelinePart != null) {
-					for(Object lifelineChild : lifelinePart.getChildren()) {
-						if(lifelineChild instanceof IBorderItemEditPart) {
-							final IBorderItemEditPart timePart = (IBorderItemEditPart)lifelineChild;
-							OccurrenceSpecification start = execution.getStart();
-							OccurrenceSpecification finish = execution.getStart();
-							int positionForStart = positionWhereEventIsLinkedToPart(start, timePart);
-							int positionForFinish = positionWhereEventIsLinkedToPart(finish, timePart);
-							if(positionForStart != PositionConstants.NONE || positionForFinish != PositionConstants.NONE) {
-								// time part is linked, delete the view
-								Command deleteTimeViewCommand = new ICommandProxy(new DeleteCommand(editingDomain, (View)timePart.getModel()));
-								deleteViewsCmd.add(deleteTimeViewCommand);
-							}
-						}
-					}
-				}
-			}
-		}
-		return deleteViewsCmd;
-	}
-
-	/**
-	 * Complete an ICommand which destroys an ExecutionSpecification element to also destroy dependent finish and start events and time/duration
-	 * constraint/observation linked with these ends
-	 * 
-	 * @param deleteViewsCmd
-	 *        the command to complete
-	 * @param editingDomain
-	 *        the editing domain
-	 * @param executionPart
-	 *        the execution specification edit part on which the request is called
-	 * @return the deletion command deleteViewsCmd for convenience
-	 */
-	public static CompoundCommand completeDeleteMessageViewCommand(CompoundCommand deleteViewsCmd, TransactionalEditingDomain editingDomain, EditPart messagePart) {
-		Object model = messagePart.getModel();
-		if(messagePart instanceof ConnectionNodeEditPart && model instanceof Edge) {
-			EObject obj = ((Edge)model).getElement();
-
-			if(obj instanceof Message) {
-				Message message = (Message)obj;
-				LifelineEditPart srcLifelinePart = getParentLifelinePart(((ConnectionNodeEditPart)messagePart).getSource());
-				LifelineEditPart tgtLifelinePart = getParentLifelinePart(((ConnectionNodeEditPart)messagePart).getTarget());
-				MessageEnd send = message.getSendEvent();
-				MessageEnd receive = message.getReceiveEvent();
-				if(srcLifelinePart != null && send instanceof OccurrenceSpecification) {
-					for(Object lifelineChild : srcLifelinePart.getChildren()) {
-						if(lifelineChild instanceof IBorderItemEditPart) {
-							final IBorderItemEditPart timePart = (IBorderItemEditPart)lifelineChild;
-							int positionForEvent = positionWhereEventIsLinkedToPart((OccurrenceSpecification)send, timePart);
-							if(positionForEvent != PositionConstants.NONE) {
-								// time part is linked, delete the view
-								Command deleteTimeViewCommand = new ICommandProxy(new DeleteCommand(editingDomain, (View)timePart.getModel()));
-								deleteViewsCmd.add(deleteTimeViewCommand);
-							}
-						}
-					}
-				}
-				if(tgtLifelinePart != null && receive instanceof OccurrenceSpecification) {
-					for(Object lifelineChild : tgtLifelinePart.getChildren()) {
-						if(lifelineChild instanceof IBorderItemEditPart) {
-							final IBorderItemEditPart timePart = (IBorderItemEditPart)lifelineChild;
-							int positionForEvent = positionWhereEventIsLinkedToPart((OccurrenceSpecification)receive, timePart);
-							if(positionForEvent != PositionConstants.NONE) {
-								// time part is linked, delete the view
-								Command deleteTimeViewCommand = new ICommandProxy(new DeleteCommand(editingDomain, (View)timePart.getModel()));
-								deleteViewsCmd.add(deleteTimeViewCommand);
-							}
-						}
-					}
-				}
-			}
-		}
-		return deleteViewsCmd;
-	}
-
-	/**
-	 * Complete an ICommand which destroys an DestructionEvent element to also destroy dependent time/duration constraint/observation linked with
-	 * these ends
-	 * 
-	 * @param deleteViewsCmd
-	 *        the command to complete
-	 * @param editingDomain
-	 *        the editing domain
-	 * @param destructionEventPart
-	 *        the execution specification edit part on which the request is called
-	 * @return the deletion command deleteViewsCmd for convenience
-	 */
-	public static CompoundCommand completeDeleteDestructionEventViewCommand(CompoundCommand deleteViewsCmd, TransactionalEditingDomain editingDomain, EditPart destructionEventPart) {
-		Object model = destructionEventPart.getModel();
-		if(model instanceof Node) {
-			EObject obj = ((Node)model).getElement();
-
-			if(obj instanceof DestructionEvent) {
-				LifelineEditPart lifelinePart = getParentLifelinePart(destructionEventPart);
-				if(lifelinePart != null) {
-					for(Object lifelineChild : lifelinePart.getChildren()) {
-						if(lifelineChild instanceof IBorderItemEditPart) {
-							final IBorderItemEditPart timePart = (IBorderItemEditPart)lifelineChild;
-							//At most one destruction event. Only parts linked to it can not move for now.
-							boolean isNotLinked = SequenceUtil.canTimeElementPartBeYMoved(timePart);
-							if(!isNotLinked) {
-								// time part is linked, delete the view
-								Command deleteTimeViewCommand = new ICommandProxy(new DeleteCommand(editingDomain, (View)timePart.getModel()));
-								deleteViewsCmd.add(deleteTimeViewCommand);
-							}
-						}
-					}
-				}
-			}
-		}
-		return deleteViewsCmd;
-	}
-
-	/**
 	 * Get the object safely casted as a list of OccurrenceSpecification
 	 * 
 	 * @param occurrenceSpecificationList
@@ -1003,4 +712,20 @@ public class SequenceUtil {
 		}
 		return null;
 	}
+	
+	
+	public static List<Element> getInteractionOperandAssociatedElement(InteractionOperand interactionOperand){
+		List<Element> elements = new LinkedList<Element>();
+		for(InteractionFragment itf : interactionOperand.getFragments()){
+			elements.add(itf);
+			if(itf instanceof MessageOccurrenceSpecification){
+				MessageOccurrenceSpecification mos = (MessageOccurrenceSpecification)itf;
+				if(mos.getMessage() != null){
+					elements.add(mos.getMessage());
+				}
+			}
+		}
+		return elements;
+	}
+
 }

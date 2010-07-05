@@ -59,7 +59,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceDeleteHelper;
 
 /**
  * @generated
@@ -192,7 +192,7 @@ public class ActionExecutionSpecificationItemSemanticEditPolicy extends UMLBaseI
 			cmd.add(new DeleteCommand(getEditingDomain(), view));
 		}
 		// add deletion of Start and Finish events
-		SequenceUtil.completeDestroyExecutionSpecificationCommand(cmd, getHost());
+		SequenceDeleteHelper.completeDestroyExecutionSpecificationCommand(cmd, getHost());
 		return getGEFWrapper(cmd.reduce());
 	}
 
@@ -205,7 +205,7 @@ public class ActionExecutionSpecificationItemSemanticEditPolicy extends UMLBaseI
 		CompoundCommand deleteViewsCommand = new CompoundCommand();
 		Command deleteViewCommand = getGEFWrapper(new DeleteCommand(getEditingDomain(), (View)getHost().getModel()));
 		deleteViewsCommand.add(deleteViewCommand);
-		SequenceUtil.completeDeleteExecutionSpecificationViewCommand(deleteViewsCommand, getEditingDomain(), getHost());
+		SequenceDeleteHelper.completeDeleteExecutionSpecificationViewCommand(deleteViewsCommand, getEditingDomain(), getHost());
 		if(mainCommand == null) {
 			return deleteViewsCommand;
 		} else {
