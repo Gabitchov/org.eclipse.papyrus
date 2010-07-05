@@ -27,6 +27,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
@@ -99,7 +100,7 @@ public class ContainmentHelper extends ElementHelper {
 	public Command getContainmentElementCommand(CreateConnectionViewRequest createConnectionViewRequest, Command command) {
 		CompoundCommand compoundCommand = new CompoundCommand();
 		IGraphicalEditPart sourceEditPart = (GraphicalEditPart)createConnectionViewRequest.getSourceEditPart();
-		
+
 		View sourceView = (View)sourceEditPart.getModel();
 		EditPartViewer editPartViewer = (EditPartViewer)sourceEditPart.getViewer();
 		PreferencesHint preferencesHint = sourceEditPart.getDiagramPreferencesHint();
@@ -110,7 +111,7 @@ public class ContainmentHelper extends ElementHelper {
 		IAdaptable circleAdapter = null;
 		ContainmentCircleViewCreateCommand circleCommand = null;
 
-		if (ContainmentCircleEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(sourceEditPart.getNotationView())) {
+		if(ContainmentCircleEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(sourceEditPart.getNotationView())) {
 			circleAdapter = new SemanticAdapter(null, sourceEditPart.getNotationView());
 			sourceView = (View)sourceEditPart.getParent().getModel();
 		} else {
@@ -291,8 +292,9 @@ public class ContainmentHelper extends ElementHelper {
 
 	/**
 	 * Extend reorient source request.
-	 *
-	 * @param request the request
+	 * 
+	 * @param request
+	 *        the request
 	 * @return the reconnect request
 	 */
 	public static ReconnectRequest extendReorientSourceRequest(ReconnectRequest request) {
@@ -317,8 +319,9 @@ public class ContainmentHelper extends ElementHelper {
 
 	/**
 	 * Checks if is containment link.
-	 *
-	 * @param edge the edge
+	 * 
+	 * @param edge
+	 *        the edge
 	 * @return true, if is containment link
 	 */
 	public static boolean isContainmentLink(Edge edge) {
@@ -335,9 +338,11 @@ public class ContainmentHelper extends ElementHelper {
 
 	/**
 	 * Delete incoming containment link command.
-	 *
-	 * @param editingDomain the editing domain
-	 * @param incomingLink the incoming link
+	 * 
+	 * @param editingDomain
+	 *        the editing domain
+	 * @param incomingLink
+	 *        the incoming link
 	 * @return the i undoable operation
 	 */
 	public static IUndoableOperation deleteIncomingContainmentLinkCommand(TransactionalEditingDomain editingDomain, Edge incomingLink) {
@@ -351,18 +356,32 @@ public class ContainmentHelper extends ElementHelper {
 	}
 
 	/**
-	 * Delete outgoing containment link command.
-	 *
-	 * @param editingDomain the editing domain
-	 * @param outgoingLink the outgoing link
-	 * @return the i undoable operation
+	 * Adds the destroy outgoing containment links command.
+	 * 
+	 * @param editingDomain
+	 *        the editing domain
+	 * @param sourceNode
+	 *        the source node
+	 * @param cmd
+	 * 
+	 *        the cmd
 	 */
-	public static IUndoableOperation deleteOutgoingContainmentLinkCommand(TransactionalEditingDomain editingDomain, Edge outgoingLink) {
-		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(editingDomain, "Delete Outgoing Containment Link");
-		cmd.add(new DeleteCommand(editingDomain, outgoingLink));
-		//delete target view as it actually contained by the source object and will be deleted 
-		cmd.add(new DeleteCommand(editingDomain, outgoingLink.getTarget()));
-		return cmd;
+	public static void addDeleteOutgoingContainmentLinkViewCommands(TransactionalEditingDomain editingDomain, View sourceNode, ICompositeCommand cmd) {
+		for(Object child : sourceNode.getVisibleChildren()) {
+			if(ContainmentHelper.isContainmentCircle((View)child)) {
+				View circle = (View)child;
+				cmd.add(new DeleteCommand(editingDomain, circle));
+				for(Object next : circle.getSourceEdges()) {
+					Edge outgoingLink = (Edge)next;
+					if(ContainmentHelper.isContainmentLink(outgoingLink)) {
+						cmd.add(new DeleteCommand(editingDomain, outgoingLink));
+						//delete target view as it actually contained by the source object and will be deleted 
+						cmd.add(new DeleteCommand(editingDomain, outgoingLink.getTarget()));
+						addDeleteOutgoingContainmentLinkViewCommands(editingDomain, outgoingLink.getTarget(), cmd);
+					}
+				}
+			}
+		}
 	}
 
 }
