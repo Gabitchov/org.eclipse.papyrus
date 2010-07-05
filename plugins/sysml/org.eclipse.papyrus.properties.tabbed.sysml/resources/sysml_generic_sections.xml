@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <propertyTabView pluginId="org.eclipse.papyrus.properties.tabbed.sysml">
-	<tab category="SysML" id="basicSysMLTab" label="SysML"/>
+	<tab category="SysML" id="basicTabSysML" label="SysML"/>
 	<sectionSet name="sectionSet_Single_Conform">
 		<context enablesFor="1">
 			<appliedStereotypes>
 				<appliedStereotype qualifiedName="SysML::ModelElements::Conform"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_Conform" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_Conform" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_Conform"/>
 			</replacedSections>
@@ -18,17 +18,17 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_name"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Dependency_client"/>
-						<controller predefinedId="UML_Dependency_supplier"/>
+					<container>
+						<controller predefinedId="UML_Dependency_client" tooltip="The element(s) dependent on the supplier element(s). In some cases (such as a Trace Abstraction) the assignment of direction (that is, the designation of the client element) is at the discretion of the modeler, and is a stipulation."/>
+						<controller predefinedId="UML_Dependency_supplier" tooltip="The element(s) independent of the client element(s), in the same respect and the same dependency relationship. In some directed dependency relationships (such as Refinement Abstractions), a common convention in the domain of class-based OO software is to put the more abstract element in this role. Despite this convention, users of UML may stipulate a sense of dependency suitable for their domain, which makes a more abstract element dependent on that which is more specific."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -41,7 +41,7 @@
 				<appliedStereotype qualifiedName="SysML::ModelElements::Conform"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_Conform" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_Conform" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_Conform">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -49,8 +49,8 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
 				</content>
@@ -63,7 +63,7 @@
 				<appliedStereotype qualifiedName="SysML::ModelElements::View"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_View" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_View" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_View"/>
 			</replacedSections>
@@ -74,15 +74,15 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_name"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
+					<container>
 						<controller predefinedId="SysML_View_viewPoint"/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
@@ -96,7 +96,7 @@
 				<appliedStereotype qualifiedName="SysML::ModelElements::View"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_View" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_View" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_View">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -104,8 +104,8 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
 				</content>
@@ -118,7 +118,7 @@
 				<appliedStereotype qualifiedName="SysML::ModelElements::ViewPoint"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_ViewPoint" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_ViewPoint" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_ViewPoint"/>
 			</replacedSections>
@@ -129,23 +129,23 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
+					<container>
 						<controller predefinedId="SysML_ViewPoint_concerns"/>
 						<controller predefinedId="SysML_ViewPoint_languages"/>
 						<controller predefinedId="SysML_ViewPoint_methods"/>
-						<controller predefinedId="UML_NamedElement_name"/>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<controller predefinedId="SysML_ViewPoint_purpose"/>
 						<controller predefinedId="SysML_ViewPoint_stakeHolders"/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Classifier_isAbstract"/>
-						<controller predefinedId="UML_Class_isActive"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
+					<container>
+						<controller predefinedId="UML_Classifier_isAbstract" tooltip="If true, the Classifier does not provide a complete declaration and can typically not be instantiated. An abstract classifier is intended to be used by other classifiers e.g. as the target of general metarelationships or generalization relationships."/>
+						<controller predefinedId="UML_Class_isActive" tooltip="Determines whether an object specified by this class is active or not. If true, then the owning class is referred to as an active class. If false, then such a class is referred to as a passive class."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
 				</content>
@@ -158,7 +158,7 @@
 				<appliedStereotype qualifiedName="SysML::ModelElements::ViewPoint"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_ViewPoint" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_ViewPoint" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_ViewPoint">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -166,14 +166,14 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_Classifier_isAbstract"/>
-						<controller predefinedId="UML_Class_isActive"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
+					<container>
+						<controller predefinedId="UML_Classifier_isAbstract" tooltip="If true, the Classifier does not provide a complete declaration and can typically not be instantiated. An abstract classifier is intended to be used by other classifiers e.g. as the target of general metarelationships or generalization relationships."/>
+						<controller predefinedId="UML_Class_isActive" tooltip="Determines whether an object specified by this class is active or not. If true, then the owning class is referred to as an active class. If false, then such a class is referred to as a passive class."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
 				</content>
@@ -186,7 +186,7 @@
 				<appliedStereotype qualifiedName="SysML::Blocks::Block"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_Block" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_Block" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_Block"/>
 			</replacedSections>
@@ -197,19 +197,19 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
+						<layout kind="Grid" numColumns="1" sameWidth="true"/>
+					</container>
+					<container>
+						<controller predefinedId="UML_Classifier_isAbstract" tooltip="If true, the Classifier does not provide a complete declaration and can typically not be instantiated. An abstract classifier is intended to be used by other classifiers e.g. as the target of general metarelationships or generalization relationships."/>
+						<controller predefinedId="UML_Class_isActive" tooltip="Determines whether an object specified by this class is active or not. If true, then the owning class is referred to as an active class. If false, then such a class is referred to as a passive class."/>
 						<controller predefinedId="SysML_Block_isEncapsulated"/>
-						<controller predefinedId="UML_NamedElement_name"/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Classifier_isAbstract"/>
-						<controller predefinedId="UML_Class_isActive"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
-						<layout kind="Grid" numColumns="2" sameWidth="true"/>
-					</container>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
 				</content>
@@ -222,7 +222,7 @@
 				<appliedStereotype qualifiedName="SysML::Blocks::Block"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_Block" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_Block" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_Block">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -230,14 +230,14 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_Classifier_isAbstract"/>
-						<controller predefinedId="UML_Class_isActive"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
+					<container>
+						<controller predefinedId="UML_Classifier_isAbstract" tooltip="If true, the Classifier does not provide a complete declaration and can typically not be instantiated. An abstract classifier is intended to be used by other classifiers e.g. as the target of general metarelationships or generalization relationships."/>
+						<controller predefinedId="UML_Class_isActive" tooltip="Determines whether an object specified by this class is active or not. If true, then the owning class is referred to as an active class. If false, then such a class is referred to as a passive class."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
 				</content>
@@ -250,7 +250,7 @@
 				<appliedStereotype qualifiedName="SysML::Blocks::DistributedProperty"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_DistributedProperty" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_DistributedProperty" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_DistributedProperty"/>
 			</replacedSections>
@@ -261,24 +261,24 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_name"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Property_isComposite"/>
-						<controller predefinedId="UML_Property_isDerived"/>
-						<controller predefinedId="UML_Property_isDerivedUnion"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
-						<controller predefinedId="UML_MultiplicityElement_isOrdered"/>
-						<controller predefinedId="UML_StructuralFeature_isReadOnly"/>
-						<controller predefinedId="UML_Feature_isStatic"/>
-						<controller predefinedId="UML_MultiplicityElement_isUnique"/>
+					<container>
+						<controller predefinedId="UML_Property_isComposite" tooltip="If isComposite is true, the object containing the attribute is a container for the object or value contained in the attribute.This is a derived value, indicating whether the aggregation of the Property is composite or not."/>
+						<controller predefinedId="UML_Property_isDerived" tooltip="If isDerived is true, the value of the attribute is derived from information elsewhere.Specifies whether the Property is derived, i.e., whether its value or values can be computed from other information."/>
+						<controller predefinedId="UML_Property_isDerivedUnion" tooltip="Specifies whether the property is derived as the union of all of the properties that are constrained to subset it."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
+						<controller predefinedId="UML_MultiplicityElement_isOrdered" tooltip="For a multivalued multiplicity, this attribute specifies whether the values in an instantiation of this element are sequentially ordered."/>
+						<controller predefinedId="UML_StructuralFeature_isReadOnly" tooltip="States whether the feature's value may be modified by a client."/>
+						<controller predefinedId="UML_Feature_isStatic" tooltip="Specifies whether this feature characterizes individual instances classified by the classifier (false) or the classifier itself (true)."/>
+						<controller predefinedId="UML_MultiplicityElement_isUnique" tooltip="For a multivalued multiplicity, this attributes specifies whether the values in an instantiation of this element are unique."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Property_aggregation"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_Property_aggregation" tooltip="Specifies the kind of aggregation that applies to the Property."/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -291,7 +291,7 @@
 				<appliedStereotype qualifiedName="SysML::Blocks::DistributedProperty"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_DistributedProperty" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_DistributedProperty" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_DistributedProperty">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -299,20 +299,20 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_Property_isComposite"/>
-						<controller predefinedId="UML_Property_isDerived"/>
-						<controller predefinedId="UML_Property_isDerivedUnion"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
-						<controller predefinedId="UML_MultiplicityElement_isOrdered"/>
-						<controller predefinedId="UML_StructuralFeature_isReadOnly"/>
-						<controller predefinedId="UML_Feature_isStatic"/>
-						<controller predefinedId="UML_MultiplicityElement_isUnique"/>
+					<container>
+						<controller predefinedId="UML_Property_isComposite" tooltip="If isComposite is true, the object containing the attribute is a container for the object or value contained in the attribute.This is a derived value, indicating whether the aggregation of the Property is composite or not."/>
+						<controller predefinedId="UML_Property_isDerived" tooltip="If isDerived is true, the value of the attribute is derived from information elsewhere.Specifies whether the Property is derived, i.e., whether its value or values can be computed from other information."/>
+						<controller predefinedId="UML_Property_isDerivedUnion" tooltip="Specifies whether the property is derived as the union of all of the properties that are constrained to subset it."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
+						<controller predefinedId="UML_MultiplicityElement_isOrdered" tooltip="For a multivalued multiplicity, this attribute specifies whether the values in an instantiation of this element are sequentially ordered."/>
+						<controller predefinedId="UML_StructuralFeature_isReadOnly" tooltip="States whether the feature's value may be modified by a client."/>
+						<controller predefinedId="UML_Feature_isStatic" tooltip="Specifies whether this feature characterizes individual instances classified by the classifier (false) or the classifier itself (true)."/>
+						<controller predefinedId="UML_MultiplicityElement_isUnique" tooltip="For a multivalued multiplicity, this attributes specifies whether the values in an instantiation of this element are unique."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Property_aggregation"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_Property_aggregation" tooltip="Specifies the kind of aggregation that applies to the Property."/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -325,7 +325,7 @@
 				<appliedStereotype qualifiedName="SysML::Blocks::Dimension"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_Dimension" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_Dimension" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_Dimension"/>
 			</replacedSections>
@@ -336,12 +336,12 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_name"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
 				</content>
@@ -354,7 +354,7 @@
 				<appliedStereotype qualifiedName="SysML::Blocks::Dimension"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_Dimension" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_Dimension" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_Dimension">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -362,8 +362,8 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
 				</content>
@@ -376,7 +376,7 @@
 				<appliedStereotype qualifiedName="SysML::Blocks::Unit"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_Unit" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_Unit" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_Unit"/>
 			</replacedSections>
@@ -387,15 +387,15 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_name"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
+					<container>
 						<controller predefinedId="SysML_Unit_dimension"/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
@@ -409,7 +409,7 @@
 				<appliedStereotype qualifiedName="SysML::Blocks::Unit"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_Unit" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_Unit" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_Unit">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -417,8 +417,8 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
 				</content>
@@ -431,7 +431,7 @@
 				<appliedStereotype qualifiedName="SysML::Blocks::ValueType"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_ValueType" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_ValueType" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_ValueType"/>
 			</replacedSections>
@@ -442,20 +442,20 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_name"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Classifier_isAbstract"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
+					<container>
+						<controller predefinedId="UML_Classifier_isAbstract" tooltip="If true, the Classifier does not provide a complete declaration and can typically not be instantiated. An abstract classifier is intended to be used by other classifiers e.g. as the target of general metarelationships or generalization relationships."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
+					<container>
 						<controller predefinedId="SysML_ValueType_dimension"/>
 						<controller predefinedId="SysML_ValueType_unit"/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
@@ -470,7 +470,7 @@
 				<appliedStereotype qualifiedName="SysML::Blocks::ValueType"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_ValueType" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_ValueType" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_ValueType">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -478,13 +478,13 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_Classifier_isAbstract"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
+					<container>
+						<controller predefinedId="UML_Classifier_isAbstract" tooltip="If true, the Classifier does not provide a complete declaration and can typically not be instantiated. An abstract classifier is intended to be used by other classifiers e.g. as the target of general metarelationships or generalization relationships."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
 				</content>
@@ -497,7 +497,7 @@
 				<appliedStereotype qualifiedName="SysML::Blocks::NestedConnectorEnd"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_NestedConnectorEnd" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_NestedConnectorEnd" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_NestedConnectorEnd"/>
 			</replacedSections>
@@ -508,12 +508,12 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_MultiplicityElement_isOrdered"/>
-						<controller predefinedId="UML_MultiplicityElement_isUnique"/>
+					<container>
+						<controller predefinedId="UML_MultiplicityElement_isOrdered" tooltip="For a multivalued multiplicity, this attribute specifies whether the values in an instantiation of this element are sequentially ordered."/>
+						<controller predefinedId="UML_MultiplicityElement_isUnique" tooltip="For a multivalued multiplicity, this attributes specifies whether the values in an instantiation of this element are unique."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
+					<container>
 						<controller predefinedId="SysML_NestedConnectorEnd_propertyPath"/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
@@ -527,7 +527,7 @@
 				<appliedStereotype qualifiedName="SysML::Blocks::NestedConnectorEnd"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_NestedConnectorEnd" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_NestedConnectorEnd" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_NestedConnectorEnd">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -535,9 +535,9 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_MultiplicityElement_isOrdered"/>
-						<controller predefinedId="UML_MultiplicityElement_isUnique"/>
+					<container>
+						<controller predefinedId="UML_MultiplicityElement_isOrdered" tooltip="For a multivalued multiplicity, this attribute specifies whether the values in an instantiation of this element are sequentially ordered."/>
+						<controller predefinedId="UML_MultiplicityElement_isUnique" tooltip="For a multivalued multiplicity, this attributes specifies whether the values in an instantiation of this element are unique."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -550,7 +550,7 @@
 				<appliedStereotype qualifiedName="SysML::Blocks::ParticipantProperty"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_ParticipantProperty" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_ParticipantProperty" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_ParticipantProperty"/>
 			</replacedSections>
@@ -561,27 +561,27 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_name"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Property_isComposite"/>
-						<controller predefinedId="UML_Property_isDerived"/>
-						<controller predefinedId="UML_Property_isDerivedUnion"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
-						<controller predefinedId="UML_MultiplicityElement_isOrdered"/>
-						<controller predefinedId="UML_StructuralFeature_isReadOnly"/>
-						<controller predefinedId="UML_Feature_isStatic"/>
-						<controller predefinedId="UML_MultiplicityElement_isUnique"/>
+					<container>
+						<controller predefinedId="UML_Property_isComposite" tooltip="If isComposite is true, the object containing the attribute is a container for the object or value contained in the attribute.This is a derived value, indicating whether the aggregation of the Property is composite or not."/>
+						<controller predefinedId="UML_Property_isDerived" tooltip="If isDerived is true, the value of the attribute is derived from information elsewhere.Specifies whether the Property is derived, i.e., whether its value or values can be computed from other information."/>
+						<controller predefinedId="UML_Property_isDerivedUnion" tooltip="Specifies whether the property is derived as the union of all of the properties that are constrained to subset it."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
+						<controller predefinedId="UML_MultiplicityElement_isOrdered" tooltip="For a multivalued multiplicity, this attribute specifies whether the values in an instantiation of this element are sequentially ordered."/>
+						<controller predefinedId="UML_StructuralFeature_isReadOnly" tooltip="States whether the feature's value may be modified by a client."/>
+						<controller predefinedId="UML_Feature_isStatic" tooltip="Specifies whether this feature characterizes individual instances classified by the classifier (false) or the classifier itself (true)."/>
+						<controller predefinedId="UML_MultiplicityElement_isUnique" tooltip="For a multivalued multiplicity, this attributes specifies whether the values in an instantiation of this element are unique."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Property_aggregation"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_Property_aggregation" tooltip="Specifies the kind of aggregation that applies to the Property."/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
+					<container>
 						<controller predefinedId="SysML_ParticipantProperty_end"/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
@@ -595,7 +595,7 @@
 				<appliedStereotype qualifiedName="SysML::Blocks::ParticipantProperty"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_ParticipantProperty" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_ParticipantProperty" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_ParticipantProperty">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -603,20 +603,20 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_Property_isComposite"/>
-						<controller predefinedId="UML_Property_isDerived"/>
-						<controller predefinedId="UML_Property_isDerivedUnion"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
-						<controller predefinedId="UML_MultiplicityElement_isOrdered"/>
-						<controller predefinedId="UML_StructuralFeature_isReadOnly"/>
-						<controller predefinedId="UML_Feature_isStatic"/>
-						<controller predefinedId="UML_MultiplicityElement_isUnique"/>
+					<container>
+						<controller predefinedId="UML_Property_isComposite" tooltip="If isComposite is true, the object containing the attribute is a container for the object or value contained in the attribute.This is a derived value, indicating whether the aggregation of the Property is composite or not."/>
+						<controller predefinedId="UML_Property_isDerived" tooltip="If isDerived is true, the value of the attribute is derived from information elsewhere.Specifies whether the Property is derived, i.e., whether its value or values can be computed from other information."/>
+						<controller predefinedId="UML_Property_isDerivedUnion" tooltip="Specifies whether the property is derived as the union of all of the properties that are constrained to subset it."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
+						<controller predefinedId="UML_MultiplicityElement_isOrdered" tooltip="For a multivalued multiplicity, this attribute specifies whether the values in an instantiation of this element are sequentially ordered."/>
+						<controller predefinedId="UML_StructuralFeature_isReadOnly" tooltip="States whether the feature's value may be modified by a client."/>
+						<controller predefinedId="UML_Feature_isStatic" tooltip="Specifies whether this feature characterizes individual instances classified by the classifier (false) or the classifier itself (true)."/>
+						<controller predefinedId="UML_MultiplicityElement_isUnique" tooltip="For a multivalued multiplicity, this attributes specifies whether the values in an instantiation of this element are unique."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Property_aggregation"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_Property_aggregation" tooltip="Specifies the kind of aggregation that applies to the Property."/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -629,7 +629,7 @@
 				<appliedStereotype qualifiedName="SysML::Blocks::ConnectorProperty"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_ConnectorProperty" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_ConnectorProperty" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_ConnectorProperty"/>
 			</replacedSections>
@@ -640,27 +640,27 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_name"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Property_isComposite"/>
-						<controller predefinedId="UML_Property_isDerived"/>
-						<controller predefinedId="UML_Property_isDerivedUnion"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
-						<controller predefinedId="UML_MultiplicityElement_isOrdered"/>
-						<controller predefinedId="UML_StructuralFeature_isReadOnly"/>
-						<controller predefinedId="UML_Feature_isStatic"/>
-						<controller predefinedId="UML_MultiplicityElement_isUnique"/>
+					<container>
+						<controller predefinedId="UML_Property_isComposite" tooltip="If isComposite is true, the object containing the attribute is a container for the object or value contained in the attribute.This is a derived value, indicating whether the aggregation of the Property is composite or not."/>
+						<controller predefinedId="UML_Property_isDerived" tooltip="If isDerived is true, the value of the attribute is derived from information elsewhere.Specifies whether the Property is derived, i.e., whether its value or values can be computed from other information."/>
+						<controller predefinedId="UML_Property_isDerivedUnion" tooltip="Specifies whether the property is derived as the union of all of the properties that are constrained to subset it."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
+						<controller predefinedId="UML_MultiplicityElement_isOrdered" tooltip="For a multivalued multiplicity, this attribute specifies whether the values in an instantiation of this element are sequentially ordered."/>
+						<controller predefinedId="UML_StructuralFeature_isReadOnly" tooltip="States whether the feature's value may be modified by a client."/>
+						<controller predefinedId="UML_Feature_isStatic" tooltip="Specifies whether this feature characterizes individual instances classified by the classifier (false) or the classifier itself (true)."/>
+						<controller predefinedId="UML_MultiplicityElement_isUnique" tooltip="For a multivalued multiplicity, this attributes specifies whether the values in an instantiation of this element are unique."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Property_aggregation"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_Property_aggregation" tooltip="Specifies the kind of aggregation that applies to the Property."/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
+					<container>
 						<controller predefinedId="SysML_ConnectorProperty_connector"/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
@@ -674,7 +674,7 @@
 				<appliedStereotype qualifiedName="SysML::Blocks::ConnectorProperty"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_ConnectorProperty" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_ConnectorProperty" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_ConnectorProperty">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -682,20 +682,20 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_Property_isComposite"/>
-						<controller predefinedId="UML_Property_isDerived"/>
-						<controller predefinedId="UML_Property_isDerivedUnion"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
-						<controller predefinedId="UML_MultiplicityElement_isOrdered"/>
-						<controller predefinedId="UML_StructuralFeature_isReadOnly"/>
-						<controller predefinedId="UML_Feature_isStatic"/>
-						<controller predefinedId="UML_MultiplicityElement_isUnique"/>
+					<container>
+						<controller predefinedId="UML_Property_isComposite" tooltip="If isComposite is true, the object containing the attribute is a container for the object or value contained in the attribute.This is a derived value, indicating whether the aggregation of the Property is composite or not."/>
+						<controller predefinedId="UML_Property_isDerived" tooltip="If isDerived is true, the value of the attribute is derived from information elsewhere.Specifies whether the Property is derived, i.e., whether its value or values can be computed from other information."/>
+						<controller predefinedId="UML_Property_isDerivedUnion" tooltip="Specifies whether the property is derived as the union of all of the properties that are constrained to subset it."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
+						<controller predefinedId="UML_MultiplicityElement_isOrdered" tooltip="For a multivalued multiplicity, this attribute specifies whether the values in an instantiation of this element are sequentially ordered."/>
+						<controller predefinedId="UML_StructuralFeature_isReadOnly" tooltip="States whether the feature's value may be modified by a client."/>
+						<controller predefinedId="UML_Feature_isStatic" tooltip="Specifies whether this feature characterizes individual instances classified by the classifier (false) or the classifier itself (true)."/>
+						<controller predefinedId="UML_MultiplicityElement_isUnique" tooltip="For a multivalued multiplicity, this attributes specifies whether the values in an instantiation of this element are unique."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Property_aggregation"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_Property_aggregation" tooltip="Specifies the kind of aggregation that applies to the Property."/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -708,7 +708,7 @@
 				<appliedStereotype qualifiedName="SysML::Blocks::BindingConnector"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_BindingConnector" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_BindingConnector" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_BindingConnector"/>
 			</replacedSections>
@@ -719,18 +719,18 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_name"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
-						<controller predefinedId="UML_Feature_isStatic"/>
+					<container>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
+						<controller predefinedId="UML_Feature_isStatic" tooltip="Specifies whether this feature characterizes individual instances classified by the classifier (false) or the classifier itself (true)."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Connector_kind"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_Connector_kind" tooltip="Indicates the kind of connector."/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -743,7 +743,7 @@
 				<appliedStereotype qualifiedName="SysML::Blocks::BindingConnector"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_BindingConnector" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_BindingConnector" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_BindingConnector">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -751,14 +751,14 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
-						<controller predefinedId="UML_Feature_isStatic"/>
+					<container>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
+						<controller predefinedId="UML_Feature_isStatic" tooltip="Specifies whether this feature characterizes individual instances classified by the classifier (false) or the classifier itself (true)."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Connector_kind"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_Connector_kind" tooltip="Indicates the kind of connector."/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -771,7 +771,7 @@
 				<appliedStereotype qualifiedName="SysML::Blocks::PropertySpecificType"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_PropertySpecificType" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_PropertySpecificType" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_PropertySpecificType"/>
 			</replacedSections>
@@ -782,17 +782,17 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_name"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Classifier_isAbstract"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
+					<container>
+						<controller predefinedId="UML_Classifier_isAbstract" tooltip="If true, the Classifier does not provide a complete declaration and can typically not be instantiated. An abstract classifier is intended to be used by other classifiers e.g. as the target of general metarelationships or generalization relationships."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
 				</content>
@@ -805,7 +805,7 @@
 				<appliedStereotype qualifiedName="SysML::Blocks::PropertySpecificType"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_PropertySpecificType" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_PropertySpecificType" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_PropertySpecificType">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -813,13 +813,13 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_Classifier_isAbstract"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
+					<container>
+						<controller predefinedId="UML_Classifier_isAbstract" tooltip="If true, the Classifier does not provide a complete declaration and can typically not be instantiated. An abstract classifier is intended to be used by other classifiers e.g. as the target of general metarelationships or generalization relationships."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
 				</content>
@@ -832,7 +832,7 @@
 				<appliedStereotype qualifiedName="SysML::PortAndFlows::FlowPort"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_FlowPort" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_FlowPort" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_FlowPort"/>
 			</replacedSections>
@@ -843,29 +843,29 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
+						<layout kind="Grid" numColumns="1" sameWidth="true"/>
+					</container>
+					<container>
 						<controller predefinedId="SysML_FlowPort_isAtomic"/>
+						<controller predefinedId="UML_Port_isBehavior" tooltip="Specifies whether requests arriving at this port are sent to the classifier behavior of this classifier. Such ports are referred to as behavior port. Any invocation of a behavioral feature targeted at a behavior port will be handled by the instance of the owning classifier itself, rather than by any instances that this classifier may contain."/>
+						<controller predefinedId="UML_Property_isComposite" tooltip="If isComposite is true, the object containing the attribute is a container for the object or value contained in the attribute.This is a derived value, indicating whether the aggregation of the Property is composite or not."/>
 						<controller predefinedId="SysML_FlowPort_isConjugated"/>
-						<controller predefinedId="UML_NamedElement_name"/>
+						<controller predefinedId="UML_Property_isDerived" tooltip="If isDerived is true, the value of the attribute is derived from information elsewhere.Specifies whether the Property is derived, i.e., whether its value or values can be computed from other information."/>
+						<controller predefinedId="UML_Property_isDerivedUnion" tooltip="Specifies whether the property is derived as the union of all of the properties that are constrained to subset it."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
+						<controller predefinedId="UML_MultiplicityElement_isOrdered" tooltip="For a multivalued multiplicity, this attribute specifies whether the values in an instantiation of this element are sequentially ordered."/>
+						<controller predefinedId="UML_StructuralFeature_isReadOnly" tooltip="States whether the feature's value may be modified by a client."/>
+						<controller predefinedId="UML_Port_isService" tooltip="If true indicates that this port is used to provide the published functionality of a classifier; if false, this port is used to implement the classifier but is not part of the essential externally-visible functionality of the classifier and can, therefore, be altered or deleted along with the internal implementation of the classifier and other properties that are considered part of its implementation."/>
+						<controller predefinedId="UML_Feature_isStatic" tooltip="Specifies whether this feature characterizes individual instances classified by the classifier (false) or the classifier itself (true)."/>
+						<controller predefinedId="UML_MultiplicityElement_isUnique" tooltip="For a multivalued multiplicity, this attributes specifies whether the values in an instantiation of this element are unique."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Port_isBehavior"/>
-						<controller predefinedId="UML_Property_isComposite"/>
-						<controller predefinedId="UML_Property_isDerived"/>
-						<controller predefinedId="UML_Property_isDerivedUnion"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
-						<controller predefinedId="UML_MultiplicityElement_isOrdered"/>
-						<controller predefinedId="UML_StructuralFeature_isReadOnly"/>
-						<controller predefinedId="UML_Port_isService"/>
-						<controller predefinedId="UML_Feature_isStatic"/>
-						<controller predefinedId="UML_MultiplicityElement_isUnique"/>
-						<layout kind="Grid" numColumns="2" sameWidth="true"/>
-					</container>
-					<container label="">
-						<controller predefinedId="UML_Property_aggregation"/>
+					<container>
+						<controller predefinedId="UML_Property_aggregation" tooltip="Specifies the kind of aggregation that applies to the Property."/>
 						<controller predefinedId="SysML_FlowPort_direction"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -878,7 +878,7 @@
 				<appliedStereotype qualifiedName="SysML::PortAndFlows::FlowPort"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_FlowPort" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_FlowPort" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_FlowPort">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -886,23 +886,23 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_Port_isBehavior"/>
-						<controller predefinedId="UML_Property_isComposite"/>
-						<controller predefinedId="UML_Property_isDerived"/>
-						<controller predefinedId="UML_Property_isDerivedUnion"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
-						<controller predefinedId="UML_MultiplicityElement_isOrdered"/>
-						<controller predefinedId="UML_StructuralFeature_isReadOnly"/>
-						<controller predefinedId="UML_Port_isService"/>
-						<controller predefinedId="UML_Feature_isStatic"/>
-						<controller predefinedId="UML_MultiplicityElement_isUnique"/>
+					<container>
+						<controller predefinedId="UML_Port_isBehavior" tooltip="Specifies whether requests arriving at this port are sent to the classifier behavior of this classifier. Such ports are referred to as behavior port. Any invocation of a behavioral feature targeted at a behavior port will be handled by the instance of the owning classifier itself, rather than by any instances that this classifier may contain."/>
+						<controller predefinedId="UML_Property_isComposite" tooltip="If isComposite is true, the object containing the attribute is a container for the object or value contained in the attribute.This is a derived value, indicating whether the aggregation of the Property is composite or not."/>
+						<controller predefinedId="UML_Property_isDerived" tooltip="If isDerived is true, the value of the attribute is derived from information elsewhere.Specifies whether the Property is derived, i.e., whether its value or values can be computed from other information."/>
+						<controller predefinedId="UML_Property_isDerivedUnion" tooltip="Specifies whether the property is derived as the union of all of the properties that are constrained to subset it."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
+						<controller predefinedId="UML_MultiplicityElement_isOrdered" tooltip="For a multivalued multiplicity, this attribute specifies whether the values in an instantiation of this element are sequentially ordered."/>
+						<controller predefinedId="UML_StructuralFeature_isReadOnly" tooltip="States whether the feature's value may be modified by a client."/>
+						<controller predefinedId="UML_Port_isService" tooltip="If true indicates that this port is used to provide the published functionality of a classifier; if false, this port is used to implement the classifier but is not part of the essential externally-visible functionality of the classifier and can, therefore, be altered or deleted along with the internal implementation of the classifier and other properties that are considered part of its implementation."/>
+						<controller predefinedId="UML_Feature_isStatic" tooltip="Specifies whether this feature characterizes individual instances classified by the classifier (false) or the classifier itself (true)."/>
+						<controller predefinedId="UML_MultiplicityElement_isUnique" tooltip="For a multivalued multiplicity, this attributes specifies whether the values in an instantiation of this element are unique."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Property_aggregation"/>
+					<container>
+						<controller predefinedId="UML_Property_aggregation" tooltip="Specifies the kind of aggregation that applies to the Property."/>
 						<controller predefinedId="SysML_FlowPort_direction"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -915,7 +915,7 @@
 				<appliedStereotype qualifiedName="SysML::PortAndFlows::FlowProperty"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_FlowProperty" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_FlowProperty" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_FlowProperty"/>
 			</replacedSections>
@@ -926,25 +926,25 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_name"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Property_isComposite"/>
-						<controller predefinedId="UML_Property_isDerived"/>
-						<controller predefinedId="UML_Property_isDerivedUnion"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
-						<controller predefinedId="UML_MultiplicityElement_isOrdered"/>
-						<controller predefinedId="UML_StructuralFeature_isReadOnly"/>
-						<controller predefinedId="UML_Feature_isStatic"/>
-						<controller predefinedId="UML_MultiplicityElement_isUnique"/>
+					<container>
+						<controller predefinedId="UML_Property_isComposite" tooltip="If isComposite is true, the object containing the attribute is a container for the object or value contained in the attribute.This is a derived value, indicating whether the aggregation of the Property is composite or not."/>
+						<controller predefinedId="UML_Property_isDerived" tooltip="If isDerived is true, the value of the attribute is derived from information elsewhere.Specifies whether the Property is derived, i.e., whether its value or values can be computed from other information."/>
+						<controller predefinedId="UML_Property_isDerivedUnion" tooltip="Specifies whether the property is derived as the union of all of the properties that are constrained to subset it."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
+						<controller predefinedId="UML_MultiplicityElement_isOrdered" tooltip="For a multivalued multiplicity, this attribute specifies whether the values in an instantiation of this element are sequentially ordered."/>
+						<controller predefinedId="UML_StructuralFeature_isReadOnly" tooltip="States whether the feature's value may be modified by a client."/>
+						<controller predefinedId="UML_Feature_isStatic" tooltip="Specifies whether this feature characterizes individual instances classified by the classifier (false) or the classifier itself (true)."/>
+						<controller predefinedId="UML_MultiplicityElement_isUnique" tooltip="For a multivalued multiplicity, this attributes specifies whether the values in an instantiation of this element are unique."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Property_aggregation"/>
+					<container>
+						<controller predefinedId="UML_Property_aggregation" tooltip="Specifies the kind of aggregation that applies to the Property."/>
 						<controller predefinedId="SysML_FlowProperty_direction"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -957,7 +957,7 @@
 				<appliedStereotype qualifiedName="SysML::PortAndFlows::FlowProperty"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_FlowProperty" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_FlowProperty" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_FlowProperty">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -965,21 +965,21 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_Property_isComposite"/>
-						<controller predefinedId="UML_Property_isDerived"/>
-						<controller predefinedId="UML_Property_isDerivedUnion"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
-						<controller predefinedId="UML_MultiplicityElement_isOrdered"/>
-						<controller predefinedId="UML_StructuralFeature_isReadOnly"/>
-						<controller predefinedId="UML_Feature_isStatic"/>
-						<controller predefinedId="UML_MultiplicityElement_isUnique"/>
+					<container>
+						<controller predefinedId="UML_Property_isComposite" tooltip="If isComposite is true, the object containing the attribute is a container for the object or value contained in the attribute.This is a derived value, indicating whether the aggregation of the Property is composite or not."/>
+						<controller predefinedId="UML_Property_isDerived" tooltip="If isDerived is true, the value of the attribute is derived from information elsewhere.Specifies whether the Property is derived, i.e., whether its value or values can be computed from other information."/>
+						<controller predefinedId="UML_Property_isDerivedUnion" tooltip="Specifies whether the property is derived as the union of all of the properties that are constrained to subset it."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
+						<controller predefinedId="UML_MultiplicityElement_isOrdered" tooltip="For a multivalued multiplicity, this attribute specifies whether the values in an instantiation of this element are sequentially ordered."/>
+						<controller predefinedId="UML_StructuralFeature_isReadOnly" tooltip="States whether the feature's value may be modified by a client."/>
+						<controller predefinedId="UML_Feature_isStatic" tooltip="Specifies whether this feature characterizes individual instances classified by the classifier (false) or the classifier itself (true)."/>
+						<controller predefinedId="UML_MultiplicityElement_isUnique" tooltip="For a multivalued multiplicity, this attributes specifies whether the values in an instantiation of this element are unique."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Property_aggregation"/>
+					<container>
+						<controller predefinedId="UML_Property_aggregation" tooltip="Specifies the kind of aggregation that applies to the Property."/>
 						<controller predefinedId="SysML_FlowProperty_direction"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -992,7 +992,7 @@
 				<appliedStereotype qualifiedName="SysML::PortAndFlows::FlowSpecification"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_FlowSpecification" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_FlowSpecification" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_FlowSpecification"/>
 			</replacedSections>
@@ -1003,17 +1003,17 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_name"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Classifier_isAbstract"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
+					<container>
+						<controller predefinedId="UML_Classifier_isAbstract" tooltip="If true, the Classifier does not provide a complete declaration and can typically not be instantiated. An abstract classifier is intended to be used by other classifiers e.g. as the target of general metarelationships or generalization relationships."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
 				</content>
@@ -1026,7 +1026,7 @@
 				<appliedStereotype qualifiedName="SysML::PortAndFlows::FlowSpecification"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_FlowSpecification" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_FlowSpecification" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_FlowSpecification">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -1034,13 +1034,13 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_Classifier_isAbstract"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
+					<container>
+						<controller predefinedId="UML_Classifier_isAbstract" tooltip="If true, the Classifier does not provide a complete declaration and can typically not be instantiated. An abstract classifier is intended to be used by other classifiers e.g. as the target of general metarelationships or generalization relationships."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
 				</content>
@@ -1053,7 +1053,7 @@
 				<appliedStereotype qualifiedName="SysML::PortAndFlows::ItemFlow"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_ItemFlow" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_ItemFlow" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_ItemFlow"/>
 			</replacedSections>
@@ -1064,15 +1064,15 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_name"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
+					<container>
 						<controller predefinedId="SysML_ItemFlow_itemProperty"/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
@@ -1086,7 +1086,7 @@
 				<appliedStereotype qualifiedName="SysML::PortAndFlows::ItemFlow"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_ItemFlow" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_ItemFlow" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_ItemFlow">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -1094,8 +1094,8 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
 				</content>
@@ -1108,7 +1108,7 @@
 				<appliedStereotype qualifiedName="SysML::Constraints::ConstraintBlock"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_ConstraintBlock" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_ConstraintBlock" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_ConstraintBlock"/>
 				<replacedSection id="section_Single_Block"/>
@@ -1120,19 +1120,19 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
+						<layout kind="Grid" numColumns="1" sameWidth="true"/>
+					</container>
+					<container>
+						<controller predefinedId="UML_Classifier_isAbstract" tooltip="If true, the Classifier does not provide a complete declaration and can typically not be instantiated. An abstract classifier is intended to be used by other classifiers e.g. as the target of general metarelationships or generalization relationships."/>
+						<controller predefinedId="UML_Class_isActive" tooltip="Determines whether an object specified by this class is active or not. If true, then the owning class is referred to as an active class. If false, then such a class is referred to as a passive class."/>
 						<controller predefinedId="SysML_Block_isEncapsulated"/>
-						<controller predefinedId="UML_NamedElement_name"/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Classifier_isAbstract"/>
-						<controller predefinedId="UML_Class_isActive"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
-						<layout kind="Grid" numColumns="2" sameWidth="true"/>
-					</container>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
 				</content>
@@ -1145,7 +1145,7 @@
 				<appliedStereotype qualifiedName="SysML::Constraints::ConstraintBlock"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_ConstraintBlock" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_ConstraintBlock" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_Block"/>
 			</replacedSections>
@@ -1156,14 +1156,14 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_Classifier_isAbstract"/>
-						<controller predefinedId="UML_Class_isActive"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
+					<container>
+						<controller predefinedId="UML_Classifier_isAbstract" tooltip="If true, the Classifier does not provide a complete declaration and can typically not be instantiated. An abstract classifier is intended to be used by other classifiers e.g. as the target of general metarelationships or generalization relationships."/>
+						<controller predefinedId="UML_Class_isActive" tooltip="Determines whether an object specified by this class is active or not. If true, then the owning class is referred to as an active class. If false, then such a class is referred to as a passive class."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
 				</content>
@@ -1176,7 +1176,7 @@
 				<appliedStereotype qualifiedName="SysML::Constraints::ConstraintProperty"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_ConstraintProperty" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_ConstraintProperty" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_ConstraintProperty"/>
 			</replacedSections>
@@ -1187,24 +1187,24 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_name"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Property_isComposite"/>
-						<controller predefinedId="UML_Property_isDerived"/>
-						<controller predefinedId="UML_Property_isDerivedUnion"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
-						<controller predefinedId="UML_MultiplicityElement_isOrdered"/>
-						<controller predefinedId="UML_StructuralFeature_isReadOnly"/>
-						<controller predefinedId="UML_Feature_isStatic"/>
-						<controller predefinedId="UML_MultiplicityElement_isUnique"/>
+					<container>
+						<controller predefinedId="UML_Property_isComposite" tooltip="If isComposite is true, the object containing the attribute is a container for the object or value contained in the attribute.This is a derived value, indicating whether the aggregation of the Property is composite or not."/>
+						<controller predefinedId="UML_Property_isDerived" tooltip="If isDerived is true, the value of the attribute is derived from information elsewhere.Specifies whether the Property is derived, i.e., whether its value or values can be computed from other information."/>
+						<controller predefinedId="UML_Property_isDerivedUnion" tooltip="Specifies whether the property is derived as the union of all of the properties that are constrained to subset it."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
+						<controller predefinedId="UML_MultiplicityElement_isOrdered" tooltip="For a multivalued multiplicity, this attribute specifies whether the values in an instantiation of this element are sequentially ordered."/>
+						<controller predefinedId="UML_StructuralFeature_isReadOnly" tooltip="States whether the feature's value may be modified by a client."/>
+						<controller predefinedId="UML_Feature_isStatic" tooltip="Specifies whether this feature characterizes individual instances classified by the classifier (false) or the classifier itself (true)."/>
+						<controller predefinedId="UML_MultiplicityElement_isUnique" tooltip="For a multivalued multiplicity, this attributes specifies whether the values in an instantiation of this element are unique."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Property_aggregation"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_Property_aggregation" tooltip="Specifies the kind of aggregation that applies to the Property."/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -1217,7 +1217,7 @@
 				<appliedStereotype qualifiedName="SysML::Constraints::ConstraintProperty"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_ConstraintProperty" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_ConstraintProperty" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_ConstraintProperty">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -1225,20 +1225,20 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_Property_isComposite"/>
-						<controller predefinedId="UML_Property_isDerived"/>
-						<controller predefinedId="UML_Property_isDerivedUnion"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
-						<controller predefinedId="UML_MultiplicityElement_isOrdered"/>
-						<controller predefinedId="UML_StructuralFeature_isReadOnly"/>
-						<controller predefinedId="UML_Feature_isStatic"/>
-						<controller predefinedId="UML_MultiplicityElement_isUnique"/>
+					<container>
+						<controller predefinedId="UML_Property_isComposite" tooltip="If isComposite is true, the object containing the attribute is a container for the object or value contained in the attribute.This is a derived value, indicating whether the aggregation of the Property is composite or not."/>
+						<controller predefinedId="UML_Property_isDerived" tooltip="If isDerived is true, the value of the attribute is derived from information elsewhere.Specifies whether the Property is derived, i.e., whether its value or values can be computed from other information."/>
+						<controller predefinedId="UML_Property_isDerivedUnion" tooltip="Specifies whether the property is derived as the union of all of the properties that are constrained to subset it."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
+						<controller predefinedId="UML_MultiplicityElement_isOrdered" tooltip="For a multivalued multiplicity, this attribute specifies whether the values in an instantiation of this element are sequentially ordered."/>
+						<controller predefinedId="UML_StructuralFeature_isReadOnly" tooltip="States whether the feature's value may be modified by a client."/>
+						<controller predefinedId="UML_Feature_isStatic" tooltip="Specifies whether this feature characterizes individual instances classified by the classifier (false) or the classifier itself (true)."/>
+						<controller predefinedId="UML_MultiplicityElement_isUnique" tooltip="For a multivalued multiplicity, this attributes specifies whether the values in an instantiation of this element are unique."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Property_aggregation"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_Property_aggregation" tooltip="Specifies the kind of aggregation that applies to the Property."/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -1251,7 +1251,7 @@
 				<appliedStereotype qualifiedName="SysML::Activities::Optional"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_Optional" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_Optional" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_Optional"/>
 			</replacedSections>
@@ -1262,21 +1262,21 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_name"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Parameter_isException"/>
-						<controller predefinedId="UML_MultiplicityElement_isOrdered"/>
-						<controller predefinedId="UML_Parameter_isStream"/>
-						<controller predefinedId="UML_MultiplicityElement_isUnique"/>
+					<container>
+						<controller predefinedId="UML_Parameter_isException" tooltip="Tells whether an output parameter may emit a value to the exclusion of the other outputs."/>
+						<controller predefinedId="UML_MultiplicityElement_isOrdered" tooltip="For a multivalued multiplicity, this attribute specifies whether the values in an instantiation of this element are sequentially ordered."/>
+						<controller predefinedId="UML_Parameter_isStream" tooltip="Tells whether an input parameter may accept values while its behavior is executing, or whether an output parameter post values while the behavior is executing."/>
+						<controller predefinedId="UML_MultiplicityElement_isUnique" tooltip="For a multivalued multiplicity, this attributes specifies whether the values in an instantiation of this element are unique."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Parameter_direction"/>
-						<controller predefinedId="UML_Parameter_effect"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_Parameter_direction" tooltip="Indicates whether a parameter is being sent into or out of a behavioral element."/>
+						<controller predefinedId="UML_Parameter_effect" tooltip="Specifies the effect that the owner of the parameter has on values passed in or out of the parameter."/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -1289,7 +1289,7 @@
 				<appliedStereotype qualifiedName="SysML::Activities::Optional"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_Optional" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_Optional" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_Optional">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -1297,17 +1297,17 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_Parameter_isException"/>
-						<controller predefinedId="UML_MultiplicityElement_isOrdered"/>
-						<controller predefinedId="UML_Parameter_isStream"/>
-						<controller predefinedId="UML_MultiplicityElement_isUnique"/>
+					<container>
+						<controller predefinedId="UML_Parameter_isException" tooltip="Tells whether an output parameter may emit a value to the exclusion of the other outputs."/>
+						<controller predefinedId="UML_MultiplicityElement_isOrdered" tooltip="For a multivalued multiplicity, this attribute specifies whether the values in an instantiation of this element are sequentially ordered."/>
+						<controller predefinedId="UML_Parameter_isStream" tooltip="Tells whether an input parameter may accept values while its behavior is executing, or whether an output parameter post values while the behavior is executing."/>
+						<controller predefinedId="UML_MultiplicityElement_isUnique" tooltip="For a multivalued multiplicity, this attributes specifies whether the values in an instantiation of this element are unique."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Parameter_direction"/>
-						<controller predefinedId="UML_Parameter_effect"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_Parameter_direction" tooltip="Indicates whether a parameter is being sent into or out of a behavioral element."/>
+						<controller predefinedId="UML_Parameter_effect" tooltip="Specifies the effect that the owner of the parameter has on values passed in or out of the parameter."/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -1320,7 +1320,7 @@
 				<appliedStereotype qualifiedName="SysML::Activities::Rate"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_Rate" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_Rate" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_Rate"/>
 			</replacedSections>
@@ -1331,25 +1331,25 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_name"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Parameter_isException"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
-						<controller predefinedId="UML_MultiplicityElement_isOrdered"/>
-						<controller predefinedId="UML_Parameter_isStream"/>
-						<controller predefinedId="UML_MultiplicityElement_isUnique"/>
+					<container>
+						<controller predefinedId="UML_Parameter_isException" tooltip="Tells whether an output parameter may emit a value to the exclusion of the other outputs."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
+						<controller predefinedId="UML_MultiplicityElement_isOrdered" tooltip="For a multivalued multiplicity, this attribute specifies whether the values in an instantiation of this element are sequentially ordered."/>
+						<controller predefinedId="UML_Parameter_isStream" tooltip="Tells whether an input parameter may accept values while its behavior is executing, or whether an output parameter post values while the behavior is executing."/>
+						<controller predefinedId="UML_MultiplicityElement_isUnique" tooltip="For a multivalued multiplicity, this attributes specifies whether the values in an instantiation of this element are unique."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Parameter_direction"/>
-						<controller predefinedId="UML_Parameter_effect"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_Parameter_direction" tooltip="Indicates whether a parameter is being sent into or out of a behavioral element."/>
+						<controller predefinedId="UML_Parameter_effect" tooltip="Specifies the effect that the owner of the parameter has on values passed in or out of the parameter."/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
+					<container>
 						<controller predefinedId="SysML_Rate_rate"/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
@@ -1363,7 +1363,7 @@
 				<appliedStereotype qualifiedName="SysML::Activities::Rate"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_Rate" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_Rate" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_Rate">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -1371,18 +1371,18 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_Parameter_isException"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
-						<controller predefinedId="UML_MultiplicityElement_isOrdered"/>
-						<controller predefinedId="UML_Parameter_isStream"/>
-						<controller predefinedId="UML_MultiplicityElement_isUnique"/>
+					<container>
+						<controller predefinedId="UML_Parameter_isException" tooltip="Tells whether an output parameter may emit a value to the exclusion of the other outputs."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
+						<controller predefinedId="UML_MultiplicityElement_isOrdered" tooltip="For a multivalued multiplicity, this attribute specifies whether the values in an instantiation of this element are sequentially ordered."/>
+						<controller predefinedId="UML_Parameter_isStream" tooltip="Tells whether an input parameter may accept values while its behavior is executing, or whether an output parameter post values while the behavior is executing."/>
+						<controller predefinedId="UML_MultiplicityElement_isUnique" tooltip="For a multivalued multiplicity, this attributes specifies whether the values in an instantiation of this element are unique."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Parameter_direction"/>
-						<controller predefinedId="UML_Parameter_effect"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_Parameter_direction" tooltip="Indicates whether a parameter is being sent into or out of a behavioral element."/>
+						<controller predefinedId="UML_Parameter_effect" tooltip="Specifies the effect that the owner of the parameter has on values passed in or out of the parameter."/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -1395,7 +1395,7 @@
 				<appliedStereotype qualifiedName="SysML::Activities::Probability"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_Probability" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_Probability" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_Probability"/>
 			</replacedSections>
@@ -1406,19 +1406,19 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_name"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
+					<container>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
+					<container>
 						<controller predefinedId="SysML_Probability_probability"/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
@@ -1432,7 +1432,7 @@
 				<appliedStereotype qualifiedName="SysML::Activities::Probability"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_Probability" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_Probability" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_Probability">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -1440,12 +1440,12 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
+					<container>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
 				</content>
@@ -1458,7 +1458,7 @@
 				<appliedStereotype qualifiedName="SysML::Activities::Continuous"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_Continuous" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_Continuous" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_Continuous"/>
 				<replacedSection id="section_Single_Rate"/>
@@ -1470,25 +1470,25 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_name"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Parameter_isException"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
-						<controller predefinedId="UML_MultiplicityElement_isOrdered"/>
-						<controller predefinedId="UML_Parameter_isStream"/>
-						<controller predefinedId="UML_MultiplicityElement_isUnique"/>
+					<container>
+						<controller predefinedId="UML_Parameter_isException" tooltip="Tells whether an output parameter may emit a value to the exclusion of the other outputs."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
+						<controller predefinedId="UML_MultiplicityElement_isOrdered" tooltip="For a multivalued multiplicity, this attribute specifies whether the values in an instantiation of this element are sequentially ordered."/>
+						<controller predefinedId="UML_Parameter_isStream" tooltip="Tells whether an input parameter may accept values while its behavior is executing, or whether an output parameter post values while the behavior is executing."/>
+						<controller predefinedId="UML_MultiplicityElement_isUnique" tooltip="For a multivalued multiplicity, this attributes specifies whether the values in an instantiation of this element are unique."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Parameter_direction"/>
-						<controller predefinedId="UML_Parameter_effect"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_Parameter_direction" tooltip="Indicates whether a parameter is being sent into or out of a behavioral element."/>
+						<controller predefinedId="UML_Parameter_effect" tooltip="Specifies the effect that the owner of the parameter has on values passed in or out of the parameter."/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
+					<container>
 						<controller predefinedId="SysML_Rate_rate"/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
@@ -1502,7 +1502,7 @@
 				<appliedStereotype qualifiedName="SysML::Activities::Continuous"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_Continuous" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_Continuous" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_Rate"/>
 			</replacedSections>
@@ -1513,18 +1513,18 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_Parameter_isException"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
-						<controller predefinedId="UML_MultiplicityElement_isOrdered"/>
-						<controller predefinedId="UML_Parameter_isStream"/>
-						<controller predefinedId="UML_MultiplicityElement_isUnique"/>
+					<container>
+						<controller predefinedId="UML_Parameter_isException" tooltip="Tells whether an output parameter may emit a value to the exclusion of the other outputs."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
+						<controller predefinedId="UML_MultiplicityElement_isOrdered" tooltip="For a multivalued multiplicity, this attribute specifies whether the values in an instantiation of this element are sequentially ordered."/>
+						<controller predefinedId="UML_Parameter_isStream" tooltip="Tells whether an input parameter may accept values while its behavior is executing, or whether an output parameter post values while the behavior is executing."/>
+						<controller predefinedId="UML_MultiplicityElement_isUnique" tooltip="For a multivalued multiplicity, this attributes specifies whether the values in an instantiation of this element are unique."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Parameter_direction"/>
-						<controller predefinedId="UML_Parameter_effect"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_Parameter_direction" tooltip="Indicates whether a parameter is being sent into or out of a behavioral element."/>
+						<controller predefinedId="UML_Parameter_effect" tooltip="Specifies the effect that the owner of the parameter has on values passed in or out of the parameter."/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -1537,7 +1537,7 @@
 				<appliedStereotype qualifiedName="SysML::Activities::Discrete"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_Discrete" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_Discrete" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_Discrete"/>
 				<replacedSection id="section_Single_Rate"/>
@@ -1549,25 +1549,25 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_name"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Parameter_isException"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
-						<controller predefinedId="UML_MultiplicityElement_isOrdered"/>
-						<controller predefinedId="UML_Parameter_isStream"/>
-						<controller predefinedId="UML_MultiplicityElement_isUnique"/>
+					<container>
+						<controller predefinedId="UML_Parameter_isException" tooltip="Tells whether an output parameter may emit a value to the exclusion of the other outputs."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
+						<controller predefinedId="UML_MultiplicityElement_isOrdered" tooltip="For a multivalued multiplicity, this attribute specifies whether the values in an instantiation of this element are sequentially ordered."/>
+						<controller predefinedId="UML_Parameter_isStream" tooltip="Tells whether an input parameter may accept values while its behavior is executing, or whether an output parameter post values while the behavior is executing."/>
+						<controller predefinedId="UML_MultiplicityElement_isUnique" tooltip="For a multivalued multiplicity, this attributes specifies whether the values in an instantiation of this element are unique."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Parameter_direction"/>
-						<controller predefinedId="UML_Parameter_effect"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_Parameter_direction" tooltip="Indicates whether a parameter is being sent into or out of a behavioral element."/>
+						<controller predefinedId="UML_Parameter_effect" tooltip="Specifies the effect that the owner of the parameter has on values passed in or out of the parameter."/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
+					<container>
 						<controller predefinedId="SysML_Rate_rate"/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
@@ -1581,7 +1581,7 @@
 				<appliedStereotype qualifiedName="SysML::Activities::Discrete"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_Discrete" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_Discrete" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_Rate"/>
 			</replacedSections>
@@ -1592,18 +1592,18 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_Parameter_isException"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
-						<controller predefinedId="UML_MultiplicityElement_isOrdered"/>
-						<controller predefinedId="UML_Parameter_isStream"/>
-						<controller predefinedId="UML_MultiplicityElement_isUnique"/>
+					<container>
+						<controller predefinedId="UML_Parameter_isException" tooltip="Tells whether an output parameter may emit a value to the exclusion of the other outputs."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
+						<controller predefinedId="UML_MultiplicityElement_isOrdered" tooltip="For a multivalued multiplicity, this attribute specifies whether the values in an instantiation of this element are sequentially ordered."/>
+						<controller predefinedId="UML_Parameter_isStream" tooltip="Tells whether an input parameter may accept values while its behavior is executing, or whether an output parameter post values while the behavior is executing."/>
+						<controller predefinedId="UML_MultiplicityElement_isUnique" tooltip="For a multivalued multiplicity, this attributes specifies whether the values in an instantiation of this element are unique."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Parameter_direction"/>
-						<controller predefinedId="UML_Parameter_effect"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_Parameter_direction" tooltip="Indicates whether a parameter is being sent into or out of a behavioral element."/>
+						<controller predefinedId="UML_Parameter_effect" tooltip="Specifies the effect that the owner of the parameter has on values passed in or out of the parameter."/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -1616,7 +1616,7 @@
 				<appliedStereotype qualifiedName="SysML::Activities::ControlOperator"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_ControlOperator" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_ControlOperator" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_ControlOperator"/>
 			</replacedSections>
@@ -1627,24 +1627,24 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_name"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_BehavioralFeature_isAbstract"/>
-						<controller predefinedId="UML_Class_isActive"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
-						<controller predefinedId="UML_Operation_isOrdered"/>
-						<controller predefinedId="UML_Operation_isQuery"/>
-						<controller predefinedId="UML_Behavior_isReentrant"/>
-						<controller predefinedId="UML_Feature_isStatic"/>
-						<controller predefinedId="UML_Operation_isUnique"/>
+					<container>
+						<controller predefinedId="UML_Classifier_isAbstract" tooltip="If true, the Classifier does not provide a complete declaration and can typically not be instantiated. An abstract classifier is intended to be used by other classifiers e.g. as the target of general metarelationships or generalization relationships."/>
+						<controller predefinedId="UML_Class_isActive" tooltip="Determines whether an object specified by this class is active or not. If true, then the owning class is referred to as an active class. If false, then such a class is referred to as a passive class."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
+						<controller predefinedId="UML_Operation_isOrdered" tooltip="This information is derived from the return result for this Operation.Specifies whether the return parameter is ordered or not, if present."/>
+						<controller predefinedId="UML_Operation_isQuery" tooltip="Specifies whether an execution of the BehavioralFeature leaves the state of the system unchanged (isQuery=true) or whether side effects may occur (isQuery=false)."/>
+						<controller predefinedId="UML_Behavior_isReentrant" tooltip="Tells whether the behavior can be invoked while it is still executing from a previous invocation."/>
+						<controller predefinedId="UML_Feature_isStatic" tooltip="Specifies whether this feature characterizes individual instances classified by the classifier (false) or the classifier itself (true)."/>
+						<controller predefinedId="UML_Operation_isUnique" tooltip="This information is derived from the return result for this Operation.Specifies whether the return parameter is unique or not, if present."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_BehavioralFeature_concurrency"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_BehavioralFeature_concurrency" tooltip="Specifies the semantics of concurrent calls to the same passive instance (i.e., an instance originating from a class with isActive being false). Active instances control access to their own behavioral features."/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -1657,7 +1657,7 @@
 				<appliedStereotype qualifiedName="SysML::Activities::ControlOperator"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_ControlOperator" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_ControlOperator" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_ControlOperator">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -1665,20 +1665,20 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_BehavioralFeature_isAbstract"/>
-						<controller predefinedId="UML_Class_isActive"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
-						<controller predefinedId="UML_Operation_isOrdered"/>
-						<controller predefinedId="UML_Operation_isQuery"/>
-						<controller predefinedId="UML_Behavior_isReentrant"/>
-						<controller predefinedId="UML_Feature_isStatic"/>
-						<controller predefinedId="UML_Operation_isUnique"/>
+					<container>
+						<controller predefinedId="UML_Classifier_isAbstract" tooltip="If true, the Classifier does not provide a complete declaration and can typically not be instantiated. An abstract classifier is intended to be used by other classifiers e.g. as the target of general metarelationships or generalization relationships."/>
+						<controller predefinedId="UML_Class_isActive" tooltip="Determines whether an object specified by this class is active or not. If true, then the owning class is referred to as an active class. If false, then such a class is referred to as a passive class."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
+						<controller predefinedId="UML_Operation_isOrdered" tooltip="This information is derived from the return result for this Operation.Specifies whether the return parameter is ordered or not, if present."/>
+						<controller predefinedId="UML_Operation_isQuery" tooltip="Specifies whether an execution of the BehavioralFeature leaves the state of the system unchanged (isQuery=true) or whether side effects may occur (isQuery=false)."/>
+						<controller predefinedId="UML_Behavior_isReentrant" tooltip="Tells whether the behavior can be invoked while it is still executing from a previous invocation."/>
+						<controller predefinedId="UML_Feature_isStatic" tooltip="Specifies whether this feature characterizes individual instances classified by the classifier (false) or the classifier itself (true)."/>
+						<controller predefinedId="UML_Operation_isUnique" tooltip="This information is derived from the return result for this Operation.Specifies whether the return parameter is unique or not, if present."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_BehavioralFeature_concurrency"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_BehavioralFeature_concurrency" tooltip="Specifies the semantics of concurrent calls to the same passive instance (i.e., an instance originating from a class with isActive being false). Active instances control access to their own behavioral features."/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -1691,7 +1691,7 @@
 				<appliedStereotype qualifiedName="SysML::Activities::NoBuffer"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_NoBuffer" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_NoBuffer" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_NoBuffer"/>
 			</replacedSections>
@@ -1702,18 +1702,18 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_name"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_ObjectNode_isControlType"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
+					<container>
+						<controller predefinedId="UML_ObjectNode_isControlType" tooltip="Tells whether the type of the object node is to be treated as control."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_ObjectNode_ordering"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_ObjectNode_ordering" tooltip="Tells whether and how the tokens in the object node are ordered for selection to traverse edges outgoing from the object node."/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -1726,7 +1726,7 @@
 				<appliedStereotype qualifiedName="SysML::Activities::NoBuffer"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_NoBuffer" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_NoBuffer" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_NoBuffer">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -1734,14 +1734,14 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_ObjectNode_isControlType"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
+					<container>
+						<controller predefinedId="UML_ObjectNode_isControlType" tooltip="Tells whether the type of the object node is to be treated as control."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_ObjectNode_ordering"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_ObjectNode_ordering" tooltip="Tells whether and how the tokens in the object node are ordered for selection to traverse edges outgoing from the object node."/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -1754,7 +1754,7 @@
 				<appliedStereotype qualifiedName="SysML::Activities::Overwrite"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_Overwrite" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_Overwrite" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_Overwrite"/>
 			</replacedSections>
@@ -1765,18 +1765,18 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_name"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_ObjectNode_isControlType"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
+					<container>
+						<controller predefinedId="UML_ObjectNode_isControlType" tooltip="Tells whether the type of the object node is to be treated as control."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_ObjectNode_ordering"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_ObjectNode_ordering" tooltip="Tells whether and how the tokens in the object node are ordered for selection to traverse edges outgoing from the object node."/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -1789,7 +1789,7 @@
 				<appliedStereotype qualifiedName="SysML::Activities::Overwrite"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_Overwrite" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_Overwrite" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_Overwrite">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -1797,14 +1797,14 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_ObjectNode_isControlType"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
+					<container>
+						<controller predefinedId="UML_ObjectNode_isControlType" tooltip="Tells whether the type of the object node is to be treated as control."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_ObjectNode_ordering"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_ObjectNode_ordering" tooltip="Tells whether and how the tokens in the object node are ordered for selection to traverse edges outgoing from the object node."/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -1817,7 +1817,7 @@
 				<appliedStereotype qualifiedName="SysML::Allocations::Allocate"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_Allocate" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_Allocate" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_Allocate"/>
 			</replacedSections>
@@ -1828,17 +1828,17 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_name"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Dependency_client"/>
-						<controller predefinedId="UML_Dependency_supplier"/>
+					<container>
+						<controller predefinedId="UML_Dependency_client" tooltip="The element(s) dependent on the supplier element(s). In some cases (such as a Trace Abstraction) the assignment of direction (that is, the designation of the client element) is at the discretion of the modeler, and is a stipulation."/>
+						<controller predefinedId="UML_Dependency_supplier" tooltip="The element(s) independent of the client element(s), in the same respect and the same dependency relationship. In some directed dependency relationships (such as Refinement Abstractions), a common convention in the domain of class-based OO software is to put the more abstract element in this role. Despite this convention, users of UML may stipulate a sense of dependency suitable for their domain, which makes a more abstract element dependent on that which is more specific."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -1851,7 +1851,7 @@
 				<appliedStereotype qualifiedName="SysML::Allocations::Allocate"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_Allocate" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_Allocate" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_Allocate">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -1859,8 +1859,8 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
 				</content>
@@ -1873,7 +1873,7 @@
 				<appliedStereotype qualifiedName="SysML::Allocations::Allocated"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_Allocated" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_Allocated" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_Allocated"/>
 			</replacedSections>
@@ -1884,15 +1884,15 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_name"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
+					<container>
 						<controller predefinedId="SysML_Allocated_allocatedFrom"/>
 						<controller predefinedId="SysML_Allocated_allocatedTo"/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
@@ -1907,7 +1907,7 @@
 				<appliedStereotype qualifiedName="SysML::Allocations::Allocated"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_Allocated" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_Allocated" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_Allocated">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -1915,8 +1915,8 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
 				</content>
@@ -1929,7 +1929,7 @@
 				<appliedStereotype qualifiedName="SysML::Allocations::AllocateActivityPartition"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_AllocateActivityPartition" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_AllocateActivityPartition" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_AllocateActivityPartition"/>
 			</replacedSections>
@@ -1940,17 +1940,17 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_name"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_ActivityPartition_isDimension"/>
-						<controller predefinedId="UML_ActivityPartition_isExternal"/>
+					<container>
+						<controller predefinedId="UML_ActivityPartition_isDimension" tooltip="Tells whether the partition groups other partitions along a dimension."/>
+						<controller predefinedId="UML_ActivityPartition_isExternal" tooltip="Tells whether the partition represents an entity to which the partitioning structure does not apply."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
 				</content>
@@ -1963,7 +1963,7 @@
 				<appliedStereotype qualifiedName="SysML::Allocations::AllocateActivityPartition"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_AllocateActivityPartition" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_AllocateActivityPartition" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_AllocateActivityPartition">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -1971,13 +1971,13 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_ActivityPartition_isDimension"/>
-						<controller predefinedId="UML_ActivityPartition_isExternal"/>
+					<container>
+						<controller predefinedId="UML_ActivityPartition_isDimension" tooltip="Tells whether the partition groups other partitions along a dimension."/>
+						<controller predefinedId="UML_ActivityPartition_isExternal" tooltip="Tells whether the partition represents an entity to which the partitioning structure does not apply."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
 				</content>
@@ -1990,7 +1990,7 @@
 				<appliedStereotype qualifiedName="SysML::Requirements::TestCase"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_TestCase" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_TestCase" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_TestCase"/>
 			</replacedSections>
@@ -2001,27 +2001,27 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_name"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_BehavioralFeature_isAbstract"/>
-						<controller predefinedId="UML_Class_isActive"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
-						<controller predefinedId="UML_Operation_isOrdered"/>
-						<controller predefinedId="UML_Operation_isQuery"/>
-						<controller predefinedId="UML_Behavior_isReentrant"/>
-						<controller predefinedId="UML_Feature_isStatic"/>
-						<controller predefinedId="UML_Operation_isUnique"/>
+					<container>
+						<controller predefinedId="UML_Classifier_isAbstract" tooltip="If true, the Classifier does not provide a complete declaration and can typically not be instantiated. An abstract classifier is intended to be used by other classifiers e.g. as the target of general metarelationships or generalization relationships."/>
+						<controller predefinedId="UML_Class_isActive" tooltip="Determines whether an object specified by this class is active or not. If true, then the owning class is referred to as an active class. If false, then such a class is referred to as a passive class."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
+						<controller predefinedId="UML_Operation_isOrdered" tooltip="This information is derived from the return result for this Operation.Specifies whether the return parameter is ordered or not, if present."/>
+						<controller predefinedId="UML_Operation_isQuery" tooltip="Specifies whether an execution of the BehavioralFeature leaves the state of the system unchanged (isQuery=true) or whether side effects may occur (isQuery=false)."/>
+						<controller predefinedId="UML_Behavior_isReentrant" tooltip="Tells whether the behavior can be invoked while it is still executing from a previous invocation."/>
+						<controller predefinedId="UML_Feature_isStatic" tooltip="Specifies whether this feature characterizes individual instances classified by the classifier (false) or the classifier itself (true)."/>
+						<controller predefinedId="UML_Operation_isUnique" tooltip="This information is derived from the return result for this Operation.Specifies whether the return parameter is unique or not, if present."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_BehavioralFeature_concurrency"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_BehavioralFeature_concurrency" tooltip="Specifies the semantics of concurrent calls to the same passive instance (i.e., an instance originating from a class with isActive being false). Active instances control access to their own behavioral features."/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
+					<container>
 						<controller predefinedId="SysML_TestCase_verifies"/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
@@ -2035,7 +2035,7 @@
 				<appliedStereotype qualifiedName="SysML::Requirements::TestCase"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_TestCase" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_TestCase" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_TestCase">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -2043,20 +2043,20 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_BehavioralFeature_isAbstract"/>
-						<controller predefinedId="UML_Class_isActive"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
-						<controller predefinedId="UML_Operation_isOrdered"/>
-						<controller predefinedId="UML_Operation_isQuery"/>
-						<controller predefinedId="UML_Behavior_isReentrant"/>
-						<controller predefinedId="UML_Feature_isStatic"/>
-						<controller predefinedId="UML_Operation_isUnique"/>
+					<container>
+						<controller predefinedId="UML_Classifier_isAbstract" tooltip="If true, the Classifier does not provide a complete declaration and can typically not be instantiated. An abstract classifier is intended to be used by other classifiers e.g. as the target of general metarelationships or generalization relationships."/>
+						<controller predefinedId="UML_Class_isActive" tooltip="Determines whether an object specified by this class is active or not. If true, then the owning class is referred to as an active class. If false, then such a class is referred to as a passive class."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
+						<controller predefinedId="UML_Operation_isOrdered" tooltip="This information is derived from the return result for this Operation.Specifies whether the return parameter is ordered or not, if present."/>
+						<controller predefinedId="UML_Operation_isQuery" tooltip="Specifies whether an execution of the BehavioralFeature leaves the state of the system unchanged (isQuery=true) or whether side effects may occur (isQuery=false)."/>
+						<controller predefinedId="UML_Behavior_isReentrant" tooltip="Tells whether the behavior can be invoked while it is still executing from a previous invocation."/>
+						<controller predefinedId="UML_Feature_isStatic" tooltip="Specifies whether this feature characterizes individual instances classified by the classifier (false) or the classifier itself (true)."/>
+						<controller predefinedId="UML_Operation_isUnique" tooltip="This information is derived from the return result for this Operation.Specifies whether the return parameter is unique or not, if present."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_BehavioralFeature_concurrency"/>
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_BehavioralFeature_concurrency" tooltip="Specifies the semantics of concurrent calls to the same passive instance (i.e., an instance originating from a class with isActive being false). Active instances control access to their own behavioral features."/>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -2069,7 +2069,7 @@
 				<appliedStereotype qualifiedName="SysML::Requirements::Requirement"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_Requirement" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_Requirement" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_Requirement"/>
 			</replacedSections>
@@ -2080,27 +2080,27 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
+					<container>
 						<controller predefinedId="SysML_Requirement_id"/>
-						<controller predefinedId="UML_NamedElement_name"/>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<controller predefinedId="SysML_Requirement_text"/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_Classifier_isAbstract"/>
-						<controller predefinedId="UML_Class_isActive"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
+					<container>
+						<controller predefinedId="UML_Classifier_isAbstract" tooltip="If true, the Classifier does not provide a complete declaration and can typically not be instantiated. An abstract classifier is intended to be used by other classifiers e.g. as the target of general metarelationships or generalization relationships."/>
+						<controller predefinedId="UML_Class_isActive" tooltip="Determines whether an object specified by this class is active or not. If true, then the owning class is referred to as an active class. If false, then such a class is referred to as a passive class."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
+					<container>
 						<controller predefinedId="SysML_Requirement_master"/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
+					<container>
 						<controller predefinedId="SysML_Requirement_derived"/>
 						<controller predefinedId="SysML_Requirement_derivedFrom"/>
 						<controller predefinedId="SysML_Requirement_refinedBy"/>
@@ -2119,7 +2119,7 @@
 				<appliedStereotype qualifiedName="SysML::Requirements::Requirement"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_Requirement" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_Requirement" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_Requirement">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -2127,14 +2127,14 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_Classifier_isAbstract"/>
-						<controller predefinedId="UML_Class_isActive"/>
-						<controller predefinedId="UML_RedefinableElement_isLeaf"/>
+					<container>
+						<controller predefinedId="UML_Classifier_isAbstract" tooltip="If true, the Classifier does not provide a complete declaration and can typically not be instantiated. An abstract classifier is intended to be used by other classifiers e.g. as the target of general metarelationships or generalization relationships."/>
+						<controller predefinedId="UML_Class_isActive" tooltip="Determines whether an object specified by this class is active or not. If true, then the owning class is referred to as an active class. If false, then such a class is referred to as a passive class."/>
+						<controller predefinedId="UML_RedefinableElement_isLeaf" tooltip="Indicates whether it is possible to further specialize a RedefinableElement. If the value is true, then it is not possible to further specialize the RedefinableElement."/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
 				</content>
@@ -2147,7 +2147,7 @@
 				<appliedStereotype qualifiedName="SysML::Requirements::RequirementRelated"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Single_RequirementRelated" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Single_RequirementRelated" tabId="basicTabSysML">
 			<replacedSections>
 				<replacedSection id="section_Multiple_RequirementRelated"/>
 			</replacedSections>
@@ -2158,15 +2158,15 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_name"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_name" tooltip="The name of the NamedElement."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
-					<container label="">
+					<container>
 						<controller predefinedId="SysML_RequirementRelated_refines"/>
 						<controller predefinedId="SysML_RequirementRelated_satisfies"/>
 						<controller predefinedId="SysML_RequirementRelated_tracedFrom"/>
@@ -2183,7 +2183,7 @@
 				<appliedStereotype qualifiedName="SysML::Requirements::RequirementRelated"/>
 			</appliedStereotypes>
 		</context>
-		<section adapterId="Semantic" id="section_Multiple_RequirementRelated" tabId="basicSysMLTab">
+		<section adapterId="Semantic" id="section_Multiple_RequirementRelated" tabId="basicTabSysML">
 			<fragment id="fragment_Multiple_RequirementRelated">
 				<context enablesFor="-1">
 					<appliedStereotypes>
@@ -2191,8 +2191,8 @@
 					</appliedStereotypes>
 				</context>
 				<content>
-					<container label="">
-						<controller predefinedId="UML_NamedElement_visibility"/>
+					<container>
+						<controller predefinedId="UML_NamedElement_visibility" tooltip="Determines where the NamedElement appears within different Namespaces within the overall model, and its accessibility."/>
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
 				</content>
