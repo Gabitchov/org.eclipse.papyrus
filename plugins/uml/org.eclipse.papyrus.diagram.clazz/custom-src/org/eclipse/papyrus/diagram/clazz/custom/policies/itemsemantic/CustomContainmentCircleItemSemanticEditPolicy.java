@@ -207,9 +207,9 @@ public class CustomContainmentCircleItemSemanticEditPolicy extends ContainmentCi
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
-		
+
 		View circle = (View)getHost().getModel();
-		
+
 		List<String> targetNames = new ArrayList<String>();
 		for(Object next : circle.getSourceEdges()) {
 			Edge outgoingLink = (Edge)next;
@@ -218,7 +218,7 @@ public class CustomContainmentCircleItemSemanticEditPolicy extends ContainmentCi
 			}
 		}
 		cmd.add(new AskAndThenDelete(targetNames));
-		
+
 		ICommandProxy command = (ICommandProxy)getDestroyElementCommandGen(req);
 		cmd.add(command.getICommand());
 
@@ -238,7 +238,7 @@ public class CustomContainmentCircleItemSemanticEditPolicy extends ContainmentCi
 	}
 
 	private class AskAndThenDelete extends AbstractOperation {
-		
+
 		private List<String> myTargetNames;
 
 		public AskAndThenDelete(List<String> targetNames) {
@@ -256,12 +256,10 @@ public class CustomContainmentCircleItemSemanticEditPolicy extends ContainmentCi
 
 			boolean wasSelected;
 
-			@Override
 			public void run(IContext context) {
 				wasSelected = true;
 			}
 
-			@Override
 			public String getLabel() {
 				return myLabel;
 			}
