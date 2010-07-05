@@ -242,7 +242,7 @@ public class SimpleReferencePropertyEditor extends AbstractPropertyEditor {
 		if(isValid(referenceArea)) {
 			return currentValue;
 		} else {
-			Activator.log.info("trying to read the value of the reference area whereas the combo is disposed");
+			Activator.log.error("trying to read the value of the reference area whereas the combo is disposed", null);
 		}
 		return null;
 	}

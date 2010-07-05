@@ -241,7 +241,7 @@ public class DynamicSectionDescriptor extends AbstractSectionDescriptor implemen
 		List<IConstraintDescriptor> constraintDescriptors = getConstraints();
 		if(constraintDescriptors == null || constraintDescriptors.isEmpty()) {
 			// something went wrong during definition or parsing, ignore this section
-			Activator.log.info("No constraints found for descriptor : " + this.getText());
+			Activator.log.warn("No constraints found for descriptor : " + this.getText());
 			return false;
 		}
 

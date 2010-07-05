@@ -47,7 +47,7 @@ public abstract class EMFStereotypeFeatureModelHandler extends EMFFeatureModelHa
 	@Override
 	public Object getValueToEdit(EObject objectToEdit) {
 		if(!(objectToEdit instanceof Element)) {
-			Activator.log.info("the object to edit is not a UML2 Element: " + objectToEdit);
+			Activator.log.warn("the object to edit is not a UML2 Element: " + objectToEdit);
 			return null;
 		}
 		Element elementToEdit = (Element)objectToEdit;
@@ -78,7 +78,7 @@ public abstract class EMFStereotypeFeatureModelHandler extends EMFFeatureModelHa
 	@Override
 	public void setValueInModel(EObject objectToEdit, Object newValue) {
 		if(!(objectToEdit instanceof Element)) {
-			Activator.log.info("the object to edit is not a UML2 Element: " + objectToEdit);
+			Activator.log.warn("the object to edit is not a UML2 Element: " + objectToEdit);
 			return;
 		}
 		Element elementToEdit = (Element)objectToEdit;

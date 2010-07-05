@@ -123,7 +123,7 @@ public class RadioBoxPropertyEditor extends AbstractPropertyEditor {
 				}
 			}
 		} else {
-			Activator.log.info("trying to read the value of the combo whereas the combo is disposed");
+			Activator.log.error("trying to read the value of the combo whereas the combo is disposed", null);
 		}
 		return null;
 	}

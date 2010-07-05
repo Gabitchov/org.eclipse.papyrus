@@ -132,7 +132,7 @@ public class ComboPropertyEditor extends AbstractPropertyEditor {
 				return values.get(index);
 			}
 		} else {
-			Activator.log.info("trying to read the value of the combo whereas the combo is disposed");
+			Activator.log.error("trying to read the value of the combo whereas the combo is disposed", null);
 		}
 		return null;
 	}

@@ -87,7 +87,7 @@ public class MultiplicityModelHandler implements IEMFModelHandler {
 		if(descriptor instanceof IBoundedValuesPropertyEditorDescriptor) {
 			((IBoundedValuesPropertyEditorDescriptor)descriptor).setAvailableValues(getAvailableValues());
 		} else {
-			Activator.log.info("Warning: " + descriptor + "could not be completed.");
+			Activator.log.warn(descriptor + "could not be completed.");
 		}
 	}
 

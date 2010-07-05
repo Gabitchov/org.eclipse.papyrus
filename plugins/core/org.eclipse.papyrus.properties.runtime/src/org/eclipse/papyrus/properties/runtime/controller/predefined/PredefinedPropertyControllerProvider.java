@@ -148,11 +148,10 @@ public class PredefinedPropertyControllerProvider extends AbstractProvider {
 	public File getXmlFile(IConfigurationElement element, String path) throws IOException {
 		// try to read it in a plugin...
 		Bundle bundle = Platform.getBundle(element.getContributor().getName());
-		Activator.log.info((bundle != null) ? bundle.toString() : "not a bundle");
+		Activator.log.debug((bundle != null) ? bundle.toString() : "not a bundle");
 
 		if(bundle != null) {
 			URL urlFile = bundle.getEntry(path);
-			Activator.log.info(urlFile.toString());
 			urlFile = FileLocator.resolve(urlFile);
 			urlFile = FileLocator.toFileURL(urlFile);
 			if("file".equals(urlFile.getProtocol())) { //$NON-NLS-1$

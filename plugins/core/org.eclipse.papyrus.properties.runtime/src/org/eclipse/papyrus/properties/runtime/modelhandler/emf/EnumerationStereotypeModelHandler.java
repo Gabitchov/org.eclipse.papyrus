@@ -124,7 +124,7 @@ public class EnumerationStereotypeModelHandler extends EMFStereotypeFeatureModel
 		if(descriptor instanceof IBoundedValuesPropertyEditorDescriptor) {
 			((IBoundedValuesPropertyEditorDescriptor)descriptor).setAvailableValues(values);
 		} else {
-			Activator.log.info("Warning: " + descriptor + "could not be completed.");
+			Activator.log.warn("Warning: " + descriptor + "could not be completed.");
 		}
 	}
 

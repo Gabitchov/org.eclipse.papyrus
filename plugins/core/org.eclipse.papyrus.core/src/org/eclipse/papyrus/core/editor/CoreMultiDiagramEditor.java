@@ -332,11 +332,11 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 		// Get it from the contributor.
 		IEditorActionBarContributor contributor = getEditorSite().getActionBarContributor();
 		if(contributor instanceof CoreComposedActionBarContributor) {
-			log.info(getClass().getSimpleName() + " - ActionBarContributorRegistry loaded from CoreComposedActionBarContributor.");
+			log.debug(getClass().getSimpleName() + " - ActionBarContributorRegistry loaded from CoreComposedActionBarContributor.");
 			return ((CoreComposedActionBarContributor)contributor).getActionBarContributorRegistry();
 		} else {
 			// Create a registry.
-			log.info(getClass().getSimpleName() + " - create an ActionBarContributorRegistry.");
+			log.debug(getClass().getSimpleName() + " - create an ActionBarContributorRegistry.");
 			return createActionBarContributorRegistry();
 		}
 

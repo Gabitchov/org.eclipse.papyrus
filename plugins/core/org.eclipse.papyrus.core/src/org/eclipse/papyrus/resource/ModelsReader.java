@@ -102,7 +102,7 @@ public class ModelsReader extends ExtensionUtils {
 					modelSet.registerModel(model);
 					addDeclaredModelSnippet(ele, model);
 
-					log.info("model loaded: '" + model.getClass().getName() + "'");
+					log.debug("model loaded: '" + model.getClass().getName() + "'");
 				}
 			} catch (ExtensionException e) {
 				log.error("Problems occur while instanciating model", e);
@@ -122,7 +122,7 @@ public class ModelsReader extends ExtensionUtils {
 				if(MODEL_SET_SNIPPET_ELEMENT_NAME.equals(ele.getName())) {
 					IModelSetSnippet snippet = instanciateModelSetSnippet(ele);
 					modelSet.addModelSetSnippet(snippet);
-					log.info("modelSet snippet added: '" + modelSet.getClass().getName() + "().add(" + snippet.getClass().getName() + ")'");
+					log.debug("modelSet snippet added: '" + modelSet.getClass().getName() + "().add(" + snippet.getClass().getName() + ")'");
 				}
 			} catch (ExtensionException e) {
 				log.error("Problems occur while instanciating snippet", e);
@@ -218,7 +218,7 @@ public class ModelsReader extends ExtensionUtils {
 			try {
 					IModelSnippet snippet = instanciateModelSnippet(ele);
 					model.addModelSnippet(snippet);
-					log.info("model snippet added: '" + model.getClass().getName() + "().add(" + snippet.getClass().getName() + ")'");
+					log.debug("model snippet added: '" + model.getClass().getName() + "().add(" + snippet.getClass().getName() + ")'");
 			} catch (ExtensionException e) {
 				log.error("Problems occur while instanciating model snippet", e);
 			}

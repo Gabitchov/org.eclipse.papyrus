@@ -116,7 +116,7 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 				if(getController() instanceof IWizardPropertyEditorController) {
 					List<IUndoableOperation> availableCommands = ((IWizardPropertyEditorController)getController()).getAvailableCreationOperations();
 					if(availableCommands.isEmpty()) {
-						Activator.log.info("no command was available to create elements for this view");
+						Activator.log.warn("no command was available to create elements for this view");
 						return;
 					} else if(availableCommands.size() == 1) {
 						// only one command is available, create the element
@@ -328,7 +328,7 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 		if(isValid(referenceArea)) {
 			return currentValue;
 		} else {
-			Activator.log.info("trying to read the value of the reference area whereas the combo is disposed");
+			Activator.log.error("trying to read the value of the reference area whereas the combo is disposed", null);
 		}
 		return Collections.emptyList();
 	}

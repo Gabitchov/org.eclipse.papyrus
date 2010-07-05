@@ -136,7 +136,7 @@ public class TextPropertyEditor extends AbstractPropertyEditor {
 		if(isValid(text)) {
 			return text.getText();
 		} else {
-			Activator.log.info("trying to read the value of the text area whereas the control is disposed");
+			Activator.log.error("trying to read the value of the text area whereas the control is disposed", null);
 		}
 		return null;
 	}
