@@ -219,4 +219,20 @@
 			<fragment predefinedId="fragment_single_ReplacedSectionState"/>
 		</content>
 	</dialog>
+	<dialog id="TabDescriptorStateDialog"><!-- Dialog for tab descriptor state -->
+		<context enablesFor="1">
+			<elementClass
+				name="org.eclipse.papyrus.properties.tabbed.customization.state.TabDescriptorState">
+			</elementClass>
+		</context>
+		<title>
+			<string value="Edit tab"/>
+		</title>
+		<message>
+			<string value="Edit tab Message"/>
+		</message>
+		<content>
+			<fragment predefinedId="fragment_TabDescriptorState"/>
+		</content>
+	</dialog>
 </dialogs>

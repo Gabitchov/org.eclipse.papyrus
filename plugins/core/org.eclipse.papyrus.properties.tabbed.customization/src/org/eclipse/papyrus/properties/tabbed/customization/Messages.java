@@ -119,6 +119,14 @@ public class Messages extends NLS {
 
 	public static String SelectConfigurationFileWizardPage_Title;
 
+	public static String CustomizeContentWizardPage_PreviewArea_AddTabButtonTooltip;
+
+	public static String CustomizeContentWizardPage_PreviewArea_DeleteTabButtonTooltip;
+
+	public static String CustomizeContentWizardPage_PreviewArea_MoveUpTabButtonTooltip;
+
+	public static String CustomizeContentWizardPage_PreviewArea_MoveDownTabButtonTooltip;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

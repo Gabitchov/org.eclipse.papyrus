@@ -12,8 +12,10 @@
 package org.eclipse.papyrus.properties.tabbed.customization.state;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeSet;
 
 import org.eclipse.papyrus.properties.runtime.view.DialogDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.FragmentDescriptor;
@@ -32,6 +34,23 @@ public class StatePropertyTabViewProviderParser extends PropertyTabViewProviderP
 
 	/** states of section set descriptors in the xml file */
 	protected List<SectionSetDescriptorState> sectionSetDescriptorStates = new ArrayList<SectionSetDescriptorState>();
+
+	/** states of tab descriptors in the xml file */
+	protected TreeSet<TabDescriptorState> tabDescriptorStates = new TreeSet<TabDescriptorState>(new Comparator<TabDescriptorState>() {
+
+		/**
+		 * {@inheritDoc}
+		 */
+		public int compare(TabDescriptorState o1, TabDescriptorState o2) {
+			if(o1.getAfterTab().compareTo((o2.getId())) == 0) {
+				return -1;
+			} else if(o1.getId().compareTo((o2.getId())) == 0) {
+				return 0;
+			} else {
+				return 1;
+			}
+		}
+	});
 
 	/**
 	 * Creates a new StatePropertyTabViewProviderParser.
@@ -55,6 +74,12 @@ public class StatePropertyTabViewProviderParser extends PropertyTabViewProviderP
 			SectionSetDescriptorState descriptorState = new SectionSetDescriptorState(sectionSetDescriptor, false);
 			sectionSetDescriptorStates.add(descriptorState);
 		}
+
+		for(ITabDescriptor tabDescriptor : getProvidedTabDescriptors()) {
+			TabDescriptorState descriptorState = new TabDescriptorState(tabDescriptor, false);
+			tabDescriptorStates.add(descriptorState);
+		}
+
 	}
 
 	/**
@@ -64,5 +89,14 @@ public class StatePropertyTabViewProviderParser extends PropertyTabViewProviderP
 	 */
 	public List<SectionSetDescriptorState> getSectionSetDescriptorStates() {
 		return sectionSetDescriptorStates;
+	}
+
+	/**
+	 * Returns the sectionSetDescriptorStates
+	 * 
+	 * @return the sectionSetDescriptorStates
+	 */
+	public List<TabDescriptorState> getTabDescriptorStates() {
+		return new ArrayList<TabDescriptorState>(tabDescriptorStates);
 	}
 }
