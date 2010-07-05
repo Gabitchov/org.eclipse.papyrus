@@ -22,6 +22,7 @@ import org.eclipse.jface.resource.JFaceColors;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.common.editparts.IUMLEditPart;
 import org.eclipse.papyrus.profile.Activator;
 import org.eclipse.papyrus.profile.ImageManager;
@@ -313,7 +314,7 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 	}
 
 	public TransactionalEditingDomain getDomain() {
-		return domain;
+		return EditorUtils.getTransactionalEditingDomain();
 	}
 
 	/**

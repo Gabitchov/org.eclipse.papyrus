@@ -36,6 +36,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.diagram.common.editparts.IUMLEditPart;
 import org.eclipse.papyrus.profile.Activator;
 import org.eclipse.papyrus.profile.ImageManager;
@@ -415,7 +416,7 @@ public class AppliedProfileCompositeOnModel extends Composite {
 	}
 
 	public TransactionalEditingDomain getDomain() {
-		return domain;
+		return EditorUtils.getTransactionalEditingDomain();
 	}
 
 	/**

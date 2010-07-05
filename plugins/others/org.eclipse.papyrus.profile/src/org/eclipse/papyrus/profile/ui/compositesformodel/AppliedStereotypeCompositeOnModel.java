@@ -26,6 +26,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.profile.Activator;
 import org.eclipse.papyrus.profile.preference.ProfilePreferenceConstants;
 import org.eclipse.papyrus.profile.tree.ProfileElementContentProvider;
@@ -59,7 +60,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 * @return the domain
 	 */
 	public TransactionalEditingDomain getDomain() {
-		return domain;
+		return EditorUtils.getTransactionalEditingDomain();
 	}
 
 	/**
