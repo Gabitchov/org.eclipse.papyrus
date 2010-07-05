@@ -13,8 +13,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.commands.operations.AbstractOperation;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -44,14 +52,20 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateBindingEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ContainmentCircleItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.ui.toolbox.notification.NotificationRunnable;
+import org.eclipse.papyrus.ui.toolbox.notification.Type;
+import org.eclipse.papyrus.ui.toolbox.notification.builders.IContext;
+import org.eclipse.papyrus.ui.toolbox.notification.builders.NotificationBuilder;
+import org.eclipse.uml2.uml.NamedElement;
 
 
 public class CustomContainmentCircleItemSemanticEditPolicy extends ContainmentCircleItemSemanticEditPolicy {
 
 	/**
 	 * Gets the destroy element command gen.
-	 *
-	 * @param req the req
+	 * 
+	 * @param req
+	 *        the req
 	 * @return the destroy element command gen
 	 */
 	protected Command getDestroyElementCommandGen(DestroyElementRequest req) {
@@ -111,12 +125,13 @@ public class CustomContainmentCircleItemSemanticEditPolicy extends ContainmentCi
 				continue;
 			}
 			/**
-			if(UMLVisualIDRegistry.getVisualID(incomingLink) == AddedLinkEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				continue;
-			}**/
+			 * if(UMLVisualIDRegistry.getVisualID(incomingLink) == AddedLinkEditPart.VISUAL_ID) {
+			 * DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
+			 * cmd.add(new DestroyElementCommand(r));
+			 * cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+			 * continue;
+			 * }
+			 **/
 			if(UMLVisualIDRegistry.getVisualID(incomingLink) == ConnectorTimeObservationEditPart.VISUAL_ID) {
 				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
 				cmd.add(new DestroyReferenceCommand(r));
@@ -163,12 +178,13 @@ public class CustomContainmentCircleItemSemanticEditPolicy extends ContainmentCi
 				continue;
 			}
 			/**
-			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == AddedLinkEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-				continue;
-			}**/
+			 * if(UMLVisualIDRegistry.getVisualID(outgoingLink) == AddedLinkEditPart.VISUAL_ID) {
+			 * DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
+			 * cmd.add(new DestroyElementCommand(r));
+			 * cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+			 * continue;
+			 * }
+			 **/
 		}
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
@@ -176,8 +192,8 @@ public class CustomContainmentCircleItemSemanticEditPolicy extends ContainmentCi
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
 			/**
-			cmd.add(new DestroyElementCommand(req));
-			**/
+			 * cmd.add(new DestroyElementCommand(req));
+			 **/
 			cmd.add(new DeleteCommand(getEditingDomain(), view));
 		} else {
 			cmd.add(new DeleteCommand(getEditingDomain(), view));
@@ -190,11 +206,22 @@ public class CustomContainmentCircleItemSemanticEditPolicy extends ContainmentCi
 	 * {@inheritDoc}
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		ICommandProxy command = (ICommandProxy)getDestroyElementCommandGen(req);
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
-		cmd.add(command.getICommand());
 		
 		View circle = (View)getHost().getModel();
+		
+		List<String> targetNames = new ArrayList<String>();
+		for(Object next : circle.getSourceEdges()) {
+			Edge outgoingLink = (Edge)next;
+			if(ContainmentHelper.isContainmentLink(outgoingLink)) {
+				targetNames.add(((NamedElement)outgoingLink.getTarget().getElement()).getName());
+			}
+		}
+		cmd.add(new AskAndThenDelete(targetNames));
+		
+		ICommandProxy command = (ICommandProxy)getDestroyElementCommandGen(req);
+		cmd.add(command.getICommand());
+
 		for(Object next : circle.getSourceEdges()) {
 			Edge outgoingLink = (Edge)next;
 			if(ContainmentHelper.isContainmentLink(outgoingLink)) {
@@ -209,7 +236,67 @@ public class CustomContainmentCircleItemSemanticEditPolicy extends ContainmentCi
 
 		return getGEFWrapper(cmd.reduce());
 	}
-	
+
+	private class AskAndThenDelete extends AbstractOperation {
+		
+		private List<String> myTargetNames;
+
+		public AskAndThenDelete(List<String> targetNames) {
+			super("Show Question Dialog");
+			myTargetNames = targetNames;
+		}
+
+		private class NotificationRunnableWithSelectionResult implements NotificationRunnable {
+
+			private final String myLabel;
+
+			private NotificationRunnableWithSelectionResult(String label) {
+				myLabel = label;
+			}
+
+			boolean wasSelected;
+
+			@Override
+			public void run(IContext context) {
+				wasSelected = true;
+			}
+
+			@Override
+			public String getLabel() {
+				return myLabel;
+			}
+
+			public boolean wasSelected() {
+				return wasSelected;
+			}
+		}
+
+		@Override
+		public IStatus execute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+			String messageFormat = "You are about to delete Containment Link, %s and its contained elements will be deleted as well. Do you really want to delete it?";
+			String message = String.format(messageFormat, myTargetNames.toString());
+			NotificationRunnableWithSelectionResult yes = new NotificationRunnableWithSelectionResult("Yes");
+			NotificationRunnableWithSelectionResult no = new NotificationRunnableWithSelectionResult("No");
+			NotificationBuilder builder = new NotificationBuilder().setType(Type.QUESTION).setAsynchronous(true).setTemporary(false).setMessage(message).addAction(yes).addAction(no);
+			builder.run();
+			if(yes.wasSelected()) {
+				return Status.OK_STATUS;
+			}
+			return Status.CANCEL_STATUS;
+		}
+
+		@Override
+		public IStatus redo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+			return Status.OK_STATUS;
+		}
+
+		@Override
+		public IStatus undo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+			return Status.OK_STATUS;
+		}
+
+	}
+
 	/**
 	 * 
 	 * {@inheritDoc}
