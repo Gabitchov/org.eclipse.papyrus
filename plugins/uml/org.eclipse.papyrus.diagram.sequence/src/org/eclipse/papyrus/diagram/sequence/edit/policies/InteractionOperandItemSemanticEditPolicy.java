@@ -13,9 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -34,6 +38,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.CombinedFragmentCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.CommentAnnotatedElementReorientCommand;
@@ -71,6 +76,11 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
+import org.eclipse.uml2.uml.InteractionFragment;
+import org.eclipse.uml2.uml.InteractionOperand;
+import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 
 /**
  * @generated
@@ -153,6 +163,37 @@ public class InteractionOperandItemSemanticEditPolicy extends UMLBaseItemSemanti
 				cmd.add(new DestroyElementCommand(r));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
 				continue;
+			}
+		}
+		
+		// Get InteractionOperand associated Message
+		EObject eObject = view.getElement();
+		Set<Message> messages = new HashSet<Message>();
+		if(eObject instanceof InteractionOperand){
+			InteractionOperand interactionOperand = (InteractionOperand)eObject;
+			for(InteractionFragment itf : interactionOperand.getFragments()){
+				if(itf instanceof MessageOccurrenceSpecification){
+					MessageOccurrenceSpecification mos = (MessageOccurrenceSpecification)itf;
+					if(mos.getMessage() != null)
+					messages.add(mos.getMessage());
+				}
+			}
+		}
+		
+		// Delete InteractionOperand AssociatedMessage
+		for(Message message : messages){
+			
+			// Destroy the element
+			DestroyElementRequest r = new DestroyElementRequest(message, false);
+			cmd.add(new DestroyElementCommand(r));
+			SequenceUtil.completeDestroyMessageCommand(message, cmd);
+			
+			// Destroy its views
+			List views = DiagramEditPartsUtil.getEObjectViews(message);
+			for(Object object : views){
+				if(object instanceof View){
+					cmd.add(new DeleteCommand(getEditingDomain(), (View)object));
+				}
 			}
 		}
 

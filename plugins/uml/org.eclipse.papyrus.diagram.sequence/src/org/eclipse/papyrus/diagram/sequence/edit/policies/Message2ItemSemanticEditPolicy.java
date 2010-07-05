@@ -93,7 +93,7 @@ public class Message2ItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
 		cmd.add(new DestroyElementCommand(req));
-		SequenceUtil.completeDestroyMessageCommand(cmd, req, getEditingDomain(), getHost());
+		SequenceUtil.completeDestroyMessageCommand(cmd, getHost());
 		return getGEFWrapper(cmd.reduce());
 	}
 
