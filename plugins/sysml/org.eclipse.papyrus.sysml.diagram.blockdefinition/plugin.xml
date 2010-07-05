@@ -6,14 +6,14 @@
 <extension point="org.eclipse.papyrus.core.papyrusDiagram"> 
 	<creationCommand
 		creationCommandClass="org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinitionDiagramCreateCommand"
-		icon="icons/diagram/Diagram_BlockDefinitionDiagram.gif" 
+		icon="icons/obj16/Diagram_BlockDefinition.gif" 
 		id="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand"
         language="sysml"
 		label="SysML Block Definition Diagram" />
 	<editorDiagram
 		actionBarContributorId="org.eclipse.papyrus.diagram.common.part.UMLDiagramActionBarContributor"
 		factoryClass="org.eclipse.papyrus.sysml.diagram.blockdefinition.BlockDefinitionDiagramEditorFactory"
-		icon="icons/diagram/Diagram_BlockDefinitionDiagram.gif" />
+		icon="icons/obj16/Diagram_BlockDefinition.gif" />
 </extension>
 
 <!-- Diagram creation command and handler -->
@@ -42,7 +42,7 @@
 	<menuContribution locationURI="menu:org.eclipse.papyrus.ui.menu">
 	<menu id="org.eclipse.papyrus.diagram.ui.menu.diagrams" label="Diagrams">
 		<command commandId="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand"
-			icon="icons/diagram/Diagram_BlockDefinitionDiagram.gif" label="Create a new Block Definition Diagram"
+			icon="icons/obj16/Diagram_BlockDefinition.gif" label="Create a new Block Definition Diagram"
 			style="push" tooltip="Create a new Block Definition Diagram">
 			<visibleWhen>
 				<with variable="activeEditorId">
@@ -56,7 +56,7 @@
 	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar">
 	<toolbar id="org.eclipse.papyrus.diagram.ui.toolbar">
 		<command commandId="org.eclipse.papyrus.sysml.diagram.blockdefinition.CreateCommand"
-			icon="icons/diagram/Diagram_BlockDefinitionDiagram.gif" label="Create a new Block Definition Diagram"
+			icon="icons/obj16/Diagram_BlockDefinition.gif" label="Create a new Block Definition Diagram"
 			style="push" tooltip="Create a new Block Definition Diagram">
 				<visibleWhen>
 					<with variable="activeEditorId">
