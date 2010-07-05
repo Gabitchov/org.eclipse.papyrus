@@ -315,14 +315,31 @@ public class ContainmentHelper extends ElementHelper {
 		return id instanceof Integer ? ((Integer)id).intValue() : -1;
 	}
 
+	/**
+	 * Checks if is containment link.
+	 *
+	 * @param edge the edge
+	 * @return true, if is containment link
+	 */
 	public static boolean isContainmentLink(Edge edge) {
 		return UMLVisualIDRegistry.getVisualID(edge) == AddedLinkEditPart.VISUAL_ID;
+	}
+
+	public static boolean isContainmentCircle(View view) {
+		return UMLVisualIDRegistry.getVisualID(view) == ContainmentCircleEditPart.VISUAL_ID;
 	}
 
 	private static boolean circleHasOtherLinks(View containmentCircle) {
 		return containmentCircle.getSourceEdges().size() == 1;
 	}
 
+	/**
+	 * Delete incoming containment link command.
+	 *
+	 * @param editingDomain the editing domain
+	 * @param incomingLink the incoming link
+	 * @return the i undoable operation
+	 */
 	public static IUndoableOperation deleteIncomingContainmentLinkCommand(TransactionalEditingDomain editingDomain, Edge incomingLink) {
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(editingDomain, "Delete Incoming Containment Link");
 		cmd.add(new DeleteCommand(editingDomain, incomingLink));
@@ -333,6 +350,13 @@ public class ContainmentHelper extends ElementHelper {
 		return cmd;
 	}
 
+	/**
+	 * Delete outgoing containment link command.
+	 *
+	 * @param editingDomain the editing domain
+	 * @param outgoingLink the outgoing link
+	 * @return the i undoable operation
+	 */
 	public static IUndoableOperation deleteOutgoingContainmentLinkCommand(TransactionalEditingDomain editingDomain, Edge outgoingLink) {
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(editingDomain, "Delete Outgoing Containment Link");
 		cmd.add(new DeleteCommand(editingDomain, outgoingLink));

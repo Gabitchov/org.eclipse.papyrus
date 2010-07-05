@@ -71,16 +71,21 @@ public class CustomPackageItemSemanticEditPolicy extends PackageItemSemanticEdit
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
+		for(Object child: view.getVisibleChildren()) {
+			View childView = (View)child;
+			if (ContainmentHelper.isContainmentCircle(childView)) {
+				for (Object next: childView.getSourceEdges()) {
+					Edge outgoingLink = (Edge)next;
+					if(ContainmentHelper.isContainmentLink(outgoingLink)) {
+						cmd.add(ContainmentHelper.deleteOutgoingContainmentLinkCommand(getEditingDomain(), outgoingLink));
+					}
+				}
+			}
+		}
 		for(Object next: view.getTargetEdges()) {
 			Edge incomingLink = (Edge)next;
 			if(ContainmentHelper.isContainmentLink(incomingLink)) {
 				cmd.add(ContainmentHelper.deleteIncomingContainmentLinkCommand(getEditingDomain(), incomingLink));
-			}
-		}
-		for(Object next: view.getSourceEdges()) {
-			Edge outgoingLink = (Edge)next;
-			if(ContainmentHelper.isContainmentLink(outgoingLink)) {
-				cmd.add(ContainmentHelper.deleteOutgoingContainmentLinkCommand(getEditingDomain(), outgoingLink));
 			}
 		}
 
