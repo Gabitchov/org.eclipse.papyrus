@@ -28,6 +28,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.services.ServiceException;
+import org.eclipse.papyrus.core.services.ServiceNotFoundException;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.resource.sasheditor.DiModelUtils;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
@@ -306,7 +307,24 @@ public class EditorUtils {
 	}
 
 	/**
-	 * Gets the transactional editing domain.
+	 * Gets the {@link TransactionalEditingDomain} of the current active Eclipse Editor. 
+	 * This method should be used only when it is sure that the active editor exist, and that you want the 
+	 * EditingDomain of this editor.
+	 * <br>
+	 * This method return null if the TransactionalEditingDomain can not be found.
+	 * <br>
+	 * This method is designed to be used by ui actions that interact with the active editor.
+	 * <br>
+	 * This method should not be used during the editor initialization phase.
+	 * <br>
+	 * In any case, a check should be done on the returned value that can be null. An alternative is to use
+	 * {@link #getTransactionalEditingDomainChecked()} and to catch the exception.
+	 * <br> 
+	 * It is preferable to use {@link #getTransactionalEditingDomain(ServicesRegistry)} whenever it is possible.
+	 * 
+	 * <br>
+	 * WARNING: This method can return null if there is no Active Editor. This happen during the editor initialization, 
+	 * especially when there is no other editor opened. 
 	 * 
 	 * @return Get the current {@link TransactionalEditingDomain} or null if not found
 	 */
@@ -323,7 +341,40 @@ public class EditorUtils {
 	}
 
 	/**
-	 * Gets the transactional editing domain.
+	 * Gets the {@link TransactionalEditingDomain} of the current active Eclipse Editor. 
+	 * This method should be used only when it is sure that the active editor exist, and that you want the 
+	 * EditingDomain of this editor.
+	 * <br>
+	 * This method is designed to be used by ui actions that interact with the active editor.
+	 * <br>
+	 * This method should not be used during the editor initialization phase.
+	 * <br> 
+	 * It is preferable to use {@link #getTransactionalEditingDomain(ServicesRegistry)} whenever it is possible.
+	 * <br>
+	 * This method throw a {@link ServiceException} if the TransactionalEditingDomain can not be found.
+	 * 
+	 * 
+	 * WARNING: This method can return null if there is no Active Editor. This happen during the editor initialization, 
+	 * especially when there is no other editor opened. 
+	 * 
+	 * @return Get the current {@link TransactionalEditingDomain} or null if not found
+	 * @throws ServiceException
+	 * @throws ServiceNotFoundException
+	 */
+	public static TransactionalEditingDomain getTransactionalEditingDomainChecked() throws ServiceException {
+		try {
+			ServicesRegistry registry = getServiceRegistryChecked();
+			return registry.getService(TransactionalEditingDomain.class);
+		} catch (IllegalStateException e) {
+			throw new ServiceException(e);
+		} catch (Exception e) {
+			throw new ServiceException(e);
+		}
+	}
+
+	/**
+	/**
+	 * Gets the {@link TransactionalEditingDomain} registered in the {@link ServicesRegistry}. 
 	 * 
 	 * @param servicesRegistry
 	 * @return
@@ -337,6 +388,18 @@ public class EditorUtils {
 			log.error(e);
 		}
 		return null;
+	}
+
+	/**
+	/**
+	 * Gets the {@link TransactionalEditingDomain} registered in the {@link ServicesRegistry}. 
+	 * 
+	 * @param servicesRegistry
+	 * @return
+	 * @throws ServiceException If the TransactionalEditingDomain can not be found.
+	 */
+	public static TransactionalEditingDomain getTransactionalEditingDomainChecked(ServicesRegistry registry) throws ServiceException {
+			return registry.getService(TransactionalEditingDomain.class);
 	}
 
 }
