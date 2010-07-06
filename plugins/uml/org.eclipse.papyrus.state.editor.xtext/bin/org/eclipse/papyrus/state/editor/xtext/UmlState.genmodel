@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.papyrus.state.editor.xtext/src-gen"
+    editDirectory="/org.eclipse.papyrus.state.editor.xtext.edit/src" editorDirectory="/org.eclipse.papyrus.state.editor.xtext.editor/src"
+    modelPluginID="org.eclipse.papyrus.state.editor.xtext" forceOverwrite="true" modelName="UmlState"
+    updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.papyrus.state.editor.xtext.edit"
+    editorPluginID="org.eclipse.papyrus.state.editor.xtext.editor" usedGenPackages="../../../../../../../model/UML.genmodel#//uml">
+  <genPackages prefix="UmlState" basePackage="org.eclipse.papyrus.state.editor.xtext"
+      disposableProviderFactory="true" ecorePackage="UmlState.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="UmlState.ecore#//BehaviorKind">
+      <genEnumLiterals ecoreEnumLiteral="UmlState.ecore#//BehaviorKind/ACTIVITY"/>
+      <genEnumLiterals ecoreEnumLiteral="UmlState.ecore#//BehaviorKind/STATE_MACHINE"/>
+      <genEnumLiterals ecoreEnumLiteral="UmlState.ecore#//BehaviorKind/OPAQUE_BEHAVIOR"/>
+    </genEnums>
+    <genClasses ecoreClass="UmlState.ecore#//StateRule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UmlState.ecore#//StateRule/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlState.ecore#//StateRule/entry"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlState.ecore#//StateRule/do"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference UmlState.ecore#//StateRule/exit"/>
+    </genClasses>
+    <genClasses ecoreClass="UmlState.ecore#//EntryRule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UmlState.ecore#//EntryRule/kind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UmlState.ecore#//EntryRule/behaviorName"/>
+    </genClasses>
+    <genClasses ecoreClass="UmlState.ecore#//DoRule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UmlState.ecore#//DoRule/kind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UmlState.ecore#//DoRule/behaviorName"/>
+    </genClasses>
+    <genClasses ecoreClass="UmlState.ecore#//ExitRule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UmlState.ecore#//ExitRule/kind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute UmlState.ecore#//ExitRule/behaviorName"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,33 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.eclipse.papyrus.state.editor.xtext
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0
+Bundle-SymbolicName: org.eclipse.papyrus.state.editor.xtext; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.generator;resolution:=optional,
+ org.apache.commons.logging;resolution:=optional,
+ org.eclipse.emf.codegen.ecore;resolution:=optional,
+ org.eclipse.emf.mwe.utils;resolution:=optional,
+ org.eclipse.emf.mwe2.launch;resolution:=optional,
+ com.ibm.icu;resolution:=optional,
+ org.eclipse.xtext.xtend;resolution:=optional,
+ org.eclipse.xtext.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.antlr.runtime,
+ org.eclipse.uml2.uml;bundle-version="3.1.0",
+ org.eclipse.uml2.codegen.ecore;bundle-version="1.6.0"
+Import-Package: org.apache.log4j
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.papyrus.state.editor.xtext,
+ org.eclipse.papyrus.state.editor.xtext.parseTreeConstruction,
+ org.eclipse.papyrus.state.editor.xtext.parser.antlr,
+ org.eclipse.papyrus.state.editor.xtext.parser.antlr.internal,
+ org.eclipse.papyrus.state.editor.xtext.scoping,
+ org.eclipse.papyrus.state.editor.xtext.services,
+ org.eclipse.papyrus.state.editor.xtext.umlState,
+ org.eclipse.papyrus.state.editor.xtext.umlState.impl,
+ org.eclipse.papyrus.state.editor.xtext.umlState.util,
+ org.eclipse.papyrus.state.editor.xtext.validation
