@@ -55,6 +55,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.DestructionEventEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.StateInvariantEditPart;
 import org.eclipse.uml2.common.util.CacheAdapter;
+import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.DestructionEvent;
 import org.eclipse.uml2.uml.DurationConstraint;
 import org.eclipse.uml2.uml.Element;
@@ -713,10 +714,26 @@ public class SequenceUtil {
 		return null;
 	}
 	
+	public static List<Element> getCombinedFragmentAssociatedElement(CombinedFragment cf){
+		List<Element> elements = new LinkedList<Element>();
+		
+		for(InteractionOperand operand : cf.getOperands()){
+			// Add all elements related to this operand
+			elements.addAll(getInteractionOperandAssociatedElement(operand));
+			// Add this operand
+			elements.add(operand);
+		}
+		return elements;
+		
+	}
 	
 	public static List<Element> getInteractionOperandAssociatedElement(InteractionOperand interactionOperand){
 		List<Element> elements = new LinkedList<Element>();
 		for(InteractionFragment itf : interactionOperand.getFragments()){
+			if(itf instanceof CombinedFragment){
+				// add the combinedFragment
+				elements.addAll(getCombinedFragmentAssociatedElement((CombinedFragment)itf));
+			}
 			elements.add(itf);
 			if(itf instanceof MessageOccurrenceSpecification){
 				MessageOccurrenceSpecification mos = (MessageOccurrenceSpecification)itf;

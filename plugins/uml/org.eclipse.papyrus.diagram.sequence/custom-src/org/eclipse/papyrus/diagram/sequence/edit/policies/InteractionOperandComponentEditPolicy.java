@@ -13,16 +13,23 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
-import org.eclipse.gef.EditPart;
+import java.util.List;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.GroupRequest;
-import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
-import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ComponentEditPolicy;
-import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceDeleteHelper;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.InteractionOperand;
 
 public class InteractionOperandComponentEditPolicy extends ComponentEditPolicy {
 
@@ -31,18 +38,49 @@ public class InteractionOperandComponentEditPolicy extends ComponentEditPolicy {
 	 */
 	@Override
 	protected Command createDeleteViewCommand(GroupRequest deleteRequest) {
-		CompositeCommand cmd = new CompositeCommand("Delete interaction operand view");
-		cmd.add(new CommandProxy(super.createDeleteViewCommand(deleteRequest)));
+		
+		if(getEditingDomain() != null) {
+			CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
+			cmd.setTransactionNestingEnabled(false);
+			cmd.add(new CommandProxy(super.createDeleteViewCommand(deleteRequest)));
 
-		// Delete parent CombinedFragment if no InteractionOperand left after this delete
-		EditPart compartmentEditPart = getHost().getParent();
-		if(compartmentEditPart.getChildren().size() == 1) {
-			GraphicalEditPart combinedFragmentEditPart = (GraphicalEditPart)compartmentEditPart.getParent();
-			View model = (View)combinedFragmentEditPart.getModel();
-			cmd.add(new DeleteCommand(combinedFragmentEditPart.getEditingDomain(), model));
+			if(getEObject() instanceof InteractionOperand) {
+				// Get the elements associated with the CF
+				List<Element> elements = SequenceUtil.getInteractionOperandAssociatedElement((InteractionOperand)getEObject());
+				// Create the delete view commands
+				SequenceDeleteHelper.deleteView(cmd, elements, getEditingDomain());
+			}
+			return new ICommandProxy(cmd.reduce());
 		}
-
-		return new ICommandProxy(cmd);
+		
+	 	return null;
 	}
-
+	
+	/**
+	 * Copy from superclass as visibility is private
+	 * @return the editing domain
+	 */
+    private TransactionalEditingDomain getEditingDomain() {
+        if (getHost() instanceof IGraphicalEditPart) {
+           return ((IGraphicalEditPart) getHost()).getEditingDomain();
+       } else if (getHost() instanceof IEditingDomainProvider) {
+           Object domain = ((IEditingDomainProvider) getHost())
+               .getEditingDomain();
+           if (domain instanceof TransactionalEditingDomain) {
+               return (TransactionalEditingDomain) domain;
+           }
+       }
+       return null;
+   }
+	
+    /**
+     * Get the EObject of the host
+     * @return the EObject or null
+     */
+	private EObject getEObject(){
+		if(getHost() instanceof GraphicalEditPart){
+			return ((GraphicalEditPart)getHost()).resolveSemanticElement();
+		}
+		return null;
+	}
 }

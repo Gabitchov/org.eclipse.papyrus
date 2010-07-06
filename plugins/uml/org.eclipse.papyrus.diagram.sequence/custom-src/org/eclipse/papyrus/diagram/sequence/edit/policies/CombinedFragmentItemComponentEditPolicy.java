@@ -13,103 +13,78 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gef.GraphicalEditPart;
+import java.util.List;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.GroupRequest;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
-import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ComponentEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
-import org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants;
-import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.jface.dialogs.MessageDialogWithToggle;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.ActionExecutionSpecificationEditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.BehaviorExecutionSpecificationEditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.LifelineEditPart;
-import org.eclipse.swt.widgets.Display;
+import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceDeleteHelper;
+import org.eclipse.papyrus.diagram.sequence.util.SequenceUtil;
+import org.eclipse.uml2.uml.CombinedFragment;
+import org.eclipse.uml2.uml.Element;
 
 public class CombinedFragmentItemComponentEditPolicy extends ComponentEditPolicy {
 
-	/**
-	 * Delete messages of a combined fragment message
-	 */
-	private static final String DELETE_FROM_DIAGRAM_DLG_MESSAGE = "Are you sure you want to delete all messages on the combined fragment ?";
+
 
 	/**
 	 * Delete Combined fragment and child from the view. Also delete message if user wants. {@inheritDoc}
 	 */
 	@Override
 	protected Command createDeleteViewCommand(GroupRequest deleteRequest) {
-		CompositeCommand cmd = new DeleteCommandWithPopup("Delete combined fragment view");
-		cmd.add(new CommandProxy(super.createDeleteViewCommand(deleteRequest)));
+		
+		if(getEditingDomain() != null) {
+			CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
+			cmd.setTransactionNestingEnabled(false);
+			cmd.add(new CommandProxy(super.createDeleteViewCommand(deleteRequest)));
 
-		Rectangle combinedFragmentBounds = ((GraphicalEditPart)getHost()).getFigure().getBounds();
-		for(Object child : getHost().getParent().getChildren()) {
-			if(child instanceof LifelineEditPart) {
-				for(Object littlechild : ((LifelineEditPart)child).getChildren()) {
-					if(littlechild instanceof ActionExecutionSpecificationEditPart || littlechild instanceof BehaviorExecutionSpecificationEditPart) {
-						ShapeNodeEditPart editPart = (ShapeNodeEditPart)littlechild;
-						Rectangle executionSpecificationBounds = editPart.getFigure().getBounds();
-						if(combinedFragmentBounds.intersects(executionSpecificationBounds)) {
-							cmd.add(new DeleteCommand(editPart.getEditingDomain(), (View)editPart.getModel()));
-						}
-					}
-				}
+			if(getEObject() instanceof CombinedFragment) {
+				// Get the elements associated with the CF
+				List<Element> elements = SequenceUtil.getCombinedFragmentAssociatedElement((CombinedFragment)getEObject());
+				// Create the delete view commands
+				SequenceDeleteHelper.deleteView(cmd, elements, getEditingDomain());
 			}
+			return new ICommandProxy(cmd.reduce());
 		}
-
-		return new ICommandProxy(cmd);
+		
+	 	return null;
 	}
-
+	
 	/**
-	 * A delete command with a popup
+	 * Copy from superclass as visibility is private
+	 * @return the editing domain
 	 */
-	private final class DeleteCommandWithPopup extends CompositeCommand {
-
-		public DeleteCommandWithPopup(String label) {
-			super(label);
+    private TransactionalEditingDomain getEditingDomain() {
+        if (getHost() instanceof IGraphicalEditPart) {
+           return ((IGraphicalEditPart) getHost()).getEditingDomain();
+       } else if (getHost() instanceof IEditingDomainProvider) {
+           Object domain = ((IEditingDomainProvider) getHost())
+               .getEditingDomain();
+           if (domain instanceof TransactionalEditingDomain) {
+               return (TransactionalEditingDomain) domain;
+           }
+       }
+       return null;
+   }
+	
+    /**
+     * Get the EObject of the host
+     * @return the EObject or null
+     */
+	private EObject getEObject(){
+		if(getHost() instanceof GraphicalEditPart){
+			return ((GraphicalEditPart)getHost()).resolveSemanticElement();
 		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		@Override
-		protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-			if(showMessageDialog(DiagramUIMessages.PromptingDeleteAction_DeleteFromDiagramDialog_Title, DELETE_FROM_DIAGRAM_DLG_MESSAGE)) {
-				return super.doExecuteWithResult(progressMonitor, info);
-			}
-			return null;
-		}
-
-		/**
-		 * Show popup message
-		 * 
-		 * @param title
-		 *        The title
-		 * @param message
-		 *        The message
-		 * @return True if user click on OK
-		 */
-		private boolean showMessageDialog(String title, String message) {
-			MessageDialogWithToggle dialog = MessageDialogWithToggle.openYesNoQuestion(Display.getCurrent().getActiveShell(), title, message, null, false, (IPreferenceStore)((IGraphicalEditPart)getHost()).getDiagramPreferencesHint().getPreferenceStore(), IPreferenceConstants.PREF_PROMPT_ON_DEL_FROM_MODEL);
-
-			if(dialog.getReturnCode() == IDialogConstants.YES_ID) {
-				return true;
-			} else {
-				return false;
-			}
-		}
+		return null;
 	}
+
 
 }
