@@ -25,6 +25,11 @@ public interface IContext {
 	 */
 	public static String COMPOSITE_CREATED = "composite_created";
 
+	/** 
+	 * This constant determines an action id to the current context
+	 */
+	public static String ACTION_ID = "action_id";
+
 	public void put(String s, Object o);
 
 	public Object get(String s);

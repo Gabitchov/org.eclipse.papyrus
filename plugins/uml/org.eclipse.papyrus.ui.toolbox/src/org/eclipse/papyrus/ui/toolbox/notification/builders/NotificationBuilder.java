@@ -29,6 +29,8 @@ import org.eclipse.papyrus.ui.toolbox.notification.INotification;
 import org.eclipse.papyrus.ui.toolbox.notification.NotificationRunnable;
 import org.eclipse.papyrus.ui.toolbox.notification.PapyrusToolkit;
 import org.eclipse.papyrus.ui.toolbox.notification.Type;
+import org.eclipse.papyrus.ui.toolbox.notification.popups.PopupNotification;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -387,6 +389,7 @@ public class NotificationBuilder {
 
 			public void run(IContext context) {
 				if(yes != null) {
+					context.put(IContext.ACTION_ID, SWT.YES);
 					yes.run();
 				}
 			}
@@ -398,8 +401,41 @@ public class NotificationBuilder {
 
 			public void run(IContext context) {
 				if(no != null) {
+					context.put(IContext.ACTION_ID, SWT.NO);
 					no.run();
 				}
+			}
+
+			public String getLabel() {
+				return "No";
+			}
+		});
+	}
+
+	/**
+	 * Creates a notification builder already configured to display a yes no question, no runnables are necesary as the user just want the
+	 * PopupNotification result
+	 * This NotificationRunnable is not intended to be changed to an asynchronous notification for example
+	 * When the run method is called use getRsult method in {@link PopupNotification} and test if the value is SWT.YES or SWT.NO
+	 * @param message
+	 *        , the message to display
+	 * 
+	 * @return a notification builder
+	 */
+	public static NotificationBuilder createYesNo(String message) {
+		return new NotificationBuilder().setType(Type.QUESTION).setAsynchronous(false).setTemporary(false).setMessage(message).addAction(new NotificationRunnable() {
+
+			public void run(IContext context) {
+				context.put(IContext.ACTION_ID, SWT.YES);
+			}
+
+			public String getLabel() {
+				return "Yes";
+			}
+		}).addAction(new NotificationRunnable() {
+
+			public void run(IContext context) {
+				context.put(IContext.ACTION_ID, SWT.NO);
 			}
 
 			public String getLabel() {
@@ -422,6 +458,7 @@ public class NotificationBuilder {
 
 			public void run(IContext context) {
 				if(yes != null) {
+					context.put(IContext.ACTION_ID, SWT.YES);
 					yes.run(context);
 				}
 			}
@@ -433,6 +470,7 @@ public class NotificationBuilder {
 
 			public void run(IContext context) {
 				if(no != null) {
+					context.put(IContext.ACTION_ID, SWT.NO);
 					no.run(context);
 				}
 			}

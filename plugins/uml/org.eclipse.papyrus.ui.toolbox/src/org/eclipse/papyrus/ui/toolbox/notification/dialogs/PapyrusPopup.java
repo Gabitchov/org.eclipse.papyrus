@@ -149,6 +149,11 @@ public abstract class PapyrusPopup extends Dialog {
 				super.buttonPressed(buttonId);
 			} else {
 				run.run(context);
+				// retrieve the return code according to the context if it is set
+				Object contextCode = context.get(IContext.ACTION_ID);
+				if(contextCode != null && contextCode instanceof Integer) {
+					setReturnCode((Integer)contextCode);
+				}
 			}
 		} else {
 			super.buttonPressed(buttonId);

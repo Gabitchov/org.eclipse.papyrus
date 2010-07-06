@@ -13,6 +13,7 @@ package org.eclipse.papyrus.ui.toolbox.notification.popups;
 
 import org.eclipse.papyrus.ui.toolbox.notification.INotification;
 import org.eclipse.papyrus.ui.toolbox.notification.dialogs.PapyrusPopup;
+import org.eclipse.swt.SWT;
 
 /**
  * The INotification corresponding to the popup builder
@@ -23,6 +24,8 @@ import org.eclipse.papyrus.ui.toolbox.notification.dialogs.PapyrusPopup;
 public class PopupNotification implements INotification {
 
 	private final PapyrusPopup popup;
+
+	private int popupResult = SWT.NONE;
 
 	public PopupNotification(PapyrusPopup popup) {
 		this.popup = popup;
@@ -42,6 +45,19 @@ public class PopupNotification implements INotification {
 	public boolean isDeleted() {
 		// the object is created once the popup is closed
 		return true;
+	}
+
+	public void setResult(int popupResult) {
+		this.popupResult = popupResult;
+	}
+
+	/**
+	 * Returns the result of the popup
+	 * 
+	 * @return
+	 */
+	public int getResult() {
+		return popupResult;
 	}
 
 }

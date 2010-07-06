@@ -61,8 +61,10 @@ public class PopupBuilder implements IBuilder {
 		if(wrapper.getActions() != null) {
 			popup.addRunnables(wrapper.getActions());
 		}
-		popup.open();
-		return new PopupNotification(popup);
+		PopupNotification result = new PopupNotification(popup);
+		// assign the open result to the result of the run
+		result.setResult(popup.open());
+		return result;
 	}
 
 	/*
