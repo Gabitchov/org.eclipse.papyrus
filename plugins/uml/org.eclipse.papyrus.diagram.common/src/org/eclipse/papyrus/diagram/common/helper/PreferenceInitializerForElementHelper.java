@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2008 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.helper;
 
 import org.eclipse.draw2d.geometry.Dimension;
@@ -23,6 +36,10 @@ import org.eclipse.papyrus.umlutils.ui.helper.ShadowFigureHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
 
+/**
+ * this is an helper that contains method use to intialize font color etc in the view provider
+ *
+ */
 public class PreferenceInitializerForElementHelper {
 
 
