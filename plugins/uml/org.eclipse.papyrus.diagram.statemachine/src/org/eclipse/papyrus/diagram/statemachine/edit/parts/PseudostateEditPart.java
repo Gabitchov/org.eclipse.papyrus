@@ -133,11 +133,11 @@ AbstractBorderedShapeEditPart {
 				return result;
 			}
 
-			protected Command getMoveChildrenCommand(Request request) {
+			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
 
-			protected Command getCreateCommand(CreateRequest request) {
+			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 		};
