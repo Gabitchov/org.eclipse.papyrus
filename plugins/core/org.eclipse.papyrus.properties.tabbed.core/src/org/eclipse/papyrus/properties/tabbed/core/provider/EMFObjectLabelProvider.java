@@ -120,7 +120,10 @@ public class EMFObjectLabelProvider extends AdapterFactoryLabelProvider implemen
 	private IItemLabelProvider getItemLabelProvider(EObject eObject) {
 		IItemLabelProvider itemLabelProvider = null;
 		if(eObject != null) {
-			itemLabelProvider = (IItemLabelProvider)getEditFactory(eObject).adapt(eObject, IItemLabelProviderClass);
+			AdapterFactory adapterFactory = getEditFactory(eObject);
+			if(adapterFactory != null) {
+				return (IItemLabelProvider)adapterFactory.adapt(eObject, IItemLabelProviderClass);
+			}
 		}
 		return itemLabelProvider;
 	}
