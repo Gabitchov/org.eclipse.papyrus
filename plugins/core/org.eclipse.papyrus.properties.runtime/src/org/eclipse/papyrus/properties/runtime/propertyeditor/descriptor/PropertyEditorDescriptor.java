@@ -37,6 +37,11 @@ public class PropertyEditorDescriptor implements IPropertyEditorDescriptor, ICon
 
 	/**
 	 * Creates a new PropertyEditorDescriptor.
+	 * 
+	 * @param editorID
+	 *        the id of the editor described
+	 * @param label
+	 *        the label of the described editor
 	 */
 	public PropertyEditorDescriptor(String editorID, String label) {
 		this(editorID, label, SWT.LEFT, null);
@@ -44,6 +49,15 @@ public class PropertyEditorDescriptor implements IPropertyEditorDescriptor, ICon
 
 	/**
 	 * Creates a new PropertyEditorDescriptor.
+	 * 
+	 * @param editorID
+	 *        the id of the described editor
+	 * @param label
+	 *        the label of the described editor
+	 * @param labelPosition
+	 *        the label position relative to the edition area (see {@link SWT#LEFT})
+	 * @param imageDescriptor
+	 *        the image descriptor for the icon of the property editor
 	 */
 	public PropertyEditorDescriptor(String editorID, String label, int labelPosition, ImageDescriptor imageDescriptor) {
 		this.label = label;

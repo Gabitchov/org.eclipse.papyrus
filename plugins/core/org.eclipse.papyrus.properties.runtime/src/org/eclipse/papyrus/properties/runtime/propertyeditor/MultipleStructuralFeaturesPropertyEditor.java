@@ -50,7 +50,7 @@ import org.eclipse.ui.PlatformUI;
 
 
 /**
- * Property editor for references that have multiplicity [n..*]
+ * Property editor for structural features that have multiplicity [n..*]
  */
 public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEditor {
 

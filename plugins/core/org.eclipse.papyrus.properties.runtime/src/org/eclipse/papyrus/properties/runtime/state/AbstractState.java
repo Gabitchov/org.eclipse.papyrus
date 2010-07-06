@@ -34,6 +34,8 @@ public abstract class AbstractState implements IState, ITraversableModelElement 
 	/**
 	 * Creates a new AbstractState.
 	 * 
+	 * @param readOnly
+	 *        the read only mode for this state
 	 */
 	public AbstractState(boolean readOnly) {
 		this.readOnly = readOnly;

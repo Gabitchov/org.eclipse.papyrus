@@ -211,6 +211,8 @@ public abstract class AbstractPropertyEditor implements IDisposable {
 	 * 
 	 * @param parent
 	 *        the composite parent of the label
+	 * @param layoutData
+	 *        layout data to apply to this editor
 	 * @return the label
 	 */
 	protected Control createLabel(Composite parent, Object layoutData) {

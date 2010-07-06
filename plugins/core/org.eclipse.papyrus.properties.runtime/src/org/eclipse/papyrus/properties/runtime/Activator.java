@@ -80,10 +80,10 @@ public class Activator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Returns the image from the given image descriptor
+	 * Returns the image from the given path
 	 * 
-	 * @param descriptor
-	 *        the descriptor of the image to be displayed
+	 * @param path
+	 *        the path the image to be displayed
 	 * @return the image found
 	 */
 	public static Image getImage(String path) {

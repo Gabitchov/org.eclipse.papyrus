@@ -189,7 +189,8 @@ public class PropertyEditorConfiguration {
 	/**
 	 * Sets the descriptor factory for this configuration
 	 * 
-	 * @param
+	 * @param factory
+	 *        the descriptor factory to set
 	 */
 	protected void setDescriptorFactory(IPropertyEditorDescriptorFactory factory) {
 		this.factory = factory;
@@ -230,6 +231,8 @@ public class PropertyEditorConfiguration {
 	 * Instanciates the editor. It is not configured at this time, it should not be used as is.
 	 * 
 	 * @return the editor instanciated
+	 * @throws CoreException
+	 *         exception thrown when the executable extension could not be created
 	 */
 	public AbstractPropertyEditor instanciateEditor() throws CoreException {
 		return (AbstractPropertyEditor)getElement().createExecutableExtension("class");

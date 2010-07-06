@@ -30,6 +30,11 @@ public class CreatePropertyEditorDescriptorOperation implements IOperation {
 
 	/**
 	 * Creates a new CreatePropertyEditorDescriptorOperation.
+	 * 
+	 * @param editorID
+	 *        the id of the editor to create
+	 * @param editorNode
+	 *        the configuration node for this editor descriptor
 	 */
 	public CreatePropertyEditorDescriptorOperation(String editorID, Node editorNode) {
 		this.editorNode = editorNode;

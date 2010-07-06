@@ -47,7 +47,11 @@ public class PropertyEditorDescriptorState extends AbstractState {
 	/**
 	 * Creates a new PropertyEditorDescriptorState.
 	 * 
+	 * @param descriptor
+	 *        the descriptor managed by this state
+	 * 
 	 * @param readOnly
+	 *        the read only mode for this state
 	 */
 	public PropertyEditorDescriptorState(PropertyEditorDescriptor descriptor, boolean readOnly) {
 		super(readOnly);

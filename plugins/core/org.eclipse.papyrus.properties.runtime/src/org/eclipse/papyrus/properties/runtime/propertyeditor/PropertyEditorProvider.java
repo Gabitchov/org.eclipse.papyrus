@@ -34,6 +34,11 @@ public class PropertyEditorProvider extends AbstractProvider {
 	/**
 	 * Creates the property editor managed by this provider
 	 * 
+	 * @param editorIdentifier
+	 *        the identifier of the editor to create
+	 * @param controller
+	 *        the controller that manages the created property editor
+	 * 
 	 * @return the property editor managed by this provider
 	 */
 	public AbstractPropertyEditor createPropertyEditor(String editorIdentifier, PropertyEditorController controller) {
@@ -56,6 +61,12 @@ public class PropertyEditorProvider extends AbstractProvider {
 		return null;
 	}
 
+	/**
+	 * Configures the provider given the extension point that declares it.
+	 * 
+	 * @param providerConfiguration
+	 *        the configuration element that declares the provider
+	 */
 	public void configure(IConfigurationElement providerConfiguration) {
 		try {
 			// for each property editors defined in the provider, retrieves important information
@@ -68,7 +79,6 @@ public class PropertyEditorProvider extends AbstractProvider {
 				}
 			}
 		} catch (CoreException e) {
-			e.printStackTrace();
 			Activator.log.error(e);
 		}
 	}

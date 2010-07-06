@@ -126,7 +126,7 @@ public class PropertyEditorService extends Service {
 		}
 
 		/**
-		 * @see org.eclipse.ogmf.runtime.common.core.service.Service.ProviderDescriptor#getProvider()
+		 * @see org.eclipse.gmf.runtime.common.core.service.Service.ProviderDescriptor#getProvider()
 		 */
 		public IProvider getProvider() {
 			if(provider == null) {
