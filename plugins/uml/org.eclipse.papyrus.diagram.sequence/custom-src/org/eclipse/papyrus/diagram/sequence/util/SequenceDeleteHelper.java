@@ -58,18 +58,21 @@ import org.eclipse.uml2.uml.OccurrenceSpecification;
  */
 
 public class SequenceDeleteHelper {
-	
+
 	/**
-	 *  Destroy  all the relatives elements of an CombinedFragment
-	 * @param cf the combined fragment to destroy
-	 * @param cmd the composite transactional command where to add the new commands.
+	 * Destroy all the relatives elements of an CombinedFragment
+	 * 
+	 * @param cf
+	 *        the combined fragment to destroy
+	 * @param cmd
+	 *        the composite transactional command where to add the new commands.
 	 * @return the list of all elements that will be destroyed
 	 */
-	public static List<Element> destroyCombinedFragmentRelatives(CombinedFragment cf, CompositeTransactionalCommand cmd){
+	public static List<Element> destroyCombinedFragmentRelatives(CombinedFragment cf, CompositeTransactionalCommand cmd) {
 		List<Element> elements = new LinkedList<Element>();
-		
+
 		// Destroy each operand of the combinedFragment
-		for(InteractionOperand operand : cf.getOperands()){
+		for(InteractionOperand operand : cf.getOperands()) {
 			// Destroy interactionOperandRelatives
 			elements.addAll(destroyInteractionOperandRelatives(operand, cmd));
 			// Destroy the interactionOperand
@@ -80,25 +83,28 @@ public class SequenceDeleteHelper {
 
 		return elements;
 	}
-	
+
 	/**
-	 * Destroy  all the relatives elements of an InteractionOperand
-	 * @param interactionOperand the combined fragment to destroy
-	 * @param cmd the composite transactional command where to add the new commands.
+	 * Destroy all the relatives elements of an InteractionOperand
+	 * 
+	 * @param interactionOperand
+	 *        the combined fragment to destroy
+	 * @param cmd
+	 *        the composite transactional command where to add the new commands.
 	 * @return the list of all elements that will be destroyed
 	 */
-	public static List<Element> destroyInteractionOperandRelatives(InteractionOperand interactionOperand, CompositeTransactionalCommand cmd){
+	public static List<Element> destroyInteractionOperandRelatives(InteractionOperand interactionOperand, CompositeTransactionalCommand cmd) {
 		List<Element> elements = SequenceUtil.getInteractionOperandAssociatedElement(interactionOperand);
 		List<Element> childElements = new LinkedList<Element>();
 		// Delete InteractionOperand
-		for(Element element : elements){
-			if(element instanceof CombinedFragment){
+		for(Element element : elements) {
+			if(element instanceof CombinedFragment) {
 				childElements.addAll(destroyCombinedFragmentRelatives((CombinedFragment)element, cmd));
-			}else{
+			} else {
 				// Complete the destroy command with specific destroy commands. 
-				if(element instanceof Message){
+				if(element instanceof Message) {
 					completeDestroyMessageCommand((Message)element, cmd);
-				}else if(element instanceof ExecutionSpecification){
+				} else if(element instanceof ExecutionSpecification) {
 					completeDestroyExecutionSpecificationCommand(cmd, (ExecutionSpecification)element);
 				}
 			}
@@ -106,7 +112,7 @@ public class SequenceDeleteHelper {
 			cmd.add(createDestroyElementCommand(element));
 			childElements.add(element);
 		}
-		
+
 		return childElements;
 	}
 
@@ -120,34 +126,40 @@ public class SequenceDeleteHelper {
 	 *        the message on which the request is called
 	 * @return the deletion ICommand cmd for convenience
 	 */
-	public static ICommand completeDestroyMessageCommand(Message message, CompositeTransactionalCommand cmd){
+	public static ICommand completeDestroyMessageCommand(Message message, CompositeTransactionalCommand cmd) {
 
 		// Destroy the send event
-		destroyMessageEnd(cmd,  message.getSendEvent());
+		destroyMessageEnd(cmd, message.getSendEvent());
 
 		// Destroy the receive event
 		destroyMessageEnd(cmd, message.getReceiveEvent());
-		
+
 		return cmd;
 	}
 
 	/**
 	 * Destroy a messageEnd
-	 * @param cmd the composite transactional command where the new commands will be added
-	 * @param messageEnd the messageEnd to destroy
+	 * 
+	 * @param cmd
+	 *        the composite transactional command where the new commands will be added
+	 * @param messageEnd
+	 *        the messageEnd to destroy
 	 */
 	private static void destroyMessageEnd(CompositeTransactionalCommand cmd, MessageEnd messageEnd) {
-			if(messageEnd instanceof MessageOccurrenceSpecification) {
-				destroyOccurrenceSpecification(cmd, (MessageOccurrenceSpecification)messageEnd);
-			}else if(messageEnd instanceof Gate){
-				destroyGate(cmd, (Gate)messageEnd);
-			}
+		if(messageEnd instanceof MessageOccurrenceSpecification) {
+			destroyOccurrenceSpecification(cmd, (MessageOccurrenceSpecification)messageEnd);
+		} else if(messageEnd instanceof Gate) {
+			destroyGate(cmd, (Gate)messageEnd);
+		}
 	}
 
 	/**
 	 * Destroy a Gate - NOT IMPLEMENTED YET
-	 * @param cmd the composite transactional command where the new commands will be added
-	 * @param gate the gate to destroy
+	 * 
+	 * @param cmd
+	 *        the composite transactional command where the new commands will be added
+	 * @param gate
+	 *        the gate to destroy
 	 */
 	private static void destroyGate(CompositeTransactionalCommand cmd, Gate gate) {
 		// TODO implements this method
@@ -167,17 +179,20 @@ public class SequenceDeleteHelper {
 
 		// Destroy start execution occurrence specification
 		destroyOccurrenceSpecification(cmd, execution.getStart());
-	
+
 		// Destroy end execution occurrence specification
 		destroyOccurrenceSpecification(cmd, execution.getFinish());
-		
+
 		return cmd;
 	}
-	
+
 	/**
 	 * Destroy the given OccurrenceSpecification, and its linkedTimeElements
-	 * @param cmd the composite transactional command where the new commands will be added
-	 * @param os the occurrenceSpecification to destroy
+	 * 
+	 * @param cmd
+	 *        the composite transactional command where the new commands will be added
+	 * @param os
+	 *        the occurrenceSpecification to destroy
 	 */
 	private static void destroyOccurrenceSpecification(CompositeTransactionalCommand cmd, OccurrenceSpecification os) {
 		cmd.add(createDestroyElementCommand(os));
@@ -189,13 +204,15 @@ public class SequenceDeleteHelper {
 	}
 
 	/**
-	 * Get the time elements linked with the given namedElement. 
+	 * Get the time elements linked with the given namedElement.
 	 * Time Elements regroups:
-	 *  - Time Observation
-	 *  - Time Constraint
-	 *  - DurationObservation
-	 *  - DurationConstraint 
-	 * @param namedElement the named element
+	 * - Time Observation
+	 * - Time Constraint
+	 * - DurationObservation
+	 * - DurationConstraint
+	 * 
+	 * @param namedElement
+	 *        the named element
 	 * @return a list of time elements
 	 */
 	private static List<NamedElement> getLinkedTimeElements(NamedElement namedElement) {
@@ -203,12 +220,13 @@ public class SequenceDeleteHelper {
 		timeElements.addAll(TimeObservationHelper.getTimeObservations(namedElement));
 		timeElements.addAll(TimeConstraintHelper.getTimeConstraintsOn(namedElement));
 		timeElements.addAll(DurationObservationHelper.getDurationObservationsOn(namedElement));
-		timeElements.addAll(DurationConstraintHelper.getDurationConstraintsOn(namedElement));		
+		timeElements.addAll(DurationConstraintHelper.getDurationConstraintsOn(namedElement));
 		return timeElements;
 	}
 
 	/**
 	 * Get a destroy element command without confirmation. It creates the request and the command.
+	 * 
 	 * @param start
 	 * @return
 	 */
@@ -227,9 +245,9 @@ public class SequenceDeleteHelper {
 	 *        the message edit part on which the request is called
 	 */
 	public static void completeDestroyMessageCommand(CompositeTransactionalCommand cmd, EditPart messagePart) {
-		if(messagePart instanceof GraphicalEditPart){
+		if(messagePart instanceof GraphicalEditPart) {
 			EObject eObject = ((GraphicalEditPart)messagePart).resolveSemanticElement();
-			if(eObject instanceof Message){
+			if(eObject instanceof Message) {
 				completeDestroyMessageCommand((Message)eObject, cmd);
 			}
 		}
@@ -251,7 +269,7 @@ public class SequenceDeleteHelper {
 		Object model = destructionEventPart.getModel();
 		if(model instanceof Node) {
 			EObject obj = ((Node)model).getElement();
-	
+
 			if(obj instanceof DestructionEvent) {
 				LifelineEditPart lifelinePart = SequenceUtil.getParentLifelinePart(destructionEventPart);
 				if(lifelinePart != null) {
@@ -294,7 +312,7 @@ public class SequenceDeleteHelper {
 				LifelineEditPart srcLifelinePart = SequenceUtil.getParentLifelinePart(((ConnectionNodeEditPart)messagePart).getSource());
 				MessageEnd send = message.getSendEvent();
 				a(deleteViewsCmd, editingDomain, srcLifelinePart, send);
-				
+
 				LifelineEditPart tgtLifelinePart = SequenceUtil.getParentLifelinePart(((ConnectionNodeEditPart)messagePart).getTarget());
 				MessageEnd receive = message.getReceiveEvent();
 				a(deleteViewsCmd, editingDomain, tgtLifelinePart, receive);
@@ -325,7 +343,7 @@ public class SequenceDeleteHelper {
 		}
 	}
 
-	
+
 
 	/**
 	 * Complete an ICommand which destroys an ExecutionSpecification element to also destroy dependent finish and start events and time/duration
@@ -343,7 +361,7 @@ public class SequenceDeleteHelper {
 		Object model = executionPart.getModel();
 		if(model instanceof Node) {
 			EObject obj = ((Node)model).getElement();
-	
+
 			if(obj instanceof ExecutionSpecification) {
 				ExecutionSpecification execution = (ExecutionSpecification)obj;
 				LifelineEditPart lifelinePart = SequenceUtil.getParentLifelinePart(executionPart);
@@ -382,7 +400,7 @@ public class SequenceDeleteHelper {
 		Object model = executionPart.getModel();
 		if(model instanceof Node) {
 			EObject obj = ((Node)model).getElement();
-	
+
 			if(obj instanceof ExecutionSpecification) {
 				ExecutionSpecification execution = (ExecutionSpecification)obj;
 				return completeDestroyExecutionSpecificationCommand(cmd, execution);
@@ -390,31 +408,39 @@ public class SequenceDeleteHelper {
 		}
 		return cmd;
 	}
-	
+
 	/**
-	 * Delete the views associated with a list of elements. 
-	 * @param cmd the CompositeTransactionalCommand
-	 * @param element the list of model elements
-	 * @param editingDomain the editing domain to use.
+	 * Delete the views associated with a list of elements.
+	 * 
+	 * @param cmd
+	 *        the CompositeTransactionalCommand
+	 * @param element
+	 *        the list of model elements
+	 * @param editingDomain
+	 *        the editing domain to use.
 	 */
-	public static void deleteView(CompositeTransactionalCommand cmd, List<Element> elements, TransactionalEditingDomain editingDomain){
-		for(Element element : elements){
+	public static void deleteView(CompositeTransactionalCommand cmd, List<Element> elements, TransactionalEditingDomain editingDomain) {
+		for(Element element : elements) {
 			deleteView(cmd, element, editingDomain);
 		}
 	}
 
 	/**
-	 * Delete the views associated with an element. 
-	 * @param cmd the CompositeTransactionalCommand
-	 * @param element the model element referenced by the views
-	 * @param editingDomain the editing domain to use.
+	 * Delete the views associated with an element.
+	 * 
+	 * @param cmd
+	 *        the CompositeTransactionalCommand
+	 * @param element
+	 *        the model element referenced by the views
+	 * @param editingDomain
+	 *        the editing domain to use.
 	 */
-	public static void deleteView(CompositeTransactionalCommand cmd, Element element, TransactionalEditingDomain editingDomain){
+	public static void deleteView(CompositeTransactionalCommand cmd, Element element, TransactionalEditingDomain editingDomain) {
 		// Destroy its views
 		@SuppressWarnings("rawtypes")
 		List views = DiagramEditPartsUtil.getEObjectViews(element);
-		for(Object object : views){
-			if(object instanceof View){
+		for(Object object : views) {
+			if(object instanceof View) {
 				cmd.add(new DeleteCommand(editingDomain, (View)object));
 			}
 		}

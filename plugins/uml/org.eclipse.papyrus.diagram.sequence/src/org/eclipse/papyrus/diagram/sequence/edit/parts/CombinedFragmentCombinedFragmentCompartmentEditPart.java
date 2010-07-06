@@ -97,6 +97,7 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 
 	/**
 	 * Add RemoveOrphanView role
+	 * 
 	 * @generated NOT
 	 */
 	protected void createDefaultEditPolicies() {
@@ -105,7 +106,7 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
-		
+
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 
 

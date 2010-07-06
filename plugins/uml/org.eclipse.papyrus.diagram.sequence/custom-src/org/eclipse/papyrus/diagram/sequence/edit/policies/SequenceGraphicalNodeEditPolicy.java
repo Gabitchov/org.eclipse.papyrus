@@ -59,9 +59,9 @@ import org.eclipse.uml2.uml.Message;
  */
 public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
-	/** A static margin to allow drawing of straight message */ 
+	/** A static margin to allow drawing of straight message */
 	private static final int MARGIN = 2;
-	
+
 	/**
 	 * Overrides to disable uphill message
 	 */
@@ -80,7 +80,7 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 			if(obj instanceof SetConnectionBendpointsCommand) {
 				SetConnectionBendpointsCommand sbbCommand = (SetConnectionBendpointsCommand)obj;
 				final PointList pointList = sbbCommand.getNewPointList();
-				if(pointList.getFirstPoint().y >= pointList.getLastPoint().y + MARGIN ) {
+				if(pointList.getFirstPoint().y >= pointList.getLastPoint().y + MARGIN) {
 					return UnexecutableCommand.INSTANCE;
 				}
 				request.getExtendedData().put(SequenceRequestConstant.SOURCE_MODEL_CONTAINER, SequenceUtil.findInteractionFragmentAt(pointList.getFirstPoint(), getHost()));

@@ -40,7 +40,7 @@ public class CombinedFragmentItemComponentEditPolicy extends ComponentEditPolicy
 	 */
 	@Override
 	protected Command createDeleteViewCommand(GroupRequest deleteRequest) {
-		
+
 		if(getEditingDomain() != null) {
 			CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 			cmd.setTransactionNestingEnabled(false);
@@ -54,33 +54,34 @@ public class CombinedFragmentItemComponentEditPolicy extends ComponentEditPolicy
 			}
 			return new ICommandProxy(cmd.reduce());
 		}
-		
-	 	return null;
+
+		return null;
 	}
-	
+
 	/**
 	 * Copy from superclass as visibility is private
+	 * 
 	 * @return the editing domain
 	 */
-    private TransactionalEditingDomain getEditingDomain() {
-        if (getHost() instanceof IGraphicalEditPart) {
-           return ((IGraphicalEditPart) getHost()).getEditingDomain();
-       } else if (getHost() instanceof IEditingDomainProvider) {
-           Object domain = ((IEditingDomainProvider) getHost())
-               .getEditingDomain();
-           if (domain instanceof TransactionalEditingDomain) {
-               return (TransactionalEditingDomain) domain;
-           }
-       }
-       return null;
-   }
-	
-    /**
-     * Get the EObject of the host
-     * @return the EObject or null
-     */
-	private EObject getEObject(){
-		if(getHost() instanceof GraphicalEditPart){
+	private TransactionalEditingDomain getEditingDomain() {
+		if(getHost() instanceof IGraphicalEditPart) {
+			return ((IGraphicalEditPart)getHost()).getEditingDomain();
+		} else if(getHost() instanceof IEditingDomainProvider) {
+			Object domain = ((IEditingDomainProvider)getHost()).getEditingDomain();
+			if(domain instanceof TransactionalEditingDomain) {
+				return (TransactionalEditingDomain)domain;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Get the EObject of the host
+	 * 
+	 * @return the EObject or null
+	 */
+	private EObject getEObject() {
+		if(getHost() instanceof GraphicalEditPart) {
 			return ((GraphicalEditPart)getHost()).resolveSemanticElement();
 		}
 		return null;

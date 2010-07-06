@@ -713,31 +713,31 @@ public class SequenceUtil {
 		}
 		return null;
 	}
-	
-	public static List<Element> getCombinedFragmentAssociatedElement(CombinedFragment cf){
+
+	public static List<Element> getCombinedFragmentAssociatedElement(CombinedFragment cf) {
 		List<Element> elements = new LinkedList<Element>();
-		
-		for(InteractionOperand operand : cf.getOperands()){
+
+		for(InteractionOperand operand : cf.getOperands()) {
 			// Add all elements related to this operand
 			elements.addAll(getInteractionOperandAssociatedElement(operand));
 			// Add this operand
 			elements.add(operand);
 		}
 		return elements;
-		
+
 	}
-	
-	public static List<Element> getInteractionOperandAssociatedElement(InteractionOperand interactionOperand){
+
+	public static List<Element> getInteractionOperandAssociatedElement(InteractionOperand interactionOperand) {
 		List<Element> elements = new LinkedList<Element>();
-		for(InteractionFragment itf : interactionOperand.getFragments()){
-			if(itf instanceof CombinedFragment){
+		for(InteractionFragment itf : interactionOperand.getFragments()) {
+			if(itf instanceof CombinedFragment) {
 				// add the combinedFragment
 				elements.addAll(getCombinedFragmentAssociatedElement((CombinedFragment)itf));
 			}
 			elements.add(itf);
-			if(itf instanceof MessageOccurrenceSpecification){
+			if(itf instanceof MessageOccurrenceSpecification) {
 				MessageOccurrenceSpecification mos = (MessageOccurrenceSpecification)itf;
-				if(mos.getMessage() != null){
+				if(mos.getMessage() != null) {
 					elements.add(mos.getMessage());
 				}
 			}

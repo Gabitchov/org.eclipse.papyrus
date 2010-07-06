@@ -80,17 +80,17 @@ public class CombinedFragmentItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
 
-		
 
-		
+
+
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
 			// there are indirectly referenced children, need extra commands: false
-			if(req.getElementToDestroy() instanceof CombinedFragment){
+			if(req.getElementToDestroy() instanceof CombinedFragment) {
 				List<Element> destroyedElements = SequenceDeleteHelper.destroyCombinedFragmentRelatives((CombinedFragment)req.getElementToDestroy(), cmd);
 				SequenceDeleteHelper.deleteView(cmd, destroyedElements, getEditingDomain());
 			}
-			
+
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
 			cmd.add(new DestroyElementCommand(req));

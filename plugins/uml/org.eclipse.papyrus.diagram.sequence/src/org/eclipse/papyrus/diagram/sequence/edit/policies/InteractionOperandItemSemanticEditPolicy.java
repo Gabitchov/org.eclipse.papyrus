@@ -122,7 +122,7 @@ public class InteractionOperandItemSemanticEditPolicy extends UMLBaseItemSemanti
 
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
-			if(req.getElementToDestroy() instanceof InteractionOperand){
+			if(req.getElementToDestroy() instanceof InteractionOperand) {
 				List<Element> destroyedElements = SequenceDeleteHelper.destroyInteractionOperandRelatives((InteractionOperand)req.getElementToDestroy(), cmd);
 				SequenceDeleteHelper.deleteView(cmd, destroyedElements, getEditingDomain());
 			}
