@@ -562,9 +562,15 @@
 					<groupContainer label="">
 						<layout kind="Grid" numColumns="1" sameWidth="false"/>
 						<controller predefinedId="UML_NamedElement_name"/>
-						<controller id="emftBindingReferenceController">
-							<feature handlerID="Reference" name="type"/>
-							<editor id="org.eclipse.papyrus.properties.runtime.simpleReferencePropertyEditor" label="Type:" labelPosition="16384"/>
+						 <controller id="emftBindingReferenceController">
+							<feature name="type" handlerID="Reference"/>
+							<binding message="{0} - ({1})">
+								<feature name="name"/>
+								<feature name="qualifiedName"/>
+							</binding>
+							<editor id="org.eclipse.papyrus.properties.runtime.simpleReferencePropertyEditor" label="Type:" labelPosition="16384">
+								<icon pluginID="org.eclipse.papyrus.properties.tabbed.uml" path="/icons/type.gif"/>
+							</editor>
 						</controller>
 						<controller predefinedId="UML_Property_aggregation"/>
 						<controller id="emftStructuralFeatureController">
