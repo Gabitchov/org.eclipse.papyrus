@@ -1097,7 +1097,7 @@
             editHelperClassName="InteractionEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.diagram.sequence.figures.InteractionRectangleFigure">
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.InteractionRectangleFigure">
           <attributes
               xsi:type="gmfgen:DefaultSizeAttributes"
               width="857"

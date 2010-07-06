@@ -909,13 +909,9 @@
 
 
 		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.UndefinedPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.UndefinedPreferencePage"
-            name="Undefined Link" />
 		
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
 			class="org.eclipse.papyrus.diagram.sequence.preferences.MessagePreferencePage"

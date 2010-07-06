@@ -56,7 +56,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="CustomInteractionRectangleFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.sequence.figures.InteractionRectangleFigure">
+          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.InteractionRectangleFigure">
         <customChildren
             accessor="getHeaderLabel()">
           <typedFigure
