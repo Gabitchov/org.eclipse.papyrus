@@ -44,7 +44,6 @@ import org.eclipse.papyrus.diagram.clazz.custom.figure.ContainmentFigure;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomListenerContainmentCircleEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomContainmentCircleItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ContainmentCircleItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.clazz.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;

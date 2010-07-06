@@ -51,7 +51,6 @@ import org.eclipse.papyrus.diagram.clazz.custom.policies.ClazzDiagramChangeStere
 import org.eclipse.papyrus.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic.CustomComponentItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ComponentItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.clazz.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;

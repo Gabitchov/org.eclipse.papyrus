@@ -1755,11 +1755,6 @@
             name="GeneralizationSet Link" />
 		
 		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
-			class="org.eclipse.papyrus.diagram.clazz.preferences.UndefinedPreferencePage"
-            id="org.eclipse.papyrus.diagram.clazz.preferences.UndefinedPreferencePage"
-            name="Undefined Link" />
 		
 		
 	<?gmfgen generated="true"?>
