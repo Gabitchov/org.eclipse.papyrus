@@ -28,9 +28,9 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineEditPart;
 public class CustomPackageXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 	/**
-	 * This method analyzes a resize and/or move request and routes the call to the appropriate
-	 * specific ResizeCommand either for a StateMachine, a State, in other cases passes on the call
-	 * to the super class method.
+	 * This method analyzes a resize and/or move request and routes the call to
+	 * the appropriate specific ResizeCommand either for a StateMachine, a
+	 * State, in other cases passes on the call to the super class method.
 	 * 
 	 * @param child
 	 *            the concerned EditPart
@@ -43,7 +43,8 @@ public class CustomPackageXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 */
 
 	@Override
-	public Command createChangeConstraintCommand(ChangeBoundsRequest request, EditPart child, Object constraint) {
+	public Command createChangeConstraintCommand(ChangeBoundsRequest request,
+			EditPart child, Object constraint) {
 		// precautionary test
 		if ((request == null) || (child == null) || (constraint == null))
 			throw new IllegalArgumentException();
@@ -58,20 +59,26 @@ public class CustomPackageXYLayoutEditPolicy extends XYLayoutEditPolicy {
 				// nothing to do except move the state machine edit part
 				// all locations of embedded figures are relative to it
 				// and thus hold when their container is moved around
-				return super.createChangeConstraintCommand(request, child, constraint);
+				return super.createChangeConstraintCommand(request, child,
+						constraint);
 			}
 
 			// now we face a resize command
 
-			TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
-			CompositeTransactionalCommand cc = new CompositeTransactionalCommand(editingDomain,
-					DiagramUIMessages.AddCommand_Label);
+			TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
+					.getEditingDomain();
+			CompositeTransactionalCommand cc = new CompositeTransactionalCommand(
+					editingDomain, DiagramUIMessages.AddCommand_Label);
 			// a resize request, which we route to the specific ResizeCommand
-			IAdaptable adaptableForStateMachine = new SemanticAdapter(null, stateMachine);
+			IAdaptable adaptableForStateMachine = new SemanticAdapter(null,
+					stateMachine);
 
 			CustomStateMachineResizeCommand resizeStateMachine = new CustomStateMachineResizeCommand(
-					adaptableForStateMachine, ((IGraphicalEditPart) getHost()).getDiagramPreferencesHint(),
-					editingDomain, DiagramUIMessages.CreateCommand_Label, request, (Rectangle) constraint, false);
+					adaptableForStateMachine,
+					((IGraphicalEditPart) getHost())
+							.getDiagramPreferencesHint(), editingDomain,
+					DiagramUIMessages.CreateCommand_Label, request,
+					(Rectangle) constraint, false);
 
 			cc.add(resizeStateMachine);
 
@@ -82,7 +89,8 @@ public class CustomPackageXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 	@Override
 	protected EditPolicy createChildEditPolicy(EditPart child) {
-		// specific resize edit policy which correct ghost figure management by GMF
+		// specific resize edit policy which correct ghost figure management by
+		// GMF
 		if (child instanceof StateMachineEditPart) {
 			ResizableEditPolicy policy = new ResizableEditPolicy() {
 
@@ -104,24 +112,28 @@ public class CustomPackageXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	protected Command getCreateCommand(CreateRequest request) {
 		CreateViewRequest req = (CreateViewRequest) request;
 
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
+				.getEditingDomain();
 
-		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(editingDomain,
-				DiagramUIMessages.AddCommand_Label);
+		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(
+				editingDomain, DiagramUIMessages.AddCommand_Label);
 		Iterator iter = req.getViewDescriptors().iterator();
 
 		final Rectangle BOUNDS = (Rectangle) getConstraintFor(request);
 
 		while (iter.hasNext()) {
-			CreateViewRequest.ViewDescriptor viewDescriptor = (CreateViewRequest.ViewDescriptor) iter.next();
+			CreateViewRequest.ViewDescriptor viewDescriptor = (CreateViewRequest.ViewDescriptor) iter
+					.next();
 			Rectangle rect = getBoundsOffest(req, BOUNDS, viewDescriptor);
 			cc.compose(new CustomStateMachineSetBoundsCommand(editingDomain,
-					DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, rect));
+					DiagramUIMessages.SetLocationCommand_Label_Resize,
+					viewDescriptor, rect));
 		}
 
 		if (cc.reduce() == null)
 			return null;
 
-		return chainGuideAttachmentCommands(request, new ICommandProxy(cc.reduce()));
+		return chainGuideAttachmentCommands(request,
+				new ICommandProxy(cc.reduce()));
 	}
 }

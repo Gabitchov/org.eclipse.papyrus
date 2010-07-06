@@ -2,7 +2,6 @@ package org.eclipse.papyrus.diagram.statemachine.part;
 
 import java.io.IOException;
 import java.util.LinkedList;
-import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
@@ -34,6 +33,44 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
  * @generated
  */
 public class UMLNewDiagramFileWizard extends Wizard {
+
+	/**
+	 * @generated
+	 */
+	private static class DiagramRootElementSelectionPage extends
+			ModelElementSelectionPage {
+
+		/**
+		 * @generated
+		 */
+		protected DiagramRootElementSelectionPage(String pageName) {
+			super(pageName);
+		}
+
+		/**
+		 * @generated
+		 */
+		protected String getSelectionTitle() {
+			return Messages.UMLNewDiagramFileWizard_RootSelectionPageSelectionTitle;
+		}
+
+		/**
+		 * @generated
+		 */
+		protected boolean validatePage() {
+			if (selectedModelElement == null) {
+				setErrorMessage(Messages.UMLNewDiagramFileWizard_RootSelectionPageNoSelectionMessage);
+				return false;
+			}
+			boolean result = ViewService.getInstance().provides(
+					new CreateDiagramViewOperation(new EObjectAdapter(
+							selectedModelElement), PackageEditPart.MODEL_ID,
+							UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
+			setErrorMessage(result ? null
+					: Messages.UMLNewDiagramFileWizard_RootSelectionPageInvalidSelectionMessage);
+			return result;
+		}
+	}
 
 	/**
 	 * @generated
@@ -107,7 +144,7 @@ public class UMLNewDiagramFileWizard extends Wizard {
 	 * @generated
 	 */
 	public boolean performFinish() {
-		List affectedFiles = new LinkedList();
+		LinkedList<IFile> affectedFiles = new LinkedList<IFile>();
 		IFile diagramFile = myFileCreationPage.createNewFile();
 		UMLDiagramEditorUtil.setCharset(diagramFile);
 		affectedFiles.add(diagramFile);
@@ -155,43 +192,5 @@ public class UMLNewDiagramFileWizard extends Wizard {
 					"Unable to open editor", ex); //$NON-NLS-1$
 		}
 		return true;
-	}
-
-	/**
-	 * @generated
-	 */
-	private static class DiagramRootElementSelectionPage extends
-			ModelElementSelectionPage {
-
-		/**
-		 * @generated
-		 */
-		protected DiagramRootElementSelectionPage(String pageName) {
-			super(pageName);
-		}
-
-		/**
-		 * @generated
-		 */
-		protected String getSelectionTitle() {
-			return Messages.UMLNewDiagramFileWizard_RootSelectionPageSelectionTitle;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected boolean validatePage() {
-			if (selectedModelElement == null) {
-				setErrorMessage(Messages.UMLNewDiagramFileWizard_RootSelectionPageNoSelectionMessage);
-				return false;
-			}
-			boolean result = ViewService.getInstance().provides(
-					new CreateDiagramViewOperation(new EObjectAdapter(
-							selectedModelElement), PackageEditPart.MODEL_ID,
-							UMLDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
-			setErrorMessage(result ? null
-					: Messages.UMLNewDiagramFileWizard_RootSelectionPageInvalidSelectionMessage);
-			return result;
-		}
 	}
 }

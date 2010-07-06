@@ -5,6 +5,7 @@ import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.SelectionRequest;
 import org.eclipse.gef.tools.DeselectAllTracker;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.internal.tools.RubberbandDragTracker;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.statemachine.custom.figures.CustomShapeCompartmentFigure;
@@ -18,22 +19,20 @@ public class CustomRegionCompartmentEditPart extends RegionCompartmentEditPart {
 		// TODO Auto-generated constructor stub
 	}
 
-	public IFigure createFigure() {
-		CustomShapeCompartmentFigure result = new CustomShapeCompartmentFigure(getCompartmentName(), getMapMode());
-		result.setBorder(null);
-		return result;
+	@Override
+	protected void createDefaultEditPolicies() {
+		// TODO Auto-generated method stub
+		super.createDefaultEditPolicies();
+		removeEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
+
 	}
 
-	@Override
-	protected void refreshVisuals() {
-		// TODO Auto-generated method stub
-		super.refreshVisuals();
-
-		View regionView = (View) ((View) getModel()).eContainer();
-		Region region = (Region) regionView.getElement();
-
-		((CustomShapeCompartmentFigure) getFigure()).setToolTip(region.getName());
-
+	public IFigure createFigure() {
+		CustomShapeCompartmentFigure result = new CustomShapeCompartmentFigure(
+				getCompartmentName(), getMapMode());
+		result.setBorder(null);
+		return result;
 	}
 
 	@Override
@@ -41,7 +40,8 @@ public class CustomRegionCompartmentEditPart extends RegionCompartmentEditPart {
 		if (!supportsDragSelection())
 			return super.getDragTracker(req);
 
-		if (req instanceof SelectionRequest && ((SelectionRequest) req).getLastButtonPressed() == 3)
+		if (req instanceof SelectionRequest
+				&& ((SelectionRequest) req).getLastButtonPressed() == 3)
 			return new DeselectAllTracker(this) {
 
 				protected boolean handleButtonDown(int button) {
@@ -56,5 +56,18 @@ public class CustomRegionCompartmentEditPart extends RegionCompartmentEditPart {
 					getViewer().select(getParent());
 			}
 		};
+	}
+
+	@Override
+	protected void refreshVisuals() {
+		// TODO Auto-generated method stub
+		super.refreshVisuals();
+
+		View regionView = (View) ((View) getModel()).eContainer();
+		Region region = (Region) regionView.getElement();
+
+		((CustomShapeCompartmentFigure) getFigure()).setToolTip(region
+				.getName());
+
 	}
 }

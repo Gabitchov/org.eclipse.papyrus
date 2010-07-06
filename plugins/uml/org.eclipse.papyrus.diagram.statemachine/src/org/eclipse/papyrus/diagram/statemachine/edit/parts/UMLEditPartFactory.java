@@ -11,7 +11,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.CellEditor;
-import org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure;
+import org.eclipse.papyrus.diagram.common.figure.node.IMultilineEditableFigure;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
@@ -24,109 +24,25 @@ public class UMLEditPartFactory implements EditPartFactory {
 	/**
 	 * @generated
 	 */
-	public EditPart createEditPart(EditPart context, Object model) {
-		if (model instanceof View) {
-			View view = (View) model;
-			switch (UMLVisualIDRegistry.getVisualID(view)) {
-
-			case PackageEditPart.VISUAL_ID:
-				return new PackageEditPart(view);
-
-			case StateMachineEditPart.VISUAL_ID:
-				return new StateMachineEditPart(view);
-
-			case StateMachineNameEditPart.VISUAL_ID:
-				return new StateMachineNameEditPart(view);
-
-			case RegionEditPart.VISUAL_ID:
-				return new RegionEditPart(view);
-
-			case PseudoStateNodeEditPart.VISUAL_ID:
-				return new PseudoStateNodeEditPart(view);
-
-			case PseudoStateNodeLabelEditPart.VISUAL_ID:
-				return new PseudoStateNodeLabelEditPart(view);
-
-			case PseudoStateNodeStereotypeLabelEditPart.VISUAL_ID:
-				return new PseudoStateNodeStereotypeLabelEditPart(view);
-
-			case FinalStateNodeEditPart.VISUAL_ID:
-				return new FinalStateNodeEditPart(view);
-
-			case FinalStateNameLabelEditPart.VISUAL_ID:
-				return new FinalStateNameLabelEditPart(view);
-
-			case StateNodeEditPart.VISUAL_ID:
-				return new StateNodeEditPart(view);
-
-			case StateNameLabelEditPart.VISUAL_ID:
-				return new StateNameLabelEditPart(view);
-
-			case RegionCompartmentEditPart.VISUAL_ID:
-				return new RegionCompartmentEditPart(view);
-
-			case StateMachineCompartmentEditPart.VISUAL_ID:
-				return new StateMachineCompartmentEditPart(view);
-
-			case TransitionEditPartEditPart.VISUAL_ID:
-				return new TransitionEditPartEditPart(view);
-
-			case TransitionNameLabelEditPart.VISUAL_ID:
-				return new TransitionNameLabelEditPart(view);
-
-			case TransitionGuardLabelEditPart.VISUAL_ID:
-				return new TransitionGuardLabelEditPart(view);
-
-			}
-		}
-		return createUnrecognizedEditPart(context, model);
-	}
-
-	/**
-	 * @generated
-	 */
-	private EditPart createUnrecognizedEditPart(EditPart context, Object model) {
-		// Handle creation of unrecognized child node EditParts here
-		return null;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static CellEditorLocator getTextCellEditorLocator(
-			ITextAwareEditPart source) {
-		if (source.getFigure() instanceof HTMLCornerBentFigure)
-			return new CommentCellEditorLocator((HTMLCornerBentFigure) source
-					.getFigure());
-		else if (source.getFigure() instanceof WrappingLabel)
-			return new TextCellEditorLocator((WrappingLabel) source.getFigure());
-		else {
-			return new LabelCellEditorLocator((Label) source.getFigure());
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	static private class CommentCellEditorLocator implements CellEditorLocator {
+	private static class LabelCellEditorLocator implements CellEditorLocator {
 
 		/**
 		 * @generated
 		 */
-		private HTMLCornerBentFigure commentFigure;
+		private Label label;
 
 		/**
 		 * @generated
 		 */
-		public CommentCellEditorLocator(HTMLCornerBentFigure commentFigure) {
-			this.commentFigure = commentFigure;
+		public LabelCellEditorLocator(Label label) {
+			this.label = label;
 		}
 
 		/**
 		 * @generated
 		 */
-		public HTMLCornerBentFigure getCommentFigure() {
-			return commentFigure;
+		public Label getLabel() {
+			return label;
 		}
 
 		/**
@@ -134,9 +50,55 @@ public class UMLEditPartFactory implements EditPartFactory {
 		 */
 		public void relocate(CellEditor celleditor) {
 			Text text = (Text) celleditor.getControl();
-			Rectangle rect = getCommentFigure().getBounds().getCopy();
-			getCommentFigure().translateToAbsolute(rect);
-			if (getCommentFigure().getText().length() > 0) {
+			Rectangle rect = getLabel().getTextBounds().getCopy();
+			getLabel().translateToAbsolute(rect);
+			if (!text.getFont().isDisposed()) {
+				int avr = FigureUtilities.getFontMetrics(text.getFont())
+						.getAverageCharWidth();
+				rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
+						SWT.DEFAULT)).expand(avr * 2, 0));
+			}
+			if (!rect.equals(new Rectangle(text.getBounds()))) {
+				text.setBounds(rect.x, rect.y, rect.width, rect.height);
+			}
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	static private class MultilineCellEditorLocator implements
+			CellEditorLocator {
+
+		/**
+		 * @generated
+		 */
+		private IMultilineEditableFigure multilineEditableFigure;
+
+		/**
+		 * @generated
+		 */
+		public MultilineCellEditorLocator(IMultilineEditableFigure figure) {
+			this.multilineEditableFigure = figure;
+		}
+
+		/**
+		 * @generated
+		 */
+		public IMultilineEditableFigure getMultilineEditableFigure() {
+			return multilineEditableFigure;
+		}
+
+		/**
+		 * @generated
+		 */
+		public void relocate(CellEditor celleditor) {
+			Text text = (Text) celleditor.getControl();
+			Rectangle rect = getMultilineEditableFigure().getBounds().getCopy();
+			rect.x = getMultilineEditableFigure().getEditionLocation().x;
+			rect.y = getMultilineEditableFigure().getEditionLocation().y;
+			getMultilineEditableFigure().translateToAbsolute(rect);
+			if (getMultilineEditableFigure().getText().length() > 0) {
 				rect.setSize(new Dimension(text.computeSize(rect.width,
 						SWT.DEFAULT)));
 			}
@@ -177,15 +139,17 @@ public class UMLEditPartFactory implements EditPartFactory {
 			Text text = (Text) celleditor.getControl();
 			Rectangle rect = getWrapLabel().getTextBounds().getCopy();
 			getWrapLabel().translateToAbsolute(rect);
-			if (getWrapLabel().isTextWrapOn()
-					&& getWrapLabel().getText().length() > 0) {
-				rect.setSize(new Dimension(text.computeSize(rect.width,
-						SWT.DEFAULT)));
-			} else {
-				int avr = FigureUtilities.getFontMetrics(text.getFont())
-						.getAverageCharWidth();
-				rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
-						SWT.DEFAULT)).expand(avr * 2, 0));
+			if (!text.getFont().isDisposed()) {
+				if (getWrapLabel().isTextWrapOn()
+						&& getWrapLabel().getText().length() > 0) {
+					rect.setSize(new Dimension(text.computeSize(rect.width,
+							SWT.DEFAULT)));
+				} else {
+					int avr = FigureUtilities.getFontMetrics(text.getFont())
+							.getAverageCharWidth();
+					rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
+							SWT.DEFAULT)).expand(avr * 2, 0));
+				}
 			}
 			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
@@ -196,41 +160,90 @@ public class UMLEditPartFactory implements EditPartFactory {
 	/**
 	 * @generated
 	 */
-	private static class LabelCellEditorLocator implements CellEditorLocator {
-
-		/**
-		 * @generated
-		 */
-		private Label label;
-
-		/**
-		 * @generated
-		 */
-		public LabelCellEditorLocator(Label label) {
-			this.label = label;
+	public static CellEditorLocator getTextCellEditorLocator(
+			ITextAwareEditPart source) {
+		if (source.getFigure() instanceof IMultilineEditableFigure)
+			return new MultilineCellEditorLocator(
+					(IMultilineEditableFigure) source.getFigure());
+		else if (source.getFigure() instanceof WrappingLabel)
+			return new TextCellEditorLocator((WrappingLabel) source.getFigure());
+		else {
+			return new LabelCellEditorLocator((Label) source.getFigure());
 		}
+	}
 
-		/**
-		 * @generated
-		 */
-		public Label getLabel() {
-			return label;
-		}
+	/**
+	 * @generated
+	 */
+	public EditPart createEditPart(EditPart context, Object model) {
+		if (model instanceof View) {
+			View view = (View) model;
+			switch (UMLVisualIDRegistry.getVisualID(view)) {
 
-		/**
-		 * @generated
-		 */
-		public void relocate(CellEditor celleditor) {
-			Text text = (Text) celleditor.getControl();
-			Rectangle rect = getLabel().getTextBounds().getCopy();
-			getLabel().translateToAbsolute(rect);
-			int avr = FigureUtilities.getFontMetrics(text.getFont())
-					.getAverageCharWidth();
-			rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
-					SWT.DEFAULT)).expand(avr * 2, 0));
-			if (!rect.equals(new Rectangle(text.getBounds()))) {
-				text.setBounds(rect.x, rect.y, rect.width, rect.height);
+			case PackageEditPart.VISUAL_ID:
+				return new PackageEditPart(view);
+
+			case StateMachineEditPart.VISUAL_ID:
+				return new StateMachineEditPart(view);
+
+			case StateMachineNameEditPart.VISUAL_ID:
+				return new StateMachineNameEditPart(view);
+
+			case RegionEditPart.VISUAL_ID:
+				return new RegionEditPart(view);
+
+			case PseudostateEditPart.VISUAL_ID:
+				return new PseudostateEditPart(view);
+
+			case PseudostateNameEditPart.VISUAL_ID:
+				return new PseudostateNameEditPart(view);
+
+			case PseudostateStereotypeEditPart.VISUAL_ID:
+				return new PseudostateStereotypeEditPart(view);
+
+			case FinalStateEditPart.VISUAL_ID:
+				return new FinalStateEditPart(view);
+
+			case FinalStateNameEditPart.VISUAL_ID:
+				return new FinalStateNameEditPart(view);
+
+			case FinalStateStereotypeEditPart.VISUAL_ID:
+				return new FinalStateStereotypeEditPart(view);
+
+			case StateEditPart.VISUAL_ID:
+				return new StateEditPart(view);
+
+			case StateNameEditPart.VISUAL_ID:
+				return new StateNameEditPart(view);
+
+			case StateStereotypeEditPart.VISUAL_ID:
+				return new StateStereotypeEditPart(view);
+
+			case RegionCompartmentEditPart.VISUAL_ID:
+				return new RegionCompartmentEditPart(view);
+
+			case StateMachineCompartmentEditPart.VISUAL_ID:
+				return new StateMachineCompartmentEditPart(view);
+
+			case TransitionEditPart.VISUAL_ID:
+				return new TransitionEditPart(view);
+
+			case TransitionNameEditPart.VISUAL_ID:
+				return new TransitionNameEditPart(view);
+
+			case TransitionGuardEditPart.VISUAL_ID:
+				return new TransitionGuardEditPart(view);
+
 			}
 		}
+		return createUnrecognizedEditPart(context, model);
+	}
+
+	/**
+	 * @generated
+	 */
+	private EditPart createUnrecognizedEditPart(EditPart context, Object model) {
+		// Handle creation of unrecognized child node EditParts here
+		return null;
 	}
 }

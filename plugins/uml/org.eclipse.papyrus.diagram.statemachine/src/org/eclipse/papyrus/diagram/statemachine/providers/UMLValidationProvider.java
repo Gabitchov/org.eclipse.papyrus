@@ -19,8 +19,16 @@ public class UMLValidationProvider {
 	/**
 	 * @generated
 	 */
-	public static boolean shouldConstraintsBePrivate() {
-		return false;
+	static boolean isInDefaultEditorContext(Object object) {
+		if (shouldConstraintsBePrivate() && !constraintsActive) {
+			return false;
+		}
+		if (object instanceof View) {
+			return constraintsActive
+					&& PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry
+							.getModelID((View) object));
+		}
+		return true;
 	}
 
 	/**
@@ -54,16 +62,8 @@ public class UMLValidationProvider {
 	/**
 	 * @generated
 	 */
-	static boolean isInDefaultEditorContext(Object object) {
-		if (shouldConstraintsBePrivate() && !constraintsActive) {
-			return false;
-		}
-		if (object instanceof View) {
-			return constraintsActive
-					&& PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry
-							.getModelID((View) object));
-		}
-		return true;
+	public static boolean shouldConstraintsBePrivate() {
+		return false;
 	}
 
 }

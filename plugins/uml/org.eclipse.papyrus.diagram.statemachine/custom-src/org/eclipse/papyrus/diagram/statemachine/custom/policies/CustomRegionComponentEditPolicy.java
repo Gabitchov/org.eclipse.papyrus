@@ -26,11 +26,13 @@ public class CustomRegionComponentEditPolicy extends ComponentEditPolicy {
 		}
 		List toDel = deleteRequest.getEditParts();
 		if (toDel == null || toDel.isEmpty()) {
-			cc.compose(new CustomRegionDeleteCommand(editingDomain, (View) getHost().getModel()));
+			cc.compose(new CustomRegionDeleteCommand(editingDomain,
+					(View) getHost().getModel()));
 		} else {
 			for (int i = 0; i < toDel.size(); i++) {
 				IGraphicalEditPart gep = (IGraphicalEditPart) toDel.get(i);
-				cc.compose(new CustomRegionDeleteCommand(editingDomain, (View) gep.getModel()));
+				cc.compose(new CustomRegionDeleteCommand(editingDomain,
+						(View) gep.getModel()));
 			}
 		}
 		return new ICommandProxy(cc.reduce());
@@ -40,7 +42,8 @@ public class CustomRegionComponentEditPolicy extends ComponentEditPolicy {
 		if (getHost() instanceof IGraphicalEditPart) {
 			return ((IGraphicalEditPart) getHost()).getEditingDomain();
 		} else if (getHost() instanceof IEditingDomainProvider) {
-			Object domain = ((IEditingDomainProvider) getHost()).getEditingDomain();
+			Object domain = ((IEditingDomainProvider) getHost())
+					.getEditingDomain();
 			if (domain instanceof TransactionalEditingDomain) {
 				return (TransactionalEditingDomain) domain;
 			}

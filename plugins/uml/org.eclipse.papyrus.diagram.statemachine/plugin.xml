@@ -2,16 +2,7 @@
 <?eclipse version="3.0"?>
 <plugin>
 
-   <extension point="org.eclipse.ui.contexts" id="ui-context">
-      <?gmfgen generated="true"?>
-      <context
-         description="%context.description"
-         id="org.eclipse.papyrus.diagram.statemachine.ui.diagramContext"
-         name="%context.name"
-         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
-      </context>
-   </extension>
-   
+      
    <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders" id="global-actions">
       <?gmfgen generated="true"?>
       <GlobalActionHandlerProvider
@@ -196,8 +187,8 @@
       <viewProvider class="org.eclipse.papyrus.diagram.statemachine.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLStateMachineDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2000,3000,3004,3005,3006"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="5000"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2000,3000,4000,5000,6000"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="7000"/>
       </viewProvider>
    </extension>
 
@@ -209,13 +200,13 @@
             <method name="getType()" value="PapyrusUMLStateMachineDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2000,3000,3004,3005,3006"/>
+            <method name="getType()" value="2000,3000,4000,5000,6000"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
-            <method name="getType()" value="5000"/>
+            <method name="getType()" value="7000"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="2001,4002,4003,4005,4004"/>
+            <method name="getType()" value="2001,4001,4002,5001,5002,6001,6002"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value="3002,2002"/>
@@ -282,42 +273,42 @@
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.statemachine.ShallowHistoryStateNode_3004"
-               name="%metatype.name.Pseudostate_3004"
+               id="org.eclipse.papyrus.diagram.statemachine.Pseudostate_4000"
+               name="%metatype.name.Pseudostate_4000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Pseudostate"
-               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.ShallowHistoryStateNodeEditHelper">
-            <param name="semanticHint" value="3004"/>
+               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.PseudostateEditHelper">
+            <param name="semanticHint" value="4000"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.statemachine.FinalStateNode_3005"
-               name="%metatype.name.FinalState_3005"
+               id="org.eclipse.papyrus.diagram.statemachine.FinalState_5000"
+               name="%metatype.name.FinalState_5000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="FinalState"
-               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.FinalStateNodeEditHelper">
-            <param name="semanticHint" value="3005"/>
+               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.FinalStateEditHelper">
+            <param name="semanticHint" value="5000"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.statemachine.StateNode_3006"
-               name="%metatype.name.State_3006"
+               id="org.eclipse.papyrus.diagram.statemachine.State_6000"
+               name="%metatype.name.State_6000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="State"
-               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.StateNodeEditHelper">
-            <param name="semanticHint" value="3006"/>
+               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.StateEditHelper">
+            <param name="semanticHint" value="6000"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
-               id="org.eclipse.papyrus.diagram.statemachine.TransitionEditPart_5000"
-               name="%metatype.name.Transition_5000"
+               id="org.eclipse.papyrus.diagram.statemachine.Transition_7000"
+               name="%metatype.name.Transition_7000"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Transition"
-               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.TransitionEditPartEditHelper">
-            <param name="semanticHint" value="5000"/>
+               edithelper="org.eclipse.papyrus.diagram.statemachine.edit.helpers.TransitionEditHelper">
+            <param name="semanticHint" value="7000"/>
          </metamodelType>
       </metamodel>
    </extension>
@@ -335,10 +326,10 @@
          <elementType ref="org.eclipse.papyrus.diagram.statemachine.Package_1000"/>
          <elementType ref="org.eclipse.papyrus.diagram.statemachine.StateMachine_2000"/>
          <elementType ref="org.eclipse.papyrus.diagram.statemachine.Region_3000"/>
-         <elementType ref="org.eclipse.papyrus.diagram.statemachine.ShallowHistoryStateNode_3004"/>
-         <elementType ref="org.eclipse.papyrus.diagram.statemachine.FinalStateNode_3005"/>
-         <elementType ref="org.eclipse.papyrus.diagram.statemachine.StateNode_3006"/>
-         <elementType ref="org.eclipse.papyrus.diagram.statemachine.TransitionEditPart_5000"/>
+         <elementType ref="org.eclipse.papyrus.diagram.statemachine.Pseudostate_4000"/>
+         <elementType ref="org.eclipse.papyrus.diagram.statemachine.FinalState_5000"/>
+         <elementType ref="org.eclipse.papyrus.diagram.statemachine.State_6000"/>
+         <elementType ref="org.eclipse.papyrus.diagram.statemachine.Transition_7000"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -377,7 +368,7 @@
             priority="normal" 
             contentProvider="org.eclipse.papyrus.diagram.statemachine.navigator.UMLNavigatorContentProvider" 
             labelProvider="org.eclipse.papyrus.diagram.statemachine.navigator.UMLNavigatorLabelProvider"
-            icon="icons/obj16/Diagram_StateMachine.gif"
+            icon="icons/UMLDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
             <or>
@@ -413,7 +404,7 @@
             priority="normal" 
             contentProvider="org.eclipse.papyrus.diagram.statemachine.navigator.UMLDomainNavigatorContentProvider" 
             labelProvider="org.eclipse.papyrus.diagram.statemachine.navigator.UMLDomainNavigatorLabelProvider"
-            icon="icons/obj16/Diagram_StateMachine.gif"
+            icon="icons/UMLDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
             <or>
@@ -623,6 +614,74 @@
       </context>
    </editpartProvider>
 </extension>
+
+
+<extension point="org.eclipse.ui.preferencePages">
+
+
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
+			class="org.eclipse.papyrus.diagram.statemachine.preferences.RegionPreferencePage"
+            id="org.eclipse.papyrus.diagram.statemachine.preferences.RegionPreferencePage"
+            name="Region Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
+			class="org.eclipse.papyrus.diagram.statemachine.preferences.StatePreferencePage"
+            id="org.eclipse.papyrus.diagram.statemachine.preferences.StatePreferencePage"
+            name="State Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
+			class="org.eclipse.papyrus.diagram.statemachine.preferences.FinalStatePreferencePage"
+            id="org.eclipse.papyrus.diagram.statemachine.preferences.FinalStatePreferencePage"
+            name="FinalState Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
+			class="org.eclipse.papyrus.diagram.statemachine.preferences.StateMachinePreferencePage"
+            id="org.eclipse.papyrus.diagram.statemachine.preferences.StateMachinePreferencePage"
+            name="StateMachine Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
+			class="org.eclipse.papyrus.diagram.statemachine.preferences.PseudostatePreferencePage"
+            id="org.eclipse.papyrus.diagram.statemachine.preferences.PseudostatePreferencePage"
+            name="Pseudostate Node" />
+	
+
+
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
+			class="org.eclipse.papyrus.diagram.statemachine.preferences.TransitionPreferencePage"
+            id="org.eclipse.papyrus.diagram.statemachine.preferences.TransitionPreferencePage"
+            name="Transition Link" />
+		
+
+</extension>
+<extension
+      point="org.eclipse.papyrus.diagram.common.paletteDefinition">
+   <paletteDefinition
+         ID="org.eclipse.papyrus.diagram.statemachine.palette"
+         class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
+         icon="icons/obj16/Diagram_StateMachine.gif"
+         name="State Machine Palette"
+         path="/resource/Palette.xml"
+         provider="CEA LIST">
+      <Priority
+            name="Medium">
+      </Priority>
+      <editor
+            id="org.eclipse.papyrus.diagram.statemachine">
+      </editor>
+   </paletteDefinition>
+</extension>
 <extension
 		id="PapyrusUMLStateMachineDiagram.palettedefinition"
 		name="PapyrusUMLStateMachineDiagram Predefined Entries"
@@ -638,17 +697,17 @@
 				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
 					<entry
        defineOnly="true"
-       description="Create new State Machine"
+       description="StateMachine"
        id="createStateMachineCreationTool"
        kind="tool"
-       label="State Machine"
-       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Statemachine.gif"
+       label="StateMachine"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateMachine.gif"
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateMachine.gif">
  	</entry>
 	<entry
        defineOnly="true"
-       description="Create new Region"
+       description="Region"
        id="createRegionCreationTool"
        kind="tool"
        label="Region"
@@ -658,38 +717,128 @@
  	</entry>
 	<entry
        defineOnly="true"
-       description="Create a new State"
-       id="createState3CreationTool"
+       description="State"
+       id="createStateCreationTool"
        kind="tool"
-       label="State"
+       label="StateMachine"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/State.gif"
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/State.gif">
  	</entry>
 	<entry
        defineOnly="true"
-       description="Create a nea Final State"
-       id="createFinalState4CreationTool"
+       description="Initial"
+       id="createInitialCreationTool"
        kind="tool"
-       label="Final State"
+       label="Initial"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_initial.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_initial.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="FinalState"
+       id="createFinalStateCreationTool"
+       kind="tool"
+       label="FinalState"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FinalState.gif"
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FinalState.gif">
  	</entry>
 	<entry
        defineOnly="true"
-       description="Create a new ShallowHistoryState"
-       id="createPseudoState1CreationTool"
+       description="ShallowHistory"
+       id="createShallowHistoryCreationTool"
        kind="tool"
-       label="PseudoState"
+       label="ShallowHistory"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_shallowHistory.gif"
        path=""
        small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_shallowHistory.gif">
  	</entry>
 	<entry
        defineOnly="true"
-       description="Create a new Transition Local"
-       id="createTransition1CreationTool"
+       description="DeepHistory"
+       id="createDeepHistoryCreationTool"
+       kind="tool"
+       label="DeepHistory"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_deepHistory.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_deepHistory.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Fork"
+       id="createForkCreationTool"
+       kind="tool"
+       label="Fork"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_fork.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_fork.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Join"
+       id="createJoinCreationTool"
+       kind="tool"
+       label="Join"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_join.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_join.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Choice"
+       id="createChoiceCreationTool"
+       kind="tool"
+       label="Choice"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_choice.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_choice.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Junction"
+       id="createJunctionCreationTool"
+       kind="tool"
+       label="Junction"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_junction.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_junction.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="EntryPoint"
+       id="createEntryPointCreationTool"
+       kind="tool"
+       label="EntryPoint"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_entryPoint.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_entryPoint.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="ExitPoint"
+       id="createExitPointCreationTool"
+       kind="tool"
+       label="ExitPoint"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_exitPoint.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_exitPoint.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Terminate"
+       id="createTerminateCreationTool"
+       kind="tool"
+       label="Terminate"
+       large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_terminate.gif"
+       path=""
+       small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_terminate.gif">
+ 	</entry>
+	<entry
+       defineOnly="true"
+       description="Transition"
+       id="createTransitionCreationTool"
        kind="tool"
        label="Transition"
        large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Transition_local.gif"
@@ -716,7 +865,7 @@
 				<predefinedEntry id="standardGroup/noteStack/textTool" remove="true"/> 
 				<predefinedEntry id="standardGroup/noteStack/noteattachmentTool" remove="true"/>
 					<entry
-       description="All Nodes"
+       description=""
        id="createNodesGroup"
        kind="drawer"
        label="Nodes"
@@ -734,19 +883,57 @@
           path="/createNodesGroup">
     </predefinedEntry>
  	<predefinedEntry
-          id="createState3CreationTool"
+          id="createStateCreationTool"
           path="/createNodesGroup">
     </predefinedEntry>
  	<predefinedEntry
-          id="createFinalState4CreationTool"
+          id="createInitialCreationTool"
+          path="/createNodesGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createFinalStateCreationTool"
+          path="/createNodesGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createShallowHistoryCreationTool"
+          path="/createNodesGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createDeepHistoryCreationTool"
+          path="/createNodesGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createForkCreationTool"
+          path="/createNodesGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createJoinCreationTool"
+          path="/createNodesGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createChoiceCreationTool"
+          path="/createNodesGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createJunctionCreationTool"
+          path="/createNodesGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createEntryPointCreationTool"
+          path="/createNodesGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createExitPointCreationTool"
+          path="/createNodesGroup">
+    </predefinedEntry>
+ 	<predefinedEntry
+          id="createTerminateCreationTool"
           path="/createNodesGroup">
     </predefinedEntry>
 
- 	 
-
 	<entry
-       description="All Edges"
-       id="createEdges3Group"
+       description=""
+       id="createEdgesGroup"
        kind="drawer"
        label="Edges"
        large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
@@ -755,8 +942,8 @@
  	</entry>
  	 
  	 	<predefinedEntry
-          id="createTransition1CreationTool"
-          path="/createEdges3Group">
+          id="createTransitionCreationTool"
+          path="/createEdgesGroup">
     </predefinedEntry>
 
 
@@ -766,72 +953,10 @@
 			
 	</extension>
 
-<extension point="org.eclipse.ui.preferencePages">
+<extension point="org.eclipse.ui.handlers" id="menu-handlers">
+      <?gmfgen generated="true"?>
+   </extension>
 
-
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
-			class="org.eclipse.papyrus.diagram.statemachine.preferences.RegionPreferencePage"
-            id="org.eclipse.papyrus.diagram.statemachine.preferences.RegionPreferencePage"
-            name="Region" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
-			class="org.eclipse.papyrus.diagram.statemachine.preferences.StateMachinePreferencePage"
-            id="org.eclipse.papyrus.diagram.statemachine.preferences.StateMachinePreferencePage"
-            name="StateMachine" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
-			class="org.eclipse.papyrus.diagram.statemachine.preferences.StateNodePreferencePage"
-            id="org.eclipse.papyrus.diagram.statemachine.preferences.StateNodePreferencePage"
-            name="StateNode" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
-			class="org.eclipse.papyrus.diagram.statemachine.preferences.FinalStateNodePreferencePage"
-            id="org.eclipse.papyrus.diagram.statemachine.preferences.FinalStateNodePreferencePage"
-            name="FinalStateNode" />	
-	
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
-			class="org.eclipse.papyrus.diagram.statemachine.preferences.ShallowHistoryStateNodePreferencePage"
-            id="org.eclipse.papyrus.diagram.statemachine.preferences.ShallowHistoryStateNodePreferencePage"
-            name="ShallowHistoryStateNode" />	
-	
-
-
-	
-			<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
-			class="org.eclipse.papyrus.diagram.statemachine.preferences.TransitionEditPartPreferencePage"
-            id="org.eclipse.papyrus.diagram.statemachine.preferences.TransitionEditPartPreferencePage"
-            name="TransitionEditPart" />	
-	
-
-</extension>
-<extension
-      point="org.eclipse.papyrus.diagram.common.paletteDefinition">
-   <paletteDefinition
-         ID="org.eclipse.papyrus.diagram.statemachine.palette"
-         class="org.eclipse.papyrus.diagram.common.service.PluginPaletteProvider"
-         icon="icons/obj16/Diagram_StateMachine.gif"
-         name="State Machine Palette"
-         path="/resource/Palette.xml"
-         provider="CEA LIST">
-      <Priority
-            name="Medium">
-      </Priority>
-      <editor
-            id="org.eclipse.papyrus.diagram.statemachine">
-      </editor>
-   </paletteDefinition>
-</extension>
 
 
 

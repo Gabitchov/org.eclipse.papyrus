@@ -32,6 +32,20 @@ public class UMLReorientConnectionViewCommand extends
 	/**
 	 * @generated
 	 */
+	protected CommandResult doExecuteWithResult(
+			IProgressMonitor progressMonitor, IAdaptable info) {
+		assert null != edgeAdaptor : "Null child in UMLReorientConnectionViewCommand"; //$NON-NLS-1$
+		Edge edge = (Edge) getEdgeAdaptor().getAdapter(Edge.class);
+		assert null != edge : "Null edge in UMLReorientConnectionViewCommand"; //$NON-NLS-1$
+		View tempView = edge.getSource();
+		edge.setSource(edge.getTarget());
+		edge.setTarget(tempView);
+		return CommandResult.newOKCommandResult();
+	}
+
+	/**
+	 * @generated
+	 */
 	public List getAffectedFiles() {
 		View view = (View) edgeAdaptor.getAdapter(View.class);
 		if (view != null) {
@@ -52,19 +66,5 @@ public class UMLReorientConnectionViewCommand extends
 	 */
 	public void setEdgeAdaptor(IAdaptable edgeAdaptor) {
 		this.edgeAdaptor = edgeAdaptor;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected CommandResult doExecuteWithResult(
-			IProgressMonitor progressMonitor, IAdaptable info) {
-		assert null != edgeAdaptor : "Null child in UMLReorientConnectionViewCommand"; //$NON-NLS-1$
-		Edge edge = (Edge) getEdgeAdaptor().getAdapter(Edge.class);
-		assert null != edge : "Null edge in UMLReorientConnectionViewCommand"; //$NON-NLS-1$
-		View tempView = edge.getSource();
-		edge.setSource(edge.getTarget());
-		edge.setTarget(tempView);
-		return CommandResult.newOKCommandResult();
 	}
 }

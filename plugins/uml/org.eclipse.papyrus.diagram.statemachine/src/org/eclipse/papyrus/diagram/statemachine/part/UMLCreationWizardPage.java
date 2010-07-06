@@ -28,19 +28,22 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 	}
 
 	/**
+	 * @generated
+	 */
+	public void createControl(Composite parent) {
+		super.createControl(parent);
+		setFileName(UMLDiagramEditorUtil.getUniqueFileName(
+				getContainerFullPath(), getFileName(), getExtension()));
+		setPageComplete(validatePage());
+	}
+
+	/**
 	 * Override to create files with this extension.
 	 * 
 	 * @generated
 	 */
 	protected String getExtension() {
 		return fileExtension;
-	}
-
-	/**
-	 * @generated
-	 */
-	public URI getURI() {
-		return URI.createPlatformResourceURI(getFilePath().toString(), false);
 	}
 
 	/**
@@ -61,11 +64,8 @@ public class UMLCreationWizardPage extends WizardNewFileCreationPage {
 	/**
 	 * @generated
 	 */
-	public void createControl(Composite parent) {
-		super.createControl(parent);
-		setFileName(UMLDiagramEditorUtil.getUniqueFileName(
-				getContainerFullPath(), getFileName(), getExtension()));
-		setPageComplete(validatePage());
+	public URI getURI() {
+		return URI.createPlatformResourceURI(getFilePath().toString(), false);
 	}
 
 	/**

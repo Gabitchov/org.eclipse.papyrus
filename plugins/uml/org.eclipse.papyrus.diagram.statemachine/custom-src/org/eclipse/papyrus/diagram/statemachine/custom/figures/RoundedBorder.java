@@ -6,8 +6,8 @@ import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.RoundedRectangleBorder;
 
 /**
- * Fixes a bug in GMF RoundedRectangleBorder: when lineWidth is 1 then the border is not shown
- * entirely. See paint method.
+ * Fixes a bug in GMF RoundedRectangleBorder: when lineWidth is 1 then the
+ * border is not shown entirely. See paint method.
  * 
  * @author David
  * 

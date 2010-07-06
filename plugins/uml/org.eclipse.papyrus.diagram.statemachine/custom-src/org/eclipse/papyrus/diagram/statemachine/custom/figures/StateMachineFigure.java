@@ -47,7 +47,8 @@ public class StateMachineFigure extends CompartmentFigure {
 		super(COMPARTMENT, tagLabel);
 		shadowborder = new RoundedShadowBorder(getForegroundColor());
 		setBorder(shadowborder);
-		((AutomaticCompartmentLayoutManager) getLayoutManager()).setAddExtraHeight(false);
+		((AutomaticCompartmentLayoutManager) getLayoutManager())
+				.setAddExtraHeight(false);
 	}
 
 	/**
@@ -65,27 +66,42 @@ public class StateMachineFigure extends CompartmentFigure {
 
 		if (isUsingGradient()) {
 			applyTransparency(graphics);
-			boolean isVertical = (getGradientStyle() == GradientStyle.VERTICAL) ? true : false;
-			graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
-			graphics.setForegroundColor(FigureUtilities.integerToColor(getGradientColor2()));
-			Rectangle tmp = new Rectangle(r.x + arcwidth / 2, r.y, r.width - arcwidth + 1, r.height);
+			boolean isVertical = (getGradientStyle() == GradientStyle.VERTICAL) ? true
+					: false;
+			graphics.setBackgroundColor(FigureUtilities
+					.integerToColor(getGradientColor1()));
+			graphics.setForegroundColor(FigureUtilities
+					.integerToColor(getGradientColor2()));
+			Rectangle tmp = new Rectangle(r.x + arcwidth / 2, r.y, r.width
+					- arcwidth + 1, r.height);
 			graphics.fillGradient(tmp, isVertical);
-			tmp = new Rectangle(r.x, r.y + arcwidth / 2, r.width, r.height - arcwidth + 1);
+			tmp = new Rectangle(r.x, r.y + arcwidth / 2, r.width, r.height
+					- arcwidth + 1);
 			graphics.fillGradient(tmp, isVertical);
 			if (isVertical) {
-				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
-				graphics.fillArc(r.x + r.width - arcwidth, r.y + r.height - arcwidth, arcwidth, arcwidth, 270, 90);
-				graphics.fillArc(r.x, r.y + r.height - arcwidth, arcwidth, arcwidth, 180, 90);
-				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor2()));
-				graphics.fillArc(r.x + r.width - arcwidth, r.y, arcwidth, arcwidth, 0, 90);
+				graphics.setBackgroundColor(FigureUtilities
+						.integerToColor(getGradientColor1()));
+				graphics.fillArc(r.x + r.width - arcwidth, r.y + r.height
+						- arcwidth, arcwidth, arcwidth, 270, 90);
+				graphics.fillArc(r.x, r.y + r.height - arcwidth, arcwidth,
+						arcwidth, 180, 90);
+				graphics.setBackgroundColor(FigureUtilities
+						.integerToColor(getGradientColor2()));
+				graphics.fillArc(r.x + r.width - arcwidth, r.y, arcwidth,
+						arcwidth, 0, 90);
 				graphics.fillArc(r.x, r.y, arcwidth, arcwidth, 90, 90);
 			} else {
-				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor1()));
-				graphics.fillArc(r.x + r.width - arcwidth, r.y + r.height - arcwidth, arcwidth, arcwidth, 270, 90);
-				graphics.fillArc(r.x + r.width - arcwidth, r.y, arcwidth, arcwidth, 0, 90);
-				graphics.setBackgroundColor(FigureUtilities.integerToColor(getGradientColor2()));
+				graphics.setBackgroundColor(FigureUtilities
+						.integerToColor(getGradientColor1()));
+				graphics.fillArc(r.x + r.width - arcwidth, r.y + r.height
+						- arcwidth, arcwidth, arcwidth, 270, 90);
+				graphics.fillArc(r.x + r.width - arcwidth, r.y, arcwidth,
+						arcwidth, 0, 90);
+				graphics.setBackgroundColor(FigureUtilities
+						.integerToColor(getGradientColor2()));
 				graphics.fillArc(r.x, r.y, arcwidth, arcwidth, 90, 90);
-				graphics.fillArc(r.x, r.y + r.height - arcwidth, arcwidth, arcwidth, 180, 90);
+				graphics.fillArc(r.x, r.y + r.height - arcwidth, arcwidth,
+						arcwidth, 180, 90);
 			}
 		} else {
 
@@ -93,12 +109,17 @@ public class StateMachineFigure extends CompartmentFigure {
 				r = r.getCopy().shrink(1, 1).translate(-1, -1);
 
 			graphics.fillArc(r.x, r.y, arcwidth, arcwidth, 90, 90);
-			graphics.fillArc(r.x + r.width - arcwidth, r.y, arcwidth, arcwidth, 0, 90);
-			graphics.fillArc(r.x + r.width - arcwidth, r.y + r.height - arcwidth, arcwidth, arcwidth, 270, 90);
-			graphics.fillArc(r.x, r.y + r.height - arcwidth, arcwidth, arcwidth, 180, 90);
+			graphics.fillArc(r.x + r.width - arcwidth, r.y, arcwidth, arcwidth,
+					0, 90);
+			graphics.fillArc(r.x + r.width - arcwidth, r.y + r.height
+					- arcwidth, arcwidth, arcwidth, 270, 90);
+			graphics.fillArc(r.x, r.y + r.height - arcwidth, arcwidth,
+					arcwidth, 180, 90);
 
-			graphics.fillRectangle(r.x + arcwidth / 2, r.y, r.width - arcwidth + 1, r.height);
-			graphics.fillRectangle(r.x, r.y + arcwidth / 2, r.width, r.height - arcwidth + 1);
+			graphics.fillRectangle(r.x + arcwidth / 2, r.y, r.width - arcwidth
+					+ 1, r.height);
+			graphics.fillRectangle(r.x, r.y + arcwidth / 2, r.width, r.height
+					- arcwidth + 1);
 
 		}
 	}

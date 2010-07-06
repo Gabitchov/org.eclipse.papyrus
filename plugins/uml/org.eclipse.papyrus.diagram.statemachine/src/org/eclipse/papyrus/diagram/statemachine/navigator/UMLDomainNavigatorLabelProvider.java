@@ -23,7 +23,22 @@ public class UMLDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	/**
 	 * @generated
 	 */
-	public void init(ICommonContentExtensionSite aConfig) {
+	public void addListener(ILabelProviderListener listener) {
+		myAdapterFactoryLabelProvider.addListener(listener);
+	}
+
+	/**
+	 * @generated
+	 */
+	public void dispose() {
+		myAdapterFactoryLabelProvider.dispose();
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getDescription(Object anElement) {
+		return null;
 	}
 
 	/**
@@ -51,15 +66,7 @@ public class UMLDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	/**
 	 * @generated
 	 */
-	public void addListener(ILabelProviderListener listener) {
-		myAdapterFactoryLabelProvider.addListener(listener);
-	}
-
-	/**
-	 * @generated
-	 */
-	public void dispose() {
-		myAdapterFactoryLabelProvider.dispose();
+	public void init(ICommonContentExtensionSite aConfig) {
 	}
 
 	/**
@@ -86,13 +93,6 @@ public class UMLDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	 * @generated
 	 */
 	public void saveState(IMemento aMemento) {
-	}
-
-	/**
-	 * @generated
-	 */
-	public String getDescription(Object anElement) {
-		return null;
 	}
 
 }

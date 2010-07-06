@@ -18,8 +18,8 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionCompartmentEdit
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
 
 /**
- * A specific drag tracker for regions. It locally stores the potential target edit part during a
- * drag and drop.
+ * A specific drag tracker for regions. It locally stores the potential target
+ * edit part during a drag and drop.
  * 
  * @author David Servat
  */
@@ -37,6 +37,10 @@ public class CustomRegionDragTracker extends DragEditPartsTrackerEx {
 		this.regionEP = regionEditPart;
 	}
 
+	public Rectangle getRegionFigureBounds() {
+		return regionFigureBounds.getCopy();
+	}
+
 	/**
 	 * This method returns the target RegionEditPart if any, or returns null.
 	 * 
@@ -51,8 +55,15 @@ public class CustomRegionDragTracker extends DragEditPartsTrackerEx {
 		return null;
 	}
 
-	public Rectangle getRegionFigureBounds() {
-		return regionFigureBounds.getCopy();
+	@Override
+	protected boolean handleButtonUp(int button) {
+		try {
+			if (internalResizeCommand != null)
+				internalResizeCommand.undo(null, null);
+		} catch (ExecutionException e) {
+		}
+
+		return super.handleButtonUp(button);
 	}
 
 	@Override
@@ -92,8 +103,9 @@ public class CustomRegionDragTracker extends DragEditPartsTrackerEx {
 			internalResizeRequest.setSizeDelta(new Dimension(0, -regionHeight));
 		}
 
-		internalResizeCommand = new CustomRegionResizeCommand(adaptableForRegion, null, regionEP.getEditingDomain(),
-				null, internalResizeRequest, null);
+		internalResizeCommand = new CustomRegionResizeCommand(
+				adaptableForRegion, null, regionEP.getEditingDomain(), null,
+				internalResizeRequest, null);
 
 		try {
 			internalResizeCommand.execute(null, null);
@@ -101,17 +113,6 @@ public class CustomRegionDragTracker extends DragEditPartsTrackerEx {
 		}
 
 		return b;
-	}
-
-	@Override
-	protected boolean handleButtonUp(int button) {
-		try {
-			if (internalResizeCommand != null)
-				internalResizeCommand.undo(null, null);
-		} catch (ExecutionException e) {
-		}
-
-		return super.handleButtonUp(button);
 	}
 
 }

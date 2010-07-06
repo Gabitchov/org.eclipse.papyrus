@@ -15,7 +15,8 @@ import org.eclipse.papyrus.diagram.statemachine.custom.helpers.Zone;
 
 public class CustomRegionDeleteCommand extends DeleteCommand {
 
-	public CustomRegionDeleteCommand(TransactionalEditingDomain editingDomain, View view) {
+	public CustomRegionDeleteCommand(TransactionalEditingDomain editingDomain,
+			View view) {
 		super(editingDomain, view);
 		// TODO Auto-generated constructor stub
 	}
@@ -32,12 +33,13 @@ public class CustomRegionDeleteCommand extends DeleteCommand {
 	}
 
 	/*
-	 * Essentially performs a resize of the region to be removed so that neighbouring regions are
-	 * updated accordingly, then resets the zone of neighbouring regions and finally remove the
-	 * region
+	 * Essentially performs a resize of the region to be removed so that
+	 * neighbouring regions are updated accordingly, then resets the zone of
+	 * neighbouring regions and finally remove the region
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
+	protected CommandResult doExecuteWithResult(
+			IProgressMonitor progressMonitor, IAdaptable info)
 			throws ExecutionException {
 		// get the region to delete
 		View region = getView();
@@ -61,7 +63,8 @@ public class CustomRegionDeleteCommand extends DeleteCommand {
 			Iterator<View> it = neighbours.iterator();
 			while (it.hasNext()) {
 				View view = it.next();
-				// for each of these we add regionWidth to their width and translate their x of
+				// for each of these we add regionWidth to their width and
+				// translate their x of
 				// -regionWidth
 				int width = Zone.getWidth(view);
 				width += regionWidth;
@@ -75,7 +78,8 @@ public class CustomRegionDeleteCommand extends DeleteCommand {
 			Iterator<View> it = neighbours.iterator();
 			while (it.hasNext()) {
 				View view = it.next();
-				// for each of these we add regionHeight to their height and -regionHeight to their
+				// for each of these we add regionHeight to their height and
+				// -regionHeight to their
 				// y
 				int height = Zone.getHeight(view);
 				height += regionHeight;

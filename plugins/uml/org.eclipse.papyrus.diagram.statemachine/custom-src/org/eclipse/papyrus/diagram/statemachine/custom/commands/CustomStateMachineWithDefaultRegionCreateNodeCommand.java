@@ -24,7 +24,8 @@ import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.StateMachine;
 
-public class CustomStateMachineWithDefaultRegionCreateNodeCommand extends AbstractTransactionalCommand {
+public class CustomStateMachineWithDefaultRegionCreateNodeCommand extends
+		AbstractTransactionalCommand {
 
 	IAdaptable adaptable;
 
@@ -32,7 +33,8 @@ public class CustomStateMachineWithDefaultRegionCreateNodeCommand extends Abstra
 
 	CreateViewRequest.ViewDescriptor viewDescriptor;
 
-	public CustomStateMachineWithDefaultRegionCreateNodeCommand(IAdaptable adaptable, PreferencesHint prefHints,
+	public CustomStateMachineWithDefaultRegionCreateNodeCommand(
+			IAdaptable adaptable, PreferencesHint prefHints,
 			TransactionalEditingDomain domain, String label, List affectedFiles) {
 		super(domain, label, affectedFiles);
 		this.adaptable = adaptable;
@@ -40,12 +42,14 @@ public class CustomStateMachineWithDefaultRegionCreateNodeCommand extends Abstra
 
 		viewDescriptor = new ViewDescriptor(adaptable, prefHints);
 
-		// make sure the return object is available even before executing/undoing/redoing
+		// make sure the return object is available even before
+		// executing/undoing/redoing
 		setResult(CommandResult.newOKCommandResult(viewDescriptor));
 	}
 
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		// adapt the view at execution time
 		View stateMachineView = (View) adaptable.getAdapter(View.class);
 
@@ -58,18 +62,21 @@ public class CustomStateMachineWithDefaultRegionCreateNodeCommand extends Abstra
 				compartmentView = currentView;
 		}
 
-		StateMachine stateMachine = (StateMachine) stateMachineView.getElement();
+		StateMachine stateMachine = (StateMachine) stateMachineView
+				.getElement();
 
 		Iterator<Region> regions = stateMachine.getRegions().iterator();
 		while (regions.hasNext()) {
 			Region region = regions.next();
 
 			IAdaptable regionAdaptable = new SemanticAdapter(region, null);
-			String semanticHint = ((IHintedType) UMLElementTypes.Region_3000).getSemanticHint();
+			String semanticHint = ((IHintedType) UMLElementTypes.Region_3000)
+					.getSemanticHint();
 
 			if (compartmentView != null) {
-				Node regionNode = ViewService.getInstance().createNode(regionAdaptable, compartmentView, semanticHint,
-						-1, prefHints);
+				Node regionNode = ViewService.getInstance().createNode(
+						regionAdaptable, compartmentView, semanticHint, -1,
+						prefHints);
 
 				// add region specifics
 				Zone.createRegionDefaultAnnotation(regionNode);

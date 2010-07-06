@@ -36,8 +36,9 @@ public class CustomRegionResizeCommand extends AbstractTransactionalCommand {
 	 */
 	private Rectangle bounds = null;
 
-	public CustomRegionResizeCommand(IAdaptable adaptable, PreferencesHint prefHints,
-			TransactionalEditingDomain domain, String label, ChangeBoundsRequest request, Rectangle bounds) {
+	public CustomRegionResizeCommand(IAdaptable adaptable,
+			PreferencesHint prefHints, TransactionalEditingDomain domain,
+			String label, ChangeBoundsRequest request, Rectangle bounds) {
 		super(domain, label, null);
 
 		this.adaptable = adaptable;
@@ -48,17 +49,15 @@ public class CustomRegionResizeCommand extends AbstractTransactionalCommand {
 
 		viewDescriptor = new ViewDescriptor(adaptable, prefHints);
 
-		// make sure the return object is available even before executing/undoing/redoing
+		// make sure the return object is available even before
+		// executing/undoing/redoing
 		setResult(CommandResult.newOKCommandResult(viewDescriptor));
 
 	}
 
-	public void reverseRequest() {
-		request.getMoveDelta().negate();
-	}
-
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 
 		View region = (View) adaptable.getAdapter(View.class);
 		// a bunch of initializations
@@ -66,9 +65,11 @@ public class CustomRegionResizeCommand extends AbstractTransactionalCommand {
 		int dx = request.getSizeDelta().width;
 		int dy = request.getSizeDelta().height;
 
-		// depending on the direction of resize there are different scaling/translation to be
+		// depending on the direction of resize there are different
+		// scaling/translation to be
 		// performed
-		// on the nodes sitting on either side of the border which is to be moved
+		// on the nodes sitting on either side of the border which is to be
+		// moved
 		// the various cases follow the same structure
 		// first: retrieve a list of node on a given side of the border
 		// second: perform various setting of bounds
@@ -91,7 +92,8 @@ public class CustomRegionResizeCommand extends AbstractTransactionalCommand {
 			it = todo.iterator();
 			while (it.hasNext()) {
 				View view = it.next();
-				// for each of these we add dx to their width and translate their x of (-dx)
+				// for each of these we add dx to their width and translate
+				// their x of (-dx)
 				int width = Zone.getWidth(view);
 				width += dx;
 				Zone.setWidth(view, width);
@@ -118,7 +120,8 @@ public class CustomRegionResizeCommand extends AbstractTransactionalCommand {
 			it = todo.iterator();
 			while (it.hasNext()) {
 				View view = it.next();
-				// for each of these we add (-dx) to their width and translate their x of dx
+				// for each of these we add (-dx) to their width and translate
+				// their x of dx
 				int width = Zone.getWidth(view);
 				width -= dx;
 				Zone.setWidth(view, width);
@@ -135,7 +138,8 @@ public class CustomRegionResizeCommand extends AbstractTransactionalCommand {
 			it = todo.iterator();
 			while (it.hasNext()) {
 				View view = it.next();
-				// for each of these we add dy to their height and (-dy) to their y
+				// for each of these we add dy to their height and (-dy) to
+				// their y
 				int height = Zone.getHeight(view);
 				height += dy;
 				Zone.setHeight(view, height);
@@ -172,7 +176,8 @@ public class CustomRegionResizeCommand extends AbstractTransactionalCommand {
 			it = todo.iterator();
 			while (it.hasNext()) {
 				View view = it.next();
-				// for each of these we add (-dy) to their height and dy to their y
+				// for each of these we add (-dy) to their height and dy to
+				// their y
 				int height = Zone.getHeight(view);
 				height -= dy;
 				Zone.setHeight(view, height);
@@ -183,5 +188,9 @@ public class CustomRegionResizeCommand extends AbstractTransactionalCommand {
 			break;
 		}// switch
 		return CommandResult.newOKCommandResult();
+	}
+
+	public void reverseRequest() {
+		request.getMoveDelta().negate();
 	}
 }

@@ -32,9 +32,11 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.statemachine.edit.helpers.UMLBaseEditHelper;
+import org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Region;
+import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.Vertex;
 
 /**
@@ -42,10 +44,54 @@ import org.eclipse.uml2.uml.Vertex;
  */
 public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
+	 * @generated
+	 */
+	public static class LinkConstraints {
+		/**
+		 * @generated
+		 */
+		public LinkConstraints() {
+			// use static method #getLinkConstraints() to access instance
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canCreateTransition_7000(Region container,
+				Vertex source, Vertex target) {
+			return canExistTransition_7000(container, null, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistTransition_7000(Region container,
+				Transition linkInstance, Vertex source, Vertex target) {
+			return true;
+		}
+
+	}
+
+	/**
 	 * Extended request data key to hold editpart visual id.
+	 * 
 	 * @generated
 	 */
 	public static final String VISUAL_ID_KEY = "visual_id"; //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static LinkConstraints getLinkConstraints() {
+		LinkConstraints cached = UMLDiagramEditorPlugin.getInstance()
+				.getLinkConstraints();
+		if (cached == null) {
+			UMLDiagramEditorPlugin.getInstance().setLinkConstraints(
+					cached = new LinkConstraints());
+		}
+		return cached;
+	}
+
 	/**
 	 * @generated
 	 */
@@ -56,53 +102,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected UMLBaseItemSemanticEditPolicy(IElementType elementType) {
 		myElementType = elementType;
-	}
-
-	/**
-	 * Extended request data key to hold editpart visual id.
-	 * Add visual id of edited editpart to extended data of the request
-	 * so command switch can decide what kind of diagram element is being edited.
-	 * It is done in those cases when it's not possible to deduce diagram
-	 * element kind from domain element.
-	 * 
-	 * @generated
-	 */
-	public Command getCommand(Request request) {
-		if (request instanceof ReconnectRequest) {
-			Object view = ((ReconnectRequest) request).getConnectionEditPart()
-					.getModel();
-			if (view instanceof View) {
-				Integer id = new Integer(UMLVisualIDRegistry
-						.getVisualID((View) view));
-				request.getExtendedData().put(VISUAL_ID_KEY, id);
-			}
-		}
-		return super.getCommand(request);
-	}
-
-	/**
-	 * Returns visual id from request parameters.
-	 * @generated
-	 */
-	protected int getVisualID(IEditCommandRequest request) {
-		Object id = request.getParameter(VISUAL_ID_KEY);
-		return id instanceof Integer ? ((Integer) id).intValue() : -1;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Command getSemanticCommand(IEditCommandRequest request) {
-		IEditCommandRequest completedRequest = completeRequest(request);
-		Command semanticCommand = getSemanticCommandSwitch(completedRequest);
-		semanticCommand = getEditHelperCommand(completedRequest,
-				semanticCommand);
-		if (completedRequest instanceof DestroyRequest) {
-			DestroyRequest destroyRequest = (DestroyRequest) completedRequest;
-			return shouldProceed(destroyRequest) ? addDeleteViewCommand(
-					semanticCommand, destroyRequest) : null;
-		}
-		return semanticCommand;
 	}
 
 	/**
@@ -117,14 +116,111 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	}
 
 	/**
+	 * Clean all shortcuts to the host element from the same diagram
+	 * 
+	 * @generated
+	 */
+	protected void addDestroyShortcutsCommand(ICompositeCommand cmd, View view) {
+		assert view.getEAnnotation("Shortcut") == null; //$NON-NLS-1$
+		for (Iterator it = view.getDiagram().getChildren().iterator(); it
+				.hasNext();) {
+			View nextView = (View) it.next();
+			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) { //$NON-NLS-1$
+				continue;
+			}
+			cmd.add(new DeleteCommand(getEditingDomain(), nextView));
+		}
+	}
+
+	/**
+	 * Extended request data key to hold editpart visual id. Add visual id of
+	 * edited editpart to extended data of the request so command switch can
+	 * decide what kind of diagram element is being edited. It is done in those
+	 * cases when it's not possible to deduce diagram element kind from domain
+	 * element.
+	 * 
+	 * @generated
+	 */
+	public Command getCommand(Request request) {
+		if (request instanceof ReconnectRequest) {
+			Object view = ((ReconnectRequest) request).getConnectionEditPart()
+					.getModel();
+			if (view instanceof View) {
+				Integer id = new Integer(
+						UMLVisualIDRegistry.getVisualID((View) view));
+				request.getExtendedData().put(VISUAL_ID_KEY, id);
+			}
+		}
+		return super.getCommand(request);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getConfigureCommand(ConfigureRequest req) {
+		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IElementType getContextElementType(IEditCommandRequest request) {
+		IElementType requestContextElementType = UMLElementTypes
+				.getElementType(getVisualID(request));
+		return requestContextElementType != null ? requestContextElementType
+				: myElementType;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getCreateCommand(CreateElementRequest req) {
+		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
+		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getDestroyElementCommand(DestroyElementRequest req) {
+		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
+		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getDuplicateCommand(DuplicateElementsRequest req) {
+		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getEditContextCommand(GetEditContextRequest req) {
+		return null;
+	}
+
+	/**
 	 * @generated
 	 */
 	private Command getEditHelperCommand(IEditCommandRequest request,
 			Command editPolicyCommand) {
 		if (editPolicyCommand != null) {
 			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy) editPolicyCommand)
-					.getICommand()
-					: new CommandProxy(editPolicyCommand);
+					.getICommand() : new CommandProxy(editPolicyCommand);
 			request.setParameter(UMLBaseEditHelper.EDIT_POLICY_COMMAND, command);
 		}
 		IElementType requestContextElementType = getContextElementType(request);
@@ -144,13 +240,60 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	}
 
 	/**
+	 * Returns editing domain from the host edit part.
+	 * 
 	 * @generated
 	 */
-	private IElementType getContextElementType(IEditCommandRequest request) {
-		IElementType requestContextElementType = UMLElementTypes
-				.getElementType(getVisualID(request));
-		return requestContextElementType != null ? requestContextElementType
-				: myElementType;
+	protected TransactionalEditingDomain getEditingDomain() {
+		return ((IGraphicalEditPart) getHost()).getEditingDomain();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected final Command getGEFWrapper(ICommand cmd) {
+		return new ICommandProxy(cmd);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getMoveCommand(MoveRequest req) {
+
+		return getGEFWrapper(new MoveElementsCommand(req));
+
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getReorientReferenceRelationshipCommand(
+			ReorientReferenceRelationshipRequest req) {
+		return UnexecutableCommand.INSTANCE;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getReorientRelationshipCommand(
+			ReorientRelationshipRequest req) {
+		return UnexecutableCommand.INSTANCE;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getSemanticCommand(IEditCommandRequest request) {
+		IEditCommandRequest completedRequest = completeRequest(request);
+		Command semanticCommand = getSemanticCommandSwitch(completedRequest);
+		semanticCommand = getEditHelperCommand(completedRequest,
+				semanticCommand);
+		if (completedRequest instanceof DestroyRequest) {
+			DestroyRequest destroyRequest = (DestroyRequest) completedRequest;
+			return shouldProceed(destroyRequest) ? addDeleteViewCommand(
+					semanticCommand, destroyRequest) : null;
+		}
+		return semanticCommand;
 	}
 
 	/**
@@ -186,139 +329,17 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected Command getConfigureCommand(ConfigureRequest req) {
-		return null;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		return null;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Command getCreateCommand(CreateElementRequest req) {
-		return null;
-	}
-
-	/**
-	 * @generated
-	 */
 	protected Command getSetCommand(SetRequest req) {
 		return null;
 	}
 
 	/**
+	 * Returns visual id from request parameters.
+	 * 
 	 * @generated
 	 */
-	protected Command getEditContextCommand(GetEditContextRequest req) {
-		return null;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		return null;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
-		return null;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Command getDuplicateCommand(DuplicateElementsRequest req) {
-		return null;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Command getMoveCommand(MoveRequest req) {
-
-		return getGEFWrapper(new MoveElementsCommand(req));
-
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Command getReorientReferenceRelationshipCommand(
-			ReorientReferenceRelationshipRequest req) {
-		return UnexecutableCommand.INSTANCE;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Command getReorientRelationshipCommand(
-			ReorientRelationshipRequest req) {
-		return UnexecutableCommand.INSTANCE;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected final Command getGEFWrapper(ICommand cmd) {
-		return new ICommandProxy(cmd);
-	}
-
-	/**
-	 * Returns editing domain from the host edit part.
-	 * @generated
-	 */
-	protected TransactionalEditingDomain getEditingDomain() {
-		return ((IGraphicalEditPart) getHost()).getEditingDomain();
-	}
-
-	/**
-	 * Clean all shortcuts to the host element from the same diagram
-	 * @generated
-	 */
-	protected void addDestroyShortcutsCommand(ICompositeCommand cmd, View view) {
-		assert view.getEAnnotation("Shortcut") == null; //$NON-NLS-1$
-		for (Iterator it = view.getDiagram().getChildren().iterator(); it
-				.hasNext();) {
-			View nextView = (View) it.next();
-			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) { //$NON-NLS-1$
-				continue;
-			}
-			cmd.add(new DeleteCommand(getEditingDomain(), nextView));
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public static class LinkConstraints {
-		/**
-		 * @generated
-		 */
-		private static final String OPPOSITE_END_VAR = "oppositeEnd"; //$NON-NLS-1$
-
-		/**
-		 * @generated
-		 */
-		public static boolean canCreateTransition_5000(Region container,
-				Vertex source, Vertex target) {
-			return canExistTransition_5000(container, source, target);
-		}
-
-		/**
-		 * @generated
-		 */
-		public static boolean canExistTransition_5000(Region container,
-				Vertex source, Vertex target) {
-			return true;
-		}
-
+	protected int getVisualID(IEditCommandRequest request) {
+		Object id = request.getParameter(VISUAL_ID_KEY);
+		return id instanceof Integer ? ((Integer) id).intValue() : -1;
 	}
 }

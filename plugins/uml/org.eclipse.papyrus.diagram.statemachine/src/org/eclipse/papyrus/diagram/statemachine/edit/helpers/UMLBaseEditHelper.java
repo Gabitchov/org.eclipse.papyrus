@@ -33,6 +33,44 @@ public class UMLBaseEditHelper extends AbstractEditHelper {
 	/**
 	 * @generated
 	 */
+	protected ICommand getCreateCommand(CreateElementRequest req) {
+		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected ICommand getCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
+		return null;
+	}
+
+	/**
+	 * @generated NOT handle unapply stereotypes before delete
+	 */
+	protected ICommand getDestroyElementCommand(DestroyElementRequest req) {
+		EObject elementToDestroy = req.getElementToDestroy();
+		if (elementToDestroy instanceof Element) {
+			UnapplyAllStereotypesCommand command = new UnapplyAllStereotypesCommand(
+					req.getEditingDomain(), req.getLabel(),
+					(Element) elementToDestroy);
+			if (!command.isEmpty()) {
+				return command;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected ICommand getDestroyReferenceCommand(DestroyReferenceRequest req) {
+		return null;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IEditHelperAdvice[] getEditHelperAdvice(IEditCommandRequest req) {
 		if (req.getParameter(CONTEXT_ELEMENT_TYPE) instanceof IElementType) {
 			return ElementTypeRegistry.getInstance().getEditHelperAdvice(
@@ -58,42 +96,5 @@ public class UMLBaseEditHelper extends AbstractEditHelper {
 		command.add(epCommand);
 		command.add(ehCommand);
 		return command;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected ICommand getCreateCommand(CreateElementRequest req) {
-		return null;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected ICommand getCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		return null;
-	}
-
-	/**
-	 * @generated NOT
-	 * handle unapply stereotypes before delete
-	 */
-	protected ICommand getDestroyElementCommand(DestroyElementRequest req) {
-		EObject elementToDestroy = req.getElementToDestroy();
-		if (elementToDestroy instanceof Element) {
-			UnapplyAllStereotypesCommand command = new UnapplyAllStereotypesCommand(req.getEditingDomain(), req.getLabel(), (Element)elementToDestroy);
-			if (!command.isEmpty()) {
-				return command;
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected ICommand getDestroyReferenceCommand(DestroyReferenceRequest req) {
-		return null;
 	}
 }

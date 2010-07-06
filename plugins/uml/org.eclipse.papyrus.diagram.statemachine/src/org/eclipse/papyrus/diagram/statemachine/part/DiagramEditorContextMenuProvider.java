@@ -23,28 +23,11 @@ public class DiagramEditorContextMenuProvider extends
 	/**
 	 * @generated
 	 */
-	private DeleteElementAction deleteAction;
-
-	/**
-	 * @generated
-	 */
 	public DiagramEditorContextMenuProvider(IWorkbenchPart part,
 			EditPartViewer viewer) {
 		super(part, viewer);
 		this.part = part;
-		deleteAction = new DeleteElementAction(part);
-		deleteAction.init();
-	}
 
-	/**
-	 * @generated
-	 */
-	public void dispose() {
-		if (deleteAction != null) {
-			deleteAction.dispose();
-			deleteAction = null;
-		}
-		super.dispose();
 	}
 
 	/**
@@ -64,7 +47,7 @@ public class DiagramEditorContextMenuProvider extends
 											DiagramEditorContextMenuProvider.this,
 											part);
 							menu.remove(ActionIds.ACTION_DELETE_FROM_MODEL);
-							menu.appendToGroup("editGroup", deleteAction);
+
 						}
 					});
 		} catch (Exception e) {

@@ -1,10 +1,10 @@
 package org.eclipse.papyrus.diagram.statemachine.part;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -60,98 +60,103 @@ public class UMLDiagramEditorUtil {
 	/**
 	 * @generated
 	 */
-	public static Map getSaveOptions() {
-		Map saveOptions = new HashMap();
-		saveOptions.put(XMLResource.OPTION_ENCODING, "UTF-8"); //$NON-NLS-1$
-		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED,
-				Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
-		return saveOptions;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static boolean openDiagram(Resource diagram)
-			throws PartInitException {
-		String path = diagram.getURI().toPlatformString(true);
-		IResource workspaceResource = ResourcesPlugin.getWorkspace().getRoot()
-				.findMember(new Path(path));
-		if (workspaceResource instanceof IFile) {
-			IWorkbenchPage page = PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow().getActivePage();
-			return null != page.openEditor(new FileEditorInput(
-					(IFile) workspaceResource), UMLDiagramEditor.ID);
-		}
-		return false;
-	}
-
-	/**
-	 * @generated
-	 */
-	public static void setCharset(IFile file) {
-		if (file == null) {
-			return;
-		}
-		try {
-			file.setCharset("UTF-8", new NullProgressMonitor()); //$NON-NLS-1$
-		} catch (CoreException e) {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Unable to set charset for file " + file.getFullPath(), e); //$NON-NLS-1$
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public static String getUniqueFileName(IPath containerFullPath,
-			String fileName, String extension) {
-		if (containerFullPath == null) {
-			containerFullPath = new Path(""); //$NON-NLS-1$
-		}
-		if (fileName == null || fileName.trim().length() == 0) {
-			fileName = "default"; //$NON-NLS-1$
-		}
-		IPath filePath = containerFullPath.append(fileName);
-		if (extension != null && !extension.equals(filePath.getFileExtension())) {
-			filePath = filePath.addFileExtension(extension);
-		}
-		extension = filePath.getFileExtension();
-		fileName = filePath.removeFileExtension().lastSegment();
-		int i = 1;
-		while (ResourcesPlugin.getWorkspace().getRoot().exists(filePath)) {
-			i++;
-			filePath = containerFullPath.append(fileName + i);
-			if (extension != null) {
-				filePath = filePath.addFileExtension(extension);
+	public static class LazyElement2ViewMap {
+		/**
+		 * @generated
+		 */
+		private static boolean buildElement2ViewMap(View parentView,
+				Map<EObject, View> element2ViewMap,
+				Set<? extends EObject> elements) {
+			if (elements.size() == element2ViewMap.size()) {
+				return true;
 			}
+
+			if (parentView.isSetElement()
+					&& !element2ViewMap.containsKey(parentView.getElement())
+					&& elements.contains(parentView.getElement())) {
+				element2ViewMap.put(parentView.getElement(), parentView);
+				if (elements.size() == element2ViewMap.size()) {
+					return true;
+				}
+			}
+			boolean complete = false;
+			for (Iterator<?> it = parentView.getChildren().iterator(); it
+					.hasNext() && !complete;) {
+				complete = buildElement2ViewMap((View) it.next(),
+						element2ViewMap, elements);
+			}
+			for (Iterator<?> it = parentView.getSourceEdges().iterator(); it
+					.hasNext() && !complete;) {
+				complete = buildElement2ViewMap((View) it.next(),
+						element2ViewMap, elements);
+			}
+			for (Iterator<?> it = parentView.getTargetEdges().iterator(); it
+					.hasNext() && !complete;) {
+				complete = buildElement2ViewMap((View) it.next(),
+						element2ViewMap, elements);
+			}
+			return complete;
 		}
-		return filePath.lastSegment();
-	}
+
+		/**
+		 * @generated
+		 */
+		private Map<EObject, View> element2ViewMap;
+
+		/**
+		 * @generated
+		 */
+		private View scope;
+
+		/**
+		 * @generated
+		 */
+		private Set<? extends EObject> elementSet;
+
+		/**
+		 * @generated
+		 */
+		public LazyElement2ViewMap(View scope, Set<? extends EObject> elements) {
+			this.scope = scope;
+			this.elementSet = elements;
+		}
+
+		/**
+		 * @generated
+		 */
+		public final Map<EObject, View> getElement2ViewMap() {
+			if (element2ViewMap == null) {
+				element2ViewMap = new HashMap<EObject, View>();
+				// map possible notation elements to itself as these can't be found by view.getElement()
+				for (EObject element : elementSet) {
+					if (element instanceof View) {
+						View view = (View) element;
+						if (view.getDiagram() == scope.getDiagram()) {
+							element2ViewMap.put(element, view); // take only those that part of our diagram
+						}
+					}
+				}
+
+				buildElement2ViewMap(scope, element2ViewMap, elementSet);
+			}
+			return element2ViewMap;
+		}
+	} // LazyElement2ViewMap
 
 	/**
-	 * Runs the wizard in a dialog.
-	 * 
+	 * Store model element in the resource.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 */
-	public static void runWizard(Shell shell, Wizard wizard, String settingsKey) {
-		IDialogSettings pluginDialogSettings = UMLDiagramEditorPlugin
-				.getInstance().getDialogSettings();
-		IDialogSettings wizardDialogSettings = pluginDialogSettings
-				.getSection(settingsKey);
-		if (wizardDialogSettings == null) {
-			wizardDialogSettings = pluginDialogSettings
-					.addNewSection(settingsKey);
-		}
-		wizard.setDialogSettings(wizardDialogSettings);
-		WizardDialog dialog = new WizardDialog(shell, wizard);
-		dialog.create();
-		dialog.getShell().setSize(Math.max(500, dialog.getShell().getSize().x),
-				500);
-		dialog.open();
+	private static void attachModelToResource(Package model, Resource resource) {
+		resource.getContents().add(model);
 	}
 
 	/**
-	 * This method should be called within a workspace modify operation since it creates resources.
+	 * This method should be called within a workspace modify operation since it
+	 * creates resources.
+	 * 
 	 * @generated
 	 */
 	public static Resource createDiagram(URI diagramURI, URI modelURI,
@@ -212,9 +217,9 @@ public class UMLDiagramEditorUtil {
 	}
 
 	/**
-	 * Create a new instance of domain element associated with canvas.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Create a new instance of domain element associated with canvas. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static Package createInitialModel() {
@@ -222,43 +227,10 @@ public class UMLDiagramEditorUtil {
 	}
 
 	/**
-	 * Store model element in the resource.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private static void attachModelToResource(Package model, Resource resource) {
-		resource.getContents().add(model);
-	}
-
-	/**
-	 * @generated
-	 */
-	public static void selectElementsInDiagram(
-			IDiagramWorkbenchPart diagramPart, List/*EditPart*/editParts) {
-		diagramPart.getDiagramGraphicalViewer().deselectAll();
-
-		EditPart firstPrimary = null;
-		for (Iterator it = editParts.iterator(); it.hasNext();) {
-			EditPart nextPart = (EditPart) it.next();
-			diagramPart.getDiagramGraphicalViewer().appendSelection(nextPart);
-			if (firstPrimary == null && nextPart instanceof IPrimaryEditPart) {
-				firstPrimary = nextPart;
-			}
-		}
-
-		if (!editParts.isEmpty()) {
-			diagramPart.getDiagramGraphicalViewer().reveal(
-					firstPrimary != null ? firstPrimary : (EditPart) editParts
-							.get(0));
-		}
-	}
-
-	/**
 	 * @generated
 	 */
 	private static int findElementsInDiagramByID(DiagramEditPart diagramPart,
-			EObject element, List editPartCollector) {
+			EObject element, List<EditPart> editPartCollector) {
 		IDiagramGraphicalViewer viewer = (IDiagramGraphicalViewer) diagramPart
 				.getViewer();
 		final int intialNumOfEditParts = editPartCollector.size();
@@ -273,12 +245,11 @@ public class UMLDiagramEditorUtil {
 		}
 
 		String elementID = EMFCoreUtil.getProxyID(element);
-		List associatedParts = viewer.findEditPartsForElement(elementID,
-				IGraphicalEditPart.class);
+		@SuppressWarnings("unchecked")
+		List<EditPart> associatedParts = viewer.findEditPartsForElement(
+				elementID, IGraphicalEditPart.class);
 		// perform the possible hierarchy disjoint -> take the top-most parts only
-		for (Iterator editPartIt = associatedParts.iterator(); editPartIt
-				.hasNext();) {
-			EditPart nextPart = (EditPart) editPartIt.next();
+		for (EditPart nextPart : associatedParts) {
 			EditPart parentPart = nextPart.getParent();
 			while (parentPart != null && !associatedParts.contains(parentPart)) {
 				parentPart = parentPart.getParent();
@@ -290,11 +261,11 @@ public class UMLDiagramEditorUtil {
 
 		if (intialNumOfEditParts == editPartCollector.size()) {
 			if (!associatedParts.isEmpty()) {
-				editPartCollector.add(associatedParts.iterator().next());
+				editPartCollector.add(associatedParts.get(0));
 			} else {
 				if (element.eContainer() != null) {
-					return findElementsInDiagramByID(diagramPart, element
-							.eContainer(), editPartCollector);
+					return findElementsInDiagramByID(diagramPart,
+							element.eContainer(), editPartCollector);
 				}
 			}
 		}
@@ -313,15 +284,13 @@ public class UMLDiagramEditorUtil {
 		}
 
 		View view = null;
+		LinkedList<EditPart> editPartHolder = new LinkedList<EditPart>();
 		if (hasStructuralURI
 				&& !lazyElement2ViewMap.getElement2ViewMap().isEmpty()) {
-			view = (View) lazyElement2ViewMap.getElement2ViewMap().get(
-					targetElement);
+			view = lazyElement2ViewMap.getElement2ViewMap().get(targetElement);
 		} else if (findElementsInDiagramByID(diagramEditPart, targetElement,
-				lazyElement2ViewMap.editPartTmpHolder) > 0) {
-			EditPart editPart = (EditPart) lazyElement2ViewMap.editPartTmpHolder
-					.get(0);
-			lazyElement2ViewMap.editPartTmpHolder.clear();
+				editPartHolder) > 0) {
+			EditPart editPart = editPartHolder.get(0);
 			view = editPart.getModel() instanceof View ? (View) editPart
 					.getModel() : null;
 		}
@@ -332,96 +301,116 @@ public class UMLDiagramEditorUtil {
 	/**
 	 * @generated
 	 */
-	public static class LazyElement2ViewMap {
-		/**
-		 * @generated
-		 */
-		private Map element2ViewMap;
+	public static Map<?, ?> getSaveOptions() {
+		HashMap<String, Object> saveOptions = new HashMap<String, Object>();
+		saveOptions.put(XMLResource.OPTION_ENCODING, "UTF-8"); //$NON-NLS-1$
+		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED,
+				Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
+		return saveOptions;
+	}
 
-		/**
-		 * @generated
-		 */
-		private View scope;
+	/**
+	 * @generated
+	 */
+	public static String getUniqueFileName(IPath containerFullPath,
+			String fileName, String extension) {
+		if (containerFullPath == null) {
+			containerFullPath = new Path(""); //$NON-NLS-1$
+		}
+		if (fileName == null || fileName.trim().length() == 0) {
+			fileName = "default"; //$NON-NLS-1$
+		}
+		IPath filePath = containerFullPath.append(fileName);
+		if (extension != null && !extension.equals(filePath.getFileExtension())) {
+			filePath = filePath.addFileExtension(extension);
+		}
+		extension = filePath.getFileExtension();
+		fileName = filePath.removeFileExtension().lastSegment();
+		int i = 1;
+		while (ResourcesPlugin.getWorkspace().getRoot().exists(filePath)) {
+			i++;
+			filePath = containerFullPath.append(fileName + i);
+			if (extension != null) {
+				filePath = filePath.addFileExtension(extension);
+			}
+		}
+		return filePath.lastSegment();
+	}
 
-		/**
-		 * @generated
-		 */
-		private Set elementSet;
+	/**
+	 * @generated
+	 */
+	public static boolean openDiagram(Resource diagram)
+			throws PartInitException {
+		String path = diagram.getURI().toPlatformString(true);
+		IResource workspaceResource = ResourcesPlugin.getWorkspace().getRoot()
+				.findMember(new Path(path));
+		if (workspaceResource instanceof IFile) {
+			IWorkbenchPage page = PlatformUI.getWorkbench()
+					.getActiveWorkbenchWindow().getActivePage();
+			return null != page.openEditor(new FileEditorInput(
+					(IFile) workspaceResource), UMLDiagramEditor.ID);
+		}
+		return false;
+	}
 
-		/**
-		 * @generated
-		 */
-		public final List editPartTmpHolder = new ArrayList();
+	/**
+	 * Runs the wizard in a dialog.
+	 * 
+	 * @generated
+	 */
+	public static void runWizard(Shell shell, Wizard wizard, String settingsKey) {
+		IDialogSettings pluginDialogSettings = UMLDiagramEditorPlugin
+				.getInstance().getDialogSettings();
+		IDialogSettings wizardDialogSettings = pluginDialogSettings
+				.getSection(settingsKey);
+		if (wizardDialogSettings == null) {
+			wizardDialogSettings = pluginDialogSettings
+					.addNewSection(settingsKey);
+		}
+		wizard.setDialogSettings(wizardDialogSettings);
+		WizardDialog dialog = new WizardDialog(shell, wizard);
+		dialog.create();
+		dialog.getShell().setSize(Math.max(500, dialog.getShell().getSize().x),
+				500);
+		dialog.open();
+	}
 
-		/**
-		 * @generated
-		 */
-		public LazyElement2ViewMap(View scope, Set elements) {
-			this.scope = scope;
-			this.elementSet = elements;
+	/**
+	 * @generated
+	 */
+	public static void selectElementsInDiagram(
+			IDiagramWorkbenchPart diagramPart, List<EditPart> editParts) {
+		diagramPart.getDiagramGraphicalViewer().deselectAll();
+
+		EditPart firstPrimary = null;
+		for (EditPart nextPart : editParts) {
+			diagramPart.getDiagramGraphicalViewer().appendSelection(nextPart);
+			if (firstPrimary == null && nextPart instanceof IPrimaryEditPart) {
+				firstPrimary = nextPart;
+			}
 		}
 
-		/**
-		 * @generated
-		 */
-		public final Map getElement2ViewMap() {
-			if (element2ViewMap == null) {
-				element2ViewMap = new HashMap();
-				// map possible notation elements to itself as these can't be found by view.getElement()
-				for (Iterator it = elementSet.iterator(); it.hasNext();) {
-					EObject element = (EObject) it.next();
-					if (element instanceof View) {
-						View view = (View) element;
-						if (view.getDiagram() == scope.getDiagram()) {
-							element2ViewMap.put(element, element); // take only those that part of our diagram
-						}
-					}
-				}
-
-				buildElement2ViewMap(scope, element2ViewMap, elementSet);
-			}
-			return element2ViewMap;
+		if (!editParts.isEmpty()) {
+			diagramPart.getDiagramGraphicalViewer().reveal(
+					firstPrimary != null ? firstPrimary : (EditPart) editParts
+							.get(0));
 		}
+	}
 
-		/**
-		 * @generated
-		 */
-		static Map buildElement2ViewMap(View parentView, Map element2ViewMap,
-				Set elements) {
-			if (elements.size() == element2ViewMap.size())
-				return element2ViewMap;
-
-			if (parentView.isSetElement()
-					&& !element2ViewMap.containsKey(parentView.getElement())
-					&& elements.contains(parentView.getElement())) {
-				element2ViewMap.put(parentView.getElement(), parentView);
-				if (elements.size() == element2ViewMap.size())
-					return element2ViewMap;
-			}
-
-			for (Iterator it = parentView.getChildren().iterator(); it
-					.hasNext();) {
-				buildElement2ViewMap((View) it.next(), element2ViewMap,
-						elements);
-				if (elements.size() == element2ViewMap.size())
-					return element2ViewMap;
-			}
-			for (Iterator it = parentView.getSourceEdges().iterator(); it
-					.hasNext();) {
-				buildElement2ViewMap((View) it.next(), element2ViewMap,
-						elements);
-				if (elements.size() == element2ViewMap.size())
-					return element2ViewMap;
-			}
-			for (Iterator it = parentView.getSourceEdges().iterator(); it
-					.hasNext();) {
-				buildElement2ViewMap((View) it.next(), element2ViewMap,
-						elements);
-				if (elements.size() == element2ViewMap.size())
-					return element2ViewMap;
-			}
-			return element2ViewMap;
+	/**
+	 * @generated
+	 */
+	public static void setCharset(IFile file) {
+		if (file == null) {
+			return;
 		}
-	} //LazyElement2ViewMap	
+		try {
+			file.setCharset("UTF-8", new NullProgressMonitor()); //$NON-NLS-1$
+		} catch (CoreException e) {
+			UMLDiagramEditorPlugin.getInstance().logError(
+					"Unable to set charset for file " + file.getFullPath(), e); //$NON-NLS-1$
+		}
+	}
 
 }

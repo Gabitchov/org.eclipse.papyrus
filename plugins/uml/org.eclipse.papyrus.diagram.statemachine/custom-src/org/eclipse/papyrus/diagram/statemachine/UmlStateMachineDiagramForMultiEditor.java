@@ -50,21 +50,24 @@ public class UmlStateMachineDiagramForMultiEditor extends UMLDiagramEditor {
 	/**
 	 * The image descriptor of the diagram icon
 	 */
-	private static final ImageDescriptor DIAG_IMG_DESC = UMLDiagramEditorPlugin.getBundledImageDescriptor(UmlStateMachineDiagramForMultiEditor.DIAG_IMG_PATH);
+	private static final ImageDescriptor DIAG_IMG_DESC = UMLDiagramEditorPlugin
+			.getBundledImageDescriptor(UmlStateMachineDiagramForMultiEditor.DIAG_IMG_PATH);
 
 	/** The editor splitter. */
 	private Composite splitter;
 
 	/**
-	 * Constructor for SashSystem v2. Context and required objects are retrieved from the
-	 * ServiceRegistry.
+	 * Constructor for SashSystem v2. Context and required objects are retrieved
+	 * from the ServiceRegistry.
 	 * 
 	 * @throws BackboneException
 	 * @throws ServiceException
 	 * 
 	 * @generated NOT
 	 */
-	public UmlStateMachineDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws BackboneException, ServiceException {
+	public UmlStateMachineDiagramForMultiEditor(
+			ServicesRegistry servicesRegistry, Diagram diagram)
+			throws BackboneException, ServiceException {
 		super(servicesRegistry, diagram);
 	}
 
@@ -89,7 +92,8 @@ public class UmlStateMachineDiagramForMultiEditor extends UMLDiagramEditor {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
+	public void init(IEditorSite site, IEditorInput input)
+			throws PartInitException {
 		super.init(site, input);
 		setPartName(getDiagram().getName());
 		setTitleImage(DIAG_IMG_DESC.createImage());
@@ -100,18 +104,21 @@ public class UmlStateMachineDiagramForMultiEditor extends UMLDiagramEditor {
 		super.initializeGraphicalViewer();
 
 		// Enable Drop
-		getDiagramGraphicalViewer().addDropTargetListener(new DropTargetListener(getDiagramGraphicalViewer(), LocalSelectionTransfer.getTransfer()) {
+		getDiagramGraphicalViewer().addDropTargetListener(
+				new DropTargetListener(getDiagramGraphicalViewer(),
+						LocalSelectionTransfer.getTransfer()) {
 
-			@Override
-			protected Object getJavaObject(TransferData data) {
-				return LocalSelectionTransfer.getTransfer().nativeToJava(data);
-			}
+					@Override
+					protected Object getJavaObject(TransferData data) {
+						return LocalSelectionTransfer.getTransfer()
+								.nativeToJava(data);
+					}
 
-			@Override
-			protected TransactionalEditingDomain getTransactionalEditingDomain() {
-				return getEditingDomain();
-			}
-		});
+					@Override
+					protected TransactionalEditingDomain getTransactionalEditingDomain() {
+						return getEditingDomain();
+					}
+				});
 
 	}
 
@@ -132,7 +139,8 @@ public class UmlStateMachineDiagramForMultiEditor extends UMLDiagramEditor {
 		try {
 			// Provide an URI with fragment in order to reuse the same Resource
 			// and set the diagram to the fragment.
-			URIEditorInput uriInput = new URIEditorInput(EcoreUtil.getURI(getDiagram()));
+			URIEditorInput uriInput = new URIEditorInput(
+					EcoreUtil.getURI(getDiagram()));
 			doSetInput(uriInput, true);
 		} catch (CoreException x) {
 			String title = "Problem opening";

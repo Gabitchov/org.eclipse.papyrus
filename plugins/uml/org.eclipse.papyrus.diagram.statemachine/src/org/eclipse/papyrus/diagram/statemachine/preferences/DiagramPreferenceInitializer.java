@@ -12,27 +12,27 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	/**
 	 * @generated
 	 */
-	public void initializeDefaultPreferences() {
-		IPreferenceStore store = getPreferenceStore();
-
-		RegionPreferencePage.initDefaults(store);
-
-		StateMachinePreferencePage.initDefaults(store);
-
-		StateNodePreferencePage.initDefaults(store);
-
-		FinalStateNodePreferencePage.initDefaults(store);
-
-		ShallowHistoryStateNodePreferencePage.initDefaults(store);
-
-		TransitionEditPartPreferencePage.initDefaults(store);
-
+	protected IPreferenceStore getPreferenceStore() {
+		return UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
 	}
 
 	/**
 	 * @generated
 	 */
-	protected IPreferenceStore getPreferenceStore() {
-		return UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+	public void initializeDefaultPreferences() {
+		IPreferenceStore store = getPreferenceStore();
+
+		RegionPreferencePage.initDefaults(store);
+
+		StatePreferencePage.initDefaults(store);
+
+		FinalStatePreferencePage.initDefaults(store);
+
+		StateMachinePreferencePage.initDefaults(store);
+
+		PseudostatePreferencePage.initDefaults(store);
+
+		TransitionPreferencePage.initDefaults(store);
+
 	}
 }

@@ -19,12 +19,13 @@ import org.eclipse.papyrus.diagram.statemachine.custom.commands.CustomRegionResi
 import org.eclipse.papyrus.diagram.statemachine.custom.helpers.Zone;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
 
-public class CustomStateMachineCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy {
+public class CustomStateMachineCompartmentXYLayoutEditPolicy extends
+		XYLayoutEditPolicy {
 
 	/**
-	 * This method analyzes a resize and/or move request and routes the call to the appropriate
-	 * specific ResizeCommand either for a Region, in other cases passes on the call to the super
-	 * class method.
+	 * This method analyzes a resize and/or move request and routes the call to
+	 * the appropriate specific ResizeCommand either for a Region, in other
+	 * cases passes on the call to the super class method.
 	 * 
 	 * @param child
 	 *            the concerned EditPart
@@ -37,7 +38,8 @@ public class CustomStateMachineCompartmentXYLayoutEditPolicy extends XYLayoutEdi
 	 */
 
 	@Override
-	protected Command createChangeConstraintCommand(ChangeBoundsRequest request, EditPart child, Object constraint) {
+	protected Command createChangeConstraintCommand(
+			ChangeBoundsRequest request, EditPart child, Object constraint) {
 		// precautionary test
 		if ((request == null) || (child == null) || (constraint == null))
 			throw new IllegalArgumentException();
@@ -52,17 +54,22 @@ public class CustomStateMachineCompartmentXYLayoutEditPolicy extends XYLayoutEdi
 				return UnexecutableCommand.INSTANCE;
 			}
 
-			// now we face a resize command involving potentially multiple regions
+			// now we face a resize command involving potentially multiple
+			// regions
 
-			TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
-			CompositeTransactionalCommand cc = new CompositeTransactionalCommand(editingDomain,
-					DiagramUIMessages.AddCommand_Label);
+			TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
+					.getEditingDomain();
+			CompositeTransactionalCommand cc = new CompositeTransactionalCommand(
+					editingDomain, DiagramUIMessages.AddCommand_Label);
 			// a resize request, which we route to the specific ResizeCommand
 			IAdaptable adaptableForRegion = new SemanticAdapter(null, region);
 
-			CustomRegionResizeCommand resizeRegion = new CustomRegionResizeCommand(adaptableForRegion,
-					((IGraphicalEditPart) getHost()).getDiagramPreferencesHint(), editingDomain,
-					DiagramUIMessages.CreateCommand_Label, request, (Rectangle) constraint);
+			CustomRegionResizeCommand resizeRegion = new CustomRegionResizeCommand(
+					adaptableForRegion,
+					((IGraphicalEditPart) getHost())
+							.getDiagramPreferencesHint(), editingDomain,
+					DiagramUIMessages.CreateCommand_Label, request,
+					(Rectangle) constraint);
 
 			cc.add(resizeRegion);
 

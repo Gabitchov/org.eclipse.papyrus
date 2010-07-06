@@ -33,95 +33,9 @@ import org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin;
 public abstract class UMLAbstractExpression {
 
 	/**
-	 * @generated
-	 */
-	private IStatus status = Status.OK_STATUS;
-
-	/**
-	 * @generated
-	 */
-	protected void setStatus(int severity, String message, Throwable throwable) {
-		String pluginID = UMLDiagramEditorPlugin.ID;
-		this.status = new Status(severity, pluginID, -1,
-				(message != null) ? message : "", throwable); //$NON-NLS-1$
-		if (!this.status.isOK()) {
-			UMLDiagramEditorPlugin
-					.getInstance()
-					.logError(
-							"Expression problem:" + message + "body:" + body(), throwable); //$NON-NLS-1$ //$NON-NLS-2$
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public IStatus getStatus() {
-		return status;
-	}
-
-	/**
-	 * @generated
-	 */
-	private final String myBody;
-
-	/**
-	 * @generated
-	 */
-	public String body() {
-		return myBody;
-	}
-
-	/**
-	 * @generated
-	 */
-	private final EClassifier myContext;
-
-	/**
-	 * @generated
-	 */
-	public EClassifier context() {
-		return myContext;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected UMLAbstractExpression(String body, EClassifier context) {
-		myBody = body;
-		myContext = context;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected abstract Object doEvaluate(Object context, Map env);
-
-	/**
-	 * @generated
-	 */
-	public Object evaluate(Object context) {
-		return evaluate(context, Collections.EMPTY_MAP);
-	}
-
-	/**
-	 * @generated
-	 */
-	public Object evaluate(Object context, Map env) {
-		if (context().isInstance(context)) {
-			try {
-				return doEvaluate(context, env);
-			} catch (Exception e) {
-				UMLDiagramEditorPlugin.getInstance().logError(
-						"Expression evaluation failure: " + body(), e); //$NON-NLS-1$
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * Expression may return number value which is not directly compatible with feature type (e.g.
-	 * Double when Integer is expected), or EEnumLiteral meta-object when literal instance is
-	 * expected
+	 * Expression may return number value which is not directly compatible with
+	 * feature type (e.g. Double when Integer is expected), or EEnumLiteral
+	 * meta-object when literal instance is expected
 	 * 
 	 * @generated
 	 */
@@ -166,6 +80,92 @@ public abstract class UMLAbstractExpression {
 				return new BigDecimal(num.doubleValue());
 		}
 		return value;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IStatus status = Status.OK_STATUS;
+
+	/**
+	 * @generated
+	 */
+	private final String myBody;
+
+	/**
+	 * @generated
+	 */
+	private final EClassifier myContext;
+
+	/**
+	 * @generated
+	 */
+	protected UMLAbstractExpression(String body, EClassifier context) {
+		myBody = body;
+		myContext = context;
+	}
+
+	/**
+	 * @generated
+	 */
+	public String body() {
+		return myBody;
+	}
+
+	/**
+	 * @generated
+	 */
+	public EClassifier context() {
+		return myContext;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected abstract Object doEvaluate(Object context, Map env);
+
+	/**
+	 * @generated
+	 */
+	public Object evaluate(Object context) {
+		return evaluate(context, Collections.EMPTY_MAP);
+	}
+
+	/**
+	 * @generated
+	 */
+	public Object evaluate(Object context, Map env) {
+		if (context().isInstance(context)) {
+			try {
+				return doEvaluate(context, env);
+			} catch (Exception e) {
+				UMLDiagramEditorPlugin.getInstance().logError(
+						"Expression evaluation failure: " + body(), e); //$NON-NLS-1$
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	public IStatus getStatus() {
+		return status;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void setStatus(int severity, String message, Throwable throwable) {
+		String pluginID = UMLDiagramEditorPlugin.ID;
+		this.status = new Status(severity, pluginID, -1,
+				(message != null) ? message : "", throwable); //$NON-NLS-1$
+		if (!this.status.isOK()) {
+			UMLDiagramEditorPlugin
+					.getInstance()
+					.logError(
+							"Expression problem:" + message + "body:" + body(), throwable); //$NON-NLS-1$ //$NON-NLS-2$
+		}
 	}
 
 }

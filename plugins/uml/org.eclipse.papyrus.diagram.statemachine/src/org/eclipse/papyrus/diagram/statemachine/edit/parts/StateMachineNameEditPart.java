@@ -1,6 +1,5 @@
 package org.eclipse.papyrus.diagram.statemachine.edit.parts;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -14,12 +13,7 @@ import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.AccessibleEditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
-import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
-import org.eclipse.gef.handles.MoveHandle;
-import org.eclipse.gef.handles.NonResizableHandleKit;
 import org.eclipse.gef.requests.DirectEditRequest;
 import org.eclipse.gef.tools.DirectEditManager;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
@@ -54,8 +48,10 @@ import org.eclipse.papyrus.diagram.statemachine.providers.UMLParserProvider;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.ui.ExtendedDirectEditionDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
+import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.swt.SWT;
@@ -64,7 +60,6 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.uml2.uml.NamedElement;
 
 /**
  * @generated
@@ -90,7 +85,7 @@ public class StateMachineNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
-	private List parserElements;
+	private List<?> parserElements;
 
 	/**
 	 * @generated
@@ -103,11 +98,80 @@ public class StateMachineNameEditPart extends CompartmentEditPart implements
 	/** configuration from a registered edit dialog */
 	protected IDirectEditorConfiguration configuration;
 
+	private static final String ADD_PARENT_MODEL = "AddParentModel";
+
 	/**
 	 * @generated
 	 */
 	public StateMachineNameEditPart(View view) {
 		super(view);
+	}
+
+	/**
+	 * @generated
+	 */
+	public void activate() {
+		super.activate();
+		addOwnerElementListeners();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addNotationalListeners() {
+		super.addNotationalListeners();
+		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addOwnerElementListeners() {
+		addListenerFilter(ADD_PARENT_MODEL, this, ((View) getParent()
+				.getModel())); //$NON-NLS-1$
+
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void addSemanticListeners() {
+		if (getParser() instanceof ISemanticParser) {
+			EObject element = resolveSemanticElement();
+			parserElements = ((ISemanticParser) getParser())
+					.getSemanticElementsBeingParsed(element);
+			for (int i = 0; i < parserElements.size(); i++) {
+				addListenerFilter(
+						"SemanticModel" + i, this, (EObject) parserElements.get(i)); //$NON-NLS-1$
+			}
+		} else {
+			super.addSemanticListeners();
+		}
+	}
+
+	/**
+	 * Checks if a default direct edition is available
+	 * 
+	 * @return <code>true</code> if a default direct edition is available
+	 * @generated
+	 */
+	protected boolean checkDefaultEdition() {
+		return (getParser() != null);
+	}
+
+	/**
+	 * Checks if an extended editor is present.
+	 * 
+	 * @return <code>true</code> if an extended editor is present.
+	 * @generated
+	 */
+	protected boolean checkExtendedEditor() {
+		if (resolveSemanticElement() != null) {
+			return DirectEditorsUtil
+					.hasSpecificEditorConfiguration(resolveSemanticElement()
+							.eClass().getInstanceClassName());
+		}
+		return false;
 	}
 
 	/**
@@ -120,94 +184,39 @@ public class StateMachineNameEditPart extends CompartmentEditPart implements
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE,
 				new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE,
-				new NonResizableEditPolicy() {
-
-					protected List createSelectionHandles() {
-						List handles = new ArrayList();
-						NonResizableHandleKit.addMoveHandle(
-								(GraphicalEditPart) getHost(), handles);
-						((MoveHandle) handles.get(0)).setBorder(null);
-						return handles;
-					}
-
-					public Command getCommand(Request request) {
-						return null;
-					}
-
-					public boolean understandsRequest(Request request) {
-						return false;
-					}
-				});
+				new PackageEditPart.NodeLabelDragPolicy());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected String getLabelTextHelper(IFigure figure) {
-		if (figure instanceof WrappingLabel) {
-			return ((WrappingLabel) figure).getText();
-		} else if (figure instanceof ILabelFigure) {
-			return ((ILabelFigure) figure).getText();
-		} else {
-			return ((Label) figure).getText();
+	protected IFigure createFigure() {
+		// Parent should assign one using setLabel() method
+		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void deactivate() {
+		removeOwnerElementListeners();
+		super.deactivate();
+
+	}
+
+	/**
+	 * @generated
+	 */
+	protected AccessibleEditPart getAccessibleEditPart() {
+		if (accessibleEP == null) {
+			accessibleEP = new AccessibleGraphicalEditPart() {
+
+				public void getName(AccessibleEvent e) {
+					e.result = getLabelTextHelper(getFigure());
+				}
+			};
 		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void setLabelTextHelper(IFigure figure, String text) {
-		if (figure instanceof WrappingLabel) {
-			((WrappingLabel) figure).setText(text);
-		} else if (figure instanceof ILabelFigure) {
-			((ILabelFigure) figure).setText(text);
-		} else {
-			((Label) figure).setText(text);
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Image getLabelIconHelper(IFigure figure) {
-		if (figure instanceof WrappingLabel) {
-			return ((WrappingLabel) figure).getIcon();
-		} else if (figure instanceof ILabelFigure) {
-			return ((ILabelFigure) figure).getIcon();
-		} else {
-			return ((Label) figure).getIcon();
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void setLabelIconHelper(IFigure figure, Image icon) {
-		if (figure instanceof WrappingLabel) {
-			((WrappingLabel) figure).setIcon(icon);
-		} else if (figure instanceof ILabelFigure) {
-			((ILabelFigure) figure).setIcon(icon);
-		} else {
-			((Label) figure).setIcon(icon);
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public void setLabel(WrappingLabel figure) {
-		unregisterVisuals();
-		setFigure(figure);
-		defaultText = getLabelTextHelper(figure);
-		registerVisuals();
-		refreshVisuals();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected List getModelChildren() {
-		return Collections.EMPTY_LIST;
+		return accessibleEP;
 	}
 
 	/**
@@ -220,47 +229,32 @@ public class StateMachineNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
-	protected EObject getParserElement() {
-		return resolveSemanticElement();
+	public IContentAssistProcessor getCompletionProcessor() {
+		if (getParserElement() == null || getParser() == null) {
+			return null;
+		}
+		return getParser().getCompletionProcessor(
+				new EObjectAdapter(getParserElement()));
 	}
 
 	/**
+	 * Returns the kind of associated editor for direct edition.
+	 * 
+	 * @return an <code>int</code> corresponding to the kind of direct editor, @see
+	 *         org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
-	protected Image getLabelIcon() {
-		return null;
-	}
+	public int getDirectEditionType() {
+		if (checkExtendedEditor()) {
+			initExtendedEditorConfiguration();
+			return IDirectEdition.EXTENDED_DIRECT_EDITOR;
+		}
+		if (checkDefaultEdition()) {
+			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
+		}
 
-	/**
-	 * @generated
-	 */
-	protected String getLabelText() {
-		String text = null;
-		EObject parserElement = getParserElement();
-		if (parserElement != null && getParser() != null) {
-			text = getParser().getPrintString(
-					new EObjectAdapter(parserElement),
-					getParserOptions().intValue());
-		}
-		if (text == null || text.length() == 0) {
-			text = defaultText;
-		}
-		return text;
-	}
-
-	/**
-	 * @generated
-	 */
-	public void setLabelText(String text) {
-		setLabelTextHelper(getFigure(), text);
-		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-		if (pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
-			((UMLTextSelectionEditPolicy) pdEditPolicy).refreshFeedback();
-		}
-		Object sfEditPolicy = getEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE);
-		if (sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
-			((UMLTextSelectionEditPolicy) sfEditPolicy).refreshFeedback();
-		}
+		// not a named element. no specific editor => do nothing
+		return IDirectEdition.NO_DIRECT_EDITION;
 	}
 
 	/**
@@ -273,13 +267,6 @@ public class StateMachineNameEditPart extends CompartmentEditPart implements
 		return getParser().getEditString(
 				new EObjectAdapter(getParserElement()),
 				getParserOptions().intValue());
-	}
-
-	/**
-	 * @generated
-	 */
-	protected boolean isEditable() {
-		return getParser() != null;
 	}
 
 	/**
@@ -318,19 +305,78 @@ public class StateMachineNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
-	public IContentAssistProcessor getCompletionProcessor() {
-		if (getParserElement() == null || getParser() == null) {
-			return null;
-		}
-		return getParser().getCompletionProcessor(
-				new EObjectAdapter(getParserElement()));
+	private View getFontStyleOwnerView() {
+		return (View) getModel();
 	}
 
 	/**
 	 * @generated
 	 */
-	public ParserOptions getParserOptions() {
-		return ParserOptions.NONE;
+	protected Image getLabelIcon() {
+		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Image getLabelIconHelper(IFigure figure) {
+		if (figure instanceof WrappingLabel) {
+			return ((WrappingLabel) figure).getIcon();
+		} else if (figure instanceof ILabelFigure) {
+			return ((ILabelFigure) figure).getIcon();
+		} else {
+			return ((Label) figure).getIcon();
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected String getLabelText() {
+		String text = null;
+		EObject parserElement = getParserElement();
+		if (parserElement != null && getParser() != null) {
+			text = getParser().getPrintString(
+					new EObjectAdapter(parserElement),
+					getParserOptions().intValue());
+		}
+		if (text == null || text.length() == 0) {
+			text = defaultText;
+		}
+		return text;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected String getLabelTextHelper(IFigure figure) {
+		if (figure instanceof WrappingLabel) {
+			return ((WrappingLabel) figure).getText();
+		} else if (figure instanceof ILabelFigure) {
+			return ((ILabelFigure) figure).getText();
+		} else {
+			return ((Label) figure).getText();
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected DirectEditManager getManager() {
+		if (manager == null) {
+			setManager(new MultilineLabelDirectEditManager(this,
+					MultilineLabelDirectEditManager
+							.getTextCellEditorClass(this),
+					UMLEditPartFactory.getTextCellEditorLocator(this)));
+		}
+		return manager;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected List getModelChildren() {
+		return Collections.EMPTY_LIST;
 	}
 
 	/**
@@ -351,411 +397,15 @@ public class StateMachineNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
-	protected DirectEditManager getManager() {
-		if (manager == null) {
-			setManager(new MultilineLabelDirectEditManager(this,
-					MultilineLabelDirectEditManager
-							.getTextCellEditorClass(this), UMLEditPartFactory
-							.getTextCellEditorLocator(this)));
-		}
-		return manager;
+	protected EObject getParserElement() {
+		return resolveSemanticElement();
 	}
 
 	/**
 	 * @generated
 	 */
-	protected void setManager(DirectEditManager manager) {
-		this.manager = manager;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void performDirectEdit() {
-		getManager().show();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void performDirectEdit(Point eventLocation) {
-		if (getManager() instanceof TextDirectEditManager) {
-			((TextDirectEditManager) getManager()).show(eventLocation
-					.getSWTPoint());
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	private void performDirectEdit(char initialCharacter) {
-		if (getManager() instanceof TextDirectEditManager) {
-			((TextDirectEditManager) getManager()).show(initialCharacter);
-		} else {
-			performDirectEdit();
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void performDirectEditRequest(Request request) {
-
-		final Request theRequest = request;
-
-		if (IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
-			directEditionMode = getDirectEditionType();
-		}
-		switch (directEditionMode) {
-		case IDirectEdition.NO_DIRECT_EDITION:
-			// no direct edition mode => does nothing
-			return;
-		case IDirectEdition.EXTENDED_DIRECT_EDITOR:
-			updateExtendedEditorConfiguration();
-			if (configuration == null || configuration.getLanguage() == null) {
-				performDefaultDirectEditorEdit(theRequest);
-			} else {
-				configuration.preEditAction(resolveSemanticElement());
-				Dialog dialog = null;
-				if (configuration instanceof IAdvancedEditorConfiguration) {
-					dialog = ((IAdvancedEditorConfiguration) configuration)
-							.createDialog(
-									PlatformUI.getWorkbench()
-											.getActiveWorkbenchWindow()
-											.getShell(),
-									resolveSemanticElement(),
-									configuration
-											.getTextToEdit(resolveSemanticElement()));
-				} else if (configuration instanceof IDirectEditorConfiguration) {
-					dialog = new ExtendedDirectEditionDialog(PlatformUI
-							.getWorkbench().getActiveWorkbenchWindow()
-							.getShell(), resolveSemanticElement(),
-							((IDirectEditorConfiguration) configuration)
-									.getTextToEdit(resolveSemanticElement()),
-							(IDirectEditorConfiguration) configuration);
-				} else {
-					return;
-				}
-				final Dialog finalDialog = dialog;
-
-				if (Window.OK == dialog.open()) {
-					TransactionalEditingDomain domain = getEditingDomain();
-					RecordingCommand command = new RecordingCommand(domain,
-							"Edit Label") {
-
-						@Override
-						protected void doExecute() {
-							configuration.postEditAction(
-									resolveSemanticElement(),
-									((ILabelEditorDialog) finalDialog)
-											.getValue());
-
-						}
-					};
-					domain.getCommandStack().execute(command);
-				}
-			}
-			break;
-		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
-
-			// initialize the direct edit manager
-			try {
-				getEditingDomain().runExclusive(new Runnable() {
-
-					public void run() {
-						if (isActive() && isEditable()) {
-							if (theRequest
-									.getExtendedData()
-									.get(
-											RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-								Character initialChar = (Character) theRequest
-										.getExtendedData()
-										.get(
-												RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
-								performDirectEdit(initialChar.charValue());
-							} else if ((theRequest instanceof DirectEditRequest)
-									&& (getEditText().equals(getLabelText()))) {
-								DirectEditRequest editRequest = (DirectEditRequest) theRequest;
-								performDirectEdit(editRequest.getLocation());
-							} else {
-								performDirectEdit();
-							}
-						}
-					}
-				});
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			break;
-		default:
-			break;
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void refreshVisuals() {
-		super.refreshVisuals();
-		refreshLabel();
-		refreshFont();
-		refreshFontColor();
-		refreshUnderline();
-		refreshStrikeThrough();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void refreshLabel() {
-		EditPolicy maskLabelPolicy = getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
-		if (maskLabelPolicy == null) {
-			setLabelTextHelper(getFigure(), getLabelText());
-			setLabelIconHelper(getFigure(), getLabelIcon());
-		}
-		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-		if (pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
-			((UMLTextSelectionEditPolicy) pdEditPolicy).refreshFeedback();
-		}
-		Object sfEditPolicy = getEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE);
-		if (sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
-			((UMLTextSelectionEditPolicy) sfEditPolicy).refreshFeedback();
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void refreshUnderline() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
-				NotationPackage.eINSTANCE.getFontStyle());
-		if (style != null && getFigure() instanceof WrappingLabel) {
-			((WrappingLabel) getFigure()).setTextUnderline(style.isUnderline());
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void refreshStrikeThrough() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
-				NotationPackage.eINSTANCE.getFontStyle());
-		if (style != null && getFigure() instanceof WrappingLabel) {
-			((WrappingLabel) getFigure()).setTextStrikeThrough(style
-					.isStrikeThrough());
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void refreshFont() {
-		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
-				NotationPackage.eINSTANCE.getFontStyle());
-		if (style != null) {
-			FontData fontData = new FontData(style.getFontName(), style
-					.getFontHeight(), (style.isBold() ? SWT.BOLD : SWT.NORMAL)
-					| (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
-			setFont(fontData);
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void setFontColor(Color color) {
-		getFigure().setForegroundColor(color);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void addSemanticListeners() {
-		if (getParser() instanceof ISemanticParser) {
-			EObject element = resolveSemanticElement();
-			parserElements = ((ISemanticParser) getParser())
-					.getSemanticElementsBeingParsed(element);
-			for (int i = 0; i < parserElements.size(); i++) {
-				addListenerFilter(
-						"SemanticModel" + i, this, (EObject) parserElements.get(i)); //$NON-NLS-1$
-			}
-		} else {
-			super.addSemanticListeners();
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void removeSemanticListeners() {
-		if (parserElements != null) {
-			for (int i = 0; i < parserElements.size(); i++) {
-				removeListenerFilter("SemanticModel" + i); //$NON-NLS-1$
-			}
-		} else {
-			super.removeSemanticListeners();
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected AccessibleEditPart getAccessibleEditPart() {
-		if (accessibleEP == null) {
-			accessibleEP = new AccessibleGraphicalEditPart() {
-
-				public void getName(AccessibleEvent e) {
-					e.result = getLabelTextHelper(getFigure());
-				}
-			};
-		}
-		return accessibleEP;
-	}
-
-	/**
-	 * @generated
-	 */
-	private View getFontStyleOwnerView() {
-		return (View) getModel();
-	}
-
-	/**
-	 * Returns the kind of associated editor for direct edition.
-	 * 
-	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition
-	 * @generated
-	 */
-	public int getDirectEditionType() {
-		if (checkExtendedEditor()) {
-			initExtendedEditorConfiguration();
-			return IDirectEdition.EXTENDED_DIRECT_EDITOR;
-		}
-		if (checkDefaultEdition()) {
-			return IDirectEdition.DEFAULT_DIRECT_EDITOR;
-		}
-
-		// not a named element. no specific editor => do nothing
-		return IDirectEdition.NO_DIRECT_EDITION;
-	}
-
-	/**
-	 * Checks if an extended editor is present.
-	 * 
-	 * @return <code>true</code> if an extended editor is present.
-	 * @generated
-	 */
-	protected boolean checkExtendedEditor() {
-		if (resolveSemanticElement() != null) {
-			return DirectEditorsUtil
-					.hasSpecificEditorConfiguration(resolveSemanticElement()
-							.eClass().getInstanceClassName());
-		}
-		return false;
-	}
-
-	/**
-	 * Checks if a default direct edition is available
-	 * 
-	 * @return <code>true</code> if a default direct edition is available
-	 * @generated
-	 */
-	protected boolean checkDefaultEdition() {
-		return (getParser() != null);
-	}
-
-	/**
-	 * Initializes the extended editor configuration
-	 * @generated
-	 */
-	protected void initExtendedEditorConfiguration() {
-		if (configuration == null) {
-			final String languagePreferred = Activator.getDefault()
-					.getPreferenceStore().getString(
-							IDirectEditorsIds.EDITOR_FOR_ELEMENT
-									+ resolveSemanticElement().eClass()
-											.getInstanceClassName());
-			if (languagePreferred != null && !languagePreferred.equals("")) {
-				configuration = DirectEditorsUtil.findEditorConfiguration(
-						languagePreferred, resolveSemanticElement().eClass()
-								.getInstanceClassName());
-			} else {
-				configuration = DirectEditorsUtil.findEditorConfiguration(
-						IDirectEditorsIds.UML_LANGUAGE,
-						resolveSemanticElement().eClass()
-								.getInstanceClassName());
-			}
-		}
-	}
-
-	/**
-	 * Updates the preference configuration
-	 */
-	protected void updateExtendedEditorConfiguration() {
-		String languagePreferred = Activator.getDefault().getPreferenceStore()
-				.getString(
-						IDirectEditorsIds.EDITOR_FOR_ELEMENT
-								+ resolveSemanticElement().eClass()
-										.getInstanceClassName());
-		if (languagePreferred != null && !languagePreferred.equals("")
-				&& languagePreferred != configuration.getLanguage()) {
-			configuration = DirectEditorsUtil.findEditorConfiguration(
-					languagePreferred, resolveSemanticElement().eClass()
-							.getInstanceClassName());
-		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR
-				.equals(languagePreferred)) {
-			configuration = null;
-		}
-	}
-
-	/**
-	 * Performs the direct edit usually used by GMF editors.
-	 * @param theRequest the direct edit request that starts the direct edit system
-	 */
-	protected void performDefaultDirectEditorEdit(final Request theRequest) {
-		// initialize the direct edit manager
-		try {
-			getEditingDomain().runExclusive(new Runnable() {
-
-				public void run() {
-					if (isActive() && isEditable()) {
-						if (theRequest
-								.getExtendedData()
-								.get(
-										RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
-							Character initialChar = (Character) theRequest
-									.getExtendedData()
-									.get(
-											RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
-							performDirectEdit(initialChar.charValue());
-						} else if ((theRequest instanceof DirectEditRequest)
-								&& (getEditText().equals(getLabelText()))) {
-							DirectEditRequest editRequest = (DirectEditRequest) theRequest;
-							performDirectEdit(editRequest.getLocation());
-						} else {
-							performDirectEdit();
-						}
-					}
-				}
-			});
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void addNotationalListeners() {
-		super.addNotationalListeners();
-		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void removeNotationalListeners() {
-		super.removeNotationalListeners();
-		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
+	public ParserOptions getParserOptions() {
+		return ParserOptions.NONE;
 	}
 
 	/**
@@ -804,39 +454,276 @@ public class StateMachineNameEditPart extends CompartmentEditPart implements
 	}
 
 	/**
+	 * Initializes the extended editor configuration
+	 * 
 	 * @generated
 	 */
-	protected IFigure createFigure() {
-		// Parent should assign one using setLabel() method
-		return null;
+	protected void initExtendedEditorConfiguration() {
+		if (configuration == null) {
+			final String languagePreferred = Activator
+					.getDefault()
+					.getPreferenceStore()
+					.getString(
+							IDirectEditorsIds.EDITOR_FOR_ELEMENT
+									+ resolveSemanticElement().eClass()
+											.getInstanceClassName());
+			if (languagePreferred != null && !languagePreferred.equals("")) {
+				configuration = DirectEditorsUtil.findEditorConfiguration(
+						languagePreferred, resolveSemanticElement().eClass()
+								.getInstanceClassName());
+			} else {
+				configuration = DirectEditorsUtil.findEditorConfiguration(
+						IDirectEditorsIds.UML_LANGUAGE,
+						resolveSemanticElement().eClass()
+								.getInstanceClassName());
+			}
+		}
 	}
-
-	private static final String ADD_PARENT_MODEL = "AddParentModel";
 
 	/**
 	 * @generated
 	 */
-	public void activate() {
-		super.activate();
-		addOwnerElementListeners();
+	protected boolean isEditable() {
+		return getParser() != null;
+	}
+
+	/**
+	 * Performs the direct edit usually used by GMF editors.
+	 * 
+	 * @param theRequest
+	 *            the direct edit request that starts the direct edit system
+	 */
+	protected void performDefaultDirectEditorEdit(final Request theRequest) {
+		// initialize the direct edit manager
+		try {
+			getEditingDomain().runExclusive(new Runnable() {
+
+				public void run() {
+					if (isActive() && isEditable()) {
+						if (theRequest
+								.getExtendedData()
+								.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+							Character initialChar = (Character) theRequest
+									.getExtendedData()
+									.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+							performDirectEdit(initialChar.charValue());
+						} else if ((theRequest instanceof DirectEditRequest)
+								&& (getEditText().equals(getLabelText()))) {
+							DirectEditRequest editRequest = (DirectEditRequest) theRequest;
+							performDirectEdit(editRequest.getLocation());
+						} else {
+							performDirectEdit();
+						}
+					}
+				}
+			});
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
 	 * @generated
 	 */
-	protected void addOwnerElementListeners() {
-		addListenerFilter(ADD_PARENT_MODEL, this, ((View) getParent()
-				.getModel())); //$NON-NLS-1$
-
+	protected void performDirectEdit() {
+		getManager().show();
 	}
 
 	/**
 	 * @generated
 	 */
-	public void deactivate() {
-		removeOwnerElementListeners();
-		super.deactivate();
+	private void performDirectEdit(char initialCharacter) {
+		if (getManager() instanceof TextDirectEditManager) {
+			((TextDirectEditManager) getManager()).show(initialCharacter);
+		} else {
+			performDirectEdit();
+		}
+	}
 
+	/**
+	 * @generated
+	 */
+	protected void performDirectEdit(Point eventLocation) {
+		if (getManager() instanceof TextDirectEditManager) {
+			((TextDirectEditManager) getManager()).show(eventLocation
+					.getSWTPoint());
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void performDirectEditRequest(Request request) {
+
+		final Request theRequest = request;
+
+		if (IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
+			directEditionMode = getDirectEditionType();
+		}
+		switch (directEditionMode) {
+		case IDirectEdition.NO_DIRECT_EDITION:
+			// no direct edition mode => does nothing
+			return;
+		case IDirectEdition.EXTENDED_DIRECT_EDITOR:
+			updateExtendedEditorConfiguration();
+			if (configuration == null || configuration.getLanguage() == null) {
+				performDefaultDirectEditorEdit(theRequest);
+			} else {
+				configuration.preEditAction(resolveSemanticElement());
+				Dialog dialog = null;
+				if (configuration instanceof IPopupEditorConfiguration) {
+					IPopupEditorHelper helper = ((IPopupEditorConfiguration) configuration)
+							.createPopupEditorHelper(this);
+					helper.showEditor();
+					return;
+				} else if (configuration instanceof IAdvancedEditorConfiguration) {
+					dialog = ((IAdvancedEditorConfiguration) configuration)
+							.createDialog(
+									PlatformUI.getWorkbench()
+											.getActiveWorkbenchWindow()
+											.getShell(),
+									resolveSemanticElement(),
+									configuration
+											.getTextToEdit(resolveSemanticElement()));
+				} else if (configuration instanceof IDirectEditorConfiguration) {
+					dialog = new ExtendedDirectEditionDialog(PlatformUI
+							.getWorkbench().getActiveWorkbenchWindow()
+							.getShell(), resolveSemanticElement(),
+							((IDirectEditorConfiguration) configuration)
+									.getTextToEdit(resolveSemanticElement()),
+							(IDirectEditorConfiguration) configuration);
+				} else {
+					return;
+				}
+				final Dialog finalDialog = dialog;
+
+				if (Window.OK == dialog.open()) {
+					TransactionalEditingDomain domain = getEditingDomain();
+					RecordingCommand command = new RecordingCommand(domain,
+							"Edit Label") {
+
+						@Override
+						protected void doExecute() {
+							configuration.postEditAction(
+									resolveSemanticElement(),
+									((ILabelEditorDialog) finalDialog)
+											.getValue());
+
+						}
+					};
+					domain.getCommandStack().execute(command);
+				}
+			}
+			break;
+		case IDirectEdition.DEFAULT_DIRECT_EDITOR:
+
+			// initialize the direct edit manager
+			try {
+				getEditingDomain().runExclusive(new Runnable() {
+
+					public void run() {
+						if (isActive() && isEditable()) {
+							if (theRequest
+									.getExtendedData()
+									.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
+								Character initialChar = (Character) theRequest
+										.getExtendedData()
+										.get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR);
+								performDirectEdit(initialChar.charValue());
+							} else if ((theRequest instanceof DirectEditRequest)
+									&& (getEditText().equals(getLabelText()))) {
+								DirectEditRequest editRequest = (DirectEditRequest) theRequest;
+								performDirectEdit(editRequest.getLocation());
+							} else {
+								performDirectEdit();
+							}
+						}
+					}
+				});
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			break;
+		default:
+			break;
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void refreshFont() {
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
+		if (style != null) {
+			FontData fontData = new FontData(style.getFontName(),
+					style.getFontHeight(), (style.isBold() ? SWT.BOLD
+							: SWT.NORMAL)
+							| (style.isItalic() ? SWT.ITALIC : SWT.NORMAL));
+			setFont(fontData);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void refreshLabel() {
+		EditPolicy maskLabelPolicy = getEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY);
+		if (maskLabelPolicy == null) {
+			setLabelTextHelper(getFigure(), getLabelText());
+			setLabelIconHelper(getFigure(), getLabelIcon());
+		}
+		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+		if (pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
+			((UMLTextSelectionEditPolicy) pdEditPolicy).refreshFeedback();
+		}
+		Object sfEditPolicy = getEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE);
+		if (sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
+			((UMLTextSelectionEditPolicy) sfEditPolicy).refreshFeedback();
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void refreshStrikeThrough() {
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
+		if (style != null && getFigure() instanceof WrappingLabel) {
+			((WrappingLabel) getFigure()).setTextStrikeThrough(style
+					.isStrikeThrough());
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void refreshUnderline() {
+		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
+				NotationPackage.eINSTANCE.getFontStyle());
+		if (style != null && getFigure() instanceof WrappingLabel) {
+			((WrappingLabel) getFigure()).setTextUnderline(style.isUnderline());
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void refreshVisuals() {
+		super.refreshVisuals();
+		refreshLabel();
+		refreshFont();
+		refreshFontColor();
+		refreshUnderline();
+		refreshStrikeThrough();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeNotationalListeners() {
+		super.removeNotationalListeners();
+		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
 
 	/**
@@ -845,6 +732,107 @@ public class StateMachineNameEditPart extends CompartmentEditPart implements
 	protected void removeOwnerElementListeners() {
 		removeListenerFilter(ADD_PARENT_MODEL);
 
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void removeSemanticListeners() {
+		if (parserElements != null) {
+			for (int i = 0; i < parserElements.size(); i++) {
+				removeListenerFilter("SemanticModel" + i); //$NON-NLS-1$
+			}
+		} else {
+			super.removeSemanticListeners();
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void setFontColor(Color color) {
+		getFigure().setForegroundColor(color);
+	}
+
+	/**
+	 * @generated
+	 */
+	public void setLabel(WrappingLabel figure) {
+		unregisterVisuals();
+		setFigure(figure);
+		defaultText = getLabelTextHelper(figure);
+		registerVisuals();
+		refreshVisuals();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void setLabelIconHelper(IFigure figure, Image icon) {
+		if (figure instanceof WrappingLabel) {
+			((WrappingLabel) figure).setIcon(icon);
+		} else if (figure instanceof ILabelFigure) {
+			((ILabelFigure) figure).setIcon(icon);
+		} else {
+			((Label) figure).setIcon(icon);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void setLabelText(String text) {
+		setLabelTextHelper(getFigure(), text);
+		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+		if (pdEditPolicy instanceof UMLTextSelectionEditPolicy) {
+			((UMLTextSelectionEditPolicy) pdEditPolicy).refreshFeedback();
+		}
+		Object sfEditPolicy = getEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE);
+		if (sfEditPolicy instanceof UMLTextSelectionEditPolicy) {
+			((UMLTextSelectionEditPolicy) sfEditPolicy).refreshFeedback();
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void setLabelTextHelper(IFigure figure, String text) {
+		if (figure instanceof WrappingLabel) {
+			((WrappingLabel) figure).setText(text);
+		} else if (figure instanceof ILabelFigure) {
+			((ILabelFigure) figure).setText(text);
+		} else {
+			((Label) figure).setText(text);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void setManager(DirectEditManager manager) {
+		this.manager = manager;
+	}
+
+	/**
+	 * Updates the preference configuration
+	 */
+	protected void updateExtendedEditorConfiguration() {
+		String languagePreferred = Activator
+				.getDefault()
+				.getPreferenceStore()
+				.getString(
+						IDirectEditorsIds.EDITOR_FOR_ELEMENT
+								+ resolveSemanticElement().eClass()
+										.getInstanceClassName());
+		if (languagePreferred != null && !languagePreferred.equals("")
+				&& languagePreferred != configuration.getLanguage()) {
+			configuration = DirectEditorsUtil.findEditorConfiguration(
+					languagePreferred, resolveSemanticElement().eClass()
+							.getInstanceClassName());
+		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR
+				.equals(languagePreferred)) {
+			configuration = null;
+		}
 	}
 
 }

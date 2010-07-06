@@ -50,52 +50,10 @@ public class UMLEditPartProvider extends AbstractEditPartProvider {
 	/**
 	 * @generated
 	 */
-	public final EditPartFactory getFactory() {
-		return factory;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void setFactory(EditPartFactory factory) {
-		this.factory = factory;
-	}
-
-	/**
-	 * @generated
-	 */
-	public final boolean isAllowCaching() {
-		return allowCaching;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected synchronized void setAllowCaching(boolean allowCaching) {
-		this.allowCaching = allowCaching;
-		if (!allowCaching) {
-			cachedPart = null;
-			cachedView = null;
-		}
-	}
-
-	/**
-	 * @generated
-	 */
 	protected IGraphicalEditPart createEditPart(View view) {
 		EditPart part = factory.createEditPart(null, view);
 		if (part instanceof IGraphicalEditPart) {
 			return (IGraphicalEditPart) part;
-		}
-		return null;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected IGraphicalEditPart getCachedPart(View view) {
-		if (cachedView != null && cachedView.get() == view) {
-			return (IGraphicalEditPart) cachedPart.get();
 		}
 		return null;
 	}
@@ -113,6 +71,30 @@ public class UMLEditPartProvider extends AbstractEditPartProvider {
 			}
 		}
 		return createEditPart(view);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IGraphicalEditPart getCachedPart(View view) {
+		if (cachedView != null && cachedView.get() == view) {
+			return (IGraphicalEditPart) cachedPart.get();
+		}
+		return null;
+	}
+
+	/**
+	 * @generated
+	 */
+	public final EditPartFactory getFactory() {
+		return factory;
+	}
+
+	/**
+	 * @generated
+	 */
+	public final boolean isAllowCaching() {
+		return allowCaching;
 	}
 
 	/**
@@ -138,5 +120,23 @@ public class UMLEditPartProvider extends AbstractEditPartProvider {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected synchronized void setAllowCaching(boolean allowCaching) {
+		this.allowCaching = allowCaching;
+		if (!allowCaching) {
+			cachedPart = null;
+			cachedView = null;
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void setFactory(EditPartFactory factory) {
+		this.factory = factory;
 	}
 }

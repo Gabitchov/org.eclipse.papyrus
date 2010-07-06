@@ -50,7 +50,8 @@ public class RegionFigure extends CompartmentFigure {
 	 */
 	public RegionFigure(String tagLabel) {
 		super(COMPARTMENT, tagLabel);
-		((AutomaticCompartmentLayoutManager) getLayoutManager()).setAddExtraHeight(false);
+		((AutomaticCompartmentLayoutManager) getLayoutManager())
+				.setAddExtraHeight(false);
 	}
 
 	/**
@@ -73,13 +74,15 @@ public class RegionFigure extends CompartmentFigure {
 			graphics.setLineStyle(SWT.BORDER_DASH);
 			graphics.setLineWidth(SWT.BOLD);
 
-			graphics.drawLine(rect.x + rect.width - 1, rect.y - 2, rect.x + rect.width - 1, rect.y - 2 + rect.height);
+			graphics.drawLine(rect.x + rect.width - 1, rect.y - 2, rect.x
+					+ rect.width - 1, rect.y - 2 + rect.height);
 		}
 		if (displayBottomBorder) {
 			graphics.setLineStyle(SWT.BORDER_DASH);
 			graphics.setLineWidth(SWT.BOLD);
 
-			graphics.drawLine(rect.x - 2, rect.y + rect.height - 1, rect.x - 2 + rect.width, rect.y + rect.height - 1);
+			graphics.drawLine(rect.x - 2, rect.y + rect.height - 1, rect.x - 2
+					+ rect.width, rect.y + rect.height - 1);
 		}
 	}
 

@@ -35,34 +35,6 @@ public class UMLNavigatorGroup extends UMLAbstractNavigatorItem {
 	/**
 	 * @generated
 	 */
-	public String getGroupName() {
-		return myGroupName;
-	}
-
-	/**
-	 * @generated
-	 */
-	public String getIcon() {
-		return myIcon;
-	}
-
-	/**
-	 * @generated
-	 */
-	public Object[] getChildren() {
-		return myChildren.toArray();
-	}
-
-	/**
-	 * @generated
-	 */
-	public void addChildren(Collection children) {
-		myChildren.addAll(children);
-	}
-
-	/**
-	 * @generated
-	 */
 	public void addChild(Object child) {
 		myChildren.add(child);
 	}
@@ -70,8 +42,8 @@ public class UMLNavigatorGroup extends UMLAbstractNavigatorItem {
 	/**
 	 * @generated
 	 */
-	public boolean isEmpty() {
-		return myChildren.size() == 0;
+	public void addChildren(Collection children) {
+		myChildren.addAll(children);
 	}
 
 	/**
@@ -90,8 +62,36 @@ public class UMLNavigatorGroup extends UMLAbstractNavigatorItem {
 	/**
 	 * @generated
 	 */
+	public Object[] getChildren() {
+		return myChildren.toArray();
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getGroupName() {
+		return myGroupName;
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getIcon() {
+		return myIcon;
+	}
+
+	/**
+	 * @generated
+	 */
 	public int hashCode() {
 		return getGroupName().hashCode();
+	}
+
+	/**
+	 * @generated
+	 */
+	public boolean isEmpty() {
+		return myChildren.size() == 0;
 	}
 
 }

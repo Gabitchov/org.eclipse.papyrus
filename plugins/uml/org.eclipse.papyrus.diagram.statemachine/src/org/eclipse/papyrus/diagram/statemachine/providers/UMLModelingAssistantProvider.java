@@ -17,12 +17,12 @@ import org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.ModelingAssista
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateNodeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
-import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudoStateNodeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
-import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateNodeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.part.Messages;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
@@ -37,65 +37,19 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
-	public List getTypesForPopupBar(IAdaptable host) {
-		IGraphicalEditPart editPart = (IGraphicalEditPart) host
-				.getAdapter(IGraphicalEditPart.class);
-		if (editPart instanceof PackageEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
-			types.add(UMLElementTypes.StateMachine_2000);
-			return types;
-		}
-		if (editPart instanceof RegionCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(3);
-			types.add(UMLElementTypes.Pseudostate_3004);
-			types.add(UMLElementTypes.FinalState_3005);
-			types.add(UMLElementTypes.State_3006);
-			return types;
-		}
-		if (editPart instanceof StateMachineCompartmentEditPart) {
-			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
-			types.add(UMLElementTypes.Region_3000);
-			return types;
-		}
-		return Collections.EMPTY_LIST;
-	}
-
-	/**
-	 * @generated
-	 */
 	public List getRelTypesOnSource(IAdaptable source) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
 				.getAdapter(IGraphicalEditPart.class);
-		if (sourceEditPart instanceof PseudoStateNodeEditPart) {
-			return ((PseudoStateNodeEditPart) sourceEditPart)
+		if (sourceEditPart instanceof PseudostateEditPart) {
+			return ((PseudostateEditPart) sourceEditPart)
 					.getMARelTypesOnSource();
 		}
-		if (sourceEditPart instanceof FinalStateNodeEditPart) {
-			return ((FinalStateNodeEditPart) sourceEditPart)
+		if (sourceEditPart instanceof FinalStateEditPart) {
+			return ((FinalStateEditPart) sourceEditPart)
 					.getMARelTypesOnSource();
 		}
-		if (sourceEditPart instanceof StateNodeEditPart) {
-			return ((StateNodeEditPart) sourceEditPart).getMARelTypesOnSource();
-		}
-		return Collections.EMPTY_LIST;
-	}
-
-	/**
-	 * @generated
-	 */
-	public List getRelTypesOnTarget(IAdaptable target) {
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
-				.getAdapter(IGraphicalEditPart.class);
-		if (targetEditPart instanceof PseudoStateNodeEditPart) {
-			return ((PseudoStateNodeEditPart) targetEditPart)
-					.getMARelTypesOnTarget();
-		}
-		if (targetEditPart instanceof FinalStateNodeEditPart) {
-			return ((FinalStateNodeEditPart) targetEditPart)
-					.getMARelTypesOnTarget();
-		}
-		if (targetEditPart instanceof StateNodeEditPart) {
-			return ((StateNodeEditPart) targetEditPart).getMARelTypesOnTarget();
+		if (sourceEditPart instanceof StateEditPart) {
+			return ((StateEditPart) sourceEditPart).getMARelTypesOnSource();
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -109,17 +63,63 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 				.getAdapter(IGraphicalEditPart.class);
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
-		if (sourceEditPart instanceof PseudoStateNodeEditPart) {
-			return ((PseudoStateNodeEditPart) sourceEditPart)
+		if (sourceEditPart instanceof PseudostateEditPart) {
+			return ((PseudostateEditPart) sourceEditPart)
 					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if (sourceEditPart instanceof FinalStateNodeEditPart) {
-			return ((FinalStateNodeEditPart) sourceEditPart)
+		if (sourceEditPart instanceof FinalStateEditPart) {
+			return ((FinalStateEditPart) sourceEditPart)
 					.getMARelTypesOnSourceAndTarget(targetEditPart);
 		}
-		if (sourceEditPart instanceof StateNodeEditPart) {
-			return ((StateNodeEditPart) sourceEditPart)
+		if (sourceEditPart instanceof StateEditPart) {
+			return ((StateEditPart) sourceEditPart)
 					.getMARelTypesOnSourceAndTarget(targetEditPart);
+		}
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List getRelTypesOnTarget(IAdaptable target) {
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
+				.getAdapter(IGraphicalEditPart.class);
+		if (targetEditPart instanceof PseudostateEditPart) {
+			return ((PseudostateEditPart) targetEditPart)
+					.getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof FinalStateEditPart) {
+			return ((FinalStateEditPart) targetEditPart)
+					.getMARelTypesOnTarget();
+		}
+		if (targetEditPart instanceof StateEditPart) {
+			return ((StateEditPart) targetEditPart).getMARelTypesOnTarget();
+		}
+		return Collections.EMPTY_LIST;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List getTypesForPopupBar(IAdaptable host) {
+		IGraphicalEditPart editPart = (IGraphicalEditPart) host
+				.getAdapter(IGraphicalEditPart.class);
+		if (editPart instanceof PackageEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.StateMachine_2000);
+			return types;
+		}
+		if (editPart instanceof RegionCompartmentEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(3);
+			types.add(UMLElementTypes.Pseudostate_4000);
+			types.add(UMLElementTypes.FinalState_5000);
+			types.add(UMLElementTypes.State_6000);
+			return types;
+		}
+		if (editPart instanceof StateMachineCompartmentEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.Region_3000);
+			return types;
 		}
 		return Collections.EMPTY_LIST;
 	}
@@ -131,16 +131,16 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			IElementType relationshipType) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
-		if (targetEditPart instanceof PseudoStateNodeEditPart) {
-			return ((PseudoStateNodeEditPart) targetEditPart)
+		if (targetEditPart instanceof PseudostateEditPart) {
+			return ((PseudostateEditPart) targetEditPart)
 					.getMATypesForSource(relationshipType);
 		}
-		if (targetEditPart instanceof FinalStateNodeEditPart) {
-			return ((FinalStateNodeEditPart) targetEditPart)
+		if (targetEditPart instanceof FinalStateEditPart) {
+			return ((FinalStateEditPart) targetEditPart)
 					.getMATypesForSource(relationshipType);
 		}
-		if (targetEditPart instanceof StateNodeEditPart) {
-			return ((StateNodeEditPart) targetEditPart)
+		if (targetEditPart instanceof StateEditPart) {
+			return ((StateEditPart) targetEditPart)
 					.getMATypesForSource(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
@@ -153,16 +153,16 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			IElementType relationshipType) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
 				.getAdapter(IGraphicalEditPart.class);
-		if (sourceEditPart instanceof PseudoStateNodeEditPart) {
-			return ((PseudoStateNodeEditPart) sourceEditPart)
+		if (sourceEditPart instanceof PseudostateEditPart) {
+			return ((PseudostateEditPart) sourceEditPart)
 					.getMATypesForTarget(relationshipType);
 		}
-		if (sourceEditPart instanceof FinalStateNodeEditPart) {
-			return ((FinalStateNodeEditPart) sourceEditPart)
+		if (sourceEditPart instanceof FinalStateEditPart) {
+			return ((FinalStateEditPart) sourceEditPart)
 					.getMATypesForTarget(relationshipType);
 		}
-		if (sourceEditPart instanceof StateNodeEditPart) {
-			return ((StateNodeEditPart) sourceEditPart)
+		if (sourceEditPart instanceof StateEditPart) {
+			return ((StateEditPart) sourceEditPart)
 					.getMATypesForTarget(relationshipType);
 		}
 		return Collections.EMPTY_LIST;
@@ -171,19 +171,31 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
-	public EObject selectExistingElementForSource(IAdaptable target,
-			IElementType relationshipType) {
-		return selectExistingElement(target, getTypesForSource(target,
-				relationshipType));
+	protected boolean isApplicableElement(EObject element, Collection types) {
+		IElementType type = ElementTypeRegistry.getInstance().getElementType(
+				element);
+		return types.contains(type);
 	}
 
 	/**
 	 * @generated
 	 */
-	public EObject selectExistingElementForTarget(IAdaptable source,
-			IElementType relationshipType) {
-		return selectExistingElement(source, getTypesForTarget(source,
-				relationshipType));
+	protected EObject selectElement(EObject[] elements) {
+		Shell shell = Display.getCurrent().getActiveShell();
+		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
+				UMLDiagramEditorPlugin.getInstance()
+						.getItemProvidersAdapterFactory());
+		ElementListSelectionDialog dialog = new ElementListSelectionDialog(
+				shell, labelProvider);
+		dialog.setMessage(Messages.UMLModelingAssistantProviderMessage);
+		dialog.setTitle(Messages.UMLModelingAssistantProviderTitle);
+		dialog.setMultipleSelection(false);
+		dialog.setElements(elements);
+		EObject selected = null;
+		if (dialog.open() == Window.OK) {
+			selected = (EObject) dialog.getFirstResult();
+		}
+		return selected;
 	}
 
 	/**
@@ -217,30 +229,18 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
-	protected boolean isApplicableElement(EObject element, Collection types) {
-		IElementType type = ElementTypeRegistry.getInstance().getElementType(
-				element);
-		return types.contains(type);
+	public EObject selectExistingElementForSource(IAdaptable target,
+			IElementType relationshipType) {
+		return selectExistingElement(target,
+				getTypesForSource(target, relationshipType));
 	}
 
 	/**
 	 * @generated
 	 */
-	protected EObject selectElement(EObject[] elements) {
-		Shell shell = Display.getCurrent().getActiveShell();
-		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
-				UMLDiagramEditorPlugin.getInstance()
-						.getItemProvidersAdapterFactory());
-		ElementListSelectionDialog dialog = new ElementListSelectionDialog(
-				shell, labelProvider);
-		dialog.setMessage(Messages.UMLModelingAssistantProviderMessage);
-		dialog.setTitle(Messages.UMLModelingAssistantProviderTitle);
-		dialog.setMultipleSelection(false);
-		dialog.setElements(elements);
-		EObject selected = null;
-		if (dialog.open() == Window.OK) {
-			selected = (EObject) dialog.getFirstResult();
-		}
-		return selected;
+	public EObject selectExistingElementForTarget(IAdaptable source,
+			IElementType relationshipType) {
+		return selectExistingElement(source,
+				getTypesForTarget(source, relationshipType));
 	}
 }

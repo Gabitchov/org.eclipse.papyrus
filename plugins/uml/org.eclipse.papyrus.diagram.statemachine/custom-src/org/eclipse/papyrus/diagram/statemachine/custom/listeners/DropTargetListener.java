@@ -51,7 +51,8 @@ public abstract class DropTargetListener extends DiagramDropTargetListener {
 			for (Iterator<?> it = selection.iterator(); it.hasNext();) {
 				Object nextSelectedObject = it.next();
 				// if (nextSelectedObject instanceof UMLNavigatorItem) {
-				// View view = ((UMLNavigatorItem) nextSelectedObject).getView();
+				// View view = ((UMLNavigatorItem)
+				// nextSelectedObject).getView();
 				// nextSelectedObject = view.getElement();
 				// } else
 				if (nextSelectedObject instanceof IAdaptable) {
@@ -70,7 +71,8 @@ public abstract class DropTargetListener extends DiagramDropTargetListener {
 
 		ArrayList<EObject> result = new ArrayList<EObject>();
 		for (URI uri : uris) {
-			EObject modelObject = getTransactionalEditingDomain().getResourceSet().getEObject(uri, true);
+			EObject modelObject = getTransactionalEditingDomain()
+					.getResourceSet().getEObject(uri, true);
 			result.add(modelObject);
 		}
 		return result;

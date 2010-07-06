@@ -21,7 +21,8 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineCompartme
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
 
-public class CustomStateMachineSetBoundsCommand extends AbstractTransactionalCommand {
+public class CustomStateMachineSetBoundsCommand extends
+		AbstractTransactionalCommand {
 
 	CreateViewRequest.ViewDescriptor viewDescriptor;
 
@@ -31,7 +32,8 @@ public class CustomStateMachineSetBoundsCommand extends AbstractTransactionalCom
 
 	Dimension size;
 
-	public CustomStateMachineSetBoundsCommand(TransactionalEditingDomain domain, String label,
+	public CustomStateMachineSetBoundsCommand(
+			TransactionalEditingDomain domain, String label,
 			CreateViewRequest.ViewDescriptor viewDescriptor, Rectangle rect) {
 		super(domain, label, null);
 
@@ -41,12 +43,14 @@ public class CustomStateMachineSetBoundsCommand extends AbstractTransactionalCom
 		location = rect.getLocation();
 		size = rect.getSize();
 
-		// make sure the return object is available even before executing/undoing/redoing
+		// make sure the return object is available even before
+		// executing/undoing/redoing
 		setResult(CommandResult.newOKCommandResult(viewDescriptor));
 	}
 
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 
 		View stateMachineView = (View) viewDescriptor.getAdapter(View.class);
 		if (location != null) {
@@ -66,7 +70,8 @@ public class CustomStateMachineSetBoundsCommand extends AbstractTransactionalCom
 		while (it.hasNext()) {
 			Node currentNode = it.next();
 			if (currentNode.getLayoutConstraint() == null) {
-				currentNode.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+				currentNode.setLayoutConstraint(NotationFactory.eINSTANCE
+						.createBounds());
 			}
 			if (UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateMachineNameEditPart.VISUAL_ID) {
 				if ((size != null) && !size.equals(-1, -1)) {
@@ -80,10 +85,12 @@ public class CustomStateMachineSetBoundsCommand extends AbstractTransactionalCom
 				Zone.setY(currentNode, Zone.defaultHeader);
 				if ((size != null) && !size.equals(-1, -1)) {
 					Zone.setWidth(currentNode, size.width);
-					Zone.setHeight(currentNode, size.height - Zone.defaultHeader);
+					Zone.setHeight(currentNode, size.height
+							- Zone.defaultHeader);
 				} else {
 					Zone.setWidth(currentNode, Zone.defaultWidth);
-					Zone.setHeight(currentNode, Zone.defaultHeight - Zone.defaultHeader);
+					Zone.setHeight(currentNode, Zone.defaultHeight
+							- Zone.defaultHeader);
 				}
 				int nRegions = currentNode.getChildren().size();
 				String prefix = "";
@@ -94,23 +101,32 @@ public class CustomStateMachineSetBoundsCommand extends AbstractTransactionalCom
 				while (subit.hasNext()) {
 					Node subCurrentNode = subit.next();
 					if (subCurrentNode.getLayoutConstraint() == null) {
-						subCurrentNode.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+						subCurrentNode
+								.setLayoutConstraint(NotationFactory.eINSTANCE
+										.createBounds());
 					}
-					if (UMLVisualIDRegistry.getVisualID(subCurrentNode.getType()) == RegionEditPart.VISUAL_ID) {
+					if (UMLVisualIDRegistry.getVisualID(subCurrentNode
+							.getType()) == RegionEditPart.VISUAL_ID) {
 						if ((size != null) && !size.equals(-1, -1)) {
-							Zone.setWidth(subCurrentNode, (i == nRegions - 1) ? size.width - width : size.width
-									/ nRegions);
-							Zone.setHeight(subCurrentNode, size.height - Zone.defaultHeader);
+							Zone.setWidth(subCurrentNode,
+									(i == nRegions - 1) ? size.width - width
+											: size.width / nRegions);
+							Zone.setHeight(subCurrentNode, size.height
+									- Zone.defaultHeader);
 							Zone.setX(subCurrentNode, width);
 							width += size.width / nRegions;
 						} else {
-							Zone.setWidth(subCurrentNode, (i == nRegions - 1) ? Zone.defaultWidth - width
-									: Zone.defaultWidth / nRegions);
-							Zone.setHeight(subCurrentNode, Zone.defaultHeight - Zone.defaultHeader);
+							Zone.setWidth(subCurrentNode,
+									(i == nRegions - 1) ? Zone.defaultWidth
+											- width : Zone.defaultWidth
+											/ nRegions);
+							Zone.setHeight(subCurrentNode, Zone.defaultHeight
+									- Zone.defaultHeader);
 							Zone.setX(subCurrentNode, width);
 							width += Zone.defaultWidth / nRegions;
 						}
-						zone = (i == nRegions - 1) ? prefix : prefix + Zone.LEFT;
+						zone = (i == nRegions - 1) ? prefix : prefix
+								+ Zone.LEFT;
 						Zone.setZone(subCurrentNode, zone);
 						prefix = prefix + Zone.RIGHT;
 						i++;

@@ -25,8 +25,8 @@ public class CustomRegionResizableEditPolicy extends ResizableEditPolicy {
 	private ChangeBoundsRequest request;
 
 	/**
-	 * The target figure, i.e. the figure associated to the targetNode region . Used to change of
-	 * coordinates.
+	 * The target figure, i.e. the figure associated to the targetNode region .
+	 * Used to change of coordinates.
 	 */
 	private RegionFigure targetFig;
 
@@ -50,26 +50,32 @@ public class CustomRegionResizableEditPolicy extends ResizableEditPolicy {
 			// resize handles are added depending on a bit-wise test of dirs
 			// in any case we do not provide oblique resize handles
 			if ((dirs & PositionConstants.EAST) != 0)
-				ResizableHandleKit.addHandle((GraphicalEditPart) getHost(), list, PositionConstants.EAST);
+				ResizableHandleKit.addHandle((GraphicalEditPart) getHost(),
+						list, PositionConstants.EAST);
 			if ((dirs & PositionConstants.SOUTH) != 0)
-				ResizableHandleKit.addHandle((GraphicalEditPart) getHost(), list, PositionConstants.SOUTH);
+				ResizableHandleKit.addHandle((GraphicalEditPart) getHost(),
+						list, PositionConstants.SOUTH);
 			if ((dirs & PositionConstants.WEST) != 0)
-				ResizableHandleKit.addHandle((GraphicalEditPart) getHost(), list, PositionConstants.WEST);
+				ResizableHandleKit.addHandle((GraphicalEditPart) getHost(),
+						list, PositionConstants.WEST);
 			if ((dirs & PositionConstants.NORTH) != 0) {
-				ResizableHandleKit.addHandle((GraphicalEditPart) getHost(), list, PositionConstants.NORTH);
+				ResizableHandleKit.addHandle((GraphicalEditPart) getHost(),
+						list, PositionConstants.NORTH);
 			}
 		}
 		return list;
 	}
 
 	/**
-	 * This method is overridden to change the ghost figure shown when either resizing a region or
-	 * moving it around. In the case of a resize we need to update the bounds of the ghost figure as
-	 * the union of bounds of resized regions. This is done by a check of the neighboring regions
-	 * which share the same border to be moved by the resize request. In the case of a move we need
-	 * to show what will happen to the region when dropped on a given one: thus show a half-sized
-	 * region located on one of the side of its parent region depending on the position of the
-	 * mouse. In the course of this process we assign a corresponding drop location to the region.
+	 * This method is overridden to change the ghost figure shown when either
+	 * resizing a region or moving it around. In the case of a resize we need to
+	 * update the bounds of the ghost figure as the union of bounds of resized
+	 * regions. This is done by a check of the neighboring regions which share
+	 * the same border to be moved by the resize request. In the case of a move
+	 * we need to show what will happen to the region when dropped on a given
+	 * one: thus show a half-sized region located on one of the side of its
+	 * parent region depending on the position of the mouse. In the course of
+	 * this process we assign a corresponding drop location to the region.
 	 * 
 	 * @param a
 	 *            rectangle which is the bounds of the ghost figure to be shown
@@ -97,16 +103,20 @@ public class CustomRegionResizableEditPolicy extends ResizableEditPolicy {
 			List<View> nodes = new ArrayList<View>();
 			// test the direction and call the appropriate method
 			if (direction == PositionConstants.NORTH)
-				// retrieve the list of nodes that are at the BOTTOM of NORTH border
+				// retrieve the list of nodes that are at the BOTTOM of NORTH
+				// border
 				nodes = Zone.getRegionTopBorderInsideNeighbours(region);
 			else if (direction == PositionConstants.SOUTH)
-				// retrieve the list of nodes that are at the TOP of SOUTH border
+				// retrieve the list of nodes that are at the TOP of SOUTH
+				// border
 				nodes = Zone.getRegionBottomBorderInsideNeighbours(region);
 			else if (direction == PositionConstants.EAST)
-				// retrieve the list of nodes that are at the LEFT of EAST border
+				// retrieve the list of nodes that are at the LEFT of EAST
+				// border
 				nodes = Zone.getRegionRightBorderInsideNeighbours(region);
 			else if (direction == PositionConstants.WEST)
-				// retrieve the list of nodes that are at the RIGHT of WEST border
+				// retrieve the list of nodes that are at the RIGHT of WEST
+				// border
 				nodes = Zone.getRegionLeftBorderInsideNeighbours(region);
 			// now compute the bounds of the node union
 			Rectangle rect = null;
@@ -124,8 +134,8 @@ public class CustomRegionResizableEditPolicy extends ResizableEditPolicy {
 	}
 
 	/**
-	 * This method is overridden here to save the request and change the figure used to perform
-	 * coordinate change.
+	 * This method is overridden here to save the request and change the figure
+	 * used to perform coordinate change.
 	 * 
 	 * @param request
 	 *            the Request
@@ -135,7 +145,8 @@ public class CustomRegionResizableEditPolicy extends ResizableEditPolicy {
 		this.request = (ChangeBoundsRequest) request;
 		IFigure feedback = getDragSourceFeedbackFigure();
 
-		PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
+		PrecisionRectangle rect = new PrecisionRectangle(
+				getInitialFeedbackBounds().getCopy());
 
 		// if regions are part of different state machines or state
 		if (changeReferentFigure)

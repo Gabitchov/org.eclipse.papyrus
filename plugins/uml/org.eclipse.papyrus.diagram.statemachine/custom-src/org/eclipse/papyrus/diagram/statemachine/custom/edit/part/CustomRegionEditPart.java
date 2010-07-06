@@ -4,6 +4,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.statemachine.custom.figures.RegionFigure;
 import org.eclipse.papyrus.diagram.statemachine.custom.helpers.Zone;
@@ -21,6 +22,15 @@ public class CustomRegionEditPart extends RegionEditPart {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	protected void createDefaultEditPolicies() {
+		// TODO Auto-generated method stub
+		super.createDefaultEditPolicies();
+		removeEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
+
+	}
+
 	/**
 	 * This method is overridden to store the DragTracker locally.
 	 * 
@@ -36,7 +46,8 @@ public class CustomRegionEditPart extends RegionEditPart {
 	}
 
 	/**
-	 * This method provides access to the RegionDragTracker if any or returns null.
+	 * This method provides access to the RegionDragTracker if any or returns
+	 * null.
 	 * 
 	 * @return the RegionDragTracker
 	 */
@@ -63,7 +74,8 @@ public class CustomRegionEditPart extends RegionEditPart {
 
 		// check the region zone
 		String zone = Zone.getZone(view);
-		// check the neighbours if any and change the corresponding flags in the figure
+		// check the neighbours if any and change the corresponding flags in the
+		// figure
 		if (Zone.hasRightNeighbours(zone))
 			f.setDisplayRightBorder(true);
 		else

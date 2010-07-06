@@ -20,13 +20,14 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin;
 
 /**
- * Define a command to create a new Class Diagram. This command is used by all UI (toolbar, outline,
- * creation wizards) to create a new Class Diagram.
+ * Define a command to create a new Class Diagram. This command is used by all
+ * UI (toolbar, outline, creation wizards) to create a new Class Diagram.
  * 
  * @author dumoulin
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public class CreateStateMachineDiagramCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
+public class CreateStateMachineDiagramCommand extends
+		AbstractPapyrusGmfCreateDiagramCommandHandler {
 
 	/**
 	 * {@inheritDoc}

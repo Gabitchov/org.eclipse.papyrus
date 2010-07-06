@@ -28,6 +28,23 @@ public class UMLLinkDescriptor extends UMLNodeDescriptor {
 	/**
 	 * @generated
 	 */
+	public UMLLinkDescriptor(EObject source, EObject destination,
+			EObject linkElement, IElementType elementType, int linkVID) {
+		this(source, destination, linkElement, linkVID);
+		final IElementType elementTypeCopy = elementType;
+		mySemanticAdapter = new EObjectAdapter(linkElement) {
+			public Object getAdapter(Class adapter) {
+				if (IElementType.class.equals(adapter)) {
+					return elementTypeCopy;
+				}
+				return super.getAdapter(adapter);
+			}
+		};
+	}
+
+	/**
+	 * @generated
+	 */
 	private UMLLinkDescriptor(EObject source, EObject destination,
 			EObject linkElement, int linkVID) {
 		super(linkElement, linkVID);
@@ -55,30 +72,6 @@ public class UMLLinkDescriptor extends UMLNodeDescriptor {
 	/**
 	 * @generated
 	 */
-	public UMLLinkDescriptor(EObject source, EObject destination,
-			EObject linkElement, IElementType elementType, int linkVID) {
-		this(source, destination, linkElement, linkVID);
-		final IElementType elementTypeCopy = elementType;
-		mySemanticAdapter = new EObjectAdapter(linkElement) {
-			public Object getAdapter(Class adapter) {
-				if (IElementType.class.equals(adapter)) {
-					return elementTypeCopy;
-				}
-				return super.getAdapter(adapter);
-			}
-		};
-	}
-
-	/**
-	 * @generated
-	 */
-	public EObject getSource() {
-		return mySource;
-	}
-
-	/**
-	 * @generated
-	 */
 	public EObject getDestination() {
 		return myDestination;
 	}
@@ -88,6 +81,13 @@ public class UMLLinkDescriptor extends UMLNodeDescriptor {
 	 */
 	public IAdaptable getSemanticAdapter() {
 		return mySemanticAdapter;
+	}
+
+	/**
+	 * @generated
+	 */
+	public EObject getSource() {
+		return mySource;
 	}
 
 }

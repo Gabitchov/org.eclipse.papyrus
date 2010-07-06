@@ -16,21 +16,64 @@ import org.eclipse.uml2.uml.UMLFactory;
 public class ElementInitializers {
 
 	/**
+	 * @generated
+	 */
+	public static ElementInitializers getInstance() {
+		ElementInitializers cached = UMLDiagramEditorPlugin.getInstance()
+				.getElementInitializers();
+		if (cached == null) {
+			UMLDiagramEditorPlugin.getInstance().setElementInitializers(
+					cached = new ElementInitializers());
+		}
+		return cached;
+	}
+
+	/**
 	 * Custom code
 	 * 
 	 * @param self
 	 * @return
 	 */
 	private static String getName(org.eclipse.uml2.uml.Element self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self
-				.getOwner(), self.eClass());
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(
+				self.getOwner(), self.eClass());
 
+	}
+
+	protected ElementInitializers() {
+		// use #getInstance to access cached instance
 	}
 
 	/**
 	 * @generated
 	 */
-	public static void init_Region_3000(Region instance) {
+	public void init_FinalState_5000(FinalState instance) {
+		try {
+			Object value_0 = name_FinalState_5000(instance);
+			instance.setName((String) value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError(
+					"Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_Pseudostate_4000(Pseudostate instance) {
+		try {
+			Object value_0 = name_Pseudostate_4000(instance);
+			instance.setName((String) value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError(
+					"Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init_Region_3000(Region instance) {
 		try {
 			Object value_0 = name_Region_3000(instance);
 			instance.setName((String) value_0);
@@ -43,9 +86,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_Pseudostate_3004(Pseudostate instance) {
+	public void init_State_6000(State instance) {
 		try {
-			Object value_0 = name_Pseudostate_3004(instance);
+			Object value_0 = name_State_6000(instance);
 			instance.setName((String) value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError(
@@ -56,46 +99,7 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_FinalState_3005(FinalState instance) {
-		try {
-			Object value_0 = name_FinalState_3005(instance);
-			instance.setName((String) value_0);
-		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Element initialization failed", e); //$NON-NLS-1$						
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public static void init_State_3006(State instance) {
-		try {
-			Object value_0 = name_State_3006(instance);
-			instance.setName((String) value_0);
-		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Element initialization failed", e); //$NON-NLS-1$						
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public static void init_Transition_5000(Transition instance) {
-		try {
-			Object value_0 = name_Transition_5000(instance);
-			instance.setName((String) value_0);
-		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Element initialization failed", e); //$NON-NLS-1$						
-		}
-	}
-
-	/**
-	 * @generated
-	 */
-	public static void init_StateMachine_2000(StateMachine instance) {
+	public void init_StateMachine_2000(StateMachine instance) {
 		try {
 			Object value_0 = name_StateMachine_2000(instance);
 			instance.setName((String) value_0);
@@ -113,49 +117,62 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private static String name_Region_3000(Region self) {
+	public void init_Transition_7000(Transition instance) {
+		try {
+			Object value_0 = name_Transition_7000(instance);
+			instance.setName((String) value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError(
+					"Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_FinalState_5000(FinalState self) {
 		return getName(self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_Pseudostate_3004(Pseudostate self) {
+	private String name_Pseudostate_4000(Pseudostate self) {
 		return getName(self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_FinalState_3005(FinalState self) {
+	private String name_Region_3000(Region self) {
 		return getName(self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_State_3006(State self) {
+	private String name_region_StateMachine_2000(Region self) {
 		return getName(self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_Transition_5000(Transition self) {
+	private String name_State_6000(State self) {
 		return getName(self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_region_StateMachine_2000(Region self) {
+	private String name_StateMachine_2000(StateMachine self) {
 		return getName(self);
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_StateMachine_2000(StateMachine self) {
+	private String name_Transition_7000(Transition self) {
 		return getName(self);
 	}
 

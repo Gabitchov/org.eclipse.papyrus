@@ -12,7 +12,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.statemachine.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -25,11 +25,27 @@ public class StateMachineCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
+	public static StateMachineCreateCommand create(CreateElementRequest req,
+			EObject eObject) {
+		return new StateMachineCreateCommand(req, eObject);
+	}
+
+	/**
+	 * @generated
+	 */
 	private EClass eClass = null;
+
 	/**
 	 * @generated
 	 */
 	private EObject eObject = null;
+
+	/**
+	 * @generated
+	 */
+	public StateMachineCreateCommand(CreateElementRequest req) {
+		super(req.getLabel(), null, req);
+	}
 
 	/**
 	 * @generated
@@ -43,61 +59,10 @@ public class StateMachineCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static StateMachineCreateCommand create(CreateElementRequest req,
-			EObject eObject) {
-		return new StateMachineCreateCommand(req, eObject);
-	}
-
-	/**
-	 * @generated
-	 */
-	public StateMachineCreateCommand(CreateElementRequest req) {
-		super(req.getLabel(), null, req);
-	}
-
-	/**
-	 * FIXME: replace with setElementToEdit()
-	 * @generated
-	 */
-	protected EObject getElementToEdit() {
-
-		EObject container = ((CreateElementRequest) getRequest())
-				.getContainer();
-		if (container instanceof View) {
-			container = ((View) container).getElement();
-		}
-		if (container != null) {
-			return container;
-		}
-		return eObject;
-	}
-
-	/**
-	 * @generated
-	 */
 	public boolean canExecute() {
 
 		return true;
 
-	}
-
-	/**
-	 * @generated
-	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
-
-		StateMachine newElement = UMLFactory.eINSTANCE.createStateMachine();
-
-		Package owner = (Package) getElementToEdit();
-		owner.getPackagedElements().add(newElement);
-
-		UMLElementTypes.init_StateMachine_2000(newElement);
-
-		doConfigure(newElement, monitor, info);
-
-		((CreateElementRequest) getRequest()).setNewElement(newElement);
-		return CommandResult.newOKCommandResult(newElement);
 	}
 
 	/**
@@ -118,6 +83,43 @@ public class StateMachineCreateCommand extends EditElementCommand {
 		if (configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
+
+		StateMachine newElement = UMLFactory.eINSTANCE.createStateMachine();
+
+		Package owner = (Package) getElementToEdit();
+		owner.getPackagedElements().add(newElement);
+
+		ElementInitializers.getInstance().init_StateMachine_2000(newElement);
+
+		doConfigure(newElement, monitor, info);
+
+		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		return CommandResult.newOKCommandResult(newElement);
+	}
+
+	/**
+	 * FIXME: replace with setElementToEdit()
+	 * 
+	 * @generated
+	 */
+	protected EObject getElementToEdit() {
+
+		EObject container = ((CreateElementRequest) getRequest())
+				.getContainer();
+		if (container instanceof View) {
+			container = ((View) container).getElement();
+		}
+		if (container != null) {
+			return container;
+		}
+		return eObject;
 	}
 
 }

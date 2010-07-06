@@ -19,6 +19,7 @@ import org.eclipse.swt.widgets.Label;
 
 /**
  * Wizard page that allows to select element from model.
+ * 
  * @generated
  */
 public class ModelElementSelectionPage extends WizardPage {
@@ -37,30 +38,6 @@ public class ModelElementSelectionPage extends WizardPage {
 	 */
 	public ModelElementSelectionPage(String pageName) {
 		super(pageName);
-	}
-
-	/**
-	 * @generated
-	 */
-	public EObject getModelElement() {
-		return selectedModelElement;
-	}
-
-	/**
-	 * @generated
-	 */
-	public void setModelElement(EObject modelElement) {
-		selectedModelElement = modelElement;
-		if (modelViewer != null) {
-			if (selectedModelElement != null) {
-				modelViewer.setInput(selectedModelElement.eResource());
-				modelViewer.setSelection(new StructuredSelection(
-						selectedModelElement));
-			} else {
-				modelViewer.setInput(null);
-			}
-			setPageComplete(validatePage());
-		}
 	}
 
 	/**
@@ -110,11 +87,36 @@ public class ModelElementSelectionPage extends WizardPage {
 	}
 
 	/**
+	 * @generated
+	 */
+	public EObject getModelElement() {
+		return selectedModelElement;
+	}
+
+	/**
 	 * Override to provide custom model element description.
+	 * 
 	 * @generated
 	 */
 	protected String getSelectionTitle() {
 		return Messages.ModelElementSelectionPageMessage;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void setModelElement(EObject modelElement) {
+		selectedModelElement = modelElement;
+		if (modelViewer != null) {
+			if (selectedModelElement != null) {
+				modelViewer.setInput(selectedModelElement.eResource());
+				modelViewer.setSelection(new StructuredSelection(
+						selectedModelElement));
+			} else {
+				modelViewer.setInput(null);
+			}
+			setPageComplete(validatePage());
+		}
 	}
 
 	/**
@@ -141,6 +143,7 @@ public class ModelElementSelectionPage extends WizardPage {
 
 	/**
 	 * Override to provide specific validation of the selected model element.
+	 * 
 	 * @generated
 	 */
 	protected boolean validatePage() {

@@ -37,30 +37,6 @@ public class UMLInitDiagramFileAction implements IObjectActionDelegate {
 	/**
 	 * @generated
 	 */
-	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
-		this.targetPart = targetPart;
-	}
-
-	/**
-	 * @generated
-	 */
-	public void selectionChanged(IAction action, ISelection selection) {
-		domainModelURI = null;
-		action.setEnabled(false);
-		if (selection instanceof IStructuredSelection == false
-				|| selection.isEmpty()) {
-			return;
-		}
-		IFile file = (IFile) ((IStructuredSelection) selection)
-				.getFirstElement();
-		domainModelURI = URI.createPlatformResourceURI(file.getFullPath()
-				.toString(), true);
-		action.setEnabled(true);
-	}
-
-	/**
-	 * @generated
-	 */
 	private Shell getShell() {
 		return targetPart.getSite().getShell();
 	}
@@ -91,5 +67,29 @@ public class UMLInitDiagramFileAction implements IObjectActionDelegate {
 		wizard.setWindowTitle(NLS.bind(Messages.InitDiagramFile_WizardTitle,
 				PackageEditPart.MODEL_ID));
 		UMLDiagramEditorUtil.runWizard(getShell(), wizard, "InitDiagramFile"); //$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	public void selectionChanged(IAction action, ISelection selection) {
+		domainModelURI = null;
+		action.setEnabled(false);
+		if (selection instanceof IStructuredSelection == false
+				|| selection.isEmpty()) {
+			return;
+		}
+		IFile file = (IFile) ((IStructuredSelection) selection)
+				.getFirstElement();
+		domainModelURI = URI.createPlatformResourceURI(file.getFullPath()
+				.toString(), true);
+		action.setEnabled(true);
+	}
+
+	/**
+	 * @generated
+	 */
+	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
+		this.targetPart = targetPart;
 	}
 }

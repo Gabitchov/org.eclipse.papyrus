@@ -18,12 +18,14 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.statemachine.custom.helpers.Zone;
+import org.eclipse.papyrus.diagram.statemachine.providers.ElementInitializers;
 import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.UMLFactory;
 
-public class CustomRegionCreateElementCommand extends AbstractTransactionalCommand {
+public class CustomRegionCreateElementCommand extends
+		AbstractTransactionalCommand {
 
 	IAdaptable adaptable;
 
@@ -37,8 +39,9 @@ public class CustomRegionCreateElementCommand extends AbstractTransactionalComma
 
 	String dropLocation = Zone.RIGHT;
 
-	public CustomRegionCreateElementCommand(IAdaptable adaptable, IAdaptable adaptableForDropped,
-			PreferencesHint prefHints, TransactionalEditingDomain domain, String label, String dropLocation) {
+	public CustomRegionCreateElementCommand(IAdaptable adaptable,
+			IAdaptable adaptableForDropped, PreferencesHint prefHints,
+			TransactionalEditingDomain domain, String label, String dropLocation) {
 		super(domain, label, null);
 		this.adaptable = adaptable;
 		this.adaptableForDropped = adaptableForDropped;
@@ -46,25 +49,31 @@ public class CustomRegionCreateElementCommand extends AbstractTransactionalComma
 
 		viewDescriptor = new ViewDescriptor(adaptable, prefHints);
 
-		// make sure the return object is available even before executing/undoing/redoing
+		// make sure the return object is available even before
+		// executing/undoing/redoing
 		setResult(CommandResult.newOKCommandResult(viewDescriptor));
 
 		this.dropLocation = dropLocation;
 	}
 
-	protected void doConfigure(Region newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected void doConfigure(Region newElement, IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		IElementType elementType = createElementRequest.getElementType();
-		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(createElementRequest.getClientContext());
+		ConfigureRequest configureRequest = new ConfigureRequest(
+				getEditingDomain(), newElement, elementType);
+		configureRequest.setClientContext(createElementRequest
+				.getClientContext());
 		configureRequest.addParameters(createElementRequest.getParameters());
-		ICommand configureCommand = elementType.getEditCommand(configureRequest);
+		ICommand configureCommand = elementType
+				.getEditCommand(configureRequest);
 		if (configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}
 
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		// adapt the view at execution time
 		View existingRegion = (View) adaptable.getAdapter(View.class);
 
@@ -80,15 +89,16 @@ public class CustomRegionCreateElementCommand extends AbstractTransactionalComma
 
 		if (adaptableForDropped == null) {
 			// create a new UML region
-			StateMachine umlStateMachine = (StateMachine) stateMachine.getElement();
+			StateMachine umlStateMachine = (StateMachine) stateMachine
+					.getElement();
 
-			createElementRequest = new CreateElementRequest(getEditingDomain(), stateMachine,
-					UMLElementTypes.Region_3000);
+			createElementRequest = new CreateElementRequest(getEditingDomain(),
+					stateMachine, UMLElementTypes.Region_3000);
 
 			Region umlRegion = UMLFactory.eINSTANCE.createRegion();
 			umlStateMachine.getRegions().add(umlRegion);
 
-			UMLElementTypes.init_Region_3000(umlRegion);
+			ElementInitializers.getInstance().init_Region_3000(umlRegion);
 
 			doConfigure(umlRegion, monitor, info);
 
@@ -96,9 +106,11 @@ public class CustomRegionCreateElementCommand extends AbstractTransactionalComma
 		}
 
 		// create a view for the new region on the stateMachineCompartment
-		String semanticHint = ((IHintedType) UMLElementTypes.Region_3000).getSemanticHint();
-		View newRegion = (View) ViewService.getInstance().createNode(adaptableForDropped, stateMachineCompartment,
-				semanticHint, -1, prefHints);
+		String semanticHint = ((IHintedType) UMLElementTypes.Region_3000)
+				.getSemanticHint();
+		View newRegion = (View) ViewService.getInstance().createNode(
+				adaptableForDropped, stateMachineCompartment, semanticHint, -1,
+				prefHints);
 
 		// add region specific annotation
 		Zone.createRegionDefaultAnnotation(newRegion);
@@ -121,7 +133,8 @@ public class CustomRegionCreateElementCommand extends AbstractTransactionalComma
 			Zone.setWidth(newRegion, width);
 			Zone.setHeight(newRegion, height);
 
-			// set new region to location (x+width,y) (existing region is not moved)
+			// set new region to location (x+width,y) (existing region is not
+			// moved)
 			Zone.setX(newRegion, x + width);
 			Zone.setY(newRegion, y);
 		} else if (Zone.isLeft(dropLocation)) {
@@ -139,7 +152,8 @@ public class CustomRegionCreateElementCommand extends AbstractTransactionalComma
 			Zone.setWidth(newRegion, width);
 			Zone.setHeight(newRegion, height);
 
-			// set existing region to location (x+width,y) and new region at (x,y)
+			// set existing region to location (x+width,y) and new region at
+			// (x,y)
 			Zone.setX(existingRegion, x + width);
 			Zone.setX(newRegion, x);
 			Zone.setY(newRegion, y);
@@ -158,7 +172,8 @@ public class CustomRegionCreateElementCommand extends AbstractTransactionalComma
 			Zone.setWidth(newRegion, width);
 			Zone.setHeight(newRegion, height);
 
-			// set new region to location (x,y+height) (existing region is not moved)
+			// set new region to location (x,y+height) (existing region is not
+			// moved)
 			Zone.setX(newRegion, x);
 			Zone.setY(newRegion, y + height);
 		} else if (Zone.isTop(dropLocation)) {
@@ -176,7 +191,8 @@ public class CustomRegionCreateElementCommand extends AbstractTransactionalComma
 			Zone.setWidth(newRegion, width);
 			Zone.setHeight(newRegion, height);
 
-			// set existing region to location (x,y+height) and new region at (x,y)
+			// set existing region to location (x,y+height) and new region at
+			// (x,y)
 			Zone.setY(existingRegion, y + height);
 			Zone.setX(newRegion, x);
 			Zone.setY(newRegion, y);

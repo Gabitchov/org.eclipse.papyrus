@@ -62,65 +62,6 @@ public class MessageFormatParser extends AbstractParser {
 	/**
 	 * @generated
 	 */
-	protected String getDefaultPattern() {
-		if (defaultPattern == null) {
-			StringBuffer sb = new StringBuffer();
-			for (int i = 0; i < features.length; i++) {
-				if (i > 0) {
-					sb.append(' ');
-				}
-				sb.append('{');
-				sb.append(i);
-				sb.append('}');
-			}
-			defaultPattern = sb.toString();
-		}
-		return defaultPattern;
-	}
-
-	/**
-	 * @generated
-	 */
-	public void setViewPattern(String viewPattern) {
-		super.setViewPattern(viewPattern);
-		viewProcessor = null;
-	}
-
-	/**
-	 * @generated
-	 */
-	public void setEditorPattern(String editorPattern) {
-		super.setEditorPattern(editorPattern);
-		editorProcessor = null;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected MessageFormat getViewProcessor() {
-		if (viewProcessor == null) {
-			viewProcessor = new MessageFormat(
-					getViewPattern() == null ? getDefaultPattern()
-							: getViewPattern());
-		}
-		return viewProcessor;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected MessageFormat getEditorProcessor() {
-		if (editorProcessor == null) {
-			editorProcessor = new MessageFormat(
-					getEditorPattern() == null ? getDefaultEditablePattern()
-							: getEditorPattern());
-		}
-		return editorProcessor;
-	}
-
-	/**
-	 * @generated
-	 */
 	protected String getDefaultEditablePattern() {
 		if (defaultEditablePattern == null) {
 			StringBuffer sb = new StringBuffer();
@@ -140,9 +81,32 @@ public class MessageFormatParser extends AbstractParser {
 	/**
 	 * @generated
 	 */
-	public void setEditPattern(String editPattern) {
-		super.setEditPattern(editPattern);
-		editProcessor = null;
+	protected String getDefaultPattern() {
+		if (defaultPattern == null) {
+			StringBuffer sb = new StringBuffer();
+			for (int i = 0; i < features.length; i++) {
+				if (i > 0) {
+					sb.append(' ');
+				}
+				sb.append('{');
+				sb.append(i);
+				sb.append('}');
+			}
+			defaultPattern = sb.toString();
+		}
+		return defaultPattern;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected MessageFormat getEditorProcessor() {
+		if (editorProcessor == null) {
+			editorProcessor = new MessageFormat(
+					getEditorPattern() == null ? getDefaultEditablePattern()
+							: getEditorPattern());
+		}
+		return editorProcessor;
 	}
 
 	/**
@@ -169,6 +133,37 @@ public class MessageFormatParser extends AbstractParser {
 	/**
 	 * @generated
 	 */
+	public ICommand getParseCommand(IAdaptable adapter, String newString,
+			int flags) {
+		Object[] values = getEditProcessor().parse(newString,
+				new ParsePosition(0));
+		return getParseCommand(adapter, values, flags);
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getPrintString(IAdaptable adapter, int flags) {
+		EObject element = (EObject) adapter.getAdapter(EObject.class);
+		return getViewProcessor().format(getValues(element),
+				new StringBuffer(), new FieldPosition(0)).toString();
+	}
+
+	/**
+	 * @generated
+	 */
+	protected MessageFormat getViewProcessor() {
+		if (viewProcessor == null) {
+			viewProcessor = new MessageFormat(
+					getViewPattern() == null ? getDefaultPattern()
+							: getViewPattern());
+		}
+		return viewProcessor;
+	}
+
+	/**
+	 * @generated
+	 */
 	public IParserEditStatus isValidEditString(IAdaptable adapter,
 			String editString) {
 		ParsePosition pos = new ParsePosition(0);
@@ -185,20 +180,25 @@ public class MessageFormatParser extends AbstractParser {
 	/**
 	 * @generated
 	 */
-	public ICommand getParseCommand(IAdaptable adapter, String newString,
-			int flags) {
-		Object[] values = getEditProcessor().parse(newString,
-				new ParsePosition(0));
-		return getParseCommand(adapter, values, flags);
+	public void setEditorPattern(String editorPattern) {
+		super.setEditorPattern(editorPattern);
+		editorProcessor = null;
 	}
 
 	/**
 	 * @generated
 	 */
-	public String getPrintString(IAdaptable adapter, int flags) {
-		EObject element = (EObject) adapter.getAdapter(EObject.class);
-		return getViewProcessor().format(getValues(element),
-				new StringBuffer(), new FieldPosition(0)).toString();
+	public void setEditPattern(String editPattern) {
+		super.setEditPattern(editPattern);
+		editProcessor = null;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void setViewPattern(String viewPattern) {
+		super.setViewPattern(viewPattern);
+		viewProcessor = null;
 	}
 
 }

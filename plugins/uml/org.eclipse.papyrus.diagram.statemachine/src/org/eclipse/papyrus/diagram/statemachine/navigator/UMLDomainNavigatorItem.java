@@ -75,8 +75,15 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 	/**
 	 * @generated
 	 */
-	public Object getParent() {
-		return myParent;
+	public boolean equals(Object obj) {
+		if (obj instanceof org.eclipse.papyrus.diagram.statemachine.navigator.UMLDomainNavigatorItem) {
+			return EcoreUtil
+					.getURI(getEObject())
+					.equals(EcoreUtil
+							.getURI(((org.eclipse.papyrus.diagram.statemachine.navigator.UMLDomainNavigatorItem) obj)
+									.getEObject()));
+		}
+		return super.equals(obj);
 	}
 
 	/**
@@ -89,23 +96,15 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 	/**
 	 * @generated
 	 */
-	public IPropertySourceProvider getPropertySourceProvider() {
-		return myPropertySourceProvider;
+	public Object getParent() {
+		return myParent;
 	}
 
 	/**
 	 * @generated
 	 */
-	public boolean equals(Object obj) {
-		if (obj instanceof org.eclipse.papyrus.diagram.statemachine.navigator.UMLDomainNavigatorItem) {
-			return EcoreUtil
-					.getURI(getEObject())
-					.equals(
-							EcoreUtil
-									.getURI(((org.eclipse.papyrus.diagram.statemachine.navigator.UMLDomainNavigatorItem) obj)
-											.getEObject()));
-		}
-		return super.equals(obj);
+	public IPropertySourceProvider getPropertySourceProvider() {
+		return myPropertySourceProvider;
 	}
 
 	/**

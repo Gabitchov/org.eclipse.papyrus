@@ -89,8 +89,8 @@ public class UMLDomainNavigatorContentProvider implements
 							nextResource.unload();
 						}
 						if (myViewer != null) {
-							myViewer.getControl().getDisplay().asyncExec(
-									myViewerRefreshRunnable);
+							myViewer.getControl().getDisplay()
+									.asyncExec(myViewerRefreshRunnable);
 						}
 						return true;
 					}
@@ -102,8 +102,8 @@ public class UMLDomainNavigatorContentProvider implements
 							nextResource.unload();
 						}
 						if (myViewer != null) {
-							myViewer.getControl().getDisplay().asyncExec(
-									myViewerRefreshRunnable);
+							myViewer.getControl().getDisplay()
+									.asyncExec(myViewerRefreshRunnable);
 						}
 						return true;
 					}
@@ -116,8 +116,8 @@ public class UMLDomainNavigatorContentProvider implements
 							nextResource.unload();
 						}
 						if (myViewer != null) {
-							myViewer.getControl().getDisplay().asyncExec(
-									myViewerRefreshRunnable);
+							myViewer.getControl().getDisplay()
+									.asyncExec(myViewerRefreshRunnable);
 						}
 						return true;
 					}
@@ -143,38 +143,6 @@ public class UMLDomainNavigatorContentProvider implements
 	/**
 	 * @generated
 	 */
-	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		myViewer = viewer;
-	}
-
-	/**
-	 * @generated
-	 */
-	public Object[] getElements(Object inputElement) {
-		return getChildren(inputElement);
-	}
-
-	/**
-	 * @generated
-	 */
-	public void restoreState(IMemento aMemento) {
-	}
-
-	/**
-	 * @generated
-	 */
-	public void saveState(IMemento aMemento) {
-	}
-
-	/**
-	 * @generated
-	 */
-	public void init(ICommonContentExtensionSite aConfig) {
-	}
-
-	/**
-	 * @generated
-	 */
 	public Object[] getChildren(Object parentElement) {
 		if (parentElement instanceof IFile) {
 			IFile file = (IFile) parentElement;
@@ -182,13 +150,14 @@ public class UMLDomainNavigatorContentProvider implements
 					.toString(), true);
 			Resource resource = myEditingDomain.getResourceSet().getResource(
 					fileURI, true);
-			return wrapEObjects(myAdapterFctoryContentProvier
-					.getChildren(resource), parentElement);
+			return wrapEObjects(
+					myAdapterFctoryContentProvier.getChildren(resource),
+					parentElement);
 		}
 
 		if (parentElement instanceof UMLDomainNavigatorItem) {
-			return wrapEObjects(myAdapterFctoryContentProvier
-					.getChildren(((UMLDomainNavigatorItem) parentElement)
+			return wrapEObjects(
+					myAdapterFctoryContentProvier.getChildren(((UMLDomainNavigatorItem) parentElement)
 							.getEObject()), parentElement);
 		}
 		return EMPTY_ARRAY;
@@ -197,15 +166,8 @@ public class UMLDomainNavigatorContentProvider implements
 	/**
 	 * @generated
 	 */
-	public Object[] wrapEObjects(Object[] objects, Object parentElement) {
-		Collection result = new ArrayList();
-		for (int i = 0; i < objects.length; i++) {
-			if (objects[i] instanceof EObject) {
-				result.add(new UMLDomainNavigatorItem((EObject) objects[i],
-						parentElement, myAdapterFctoryContentProvier));
-			}
-		}
-		return result.toArray();
+	public Object[] getElements(Object inputElement) {
+		return getChildren(inputElement);
 	}
 
 	/**
@@ -224,6 +186,45 @@ public class UMLDomainNavigatorContentProvider implements
 	 */
 	public boolean hasChildren(Object element) {
 		return element instanceof IFile || getChildren(element).length > 0;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init(ICommonContentExtensionSite aConfig) {
+	}
+
+	/**
+	 * @generated
+	 */
+	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+		myViewer = viewer;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void restoreState(IMemento aMemento) {
+	}
+
+	/**
+	 * @generated
+	 */
+	public void saveState(IMemento aMemento) {
+	}
+
+	/**
+	 * @generated
+	 */
+	public Object[] wrapEObjects(Object[] objects, Object parentElement) {
+		Collection result = new ArrayList();
+		for (int i = 0; i < objects.length; i++) {
+			if (objects[i] instanceof EObject) {
+				result.add(new UMLDomainNavigatorItem((EObject) objects[i],
+						parentElement, myAdapterFctoryContentProvier));
+			}
+		}
+		return result.toArray();
 	}
 
 }

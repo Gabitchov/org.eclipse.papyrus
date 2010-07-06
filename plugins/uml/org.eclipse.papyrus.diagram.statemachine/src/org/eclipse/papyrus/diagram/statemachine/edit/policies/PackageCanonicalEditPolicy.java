@@ -4,12 +4,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
@@ -21,7 +19,6 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.DeferredLayoutCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetViewMutabilityCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalConnectionEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
@@ -31,13 +28,13 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateNodeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
-import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudoStateNodeEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineEditPart;
-import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateNodeEditPart;
-import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionEditPartEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLLinkDescriptor;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLNodeDescriptor;
@@ -52,15 +49,100 @@ public class PackageCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected List getSemanticChildrenList() {
-		View viewObject = (View) getHost().getModel();
-		LinkedList<EObject> result = new LinkedList<EObject>();
-		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater
-				.getPackage_1000SemanticChildren(viewObject);
-		for (Iterator<UMLNodeDescriptor> it = childDescriptors.iterator(); it
+	private Collection<UMLLinkDescriptor> collectAllLinks(View view,
+			Map<EObject, View> domain2NotationMap) {
+		if (!PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry
+				.getModelID(view))) {
+			return Collections.emptyList();
+		}
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
+		switch (UMLVisualIDRegistry.getVisualID(view)) {
+		case PackageEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater
+						.getPackage_1000ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case StateMachineEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater
+						.getStateMachine_2000ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case RegionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater
+						.getRegion_3000ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case PseudostateEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater
+						.getPseudostate_4000ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case FinalStateEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater
+						.getFinalState_5000ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case StateEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater
+						.getState_6000ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case TransitionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater
+						.getTransition_7000ContainedLinks(view));
+			}
+			if (!domain2NotationMap.containsKey(view.getElement())
+					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		}
+		for (Iterator children = view.getChildren().iterator(); children
 				.hasNext();) {
-			UMLNodeDescriptor d = it.next();
-			result.add(d.getModelElement());
+			result.addAll(collectAllLinks((View) children.next(),
+					domain2NotationMap));
+		}
+		for (Iterator edges = view.getSourceEdges().iterator(); edges.hasNext();) {
+			result.addAll(collectAllLinks((View) edges.next(),
+					domain2NotationMap));
 		}
 		return result;
 	}
@@ -68,22 +150,61 @@ public class PackageCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected boolean shouldDeleteView(View view) {
-		return true;
+	private Collection<IAdaptable> createConnections(
+			Collection<UMLLinkDescriptor> linkDescriptors,
+			Map<EObject, View> domain2NotationMap) {
+		LinkedList<IAdaptable> adapters = new LinkedList<IAdaptable>();
+		for (UMLLinkDescriptor nextLinkDescriptor : linkDescriptors) {
+			EditPart sourceEditPart = getEditPart(
+					nextLinkDescriptor.getSource(), domain2NotationMap);
+			EditPart targetEditPart = getEditPart(
+					nextLinkDescriptor.getDestination(), domain2NotationMap);
+			if (sourceEditPart == null || targetEditPart == null) {
+				continue;
+			}
+			CreateConnectionViewRequest.ConnectionViewDescriptor descriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(
+					nextLinkDescriptor.getSemanticAdapter(),
+					UMLVisualIDRegistry.getType(nextLinkDescriptor
+							.getVisualID()), ViewUtil.APPEND, false,
+					((IGraphicalEditPart) getHost())
+							.getDiagramPreferencesHint());
+			CreateConnectionViewRequest ccr = new CreateConnectionViewRequest(
+					descriptor);
+			ccr.setType(RequestConstants.REQ_CONNECTION_START);
+			ccr.setSourceEditPart(sourceEditPart);
+			sourceEditPart.getCommand(ccr);
+			ccr.setTargetEditPart(targetEditPart);
+			ccr.setType(RequestConstants.REQ_CONNECTION_END);
+			Command cmd = targetEditPart.getCommand(ccr);
+			if (cmd != null && cmd.canExecute()) {
+				executeCommand(cmd);
+				IAdaptable viewAdapter = (IAdaptable) ccr.getNewObject();
+				if (viewAdapter != null) {
+					adapters.add(viewAdapter);
+				}
+			}
+		}
+		return adapters;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected boolean isOrphaned(Collection semanticChildren, final View view) {
-		int visualID = UMLVisualIDRegistry.getVisualID(view);
-		switch (visualID) {
-		case StateMachineEditPart.VISUAL_ID:
-			if (!semanticChildren.contains(view.getElement())) {
-				return true;
-			}
+	private Diagram getDiagram() {
+		return ((View) getHost().getModel()).getDiagram();
+	}
+
+	/**
+	 * @generated
+	 */
+	private EditPart getEditPart(EObject domainModelElement,
+			Map<EObject, View> domain2NotationMap) {
+		View view = (View) domain2NotationMap.get(domainModelElement);
+		if (view != null) {
+			return (EditPart) getHost().getViewer().getEditPartRegistry()
+					.get(view);
 		}
-		return false;
+		return null;
 	}
 
 	/**
@@ -96,75 +217,33 @@ public class PackageCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected void refreshSemantic() {
-		if (resolveSemanticElement() == null) {
-			return;
-		}
-		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
-		// refreshSemanticChildren() alternative
+	@SuppressWarnings("rawtypes")
+	protected List getSemanticChildrenList() {
+		View viewObject = (View) getHost().getModel();
+		LinkedList<EObject> result = new LinkedList<EObject>();
 		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater
-				.getPackage_1000SemanticChildren((View) getHost().getModel());
-		ArrayList<EObject> semanticChildren = new ArrayList<EObject>(
-				childDescriptors.size());
-		for (Iterator<UMLNodeDescriptor> it = childDescriptors.iterator(); it
-				.hasNext();) {
-			UMLNodeDescriptor next = it.next();
-			semanticChildren.add(next.getModelElement());
+				.getPackage_1000SemanticChildren(viewObject);
+		for (UMLNodeDescriptor d : childDescriptors) {
+			result.add(d.getModelElement());
 		}
-		List<View> orphaned = cleanCanonicalSemanticChildren(getViewChildren(),
-				semanticChildren);
-		boolean changed = deleteViews(orphaned.iterator());
-		// leave descriptors that reference survived semanticChildren.
-		// NOTE, we may want to stop using cleanCanonicalSemanticChildren() here, replacing with own code, that respects NodeDescriptors 
-		for (Iterator<UMLNodeDescriptor> it = childDescriptors.iterator(); it
-				.hasNext();) {
-			UMLNodeDescriptor next = it.next();
-			if (!semanticChildren.contains(next.getModelElement())) {
-				it.remove();
-			}
-		}
-		ArrayList<CreateViewRequest.ViewDescriptor> viewDescriptors = new ArrayList<CreateViewRequest.ViewDescriptor>(
-				childDescriptors.size());
-		for (Iterator<UMLNodeDescriptor> it = childDescriptors.iterator(); it
-				.hasNext();) {
-			UMLNodeDescriptor next = it.next();
-			String hint = UMLVisualIDRegistry.getType(next.getVisualID());
-			IAdaptable elementAdapter = new CanonicalElementAdapter(next
-					.getModelElement(), hint);
-			viewDescriptors.add(new CreateViewRequest.ViewDescriptor(
-					elementAdapter, Node.class, hint, ViewUtil.APPEND, false,
-					host().getDiagramPreferencesHint()));
-		}
-		//
-		CreateViewRequest request = getCreateViewRequest(viewDescriptors);
-		Command cmd = getCreateViewCommand(request);
-		if (cmd != null && cmd.canExecute()) {
-			SetViewMutabilityCommand.makeMutable(
-					new EObjectAdapter(host().getNotationView())).execute();
-			executeCommand(cmd);
-			createdViews.addAll((List<IAdaptable>) request.getNewObject());
-		}
-		if (changed || createdViews.size() > 0) {
-			postProcessRefreshSemantic(createdViews);
-		}
-		Collection<IAdaptable> createdConnectionViews = refreshConnections();
-
-		if (createdViews.size() > 1) {
-			// perform a layout of the container
-			DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host()
-					.getEditingDomain(), createdViews, host());
-			executeCommand(new ICommandProxy(layoutCmd));
-		}
-
-		createdViews.addAll(createdConnectionViews);
-		makeViewsImmutable(createdViews);
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	private Diagram getDiagram() {
-		return ((View) getHost().getModel()).getDiagram();
+	private boolean isMyDiagramElement(View view) {
+		return StateMachineEditPart.VISUAL_ID == UMLVisualIDRegistry
+				.getVisualID(view);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean isOrphaned(Collection<EObject> semanticChildren,
+			final View view) {
+		return isMyDiagramElement(view)
+				&& !semanticChildren.contains(view.getElement());
 	}
 
 	/**
@@ -213,156 +292,92 @@ public class PackageCanonicalEditPolicy extends CanonicalEditPolicy {
 	/**
 	 * @generated
 	 */
-	private Collection<UMLLinkDescriptor> collectAllLinks(View view,
-			Map<EObject, View> domain2NotationMap) {
-		if (!PackageEditPart.MODEL_ID.equals(UMLVisualIDRegistry
-				.getModelID(view))) {
-			return Collections.emptyList();
+	protected void refreshSemantic() {
+		if (resolveSemanticElement() == null) {
+			return;
 		}
-		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
-		switch (UMLVisualIDRegistry.getVisualID(view)) {
-		case PackageEditPart.VISUAL_ID: {
-			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater
-						.getPackage_1000ContainedLinks(view));
+		LinkedList<IAdaptable> createdViews = new LinkedList<IAdaptable>();
+		List<UMLNodeDescriptor> childDescriptors = UMLDiagramUpdater
+				.getPackage_1000SemanticChildren((View) getHost().getModel());
+		LinkedList<View> orphaned = new LinkedList<View>();
+		// we care to check only views we recognize as ours
+		LinkedList<View> knownViewChildren = new LinkedList<View>();
+		for (View v : getViewChildren()) {
+			if (isMyDiagramElement(v)) {
+				knownViewChildren.add(v);
 			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
 		}
-		case StateMachineEditPart.VISUAL_ID: {
-			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater
-						.getStateMachine_2000ContainedLinks(view));
-			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		case RegionEditPart.VISUAL_ID: {
-			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater
-						.getRegion_3000ContainedLinks(view));
-			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		case PseudoStateNodeEditPart.VISUAL_ID: {
-			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater
-						.getPseudostate_3004ContainedLinks(view));
-			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		case FinalStateNodeEditPart.VISUAL_ID: {
-			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater
-						.getFinalState_3005ContainedLinks(view));
-			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		case StateNodeEditPart.VISUAL_ID: {
-			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater
-						.getState_3006ContainedLinks(view));
-			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		case TransitionEditPartEditPart.VISUAL_ID: {
-			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater
-						.getTransition_5000ContainedLinks(view));
-			}
-			if (!domain2NotationMap.containsKey(view.getElement())
-					|| view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
-				domain2NotationMap.put(view.getElement(), view);
-			}
-			break;
-		}
-		}
-		for (Iterator children = view.getChildren().iterator(); children
-				.hasNext();) {
-			result.addAll(collectAllLinks((View) children.next(),
-					domain2NotationMap));
-		}
-		for (Iterator edges = view.getSourceEdges().iterator(); edges.hasNext();) {
-			result.addAll(collectAllLinks((View) edges.next(),
-					domain2NotationMap));
-		}
-		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	private Collection<IAdaptable> createConnections(
-			Collection<UMLLinkDescriptor> linkDescriptors,
-			Map<EObject, View> domain2NotationMap) {
-		LinkedList<IAdaptable> adapters = new LinkedList<IAdaptable>();
-		for (Iterator<UMLLinkDescriptor> it = linkDescriptors.iterator(); it
-				.hasNext();) {
-			UMLLinkDescriptor nextLinkDescriptor = it.next();
-			EditPart sourceEditPart = getEditPart(nextLinkDescriptor
-					.getSource(), domain2NotationMap);
-			EditPart targetEditPart = getEditPart(nextLinkDescriptor
-					.getDestination(), domain2NotationMap);
-			if (sourceEditPart == null || targetEditPart == null) {
-				continue;
-			}
-			CreateConnectionViewRequest.ConnectionViewDescriptor descriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(
-					nextLinkDescriptor.getSemanticAdapter(), String
-							.valueOf(nextLinkDescriptor.getVisualID()),
-					ViewUtil.APPEND, false, ((IGraphicalEditPart) getHost())
-							.getDiagramPreferencesHint());
-			CreateConnectionViewRequest ccr = new CreateConnectionViewRequest(
-					descriptor);
-			ccr.setType(RequestConstants.REQ_CONNECTION_START);
-			ccr.setSourceEditPart(sourceEditPart);
-			sourceEditPart.getCommand(ccr);
-			ccr.setTargetEditPart(targetEditPart);
-			ccr.setType(RequestConstants.REQ_CONNECTION_END);
-			Command cmd = targetEditPart.getCommand(ccr);
-			if (cmd != null && cmd.canExecute()) {
-				executeCommand(cmd);
-				IAdaptable viewAdapter = (IAdaptable) ccr.getNewObject();
-				if (viewAdapter != null) {
-					adapters.add(viewAdapter);
+		// alternative to #cleanCanonicalSemanticChildren(getViewChildren(), semanticChildren)
+		//
+		// iteration happens over list of desired semantic elements, trying to find best matching View, while original CEP
+		// iterates views, potentially losing view (size/bounds) information - i.e. if there are few views to reference same EObject, only last one 
+		// to answer isOrphaned == true will be used for the domain element representation, see #cleanCanonicalSemanticChildren()
+		for (Iterator<UMLNodeDescriptor> descriptorsIterator = childDescriptors
+				.iterator(); descriptorsIterator.hasNext();) {
+			UMLNodeDescriptor next = descriptorsIterator.next();
+			String hint = UMLVisualIDRegistry.getType(next.getVisualID());
+			LinkedList<View> perfectMatch = new LinkedList<View>(); // both semanticElement and hint match that of NodeDescriptor
+			for (View childView : getViewChildren()) {
+				EObject semanticElement = childView.getElement();
+				if (next.getModelElement().equals(semanticElement)) {
+					if (hint.equals(childView.getType())) {
+						perfectMatch.add(childView);
+						// actually, can stop iteration over view children here, but
+						// may want to use not the first view but last one as a 'real' match (the way original CEP does
+						// with its trick with viewToSemanticMap inside #cleanCanonicalSemanticChildren
+					}
 				}
 			}
+			if (perfectMatch.size() > 0) {
+				descriptorsIterator.remove(); // precise match found no need to create anything for the NodeDescriptor
+				// use only one view (first or last?), keep rest as orphaned for further consideration
+				knownViewChildren.remove(perfectMatch.getFirst());
+			}
 		}
-		return adapters;
-	}
+		// those left in knownViewChildren are subject to removal - they are our diagram elements we didn't find match to,
+		// or those we have potential matches to, and thus need to be recreated, preserving size/location information.
+		orphaned.addAll(knownViewChildren);
+		//
+		ArrayList<CreateViewRequest.ViewDescriptor> viewDescriptors = new ArrayList<CreateViewRequest.ViewDescriptor>(
+				childDescriptors.size());
+		for (UMLNodeDescriptor next : childDescriptors) {
+			String hint = UMLVisualIDRegistry.getType(next.getVisualID());
+			IAdaptable elementAdapter = new CanonicalElementAdapter(
+					next.getModelElement(), hint);
+			CreateViewRequest.ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(
+					elementAdapter, Node.class, hint, ViewUtil.APPEND, false,
+					host().getDiagramPreferencesHint());
+			viewDescriptors.add(descriptor);
+		}
 
-	/**
-	 * @generated
-	 */
-	private EditPart getEditPart(EObject domainModelElement,
-			Map<EObject, View> domain2NotationMap) {
-		View view = (View) domain2NotationMap.get(domainModelElement);
-		if (view != null) {
-			return (EditPart) getHost().getViewer().getEditPartRegistry().get(
-					view);
+		boolean changed = deleteViews(orphaned.iterator());
+		//
+		CreateViewRequest request = getCreateViewRequest(viewDescriptors);
+		Command cmd = getCreateViewCommand(request);
+		if (cmd != null && cmd.canExecute()) {
+			SetViewMutabilityCommand.makeMutable(
+					new EObjectAdapter(host().getNotationView())).execute();
+			executeCommand(cmd);
+			@SuppressWarnings("unchecked")
+			List<IAdaptable> nl = (List<IAdaptable>) request.getNewObject();
+			createdViews.addAll(nl);
 		}
-		return null;
+		if (changed || createdViews.size() > 0) {
+			postProcessRefreshSemantic(createdViews);
+		}
+
+		Collection<IAdaptable> createdConnectionViews = refreshConnections();
+
+		if (createdViews.size() > 1) {
+			// perform a layout of the container
+			DeferredLayoutCommand layoutCmd = new DeferredLayoutCommand(host()
+					.getEditingDomain(), createdViews, host());
+			executeCommand(new ICommandProxy(layoutCmd));
+		}
+
+		createdViews.addAll(createdConnectionViews);
+
+		makeViewsImmutable(createdViews);
 	}
 
 }

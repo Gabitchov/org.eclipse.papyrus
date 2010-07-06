@@ -17,7 +17,8 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.statemachine.custom.helpers.Zone;
 
-public class CustomStateMachineResizeCommand extends AbstractTransactionalCommand {
+public class CustomStateMachineResizeCommand extends
+		AbstractTransactionalCommand {
 
 	CreateViewRequest.ViewDescriptor viewDescriptor;
 
@@ -37,8 +38,9 @@ public class CustomStateMachineResizeCommand extends AbstractTransactionalComman
 
 	private boolean internalResize = false;
 
-	public CustomStateMachineResizeCommand(IAdaptable adaptable, PreferencesHint prefHints,
-			TransactionalEditingDomain domain, String label, ChangeBoundsRequest request, Rectangle bounds,
+	public CustomStateMachineResizeCommand(IAdaptable adaptable,
+			PreferencesHint prefHints, TransactionalEditingDomain domain,
+			String label, ChangeBoundsRequest request, Rectangle bounds,
 			boolean internalResize) {
 		super(domain, label, null);
 
@@ -52,13 +54,15 @@ public class CustomStateMachineResizeCommand extends AbstractTransactionalComman
 
 		viewDescriptor = new ViewDescriptor(adaptable, prefHints);
 
-		// make sure the return object is available even before executing/undoing/redoing
+		// make sure the return object is available even before
+		// executing/undoing/redoing
 		setResult(CommandResult.newOKCommandResult(viewDescriptor));
 
 	}
 
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 
 		View stateMachine = (View) adaptable.getAdapter(View.class);
 		View stateMachineLabel = (View) stateMachine.getChildren().get(0);
@@ -69,7 +73,8 @@ public class CustomStateMachineResizeCommand extends AbstractTransactionalComman
 		int dy = request.getSizeDelta().height;
 
 		if (internalResize) {
-			Zone.setHeight(stateMachineLabel, Zone.getHeight(stateMachineLabel) + dy);
+			Zone.setHeight(stateMachineLabel, Zone.getHeight(stateMachineLabel)
+					+ dy);
 			dy = 0;
 		}
 		// first resize the state machine node with the constraint provided
@@ -77,7 +82,8 @@ public class CustomStateMachineResizeCommand extends AbstractTransactionalComman
 		// resize label and compartment
 		Zone.setWidth(stateMachineLabel, bounds.width);
 		Zone.setWidth(stateMachineCompartment, bounds.width);
-		Zone.setHeight(stateMachineCompartment, bounds.height - Zone.getHeight(stateMachineLabel));
+		Zone.setHeight(stateMachineCompartment,
+				bounds.height - Zone.getHeight(stateMachineLabel));
 		Zone.setY(stateMachineCompartment, Zone.getHeight(stateMachineLabel));
 
 		if (internalResize && (dx == 0))
@@ -86,9 +92,11 @@ public class CustomStateMachineResizeCommand extends AbstractTransactionalComman
 		// one region displayed case
 		if (stateMachineCompartment.getChildren().size() == 1) {
 			// we need to resize the region
-			View defaultRegion = (View) stateMachineCompartment.getChildren().get(0);
+			View defaultRegion = (View) stateMachineCompartment.getChildren()
+					.get(0);
 			Zone.setWidth(defaultRegion, Zone.getWidth(stateMachineCompartment));
-			Zone.setHeight(defaultRegion, Zone.getHeight(stateMachineCompartment));
+			Zone.setHeight(defaultRegion,
+					Zone.getHeight(stateMachineCompartment));
 			return CommandResult.newOKCommandResult();
 
 		}
@@ -97,15 +105,18 @@ public class CustomStateMachineResizeCommand extends AbstractTransactionalComman
 
 		// test the direction of resize
 		// the processing depends on the direction
-		// basically embedded nodes to be either scaled and/or translated along one or two axis
-		// depending on their relative positions to the borders of the state machine
+		// basically embedded nodes to be either scaled and/or translated along
+		// one or two axis
+		// depending on their relative positions to the borders of the state
+		// machine
 		Iterator it = stateMachineCompartment.getChildren().iterator();
 		while (it.hasNext()) {
 			View view = (View) it.next();
 			String zone = Zone.getZone(view);
 			switch (direction) {
 			case PositionConstants.WEST:
-				// we test whether the current node is close to the outer LEFT border
+				// we test whether the current node is close to the outer LEFT
+				// border
 				// this is the case if it has no LEFT neighbors at all
 				if (!Zone.hasLeftNeighbours(zone)) {
 					// these nodes need to be scaled
@@ -122,7 +133,8 @@ public class CustomStateMachineResizeCommand extends AbstractTransactionalComman
 				}
 				break;
 			case PositionConstants.EAST:
-				// we test whether the current node is close to the outer RIGHT border
+				// we test whether the current node is close to the outer RIGHT
+				// border
 				// this is the case if it has no RIGHT neighbours at all
 				if (!Zone.hasRightNeighbours(zone)) {
 					// these nodes need to be scaled
@@ -133,7 +145,8 @@ public class CustomStateMachineResizeCommand extends AbstractTransactionalComman
 				}
 				break;
 			case PositionConstants.NORTH:
-				// we test whether the current node is close to the outer TOP border
+				// we test whether the current node is close to the outer TOP
+				// border
 				// this is the case if it has no TOP neighbours at all
 				if (!Zone.hasTopNeighbours(zone)) {
 					// these nodes need to be scaled
@@ -150,7 +163,8 @@ public class CustomStateMachineResizeCommand extends AbstractTransactionalComman
 				}
 				break;
 			case PositionConstants.SOUTH:
-				// we test whether the current node is close to the outer BOTTOM border
+				// we test whether the current node is close to the outer BOTTOM
+				// border
 				// this is the case if it has no BOTTOM neighbours at all
 				if (!Zone.hasBottomNeighbours(zone)) {
 					// these nodes need to be scaled
@@ -161,10 +175,14 @@ public class CustomStateMachineResizeCommand extends AbstractTransactionalComman
 				}
 				break;
 			case PositionConstants.NORTH_WEST:
-				// we test whether the current node is close to the outer TOP and LEFT borders
-				// this is the case if it has no LEFT neighbours nor TOP neighbours at all
-				if (!Zone.hasLeftNeighbours(zone) && !Zone.hasTopNeighbours(zone)) {
-					// for each of these we add dx to their width and dy to their height
+				// we test whether the current node is close to the outer TOP
+				// and LEFT borders
+				// this is the case if it has no LEFT neighbours nor TOP
+				// neighbours at all
+				if (!Zone.hasLeftNeighbours(zone)
+						&& !Zone.hasTopNeighbours(zone)) {
+					// for each of these we add dx to their width and dy to
+					// their height
 					int width = Zone.getWidth(view);
 					width += dx;
 					Zone.setWidth(view, width);
@@ -172,10 +190,13 @@ public class CustomStateMachineResizeCommand extends AbstractTransactionalComman
 					height += dy;
 					Zone.setHeight(view, height);
 				}
-				// the second case is when it has no LEFT neighbours but TOP ones, i.e. close to
+				// the second case is when it has no LEFT neighbours but TOP
+				// ones, i.e. close to
 				// LEFT border only
-				else if (!Zone.hasLeftNeighbours(zone) && Zone.hasTopNeighbours(zone)) {
-					// for each of these we add dx to their width and translate their y of dy
+				else if (!Zone.hasLeftNeighbours(zone)
+						&& Zone.hasTopNeighbours(zone)) {
+					// for each of these we add dx to their width and translate
+					// their y of dy
 					int width = Zone.getWidth(view);
 					width += dx;
 					Zone.setWidth(view, width);
@@ -184,8 +205,10 @@ public class CustomStateMachineResizeCommand extends AbstractTransactionalComman
 					Zone.setY(view, y);
 				}
 				// in the reverse case, i.e. close to TOP border only
-				else if (Zone.hasLeftNeighbours(zone) && !Zone.hasTopNeighbours(zone)) {
-					// for each of these we add dy to their height and translate their x of dx
+				else if (Zone.hasLeftNeighbours(zone)
+						&& !Zone.hasTopNeighbours(zone)) {
+					// for each of these we add dy to their height and translate
+					// their x of dx
 					int height = Zone.getHeight(view);
 					height += dy;
 					Zone.setHeight(view, height);
@@ -194,7 +217,8 @@ public class CustomStateMachineResizeCommand extends AbstractTransactionalComman
 					Zone.setX(view, x);
 				} else {
 					// in other cases the node needs to be translated both ways
-					// for each of these we translate their x of dx and their y of dy
+					// for each of these we translate their x of dx and their y
+					// of dy
 					int x = Zone.getX(view);
 					x += dx;
 					Zone.setX(view, x);
@@ -204,10 +228,14 @@ public class CustomStateMachineResizeCommand extends AbstractTransactionalComman
 				}
 				break;
 			case PositionConstants.NORTH_EAST:
-				// we test whether the current node is close to the outer TOP and RIGHT borders
-				// this is the case if it has no RIGHT neighbours nor TOP neigbours at all
-				if (!Zone.hasRightNeighbours(zone) && !Zone.hasTopNeighbours(zone)) {
-					// for each of these we add dx to their width and dy to their height
+				// we test whether the current node is close to the outer TOP
+				// and RIGHT borders
+				// this is the case if it has no RIGHT neighbours nor TOP
+				// neigbours at all
+				if (!Zone.hasRightNeighbours(zone)
+						&& !Zone.hasTopNeighbours(zone)) {
+					// for each of these we add dx to their width and dy to
+					// their height
 					int width = Zone.getWidth(view);
 					width += dx;
 					Zone.setWidth(view, width);
@@ -215,10 +243,13 @@ public class CustomStateMachineResizeCommand extends AbstractTransactionalComman
 					height += dy;
 					Zone.setHeight(view, height);
 				}
-				// the second case is when it has no RIGHT neighbours but TOP ones, i.e. close
+				// the second case is when it has no RIGHT neighbours but TOP
+				// ones, i.e. close
 				// to RIGHT border only
-				else if (!Zone.hasRightNeighbours(zone) && Zone.hasTopNeighbours(zone)) {
-					// for each of these we add dx to their width and translate their y of dy
+				else if (!Zone.hasRightNeighbours(zone)
+						&& Zone.hasTopNeighbours(zone)) {
+					// for each of these we add dx to their width and translate
+					// their y of dy
 					int width = Zone.getWidth(view);
 					width += dx;
 					Zone.setWidth(view, width);
@@ -227,7 +258,8 @@ public class CustomStateMachineResizeCommand extends AbstractTransactionalComman
 					Zone.setY(view, y);
 				}
 				// in the reverse case, i.e. close to TOP border only
-				else if (Zone.hasRightNeighbours(zone) && !Zone.hasTopNeighbours(zone)) {
+				else if (Zone.hasRightNeighbours(zone)
+						&& !Zone.hasTopNeighbours(zone)) {
 					// for each of these we add dy to their height
 					int height = Zone.getHeight(view);
 					height += dy;
@@ -241,11 +273,15 @@ public class CustomStateMachineResizeCommand extends AbstractTransactionalComman
 				}
 				break;
 			case PositionConstants.SOUTH_WEST:
-				// we test whether the current node is close to the outer BOTTOM and LEFT
+				// we test whether the current node is close to the outer BOTTOM
+				// and LEFT
 				// borders
-				// this is the case if it has no LEFT neighbours nor BOTTOM neigbours at all
-				if (!Zone.hasLeftNeighbours(zone) && !Zone.hasBottomNeighbours(zone)) {
-					// for each of these we add dx to their width and dy to their height
+				// this is the case if it has no LEFT neighbours nor BOTTOM
+				// neigbours at all
+				if (!Zone.hasLeftNeighbours(zone)
+						&& !Zone.hasBottomNeighbours(zone)) {
+					// for each of these we add dx to their width and dy to
+					// their height
 					int width = Zone.getWidth(view);
 					width += dx;
 					Zone.setWidth(view, width);
@@ -253,17 +289,21 @@ public class CustomStateMachineResizeCommand extends AbstractTransactionalComman
 					height += dy;
 					Zone.setHeight(view, height);
 				}
-				// the second case is when it has no LEFT neighbours but BOTTOM ones, i.e. close
+				// the second case is when it has no LEFT neighbours but BOTTOM
+				// ones, i.e. close
 				// to LEFT border only
-				else if (!Zone.hasLeftNeighbours(zone) && Zone.hasBottomNeighbours(zone)) {
+				else if (!Zone.hasLeftNeighbours(zone)
+						&& Zone.hasBottomNeighbours(zone)) {
 					// for each of these we add dx to their width
 					int width = Zone.getWidth(view);
 					width += dx;
 					Zone.setWidth(view, width);
 				}
 				// in the reverse case, i.e. close to BOTTOM border only
-				else if (Zone.hasLeftNeighbours(zone) && !Zone.hasBottomNeighbours(zone)) {
-					// for each of these we add dy to their height and translate their x of dx
+				else if (Zone.hasLeftNeighbours(zone)
+						&& !Zone.hasBottomNeighbours(zone)) {
+					// for each of these we add dy to their height and translate
+					// their x of dx
 					int height = Zone.getHeight(view);
 					height += dy;
 					Zone.setHeight(view, height);
@@ -279,11 +319,15 @@ public class CustomStateMachineResizeCommand extends AbstractTransactionalComman
 				}
 				break;
 			case PositionConstants.SOUTH_EAST:
-				// we test whether the current node is close to the outer BOTTOM and RIGHT
+				// we test whether the current node is close to the outer BOTTOM
+				// and RIGHT
 				// borders
-				// this is the case if it has no RIGHT neighbours nor BOTTOM neigbours at all
-				if (!Zone.hasRightNeighbours(zone) && !Zone.hasBottomNeighbours(zone)) {
-					// for each of these we add dx to their width and dy to their height
+				// this is the case if it has no RIGHT neighbours nor BOTTOM
+				// neigbours at all
+				if (!Zone.hasRightNeighbours(zone)
+						&& !Zone.hasBottomNeighbours(zone)) {
+					// for each of these we add dx to their width and dy to
+					// their height
 					int width = Zone.getWidth(view);
 					width += dx;
 					Zone.setWidth(view, width);
@@ -291,16 +335,19 @@ public class CustomStateMachineResizeCommand extends AbstractTransactionalComman
 					height += dy;
 					Zone.setHeight(view, height);
 				}
-				// the second case is when it has no RIGHT neighbours but BOTTOM ones, i.e.
+				// the second case is when it has no RIGHT neighbours but BOTTOM
+				// ones, i.e.
 				// close to RIGHT border only
-				else if (!Zone.hasRightNeighbours(zone) && Zone.hasBottomNeighbours(zone)) {
+				else if (!Zone.hasRightNeighbours(zone)
+						&& Zone.hasBottomNeighbours(zone)) {
 					// for each of these we add dx to their width
 					int width = Zone.getWidth(view);
 					width += dx;
 					Zone.setWidth(view, width);
 				}
 				// in the reverse case, i.e. close to BOTTOM border only
-				else if (Zone.hasRightNeighbours(zone) && !Zone.hasBottomNeighbours(zone)) {
+				else if (Zone.hasRightNeighbours(zone)
+						&& !Zone.hasBottomNeighbours(zone)) {
 					// for each of these we add dy to their height
 					int height = Zone.getHeight(view);
 					height += dy;

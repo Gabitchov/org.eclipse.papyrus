@@ -58,28 +58,13 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 	/**
 	 * @generated
 	 */
-	public View getView() {
-		return myView;
-	}
-
-	/**
-	 * @generated
-	 */
-	public boolean isLeaf() {
-		return myLeaf;
-	}
-
-	/**
-	 * @generated
-	 */
 	public boolean equals(Object obj) {
 		if (obj instanceof org.eclipse.papyrus.diagram.statemachine.navigator.UMLNavigatorItem) {
 			return EcoreUtil
 					.getURI(getView())
-					.equals(
-							EcoreUtil
-									.getURI(((org.eclipse.papyrus.diagram.statemachine.navigator.UMLNavigatorItem) obj)
-											.getView()));
+					.equals(EcoreUtil
+							.getURI(((org.eclipse.papyrus.diagram.statemachine.navigator.UMLNavigatorItem) obj)
+									.getView()));
 		}
 		return super.equals(obj);
 	}
@@ -87,8 +72,22 @@ public class UMLNavigatorItem extends UMLAbstractNavigatorItem {
 	/**
 	 * @generated
 	 */
+	public View getView() {
+		return myView;
+	}
+
+	/**
+	 * @generated
+	 */
 	public int hashCode() {
 		return EcoreUtil.getURI(getView()).hashCode();
+	}
+
+	/**
+	 * @generated
+	 */
+	public boolean isLeaf() {
+		return myLeaf;
 	}
 
 }

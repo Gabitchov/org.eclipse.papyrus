@@ -52,54 +52,6 @@ public class UMLCreationWizard extends Wizard implements INewWizard {
 	/**
 	 * @generated
 	 */
-	public IWorkbench getWorkbench() {
-		return workbench;
-	}
-
-	/**
-	 * @generated
-	 */
-	public IStructuredSelection getSelection() {
-		return selection;
-	}
-
-	/**
-	 * @generated
-	 */
-	public final Resource getDiagram() {
-		return diagram;
-	}
-
-	/**
-	 * @generated
-	 */
-	public final boolean isOpenNewlyCreatedDiagramEditor() {
-		return openNewlyCreatedDiagramEditor;
-	}
-
-	/**
-	 * @generated
-	 */
-	public void setOpenNewlyCreatedDiagramEditor(
-			boolean openNewlyCreatedDiagramEditor) {
-		this.openNewlyCreatedDiagramEditor = openNewlyCreatedDiagramEditor;
-	}
-
-	/**
-	 * @generated
-	 */
-	public void init(IWorkbench workbench, IStructuredSelection selection) {
-		this.workbench = workbench;
-		this.selection = selection;
-		setWindowTitle(Messages.UMLCreationWizardTitle);
-		setDefaultPageImageDescriptor(UMLDiagramEditorPlugin
-				.getBundledImageDescriptor("icons/wizban/NewUMLWizard.gif")); //$NON-NLS-1$
-		setNeedsProgressMonitor(true);
-	}
-
-	/**
-	 * @generated
-	 */
 	public void addPages() {
 		diagramModelFilePage = new UMLCreationWizardPage(
 				"DiagramModelFile", getSelection(), "PapyrusUMLStateMachine_diagram"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -134,14 +86,54 @@ public class UMLCreationWizard extends Wizard implements INewWizard {
 	/**
 	 * @generated
 	 */
+	public final Resource getDiagram() {
+		return diagram;
+	}
+
+	/**
+	 * @generated
+	 */
+	public IStructuredSelection getSelection() {
+		return selection;
+	}
+
+	/**
+	 * @generated
+	 */
+	public IWorkbench getWorkbench() {
+		return workbench;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void init(IWorkbench workbench, IStructuredSelection selection) {
+		this.workbench = workbench;
+		this.selection = selection;
+		setWindowTitle(Messages.UMLCreationWizardTitle);
+		setDefaultPageImageDescriptor(UMLDiagramEditorPlugin
+				.getBundledImageDescriptor("icons/wizban/NewUMLWizard.gif")); //$NON-NLS-1$
+		setNeedsProgressMonitor(true);
+	}
+
+	/**
+	 * @generated
+	 */
+	public final boolean isOpenNewlyCreatedDiagramEditor() {
+		return openNewlyCreatedDiagramEditor;
+	}
+
+	/**
+	 * @generated
+	 */
 	public boolean performFinish() {
 		IRunnableWithProgress op = new WorkspaceModifyOperation(null) {
 
 			protected void execute(IProgressMonitor monitor)
 					throws CoreException, InterruptedException {
 				diagram = UMLDiagramEditorUtil.createDiagram(
-						diagramModelFilePage.getURI(), domainModelFilePage
-								.getURI(), monitor);
+						diagramModelFilePage.getURI(),
+						domainModelFilePage.getURI(), monitor);
 				if (isOpenNewlyCreatedDiagramEditor() && diagram != null) {
 					try {
 						UMLDiagramEditorUtil.openDiagram(diagram);
@@ -169,5 +161,13 @@ public class UMLCreationWizard extends Wizard implements INewWizard {
 			return false;
 		}
 		return diagram != null;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void setOpenNewlyCreatedDiagramEditor(
+			boolean openNewlyCreatedDiagramEditor) {
+		this.openNewlyCreatedDiagramEditor = openNewlyCreatedDiagramEditor;
 	}
 }

@@ -6,8 +6,8 @@ import org.eclipse.papyrus.diagram.common.helper.ILinkMappingHelper;
 import org.eclipse.uml2.uml.Element;
 
 /**
- * The StateMAchineLinkMappingHelper is specialization of the link mapping helper for the
- * StateMachine diagram
+ * The StateMAchineLinkMappingHelper is specialization of the link mapping
+ * helper for the StateMachine diagram
  */
 
 public class StateMachineLinkMappingHelper implements ILinkMappingHelper {

@@ -33,6 +33,31 @@ public abstract class AbstractParser implements IParser {
 	/**
 	 * @generated
 	 */
+	protected class InvalidValue {
+
+		/**
+		 * @generated
+		 */
+		private String description;
+
+		/**
+		 * @generated
+		 */
+		public InvalidValue(String description) {
+			this.description = description;
+		}
+
+		/**
+		 * @generated
+		 */
+		public String toString() {
+			return description;
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	protected final EAttribute[] features;
 
 	/**
@@ -83,83 +108,8 @@ public abstract class AbstractParser implements IParser {
 	/**
 	 * @generated
 	 */
-	public String getViewPattern() {
-		return viewPattern;
-	}
-
-	/**
-	 * @generated
-	 */
-	public void setViewPattern(String viewPattern) {
-		this.viewPattern = viewPattern;
-	}
-
-	/**
-	 * @generated
-	 */
-	public String getEditorPattern() {
-		return editorPattern;
-	}
-
-	/**
-	 * @generated
-	 */
-	public void setEditorPattern(String editorPattern) {
-		this.editorPattern = editorPattern;
-	}
-
-	/**
-	 * @generated
-	 */
-	public String getEditPattern() {
-		return editPattern;
-	}
-
-	/**
-	 * @generated
-	 */
-	public void setEditPattern(String editPattern) {
-		this.editPattern = editPattern;
-	}
-
-	/**
-	 * @generated
-	 */
-	public boolean isAffectingEvent(Object event, int flags) {
-		if (event instanceof Notification) {
-			return isAffectingFeature(((Notification) event).getFeature());
-		}
-		return false;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected boolean isAffectingFeature(Object feature) {
-		for (int i = 0; i < features.length; i++) {
-			if (features[i] == feature) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * @generated
-	 */
 	public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
 		return null;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected Object[] getValues(EObject element) {
-		Object[] values = new Object[features.length];
-		for (int i = 0; i < features.length; i++) {
-			values[i] = getValue(element, features[i]);
-		}
-		return values;
 	}
 
 	/**
@@ -176,15 +126,28 @@ public abstract class AbstractParser implements IParser {
 	/**
 	 * @generated
 	 */
-	protected Object getValue(EObject element, EAttribute feature) {
-		Object value = element.eGet(feature);
-		Class iClass = feature.getEAttributeType().getInstanceClass();
-		if (String.class.equals(iClass)) {
-			if (value == null) {
-				value = ""; //$NON-NLS-1$
-			}
+	public String getEditorPattern() {
+		return editorPattern;
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getEditPattern() {
+		return editPattern;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected ICommand getModificationCommand(EObject element,
+			EAttribute feature, Object value) {
+		value = getValidNewValue(feature, value);
+		if (value instanceof InvalidValue) {
+			return UnexecutableCommand.INSTANCE;
 		}
-		return value;
+		SetRequest request = new SetRequest(element, feature, value);
+		return new SetValueCommand(request);
 	}
 
 	/**
@@ -214,36 +177,6 @@ public abstract class AbstractParser implements IParser {
 	/**
 	 * @generated
 	 */
-	protected ICommand getModificationCommand(EObject element,
-			EAttribute feature, Object value) {
-		value = getValidNewValue(feature, value);
-		if (value instanceof InvalidValue) {
-			return UnexecutableCommand.INSTANCE;
-		}
-		SetRequest request = new SetRequest(element, feature, value);
-		return new SetValueCommand(request);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected IParserEditStatus validateNewValues(Object[] values) {
-		if (values.length != editableFeatures.length) {
-			return ParserEditStatus.UNEDITABLE_STATUS;
-		}
-		for (int i = 0; i < values.length; i++) {
-			Object value = getValidNewValue(editableFeatures[i], values[i]);
-			if (value instanceof InvalidValue) {
-				return new ParserEditStatus(UMLDiagramEditorPlugin.ID,
-						IParserEditStatus.UNEDITABLE, value.toString());
-			}
-		}
-		return ParserEditStatus.EDITABLE_STATUS;
-	}
-
-	/**
-	 * @generated
-	 */
 	protected Object getValidNewValue(EAttribute feature, Object value) {
 		EClassifier type = feature.getEType();
 		if (type instanceof EDataType) {
@@ -255,8 +188,8 @@ public abstract class AbstractParser implements IParser {
 					value = Boolean.valueOf((String) value);
 				} else {
 					value = new InvalidValue(NLS.bind(
-							Messages.AbstractParser_UnexpectedValueType, iClass
-									.getName()));
+							Messages.AbstractParser_UnexpectedValueType,
+							iClass.getName()));
 				}
 			} else if (Character.TYPE.equals(iClass)) {
 				if (value instanceof Character) {
@@ -270,8 +203,8 @@ public abstract class AbstractParser implements IParser {
 					}
 				} else {
 					value = new InvalidValue(NLS.bind(
-							Messages.AbstractParser_UnexpectedValueType, iClass
-									.getName()));
+							Messages.AbstractParser_UnexpectedValueType,
+							iClass.getName()));
 				}
 			} else if (Byte.TYPE.equals(iClass)) {
 				if (value instanceof Byte) {
@@ -294,8 +227,8 @@ public abstract class AbstractParser implements IParser {
 					}
 				} else {
 					value = new InvalidValue(NLS.bind(
-							Messages.AbstractParser_UnexpectedValueType, iClass
-									.getName()));
+							Messages.AbstractParser_UnexpectedValueType,
+							iClass.getName()));
 				}
 			} else if (Short.TYPE.equals(iClass)) {
 				if (value instanceof Short) {
@@ -318,8 +251,8 @@ public abstract class AbstractParser implements IParser {
 					}
 				} else {
 					value = new InvalidValue(NLS.bind(
-							Messages.AbstractParser_UnexpectedValueType, iClass
-									.getName()));
+							Messages.AbstractParser_UnexpectedValueType,
+							iClass.getName()));
 				}
 			} else if (Integer.TYPE.equals(iClass)) {
 				if (value instanceof Integer) {
@@ -342,8 +275,8 @@ public abstract class AbstractParser implements IParser {
 					}
 				} else {
 					value = new InvalidValue(NLS.bind(
-							Messages.AbstractParser_UnexpectedValueType, iClass
-									.getName()));
+							Messages.AbstractParser_UnexpectedValueType,
+							iClass.getName()));
 				}
 			} else if (Long.TYPE.equals(iClass)) {
 				if (value instanceof Long) {
@@ -366,8 +299,8 @@ public abstract class AbstractParser implements IParser {
 					}
 				} else {
 					value = new InvalidValue(NLS.bind(
-							Messages.AbstractParser_UnexpectedValueType, iClass
-									.getName()));
+							Messages.AbstractParser_UnexpectedValueType,
+							iClass.getName()));
 				}
 			} else if (Float.TYPE.equals(iClass)) {
 				if (value instanceof Float) {
@@ -390,8 +323,8 @@ public abstract class AbstractParser implements IParser {
 					}
 				} else {
 					value = new InvalidValue(NLS.bind(
-							Messages.AbstractParser_UnexpectedValueType, iClass
-									.getName()));
+							Messages.AbstractParser_UnexpectedValueType,
+							iClass.getName()));
 				}
 			} else if (Double.TYPE.equals(iClass)) {
 				if (value instanceof Double) {
@@ -414,8 +347,8 @@ public abstract class AbstractParser implements IParser {
 					}
 				} else {
 					value = new InvalidValue(NLS.bind(
-							Messages.AbstractParser_UnexpectedValueType, iClass
-									.getName()));
+							Messages.AbstractParser_UnexpectedValueType,
+							iClass.getName()));
 				}
 			} else if (type instanceof EEnum) {
 				if (value instanceof String) {
@@ -440,25 +373,92 @@ public abstract class AbstractParser implements IParser {
 	/**
 	 * @generated
 	 */
-	protected class InvalidValue {
-
-		/**
-		 * @generated
-		 */
-		private String description;
-
-		/**
-		 * @generated
-		 */
-		public InvalidValue(String description) {
-			this.description = description;
+	protected Object getValue(EObject element, EAttribute feature) {
+		Object value = element.eGet(feature);
+		Class iClass = feature.getEAttributeType().getInstanceClass();
+		if (String.class.equals(iClass)) {
+			if (value == null) {
+				value = ""; //$NON-NLS-1$
+			}
 		}
+		return value;
+	}
 
-		/**
-		 * @generated
-		 */
-		public String toString() {
-			return description;
+	/**
+	 * @generated
+	 */
+	protected Object[] getValues(EObject element) {
+		Object[] values = new Object[features.length];
+		for (int i = 0; i < features.length; i++) {
+			values[i] = getValue(element, features[i]);
 		}
+		return values;
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getViewPattern() {
+		return viewPattern;
+	}
+
+	/**
+	 * @generated
+	 */
+	public boolean isAffectingEvent(Object event, int flags) {
+		if (event instanceof Notification) {
+			return isAffectingFeature(((Notification) event).getFeature());
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected boolean isAffectingFeature(Object feature) {
+		for (int i = 0; i < features.length; i++) {
+			if (features[i] == feature) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void setEditorPattern(String editorPattern) {
+		this.editorPattern = editorPattern;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void setEditPattern(String editPattern) {
+		this.editPattern = editPattern;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void setViewPattern(String viewPattern) {
+		this.viewPattern = viewPattern;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IParserEditStatus validateNewValues(Object[] values) {
+		if (values.length != editableFeatures.length) {
+			return ParserEditStatus.UNEDITABLE_STATUS;
+		}
+		for (int i = 0; i < values.length; i++) {
+			Object value = getValidNewValue(editableFeatures[i], values[i]);
+			if (value instanceof InvalidValue) {
+				return new ParserEditStatus(UMLDiagramEditorPlugin.ID,
+						IParserEditStatus.UNEDITABLE, value.toString());
+			}
+		}
+		return ParserEditStatus.EDITABLE_STATUS;
 	}
 }

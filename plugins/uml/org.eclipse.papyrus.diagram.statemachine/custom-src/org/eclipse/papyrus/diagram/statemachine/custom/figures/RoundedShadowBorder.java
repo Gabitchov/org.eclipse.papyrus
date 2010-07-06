@@ -8,8 +8,8 @@ import org.eclipse.papyrus.diagram.common.figure.node.RectangularShadowBorder;
 import org.eclipse.swt.graphics.Color;
 
 /**
- * Rounded shadow border, extends RectangularShadowBorder otherwise problem in hierarchy of figures
- * Works with borderwidth of 3 and arcwidth of 20
+ * Rounded shadow border, extends RectangularShadowBorder otherwise problem in
+ * hierarchy of figures Works with borderwidth of 3 and arcwidth of 20
  * 
  * @author David
  * 
@@ -39,8 +39,10 @@ public class RoundedShadowBorder extends RectangularShadowBorder {
 		Insets insetsNew = super.getInsets(figure);
 		insetsNew.top = 0;
 		insetsNew.left = 0;
-		insetsNew.bottom = MapModeUtil.getMapMode(figure).DPtoLP(insetsNew.bottom + borderwidth);
-		insetsNew.right = MapModeUtil.getMapMode(figure).DPtoLP(insetsNew.right + borderwidth);
+		insetsNew.bottom = MapModeUtil.getMapMode(figure).DPtoLP(
+				insetsNew.bottom + borderwidth);
+		insetsNew.right = MapModeUtil.getMapMode(figure).DPtoLP(
+				insetsNew.right + borderwidth);
 		return insetsNew;
 	}
 
@@ -57,7 +59,8 @@ public class RoundedShadowBorder extends RectangularShadowBorder {
 			tempRect.height--;
 		}
 
-		tempRect.shrink(getWidth() / 2 + 1, getWidth() / 2 + 1).translate(-1, -1);
+		tempRect.shrink(getWidth() / 2 + 1, getWidth() / 2 + 1).translate(-1,
+				-1);
 		graphics.setLineWidth(getWidth());
 		if (getColor() != null)
 			graphics.setForegroundColor(getColor());
@@ -65,33 +68,44 @@ public class RoundedShadowBorder extends RectangularShadowBorder {
 
 		graphics.setBackgroundColor(getColor());
 
-		// graphics.drawArc(tempRect.x+tempRect.width-arcwidth+borderwidth, tempRect.y+borderwidth,
+		// graphics.drawArc(tempRect.x+tempRect.width-arcwidth+borderwidth,
+		// tempRect.y+borderwidth,
 		// arcwidth, arcwidth, 0, 50);
-		graphics.drawArc(tempRect.x + tempRect.width - arcwidth + borderwidth, tempRect.y + borderwidth, arcwidth - 1,
-				arcwidth - 1, 0, 40);
-		// graphics.drawArc(tempRect.x+tempRect.width-arcwidth+borderwidth, tempRect.y+borderwidth,
+		graphics.drawArc(tempRect.x + tempRect.width - arcwidth + borderwidth,
+				tempRect.y + borderwidth, arcwidth - 1, arcwidth - 1, 0, 40);
+		// graphics.drawArc(tempRect.x+tempRect.width-arcwidth+borderwidth,
+		// tempRect.y+borderwidth,
 		// arcwidth-2, arcwidth-2, 0, 20);
 
 		// graphics.drawArc(tempRect.x+tempRect.width-arcwidth+borderwidth,
-		// tempRect.y+borderwidth+tempRect.height-arcwidth, arcwidth, arcwidth, 270, 90);
-		graphics.drawArc(tempRect.x + tempRect.width - arcwidth + borderwidth, tempRect.y + borderwidth
-				+ tempRect.height - arcwidth, arcwidth - 1, arcwidth - 1, 270, 90);
-		graphics.drawArc(tempRect.x + tempRect.width - arcwidth + borderwidth, tempRect.y + borderwidth
-				+ tempRect.height - arcwidth, arcwidth - 2, arcwidth - 2, 270, 90);
-		graphics.drawArc(tempRect.x + tempRect.width - arcwidth + borderwidth, tempRect.y + borderwidth
-				+ tempRect.height - arcwidth, arcwidth - 3, arcwidth - 3, 270, 90);
+		// tempRect.y+borderwidth+tempRect.height-arcwidth, arcwidth, arcwidth,
+		// 270, 90);
+		graphics.drawArc(tempRect.x + tempRect.width - arcwidth + borderwidth,
+				tempRect.y + borderwidth + tempRect.height - arcwidth,
+				arcwidth - 1, arcwidth - 1, 270, 90);
+		graphics.drawArc(tempRect.x + tempRect.width - arcwidth + borderwidth,
+				tempRect.y + borderwidth + tempRect.height - arcwidth,
+				arcwidth - 2, arcwidth - 2, 270, 90);
+		graphics.drawArc(tempRect.x + tempRect.width - arcwidth + borderwidth,
+				tempRect.y + borderwidth + tempRect.height - arcwidth,
+				arcwidth - 3, arcwidth - 3, 270, 90);
 
-		// graphics.drawArc(tempRect.x+borderwidth, tempRect.y+borderwidth+tempRect.height-arcwidth,
+		// graphics.drawArc(tempRect.x+borderwidth,
+		// tempRect.y+borderwidth+tempRect.height-arcwidth,
 		// arcwidth, arcwidth, 220, 50);
-		graphics.drawArc(tempRect.x + borderwidth, tempRect.y + borderwidth + tempRect.height - arcwidth, arcwidth - 1,
-				arcwidth - 1, 230, 40);
-		// graphics.drawArc(tempRect.x+borderwidth, tempRect.y+borderwidth+tempRect.height-arcwidth,
+		graphics.drawArc(tempRect.x + borderwidth, tempRect.y + borderwidth
+				+ tempRect.height - arcwidth, arcwidth - 1, arcwidth - 1, 230,
+				40);
+		// graphics.drawArc(tempRect.x+borderwidth,
+		// tempRect.y+borderwidth+tempRect.height-arcwidth,
 		// arcwidth-2, arcwidth-2, 240, 20);
 
-		graphics.fillRectangle(tempRect.x + tempRect.width + 1, tempRect.y + arcwidth - 2 * borderwidth - 4,
-				borderwidth, tempRect.height - arcwidth + borderwidth);
-		graphics.fillRectangle(tempRect.x + arcwidth - 2 * borderwidth - 4, tempRect.y + tempRect.height + 1,
-				tempRect.width - arcwidth + borderwidth, borderwidth);
+		graphics.fillRectangle(tempRect.x + tempRect.width + 1, tempRect.y
+				+ arcwidth - 2 * borderwidth - 4, borderwidth, tempRect.height
+				- arcwidth + borderwidth);
+		graphics.fillRectangle(tempRect.x + arcwidth - 2 * borderwidth - 4,
+				tempRect.y + tempRect.height + 1, tempRect.width - arcwidth
+						+ borderwidth, borderwidth);
 
 	}
 

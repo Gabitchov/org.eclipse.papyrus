@@ -17,12 +17,6 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	private Messages() {
-	}
-
-	/**
-	 * @generated
-	 */
 	public static String UMLCreationWizardTitle;
 
 	/**
@@ -248,27 +242,7 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String createNodesGroup_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String createPseudoStates2Group_title;
-
-	/**
-	 * @generated
-	 */
-	public static String createPseudoStates2Group_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String createEdges3Group_title;
-
-	/**
-	 * @generated
-	 */
-	public static String createEdges3Group_desc;
+	public static String createEdgesGroup_title;
 
 	/**
 	 * @generated
@@ -293,42 +267,132 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String createState3CreationTool_title;
+	public static String createStateCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createState3CreationTool_desc;
+	public static String createStateCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createFinalState4CreationTool_title;
+	public static String createInitialCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createFinalState4CreationTool_desc;
+	public static String createInitialCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createPseudoState1CreationTool_title;
+	public static String createFinalStateCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createPseudoState1CreationTool_desc;
+	public static String createFinalStateCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String createTransition1CreationTool_title;
+	public static String createShallowHistoryCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String createTransition1CreationTool_desc;
+	public static String createShallowHistoryCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createDeepHistoryCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createDeepHistoryCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createForkCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createForkCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createJoinCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createJoinCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createChoiceCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createChoiceCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createJunctionCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createJunctionCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createEntryPointCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createEntryPointCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createExitPointCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createExitPointCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createTerminateCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createTerminateCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String createTransitionCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String createTransitionCreationTool_desc;
 
 	/**
 	 * @generated
@@ -380,5 +444,11 @@ public class Messages extends NLS {
 	 */
 	public static String UMLModelingAssistantProviderMessage;
 
-	//TODO: put accessor fields manually	
+	/**
+	 * @generated
+	 */
+	private Messages() {
+	}
+
+	// TODO: put accessor fields manually
 }

@@ -20,13 +20,18 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements
 	/**
 	 * @generated
 	 */
-	public String getText(Object element) {
-		element = unwrap(element);
-		if (element instanceof UMLNavigatorGroup) {
-			return ((UMLNavigatorGroup) element).getGroupName();
+	private IElementType getElementType(View view) {
+		// For intermediate views climb up the containment hierarchy to find the one associated with an element type.
+		while (view != null) {
+			int vid = UMLVisualIDRegistry.getVisualID(view);
+			IElementType etype = UMLElementTypes.getElementType(vid);
+			if (etype != null) {
+				return etype;
+			}
+			view = view.eContainer() instanceof View ? (View) view.eContainer()
+					: null;
 		}
-		IElementType etype = getElementType(getView(element));
-		return etype == null ? "" : etype.getDisplayName();
+		return null;
 	}
 
 	/**
@@ -40,11 +45,13 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements
 	/**
 	 * @generated
 	 */
-	private Object unwrap(Object element) {
-		if (element instanceof IStructuredSelection) {
-			return ((IStructuredSelection) element).getFirstElement();
+	public String getText(Object element) {
+		element = unwrap(element);
+		if (element instanceof UMLNavigatorGroup) {
+			return ((UMLNavigatorGroup) element).getGroupName();
 		}
-		return element;
+		IElementType etype = getElementType(getView(element));
+		return etype == null ? "" : etype.getDisplayName();
 	}
 
 	/**
@@ -63,18 +70,11 @@ public class UMLSheetLabelProvider extends BaseLabelProvider implements
 	/**
 	 * @generated
 	 */
-	private IElementType getElementType(View view) {
-		// For intermediate views climb up the containment hierarchy to find the one associated with an element type.
-		while (view != null) {
-			int vid = UMLVisualIDRegistry.getVisualID(view);
-			IElementType etype = UMLElementTypes.getElementType(vid);
-			if (etype != null) {
-				return etype;
-			}
-			view = view.eContainer() instanceof View ? (View) view.eContainer()
-					: null;
+	private Object unwrap(Object element) {
+		if (element instanceof IStructuredSelection) {
+			return ((IStructuredSelection) element).getFirstElement();
 		}
-		return null;
+		return element;
 	}
 
 }
