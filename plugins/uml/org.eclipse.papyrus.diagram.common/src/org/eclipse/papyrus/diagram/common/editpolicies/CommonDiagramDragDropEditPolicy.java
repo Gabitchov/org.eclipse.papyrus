@@ -10,7 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - refactor common behavior between diagrams
- *
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - add the line 	ViewServiceUtil.forceLoad();
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.editpolicies;
 
@@ -52,6 +52,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.helper.ILinkMappingHelper;
+import org.eclipse.papyrus.diagram.common.util.ViewServiceUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 
@@ -76,12 +77,12 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	public CommonDiagramDragDropEditPolicy(ILinkMappingHelper mappingHelper) {
 		linkmappingHelper = mappingHelper;
 	}
-	
+
 	/**
 	 * Gets elements visual id that can be dropped in the diagram
 	 */
-	private Set<Integer> getSpecificDrop(){
-		if(specificDrop == null){
+	private Set<Integer> getSpecificDrop() {
+		if(specificDrop == null) {
 			specificDrop = getDroppableElementVisualId();
 		}
 		return specificDrop;
@@ -100,7 +101,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	public abstract int getNodeVisualID(View containerView, EObject domainElement);
 
 	public abstract int getLinkWithClassVisualID(EObject domainElement);
-	
+
 	/**
 	 * The list of visualID that the policy manages.
 	 */
@@ -109,6 +110,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	/**
 	 * {@inheritedDoc}
 	 */
+	@Override
 	protected Command createViewsAndArrangeCommand(DropObjectsRequest dropRequest, List viewDescriptors) {
 		CreateViewRequest createViewRequest = new CreateViewRequest(viewDescriptors);
 		createViewRequest.setLocation(dropRequest.getLocation());
@@ -153,7 +155,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 			// get the command and execute it.
 			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, ((View)getHost().getModel()));
 			cc.compose(nodeCreationCommand);
-			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y + 100));
+			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y + 100)); //$NON-NLS-1$
 			cc.compose(setBoundsCommand);
 
 			sourceAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
@@ -167,7 +169,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 			// get the command and execute it.
 			CreateCommand nodeCreationCommand = new CreateCommand(((IGraphicalEditPart)getHost()).getEditingDomain(), descriptor, ((View)getHost().getModel()));
 			cc.compose(nodeCreationCommand);
-			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y - 100));
+			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y - 100)); //$NON-NLS-1$
 			cc.compose(setBoundsCommand);
 			targetAdapter = (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue();
 
@@ -194,10 +196,31 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	/**
 	 * {@inheritedDoc}.
 	 */
+	@Override
 	public Command getDropObjectsCommand(DropObjectsRequest dropRequest) {
+		/*
+		 * when it's the first action after the opening of Papyrus, the viewService is not loaded!
+		 * see bug 302555
+		 * 
+		 * Duration test for 100000 creations of DropCommand :
+		 * Here 2 solutions :
+		 * - call ViewServiceUtil.forceLoad(); for each drop -> ~2500ms
+		 * 
+		 * - test if the command cc can be executed at the end of the method, and if not :
+		 * - call ViewServiceUtil.forceLoad();
+		 * - and return getDropObjectsCommand(getDropObjectsCommand)
+		 * -> ~4700ms
+		 * 
+		 * - for information : without call ViewServiceUtil.forceLoad();
+		 * -> ~1600ms
+		 * 
+		 * It's better don't test if the command is executable!
+		 */
+		ViewServiceUtil.forceLoad();
+
 		// Create a view request from the drop request and then forward getting
 		// the command for that.
-		CompositeCommand cc = new CompositeCommand("Drop");
+		CompositeCommand cc = new CompositeCommand("Drop"); //$NON-NLS-1$
 		Iterator<?> iter = dropRequest.getObjects().iterator();
 		if(dropRequest.getObjects().size() > 0 && dropRequest.getObjects().get(0) instanceof String) {
 			return getDropFileCommand(dropRequest);
@@ -213,7 +236,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 			if(getSpecificDrop().contains(nodeVISUALID) || getSpecificDrop().contains(linkVISUALID)) {
 				dropRequest.setLocation(location);
 				// TODO: add to composite command ?
-				cc.add( new CommandProxy( getSpecificDropCommand(dropRequest, (Element)droppedObject, nodeVISUALID, linkVISUALID) ) );
+				cc.add(new CommandProxy(getSpecificDropCommand(dropRequest, (Element)droppedObject, nodeVISUALID, linkVISUALID)));
 				continue;
 			}
 
@@ -227,10 +250,10 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 				// . Release the constraint when GraphicalParent is a Package (Canvas for most
 				// diagrams)
 				if(graphicalParent instanceof Package) {
-					cc.add( getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject) );
+					cc.add(getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject));
 
 				} else if((graphicalParent instanceof Element) && ((Element)graphicalParent).getOwnedElements().contains(droppedObject)) {
-					cc.add( getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject) );
+					cc.add(getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject));
 
 				} else {
 					return UnexecutableCommand.INSTANCE;
@@ -248,6 +271,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 				dropBinaryLink(cc, source, target, linkVISUALID, dropRequest.getLocation(), (Element)droppedObject);
 			}
 		}
+
 		return new ICommandProxy(cc);
 	}
 
@@ -265,14 +289,14 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	 * @return a CompositeCommand for Drop
 	 */
 	protected CompositeCommand getDefaultDropNodeCommand(int nodeVISUALID, Point location, EObject droppedObject) {
-		CompositeCommand cc = new CompositeCommand("Drop");
+		CompositeCommand cc = new CompositeCommand("Drop"); //$NON-NLS-1$
 		IAdaptable elementAdapter = new EObjectAdapter(droppedObject);
 
 		ViewDescriptor descriptor = new ViewDescriptor(elementAdapter, Node.class, ((IHintedType)getUMLElementType(nodeVISUALID)).getSemanticHint(), ViewUtil.APPEND, false, getDiagramPreferencesHint());
 		CreateCommand createCommand = new CreateCommand(getEditingDomain(), descriptor, ((View)(getHost().getModel())));
 		cc.compose(createCommand);
 
-		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)createCommand.getCommandResult().getReturnValue(), location);
+		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)createCommand.getCommandResult().getReturnValue(), location); //$NON-NLS-1$
 		cc.compose(setBoundsCommand);
 		return cc;
 	}
