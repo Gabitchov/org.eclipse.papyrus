@@ -195,7 +195,7 @@
 «ENDDEFINE»
 
 «DEFINE preferencePageNodeExtension(gmfgen::GenDiagram diagram) FOR String-»
-«IF "UNDEFINED" <> self.toUpper()»
+«IF 'UNDEFINED' <> self.toUpper()»
 	«EXPAND xpt::Common::xmlGeneratedTag»
 	<page  	category="«EXPAND category FOR diagram»"
 			class="«diagram.preferencesPackageName».«self»«getPreferencePageSuffix()»"
@@ -204,7 +204,8 @@
 «ENDIF»	
 «ENDDEFINE»
 «DEFINE preferencePageLinkExtension(gmfgen::GenDiagram diagram) FOR String-»
-«IF "UNDEFINED" <>  self.toUpper()»
+
+«IF 'UNDEFINED' <>  self.toUpper()»
 	«EXPAND xpt::Common::xmlGeneratedTag»
 	<page  	category="«EXPAND category FOR diagram»"
 			class="«diagram.preferencesPackageName».«self»«getPreferencePageSuffix()»"
