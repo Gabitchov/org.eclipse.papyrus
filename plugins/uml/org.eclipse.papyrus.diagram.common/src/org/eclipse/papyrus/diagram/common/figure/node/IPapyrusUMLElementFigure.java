@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.figure.node;
 
-import org.eclipse.draw2d.Label;
 import org.eclipse.swt.graphics.Image;
 
 /**

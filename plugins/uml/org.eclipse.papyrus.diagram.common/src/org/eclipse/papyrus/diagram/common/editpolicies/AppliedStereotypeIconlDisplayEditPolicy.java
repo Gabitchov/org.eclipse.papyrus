@@ -15,8 +15,6 @@ package org.eclipse.papyrus.diagram.common.editpolicies;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.papyrus.diagram.common.editparts.IPapyrusEditPart;
-import org.eclipse.papyrus.diagram.common.editparts.NodeEditPart;
-import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusUMLElementFigure;
 
 

@@ -13,19 +13,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.editparts;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.figure.node.ConstraintFigure;
 import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
-import org.eclipse.uml2.uml.Association;
-import org.eclipse.uml2.uml.Constraint;
-import org.eclipse.uml2.uml.ValueSpecification;
 
 /**
  * this is an abstract editpart to manage  a constraint 

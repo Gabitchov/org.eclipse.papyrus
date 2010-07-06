@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.diagram.common.providers;
 
 import java.awt.Toolkit;
-import java.awt.datatransfer.DataFlavor;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -44,12 +43,8 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalC
 import org.eclipse.gmf.runtime.emf.ui.properties.actions.PropertyPageViewAction;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
-import org.eclipse.papyrus.diagram.common.command.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.command.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.diagram.common.commands.GMFToEMFCommand;
 import org.eclipse.papyrus.diagram.common.helper.CleanDiagramHelper;
-import org.eclipse.papyrus.pastemanager.request.PasteRequest;
-import org.eclipse.papyrus.pastemanager.service.DefaultPasteCommandProvider;
 import org.eclipse.papyrus.pastemanager.service.PasteCommandService;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPart;

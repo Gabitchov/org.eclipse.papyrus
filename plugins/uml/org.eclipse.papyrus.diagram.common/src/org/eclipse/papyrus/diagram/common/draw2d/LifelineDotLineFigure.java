@@ -12,7 +12,6 @@
 package org.eclipse.papyrus.diagram.common.draw2d;
 
 import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;

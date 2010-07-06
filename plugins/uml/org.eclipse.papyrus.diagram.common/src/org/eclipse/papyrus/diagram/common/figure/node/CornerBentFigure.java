@@ -17,15 +17,12 @@ import java.util.StringTokenizer;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Insets;
-import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
 import org.eclipse.gmf.runtime.diagram.ui.figures.NoteFigure;
-import org.eclipse.osgi.service.environment.Constants;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 

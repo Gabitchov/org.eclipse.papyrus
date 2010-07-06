@@ -16,8 +16,6 @@ package org.eclipse.papyrus.diagram.common.editparts;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.editparts.BorderNamedElementEditPart;
-import org.eclipse.papyrus.diagram.common.editparts.IUMLNamedElementEditPart;
 
 /**
  * Abstract EditPart for Border elements like Port

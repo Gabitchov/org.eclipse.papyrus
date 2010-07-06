@@ -1,7 +1,6 @@
 package org.eclipse.papyrus.diagram.common.editparts;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusUMLElementFigure;
 
 /**
  * This is an editPart in which we can get primaryShape to obtain the figure

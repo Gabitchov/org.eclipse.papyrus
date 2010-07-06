@@ -126,7 +126,7 @@
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.0">
+                value="/0/@expressionProviders/@providers.0/@expressions.11">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
@@ -815,6 +815,8 @@
             body="return PseudostateKind.EXIT_POINT_LITERAL;"/>
         <expressions
             body="return PseudostateKind.TERMINATE_LITERAL;"/>
+        <expressions
+            body="return org.eclipse.papyrus.diagram.statemachine.custom.helpers.PseudostateHelper.EINSTANCE.getNewUMLElementName(self.getOwner(),self);"/>
       </providers>
     </expressionProviders>
     <labelParsers

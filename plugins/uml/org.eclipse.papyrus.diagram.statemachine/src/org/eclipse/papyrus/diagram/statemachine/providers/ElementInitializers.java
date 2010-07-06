@@ -1,6 +1,7 @@
 package org.eclipse.papyrus.diagram.statemachine.providers;
 
 import org.eclipse.papyrus.diagram.common.helper.NamedElementHelper;
+import org.eclipse.papyrus.diagram.statemachine.custom.helpers.PseudostateHelper;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin;
 import org.eclipse.uml2.uml.FinalState;
 import org.eclipse.uml2.uml.Pseudostate;
@@ -138,7 +139,8 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	private String name_Pseudostate_4000(Pseudostate self) {
-		return getName(self);
+		return PseudostateHelper.EINSTANCE.getNewUMLElementName(
+				self.getOwner(), self);
 	}
 
 	/**

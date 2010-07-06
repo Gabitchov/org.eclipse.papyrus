@@ -16,9 +16,7 @@ package org.eclipse.papyrus.diagram.common.figure.layout;
 import org.eclipse.draw2d.AbstractLayout;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableCompartmentEditPolicy;
-import org.eclipse.papyrus.diagram.common.editpolicies.CResizableCompartmentEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.AutomaticCompartmentLayoutManager;
-import org.eclipse.papyrus.diagram.common.helper.ICompartmentLayoutHelper;
 
 
 /**

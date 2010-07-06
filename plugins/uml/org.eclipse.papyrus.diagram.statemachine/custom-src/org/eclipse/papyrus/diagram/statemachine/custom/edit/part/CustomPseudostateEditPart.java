@@ -6,11 +6,14 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.statemachine.custom.figures.PseudostateChoiceFigure;
 import org.eclipse.papyrus.diagram.statemachine.custom.figures.PseudostateDeepHistoryFigure;
+import org.eclipse.papyrus.diagram.statemachine.custom.figures.PseudostateEntryPointFigure;
+import org.eclipse.papyrus.diagram.statemachine.custom.figures.PseudostateExitPointFigure;
 import org.eclipse.papyrus.diagram.statemachine.custom.figures.PseudostateForkFigure;
 import org.eclipse.papyrus.diagram.statemachine.custom.figures.PseudostateInitialFigure;
 import org.eclipse.papyrus.diagram.statemachine.custom.figures.PseudostateJoinFigure;
 import org.eclipse.papyrus.diagram.statemachine.custom.figures.PseudostateJunctionFigure;
 import org.eclipse.papyrus.diagram.statemachine.custom.figures.PseudostateShallowHistoryFigure;
+import org.eclipse.papyrus.diagram.statemachine.custom.figures.PseudostateTerminateFigure;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateEditPart;
 import org.eclipse.uml2.uml.Pseudostate;
 import org.eclipse.uml2.uml.PseudostateKind;
@@ -53,6 +56,12 @@ public class CustomPseudostateEditPart extends PseudostateEditPart {
 			return primaryShape = new PseudostateJunctionFigure();
 		case CHOICE_LITERAL:
 			return primaryShape = new PseudostateChoiceFigure();
+		case ENTRY_POINT_LITERAL:
+			return primaryShape = new PseudostateEntryPointFigure();
+		case EXIT_POINT_LITERAL:
+			return primaryShape = new PseudostateExitPointFigure();
+		case TERMINATE_LITERAL:
+			return primaryShape = new PseudostateTerminateFigure();
 		}
 
 		return null;

@@ -17,7 +17,6 @@ import org.eclipse.draw2d.AbstractLayout;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.CResizableCompartmentEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.ManualCompartmentLayoutManager;
-import org.eclipse.papyrus.diagram.common.helper.ICompartmentLayoutHelper;
 
 /**
  * this is a tool kit to manage Manual layout.

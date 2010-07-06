@@ -18,8 +18,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.papyrus.diagram.common.Activator;
-
 
 /**
  * Class that provides a html cleaner.
