@@ -72,21 +72,24 @@ public class PreferenceInitializerForElementHelper {
 			fillStyle.setGradient(gradientPreferenceConverter.getGradientData());
 			fillStyle.setTransparency(gradientPreferenceConverter.getTransparency());
 		}
-		//shadow
-		RecordingCommand shadowcommand=ShadowFigureHelper.getShadowColorCommand(EditorUtils.getTransactionalEditingDomain(), view, store.getBoolean(shadowConstant));
-		if(shadowcommand.canExecute()){
-			shadowcommand.execute();
-		}
-		//icon label
-		RecordingCommand namelabelIconCommand=NameLabelIconHelper.getNameLabelIconCommand(EditorUtils.getTransactionalEditingDomain(), view, store.getBoolean(elementIcon));
-		if(namelabelIconCommand.canExecute()){
-			namelabelIconCommand.execute();
-		}
-		//qualified name
-		if(!store.getBoolean(qualifiedName)){
-			RecordingCommand qualifiedNameCommand=QualifiedNameHelper.getSetQualifedNameDepthCommand(EditorUtils.getTransactionalEditingDomain(), view, 1000);
-			if(qualifiedNameCommand.canExecute()){
-				qualifiedNameCommand.execute();
+
+		if(EditorUtils.getTransactionalEditingDomain()!=null){
+			//shadow
+			RecordingCommand shadowcommand=ShadowFigureHelper.getShadowColorCommand(EditorUtils.getTransactionalEditingDomain(), view, store.getBoolean(shadowConstant));
+			if(shadowcommand.canExecute()){
+				shadowcommand.execute();
+			}
+			//icon label
+			RecordingCommand namelabelIconCommand=NameLabelIconHelper.getNameLabelIconCommand(EditorUtils.getTransactionalEditingDomain(), view, store.getBoolean(elementIcon));
+			if(namelabelIconCommand.canExecute()){
+				namelabelIconCommand.execute();
+			}
+			//qualified name
+			if(!store.getBoolean(qualifiedName)){
+				RecordingCommand qualifiedNameCommand=QualifiedNameHelper.getSetQualifedNameDepthCommand(EditorUtils.getTransactionalEditingDomain(), view, 1000);
+				if(qualifiedNameCommand.canExecute()){
+					qualifiedNameCommand.execute();
+				}
 			}
 		}
 	}
@@ -163,12 +166,12 @@ public class PreferenceInitializerForElementHelper {
 
 
 	}
-	
+
 	public static Dimension getDimensionFromPref(View view, final IPreferenceStore store, String elementName) {
 		Dimension dim= new Dimension();
 		String width = getpreferenceKey(view,elementName, PreferenceConstantHelper.WIDTH);
 		String height = getpreferenceKey(view,elementName, PreferenceConstantHelper.HEIGHT);
 		dim= new Dimension(store.getInt(width),store.getInt(height));
-	return dim;
+		return dim;
 	}
 }
