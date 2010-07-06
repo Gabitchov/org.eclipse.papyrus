@@ -3,8 +3,7 @@
       id="org.eclipse.papyrus.uml"
       label="%featureName"
       version="0.7.0.qualifier"
-      provider-name="%providerName"
-      plugin="org.eclipse.papyrus.core">
+      provider-name="%providerName">
 
    <description>
       %description
