@@ -854,6 +854,58 @@
          </Priority>
       </aspectToolProvider>
    </extension>
+   <extension
+         point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+      <contributionItemProvider
+            checkPluginLoaded="true"
+            class="org.eclipse.papyrus.diagram.common.actions.RoutingContributionItemProvider">
+         <Priority
+               name="High">
+         </Priority>
+         <popupContribution
+               class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+            <popupPredefinedItem
+                  id="hideSelectionAction"
+                  path="/filtersMenu/miscellaneousGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="hideTypeAction"
+                  path="/filtersMenu/miscellaneousGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="hideSemanticAction"
+                  path="/filtersMenu/miscellaneousGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="showHiddenPartAction"
+                  path="/filtersMenu/miscellaneousGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="hideInheritanceTypeAction"
+                  path="/filtersMenu/additions"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="hideReferenceTypeAction"
+                  path="/filtersMenu/additions"
+                  remove="true">
+            </popupPredefinedItem>
+         </popupContribution>
+         <partContribution
+               class="org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart">
+            <partPredefinedItem
+                  id="diagramFilterActionMenu"
+                  removeFromMenubar="true"
+                  removeFromToolbar="true"
+                  toolbarPath="/toolbarFilterGroup">
+            </partPredefinedItem>
+         </partContribution>
+      </contributionItemProvider>
+   </extension>
 
 
 </plugin>
