@@ -55,8 +55,6 @@ import org.eclipse.swt.widgets.Text;
  */
 public class SelectDiagramKindPage extends WizardPage {
 
-
-
 	/**
 	 * The diagram name text field
 	 */
@@ -73,7 +71,7 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/**
 	 * Instantiates a new select diagram kind page.
-	 *
+	 * 
 	 */
 	public SelectDiagramKindPage() {
 		super("Select kind of diagram");
@@ -103,6 +101,8 @@ public class SelectDiagramKindPage extends WizardPage {
 
 		createRememberCurrentSelectionForm(plate);
 
+		fillInTables();
+
 	}
 
 	/**
@@ -120,16 +120,19 @@ public class SelectDiagramKindPage extends WizardPage {
 	@Override
 	public void setVisible(boolean visible) {
 		super.setVisible(visible);
+		fillInTables();
+		validatePage();
+		if(disableTemplates) {
+			selectTemplateComposite.disable();
+		}
+	}
+
+	private void fillInTables() {
 		String category = getDiagramCategory();
 		diagramKindTableViewer.setInput(category);
 		selectTemplateComposite.setInput(category);
 		selectDefaultDiagramKinds(category);
-		if(disableTemplates) {
-			selectTemplateComposite.disable();
-		} else {
-			selectDefaultDiagramTemplates(category);
-		}
-		validatePage();
+		selectDefaultDiagramTemplates(category);
 	}
 
 	/**
