@@ -521,6 +521,7 @@
 		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DiagramGeneralPreferencePage">
 	</page>
 
+	<!-- Not yet supported individually by diagrams (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=318865)
 	<page
 		id="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences.DiagramPrintingPreferencePage"
 		name="Printing"
@@ -534,6 +535,7 @@
 		category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
 		class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DiagramRulersAndGridPreferencePage">
 	</page>
+	  -->
 
 	<!-- Element Preference pages declaration -->
 	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"

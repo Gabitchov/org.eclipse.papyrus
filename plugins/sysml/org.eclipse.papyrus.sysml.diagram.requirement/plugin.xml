@@ -239,6 +239,8 @@
             id="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
             name="Requirement Diagram">
       </page>
+      
+      	<!-- Not yet supported individually by diagrams (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=318865)
       <page
             category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
             class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.DiagramPrintingPreferencePage"
@@ -251,6 +253,7 @@
             id="org.eclipse.papyrus.sysml.diagram.requirement.preferencesDiagramRulesAndGridPreferences"
             name="Rules and Grid">
       </page>
+        -->
    </extension>
 
 </plugin>
