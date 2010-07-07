@@ -9,12 +9,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.pkg.provider;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.CreateGraphicEditPartOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.IEditPartOperation;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLEditPartProvider;
 import org.eclipse.papyrus.uml.diagram.pkg.edit.part.PackageDiagramEditPart;
+import org.eclipse.uml2.uml.Dependency;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.PackageImport;
 
 public class InheritedElementEditPartProvider extends UMLEditPartProvider {
 
@@ -29,22 +33,35 @@ public class InheritedElementEditPartProvider extends UMLEditPartProvider {
 			}
 
 			// Test supported inherited types
-			String hint = view.getType();
-			if(InheritedElementTypes.PACKAGE.getSemanticHint().equals(hint) || InheritedElementTypes.PACKAGE_NAME_LABEL_HINT.equals(hint) || InheritedElementTypes.PACKAGE_COMPARTMENT_HINT.equals(hint)) {
+			EObject eobject = view.getElement();
+
+			/** Nodes *********** */
+			if(eobject instanceof Package) {
 				return true;
 			}
 
-			if(InheritedElementTypes.PACKAGE_CN.getSemanticHint().equals(hint) || InheritedElementTypes.PACKAGE_CN_NAME_LABEL_HINT.equals(hint) || InheritedElementTypes.PACKAGE_CN_COMPARTMENT_HINT.equals(hint)) {
+			/** Edges *********** */
+			if((eobject instanceof Dependency) || (eobject instanceof PackageImport)) {
 				return true;
 			}
 
-			if(InheritedElementTypes.DEPENDENCY.getSemanticHint().equals(hint) || InheritedElementTypes.DEPENDENCY_NAME_LABEL_HINT.equals(hint) || InheritedElementTypes.DEPENDENCY_STEREOTYPE_LABEL_HINT.equals(hint)) {
-				return true;
-			}
-
-			if(InheritedElementTypes.PACKAGE_IMPORT.getSemanticHint().equals(hint) || InheritedElementTypes.PACKAGE_IMPORT_STEREOTYPE_LABEL_HINT.equals(hint)) {
-				return true;
-			}
+			//			// Test supported inherited types
+			//			String hint = view.getType();
+			//			if(InheritedElementTypes.PACKAGE.getSemanticHint().equals(hint) || InheritedElementTypes.PACKAGE_NAME_LABEL_HINT.equals(hint) || InheritedElementTypes.PACKAGE_COMPARTMENT_HINT.equals(hint)) {
+			//				return true;
+			//			}
+			//
+			//			if(InheritedElementTypes.PACKAGE_CN.getSemanticHint().equals(hint) || InheritedElementTypes.PACKAGE_CN_NAME_LABEL_HINT.equals(hint) || InheritedElementTypes.PACKAGE_CN_COMPARTMENT_HINT.equals(hint)) {
+			//				return true;
+			//			}
+			//
+			//			if(InheritedElementTypes.DEPENDENCY.getSemanticHint().equals(hint) || InheritedElementTypes.DEPENDENCY_NAME_LABEL_HINT.equals(hint) || InheritedElementTypes.DEPENDENCY_STEREOTYPE_LABEL_HINT.equals(hint)) {
+			//				return true;
+			//			}
+			//
+			//			if(InheritedElementTypes.PACKAGE_IMPORT.getSemanticHint().equals(hint) || InheritedElementTypes.PACKAGE_IMPORT_STEREOTYPE_LABEL_HINT.equals(hint)) {
+			//				return true;
+			//			}
 		}
 		return false;
 	}

@@ -164,6 +164,15 @@
 		
 </extension>
 
+<!-- Diagram edit policy provider -->	
+<extension
+	point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+	<editpolicyProvider
+		class="org.eclipse.papyrus.uml.diagram.pkg.provider.InheritedElementEditPolicyProvider">
+		<Priority name="Low"/>
+	</editpolicyProvider>
+</extension>
+
 <!-- Preference pages declaration -->
 <extension point="org.eclipse.ui.preferencePages" id="prefpages">
 

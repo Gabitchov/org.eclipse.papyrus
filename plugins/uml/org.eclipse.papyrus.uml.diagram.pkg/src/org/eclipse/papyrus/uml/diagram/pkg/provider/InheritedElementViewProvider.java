@@ -11,17 +11,20 @@ package org.eclipse.papyrus.uml.diagram.pkg.provider;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateEdgeViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperation;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLViewProvider;
 import org.eclipse.papyrus.uml.diagram.pkg.edit.part.PackageDiagramEditPart;
+import org.eclipse.uml2.uml.Package;
 
 public class InheritedElementViewProvider extends UMLViewProvider {
 
@@ -72,11 +75,14 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 		}
 
 		IElementType elementType = (IElementType)op.getSemanticAdapter().getAdapter(IElementType.class);
-		if(elementType == InheritedElementTypes.PACKAGE) {
+		if((elementType == InheritedElementTypes.PACKAGE) || (elementType == InheritedElementTypes.PACKAGE_CN)) {
+
 			return true;
 		}
 
-		if(elementType == InheritedElementTypes.PACKAGE_CN) {
+		// SemanticHint may be null (especially when drop from ModelExplorer
+		EObject eobject = (EObject)op.getSemanticAdapter().getAdapter(EObject.class);
+		if(eobject instanceof Package) {
 			return true;
 		}
 
@@ -88,6 +94,19 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 
 		if(semanticHint != null) {
 			return super.createNode(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
+		}
+
+		// SemanticHint may be null when the element is created indirectly by
+		// DND from model explorer
+		// ex: Drag and drop a Connector may require to show ConnectorEnd first.
+		EObject eobject = (EObject)semanticAdapter.getAdapter(EObject.class);
+		if(eobject instanceof Package) {
+			if(containerView instanceof Diagram) {
+				return super.createNode(semanticAdapter, containerView, PackageDiagramElementTypes.PACKAGE.getSemanticHint(), index, persisted, preferencesHint);
+			} else {
+				return super.createNode(semanticAdapter, containerView, PackageDiagramElementTypes.PACKAGE_CN.getSemanticHint(), index, persisted, preferencesHint);
+
+			}
 		}
 
 		return null;
