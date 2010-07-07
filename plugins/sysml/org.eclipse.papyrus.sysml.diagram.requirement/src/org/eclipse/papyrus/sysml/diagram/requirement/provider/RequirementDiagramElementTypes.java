@@ -71,13 +71,18 @@ public class RequirementDiagramElementTypes extends AbstractElementTypeEnumerato
 	public static final IHintedType Abstraction_4006 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Abstraction_4006"); //$NON-NLS-1$
 
 	/**
-	 * Component_2002 element
+	 * Port_3032 element (for Containment-Circle)
 	 */
-	public static final IHintedType Component_2002 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Component_2002"); //$NON-NLS-1$
+	public static final IHintedType Port_3032 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Port_3032"); //$NON-NLS-1$
 
 	/**
-	 * Component_3021 element
+	 * NamedElement_2097 element (for any Name Element that can be used in the diagram)
 	 */
-	public static final IHintedType Component_3021 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Component_3021"); //$NON-NLS-1$
+	public static final IHintedType NamedElement_2097 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.NamedElement_2097"); //$NON-NLS-1$
+
+	/**
+	 * Link_4023 element (for Containment-Link)
+	 */
+	public static final IHintedType Link_4023 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Link_4023"); //$NON-NLS-1$
 
 }

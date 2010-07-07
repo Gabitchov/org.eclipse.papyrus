@@ -10,6 +10,8 @@
 package org.eclipse.papyrus.sysml.diagram.requirement.provider;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateEdgeViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperation;
@@ -17,6 +19,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLViewProvider;
 import org.eclipse.papyrus.sysml.diagram.requirement.Messages;
 import org.eclipse.papyrus.sysml.diagram.requirement.edit.part.RequirementDiagramEditPart;
@@ -41,17 +44,23 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 			return false;
 		}
 
+		// This provider is registered for Requirement Diagram for Abstraction usage (Satisfy, Verify, Copy links)
 		IElementType elementType = (IElementType)op.getSemanticAdapter().getAdapter(IElementType.class);
 		if(elementType == RequirementDiagramElementTypes.Abstraction_4006) {
 			return true;
 		}
-		if(elementType == RequirementDiagramElementTypes.Component_2002) {
-			return true;
-		}
-		if(elementType == RequirementDiagramElementTypes.Component_3021) {
+
+		// This provider is registered for Requirement Diagram for any Named Element usage in the diagram
+		if(elementType == RequirementDiagramElementTypes.NamedElement_2097) {
 			return true;
 		}
 
+		// This provider is registered for Requirement Diagram for Abstraction usage (Satisfy, Verify, Copy links)
+		if(elementType == RequirementDiagramElementTypes.Link_4023) {
+			return true;
+		}
+
+		// else : unknown element
 		return false;
 	}
 
@@ -97,6 +106,9 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 		if(elementType == RequirementDiagramElementTypes.Class_3014) {
 			return true;
 		}
+		if(elementType == RequirementDiagramElementTypes.Port_3032) {
+			return true;
+		}
 
 		// else : unknown element
 		return false;
@@ -129,4 +141,12 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 		return super.createEdge(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
 	}
 
+	protected void stampShortcut(View containerView, Node target) {
+		if(!RequirementDiagramEditPart.DIAGRAM_ID.equals(UMLVisualIDRegistry.getModelID(containerView))) {
+			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
+			shortcutAnnotation.setSource(Messages.Short_Cut); //$NON-NLS-1$
+			shortcutAnnotation.getDetails().put(Messages.Model_ID, RequirementDiagramEditPart.DIAGRAM_ID); //$NON-NLS-1$
+			target.getEAnnotations().add(shortcutAnnotation);
+		}
+	}
 }

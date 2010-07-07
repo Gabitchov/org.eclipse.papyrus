@@ -2,6 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
 
+<!-- Palette tool declaration (declares the real palette containment) -->
    <extension
          point="org.eclipse.papyrus.diagram.common.paletteDefinition">
       <paletteDefinition
@@ -14,11 +15,14 @@
          <Priority
                name="Low">
          </Priority>
+		 <!-- Specify diagram this palette tools relate to -->				
          <editor
                id="org.eclipse.papyrus.sysml.diagram.requirement">
          </editor>
       </paletteDefinition>
    </extension>
+
+<!-- Diagram creation command registration in menu and toolbar -->
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
@@ -57,6 +61,8 @@
          </toolbar>
       </menuContribution>
    </extension>
+   
+<!-- Diagram creation command -->
    <extension
          point="org.eclipse.ui.commands">
       <command
@@ -66,6 +72,8 @@
             name="SysML Requirement Diagram">
       </command>
    </extension>
+
+<!-- Diagram declaration -->
    <extension
          point="org.eclipse.papyrus.core.papyrusDiagram">
       <editorDiagram
@@ -81,6 +89,8 @@
             language="sysml">
       </creationCommand>
    </extension>
+   
+<!-- Diagram creation handlers -->
    <extension
          point="org.eclipse.ui.handlers">
       <handler
@@ -113,11 +123,13 @@
          <Priority
                name="Highest">
          </Priority>
+         <!-- Handlers for class (2008, 3004, 3008, 3010, 3014), for packages (1000, 2007, 3009), for any Named Element from the model explorer (2097) and for containement (3032) -->
          <context
-               semanticHints="1000, 2007, 2008, 3004, 3008, 3009, 3010, 3014"
+               semanticHints="1000, 2007, 2008, 2097, 3004, 3008, 3009, 3010, 3014, 3032"
                viewClass="org.eclipse.gmf.runtime.notation.Node"></context>
+          <!-- Handlers for abstraction (4006) and for containement (4023) -->
          <context
-               semanticHints="2002, 3021, 4006, 4023"
+               semanticHints="4006, 4023"
                viewClass="org.eclipse.gmf.runtime.notation.Edge">
          </context>
       </viewProvider>
@@ -135,24 +147,28 @@
          <Priority
                name="Low">
          </Priority>
+         <!-- Edit Part Providers for Nodes for class (2008, 3004, 3008, 3010, 3014), for packages (1000, 2007, 3009), for any Named Element from the model explorer (2097) and for containement (3032) -->
          <object
                class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
                id="inherited-nodes">
             <method
                   name="getType()"
-                  value="1000, 3009, 2007, 2008, 3004, 3008, 3010, 3014">
+                  value="1000, 3009, 2007, 2008, 2097, 3004, 3008, 3010, 3014, 3032">
             </method>
          </object>
+           <!-- Edit Part Providers for Edges for abstraction (4006) and for containement (4023) -->
          <object
                class="org.eclipse.gmf.runtime.notation.Edge(org.eclipse.gmf.runtime.notation)"
                id="inherited-edges">
             <method
                   name="getType()"
-                  value="2002, 3021, 4006, 4023">
+                  value="4006, 4023">
             </method>
          </object>
       </editpartProvider>
    </extension>
+   
+   <!-- Palette tool definition (defines tools possibly used by the palette(s)) -->
    <extension
          id="org.eclipse.papyrus.sysml.diagram.requirement.palettedefinition"
          name="SysML Reqs Predefined Entries"
@@ -212,6 +228,8 @@
          </Priority>
       </editpolicyProvider>
    </extension>
+   
+ <!-- Preference pages declaration -->
    <extension
          id="prefpages"
          point="org.eclipse.ui.preferencePages">
@@ -234,7 +252,5 @@
             name="Rules and Grid">
       </page>
    </extension>
-
-<!-- Palette tool declaration (declares the real palette containment) -->
 
 </plugin>
