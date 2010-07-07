@@ -271,7 +271,9 @@ public class ModelSetQueryAdapter implements IModelSetQueryAdapter, Adapter.Inte
 							EObject eObject = (EObject)notification.getOldValue();
 							unloadedEObjects.put(eObject, resource);
 							for(Iterator<EObject> i = EcoreUtil.getAllProperContents(eObject, false); i.hasNext();) {
-								unloadedEObjects.put(i.next(), resource);
+								EObject next = i.next();
+								unloadedEObjects.put(next, resource);
+								removeObjectFromCache(next);
 							}
 						}
 						break;
@@ -283,7 +285,9 @@ public class ModelSetQueryAdapter implements IModelSetQueryAdapter, Adapter.Inte
 							@SuppressWarnings("unchecked")
 							List<EObject> eObjects = (List<EObject>)notification.getOldValue();
 							for(Iterator<EObject> i = EcoreUtil.getAllProperContents(eObjects, false); i.hasNext();) {
-								unloadedEObjects.put(i.next(), resource);
+								EObject next = i.next();
+								unloadedEObjects.put(next, resource);
+								removeObjectFromCache(next);
 							}
 						}
 						break;
@@ -306,6 +310,10 @@ public class ModelSetQueryAdapter implements IModelSetQueryAdapter, Adapter.Inte
 					}
 				} else {
 					unloadedResources.add((Resource)notifier);
+					for(Iterator<EObject> i = EcoreUtil.getAllProperContents((Resource)notifier, false); i.hasNext();) {
+						EObject next = i.next();
+						removeObjectFromCache(next);
+					}
 				}
 				break;
 			}
