@@ -66,6 +66,17 @@ public class InitModelWizard extends CreateModelWizard {
 	}
 
 	/**
+	 * @see org.eclipse.papyrus.wizards.CreateModelWizard#addPages()
+	 *
+	 */
+	public void addPages() {
+		super.addPages();
+		if (isInitNotCreateModel()) {
+			addPage(selectRootElementPage);
+		}
+	};
+
+	/**
 	 * Returns true is the file can be served as a model model for the diagram.
 	 *
 	 * @param file the file
