@@ -13,6 +13,7 @@
 package org.eclipse.papyrus.diagram.clazz.custom.policies;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -48,13 +49,15 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void addAdditionalListeners() {
+		super.addAdditionalListeners();
+
+		Operation operation = getUMLElement();
 		// check host semantic element is not null
-		if(!(hostSemanticElement instanceof Operation)) {
+		if(operation == null) {
 			return;
 		}
-
-		Operation operation = (Operation)hostSemanticElement;
 
 		// adds a listener to the element itself, and to linked elements, like Type
 		for(Parameter parameter : operation.getOwnedParameters()) {
@@ -129,12 +132,11 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	}
 
 	/**
-	 * Returns the {@link Operation} managed by this edit part.
-	 * 
-	 * @return the {@link Operation} managed by this edit part.
+	 * {@inheritDoc}
 	 */
+	@Override
 	public Operation getUMLElement() {
-		return (Operation)getView().getElement();
+		return (Operation)hostSemanticElement;
 	}
 
 	/**
@@ -234,15 +236,34 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			switch(notification.getEventType()) {
 			// if it is added => adds listener to the type element
 			case Notification.ADD:
-			case Notification.ADD_MANY: // should never happen
 				getDiagramEventBroker().addNotificationListener((EObject)notification.getNewValue(), this);
 				refreshDisplay();
 				// if it is removed => removes listener from the type element
 				break;
-
+			case Notification.ADD_MANY: // should never happen
+				if(notification.getNewValue() instanceof List<?>) {
+					List<?> addedElements = (List<?>)notification.getNewValue();
+					for(Object addedElement : addedElements) {
+						if(addedElement instanceof EObject) {
+							getDiagramEventBroker().addNotificationListener((EObject)addedElement, this);
+						}
+					}
+				}
+				refreshDisplay();
+				break;
 			case Notification.REMOVE:
-			case Notification.REMOVE_MANY: // should never happen
 				getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);
+				refreshDisplay();
+				break;
+			case Notification.REMOVE_MANY: // should never happen
+				if(notification.getOldValue() instanceof List<?>) {
+					List<?> removedElements = (List<?>)notification.getOldValue();
+					for(Object removedElement : removedElements) {
+						if(removedElement instanceof EObject) {
+							getDiagramEventBroker().removeNotificationListener((EObject)removedElement, this);
+						}
+					}
+				}
 				refreshDisplay();
 				break;
 			// if it is set, remove the old one and adds the new one. this is the method use when
@@ -293,8 +314,8 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	/**
 	 * notifies that the the property has changed.
 	 * 
-	 * @param property
-	 *        the property that has changed
+	 * @param operation
+	 *        the operation that has changed
 	 * @param notification
 	 *        the notification send when the element has been changed
 	 */
@@ -315,15 +336,34 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			switch(notification.getEventType()) {
 			// if it is added => adds listener to the type element
 			case Notification.ADD:
-			case Notification.ADD_MANY: // should never happen
 				getDiagramEventBroker().addNotificationListener((EObject)notification.getNewValue(), this);
 				refreshDisplay();
 				// if it is removed => removes listener from the type element
 				break;
-
+			case Notification.ADD_MANY: // should never happen
+				if(notification.getNewValue() instanceof List<?>) {
+					List<?> addedElements = (List<?>)notification.getNewValue();
+					for(Object addedElement : addedElements) {
+						if(addedElement instanceof EObject) {
+							getDiagramEventBroker().addNotificationListener((EObject)addedElement, this);
+						}
+					}
+				}
+				refreshDisplay();
+				break;
 			case Notification.REMOVE:
-			case Notification.REMOVE_MANY: // should never happen
 				getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);
+				refreshDisplay();
+				break;
+			case Notification.REMOVE_MANY: // should never happen
+				if(notification.getOldValue() instanceof List<?>) {
+					List<?> removedElements = (List<?>)notification.getOldValue();
+					for(Object removedElement : removedElements) {
+						if(removedElement instanceof EObject) {
+							getDiagramEventBroker().removeNotificationListener((EObject)removedElement, this);
+						}
+					}
+				}
 				refreshDisplay();
 				break;
 			// if it is set, remove the old one and adds the new one. this is the method use when
@@ -360,14 +400,14 @@ public class OperationLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	protected void removeAdditionalListeners() {
+		super.removeAdditionalListeners();
+		Operation operation = getUMLElement();
 		// check host semantic element is not null
-		if(!(hostSemanticElement instanceof Operation)) {
+		if(operation == null) {
 			return;
 		}
-
-		Operation operation = (Operation)hostSemanticElement;
-
 		for(Parameter parameter : operation.getOwnedParameters()) {
 			getDiagramEventBroker().removeNotificationListener(parameter, this);
 

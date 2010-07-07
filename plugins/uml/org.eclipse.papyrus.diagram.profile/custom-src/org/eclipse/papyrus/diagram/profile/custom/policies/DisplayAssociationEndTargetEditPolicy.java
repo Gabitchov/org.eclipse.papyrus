@@ -15,6 +15,9 @@ package org.eclipse.papyrus.diagram.profile.custom.policies;
 
 import org.eclipse.papyrus.diagram.profile.custom.helper.AssociationEndTargetLabelHelper;
 
+/**
+ * Mask Managed label edit policy for association ends (target role)
+ */
 public class DisplayAssociationEndTargetEditPolicy extends DisplayAssociationEndEditPolicy {
 
 	/**

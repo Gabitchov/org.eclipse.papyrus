@@ -13,16 +13,13 @@
 package org.eclipse.papyrus.diagram.composite.custom.edit.policies;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
-import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.diagram.common.editpolicies.AbstractMaskManagedEditPolicy;
@@ -32,8 +29,6 @@ import org.eclipse.papyrus.diagram.composite.custom.preferences.PropertyPreferen
 import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.umlutils.ICustomAppearence;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
-import org.eclipse.papyrus.umlutils.ui.command.AddMaskManagedLabelDisplayCommand;
-import org.eclipse.papyrus.umlutils.ui.command.RemoveEAnnotationCommand;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -47,13 +42,15 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public void addAdditionalListeners() {
+		super.addAdditionalListeners();
+		Property property = getUMLElement();
 		// check host semantic element is not null
-		if(!(hostSemanticElement instanceof Property)) {
+		if(property == null) {
 			return;
 		}
 
-		Property property = (Property)hostSemanticElement;
 		// adds a listener to the element itself, and to linked elements, like Type
 		if(property.getType() != null) {
 			getDiagramEventBroker().addNotificationListener(property.getType(), this);
@@ -90,19 +87,6 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	}
 
 	/**
-	 * Gets the diagram event broker from the editing domain.
-	 * 
-	 * @return the diagram event broker
-	 */
-	protected DiagramEventBroker getDiagramEventBroker() {
-		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
-		if(theEditingDomain != null) {
-			return DiagramEventBroker.getInstance(theEditingDomain);
-		}
-		return null;
-	}
-
-	/**
 	 * {@inheritDoc}
 	 */
 	public String getMaskLabel(int value) {
@@ -135,72 +119,11 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	}
 
 	/**
-	 * Returns the {@link Property} managed by this edit part.
-	 * 
-	 * @return
+	 * {@inheritDoc}
 	 */
+	@Override
 	public Property getUMLElement() {
-		return (Property)getView().getElement();
-	}
-
-	/**
-	 * Returns the view controlled by the host edit part
-	 * 
-	 * @return the view controlled by the host edit part
-	 */
-	protected View getView() {
-		return (View)getHost().getModel();
-	}
-
-	/**
-	 * Returns <code>true</code> if the specified object is the annotation in charge of the mask
-	 * managed label.
-	 * 
-	 * @param object
-	 *        the object to be checked
-	 * @return <code>true</code> if the object is an {@link EAnnotation} and its source is the
-	 *         correct one.
-	 */
-	protected boolean isMaskManagedAnnotation(Object object) {
-		// check the notifier is an annotation
-		if((object instanceof EAnnotation)) {
-
-			// notifier is the eannotation. Check this is the annotation in charge of the property
-			// label display
-			if(VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION.equals(((EAnnotation)object).getSource())) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Returns <code>true</code> if the the annotation in charge of the mask managed label is
-	 * removed from the given object which should be a View.
-	 * 
-	 * @param object
-	 *        the object to be checked
-	 * @param notification
-	 *        the notification passed to the policy (which is a listener)
-	 * @return <code>true</code> if the object is an {@link EAnnotation} and its source is the
-	 *         correct one.
-	 */
-	protected boolean isRemovedMaskManagedLabelAnnotation(Object object, Notification notification) {
-		// object is a model element, that means it has EAnnotations
-		if(object instanceof EModelElement) {
-
-			// something was removed.
-			if(notification.getEventType() == Notification.REMOVE) {
-				Object oldValue = notification.getOldValue();
-
-				// this is an annotation which is returned
-				if(oldValue instanceof EAnnotation) {
-					// returns true if the annotation has the correct source
-					return VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION.equals(((EAnnotation)oldValue).getSource());
-				}
-			}
-		}
-		return false;
+		return (Property)super.getUMLElement();
 	}
 
 	/**
@@ -272,15 +195,34 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			switch(notification.getEventType()) {
 			// if it is added => adds listener to the type element
 			case Notification.ADD:
-			case Notification.ADD_MANY: // should never happen
 				getDiagramEventBroker().addNotificationListener((EObject)notification.getNewValue(), this);
 				refreshDisplay();
 				// if it is removed => removes listener from the type element
 				break;
-
+			case Notification.ADD_MANY: // should never happen
+				if(notification.getNewValue() instanceof List<?>) {
+					List<?> addedElements = (List<?>)notification.getNewValue();
+					for(Object addedElement : addedElements) {
+						if(addedElement instanceof EObject) {
+							getDiagramEventBroker().addNotificationListener((EObject)addedElement, this);
+						}
+					}
+				}
+				refreshDisplay();
+				break;
 			case Notification.REMOVE:
-			case Notification.REMOVE_MANY: // should never happen
 				getDiagramEventBroker().removeNotificationListener((EObject)notification.getOldValue(), this);
+				refreshDisplay();
+				break;
+			case Notification.REMOVE_MANY: // should never happen
+				if(notification.getOldValue() instanceof List<?>) {
+					List<?> removedElements = (List<?>)notification.getOldValue();
+					for(Object removedElement : removedElements) {
+						if(removedElement instanceof EObject) {
+							getDiagramEventBroker().removeNotificationListener((EObject)removedElement, this);
+						}
+					}
+				}
 				refreshDisplay();
 				break;
 			// if it is set, remove the old one and adds the new one. this is the method use when
@@ -334,15 +276,16 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 	}
 
 	/**
-	 * 
+	 * {@inheritDoc}
 	 */
+	@Override
 	protected void removeAdditionalListeners() {
-		if(!(hostSemanticElement instanceof Property)) {
+		super.removeAdditionalListeners();
+		Property property = getUMLElement();
+		if(property == null) {
 			// check semantic element is not null and this is really an instance of Property
 			return;
 		}
-
-		Property property = (Property)hostSemanticElement;
 
 		if(property.getType() != null) {
 			getDiagramEventBroker().removeNotificationListener(property.getType(), this);
@@ -350,27 +293,6 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 
 		getDiagramEventBroker().removeNotificationListener(property.getUpperValue(), this);
 		getDiagramEventBroker().removeNotificationListener(property.getLowerValue(), this);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void setDefaultDisplayValue() {
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
-		if(editingDomain != null) {
-			editingDomain.getCommandStack().execute(new RemoveEAnnotationCommand(editingDomain, (EModelElement)getHost().getModel(), VisualInformationPapyrusConstant.CUSTOM_APPEARENCE_ANNOTATION));
-		}
-
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void updateDisplayValue(int newValue) {
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
-		if(editingDomain != null) {
-			editingDomain.getCommandStack().execute(new AddMaskManagedLabelDisplayCommand(editingDomain, (EModelElement)getHost().getModel(), newValue));
-		}
 	}
 
 }

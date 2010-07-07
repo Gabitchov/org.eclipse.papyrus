@@ -11,14 +11,13 @@
  * Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  * Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from the class diagram
  *****************************************************************************/
-
-
-
 package org.eclipse.papyrus.diagram.profile.custom.policies;
 
 import org.eclipse.papyrus.diagram.profile.custom.helper.AssociationEndSourceLabelHelper;
 
-
+/**
+ * Mask Managed label edit policy for association ends (source role)
+ */
 public class DisplayAssociationEndSourceEditPolicy extends DisplayAssociationEndEditPolicy {
 
 	/**
