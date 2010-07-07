@@ -227,8 +227,13 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 							OperationHistoryFactory.getOperationHistory().execute(moveOperation, new NullProgressMonitor(), null);
 						} catch (ExecutionException e1) {
 							Activator.log.error(e1);
+						} finally {
+							// try to restore selection in the view
+							referencesViewer.setSelection(selection, true);
 						}
 					}
+
+
 				}
 
 				/**
@@ -271,6 +276,9 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 							OperationHistoryFactory.getOperationHistory().execute(moveOperation, new NullProgressMonitor(), null);
 						} catch (ExecutionException e1) {
 							Activator.log.error(e1);
+						} finally {
+							// try to restore selection in the view
+							referencesViewer.setSelection(selection, true);
 						}
 					}
 				}
