@@ -21,6 +21,7 @@ import java.util.Set;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.validation.internal.service.GetBatchConstraintsOperation;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
@@ -47,6 +48,7 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.Class5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceRealizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPartTN;
@@ -324,9 +326,34 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 	}
 
 	/**
+	 * this method is used to drop an interface realization into the class diagraù
+	 * @param dropRequest the drop request
+	 * @param semanticLink the element that is the interfaceRealization
+	 * @param linkVISUALID the visualID of the interfaceRealization
+	 * @return the command containing the creation of the view for interface realization
+	 */
+	protected Command dropInterfaceRealization(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
+		Collection<?> sources = linkmappingHelper.getSource(semanticLink);
+		Collection<?> targets = linkmappingHelper.getTarget(semanticLink);
+		if(sources.size() == 0 || targets.size() == 0) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		
+		Element source = (Element)sources.toArray()[0];
+		Element target = (Element)targets.toArray()[0];
+		CompositeCommand cc= new CompositeCommand("");
+		dropBinaryLink(cc, source, target, linkVISUALID, dropRequest.getLocation(), semanticLink);
+		return new ICommandProxy(cc);
+	}
+	
+	/**
 	 * {@inheritedDoc}
 	 */
 	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID, int linkVISUALID) {
+		if (linkVISUALID ==InterfaceRealizationEditPart.VISUAL_ID){
+			return dropInterfaceRealization(dropRequest, semanticLink, linkVISUALID);
+		}
+		
 		switch(nodeVISUALID) {
 		case Dependency2EditPart.VISUAL_ID:
 			return dropDependency(dropRequest, semanticLink, nodeVISUALID);

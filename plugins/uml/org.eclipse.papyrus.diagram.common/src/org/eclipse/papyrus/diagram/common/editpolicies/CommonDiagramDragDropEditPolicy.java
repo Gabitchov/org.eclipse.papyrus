@@ -66,7 +66,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	private Set<Integer> specificDrop = null;
 
 	/** The specified link mapping helper depending on the diagram */
-	private ILinkMappingHelper linkmappingHelper;
+	protected ILinkMappingHelper linkmappingHelper;
 
 	/**
 	 * Instantiates a new custom diagram drag drop edit policy.
