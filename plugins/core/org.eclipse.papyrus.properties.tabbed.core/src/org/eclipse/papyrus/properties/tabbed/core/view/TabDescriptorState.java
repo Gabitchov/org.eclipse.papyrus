@@ -9,7 +9,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.properties.tabbed.customization.state;
+package org.eclipse.papyrus.properties.tabbed.core.view;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -19,7 +19,7 @@ import java.util.List;
 import org.eclipse.papyrus.properties.runtime.state.AbstractState;
 import org.eclipse.papyrus.properties.runtime.state.ITraversableModelElement;
 import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
-import org.eclipse.papyrus.properties.tabbed.customization.dialog.CustomizeContentWizardPage;
+import org.eclipse.papyrus.properties.tabbed.core.Activator;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
 import org.w3c.dom.Document;
@@ -82,7 +82,7 @@ public class TabDescriptorState extends AbstractState {
 	 * {@inheritDoc}
 	 */
 	public String getText() {
-		return label;
+		return label + " (Caterory: " + category + ")";
 	}
 
 	/**
@@ -160,7 +160,7 @@ public class TabDescriptorState extends AbstractState {
 	 * {@inheritDoc}
 	 */
 	public Image getImage() {
-		return null;
+		return Activator.getImage("/icons/Tab.gif");
 	}
 
 
@@ -208,7 +208,7 @@ public class TabDescriptorState extends AbstractState {
 		tabDescriptorNode.setAttribute("id", id);
 		tabDescriptorNode.setAttribute("label", label);
 
-		List<TabDescriptorState> tabDescriptorStates = CustomizeContentWizardPage.getTabDescriptorStates();
+		List<TabDescriptorState> tabDescriptorStates = StatesStore.getTabDescriptorStates();
 		int index = tabDescriptorStates.indexOf(this);
 		if(index != 0) {
 			tabDescriptorNode.setAttribute("afterTab", tabDescriptorStates.get(index - 1).id);

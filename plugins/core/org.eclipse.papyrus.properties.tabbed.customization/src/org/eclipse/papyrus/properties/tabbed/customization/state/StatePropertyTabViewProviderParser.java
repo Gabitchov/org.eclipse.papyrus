@@ -23,6 +23,7 @@ import org.eclipse.papyrus.properties.runtime.view.XMLParseException;
 import org.eclipse.papyrus.properties.tabbed.core.view.PropertyTabViewProviderParser;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptorState;
+import org.eclipse.papyrus.properties.tabbed.core.view.TabDescriptorState;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
 import org.w3c.dom.Document;
 

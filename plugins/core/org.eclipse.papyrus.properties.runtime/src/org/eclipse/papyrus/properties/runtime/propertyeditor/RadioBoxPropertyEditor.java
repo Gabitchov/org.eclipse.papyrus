@@ -77,6 +77,7 @@ public class RadioBoxPropertyEditor extends AbstractPropertyEditor {
 			Button button = getWidgetFactory().createButton(composite, (!value.equals("") ? value : "<Unset>"), SWT.RADIO);
 			button.addSelectionListener(listener);
 			buttons.add(button);
+			button.setToolTipText(getTooltipText());
 		}
 
 		if((getDescriptor().getLabelPosition() & (SWT.RIGHT | SWT.BOTTOM)) != 0) {
@@ -143,6 +144,7 @@ public class RadioBoxPropertyEditor extends AbstractPropertyEditor {
 	@Override
 	public IStatus init(IPropertyEditorDescriptor descriptor) {
 		setDescriptor(descriptor);
+		setTooltipText(descriptor.getTooltipText());
 		if(descriptor instanceof IBoundedValuesPropertyEditorDescriptor) {
 			if(((IBoundedValuesPropertyEditorDescriptor)descriptor).getAvailableValues() != null) {
 				for(Object object : ((IBoundedValuesPropertyEditorDescriptor)descriptor).getAvailableValues()) {

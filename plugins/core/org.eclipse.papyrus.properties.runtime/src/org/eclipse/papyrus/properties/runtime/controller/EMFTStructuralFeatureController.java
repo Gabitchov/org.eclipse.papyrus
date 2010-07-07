@@ -27,6 +27,7 @@ import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.EMFTPropertyEditorControllerDescriptor;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
 import org.eclipse.papyrus.properties.runtime.controller.predefined.PredefinedControllerDescriptor;
+import org.eclipse.papyrus.properties.runtime.modelhandler.emf.EMFFeatureModelHandler;
 import org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandler;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 import org.eclipse.swt.widgets.Composite;
@@ -44,9 +45,6 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 
 	/** model handler to interact with the model for this controller */
 	protected IEMFModelHandler modelHandler;
-
-	/** cached feature to edit */
-	protected EStructuralFeature featureToEdit = null;
 
 	/**
 	 * Creates a new EMFTStructuralFeatureController.
@@ -164,7 +162,7 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 		// when editing multiple objects, the value set will be the same for all elements
 		// should look for exceptions here perhaps?
 		for(EObject object : getObjectsToEdit()) {
-			getModelHandler().setValueInModel(object, getEditorValue());
+			getModelHandler().setValueInModel(object, value);
 		}
 	}
 
@@ -213,7 +211,42 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 	/**
 	 * {@inheritDoc}
 	 */
+	@SuppressWarnings("unchecked")
 	public void notifyChanged(Notification notification) {
+		// if one element is added to the feature, should also add this as a listener
+		// if one element is removed from the feature, should also remove this as a listener
+		// in other case, except removing adapters, should refresh
+		if(Notification.ADD == notification.getEventType()) {
+			// check which feature has been modified
+			Object o = notification.getFeature();
+			EStructuralFeature feature = ((EMFFeatureModelHandler)getModelHandler()).getFeatureByName(getObjectsToEdit().get(0));
+			if(o.equals(feature)) {
+				((EObject)notification.getNewValue()).eAdapters().add(this);
+			}
+		} else if(Notification.ADD_MANY == notification.getEventType()) {
+			Object o = notification.getFeature();
+			EStructuralFeature feature = ((EMFFeatureModelHandler)getModelHandler()).getFeatureByName(getObjectsToEdit().get(0));
+			if(o.equals(feature)) {
+				for(EObject eObject : ((List<EObject>)notification.getNewValue())) {
+					eObject.eAdapters().add(this);
+				}
+			}
+		} else if(Notification.REMOVE == notification.getEventType()) {
+			// check which feature has been modified
+			Object o = notification.getFeature();
+			EStructuralFeature feature = ((EMFFeatureModelHandler)getModelHandler()).getFeatureByName(getObjectsToEdit().get(0));
+			if(o.equals(feature)) {
+				((EObject)notification.getOldValue()).eAdapters().remove(this);
+			}
+		} else if(Notification.REMOVE_MANY == notification.getEventType()) {
+			Object o = notification.getFeature();
+			EStructuralFeature feature = ((EMFFeatureModelHandler)getModelHandler()).getFeatureByName(getObjectsToEdit().get(0));
+			if(o.equals(feature)) {
+				for(EObject eObject : ((List<EObject>)notification.getOldValue())) {
+					eObject.eAdapters().remove(this);
+				}
+			}
+		}
 		// refresh the editors
 		refreshDisplay();
 	}

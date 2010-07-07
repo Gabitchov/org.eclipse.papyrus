@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.propertyeditor;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,9 +22,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.properties.runtime.Activator;
@@ -42,11 +42,9 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Table;
-import org.eclipse.ui.PlatformUI;
 
 
 /**
@@ -73,7 +71,7 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 	protected TableViewer referencesViewer;
 
 	/** current Value */
-	protected EList<EObject> currentValue;
+	protected List<Object> currentValue;
 
 	/**
 	 * {@inheritDoc}
@@ -103,13 +101,6 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 			 * {@inheritDoc}
 			 */
 			public void mouseUp(MouseEvent e) {
-				// pops up a window to ask for a new reference
-				Display tmp = Display.getCurrent();
-				if(tmp == null && PlatformUI.isWorkbenchRunning()) {
-					tmp = PlatformUI.getWorkbench().getDisplay();
-				}
-				final Display display = (tmp != null) ? tmp : Display.getDefault();
-
 				// 2 possibilities:
 				// we can create only one type of element, so the element is created, and then, a pop up dialog is displayed
 				// several elements can be created (ex: nestedClassifiers for a class, we can create a class or an interface or any implementation of classifier
@@ -133,7 +124,11 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 							item.addSelectionListener(new SelectionListener() {
 
 								public void widgetSelected(SelectionEvent e) {
-									MessageDialog.openConfirm(display.getActiveShell(), "This is a debug message", "create with operation " + operation.getLabel());
+									try {
+										OperationHistoryFactory.getOperationHistory().execute(operation, new NullProgressMonitor(), null);
+									} catch (ExecutionException e1) {
+										Activator.log.error(e1);
+									}
 								}
 
 								public void widgetDefaultSelected(SelectionEvent e) {
@@ -141,6 +136,7 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 								}
 							});
 						}
+						menu.setVisible(true);
 					}
 				}
 			}
@@ -167,9 +163,27 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 			/**
 			 * {@inheritDoc}
 			 */
+			@SuppressWarnings("unchecked")
 			public void mouseUp(MouseEvent e) {
-				// TODO implement remove action
+				if(!(getController() instanceof IWizardPropertyEditorController)) {
+					return;
+				}
 				// use selection to remove element
+				// retrieve selected element(s)
+				IStructuredSelection selection = (IStructuredSelection)referencesViewer.getSelection();
+				if(selection == null || selection.isEmpty()) {
+					// nothing selected. 
+					return;
+				}
+				List<Object> selectedObjects = selection.toList();
+				IUndoableOperation deleteOperation = ((IWizardPropertyEditorController)getController()).getDeleteOperation(selectedObjects);
+				if(deleteOperation != null && deleteOperation.canExecute()) {
+					try {
+						OperationHistoryFactory.getOperationHistory().execute(deleteOperation, new NullProgressMonitor(), null);
+					} catch (ExecutionException e1) {
+						Activator.log.error(e1);
+					}
+				}
 			}
 
 			/**
@@ -187,61 +201,97 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 			}
 		});
 
-		Button upButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
-		upButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Up_12x12.gif")));
-		data = new GridData(SWT.FILL, SWT.CENTER, false, false);
-		upButton.setLayoutData(data);
-		upButton.addMouseListener(new MouseListener() {
+		if(((IBoundedValuesController)getController()).canMoveValues()) {
+			Button upButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
+			upButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Up_12x12.gif")));
+			data = new GridData(SWT.FILL, SWT.CENTER, false, false);
+			upButton.setLayoutData(data);
+			upButton.addMouseListener(new MouseListener() {
 
-			/**
-			 * {@inheritDoc}
-			 */
-			public void mouseUp(MouseEvent e) {
-				// TODO implement UP action
-			}
+				/**
+				 * {@inheritDoc}
+				 */
+				@SuppressWarnings("unchecked")
+				public void mouseUp(MouseEvent e) {
+					// use selection to remove element
+					// retrieve selected element(s)
+					IStructuredSelection selection = (IStructuredSelection)referencesViewer.getSelection();
+					if(selection == null || selection.isEmpty()) {
+						// nothing selected. 
+						return;
+					}
+					List<Object> selectedObjects = selection.toList();
+					IUndoableOperation moveOperation = ((IBoundedValuesController)getController()).getMoveCurrentValuesOperation(selectedObjects, -1);
+					if(moveOperation != null && moveOperation.canExecute()) {
+						try {
+							OperationHistoryFactory.getOperationHistory().execute(moveOperation, new NullProgressMonitor(), null);
+						} catch (ExecutionException e1) {
+							Activator.log.error(e1);
+						}
+					}
+				}
 
-			/**
-			 * {@inheritDoc}
-			 */
-			public void mouseDown(MouseEvent e) {
-			}
+				/**
+				 * {@inheritDoc}
+				 */
+				public void mouseDown(MouseEvent e) {
+				}
 
-			/**
-			 * {@inheritDoc}
-			 */
-			public void mouseDoubleClick(MouseEvent e) {
-			}
-		});
+				/**
+				 * {@inheritDoc}
+				 */
+				public void mouseDoubleClick(MouseEvent e) {
+				}
+			});
+		}
 
-		Button downButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
-		downButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Down_12x12.gif")));
-		data = new GridData(SWT.FILL, SWT.CENTER, false, false);
-		downButton.setLayoutData(data);
-		downButton.addMouseListener(new MouseListener() {
+		if(((IBoundedValuesController)getController()).canMoveValues()) {
+			Button downButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
+			downButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Down_12x12.gif")));
+			data = new GridData(SWT.FILL, SWT.CENTER, false, false);
+			downButton.setLayoutData(data);
+			downButton.addMouseListener(new MouseListener() {
 
-			/**
-			 * {@inheritDoc}
-			 */
-			public void mouseUp(MouseEvent e) {
-				// TODO implement down button			
-			}
+				/**
+				 * {@inheritDoc}
+				 */
+				@SuppressWarnings("unchecked")
+				public void mouseUp(MouseEvent e) {
+					// use selection to remove element
+					// retrieve selected element(s)
+					IStructuredSelection selection = (IStructuredSelection)referencesViewer.getSelection();
+					if(selection == null || selection.isEmpty()) {
+						// nothing selected. 
+						return;
+					}
+					List<Object> selectedObjects = selection.toList();
+					IUndoableOperation moveOperation = ((IBoundedValuesController)getController()).getMoveCurrentValuesOperation(selectedObjects, +1);
+					if(moveOperation != null && moveOperation.canExecute()) {
+						try {
+							OperationHistoryFactory.getOperationHistory().execute(moveOperation, new NullProgressMonitor(), null);
+						} catch (ExecutionException e1) {
+							Activator.log.error(e1);
+						}
+					}
+				}
 
-			/**
-			 * {@inheritDoc}
-			 */
-			public void mouseDown(MouseEvent e) {
-			}
+				/**
+				 * {@inheritDoc}
+				 */
+				public void mouseDown(MouseEvent e) {
+				}
 
-			/**
-			 * {@inheritDoc}
-			 */
-			public void mouseDoubleClick(MouseEvent e) {
-			}
-		});
+				/**
+				 * {@inheritDoc}
+				 */
+				public void mouseDoubleClick(MouseEvent e) {
+				}
+			});
+		}
 
 		// creates table for the display of references
-		referenceArea = new Table(composite, SWT.BORDER);
-		data = new GridData(SWT.FILL, SWT.FILL, true, true, 5, 1);
+		referenceArea = new Table(composite, SWT.BORDER | SWT.MULTI);
+		data = new GridData(SWT.FILL, SWT.FILL, true, true, columnNu, 1);
 		data.heightHint = 80;
 		referenceArea.setLayoutData(data);
 		referencesViewer = new TableViewer(referenceArea);
@@ -272,6 +322,7 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 			}
 		});
 		referencesViewer.setLabelProvider(((ILabelProviderController)getController()).getEditorLabelProvider());
+		referencesViewer.getControl().setToolTipText(getTooltipText());
 		return composite;
 	}
 
@@ -290,7 +341,10 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 	 * @return the number of column for the composite
 	 */
 	protected int getColumnNumber() {
-		return 5;
+		if(((IBoundedValuesController)getController()).canMoveValues()) {
+			return 5;
+		}
+		return 3;
 	}
 
 	/**
@@ -317,6 +371,7 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 	@Override
 	public IStatus init(IPropertyEditorDescriptor descriptor) {
 		setDescriptor(descriptor);
+		setTooltipText(descriptor.getTooltipText());
 		return Status.OK_STATUS;
 	}
 
@@ -324,7 +379,7 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<EObject> getValue() {
+	public List<Object> getValue() {
 		if(isValid(referenceArea)) {
 			return currentValue;
 		} else {
@@ -336,14 +391,13 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 	/**
 	 * {@inheritDoc}
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void setValue(Object valueToEdit) {
 		if(!isValid(referenceArea)) {
 			return;
 		}
 		if(valueToEdit instanceof EList<?>) {
-			currentValue = (EList<EObject>)valueToEdit;
+			currentValue = new ArrayList<Object>((EList<?>)valueToEdit);
 		} else {
 			Activator.log.error("Waiting for a list of EObject", null);
 		}

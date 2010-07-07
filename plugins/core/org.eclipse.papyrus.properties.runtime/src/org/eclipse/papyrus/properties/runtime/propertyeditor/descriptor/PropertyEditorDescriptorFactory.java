@@ -30,10 +30,11 @@ public class PropertyEditorDescriptorFactory implements IPropertyEditorDescripto
 	public PropertyEditorDescriptor createEditorDescriptor(Node editorNode) {
 		String identifier = "";
 		String label = "";
+		String tooltipText = "";
 		int labelPosition = SWT.LEFT;
 		ImageDescriptor imageDescriptor = null;
 
-		// retrieve id, label, label position
+		// retrieve id, label, label position and tooltipText
 		NamedNodeMap attributes = editorNode.getAttributes();
 		if(attributes != null) {
 			for(int i = 0; i < attributes.getLength(); i++) {
@@ -45,6 +46,8 @@ public class PropertyEditorDescriptorFactory implements IPropertyEditorDescripto
 					labelPosition = Integer.parseInt(attribute.getNodeValue());
 				} else if("id".equals(nodeName)) {
 					identifier = attribute.getNodeValue();
+				} else if("tooltip".equals(nodeName)) {
+					tooltipText = attribute.getNodeValue();
 				}
 			}
 		}
@@ -66,6 +69,6 @@ public class PropertyEditorDescriptorFactory implements IPropertyEditorDescripto
 			}
 		}
 
-		return new PropertyEditorDescriptor(identifier, label, labelPosition, imageDescriptor);
+		return new PropertyEditorDescriptor(identifier, label, labelPosition, tooltipText, imageDescriptor);
 	}
 }

@@ -94,6 +94,8 @@ public class ComboPropertyEditor extends AbstractPropertyEditor {
 			createLabel(composite);
 		}
 
+		combo.setToolTipText(getTooltipText());
+
 		return composite;
 	}
 
@@ -152,6 +154,7 @@ public class ComboPropertyEditor extends AbstractPropertyEditor {
 	@Override
 	public IStatus init(IPropertyEditorDescriptor descriptor) {
 		setDescriptor(descriptor);
+		setTooltipText(descriptor.getTooltipText());
 		if(descriptor instanceof IBoundedValuesPropertyEditorDescriptor) {
 			List<?> values = ((IBoundedValuesPropertyEditorDescriptor)descriptor).getAvailableValues();
 			if(values != null) {
@@ -185,5 +188,4 @@ public class ComboPropertyEditor extends AbstractPropertyEditor {
 			}
 		}
 	}
-
 }

@@ -26,6 +26,7 @@ import org.eclipse.papyrus.properties.runtime.view.IFragmentDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.Activator;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.views.properties.tabbed.AbstractSectionDescriptor;
+import org.eclipse.ui.views.properties.tabbed.ISectionDescriptor;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -164,6 +165,48 @@ public class SectionDescriptorState extends AbstractState {
 	 */
 	public String getAdapterId() {
 		return adapterId;
+	}
+
+	/**
+	 * Returns the IDs of available tabs from state store
+	 * 
+	 * @return the list of IDs from state store
+	 */
+	public List<String> getAvailableTargetTab() {
+		ArrayList<String> result = new ArrayList<String>();
+
+		//Those available in state
+		List<TabDescriptorState> tabStates = StatesStore.getTabDescriptorStates();
+		for(TabDescriptorState tabDescriptorState : tabStates) {
+			result.add(tabDescriptorState.getId());
+		}
+
+		return result;
+	}
+
+	/**
+	 * Returns the IDs of available afterSection from state store
+	 * 
+	 * @return the list of IDs from state store
+	 */
+	public List<String> getAvailableAfterSection() {
+		ArrayList<String> result = new ArrayList<String>();
+
+		//Top element
+		result.add(ISectionDescriptor.TOP);
+
+		//Those available in state
+		List<SectionSetDescriptorState> sectionSetDescriptorStates = StatesStore.getSectionSetDescriptorStates();
+		for(SectionSetDescriptorState sectionSetDescriptorState : sectionSetDescriptorStates) {
+			List<SectionDescriptorState> sectionDescriptorStates = sectionSetDescriptorState.getSectionDescriptorStates();
+			for(SectionDescriptorState sectionDescriptorState : sectionDescriptorStates) {
+				result.add(sectionDescriptorState.getId());
+			}
+		}
+
+
+
+		return result;
 	}
 
 
@@ -467,6 +510,26 @@ public class SectionDescriptorState extends AbstractState {
 		 */
 		public void setId(String id) {
 			changeSupport.firePropertyChange("id", this.id, this.id = id);
+		}
+
+		/**
+		 * Returns the IDs of available sections from state store
+		 * 
+		 * @return the list of IDs
+		 */
+		public List<String> getAvailableId() {
+			ArrayList<String> result = new ArrayList<String>();
+
+			//Those available in state
+			List<SectionSetDescriptorState> sectionSetDescriptorStates = StatesStore.getSectionSetDescriptorStates();
+			for(SectionSetDescriptorState sectionSetDescriptorState : sectionSetDescriptorStates) {
+				List<SectionDescriptorState> sectionDescriptorStates = sectionSetDescriptorState.getSectionDescriptorStates();
+				for(SectionDescriptorState sectionDescriptorState : sectionDescriptorStates) {
+					result.add(sectionDescriptorState.getId());
+				}
+			}
+
+			return result;
 		}
 
 	}

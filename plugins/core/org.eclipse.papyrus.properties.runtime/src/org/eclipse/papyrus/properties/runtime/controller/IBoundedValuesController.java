@@ -13,6 +13,7 @@ package org.eclipse.papyrus.properties.runtime.controller;
 
 import java.util.List;
 
+import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ViewerFilter;
@@ -30,6 +31,24 @@ public interface IBoundedValuesController extends ILabelProviderController {
 	 * @return the list of available elements
 	 */
 	public Object getAvailableValues();
+
+	/**
+	 * Moves the given list of Objects in the list
+	 * 
+	 * @param objects
+	 *        the list of objects to move
+	 * @param move
+	 *        the delta for the index (0: stays at the same place, -1: everything move upper, +2: everything moves 2 index further)
+	 * @return the operation that moves the elements or <code>null</code>
+	 */
+	public IUndoableOperation getMoveCurrentValuesOperation(List<Object> objects, int move);
+
+	/**
+	 * Indicates if the values can be moved in the feature
+	 * 
+	 * @return <code>true</code> if the values can be moved, else <code>false</code>
+	 */
+	public boolean canMoveValues();
 
 	/**
 	 * Returns the list of current values

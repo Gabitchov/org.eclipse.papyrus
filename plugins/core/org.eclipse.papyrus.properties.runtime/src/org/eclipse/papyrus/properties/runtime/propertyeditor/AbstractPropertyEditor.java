@@ -42,6 +42,10 @@ public abstract class AbstractPropertyEditor implements IDisposable {
 	/** configuration for the property editor */
 	private IPropertyEditorDescriptor descriptor = null;
 
+	/** the tooltip for this controller */
+	private String tooltipText = null;
+
+
 	/**
 	 * Creates a new {@link AbstractPropertyEditor}. It uses a created widget factory each time a property editor is created, the other constructor
 	 * {@link #AbstractPropertyEditor(TabbedPropertySheetWidgetFactory)} should be used instead.
@@ -118,6 +122,26 @@ public abstract class AbstractPropertyEditor implements IDisposable {
 	public boolean getIsReadOnly() {
 		return isReadOnly;
 	}
+
+	/**
+	 * Returns the tooltip text of the editor
+	 * 
+	 * @return the tooltip text
+	 */
+	public String getTooltipText() {
+		return tooltipText;
+	}
+
+	/**
+	 * Sets the tooltip text of the editor
+	 * 
+	 * @param toolTipText
+	 *        the tooltip for the editor.
+	 */
+	public void setTooltipText(String toolTipText) {
+		this.tooltipText = toolTipText;
+	}
+
 
 	/**
 	 * Creates the display for this editor
@@ -220,7 +244,7 @@ public abstract class AbstractPropertyEditor implements IDisposable {
 		if(getDescriptor().getLabelImageDescriptor() != null) {
 			label.setImage(Activator.getImageFromDescriptor(getDescriptor().getLabelImageDescriptor()));
 		}
-		label.setToolTipText(getDescriptor().getLabel());
+		label.setToolTipText(getTooltipText());
 		label.setLayoutData(layoutData);
 		return label;
 	}

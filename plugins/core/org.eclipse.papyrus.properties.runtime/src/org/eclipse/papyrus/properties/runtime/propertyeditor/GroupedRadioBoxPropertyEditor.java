@@ -55,6 +55,7 @@ public class GroupedRadioBoxPropertyEditor extends RadioBoxPropertyEditor {
 			Button button = getWidgetFactory().createButton(group, (!value.equals("") ? value : "<Unset>"), SWT.RADIO);
 			button.addSelectionListener(listener);
 			buttons.add(button);
+			button.setToolTipText(getTooltipText());
 		}
 
 		return composite;

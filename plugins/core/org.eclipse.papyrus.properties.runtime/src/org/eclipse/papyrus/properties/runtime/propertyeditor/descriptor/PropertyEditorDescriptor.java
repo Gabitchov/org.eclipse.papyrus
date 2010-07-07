@@ -35,6 +35,9 @@ public class PropertyEditorDescriptor implements IPropertyEditorDescriptor, ICon
 	/** id of the editor configured by this descriptor */
 	private String editorID;
 
+	/** id of the editor configured by this descriptor */
+	private String tooltipText;
+
 	/**
 	 * Creates a new PropertyEditorDescriptor.
 	 * 
@@ -42,9 +45,11 @@ public class PropertyEditorDescriptor implements IPropertyEditorDescriptor, ICon
 	 *        the id of the editor described
 	 * @param label
 	 *        the label of the described editor
+	 * @param tooltipText
+	 *        the tooltip text for this property editor
 	 */
-	public PropertyEditorDescriptor(String editorID, String label) {
-		this(editorID, label, SWT.LEFT, null);
+	public PropertyEditorDescriptor(String editorID, String label, String tooltipText) {
+		this(editorID, label, SWT.LEFT, tooltipText, null);
 	}
 
 	/**
@@ -56,14 +61,17 @@ public class PropertyEditorDescriptor implements IPropertyEditorDescriptor, ICon
 	 *        the label of the described editor
 	 * @param labelPosition
 	 *        the label position relative to the edition area (see {@link SWT#LEFT})
+	 * @param tooltipText
+	 *        the tooltip text for this property editor
 	 * @param imageDescriptor
 	 *        the image descriptor for the icon of the property editor
 	 */
-	public PropertyEditorDescriptor(String editorID, String label, int labelPosition, ImageDescriptor imageDescriptor) {
+	public PropertyEditorDescriptor(String editorID, String label, int labelPosition, String tooltipText, ImageDescriptor imageDescriptor) {
 		this.label = label;
 		this.labelPosition = labelPosition;
 		this.imageDescriptor = imageDescriptor;
 		this.editorID = editorID;
+		this.tooltipText = tooltipText;
 	}
 
 	/**
@@ -113,6 +121,13 @@ public class PropertyEditorDescriptor implements IPropertyEditorDescriptor, ICon
 	 */
 	public IState createState(boolean readOnly) {
 		return new PropertyEditorDescriptorState(this, readOnly);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String getTooltipText() {
+		return tooltipText;
 	}
 
 }

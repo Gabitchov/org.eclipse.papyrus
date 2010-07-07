@@ -192,7 +192,7 @@ public abstract class PropertyEditorController implements IDisposable, IProperty
 	public abstract void updateModel();
 
 	/**
-	 *  {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	public void dispose() {
 		// remove added listeners

@@ -26,9 +26,11 @@ public class MultipleStructuralFeaturesPropertyEditorDescriptor extends Property
 	 *        the unique identifier for this editor factory
 	 * @param label
 	 *        the label for this property editor
+	 * @param tooltipText
+	 *        the tooltip text for this property editor
 	 */
-	public MultipleStructuralFeaturesPropertyEditorDescriptor(String editorId, String label) {
-		super(editorId, label);
+	public MultipleStructuralFeaturesPropertyEditorDescriptor(String editorId, String label, String tooltipText) {
+		super(editorId, label, tooltipText);
 	}
 
 	/**
@@ -40,11 +42,13 @@ public class MultipleStructuralFeaturesPropertyEditorDescriptor extends Property
 	 *        the label for this property editor
 	 * @param labelPosition
 	 *        the label position for this property editor
+	 * @param tooltipText
+	 *        the tooltip text for this property editor
 	 * @param imageDescriptor
 	 *        the icon for this property editor
 	 */
-	public MultipleStructuralFeaturesPropertyEditorDescriptor(String editorId, String label, int labelPosition, ImageDescriptor imageDescriptor) {
-		super(editorId, label, labelPosition, imageDescriptor);
+	public MultipleStructuralFeaturesPropertyEditorDescriptor(String editorId, String label, int labelPosition, String tooltipText, ImageDescriptor imageDescriptor) {
+		super(editorId, label, labelPosition, tooltipText, imageDescriptor);
 	}
 
 }

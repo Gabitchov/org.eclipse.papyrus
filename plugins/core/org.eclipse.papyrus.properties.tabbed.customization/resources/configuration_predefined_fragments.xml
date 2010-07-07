@@ -28,16 +28,6 @@
 			</container>
 		</content>
 	</fragment>
-	<fragment id="fragment_single_ContainerDescriptorState">
-		<context enablesFor="1">
-			<elementClass name="org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptorState"/>
-		</context>
-		<content>
-			<container>
-			 <layout kind="Grid" numColumns="1" sameWidth="false"/>
-			</container>
-		</content>
-	</fragment>
 	<fragment id="fragment_single_FragmentDescriptorState">
 		<context enablesFor="1">
 			<elementClass name="org.eclipse.papyrus.properties.runtime.view.FragmentDescriptorState"/>
@@ -51,7 +41,7 @@
 				</controller>
 				<controller id="integerStateBeanPropertyEditorController">
 					<property name="selectionSize"/>
-					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Selection Size" labelPosition="16384"/>
+					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Selection Size:" labelPosition="16384"/>
 				</controller>
 			</container>
 		</content>
@@ -67,13 +57,13 @@
 					<property name="id"/>
 					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Identifier:" labelPosition="16384"/>
 				</controller>
-				<controller id="stateBeanPropertyEditorController">
+				<controller id="referenceStateBeanPropertyEditorController">
 					<property name="targetTab"/>
-					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Tab Identifier" labelPosition="16384"/>
+					<editor id="org.eclipse.papyrus.properties.runtime.simpleReferencePropertyEditor" label="Tab Identifier:" labelPosition="16384"/>
 				</controller>
-				<controller id="stateBeanPropertyEditorController">
+				<controller id="referenceStateBeanPropertyEditorController">
 					<property name="afterSection"/>
-					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="After Section" labelPosition="16384"/>
+					<editor id="org.eclipse.papyrus.properties.runtime.simpleReferencePropertyEditor" label="After Section:" labelPosition="16384"/>
 				</controller>
 			</container>
 		</content>
@@ -87,11 +77,11 @@
 				 <layout kind="Grid" numColumns="1" sameWidth="false"/>
 				 <controller id="stateBeanPropertyEditorController">
 					<property name="name"/>
-					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Name" labelPosition="16384"/>
+					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Name:" labelPosition="16384"/>
 				</controller>
 				<controller id="integerStateBeanPropertyEditorController">
 					<property name="selectionSize"/>
-					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Selection Size" labelPosition="16384"/>
+					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Selection Size:" labelPosition="16384"/>
 				</controller>
 			</container>
 		</content>
@@ -127,7 +117,7 @@
 				</controller>
 				<controller id="booleanStateBeanPropertyEditorController">
 					<property name="sameWidth"/>
-					<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Columns equal width" labelPosition="16384"/>
+					<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Columns equal width:" labelPosition="16384"/>
 				</controller>
 			</container>
 		</content>
@@ -197,23 +187,23 @@
 		<content>
 			<container>
 				 <layout kind="Grid" numColumns="1" sameWidth="false"/>
-				 <controller id="stateBeanPropertyEditorController">
+				 <controller id="referenceStateBeanPropertyEditorController">
 					<property name="id"/>
-					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Id:" labelPosition="16384"/>
+					<editor id="org.eclipse.papyrus.properties.runtime.simpleReferencePropertyEditor" label="Identifier:" labelPosition="16384"/>
 				</controller>
 			</container>
 		</content>
 	</fragment>
 	<fragment id="fragment_TabDescriptorState">
 		<context enablesFor="1">
-			<elementClass name="org.eclipse.papyrus.properties.tabbed.customization.state.TabDescriptorState"/>
+			<elementClass name="org.eclipse.papyrus.properties.tabbed.core.view.TabDescriptorState"/>
 		</context>
 		<content>
 			<container>
 				 <layout kind="Grid" numColumns="1" sameWidth="false"/>
 				 <controller id="stateBeanPropertyEditorController">
 					<property name="category" />
-					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Category" labelPosition="16384" />
+					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Category:" labelPosition="16384" />
 				</controller>
 				<controller id="stateBeanPropertyEditorController">
 					<property name="id"/>
@@ -221,7 +211,7 @@
 				</controller>
 				<controller id="stateBeanPropertyEditorController">
 					<property name="label"/>
-					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Label" labelPosition="16384"/>
+					<editor id="org.eclipse.papyrus.properties.runtime.textPropertyEditor" label="Label:" labelPosition="16384"/>
 				</controller>
 			</container>
 		</content>

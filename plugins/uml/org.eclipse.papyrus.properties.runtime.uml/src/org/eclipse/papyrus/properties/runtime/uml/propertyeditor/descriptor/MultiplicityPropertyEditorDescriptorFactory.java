@@ -32,10 +32,11 @@ public class MultiplicityPropertyEditorDescriptorFactory implements IPropertyEdi
 	public PropertyEditorDescriptor createEditorDescriptor(Node editorNode) {
 		String identifier = "";
 		String label = "";
+		String tooltipText = "";
 		int labelPosition = SWT.LEFT;
 		ImageDescriptor imageDescriptor = null;
 
-		// retrieve id, label, label position
+		// retrieve id, label, label position and tooltipText
 		NamedNodeMap attributes = editorNode.getAttributes();
 		if(attributes != null) {
 			for(int i = 0; i < attributes.getLength(); i++) {
@@ -47,6 +48,8 @@ public class MultiplicityPropertyEditorDescriptorFactory implements IPropertyEdi
 					labelPosition = Integer.parseInt(attribute.getNodeValue());
 				} else if("id".equals(nodeName)) {
 					identifier = attribute.getNodeValue();
+				} else if("tooltip".equals(nodeName)) {
+					tooltipText = attribute.getNodeValue();
 				}
 			}
 		}
@@ -70,6 +73,6 @@ public class MultiplicityPropertyEditorDescriptorFactory implements IPropertyEdi
 			}
 		}
 
-		return new MultiplicityPropertyEditorDescriptor(identifier, label, labelPosition, imageDescriptor);
+		return new MultiplicityPropertyEditorDescriptor(identifier, label, labelPosition, tooltipText, imageDescriptor);
 	}
 }

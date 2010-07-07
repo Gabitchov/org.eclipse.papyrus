@@ -15,7 +15,6 @@ import java.util.List;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 
-
 /**
  * Descriptor specific to the radio box property editor
  */
@@ -28,28 +27,34 @@ public class RadioBoxPropertyEditorDescriptor extends PropertyEditorDescriptor i
 	 * Creates a new RadioBoxPropertyEditor.RadioBoxPropertyEditorDescriptor.
 	 * 
 	 * @param editorId
-	 *        the unique identifier of the editor described by this descriptor
+	 *        the unique identifier of the editor described by this
+	 *        descriptor
 	 * @param label
 	 *        the label for this property editor
+	 * @param tooltipText
+	 *        the tooltip text for this property editor
 	 */
-	public RadioBoxPropertyEditorDescriptor(String editorId, String label) {
-		super(editorId, label);
+	public RadioBoxPropertyEditorDescriptor(String editorId, String label, String tooltipText) {
+		super(editorId, label, tooltipText);
 	}
 
 	/**
 	 * Creates a new RadioBoxPropertyEditorDescriptor.
 	 * 
 	 * @param editorId
-	 *        the unique identifier of the editor described by this descriptor
+	 *        the unique identifier of the editor described by this
+	 *        descriptor
 	 * @param label
 	 *        the label for this property editor
 	 * @param labelPosition
 	 *        the label position for this property editor
+	 * @param tooltipText
+	 *        the tooltip text for this property editor
 	 * @param imageDescriptor
 	 *        the icon for this property editor
 	 */
-	public RadioBoxPropertyEditorDescriptor(String editorId, String label, int labelPosition, ImageDescriptor imageDescriptor) {
-		super(editorId, label, labelPosition, imageDescriptor);
+	public RadioBoxPropertyEditorDescriptor(String editorId, String label, int labelPosition, String tooltipText, ImageDescriptor imageDescriptor) {
+		super(editorId, label, labelPosition, tooltipText, imageDescriptor);
 	}
 
 	/**

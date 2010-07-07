@@ -13,7 +13,6 @@ package org.eclipse.papyrus.properties.runtime.modelhandler.emf;
 
 import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.properties.runtime.Activator;
@@ -48,7 +47,7 @@ public class ReferenceEMFModelHandler extends EMFFeatureModelHandler {
 		}
 		if(newValue instanceof EObject || newValue == null) {
 			objectToEdit.eSet(featureToEdit, newValue);
-		} else if(newValue instanceof EList<?>) {
+		} else if(newValue instanceof List<?>) {
 			objectToEdit.eSet(featureToEdit, newValue);
 		} else {
 			Activator.log.error("impossible to set the new value", null);

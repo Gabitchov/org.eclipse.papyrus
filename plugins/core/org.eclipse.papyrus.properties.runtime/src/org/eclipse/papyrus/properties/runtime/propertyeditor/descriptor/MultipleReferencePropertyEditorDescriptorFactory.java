@@ -18,7 +18,6 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-
 /**
  * Factory for multiple reference property editor descriptors
  */
@@ -30,10 +29,11 @@ public class MultipleReferencePropertyEditorDescriptorFactory implements IProper
 	public IPropertyEditorDescriptor createEditorDescriptor(Node editorNode) {
 		String identifier = "";
 		String label = "";
+		String tooltipText = "";
 		int labelPosition = SWT.LEFT;
 		ImageDescriptor imageDescriptor = null;
 
-		// retrieve id, label, label position
+		// retrieve id, label, label position and tooltipText
 		NamedNodeMap attributes = editorNode.getAttributes();
 		if(attributes != null) {
 			for(int i = 0; i < attributes.getLength(); i++) {
@@ -45,6 +45,8 @@ public class MultipleReferencePropertyEditorDescriptorFactory implements IProper
 					labelPosition = Integer.parseInt(attribute.getNodeValue());
 				} else if("id".equals(nodeName)) {
 					identifier = attribute.getNodeValue();
+				} else if("tooltip".equals(nodeName)) {
+					tooltipText = attribute.getNodeValue();
 				}
 			}
 		}
@@ -66,7 +68,7 @@ public class MultipleReferencePropertyEditorDescriptorFactory implements IProper
 			}
 		}
 
-		return new MultipleReferencePropertyEditorDescriptor(identifier, label, labelPosition, imageDescriptor);
+		return new MultipleReferencePropertyEditorDescriptor(identifier, label, labelPosition, tooltipText, imageDescriptor);
 	}
 
 }

@@ -239,6 +239,9 @@ public class MultipleReferencePropertyEditor extends AbstractPropertyEditor {
 			}
 		});
 		referencesViewer.setLabelProvider(((IBoundedValuesController)getController()).getEditorLabelProvider());
+
+		referencesViewer.getControl().setToolTipText(getTooltipText());
+
 		return composite;
 	}
 
@@ -284,6 +287,7 @@ public class MultipleReferencePropertyEditor extends AbstractPropertyEditor {
 	@Override
 	public IStatus init(IPropertyEditorDescriptor descriptor) {
 		setDescriptor(descriptor);
+		setTooltipText(descriptor.getTooltipText());
 		return Status.OK_STATUS;
 	}
 

@@ -13,7 +13,6 @@ package org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 
-
 /**
  * Descriptor specific to the Simple reference property editor
  */
@@ -26,9 +25,11 @@ public class MultipleReferencePropertyEditorDescriptor extends PropertyEditorDes
 	 *        the unique identifier for this editor factory
 	 * @param label
 	 *        the label for this property editor
+	 * @param tooltipText
+	 *        the tooltip text for this property editor
 	 */
-	public MultipleReferencePropertyEditorDescriptor(String editorId, String label) {
-		super(editorId, label);
+	public MultipleReferencePropertyEditorDescriptor(String editorId, String label, String tooltipText) {
+		super(editorId, label, tooltipText);
 	}
 
 	/**
@@ -40,11 +41,13 @@ public class MultipleReferencePropertyEditorDescriptor extends PropertyEditorDes
 	 *        the label for this property editor
 	 * @param labelPosition
 	 *        the label position for this property editor
+	 * @param tooltipText
+	 *        the tooltip text for this property editor
 	 * @param imageDescriptor
 	 *        the icon for this property editor
 	 */
-	public MultipleReferencePropertyEditorDescriptor(String editorId, String label, int labelPosition, ImageDescriptor imageDescriptor) {
-		super(editorId, label, labelPosition, imageDescriptor);
+	public MultipleReferencePropertyEditorDescriptor(String editorId, String label, int labelPosition, String tooltipText, ImageDescriptor imageDescriptor) {
+		super(editorId, label, labelPosition, tooltipText, imageDescriptor);
 	}
 
 }

@@ -63,6 +63,7 @@ public class TextPropertyEditor extends AbstractPropertyEditor {
 	@Override
 	public IStatus init(IPropertyEditorDescriptor descriptor) {
 		this.setDescriptor((PropertyEditorDescriptor)descriptor);
+		setTooltipText(descriptor.getTooltipText());
 		return Status.OK_STATUS;
 	}
 
@@ -112,6 +113,8 @@ public class TextPropertyEditor extends AbstractPropertyEditor {
 		if((getDescriptor().getLabelPosition() & (SWT.RIGHT | SWT.BOTTOM)) != 0) {
 			createLabel(composite);
 		}
+
+		text.setToolTipText(getTooltipText());
 
 		return composite;
 	}

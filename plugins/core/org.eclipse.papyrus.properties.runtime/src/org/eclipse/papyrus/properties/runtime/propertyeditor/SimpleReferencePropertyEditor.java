@@ -108,6 +108,7 @@ public class SimpleReferencePropertyEditor extends AbstractPropertyEditor {
 				}
 			}
 		});
+		referenceArea.setToolTipText(getTooltipText());
 
 		addButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
 		addButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Add_12x12.gif")));
@@ -231,6 +232,7 @@ public class SimpleReferencePropertyEditor extends AbstractPropertyEditor {
 	@Override
 	public IStatus init(IPropertyEditorDescriptor descriptor) {
 		setDescriptor(descriptor);
+		setTooltipText(descriptor.getTooltipText());
 		return Status.OK_STATUS;
 	}
 

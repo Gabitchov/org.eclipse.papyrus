@@ -11,12 +11,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.properties.runtime.controller;
 
-import java.awt.Window;
 import java.util.List;
 
 import org.eclipse.core.commands.operations.IUndoableOperation;
+import org.eclipse.swt.widgets.Dialog;
 import org.eclipse.swt.widgets.Shell;
-
 
 /**
  * Interface implemented by property editors that are able to create elements
@@ -35,8 +34,18 @@ public interface IWizardPropertyEditorController {
 	 * 
 	 * @param shell
 	 *        the shell for the dialog
-	 * @return the result of the open dialog (@see {@link Window})
+	 * @return the result of the open dialog (@see {@link Dialog})
 	 */
 	public int openPostCreationDialog(Shell shell);
+
+	/**
+	 * Returns the command that deletes the given list of elements
+	 * 
+	 * @param objectsToDelete
+	 *        the list of objects to delete
+	 * @return the operation in charge of the destruction or <code>null</code>
+	 */
+	public IUndoableOperation getDeleteOperation(List<Object> objectsToDelete);
+
 
 }

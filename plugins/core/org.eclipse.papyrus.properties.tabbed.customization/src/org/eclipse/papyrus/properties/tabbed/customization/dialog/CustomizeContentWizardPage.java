@@ -39,6 +39,7 @@ import org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementI
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.InputDialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
@@ -72,6 +73,8 @@ import org.eclipse.papyrus.properties.tabbed.core.view.DynamicTabDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState.ReplacedSectionState;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionSetDescriptorState;
+import org.eclipse.papyrus.properties.tabbed.core.view.StatesStore;
+import org.eclipse.papyrus.properties.tabbed.core.view.TabDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.customization.Activator;
 import org.eclipse.papyrus.properties.tabbed.customization.Messages;
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.ContainerMenuCreator;
@@ -85,7 +88,6 @@ import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.Sectio
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.SectionSetMenuCreator;
 import org.eclipse.papyrus.properties.tabbed.customization.dialog.actions.StereotypeMenuCreator;
 import org.eclipse.papyrus.properties.tabbed.customization.state.StatePropertyTabViewProviderParser;
-import org.eclipse.papyrus.properties.tabbed.customization.state.TabDescriptorState;
 import org.eclipse.papyrus.umlutils.PackageUtil;
 import org.eclipse.papyrus.umlutils.StereotypeUtil;
 import org.eclipse.swt.SWT;
@@ -127,12 +129,6 @@ public class CustomizeContentWizardPage extends WizardPage {
 
 	/** UML metamodel label for the metamodel selection combo */
 	protected static final String UML_METAMODEL = "UML"; //$NON-NLS-1$
-
-	/** available section states for this wizard page */
-	protected List<SectionSetDescriptorState> sectionSetDescriptorStates;
-
-	/** available tab states for this wizard page */
-	protected static List<TabDescriptorState> tabDescriptorStates;
 
 	/** Tree viewer on the metamodel and the set of available section sets descriptors */
 	protected TreeViewer metamodelViewer;
@@ -221,20 +217,26 @@ public class CustomizeContentWizardPage extends WizardPage {
 		// parses the content of the document to create the
 		// SectionSetDescriptors states
 		List<ITabDescriptor> tabDescriptors = new ArrayList<ITabDescriptor>();
-		tabDescriptorStates = new ArrayList<TabDescriptorState>();
 
 		StatePropertyTabViewProviderParser parser = new StatePropertyTabViewProviderParser(tabDescriptors);
 		try {
 			parser.parseXMLfile(document, PropertyViewService.getInstance().getAllFragmentDescriptors(), new HashMap<String, DialogDescriptor>());
-			sectionSetDescriptorStates = parser.getSectionSetDescriptorStates();
-			tabDescriptorStates = parser.getTabDescriptorStates();
-			metamodelViewer.setContentProvider(new MetamodelContentProvider(sectionSetDescriptorStates));
+			StatesStore.setSectionSetDescriptorStates(parser.getSectionSetDescriptorStates());
+			StatesStore.setTabDescriptorStates(parser.getTabDescriptorStates());
+			//			List<List<ITabDescriptor>> tabs = PropertyServiceUtil.getTabDescriptors();
+			//			for(List<ITabDescriptor> list : tabs) {
+			//				for(ITabDescriptor tab : list) {
+			//					TabDescriptorState tabDescriptorState = new TabDescriptorState(tab, false);
+			//					StatesStore.getTabDescriptorStates().add(tabDescriptorState);
+			//				}
+			//			}
+			metamodelViewer.setContentProvider(new MetamodelContentProvider(StatesStore.getSectionSetDescriptorStates()));
 			metamodelViewer.setLabelProvider(new MetamodelLabelProvider());
 
 			// load by default the metamodel
 			metamodelViewer.setInput(UMLPackage.eINSTANCE);
 			metamodelSelectionCombo.select(0);
-			tabViewer.setInput(tabDescriptorStates);
+			tabViewer.setInput(StatesStore.getTabDescriptorStates());
 		} catch (XMLParseException e) {
 			Activator.log.error(e);
 		}
@@ -268,21 +270,19 @@ public class CustomizeContentWizardPage extends WizardPage {
 		removeAllExistingTabDescriptors(topNode);
 
 		// add all new tab descriptors using states
-		for(TabDescriptorState state : tabDescriptorStates) {
+		for(TabDescriptorState state : StatesStore.getTabDescriptorStates()) {
 			topNode.appendChild(state.generateNode(document));
 		}
 
 		// add all new section set descriptors using states
-		for(SectionSetDescriptorState state : sectionSetDescriptorStates) {
+		for(SectionSetDescriptorState state : StatesStore.getSectionSetDescriptorStates()) {
 			topNode.appendChild(state.generateNode(document));
 		}
 
 		return document;
 	}
 
-	public static List<TabDescriptorState> getTabDescriptorStates() {
-		return tabDescriptorStates;
-	}
+
 
 	/**
 	 * Retrieves the top node for this document
@@ -557,6 +557,8 @@ public class CustomizeContentWizardPage extends WizardPage {
 
 		Composite tabArea = new Composite(previewAreaComposite, SWT.NONE);
 		data = new GridData(SWT.FILL, SWT.FILL, false, true);
+		data.widthHint = 150;
+		data.minimumWidth = 150;
 		tabArea.setLayoutData(data);
 		layout = new GridLayout(4, false);
 		layout.marginHeight = 0;
@@ -580,9 +582,11 @@ public class CustomizeContentWizardPage extends WizardPage {
 					}
 				});
 				dialog.open();
-				DynamicTabDescriptor tabDescriptor = new DynamicTabDescriptor("", "tab_" + dialog.getValue(), dialog.getValue());
-				tabDescriptorStates.add(new TabDescriptorState(tabDescriptor, false));
-				tabViewer.refresh();
+				if(dialog.getValue() != null) {
+					DynamicTabDescriptor tabDescriptor = new DynamicTabDescriptor("", "tab_" + dialog.getValue(), dialog.getValue());
+					StatesStore.getTabDescriptorStates().add(new TabDescriptorState(tabDescriptor, false));
+					tabViewer.refresh();
+				}
 			}
 
 			/**
@@ -604,7 +608,26 @@ public class CustomizeContentWizardPage extends WizardPage {
 			public void widgetSelected(SelectionEvent e) {
 				ISelection selection = tabViewer.getSelection();
 				if(selection instanceof IStructuredSelection) {
-					tabDescriptorStates.remove(((IStructuredSelection)selection).getFirstElement());
+					TabDescriptorState tabToRemove = (TabDescriptorState)((IStructuredSelection)selection).getFirstElement();
+
+					String dependencies = "The tab is required by: \n";
+					int found = 0;
+					for(SectionSetDescriptorState sectionSetDescriptorStates : StatesStore.getSectionSetDescriptorStates()) {
+						for(SectionDescriptorState sectionDescriptorState : sectionSetDescriptorStates.getSectionDescriptorStates()) {
+							if(sectionDescriptorState.getTargetTab().equalsIgnoreCase(tabToRemove.getId())) {
+								if(found != 0) {
+									dependencies += ",\n";
+								}
+								dependencies += " - " + sectionDescriptorState.getText();
+								found++;
+							}
+						}
+					}
+					if(found == 0) {
+						StatesStore.getTabDescriptorStates().remove(tabToRemove);
+					} else {
+						MessageDialog.openError(getShell(), "Cannot remove this tab", dependencies);
+					}
 					tabViewer.refresh();
 				}
 			}
@@ -617,6 +640,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 			}
 		});
 
+
 		Button moveUpTabButton = new Button(tabArea, SWT.NONE);
 		moveUpTabButton.setImage(Activator.getImage("/icons/Up_12x12.gif")); //$NON-NLS-1$
 		moveUpTabButton.setToolTipText(Messages.CustomizeContentWizardPage_PreviewArea_MoveUpTabButtonTooltip);
@@ -628,10 +652,10 @@ public class CustomizeContentWizardPage extends WizardPage {
 			public void widgetSelected(SelectionEvent e) {
 				ISelection selection = tabViewer.getSelection();
 				if(selection instanceof IStructuredSelection) {
-					int index = tabDescriptorStates.indexOf(((IStructuredSelection)selection).getFirstElement());
+					int index = StatesStore.getTabDescriptorStates().indexOf(((IStructuredSelection)selection).getFirstElement());
 					if(index != 0) {
-						TabDescriptorState tab = tabDescriptorStates.remove(index);
-						tabDescriptorStates.add(index - 1, tab);
+						TabDescriptorState tab = StatesStore.getTabDescriptorStates().remove(index);
+						StatesStore.getTabDescriptorStates().add(index - 1, tab);
 						tabViewer.refresh();
 					}
 				}
@@ -656,10 +680,10 @@ public class CustomizeContentWizardPage extends WizardPage {
 			public void widgetSelected(SelectionEvent e) {
 				ISelection selection = tabViewer.getSelection();
 				if(selection instanceof IStructuredSelection) {
-					int index = tabDescriptorStates.indexOf(((IStructuredSelection)selection).getFirstElement());
-					if(index != tabDescriptorStates.size() - 1) {
-						TabDescriptorState tab = tabDescriptorStates.remove(index);
-						tabDescriptorStates.add(index + 1, tab);
+					int index = StatesStore.getTabDescriptorStates().indexOf(((IStructuredSelection)selection).getFirstElement());
+					if(index != StatesStore.getTabDescriptorStates().size() - 1) {
+						TabDescriptorState tab = StatesStore.getTabDescriptorStates().remove(index);
+						StatesStore.getTabDescriptorStates().add(index + 1, tab);
 						tabViewer.refresh();
 					}
 				}
@@ -675,8 +699,8 @@ public class CustomizeContentWizardPage extends WizardPage {
 
 		Table table = new Table(tabArea, SWT.BORDER);
 		GridData data2 = new GridData(SWT.FILL, SWT.FILL, false, true);
-		data2.widthHint = 60;
-		data2.minimumWidth = 60;
+		data2.widthHint = 150;
+		data2.minimumWidth = 150;
 		data2.horizontalSpan = 4;
 		table.setLayoutData(data2);
 		tabViewer = new TableViewer(table);
@@ -693,6 +717,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 				}
 				return super.getText(element);
 			}
+
 		});
 		tabViewer.setContentProvider(new IStructuredContentProvider() {
 
@@ -751,6 +776,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 				if(selectedElement instanceof IState) {
 					openEditionDialog(((IState)selectedElement));
 				}
+				tabViewer.refresh();
 			}
 		});
 
@@ -843,7 +869,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 			previewArea.getHorizontalBar().setIncrement(20);
 			previewArea.getVerticalBar().setIncrement(20);
 
-			for(SectionSetDescriptorState sectionSetDescriptorState : sectionSetDescriptorStates) {
+			for(SectionSetDescriptorState sectionSetDescriptorState : StatesStore.getSectionSetDescriptorStates()) {
 				if(isSectionSetDescriptorStateValid(sectionSetDescriptorState)) {
 					// check the content of this section set: sections give the
 					// constraints
@@ -950,14 +976,14 @@ public class CustomizeContentWizardPage extends WizardPage {
 				// awful code, should delegate to each state which menu should
 				// be created
 				if(selectedObject instanceof SectionSetDescriptorState) {
-					menu = new SectionSetMenuCreator(sectionSetDescriptorStates, metamodelViewer, (SectionSetDescriptorState)selectedObject, getCurrentMetaClass(), getCurrentStereoype()).getMenu(metamodelViewer.getTree());
+					menu = new SectionSetMenuCreator(StatesStore.getSectionSetDescriptorStates(), metamodelViewer, (SectionSetDescriptorState)selectedObject, getCurrentMetaClass(), getCurrentStereoype()).getMenu(metamodelViewer.getTree());
 				} else if(selectedObject instanceof ModelElementItem) {
 					ModelElementItem item = (ModelElementItem)selectedObject;
 					EObject selectedEObject = item.getEObject();
 					if(selectedEObject instanceof EClassifier) {
-						menu = new EClassifierMenuCreator((ModelElementItem)selectedObject, sectionSetDescriptorStates, metamodelViewer, getCurrentSectionSetDescriptorState(), getCurrentMetaClass(), getCurrentStereoype()).getMenu(metamodelViewer.getTree());
+						menu = new EClassifierMenuCreator((ModelElementItem)selectedObject, StatesStore.getSectionSetDescriptorStates(), metamodelViewer, getCurrentSectionSetDescriptorState(), getCurrentMetaClass(), getCurrentStereoype()).getMenu(metamodelViewer.getTree());
 					} else if(selectedEObject instanceof Stereotype) {
-						menu = new StereotypeMenuCreator((ModelElementItem)selectedObject, sectionSetDescriptorStates, metamodelViewer, getCurrentSectionSetDescriptorState(), getCurrentMetaClass(), getCurrentStereoype()).getMenu(metamodelViewer.getTree());
+						menu = new StereotypeMenuCreator((ModelElementItem)selectedObject, StatesStore.getSectionSetDescriptorStates(), metamodelViewer, getCurrentSectionSetDescriptorState(), getCurrentMetaClass(), getCurrentStereoype()).getMenu(metamodelViewer.getTree());
 					}
 				}
 

@@ -22,6 +22,13 @@ import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
 public interface IPropertyEditorDescriptor extends IConfigurableDescriptor {
 
 	/**
+	 * Returns the tooltip text that should be associated to the property editor
+	 * 
+	 * @return the tooltip text that should be associated to the property editor
+	 */
+	public String getTooltipText();
+
+	/**
 	 * Returns the icon that should be associated to the label of the property editor
 	 * 
 	 * @return the icon that should be associated to the label of the property editor

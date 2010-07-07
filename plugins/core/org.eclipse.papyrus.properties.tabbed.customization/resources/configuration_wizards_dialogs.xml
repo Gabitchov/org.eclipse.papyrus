@@ -222,7 +222,7 @@
 	<dialog id="TabDescriptorStateDialog"><!-- Dialog for tab descriptor state -->
 		<context enablesFor="1">
 			<elementClass
-				name="org.eclipse.papyrus.properties.tabbed.customization.state.TabDescriptorState">
+				name="org.eclipse.papyrus.properties.tabbed.core.view.TabDescriptorState">
 			</elementClass>
 		</context>
 		<title>

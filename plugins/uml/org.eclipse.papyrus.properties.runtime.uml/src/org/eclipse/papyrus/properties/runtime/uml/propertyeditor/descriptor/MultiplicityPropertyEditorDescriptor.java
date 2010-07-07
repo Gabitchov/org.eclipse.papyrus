@@ -33,9 +33,11 @@ public class MultiplicityPropertyEditorDescriptor extends PropertyEditorDescript
 	 *        the unique identifier for this editor factory
 	 * @param label
 	 *        the label for this property editor
+	 * @param tooltipText
+	 *        the tooltip text for this property editor
 	 */
-	public MultiplicityPropertyEditorDescriptor(String editorId, String label) {
-		super(editorId, label);
+	public MultiplicityPropertyEditorDescriptor(String editorId, String label, String tooltipText) {
+		super(editorId, label, tooltipText);
 	}
 
 	/**
@@ -47,11 +49,13 @@ public class MultiplicityPropertyEditorDescriptor extends PropertyEditorDescript
 	 *        the label for this property editor
 	 * @param labelPosition
 	 *        the label position for this property editor
+	 * @param tooltipText
+	 *        the tooltip text for this property editor
 	 * @param imageDescriptor
 	 *        the icon for this property editor
 	 */
-	public MultiplicityPropertyEditorDescriptor(String editorId, String label, int labelPosition, ImageDescriptor imageDescriptor) {
-		super(editorId, label, labelPosition, imageDescriptor);
+	public MultiplicityPropertyEditorDescriptor(String editorId, String label, int labelPosition, String tooltipText, ImageDescriptor imageDescriptor) {
+		super(editorId, label, labelPosition, tooltipText, imageDescriptor);
 	}
 
 	/**
