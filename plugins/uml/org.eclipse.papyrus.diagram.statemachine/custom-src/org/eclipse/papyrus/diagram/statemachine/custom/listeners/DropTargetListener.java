@@ -46,33 +46,31 @@ public abstract class DropTargetListener extends DiagramDropTargetListener {
 		HashSet<URI> uris = new HashSet<URI>();
 
 		Object transferedObject = getJavaObject(data);
-		if (transferedObject instanceof IStructuredSelection) {
-			IStructuredSelection selection = (IStructuredSelection) transferedObject;
-			for (Iterator<?> it = selection.iterator(); it.hasNext();) {
+		if(transferedObject instanceof IStructuredSelection) {
+			IStructuredSelection selection = (IStructuredSelection)transferedObject;
+			for(Iterator<?> it = selection.iterator(); it.hasNext();) {
 				Object nextSelectedObject = it.next();
 				// if (nextSelectedObject instanceof UMLNavigatorItem) {
 				// View view = ((UMLNavigatorItem)
 				// nextSelectedObject).getView();
 				// nextSelectedObject = view.getElement();
 				// } else
-				if (nextSelectedObject instanceof IAdaptable) {
-					IAdaptable adaptable = (IAdaptable) nextSelectedObject;
+				if(nextSelectedObject instanceof IAdaptable) {
+					IAdaptable adaptable = (IAdaptable)nextSelectedObject;
 					nextSelectedObject = adaptable.getAdapter(EObject.class);
 				}
-				if (nextSelectedObject instanceof EObject) {
-					EObject modelElement = (EObject) nextSelectedObject;
+				if(nextSelectedObject instanceof EObject) {
+					EObject modelElement = (EObject)nextSelectedObject;
 					Resource modelElementResource = modelElement.eResource();
-					uris.add(modelElementResource.getURI().appendFragment(
-							modelElementResource.getURIFragment(modelElement)));
+					uris.add(modelElementResource.getURI().appendFragment(modelElementResource.getURIFragment(modelElement)));
 					// TODO check visualID supported by class diagram
 				}
 			}
 		}
 
 		ArrayList<EObject> result = new ArrayList<EObject>();
-		for (URI uri : uris) {
-			EObject modelObject = getTransactionalEditingDomain()
-					.getResourceSet().getEObject(uri, true);
+		for(URI uri : uris) {
+			EObject modelObject = getTransactionalEditingDomain().getResourceSet().getEObject(uri, true);
 			result.add(modelObject);
 		}
 		return result;

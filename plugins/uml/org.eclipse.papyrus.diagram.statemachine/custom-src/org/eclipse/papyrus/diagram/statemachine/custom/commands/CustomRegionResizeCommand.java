@@ -36,9 +36,7 @@ public class CustomRegionResizeCommand extends AbstractTransactionalCommand {
 	 */
 	private Rectangle bounds = null;
 
-	public CustomRegionResizeCommand(IAdaptable adaptable,
-			PreferencesHint prefHints, TransactionalEditingDomain domain,
-			String label, ChangeBoundsRequest request, Rectangle bounds) {
+	public CustomRegionResizeCommand(IAdaptable adaptable, PreferencesHint prefHints, TransactionalEditingDomain domain, String label, ChangeBoundsRequest request, Rectangle bounds) {
 		super(domain, label, null);
 
 		this.adaptable = adaptable;
@@ -56,10 +54,9 @@ public class CustomRegionResizeCommand extends AbstractTransactionalCommand {
 	}
 
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		View region = (View) adaptable.getAdapter(View.class);
+		View region = (View)adaptable.getAdapter(View.class);
 		// a bunch of initializations
 		int direction = request.getResizeDirection();
 		int dx = request.getSizeDelta().width;
@@ -73,14 +70,14 @@ public class CustomRegionResizeCommand extends AbstractTransactionalCommand {
 		// the various cases follow the same structure
 		// first: retrieve a list of node on a given side of the border
 		// second: perform various setting of bounds
-		switch (direction) {
+		switch(direction) {
 		case PositionConstants.WEST:
 			// a resize that moves a LEFT border
 
 			// retrieve the nodes on the LEFT side of LEFT border
 			List<View> todo = Zone.getRegionLeftBorderOutsideNeighbours(region);
 			Iterator<View> it = todo.iterator();
-			while (it.hasNext()) {
+			while(it.hasNext()) {
 				View view = it.next();
 				// for each of these we add (-dx) to their width
 				int width = Zone.getWidth(view);
@@ -90,7 +87,7 @@ public class CustomRegionResizeCommand extends AbstractTransactionalCommand {
 			// retrieve the nodes on the RIGHT side of LEFT border
 			todo = Zone.getRegionLeftBorderInsideNeighbours(region);
 			it = todo.iterator();
-			while (it.hasNext()) {
+			while(it.hasNext()) {
 				View view = it.next();
 				// for each of these we add dx to their width and translate
 				// their x of (-dx)
@@ -108,7 +105,7 @@ public class CustomRegionResizeCommand extends AbstractTransactionalCommand {
 			// retrieve the nodes on the LEFT side of RIGHT border
 			todo = Zone.getRegionRightBorderInsideNeighbours(region);
 			it = todo.iterator();
-			while (it.hasNext()) {
+			while(it.hasNext()) {
 				View view = it.next();
 				// for each of these we add dx to their width
 				int width = Zone.getWidth(view);
@@ -118,7 +115,7 @@ public class CustomRegionResizeCommand extends AbstractTransactionalCommand {
 			// retrieve the nodes on the RIGHT side of RIGHT border
 			todo = Zone.getRegionRightBorderOutsideNeighbours(region);
 			it = todo.iterator();
-			while (it.hasNext()) {
+			while(it.hasNext()) {
 				View view = it.next();
 				// for each of these we add (-dx) to their width and translate
 				// their x of dx
@@ -136,7 +133,7 @@ public class CustomRegionResizeCommand extends AbstractTransactionalCommand {
 			// retrieve the nodes on the BOTTOM side of TOP border
 			todo = Zone.getRegionTopBorderInsideNeighbours(region);
 			it = todo.iterator();
-			while (it.hasNext()) {
+			while(it.hasNext()) {
 				View view = it.next();
 				// for each of these we add dy to their height and (-dy) to
 				// their y
@@ -150,7 +147,7 @@ public class CustomRegionResizeCommand extends AbstractTransactionalCommand {
 			// retrieve the nodes on the TOP side of TOP border
 			todo = Zone.getRegionTopBorderOutsideNeighbours(region);
 			it = todo.iterator();
-			while (it.hasNext()) {
+			while(it.hasNext()) {
 				View view = it.next();
 				// for each of these we add (-dy) to their height
 				int height = Zone.getHeight(view);
@@ -164,7 +161,7 @@ public class CustomRegionResizeCommand extends AbstractTransactionalCommand {
 			// retrieve the nodes on the TOP side of BOTTOM border
 			todo = Zone.getRegionBottomBorderInsideNeighbours(region);
 			it = todo.iterator();
-			while (it.hasNext()) {
+			while(it.hasNext()) {
 				View view = it.next();
 				// for each of these we add dy to their height
 				int height = Zone.getHeight(view);
@@ -174,7 +171,7 @@ public class CustomRegionResizeCommand extends AbstractTransactionalCommand {
 			// retrieve the nodes on the BOTTOM side of BOTTOM border
 			todo = Zone.getRegionBottomBorderOutsideNeighbours(region);
 			it = todo.iterator();
-			while (it.hasNext()) {
+			while(it.hasNext()) {
 				View view = it.next();
 				// for each of these we add (-dy) to their height and dy to
 				// their y

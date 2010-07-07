@@ -19,11 +19,9 @@ public class ElementInitializers {
 	 * @generated
 	 */
 	public static ElementInitializers getInstance() {
-		ElementInitializers cached = UMLDiagramEditorPlugin.getInstance()
-				.getElementInitializers();
-		if (cached == null) {
-			UMLDiagramEditorPlugin.getInstance().setElementInitializers(
-					cached = new ElementInitializers());
+		ElementInitializers cached = UMLDiagramEditorPlugin.getInstance().getElementInitializers();
+		if(cached == null) {
+			UMLDiagramEditorPlugin.getInstance().setElementInitializers(cached = new ElementInitializers());
 		}
 		return cached;
 	}
@@ -35,8 +33,7 @@ public class ElementInitializers {
 	 * @return
 	 */
 	private static String getName(org.eclipse.uml2.uml.Element self) {
-		return NamedElementHelper.EINSTANCE.getNewUMLElementName(
-				self.getOwner(), self.eClass());
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 
 	}
 
@@ -50,10 +47,9 @@ public class ElementInitializers {
 	public void init_FinalState_5000(FinalState instance) {
 		try {
 			Object value_0 = name_FinalState_5000(instance);
-			instance.setName((String) value_0);
+			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Element initialization failed", e); //$NON-NLS-1$						
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
 	}
 
@@ -63,10 +59,9 @@ public class ElementInitializers {
 	public void init_Pseudostate_4000(Pseudostate instance) {
 		try {
 			Object value_0 = name_Pseudostate_4000(instance);
-			instance.setName((String) value_0);
+			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Element initialization failed", e); //$NON-NLS-1$						
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
 	}
 
@@ -76,10 +71,9 @@ public class ElementInitializers {
 	public void init_Region_3000(Region instance) {
 		try {
 			Object value_0 = name_Region_3000(instance);
-			instance.setName((String) value_0);
+			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Element initialization failed", e); //$NON-NLS-1$						
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
 	}
 
@@ -89,10 +83,9 @@ public class ElementInitializers {
 	public void init_State_6000(State instance) {
 		try {
 			Object value_0 = name_State_6000(instance);
-			instance.setName((String) value_0);
+			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Element initialization failed", e); //$NON-NLS-1$						
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
 	}
 
@@ -102,15 +95,14 @@ public class ElementInitializers {
 	public void init_StateMachine_2000(StateMachine instance) {
 		try {
 			Object value_0 = name_StateMachine_2000(instance);
-			instance.setName((String) value_0);
+			instance.setName((String)value_0);
 			Region newInstance_1_0 = UMLFactory.eINSTANCE.createRegion();
 			instance.getRegions().add(newInstance_1_0);
 			Object value_1_0_0 = name_region_StateMachine_2000(newInstance_1_0);
-			newInstance_1_0.setName((String) value_1_0_0);
+			newInstance_1_0.setName((String)value_1_0_0);
 
 		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Element initialization failed", e); //$NON-NLS-1$						
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
 	}
 
@@ -120,10 +112,9 @@ public class ElementInitializers {
 	public void init_Transition_7000(Transition instance) {
 		try {
 			Object value_0 = name_Transition_7000(instance);
-			instance.setName((String) value_0);
+			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
-			UMLDiagramEditorPlugin.getInstance().logError(
-					"Element initialization failed", e); //$NON-NLS-1$						
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
 	}
 

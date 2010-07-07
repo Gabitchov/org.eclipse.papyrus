@@ -14,13 +14,13 @@ public class PseudostateInitialFigure extends Ellipse {
 		this.setMaximumSize(new Dimension(dim1));
 		this.setMinimumSize(new Dimension(dim1));
 		this.setSize(dim1);
-}
-	
+	}
+
 	/**
 	 * Fills the circle.
 	 * 
 	 * @param graphics
-	 *            the graphics
+	 *        the graphics
 	 * 
 	 * @see org.eclipse.draw2d.Shape#fillShape(org.eclipse.draw2d.Graphics)
 	 */

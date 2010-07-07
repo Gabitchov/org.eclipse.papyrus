@@ -46,12 +46,11 @@ public class RegionFigure extends CompartmentFigure {
 	 * Create a new Region figure with the given tag
 	 * 
 	 * @param tagLabel
-	 *            a String that will be displayed at the top of the figure
+	 *        a String that will be displayed at the top of the figure
 	 */
 	public RegionFigure(String tagLabel) {
 		super(COMPARTMENT, tagLabel);
-		((AutomaticCompartmentLayoutManager) getLayoutManager())
-				.setAddExtraHeight(false);
+		((AutomaticCompartmentLayoutManager)getLayoutManager()).setAddExtraHeight(false);
 	}
 
 	/**
@@ -70,19 +69,17 @@ public class RegionFigure extends CompartmentFigure {
 		graphics.setForegroundColor(getForegroundColor());
 		Rectangle rect = getBounds();
 		// the specific drawing of borders
-		if (displayRightBorder) {
+		if(displayRightBorder) {
 			graphics.setLineStyle(SWT.BORDER_DASH);
 			graphics.setLineWidth(SWT.BOLD);
 
-			graphics.drawLine(rect.x + rect.width - 1, rect.y - 2, rect.x
-					+ rect.width - 1, rect.y - 2 + rect.height);
+			graphics.drawLine(rect.x + rect.width - 1, rect.y - 2, rect.x + rect.width - 1, rect.y - 2 + rect.height);
 		}
-		if (displayBottomBorder) {
+		if(displayBottomBorder) {
 			graphics.setLineStyle(SWT.BORDER_DASH);
 			graphics.setLineWidth(SWT.BOLD);
 
-			graphics.drawLine(rect.x - 2, rect.y + rect.height - 1, rect.x - 2
-					+ rect.width, rect.y + rect.height - 1);
+			graphics.drawLine(rect.x - 2, rect.y + rect.height - 1, rect.x - 2 + rect.width, rect.y + rect.height - 1);
 		}
 	}
 

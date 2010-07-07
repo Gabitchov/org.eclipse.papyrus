@@ -39,9 +39,8 @@ public class CustomPseudostateEditPart extends PseudostateEditPart {
 	 * PseudoStateKind property
 	 */
 	protected IFigure createNodeShape() {
-		PseudostateKind pseudoStateKind = ((Pseudostate) ((View) this
-				.getModel()).getElement()).getKind();
-		switch (pseudoStateKind) {
+		PseudostateKind pseudoStateKind = ((Pseudostate)((View)this.getModel()).getElement()).getKind();
+		switch(pseudoStateKind) {
 		case SHALLOW_HISTORY_LITERAL:
 			return primaryShape = new PseudostateShallowHistoryFigure();
 		case INITIAL_LITERAL:
@@ -67,7 +66,7 @@ public class CustomPseudostateEditPart extends PseudostateEditPart {
 		return null;
 
 	}
-	
+
 	/**
 	 * Used to delete the default figure of the PseudoState and to create a new
 	 * figure corresponding to the value of the PseudoStateKind property
@@ -75,8 +74,7 @@ public class CustomPseudostateEditPart extends PseudostateEditPart {
 	 */
 	protected void handleNotificationEvent(Notification evt) {
 		super.handleNotificationEvent(evt);
-		if (UMLFactory.eINSTANCE.getUMLPackage().getPseudostate_Kind()
-				.equals(evt.getFeature())) {
+		if(UMLFactory.eINSTANCE.getUMLPackage().getPseudostate_Kind().equals(evt.getFeature())) {
 			super.handleMajorSemanticChange();
 		}
 	}

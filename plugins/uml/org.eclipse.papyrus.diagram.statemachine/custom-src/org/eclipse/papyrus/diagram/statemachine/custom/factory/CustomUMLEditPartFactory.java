@@ -24,9 +24,9 @@ import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
 public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 
 	public EditPart createEditPart(EditPart context, Object model) {
-		if (model instanceof View) {
-			View view = (View) model;
-			switch (UMLVisualIDRegistry.getVisualID(view)) {
+		if(model instanceof View) {
+			View view = (View)model;
+			switch(UMLVisualIDRegistry.getVisualID(view)) {
 			// redefined classes to modify the method createNodePlate
 			case PackageEditPart.VISUAL_ID:
 				return new CustomPackageEditPart(view);

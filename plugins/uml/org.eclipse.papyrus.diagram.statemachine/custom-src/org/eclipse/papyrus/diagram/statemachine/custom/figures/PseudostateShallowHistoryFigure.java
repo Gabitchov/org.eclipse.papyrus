@@ -7,19 +7,20 @@ import org.eclipse.draw2d.geometry.Dimension;
 
 public class PseudostateShallowHistoryFigure extends Ellipse {
 
-public PseudostateShallowHistoryFigure() {
-	super();
-	Dimension dim1 = new Dimension(22, 22);
-	this.setPreferredSize(new Dimension(dim1));
-	this.setMaximumSize(new Dimension(dim1));
-	this.setMinimumSize(new Dimension(dim1));
-	this.setSize(dim1);
-}
-/**
+	public PseudostateShallowHistoryFigure() {
+		super();
+		Dimension dim1 = new Dimension(22, 22);
+		this.setPreferredSize(new Dimension(dim1));
+		this.setMaximumSize(new Dimension(dim1));
+		this.setMinimumSize(new Dimension(dim1));
+		this.setSize(dim1);
+	}
+
+	/**
 	 * Fills the circle.
 	 * 
 	 * @param graphics
-	 *            the graphics
+	 *        the graphics
 	 * 
 	 * @see org.eclipse.draw2d.Shape#fillShape(org.eclipse.draw2d.Graphics)
 	 */
@@ -39,21 +40,9 @@ public PseudostateShallowHistoryFigure() {
 		super.outlineShape(graphics);
 
 		// 'H' letter
-		graphics.drawLine(
-				bounds.getCenter().getTranslated((int) (-bounds.width * 0.15),
-						(int) (-bounds.height * 0.25)),
-				bounds.getCenter().getTranslated((int) (-bounds.width * 0.15),
-						(int) (bounds.height * 0.25)));
-		graphics.drawLine(
-				bounds.getCenter().getTranslated((int) (bounds.width * 0.15),
-						(int) (-bounds.height * 0.25)),
-				bounds.getCenter().getTranslated((int) (bounds.width * 0.15),
-						(int) (bounds.height * 0.25)));
-		graphics.drawLine(
-				bounds.getCenter().getTranslated((int) (-bounds.width * 0.15),
-						0),
-				bounds.getCenter()
-						.getTranslated((int) (bounds.width * 0.15), 0));
+		graphics.drawLine(bounds.getCenter().getTranslated((int)(-bounds.width * 0.15), (int)(-bounds.height * 0.25)), bounds.getCenter().getTranslated((int)(-bounds.width * 0.15), (int)(bounds.height * 0.25)));
+		graphics.drawLine(bounds.getCenter().getTranslated((int)(bounds.width * 0.15), (int)(-bounds.height * 0.25)), bounds.getCenter().getTranslated((int)(bounds.width * 0.15), (int)(bounds.height * 0.25)));
+		graphics.drawLine(bounds.getCenter().getTranslated((int)(-bounds.width * 0.15), 0), bounds.getCenter().getTranslated((int)(bounds.width * 0.15), 0));
 	}
 
 }

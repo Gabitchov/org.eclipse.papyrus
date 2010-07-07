@@ -28,7 +28,7 @@ public class TransitionFigure extends DashedEdgeFigure {
 		PolylineDecoration dec = new PolylineDecoration();
 		dec.setScale(15, 5);
 		dec.setLineWidth(1);
-		if (arrow) {
+		if(arrow) {
 			this.setTargetDecoration(dec);
 		} else {
 			this.setTargetDecoration(null);

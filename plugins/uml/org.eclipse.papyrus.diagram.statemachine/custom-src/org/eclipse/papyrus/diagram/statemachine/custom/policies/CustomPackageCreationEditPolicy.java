@@ -19,27 +19,17 @@ public class CustomPackageCreationEditPolicy extends CreationEditPolicy {
 
 	@Override
 	protected Command getCreateCommand(CreateViewRequest request) {
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
-				.getEditingDomain();
-		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(
-				editingDomain, DiagramUIMessages.AddCommand_Label);
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(editingDomain, DiagramUIMessages.AddCommand_Label);
 
 		Iterator descriptors = request.getViewDescriptors().iterator();
 
-		while (descriptors.hasNext()) {
-			CreateViewRequest.ViewDescriptor descriptor = (CreateViewRequest.ViewDescriptor) descriptors
-					.next();
+		while(descriptors.hasNext()) {
+			CreateViewRequest.ViewDescriptor descriptor = (CreateViewRequest.ViewDescriptor)descriptors.next();
 
-			CreateCommand createStateMachine = new CreateCommand(editingDomain,
-					descriptor, (View) (getHost().getModel()));
+			CreateCommand createStateMachine = new CreateCommand(editingDomain, descriptor, (View)(getHost().getModel()));
 
-			CustomStateMachineWithDefaultRegionCreateNodeCommand createRegion = new CustomStateMachineWithDefaultRegionCreateNodeCommand(
-					(IAdaptable) createStateMachine.getCommandResult()
-							.getReturnValue(),
-					((IGraphicalEditPart) getHost())
-							.getDiagramPreferencesHint(), editingDomain,
-					DiagramUIMessages.CreateCommand_Label,
-					createStateMachine.getAffectedFiles());
+			CustomStateMachineWithDefaultRegionCreateNodeCommand createRegion = new CustomStateMachineWithDefaultRegionCreateNodeCommand((IAdaptable)createStateMachine.getCommandResult().getReturnValue(), ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint(), editingDomain, DiagramUIMessages.CreateCommand_Label, createStateMachine.getAffectedFiles());
 
 			cc.compose(createStateMachine);
 			cc.compose(createRegion);

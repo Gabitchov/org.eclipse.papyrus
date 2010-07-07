@@ -15,12 +15,12 @@ public class PseudostateDeepHistoryFigure extends Ellipse {
 		this.setMinimumSize(new Dimension(dim1));
 		this.setSize(dim1);
 	}
-	
+
 	/**
 	 * Fills the circle.
 	 * 
 	 * @param graphics
-	 *            the graphics
+	 *        the graphics
 	 * 
 	 * @see org.eclipse.draw2d.Shape#fillShape(org.eclipse.draw2d.Graphics)
 	 */
@@ -36,38 +36,14 @@ public class PseudostateDeepHistoryFigure extends Ellipse {
 		super.outlineShape(graphics);
 
 		// 'H' letter
-		graphics.drawLine(
-				bounds.getCenter().getTranslated((int) (-bounds.width * 0.25),
-						(int) (-bounds.height * 0.25)),
-						bounds.getCenter().getTranslated((int) (-bounds.width * 0.25),
-								(int) (bounds.height * 0.25)));
-		graphics.drawLine(
-				bounds.getCenter().getTranslated((int) (bounds.width * 0.05),
-						(int) (-bounds.height * 0.25)),
-						bounds.getCenter().getTranslated((int) (bounds.width * 0.05),
-								(int) (bounds.height * 0.25)));
-		graphics.drawLine(
-				bounds.getCenter().getTranslated((int) (-bounds.width * 0.25),
-						0),
-						bounds.getCenter()
-						.getTranslated((int) (bounds.width * 0.05), 0));
+		graphics.drawLine(bounds.getCenter().getTranslated((int)(-bounds.width * 0.25), (int)(-bounds.height * 0.25)), bounds.getCenter().getTranslated((int)(-bounds.width * 0.25), (int)(bounds.height * 0.25)));
+		graphics.drawLine(bounds.getCenter().getTranslated((int)(bounds.width * 0.05), (int)(-bounds.height * 0.25)), bounds.getCenter().getTranslated((int)(bounds.width * 0.05), (int)(bounds.height * 0.25)));
+		graphics.drawLine(bounds.getCenter().getTranslated((int)(-bounds.width * 0.25), 0), bounds.getCenter().getTranslated((int)(bounds.width * 0.05), 0));
 
 		// '*' character
-		graphics.drawLine(
-				bounds.getCenter().getTranslated((int) (bounds.width * 0.25),
-						(int) (-bounds.height * 0.25)),
-						bounds.getCenter().getTranslated((int) (bounds.width * 0.25),
-								(int) (-bounds.height * 0.05)));
-		graphics.drawLine(
-				bounds.getCenter().getTranslated((int) (bounds.width * 0.15),
-						(int) (-bounds.height * 0.20)),
-						bounds.getCenter().getTranslated((int) (bounds.width * 0.35),
-								(int) (-bounds.height * 0.10)));
-		graphics.drawLine(
-				bounds.getCenter().getTranslated((int) (bounds.width * 0.35),
-						(int) (-bounds.height * 0.20)),
-						bounds.getCenter().getTranslated((int) (bounds.width * 0.15),
-								(int) (-bounds.height * 0.10)));
+		graphics.drawLine(bounds.getCenter().getTranslated((int)(bounds.width * 0.25), (int)(-bounds.height * 0.25)), bounds.getCenter().getTranslated((int)(bounds.width * 0.25), (int)(-bounds.height * 0.05)));
+		graphics.drawLine(bounds.getCenter().getTranslated((int)(bounds.width * 0.15), (int)(-bounds.height * 0.20)), bounds.getCenter().getTranslated((int)(bounds.width * 0.35), (int)(-bounds.height * 0.10)));
+		graphics.drawLine(bounds.getCenter().getTranslated((int)(bounds.width * 0.35), (int)(-bounds.height * 0.20)), bounds.getCenter().getTranslated((int)(bounds.width * 0.15), (int)(-bounds.height * 0.10)));
 	}
 
 }

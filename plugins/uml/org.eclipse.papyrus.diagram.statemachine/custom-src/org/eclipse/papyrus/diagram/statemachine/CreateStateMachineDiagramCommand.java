@@ -26,8 +26,7 @@ import org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin;
  * @author dumoulin
  * @author <a href="mailto:jerome.benois@obeo.fr">Jerome Benois</a>
  */
-public class CreateStateMachineDiagramCommand extends
-		AbstractPapyrusGmfCreateDiagramCommandHandler {
+public class CreateStateMachineDiagramCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
 
 	/**
 	 * {@inheritDoc}

@@ -39,8 +39,7 @@ import org.eclipse.papyrus.diagram.statemachine.custom.helpers.Zone;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
 
-public class CustomRegionCompartmentCreationEditPolicy extends
-		CreationEditPolicy {
+public class CustomRegionCompartmentCreationEditPolicy extends CreationEditPolicy {
 
 	IFigure sizeOnDropFeedback = null;
 
@@ -48,10 +47,8 @@ public class CustomRegionCompartmentCreationEditPolicy extends
 
 	@Override
 	public void eraseTargetFeedback(Request request) {
-		if (sizeOnDropFeedback != null) {
-			LayerManager.Helper.find(getHost())
-					.getLayer(LayerConstants.FEEDBACK_LAYER)
-					.remove(sizeOnDropFeedback);
+		if(sizeOnDropFeedback != null) {
+			LayerManager.Helper.find(getHost()).getLayer(LayerConstants.FEEDBACK_LAYER).remove(sizeOnDropFeedback);
 			sizeOnDropFeedback = null;
 		}
 	}
@@ -60,62 +57,46 @@ public class CustomRegionCompartmentCreationEditPolicy extends
 	public Command getCommand(Request request) {
 
 		// CHECK THIS
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
-				.getEditingDomain();
-		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(
-				editingDomain, DiagramUIMessages.AddCommand_Label);
-		if (understandsRequest(request)) {
-			if (request instanceof CreateUnspecifiedTypeRequest) {
-				CreateUnspecifiedTypeRequest unspecReq = (CreateUnspecifiedTypeRequest) request;
-				for (Iterator iter = unspecReq.getElementTypes().iterator(); iter
-						.hasNext();) {
-					IElementType elementType = (IElementType) iter.next();
-					CreateRequest createRequest = unspecReq
-							.getRequestForType(elementType);
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(editingDomain, DiagramUIMessages.AddCommand_Label);
+		if(understandsRequest(request)) {
+			if(request instanceof CreateUnspecifiedTypeRequest) {
+				CreateUnspecifiedTypeRequest unspecReq = (CreateUnspecifiedTypeRequest)request;
+				for(Iterator iter = unspecReq.getElementTypes().iterator(); iter.hasNext();) {
+					IElementType elementType = (IElementType)iter.next();
+					CreateRequest createRequest = unspecReq.getRequestForType(elementType);
 
-					if (((IHintedType) elementType).getSemanticHint().equals(
-							((IHintedType) UMLElementTypes.Region_3000)
-									.getSemanticHint())) {
+					if(((IHintedType)elementType).getSemanticHint().equals(((IHintedType)UMLElementTypes.Region_3000).getSemanticHint())) {
 
 						// starting point is the existing region compartment on
 						// which mouse was moving
-						View existingRegionCompartmentView = (View) getHost()
-								.getModel();
+						View existingRegionCompartmentView = (View)getHost().getModel();
 						// the existing region view
-						View existingRegionView = (View) existingRegionCompartmentView
-								.eContainer();
+						View existingRegionView = (View)existingRegionCompartmentView.eContainer();
 						// get and adaptable for it, to pass on to commands
-						IAdaptable adaptableForExistingRegionView = (IAdaptable) new SemanticAdapter(
-								null, existingRegionView);
+						IAdaptable adaptableForExistingRegionView = (IAdaptable)new SemanticAdapter(null, existingRegionView);
 
 						// do the whole job
-						CustomRegionCreateElementCommand createNewRegion = new CustomRegionCreateElementCommand(
-								adaptableForExistingRegionView, null,
-								((IGraphicalEditPart) getHost())
-										.getDiagramPreferencesHint(),
-								editingDomain,
-								DiagramUIMessages.CreateCommand_Label,
-								dropLocation);
+						CustomRegionCreateElementCommand createNewRegion = new CustomRegionCreateElementCommand(adaptableForExistingRegionView, null, ((IGraphicalEditPart)getHost()).getDiagramPreferencesHint(), editingDomain, DiagramUIMessages.CreateCommand_Label, dropLocation);
 
 						cc.compose(createNewRegion);
 
 						return new ICommandProxy(cc.reduce());
 					}
 				}
-			} else if (request instanceof ChangeBoundsRequest) {
-				ChangeBoundsRequest changeBoundsRequest = (ChangeBoundsRequest) request;
+			} else if(request instanceof ChangeBoundsRequest) {
+				ChangeBoundsRequest changeBoundsRequest = (ChangeBoundsRequest)request;
 				Point mouseLocation = changeBoundsRequest.getLocation();
 
 				DropObjectsRequest dropRequest = new DropObjectsRequest();
 				dropRequest.setLocation(mouseLocation);
 
 				List<View> list = new ArrayList<View>();
-				Iterator<EditPart> it = changeBoundsRequest.getEditParts()
-						.iterator();
-				while (it.hasNext()) {
+				Iterator<EditPart> it = changeBoundsRequest.getEditParts().iterator();
+				while(it.hasNext()) {
 					EditPart ep = it.next();
-					if (ep instanceof RegionEditPart) {
-						View regionToDrag = (View) ep.getModel();
+					if(ep instanceof RegionEditPart) {
+						View regionToDrag = (View)ep.getModel();
 						list.add(regionToDrag);
 					}
 				}
@@ -129,28 +110,24 @@ public class CustomRegionCompartmentCreationEditPolicy extends
 	}
 
 	protected IFigure getSizeOnDropFeedback() {
-		if (sizeOnDropFeedback == null) {
+		if(sizeOnDropFeedback == null) {
 			sizeOnDropFeedback = new RectangleFigure();
-			FigureUtilities.makeGhostShape((Shape) sizeOnDropFeedback);
-			((Shape) sizeOnDropFeedback).setLineStyle(Graphics.LINE_DASHDOT);
+			FigureUtilities.makeGhostShape((Shape)sizeOnDropFeedback);
+			((Shape)sizeOnDropFeedback).setLineStyle(Graphics.LINE_DASHDOT);
 			sizeOnDropFeedback.setForegroundColor(ColorConstants.white);
-			LayerManager.Helper.find(getHost())
-					.getLayer(LayerConstants.FEEDBACK_LAYER)
-					.add(sizeOnDropFeedback);
+			LayerManager.Helper.find(getHost()).getLayer(LayerConstants.FEEDBACK_LAYER).add(sizeOnDropFeedback);
 		}
 		return sizeOnDropFeedback;
 	}
 
 	@Override
 	public void showTargetFeedback(Request request) {
-		if (request instanceof CreateUnspecifiedTypeRequest) {
-			CreateUnspecifiedTypeRequest unspecReq = (CreateUnspecifiedTypeRequest) request;
-			for (Iterator iter = unspecReq.getElementTypes().iterator(); iter
-					.hasNext();) {
-				IElementType elementType = (IElementType) iter.next();
-				if (elementType.equals(UMLElementTypes.Region_3000)) {
-					RegionFigure targetFig = ((RegionEditPart) getHost()
-							.getParent()).getPrimaryShape();
+		if(request instanceof CreateUnspecifiedTypeRequest) {
+			CreateUnspecifiedTypeRequest unspecReq = (CreateUnspecifiedTypeRequest)request;
+			for(Iterator iter = unspecReq.getElementTypes().iterator(); iter.hasNext();) {
+				IElementType elementType = (IElementType)iter.next();
+				if(elementType.equals(UMLElementTypes.Region_3000)) {
+					RegionFigure targetFig = ((RegionEditPart)getHost().getParent()).getPrimaryShape();
 
 					// make a local copy
 					Rectangle targetFigBounds = targetFig.getBounds().getCopy();
@@ -160,31 +137,24 @@ public class CustomRegionCompartmentCreationEditPolicy extends
 					Point mouseLocation = unspecReq.getLocation();
 
 					// get the drop location, i.e. RIGHT, LEFT, TOP, BOTTOM
-					dropLocation = Zone
-							.getZoneFromLocationInRectangleWithAbsoluteCoordinates(
-									mouseLocation, targetFigBounds);
+					dropLocation = Zone.getZoneFromLocationInRectangleWithAbsoluteCoordinates(mouseLocation, targetFigBounds);
 
 					// perform corresponding change (scaling, translation) on
 					// targetFigBounds
 					// and updates the graph node drop location property
-					if (Zone.isTop(dropLocation)) {
-						targetFigBounds.setSize(targetFigBounds.getSize()
-								.scale(1.0, 0.5));
-					} else if (Zone.isLeft(dropLocation)) {
-						targetFigBounds.setSize(targetFigBounds.getSize()
-								.scale(0.5, 1.0));
-					} else if (Zone.isRight(dropLocation)) {
-						targetFigBounds.setSize(targetFigBounds.getSize()
-								.scale(0.5, 1.0));
+					if(Zone.isTop(dropLocation)) {
+						targetFigBounds.setSize(targetFigBounds.getSize().scale(1.0, 0.5));
+					} else if(Zone.isLeft(dropLocation)) {
+						targetFigBounds.setSize(targetFigBounds.getSize().scale(0.5, 1.0));
+					} else if(Zone.isRight(dropLocation)) {
+						targetFigBounds.setSize(targetFigBounds.getSize().scale(0.5, 1.0));
 						targetFigBounds.translate(targetFigBounds.width, 0);
-					} else if (Zone.isBottom(dropLocation)) {
-						targetFigBounds.setSize(targetFigBounds.getSize()
-								.scale(1.0, 0.5));
+					} else if(Zone.isBottom(dropLocation)) {
+						targetFigBounds.setSize(targetFigBounds.getSize().scale(1.0, 0.5));
 						targetFigBounds.translate(0, targetFigBounds.height);
 					}
 
-					getSizeOnDropFeedback().setBounds(
-							new PrecisionRectangle(targetFigBounds));
+					getSizeOnDropFeedback().setBounds(new PrecisionRectangle(targetFigBounds));
 				}
 			}
 		}

@@ -35,67 +35,50 @@ public class TransitionPropertiesParser implements IParser {
 	}
 
 	public String getEditString(IAdaptable element, int flags) {
-		if (element instanceof EObjectAdapter) {
-			final Transition transition = ((Transition) ((EObjectAdapter) element)
-					.getRealObject());
+		if(element instanceof EObjectAdapter) {
+			final Transition transition = ((Transition)((EObjectAdapter)element).getRealObject());
 		}
 		return "";
 	}
 
-	public ICommand getParseCommand(IAdaptable element, String newString,
-			int flags) {
-		final Transition transition = ((Transition) ((EObjectAdapter) element)
-				.getRealObject());
+	public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
+		final Transition transition = ((Transition)((EObjectAdapter)element).getRealObject());
 		final String result = newString;
 
-		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(
-				LookForElement.getTransactionalEditingDomain(),
-				"Edit Transition Properties", (List) null) {
+		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(LookForElement.getTransactionalEditingDomain(), "Edit Transition Properties", (List)null) {
 
 			@Override
-			protected CommandResult doExecuteWithResult(
-					IProgressMonitor monitor, IAdaptable info)
-					throws ExecutionException {
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				SafeRunnable.run(new SafeRunnable() {
 
 					public void run() {
-						RecordingCommand rc = new RecordingCommand(
-								LookForElement.getTransactionalEditingDomain()) {
+						RecordingCommand rc = new RecordingCommand(LookForElement.getTransactionalEditingDomain()) {
 
 							protected void doExecute() {
 								// 1. Cherchez dans le model, si une contrainst
 								// avec le meme nom existe
 
-								EList<Element> elements = (transition
-										.getModel()).allOwnedElements();
-								Iterator<Element> modelElement = elements
-										.iterator();
-								while (modelElement.hasNext()) {
-									Element pElement = (Element) modelElement
-											.next();
-									if (pElement instanceof Constraint
-											&& (result
-													.equals(((NamedElement) pElement)
-															.getName()))) {
-										guardConstraint = (Constraint) pElement;
+								EList<Element> elements = (transition.getModel()).allOwnedElements();
+								Iterator<Element> modelElement = elements.iterator();
+								while(modelElement.hasNext()) {
+									Element pElement = (Element)modelElement.next();
+									if(pElement instanceof Constraint && (result.equals(((NamedElement)pElement).getName()))) {
+										guardConstraint = (Constraint)pElement;
 										transition.setGuard(guardConstraint);
 									}
 								}
 
 								// 2.Si aucune constraint n'existe deja
-								if (guardConstraint == null) {
-									guardConstraint = UMLFactory.eINSTANCE
-											.createConstraint();
+								if(guardConstraint == null) {
+									guardConstraint = UMLFactory.eINSTANCE.createConstraint();
 									guardConstraint.setName(result);
-									guardConstraint.setContext(transition
-											.getNamespace());
+									guardConstraint.setContext(transition.getNamespace());
 									transition.setGuard(guardConstraint);
 								}
 								// transition.setName(result);
 							}
 						};
-						EditorUtils.getTransactionalEditingDomain()
-								.getCommandStack().execute(rc);
+						EditorUtils.getTransactionalEditingDomain().getCommandStack().execute(rc);
 					}
 				});
 				return CommandResult.newOKCommandResult();
@@ -107,7 +90,7 @@ public class TransitionPropertiesParser implements IParser {
 
 	public String getPrintString(IAdaptable element, int flags) {
 		String guardConstraintDisplay = "";
-		if (guardConstraint != null) {
+		if(guardConstraint != null) {
 			guardConstraintDisplay = "/< " + guardConstraint.getName() + " >";
 			guardConstraint = null;
 			return guardConstraintDisplay;
@@ -117,12 +100,11 @@ public class TransitionPropertiesParser implements IParser {
 	}
 
 	public boolean isAffectingEvent(Object event, int flags) {
-		if (event instanceof Notification) {
-			int notificationType = ((Notification) event).getEventType();
-			if (4 == notificationType) {
-				if (((Notification) event).getNewValue() instanceof Constraint)
-					guardConstraint = (Constraint) ((Notification) event)
-							.getNewValue();
+		if(event instanceof Notification) {
+			int notificationType = ((Notification)event).getEventType();
+			if(4 == notificationType) {
+				if(((Notification)event).getNewValue() instanceof Constraint)
+					guardConstraint = (Constraint)((Notification)event).getNewValue();
 				/*
 				 * EObjectAdapter essaiadapter = null;
 				 * essaiadapter.setRealObject(((Notification)
@@ -135,12 +117,9 @@ public class TransitionPropertiesParser implements IParser {
 		return false;
 	}
 
-	public IParserEditStatus isValidEditString(IAdaptable element,
-			String editString) {
+	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
 
-		return new ParserEditStatus(
-				org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin.ID,
-				IParserEditStatus.OK, "");
+		return new ParserEditStatus(org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin.ID, IParserEditStatus.OK, "");
 	}
 
 }

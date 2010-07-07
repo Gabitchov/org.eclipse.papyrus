@@ -33,15 +33,14 @@ public class PackageEditPart extends DiagramEditPart {
 	/**
 	 * @generated
 	 */
-	/* package-local */static class LinkLabelDragPolicy extends
-			NonResizableLabelEditPolicy {
+	/* package-local */static class LinkLabelDragPolicy extends NonResizableLabelEditPolicy {
 
 		/**
 		 * @generated
 		 */
 		@SuppressWarnings("rawtypes")
 		protected List createSelectionHandles() {
-			MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
+			MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
 			mh.setBorder(null);
 			return Collections.singletonList(mh);
 		}
@@ -50,15 +49,14 @@ public class PackageEditPart extends DiagramEditPart {
 	/**
 	 * @generated
 	 */
-	/* package-local */static class NodeLabelDragPolicy extends
-			NonResizableEditPolicy {
+	/* package-local */static class NodeLabelDragPolicy extends NonResizableEditPolicy {
 
 		/**
 		 * @generated
 		 */
 		@SuppressWarnings("rawtypes")
 		protected List createSelectionHandles() {
-			MoveHandle h = new MoveHandle((GraphicalEditPart) getHost());
+			MoveHandle h = new MoveHandle((GraphicalEditPart)getHost());
 			h.setBorder(null);
 			return Collections.singletonList(h);
 		}
@@ -100,22 +98,17 @@ public class PackageEditPart extends DiagramEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE,
-				new DuplicatePasteEditPolicy());
+		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
 
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-				new PackageItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackageItemSemanticEditPolicy());
 
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.statemachine.edit.policies.PackageCanonicalEditPolicy());
 
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
-				new CustomPackageCreationEditPolicy());
-		installEditPolicy(EditPolicy.LAYOUT_ROLE,
-				new CustomPackageXYLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
-				new CustomStateMachineDiagramDragDropEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CustomPackageCreationEditPolicy());
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, new CustomPackageXYLayoutEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomStateMachineDiagramDragDropEditPolicy());
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 
@@ -124,7 +117,7 @@ public class PackageEditPart extends DiagramEditPart {
 	 */
 	public Object getAdapter(Class adapter) {
 
-		if (adapter != null && adapter.equals(ViewInfo.class)) {
+		if(adapter != null && adapter.equals(ViewInfo.class)) {
 			return UMLVisualIDRegistry.getDiagramViewInfo();
 		}
 		return super.getAdapter(adapter);
@@ -136,11 +129,9 @@ public class PackageEditPart extends DiagramEditPart {
 	protected void handleNotificationEvent(Notification event) {
 
 		super.handleNotificationEvent(event);
-		if (event.getNotifier() instanceof EAnnotation) {
-			EAnnotation eAnnotation = (EAnnotation) event.getNotifier();
-			if (eAnnotation.getSource() != null
-					&& eAnnotation.getSource().equals(
-							MDTUtil.FilterViewAndLabelsSource)) {
+		if(event.getNotifier() instanceof EAnnotation) {
+			EAnnotation eAnnotation = (EAnnotation)event.getNotifier();
+			if(eAnnotation.getSource() != null && eAnnotation.getSource().equals(MDTUtil.FilterViewAndLabelsSource)) {
 				//modification form MOSKitt approach, canonical policies are not called
 				MDTUtil.filterDiagramViews(this.getDiagramView());
 			}

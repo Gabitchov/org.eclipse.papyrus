@@ -70,7 +70,7 @@ public class Zone {
 	 * Returns a copy of the property string.
 	 * 
 	 * @param s
-	 *            a string
+	 *        a string
 	 * 
 	 * @return a copy of string s
 	 */
@@ -82,11 +82,10 @@ public class Zone {
 	 * Helper to copy zone
 	 */
 	public static void copyZone(View from, View to) {
-		if (to.getEAnnotation(ANNOTATION_KEY) == null)
+		if(to.getEAnnotation(ANNOTATION_KEY) == null)
 			throw new IllegalArgumentException();
 
-		if (!to.getEAnnotation(ANNOTATION_KEY).getDetails()
-				.containsKey(ZONE_KEY))
+		if(!to.getEAnnotation(ANNOTATION_KEY).getDetails().containsKey(ZONE_KEY))
 			throw new IllegalArgumentException();
 
 		String zone = copy(getZone(from));
@@ -97,7 +96,7 @@ public class Zone {
 	 * Helper to create an initialized Annotation
 	 */
 	public static void createRegionDefaultAnnotation(View region) {
-		if (!isRegion(region))
+		if(!isRegion(region))
 			throw new IllegalArgumentException();
 
 		// now everything is fine we can go on
@@ -121,27 +120,27 @@ public class Zone {
 	 * the draw2D conventions
 	 * 
 	 * @param s
-	 *            a string
+	 *        a string
 	 * 
 	 * @return an integer which is the result of a bit-wise operation
 	 */
 	public static int getAllowedResizeDirections(String s) {
-		if (s == null)
+		if(s == null)
 			throw new IllegalArgumentException();
 		// this involves bit-wise operations
 		// we start with none directions allowed
 		// then add others
 		int direction = PositionConstants.NONE;
-		if (hasLeftNeighbours(s))
+		if(hasLeftNeighbours(s))
 			// WEST allowed
 			direction |= PositionConstants.WEST;
-		if (hasRightNeighbours(s))
+		if(hasRightNeighbours(s))
 			// EAST allowed
 			direction |= PositionConstants.EAST;
-		if (hasTopNeighbours(s))
+		if(hasTopNeighbours(s))
 			// NORTH allowed
 			direction |= PositionConstants.NORTH;
-		if (hasBottomNeighbours(s))
+		if(hasBottomNeighbours(s))
 			// SOUTH allowed
 			direction |= PositionConstants.SOUTH;
 		return direction;
@@ -151,19 +150,15 @@ public class Zone {
 	 * Helper to get bounds.
 	 * 
 	 * @param view
-	 *            the region view
+	 *        the region view
 	 * 
 	 * @return a new Rectangle with same bounds as the region
 	 */
 	public static Rectangle getBounds(View view) {
-		int x = (Integer) ViewUtil.getStructuralFeatureValue(view,
-				NotationPackage.eINSTANCE.getLocation_X());
-		int y = (Integer) ViewUtil.getStructuralFeatureValue(view,
-				NotationPackage.eINSTANCE.getLocation_Y());
-		int width = (Integer) ViewUtil.getStructuralFeatureValue(view,
-				NotationPackage.eINSTANCE.getSize_Width());
-		int height = (Integer) ViewUtil.getStructuralFeatureValue(view,
-				NotationPackage.eINSTANCE.getSize_Height());
+		int x = (Integer)ViewUtil.getStructuralFeatureValue(view, NotationPackage.eINSTANCE.getLocation_X());
+		int y = (Integer)ViewUtil.getStructuralFeatureValue(view, NotationPackage.eINSTANCE.getLocation_Y());
+		int width = (Integer)ViewUtil.getStructuralFeatureValue(view, NotationPackage.eINSTANCE.getSize_Width());
+		int height = (Integer)ViewUtil.getStructuralFeatureValue(view, NotationPackage.eINSTANCE.getSize_Height());
 
 		return new Rectangle(x, y, width, height);
 	}
@@ -172,13 +167,12 @@ public class Zone {
 	 * Helper to get height of the given view
 	 * 
 	 * @param view
-	 *            the region view
+	 *        the region view
 	 * 
 	 * @return the height of the region
 	 */
 	public static int getHeight(View view) {
-		int height = (Integer) ViewUtil.getStructuralFeatureValue(view,
-				NotationPackage.eINSTANCE.getSize_Height());
+		int height = (Integer)ViewUtil.getStructuralFeatureValue(view, NotationPackage.eINSTANCE.getSize_Height());
 		return height;
 	}
 
@@ -189,28 +183,25 @@ public class Zone {
 	 * criterion
 	 * 
 	 * @param regionList
-	 *            a list of region nodes
+	 *        a list of region nodes
 	 * @param initPattern
-	 *            the initial pattern the region zone must match
+	 *        the initial pattern the region zone must match
 	 * @param excludingZoneInFinalPattern
-	 *            the type of zone to exclude in the final pattern
+	 *        the type of zone to exclude in the final pattern
 	 * 
 	 * @return a list of the regions in the list matching the criterion
 	 */
-	public static List<View> getMatchingRegionsFromList(List<View> regionList,
-			String initPattern, String excludingZoneInFinalPattern) {
+	public static List<View> getMatchingRegionsFromList(List<View> regionList, String initPattern, String excludingZoneInFinalPattern) {
 
 		List<View> matchingRegions = new ArrayList<View>();
 		Iterator<View> it = regionList.iterator();
-		while (it.hasNext()) {
+		while(it.hasNext()) {
 			View view = it.next();
 			// get the zone of current region
 			String zone = Zone.getZone(view);
-			String zoneLastPart = (zone.length() <= initPattern.length()) ? ""
-					: zone.substring(initPattern.length());
+			String zoneLastPart = (zone.length() <= initPattern.length()) ? "" : zone.substring(initPattern.length());
 
-			if (zone.startsWith(initPattern)
-					&& !zoneLastPart.contains(excludingZoneInFinalPattern))
+			if(zone.startsWith(initPattern) && !zoneLastPart.contains(excludingZoneInFinalPattern))
 				matchingRegions.add(view);
 		}
 
@@ -222,7 +213,7 @@ public class Zone {
 	 * region BOTTOM border.
 	 * 
 	 * @param region
-	 *            the region graph node
+	 *        the region graph node
 	 * 
 	 * @return a vector of the neighbouring graph nodes
 	 */
@@ -242,13 +233,11 @@ public class Zone {
 		String excludingZoneInFinalPattern = Zone.TOP;
 
 		// get the stateMachine compartment
-		View stateMachineCompartment = (View) region.eContainer();
+		View stateMachineCompartment = (View)region.eContainer();
 		// then the list of regions
-		List<View> regionList = (List<View>) stateMachineCompartment
-				.getChildren();
+		List<View> regionList = (List<View>)stateMachineCompartment.getChildren();
 
-		List<View> neighbours = getMatchingRegionsFromList(regionList,
-				initPattern, excludingZoneInFinalPattern);
+		List<View> neighbours = getMatchingRegionsFromList(regionList, initPattern, excludingZoneInFinalPattern);
 
 		return neighbours;
 	}
@@ -258,7 +247,7 @@ public class Zone {
 	 * region BOTTOM border.
 	 * 
 	 * @param region
-	 *            the region node
+	 *        the region node
 	 * 
 	 * @return a vector of the neighbouring regions
 	 */
@@ -278,13 +267,11 @@ public class Zone {
 		String excludingZoneInFinalPattern = Zone.BOTTOM;
 
 		// get the stateMachine compartment
-		View stateMachineCompartment = (View) region.eContainer();
+		View stateMachineCompartment = (View)region.eContainer();
 		// then the list of regions
-		List<View> regionList = (List<View>) stateMachineCompartment
-				.getChildren();
+		List<View> regionList = (List<View>)stateMachineCompartment.getChildren();
 
-		List<View> neighbours = getMatchingRegionsFromList(regionList,
-				initPattern, excludingZoneInFinalPattern);
+		List<View> neighbours = getMatchingRegionsFromList(regionList, initPattern, excludingZoneInFinalPattern);
 
 		return neighbours;
 	}
@@ -294,7 +281,7 @@ public class Zone {
 	 * region LEFT border.
 	 * 
 	 * @param region
-	 *            the region graph node
+	 *        the region graph node
 	 * 
 	 * @return a vector of the neighbouring graph nodes
 	 */
@@ -314,13 +301,11 @@ public class Zone {
 		String excludingZoneInFinalPattern = Zone.RIGHT;
 
 		// get the stateMachine compartment
-		View stateMachineCompartment = (View) region.eContainer();
+		View stateMachineCompartment = (View)region.eContainer();
 		// then the list of regions
-		List<View> regionList = (List<View>) stateMachineCompartment
-				.getChildren();
+		List<View> regionList = (List<View>)stateMachineCompartment.getChildren();
 
-		List<View> neighbours = getMatchingRegionsFromList(regionList,
-				initPattern, excludingZoneInFinalPattern);
+		List<View> neighbours = getMatchingRegionsFromList(regionList, initPattern, excludingZoneInFinalPattern);
 
 		return neighbours;
 	}
@@ -330,7 +315,7 @@ public class Zone {
 	 * region LEFT border.
 	 * 
 	 * @param region
-	 *            the region graph node
+	 *        the region graph node
 	 * 
 	 * @return a list of the neighbouring graph nodes
 	 */
@@ -350,13 +335,11 @@ public class Zone {
 		String excludingZoneInFinalPattern = Zone.LEFT;
 
 		// get the stateMachine compartment
-		View stateMachineCompartment = (View) region.eContainer();
+		View stateMachineCompartment = (View)region.eContainer();
 		// then the list of regions
-		List<View> regionList = (List<View>) stateMachineCompartment
-				.getChildren();
+		List<View> regionList = (List<View>)stateMachineCompartment.getChildren();
 
-		List<View> neighbours = getMatchingRegionsFromList(regionList,
-				initPattern, excludingZoneInFinalPattern);
+		List<View> neighbours = getMatchingRegionsFromList(regionList, initPattern, excludingZoneInFinalPattern);
 
 		return neighbours;
 	}
@@ -366,7 +349,7 @@ public class Zone {
 	 * region RIGHT border.
 	 * 
 	 * @param region
-	 *            the region graph node
+	 *        the region graph node
 	 * 
 	 * @return a vector of the neighbouring graph nodes
 	 */
@@ -386,13 +369,11 @@ public class Zone {
 		String excludingZoneInFinalPattern = Zone.LEFT;
 
 		// get the stateMachine compartment
-		View stateMachineCompartment = (View) region.eContainer();
+		View stateMachineCompartment = (View)region.eContainer();
 		// then the list of regions
-		List<View> regionList = (List<View>) stateMachineCompartment
-				.getChildren();
+		List<View> regionList = (List<View>)stateMachineCompartment.getChildren();
 
-		List<View> neighbours = getMatchingRegionsFromList(regionList,
-				initPattern, excludingZoneInFinalPattern);
+		List<View> neighbours = getMatchingRegionsFromList(regionList, initPattern, excludingZoneInFinalPattern);
 
 		return neighbours;
 	}
@@ -402,7 +383,7 @@ public class Zone {
 	 * RIGHT border.
 	 * 
 	 * @param region
-	 *            the region graph node
+	 *        the region graph node
 	 * 
 	 * @return a vector of the neighbouring graph nodes
 	 */
@@ -422,13 +403,11 @@ public class Zone {
 		String excludingZoneInFinalPattern = Zone.RIGHT;
 
 		// get the stateMachine compartment
-		View stateMachineCompartment = (View) region.eContainer();
+		View stateMachineCompartment = (View)region.eContainer();
 		// then the list of regions
-		List<View> regionList = (List<View>) stateMachineCompartment
-				.getChildren();
+		List<View> regionList = (List<View>)stateMachineCompartment.getChildren();
 
-		List<View> neighbours = getMatchingRegionsFromList(regionList,
-				initPattern, excludingZoneInFinalPattern);
+		List<View> neighbours = getMatchingRegionsFromList(regionList, initPattern, excludingZoneInFinalPattern);
 
 		return neighbours;
 	}
@@ -438,7 +417,7 @@ public class Zone {
 	 * region TOP border.
 	 * 
 	 * @param region
-	 *            the region node
+	 *        the region node
 	 * 
 	 * @return a vector of the neighbouring regions
 	 */
@@ -458,13 +437,11 @@ public class Zone {
 		String excludingZoneInFinalPattern = Zone.BOTTOM;
 
 		// get the stateMachine compartment
-		View stateMachineCompartment = (View) region.eContainer();
+		View stateMachineCompartment = (View)region.eContainer();
 		// then the list of regions
-		List<View> regionList = (List<View>) stateMachineCompartment
-				.getChildren();
+		List<View> regionList = (List<View>)stateMachineCompartment.getChildren();
 
-		List<View> neighbours = getMatchingRegionsFromList(regionList,
-				initPattern, excludingZoneInFinalPattern);
+		List<View> neighbours = getMatchingRegionsFromList(regionList, initPattern, excludingZoneInFinalPattern);
 
 		return neighbours;
 	}
@@ -474,7 +451,7 @@ public class Zone {
 	 * region TOP border.
 	 * 
 	 * @param region
-	 *            the region graph node
+	 *        the region graph node
 	 * 
 	 * @return a vector of the neighbouring graph nodes
 	 */
@@ -494,13 +471,11 @@ public class Zone {
 		String excludingZoneInFinalPattern = Zone.TOP;
 
 		// get the stateMachine compartment
-		View stateMachineCompartment = (View) region.eContainer();
+		View stateMachineCompartment = (View)region.eContainer();
 		// then the list of regions
-		List<View> regionList = (List<View>) stateMachineCompartment
-				.getChildren();
+		List<View> regionList = (List<View>)stateMachineCompartment.getChildren();
 
-		List<View> neighbours = getMatchingRegionsFromList(regionList,
-				initPattern, excludingZoneInFinalPattern);
+		List<View> neighbours = getMatchingRegionsFromList(regionList, initPattern, excludingZoneInFinalPattern);
 
 		return neighbours;
 	}
@@ -509,13 +484,12 @@ public class Zone {
 	 * Helper to get width
 	 * 
 	 * @param region
-	 *            the region graph node
+	 *        the region graph node
 	 * 
 	 * @return the width of the region
 	 */
 	public static int getWidth(View view) {
-		int width = (Integer) ViewUtil.getStructuralFeatureValue(view,
-				NotationPackage.eINSTANCE.getSize_Width());
+		int width = (Integer)ViewUtil.getStructuralFeatureValue(view, NotationPackage.eINSTANCE.getSize_Width());
 		return width;
 	}
 
@@ -523,13 +497,12 @@ public class Zone {
 	 * Helper to get x
 	 * 
 	 * @param region
-	 *            the region graph node
+	 *        the region graph node
 	 * 
 	 * @return the x of the region
 	 */
 	public static int getX(View view) {
-		int x = (Integer) ViewUtil.getStructuralFeatureValue(view,
-				NotationPackage.eINSTANCE.getLocation_X());
+		int x = (Integer)ViewUtil.getStructuralFeatureValue(view, NotationPackage.eINSTANCE.getLocation_X());
 		return x;
 	}
 
@@ -537,13 +510,12 @@ public class Zone {
 	 * Helper to get y
 	 * 
 	 * @param region
-	 *            the region graph node
+	 *        the region graph node
 	 * 
 	 * @return the y of the region
 	 */
 	public static int getY(View view) {
-		int y = (Integer) ViewUtil.getStructuralFeatureValue(view,
-				NotationPackage.eINSTANCE.getLocation_Y());
+		int y = (Integer)ViewUtil.getStructuralFeatureValue(view, NotationPackage.eINSTANCE.getLocation_Y());
 		return y;
 	}
 
@@ -551,15 +523,14 @@ public class Zone {
 	 * Helper to access zone
 	 * 
 	 * @param region
-	 *            the region graph node
+	 *        the region graph node
 	 * 
 	 * @return the zone of the region
 	 */
 	public static String getZone(View view) {
-		if (view.getEAnnotation(ANNOTATION_KEY) == null)
+		if(view.getEAnnotation(ANNOTATION_KEY) == null)
 			throw new IllegalArgumentException();
-		if (!view.getEAnnotation(ANNOTATION_KEY).getDetails()
-				.containsKey(ZONE_KEY))
+		if(!view.getEAnnotation(ANNOTATION_KEY).getDetails().containsKey(ZONE_KEY))
 			throw new IllegalArgumentException();
 		return view.getEAnnotation(ANNOTATION_KEY).getDetails().get(ZONE_KEY);
 	}
@@ -569,19 +540,19 @@ public class Zone {
 	 * Zone.LEFT is returned, etc.
 	 * 
 	 * @param zone
-	 *            the zone
+	 *        the zone
 	 * 
 	 * @return the counterpart zone
 	 */
 	private static String getZoneCounterpart(String s) {
 		String cs = s.substring(0, s.length() - 1);
-		if (Zone.isRight(s))
+		if(Zone.isRight(s))
 			return Zone.setLeft(cs);
-		if (Zone.isLeft(s))
+		if(Zone.isLeft(s))
 			return Zone.setRight(cs);
-		if (Zone.isBottom(s))
+		if(Zone.isBottom(s))
 			return Zone.setTop(cs);
-		if (Zone.isTop(s))
+		if(Zone.isTop(s))
 			return Zone.setBottom(cs);
 		return s;
 	}
@@ -590,30 +561,27 @@ public class Zone {
 	 * Computes the zone at location within bounds using absolute coordinates
 	 * 
 	 * @param location
-	 *            the location
+	 *        the location
 	 * @param rect
-	 *            the bounds
+	 *        the bounds
 	 * 
 	 * @return the zone
 	 */
-	public static String getZoneFromLocationInRectangleWithAbsoluteCoordinates(
-			Point location, Rectangle rect) {
+	public static String getZoneFromLocationInRectangleWithAbsoluteCoordinates(Point location, Rectangle rect) {
 		// d1 is for the first diagonal (going up) rect
-		double d1 = location.y - 1.0 * rect.height / rect.width
-				* (rect.x - location.x) - rect.y - rect.height;
+		double d1 = location.y - 1.0 * rect.height / rect.width * (rect.x - location.x) - rect.y - rect.height;
 		// d2 is for the second (going down)
-		double d2 = location.y + 1.0 * rect.height / rect.width
-				* (rect.x - location.x) - rect.y;
-		if ((d1 <= 0) && (d2 <= 0)) {
+		double d2 = location.y + 1.0 * rect.height / rect.width * (rect.x - location.x) - rect.y;
+		if((d1 <= 0) && (d2 <= 0)) {
 			return Zone.TOP;
 		}
-		if ((d1 <= 0) && (d2 > 0)) {
+		if((d1 <= 0) && (d2 > 0)) {
 			return Zone.LEFT;
 		}
-		if ((d1 > 0) && (d2 <= 0)) {
+		if((d1 > 0) && (d2 <= 0)) {
 			return Zone.RIGHT;
 		}
-		if ((d1 > 0) && (d2 > 0)) {
+		if((d1 > 0) && (d2 > 0)) {
 			return Zone.BOTTOM;
 		}
 		return Zone.NONE;
@@ -623,29 +591,27 @@ public class Zone {
 	 * Computes the zone at location within bounds using local coordinates
 	 * 
 	 * @param location
-	 *            the location
+	 *        the location
 	 * @param rect
-	 *            the bounds
+	 *        the bounds
 	 * 
 	 * @return the zone
 	 */
-	public static String getZoneFromLocationInRectangleWithLocalCoordinates(
-			Point location, Rectangle rect) {
+	public static String getZoneFromLocationInRectangleWithLocalCoordinates(Point location, Rectangle rect) {
 		// d1 is for the first diagonal (going up) rect
-		double d1 = location.y + 1.0 * rect.height * location.x / rect.width
-				- rect.height;
+		double d1 = location.y + 1.0 * rect.height * location.x / rect.width - rect.height;
 		// d2 is for the second (going down)
 		double d2 = location.y - 1.0 * rect.height * location.x / rect.width;
-		if ((d1 <= 0) && (d2 <= 0)) {
+		if((d1 <= 0) && (d2 <= 0)) {
 			return Zone.TOP;
 		}
-		if ((d1 <= 0) && (d2 > 0)) {
+		if((d1 <= 0) && (d2 > 0)) {
 			return Zone.LEFT;
 		}
-		if ((d1 > 0) && (d2 <= 0)) {
+		if((d1 > 0) && (d2 <= 0)) {
 			return Zone.RIGHT;
 		}
-		if ((d1 > 0) && (d2 > 0)) {
+		if((d1 > 0) && (d2 > 0)) {
 			return Zone.BOTTOM;
 		}
 		return Zone.NONE;
@@ -656,12 +622,12 @@ public class Zone {
 	 * differently has a BOTTOM border.
 	 * 
 	 * @param s
-	 *            a string
+	 *        a string
 	 * 
 	 * @return boolean true or false
 	 */
 	public static boolean hasBottomNeighbours(String s) {
-		if (s == null)
+		if(s == null)
 			throw new IllegalArgumentException();
 		return s.contains(Zone.TOP);
 	}
@@ -671,12 +637,12 @@ public class Zone {
 	 * differently has a LEFT border.
 	 * 
 	 * @param s
-	 *            a string
+	 *        a string
 	 * 
 	 * @return boolean true or false
 	 */
 	public static boolean hasLeftNeighbours(String s) {
-		if (s == null)
+		if(s == null)
 			throw new IllegalArgumentException();
 		return s.contains(Zone.RIGHT);
 	}
@@ -686,12 +652,12 @@ public class Zone {
 	 * differently has a RIGHT border.
 	 * 
 	 * @param s
-	 *            a string
+	 *        a string
 	 * 
 	 * @return boolean true or false
 	 */
 	public static boolean hasRightNeighbours(String s) {
-		if (s == null)
+		if(s == null)
 			throw new IllegalArgumentException();
 		return s.contains(Zone.LEFT);
 	}
@@ -701,12 +667,12 @@ public class Zone {
 	 * differently has a TOP border.
 	 * 
 	 * @param s
-	 *            a string
+	 *        a string
 	 * 
 	 * @return boolean true or false
 	 */
 	public static boolean hasTopNeighbours(String s) {
-		if (s == null)
+		if(s == null)
 			throw new IllegalArgumentException();
 		return s.contains(Zone.BOTTOM);
 	}
@@ -715,12 +681,12 @@ public class Zone {
 	 * Checks whether the leaf location encoded is BOTTOM.
 	 * 
 	 * @param s
-	 *            a string
+	 *        a string
 	 * 
 	 * @return boolean true or false
 	 */
 	public static boolean isBottom(String s) {
-		if (s == null)
+		if(s == null)
 			throw new IllegalArgumentException();
 		return s.endsWith(Zone.BOTTOM);
 	}
@@ -729,12 +695,12 @@ public class Zone {
 	 * Checks whether the leaf location encoded is LEFT.
 	 * 
 	 * @param s
-	 *            a string
+	 *        a string
 	 * 
 	 * @return boolean true or false
 	 */
 	public static boolean isLeft(String s) {
-		if (s == null)
+		if(s == null)
 			throw new IllegalArgumentException();
 		return s.endsWith(Zone.LEFT);
 	}
@@ -743,11 +709,11 @@ public class Zone {
 	 * Checks whether the leaf location encoded is NONE.
 	 * 
 	 * @param s
-	 *            a string
+	 *        a string
 	 * @return boolean true or false
 	 */
 	public static boolean isNone(String s) {
-		if (s == null)
+		if(s == null)
 			throw new IllegalArgumentException();
 		return s.equals(Zone.NONE);
 	}
@@ -756,11 +722,11 @@ public class Zone {
 	 * Checks whether the view is a region
 	 * 
 	 * @param view
-	 *            a View
+	 *        a View
 	 * @return boolean true or false
 	 */
 	public static boolean isRegion(View view) {
-		if (view == null)
+		if(view == null)
 			throw new IllegalArgumentException();
 		return (UMLVisualIDRegistry.getVisualID(view.getType()) == RegionEditPart.VISUAL_ID);
 	}
@@ -769,12 +735,12 @@ public class Zone {
 	 * Checks whether the leaf location encoded is RIGHT.
 	 * 
 	 * @param s
-	 *            a string
+	 *        a string
 	 * 
 	 * @return boolean true or false
 	 */
 	public static boolean isRight(String s) {
-		if (s == null)
+		if(s == null)
 			throw new IllegalArgumentException();
 		return s.endsWith(Zone.RIGHT);
 	}
@@ -783,11 +749,11 @@ public class Zone {
 	 * Checks whether the view is a state machine
 	 * 
 	 * @param view
-	 *            a View
+	 *        a View
 	 * @return boolean true or false
 	 */
 	public static boolean isStateMachine(View view) {
-		if (view == null)
+		if(view == null)
 			throw new IllegalArgumentException();
 		return (UMLVisualIDRegistry.getVisualID(view.getType()) == StateMachineEditPart.VISUAL_ID);
 	}
@@ -796,11 +762,11 @@ public class Zone {
 	 * Checks whether the leaf location encoded is TOP.
 	 * 
 	 * @param s
-	 *            a string
+	 *        a string
 	 * @return boolean true or false
 	 */
 	public static boolean isTop(String s) {
-		if (s == null)
+		if(s == null)
 			throw new IllegalArgumentException();
 		return s.endsWith(Zone.TOP);
 	}
@@ -811,7 +777,7 @@ public class Zone {
 	 * mean they are changed into "XXX*" "L" is removed
 	 * 
 	 * @param region
-	 *            the region node
+	 *        the region node
 	 */
 	public static void resetRegionCounterpartZone(View region) {
 		// get the region zone
@@ -821,15 +787,14 @@ public class Zone {
 
 		List<View> list = new ArrayList<View>();
 		// get the stateMachine compartment
-		View stateMachineCompartment = (View) region.eContainer();
+		View stateMachineCompartment = (View)region.eContainer();
 		Iterator<View> it = stateMachineCompartment.getChildren().iterator();
-		while (it.hasNext()) {
+		while(it.hasNext()) {
 			View view = it.next();
 			String currentZone = getZone(view);
-			if (currentZone.startsWith(cZone)) {
+			if(currentZone.startsWith(cZone)) {
 				String initPart = currentZone.substring(0, cZone.length() - 1);
-				String finalPart = (currentZone.length() <= cZone.length()) ? ""
-						: currentZone.substring(cZone.length());
+				String finalPart = (currentZone.length() <= cZone.length()) ? "" : currentZone.substring(cZone.length());
 				currentZone = initPart + finalPart;
 				setZone(view, currentZone);
 			}
@@ -842,12 +807,12 @@ public class Zone {
 	 * old one is on TOP.
 	 * 
 	 * @param s
-	 *            a string
+	 *        a string
 	 * 
 	 * @return the updated string
 	 */
 	public static String setBottom(String s) {
-		if (s == null)
+		if(s == null)
 			throw new IllegalArgumentException();
 		return s + Zone.BOTTOM;
 	}
@@ -856,52 +821,45 @@ public class Zone {
 	 * Helper to set zone
 	 * 
 	 * @param view
-	 *            a View
+	 *        a View
 	 */
 	public static void setBottom(View view) {
-		if (view.getEAnnotation(ANNOTATION_KEY) == null)
+		if(view.getEAnnotation(ANNOTATION_KEY) == null)
 			throw new IllegalArgumentException();
 
-		if (!view.getEAnnotation(ANNOTATION_KEY).getDetails()
-				.containsKey(ZONE_KEY))
+		if(!view.getEAnnotation(ANNOTATION_KEY).getDetails().containsKey(ZONE_KEY))
 			throw new IllegalArgumentException();
 
 		String currentZone = Zone.getZone(view);
 		String zoneToSet = Zone.setBottom(currentZone);
-		view.getEAnnotation(ANNOTATION_KEY).getDetails()
-				.put(ZONE_KEY, zoneToSet);
+		view.getEAnnotation(ANNOTATION_KEY).getDetails().put(ZONE_KEY, zoneToSet);
 	}
 
 	/**
 	 * Helper to set bounds
 	 * 
 	 * @param view
-	 *            a View
+	 *        a View
 	 * @param bounds
-	 *            the bounds
+	 *        the bounds
 	 */
 	public static void setBounds(View view, Rectangle bounds) {
-		ViewUtil.setStructuralFeatureValue(view,
-				NotationPackage.eINSTANCE.getLocation_X(), bounds.x);
-		ViewUtil.setStructuralFeatureValue(view,
-				NotationPackage.eINSTANCE.getLocation_Y(), bounds.y);
-		ViewUtil.setStructuralFeatureValue(view,
-				NotationPackage.eINSTANCE.getSize_Width(), bounds.width);
-		ViewUtil.setStructuralFeatureValue(view,
-				NotationPackage.eINSTANCE.getSize_Height(), bounds.height);
+		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getLocation_X(), bounds.x);
+		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getLocation_Y(), bounds.y);
+		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getSize_Width(), bounds.width);
+		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getSize_Height(), bounds.height);
 	}
 
 	/**
 	 * Helper to set height
 	 * 
 	 * @param view
-	 *            a View
+	 *        a View
 	 * @param height
-	 *            the height
+	 *        the height
 	 */
 	public static void setHeight(View view, int height) {
-		ViewUtil.setStructuralFeatureValue(view,
-				NotationPackage.eINSTANCE.getSize_Height(), height);
+		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getSize_Height(), height);
 	}
 
 	/**
@@ -910,12 +868,12 @@ public class Zone {
 	 * old one is on the LEFT.
 	 * 
 	 * @param s
-	 *            a string
+	 *        a string
 	 * 
 	 * @return the updated string
 	 */
 	public static String setLeft(String s) {
-		if (s == null)
+		if(s == null)
 			throw new IllegalArgumentException();
 		return s + Zone.LEFT;
 	}
@@ -924,20 +882,18 @@ public class Zone {
 	 * Helper to set zone
 	 * 
 	 * @param view
-	 *            a View
+	 *        a View
 	 */
 	public static void setLeft(View view) {
-		if (view.getEAnnotation(ANNOTATION_KEY) == null)
+		if(view.getEAnnotation(ANNOTATION_KEY) == null)
 			throw new IllegalArgumentException();
 
-		if (!view.getEAnnotation(ANNOTATION_KEY).getDetails()
-				.containsKey(ZONE_KEY))
+		if(!view.getEAnnotation(ANNOTATION_KEY).getDetails().containsKey(ZONE_KEY))
 			throw new IllegalArgumentException();
 
 		String currentZone = Zone.getZone(view);
 		String zoneToSet = Zone.setLeft(currentZone);
-		view.getEAnnotation(ANNOTATION_KEY).getDetails()
-				.put(ZONE_KEY, zoneToSet);
+		view.getEAnnotation(ANNOTATION_KEY).getDetails().put(ZONE_KEY, zoneToSet);
 	}
 
 	/**
@@ -946,12 +902,12 @@ public class Zone {
 	 * old one is on the LEFT.
 	 * 
 	 * @param s
-	 *            a string
+	 *        a string
 	 * 
 	 * @return the updated string
 	 */
 	public static String setRight(String s) {
-		if (s == null)
+		if(s == null)
 			throw new IllegalArgumentException();
 		return s + Zone.RIGHT;
 	}
@@ -960,20 +916,18 @@ public class Zone {
 	 * Helper to set zone
 	 * 
 	 * @param view
-	 *            a View
+	 *        a View
 	 */
 	public static void setRight(View view) {
-		if (view.getEAnnotation(ANNOTATION_KEY) == null)
+		if(view.getEAnnotation(ANNOTATION_KEY) == null)
 			throw new IllegalArgumentException();
 
-		if (!view.getEAnnotation(ANNOTATION_KEY).getDetails()
-				.containsKey(ZONE_KEY))
+		if(!view.getEAnnotation(ANNOTATION_KEY).getDetails().containsKey(ZONE_KEY))
 			throw new IllegalArgumentException();
 
 		String currentZone = Zone.getZone(view);
 		String zoneToSet = Zone.setRight(currentZone);
-		view.getEAnnotation(ANNOTATION_KEY).getDetails()
-				.put(ZONE_KEY, zoneToSet);
+		view.getEAnnotation(ANNOTATION_KEY).getDetails().put(ZONE_KEY, zoneToSet);
 	}
 
 	/**
@@ -982,12 +936,12 @@ public class Zone {
 	 * old one is on TOP.
 	 * 
 	 * @param s
-	 *            a string
+	 *        a string
 	 * 
 	 * @return the updated string
 	 */
 	public static String setTop(String s) {
-		if (s == null)
+		if(s == null)
 			throw new IllegalArgumentException();
 		return s + Zone.TOP;
 	}
@@ -996,75 +950,69 @@ public class Zone {
 	 * Helper to set zone
 	 * 
 	 * @param view
-	 *            a View
+	 *        a View
 	 */
 	public static void setTop(View view) {
-		if (view.getEAnnotation(ANNOTATION_KEY) == null)
+		if(view.getEAnnotation(ANNOTATION_KEY) == null)
 			throw new IllegalArgumentException();
 
-		if (!view.getEAnnotation(ANNOTATION_KEY).getDetails()
-				.containsKey(ZONE_KEY))
+		if(!view.getEAnnotation(ANNOTATION_KEY).getDetails().containsKey(ZONE_KEY))
 			throw new IllegalArgumentException();
 
 		String currentZone = Zone.getZone(view);
 		String zoneToSet = Zone.setTop(currentZone);
-		view.getEAnnotation(ANNOTATION_KEY).getDetails()
-				.put(ZONE_KEY, zoneToSet);
+		view.getEAnnotation(ANNOTATION_KEY).getDetails().put(ZONE_KEY, zoneToSet);
 	}
 
 	/**
 	 * Helper to set width
 	 * 
 	 * @param view
-	 *            a View
+	 *        a View
 	 * @param width
-	 *            the width
+	 *        the width
 	 */
 	public static void setWidth(View view, int width) {
-		ViewUtil.setStructuralFeatureValue(view,
-				NotationPackage.eINSTANCE.getSize_Width(), width);
+		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getSize_Width(), width);
 	}
 
 	/**
 	 * Helper to set x
 	 * 
 	 * @param view
-	 *            a View
+	 *        a View
 	 * @param x
-	 *            the x
+	 *        the x
 	 */
 	public static void setX(View view, int x) {
-		ViewUtil.setStructuralFeatureValue(view,
-				NotationPackage.eINSTANCE.getLocation_X(), x);
+		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getLocation_X(), x);
 	}
 
 	/**
 	 * Helper to set y
 	 * 
 	 * @param view
-	 *            a View
+	 *        a View
 	 * @param y
-	 *            the y
+	 *        the y
 	 */
 	public static void setY(View view, int y) {
-		ViewUtil.setStructuralFeatureValue(view,
-				NotationPackage.eINSTANCE.getLocation_Y(), y);
+		ViewUtil.setStructuralFeatureValue(view, NotationPackage.eINSTANCE.getLocation_Y(), y);
 	}
 
 	/**
 	 * Helper to set zone with passed zone
 	 * 
 	 * @param view
-	 *            a View
+	 *        a View
 	 * @param zone
-	 *            a Zone
+	 *        a Zone
 	 */
 	public static void setZone(View view, String zone) {
-		if (view.getEAnnotation(ANNOTATION_KEY) == null)
+		if(view.getEAnnotation(ANNOTATION_KEY) == null)
 			throw new IllegalArgumentException();
 
-		if (!view.getEAnnotation(ANNOTATION_KEY).getDetails()
-				.containsKey(ZONE_KEY))
+		if(!view.getEAnnotation(ANNOTATION_KEY).getDetails().containsKey(ZONE_KEY))
 			throw new IllegalArgumentException();
 
 		view.getEAnnotation(ANNOTATION_KEY).getDetails().put(ZONE_KEY, zone);

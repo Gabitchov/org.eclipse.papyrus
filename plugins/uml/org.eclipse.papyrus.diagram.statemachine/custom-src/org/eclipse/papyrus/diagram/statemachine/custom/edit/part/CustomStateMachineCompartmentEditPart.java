@@ -8,8 +8,7 @@ import org.eclipse.papyrus.diagram.statemachine.custom.figures.CustomShapeCompar
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
 import org.eclipse.uml2.uml.StateMachine;
 
-public class CustomStateMachineCompartmentEditPart extends
-		StateMachineCompartmentEditPart {
+public class CustomStateMachineCompartmentEditPart extends StateMachineCompartmentEditPart {
 
 	public CustomStateMachineCompartmentEditPart(View view) {
 		super(view);
@@ -26,8 +25,7 @@ public class CustomStateMachineCompartmentEditPart extends
 	}
 
 	public IFigure createFigure() {
-		CustomShapeCompartmentFigure result = new CustomShapeCompartmentFigure(
-				getCompartmentName(), getMapMode());
+		CustomShapeCompartmentFigure result = new CustomShapeCompartmentFigure(getCompartmentName(), getMapMode());
 		return result;
 	}
 
@@ -43,10 +41,10 @@ public class CustomStateMachineCompartmentEditPart extends
 		// TODO Auto-generated method stub
 		super.refreshVisuals();
 
-		View smView = (View) ((View) getModel()).eContainer();
-		StateMachine sm = (StateMachine) smView.getElement();
+		View smView = (View)((View)getModel()).eContainer();
+		StateMachine sm = (StateMachine)smView.getElement();
 
-		((CustomShapeCompartmentFigure) getFigure()).setToolTip(sm.getName());
+		((CustomShapeCompartmentFigure)getFigure()).setToolTip(sm.getName());
 
 	}
 

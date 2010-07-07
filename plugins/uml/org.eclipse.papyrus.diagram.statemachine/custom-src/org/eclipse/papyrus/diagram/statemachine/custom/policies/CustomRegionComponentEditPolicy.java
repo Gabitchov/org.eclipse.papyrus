@@ -21,31 +21,28 @@ public class CustomRegionComponentEditPolicy extends ComponentEditPolicy {
 		CompositeCommand cc = new CompositeCommand(StringStatics.BLANK);
 
 		TransactionalEditingDomain editingDomain = getEditingDomain();
-		if (editingDomain == null) {
+		if(editingDomain == null) {
 			return null;
 		}
 		List toDel = deleteRequest.getEditParts();
-		if (toDel == null || toDel.isEmpty()) {
-			cc.compose(new CustomRegionDeleteCommand(editingDomain,
-					(View) getHost().getModel()));
+		if(toDel == null || toDel.isEmpty()) {
+			cc.compose(new CustomRegionDeleteCommand(editingDomain, (View)getHost().getModel()));
 		} else {
-			for (int i = 0; i < toDel.size(); i++) {
-				IGraphicalEditPart gep = (IGraphicalEditPart) toDel.get(i);
-				cc.compose(new CustomRegionDeleteCommand(editingDomain,
-						(View) gep.getModel()));
+			for(int i = 0; i < toDel.size(); i++) {
+				IGraphicalEditPart gep = (IGraphicalEditPart)toDel.get(i);
+				cc.compose(new CustomRegionDeleteCommand(editingDomain, (View)gep.getModel()));
 			}
 		}
 		return new ICommandProxy(cc.reduce());
 	}
 
 	private TransactionalEditingDomain getEditingDomain() {
-		if (getHost() instanceof IGraphicalEditPart) {
-			return ((IGraphicalEditPart) getHost()).getEditingDomain();
-		} else if (getHost() instanceof IEditingDomainProvider) {
-			Object domain = ((IEditingDomainProvider) getHost())
-					.getEditingDomain();
-			if (domain instanceof TransactionalEditingDomain) {
-				return (TransactionalEditingDomain) domain;
+		if(getHost() instanceof IGraphicalEditPart) {
+			return ((IGraphicalEditPart)getHost()).getEditingDomain();
+		} else if(getHost() instanceof IEditingDomainProvider) {
+			Object domain = ((IEditingDomainProvider)getHost()).getEditingDomain();
+			if(domain instanceof TransactionalEditingDomain) {
+				return (TransactionalEditingDomain)domain;
 			}
 		}
 		return null;

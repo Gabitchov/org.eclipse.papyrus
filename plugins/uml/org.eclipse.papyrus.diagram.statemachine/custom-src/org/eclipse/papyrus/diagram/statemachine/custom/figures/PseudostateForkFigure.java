@@ -15,6 +15,7 @@ public class PseudostateForkFigure extends RectangleFigure {
 		this.setMinimumSize(new Dimension(dim1));
 		this.setSize(dim1);
 	}
+
 	protected void fillShape(Graphics graphics) {
 
 		graphics.pushState();

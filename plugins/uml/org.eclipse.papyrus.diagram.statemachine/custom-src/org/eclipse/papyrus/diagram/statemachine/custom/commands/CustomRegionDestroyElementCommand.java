@@ -16,9 +16,9 @@ public class CustomRegionDestroyElementCommand extends DestroyElementCommand {
 
 	@Override
 	public boolean canExecute() {
-		if (super.canExecute()) {
-			StateMachine stateMachine = (StateMachine) getElementToEdit();
-			if (stateMachine.getRegions().size() == 1)
+		if(super.canExecute()) {
+			StateMachine stateMachine = (StateMachine)getElementToEdit();
+			if(stateMachine.getRegions().size() == 1)
 				return false;
 			return true;
 		}

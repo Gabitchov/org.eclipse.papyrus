@@ -4,8 +4,7 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
 
-public class StateFigure extends NodeNamedElementFigure implements
-		IPapyrusNodeFigure {
+public class StateFigure extends NodeNamedElementFigure implements IPapyrusNodeFigure {
 
 	protected int roundedBorderSize = 20;
 
@@ -24,9 +23,8 @@ public class StateFigure extends NodeNamedElementFigure implements
 
 	public void setShadow(boolean shadow) {
 		super.setShadow(shadow);
-		if (!shadow) {
-			RoundedBorder bord = new RoundedBorder(roundedBorderSize,
-					roundedBorderSize);
+		if(!shadow) {
+			RoundedBorder bord = new RoundedBorder(roundedBorderSize, roundedBorderSize);
 			this.setBorder(bord);
 		}
 	}

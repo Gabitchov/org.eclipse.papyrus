@@ -30,8 +30,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class UMLParserProvider extends AbstractProvider implements
-		IParserProvider {
+public class UMLParserProvider extends AbstractProvider implements IParserProvider {
 
 	/**
 	 * @generated
@@ -56,7 +55,7 @@ public class UMLParserProvider extends AbstractProvider implements
 		 * @generated
 		 */
 		public Object getAdapter(Class adapter) {
-			if (IElementType.class.equals(adapter)) {
+			if(IElementType.class.equals(adapter)) {
 				return elementType;
 			}
 			return super.getAdapter(adapter);
@@ -68,10 +67,8 @@ public class UMLParserProvider extends AbstractProvider implements
 	 * 
 	 * @generated
 	 */
-	public static IParser getParser(IElementType type, EObject object,
-			String parserHint) {
-		return ParserService.getInstance().getParser(
-				new HintAdapter(type, object, parserHint));
+	public static IParser getParser(IElementType type, EObject object, String parserHint) {
+		return ParserService.getInstance().getParser(new HintAdapter(type, object, parserHint));
 	}
 
 	/**
@@ -123,9 +120,8 @@ public class UMLParserProvider extends AbstractProvider implements
 	 * @generated
 	 */
 	private IParser getFinalStateName_5001Parser() {
-		if (finalStateName_5001Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
-					.getNamedElement_Name() };
+		if(finalStateName_5001Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			finalStateName_5001Parser = parser;
 		}
@@ -136,7 +132,7 @@ public class UMLParserProvider extends AbstractProvider implements
 	 * @generated
 	 */
 	private IParser getFinalStateName_5002Parser() {
-		if (finalStateName_5002Parser == null) {
+		if(finalStateName_5002Parser == null) {
 			finalStateName_5002Parser = new AppliedStereotypeParser();
 		}
 		return finalStateName_5002Parser;
@@ -146,12 +142,12 @@ public class UMLParserProvider extends AbstractProvider implements
 	 * @generated
 	 */
 	public IParser getParser(IAdaptable hint) {
-		String vid = (String) hint.getAdapter(String.class);
-		if (vid != null) {
+		String vid = (String)hint.getAdapter(String.class);
+		if(vid != null) {
 			return getParser(UMLVisualIDRegistry.getVisualID(vid));
 		}
-		View view = (View) hint.getAdapter(View.class);
-		if (view != null) {
+		View view = (View)hint.getAdapter(View.class);
+		if(view != null) {
 			return getParser(UMLVisualIDRegistry.getVisualID(view));
 		}
 		return null;
@@ -161,7 +157,7 @@ public class UMLParserProvider extends AbstractProvider implements
 	 * @generated
 	 */
 	protected IParser getParser(int visualID) {
-		switch (visualID) {
+		switch(visualID) {
 		case StateMachineNameEditPart.VISUAL_ID:
 			return getStateMachineName_2001Parser();
 		case PseudostateNameEditPart.VISUAL_ID:
@@ -188,9 +184,8 @@ public class UMLParserProvider extends AbstractProvider implements
 	 * @generated
 	 */
 	private IParser getPseudostateName_4001Parser() {
-		if (pseudostateName_4001Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
-					.getNamedElement_Name() };
+		if(pseudostateName_4001Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			pseudostateName_4001Parser = parser;
 		}
@@ -201,7 +196,7 @@ public class UMLParserProvider extends AbstractProvider implements
 	 * @generated
 	 */
 	private IParser getPseudostateName_4002Parser() {
-		if (pseudostateName_4002Parser == null) {
+		if(pseudostateName_4002Parser == null) {
 			pseudostateName_4002Parser = new AppliedStereotypeParser();
 		}
 		return pseudostateName_4002Parser;
@@ -211,9 +206,8 @@ public class UMLParserProvider extends AbstractProvider implements
 	 * @generated
 	 */
 	private IParser getStateMachineName_2001Parser() {
-		if (stateMachineName_2001Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
-					.getNamedElement_Name() };
+		if(stateMachineName_2001Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			stateMachineName_2001Parser = parser;
 		}
@@ -224,9 +218,8 @@ public class UMLParserProvider extends AbstractProvider implements
 	 * @generated
 	 */
 	private IParser getStateName_6001Parser() {
-		if (stateName_6001Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
-					.getNamedElement_Name() };
+		if(stateName_6001Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			stateName_6001Parser = parser;
 		}
@@ -237,7 +230,7 @@ public class UMLParserProvider extends AbstractProvider implements
 	 * @generated
 	 */
 	private IParser getStateName_6002Parser() {
-		if (stateName_6002Parser == null) {
+		if(stateName_6002Parser == null) {
 			stateName_6002Parser = new AppliedStereotypeParser();
 		}
 		return stateName_6002Parser;
@@ -247,7 +240,7 @@ public class UMLParserProvider extends AbstractProvider implements
 	 * @generated
 	 */
 	private IParser getTransitionGuard_7002Parser() {
-		if (transitionGuard_7002Parser == null) {
+		if(transitionGuard_7002Parser == null) {
 			transitionGuard_7002Parser = new TransitionPropertiesParser();
 		}
 		return transitionGuard_7002Parser;
@@ -257,9 +250,8 @@ public class UMLParserProvider extends AbstractProvider implements
 	 * @generated
 	 */
 	private IParser getTransitionName_7001Parser() {
-		if (transitionName_7001Parser == null) {
-			EAttribute[] features = new EAttribute[] { UMLPackage.eINSTANCE
-					.getNamedElement_Name() };
+		if(transitionName_7001Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
 			transitionName_7001Parser = parser;
 		}
@@ -270,9 +262,9 @@ public class UMLParserProvider extends AbstractProvider implements
 	 * @generated
 	 */
 	public boolean provides(IOperation operation) {
-		if (operation instanceof GetParserOperation) {
-			IAdaptable hint = ((GetParserOperation) operation).getHint();
-			if (UMLElementTypes.getElement(hint) == null) {
+		if(operation instanceof GetParserOperation) {
+			IAdaptable hint = ((GetParserOperation)operation).getHint();
+			if(UMLElementTypes.getElement(hint) == null) {
 				return false;
 			}
 			return getParser(hint) != null;

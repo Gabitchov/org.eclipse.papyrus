@@ -48,9 +48,8 @@ public class CustomRegionDragTracker extends DragEditPartsTrackerEx {
 	 */
 	public RegionEditPart getTargetRegionEditPart() {
 		EditPart ep = getTargetEditPart();
-		if ((ep != null) && (ep instanceof RegionCompartmentEditPart)
-				&& ep.getParent().getParent().equals(regionEP.getParent())) {
-			return (RegionEditPart) ep.getParent();
+		if((ep != null) && (ep instanceof RegionCompartmentEditPart) && ep.getParent().getParent().equals(regionEP.getParent())) {
+			return (RegionEditPart)ep.getParent();
 		}
 		return null;
 	}
@@ -58,7 +57,7 @@ public class CustomRegionDragTracker extends DragEditPartsTrackerEx {
 	@Override
 	protected boolean handleButtonUp(int button) {
 		try {
-			if (internalResizeCommand != null)
+			if(internalResizeCommand != null)
 				internalResizeCommand.undo(null, null);
 		} catch (ExecutionException e) {
 		}
@@ -71,12 +70,11 @@ public class CustomRegionDragTracker extends DragEditPartsTrackerEx {
 		// TODO Auto-generated method stub
 		boolean b = super.handleDragStarted();
 
-		CustomRegionResizableEditPolicy policy = (CustomRegionResizableEditPolicy) regionEP
-				.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+		CustomRegionResizableEditPolicy policy = (CustomRegionResizableEditPolicy)regionEP.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 
 		regionEP.setSelected(EditPart.SELECTED_NONE);
 
-		View regionView = (View) regionEP.getModel();
+		View regionView = (View)regionEP.getModel();
 		IAdaptable adaptableForRegion = new SemanticAdapter(null, regionView);
 
 		ChangeBoundsRequest internalResizeRequest = new ChangeBoundsRequest();
@@ -89,23 +87,21 @@ public class CustomRegionDragTracker extends DragEditPartsTrackerEx {
 		regionFigure.translateToAbsolute(regionFigureBounds);
 
 		String zone = Zone.getZone(regionView);
-		if (Zone.isRight(zone)) {
+		if(Zone.isRight(zone)) {
 			internalResizeRequest.setResizeDirection(PositionConstants.WEST);
 			internalResizeRequest.setSizeDelta(new Dimension(-regionWidth, 0));
-		} else if (Zone.isLeft(zone)) {
+		} else if(Zone.isLeft(zone)) {
 			internalResizeRequest.setResizeDirection(PositionConstants.EAST);
 			internalResizeRequest.setSizeDelta(new Dimension(-regionWidth, 0));
-		} else if (Zone.isTop(zone)) {
+		} else if(Zone.isTop(zone)) {
 			internalResizeRequest.setResizeDirection(PositionConstants.SOUTH);
 			internalResizeRequest.setSizeDelta(new Dimension(0, -regionHeight));
-		} else if (Zone.isBottom(zone)) {
+		} else if(Zone.isBottom(zone)) {
 			internalResizeRequest.setResizeDirection(PositionConstants.NORTH);
 			internalResizeRequest.setSizeDelta(new Dimension(0, -regionHeight));
 		}
 
-		internalResizeCommand = new CustomRegionResizeCommand(
-				adaptableForRegion, null, regionEP.getEditingDomain(), null,
-				internalResizeRequest, null);
+		internalResizeCommand = new CustomRegionResizeCommand(adaptableForRegion, null, regionEP.getEditingDomain(), null, internalResizeRequest, null);
 
 		try {
 			internalResizeCommand.execute(null, null);

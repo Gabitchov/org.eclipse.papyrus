@@ -9,8 +9,7 @@ import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 /**
  * @generated
  */
-public class PseudostatePreferencePage extends
-		AbstractPapyrusNodePreferencePage {
+public class PseudostatePreferencePage extends AbstractPapyrusNodePreferencePage {
 
 	/**
 	 * @generated
@@ -18,10 +17,8 @@ public class PseudostatePreferencePage extends
 	public static void initDefaults(IPreferenceStore store) {
 
 		String key = PackageEditPart.MODEL_ID + "_Pseudostate";
-		store.setDefault(PreferenceConstantHelper.getElementConstant(key,
-				PreferenceConstantHelper.WIDTH), 4);
-		store.setDefault(PreferenceConstantHelper.getElementConstant(key,
-				PreferenceConstantHelper.HEIGHT), 4);
+		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 4);
+		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 4);
 
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
 		//org.eclipse.jface.preference.PreferenceConverter.setDefault(store, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName, org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));

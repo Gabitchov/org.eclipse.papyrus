@@ -8,7 +8,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 
 public class PseudostateChoiceFigure extends Shape {
 
-	
+
 	public PseudostateChoiceFigure() {
 		super();
 		Dimension dim1 = new Dimension(22, 22);

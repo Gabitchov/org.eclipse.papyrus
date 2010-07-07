@@ -24,8 +24,7 @@ import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.UMLFactory;
 
-public class CustomRegionCreateElementCommand extends
-		AbstractTransactionalCommand {
+public class CustomRegionCreateElementCommand extends AbstractTransactionalCommand {
 
 	IAdaptable adaptable;
 
@@ -39,9 +38,7 @@ public class CustomRegionCreateElementCommand extends
 
 	String dropLocation = Zone.RIGHT;
 
-	public CustomRegionCreateElementCommand(IAdaptable adaptable,
-			IAdaptable adaptableForDropped, PreferencesHint prefHints,
-			TransactionalEditingDomain domain, String label, String dropLocation) {
+	public CustomRegionCreateElementCommand(IAdaptable adaptable, IAdaptable adaptableForDropped, PreferencesHint prefHints, TransactionalEditingDomain domain, String label, String dropLocation) {
 		super(domain, label, null);
 		this.adaptable = adaptable;
 		this.adaptableForDropped = adaptableForDropped;
@@ -56,26 +53,21 @@ public class CustomRegionCreateElementCommand extends
 		this.dropLocation = dropLocation;
 	}
 
-	protected void doConfigure(Region newElement, IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected void doConfigure(Region newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = createElementRequest.getElementType();
-		ConfigureRequest configureRequest = new ConfigureRequest(
-				getEditingDomain(), newElement, elementType);
-		configureRequest.setClientContext(createElementRequest
-				.getClientContext());
+		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
+		configureRequest.setClientContext(createElementRequest.getClientContext());
 		configureRequest.addParameters(createElementRequest.getParameters());
-		ICommand configureCommand = elementType
-				.getEditCommand(configureRequest);
-		if (configureCommand != null && configureCommand.canExecute()) {
+		ICommand configureCommand = elementType.getEditCommand(configureRequest);
+		if(configureCommand != null && configureCommand.canExecute()) {
 			configureCommand.execute(monitor, info);
 		}
 	}
 
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		// adapt the view at execution time
-		View existingRegion = (View) adaptable.getAdapter(View.class);
+		View existingRegion = (View)adaptable.getAdapter(View.class);
 
 		// get existingRegion bounds (i.e. the space which needs to be divided)
 		int height = Zone.getHeight(existingRegion);
@@ -84,16 +76,14 @@ public class CustomRegionCreateElementCommand extends
 		int y = Zone.getY(existingRegion);
 
 		// get the stateMachine via the stateMachineView
-		View stateMachineCompartment = (View) existingRegion.eContainer();
-		View stateMachine = (View) stateMachineCompartment.eContainer();
+		View stateMachineCompartment = (View)existingRegion.eContainer();
+		View stateMachine = (View)stateMachineCompartment.eContainer();
 
-		if (adaptableForDropped == null) {
+		if(adaptableForDropped == null) {
 			// create a new UML region
-			StateMachine umlStateMachine = (StateMachine) stateMachine
-					.getElement();
+			StateMachine umlStateMachine = (StateMachine)stateMachine.getElement();
 
-			createElementRequest = new CreateElementRequest(getEditingDomain(),
-					stateMachine, UMLElementTypes.Region_3000);
+			createElementRequest = new CreateElementRequest(getEditingDomain(), stateMachine, UMLElementTypes.Region_3000);
 
 			Region umlRegion = UMLFactory.eINSTANCE.createRegion();
 			umlStateMachine.getRegions().add(umlRegion);
@@ -106,11 +96,8 @@ public class CustomRegionCreateElementCommand extends
 		}
 
 		// create a view for the new region on the stateMachineCompartment
-		String semanticHint = ((IHintedType) UMLElementTypes.Region_3000)
-				.getSemanticHint();
-		View newRegion = (View) ViewService.getInstance().createNode(
-				adaptableForDropped, stateMachineCompartment, semanticHint, -1,
-				prefHints);
+		String semanticHint = ((IHintedType)UMLElementTypes.Region_3000).getSemanticHint();
+		View newRegion = (View)ViewService.getInstance().createNode(adaptableForDropped, stateMachineCompartment, semanticHint, -1, prefHints);
 
 		// add region specific annotation
 		Zone.createRegionDefaultAnnotation(newRegion);
@@ -118,7 +105,7 @@ public class CustomRegionCreateElementCommand extends
 		// adjust bounds and zone
 
 		// the test itself and change of bounds
-		if (Zone.isRight(dropLocation)) {
+		if(Zone.isRight(dropLocation)) {
 			// the new region zone should reflect that of other branch
 			Zone.copyZone(existingRegion, newRegion);
 			// now set new region as RIGHT
@@ -137,7 +124,7 @@ public class CustomRegionCreateElementCommand extends
 			// moved)
 			Zone.setX(newRegion, x + width);
 			Zone.setY(newRegion, y);
-		} else if (Zone.isLeft(dropLocation)) {
+		} else if(Zone.isLeft(dropLocation)) {
 			// the new region zone should reflect that of existing region
 			Zone.copyZone(existingRegion, newRegion);
 			// now set new region as LEFT
@@ -157,7 +144,7 @@ public class CustomRegionCreateElementCommand extends
 			Zone.setX(existingRegion, x + width);
 			Zone.setX(newRegion, x);
 			Zone.setY(newRegion, y);
-		} else if (Zone.isBottom(dropLocation)) {
+		} else if(Zone.isBottom(dropLocation)) {
 			// the new region zone should reflect that of existing region
 			Zone.copyZone(existingRegion, newRegion);
 			// now set new region as BOTTOM
@@ -176,7 +163,7 @@ public class CustomRegionCreateElementCommand extends
 			// moved)
 			Zone.setX(newRegion, x);
 			Zone.setY(newRegion, y + height);
-		} else if (Zone.isTop(dropLocation)) {
+		} else if(Zone.isTop(dropLocation)) {
 			// the new region zone should reflect that of existing region
 			Zone.copyZone(existingRegion, newRegion);
 			// now set new region as TOP

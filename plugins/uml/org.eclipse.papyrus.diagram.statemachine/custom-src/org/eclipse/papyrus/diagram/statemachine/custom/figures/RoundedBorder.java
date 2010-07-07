@@ -24,7 +24,7 @@ public class RoundedBorder extends RoundedRectangleBorder {
 		tempRect.setBounds(getPaintRectangle(figure, insets));
 
 		// bug fix when lineWidth is 1
-		if (getWidth() % 2 == 1) {
+		if(getWidth() % 2 == 1) {
 			tempRect.width--;
 			tempRect.height--;
 		}
@@ -36,7 +36,7 @@ public class RoundedBorder extends RoundedRectangleBorder {
 		graphics.setLineStyle(getStyle());
 		// If the color for this border is specified, then use it.
 		// Otherwise, use the figure's foreground color
-		if (getColor() != null) {
+		if(getColor() != null) {
 			graphics.setForegroundColor(getColor());
 		} else {
 			graphics.setForegroundColor(figure.getForegroundColor());

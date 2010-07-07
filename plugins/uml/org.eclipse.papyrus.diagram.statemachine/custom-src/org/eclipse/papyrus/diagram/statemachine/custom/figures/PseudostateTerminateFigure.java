@@ -17,7 +17,7 @@ import org.eclipse.draw2d.geometry.Dimension;
 /**
  * PseudostateTerminateFigure.
  * 
-  */
+ */
 public class PseudostateTerminateFigure extends Shape {
 
 	/**

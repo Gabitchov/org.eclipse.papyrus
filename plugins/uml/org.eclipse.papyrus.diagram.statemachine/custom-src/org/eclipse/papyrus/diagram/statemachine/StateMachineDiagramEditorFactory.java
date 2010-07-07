@@ -28,8 +28,7 @@ public class StateMachineDiagramEditorFactory extends GmfEditorFactory {
 	 * @param expectedType
 	 */
 	public StateMachineDiagramEditorFactory() {
-		super(UmlStateMachineDiagramForMultiEditor.class,
-				PackageEditPart.MODEL_ID);
+		super(UmlStateMachineDiagramForMultiEditor.class, PackageEditPart.MODEL_ID);
 	}
 
 }

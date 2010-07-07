@@ -15,8 +15,7 @@ import org.eclipse.papyrus.diagram.statemachine.custom.helpers.Zone;
 
 public class CustomRegionDeleteCommand extends DeleteCommand {
 
-	public CustomRegionDeleteCommand(TransactionalEditingDomain editingDomain,
-			View view) {
+	public CustomRegionDeleteCommand(TransactionalEditingDomain editingDomain, View view) {
 		super(editingDomain, view);
 		// TODO Auto-generated constructor stub
 	}
@@ -26,8 +25,8 @@ public class CustomRegionDeleteCommand extends DeleteCommand {
 	 */
 	@Override
 	public boolean canExecute() {
-		View stateMachineCompartment = (View) getView().eContainer();
-		if (stateMachineCompartment.getChildren().size() != 1)
+		View stateMachineCompartment = (View)getView().eContainer();
+		if(stateMachineCompartment.getChildren().size() != 1)
 			return true;
 		return false;
 	}
@@ -38,9 +37,7 @@ public class CustomRegionDeleteCommand extends DeleteCommand {
 	 * neighbouring regions and finally remove the region
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(
-			IProgressMonitor progressMonitor, IAdaptable info)
-			throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 		// get the region to delete
 		View region = getView();
 		int regionWidth = Zone.getWidth(region);
@@ -48,20 +45,20 @@ public class CustomRegionDeleteCommand extends DeleteCommand {
 
 		String s = Zone.getZone(region);
 		List<View> neighbours = null;
-		if (Zone.isRight(s)) {
+		if(Zone.isRight(s)) {
 			neighbours = Zone.getRegionLeftBorderOutsideNeighbours(region);
 			Iterator<View> it = neighbours.iterator();
-			while (it.hasNext()) {
+			while(it.hasNext()) {
 				View view = it.next();
 				// for each of these we add regionWidth to their width
 				int width = Zone.getWidth(view);
 				width += regionWidth;
 				Zone.setWidth(view, width);
 			}
-		} else if (Zone.isLeft(s)) {
+		} else if(Zone.isLeft(s)) {
 			neighbours = Zone.getRegionRightBorderOutsideNeighbours(region);
 			Iterator<View> it = neighbours.iterator();
-			while (it.hasNext()) {
+			while(it.hasNext()) {
 				View view = it.next();
 				// for each of these we add regionWidth to their width and
 				// translate their x of
@@ -73,10 +70,10 @@ public class CustomRegionDeleteCommand extends DeleteCommand {
 				x -= regionWidth;
 				Zone.setX(view, x);
 			}
-		} else if (Zone.isTop(s)) {
+		} else if(Zone.isTop(s)) {
 			neighbours = Zone.getRegionBottomBorderOutsideNeighbours(region);
 			Iterator<View> it = neighbours.iterator();
-			while (it.hasNext()) {
+			while(it.hasNext()) {
 				View view = it.next();
 				// for each of these we add regionHeight to their height and
 				// -regionHeight to their
@@ -88,10 +85,10 @@ public class CustomRegionDeleteCommand extends DeleteCommand {
 				y -= regionHeight;
 				Zone.setY(view, y);
 			}
-		} else if (Zone.isBottom(s)) {
+		} else if(Zone.isBottom(s)) {
 			neighbours = Zone.getRegionTopBorderOutsideNeighbours(region);
 			Iterator<View> it = neighbours.iterator();
-			while (it.hasNext()) {
+			while(it.hasNext()) {
 				View view = it.next();
 				// for each of these we add regionHeight to their height
 				int height = Zone.getHeight(view);

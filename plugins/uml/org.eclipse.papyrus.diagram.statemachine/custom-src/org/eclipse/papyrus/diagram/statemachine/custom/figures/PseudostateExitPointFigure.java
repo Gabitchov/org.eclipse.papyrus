@@ -53,27 +53,27 @@ public class PseudostateExitPointFigure extends Ellipse {
 	protected void outlineShape(Graphics graphics) {
 		graphics.pushState();
 		IFigure ancestor = getParent();
-		while ((ancestor != null) && !(ancestor instanceof RegionFigure))
+		while((ancestor != null) && !(ancestor instanceof RegionFigure))
 			ancestor = ancestor.getParent();
-		if (ancestor != null) {
-			if (((RegionFigure) ancestor).getBorderColor() != null)
-				graphics.setForegroundColor(((RegionFigure) ancestor).getBorderColor());
-			if (((RegionFigure) ancestor).getBackgroundColor() != null)
-				graphics.setBackgroundColor(((RegionFigure) ancestor).getBackgroundColor());
+		if(ancestor != null) {
+			if(((RegionFigure)ancestor).getBorderColor() != null)
+				graphics.setForegroundColor(((RegionFigure)ancestor).getBorderColor());
+			if(((RegionFigure)ancestor).getBackgroundColor() != null)
+				graphics.setBackgroundColor(((RegionFigure)ancestor).getBackgroundColor());
 		} else {
 			ancestor = getParent();
 			Iterator it = ancestor.getChildren().iterator();
 			boolean found = false;
-			while (it.hasNext() && !found) {
-				ancestor = (IFigure) it.next();
-				if (ancestor instanceof StateMachineFigure)
+			while(it.hasNext() && !found) {
+				ancestor = (IFigure)it.next();
+				if(ancestor instanceof StateMachineFigure)
 					found = true;
 			}
-			if (found) {
-				if (((StateMachineFigure) ancestor).getBorderColor() != null)
-					graphics.setForegroundColor(((StateMachineFigure) ancestor).getBorderColor());
-				if (((StateMachineFigure) ancestor).getBackgroundColor() != null)
-					graphics.setBackgroundColor(((StateMachineFigure) ancestor).getBackgroundColor());
+			if(found) {
+				if(((StateMachineFigure)ancestor).getBorderColor() != null)
+					graphics.setForegroundColor(((StateMachineFigure)ancestor).getBorderColor());
+				if(((StateMachineFigure)ancestor).getBackgroundColor() != null)
+					graphics.setBackgroundColor(((StateMachineFigure)ancestor).getBackgroundColor());
 			}
 		}
 		Rectangle r = Rectangle.SINGLETON;
@@ -86,8 +86,8 @@ public class PseudostateExitPointFigure extends Ellipse {
 		graphics.fillOval(r);
 
 		// intersection coordinates.
-		int x = (int) (bounds.width / (2 * Math.sqrt(2)));
-		int y = (int) (bounds.height / (2 * Math.sqrt(2)));
+		int x = (int)(bounds.width / (2 * Math.sqrt(2)));
+		int y = (int)(bounds.height / (2 * Math.sqrt(2)));
 
 		// cross.
 		graphics.drawLine(bounds.getCenter().translate(x, -y), bounds.getCenter().translate(-x, y));

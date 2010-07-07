@@ -39,11 +39,9 @@ public class RemoveOrphanViewPolicy extends OrphanViewPolicy {
 
 	@Override
 	protected Command getDeleteViewCommand(View view) {
-		if (Zone.isRegion(view)) {
-			TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
-					.getEditingDomain();
-			return new ICommandProxy(new CustomRegionDeleteCommand(
-					editingDomain, view));
+		if(Zone.isRegion(view)) {
+			TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
+			return new ICommandProxy(new CustomRegionDeleteCommand(editingDomain, view));
 		}
 		return super.getDeleteViewCommand(view);
 	}

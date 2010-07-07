@@ -8,8 +8,7 @@ import org.eclipse.papyrus.diagram.statemachine.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class TransitionItemSemanticEditPolicy extends
-		UMLBaseItemSemanticEditPolicy {
+public class TransitionItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated

@@ -16,28 +16,23 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionCompartmentEdit
 import org.eclipse.papyrus.diagram.statemachine.edit.policies.RegionItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
 
-public class CustomRegionItemSemanticEditPolicy extends
-		RegionItemSemanticEditPolicy {
+public class CustomRegionItemSemanticEditPolicy extends RegionItemSemanticEditPolicy {
 
 	@Override
-	protected Command addDeleteViewCommand(Command mainCommand,
-			DestroyRequest completedRequest) {
-		Command deleteViewCommand = getGEFWrapper(new CustomRegionDeleteCommand(
-				getEditingDomain(), (View) getHost().getModel()));
-		return mainCommand == null ? deleteViewCommand : mainCommand
-				.chain(deleteViewCommand);
+	protected Command addDeleteViewCommand(Command mainCommand, DestroyRequest completedRequest) {
+		Command deleteViewCommand = getGEFWrapper(new CustomRegionDeleteCommand(getEditingDomain(), (View)getHost().getModel()));
+		return mainCommand == null ? deleteViewCommand : mainCommand.chain(deleteViewCommand);
 	}
 
 	private void addDestroyChildNodesCommand(ICompositeCommand cmd) {
-		View view = (View) getHost().getModel();
-		for (Iterator nit = view.getChildren().iterator(); nit.hasNext();) {
-			Node node = (Node) nit.next();
-			switch (UMLVisualIDRegistry.getVisualID(node)) {
+		View view = (View)getHost().getModel();
+		for(Iterator nit = view.getChildren().iterator(); nit.hasNext();) {
+			Node node = (Node)nit.next();
+			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case RegionCompartmentEditPart.VISUAL_ID:
-				for (Iterator cit = node.getChildren().iterator(); cit
-						.hasNext();) {
-					Node cnode = (Node) cit.next();
-					switch (UMLVisualIDRegistry.getVisualID(cnode)) {
+				for(Iterator cit = node.getChildren().iterator(); cit.hasNext();) {
+					Node cnode = (Node)cit.next();
+					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					}
 				}
 				break;
@@ -47,12 +42,11 @@ public class CustomRegionItemSemanticEditPolicy extends
 
 	@Override
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		View view = (View) getHost().getModel();
-		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
-				getEditingDomain(), null);
+		View view = (View)getHost().getModel();
+		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
-		if (annotation == null) {
+		if(annotation == null) {
 			// there are indirectly referenced children, need extra commands:
 			// false
 			addDestroyChildNodesCommand(cmd);

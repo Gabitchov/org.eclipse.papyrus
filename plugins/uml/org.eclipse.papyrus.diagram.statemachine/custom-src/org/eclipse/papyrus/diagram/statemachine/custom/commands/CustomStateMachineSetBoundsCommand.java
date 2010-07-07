@@ -21,8 +21,7 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineCompartme
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
 
-public class CustomStateMachineSetBoundsCommand extends
-		AbstractTransactionalCommand {
+public class CustomStateMachineSetBoundsCommand extends AbstractTransactionalCommand {
 
 	CreateViewRequest.ViewDescriptor viewDescriptor;
 
@@ -32,9 +31,7 @@ public class CustomStateMachineSetBoundsCommand extends
 
 	Dimension size;
 
-	public CustomStateMachineSetBoundsCommand(
-			TransactionalEditingDomain domain, String label,
-			CreateViewRequest.ViewDescriptor viewDescriptor, Rectangle rect) {
+	public CustomStateMachineSetBoundsCommand(TransactionalEditingDomain domain, String label, CreateViewRequest.ViewDescriptor viewDescriptor, Rectangle rect) {
 		super(domain, label, null);
 
 		this.viewDescriptor = viewDescriptor;
@@ -49,15 +46,14 @@ public class CustomStateMachineSetBoundsCommand extends
 	}
 
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		View stateMachineView = (View) viewDescriptor.getAdapter(View.class);
-		if (location != null) {
+		View stateMachineView = (View)viewDescriptor.getAdapter(View.class);
+		if(location != null) {
 			Zone.setX(stateMachineView, location.x);
 			Zone.setY(stateMachineView, location.y);
 		}
-		if ((size != null) && !size.equals(-1, -1)) {
+		if((size != null) && !size.equals(-1, -1)) {
 			Zone.setWidth(stateMachineView, size.width);
 			Zone.setHeight(stateMachineView, size.height);
 		} else {
@@ -67,30 +63,27 @@ public class CustomStateMachineSetBoundsCommand extends
 
 		Iterator<Node> it = stateMachineView.getChildren().iterator();
 
-		while (it.hasNext()) {
+		while(it.hasNext()) {
 			Node currentNode = it.next();
-			if (currentNode.getLayoutConstraint() == null) {
-				currentNode.setLayoutConstraint(NotationFactory.eINSTANCE
-						.createBounds());
+			if(currentNode.getLayoutConstraint() == null) {
+				currentNode.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 			}
-			if (UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateMachineNameEditPart.VISUAL_ID) {
-				if ((size != null) && !size.equals(-1, -1)) {
+			if(UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateMachineNameEditPart.VISUAL_ID) {
+				if((size != null) && !size.equals(-1, -1)) {
 					Zone.setWidth(currentNode, size.width);
 					Zone.setHeight(currentNode, Zone.defaultHeader);
 				} else {
 					Zone.setWidth(currentNode, Zone.defaultWidth);
 					Zone.setHeight(currentNode, Zone.defaultHeader);
 				}
-			} else if (UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateMachineCompartmentEditPart.VISUAL_ID) {
+			} else if(UMLVisualIDRegistry.getVisualID(currentNode.getType()) == StateMachineCompartmentEditPart.VISUAL_ID) {
 				Zone.setY(currentNode, Zone.defaultHeader);
-				if ((size != null) && !size.equals(-1, -1)) {
+				if((size != null) && !size.equals(-1, -1)) {
 					Zone.setWidth(currentNode, size.width);
-					Zone.setHeight(currentNode, size.height
-							- Zone.defaultHeader);
+					Zone.setHeight(currentNode, size.height - Zone.defaultHeader);
 				} else {
 					Zone.setWidth(currentNode, Zone.defaultWidth);
-					Zone.setHeight(currentNode, Zone.defaultHeight
-							- Zone.defaultHeader);
+					Zone.setHeight(currentNode, Zone.defaultHeight - Zone.defaultHeader);
 				}
 				int nRegions = currentNode.getChildren().size();
 				String prefix = "";
@@ -98,35 +91,24 @@ public class CustomStateMachineSetBoundsCommand extends
 				int i = 0;
 				int width = 0;
 				Iterator<Node> subit = currentNode.getChildren().iterator();
-				while (subit.hasNext()) {
+				while(subit.hasNext()) {
 					Node subCurrentNode = subit.next();
-					if (subCurrentNode.getLayoutConstraint() == null) {
-						subCurrentNode
-								.setLayoutConstraint(NotationFactory.eINSTANCE
-										.createBounds());
+					if(subCurrentNode.getLayoutConstraint() == null) {
+						subCurrentNode.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 					}
-					if (UMLVisualIDRegistry.getVisualID(subCurrentNode
-							.getType()) == RegionEditPart.VISUAL_ID) {
-						if ((size != null) && !size.equals(-1, -1)) {
-							Zone.setWidth(subCurrentNode,
-									(i == nRegions - 1) ? size.width - width
-											: size.width / nRegions);
-							Zone.setHeight(subCurrentNode, size.height
-									- Zone.defaultHeader);
+					if(UMLVisualIDRegistry.getVisualID(subCurrentNode.getType()) == RegionEditPart.VISUAL_ID) {
+						if((size != null) && !size.equals(-1, -1)) {
+							Zone.setWidth(subCurrentNode, (i == nRegions - 1) ? size.width - width : size.width / nRegions);
+							Zone.setHeight(subCurrentNode, size.height - Zone.defaultHeader);
 							Zone.setX(subCurrentNode, width);
 							width += size.width / nRegions;
 						} else {
-							Zone.setWidth(subCurrentNode,
-									(i == nRegions - 1) ? Zone.defaultWidth
-											- width : Zone.defaultWidth
-											/ nRegions);
-							Zone.setHeight(subCurrentNode, Zone.defaultHeight
-									- Zone.defaultHeader);
+							Zone.setWidth(subCurrentNode, (i == nRegions - 1) ? Zone.defaultWidth - width : Zone.defaultWidth / nRegions);
+							Zone.setHeight(subCurrentNode, Zone.defaultHeight - Zone.defaultHeader);
 							Zone.setX(subCurrentNode, width);
 							width += Zone.defaultWidth / nRegions;
 						}
-						zone = (i == nRegions - 1) ? prefix : prefix
-								+ Zone.LEFT;
+						zone = (i == nRegions - 1) ? prefix : prefix + Zone.LEFT;
 						Zone.setZone(subCurrentNode, zone);
 						prefix = prefix + Zone.RIGHT;
 						i++;
