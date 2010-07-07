@@ -123,9 +123,16 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 	}
 
 	/**
-	 * @generated
+	 * @see org.eclipse.papyrus.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPolicy#getDestroyElementCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest)
+	 *
+	 * @param req
+	 * @return
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
+		// Temprary copy of super.getDestroyElementCommand()
+		// made in order to avoid NPE with AddedLinkEditPArt and properly process delete of other links
+		// TODO: AddedLink is a reference Link, but it looks like it was generated as a link with class
+		//properly re-generate the code
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
