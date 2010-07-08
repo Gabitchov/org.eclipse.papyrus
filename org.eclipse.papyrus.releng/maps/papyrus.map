@@ -19,7 +19,7 @@ feature@org.eclipse.papyrus.profiletool=SVN,,svn://dev.eclipse.org/svnroot/model
 feature@org.eclipse.papyrus.sysml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.sysml-feature
 feature@org.eclipse.papyrus.uml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.uml-feature
 feature@org.eclipse.papyrus.uml.diagram.pkg=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.uml.diagram.pkg-feature
-feature@org.eclipse.papyrus.xtext.integration=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.uml.xtext.integration-feature
+feature@org.eclipse.papyrus.xtext.integration=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.xtext.integration-feature
 feature@org.eclipse.papyrus.xtext.uml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.xtext.uml-feature
 
 ##### plugins
