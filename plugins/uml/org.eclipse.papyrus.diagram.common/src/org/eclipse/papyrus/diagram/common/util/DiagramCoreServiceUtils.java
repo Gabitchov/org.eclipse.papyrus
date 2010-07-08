@@ -31,7 +31,7 @@ import org.eclipse.ui.IWorkbenchPart;
 /**
  * A set of utility methods to get the Services from the core.
  * @author cedric dumoulin
- *
+ * @deprecated Use {@link ServiceUtilsForGMF}
  */
 public class DiagramCoreServiceUtils {
 

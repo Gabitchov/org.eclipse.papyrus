@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.core.editor.BackboneException;
 import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.services.ServiceException;
@@ -70,7 +71,8 @@ public class EditorUtils {
 	 * <br>
 	 * This method should not be used during the editor initialization phase.
 	 * <br>
-	 * In any case, a check should be done on the returned value that can be null. 
+	 * In any case, a check should be done on the returned value that can be null. Usage of this method is
+	 * discouraged. Use {@link #getMultiDiagramEditorChecked()} instead.
 	 * 
 	 * 
 	 * @return Get the current {@link IMultiDiagramEditor} or null if not found.
@@ -93,6 +95,35 @@ public class EditorUtils {
 		}
 	}
 
+	/**
+	 * Gets the {@link IMultiDiagramEditor} interface of the a	Eclipse active editor, if possible, or throw an exception 
+	 * if not possible.
+	 * <br>
+	 * WARNING - This method throw an exception during the initialization of the main editor. 
+	 * This method throws an exception if there is no active editor, or if the editor is not instance of IMultiDiagramEditor.
+	 * <br>
+	 * This method is designed to be used by ui actions that interact with the active editor.
+	 * <br>
+	 * 
+	 * 
+	 * @return Get the current {@link IMultiDiagramEditor} or null if not found.
+	 * @throws ServiceNotFoundException 
+	 */
+	public static IMultiDiagramEditor getMultiDiagramEditorChecked() throws BackboneException {
+		IEditorPart editor;
+		try {
+			editor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		} catch (NullPointerException e) {
+			// Can't get the active editor
+			throw new BackboneException("Can't get the current Eclipse Active Editor: There is no active editor at this time.");
+		}
+
+		if(editor instanceof IMultiDiagramEditor) {
+			return (IMultiDiagramEditor)editor;
+		} else {
+			throw new BackboneException("Can't get an Active Editor instance of IMultiDiagramEditor. (actual type:" + editor.getClass().getName() + ")");
+		}
+	}
 	/**
 	 * Gets the opened multi-diagram editors.
 	 * 
@@ -162,7 +193,7 @@ public class EditorUtils {
 	 * It is preferable to retrieve the ServiceRegistry from elsewhere whenever it is possible.
 	 * <br>
 	 * In GMF EditParts or EditPolicies, the ServiceRegistry can be retrieved with methods from 
-	 * org.eclipse.papyrus.diagram.common.util.DiagramCoreServiceUtils
+	 * org.eclipse.papyrus.diagram.common.util.ServiceUtilsForGMF
 	 * 
 	 * <br>
 	 * WARNING: This method can return null if there is no Active Editor. This happen during the editor initialization, 
