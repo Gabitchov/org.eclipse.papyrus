@@ -2721,8 +2721,36 @@
 		</paletteProvider>	
 			
 	</extension>
+<extension
+      point="org.eclipse.ui.popupMenus">
+   <objectContribution
+         adaptable="false"
+         id="org.eclipse.papyrus.diagram.composite.relatedviewer"
+         objectClass="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart">
+      <action
+            class="org.eclipse.papyrus.diagram.composite.custom.actions.ShowElementAction"
+            definitionId="View Related"
+            enablesFor="1"
+            icon="icons/fantom.gif"
+            id="org.eclipse.papyrus.diagram.composite.setview"
+            label="Show/Hide &amp;Related Properties/Ports"
+            menubarPath="filtersMenu/expandFilterGroup">
+      </action>
+   </objectContribution>
+   <objectContribution
+         adaptable="false"
+         id="org.eclipse.papyrus.diagram.composite.inheritedviewer"
+         objectClass="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart">
+      <action
+            class="org.eclipse.papyrus.diagram.composite.custom.actions.ShowElementAction"
+            definitionId="View Inherited"
+            enablesFor="1"
+            icon="icons/fantom.gif"
+            id="org.eclipse.papyrus.diagram.composite.setview"
+            label="Show/Hide &amp;Inherited Properties/Ports"
+            menubarPath="filtersMenu/expandFilterGroup">
+      </action>
+   </objectContribution>
+</extension>
 
-   
-
-   
 </plugin>

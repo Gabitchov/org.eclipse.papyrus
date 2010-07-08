@@ -30,6 +30,10 @@ public class Messages extends NLS {
 
 	public static String SelectionValidated;
 
+	public static String ShowElementAction_Message;
+
+	public static String ShowElementAction_Title;
+
 	public static String InformationFlowSelectInformationItem_ERROR;
 
 	public static String NoSelectionFound;

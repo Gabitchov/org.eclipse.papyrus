@@ -55,7 +55,6 @@ import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.diagram.common.command.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
-import org.eclipse.papyrus.diagram.common.util.MDTUtil;
 import org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PortEditPart;
 import org.eclipse.swt.widgets.Display;
@@ -189,7 +188,6 @@ public class PartEditPolicy extends AbstractEditPolicy implements NotificationLi
 				}
 			}
 		}
-
 	}
 
 
@@ -284,7 +282,6 @@ public class PartEditPolicy extends AbstractEditPolicy implements NotificationLi
 		for(EditPart currentEP : children) {
 			if(currentEP instanceof PortEditPart || currentEP instanceof PropertyPartEditPartCN) {
 				EObject element = ((View)currentEP.getModel()).getElement();
-				EObject sem = MDTUtil.resolveSemantic(currentEP);
 
 				boolean exist = false;
 				if(this.type instanceof Classifier) {
