@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: org.eclipse.papyrus.property.editor.xtext
-Bundle-Vendor: CEA LIST
-Bundle-Version: 0.7.0
+Bundle-Name: %pluginName
+Bundle-Vendor: %providerName
+Bundle-Version: 0.7.0.qualifier
 Bundle-SymbolicName: org.eclipse.papyrus.property.editor.xtext; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
