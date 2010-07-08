@@ -159,14 +159,30 @@ public abstract class PropertyEditorController implements IDisposable, IProperty
 	 * @return the current value in the property editor
 	 */
 	protected Object getEditorValue() {
-		return getPropertyEditor().getValue();
+		if(isValid(getPropertyEditor())) {
+			return getPropertyEditor().getValue();
+		}
+		return null;
+	}
+
+	/**
+	 * Check if the proeprty editor is valid
+	 * 
+	 * @param propertyEditor
+	 *        the editor to check
+	 * @return <code>true</code> if the editor is not <code>null</code> and not disposed
+	 */
+	protected boolean isValid(AbstractPropertyEditor propertyEditor) {
+		return getPropertyEditor() != null && !getPropertyEditor().isDisposed();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void refreshDisplay() {
-		getPropertyEditor().setValue(getValueToEdit());
+		if(isValid(getPropertyEditor())) {
+			getPropertyEditor().setValue(getValueToEdit());
+		}
 	}
 
 	/**

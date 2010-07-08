@@ -13,6 +13,7 @@ package org.eclipse.papyrus.properties.runtime.controller;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.commands.operations.IUndoableOperation;

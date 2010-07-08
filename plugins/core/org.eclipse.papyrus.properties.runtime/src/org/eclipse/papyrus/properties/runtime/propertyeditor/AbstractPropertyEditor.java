@@ -206,6 +206,13 @@ public abstract class AbstractPropertyEditor implements IDisposable {
 	public abstract void dispose();
 
 	/**
+	 * Checks if the editor is disposed or not.
+	 * 
+	 * @return <code>true</code> if the editor is disposed
+	 */
+	public abstract boolean isDisposed();
+
+	/**
 	 * Indicates if the control is valid, i.e. not null and not disposed
 	 * 
 	 * @param control

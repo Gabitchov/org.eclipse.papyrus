@@ -333,4 +333,14 @@ public class MultipleReferencePropertyEditor extends AbstractPropertyEditor {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isDisposed() {
+		if(composite == null) {
+			return true;
+		}
+		return composite.isDisposed();
+	}
 }

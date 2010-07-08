@@ -174,4 +174,15 @@ public class TextPropertyEditor extends AbstractPropertyEditor {
 	public PropertyEditorDescriptor getDescriptor() {
 		return (PropertyEditorDescriptor)super.getDescriptor();
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isDisposed() {
+		if(composite == null) {
+			return true;
+		}
+		return composite.isDisposed();
+	}
 }

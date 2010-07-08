@@ -424,4 +424,15 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isDisposed() {
+		if(composite == null) {
+			return true;
+		}
+		return composite.isDisposed();
+	}
+
 }

@@ -290,4 +290,14 @@ public class SimpleReferencePropertyEditor extends AbstractPropertyEditor {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isDisposed() {
+		if(composite == null) {
+			return false;
+		}
+		return composite.isDisposed();
+	}
 }

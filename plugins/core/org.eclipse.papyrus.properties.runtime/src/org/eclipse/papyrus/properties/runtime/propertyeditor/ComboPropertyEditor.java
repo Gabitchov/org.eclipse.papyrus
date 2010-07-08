@@ -124,6 +124,17 @@ public class ComboPropertyEditor extends AbstractPropertyEditor {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean isDisposed() {
+		if(composite == null) {
+			return true;
+		}
+		return composite.isDisposed();
+	}
+
+	/**
 	 * Returns the current String value or <code>null</code> if no elements were selected
 	 */
 	@Override
