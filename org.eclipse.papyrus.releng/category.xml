@@ -21,6 +21,9 @@
    <feature url="features/org.eclipse.papyrus.diagram.communication_${org.eclipse.papyrus.diagram.communication.version}.jar" id="org.eclipse.papyrus.diagram.communication" version="${org.eclipse.papyrus.diagram.communication.version}">
       <category name="Papyrus UML"/>
    </feature>
+   <feature url="features/org.eclipse.papyrus.uml.diagram.pkg_${org.eclipse.papyrus.uml.diagram.pkg.version}.jar" id="org.eclipse.papyrus.uml.diagram.pkg" version="${org.eclipse.papyrus.uml.diagram.pkg.version}">
+      <category name="Papyrus UML"/>
+   </feature>
    <feature url="features/org.eclipse.papyrus.diagram.profile_${org.eclipse.papyrus.diagram.profile.version}.jar" id="org.eclipse.papyrus.diagram.profile" version="${org.eclipse.papyrus.diagram.profile.version}">
       <category name="Papyrus UML"/>
    </feature>
@@ -37,6 +40,9 @@
       <category name="Papyrus SysML"/>
    </feature>
    <feature url="features/org.eclipse.papyrus.diagram.parametric_${org.eclipse.papyrus.diagram.parametric.version}.jar" id="org.eclipse.papyrus.diagram.parametric" version="${org.eclipse.papyrus.diagram.parametric.version}">
+      <category name="Papyrus SysML"/>
+   </feature>
+   <feature url="features/org.eclipse.papyrus.diagram.requirement_${org.eclipse.papyrus.diagram.requirement.version}.jar" id="org.eclipse.papyrus.diagram.requirement" version="${org.eclipse.papyrus.diagram.requirement.version}">
       <category name="Papyrus SysML"/>
    </feature>
    <feature url="features/org.eclipse.papyrus.diagram.blockdefinition_${org.eclipse.papyrus.diagram.blockdefinition.version}.jar" id="org.eclipse.papyrus.diagram.blockdefinition" version="${org.eclipse.papyrus.diagram.blockdefinition.version}">
