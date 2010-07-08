@@ -48,6 +48,7 @@ plugin@org.eclipse.papyrus.sasheditor.di=SVN,,svn://dev.eclipse.org/svnroot/mode
 plugin@org.eclipse.papyrus.tabbedproperties.core=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core,,org.eclipse.papyrus.tabbedproperties.core
 plugin@org.eclipse.papyrus.ui.perspectiveconfiguration=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core,,org.eclipse.papyrus.ui.perspectiveconfiguration
 plugin@org.eclipse.papyrus.wizards=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core,,org.eclipse.papyrus.wizards
+plugin@org.eclipse.xtext.gmf.glue=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/core,,org.eclipse.xtext.gmf.glue
 
 # developer
 #plugin@org.eclipse.papyrus.codegen=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/developer,,org.eclipse.papyrus.codegen
