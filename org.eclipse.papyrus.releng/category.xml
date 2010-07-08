@@ -30,6 +30,9 @@
    <feature url="features/org.eclipse.papyrus.diagram.sequence_${org.eclipse.papyrus.diagram.sequence.version}.jar" id="org.eclipse.papyrus.diagram.sequence" version="${org.eclipse.papyrus.diagram.sequence.version}">
       <category name="Papyrus UML"/>
    </feature>
+   <feature url="features/org.eclipse.papyrus.diagram.statemachine_${org.eclipse.papyrus.diagram.statemachine.version}.jar" id="org.eclipse.papyrus.diagram.statemachine" version="${org.eclipse.papyrus.diagram.statemachine.version}">
+      <category name="Papyrus UML"/>
+   </feature>
    <feature url="features/org.eclipse.papyrus.diagram.usecase_${org.eclipse.papyrus.diagram.usecase.version}.jar" id="org.eclipse.papyrus.diagram.usecase" version="${org.eclipse.papyrus.diagram.usecase.version}">
       <category name="Papyrus UML"/>
    </feature>
