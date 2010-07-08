@@ -2,15 +2,32 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.diagram.statemachine; singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.7.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.papyrus.diagram.statemachine.part.UMLDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.eclipse.papyrus.diagram.statemachine.edit.parts,
+Export-Package: org.eclipse.papyrus.diagram.statemachine,
+ org.eclipse.papyrus.diagram.statemachine.custom.commands,
+ org.eclipse.papyrus.diagram.statemachine.custom.edit.part,
+ org.eclipse.papyrus.diagram.statemachine.custom.expressions,
+ org.eclipse.papyrus.diagram.statemachine.custom.factory,
+ org.eclipse.papyrus.diagram.statemachine.custom.figures,
+ org.eclipse.papyrus.diagram.statemachine.custom.helpers,
+ org.eclipse.papyrus.diagram.statemachine.custom.listeners,
+ org.eclipse.papyrus.diagram.statemachine.custom.parsers,
+ org.eclipse.papyrus.diagram.statemachine.custom.policies,
+ org.eclipse.papyrus.diagram.statemachine.custom.providers,
+ org.eclipse.papyrus.diagram.statemachine.edit.commands,
+ org.eclipse.papyrus.diagram.statemachine.edit.helpers,
+ org.eclipse.papyrus.diagram.statemachine.edit.parts,
+ org.eclipse.papyrus.diagram.statemachine.edit.policies,
  org.eclipse.papyrus.diagram.statemachine.navigator,
+ org.eclipse.papyrus.diagram.statemachine.parsers,
  org.eclipse.papyrus.diagram.statemachine.part,
- org.eclipse.papyrus.diagram.statemachine.providers
+ org.eclipse.papyrus.diagram.statemachine.preferences,
+ org.eclipse.papyrus.diagram.statemachine.providers,
+ org.eclipse.papyrus.diagram.statemachine.sheet
 Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.ui.navigator,
  org.eclipse.gmf.runtime.diagram.ui.properties,
@@ -18,7 +35,6 @@ Require-Bundle: org.eclipse.core.expressions,
  org.eclipse.ocl.ecore;visibility:=reexport,
  org.eclipse.ui.navigator.resources,
  org.eclipse.papyrus.core.adaptor.gmf;bundle-version="0.7.0",
- org.eclipse.papyrus.diagram.common;bundle-version="0.7.0",
  org.eclipse.papyrus.diagram.common;bundle-version="0.7.0",
  org.eclipse.papyrus.preferences,
  org.eclipse.papyrus.extensionpoints.editors,
