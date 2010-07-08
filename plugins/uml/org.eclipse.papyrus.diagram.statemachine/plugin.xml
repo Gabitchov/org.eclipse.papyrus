@@ -956,6 +956,16 @@
 <extension point="org.eclipse.ui.handlers" id="menu-handlers">
       <?gmfgen generated="true"?>
    </extension>
+<extension
+      id="ui-context"
+      point="org.eclipse.ui.contexts">
+   <context
+         description="%context.description"
+         id="org.eclipse.papyrus.diagram.statemachine.ui.diagramContext"
+         name="%context.name"
+         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+   </context>
+</extension>
 
 
 
