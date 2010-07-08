@@ -47,7 +47,7 @@ import org.eclipse.ui.PlatformUI;
 
 /**
  * Set of utility methods for the CoreEditor.
- * 
+ * <br>
  * WARNING : Some of these methods rely on PlatformUI.getWorkbench().getActiveWorkbenchWindow()getActivePage() to
  * lookup for shared objects owned by the main editor. This doesn't work during the initialization of the main editor
  * because the main editor is not yet registered in the Eclipse workbench. This can lead to a null or an exception,
@@ -107,7 +107,7 @@ public class EditorUtils {
 	 * 
 	 * 
 	 * @return Get the current {@link IMultiDiagramEditor} or null if not found.
-	 * @throws ServiceNotFoundException 
+	 * @throws BackboneException If it is not possible to get an instanceof {@link IMultiDiagramEditor} 
 	 */
 	public static IMultiDiagramEditor getMultiDiagramEditorChecked() throws BackboneException {
 		IEditorPart editor;
@@ -200,6 +200,12 @@ public class EditorUtils {
 	 * especially when there is no other editor opened. 
 	 * 
 	 * @return The {@link ServicesRegistry} or null if not found.
+	 * @deprecated Check modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments/cookbook/PapyrusCookBook.odt and use one of the replacement:
+	 * <ul>
+	 *  <li>org.eclipse.papyrus.core.utils.ServiceUtils</li>
+	 *  <li>org.eclipse.papyrus.diagram.common.util.ServiceUtilsForGMF</li>
+	 *  <li>org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
+	 * </ul>
 	 */
 	static public ServicesRegistry getServiceRegistry() {
 		// Lookup ServiceRegistry
@@ -213,6 +219,12 @@ public class EditorUtils {
 	 * 
 	 * @return The {@link ServicesRegistry} or null if not found.
 	 * @throws ServiceException If an error occurs.
+	 * @deprecated Check modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments/cookbook/PapyrusCookBook.odt and use one of the replacement:
+	 * <ul>
+	 *  <li>org.eclipse.papyrus.core.utils.ServiceUtils</li>
+	 *  <li>org.eclipse.papyrus.diagram.common.util.ServiceUtilsForGMF</li>
+	 *  <li>org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
+	 * </ul>
 	 */
 	static public ServicesRegistry getServiceRegistryChecked() throws ServiceException {
 		// Lookup ServiceRegistry
@@ -237,6 +249,12 @@ public class EditorUtils {
 	 * <br> 
 	 * 
 	 * @return the ISashWindowsContentProvider from the main editor or null if not found.
+	 * @deprecated Check modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments/cookbook/PapyrusCookBook.odt and use one of the replacement:
+	 * <ul>
+	 *  <li>org.eclipse.papyrus.core.utils.ServiceUtils</li>
+	 *  <li>org.eclipse.papyrus.diagram.common.util.ServiceUtilsForGMF</li>
+	 *  <li>org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
+	 * </ul>
 	 */
 	static public ISashWindowsContentProvider getISashWindowsContentProvider() {
 		
@@ -260,6 +278,12 @@ public class EditorUtils {
 	 * In any case, a check should be done on the returned value that can be null. 
 	 * 
 	 * @return the ISashWindowsContentProvider from the main editor or null if not found.
+	 * @deprecated Check modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments/cookbook/PapyrusCookBook.odt and use one of the replacement:
+	 * <ul>
+	 *  <li>org.eclipse.papyrus.core.utils.ServiceUtils</li>
+	 *  <li>org.eclipse.papyrus.diagram.common.util.ServiceUtilsForGMF</li>
+	 *  <li>org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
+	 * </ul>
 	 */
 	public static IPageMngr getIPageMngr() {
 
@@ -379,6 +403,12 @@ public class EditorUtils {
 	 * 
 	 * 
 	 * @return
+	 * @deprecated Check modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments/cookbook/PapyrusCookBook.odt and use one of the replacement:
+	 * <ul>
+	 *  <li>org.eclipse.papyrus.core.utils.ServiceUtils</li>
+	 *  <li>org.eclipse.papyrus.diagram.common.util.ServiceUtilsForGMF</li>
+	 *  <li>org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
+	 * </ul>
 	 */
 	public static IEditorPart lookupActiveNestedIEditor() {
 		// Get the sashwindow container
@@ -406,6 +436,12 @@ public class EditorUtils {
 	 * It is preferable to retrieve the ServiceRegistry from elsewhere whenever it is possible.
 	 * 
 	 * @return
+	 * @deprecated Check modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments/cookbook/PapyrusCookBook.odt and use one of the replacement:
+	 * <ul>
+	 *  <li>org.eclipse.papyrus.core.utils.ServiceUtils</li>
+	 *  <li>org.eclipse.papyrus.diagram.common.util.ServiceUtilsForGMF</li>
+	 *  <li>org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
+	 * </ul>
 	 */
 	public static IPage lookupActiveNestedPage() {
 		
@@ -433,6 +469,12 @@ public class EditorUtils {
 	 * Gets the di resource set.
 	 * 
 	 * @return Get the current {@link DiResourceSet} or null if not found.
+	 * @deprecated Check modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments/cookbook/PapyrusCookBook.odt and use one of the replacement:
+	 * <ul>
+	 *  <li>org.eclipse.papyrus.core.utils.ServiceUtils</li>
+	 *  <li>org.eclipse.papyrus.diagram.common.util.ServiceUtilsForGMF</li>
+	 *  <li>org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
+	 * </ul>
 	 */
 	public static DiResourceSet getDiResourceSet() {
 		try {
@@ -467,6 +509,12 @@ public class EditorUtils {
 	 * especially when there is no other editor opened. 
 	 * 
 	 * @return Get the current {@link TransactionalEditingDomain} or null if not found
+	 * @deprecated Check modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments/cookbook/PapyrusCookBook.odt and use one of the replacement:
+	 * <ul>
+	 *  <li>org.eclipse.papyrus.core.utils.ServiceUtils</li>
+	 *  <li>org.eclipse.papyrus.diagram.common.util.ServiceUtilsForGMF</li>
+	 *  <li>org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
+	 * </ul>
 	 */
 	public static TransactionalEditingDomain getTransactionalEditingDomain() {
 		try {
@@ -503,6 +551,12 @@ public class EditorUtils {
 	 * @return Get the current {@link TransactionalEditingDomain}
 	 * @throws ServiceException
 	 * @throws ServiceNotFoundException
+	 * @deprecated Check modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments/cookbook/PapyrusCookBook.odt and use one of the replacement:
+	 * <ul>
+	 *  <li>org.eclipse.papyrus.core.utils.ServiceUtils</li>
+	 *  <li>org.eclipse.papyrus.diagram.common.util.ServiceUtilsForGMF</li>
+	 *  <li>org.eclipse.papyrus.core.utils.ServiceUtilsForActionHandlers (to be used with care !)</li>
+	 * </ul>
 	 */
 	public static TransactionalEditingDomain getTransactionalEditingDomainChecked() throws ServiceException {
 		try {
@@ -520,6 +574,10 @@ public class EditorUtils {
 	 * 
 	 * @param servicesRegistry
 	 * @return
+	 * @deprecated Check modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments/cookbook/PapyrusCookBook.odt and use one of the replacement:
+	 * <ul>
+	 *  <li>org.eclipse.papyrus.core.utils.ServiceUtils</li>
+	 * </ul>
 	 */
 	public static TransactionalEditingDomain getTransactionalEditingDomain(ServicesRegistry registry) {
 		try {
@@ -538,6 +596,10 @@ public class EditorUtils {
 	 * @param servicesRegistry
 	 * @return
 	 * @throws ServiceException If the TransactionalEditingDomain can not be found.
+	 * @deprecated Check modeling/org.eclipse.mdt.papyrus/trunk/doc/DevelopperDocuments/cookbook/PapyrusCookBook.odt and use one of the replacement:
+	 * <ul>
+	 *  <li>org.eclipse.papyrus.core.utils.ServiceUtils</li>
+	 * </ul>
 	 */
 	public static TransactionalEditingDomain getTransactionalEditingDomainChecked(ServicesRegistry registry) throws ServiceException {
 			return registry.getService(TransactionalEditingDomain.class);
