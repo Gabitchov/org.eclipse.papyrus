@@ -12,6 +12,7 @@ feature@org.eclipse.papyrus.diagram.parametric=SVN,,svn://dev.eclipse.org/svnroo
 feature@org.eclipse.papyrus.diagram.profile=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.diagram.profile-feature
 feature@org.eclipse.papyrus.diagram.requirement=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.diagram.requirement-feature
 feature@org.eclipse.papyrus.diagram.sequence=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.diagram.sequence-feature
+feature@org.eclipse.papyrus.diagram.statemachine=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.diagram.statemachine-feature
 feature@org.eclipse.papyrus.diagram.usecase=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.diagram.usecase-feature
 feature@org.eclipse.papyrus.layouttool=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.layouttool-feature
 feature@org.eclipse.papyrus.profiletool=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.profile-tool-feature
