@@ -129,6 +129,9 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	private void fillInTables() {
 		String category = getDiagramCategory();
+		if (category == null) {
+			return;
+		}
 		diagramKindTableViewer.setInput(category);
 		selectTemplateComposite.setInput(category);
 		selectDefaultDiagramKinds(category);
