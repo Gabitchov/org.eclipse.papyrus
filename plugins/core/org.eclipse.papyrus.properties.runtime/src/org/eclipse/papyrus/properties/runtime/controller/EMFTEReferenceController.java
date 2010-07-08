@@ -27,6 +27,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -49,17 +51,18 @@ import org.eclipse.papyrus.properties.runtime.modelhandler.emf.EMFFeatureModelHa
 import org.eclipse.papyrus.uml.service.creation.element.UMLTypeContext;
 import org.eclipse.swt.widgets.Shell;
 
-
 /**
  * Controller for EReferences controller
  */
-public class EMFTEReferenceController extends EMFTStructuralFeatureController implements IBoundedValuesController, IWizardPropertyEditorController {
+public class EMFTEReferenceController extends EMFTStructuralFeatureController
+		implements IBoundedValuesController, IWizardPropertyEditorController {
 
 	/** identifier for this controller */
 	public final static String ID = "emftEReferenceController"; //$NON-NLS-1$
 
 	/** factory used by EMF objects */
-	protected AdapterFactory factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+	protected AdapterFactory factory = new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
 	/** label provider for EMF objects */
 	protected ILabelProvider labelProvider = initLabelProvider();
@@ -68,7 +71,33 @@ public class EMFTEReferenceController extends EMFTStructuralFeatureController im
 	 * {@inheritDoc}
 	 */
 	public Object getAvailableValues() {
-		return getEditingDomain().getResourceSet();
+		EClass eClass = retrieveEClass();
+		if (eClass == null || getObjectsToEdit() == null
+				|| getObjectsToEdit().size() == 0
+				|| !(getModelHandler() instanceof EMFFeatureModelHandler)) {
+			Activator.log
+					.debug("problems during initialization, looking for availables values");
+			return getEditingDomain().getResourceSet();
+		}
+		EObject eObject = getObjectsToEdit().get(0);
+		EStructuralFeature feature = ((EMFFeatureModelHandler) getModelHandler())
+				.getFeatureByName(eObject);
+		if (!(feature instanceof EReference)) {
+			Activator.log
+					.debug("feature is not a reference, looking for availables values: "
+							+ feature);
+			return getEditingDomain().getResourceSet();
+		}
+		
+		IItemPropertySource itemPropertySource = (IItemPropertySource)factory.adapt(eObject, IItemPropertySource.class);
+		if(itemPropertySource==null) {
+			return getEditingDomain().getResourceSet();
+		}
+		IItemPropertyDescriptor itemPropertyDescriptor = itemPropertySource.getPropertyDescriptor(eObject, feature);
+		if(itemPropertyDescriptor == null) {
+			return getEditingDomain().getResourceSet();
+		}
+		return itemPropertyDescriptor.getChoiceOfValues(eObject);
 	}
 
 	/**
@@ -78,27 +107,32 @@ public class EMFTEReferenceController extends EMFTStructuralFeatureController im
 	 */
 	protected ILabelProvider initLabelProvider() {
 		final ILabelProvider provider = DisplayUtils.getLabelProvider();
-		if(provider != null) {
+		if (provider != null) {
 			return provider;
 		}
-		Activator.log.warn("Impossible to find the label provider from the service registry"); //$NON-NLS-1$
-		//adapter factory used by EMF objects 
+		Activator.log
+				.warn("Impossible to find the label provider from the service registry"); //$NON-NLS-1$
+		// adapter factory used by EMF objects
 		return new AdapterFactoryLabelProvider(factory) {
 
 			/**
-			 * This implements {@link ILabelProvider}.getText by forwarding it to an object that implements {@link IItemLabelProvider#getText
+			 * This implements {@link ILabelProvider}.getText by forwarding it
+			 * to an object that implements {@link IItemLabelProvider#getText
 			 * IItemLabelProvider.getText}
 			 */
 			public String getText(Object object) {
 				// Get the adapter from the factory.
 				//
-				IItemLabelProvider itemLabelProvider = (IItemLabelProvider)adapterFactory.adapt(object, IItemLabelProvider.class);
-				if(object instanceof EObject) {
-					if(((EObject)object).eIsProxy()) {
+				IItemLabelProvider itemLabelProvider = (IItemLabelProvider) adapterFactory
+						.adapt(object, IItemLabelProvider.class);
+				if (object instanceof EObject) {
+					if (((EObject) object).eIsProxy()) {
 						return "Proxy - " + object; //$NON-NLS-1$
 					}
 				}
-				return itemLabelProvider != null ? itemLabelProvider.getText(object) : object == null ? "" : object.toString(); //$NON-NLS-1$
+				return itemLabelProvider != null ? itemLabelProvider
+						.getText(object)
+						: object == null ? "" : object.toString(); //$NON-NLS-1$
 			}
 		};
 	}
@@ -108,7 +142,7 @@ public class EMFTEReferenceController extends EMFTStructuralFeatureController im
 	 */
 	public Object[] getCurrentValues() {
 		List<Object> values = new ArrayList<Object>();
-		for(EObject objectToEdit : getObjectsToEdit()) {
+		for (EObject objectToEdit : getObjectsToEdit()) {
 			values.add(getModelHandler().getValueToEdit(objectToEdit));
 		}
 		return values.toArray();
@@ -139,8 +173,10 @@ public class EMFTEReferenceController extends EMFTStructuralFeatureController im
 			 * {@inheritDoc}
 			 */
 			@Override
-			public boolean select(Viewer viewer, Object parentElement, Object element) {
-				//return containsValidElements(element, getFeatureToEdit().getEType().getInstanceClass());
+			public boolean select(Viewer viewer, Object parentElement,
+					Object element) {
+				// return containsValidElements(element,
+				// getFeatureToEdit().getEType().getInstanceClass());
 				return true;
 			}
 		};
@@ -159,11 +195,11 @@ public class EMFTEReferenceController extends EMFTStructuralFeatureController im
 			 */
 			@Override
 			public Object[] getElements(Object inputElement) {
-				if(inputElement instanceof ResourceSet) {
-					ResourceSet resourceSet = (ResourceSet)inputElement;
+				if (inputElement instanceof ResourceSet) {
+					ResourceSet resourceSet = (ResourceSet) inputElement;
 
 					ArrayList<EObject> contents = new ArrayList<EObject>();
-					for(Resource resource : resourceSet.getResources()) {
+					for (Resource resource : resourceSet.getResources()) {
 						contents.addAll(resource.getContents());
 					}
 					return contents.toArray();
@@ -177,27 +213,29 @@ public class EMFTEReferenceController extends EMFTStructuralFeatureController im
 	 * Returns <code>true</code> if the element contains valid elements
 	 * 
 	 * @param element
-	 *        the element to check
+	 *            the element to check
 	 * @param typeClass
-	 *        the type of element to check
+	 *            the type of element to check
 	 * @return <code>true</code> if the element contains valid elements
 	 */
-	protected static boolean containsValidElements(Object element, Class<?> typeClass) {
-		if(element instanceof Resource) {
-			TreeIterator<EObject> iter = (((Resource)element)).getAllContents();
-			while(iter.hasNext()) {
-				if(containsValidElements(iter.next(), typeClass))
+	protected static boolean containsValidElements(Object element,
+			Class<?> typeClass) {
+		if (element instanceof Resource) {
+			TreeIterator<EObject> iter = (((Resource) element))
+					.getAllContents();
+			while (iter.hasNext()) {
+				if (containsValidElements(iter.next(), typeClass))
 					return true;
 			}
 		}
-		if(element instanceof EObject) {
-			EObject eObject = (EObject)element;
-			if(typeClass.isAssignableFrom(eObject.getClass())) {
+		if (element instanceof EObject) {
+			EObject eObject = (EObject) element;
+			if (typeClass.isAssignableFrom(eObject.getClass())) {
 				return true;
 			}
 
-			for(EObject content : eObject.eContents()) {
-				if(containsValidElements(content, typeClass)) {
+			for (EObject content : eObject.eContents()) {
+				if (containsValidElements(content, typeClass)) {
 					return true;
 				}
 			}
@@ -212,30 +250,40 @@ public class EMFTEReferenceController extends EMFTStructuralFeatureController im
 		// retrieve the Eclass of the elements to edit
 		List<IUndoableOperation> undoableOperations = new ArrayList<IUndoableOperation>();
 		EClass eClass = retrieveEClass();
-		if(eClass == null || getObjectsToEdit() == null || getObjectsToEdit().size() == 0 || !(getModelHandler() instanceof EMFFeatureModelHandler)) {
+		if (eClass == null || getObjectsToEdit() == null
+				|| getObjectsToEdit().size() == 0
+				|| !(getModelHandler() instanceof EMFFeatureModelHandler)) {
 			return undoableOperations;
 		}
 		EObject eObject = getObjectsToEdit().get(0);
-		EStructuralFeature feature = ((EMFFeatureModelHandler)getModelHandler()).getFeatureByName(eObject);
-		if(!(feature instanceof EReference)) {
+		EStructuralFeature feature = ((EMFFeatureModelHandler) getModelHandler())
+				.getFeatureByName(eObject);
+		if (!(feature instanceof EReference)) {
 			return undoableOperations;
 		}
 		IClientContext context;
 		try {
 			context = UMLTypeContext.getContext();
-			IElementType type = ElementTypeRegistry.getInstance().getElementType(eObject, context);
+			IElementType type = ElementTypeRegistry.getInstance()
+					.getElementType(eObject, context);
 			IEditHelper helper = type.getEditHelper();
-			List<?> values = helper.getContainedValues(eObject, (EReference)feature);
-			if(values != null) {
-				for(Iterator<?> i = values.iterator(); i.hasNext();) {
+			List<?> values = helper.getContainedValues(eObject,
+					(EReference) feature);
+			if (values != null) {
+				for (Iterator<?> i = values.iterator(); i.hasNext();) {
 					Object nextValue = i.next();
-					if(nextValue instanceof IElementType) {
-						IElementType next = (IElementType)nextValue;
-						CreateElementRequest request = new CreateElementRequest(getEditingDomain(), eObject, next, (EReference)feature);
-						request.setLabel(Messages.bind(Messages.EMFTEReferenceController_CreationOperationMenuLabel, next.getDisplayName()));
+					if (nextValue instanceof IElementType) {
+						IElementType next = (IElementType) nextValue;
+						CreateElementRequest request = new CreateElementRequest(
+								getEditingDomain(), eObject, next,
+								(EReference) feature);
+						request.setLabel(Messages
+								.bind(Messages.EMFTEReferenceController_CreationOperationMenuLabel,
+										next.getDisplayName()));
 						ICommand command = next.getEditCommand(request);
-						if(command.canExecute()) {
-							// adds it to the list of command that can be executed
+						if (command.canExecute()) {
+							// adds it to the list of command that can be
+							// executed
 							undoableOperations.add(command);
 						}
 					}
@@ -255,9 +303,9 @@ public class EMFTEReferenceController extends EMFTStructuralFeatureController im
 	 */
 	protected EClass retrieveEClass() {
 		List<EObject> eObjects = getObjectsToEdit();
-		if(eObjects == null) {
+		if (eObjects == null) {
 			return null;
-		} else if(eObjects.size() > 0) {
+		} else if (eObjects.size() > 0) {
 			return eObjects.get(0).eClass();
 		}
 		return null;
@@ -274,26 +322,35 @@ public class EMFTEReferenceController extends EMFTStructuralFeatureController im
 	 * {@inheritDoc}
 	 */
 	public IUndoableOperation getDeleteOperation(List<Object> objectsToDelete) {
-		CompositeTransactionalCommand undoableOperation = new CompositeTransactionalCommand(getEditingDomain(), Messages.EMFTEReferenceController_DeleteElement_OperationLabel);
+		CompositeTransactionalCommand undoableOperation = new CompositeTransactionalCommand(
+				getEditingDomain(),
+				Messages.EMFTEReferenceController_DeleteElement_OperationLabel);
 		EClass eClass = retrieveEClass();
-		if(eClass == null || getObjectsToEdit() == null || getObjectsToEdit().size() == 0 || !(getModelHandler() instanceof EMFFeatureModelHandler)) {
+		if (eClass == null || getObjectsToEdit() == null
+				|| getObjectsToEdit().size() == 0
+				|| !(getModelHandler() instanceof EMFFeatureModelHandler)) {
 			return undoableOperation;
 		}
 		EObject eObject = getObjectsToEdit().get(0);
 		IClientContext context;
 		try {
 			context = UMLTypeContext.getContext();
-			IElementType type = ElementTypeRegistry.getInstance().getElementType(eObject, context);
+			IElementType type = ElementTypeRegistry.getInstance()
+					.getElementType(eObject, context);
 			IEditHelper helper = type.getEditHelper();
-			for(Object objectToDelete : objectsToDelete) {
-				if(objectToDelete instanceof EObject) {
-					DestroyElementRequest request = new DestroyElementRequest(getEditingDomain(), (EObject)objectToDelete, false);
-					IUndoableOperation operation = helper.getEditCommand(request);
-					if(operation != null && operation.canExecute()) {
+			for (Object objectToDelete : objectsToDelete) {
+				if (objectToDelete instanceof EObject) {
+					DestroyElementRequest request = new DestroyElementRequest(
+							getEditingDomain(), (EObject) objectToDelete, false);
+					IUndoableOperation operation = helper
+							.getEditCommand(request);
+					if (operation != null && operation.canExecute()) {
 						undoableOperation.add(operation);
 					}
 				} else {
-					Activator.log.debug("the object to delete was not an EObject: " + objectToDelete);
+					Activator.log
+							.debug("the object to delete was not an EObject: "
+									+ objectToDelete);
 				}
 			}
 		} catch (Exception e) {
@@ -305,51 +362,61 @@ public class EMFTEReferenceController extends EMFTStructuralFeatureController im
 	/**
 	 * {@inheritDoc}
 	 */
-	public IUndoableOperation getMoveCurrentValuesOperation(List<Object> objects, int move) {
+	public IUndoableOperation getMoveCurrentValuesOperation(
+			List<Object> objects, int move) {
 		IUndoableOperation undoableOperation = null;
 		EClass eClass = retrieveEClass();
-		if(eClass == null || getObjectsToEdit() == null || getObjectsToEdit().size() == 0 || !(getModelHandler() instanceof EMFFeatureModelHandler)) {
+		if (eClass == null || getObjectsToEdit() == null
+				|| getObjectsToEdit().size() == 0
+				|| !(getModelHandler() instanceof EMFFeatureModelHandler)) {
 			return undoableOperation;
 		}
 		EObject eObject = getObjectsToEdit().get(0);
 		// retrieve the current value (should be a list)
-		EStructuralFeature feature = ((EMFFeatureModelHandler)getModelHandler()).getFeatureByName(eObject);
+		EStructuralFeature feature = ((EMFFeatureModelHandler) getModelHandler())
+				.getFeatureByName(eObject);
 		Object currentValue = eObject.eGet(feature);
-		if(currentValue instanceof List<?>) {
-			List<EObject> values = (List<EObject>)currentValue;
+		if (currentValue instanceof List<?>) {
+			@SuppressWarnings("unchecked")
+			List<EObject> values = (List<EObject>) currentValue;
 			List<EObject> copy = new ArrayList<EObject>(values);
 			// make modification in copy list
 			// check indices
 			int min = copy.size();
 			int max = 0;
 
-			for(Object object : objects) {
+			for (Object object : objects) {
 				int index = copy.indexOf(object);
-				if(index == -1) {
-					Activator.log.debug("Impossible to find the index for object :" + object);
+				if (index == -1) {
+					Activator.log
+							.debug("Impossible to find the index for object :"
+									+ object);
 				}
-				if(index < min) {
+				if (index < min) {
 					min = index;
 				}
-				if(index > max) {
+				if (index > max) {
 					max = index;
 				}
 			}
 
-			// check that min and max are in the bounds of the list, with the delta applied
+			// check that min and max are in the bounds of the list, with the
+			// delta applied
 			min += move;
 			max += move;
 			// check the bounds of the list
-			if(min < 0) {
-				Activator.log.debug("Trying to move up the elements, with a move which will cause an IndexOutOfBound exception");
+			if (min < 0) {
+				Activator.log
+						.debug("Trying to move up the elements, with a move which will cause an IndexOutOfBound exception");
 				return undoableOperation;
-			} else if(max >= copy.size()) {
-				Activator.log.debug("Trying to move down the elements, with a move which will cause an IndexOutOfBound exception");
+			} else if (max >= copy.size()) {
+				Activator.log
+						.debug("Trying to move down the elements, with a move which will cause an IndexOutOfBound exception");
 				return undoableOperation;
 			}
 
 			// now, do the move in the copy
-			if(move < 0) {
+			if (move < 0) {
 				moveUpElementsInCollection(copy, objects, move);
 			} else {
 				moveDownElementsOperation(copy, objects, move);
@@ -359,12 +426,14 @@ public class EMFTEReferenceController extends EMFTStructuralFeatureController im
 			IClientContext context;
 			try {
 				context = UMLTypeContext.getContext();
-				IElementType type = ElementTypeRegistry.getInstance().getElementType(eObject, context);
+				IElementType type = ElementTypeRegistry.getInstance()
+						.getElementType(eObject, context);
 				IEditHelper helper = type.getEditHelper();
 
-				SetRequest request = new SetRequest(getEditingDomain(), eObject, feature, copy);
+				SetRequest request = new SetRequest(getEditingDomain(),
+						eObject, feature, copy);
 				IUndoableOperation operation = helper.getEditCommand(request);
-				if(operation != null && operation.canExecute()) {
+				if (operation != null && operation.canExecute()) {
 					undoableOperation = operation;
 				}
 			} catch (Exception e) {
@@ -372,61 +441,65 @@ public class EMFTEReferenceController extends EMFTStructuralFeatureController im
 			}
 		}
 
-
 		return undoableOperation;
 	}
 
 	/**
-	 * Moves the element in the specified list, when the elements are moved down in the list
+	 * Moves the element in the specified list, when the elements are moved down
+	 * in the list
 	 * 
 	 * @param modifiedElements
-	 *        list of elements modified
+	 *            list of elements modified
 	 * @param objectsToMove
-	 *        list of objects to move
+	 *            list of objects to move
 	 * @param move
-	 *        delta for the move. should be positive integer
+	 *            delta for the move. should be positive integer
 	 */
-	protected void moveDownElementsOperation(List<EObject> modifiedElements, List<Object> objectsToMove, int move) {
-		// if moving down, starting from the end to move elements, assuming they are in the increasing order by default 
+	protected void moveDownElementsOperation(List<EObject> modifiedElements,
+			List<Object> objectsToMove, int move) {
+		// if moving down, starting from the end to move elements, assuming they
+		// are in the increasing order by default
 		Collections.reverse(objectsToMove);
-		for(Object objectToMove : objectsToMove) {
+		for (Object objectToMove : objectsToMove) {
 			// retrieve index
 			int index = modifiedElements.indexOf(objectToMove);
 			// remove element
 			modifiedElements.remove(index);
 			// change index
-			if(index == -1) {
+			if (index == -1) {
 				return;
 			}
 			index += move;
 			// add the element to the new index
-			modifiedElements.add(index, (EObject)objectToMove);
+			modifiedElements.add(index, (EObject) objectToMove);
 		}
 	}
 
 	/**
-	 * Moves the element in the specified list, when the elements are moved up in the list
+	 * Moves the element in the specified list, when the elements are moved up
+	 * in the list
 	 * 
 	 * @param modifiedElements
-	 *        list of elements modified
+	 *            list of elements modified
 	 * @param objectsToMove
-	 *        list of objects to move
+	 *            list of objects to move
 	 * @param move
-	 *        delta for the move. should be positive integer
+	 *            delta for the move. should be positive integer
 	 */
-	protected void moveUpElementsInCollection(List<EObject> modifiedElements, List<Object> objectsToMove, int move) {
-		for(Object objectToMove : objectsToMove) {
+	protected void moveUpElementsInCollection(List<EObject> modifiedElements,
+			List<Object> objectsToMove, int move) {
+		for (Object objectToMove : objectsToMove) {
 			// retrieve index
 			int index = modifiedElements.indexOf(objectToMove);
 			// remove element
 			modifiedElements.remove(index);
 			// change index
-			if(index == -1) {
+			if (index == -1) {
 				return;
 			}
 			index += move;
 			// add the element to the new index
-			modifiedElements.add(index, (EObject)objectToMove);
+			modifiedElements.add(index, (EObject) objectToMove);
 		}
 	}
 
@@ -435,12 +508,15 @@ public class EMFTEReferenceController extends EMFTStructuralFeatureController im
 	 */
 	public boolean canMoveValues() {
 		EClass eClass = retrieveEClass();
-		if(eClass == null || getObjectsToEdit() == null || getObjectsToEdit().size() == 0 || !(getModelHandler() instanceof EMFFeatureModelHandler)) {
+		if (eClass == null || getObjectsToEdit() == null
+				|| getObjectsToEdit().size() == 0
+				|| !(getModelHandler() instanceof EMFFeatureModelHandler)) {
 			return false;
 		}
 		EObject eObject = getObjectsToEdit().get(0);
-		EStructuralFeature feature = ((EMFFeatureModelHandler)getModelHandler()).getFeatureByName(eObject);
-		if(feature == null) {
+		EStructuralFeature feature = ((EMFFeatureModelHandler) getModelHandler())
+				.getFeatureByName(eObject);
+		if (feature == null) {
 			return false;
 		}
 		return feature.isOrdered();

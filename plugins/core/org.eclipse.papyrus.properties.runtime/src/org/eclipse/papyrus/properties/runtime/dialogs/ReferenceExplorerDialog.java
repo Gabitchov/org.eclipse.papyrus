@@ -6,19 +6,21 @@ import java.util.List;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.AbstractTreeViewer;
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
-import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.papyrus.properties.runtime.controller.IBoundedValuesController;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.dialogs.FilteredTree;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.dialogs.FilteredList;
 import org.eclipse.ui.dialogs.PatternFilter;
 import org.eclipse.ui.dialogs.SelectionStatusDialog;
 
@@ -31,7 +33,7 @@ public class ReferenceExplorerDialog extends SelectionStatusDialog {
 	protected final boolean allowMultiple;
 
 	/** tree that displays elements */
-	protected FilteredTree filteredTree;
+	protected FilteredList filteredList;
 
 	/** current filter string */
 	protected String filter = null;
@@ -41,6 +43,9 @@ public class ReferenceExplorerDialog extends SelectionStatusDialog {
 
 	/** filters for the tree viewer */
 	private List<ViewerFilter> viewerFilters;
+
+	/** area where the pattern filter can be entered */
+	private Text filterText;
 
 
 	/**
@@ -68,22 +73,22 @@ public class ReferenceExplorerDialog extends SelectionStatusDialog {
 
 		// creates the message area, as defined in the super class
 		createMessageArea(composite);
-		// createFilterText(composite);
-		createFilteredTree(composite);
+		createFilterText(composite);
+		createFilteredList(composite);
 
-		refreshTree();
+		refreshList();
 
 		return composite;
 	}
 
 	/**
-	 * Refresh the content of the tree
+	 * Refresh the content of the list
 	 */
-	protected void refreshTree() {
-		filteredTree.getViewer().setInput(controller.getAvailableValues());
+	protected void refreshList() {
+		filteredList.setElements(((List<?>)controller.getAvailableValues()).toArray());
 
 		// select objects
-		filteredTree.getViewer().setSelection(new StructuredSelection(controller.getCurrentValues()));
+		filteredList.setSelection(controller.getCurrentValues());
 	}
 
 	/**
@@ -101,54 +106,54 @@ public class ReferenceExplorerDialog extends SelectionStatusDialog {
 	 * @return returns an array of the currently selected elements.
 	 */
 	protected Object[] getSelectedElements() {
-		Assert.isNotNull(filteredTree.getViewer());
-		return ((IStructuredSelection)filteredTree.getViewer().getSelection()).toArray();
+		Assert.isNotNull(filteredList);
+		return filteredList.getSelection();
 	}
 
-	//	/**
-	//	 * Creates an area where a filter can be entered. This filter will restrict the list of available icons.
-	//	 * 
-	//	 * @param parent
-	//	 *        the parent composite where to create the filter text
-	//	 * @return the created text area
-	//	 */
-	//	protected Text createFilterText(Composite parent) {
-	//		Text text = new Text(parent, SWT.BORDER);
-	//
-	//		GridData data = new GridData();
-	//		data.grabExcessVerticalSpace = false;
-	//		data.grabExcessHorizontalSpace = true;
-	//		data.horizontalAlignment = GridData.FILL;
-	//		data.verticalAlignment = GridData.BEGINNING;
-	//		text.setLayoutData(data);
-	//		text.setFont(parent.getFont());
-	//
-	//		text.setText((filter == null ? "" : filter)); //$NON-NLS-1$
-	//
-	//		Listener listener = new Listener() {
-	//
-	//			public void handleEvent(Event e) {
-	//				// filteredTree.setFilter("*" + filterText.getText()); //$NON-NLS-1$
-	//			}
-	//		};
-	//		text.addListener(SWT.Modify, listener);
-	//
-	//		text.addKeyListener(new KeyListener() {
-	//
-	//			public void keyPressed(KeyEvent e) {
-	//				if(e.keyCode == SWT.ARROW_DOWN) {
-	//					filteredTree.setFocus();
-	//				}
-	//			}
-	//
-	//			public void keyReleased(KeyEvent e) {
-	//			}
-	//		});
-	//
-	//		filterText = text;
-	//
-	//		return text;
-	//	}
+		/**
+		 * Creates an area where a filter can be entered. This filter will restrict the list of available icons.
+		 * 
+		 * @param parent
+		 *        the parent composite where to create the filter text
+		 * @return the created text area
+		 */
+		protected Text createFilterText(Composite parent) {
+			Text text = new Text(parent, SWT.BORDER);
+	
+			GridData data = new GridData();
+			data.grabExcessVerticalSpace = false;
+			data.grabExcessHorizontalSpace = true;
+			data.horizontalAlignment = GridData.FILL;
+			data.verticalAlignment = GridData.BEGINNING;
+			text.setLayoutData(data);
+			text.setFont(parent.getFont());
+	
+			text.setText((filter == null ? "" : filter)); //$NON-NLS-1$
+	
+			Listener listener = new Listener() {
+	
+				public void handleEvent(Event e) {
+					filteredList.setFilter("*" + filterText.getText()); //$NON-NLS-1$
+				}
+			};
+			text.addListener(SWT.Modify, listener);
+	
+			text.addKeyListener(new KeyListener() {
+	
+				public void keyPressed(KeyEvent e) {
+					if(e.keyCode == SWT.ARROW_DOWN) {
+						filteredList.setFocus();
+					}
+				}
+	
+				public void keyReleased(KeyEvent e) {
+				}
+			});
+	
+			filterText = text;
+	
+			return text;
+		}
 
 	/**
 	 * Creates a filtered tree.
@@ -157,16 +162,13 @@ public class ReferenceExplorerDialog extends SelectionStatusDialog {
 	 *        the parent composite.
 	 * @return returns the filtered tree widget.
 	 */
-	protected FilteredTree createFilteredTree(Composite parent) {
+	protected FilteredList createFilteredList(Composite parent) {
 		int flags = SWT.BORDER | (allowMultiple ? SWT.MULTI : SWT.SINGLE);
 
 		TreeSelectionPatternFilter patternfilter = new TreeSelectionPatternFilter();
 		patternfilter.setIncludeLeadingWildcard(true);
 
-		FilteredTree tree = new FilteredTree(parent, flags, patternfilter, true);
-		final TreeViewer treeViewer = tree.getViewer();
-		treeViewer.setUseHashlookup(true);
-		treeViewer.setContentProvider(controller.getContentProvider());
+		FilteredList list = new FilteredList(parent, flags, controller.getBrowserLabelProvider(), true, false, true);
 		GridData data = new GridData();
 		data.widthHint = convertWidthInCharsToPixels(80);
 		data.heightHint = convertHeightInCharsToPixels(18);
@@ -174,15 +176,10 @@ public class ReferenceExplorerDialog extends SelectionStatusDialog {
 		data.grabExcessHorizontalSpace = true;
 		data.horizontalAlignment = GridData.FILL;
 		data.verticalAlignment = GridData.FILL;
-		tree.setLayoutData(data);
+		list.setLayoutData(data);
 
-		treeViewer.setLabelProvider(controller.getBrowserLabelProvider());
-
-		List<ViewerFilter> filters = controller.getViewerFilters();
-		filters.add(patternfilter);
-		treeViewer.setFilters(filters.toArray(new ViewerFilter[filters.size()]));
-		filteredTree = tree;
-		return tree;
+		filteredList =list ;
+		return filteredList;
 	}
 
 	private class TreeSelectionPatternFilter extends PatternFilter {
