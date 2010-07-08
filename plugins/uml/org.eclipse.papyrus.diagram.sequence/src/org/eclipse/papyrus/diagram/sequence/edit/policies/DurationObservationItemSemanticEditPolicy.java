@@ -34,7 +34,6 @@ public class DurationObservationItemSemanticEditPolicy extends UMLBaseItemSemant
 		super(UMLElementTypes.DurationObservation_3024);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -42,8 +41,6 @@ public class DurationObservationItemSemanticEditPolicy extends UMLBaseItemSemant
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
-
-
 
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {

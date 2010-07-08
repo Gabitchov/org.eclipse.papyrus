@@ -116,7 +116,6 @@ AbstractBorderItemEditPart {
 		return new TimeRelatedSelectionEditPolicy();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -165,10 +164,8 @@ AbstractBorderItemEditPart {
 			return true;
 		}
 
-
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -207,7 +204,6 @@ AbstractBorderItemEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -218,12 +214,10 @@ AbstractBorderItemEditPart {
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
-
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -976,10 +970,6 @@ AbstractBorderItemEditPart {
 		return types;
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -991,7 +981,6 @@ AbstractBorderItemEditPart {
 		 * @generated NOT
 		 */
 		private static final int TIME_MARK_LENGTH = 20;
-
 
 		/**
 		 * @generated
@@ -1009,7 +998,6 @@ AbstractBorderItemEditPart {
 		 * @generated NOT
 		 */
 		private int sideOfFigure = PositionConstants.NONE;
-
 
 		/**
 		 * @generated
@@ -1058,18 +1046,14 @@ AbstractBorderItemEditPart {
 		 */
 		private void createContents() {
 
-
 			fTimeMark = new PolylineShape();
 			fTimeMark.addPoint(new Point(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0)));
 			fTimeMark.addPoint(new Point(getMapMode().DPtoLP(10), getMapMode().DPtoLP(0)));
 
 			this.add(fTimeMark);
 
-
-
 			fTimeMarkElementLabel = new WrappingLabel();
 			fTimeMarkElementLabel.setText("");
-
 
 			GridData constraintFTimeMarkElementLabel = new GridData();
 			constraintFTimeMarkElementLabel.verticalAlignment = GridData.CENTER;
@@ -1081,12 +1065,7 @@ AbstractBorderItemEditPart {
 			constraintFTimeMarkElementLabel.grabExcessVerticalSpace = false;
 			this.add(fTimeMarkElementLabel, constraintFTimeMarkElementLabel);
 
-
-
 		}
-
-
-
 
 		/**
 		 * @generated
@@ -1102,11 +1081,7 @@ AbstractBorderItemEditPart {
 			return fTimeMarkElementLabel;
 		}
 
-
 	}
-
-
-
 
 	/**
 	 * @generated

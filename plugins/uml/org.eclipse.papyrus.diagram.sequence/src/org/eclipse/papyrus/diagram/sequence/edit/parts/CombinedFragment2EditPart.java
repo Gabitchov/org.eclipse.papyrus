@@ -91,10 +91,6 @@ ShapeNodeEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -134,8 +130,6 @@ ShapeNodeEditPart {
 		return (CoRegionCombinedFragmentFigure)primaryShape;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -148,7 +142,6 @@ ShapeNodeEditPart {
 
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -215,7 +208,6 @@ ShapeNodeEditPart {
 			((Shape)primaryShape).setLineStyle(style);
 		}
 	}
-
 
 	/**
 	 * @generated
@@ -889,10 +881,6 @@ ShapeNodeEditPart {
 		}
 		return types;
 	}
-
-
-
-
 
 	/**
 	 * @generated

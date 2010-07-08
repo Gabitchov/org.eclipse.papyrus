@@ -495,12 +495,13 @@
                     xsi:type="gmfmap:FeatureValueSpec">
                   <feature
                       xsi:type="ecore:EAttribute"
-                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OpaqueExpression/body"/>
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralString/value"/>
                   <value
-                      body="'OpaqueExpression'"/>
+                      body="return &quot;&quot;;"
+                      language="java"/>
                 </initializers>
                 <elementClass
-                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//OpaqueExpression"/>
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//LiteralString"/>
               </newElementInitializers>
             </initializers>
           </domainInitializer>
@@ -508,15 +509,19 @@
               xsi:type="gmfmap:FeatureLabelMapping"
               editPattern="">
             <diagramLabel
-                href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CornerBentContentDiagramLabel"/>
+                href="../../org.eclipse.papyrus.diagram.common/model/Constraint.gmfgraph#ConstraintNameDiagramLabel"/>
             <features
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.ecore#//NamedElement/name"/>
+          </labelMappings>
+          <labelMappings>
+            <diagramLabel
+                href="../../org.eclipse.papyrus.diagram.common/model/Constraint.gmfgraph#ConstraintBodyDiagramLabel"/>
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
               href="sequenceDiagram.gmftool#//@palette/@tools.0/@tools.9"/>
           <diagramNode
-              href="../../org.eclipse.papyrus.diagram.common/model/Comment.gmfgraph#CornerBentNode"/>
+              href="../../org.eclipse.papyrus.diagram.common/model/Constraint.gmfgraph#ConstraintNode"/>
         </ownedChild>
       </children>
       <children

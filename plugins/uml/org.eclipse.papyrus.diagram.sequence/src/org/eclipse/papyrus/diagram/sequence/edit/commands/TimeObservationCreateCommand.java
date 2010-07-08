@@ -83,7 +83,6 @@ public class TimeObservationCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -120,8 +119,6 @@ public class TimeObservationCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		TimeObservation newElement = UMLFactory.eINSTANCE.createTimeObservation();
 
 		// get the parent package as owner
@@ -134,7 +131,6 @@ public class TimeObservationCreateCommand extends EditElementCommand {
 		}
 		Package owner = (Package)container;
 		owner.getPackagedElements().add(newElement);
-
 
 		ElementInitializers.getInstance().init_TimeObservation_3020(newElement);
 
@@ -161,9 +157,6 @@ public class TimeObservationCreateCommand extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

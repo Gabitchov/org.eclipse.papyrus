@@ -26,8 +26,10 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.parser.CommentParser;
+import org.eclipse.papyrus.diagram.common.parser.ConstraintParser;
 import org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentBodyEditPart;
+import org.eclipse.papyrus.diagram.sequence.edit.parts.Constraint2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ContinuationNameEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.DurationConstraintInMessageEditPart;
@@ -233,6 +235,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			constraintName_5005Parser = parser;
 		}
 		return constraintName_5005Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ConstraintParser constraintLabel_5012Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConstraintLabel_5012Parser() {
+		if(constraintLabel_5012Parser == null) {
+			constraintLabel_5012Parser = new ConstraintParser();
+		}
+		return constraintLabel_5012Parser;
 	}
 
 	/**
@@ -515,6 +532,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getDurationConstraintLabel_5011Parser();
 		case ConstraintNameEditPart.VISUAL_ID:
 			return getConstraintName_5005Parser();
+		case Constraint2EditPart.VISUAL_ID:
+			return getConstraintLabel_5012Parser();
 		case CommentBodyEditPart.VISUAL_ID:
 			return getCommentBody_5006Parser();
 		case DurationConstraintInMessageEditPart.VISUAL_ID:

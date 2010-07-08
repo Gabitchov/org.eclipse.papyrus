@@ -231,7 +231,7 @@
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.2"
+              parser="/0/@labelParsers/@implementations.3"
               viewPattern=""
               editorPattern="">
             <metaFeatures
@@ -378,7 +378,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.1"
+              parser="/0/@labelParsers/@implementations.2"
               viewPattern="{0}"
               editorPattern="{0}"
               editPattern="{0}">
@@ -635,7 +635,7 @@
               getterName="getTimeMarkElementLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
           <modelFacet
-              parser="/0/@labelParsers/@implementations.6"/>
+              parser="/0/@labelParsers/@implementations.7"/>
         </labels>
       </childNodes>
       <childNodes
@@ -690,7 +690,7 @@
               getterName="getTimeMarkElementLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
           <modelFacet
-              parser="/0/@labelParsers/@implementations.7"/>
+              parser="/0/@labelParsers/@implementations.8"/>
         </labels>
       </childNodes>
       <childNodes
@@ -765,7 +765,7 @@
               getterName="getDurationConstraintLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
           <modelFacet
-              parser="/0/@labelParsers/@implementations.6"/>
+              parser="/0/@labelParsers/@implementations.7"/>
         </labels>
       </childNodes>
       <childNodes
@@ -831,14 +831,12 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="ConstraintEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="CornerBentDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CornerBentDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fCornerBentContentLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CornerBentDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCornerBentContentLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fCornerBentContentLabel.setText(&quot;&quot;);&#xA;&#xA;fCornerBentContentLabel.setFont(FCORNERBENTCONTENTLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fCornerBentContentLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getCornerBentContentLabel() {&#xA;&#x9;&#x9;return fCornerBentContentLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 248, 249, 214);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCORNERBENTCONTENTLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ConstraintFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Constraint"/>
@@ -855,12 +853,12 @@
               <newElementInitializers>
                 <initializers
                     xsi:type="gmfgen:GenFeatureValueSpec"
-                    value="/0/@expressionProviders/@providers.1/@expressions.0">
+                    value="/0/@expressionProviders/@providers.0/@expressions.14">
                   <feature
-                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OpaqueExpression/body"/>
+                      href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/LiteralString/value"/>
                 </initializers>
                 <elementClass
-                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OpaqueExpression"/>
+                    href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/LiteralString"/>
               </newElementInitializers>
             </initializers>
           </modelElementInitializer>
@@ -874,7 +872,7 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getCornerBentContentLabel"
+              getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
@@ -887,6 +885,20 @@
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
+        </labels>
+        <labels
+            visualID="5012"
+            editPartClassName="Constraint2EditPart"
+            itemSemanticEditPolicyClassName="Constraint2ItemSemanticEditPolicy"
+            notationViewFactoryClassName="ConstraintLabelViewFactory">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getConstraintFigure"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.ConstraintFigure"/>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.10"/>
         </labels>
       </childNodes>
       <childNodes
@@ -904,14 +916,12 @@
             xsi:type="gmfgen:MetamodelType"
             editHelperClassName="CommentEditHelper"/>
         <viewmap
-            xsi:type="gmfgen:InnerClassViewmap"
-            className="CornerBentDescriptor"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CornerBentDescriptor extends org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fCornerBentContentLabel; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CornerBentDescriptor() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fCornerBentContentLabel = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fCornerBentContentLabel.setText(&quot;&quot;);&#xA;&#xA;fCornerBentContentLabel.setFont(FCORNERBENTCONTENTLABEL_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fCornerBentContentLabel);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getCornerBentContentLabel() {&#xA;&#x9;&#x9;return fCornerBentContentLabel;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 248, 249, 214);&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FCORNERBENTCONTENTLABEL_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 8, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
-          <attributes
-              xsi:type="gmfgen:StyleAttributes"
-              fixedForeground="true"
-              fixedBackground="true"/>
-        </viewmap>
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -927,7 +937,7 @@
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.1/@expressions.1">
+                value="/0/@expressionProviders/@providers.1/@expressions.0">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/body"/>
             </initializers>
@@ -942,15 +952,15 @@
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
               xsi:type="gmfgen:ParentAssignedViewmap"
-              getterName="getCornerBentContentLabel"
-              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+              getterName="getCornerBentFigure"
+              figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure">
             <attributes
                 xsi:type="gmfgen:StyleAttributes"
                 fixedFont="true"/>
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.4"
+              parser="/0/@labelParsers/@implementations.5"
               editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Comment/body"/>
@@ -1009,7 +1019,7 @@
               <newElementInitializers>
                 <initializers
                     xsi:type="gmfgen:GenFeatureValueSpec"
-                    value="/0/@expressionProviders/@providers.0/@expressions.14">
+                    value="/0/@expressionProviders/@providers.0/@expressions.15">
                   <feature
                       href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
                 </initializers>
@@ -1019,14 +1029,14 @@
             </initializers>
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.15">
+                value="/0/@expressionProviders/@providers.0/@expressions.16">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
         <labelModelFacet
-            parser="/0/@labelParsers/@implementations.6"/>
+            parser="/0/@labelParsers/@implementations.7"/>
       </childNodes>
       <childNodes
           xsi:type="gmfgen:GenChildLabelNode"
@@ -1071,14 +1081,14 @@
               xsi:type="gmfgen:GenFeatureSeqInitializer">
             <initializers
                 xsi:type="gmfgen:GenFeatureValueSpec"
-                value="/0/@expressionProviders/@providers.0/@expressions.16">
+                value="/0/@expressionProviders/@providers.0/@expressions.17">
               <feature
                   href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
             </initializers>
           </modelElementInitializer>
         </modelFacet>
         <labelModelFacet
-            parser="/0/@labelParsers/@implementations.5"/>
+            parser="/0/@labelParsers/@implementations.6"/>
       </childNodes>
       <topLevelNodes
           visualID="2001"
@@ -1180,7 +1190,7 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
-            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.2">
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.1">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
           <containmentMetaFeature
@@ -1213,7 +1223,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.3"
+              parser="/0/@labelParsers/@implementations.4"
               editorPattern=""
               editPattern="">
             <metaFeatures
@@ -1241,11 +1251,11 @@
                 y="-33"/>
           </viewmap>
           <modelFacet
-              parser="/0/@labelParsers/@implementations.8"/>
+              parser="/0/@labelParsers/@implementations.9"/>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.1/@expressions.3"
-            targetEnd="/0/@expressionProviders/@providers.1/@expressions.4"/>
+            sourceEnd="/0/@expressionProviders/@providers.1/@expressions.2"
+            targetEnd="/0/@expressionProviders/@providers.1/@expressions.3"/>
       </links>
       <links
           visualID="4004"
@@ -1281,7 +1291,7 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
-            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.5">
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.4">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
           <containmentMetaFeature
@@ -1315,7 +1325,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.3"
+              parser="/0/@labelParsers/@implementations.4"
               editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
@@ -1343,11 +1353,11 @@
                 y="-33"/>
           </viewmap>
           <modelFacet
-              parser="/0/@labelParsers/@implementations.8"/>
+              parser="/0/@labelParsers/@implementations.9"/>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.1/@expressions.6"
-            targetEnd="/0/@expressionProviders/@providers.1/@expressions.7"/>
+            sourceEnd="/0/@expressionProviders/@providers.1/@expressions.5"
+            targetEnd="/0/@expressionProviders/@providers.1/@expressions.6"/>
       </links>
       <links
           visualID="4005"
@@ -1383,7 +1393,7 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
-            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.8">
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.7">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
           <containmentMetaFeature
@@ -1416,7 +1426,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.3"
+              parser="/0/@labelParsers/@implementations.4"
               editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
@@ -1443,11 +1453,11 @@
                 y="-33"/>
           </viewmap>
           <modelFacet
-              parser="/0/@labelParsers/@implementations.8"/>
+              parser="/0/@labelParsers/@implementations.9"/>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.1/@expressions.9"
-            targetEnd="/0/@expressionProviders/@providers.1/@expressions.10"/>
+            sourceEnd="/0/@expressionProviders/@providers.1/@expressions.8"
+            targetEnd="/0/@expressionProviders/@providers.1/@expressions.9"/>
       </links>
       <links
           visualID="4006"
@@ -1483,7 +1493,7 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
-            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.11">
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.10">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
           <containmentMetaFeature
@@ -1516,7 +1526,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.3"
+              parser="/0/@labelParsers/@implementations.4"
               editorPattern=""
               editPattern="">
             <metaFeatures
@@ -1544,11 +1554,11 @@
                 y="-33"/>
           </viewmap>
           <modelFacet
-              parser="/0/@labelParsers/@implementations.8"/>
+              parser="/0/@labelParsers/@implementations.9"/>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.1/@expressions.12"
-            targetEnd="/0/@expressionProviders/@providers.1/@expressions.13"/>
+            sourceEnd="/0/@expressionProviders/@providers.1/@expressions.11"
+            targetEnd="/0/@expressionProviders/@providers.1/@expressions.12"/>
       </links>
       <links
           visualID="4007"
@@ -1584,7 +1594,7 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
-            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.14">
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.13">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
           <containmentMetaFeature
@@ -1617,7 +1627,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.3"
+              parser="/0/@labelParsers/@implementations.4"
               editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
@@ -1644,11 +1654,11 @@
                 y="-33"/>
           </viewmap>
           <modelFacet
-              parser="/0/@labelParsers/@implementations.8"/>
+              parser="/0/@labelParsers/@implementations.9"/>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.1/@expressions.15"
-            targetEnd="/0/@expressionProviders/@providers.1/@expressions.16"/>
+            sourceEnd="/0/@expressionProviders/@providers.1/@expressions.14"
+            targetEnd="/0/@expressionProviders/@providers.1/@expressions.15"/>
       </links>
       <links
           visualID="4008"
@@ -1684,7 +1694,7 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
-            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.17">
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.16">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
           <containmentMetaFeature
@@ -1717,7 +1727,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.3"
+              parser="/0/@labelParsers/@implementations.4"
               editorPattern=""
               editPattern="">
             <metaFeatures
@@ -1745,11 +1755,11 @@
                 y="-33"/>
           </viewmap>
           <modelFacet
-              parser="/0/@labelParsers/@implementations.8"/>
+              parser="/0/@labelParsers/@implementations.9"/>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.1/@expressions.18"
-            targetEnd="/0/@expressionProviders/@providers.1/@expressions.19"/>
+            sourceEnd="/0/@expressionProviders/@providers.1/@expressions.17"
+            targetEnd="/0/@expressionProviders/@providers.1/@expressions.18"/>
       </links>
       <links
           visualID="4009"
@@ -1785,7 +1795,7 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy"/>
         <modelFacet
             xsi:type="gmfgen:TypeLinkModelFacet"
-            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.20">
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.19">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Message"/>
           <containmentMetaFeature
@@ -1818,7 +1828,7 @@
           </viewmap>
           <modelFacet
               xsi:type="gmfgen:FeatureLabelModelFacet"
-              parser="/0/@labelParsers/@implementations.3"
+              parser="/0/@labelParsers/@implementations.4"
               editPattern="">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
@@ -1846,11 +1856,11 @@
                 y="-33"/>
           </viewmap>
           <modelFacet
-              parser="/0/@labelParsers/@implementations.8"/>
+              parser="/0/@labelParsers/@implementations.9"/>
         </labels>
         <creationConstraints
-            sourceEnd="/0/@expressionProviders/@providers.1/@expressions.21"
-            targetEnd="/0/@expressionProviders/@providers.1/@expressions.22"/>
+            sourceEnd="/0/@expressionProviders/@providers.1/@expressions.20"
+            targetEnd="/0/@expressionProviders/@providers.1/@expressions.21"/>
       </links>
       <links
           visualID="4010"
@@ -6491,6 +6501,8 @@
         <expressions
             body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
         <expressions
+            body="return &quot;&quot;;"/>
+        <expressions
             body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
         <expressions
             body="return getNamedElement(self, &quot;&quot;, self.eClass().getName(), &quot;&quot;);"/>
@@ -6499,8 +6511,6 @@
       </providers>
       <providers
           xsi:type="gmfgen:GenExpressionInterpreter">
-        <expressions
-            body="'OpaqueExpression'"/>
         <expressions
             body="' '"/>
         <expressions
@@ -6574,6 +6584,8 @@
           xsi:type="gmfgen:PredefinedParser"
           uses="/0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.14/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet"/>
       <implementations
+          xsi:type="gmfgen:ExternalParser"/>
+      <implementations
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@childNodes.5/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.sequence.parser.custom.LifelineCustomParsers"/>
@@ -6583,7 +6595,7 @@
           qualifiedName=" org.eclipse.papyrus.diagram.sequence.parser.custom.InteractionUseCustomParsers"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet"
+          uses="/0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet"
           qualifiedName=" org.eclipse.papyrus.diagram.sequence.parser.custom.MessageCustomParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -6595,7 +6607,7 @@
           qualifiedName="org.eclipse.papyrus.diagram.sequence.parser.custom.DurationObservationParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.16/@labelModelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet"
+          uses="/0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.16/@labelModelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.sequence.parser.custom.TimeConstraintParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -6603,8 +6615,12 @@
           qualifiedName="org.eclipse.papyrus.diagram.sequence.parser.custom.TimeObservationParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@links.1/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.0/@labels.1/@modelFacet /0/@diagram/@links.2/@labels.1/@modelFacet /0/@diagram/@links.4/@labels.1/@modelFacet"
+          uses="/0/@diagram/@links.2/@labels.1/@modelFacet /0/@diagram/@links.0/@labels.1/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@links.1/@labels.1/@modelFacet /0/@diagram/@links.4/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser"/>
+      <implementations
+          xsi:type="gmfgen:CustomParser"
+          uses="/0/@diagram/@childNodes.14/@labels.1/@modelFacet"
+          qualifiedName="org.eclipse.papyrus.diagram.common.parser.ConstraintParser"/>
     </labelParsers>
     <contextMenus
         context="/0/@diagram">
@@ -6646,5 +6662,17 @@
         genView="/0/@diagram/@childNodes.5"
         name="NamedElementEditPart"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="this is an extension to manage the comment"
+        genView="/0/@diagram/@childNodes.15"
+        name="comment extended node"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.AbstractCommentEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="ConstraintEditPart extension"
+        genView="/0/@diagram/@childNodes.14"
+        name="ConstraintEditPart extension"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.AbstractConstraintEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

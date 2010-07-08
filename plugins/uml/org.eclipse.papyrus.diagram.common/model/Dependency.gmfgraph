@@ -9,8 +9,8 @@
         name="DependencyDescriptor">
       <actualFigure
           xsi:type="gmfgraph:CustomConnection"
-          name="DashEdgeFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.DashEdgeFigure">
+          name="DashedEdgeFigure"
+          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.edge.DashedEdgeFigure">
         <foregroundColor
             xsi:type="gmfgraph:ConstantColor"
             value="black"/>

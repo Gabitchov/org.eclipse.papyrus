@@ -185,7 +185,6 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 			return true;
 		}
 
-
 		return false;
 	}
 

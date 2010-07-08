@@ -105,8 +105,6 @@ public class MessageLostAppliedStereotypeEditPart extends LabelEditPart implemen
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -120,8 +118,6 @@ public class MessageLostAppliedStereotypeEditPart extends LabelEditPart implemen
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -588,8 +584,6 @@ public class MessageLostAppliedStereotypeEditPart extends LabelEditPart implemen
 		return (View)getModel();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -693,8 +687,6 @@ public class MessageLostAppliedStereotypeEditPart extends LabelEditPart implemen
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -724,9 +716,6 @@ public class MessageLostAppliedStereotypeEditPart extends LabelEditPart implemen
 				}
 			}
 		}
-
-
-
 
 		super.handleNotificationEvent(event);
 	}

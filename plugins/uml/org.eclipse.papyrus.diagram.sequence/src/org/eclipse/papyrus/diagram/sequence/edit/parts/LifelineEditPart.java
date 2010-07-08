@@ -75,6 +75,7 @@ import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDis
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
+import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineChildGraphicalNodeEditPolicy;
@@ -85,6 +86,7 @@ import org.eclipse.papyrus.diagram.sequence.edit.policies.RemoveOrphanViewPolicy
 import org.eclipse.papyrus.diagram.sequence.figures.LifelineDotLineCustomFigure;
 import org.eclipse.papyrus.diagram.sequence.locator.CenterLocator;
 import org.eclipse.papyrus.diagram.sequence.locator.TimeMarkElementPositionLocator;
+import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.sequence.util.CommandHelper;
@@ -169,7 +171,6 @@ public class LifelineEditPart extends NamedElementEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new LifelineItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
-
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineCanonicalEditPolicy());
 
@@ -243,10 +244,6 @@ public class LifelineEditPart extends NamedElementEditPart {
 			return true;
 		}
 
-
-
-
-
 		//Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
 		if(childEditPart instanceof TimeConstraintEditPart) {
 			// update the locator with edit part reference
@@ -255,10 +252,6 @@ public class LifelineEditPart extends NamedElementEditPart {
 			getBorderedFigure().getBorderItemContainer().add(((TimeConstraintEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
 
 		//Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
 		if(childEditPart instanceof TimeObservationEditPart) {
@@ -269,10 +262,6 @@ public class LifelineEditPart extends NamedElementEditPart {
 			return true;
 		}
 
-
-
-
-
 		//Papyrus Gencode :Affixed locator for Lifelines to place element with a time bar
 		if(childEditPart instanceof DurationConstraintEditPart) {
 			// update the locator with edit part reference
@@ -281,10 +270,6 @@ public class LifelineEditPart extends NamedElementEditPart {
 			getBorderedFigure().getBorderItemContainer().add(((DurationConstraintEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
 
 		//Papyrus Gencode :Specific locator for the destructionEvent
 		if(childEditPart instanceof DestructionEventEditPart) {
@@ -298,10 +283,6 @@ public class LifelineEditPart extends NamedElementEditPart {
 			getBorderedFigure().getBorderItemContainer().add(((StateInvariantEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
-
-
-
-
 
 		return false;
 	}
@@ -1222,7 +1203,6 @@ public class LifelineEditPart extends NamedElementEditPart {
 			createContents();
 		}
 
-
 		/**
 		 * Paint the label rectangle as background instead of the whole figure
 		 * 
@@ -1291,7 +1271,6 @@ public class LifelineEditPart extends NamedElementEditPart {
 		 */
 		private void createContents() {
 
-
 			fFigureLifelineNameContainerFigure = new RectangleFigure();
 			// do not fill to enable gradient
 			fFigureLifelineNameContainerFigure.setFill(false);
@@ -1326,9 +1305,6 @@ public class LifelineEditPart extends NamedElementEditPart {
 			//
 			//			fFigureLifelineNameContainerFigure.add(fFigureLifelineLabelFigure);
 
-
-
-
 			fFigureExecutionsContainerFigure = new RectangleFigure();
 			fFigureExecutionsContainerFigure.setFill(false);
 			fFigureExecutionsContainerFigure.setOutline(false);
@@ -1337,14 +1313,9 @@ public class LifelineEditPart extends NamedElementEditPart {
 			this.add(fFigureExecutionsContainerFigure, BorderLayout.CENTER);
 			fFigureExecutionsContainerFigure.setLayoutManager(new StackLayout());
 
-
 			fFigureLifelineDotLineFigure = new LifelineDotLineCustomFigure();
 
-
-
 			fFigureExecutionsContainerFigure.add(fFigureLifelineDotLineFigure);
-
-
 
 		}
 

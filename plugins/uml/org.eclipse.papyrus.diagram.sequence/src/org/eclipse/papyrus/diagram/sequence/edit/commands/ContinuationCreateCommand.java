@@ -78,7 +78,6 @@ public class ContinuationCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -121,8 +120,6 @@ public class ContinuationCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		Continuation newElement = UMLFactory.eINSTANCE.createContinuation();
 
 		InteractionOperand owner = (InteractionOperand)getElementToEdit();
@@ -139,9 +136,6 @@ public class ContinuationCreateCommand extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

@@ -44,7 +44,7 @@ public class UMLOCLFactory {
 	 * @generated
 	 */
 	protected UMLOCLFactory() {
-		this.expressions = new UMLAbstractExpression[23];
+		this.expressions = new UMLAbstractExpression[22];
 	}
 
 	/**
@@ -59,8 +59,7 @@ public class UMLOCLFactory {
 			throw new IllegalArgumentException();
 		}
 		if(cached.expressions[index] == null) {
-			final String[] exprBodies = new String[]{ "\'OpaqueExpression\'", //$NON-NLS-1$
-			"\' \'", //$NON-NLS-1$
+			final String[] exprBodies = new String[]{ "\' \'", //$NON-NLS-1$
 			"self.messageSort=MessageSort::synchCall and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
 			"self.oclIsKindOf(uml::InteractionFragment)", //$NON-NLS-1$
 			"self.oclIsKindOf(uml::InteractionFragment)", //$NON-NLS-1$

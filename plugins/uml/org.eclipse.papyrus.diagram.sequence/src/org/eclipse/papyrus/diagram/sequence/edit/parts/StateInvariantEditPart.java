@@ -94,10 +94,6 @@ AbstractBorderItemEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -137,8 +133,6 @@ AbstractBorderItemEditPart {
 		return (ContinuationFigure)primaryShape;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -147,7 +141,6 @@ AbstractBorderItemEditPart {
 			((StateInvariantNameEditPart)childEditPart).setLabel(getPrimaryShape().getFigureContinuationNameLabel());
 			return true;
 		}
-
 
 		return false;
 	}
@@ -199,12 +192,10 @@ AbstractBorderItemEditPart {
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
-
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -276,7 +267,6 @@ AbstractBorderItemEditPart {
 			((Shape)primaryShape).setLineStyle(style);
 		}
 	}
-
 
 	/**
 	 * @generated
@@ -958,21 +948,15 @@ AbstractBorderItemEditPart {
 		return types;
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
 	public class ContinuationFigure extends RoundedRectangle {
 
-
 		/**
 		 * @generated
 		 */
 		private CenteredWrappedLabel fFigureContinuationNameLabel;
-
 
 		/**
 		 * @generated
@@ -980,7 +964,6 @@ AbstractBorderItemEditPart {
 		public ContinuationFigure() {
 
 			CenterLayout layoutThis = new CenterLayout();
-
 
 			this.setLayoutManager(layoutThis);
 
@@ -993,18 +976,11 @@ AbstractBorderItemEditPart {
 		 */
 		private void createContents() {
 
-
 			fFigureContinuationNameLabel = new CenteredWrappedLabel();
-
-
 
 			this.add(fFigureContinuationNameLabel);
 
-
 		}
-
-
-
 
 		/**
 		 * @generated
@@ -1013,11 +989,7 @@ AbstractBorderItemEditPart {
 			return fFigureContinuationNameLabel;
 		}
 
-
 	}
-
-
-
 
 	/**
 	 * @generated

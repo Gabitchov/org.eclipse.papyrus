@@ -255,9 +255,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
 
-
 		return getGEFWrapper(new MoveElementsCommand(req));
-
 
 	}
 
@@ -414,7 +412,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return true;
 				} else {
 					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getElement()); //$NON-NLS-1$
-					Object sourceVal = UMLOCLFactory.getExpression(3, UMLPackage.eINSTANCE.getElement(), env).evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
+					Object sourceVal = UMLOCLFactory.getExpression(2, UMLPackage.eINSTANCE.getElement(), env).evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
 					if(false == sourceVal instanceof Boolean || !((Boolean)sourceVal).booleanValue()) {
 						return false;
 					} // else fall-through
@@ -423,7 +421,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return true;
 				} else {
 					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getElement()); //$NON-NLS-1$
-					Object targetVal = UMLOCLFactory.getExpression(4, UMLPackage.eINSTANCE.getElement(), env).evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
+					Object targetVal = UMLOCLFactory.getExpression(3, UMLPackage.eINSTANCE.getElement(), env).evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
 					if(false == targetVal instanceof Boolean || !((Boolean)targetVal).booleanValue()) {
 						return false;
 					} // else fall-through
@@ -444,7 +442,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return true;
 				} else {
 					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getElement()); //$NON-NLS-1$
-					Object sourceVal = UMLOCLFactory.getExpression(6, UMLPackage.eINSTANCE.getElement(), env).evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
+					Object sourceVal = UMLOCLFactory.getExpression(5, UMLPackage.eINSTANCE.getElement(), env).evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
 					if(false == sourceVal instanceof Boolean || !((Boolean)sourceVal).booleanValue()) {
 						return false;
 					} // else fall-through
@@ -453,7 +451,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return true;
 				} else {
 					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getElement()); //$NON-NLS-1$
-					Object targetVal = UMLOCLFactory.getExpression(7, UMLPackage.eINSTANCE.getElement(), env).evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
+					Object targetVal = UMLOCLFactory.getExpression(6, UMLPackage.eINSTANCE.getElement(), env).evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
 					if(false == targetVal instanceof Boolean || !((Boolean)targetVal).booleanValue()) {
 						return false;
 					} // else fall-through
@@ -474,7 +472,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return true;
 				} else {
 					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getElement()); //$NON-NLS-1$
-					Object sourceVal = UMLOCLFactory.getExpression(9, UMLPackage.eINSTANCE.getElement(), env).evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
+					Object sourceVal = UMLOCLFactory.getExpression(8, UMLPackage.eINSTANCE.getElement(), env).evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
 					if(false == sourceVal instanceof Boolean || !((Boolean)sourceVal).booleanValue()) {
 						return false;
 					} // else fall-through
@@ -483,7 +481,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return true;
 				} else {
 					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getElement()); //$NON-NLS-1$
-					Object targetVal = UMLOCLFactory.getExpression(10, UMLPackage.eINSTANCE.getElement(), env).evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
+					Object targetVal = UMLOCLFactory.getExpression(9, UMLPackage.eINSTANCE.getElement(), env).evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
 					if(false == targetVal instanceof Boolean || !((Boolean)targetVal).booleanValue()) {
 						return false;
 					} // else fall-through
@@ -504,7 +502,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return true;
 				} else {
 					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getElement()); //$NON-NLS-1$
-					Object sourceVal = UMLOCLFactory.getExpression(12, UMLPackage.eINSTANCE.getElement(), env).evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
+					Object sourceVal = UMLOCLFactory.getExpression(11, UMLPackage.eINSTANCE.getElement(), env).evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
 					if(false == sourceVal instanceof Boolean || !((Boolean)sourceVal).booleanValue()) {
 						return false;
 					} // else fall-through
@@ -513,7 +511,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return true;
 				} else {
 					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getElement()); //$NON-NLS-1$
-					Object targetVal = UMLOCLFactory.getExpression(13, UMLPackage.eINSTANCE.getElement(), env).evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
+					Object targetVal = UMLOCLFactory.getExpression(12, UMLPackage.eINSTANCE.getElement(), env).evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
 					if(false == targetVal instanceof Boolean || !((Boolean)targetVal).booleanValue()) {
 						return false;
 					} // else fall-through
@@ -534,7 +532,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return true;
 				} else {
 					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getElement()); //$NON-NLS-1$
-					Object sourceVal = UMLOCLFactory.getExpression(15, UMLPackage.eINSTANCE.getElement(), env).evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
+					Object sourceVal = UMLOCLFactory.getExpression(14, UMLPackage.eINSTANCE.getElement(), env).evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
 					if(false == sourceVal instanceof Boolean || !((Boolean)sourceVal).booleanValue()) {
 						return false;
 					} // else fall-through
@@ -543,7 +541,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return true;
 				} else {
 					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getElement()); //$NON-NLS-1$
-					Object targetVal = UMLOCLFactory.getExpression(16, UMLPackage.eINSTANCE.getElement(), env).evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
+					Object targetVal = UMLOCLFactory.getExpression(15, UMLPackage.eINSTANCE.getElement(), env).evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
 					if(false == targetVal instanceof Boolean || !((Boolean)targetVal).booleanValue()) {
 						return false;
 					} // else fall-through
@@ -564,7 +562,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return true;
 				} else {
 					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getElement()); //$NON-NLS-1$
-					Object sourceVal = UMLOCLFactory.getExpression(18, UMLPackage.eINSTANCE.getElement(), env).evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
+					Object sourceVal = UMLOCLFactory.getExpression(17, UMLPackage.eINSTANCE.getElement(), env).evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
 					if(false == sourceVal instanceof Boolean || !((Boolean)sourceVal).booleanValue()) {
 						return false;
 					} // else fall-through
@@ -573,7 +571,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return true;
 				} else {
 					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getElement()); //$NON-NLS-1$
-					Object targetVal = UMLOCLFactory.getExpression(19, UMLPackage.eINSTANCE.getElement(), env).evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
+					Object targetVal = UMLOCLFactory.getExpression(18, UMLPackage.eINSTANCE.getElement(), env).evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
 					if(false == targetVal instanceof Boolean || !((Boolean)targetVal).booleanValue()) {
 						return false;
 					} // else fall-through
@@ -594,7 +592,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return true;
 				} else {
 					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getElement()); //$NON-NLS-1$
-					Object sourceVal = UMLOCLFactory.getExpression(21, UMLPackage.eINSTANCE.getElement(), env).evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
+					Object sourceVal = UMLOCLFactory.getExpression(20, UMLPackage.eINSTANCE.getElement(), env).evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
 					if(false == sourceVal instanceof Boolean || !((Boolean)sourceVal).booleanValue()) {
 						return false;
 					} // else fall-through
@@ -603,7 +601,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 					return true;
 				} else {
 					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getElement()); //$NON-NLS-1$
-					Object targetVal = UMLOCLFactory.getExpression(22, UMLPackage.eINSTANCE.getElement(), env).evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
+					Object targetVal = UMLOCLFactory.getExpression(21, UMLPackage.eINSTANCE.getElement(), env).evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
 					if(false == targetVal instanceof Boolean || !((Boolean)targetVal).booleanValue()) {
 						return false;
 					} // else fall-through

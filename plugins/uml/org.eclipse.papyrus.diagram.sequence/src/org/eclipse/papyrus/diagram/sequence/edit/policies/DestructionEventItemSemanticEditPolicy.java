@@ -70,7 +70,6 @@ public class DestructionEventItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		super(UMLElementTypes.DestructionEvent_3022);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -78,7 +77,6 @@ public class DestructionEventItemSemanticEditPolicy extends UMLBaseItemSemanticE
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
-
 
 		for(Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge)it.next();

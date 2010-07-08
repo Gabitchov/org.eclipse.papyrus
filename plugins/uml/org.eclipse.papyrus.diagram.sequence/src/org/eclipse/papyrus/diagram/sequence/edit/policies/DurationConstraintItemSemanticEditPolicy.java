@@ -70,7 +70,6 @@ public class DurationConstraintItemSemanticEditPolicy extends UMLBaseItemSemanti
 		super(UMLElementTypes.DurationConstraint_3021);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -78,7 +77,6 @@ public class DurationConstraintItemSemanticEditPolicy extends UMLBaseItemSemanti
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
-
 
 		for(Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge)it.next();
@@ -136,7 +134,6 @@ public class DurationConstraintItemSemanticEditPolicy extends UMLBaseItemSemanti
 		return getGEFWrapper(cmd.reduce());
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -144,7 +141,6 @@ public class DurationConstraintItemSemanticEditPolicy extends UMLBaseItemSemanti
 		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req) : getCompleteCreateRelationshipCommand(req);
 		return command != null ? command : super.getCreateRelationshipCommand(req);
 	}
-
 
 	/**
 	 * @generated
@@ -180,7 +176,6 @@ public class DurationConstraintItemSemanticEditPolicy extends UMLBaseItemSemanti
 		return null;
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -215,7 +210,6 @@ public class DurationConstraintItemSemanticEditPolicy extends UMLBaseItemSemanti
 		return null;
 	}
 
-
 	/**
 	 * Returns command to reorient EClass based link. New link target or source
 	 * should be the domain model element associated with this node.
@@ -241,7 +235,6 @@ public class DurationConstraintItemSemanticEditPolicy extends UMLBaseItemSemanti
 		}
 		return super.getReorientRelationshipCommand(req);
 	}
-
 
 	/**
 	 * Returns command to reorient EReference based link. New link target or source

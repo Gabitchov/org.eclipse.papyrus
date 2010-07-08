@@ -9,29 +9,19 @@
         name="CornerBentDescriptor">
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
-          name="CornerBentFigure"
-          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure">
-        <foregroundColor
-            xsi:type="gmfgraph:ConstantColor"
-            value="black"/>
-        <backgroundColor
-            xsi:type="gmfgraph:RGBColor"
-            red="248"
-            green="249"
-            blue="214"/>
-        <children
-            xsi:type="gmfgraph:Label"
-            name="CornerBentContentLabel"
-            text="">
-          <font
-              xsi:type="gmfgraph:BasicFont"
-              faceName="Arial"
-              height="8"/>
-        </children>
+          name="HTMLCornerBentFigure"
+          qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure">
+        <customChildren
+            accessor="getCornerBentFigure()">
+          <typedFigure
+              xsi:type="gmfgraph:CustomFigure"
+              name="HTMLCornerBentFigure"
+              qualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure"/>
+        </customChildren>
       </actualFigure>
       <accessors
-          accessor="getCornerBentContentLabel"
-          figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
+          accessor="getCornerBentFigure"
+          figure="//@figures.0/@descriptors.0/@actualFigure/@customChildren.0/@typedFigure"/>
     </descriptors>
     <descriptors
         name="CommentLinkDescriptor">

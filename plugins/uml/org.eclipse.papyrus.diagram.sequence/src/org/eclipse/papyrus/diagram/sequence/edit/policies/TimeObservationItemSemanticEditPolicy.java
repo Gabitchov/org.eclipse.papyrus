@@ -70,7 +70,6 @@ public class TimeObservationItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		super(UMLElementTypes.TimeObservation_3020);
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -78,7 +77,6 @@ public class TimeObservationItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
-
 
 		for(Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge)it.next();

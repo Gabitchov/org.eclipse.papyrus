@@ -114,7 +114,6 @@ public class Message2CreateCommand extends EditElementCommand {
 			throw new ExecutionException(CREATE_LINK_ERROR_MSG);
 		}
 
-
 		Map<Object, Object> parameters = getRequest().getParameters();
 		Message message = CommandHelper.doCreateMessage(container, null, getSource(), getTarget(), parameters);
 		if(message != null) {

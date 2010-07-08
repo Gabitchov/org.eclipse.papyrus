@@ -109,8 +109,6 @@ public class MessageFoundAppliedStereotypeEditPart extends LabelEditPart impleme
 	 */
 	private String defaultText;
 
-
-
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
 	 * 
@@ -124,8 +122,6 @@ public class MessageFoundAppliedStereotypeEditPart extends LabelEditPart impleme
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
-
-
 
 	/**
 	 * @generated
@@ -604,8 +600,6 @@ public class MessageFoundAppliedStereotypeEditPart extends LabelEditPart impleme
 		return (View)getModel();
 	}
 
-
-
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -709,8 +703,6 @@ public class MessageFoundAppliedStereotypeEditPart extends LabelEditPart impleme
 		}
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -741,11 +733,9 @@ public class MessageFoundAppliedStereotypeEditPart extends LabelEditPart impleme
 			}
 		}
 
-
 		if(event.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstant.DISPLAY_NAMELABELICON.equals(((EAnnotation)event.getNewValue()).getSource())) {
 			refreshLabel();
 		}
-
 
 		super.handleNotificationEvent(event);
 	}

@@ -29,6 +29,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.draw2d.ui.internal.figures.ConnectionLayerEx;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -237,8 +238,6 @@ implements ITreeBranchEditPart {
 
 			fFigureMessageLostLabelFigure.setFont(FFIGUREMESSAGELOSTLABELFIGURE_FONT);
 
-
-
 			this.add(fFigureMessageLostLabelFigure);
 		}
 
@@ -248,17 +247,9 @@ implements ITreeBranchEditPart {
 		private RotatableDecoration createTargetDecoration() {
 			EllipseDecoration df = new EllipseDecoration();
 
-
-
-
 			df.setAlwaysFill(true);
 
-
-
-
 			df.setPreferredSize(new Dimension(10, 10));
-
-
 
 			return df;
 		}

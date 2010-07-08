@@ -233,7 +233,7 @@
             <method name="getType()" value="4003,4004,4005,4006,4007,4008,4009,4010,4011"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5001,5003,5004,5007,5002,5008,5009,5010,5011,5005,5006"/>
+            <method name="getType()" value="5001,5003,5004,5007,5002,5008,5009,5010,5011,5005,5012,5006"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value="7001,7004"/>
@@ -627,7 +627,7 @@
             priority="normal" 
             contentProvider="org.eclipse.papyrus.diagram.sequence.navigator.UMLNavigatorContentProvider" 
             labelProvider="org.eclipse.papyrus.diagram.sequence.navigator.UMLNavigatorLabelProvider"
-            icon="icons/obj16/Diagram_Sequence.gif"
+            icon="icons/obj16/UMLDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
             <or>
@@ -663,7 +663,7 @@
             priority="normal" 
             contentProvider="org.eclipse.papyrus.diagram.sequence.navigator.UMLDomainNavigatorContentProvider" 
             labelProvider="org.eclipse.papyrus.diagram.sequence.navigator.UMLDomainNavigatorLabelProvider"
-            icon="icons/obj16/Diagram_Sequence.gif"
+            icon="icons/obj16/UMLDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
             <or>

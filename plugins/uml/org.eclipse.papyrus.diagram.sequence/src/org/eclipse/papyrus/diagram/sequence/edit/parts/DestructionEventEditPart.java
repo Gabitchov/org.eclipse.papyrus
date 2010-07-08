@@ -101,10 +101,6 @@ AbstractBorderItemEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -144,8 +140,6 @@ AbstractBorderItemEditPart {
 		return (DestructionEventFigure)primaryShape;
 	}
 
-
-
 	/**
 	 * @generated
 	 */
@@ -155,7 +149,6 @@ AbstractBorderItemEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-
 
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
@@ -239,7 +232,6 @@ AbstractBorderItemEditPart {
 			((Shape)primaryShape).setLineStyle(style);
 		}
 	}
-
 
 	/**
 	 * @generated
@@ -914,10 +906,6 @@ AbstractBorderItemEditPart {
 		return types;
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -1020,7 +1008,6 @@ AbstractBorderItemEditPart {
 			return new CenterAnchor(getPrimaryShape());
 		}
 		return super.getTargetConnectionAnchor(connEditPart);
-
 
 	}
 

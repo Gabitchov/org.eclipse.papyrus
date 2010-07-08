@@ -119,7 +119,6 @@ AbstractBorderItemEditPart {
 		return new TimeRelatedSelectionEditPolicy();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -168,10 +167,8 @@ AbstractBorderItemEditPart {
 			return true;
 		}
 
-
 		return false;
 	}
-
 
 	/**
 	 * @generated
@@ -210,7 +207,6 @@ AbstractBorderItemEditPart {
 		return getContentPane();
 	}
 
-
 	/**
 	 * @generated
 	 */
@@ -221,12 +217,10 @@ AbstractBorderItemEditPart {
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 
-
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
 		return result;
 	}
-
 
 	/**
 	 * Creates figure for this edit part.
@@ -1049,10 +1043,6 @@ AbstractBorderItemEditPart {
 		return types;
 	}
 
-
-
-
-
 	/**
 	 * @generated
 	 */
@@ -1082,14 +1072,12 @@ AbstractBorderItemEditPart {
 		 */
 		private WrappingLabel fDurationConstraintLabel;
 
-
 		/**
 		 * @generated
 		 */
 		public DurationConstraintFigure() {
 
 			CenterLayout layoutThis = new CenterLayout();
-
 
 			this.setLayoutManager(layoutThis);
 
@@ -1146,46 +1134,25 @@ AbstractBorderItemEditPart {
 		 */
 		private void createContents() {
 
-
 			fDurationArrow = new PolylineShape();
 			fDurationArrow.addPoint(new Point(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0)));
 			fDurationArrow.addPoint(new Point(getMapMode().DPtoLP(10), getMapMode().DPtoLP(0)));
 
 			this.add(fDurationArrow);
 
-
-
 			fDurationConstraintLabel = new WrappingLabel();
-
-
-
 
 			fDurationConstraintLabel.setTextAlignment(PositionConstants.CENTER);
 
-
-
-
 			fDurationConstraintLabel.setAlignment(PositionConstants.CENTER);
-
-
-
 
 			fDurationConstraintLabel.setBackgroundColor(getBackgroundColor());
 
-
-
-
 			fDurationConstraintLabel.setTextWrap(true);
-
-
-
 
 			fDurationConstraintLabel.setTextJustification(PositionConstants.CENTER);
 
-
-
 			this.add(fDurationConstraintLabel);
-
 
 		}
 
@@ -1195,17 +1162,10 @@ AbstractBorderItemEditPart {
 		private Border createBorder0() {
 			LinesBorder result = new LinesBorder();
 
-
-
-
 			result.setSides(PositionConstants.TOP | PositionConstants.BOTTOM);
-
-
 
 			return result;
 		}
-
-
 
 		/**
 		 * @generated
@@ -1221,11 +1181,7 @@ AbstractBorderItemEditPart {
 			return fDurationConstraintLabel;
 		}
 
-
 	}
-
-
-
 
 	/**
 	 * @generated

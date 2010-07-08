@@ -82,7 +82,6 @@ public class DurationObservationCreateCommand extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
-
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -132,8 +131,6 @@ public class DurationObservationCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		DurationObservation newElement = UMLFactory.eINSTANCE.createDurationObservation();
 
 		// get the parent package as owner
@@ -146,7 +143,6 @@ public class DurationObservationCreateCommand extends EditElementCommand {
 		}
 		Package owner = (Package)container;
 		owner.getPackagedElements().add(newElement);
-
 
 		ElementInitializers.getInstance().init_DurationObservation_3024(newElement);
 
@@ -166,9 +162,6 @@ public class DurationObservationCreateCommand extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
-
 
 	/**
 	 * @generated

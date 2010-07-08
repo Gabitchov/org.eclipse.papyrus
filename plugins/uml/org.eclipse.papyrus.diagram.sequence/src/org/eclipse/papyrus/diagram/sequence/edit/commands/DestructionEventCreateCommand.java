@@ -32,6 +32,8 @@ import org.eclipse.uml2.uml.DestructionEvent;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.OccurrenceSpecification;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * @generated
@@ -77,7 +79,6 @@ public class DestructionEventCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
@@ -128,9 +129,6 @@ public class DestructionEventCreateCommand extends EditElementCommand {
 		((CreateElementRequest)getRequest()).setNewElement(destructionEvent);
 		return CommandResult.newOKCommandResult(destructionEvent);
 	}
-
-
-
 
 	/**
 	 * @generated
