@@ -19,6 +19,8 @@ feature@org.eclipse.papyrus.profiletool=SVN,,svn://dev.eclipse.org/svnroot/model
 feature@org.eclipse.papyrus.sysml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.sysml-feature
 feature@org.eclipse.papyrus.uml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.uml-feature
 feature@org.eclipse.papyrus.uml.diagram.pkg=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.uml.diagram.pkg-feature
+feature@org.eclipse.papyrus.xtext.integration=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.uml.xtext.integration-feature
+feature@org.eclipse.papyrus.xtext.uml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/features,,org.eclipse.papyrus.xtext.uml-feature
 
 ##### plugins
 
@@ -93,6 +95,9 @@ plugin@org.eclipse.papyrus.diagram.statemachine=SVN,,svn://dev.eclipse.org/svnro
 plugin@org.eclipse.papyrus.diagram.usecase=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.diagram.usecase
 plugin@org.eclipse.papyrus.extensionpoints.uml2=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.extensionpoints.uml2
 plugin@org.eclipse.papyrus.icons.uml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.icons.uml
+plugin@org.eclipse.papyrus.message.editor.xtext=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.message.editor.xtext
+plugin@org.eclipse.papyrus.message.editor.xtext.generator=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.message.editor.xtext.generator
+plugin@org.eclipse.papyrus.message.editor.xtext.ui=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.message.editor.xtext.ui
 plugin@org.eclipse.papyrus.navigator=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.navigator
 plugin@org.eclipse.papyrus.outline.emftree=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.outline.emftree
 plugin@org.eclipse.papyrus.parsers=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.parsers
@@ -101,7 +106,13 @@ plugin@org.eclipse.papyrus.properties.runtime.uml=SVN,,svn://dev.eclipse.org/svn
 plugin@org.eclipse.papyrus.properties.tabbed.profile=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.properties.tabbed.profile
 plugin@org.eclipse.papyrus.properties.tabbed.uml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.properties.tabbed.uml
 plugin@org.eclipse.papyrus.properties.view.uml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.properties.view.uml
+plugin@org.eclipse.papyrus.property.editor.xtext=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.property.editor.xtext
+plugin@org.eclipse.papyrus.property.editor.xtext.generator=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.property.editor.xtext.generator
+plugin@org.eclipse.papyrus.property.editor.xtext.ui=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.property.editor.xtext.ui
 plugin@org.eclipse.papyrus.resourceloading.umlprofile=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.resourceloading.umlprofile
+plugin@org.eclipse.papyrus.state.editor.xtext=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.state.editor.xtext
+plugin@org.eclipse.papyrus.state.editor.xtext.generator=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.state.editor.xtext.generator
+plugin@org.eclipse.papyrus.state.editor.xtext.ui=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.state.editor.xtext.ui
 plugin@org.eclipse.papyrus.tabbedproperties.appearance=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.tabbedproperties.appearance
 plugin@org.eclipse.papyrus.tabbedproperties.uml=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.tabbedproperties.uml
 plugin@org.eclipse.papyrus.templaterepository=SVN,,svn://dev.eclipse.org/svnroot/modeling/org.eclipse.mdt.papyrus/trunk/plugins/uml,,org.eclipse.papyrus.templaterepository

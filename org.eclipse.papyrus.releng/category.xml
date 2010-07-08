@@ -36,6 +36,9 @@
    <feature url="features/org.eclipse.papyrus.diagram.usecase_${org.eclipse.papyrus.diagram.usecase.version}.jar" id="org.eclipse.papyrus.diagram.usecase" version="${org.eclipse.papyrus.diagram.usecase.version}">
       <category name="Papyrus UML"/>
    </feature>
+   <feature url="features/org.eclipse.papyrus.xtext.uml_${org.eclipse.papyrus.xtext.uml.version}.jar" id="org.eclipse.papyrus.xtext.uml" version="${org.eclipse.papyrus.xtext.uml.version}">
+      <category name="Papyrus UML"/>
+   </feature>
    <feature url="features/org.eclipse.papyrus.sysml_${org.eclipse.papyrus.sysml.version}.jar" id="org.eclipse.papyrus.sysml" version="${org.eclipse.papyrus.sysml.version}">
       <category name="Papyrus SysML"/>
    </feature>
