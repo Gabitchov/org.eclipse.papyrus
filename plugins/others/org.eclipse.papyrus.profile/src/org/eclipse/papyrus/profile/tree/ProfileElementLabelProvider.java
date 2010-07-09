@@ -320,6 +320,10 @@ public class ProfileElementLabelProvider extends LabelProvider {
 
 		String label = "";
 
+		String derived="";
+		if(property.isDerived()){
+			derived="/";
+		}
 		int upper = property.getUpper();
 		int lower = property.getLower();
 
@@ -329,9 +333,9 @@ public class ProfileElementLabelProvider extends LabelProvider {
 		String name = property.getName();
 
 		if(upper != -1) {
-			label = name + ": " + typeName + " " + "[" + lower + ".." + upper + "]";
+			label = derived+name + ": " + typeName + " " + "[" + lower + ".." + upper + "]";
 		} else {
-			label = name + ": " + typeName + " " + "[" + lower + "..*]";
+			label = derived+name + ": " + typeName + " " + "[" + lower + "..*]";
 		}
 
 		return label;
