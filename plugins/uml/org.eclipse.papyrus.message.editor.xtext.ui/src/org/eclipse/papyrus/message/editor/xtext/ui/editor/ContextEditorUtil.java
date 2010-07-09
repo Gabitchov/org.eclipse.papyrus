@@ -15,6 +15,12 @@ package org.eclipse.papyrus.message.editor.xtext.ui.editor;
 
 import org.eclipse.xtext.ui.editor.XtextEditor;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ContextEditorUtil.
+ */
 public class ContextEditorUtil {
+	
+	/** The current editor. */
 	public static XtextEditor currentEditor = null ;
 }

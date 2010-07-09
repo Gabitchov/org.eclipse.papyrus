@@ -21,6 +21,7 @@ import org.eclipse.papyrus.message.editor.xtext.umlMessage.MessageRule;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 
+// TODO: Auto-generated Javadoc
 /**
  * This class contains custom scoping description.
  * 
@@ -29,6 +30,8 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
  *
  */
 public class UmlMessageScopeProvider extends AbstractDeclarativeScopeProvider {
+
+/** The context. */
 public static EObject context = null ;
 	
 	/*public IScope scope_MessageRule_type(MessageRule ctx, EReference ref) {

@@ -15,10 +15,17 @@ package org.eclipse.papyrus.message.editor.xtext.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
+// TODO: Auto-generated Javadoc
 /**
  * Use this class to register components to be used within the IDE.
  */
 public class UmlMessageUiModule extends org.eclipse.papyrus.message.editor.xtext.ui.AbstractUmlMessageUiModule {
+	
+	/**
+	 * Instantiates a new uml message ui module.
+	 *
+	 * @param plugin the plugin
+	 */
 	public UmlMessageUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
 	}

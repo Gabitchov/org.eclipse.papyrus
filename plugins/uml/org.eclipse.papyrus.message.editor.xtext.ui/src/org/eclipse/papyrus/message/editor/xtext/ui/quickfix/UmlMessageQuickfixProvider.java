@@ -16,6 +16,9 @@ package org.eclipse.papyrus.message.editor.xtext.ui.quickfix;
 
 import org.eclipse.xtext.ui.editor.quickfix.DefaultQuickfixProvider;
 
+/**
+ * The Class UmlMessageQuickfixProvider.
+ */
 public class UmlMessageQuickfixProvider extends DefaultQuickfixProvider {
 
 //	@Fix(MyJavaValidator.INVALID_NAME)

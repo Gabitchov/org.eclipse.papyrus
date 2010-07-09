@@ -14,6 +14,9 @@
 package org.eclipse.papyrus.message.editor.xtext.validation;
  
 
+/**
+ * The Class UmlMessageJavaValidator.
+ */
 public class UmlMessageJavaValidator extends AbstractUmlMessageJavaValidator {
 
 //	@Check

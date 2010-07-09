@@ -18,6 +18,7 @@ import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
 
 import com.google.inject.Inject;
 
+// TODO: Auto-generated Javadoc
 /**
  * Provides labels for a EObjects.
  * 
@@ -25,6 +26,11 @@ import com.google.inject.Inject;
  */
 public class UmlMessageLabelProvider extends DefaultEObjectLabelProvider {
 
+	/**
+	 * Instantiates a new uml message label provider.
+	 *
+	 * @param delegate the delegate
+	 */
 	@Inject
 	public UmlMessageLabelProvider(AdapterFactoryLabelProvider delegate) {
 		super(delegate);

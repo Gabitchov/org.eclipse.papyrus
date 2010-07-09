@@ -44,22 +44,39 @@ import com.google.inject.Injector;
 
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MessagePopupEditor.
+ */
 public class MessagePopupEditor extends PopupEditorConfiguration {
 
+	/**
+	 * Instantiates a new message popup editor.
+	 */
 	public MessagePopupEditor() {
 		super();
 	}
 
+	/** The message. */
 	private Message message;
 
+	/** The new name. */
 	private String newName = "";
 
+	/** The new sequence term list. */
 	private String newSequenceTermList = "";
 
 	//private org.eclipse.uml2.uml.VisibilityKind newVisibility ;
 
 
 
+	/**
+	 * @see org.eclipse.xtext.gmf.glue.PopupEditorConfiguration#getTextToEdit(java.lang.Object)
+	 *
+	 * @param editedObject
+	 * @return the text to edit
+	 */
+	
 	@SuppressWarnings("rawtypes")
 	@Override
 	public String getTextToEdit(Object editedObject) {
@@ -88,6 +105,13 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 	}
 
 
+	/**
+	 * @see org.eclipse.xtext.gmf.glue.PopupEditorConfiguration#createPopupEditorHelper(java.lang.Object)
+	 *
+	 * @param editPart
+	 * @return the popup editor helper
+	 */
+	
 	@Override
 	public IPopupEditorHelper createPopupEditorHelper(Object editPart) {
 		IGraphicalEditPart graphicalEditPart = null;
@@ -183,8 +207,12 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 		return super.createPopupEditorHelper(graphicalEditPart, injector, eobjectContextUpdater, xtextEditorContextUpdater, eobjectUpdater, textToEdit, fileExtension);
 	}
 
+	/**
+	 * The Class UpdateUMLMessageCommand.
+	 */
 	protected class UpdateUMLMessageCommand extends org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand {
 
+		/** The message. */
 		private Message message;
 
 		/*
@@ -194,6 +222,15 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 		 * org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor
 		 * , org.eclipse.core.runtime.IAdaptable)
 		 */
+		/**
+		 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
+		 *
+		 * @param arg0
+		 * @param arg1
+		 * @return
+		 * @throws ExecutionException
+		 */
+		
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor arg0, IAdaptable arg1) throws ExecutionException {
 
@@ -203,6 +240,11 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 			return CommandResult.newOKCommandResult(message);
 		}
 
+		/**
+		 * Instantiates a new update uml message command.
+		 *
+		 * @param message the message
+		 */
 		public UpdateUMLMessageCommand(Message message) {
 			super(EditorUtils.getTransactionalEditingDomain(), "Message Update", getWorkspaceFiles(message));
 			this.message = message;

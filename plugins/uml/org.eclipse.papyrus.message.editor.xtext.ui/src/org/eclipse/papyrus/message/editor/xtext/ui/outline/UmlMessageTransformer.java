@@ -16,8 +16,7 @@ package org.eclipse.papyrus.message.editor.xtext.ui.outline;
 import org.eclipse.xtext.ui.editor.outline.transformer.AbstractDeclarativeSemanticModelTransformer;
 
 /**
- * customization of the default outline structure
- * 
+ * customization of the default outline structure.
  */
 public class UmlMessageTransformer extends AbstractDeclarativeSemanticModelTransformer {
 	

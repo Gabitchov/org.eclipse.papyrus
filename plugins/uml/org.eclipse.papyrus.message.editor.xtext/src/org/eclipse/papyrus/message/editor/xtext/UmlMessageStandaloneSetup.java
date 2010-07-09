@@ -14,12 +14,16 @@
 
 package org.eclipse.papyrus.message.editor.xtext;
 
+// TODO: Auto-generated Javadoc
 /**
- * Initialization support for running Xtext languages 
- * without equinox extension registry
+ * Initialization support for running Xtext languages
+ * without equinox extension registry.
  */
 public class UmlMessageStandaloneSetup extends UmlMessageStandaloneSetupGenerated{
 
+	/**
+	 * Do setup.
+	 */
 	public static void doSetup() {
 		new UmlMessageStandaloneSetup().createInjectorAndDoEMFRegistration();
 	}

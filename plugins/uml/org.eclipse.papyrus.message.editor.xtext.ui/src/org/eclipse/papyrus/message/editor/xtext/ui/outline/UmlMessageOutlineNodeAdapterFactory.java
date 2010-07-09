@@ -15,14 +15,25 @@ package org.eclipse.papyrus.message.editor.xtext.ui.outline;
 
 import org.eclipse.xtext.ui.editor.outline.actions.DefaultContentOutlineNodeAdapterFactory;
 
+// TODO: Auto-generated Javadoc
+/**
+ * A factory for creating UmlMessageOutlineNodeAdapter objects.
+ */
 public class UmlMessageOutlineNodeAdapterFactory extends DefaultContentOutlineNodeAdapterFactory {
 
+	/** The Constant types. */
 	private static final Class<?>[] types = { 
 		// provide list of classes to adapt to, e.g.:
 		// Entity.class
 		// Service.class
 	};
 
+	/**
+	 * @see org.eclipse.xtext.ui.editor.outline.actions.DefaultContentOutlineNodeAdapterFactory#getAdapterList()
+	 *
+	 * @return the adapter list
+	 */
+	
 	@Override
 	public Class<?>[] getAdapterList() {
 		return types;
