@@ -13,6 +13,8 @@ package org.eclipse.papyrus.properties.runtime.modelhandler.emf;
 
 import java.util.List;
 
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
@@ -25,6 +27,9 @@ public interface IEMFModelHandler extends IConfigurableDescriptor {
 
 	/**
 	 * Returns the value to edit from the model
+	 * 
+	 * @param objectToEdit
+	 *        the object to edit
 	 * 
 	 * @return the value to edit from the model
 	 */
@@ -71,4 +76,16 @@ public interface IEMFModelHandler extends IConfigurableDescriptor {
 	 * {@inheritDoc}
 	 */
 	public IEMFModelHandlerState createState(boolean readOnly);
+
+	/**
+	 * handle notifications for the model handler
+	 * 
+	 * @param notification
+	 *        the notification to react to
+	 * @param objects
+	 *        the list of objects on which updates should be performed
+	 * @param adapter
+	 *        the adapter in charge of notification
+	 */
+	public void handleNotifyChange(Notification notification, List<EObject> objects, Adapter adapter);
 }

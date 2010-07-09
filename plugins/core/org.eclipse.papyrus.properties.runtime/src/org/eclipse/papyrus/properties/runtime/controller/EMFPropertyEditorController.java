@@ -32,7 +32,7 @@ public abstract class EMFPropertyEditorController extends PropertyEditorControll
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	protected List<EObject> getObjectsToEdit() {
+	public List<EObject> getObjectsToEdit() {
 		return (List<EObject>)super.getObjectsToEdit();
 	}
 

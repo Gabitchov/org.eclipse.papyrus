@@ -232,8 +232,6 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 							referencesViewer.setSelection(selection, true);
 						}
 					}
-
-
 				}
 
 				/**

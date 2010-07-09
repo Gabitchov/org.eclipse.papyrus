@@ -101,7 +101,7 @@ public abstract class PropertyEditorController implements IDisposable, IProperty
 	 * 
 	 * @return the object to edit
 	 */
-	protected List<? extends Object> getObjectsToEdit() {
+	public List<? extends Object> getObjectsToEdit() {
 		return objectToEdit;
 	}
 

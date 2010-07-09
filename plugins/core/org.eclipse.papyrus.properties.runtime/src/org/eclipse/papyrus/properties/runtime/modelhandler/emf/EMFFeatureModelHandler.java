@@ -13,6 +13,8 @@ package org.eclipse.papyrus.properties.runtime.modelhandler.emf;
 
 import java.util.List;
 
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.papyrus.properties.runtime.Activator;
@@ -116,4 +118,45 @@ public abstract class EMFFeatureModelHandler implements IEMFModelHandler {
 		return new EMFFeatureModelHandlerState(this, readOnly);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public void handleNotifyChange(Notification notification, List<EObject> objects, Adapter adapter) {
+		for(EObject eObject : objects) {
+			// if one element is added to the feature, should also add this as a listener
+			// if one element is removed from the feature, should also remove this as a listener
+			// in other case, except removing adapters, should refresh
+			if(Notification.ADD == notification.getEventType()) {
+				// check which feature has been modified
+				Object o = notification.getFeature();
+				EStructuralFeature feature = getFeatureByName(eObject);
+				if(o.equals(feature)) {
+					((EObject)notification.getNewValue()).eAdapters().add(adapter);
+				}
+			} else if(Notification.ADD_MANY == notification.getEventType()) {
+				Object o = notification.getFeature();
+				EStructuralFeature feature = getFeatureByName(eObject);
+				if(o.equals(feature)) {
+					for(EObject newValue : ((List<EObject>)notification.getNewValue())) {
+						newValue.eAdapters().add(adapter);
+					}
+				}
+			} else if(Notification.REMOVE == notification.getEventType()) {
+				// check which feature has been modified
+				Object o = notification.getFeature();
+				EStructuralFeature feature = getFeatureByName(eObject);
+				if(o.equals(feature)) {
+					((EObject)notification.getOldValue()).eAdapters().remove(this);
+				}
+			} else if(Notification.REMOVE_MANY == notification.getEventType()) {
+				Object o = notification.getFeature();
+				EStructuralFeature feature = getFeatureByName(eObject);
+				if(o.equals(feature)) {
+					for(EObject newValue : ((List<EObject>)notification.getOldValue())) {
+						newValue.eAdapters().remove(adapter);
+					}
+				}
+			}
+		}
+	}
 }

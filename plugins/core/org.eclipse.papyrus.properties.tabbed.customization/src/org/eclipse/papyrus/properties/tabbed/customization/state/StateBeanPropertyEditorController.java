@@ -34,7 +34,7 @@ public class StateBeanPropertyEditorController extends BeanPropertyEditorControl
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	protected List<? extends IState> getObjectsToEdit() {
+	public List<? extends IState> getObjectsToEdit() {
 		return (List<? extends IState>)super.getObjectsToEdit();
 	}
 
