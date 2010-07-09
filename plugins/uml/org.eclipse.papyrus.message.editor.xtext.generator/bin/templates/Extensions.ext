@@ -1,4 +1,0 @@
-import org::eclipse::papyrus::message::editor::xtext::umlMessage;
-
-sortedGreetings(Model this) :
-	this.greetings.sortBy(g|g.name.toLowerCase());
