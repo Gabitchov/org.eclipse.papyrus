@@ -26,6 +26,7 @@ import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.ReconnectRequest;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
@@ -98,7 +99,7 @@ public class ContainmentHelper extends ElementHelper {
 	 * @return the containment element command
 	 */
 	public Command getCreateContainmentCommand(CreateConnectionViewRequest createConnectionViewRequest, Command command) {
-		CompoundCommand compoundCommand = new CompoundCommand();
+		CompositeCommand compoundCommand = new CompositeCommand("Create Containment");
 		IGraphicalEditPart sourceEditPart = (GraphicalEditPart)createConnectionViewRequest.getSourceEditPart();
 
 		View sourceView = (View)sourceEditPart.getModel();
@@ -107,25 +108,44 @@ public class ContainmentHelper extends ElementHelper {
 
 		String linkHint = ((IHintedType)UMLElementTypes.Dependency_4022).getSemanticHint();
 		ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes.Dependency_4022, ((IHintedType)org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes.Dependency_4022).getSemanticHint(), sourceEditPart.getDiagramPreferencesHint());
-		IAdaptable targetViewAdapter = new SemanticAdapter(null, createConnectionViewRequest.getTargetEditPart().getModel());
+		View targetView = (View)createConnectionViewRequest.getTargetEditPart().getModel();
+		IAdaptable targetViewAdapter = new SemanticAdapter(null, targetView);
 		IAdaptable circleAdapter = null;
 		ContainmentCircleViewCreateCommand circleCommand = null;
+
+		deleteIncomingContainmentLinksFor(compoundCommand, targetView);
 
 		if(ContainmentCircleEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(sourceEditPart.getNotationView())) {
 			circleAdapter = new SemanticAdapter(null, sourceEditPart.getNotationView());
 			sourceView = (View)sourceEditPart.getParent().getModel();
 		} else {
 			circleCommand = new ContainmentCircleViewCreateCommand(createConnectionViewRequest, getEditingDomain(), sourceView, editPartViewer, preferencesHint);
-			compoundCommand.add(new ICommandProxy(circleCommand));
+			compoundCommand.add(circleCommand);
 			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), CONTAINMENT_CIRCLE_POSITION, (IAdaptable)circleCommand.getCommandResult().getReturnValue(), createConnectionViewRequest.getLocation());
-			compoundCommand.add(new ICommandProxy(setBoundsCommand));
+			compoundCommand.add(setBoundsCommand);
 
 		}
+		
 
 		ICommand dashedLineCmd = new CustomCreateContainmentLinkViewCommand(getEditingDomain(), linkHint, sourceView, circleAdapter, targetViewAdapter, editPartViewer, preferencesHint, viewDescriptor, circleCommand);
-		compoundCommand.add(new ICommandProxy(dashedLineCmd));
+		compoundCommand.add(dashedLineCmd);
+		
 
-		return compoundCommand;
+		return new ICommandProxy(compoundCommand);
+	}
+
+	public void deleteIncomingContainmentLinksFor(CompositeCommand cc, View node) {
+		for(Object incomingLink : node.getTargetEdges()) {
+			Edge nextConnector = (Edge)incomingLink;
+			View nextConnectorSource = nextConnector.getSource();
+			if(UMLVisualIDRegistry.getVisualID(nextConnectorSource) == ContainmentCircleEditPart.VISUAL_ID) {
+				/* The containment circle node is deleted only if any other link is connected */
+				if(nextConnectorSource.getSourceEdges().size() == 1) {
+					// Delete the containment circle
+					cc.add(new DeleteCommand(getEditingDomain(), nextConnectorSource));
+				}
+			}
+		}
 	}
 
 	private CContainmentCircleEditPart findContainmentCircle(IGraphicalEditPart parent) {

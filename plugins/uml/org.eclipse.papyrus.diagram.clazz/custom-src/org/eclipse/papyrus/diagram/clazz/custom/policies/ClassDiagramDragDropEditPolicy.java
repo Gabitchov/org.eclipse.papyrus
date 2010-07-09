@@ -297,28 +297,19 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 	 * @return a command to execute
 	 */
 	protected Command dropElementWithContainmentLink(DropObjectsRequest dropRequest, Element droppedElement, int nodeVISUALID) {
+		ContainmentHelper containmentHelper = new ContainmentHelper(getEditingDomain());
 		CompositeCommand cc = new CompositeCommand(CONTAINED_CLASS_DROP_TO_COMPARTMENT);
 		cc = getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), droppedElement);
 
-		// look for the dropped element existing outside the compartment in the current diagram and his containment connection
 		View droppedView = findViewFor(droppedElement);
 
-		for(Object incomingLink : droppedView.getTargetEdges()) {
-			Edge nextConnector = (Edge)incomingLink;
-			View nextConnectorSource = nextConnector.getSource();
-			if(UMLVisualIDRegistry.getVisualID(nextConnectorSource) == ContainmentCircleEditPart.VISUAL_ID) {
-				/* The containment circle node is deleted only if any other link is connected */
-				if(nextConnectorSource.getSourceEdges().size() == 1) {
-					// Delete the containment circle
-					cc.add(new DeleteCommand(getEditingDomain(), nextConnectorSource));
-				}
-			}
-		}
+		containmentHelper.deleteIncomingContainmentLinksFor(cc, droppedView);
+
 		// Delete the dropped element existing outside the compartment
 		cc.add(new DeleteCommand(getEditingDomain(), droppedView));
 		return new ICommandProxy(cc);
 	}
-
+	
 	private View findViewFor(Element droppedElement) {
 		for(Object next : getViewer().getEditPartRegistry().values()) {
 			EditPart currentEditPart = (EditPart)next;
