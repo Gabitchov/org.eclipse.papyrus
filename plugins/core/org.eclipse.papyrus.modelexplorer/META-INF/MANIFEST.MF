@@ -32,5 +32,6 @@ Export-Package: org.eclipse.papyrus.modelexplorer,
  org.eclipse.papyrus.modelexplorer.actions,
  org.eclipse.papyrus.modelexplorer.commands,
  org.eclipse.papyrus.modelexplorer.dialog,
+ org.eclipse.papyrus.modelexplorer.dnd,
  org.eclipse.papyrus.modelexplorer.factory,
  org.eclipse.papyrus.modelexplorer.preferences
