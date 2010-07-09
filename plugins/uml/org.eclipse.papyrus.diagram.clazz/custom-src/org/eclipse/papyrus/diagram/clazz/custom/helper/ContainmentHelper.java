@@ -205,9 +205,9 @@ public class ContainmentHelper extends ElementHelper {
 		Element owner = (Element)droppedElement.getOwner();
 		GraphicalEditPart droppedParentEditPart = null;
 		if (droppedElementEditPart != null) {
-			if(((GraphicalEditPart)droppedElementEditPart.getParent()).resolveSemanticElement().equals(owner)) {
-				droppedParentEditPart = (GraphicalEditPart)droppedElementEditPart.getParent();
-
+			GraphicalEditPart parentEP = (GraphicalEditPart)droppedElementEditPart.getParent();
+			if(parentEP.resolveSemanticElement().equals(owner)) {
+				droppedParentEditPart = parentEP;
 			}
 		}
 
@@ -216,17 +216,17 @@ public class ContainmentHelper extends ElementHelper {
 			return cc;
 		}
 		if(droppedElementEditPart == null) {
-			dropElementWithoutEditPartToDiagram(droppedElement, viewer, diagramPreferencesHint, location, containerView, cc, droppedParentEditPart);
+			dropElementToDiagram(droppedElement, viewer, diagramPreferencesHint, location, containerView, cc, droppedParentEditPart);
 		} else {
 			if(canHaveContainmentLink(droppedElementEditPart)) {
 				cc.add(new ICommandProxy(new DeleteCommand(getEditingDomain(), (View)droppedElementEditPart.getModel())));
-				dropElementWithoutEditPartToDiagram(droppedElement, viewer, diagramPreferencesHint, location, containerView, cc, droppedParentEditPart);
+				dropElementToDiagram(droppedElement, viewer, diagramPreferencesHint, location, containerView, cc, droppedParentEditPart);
 			}
 		}
 		return cc;
 	}
 
-	private void dropElementWithoutEditPartToDiagram(PackageableElement droppedElement, EditPartViewer viewer, PreferencesHint diagramPreferencesHint, Point location, View containerView, CompoundCommand cc, GraphicalEditPart graphicalEditPartDroppedElementOwner) {
+	private void dropElementToDiagram(PackageableElement droppedElement, EditPartViewer viewer, PreferencesHint diagramPreferencesHint, Point location, View containerView, CompoundCommand cc, GraphicalEditPart graphicalEditPartDroppedElementOwner) {
 		// 3.1 *********************************************** Creation of the dropped element in the diagram */
 		IAdaptable elementAdapter = new EObjectAdapter(droppedElement);
 		ViewDescriptor droppedElementDescriptor = new ViewDescriptor(elementAdapter, Node.class, null, ViewUtil.APPEND, false, diagramPreferencesHint);
