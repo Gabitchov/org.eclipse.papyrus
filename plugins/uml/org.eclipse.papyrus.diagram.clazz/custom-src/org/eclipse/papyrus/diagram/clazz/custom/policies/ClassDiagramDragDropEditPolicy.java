@@ -124,6 +124,39 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 	}
 
 	/**
+	 * gets a drop command
+	 * 
+	 * @param request
+	 *        the request
+	 * @return command
+	 */
+	protected Command getDropCommand(ChangeBoundsRequest request) {
+		ChangeBoundsRequest req = new ChangeBoundsRequest(REQ_ADD);
+		req.setEditParts(request.getEditParts());
+		req.setMoveDelta(request.getMoveDelta());
+		req.setSizeDelta(request.getSizeDelta());
+		req.setLocation(request.getLocation());
+		req.setResizeDirection(request.getResizeDirection());
+		Command cmd = getHost().getCommand(req);
+
+		if(getHost() instanceof PackagePackageableElementCompartment2EditPart || getHost() instanceof PackagePackageableElementCompartmentEditPart || getHost() instanceof ModelEditPart || getHost() instanceof ModelPackageableElementCompartmentEditPart || getHost() instanceof ModelPackageableElementCompartment2EditPart) {
+			cmd = cmd.chain(getDropObjectsCommand(castToDropObjectsRequest(request)));
+		}
+		if(cmd == null || !cmd.canExecute()) {
+			return getDropObjectsCommand(castToDropObjectsRequest(request));
+		}
+
+		return cmd;
+
+
+		//		Command result = super.getDropCommand(request);
+		//		if(getHost() instanceof PackagePackageableElementCompartment2EditPart || getHost() instanceof PackagePackageableElementCompartmentEditPart || getHost() instanceof ModelEditPart || getHost() instanceof ModelPackageableElementCompartmentEditPart || getHost() instanceof ModelPackageableElementCompartment2EditPart) {
+		//			result.chain(getDropObjectsCommand(castToDropObjectsRequest(request)));
+		//		}
+		//		return result;
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -308,44 +341,14 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 
 
 	/**
-	 * gets a drop command
-	 * 
-	 * @param request
-	 *        the request
-	 * @return command
-	 */
-	protected Command getDropCommand(ChangeBoundsRequest request) {
-		ChangeBoundsRequest req = new ChangeBoundsRequest(REQ_ADD);
-		req.setEditParts(request.getEditParts());
-		req.setMoveDelta(request.getMoveDelta());
-		req.setSizeDelta(request.getSizeDelta());
-		req.setLocation(request.getLocation());
-		req.setResizeDirection(request.getResizeDirection());
-		Command cmd = getHost().getCommand(req);
-
-		if(getHost() instanceof PackagePackageableElementCompartment2EditPart || getHost() instanceof PackagePackageableElementCompartmentEditPart || getHost() instanceof ModelEditPart || getHost() instanceof ModelPackageableElementCompartmentEditPart || getHost() instanceof ModelPackageableElementCompartment2EditPart) {
-			cmd = cmd.chain(getDropObjectsCommand(castToDropObjectsRequest(request)));
-		}
-		if(cmd == null || !cmd.canExecute()) {
-			return getDropObjectsCommand(castToDropObjectsRequest(request));
-		}
-
-		return cmd;
-
-
-		//		Command result = super.getDropCommand(request);
-		//		if(getHost() instanceof PackagePackageableElementCompartment2EditPart || getHost() instanceof PackagePackageableElementCompartmentEditPart || getHost() instanceof ModelEditPart || getHost() instanceof ModelPackageableElementCompartmentEditPart || getHost() instanceof ModelPackageableElementCompartment2EditPart) {
-		//			result.chain(getDropObjectsCommand(castToDropObjectsRequest(request)));
-		//		}
-		//		return result;
-	}
-
-
-	/**
 	 * this method is used to drop an interface realization into the class diagraù
-	 * @param dropRequest the drop request
-	 * @param semanticLink the element that is the interfaceRealization
-	 * @param linkVISUALID the visualID of the interfaceRealization
+	 * 
+	 * @param dropRequest
+	 *        the drop request
+	 * @param semanticLink
+	 *        the element that is the interfaceRealization
+	 * @param linkVISUALID
+	 *        the visualID of the interfaceRealization
 	 * @return the command containing the creation of the view for interface realization
 	 */
 	protected Command dropInterfaceRealization(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
@@ -354,10 +357,10 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 		if(sources.size() == 0 || targets.size() == 0) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		
+
 		Element source = (Element)sources.toArray()[0];
 		Element target = (Element)targets.toArray()[0];
-		CompositeCommand cc= new CompositeCommand("");
+		CompositeCommand cc = new CompositeCommand("");
 		dropBinaryLink(cc, source, target, linkVISUALID, dropRequest.getLocation(), semanticLink);
 		return new ICommandProxy(cc);
 	}
