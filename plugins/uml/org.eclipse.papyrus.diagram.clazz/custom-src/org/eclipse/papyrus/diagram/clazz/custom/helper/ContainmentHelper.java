@@ -15,6 +15,7 @@ package org.eclipse.papyrus.diagram.clazz.custom.helper;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Map;
 
 import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.runtime.IAdaptable;
@@ -125,11 +126,11 @@ public class ContainmentHelper extends ElementHelper {
 			compoundCommand.add(setBoundsCommand);
 
 		}
-		
+
 
 		ICommand dashedLineCmd = new CustomCreateContainmentLinkViewCommand(getEditingDomain(), linkHint, sourceView, circleAdapter, targetViewAdapter, editPartViewer, preferencesHint, viewDescriptor, circleCommand);
 		compoundCommand.add(dashedLineCmd);
-		
+
 
 		return new ICommandProxy(compoundCommand);
 	}
@@ -179,37 +180,32 @@ public class ContainmentHelper extends ElementHelper {
 	 * @return the command
 	 */
 	public Command outlineDropContainedClass(PackageableElement droppedElement, EditPartViewer viewer, PreferencesHint diagramPreferencesHint, Point location, View containerView) {
+		return dropElementToDiagram(droppedElement, viewer, diagramPreferencesHint, location, containerView);
+	}
+
+	/**
+	 * Drop element to diagram.
+	 *
+	 * @param droppedElement the dropped element
+	 * @param viewer the viewer
+	 * @param diagramPreferencesHint the diagram preferences hint
+	 * @param location the location
+	 * @param containerView the container view
+	 * @return the command
+	 */
+	public Command dropElementToDiagram(PackageableElement droppedElement, EditPartViewer viewer, PreferencesHint diagramPreferencesHint, Point location, View containerView) {
 		CompoundCommand cc = new CompoundCommand("drop");
-		// this the graphical editpart of the dropped element 
-		GraphicalEditPart droppedElementEditPart = null;
-		// this the graphical editpart of the dropped element owner
-		GraphicalEditPart graphicalEditPartDroppedElementOwner = null;
-
-		/* Verify if the view of the dropped element owner exists on the diagram */
+		
+		EditPart droppedElementEditPart = findEditPartFor(viewer.getEditPartRegistry(), droppedElement);
 		Element owner = (Element)droppedElement.getOwner();
+		GraphicalEditPart droppedParentEditPart = null;
+		if(((GraphicalEditPart)droppedElementEditPart.getParent()).resolveSemanticElement().equals(owner)) {
+			droppedParentEditPart = (GraphicalEditPart)droppedElementEditPart.getParent();
 
-
-
-		// 1. *********************************************** Initialization of variable
-		Collection<EditPart> editPartSet = viewer.getEditPartRegistry().values();
-		Iterator<EditPart> editPartIterator = editPartSet.iterator();
-		while(editPartIterator.hasNext()) {
-			EditPart currentEditPart = editPartIterator.next();
-			// look for the dropped element in the diagram
-			if((currentEditPart instanceof ClassEditPart || currentEditPart instanceof PackageEditPart || currentEditPart instanceof Class5EditPart || currentEditPart instanceof PackageEditPartCN || currentEditPart instanceof ModelEditPartCN || currentEditPart instanceof ModelEditPartTN)) {
-				if(((GraphicalEditPart)currentEditPart).resolveSemanticElement().equals(droppedElement)) {
-					droppedElementEditPart = ((GraphicalEditPart)currentEditPart);
-				}
-				// look for the graphical editpart of the dropped element owner
-				if(((GraphicalEditPart)currentEditPart).resolveSemanticElement().equals(owner)) {
-					graphicalEditPartDroppedElementOwner = (GraphicalEditPart)currentEditPart;
-
-				}
-
-			}
 		}
+
 		// if the owner does not exist the link have not to be created or different of the diagram.
-		if(graphicalEditPartDroppedElementOwner == null || graphicalEditPartDroppedElementOwner instanceof ModelEditPart) {
+		if(droppedParentEditPart == null || droppedParentEditPart instanceof ModelEditPart) {
 			return cc;
 		}
 		// 2. *********************************************** remove the label that is the dropped element 
@@ -217,70 +213,68 @@ public class ContainmentHelper extends ElementHelper {
 			cc.add(new ICommandProxy(new DeleteCommand(getEditingDomain(), (View)droppedElementEditPart.getModel())));
 			droppedElementEditPart = null;
 		}
-
-		// 3. *********************************************** creation of the target element and the link 
-		/* if the element view doesn't exist on the diagram */
 		if(droppedElementEditPart == null) {
+			dropElementWithoutEditPartToDiagram(droppedElement, viewer, diagramPreferencesHint, location, containerView, cc, droppedParentEditPart);
+		}
+		return cc;
+	}
 
-			// 3.1 *********************************************** Creation of the dropped element in the diagram */
-			IAdaptable elementAdapter = new EObjectAdapter(droppedElement);
-			ViewDescriptor droppedElementDescriptor = new ViewDescriptor(elementAdapter, Node.class, null, ViewUtil.APPEND, false, diagramPreferencesHint);
+	private void dropElementWithoutEditPartToDiagram(PackageableElement droppedElement, EditPartViewer viewer, PreferencesHint diagramPreferencesHint, Point location, View containerView, CompoundCommand cc, GraphicalEditPart graphicalEditPartDroppedElementOwner) {
+		// 3.1 *********************************************** Creation of the dropped element in the diagram */
+		IAdaptable elementAdapter = new EObjectAdapter(droppedElement);
+		ViewDescriptor droppedElementDescriptor = new ViewDescriptor(elementAdapter, Node.class, null, ViewUtil.APPEND, false, diagramPreferencesHint);
 
-			CreateCommand containedNodeCreationCommand = new CreateCommand(this.editDomain, droppedElementDescriptor, containerView);
-			cc.add(new ICommandProxy(containedNodeCreationCommand));
+		CreateCommand containedNodeCreationCommand = new CreateCommand(this.editDomain, droppedElementDescriptor, containerView);
+		cc.add(new ICommandProxy(containedNodeCreationCommand));
 
-			/* Positioning of the dropped element */
-			SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)containedNodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y - 100));
-			cc.add(new ICommandProxy(setBoundsCommand));
+		/* Positioning of the dropped element */
+		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)containedNodeCreationCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y - 100));
+		cc.add(new ICommandProxy(setBoundsCommand));
 
-			/* Recovery of the eventual stereotype and his display */
-			if(!(droppedElement.getAppliedStereotypes().isEmpty())) {
-				EList<Stereotype> stereotypeAppliedList = droppedElement.getAppliedStereotypes();
-				Iterator<Stereotype> stereotypeAppliedIterator = stereotypeAppliedList.iterator();
-				while(stereotypeAppliedIterator.hasNext()) {
-					Stereotype stereotype = (Stereotype)stereotypeAppliedIterator.next();
-					String profileApplied = "\"" + stereotype.getProfile() + "\"::";
-					cc.add(new ICommandProxy(new CustomDropAppliedStereotypeCommand(this.editDomain, (IAdaptable)containedNodeCreationCommand.getCommandResult().getReturnValue(), profileApplied, VisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION)));
-				}
-			}
-
-			// 3.2 *********************************************** Creation of the link */
-
-			ConnectionViewDescriptor linkViewDescriptor = new ConnectionViewDescriptor(org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes.Dependency_4022, ((IHintedType)org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes.Dependency_4022).getSemanticHint(), graphicalEditPartDroppedElementOwner.getDiagramPreferencesHint());
-
-			/* if a containment circle exists, only the dashedline will be create */
-
-			CContainmentCircleEditPart containmentCircleEditPart = null;
-
-			//look for an existed circle editpart
-			Iterator<EditPart> childrenIterator = graphicalEditPartDroppedElementOwner.getChildren().iterator();
-			while(childrenIterator.hasNext()) {
-				EditPart editPart = (EditPart)childrenIterator.next();
-				if(editPart instanceof CContainmentCircleEditPart) {
-					containmentCircleEditPart = (CContainmentCircleEditPart)editPart;
-				}
-
-			}
-			if(containmentCircleEditPart != null) {
-				cc.add(new ICommandProxy(new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)UMLElementTypes.Dependency_4022).getSemanticHint(), new SemanticAdapter(null, (View)containmentCircleEditPart.getModel()), (IAdaptable)containedNodeCreationCommand.getCommandResult().getReturnValue(), viewer, diagramPreferencesHint, linkViewDescriptor, null)));
-			} else {
-
-				/* Creation of the containment circle node without semantic element */
-				ContainmentCircleViewCreateCommand circleCommand = new ContainmentCircleViewCreateCommand(null, getEditingDomain(), (View)graphicalEditPartDroppedElementOwner.getModel(), (EditPartViewer)graphicalEditPartDroppedElementOwner.getViewer(), droppedElementDescriptor.getPreferencesHint());
-				cc.add(new ICommandProxy(circleCommand));
-
-				//position
-				setBoundsCommand = new SetBoundsCommand(getEditingDomain(), CONTAINMENT_CIRCLE_POSITION, (IAdaptable)circleCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y - 100));
-				cc.add(new ICommandProxy(setBoundsCommand));
-
-				/* Creation of the dashedline between the containment circle node and the target element */
-				CustomDeferredCreateConnectionViewCommand containmentLinkCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)UMLElementTypes.Dependency_4022).getSemanticHint(), (IAdaptable)circleCommand.getCommandResult().getReturnValue(), (IAdaptable)containedNodeCreationCommand.getCommandResult().getReturnValue(), viewer, diagramPreferencesHint, linkViewDescriptor, null);
-				cc.add(new ICommandProxy(containmentLinkCommand));
+		/* Recovery of the eventual stereotype and his display */
+		if(!(droppedElement.getAppliedStereotypes().isEmpty())) {
+			EList<Stereotype> stereotypeAppliedList = droppedElement.getAppliedStereotypes();
+			Iterator<Stereotype> stereotypeAppliedIterator = stereotypeAppliedList.iterator();
+			while(stereotypeAppliedIterator.hasNext()) {
+				Stereotype stereotype = (Stereotype)stereotypeAppliedIterator.next();
+				String profileApplied = "\"" + stereotype.getProfile() + "\"::";
+				cc.add(new ICommandProxy(new CustomDropAppliedStereotypeCommand(this.editDomain, (IAdaptable)containedNodeCreationCommand.getCommandResult().getReturnValue(), profileApplied, VisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION)));
 			}
 		}
 
+		// 3.2 *********************************************** Creation of the link */
 
-		return cc;
+		ConnectionViewDescriptor linkViewDescriptor = new ConnectionViewDescriptor(org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes.Dependency_4022, ((IHintedType)org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes.Dependency_4022).getSemanticHint(), graphicalEditPartDroppedElementOwner.getDiagramPreferencesHint());
+
+		/* if a containment circle exists, only the dashedline will be create */
+
+		CContainmentCircleEditPart containmentCircleEditPart = null;
+
+		//look for an existed circle editpart
+		Iterator<EditPart> childrenIterator = graphicalEditPartDroppedElementOwner.getChildren().iterator();
+		while(childrenIterator.hasNext()) {
+			EditPart editPart = (EditPart)childrenIterator.next();
+			if(editPart instanceof CContainmentCircleEditPart) {
+				containmentCircleEditPart = (CContainmentCircleEditPart)editPart;
+			}
+
+		}
+		if(containmentCircleEditPart != null) {
+			cc.add(new ICommandProxy(new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)UMLElementTypes.Dependency_4022).getSemanticHint(), new SemanticAdapter(null, (View)containmentCircleEditPart.getModel()), (IAdaptable)containedNodeCreationCommand.getCommandResult().getReturnValue(), viewer, diagramPreferencesHint, linkViewDescriptor, null)));
+		} else {
+
+			/* Creation of the containment circle node without semantic element */
+			ContainmentCircleViewCreateCommand circleCommand = new ContainmentCircleViewCreateCommand(null, getEditingDomain(), (View)graphicalEditPartDroppedElementOwner.getModel(), (EditPartViewer)graphicalEditPartDroppedElementOwner.getViewer(), droppedElementDescriptor.getPreferencesHint());
+			cc.add(new ICommandProxy(circleCommand));
+
+			//position
+			setBoundsCommand = new SetBoundsCommand(getEditingDomain(), CONTAINMENT_CIRCLE_POSITION, (IAdaptable)circleCommand.getCommandResult().getReturnValue(), new Point(location.x, location.y - 100));
+			cc.add(new ICommandProxy(setBoundsCommand));
+
+			/* Creation of the dashedline between the containment circle node and the target element */
+			CustomDeferredCreateConnectionViewCommand containmentLinkCommand = new CustomDeferredCreateConnectionViewCommand(getEditingDomain(), ((IHintedType)UMLElementTypes.Dependency_4022).getSemanticHint(), (IAdaptable)circleCommand.getCommandResult().getReturnValue(), (IAdaptable)containedNodeCreationCommand.getCommandResult().getReturnValue(), viewer, diagramPreferencesHint, linkViewDescriptor, null);
+			cc.add(new ICommandProxy(containmentLinkCommand));
+		}
 	}
 
 	/**
@@ -402,6 +396,29 @@ public class ContainmentHelper extends ElementHelper {
 				}
 			}
 		}
+	}
+	
+	public EditPart findEditPartFor(Map editPartRegistry, Element droppedElement) {
+		for(Object next :editPartRegistry.values()) {
+			EditPart currentEditPart = (EditPart)next;
+			if(canHaveContainmentLink(currentEditPart)) {
+				View currentView = (View)currentEditPart.getModel();
+				if(droppedElement.equals(currentView.getElement())) {
+					return currentEditPart;
+				}
+			}
+		}
+		return null;
+	}
+
+	private boolean canHaveContainmentLink(EditPart currentEditPart) {
+		return currentEditPart instanceof ClassEditPart 
+		|| currentEditPart instanceof PackageEditPartCN 
+		|| currentEditPart instanceof PackageEditPart 
+		|| currentEditPart instanceof ModelEditPartTN 
+		|| currentEditPart instanceof Class5EditPart
+		|| currentEditPart instanceof ModelEditPartCN;
+		
 	}
 
 }

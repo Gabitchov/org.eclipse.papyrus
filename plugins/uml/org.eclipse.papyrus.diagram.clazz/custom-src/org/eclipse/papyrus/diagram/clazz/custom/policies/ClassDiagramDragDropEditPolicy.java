@@ -15,6 +15,7 @@ package org.eclipse.papyrus.diagram.clazz.custom.policies;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
@@ -260,10 +261,10 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 	 */
 
 	protected Command dropElementWithContainedElementIntoDiagram(DropObjectsRequest dropRequest, Element semanticObject, int nodeVISUALID) {
+		ContainmentHelper containmentHelper = new ContainmentHelper(getEditingDomain());
 		Element owner = (Element)semanticObject.getOwner();
-		EditPart ownerEditPart = findEditPartFor(owner);
+		EditPart ownerEditPart = containmentHelper.findEditPartFor(getViewer().getEditPartRegistry(), owner);
 		if(ownerEditPart != null) {
-			ContainmentHelper containmentHelper = new ContainmentHelper(getEditingDomain());
 			return containmentHelper.outlineDropContainedClass((PackageableElement)semanticObject, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView());
 		} else {
 			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), semanticObject));
@@ -287,7 +288,7 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 		CompositeCommand cc = new CompositeCommand(CONTAINED_CLASS_DROP_TO_COMPARTMENT);
 		cc = getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), droppedElement);
 
-		View droppedView = (View)findEditPartFor(droppedElement).getModel();
+		View droppedView = (View)containmentHelper.findEditPartFor(getViewer().getEditPartRegistry(), droppedElement).getModel();
 
 		containmentHelper.deleteIncomingContainmentLinksFor(cc, droppedView);
 
@@ -296,22 +297,6 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 		return new ICommandProxy(cc);
 	}
 	
-	private EditPart findEditPartFor(Element droppedElement) {
-		for(Object next : getViewer().getEditPartRegistry().values()) {
-			EditPart currentEditPart = (EditPart)next;
-			if(canHaveContainmentLink(currentEditPart)) {
-				View currentView = (View)currentEditPart.getModel();
-				if(droppedElement.equals(currentView.getElement())) {
-					return currentEditPart;
-				}
-			}
-		}
-		return null;
-	}
-
-	private boolean canHaveContainmentLink(EditPart currentEditPart) {
-		return currentEditPart instanceof ClassEditPart || currentEditPart instanceof PackageEditPartCN || currentEditPart instanceof PackageEditPart || currentEditPart instanceof ModelEditPartTN || currentEditPart instanceof ModelEditPartCN;
-	}
 
 
 	/**
