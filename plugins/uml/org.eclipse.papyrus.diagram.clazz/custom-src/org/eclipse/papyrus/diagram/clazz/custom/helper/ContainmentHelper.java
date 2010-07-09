@@ -185,36 +185,43 @@ public class ContainmentHelper extends ElementHelper {
 
 	/**
 	 * Drop element to diagram.
-	 *
-	 * @param droppedElement the dropped element
-	 * @param viewer the viewer
-	 * @param diagramPreferencesHint the diagram preferences hint
-	 * @param location the location
-	 * @param containerView the container view
+	 * 
+	 * @param droppedElement
+	 *        the dropped element
+	 * @param viewer
+	 *        the viewer
+	 * @param diagramPreferencesHint
+	 *        the diagram preferences hint
+	 * @param location
+	 *        the location
+	 * @param containerView
+	 *        the container view
 	 * @return the command
 	 */
 	public Command dropElementToDiagram(PackageableElement droppedElement, EditPartViewer viewer, PreferencesHint diagramPreferencesHint, Point location, View containerView) {
 		CompoundCommand cc = new CompoundCommand("drop");
-		
+
 		EditPart droppedElementEditPart = findEditPartFor(viewer.getEditPartRegistry(), droppedElement);
 		Element owner = (Element)droppedElement.getOwner();
 		GraphicalEditPart droppedParentEditPart = null;
-		if(((GraphicalEditPart)droppedElementEditPart.getParent()).resolveSemanticElement().equals(owner)) {
-			droppedParentEditPart = (GraphicalEditPart)droppedElementEditPart.getParent();
+		if (droppedElementEditPart != null) {
+			if(((GraphicalEditPart)droppedElementEditPart.getParent()).resolveSemanticElement().equals(owner)) {
+				droppedParentEditPart = (GraphicalEditPart)droppedElementEditPart.getParent();
 
+			}
 		}
 
 		// if the owner does not exist the link have not to be created or different of the diagram.
 		if(droppedParentEditPart == null || droppedParentEditPart instanceof ModelEditPart) {
 			return cc;
 		}
-		// 2. *********************************************** remove the label that is the dropped element 
-		if(droppedElementEditPart != null && (droppedElementEditPart instanceof Class5EditPart || droppedElementEditPart instanceof PackageEditPartCN || droppedElementEditPart instanceof ModelEditPartCN || droppedElementEditPart instanceof PackageEditPart)) {
-			cc.add(new ICommandProxy(new DeleteCommand(getEditingDomain(), (View)droppedElementEditPart.getModel())));
-			droppedElementEditPart = null;
-		}
 		if(droppedElementEditPart == null) {
 			dropElementWithoutEditPartToDiagram(droppedElement, viewer, diagramPreferencesHint, location, containerView, cc, droppedParentEditPart);
+		} else {
+			if(canHaveContainmentLink(droppedElementEditPart)) {
+				cc.add(new ICommandProxy(new DeleteCommand(getEditingDomain(), (View)droppedElementEditPart.getModel())));
+				dropElementWithoutEditPartToDiagram(droppedElement, viewer, diagramPreferencesHint, location, containerView, cc, droppedParentEditPart);
+			}
 		}
 		return cc;
 	}
@@ -397,9 +404,9 @@ public class ContainmentHelper extends ElementHelper {
 			}
 		}
 	}
-	
+
 	public EditPart findEditPartFor(Map editPartRegistry, Element droppedElement) {
-		for(Object next :editPartRegistry.values()) {
+		for(Object next : editPartRegistry.values()) {
 			EditPart currentEditPart = (EditPart)next;
 			if(canHaveContainmentLink(currentEditPart)) {
 				View currentView = (View)currentEditPart.getModel();
@@ -412,13 +419,8 @@ public class ContainmentHelper extends ElementHelper {
 	}
 
 	private boolean canHaveContainmentLink(EditPart currentEditPart) {
-		return currentEditPart instanceof ClassEditPart 
-		|| currentEditPart instanceof PackageEditPartCN 
-		|| currentEditPart instanceof PackageEditPart 
-		|| currentEditPart instanceof ModelEditPartTN 
-		|| currentEditPart instanceof Class5EditPart
-		|| currentEditPart instanceof ModelEditPartCN;
-		
+		return currentEditPart instanceof ClassEditPart || currentEditPart instanceof PackageEditPartCN || currentEditPart instanceof PackageEditPart || currentEditPart instanceof ModelEditPartTN || currentEditPart instanceof Class5EditPart || currentEditPart instanceof ModelEditPartCN;
+
 	}
 
 }
