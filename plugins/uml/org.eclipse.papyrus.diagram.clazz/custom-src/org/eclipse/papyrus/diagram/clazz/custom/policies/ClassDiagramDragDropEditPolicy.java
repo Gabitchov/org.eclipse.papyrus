@@ -18,10 +18,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.validation.internal.service.GetBatchConstraintsOperation;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
@@ -32,9 +29,7 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.Edge;
-import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.AssociationClassHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.ClassLinkMappingHelper;
@@ -42,7 +37,6 @@ import org.eclipse.papyrus.diagram.clazz.custom.helper.ContainmentHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.MultiAssociationHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.MultiDependencyHelper;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNodeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
@@ -65,7 +59,6 @@ import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.AssociationClass;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
 
 /**
@@ -100,6 +93,34 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 		droppableElementsVisualID.add(ModelEditPartCN.VISUAL_ID);
 
 		return droppableElementsVisualID;
+	}
+
+	/**
+	 * {@inheritedDoc}
+	 */
+	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID, int linkVISUALID) {
+		if(linkVISUALID == InterfaceRealizationEditPart.VISUAL_ID) {
+			return dropInterfaceRealization(dropRequest, semanticLink, linkVISUALID);
+		}
+
+		switch(nodeVISUALID) {
+		case Dependency2EditPart.VISUAL_ID:
+			return dropDependency(dropRequest, semanticLink, nodeVISUALID);
+		case AssociationClassEditPart.VISUAL_ID:
+			return dropAssociationClass(dropRequest, semanticLink, nodeVISUALID);
+		case AssociationNodeEditPart.VISUAL_ID:
+			return dropAssociation(dropRequest, semanticLink, nodeVISUALID);
+		case Class5EditPart.VISUAL_ID:
+		case PackageEditPartCN.VISUAL_ID:
+		case ModelEditPartCN.VISUAL_ID:
+			return compartmentDropContainedClass(dropRequest, semanticLink, nodeVISUALID);
+		case ModelEditPartTN.VISUAL_ID:
+		case ClassEditPart.VISUAL_ID:
+		case PackageEditPart.VISUAL_ID:
+			return outlineDropContainedClass(dropRequest, semanticLink, nodeVISUALID);
+		default:
+			return UnexecutableCommand.INSTANCE;
+		}
 	}
 
 	/**
@@ -247,49 +268,42 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 	 */
 	protected Command compartmentDropContainedClass(DropObjectsRequest dropRequest, Element droppedElement, int nodeVISUALID) {
 		CompositeCommand cc = new CompositeCommand(CONTAINED_CLASS_DROP_TO_COMPARTMENT);
-
-		// Get the location of the dropped element
-		Point location = dropRequest.getLocation().getCopy();
-		((GraphicalEditPart)getHost()).getContentPane().translateToRelative(location);
-		((GraphicalEditPart)getHost()).getContentPane().translateFromParent(location);
-		location.translate(((GraphicalEditPart)getHost()).getContentPane().getClientArea().getLocation().getNegated());
-
-		// Drop the element to the class compartment
-		cc = getDefaultDropNodeCommand(nodeVISUALID, location, droppedElement);
+		cc = getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), droppedElement);
 
 		// look for the dropped element existing outside the compartment in the current diagram and his containment connection
-		Collection<EditPart> editPartSet = getViewer().getEditPartRegistry().values();
-		Iterator<EditPart> editPartIterator = editPartSet.iterator();
-		while(editPartIterator.hasNext()) {
-			EditPart currentEditPart = editPartIterator.next();
-			if(currentEditPart instanceof ClassEditPart || currentEditPart instanceof PackageEditPartCN || currentEditPart instanceof PackageEditPart || currentEditPart instanceof ModelEditPartTN || currentEditPart instanceof ModelEditPartCN) {
-				if(((GraphicalEditPart)currentEditPart).resolveSemanticElement().equals(droppedElement)) {
-					View view = (View)currentEditPart.getModel();
+		View droppedView = findViewFor(droppedElement);
 
-					// look for the containment connection
-					EList<Connector> listlink = view.getTargetEdges();
-					Iterator<Connector> addedlinkIterator = listlink.iterator();
-					while(addedlinkIterator.hasNext()) {
-						Connector currentconnector = addedlinkIterator.next();
-						Shape containmenetshape = (Shape)((Edge)currentconnector).getSource();
-						if(((View)containmenetshape).getType().equals(Integer.toString(ContainmentCircleEditPart.VISUAL_ID))) {
-							/* The containment circle node is deleted only if any other link is connected */
-							if(((View)containmenetshape).getSourceEdges().size() == 1) {
-								// Delete the containment circle
-								cc.compose(new DeleteCommand(getEditingDomain(), (View)containmenetshape));
-
-							}
-						}
-					}
-					// Delete the dropped element existing outside the compartment
-					cc.add(new DeleteCommand(getEditingDomain(), view));
-
-
+		for(Object incomingLink : droppedView.getTargetEdges()) {
+			Edge nextConnector = (Edge)incomingLink;
+			View nextConnectorSource = nextConnector.getSource();
+			if(UMLVisualIDRegistry.getVisualID(nextConnectorSource) == ContainmentCircleEditPart.VISUAL_ID) {
+				/* The containment circle node is deleted only if any other link is connected */
+				if(nextConnectorSource.getSourceEdges().size() == 1) {
+					// Delete the containment circle
+					cc.add(new DeleteCommand(getEditingDomain(), nextConnectorSource));
 				}
 			}
 		}
-
+		// Delete the dropped element existing outside the compartment
+		cc.add(new DeleteCommand(getEditingDomain(), droppedView));
 		return new ICommandProxy(cc);
+	}
+
+	private View findViewFor(Element droppedElement) {
+		for(Object next : getViewer().getEditPartRegistry().values()) {
+			EditPart currentEditPart = (EditPart)next;
+			if(canHaveContainmentLink(currentEditPart)) {
+				View currentView = (View)currentEditPart.getModel();
+				if(droppedElement.equals(currentView.getElement())) {
+					return currentView;
+				}
+			}
+		}
+		return null;
+	}
+
+	private boolean canHaveContainmentLink(EditPart currentEditPart) {
+		return currentEditPart instanceof ClassEditPart || currentEditPart instanceof PackageEditPartCN || currentEditPart instanceof PackageEditPart || currentEditPart instanceof ModelEditPartTN || currentEditPart instanceof ModelEditPartCN;
 	}
 
 
@@ -310,20 +324,22 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 		Command cmd = getHost().getCommand(req);
 
 		if(getHost() instanceof PackagePackageableElementCompartment2EditPart || getHost() instanceof PackagePackageableElementCompartmentEditPart || getHost() instanceof ModelEditPart || getHost() instanceof ModelPackageableElementCompartmentEditPart || getHost() instanceof ModelPackageableElementCompartment2EditPart) {
-			Iterator<EditPart> droppedEditPartIterator = request.getEditParts().iterator();
-			while(droppedEditPartIterator.hasNext()) {
-				EditPart editPart = (EditPart)droppedEditPartIterator.next();
-				if(((GraphicalEditPart)editPart).resolveSemanticElement() instanceof Package && (((View)editPart.getModel()).getElement().eContainer() instanceof Package)) {
-					cmd.chain(getDropObjectsCommand(castToDropObjectsRequest(request)));
-				}
-			}
+			cmd = cmd.chain(getDropObjectsCommand(castToDropObjectsRequest(request)));
 		}
 		if(cmd == null || !cmd.canExecute()) {
 			return getDropObjectsCommand(castToDropObjectsRequest(request));
 		}
 
 		return cmd;
+
+
+		//		Command result = super.getDropCommand(request);
+		//		if(getHost() instanceof PackagePackageableElementCompartment2EditPart || getHost() instanceof PackagePackageableElementCompartmentEditPart || getHost() instanceof ModelEditPart || getHost() instanceof ModelPackageableElementCompartmentEditPart || getHost() instanceof ModelPackageableElementCompartment2EditPart) {
+		//			result.chain(getDropObjectsCommand(castToDropObjectsRequest(request)));
+		//		}
+		//		return result;
 	}
+
 
 	/**
 	 * this method is used to drop an interface realization into the class diagraù
@@ -345,35 +361,6 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 		dropBinaryLink(cc, source, target, linkVISUALID, dropRequest.getLocation(), semanticLink);
 		return new ICommandProxy(cc);
 	}
-	
-	/**
-	 * {@inheritedDoc}
-	 */
-	protected Command getSpecificDropCommand(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID, int linkVISUALID) {
-		if (linkVISUALID ==InterfaceRealizationEditPart.VISUAL_ID){
-			return dropInterfaceRealization(dropRequest, semanticLink, linkVISUALID);
-		}
-		
-		switch(nodeVISUALID) {
-		case Dependency2EditPart.VISUAL_ID:
-			return dropDependency(dropRequest, semanticLink, nodeVISUALID);
-		case AssociationClassEditPart.VISUAL_ID:
-			return dropAssociationClass(dropRequest, semanticLink, nodeVISUALID);
-		case AssociationNodeEditPart.VISUAL_ID:
-			return dropAssociation(dropRequest, semanticLink, nodeVISUALID);
-		case Class5EditPart.VISUAL_ID:
-		case PackageEditPartCN.VISUAL_ID:
-		case ModelEditPartCN.VISUAL_ID:
-			return compartmentDropContainedClass(dropRequest, semanticLink, nodeVISUALID);
-		case ModelEditPartTN.VISUAL_ID:
-		case ClassEditPart.VISUAL_ID:
-		case PackageEditPart.VISUAL_ID:
-			return outlineDropContainedClass(dropRequest, semanticLink, nodeVISUALID);
-		default:
-			return UnexecutableCommand.INSTANCE;
-		}
-	}
-
 
 
 }
