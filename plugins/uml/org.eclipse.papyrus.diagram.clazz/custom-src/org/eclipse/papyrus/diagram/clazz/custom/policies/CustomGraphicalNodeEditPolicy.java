@@ -75,7 +75,7 @@ public class CustomGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 				if((((CreateConnectionViewRequest)request).getConnectionViewDescriptor().getSemanticHint().equals(((IHintedType)UMLElementTypes.Link_4023).getSemanticHint()))) {
 
 					ContainmentHelper containmentHelper = new ContainmentHelper(getEditingDomain());
-					return containmentHelper.getContainmentElementCommand((CreateConnectionViewRequest)request, c);
+					return containmentHelper.getCreateContainmentCommand((CreateConnectionViewRequest)request, c);
 
 				}
 			} else if(request instanceof CreateUnspecifiedTypeConnectionRequest) {

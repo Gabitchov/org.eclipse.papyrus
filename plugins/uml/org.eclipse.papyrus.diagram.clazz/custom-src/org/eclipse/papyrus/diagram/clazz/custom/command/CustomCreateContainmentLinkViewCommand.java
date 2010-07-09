@@ -43,7 +43,7 @@ import org.eclipse.uml2.uml.PackageableElement;
  * 
  * 
  */
-public class CustomContainmentLinkViewCommand extends CommonDeferredCreateConnectionViewCommand {
+public class CustomCreateContainmentLinkViewCommand extends CommonDeferredCreateConnectionViewCommand {
 
 	private final View sourceView;
 
@@ -52,7 +52,7 @@ public class CustomContainmentLinkViewCommand extends CommonDeferredCreateConnec
 	/**
 	 * {@inheritDoc}
 	 */
-	public CustomContainmentLinkViewCommand(TransactionalEditingDomain editingDomain, EObject element, IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer, PreferencesHint preferencesHint, ICommand command) {
+	public CustomCreateContainmentLinkViewCommand(TransactionalEditingDomain editingDomain, EObject element, IAdaptable sourceViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer, PreferencesHint preferencesHint, ICommand command) {
 		super(editingDomain, element, sourceViewAdapter, targetViewAdapter, viewer, preferencesHint, command);
 		sourceView = null;
 		targetView = (View)targetViewAdapter.getAdapter(View.class);
@@ -61,7 +61,7 @@ public class CustomContainmentLinkViewCommand extends CommonDeferredCreateConnec
 	/**
 	 * {@inheritDoc}
 	 */
-	public CustomContainmentLinkViewCommand(TransactionalEditingDomain editingDomain, String semanticHint, View source, IAdaptable sourceCircleViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer, PreferencesHint preferencesHint, ConnectionViewDescriptor viewDescriptor, ICommand command) {
+	public CustomCreateContainmentLinkViewCommand(TransactionalEditingDomain editingDomain, String semanticHint, View source, IAdaptable sourceCircleViewAdapter, IAdaptable targetViewAdapter, EditPartViewer viewer, PreferencesHint preferencesHint, ConnectionViewDescriptor viewDescriptor, ICommand command) {
 		super(editingDomain, semanticHint, sourceCircleViewAdapter, targetViewAdapter, viewer, preferencesHint, viewDescriptor, command);
 		sourceView = source;
 		targetView = (View)targetViewAdapter.getAdapter(View.class);

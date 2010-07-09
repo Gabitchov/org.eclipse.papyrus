@@ -46,7 +46,7 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.command.ContainmentCircleViewCreateCommand;
-import org.eclipse.papyrus.diagram.clazz.custom.command.CustomContainmentLinkViewCommand;
+import org.eclipse.papyrus.diagram.clazz.custom.command.CustomCreateContainmentLinkViewCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CustomDropAppliedStereotypeCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.edit.part.CContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.custom.providers.CustomDeferredCreateConnectionViewCommand;
@@ -97,7 +97,7 @@ public class ContainmentHelper extends ElementHelper {
 	 * 
 	 * @return the containment element command
 	 */
-	public Command getContainmentElementCommand(CreateConnectionViewRequest createConnectionViewRequest, Command command) {
+	public Command getCreateContainmentCommand(CreateConnectionViewRequest createConnectionViewRequest, Command command) {
 		CompoundCommand compoundCommand = new CompoundCommand();
 		IGraphicalEditPart sourceEditPart = (GraphicalEditPart)createConnectionViewRequest.getSourceEditPart();
 
@@ -122,7 +122,7 @@ public class ContainmentHelper extends ElementHelper {
 
 		}
 
-		ICommand dashedLineCmd = new CustomContainmentLinkViewCommand(getEditingDomain(), linkHint, sourceView, circleAdapter, targetViewAdapter, editPartViewer, preferencesHint, viewDescriptor, circleCommand);
+		ICommand dashedLineCmd = new CustomCreateContainmentLinkViewCommand(getEditingDomain(), linkHint, sourceView, circleAdapter, targetViewAdapter, editPartViewer, preferencesHint, viewDescriptor, circleCommand);
 		compoundCommand.add(new ICommandProxy(dashedLineCmd));
 
 		return compoundCommand;
