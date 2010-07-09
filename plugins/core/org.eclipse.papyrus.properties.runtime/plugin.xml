@@ -95,7 +95,7 @@
             class="org.eclipse.papyrus.properties.runtime.controller.EMFTBindingEReferenceController"
             description="Controller for references using binding label provider"
             factory="org.eclipse.papyrus.properties.runtime.controller.descriptor.EMFTBindingPropertyEditorControllerDescriptorFactory"
-            id="emftBindingReferenceController">
+            id="emftBindingEReferenceController">
       </PropertyEditorController>
       <PropertyEditorController
             class="org.eclipse.papyrus.properties.runtime.controller.EMFTLabelProviderStructuralFeatureController"

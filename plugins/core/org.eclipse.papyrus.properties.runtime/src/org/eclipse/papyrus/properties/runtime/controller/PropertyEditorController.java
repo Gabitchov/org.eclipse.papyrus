@@ -79,7 +79,7 @@ public abstract class PropertyEditorController implements IDisposable, IProperty
 	 * 
 	 * @return the propertyEditor controlled by this controller
 	 */
-	protected AbstractPropertyEditor getPropertyEditor() {
+	public AbstractPropertyEditor getPropertyEditor() {
 		return propertyEditor;
 	}
 

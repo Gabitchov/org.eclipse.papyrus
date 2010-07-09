@@ -39,6 +39,14 @@ public class EMFTBindingEReferenceController extends EMFTEReferenceController {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public ILabelProvider getBrowserLabelProvider() {
+		return editorLabelProvider;
+	}
+
+	/**
 	 * Label provider which proposed binded messages if possible, otherwise relies on an other label provider
 	 */
 	public class BindingLabelProvider implements ILabelProvider {

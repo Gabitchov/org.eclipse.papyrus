@@ -12,8 +12,8 @@
 package org.eclipse.papyrus.properties.runtime.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.commands.operations.IUndoableOperation;
@@ -129,11 +129,17 @@ public class EMFTEReferenceController extends EMFTStructuralFeatureController im
 	 * {@inheritDoc}
 	 */
 	public Object[] getCurrentValues() {
-		List<Object> values = new ArrayList<Object>();
-		for(EObject objectToEdit : getObjectsToEdit()) {
-			values.add(getModelHandler().getValueToEdit(objectToEdit));
+		// look only for first element
+		EObject eObject = getObjectsToEdit().get(0);
+		Object values = getModelHandler().getValueToEdit(eObject);
+		if(values instanceof Object[]) {
+			return (Object[])values;
+		} else if(values instanceof List<?>) {
+			return ((List<?>)values).toArray();
+		} else if(values instanceof Object) {
+			return Arrays.asList(values).toArray();
 		}
-		return values.toArray();
+		return new Object[]{ values };
 	}
 
 	/**
