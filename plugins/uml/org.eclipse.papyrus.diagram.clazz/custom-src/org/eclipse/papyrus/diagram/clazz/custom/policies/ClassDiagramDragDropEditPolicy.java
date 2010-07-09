@@ -15,7 +15,6 @@ package org.eclipse.papyrus.diagram.clazz.custom.policies;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
@@ -29,7 +28,6 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.AssociationClassHelper;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.ClassLinkMappingHelper;
@@ -40,7 +38,6 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNodeEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Class5EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ClassEditPart;
-import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.InterfaceRealizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ModelEditPart;
@@ -113,11 +110,11 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 		case Class5EditPart.VISUAL_ID:
 		case PackageEditPartCN.VISUAL_ID:
 		case ModelEditPartCN.VISUAL_ID:
-			return dropElementWithContainmentLink(dropRequest, semanticLink, nodeVISUALID);
+			return dropElementWithContainmentLinkIntoContainer(dropRequest, semanticLink, nodeVISUALID);
 		case ModelEditPartTN.VISUAL_ID:
 		case ClassEditPart.VISUAL_ID:
 		case PackageEditPart.VISUAL_ID:
-			return outlineDropContainedClass(dropRequest, semanticLink, nodeVISUALID);
+			return dropElementWithContainedElementIntoDiagram(dropRequest, semanticLink, nodeVISUALID);
 		default:
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -262,22 +259,11 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 	 * @return a command to execute
 	 */
 
-	protected Command outlineDropContainedClass(DropObjectsRequest dropRequest, Element semanticObject, int nodeVISUALID) {
-		ContainmentHelper containmentHelper = new ContainmentHelper(getEditingDomain());
+	protected Command dropElementWithContainedElementIntoDiagram(DropObjectsRequest dropRequest, Element semanticObject, int nodeVISUALID) {
 		Element owner = (Element)semanticObject.getOwner();
-		GraphicalEditPart ownerGraphicalEditPart = null;
-		Collection<EditPart> editPartSet = getViewer().getEditPartRegistry().values();
-		Iterator<EditPart> editPartIterator = editPartSet.iterator();
-		while(editPartIterator.hasNext()) {
-			EditPart currentEditPart = editPartIterator.next();
-			if((currentEditPart instanceof ClassEditPart) || currentEditPart instanceof PackageEditPart || currentEditPart instanceof ModelEditPartTN) {
-				if(((GraphicalEditPart)currentEditPart).resolveSemanticElement().equals(owner)) {
-					ownerGraphicalEditPart = (GraphicalEditPart)currentEditPart;
-				}
-			}
-		}
-
-		if(ownerGraphicalEditPart != null) {
+		EditPart ownerEditPart = findEditPartFor(owner);
+		if(ownerEditPart != null) {
+			ContainmentHelper containmentHelper = new ContainmentHelper(getEditingDomain());
 			return containmentHelper.outlineDropContainedClass((PackageableElement)semanticObject, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView());
 		} else {
 			return new ICommandProxy(getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), semanticObject));
@@ -296,12 +282,12 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 	 *        is the visual ID of the class
 	 * @return a command to execute
 	 */
-	protected Command dropElementWithContainmentLink(DropObjectsRequest dropRequest, Element droppedElement, int nodeVISUALID) {
+	protected Command dropElementWithContainmentLinkIntoContainer(DropObjectsRequest dropRequest, Element droppedElement, int nodeVISUALID) {
 		ContainmentHelper containmentHelper = new ContainmentHelper(getEditingDomain());
 		CompositeCommand cc = new CompositeCommand(CONTAINED_CLASS_DROP_TO_COMPARTMENT);
 		cc = getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), droppedElement);
 
-		View droppedView = findViewFor(droppedElement);
+		View droppedView = (View)findEditPartFor(droppedElement).getModel();
 
 		containmentHelper.deleteIncomingContainmentLinksFor(cc, droppedView);
 
@@ -310,13 +296,13 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 		return new ICommandProxy(cc);
 	}
 	
-	private View findViewFor(Element droppedElement) {
+	private EditPart findEditPartFor(Element droppedElement) {
 		for(Object next : getViewer().getEditPartRegistry().values()) {
 			EditPart currentEditPart = (EditPart)next;
 			if(canHaveContainmentLink(currentEditPart)) {
 				View currentView = (View)currentEditPart.getModel();
 				if(droppedElement.equals(currentView.getElement())) {
-					return currentView;
+					return currentEditPart;
 				}
 			}
 		}
