@@ -77,12 +77,11 @@ public abstract class EMFStereotypeFeatureModelHandler extends EMFFeatureModelHa
 			return null;
 		}
 
-		IItemPropertySource itemPropertySource = (IItemPropertySource)factory.adapt(retrieveStereotype((Element)eObject), IItemPropertySource.class);
+		IItemPropertySource itemPropertySource = (IItemPropertySource)factory.adapt(((Element)eObject).getStereotypeApplication(retrieveStereotype((Element)eObject)), IItemPropertySource.class);
 		if(itemPropertySource == null) {
 			Activator.log.debug("impossible to find item Property source for " + retrieveStereotype((Element)eObject));
 			return null;
 		}
-		// FIXME: problem here to find the right property descriptor
 		IItemPropertyDescriptor itemPropertyDescriptor = itemPropertySource.getPropertyDescriptor(retrieveStereotype((Element)eObject), feature);
 		if(itemPropertyDescriptor == null) {
 			Activator.log.debug("impossible to find item Property descriptor for " + retrieveStereotype((Element)eObject) + " and " + feature);
