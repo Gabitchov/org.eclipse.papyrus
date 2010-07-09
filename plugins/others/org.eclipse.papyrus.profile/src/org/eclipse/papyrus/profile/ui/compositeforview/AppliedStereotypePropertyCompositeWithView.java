@@ -63,25 +63,33 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 	protected void touchModel() {
 		final AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject)treeViewer.getInput();
 		final Element stereotypedElement = pTO.getParent().getParent().getElement();
+		// CommandSupport.exec ("update stereotype", /* command)
+		if (currentView == null) {
+			return;
+		}
+		
 		try {
 			getDomain().runExclusive(new Runnable() {
+			
 
 				public void run() {
 
-					Display.getCurrent().asyncExec(new Runnable() {
+					Display.getCurrent().asyncExec( new Runnable() {
 
 						public void run() {
 							String localization = AppliedStereotypeHelper.getAppliedStereotypesPropertiesLocalization(currentView);
 							RecordingCommand command = AppliedStereotypeHelper.getSetAppliedStereotypePropertiesLocalizationCommand(getDomain(), currentView, localization);
 
 							getDomain().getCommandStack().execute(command);
+				
 						}
 					});
+	
 				}
 			});
 
 		} catch (Exception e) {
-			System.err.println(e);
+			e.printStackTrace ();
 		}
 
 	}
@@ -94,8 +102,9 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 		super.addButtonPressed();
 		// stereotypeComposite.refresh();
 		touchModel();
-		stereotypeComposite.refresh();
-	}
+
+		stereotypeComposite.refreshSelection ();
+		}
 
 	/**
 	 * Removes the button pressed.
@@ -104,7 +113,7 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 	public void removeButtonPressed() {
 		super.removeButtonPressed();
 		touchModel();
-		stereotypeComposite.refresh();
+		stereotypeComposite.refreshSelection ();
 	}
 
 	/**
@@ -113,7 +122,7 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 	@Override
 	public void upButtonPressed() {
 		super.upButtonPressed();
-		stereotypeComposite.refresh();
+		stereotypeComposite.refreshSelection ();
 		// touchModel();
 	}
 
@@ -123,7 +132,7 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 	@Override
 	public void downButtonPressed() {
 		super.downButtonPressed();
-		stereotypeComposite.refresh();
+		stereotypeComposite.refreshSelection ();
 		// touchModel();
 	}
 

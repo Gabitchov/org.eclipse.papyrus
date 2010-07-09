@@ -162,7 +162,7 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.prof
 			});
 
 		} catch (Exception e) {
-			System.err.println(e);
+			e.printStackTrace ();
 		}
 
 	}
@@ -197,7 +197,7 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.prof
 				}
 			});
 		} catch (Exception e) {
-			System.err.println(e);
+			e.printStackTrace ();
 		}
 
 	}
@@ -231,7 +231,7 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.prof
 			propertyComposite.setInput(null);
 			return;
 		}
-
+		
 		IStructuredSelection structSelection = (IStructuredSelection)event.getSelection();
 		Object selection = structSelection.getFirstElement();
 

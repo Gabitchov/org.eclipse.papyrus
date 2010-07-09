@@ -15,10 +15,17 @@
 package org.eclipse.papyrus.profile.ui.compositesformodel;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.commands.operations.IOperationHistory;
+import org.eclipse.core.commands.operations.OperationHistoryFactory;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.profile.Message;
 import org.eclipse.papyrus.profile.tree.ProfileElementContentProvider;
 import org.eclipse.papyrus.profile.tree.ProfileElementLabelProvider;
@@ -31,7 +38,6 @@ import org.eclipse.papyrus.profile.ui.panels.AppliedStereotypePanel;
 import org.eclipse.papyrus.profile.ui.section.AppliedStereotypePropertyEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
@@ -410,34 +416,18 @@ public class PropertyComposite extends DecoratedTreeComposite {
 
 	protected void setPropertiesValue(final Element element, final Stereotype stereotype, final Property property, final Object newValue) {
 		// bugfix: a selected element is not necessary a diagram element (ex: selection in the outline)
+		IOperationHistory history = OperationHistoryFactory.getOperationHistory();
 		try {
-
-			getDomain().runExclusive(new Runnable() {
-
-				public void run() {
-
-					Display.getCurrent().asyncExec(new Runnable() {
-
-						public void run() {
-							RecordingCommand command = new RecordingCommand(getDomain()) {
-
-								protected void doExecute() {
-									element.setValue(stereotype, property.getName(), newValue);
-
-								}
-
-							};
-							getDomain().getCommandStack().execute(command);
-
-						}
-					});
+			history.execute ( new AbstractTransactionalCommand (getDomain (), "Apply stereotype property", Collections.EMPTY_LIST) {
+				public CommandResult doExecuteWithResult (IProgressMonitor dummy, IAdaptable info) {
+					element.setValue(stereotype, property.getName(), newValue);
+	                return CommandResult.newOKCommandResult();
 				}
-			});
-
-		} catch (Exception e) {
-			System.err.println(e);
+			}, null, null);
 		}
-
+		catch (ExecutionException e) {
+			e.printStackTrace ();
+		}
 	}
 
 }

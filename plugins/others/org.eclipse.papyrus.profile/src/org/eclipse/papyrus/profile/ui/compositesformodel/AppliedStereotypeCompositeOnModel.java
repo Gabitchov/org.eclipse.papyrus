@@ -23,9 +23,11 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.profile.Activator;
 import org.eclipse.papyrus.profile.preference.ProfilePreferenceConstants;
@@ -274,6 +276,25 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 		return false;
 	}
 
+	/**
+	 * Redraw only the selected elements
+	 * 
+	 * @param propertyView
+	 */
+	public void refreshSelection () {
+		if (treeViewer.getTree() != null && !(treeViewer.getTree().isDisposed())) {
+			if(element != null) {
+				ISelection s = treeViewer.getSelection ();
+				if (s instanceof StructuredSelection) {
+					StructuredSelection ss = (StructuredSelection) s;
+					for (Object sElement : ss.toArray()) {
+						treeViewer.refresh (sElement);
+					}
+				}
+			}
+		}
+	}
+	
 	/**
 	 * Refresh the content of applied the applied stereotype tree.
 	 */

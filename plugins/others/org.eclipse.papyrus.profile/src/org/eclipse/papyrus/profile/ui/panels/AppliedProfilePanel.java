@@ -145,7 +145,7 @@ public class AppliedProfilePanel extends AppliedStereotypePanel {
 		data.right = new FormAttachment(50);
 		data.top = new FormAttachment(profileComposite, 0);
 		data.bottom = new FormAttachment(100, 0);
-
+		data.height = 80;
 		stereotypeComposite.setLayoutData(data);
 
 		// propertyComposite placement
