@@ -123,9 +123,9 @@
          <Priority
                name="Highest">
          </Priority>
-         <!-- Handlers for class (2008, 3004, 3008, 3010, 3014), for packages (1000, 2007, 3009), for any Named Element from the model explorer (2097) and for containement (3032) -->
+         <!-- Handlers for class (2008, 3010), for packages (2007), for any Named Element from the model explorer (2097) and for containement (3032) -->
          <context
-               semanticHints="1000, 2007, 2008, 2097, 3004, 3008, 3009, 3010, 3014, 3032"
+               semanticHints="2007, 2008, 2097, 3010, 3032"
                viewClass="org.eclipse.gmf.runtime.notation.Node"></context>
           <!-- Handlers for abstraction (4006) and for containement (4023) -->
          <context
@@ -147,13 +147,13 @@
          <Priority
                name="Low">
          </Priority>
-         <!-- Edit Part Providers for Nodes for class (2008, 3004, 3008, 3010, 3014), for packages (1000, 2007, 3009), for any Named Element from the model explorer (2097) and for containement (3032) -->
+         <!-- Edit Part Providers for Nodes for class (2008, 3010), for packages (2007), for any Named Element from the model explorer (2097) and for containement (3032) -->
          <object
                class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
                id="inherited-nodes">
             <method
                   name="getType()"
-                  value="1000, 3009, 2007, 2008, 2097, 3004, 3008, 3010, 3014, 3032">
+                  value="2007, 2008, 2097, 3010, 3032">
             </method>
          </object>
            <!-- Edit Part Providers for Edges for abstraction (4006) and for containement (4023) -->
@@ -254,6 +254,37 @@
             name="Rules and Grid">
       </page>
         -->
+        
+      	<!-- Element Preference pages declaration -->
+	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.ClassPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.ClassPreferencePage"
+		name="Class">
+	</page>
+
+	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.PackagePreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.PackagePreferencePage"
+		name="Package">
+	</page>
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.AssociationPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.AssociationPreferencePage"
+		name="Association">
+	</page>	
+	
+	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.AbstractionPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.AbstractionPreferencePage"
+		name="Abstraction">
+	</page>	
+
+	<page  	category="org.eclipse.papyrus.sysml.diagram.requirement.preferences"
+		class="org.eclipse.papyrus.sysml.diagram.requirement.preferences.ContainmentPreferencePage"
+		id="org.eclipse.papyrus.sysml.diagram.requirement.preferences.ContainmentPreferencePage"
+		name="Containment">
+	</page>	  
    </extension>
 
 </plugin>

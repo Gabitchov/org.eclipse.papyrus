@@ -11,6 +11,7 @@ package org.eclipse.papyrus.sysml.diagram.requirement.provider;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateEdgeViewOperation;
@@ -81,54 +82,49 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 		// This provider is registered for Imported Elements from Class Diagram only
 		IElementType elementType = (IElementType)op.getSemanticAdapter().getAdapter(IElementType.class);
 
-		if(elementType == RequirementDiagramElementTypes.Package_1000) {
-			return true;
-		}
-		if(elementType == RequirementDiagramElementTypes.Package_2007) {
-			return true;
-		}
-		if(elementType == RequirementDiagramElementTypes.Package_3009) {
+		if(elementType == RequirementDiagramElementTypes.PACKAGE_2007) {
 			return true;
 		}
 
-		if(elementType == RequirementDiagramElementTypes.Class_2008) {
+		if(elementType == RequirementDiagramElementTypes.CLASS_2008) {
 			return true;
 		}
-		if(elementType == RequirementDiagramElementTypes.Class_3004) {
-			return true;
-		}
-		if(elementType == RequirementDiagramElementTypes.Class_3008) {
-			return true;
-		}
-		if(elementType == RequirementDiagramElementTypes.Class_3010) {
-			return true;
-		}
-		if(elementType == RequirementDiagramElementTypes.Class_3014) {
+		if(elementType == RequirementDiagramElementTypes.CLASS_3010_CN) {
 			return true;
 		}
 		if(elementType == RequirementDiagramElementTypes.Port_3032) {
 			return true;
 		}
 
+		// SemanticHint may be null (especially when drop from ModelExplorer)
+		EObject eobject = (EObject)op.getSemanticAdapter().getAdapter(EObject.class);
+		if((eobject instanceof org.eclipse.uml2.uml.Class) || (eobject instanceof org.eclipse.uml2.uml.Package)) {
+			return true;
+		}
+
+
 		// else : unknown element
 		return false;
 
 	}
 
-	/*
-	 * private IElementType getSemanticElementType(IAdaptable semanticAdapter) {
-	 * if(semanticAdapter == null) {
-	 * return null;
-	 * }
-	 * return (IElementType)semanticAdapter.getAdapter(IElementType.class);
-	 * }
-	 */
+
 	@Override
 	public Node createNode(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
 
 		if(semanticHint != null) {
 			return super.createNode(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
 		}
+
+		// SemanticHint may be null when the element is created indirectly by
+		// DND from model explorer
+		EObject eobject = (EObject)semanticAdapter.getAdapter(EObject.class);
+		if(eobject instanceof org.eclipse.uml2.uml.Package) {
+			return super.createNode(semanticAdapter, containerView, RequirementDiagramElementTypes.PACKAGE_2007.getSemanticHint(), index, persisted, preferencesHint);
+		} else if(eobject instanceof org.eclipse.uml2.uml.Class) {
+			return super.createNode(semanticAdapter, containerView, RequirementDiagramElementTypes.CLASS_2008.getSemanticHint(), index, persisted, preferencesHint);
+		}
+
 
 		// Log a warning here
 		System.err.println(Messages.Unable_To_Create_View_For_Hint + semanticHint);

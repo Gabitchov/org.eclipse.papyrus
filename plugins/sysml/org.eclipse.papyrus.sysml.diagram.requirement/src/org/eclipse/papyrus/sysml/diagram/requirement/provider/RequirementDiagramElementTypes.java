@@ -26,44 +26,19 @@ public class RequirementDiagramElementTypes extends AbstractElementTypeEnumerato
 	/** Requirement Diagram - Class Diagram related elements */
 
 	/**
-	 * Package_1000 element
-	 */
-	public static final IHintedType Package_1000 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Package_1000"); //$NON-NLS-1$
-
-	/**
 	 * Package_2007 element
 	 */
-	public static final IHintedType Package_2007 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Package_2007"); //$NON-NLS-1$
-
-	/**
-	 * Package_3009 element
-	 */
-	public static final IHintedType Package_3009 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Package_3009"); //$NON-NLS-1$
+	public static final IHintedType PACKAGE_2007 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Package_2007"); //$NON-NLS-1$
 
 	/**
 	 * Class_2008 element
 	 */
-	public static final IHintedType Class_2008 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Class_2008"); //$NON-NLS-1$
-
-	/**
-	 * Class_3004 element
-	 */
-	public static final IHintedType Class_3004 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Class_3004"); //$NON-NLS-1$
-
-	/**
-	 * Class_3008 element
-	 */
-	public static final IHintedType Class_3008 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Class_3008"); //$NON-NLS-1$
+	public static final IHintedType CLASS_2008 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Class_2008"); //$NON-NLS-1$
 
 	/**
 	 * Class_3010 element
 	 */
-	public static final IHintedType Class_3010 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Class_3010"); //$NON-NLS-1$
-
-	/**
-	 * Class_3014 element
-	 */
-	public static final IHintedType Class_3014 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Class_3014"); //$NON-NLS-1$
+	public static final IHintedType CLASS_3010_CN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Class_3010"); //$NON-NLS-1$
 
 	/**
 	 * Abstraction_4006 element

@@ -41,5 +41,6 @@ public class RequirementDiagramEditPart extends DiagramEditPart {
 		// This edit policy reuses the edit policy from Class Diagram, but in not perfectly
 		// consistent with GMF Runtime as it tends to break the extensible type framework.
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ModelItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new RequirementDiagramDragDropEditPolicy());
 	}
 }
