@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.part;
 
 import java.util.ArrayList;
@@ -16,7 +29,13 @@ import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.papyrus.diagram.communication.edit.policies.UMLBaseItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.communication.expressions.UMLOCLFactory;
+import org.eclipse.papyrus.diagram.communication.preferences.DiagramPreferenceInitializer;
+import org.eclipse.papyrus.diagram.communication.providers.ElementInitializers;
+import org.eclipse.papyrus.preferences.Activator;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.uml2.uml.edit.providers.UMLItemProviderAdapterFactory;
@@ -55,6 +74,21 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
+	private UMLBaseItemSemanticEditPolicy.LinkConstraints linkConstraints;
+
+	/**
+	 * @generated
+	 */
+	private ElementInitializers initializers;
+
+	/**
+	 * @generated
+	 */
+	private UMLOCLFactory oclFactory;
+
+	/**
+	 * @generated
+	 */
 	public UMLDiagramEditorPlugin() {
 	}
 
@@ -66,6 +100,8 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 		instance = this;
 		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT, getPreferenceStore());
 		adapterFactory = createAdapterFactory();
+		DiagramPreferenceInitializer diagramPreferenceInitializer = new DiagramPreferenceInitializer();
+		diagramPreferenceInitializer.initializeDefaultPreferences();
 	}
 
 	/**
@@ -74,6 +110,9 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	public void stop(BundleContext context) throws Exception {
 		adapterFactory.dispose();
 		adapterFactory = null;
+		linkConstraints = null;
+		initializers = null;
+		oclFactory = null;
 		instance = null;
 		super.stop(context);
 	}
@@ -88,8 +127,16 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
+	public IPreferenceStore getPreferenceStore() {
+		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		return store;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected ComposedAdapterFactory createAdapterFactory() {
-		List factories = new ArrayList();
+		ArrayList<AdapterFactory> factories = new ArrayList<AdapterFactory>();
 		fillItemProviderFactories(factories);
 		return new ComposedAdapterFactory(factories);
 	}
@@ -97,7 +144,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	protected void fillItemProviderFactories(List factories) {
+	protected void fillItemProviderFactories(List<AdapterFactory> factories) {
 		factories.add(new UMLItemProviderAdapterFactory());
 		factories.add(new EcoreItemProviderAdapterFactory());
 		factories.add(new ResourceItemProviderAdapterFactory());
@@ -123,11 +170,12 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Returns an image descriptor for the image file at the given
-	 * plug-in relative path.
-	 *
+	 * Returns an image descriptor for the image file at the given plug-in
+	 * relative path.
+	 * 
 	 * @generated
-	 * @param path the path
+	 * @param path
+	 *        the path
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getBundledImageDescriptor(String path) {
@@ -135,12 +183,14 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Respects images residing in any plug-in. If path is relative,
-	 * then this bundle is looked up for the image, otherwise, for absolute 
-	 * path, first segment is taken as id of plug-in with image
-	 *
+	 * Respects images residing in any plug-in. If path is relative, then this
+	 * bundle is looked up for the image, otherwise, for absolute path, first
+	 * segment is taken as id of plug-in with image
+	 * 
 	 * @generated
-	 * @param path the path to image, either absolute (with plug-in id as first segment), or relative for bundled images
+	 * @param path
+	 *        the path to image, either absolute (with plug-in id as first
+	 *        segment), or relative for bundled images
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor findImageDescriptor(String path) {
@@ -154,10 +204,12 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 
 	/**
 	 * Returns an image for the image file at the given plug-in relative path.
-	 * Client do not need to dispose this image. Images will be disposed automatically.
-	 *
+	 * Client do not need to dispose this image. Images will be disposed
+	 * automatically.
+	 * 
 	 * @generated
-	 * @param path the path
+	 * @param path
+	 *        the path
 	 * @return image instance
 	 */
 	public Image getBundledImage(String path) {
@@ -171,7 +223,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 
 	/**
 	 * Returns string from plug-in's resource bundle
-	 *
+	 * 
 	 * @generated
 	 */
 	public static String getString(String key) {
@@ -186,6 +238,48 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 			documentProvider = new UMLDocumentProvider();
 		}
 		return documentProvider;
+	}
+
+	/**
+	 * @generated
+	 */
+	public UMLBaseItemSemanticEditPolicy.LinkConstraints getLinkConstraints() {
+		return linkConstraints;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void setLinkConstraints(UMLBaseItemSemanticEditPolicy.LinkConstraints lc) {
+		this.linkConstraints = lc;
+	}
+
+	/**
+	 * @generated
+	 */
+	public ElementInitializers getElementInitializers() {
+		return initializers;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void setElementInitializers(ElementInitializers i) {
+		this.initializers = i;
+	}
+
+	/**
+	 * @generated
+	 */
+	public UMLOCLFactory getUMLOCLFactory() {
+		return oclFactory;
+	}
+
+	/**
+	 * @generated
+	 */
+	public void setUMLOCLFactory(UMLOCLFactory f) {
+		this.oclFactory = f;
 	}
 
 	/**

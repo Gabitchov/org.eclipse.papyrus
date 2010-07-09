@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.expressions;
 
 import java.math.BigDecimal;
@@ -77,6 +90,7 @@ public abstract class UMLAbstractExpression {
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	protected abstract Object doEvaluate(Object context, Map env);
 
 	/**
@@ -89,6 +103,7 @@ public abstract class UMLAbstractExpression {
 	/**
 	 * @generated
 	 */
+	@SuppressWarnings("rawtypes")
 	public Object evaluate(Object context, Map env) {
 		if(context().isInstance(context)) {
 			try {
@@ -101,7 +116,10 @@ public abstract class UMLAbstractExpression {
 	}
 
 	/**
-	 * Expression may return number value which is not directly compatible with feature type (e.g. Double when Integer is expected), or EEnumLiteral meta-object when literal instance is expected
+	 * Expression may return number value which is not directly compatible with
+	 * feature type (e.g. Double when Integer is expected), or EEnumLiteral
+	 * meta-object when literal instance is expected
+	 * 
 	 * @generated
 	 */
 	public static Object performCast(Object value, EDataType targetType) {
@@ -114,10 +132,10 @@ public abstract class UMLAbstractExpression {
 		if(false == value instanceof Number || targetType == null || targetType.getInstanceClass() == null) {
 			return value;
 		}
-		Class targetClass = targetType.getInstanceClass();
+		Class<?> targetClass = targetType.getInstanceClass();
 		Number num = (Number)value;
-		Class valClass = value.getClass();
-		Class targetWrapperClass = targetClass;
+		Class<?> valClass = value.getClass();
+		Class<?> targetWrapperClass = targetClass;
 		if(targetClass.isPrimitive()) {
 			targetWrapperClass = EcoreUtil.wrapperClassFor(targetClass);
 		}

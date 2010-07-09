@@ -23,7 +23,8 @@ import org.eclipse.papyrus.diagram.communication.providers.UMLElementTypes;
 /**
  * 
  * 
- * this a specialization to manage creation of TimeObservation and DurationObservation
+ * this a specialization to manage creation of TimeObservation and
+ * DurationObservation
  * 
  * 
  */
@@ -32,15 +33,14 @@ public class CustomInteractionCompartmentSemanticEditPolicy extends InteractionC
 	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
 
-		if(UMLElementTypes.TimeObservation_3004 == req.getElementType()) {
+		if(UMLElementTypes.TimeObservation_8006 == req.getElementType()) {
 			return getGEFWrapper(new CustomTimeObservationCreateCommandCN(req));
 		}
-		if(UMLElementTypes.DurationObservation_3005 == req.getElementType()) {
+		if(UMLElementTypes.DurationObservation_8007 == req.getElementType()) {
 			return getGEFWrapper(new CustomDurationObservationCreateCommandCN(req));
 		}
 
 		return super.getCreateCommand(req);
 	}
-
 
 }

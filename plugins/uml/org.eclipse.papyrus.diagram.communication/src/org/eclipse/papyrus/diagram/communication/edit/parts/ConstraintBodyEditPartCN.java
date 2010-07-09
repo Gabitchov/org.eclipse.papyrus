@@ -53,6 +53,7 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.diagram.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.diagram.common.figure.node.ConstraintFigure;
 import org.eclipse.papyrus.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.diagram.communication.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.diagram.communication.part.UMLVisualIDRegistry;
@@ -77,12 +78,12 @@ import org.eclipse.ui.PlatformUI;
 /**
  * @generated
  */
-public class LifelineNameEditPart extends CompartmentEditPart implements ITextAwareEditPart {
+public class ConstraintBodyEditPartCN extends CompartmentEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5002;
+	public static final int VISUAL_ID = 5160;
 
 	/**
 	 * @generated
@@ -121,7 +122,7 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 	/**
 	 * @generated
 	 */
-	public LifelineNameEditPart(View view) {
+	public ConstraintBodyEditPartCN(View view) {
 		super(view);
 	}
 
@@ -190,7 +191,7 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 	/**
 	 * @generated
 	 */
-	public void setLabel(WrappingLabel figure) {
+	public void setLabel(ConstraintFigure figure) {
 		unregisterVisuals();
 		setFigure(figure);
 		defaultText = getLabelTextHelper(figure);
@@ -324,7 +325,7 @@ public class LifelineNameEditPart extends CompartmentEditPart implements ITextAw
 	 */
 	public IParser getParser() {
 		if(parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.Lifeline_8001, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.communication.edit.parts.LifelineNameEditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.Constraint_8004, getParserElement(), UMLVisualIDRegistry.getType(org.eclipse.papyrus.diagram.communication.edit.parts.ConstraintBodyEditPartCN.VISUAL_ID));
 		}
 		return parser;
 	}

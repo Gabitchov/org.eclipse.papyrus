@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.part;
 
 import java.util.EventObject;
@@ -22,7 +35,6 @@ import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
 import org.eclipse.gmf.runtime.diagram.ui.internal.parts.PaletteToolTransferDragSourceListener;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
-import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
@@ -34,6 +46,7 @@ import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.diagram.common.listeners.DropTargetListener;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteContextMenuProvider;
 import org.eclipse.papyrus.diagram.common.part.PapyrusPaletteViewer;
+import org.eclipse.papyrus.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.papyrus.diagram.common.service.PapyrusPaletteService;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.TransferData;
@@ -53,7 +66,7 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
 /**
  * @generated
  */
-public class UMLDiagramEditor extends DiagramDocumentEditor implements IProviderChangeListener, IGotoMarker {
+public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderChangeListener, IGotoMarker {
 
 	/**
 	 * @generated
@@ -93,19 +106,12 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	/**
 	 * @generated
 	 */
-	private Diagram diagram;
-
-	/**
-	 * @generated
-	 */
 	public UMLDiagramEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws ServiceException {
-		super(true);
-		this.diagram = diagram;
+		super(servicesRegistry, diagram);
 
-
-		// adds a listener to the palette service, which reacts to palette customizations
+		// adds a listener to the palette service, which reacts to palette
+		// customizations
 		PapyrusPaletteService.getInstance().addProviderChangeListener(this);
-
 
 		// Share the same editing provider
 		editingDomain = servicesRegistry.getService(TransactionalEditingDomain.class);
@@ -113,7 +119,6 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 
 		// overrides editing domain created by super constructor
 		setDocumentProvider(documentProvider);
-
 
 	}
 
@@ -325,11 +330,13 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 		return new PaletteViewerProvider(getEditDomain()) {
 
 			/**
-			 * Override to provide the additional behavior for the tools. Will intialize with a
-			 * PaletteEditPartFactory that has a TrackDragger that understand how to handle the
-			 * mouseDoubleClick event for shape creation tools. Also will initialize the palette
-			 * with a defaultTool that is the SelectToolEx that undestands how to handle the enter
-			 * key which will result in the creation of the shape also.
+			 * Override to provide the additional behavior for the tools. Will
+			 * intialize with a PaletteEditPartFactory that has a TrackDragger
+			 * that understand how to handle the mouseDoubleClick event for
+			 * shape creation tools. Also will initialize the palette with a
+			 * defaultTool that is the SelectToolEx that undestands how to
+			 * handle the enter key which will result in the creation of the
+			 * shape also.
 			 */
 			protected void configurePaletteViewer(PaletteViewer viewer) {
 				super.configurePaletteViewer(viewer);
@@ -366,14 +373,16 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 					paletteKeyHandler = new KeyHandler() {
 
 						/**
-						 * Processes a <i>key released </i> event. This method is called by the Tool
-						 * whenever a key is released, and the Tool is in the proper state. Override
-						 * to support pressing the enter key to create a shape or connection
-						 * (between two selected shapes)
+						 * Processes a <i>key released </i> event. This method
+						 * is called by the Tool whenever a key is released, and
+						 * the Tool is in the proper state. Override to support
+						 * pressing the enter key to create a shape or
+						 * connection (between two selected shapes)
 						 * 
 						 * @param event
-						 *            the KeyEvent
-						 * @return <code>true</code> if KeyEvent was handled in some way
+						 *        the KeyEvent
+						 * @return <code>true</code> if KeyEvent was handled in
+						 *         some way
 						 */
 						public boolean keyReleased(KeyEvent event) {
 
@@ -411,14 +420,15 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 					paletteMouseListener = new MouseListener() {
 
 						/**
-						 * Flag to indicate that the current active tool should be cleared after a
-						 * mouse double-click event.
+						 * Flag to indicate that the current active tool should
+						 * be cleared after a mouse double-click event.
 						 */
 						private boolean clearActiveTool = false;
 
 						/**
-						 * Override to support double-clicking a palette tool entry to create a
-						 * shape or connection (between two selected shapes).
+						 * Override to support double-clicking a palette tool
+						 * entry to create a shape or connection (between two
+						 * selected shapes).
 						 * 
 						 * @see MouseListener#mouseDoubleClick(MouseEvent)
 						 */
@@ -467,20 +477,6 @@ public class UMLDiagramEditor extends DiagramDocumentEditor implements IProvider
 	@Override
 	public GraphicalViewer getGraphicalViewer() {
 		return super.getGraphicalViewer();
-	}
-
-	/**
-	 * @generated
-	 */
-	public Diagram getDiagram() {
-		return diagram;
-	}
-
-	/**
-	 * @generated
-	 */
-	public void setDiagram(Diagram diagram) {
-		this.diagram = diagram;
 	}
 
 	/**

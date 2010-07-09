@@ -82,12 +82,10 @@ public class InteractionRectangleFigure extends NodeNamedElementFigure {
 		return container;
 	}
 
-
 	@Override
 	protected boolean useLocalCoordinates() {
 		return myUseLocalCoordinates;
 	}
-
 
 	protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
 		myUseLocalCoordinates = useLocalCoordinates;

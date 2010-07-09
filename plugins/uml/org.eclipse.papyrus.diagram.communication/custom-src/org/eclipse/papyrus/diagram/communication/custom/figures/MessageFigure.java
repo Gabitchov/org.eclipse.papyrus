@@ -22,14 +22,12 @@ import org.eclipse.swt.widgets.Display;
 
 /**
  * 
- * This is used to create the message figure which is a PolylineConnection that has
- * a CustomWrappingLabel
+ * This is used to create the message figure which is a PolylineConnection that
+ * has a CustomWrappingLabel
  */
 public class MessageFigure extends PolylineConnectionEx {
 
 	private CustomWrappingLabel fFigureMessageCreateLabelFigure;
-
-
 
 	static final Font FFIGUREMESSAGECREATELABELFIGURE_FONT = new Font(Display.getCurrent(), "SANS", 9, SWT.NORMAL); //$NON-NLS-1$
 
@@ -49,18 +47,14 @@ public class MessageFigure extends PolylineConnectionEx {
 
 	}
 
-
-
 	private void createContents() {
 
 		fFigureMessageCreateLabelFigure = new CustomWrappingLabel();
 		fFigureMessageCreateLabelFigure.setText("blabla"); //$NON-NLS-1$
 
-
 		fFigureMessageCreateLabelFigure.setFont(FFIGUREMESSAGECREATELABELFIGURE_FONT);
 		fFigureMessageCreateLabelFigure.setOpaque(false);
 		this.add(fFigureMessageCreateLabelFigure);
-
 
 	}
 
@@ -71,7 +65,5 @@ public class MessageFigure extends PolylineConnectionEx {
 	public CustomWrappingLabel getFigureMessageCreateLabelFigure() {
 		return fFigureMessageCreateLabelFigure;
 	}
-
-
 
 }

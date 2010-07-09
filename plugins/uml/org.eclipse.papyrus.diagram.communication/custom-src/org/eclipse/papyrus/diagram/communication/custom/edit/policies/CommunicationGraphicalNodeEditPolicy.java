@@ -29,8 +29,7 @@ import org.eclipse.papyrus.diagram.communication.custom.util.CommunicationReques
 import org.eclipse.papyrus.diagram.communication.custom.util.CommunicationUtil;
 
 /**
- * A specific policy to handle the message :
- * - Message feedback on creation is
+ * A specific policy to handle the message : - Message feedback on creation is
  * always drawn in black (to avoid invisible feedback)
  * 
  */
@@ -57,7 +56,6 @@ public class CommunicationGraphicalNodeEditPolicy extends GraphicalNodeEditPolic
 				SetConnectionBendpointsCommand sbbCommand = (SetConnectionBendpointsCommand)obj;
 				final PointList pointList = sbbCommand.getNewPointList();
 
-
 				request.getExtendedData().put(CommunicationRequestConstant.SOURCE_MODEL_CONTAINER, CommunicationUtil.findInteractionFragmentAt(pointList.getFirstPoint(), getHost()));
 				request.getExtendedData().put(CommunicationRequestConstant.TARGET_MODEL_CONTAINER, CommunicationUtil.findInteractionFragmentAt(pointList.getLastPoint(), getHost()));
 
@@ -66,8 +64,6 @@ public class CommunicationGraphicalNodeEditPolicy extends GraphicalNodeEditPolic
 
 		return command;
 	}
-
-
 
 	/**
 	 * Overrides to set the color of the dummyConnection to color black. This

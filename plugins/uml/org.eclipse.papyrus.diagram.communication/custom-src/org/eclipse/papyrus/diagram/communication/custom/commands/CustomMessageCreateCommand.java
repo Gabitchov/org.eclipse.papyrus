@@ -96,7 +96,7 @@ public class CustomMessageCreateCommand extends MessageCreateCommand {
 			return false;
 		}
 
-		return UMLBaseItemSemanticEditPolicy.LinkConstraints.canCreateMessage_4006(getContainer(), getSource(), getTarget());
+		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateMessage_8009(getContainer(), getSource(), getTarget());
 	}
 
 	/**
@@ -111,7 +111,8 @@ public class CustomMessageCreateCommand extends MessageCreateCommand {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		InteractionFragment sourceContainer = (InteractionFragment)getRequest().getParameters().get(CommunicationRequestConstant.SOURCE_MODEL_CONTAINER);
-		InteractionFragment targetContainer = (InteractionFragment)getRequest().getParameters().get(CommunicationRequestConstant.TARGET_MODEL_CONTAINER);
+		//InteractionFragment targetContainer = (InteractionFragment)getRequest().getParameters().get(CommunicationRequestConstant.TARGET_MODEL_CONTAINER);
+		InteractionFragment targetContainer = (InteractionFragment)getRequest().getParameters().get(CommunicationRequestConstant.SOURCE_MODEL_CONTAINER);
 
 		Message message = CommandHelper.doCreateMessage(container, MessageSort.CREATE_MESSAGE_LITERAL, getSource(), getTarget(), sourceContainer, targetContainer);
 		if(message != null) {

@@ -33,12 +33,9 @@ import org.eclipse.papyrus.diagram.communication.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
-import org.eclipse.uml2.uml.ActionExecutionSpecification;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Event;
-import org.eclipse.uml2.uml.ExecutionEvent;
-import org.eclipse.uml2.uml.ExecutionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Gate;
 import org.eclipse.uml2.uml.Interaction;
@@ -149,21 +146,24 @@ public class CommandHelper {
 	 * @param lifeline
 	 * @return the Execution Occurrence Specification
 	 */
-	public static ExecutionOccurrenceSpecification doCreateExecutionOccurenceSpecification(ExecutionSpecification es, ExecutionEvent event, InteractionFragment fragment, Lifeline lifeline) {
-
-		// Create the ExecutionOccurrenceSpecification
-		ExecutionOccurrenceSpecification eos = UMLFactory.eINSTANCE.createExecutionOccurrenceSpecification();
-
-		// Configure the EOS.
-		// The event is an ExecutionEvent
-		doConfigureOccurenceSpecification(eos, event, fragment, lifeline);
-
-		// Set the executionSpecification of the
-		// ExecutionOccurrenceSpecification
-		eos.setExecution(es);
-
-		return eos;
-	}
+	/*
+	 * public static ExecutionOccurrenceSpecification doCreateExecutionOccurenceSpecification(ExecutionSpecification es, ExecutionEvent event,
+	 * InteractionFragment fragment, Lifeline lifeline) {
+	 * 
+	 * // Create the ExecutionOccurrenceSpecification
+	 * ExecutionOccurrenceSpecification eos = UMLFactory.eINSTANCE.createExecutionOccurrenceSpecification();
+	 * 
+	 * // Configure the EOS.
+	 * // The event is an ExecutionEvent
+	 * doConfigureOccurenceSpecification(eos, event, fragment, lifeline);
+	 * 
+	 * // Set the executionSpecification of the
+	 * // ExecutionOccurrenceSpecification
+	 * eos.setExecution(es);
+	 * 
+	 * return eos;
+	 * }
+	 */
 
 	/**
 	 * Configure an OccurrenceSpecification
@@ -374,57 +374,61 @@ public class CommandHelper {
 	 * @param modelContainer
 	 * @return the created executionSpecification
 	 */
-	public static ExecutionSpecification doCreateExecutionSpecification(ExecutionSpecification es, Lifeline lifeline, Object modelContainer) {
+	/*
+	 * public static ExecutionSpecification doCreateExecutionSpecification(ExecutionSpecification es, Lifeline lifeline, Object modelContainer) {
+	 * 
+	 * InteractionFragment interactionFragment = null;
+	 * // Get the enclosing interaction fragment
+	 * if(modelContainer instanceof InteractionOperand) {
+	 * InteractionOperand interactionOperand = (InteractionOperand)modelContainer;
+	 * // Create the ES
+	 * es = (ExecutionSpecification)interactionOperand.createFragment(null, es.eClass());
+	 * 
+	 * interactionFragment = interactionOperand;
+	 * } else {
+	 * Interaction interaction = lifeline.getInteraction();
+	 * // Create the ES
+	 * es = (ExecutionSpecification)interaction.createFragment(null, es.eClass());
+	 * 
+	 * interactionFragment = interaction;
+	 * }
+	 * 
+	 * // Get the covered lifeline
+	 * es.getCovereds().add(lifeline);
+	 * 
+	 * org.eclipse.uml2.uml.Package eventContainer = EventHelper.getEventContainer(interactionFragment);
+	 * 
+	 * ExecutionEvent startingExecutionEvent = EventHelper.doCreateExecutionEvent(eventContainer);
+	 * ExecutionEvent finishingExecutionEvent = EventHelper.doCreateExecutionEvent(eventContainer);
+	 * 
+	 * // Get the start and the finish ExecutionOccurrenceSpecification
+	 * es.setStart(CommandHelper.doCreateExecutionOccurenceSpecification(es, startingExecutionEvent, interactionFragment, lifeline));
+	 * es.setFinish(CommandHelper.doCreateExecutionOccurenceSpecification(es, finishingExecutionEvent, interactionFragment, lifeline));
+	 * 
+	 * // Init the name of the ES and its EOS
+	 * initExecutionSpecificationName(es);
+	 * 
+	 * return es;
+	 * }
+	 */
 
-		InteractionFragment interactionFragment = null;
-		// Get the enclosing interaction fragment
-		if(modelContainer instanceof InteractionOperand) {
-			InteractionOperand interactionOperand = (InteractionOperand)modelContainer;
-			// Create the ES
-			es = (ExecutionSpecification)interactionOperand.createFragment(null, es.eClass());
-
-			interactionFragment = interactionOperand;
-		} else {
-			Interaction interaction = lifeline.getInteraction();
-			// Create the ES
-			es = (ExecutionSpecification)interaction.createFragment(null, es.eClass());
-
-			interactionFragment = interaction;
-		}
-
-		// Get the covered lifeline
-		es.getCovereds().add(lifeline);
-
-		org.eclipse.uml2.uml.Package eventContainer = EventHelper.getEventContainer(interactionFragment);
-
-		ExecutionEvent startingExecutionEvent = EventHelper.doCreateExecutionEvent(eventContainer);
-		ExecutionEvent finishingExecutionEvent = EventHelper.doCreateExecutionEvent(eventContainer);
-
-		// Get the start and the finish ExecutionOccurrenceSpecification
-		es.setStart(CommandHelper.doCreateExecutionOccurenceSpecification(es, startingExecutionEvent, interactionFragment, lifeline));
-		es.setFinish(CommandHelper.doCreateExecutionOccurenceSpecification(es, finishingExecutionEvent, interactionFragment, lifeline));
-
-		// Init the name of the ES and its EOS
-		initExecutionSpecificationName(es);
-
-		return es;
-	}
-
-	private static void initExecutionSpecificationName(ExecutionSpecification es) {
-
-		String body = ""; //$NON-NLS-1$
-		if(es instanceof ActionExecutionSpecification) {
-			body = "ActionExecSpec"; //$NON-NLS-1$
-		} else {
-			body = "BehaviorExecSpec"; //$NON-NLS-1$
-		}
-		// Init the name
-		ElementInitializers.init_NamedElement(es, "", body, ""); //$NON-NLS-1$ //$NON-NLS-2$
-
-		// Init the name of the related executionOccurrenceSpecification
-		ElementInitializers.init_NamedElement(es.getStart(), "", es.getName(), "Start"); //$NON-NLS-1$ //$NON-NLS-2$
-		ElementInitializers.init_NamedElement(es.getFinish(), "", es.getName(), "Finish"); //$NON-NLS-1$ //$NON-NLS-2$
-	}
+	/*
+	 * private static void initExecutionSpecificationName(ExecutionSpecification es) {
+	 * 
+	 * String body = ""; //$NON-NLS-1$
+	 * if(es instanceof ActionExecutionSpecification) {
+	 * body = "ActionExecSpec"; //$NON-NLS-1$
+	 * } else {
+	 * body = "BehaviorExecSpec"; //$NON-NLS-1$
+	 * }
+	 * // Init the name
+	 * ElementInitializers.init_NamedElement(es, "", body, ""); //$NON-NLS-1$ //$NON-NLS-2$
+	 * 
+	 * // Init the name of the related executionOccurrenceSpecification
+	 * ElementInitializers.init_NamedElement(es.getStart(), "", es.getName(), "Start"); //$NON-NLS-1$ //$NON-NLS-2$
+	 * ElementInitializers.init_NamedElement(es.getFinish(), "", es.getName(), "Finish"); //$NON-NLS-1$ //$NON-NLS-2$
+	 * }
+	 */
 
 	/**
 	 * Create a MessageEnd

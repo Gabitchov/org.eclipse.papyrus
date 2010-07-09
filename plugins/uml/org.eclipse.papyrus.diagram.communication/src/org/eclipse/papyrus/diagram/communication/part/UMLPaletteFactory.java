@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.part;
 
 import java.util.ArrayList;
@@ -101,7 +114,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	private Tool createLifeline1CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Lifeline_3001);
+		types.add(UMLElementTypes.Lifeline_8001);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
@@ -112,7 +125,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	private Tool createComment7CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Comment_3097);
+		types.add(UMLElementTypes.Comment_8005);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
@@ -123,7 +136,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	private Tool createConstraint5CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Constraint_3029);
+		types.add(UMLElementTypes.Constraint_8004);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
@@ -134,7 +147,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	private Tool createDurationObservation4CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.DurationObservation_3005);
+		types.add(UMLElementTypes.DurationObservation_8007);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
@@ -145,7 +158,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	private Tool createTimeObservation6CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.TimeObservation_3004);
+		types.add(UMLElementTypes.TimeObservation_8006);
 
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
@@ -156,7 +169,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	private Tool createMessageCreateCreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.Message_4006);
+		types.add(UMLElementTypes.Message_8009);
 
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
@@ -167,10 +180,10 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	private Tool createLink13CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(4);
-		types.add(UMLElementTypes.CommentAnnotatedElement_4010);
-		types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
-		types.add(UMLElementTypes.DurationObservationEvent_4012);
-		types.add(UMLElementTypes.TimeObservationEvent_4013);
+		types.add(UMLElementTypes.CommentAnnotatedElement_8010);
+		types.add(UMLElementTypes.ConstraintConstrainedElement_8011);
+		types.add(UMLElementTypes.DurationObservationEvent_8012);
+		types.add(UMLElementTypes.TimeObservationEvent_8013);
 
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;

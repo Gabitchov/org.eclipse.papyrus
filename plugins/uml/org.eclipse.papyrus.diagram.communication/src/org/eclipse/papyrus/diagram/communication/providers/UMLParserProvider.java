@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.providers;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -13,9 +26,11 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.parser.CommentParser;
+import org.eclipse.papyrus.diagram.common.parser.ConstraintParser;
 import org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.papyrus.diagram.communication.custom.parser.LifelineCustomParsers;
 import org.eclipse.papyrus.diagram.communication.edit.parts.CommentBodyEditPartCN;
+import org.eclipse.papyrus.diagram.communication.edit.parts.ConstraintBodyEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.ConstraintNameEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.DurationObservationLabelEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.DurationObservationStereotypeLabelEditPartCN;
@@ -45,7 +60,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		if(interactionName_5001Parser == null) {
 			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
 			MessageFormatParser parser = new MessageFormatParser(features);
-			parser.setViewPattern("sd: {0}"); //$NON-NLS-1$
+			parser.setViewPattern("{0}"); //$NON-NLS-1$
 			parser.setEditorPattern("{0}"); //$NON-NLS-1$
 			parser.setEditPattern("{0}"); //$NON-NLS-1$
 			interactionName_5001Parser = parser;
@@ -83,6 +98,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			constraintName_5064Parser = parser;
 		}
 		return constraintName_5064Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ConstraintParser constraintSpecification_5160Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getConstraintSpecification_5160Parser() {
+		if(constraintSpecification_5160Parser == null) {
+			constraintSpecification_5160Parser = new ConstraintParser();
+		}
+		return constraintSpecification_5160Parser;
 	}
 
 	/**
@@ -192,6 +222,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getLifelineName_5002Parser();
 		case ConstraintNameEditPartCN.VISUAL_ID:
 			return getConstraintName_5064Parser();
+		case ConstraintBodyEditPartCN.VISUAL_ID:
+			return getConstraintSpecification_5160Parser();
 		case CommentBodyEditPartCN.VISUAL_ID:
 			return getCommentBody_5150Parser();
 		case TimeObservationNameEditPartCN.VISUAL_ID:
@@ -210,6 +242,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 
 	/**
 	 * Utility method that consults ParserService
+	 * 
 	 * @generated
 	 */
 	public static IParser getParser(IElementType type, EObject object, String parserHint) {

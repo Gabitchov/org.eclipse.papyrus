@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -12,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.communication.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.communication.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Package;
@@ -58,10 +71,10 @@ public class InteractionCreateCommand extends EditElementCommand {
 
 	/**
 	 * FIXME: replace with setElementToEdit()
+	 * 
 	 * @generated
 	 */
 	protected EObject getElementToEdit() {
-
 
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
@@ -78,10 +91,7 @@ public class InteractionCreateCommand extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
-
 		return true;
-
-
 
 	}
 
@@ -90,8 +100,6 @@ public class InteractionCreateCommand extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-
-
 		Interaction newElement = UMLFactory.eINSTANCE.createInteraction();
 
 		Package owner = (Package)getElementToEdit();
@@ -99,8 +107,7 @@ public class InteractionCreateCommand extends EditElementCommand {
 		Component childHolder = (Component)getElementToEdit();
 		childHolder.getPackagedElements().add(newElement);
 
-
-		UMLElementTypes.init_Interaction_2001(newElement);
+		ElementInitializers.getInstance().init_Interaction_8002(newElement);
 
 		doConfigure(newElement, monitor, info);
 

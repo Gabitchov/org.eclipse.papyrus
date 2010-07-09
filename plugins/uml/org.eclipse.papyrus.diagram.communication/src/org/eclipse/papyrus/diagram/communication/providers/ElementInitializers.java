@@ -1,6 +1,17 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.providers;
-
-import java.util.Collection;
 
 import org.eclipse.papyrus.diagram.common.helper.NamedElementHelper;
 import org.eclipse.papyrus.diagram.communication.expressions.UMLOCLFactory;
@@ -10,22 +21,28 @@ import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Lifeline;
-import org.eclipse.uml2.uml.OpaqueExpression;
+import org.eclipse.uml2.uml.LiteralString;
+import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.TimeObservation;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.ValueSpecification;
 
 /**
  * @generated
  */
 public class ElementInitializers {
 
+	protected ElementInitializers() {
+		// use #getInstance to access cached instance
+	}
+
 	/**
 	 * @generated
 	 */
-	public static void init_Interaction_2001(Interaction instance) {
+	public void init_Interaction_8002(Interaction instance) {
 		try {
-			Object value_0 = UMLOCLFactory.getExpression("let base : String = \'Interaction\' in\r\nlet suffixes : Sequence(String) = Sequence {\'\', \'1\', \'2\', \'3\', \'4\', \'5\', \'6\', \'7\', \'8\', \'9\', \'10\'} in \r\nlet space : Namespace = self.namespace in\r\nlet allMissed : Sequence(String) = suffixes->\r\n    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))\r\n    ) in\r\nlet firstMissed : String = allMissed->first() in \r\nlet noMisses : Boolean = firstMissed.oclIsUndefined() in\r\nlet allNames : Set(String) = \r\n    if noMisses \r\n    then \r\n    space.member->collect(e : NamedElement | \r\n         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) <> base\r\n         then \'\' \r\n         else e.name \r\n         endif)->asSet()->excluding(\'\') else Set{\'not in use\'} \r\n    endif in \r\nlet longestName : String = \r\n    if noMisses\r\n    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() \r\n    else \'not in use\' \r\n    endif in \r\nif noMisses then \r\n    if longestName.oclIsUndefined() \r\n    then base \r\n    else longestName.concat(\'1\') \r\n    endif \r\nelse \r\n    base.concat(firstMissed) \r\nendif ", UMLPackage.eINSTANCE.getInteraction()).evaluate(instance);
+			Object value_0 = name_Interaction_8002(instance);
 			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
@@ -35,9 +52,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_Lifeline_3001(Lifeline instance) {
+	public void init_Lifeline_8001(Lifeline instance) {
 		try {
-			Object value_0 = UMLOCLFactory.getExpression("let base : String = \'Lifeline\' in\r\nlet suffixes : Sequence(String) = Sequence {\'\', \'1\', \'2\', \'3\', \'4\', \'5\', \'6\', \'7\', \'8\', \'9\', \'10\'} in \r\nlet space : Namespace = self.namespace in\r\nlet allMissed : Sequence(String) = suffixes->\r\n    select(s : String | not space.member->exists(e : NamedElement | e.name = base.concat(s))\r\n    ) in\r\nlet firstMissed : String = allMissed->first() in \r\nlet noMisses : Boolean = firstMissed.oclIsUndefined() in\r\nlet allNames : Set(String) = \r\n    if noMisses \r\n    then \r\n    space.member->collect(e : NamedElement | \r\n         if e = self or e.name.oclIsUndefined() or e.name.substring(1, e.name.size().min(base.size())) <> base\r\n         then \'\' \r\n         else e.name \r\n         endif)->asSet()->excluding(\'\') else Set{\'not in use\'} \r\n    endif in \r\nlet longestName : String = \r\n    if noMisses\r\n    then allNames->select(n : String | not allNames->exists(nn : String | nn.size() > n.size()))->asSequence()->first() \r\n    else \'not in use\' \r\n    endif in \r\nif noMisses then \r\n    if longestName.oclIsUndefined() \r\n    then base \r\n    else longestName.concat(\'1\') \r\n    endif \r\nelse \r\n    base.concat(firstMissed) \r\nendif ", UMLPackage.eINSTANCE.getLifeline()).evaluate(instance);
+			Object value_0 = name_Lifeline_8001(instance);
 			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
@@ -47,18 +64,12 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_Constraint_3029(Constraint instance) {
+	public void init_Constraint_8004(Constraint instance) {
 		try {
-			OpaqueExpression newInstance_0_0 = UMLFactory.eINSTANCE.createOpaqueExpression();
-			instance.setSpecification(newInstance_0_0);
-			Object value_0_0_0 = UMLOCLFactory.getExpression("\'OpaqueExpression\'", UMLPackage.eINSTANCE.getOpaqueExpression()).evaluate(newInstance_0_0);
-			if(value_0_0_0 instanceof Collection) {
-				newInstance_0_0.getBodies().clear();
-				newInstance_0_0.getBodies().addAll(((Collection)value_0_0_0));
-			} else {
-				newInstance_0_0.getBodies().add((String)value_0_0_0);
-			}
-
+			Object value_0 = name_Constraint_8004(instance);
+			instance.setName((String)value_0);
+			Object value_1 = specification_Constraint_8004(instance);
+			instance.setSpecification((ValueSpecification)value_1);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
@@ -67,9 +78,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_Comment_3097(Comment instance) {
+	public void init_Comment_8005(Comment instance) {
 		try {
-			Object value_0 = UMLOCLFactory.getExpression("\' \'", UMLPackage.eINSTANCE.getComment()).evaluate(instance);
+			Object value_0 = UMLOCLFactory.getExpression(7, UMLPackage.eINSTANCE.getComment(), null).evaluate(instance);
 			instance.setBody((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
@@ -79,9 +90,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_TimeObservation_3004(TimeObservation instance) {
+	public void init_TimeObservation_8006(TimeObservation instance) {
 		try {
-			Object value_0 = name_TimeObservation_3004(instance);
+			Object value_0 = name_TimeObservation_8006(instance);
 			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
@@ -91,9 +102,9 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static void init_DurationObservation_3005(DurationObservation instance) {
+	public void init_DurationObservation_8007(DurationObservation instance) {
 		try {
-			Object value_0 = name_DurationObservation_3005(instance);
+			Object value_0 = name_DurationObservation_8007(instance);
 			instance.setName((String)value_0);
 		} catch (RuntimeException e) {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
@@ -103,15 +114,74 @@ public class ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private static String name_TimeObservation_3004(TimeObservation self) {
+	public void init_Message_8009(Message instance) {
+		try {
+			Object value_0 = name_Message_8009(instance);
+			instance.setName((String)value_0);
+		} catch (RuntimeException e) {
+			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Interaction_8002(Interaction self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
 
 	/**
 	 * @generated
 	 */
-	private static String name_DurationObservation_3005(DurationObservation self) {
+	private String name_Lifeline_8001(Lifeline self) {
 		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
 	}
 
+	/**
+	 * @generated
+	 */
+	private String name_Constraint_8004(Constraint self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private ValueSpecification specification_Constraint_8004(Constraint self) {
+		LiteralString literalString = UMLFactory.eINSTANCE.createLiteralString();
+		literalString.setValue("");
+		return literalString;
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_TimeObservation_8006(TimeObservation self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_DurationObservation_8007(DurationObservation self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	private String name_Message_8009(Message self) {
+		return NamedElementHelper.EINSTANCE.getNewUMLElementName(self.getOwner(), self.eClass());
+	}
+
+	/**
+	 * @generated
+	 */
+	public static ElementInitializers getInstance() {
+		ElementInitializers cached = UMLDiagramEditorPlugin.getInstance().getElementInitializers();
+		if(cached == null) {
+			UMLDiagramEditorPlugin.getInstance().setElementInitializers(cached = new ElementInitializers());
+		}
+		return cached;
+	}
 }

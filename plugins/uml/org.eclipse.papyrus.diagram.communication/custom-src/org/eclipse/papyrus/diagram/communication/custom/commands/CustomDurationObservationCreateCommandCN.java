@@ -19,7 +19,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.diagram.communication.edit.commands.DurationObservationCreateCommandCN;
-import org.eclipse.papyrus.diagram.communication.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.communication.providers.ElementInitializers;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -50,11 +50,11 @@ public class CustomDurationObservationCreateCommandCN extends DurationObservatio
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
 		DurationObservation newElement = UMLFactory.eINSTANCE.createDurationObservation();
-		//The owner of the duration observation is an Interaction
+		// The owner of the duration observation is an Interaction
 		Interaction owner = (Interaction)getElementToEdit();
 		owner.getNearestPackage().getPackagedElements().add(newElement);
 
-		UMLElementTypes.init_DurationObservation_3005(newElement);
+		ElementInitializers.getInstance().init_DurationObservation_8007(newElement);
 
 		doConfigure(newElement, monitor, info);
 

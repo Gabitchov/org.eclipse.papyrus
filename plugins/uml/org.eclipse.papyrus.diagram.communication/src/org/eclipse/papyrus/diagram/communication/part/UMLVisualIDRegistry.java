@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.part;
 
 import org.eclipse.core.runtime.Platform;
@@ -9,6 +22,7 @@ import org.eclipse.papyrus.diagram.common.providers.BaseViewInfo;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.diagram.communication.edit.parts.CommentBodyEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.CommentEditPartCN;
+import org.eclipse.papyrus.diagram.communication.edit.parts.ConstraintBodyEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.ConstraintEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.ConstraintNameEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.DurationObservationEditPartCN;
@@ -25,7 +39,6 @@ import org.eclipse.papyrus.diagram.communication.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.TimeObservationEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.TimeObservationNameEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.TimeObservationStereotypeLabelEditPartCN;
-import org.eclipse.papyrus.diagram.communication.expressions.UMLAbstractExpression;
 import org.eclipse.papyrus.diagram.communication.expressions.UMLOCLFactory;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.Package;
@@ -33,8 +46,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * This registry is used to determine which type of visual object should be
- * created for the corresponding Diagram, Node, ChildNode or Link represented
- * by a domain model object.
+ * created for the corresponding Diagram, Node, ChildNode or Link represented by
+ * a domain model object.
  * 
  * @generated
  */
@@ -44,11 +57,6 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	private static final String DEBUG_KEY = "org.eclipse.papyrus.diagram.communication/debug/visualID"; //$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private static UMLAbstractExpression Message_4006_Constraint;
 
 	/**
 	 * @generated
@@ -97,7 +105,7 @@ public class UMLVisualIDRegistry {
 	 * @generated
 	 */
 	public static String getType(int visualID) {
-		return String.valueOf(visualID);
+		return Integer.toString(visualID);
 	}
 
 	/**
@@ -136,6 +144,13 @@ public class UMLVisualIDRegistry {
 			}
 		}
 		switch(containerVisualID) {
+		case ModelEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return InteractionEditPart.VISUAL_ID;
+			}
+			break;
 		case InteractionCompartmentEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(domainElement.eClass())
 
@@ -163,13 +178,6 @@ public class UMLVisualIDRegistry {
 				return DurationObservationEditPartCN.VISUAL_ID;
 			}
 			break;
-		case ModelEditPart.VISUAL_ID:
-			if(UMLPackage.eINSTANCE.getInteraction().isSuperTypeOf(domainElement.eClass())
-
-			) {
-				return InteractionEditPart.VISUAL_ID;
-			}
-			break;
 		}
 		return -1;
 	}
@@ -193,6 +201,11 @@ public class UMLVisualIDRegistry {
 			}
 		}
 		switch(containerVisualID) {
+		case ModelEditPart.VISUAL_ID:
+			if(InteractionEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case InteractionEditPart.VISUAL_ID:
 			if(InteractionNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -208,6 +221,9 @@ public class UMLVisualIDRegistry {
 			break;
 		case ConstraintEditPartCN.VISUAL_ID:
 			if(ConstraintNameEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(ConstraintBodyEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -249,11 +265,6 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			break;
-		case ModelEditPart.VISUAL_ID:
-			if(InteractionEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
 		case MessageEditPart.VISUAL_ID:
 			if(MessageNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -272,7 +283,7 @@ public class UMLVisualIDRegistry {
 		}
 		if(UMLPackage.eINSTANCE.getMessage().isSuperTypeOf(domainElement.eClass())
 
-		&& isMessage_4006((Message)domainElement)
+		&& isMessage_8009((Message)domainElement)
 
 		) {
 			return MessageEditPart.VISUAL_ID;
@@ -281,7 +292,9 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
-	 * "User can change implementation of this method to handle some specific\n""situations not covered by default logic.\n"
+	 * "User can change implementation of this method to handle some specific\n"
+	 * "situations not covered by default logic.\n"
+	 * 
 	 * @generated
 	 */
 	private static boolean isDiagram(Package element) {
@@ -291,11 +304,8 @@ public class UMLVisualIDRegistry {
 	/**
 	 * @generated
 	 */
-	private static boolean isMessage_4006(Message domainElement) {
-		if(Message_4006_Constraint == null) { // lazy initialization
-			Message_4006_Constraint = UMLOCLFactory.getExpression("self.messageSort=MessageSort::createMessage and self.sendEvent<>null and self.receiveEvent<>null", UMLPackage.eINSTANCE.getMessage()); //$NON-NLS-1$
-		}
-		Object result = Message_4006_Constraint.evaluate(domainElement);
+	private static boolean isMessage_8009(Message domainElement) {
+		Object result = UMLOCLFactory.getExpression(5, UMLPackage.eINSTANCE.getMessage(), null).evaluate(domainElement);
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
@@ -322,54 +332,44 @@ public class UMLVisualIDRegistry {
 		ViewInfo viewInfo = null;
 		ViewInfo labelInfo = null;
 
-		viewInfo = new BaseViewInfo(2001, ViewInfo.Node, "Interaction");
+		viewInfo = new BaseViewInfo(8002, ViewInfo.Node, "Interaction");
 		root.addNode(1000, viewInfo);
 
-		viewInfo = new BaseViewInfo(4006, ViewInfo.Edge, "");
+		viewInfo = new BaseViewInfo(8009, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
-
 
 		labelInfo = new BaseViewInfo(6001, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
-
-		viewInfo = new BaseViewInfo(4010, ViewInfo.Edge, "");
+		viewInfo = new BaseViewInfo(8010, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
-		viewInfo = new BaseViewInfo(4011, ViewInfo.Edge, "");
+		viewInfo = new BaseViewInfo(8011, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
-		viewInfo = new BaseViewInfo(4012, ViewInfo.Edge, "");
+		viewInfo = new BaseViewInfo(8012, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
-		viewInfo = new BaseViewInfo(4013, ViewInfo.Edge, "");
+		viewInfo = new BaseViewInfo(8013, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
-
-		viewInfo = new BaseViewInfo(3001, ViewInfo.Node, "Lifeline");
+		viewInfo = new BaseViewInfo(8001, ViewInfo.Node, "Lifeline");
 
 		root.addNode(7001, viewInfo);
 
-
-		viewInfo = new BaseViewInfo(3029, ViewInfo.Node, "Constraint");
-
-		root.addNode(7001, viewInfo);
-
-
-		viewInfo = new BaseViewInfo(3097, ViewInfo.Node, "Comment");
+		viewInfo = new BaseViewInfo(8004, ViewInfo.Node, "Constraint");
 
 		root.addNode(7001, viewInfo);
 
-
-		viewInfo = new BaseViewInfo(3004, ViewInfo.Node, "TimeObservation");
+		viewInfo = new BaseViewInfo(8005, ViewInfo.Node, "Comment");
 
 		root.addNode(7001, viewInfo);
 
+		viewInfo = new BaseViewInfo(8006, ViewInfo.Node, "TimeObservation");
 
-		viewInfo = new BaseViewInfo(3005, ViewInfo.Node, "DurationObservation");
+		root.addNode(7001, viewInfo);
+
+		viewInfo = new BaseViewInfo(8007, ViewInfo.Node, "DurationObservation");
 
 		root.addNode(7001, viewInfo);
 

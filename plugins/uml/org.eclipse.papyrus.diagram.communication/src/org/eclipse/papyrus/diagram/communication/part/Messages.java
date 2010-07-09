@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.part;
 
 import org.eclipse.osgi.util.NLS;
@@ -243,92 +256,92 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Nodes1Group_title;
+	public static String createNodes1Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Nodes1Group_desc;
+	public static String createNodes1Group_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Edges2Group_title;
+	public static String createEdges2Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Edges2Group_desc;
+	public static String createEdges2Group_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Lifeline1CreationTool_title;
+	public static String createLifeline1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Lifeline1CreationTool_desc;
+	public static String createLifeline1CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Comment7CreationTool_title;
+	public static String createComment7CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Comment7CreationTool_desc;
+	public static String createComment7CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Constraint5CreationTool_title;
+	public static String createConstraint5CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Constraint5CreationTool_desc;
+	public static String createConstraint5CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String DurationObservation4CreationTool_title;
+	public static String createDurationObservation4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String DurationObservation4CreationTool_desc;
+	public static String createDurationObservation4CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String TimeObservation6CreationTool_title;
+	public static String createTimeObservation6CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String TimeObservation6CreationTool_desc;
+	public static String createTimeObservation6CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String MessageCreateCreationTool_title;
+	public static String createMessageCreateCreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String MessageCreateCreationTool_desc;
+	public static String createMessageCreateCreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Link13CreationTool_title;
+	public static String createLink13CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Link13CreationTool_desc;
+	public static String createLink13CreationTool_desc;
 
 	/**
 	 * @generated
@@ -375,5 +388,5 @@ public class Messages extends NLS {
 	 */
 	public static String UMLModelingAssistantProviderMessage;
 
-	//TODO: put accessor fields manually	
+	// TODO: put accessor fields manually
 }

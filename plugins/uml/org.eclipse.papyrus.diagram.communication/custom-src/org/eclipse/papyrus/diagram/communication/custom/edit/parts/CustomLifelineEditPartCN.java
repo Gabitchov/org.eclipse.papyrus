@@ -8,8 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * Atos Origin - Initial API and implementation
- * Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - adapted from sequence diagram
+
+ * Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr
  *
  *****************************************************************************/
 
@@ -18,22 +18,15 @@ package org.eclipse.papyrus.diagram.communication.custom.edit.parts;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef.Request;
-import org.eclipse.gef.requests.ReconnectRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeConnectionRequest;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
+import org.eclipse.papyrus.diagram.common.helper.NotificationHelper;
 import org.eclipse.papyrus.diagram.common.providers.UIAdapterImpl;
-import org.eclipse.papyrus.diagram.communication.custom.figures.LifelineAnchor;
-import org.eclipse.papyrus.diagram.communication.custom.util.NotificationHelper;
 import org.eclipse.papyrus.diagram.communication.edit.parts.LifelineEditPartCN;
-import org.eclipse.papyrus.diagram.communication.edit.parts.MessageEditPart;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Lifeline;
@@ -84,14 +77,10 @@ public class CustomLifelineEditPartCN extends LifelineEditPartCN {
 		return null;
 	}
 
-
-
 	/**
 	 * True if the lifeline is in inline mode
 	 */
 	private boolean inlineMode;
-
-
 
 	/**
 	 * Notfier for listen and unlistend model element.
@@ -150,8 +139,6 @@ public class CustomLifelineEditPartCN extends LifelineEditPartCN {
 		return false;
 	}
 
-
-
 	/**
 	 * This operation returns the InnerConnectableElement EditParts contained in
 	 * the Lifeline EditPart
@@ -182,43 +169,51 @@ public class CustomLifelineEditPartCN extends LifelineEditPartCN {
 	 * Create specific anchor to handle connection on top, on center and on
 	 * bottom of the lifeline
 	 */
-	@Override
-	public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connEditPart) {
-		if(connEditPart instanceof MessageEditPart) {
-			// Create message
-			return new org.eclipse.papyrus.diagram.communication.custom.figures.LifelineAnchor(getPrimaryShape().getFigureLifelineNameContainerFigure());
-		} else {
-			return super.getTargetConnectionAnchor(connEditPart);
-		}
-
-	}
-
+	/*
+	 * @Override
+	 * public ConnectionAnchor getTargetConnectionAnchor(
+	 * ConnectionEditPart connEditPart) {
+	 * if (connEditPart instanceof MessageEditPart) {
+	 * // Create message
+	 * return new org.eclipse.papyrus.diagram.communication.custom.figures.LifelineAnchor(
+	 * getPrimaryShape().getNameLabel());
+	 * } else {
+	 * return super.getTargetConnectionAnchor(connEditPart);
+	 * }
+	 * 
+	 * }
+	 */
 	/**
 	 * Create specific anchor to handle connection on top, on center and on
 	 * bottom of the lifeline
 	 */
-	@Override
-	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
-		if(request instanceof CreateUnspecifiedTypeConnectionRequest) {
-			CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest)request;
-			List<?> relationshipTypes = createRequest.getElementTypes();
-			for(Object obj : relationshipTypes) {
-				if(org.eclipse.papyrus.diagram.communication.providers.UMLElementTypes.Message_4006.equals(obj)) {
-					// Create Message
-					return new org.eclipse.papyrus.diagram.communication.custom.figures.LifelineAnchor(getPrimaryShape().getFigureLifelineNameContainerFigure());
-				}
-			}
-		} else if(request instanceof ReconnectRequest) {
-			ReconnectRequest reconnectRequest = (ReconnectRequest)request;
-			ConnectionEditPart connectionEditPart = reconnectRequest.getConnectionEditPart();
-			if(connectionEditPart instanceof MessageEditPart) {
-				// Create
-				return new LifelineAnchor(getPrimaryShape().getFigureLifelineNameContainerFigure());
-			}
-		}
-
-		return super.getTargetConnectionAnchor(request);
-	}
+	/*
+	 * @Override
+	 * public ConnectionAnchor getTargetConnectionAnchor(Request request) {
+	 * if (request instanceof CreateUnspecifiedTypeConnectionRequest) {
+	 * CreateUnspecifiedTypeConnectionRequest createRequest = (CreateUnspecifiedTypeConnectionRequest) request;
+	 * List<?> relationshipTypes = createRequest.getElementTypes();
+	 * for (Object obj : relationshipTypes) {
+	 * if (org.eclipse.papyrus.diagram.communication.providers.UMLElementTypes.Message_8009
+	 * .equals(obj)) {
+	 * // Create Message
+	 * return new org.eclipse.papyrus.diagram.communication.custom.figures.LifelineAnchor(
+	 * getPrimaryShape().getNameLabel());
+	 * }
+	 * }
+	 * } else if (request instanceof ReconnectRequest) {
+	 * ReconnectRequest reconnectRequest = (ReconnectRequest) request;
+	 * ConnectionEditPart connectionEditPart = reconnectRequest
+	 * .getConnectionEditPart();
+	 * if (connectionEditPart instanceof MessageEditPart) {
+	 * // Create
+	 * return new LifelineAnchor(getPrimaryShape().getNameLabel());
+	 * }
+	 * }
+	 * 
+	 * return super.getTargetConnectionAnchor(request);
+	 * }
+	 */
 
 	/**
 	 * Remove listeners for Lifeline to handle notification in the message

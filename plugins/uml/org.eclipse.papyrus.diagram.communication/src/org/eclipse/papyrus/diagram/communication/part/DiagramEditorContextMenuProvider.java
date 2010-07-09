@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.part;
 
 import org.eclipse.emf.ecore.EObject;
@@ -22,27 +35,10 @@ public class DiagramEditorContextMenuProvider extends DiagramContextMenuProvider
 	/**
 	 * @generated
 	 */
-	private DeleteElementAction deleteAction;
-
-	/**
-	 * @generated
-	 */
 	public DiagramEditorContextMenuProvider(IWorkbenchPart part, EditPartViewer viewer) {
 		super(part, viewer);
 		this.part = part;
-		deleteAction = new DeleteElementAction(part);
-		deleteAction.init();
-	}
 
-	/**
-	 * @generated
-	 */
-	public void dispose() {
-		if(deleteAction != null) {
-			deleteAction.dispose();
-			deleteAction = null;
-		}
-		super.dispose();
 	}
 
 	/**
@@ -56,7 +52,7 @@ public class DiagramEditorContextMenuProvider extends DiagramContextMenuProvider
 				public void run() {
 					ContributionItemService.getInstance().contributeToPopupMenu(DiagramEditorContextMenuProvider.this, part);
 					menu.remove(ActionIds.ACTION_DELETE_FROM_MODEL);
-					menu.appendToGroup("editGroup", deleteAction);
+
 				}
 			});
 		} catch (Exception e) {

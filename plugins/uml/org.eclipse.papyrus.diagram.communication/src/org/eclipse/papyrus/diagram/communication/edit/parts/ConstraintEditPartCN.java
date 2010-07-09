@@ -1,9 +1,22 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.edit.parts;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
@@ -20,7 +33,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -28,16 +40,15 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.diagram.common.figure.node.CornerBentFigure;
+import org.eclipse.papyrus.diagram.common.figure.node.ConstraintFigure;
+import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.diagram.communication.edit.policies.ConstraintItemSemanticEditPolicyCN;
+import org.eclipse.papyrus.diagram.communication.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.communication.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.communication.providers.UMLElementTypes;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.widgets.Display;
 
 /**
  * @generated
@@ -49,7 +60,7 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3029;
+	public static final int VISUAL_ID = 8004;
 
 	/**
 	 * @generated
@@ -75,7 +86,8 @@ ShapeNodeEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ConstraintItemSemanticEditPolicyCN());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that
+		// would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -108,15 +120,14 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		CornerBentDescriptor figure = new CornerBentDescriptor();
-		return primaryShape = figure;
+		return primaryShape = new ConstraintFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public CornerBentDescriptor getPrimaryShape() {
-		return (CornerBentDescriptor)primaryShape;
+	public ConstraintFigure getPrimaryShape() {
+		return (ConstraintFigure)primaryShape;
 	}
 
 	/**
@@ -124,10 +135,13 @@ ShapeNodeEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof ConstraintNameEditPartCN) {
-			((ConstraintNameEditPartCN)childEditPart).setLabel(getPrimaryShape().getCornerBentContentLabel());
+			((ConstraintNameEditPartCN)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
+		if(childEditPart instanceof ConstraintBodyEditPartCN) {
+			((ConstraintBodyEditPartCN)childEditPart).setLabel(getPrimaryShape().getConstraintFigure());
+			return true;
+		}
 
 		return false;
 	}
@@ -137,6 +151,9 @@ ShapeNodeEditPart {
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof ConstraintNameEditPartCN) {
+			return true;
+		}
+		if(childEditPart instanceof ConstraintBodyEditPartCN) {
 			return true;
 		}
 		return false;
@@ -173,15 +190,20 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		String prefElementId = "Constraint";
+		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
+		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
+
 		return result;
 	}
 
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so
+	 * you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -195,9 +217,11 @@ ShapeNodeEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane.
-	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * Default implementation treats passed figure as content pane. Respects
+	 * layout one may have set for generated figure.
+	 * 
+	 * @param nodeShape
+	 *        instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -256,53 +280,53 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		types.add(UMLElementTypes.Message_4006);
-		types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+	public List<IElementType> getMARelTypesOnSource() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(UMLElementTypes.Message_8009);
+		types.add(UMLElementTypes.ConstraintConstrainedElement_8011);
 		return types;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List<IElementType> getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if(targetEditPart instanceof InteractionEditPart) {
-			types.add(UMLElementTypes.Message_4006);
+			types.add(UMLElementTypes.Message_8009);
 		}
 		if(targetEditPart instanceof LifelineEditPartCN) {
-			types.add(UMLElementTypes.Message_4006);
+			types.add(UMLElementTypes.Message_8009);
 		}
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.communication.edit.parts.ConstraintEditPartCN) {
-			types.add(UMLElementTypes.Message_4006);
+			types.add(UMLElementTypes.Message_8009);
 		}
 		if(targetEditPart instanceof CommentEditPartCN) {
-			types.add(UMLElementTypes.Message_4006);
+			types.add(UMLElementTypes.Message_8009);
 		}
 		if(targetEditPart instanceof TimeObservationEditPartCN) {
-			types.add(UMLElementTypes.Message_4006);
+			types.add(UMLElementTypes.Message_8009);
 		}
 		if(targetEditPart instanceof DurationObservationEditPartCN) {
-			types.add(UMLElementTypes.Message_4006);
+			types.add(UMLElementTypes.Message_8009);
 		}
 		if(targetEditPart instanceof InteractionEditPart) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+			types.add(UMLElementTypes.ConstraintConstrainedElement_8011);
 		}
 		if(targetEditPart instanceof LifelineEditPartCN) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+			types.add(UMLElementTypes.ConstraintConstrainedElement_8011);
 		}
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.communication.edit.parts.ConstraintEditPartCN) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+			types.add(UMLElementTypes.ConstraintConstrainedElement_8011);
 		}
 		if(targetEditPart instanceof CommentEditPartCN) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+			types.add(UMLElementTypes.ConstraintConstrainedElement_8011);
 		}
 		if(targetEditPart instanceof TimeObservationEditPartCN) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+			types.add(UMLElementTypes.ConstraintConstrainedElement_8011);
 		}
 		if(targetEditPart instanceof DurationObservationEditPartCN) {
-			types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+			types.add(UMLElementTypes.ConstraintConstrainedElement_8011);
 		}
 		return types;
 	}
@@ -310,43 +334,22 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.Interaction_2001);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.Lifeline_3001);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.Constraint_3029);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.Comment_3097);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.TimeObservation_3004);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.DurationObservation_3005);
-		}
-		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
-			types.add(UMLElementTypes.Interaction_2001);
-		}
-		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
-			types.add(UMLElementTypes.Lifeline_3001);
-		}
-		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
-			types.add(UMLElementTypes.Constraint_3029);
-		}
-		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
-			types.add(UMLElementTypes.Comment_3097);
-		}
-		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
-			types.add(UMLElementTypes.TimeObservation_3004);
-		}
-		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
-			types.add(UMLElementTypes.DurationObservation_3005);
+	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if(relationshipType == UMLElementTypes.Message_8009) {
+			types.add(UMLElementTypes.Interaction_8002);
+			types.add(UMLElementTypes.Lifeline_8001);
+			types.add(UMLElementTypes.Constraint_8004);
+			types.add(UMLElementTypes.Comment_8005);
+			types.add(UMLElementTypes.TimeObservation_8006);
+			types.add(UMLElementTypes.DurationObservation_8007);
+		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_8011) {
+			types.add(UMLElementTypes.Interaction_8002);
+			types.add(UMLElementTypes.Lifeline_8001);
+			types.add(UMLElementTypes.Constraint_8004);
+			types.add(UMLElementTypes.Comment_8005);
+			types.add(UMLElementTypes.TimeObservation_8006);
+			types.add(UMLElementTypes.DurationObservation_8007);
 		}
 		return types;
 	}
@@ -354,130 +357,39 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		types.add(UMLElementTypes.Message_4006);
-		types.add(UMLElementTypes.CommentAnnotatedElement_4010);
-		types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
-		types.add(UMLElementTypes.DurationObservationEvent_4012);
-		types.add(UMLElementTypes.TimeObservationEvent_4013);
+	public List<IElementType> getMARelTypesOnTarget() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(5);
+		types.add(UMLElementTypes.Message_8009);
+		types.add(UMLElementTypes.CommentAnnotatedElement_8010);
+		types.add(UMLElementTypes.ConstraintConstrainedElement_8011);
+		types.add(UMLElementTypes.DurationObservationEvent_8012);
+		types.add(UMLElementTypes.TimeObservationEvent_8013);
 		return types;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.Interaction_2001);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.Lifeline_3001);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.Constraint_3029);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.Comment_3097);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.TimeObservation_3004);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.DurationObservation_3005);
-		}
-		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4010) {
-			types.add(UMLElementTypes.Comment_3097);
-		}
-		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
-			types.add(UMLElementTypes.Constraint_3029);
-		}
-		if(relationshipType == UMLElementTypes.DurationObservationEvent_4012) {
-			types.add(UMLElementTypes.DurationObservation_3005);
-		}
-		if(relationshipType == UMLElementTypes.TimeObservationEvent_4013) {
-			types.add(UMLElementTypes.TimeObservation_3004);
+	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if(relationshipType == UMLElementTypes.Message_8009) {
+			types.add(UMLElementTypes.Interaction_8002);
+			types.add(UMLElementTypes.Lifeline_8001);
+			types.add(UMLElementTypes.Constraint_8004);
+			types.add(UMLElementTypes.Comment_8005);
+			types.add(UMLElementTypes.TimeObservation_8006);
+			types.add(UMLElementTypes.DurationObservation_8007);
+		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_8010) {
+			types.add(UMLElementTypes.Comment_8005);
+		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_8011) {
+			types.add(UMLElementTypes.Constraint_8004);
+		} else if(relationshipType == UMLElementTypes.DurationObservationEvent_8012) {
+			types.add(UMLElementTypes.DurationObservation_8007);
+		} else if(relationshipType == UMLElementTypes.TimeObservationEvent_8013) {
+			types.add(UMLElementTypes.TimeObservation_8006);
 		}
 		return types;
 	}
-
-	/**
-	 * @generated
-	 */
-	public class CornerBentDescriptor extends CornerBentFigure {
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fCornerBentContentLabel;
-
-		/**
-		 * @generated
-		 */
-		public CornerBentDescriptor() {
-
-
-			this.setForegroundColor(ColorConstants.black);
-			this.setBackgroundColor(THIS_BACK);
-			createContents();
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-
-
-			fCornerBentContentLabel = new WrappingLabel();
-			fCornerBentContentLabel.setText("");
-
-			fCornerBentContentLabel.setFont(FCORNERBENTCONTENTLABEL_FONT);
-
-
-
-			this.add(fCornerBentContentLabel);
-
-
-		}
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = false;
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getCornerBentContentLabel() {
-			return fCornerBentContentLabel;
-		}
-
-	}
-
-	/**
-	 * @generated
-	 */
-	static final Color THIS_BACK = new Color(null, 248, 249, 214);
-
-	/**
-	 * @generated
-	 */
-	static final Font FCORNERBENTCONTENTLABEL_FONT = new Font(Display.getCurrent(), "Arial", 8, SWT.NORMAL);
 
 	/**
 	 * @generated

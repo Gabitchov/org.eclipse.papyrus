@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.edit.policies;
 
 import org.eclipse.gef.commands.Command;
@@ -18,26 +31,26 @@ public class InteractionCompartmentItemSemanticEditPolicy extends UMLBaseItemSem
 	 * @generated
 	 */
 	public InteractionCompartmentItemSemanticEditPolicy() {
-		super(UMLElementTypes.Interaction_2001);
+		super(UMLElementTypes.Interaction_8002);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if(UMLElementTypes.Lifeline_3001 == req.getElementType()) {
+		if(UMLElementTypes.Lifeline_8001 == req.getElementType()) {
 			return getGEFWrapper(new LifelineCreateCommandCN(req));
 		}
-		if(UMLElementTypes.Comment_3097 == req.getElementType()) {
+		if(UMLElementTypes.Comment_8005 == req.getElementType()) {
 			return getGEFWrapper(new CommentCreateCommandCN(req));
 		}
-		if(UMLElementTypes.Constraint_3029 == req.getElementType()) {
+		if(UMLElementTypes.Constraint_8004 == req.getElementType()) {
 			return getGEFWrapper(new ConstraintCreateCommandCN(req));
 		}
-		if(UMLElementTypes.TimeObservation_3004 == req.getElementType()) {
+		if(UMLElementTypes.TimeObservation_8006 == req.getElementType()) {
 			return getGEFWrapper(new TimeObservationCreateCommandCN(req));
 		}
-		if(UMLElementTypes.DurationObservation_3005 == req.getElementType()) {
+		if(UMLElementTypes.DurationObservation_8007 == req.getElementType()) {
 			return getGEFWrapper(new DurationObservationCreateCommandCN(req));
 		}
 		return super.getCreateCommand(req);

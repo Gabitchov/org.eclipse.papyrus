@@ -1,9 +1,23 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.edit.policies;
 
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -34,7 +48,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.communication.edit.helpers.UMLBaseEditHelper;
-import org.eclipse.papyrus.diagram.communication.expressions.UMLAbstractExpression;
 import org.eclipse.papyrus.diagram.communication.expressions.UMLOCLFactory;
 import org.eclipse.papyrus.diagram.communication.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.communication.part.UMLVisualIDRegistry;
@@ -44,6 +57,7 @@ import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interaction;
+import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.TimeObservation;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -55,6 +69,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Extended request data key to hold editpart visual id.
+	 * 
 	 * @generated
 	 */
 	public static final String VISUAL_ID_KEY = "visual_id"; //$NON-NLS-1$
@@ -72,11 +87,11 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	}
 
 	/**
-	 * Extended request data key to hold editpart visual id.
-	 * Add visual id of edited editpart to extended data of the request
-	 * so command switch can decide what kind of diagram element is being edited.
-	 * It is done in those cases when it's not possible to deduce diagram
-	 * element kind from domain element.
+	 * Extended request data key to hold editpart visual id. Add visual id of
+	 * edited editpart to extended data of the request so command switch can
+	 * decide what kind of diagram element is being edited. It is done in those
+	 * cases when it's not possible to deduce diagram element kind from domain
+	 * element.
 	 * 
 	 * @generated
 	 */
@@ -93,6 +108,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Returns visual id from request parameters.
+	 * 
 	 * @generated
 	 */
 	protected int getVisualID(IEditCommandRequest request) {
@@ -243,9 +259,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
 
-
 		return getGEFWrapper(new MoveElementsCommand(req));
-
 
 	}
 
@@ -272,6 +286,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Returns editing domain from the host edit part.
+	 * 
 	 * @generated
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
@@ -280,6 +295,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Clean all shortcuts to the host element from the same diagram
+	 * 
 	 * @generated
 	 */
 	protected void addDestroyShortcutsCommand(ICompositeCommand cmd, View view) {
@@ -296,109 +312,108 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
+	public static LinkConstraints getLinkConstraints() {
+		LinkConstraints cached = UMLDiagramEditorPlugin.getInstance().getLinkConstraints();
+		if(cached == null) {
+			UMLDiagramEditorPlugin.getInstance().setLinkConstraints(cached = new LinkConstraints());
+		}
+		return cached;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static class LinkConstraints {
 
 		/**
 		 * @generated
 		 */
-		private static final String OPPOSITE_END_VAR = "oppositeEnd"; //$NON-NLS-1$
-
-		/**
-		 * @generated
-		 */
-		private static UMLAbstractExpression Message_4006_SourceExpression;
-
-		/**
-		 * @generated
-		 */
-		private static UMLAbstractExpression Message_4006_TargetExpression;
-
-		/**
-		 * @generated
-		 */
-		public static boolean canCreateMessage_4006(Interaction container, Element source, Element target) {
-			return canExistMessage_4006(container, source, target);
+		public LinkConstraints() {
+			// use static method #getLinkConstraints() to access instance
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateCommentAnnotatedElement_4010(Comment source, Element target) {
+		public boolean canCreateMessage_8009(Interaction container, Element source, Element target) {
+			return canExistMessage_8009(container, null, source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canCreateCommentAnnotatedElement_8010(Comment source, Element target) {
 			if(source != null) {
 				if(source.getAnnotatedElements().contains(target)) {
 					return false;
 				}
 			}
 
-			return canExistCommentAnnotatedElement_4010(source, target);
+			return canExistCommentAnnotatedElement_8010(source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateConstraintConstrainedElement_4011(Constraint source, Element target) {
+		public boolean canCreateConstraintConstrainedElement_8011(Constraint source, Element target) {
 			if(source != null) {
 				if(source.getConstrainedElements().contains(target)) {
 					return false;
 				}
 			}
 
-			return canExistConstraintConstrainedElement_4011(source, target);
+			return canExistConstraintConstrainedElement_8011(source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateDurationObservationEvent_4012(DurationObservation source, NamedElement target) {
+		public boolean canCreateDurationObservationEvent_8012(DurationObservation source, NamedElement target) {
 			if(source != null) {
 				if(source.getEvents().size() >= 2 || source.getEvents().contains(target)) {
 					return false;
 				}
 			}
 
-			return canExistDurationObservationEvent_4012(source, target);
+			return canExistDurationObservationEvent_8012(source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateTimeObservationEvent_4013(TimeObservation source, NamedElement target) {
+		public boolean canCreateTimeObservationEvent_8013(TimeObservation source, NamedElement target) {
 			if(source != null) {
 				if(source.getEvent() != null) {
 					return false;
 				}
 			}
 
-			return canExistTimeObservationEvent_4013(source, target);
+			return canExistTimeObservationEvent_8013(source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistMessage_4006(Interaction container, Element source, Element target) {
+		public boolean canExistMessage_8009(Interaction container, Message linkInstance, Element source, Element target) {
 			try {
 				if(source == null) {
 					return true;
+				} else {
+					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getElement()); //$NON-NLS-1$
+					Object sourceVal = UMLOCLFactory.getExpression(3, UMLPackage.eINSTANCE.getElement(), env).evaluate(source, Collections.singletonMap("oppositeEnd", target)); //$NON-NLS-1$
+					if(false == sourceVal instanceof Boolean || !((Boolean)sourceVal).booleanValue()) {
+						return false;
+					} // else fall-through
 				}
-				if(Message_4006_SourceExpression == null) {
-					Map env = Collections.singletonMap(OPPOSITE_END_VAR, UMLPackage.eINSTANCE.getElement());
-					Message_4006_SourceExpression = UMLOCLFactory.getExpression("self.oclIsKindOf(uml::Lifeline)", UMLPackage.eINSTANCE.getElement(), env); //$NON-NLS-1$
-				}
-				Object sourceVal = Message_4006_SourceExpression.evaluate(source, Collections.singletonMap(OPPOSITE_END_VAR, target));
-				if(false == sourceVal instanceof Boolean || !((Boolean)sourceVal).booleanValue()) {
-					return false;
-				} // else fall-through
 				if(target == null) {
 					return true;
+				} else {
+					Map<String, EClassifier> env = Collections.<String, EClassifier> singletonMap("oppositeEnd", UMLPackage.eINSTANCE.getElement()); //$NON-NLS-1$
+					Object targetVal = UMLOCLFactory.getExpression(3, UMLPackage.eINSTANCE.getElement(), env).evaluate(target, Collections.singletonMap("oppositeEnd", source)); //$NON-NLS-1$
+					if(false == targetVal instanceof Boolean || !((Boolean)targetVal).booleanValue()) {
+						return false;
+					} // else fall-through
 				}
-				if(Message_4006_TargetExpression == null) {
-					Map env = Collections.singletonMap(OPPOSITE_END_VAR, UMLPackage.eINSTANCE.getElement());
-					Message_4006_TargetExpression = UMLOCLFactory.getExpression("self.oclIsKindOf(uml::Lifeline)", UMLPackage.eINSTANCE.getElement(), env); //$NON-NLS-1$
-				}
-				Object targetVal = Message_4006_TargetExpression.evaluate(target, Collections.singletonMap(OPPOSITE_END_VAR, source));
-				if(false == targetVal instanceof Boolean || !((Boolean)targetVal).booleanValue()) {
-					return false;
-				} // else fall-through
 				return true;
 			} catch (Exception e) {
 				UMLDiagramEditorPlugin.getInstance().logError("Link constraint evaluation error", e); //$NON-NLS-1$
@@ -409,29 +424,30 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistCommentAnnotatedElement_4010(Comment source, Element target) {
+		public boolean canExistCommentAnnotatedElement_8010(Comment source, Element target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistConstraintConstrainedElement_4011(Constraint source, Element target) {
+		public boolean canExistConstraintConstrainedElement_8011(Constraint source, Element target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistDurationObservationEvent_4012(DurationObservation source, NamedElement target) {
+		public boolean canExistDurationObservationEvent_8012(DurationObservation source, NamedElement target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistTimeObservationEvent_4013(TimeObservation source, NamedElement target) {
+		public boolean canExistTimeObservationEvent_8013(TimeObservation source, NamedElement target) {
 			return true;
 		}
 	}
+
 }

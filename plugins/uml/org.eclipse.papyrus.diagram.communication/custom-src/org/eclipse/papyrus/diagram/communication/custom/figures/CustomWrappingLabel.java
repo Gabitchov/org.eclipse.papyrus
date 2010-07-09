@@ -23,7 +23,8 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 
 /**
- * This class extends the WrappingLabel class to permit the rotation of the WrappingLabel icon
+ * This class extends the WrappingLabel class to permit the rotation of the
+ * WrappingLabel icon
  * 
  * 
  * 
@@ -88,7 +89,7 @@ public class CustomWrappingLabel extends WrappingLabel
 		// bounds = null;
 		// this.angle = angle;
 		this.rotation = Math.toDegrees(angle);
-		System.out.format("SetRotation angle %f", this.rotation);
+		// System.out.format("SetRotation angle %f", this.rotation);
 
 	}
 
@@ -110,8 +111,6 @@ public class CustomWrappingLabel extends WrappingLabel
 			Rectangle figBounds = getBounds();
 			graphics.translate(figBounds.x, figBounds.y);
 
-
-
 			int num = getNumberofIcons();
 			for(int i = 0; i < num; i++) {
 				// Image icon = getIcon(i);
@@ -122,7 +121,8 @@ public class CustomWrappingLabel extends WrappingLabel
 
 					graphics.setClip(graphics.getClip(new Rectangle()).expand(100, 100));
 					graphics.drawImage(image1, p);
-					System.out.format("\n***The icon is rotated by %f \n****", getRotation());
+					// System.out.format("\n***The icon is rotated by %f \n****",
+					// getRotation());
 					image1.dispose();
 
 					p.x += getIconSize(i).width;
@@ -133,16 +133,12 @@ public class CustomWrappingLabel extends WrappingLabel
 		graphics.popState();
 	}
 
-
-
-
-
 	@Override
 	public void paintFigure(Graphics graphics) {
 		// super.paintFigure(graphics);
 
 		if(hasIcons()) {
-			System.out.println("This Connection hasIcon \n");
+			// System.out.println("This Connection hasIcon \n");
 			CustomPaintIcons(graphics);
 		}
 	}

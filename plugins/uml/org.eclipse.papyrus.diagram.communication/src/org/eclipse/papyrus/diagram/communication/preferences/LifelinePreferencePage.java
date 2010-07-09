@@ -1,16 +1,36 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.communication.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.diagram.communication.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage;
-import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
 
 /**
  * @generated
  */
 public class LifelinePreferencePage extends AbstractPapyrusNodePreferencePage {
+
+	/**
+	 * @generated
+	 */
+	public LifelinePreferencePage() {
+		super();
+		setPreferenceKey(ModelEditPart.MODEL_ID + "_Lifeline");
+	}
 
 	/**
 	 * @generated
@@ -25,14 +45,30 @@ public class LifelinePreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 
-		String elementName = "Lifeline";
-		PreferenceConverter.setDefault(store, PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_FILL), new org.eclipse.swt.graphics.RGB(255, 255, 255));
-		PreferenceConverter.setDefault(store, PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_LINE), new org.eclipse.swt.graphics.RGB(0, 0, 0));
+		String key = ModelEditPart.MODEL_ID + "_Lifeline";
+		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 100);
+		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 25);
+
+		// org.eclipse.jface.preference.PreferenceConverter.setDefault(store,
+		// org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,
+		// org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_FILL),
+		// new org.eclipse.swt.graphics.RGB(255, 255, 255));
+		// org.eclipse.jface.preference.PreferenceConverter.setDefault(store,
+		// org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,
+		// org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_LINE),
+		// new org.eclipse.swt.graphics.RGB(0, 0, 0));
 
 		// Set the default for the gradient
-		store.setDefault(PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.GRADIENT_POLICY), false);
-		GradientPreferenceConverter gradientPreferenceConverter = new GradientPreferenceConverter(new org.eclipse.swt.graphics.RGB(255, 255, 255), new org.eclipse.swt.graphics.RGB(0, 0, 0), 0, 0);
-		store.setDefault(PreferenceConstantHelper.getElementConstant(elementName, PreferenceConstantHelper.COLOR_GRADIENT), gradientPreferenceConverter.getPreferenceValue());
+		// store.setDefault(org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,
+		// org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.GRADIENT_POLICY),false);
+		// org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter
+		// gradientPreferenceConverter = new
+		// org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter(
+		// new org.eclipse.swt.graphics.RGB(255, 255, 255),
+		// new org.eclipse.swt.graphics.RGB(0, 0, 0), 0, 0);
+		// store.setDefault(org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.getElementConstant(elementName,
+		// org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper.COLOR_GRADIENT),
+		// gradientPreferenceConverter.getPreferenceValue());
 
 	}
 

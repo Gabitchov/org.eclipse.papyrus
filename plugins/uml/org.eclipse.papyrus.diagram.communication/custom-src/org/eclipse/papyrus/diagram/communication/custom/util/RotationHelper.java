@@ -19,8 +19,8 @@ import org.eclipse.swt.graphics.RGB;
 
 /**
  * 
- * This is a helper for rotating swt figures, it provides a method for computing an rotation angle provided two points, and methods for rotating an
- * swt image
+ * This is a helper for rotating swt figures, it provides a method for computing
+ * an rotation angle provided two points, and methods for rotating an swt image
  * 
  */
 public class RotationHelper {
@@ -38,15 +38,17 @@ public class RotationHelper {
 
 	/**
 	 * 
-	 * This method calculates the rotation clockwise angle w.r.t the source and target connection
-	 * anchor positions
+	 * This method calculates the rotation clockwise angle w.r.t the source and
+	 * target connection anchor positions
 	 * 
 	 * @param S
 	 *        Source connection anchor
 	 * @param T
 	 *        Target connection anchor
-	 * @return The rotation clockwise angle w.r.t the source and target connection
+	 * @return The rotation clockwise angle w.r.t the source and target
+	 *         connection
 	 */
+
 	public static double calculateRotAngle(Point S, Point T) {
 		double dx = T.x - S.x;
 		double dy = T.y - S.y;
@@ -54,16 +56,25 @@ public class RotationHelper {
 
 		if((dx > 0) && (dy < 0)) {
 			angle = -Math.atan(Math.abs(dy) / Math.abs(dx));
-			System.out.print("(dx > 0) && (dy < 0)\n");
+			// System.out.print("(dx > 0) && (dy < 0)\n");
 		} else if((dx < 0) && (dy < 0)) {
 			angle = -(Math.PI - Math.atan(Math.abs(dy) / Math.abs(dx)));
-			System.out.print("(dx < 0) && (dy < 0)\n");
+			// System.out.print("(dx < 0) && (dy < 0)\n");
 		} else if((dx < 0) && (dy > 0)) {
 			angle = Math.PI - Math.atan(Math.abs(dy) / Math.abs(dx));
-			System.out.print("(dx < 0) && (dy > 0)\n");
+			// System.out.print("(dx < 0) && (dy > 0)\n");
 		} else if((dx > 0) && (dy > 0)) {
 			angle = Math.atan(Math.abs(dy) / dx);
-			System.out.print("((dx > 0) && (dy > 0)\n");
+			// System.out.print("((dx > 0) && (dy > 0)\n");
+		} else if((dx == 0) && (dy < 0)) {
+			angle = -Math.PI / 2;
+			// System.out.print("((dx == 0) && (dy < 0))\n");
+		} else if((dx == 0) && (dy > 0)) {
+			angle = Math.PI / 2;
+			// System.out.print("((dx == 0) && (dy > 0))\n");
+		} else if((dy == 0) && (dx < 0)) {
+			angle = -Math.PI;
+			// System.out.print("((dy == 0) && (dx < 0))\n");
 		}
 
 		return Math.toDegrees(angle);
@@ -99,6 +110,7 @@ public class RotationHelper {
 		g.translate((neww - w) / 2, (newh - h) / 2);
 
 		g.rotate(angle, w / 2, h / 2);
+		// System.out.format("Tilt angle %f\n", Math.toDegrees(angle));
 		// g.rotate(angle, w / 2, h / 2);
 		// java.awt.Shape oldClip = g.getClip();
 		// Rectangle e = new Rectangle().expand(50, 50);
@@ -120,7 +132,7 @@ public class RotationHelper {
 		ImageData data = img.getImageData();
 		BufferedImage bufImg = convertToAWT(data);
 		double angle = Math.toRadians(degree);
-		System.out.format("rotateImage angle %f\n", degree);
+		// System.out.format("rotateImage angle %f\n", degree);
 		return tilt(bufImg, angle);
 	}
 

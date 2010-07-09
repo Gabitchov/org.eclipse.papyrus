@@ -1,16 +1,25 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.edit.parts;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.draw2d.BorderLayout;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.MarginBorder;
-import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -24,7 +33,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -32,10 +40,13 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
+import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.diagram.communication.custom.edit.policies.CommunicationGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.communication.custom.edit.policies.LifelineCreationEditPolicy;
 import org.eclipse.papyrus.diagram.communication.custom.policies.itemsemantic.CustomLifelineItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.diagram.communication.edit.policies.LifelineItemSemanticEditPolicyCN;
+import org.eclipse.papyrus.diagram.communication.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.communication.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.communication.providers.UMLElementTypes;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
@@ -52,7 +63,7 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3001;
+	public static final int VISUAL_ID = 8001;
 
 	/**
 	 * @generated
@@ -81,7 +92,8 @@ ShapeNodeEditPart {
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CommunicationGraphicalNodeEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomLifelineItemSemanticEditPolicyCN());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new LifelineCreationEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that
+		// would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -114,15 +126,14 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		LifelineFigure figure = new LifelineFigure();
-		return primaryShape = figure;
+		return primaryShape = new NodeNamedElementFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public LifelineFigure getPrimaryShape() {
-		return (LifelineFigure)primaryShape;
+	public NodeNamedElementFigure getPrimaryShape() {
+		return (NodeNamedElementFigure)primaryShape;
 	}
 
 	/**
@@ -130,10 +141,9 @@ ShapeNodeEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof LifelineNameEditPart) {
-			((LifelineNameEditPart)childEditPart).setLabel(getPrimaryShape().getFigureLifelineLabelFigure());
+			((LifelineNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-
 
 		return false;
 	}
@@ -179,15 +189,20 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(100, 25);
+		String prefElementId = "Lifeline";
+		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
+		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
+
 		return result;
 	}
 
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so
+	 * you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -201,9 +216,11 @@ ShapeNodeEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane.
-	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * Default implementation treats passed figure as content pane. Respects
+	 * layout one may have set for generated figure.
+	 * 
+	 * @param nodeShape
+	 *        instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -262,34 +279,34 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		types.add(UMLElementTypes.Message_4006);
+	public List<IElementType> getMARelTypesOnSource() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.Message_8009);
 		return types;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List<IElementType> getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if(targetEditPart instanceof InteractionEditPart) {
-			types.add(UMLElementTypes.Message_4006);
+			types.add(UMLElementTypes.Message_8009);
 		}
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.communication.edit.parts.LifelineEditPartCN) {
-			types.add(UMLElementTypes.Message_4006);
+			types.add(UMLElementTypes.Message_8009);
 		}
 		if(targetEditPart instanceof ConstraintEditPartCN) {
-			types.add(UMLElementTypes.Message_4006);
+			types.add(UMLElementTypes.Message_8009);
 		}
 		if(targetEditPart instanceof CommentEditPartCN) {
-			types.add(UMLElementTypes.Message_4006);
+			types.add(UMLElementTypes.Message_8009);
 		}
 		if(targetEditPart instanceof TimeObservationEditPartCN) {
-			types.add(UMLElementTypes.Message_4006);
+			types.add(UMLElementTypes.Message_8009);
 		}
 		if(targetEditPart instanceof DurationObservationEditPartCN) {
-			types.add(UMLElementTypes.Message_4006);
+			types.add(UMLElementTypes.Message_8009);
 		}
 		return types;
 	}
@@ -297,25 +314,15 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.Interaction_2001);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.Lifeline_3001);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.Constraint_3029);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.Comment_3097);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.TimeObservation_3004);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.DurationObservation_3005);
+	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if(relationshipType == UMLElementTypes.Message_8009) {
+			types.add(UMLElementTypes.Interaction_8002);
+			types.add(UMLElementTypes.Lifeline_8001);
+			types.add(UMLElementTypes.Constraint_8004);
+			types.add(UMLElementTypes.Comment_8005);
+			types.add(UMLElementTypes.TimeObservation_8006);
+			types.add(UMLElementTypes.DurationObservation_8007);
 		}
 		return types;
 	}
@@ -323,186 +330,38 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		types.add(UMLElementTypes.Message_4006);
-		types.add(UMLElementTypes.CommentAnnotatedElement_4010);
-		types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
-		types.add(UMLElementTypes.DurationObservationEvent_4012);
-		types.add(UMLElementTypes.TimeObservationEvent_4013);
+	public List<IElementType> getMARelTypesOnTarget() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(5);
+		types.add(UMLElementTypes.Message_8009);
+		types.add(UMLElementTypes.CommentAnnotatedElement_8010);
+		types.add(UMLElementTypes.ConstraintConstrainedElement_8011);
+		types.add(UMLElementTypes.DurationObservationEvent_8012);
+		types.add(UMLElementTypes.TimeObservationEvent_8013);
 		return types;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.Interaction_2001);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.Lifeline_3001);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.Constraint_3029);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.Comment_3097);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.TimeObservation_3004);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.DurationObservation_3005);
-		}
-		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4010) {
-			types.add(UMLElementTypes.Comment_3097);
-		}
-		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
-			types.add(UMLElementTypes.Constraint_3029);
-		}
-		if(relationshipType == UMLElementTypes.DurationObservationEvent_4012) {
-			types.add(UMLElementTypes.DurationObservation_3005);
-		}
-		if(relationshipType == UMLElementTypes.TimeObservationEvent_4013) {
-			types.add(UMLElementTypes.TimeObservation_3004);
+	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if(relationshipType == UMLElementTypes.Message_8009) {
+			types.add(UMLElementTypes.Interaction_8002);
+			types.add(UMLElementTypes.Lifeline_8001);
+			types.add(UMLElementTypes.Constraint_8004);
+			types.add(UMLElementTypes.Comment_8005);
+			types.add(UMLElementTypes.TimeObservation_8006);
+			types.add(UMLElementTypes.DurationObservation_8007);
+		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_8010) {
+			types.add(UMLElementTypes.Comment_8005);
+		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_8011) {
+			types.add(UMLElementTypes.Constraint_8004);
+		} else if(relationshipType == UMLElementTypes.DurationObservationEvent_8012) {
+			types.add(UMLElementTypes.DurationObservation_8007);
+		} else if(relationshipType == UMLElementTypes.TimeObservationEvent_8013) {
+			types.add(UMLElementTypes.TimeObservation_8006);
 		}
 		return types;
-	}
-
-	/**
-	 * @generated
-	 */
-	public class LifelineFigure extends RectangleFigure {
-
-		/**
-		 * @generated
-		 */
-		private WrappingLabel fFigureLifelineLabelFigure;
-
-		/**
-		 * @generated
-		 */
-		private RectangleFigure fFigureLifelineNameContainerFigure;
-
-		/**
-		 * @generated
-		 */
-		private RectangleFigure fFigureExecutionsContainerFigure;
-
-		/**
-		 * @generated
-		 */
-
-		/**
-		 * @generated
-		 */
-		public LifelineFigure() {
-
-			BorderLayout layoutThis = new BorderLayout();
-			this.setLayoutManager(layoutThis);
-
-			this.setFill(false);
-			this.setOutline(false);
-			this.setLineWidth(1);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(100), getMapMode().DPtoLP(25)));
-			createContents();
-		}
-
-		/**
-		 * @generated
-		 */
-		private void createContents() {
-
-
-			fFigureLifelineNameContainerFigure = new RectangleFigure();
-			fFigureLifelineNameContainerFigure.setLineWidth(1);
-
-			fFigureLifelineNameContainerFigure.setBorder(new MarginBorder(getMapMode().DPtoLP(7), getMapMode().DPtoLP(7), getMapMode().DPtoLP(7), getMapMode().DPtoLP(7)));
-
-			this.add(fFigureLifelineNameContainerFigure, BorderLayout.TOP);
-			fFigureLifelineNameContainerFigure.setLayoutManager(new StackLayout());
-
-
-			fFigureLifelineLabelFigure = new WrappingLabel();
-
-
-
-
-			fFigureLifelineLabelFigure.setText("<...>");
-
-
-
-
-			fFigureLifelineLabelFigure.setTextWrap(true);
-
-
-
-
-			fFigureLifelineLabelFigure.setAlignment(PositionConstants.CENTER);
-
-
-
-			fFigureLifelineNameContainerFigure.add(fFigureLifelineLabelFigure);
-
-
-
-
-			fFigureExecutionsContainerFigure = new RectangleFigure();
-			fFigureExecutionsContainerFigure.setFill(false);
-			fFigureExecutionsContainerFigure.setOutline(false);
-			fFigureExecutionsContainerFigure.setLineWidth(1);
-
-			this.add(fFigureExecutionsContainerFigure, BorderLayout.CENTER);
-			fFigureExecutionsContainerFigure.setLayoutManager(new StackLayout());
-
-
-
-
-
-		}
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = false;
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		public WrappingLabel getFigureLifelineLabelFigure() {
-			return fFigureLifelineLabelFigure;
-		}
-
-		/**
-		 * @generated
-		 */
-		public RectangleFigure getFigureLifelineNameContainerFigure() {
-			return fFigureLifelineNameContainerFigure;
-		}
-
-		/**
-		 * @generated
-		 */
-		public RectangleFigure getFigureExecutionsContainerFigure() {
-			return fFigureExecutionsContainerFigure;
-		}
-
 	}
 
 	/**

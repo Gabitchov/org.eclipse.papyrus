@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.edit.policies;
 
 import java.util.Iterator;
@@ -42,7 +55,7 @@ public class ConstraintItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditP
 	 * @generated
 	 */
 	public ConstraintItemSemanticEditPolicyCN() {
-		super(UMLElementTypes.Constraint_3029);
+		super(UMLElementTypes.Constraint_8004);
 	}
 
 	/**
@@ -52,57 +65,45 @@ public class ConstraintItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditP
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
-		for(Iterator it = view.getTargetEdges().iterator(); it.hasNext();) {
+
+		for(Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge)it.next();
-			if(UMLVisualIDRegistry.getVisualID(incomingLink) == MessageEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(incomingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(r));
+			switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
+			case CommentAnnotatedElementEditPart.VISUAL_ID:
+			case ConstraintConstrainedElementEditPart.VISUAL_ID:
+			case ConnectorDurationObservationEditPart.VISUAL_ID:
+			case ConnectorTimeObservationEditPart.VISUAL_ID:
+				DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(destroyRefReq));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				continue;
-			}
-			if(UMLVisualIDRegistry.getVisualID(incomingLink) == CommentAnnotatedElementEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r));
+				break;
+			case MessageEditPart.VISUAL_ID:
+				DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(destroyEltReq));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				continue;
-			}
-			if(UMLVisualIDRegistry.getVisualID(incomingLink) == ConstraintConstrainedElementEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				continue;
-			}
-			if(UMLVisualIDRegistry.getVisualID(incomingLink) == ConnectorDurationObservationEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				continue;
-			}
-			if(UMLVisualIDRegistry.getVisualID(incomingLink) == ConnectorTimeObservationEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				continue;
+				break;
 			}
 		}
-		for(Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
+
+		for(Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge)it.next();
-			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == MessageEditPart.VISUAL_ID) {
-				DestroyElementRequest r = new DestroyElementRequest(outgoingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(r));
+			switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
+			case ConstraintConstrainedElementEditPart.VISUAL_ID:
+				DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null, outgoingLink.getTarget().getElement(), false);
+				cmd.add(new DestroyReferenceCommand(destroyRefReq));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-				continue;
-			}
-			if(UMLVisualIDRegistry.getVisualID(outgoingLink) == ConstraintConstrainedElementEditPart.VISUAL_ID) {
-				DestroyReferenceRequest r = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null, outgoingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(r));
+				break;
+			case MessageEditPart.VISUAL_ID:
+				DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
+				cmd.add(new DestroyElementCommand(destroyEltReq));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-				continue;
+				break;
 			}
 		}
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
-			// there are indirectly referenced children, need extra commands: false
+			// there are indirectly referenced children, need extra commands:
+			// false
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
 			cmd.add(new DestroyElementCommand(req));
@@ -124,19 +125,19 @@ public class ConstraintItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditP
 	 * @generated
 	 */
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if(UMLElementTypes.Message_4006 == req.getElementType()) {
+		if(UMLElementTypes.Message_8009 == req.getElementType()) {
 			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.CommentAnnotatedElement_4010 == req.getElementType()) {
+		if(UMLElementTypes.CommentAnnotatedElement_8010 == req.getElementType()) {
 			return null;
 		}
-		if(UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
+		if(UMLElementTypes.ConstraintConstrainedElement_8011 == req.getElementType()) {
 			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.DurationObservationEvent_4012 == req.getElementType()) {
+		if(UMLElementTypes.DurationObservationEvent_8012 == req.getElementType()) {
 			return null;
 		}
-		if(UMLElementTypes.TimeObservationEvent_4013 == req.getElementType()) {
+		if(UMLElementTypes.TimeObservationEvent_8013 == req.getElementType()) {
 			return null;
 		}
 		return null;
@@ -146,19 +147,19 @@ public class ConstraintItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditP
 	 * @generated
 	 */
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if(UMLElementTypes.Message_4006 == req.getElementType()) {
+		if(UMLElementTypes.Message_8009 == req.getElementType()) {
 			return getGEFWrapper(new MessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.CommentAnnotatedElement_4010 == req.getElementType()) {
+		if(UMLElementTypes.CommentAnnotatedElement_8010 == req.getElementType()) {
 			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
+		if(UMLElementTypes.ConstraintConstrainedElement_8011 == req.getElementType()) {
 			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.DurationObservationEvent_4012 == req.getElementType()) {
+		if(UMLElementTypes.DurationObservationEvent_8012 == req.getElementType()) {
 			return getGEFWrapper(new ConnectorDurationObservationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.TimeObservationEvent_4013 == req.getElementType()) {
+		if(UMLElementTypes.TimeObservationEvent_8013 == req.getElementType()) {
 			return getGEFWrapper(new ConnectorTimeObservationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return null;
@@ -179,8 +180,8 @@ public class ConstraintItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditP
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source
-	 * should be the domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or
+	 * source should be the domain model element associated with this node.
 	 * 
 	 * @generated
 	 */

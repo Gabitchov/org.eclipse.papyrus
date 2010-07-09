@@ -22,7 +22,6 @@ import org.eclipse.swt.graphics.Image;
  */
 public class TimeObservationNodeFigure extends AbstractObservationNodeFigure {
 
-
 	private static final String IMAGE_OBSERVATION = "TimeObservation.gif"; //$NON-NLS-1$
 
 	@Override

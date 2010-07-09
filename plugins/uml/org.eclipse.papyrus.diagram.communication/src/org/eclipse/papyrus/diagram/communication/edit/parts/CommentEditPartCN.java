@@ -1,6 +1,20 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.edit.parts;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
@@ -29,8 +43,10 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure;
+import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.diagram.communication.edit.policies.CommentItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.diagram.communication.edit.policies.OpenDiagramEditPolicy;
+import org.eclipse.papyrus.diagram.communication.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.communication.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.communication.providers.UMLElementTypes;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
@@ -47,7 +63,7 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3097;
+	public static final int VISUAL_ID = 8005;
 
 	/**
 	 * @generated
@@ -75,7 +91,8 @@ ShapeNodeEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that
+		// would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -127,7 +144,6 @@ ShapeNodeEditPart {
 			return true;
 		}
 
-
 		return false;
 	}
 
@@ -172,15 +188,20 @@ ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
+		String prefElementId = "Comment";
+		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
+		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
+		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
+
 		return result;
 	}
 
 	/**
 	 * Creates figure for this edit part.
 	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Body of this method does not depend on settings in generation model so
+	 * you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -194,9 +215,11 @@ ShapeNodeEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane.
-	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * Default implementation treats passed figure as content pane. Respects
+	 * layout one may have set for generated figure.
+	 * 
+	 * @param nodeShape
+	 *        instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -255,53 +278,53 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		types.add(UMLElementTypes.Message_4006);
-		types.add(UMLElementTypes.CommentAnnotatedElement_4010);
+	public List<IElementType> getMARelTypesOnSource() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(UMLElementTypes.Message_8009);
+		types.add(UMLElementTypes.CommentAnnotatedElement_8010);
 		return types;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List<IElementType> getMARelTypesOnSourceAndTarget(IGraphicalEditPart targetEditPart) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if(targetEditPart instanceof InteractionEditPart) {
-			types.add(UMLElementTypes.Message_4006);
+			types.add(UMLElementTypes.Message_8009);
 		}
 		if(targetEditPart instanceof LifelineEditPartCN) {
-			types.add(UMLElementTypes.Message_4006);
+			types.add(UMLElementTypes.Message_8009);
 		}
 		if(targetEditPart instanceof ConstraintEditPartCN) {
-			types.add(UMLElementTypes.Message_4006);
+			types.add(UMLElementTypes.Message_8009);
 		}
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.communication.edit.parts.CommentEditPartCN) {
-			types.add(UMLElementTypes.Message_4006);
+			types.add(UMLElementTypes.Message_8009);
 		}
 		if(targetEditPart instanceof TimeObservationEditPartCN) {
-			types.add(UMLElementTypes.Message_4006);
+			types.add(UMLElementTypes.Message_8009);
 		}
 		if(targetEditPart instanceof DurationObservationEditPartCN) {
-			types.add(UMLElementTypes.Message_4006);
+			types.add(UMLElementTypes.Message_8009);
 		}
 		if(targetEditPart instanceof InteractionEditPart) {
-			types.add(UMLElementTypes.CommentAnnotatedElement_4010);
+			types.add(UMLElementTypes.CommentAnnotatedElement_8010);
 		}
 		if(targetEditPart instanceof LifelineEditPartCN) {
-			types.add(UMLElementTypes.CommentAnnotatedElement_4010);
+			types.add(UMLElementTypes.CommentAnnotatedElement_8010);
 		}
 		if(targetEditPart instanceof ConstraintEditPartCN) {
-			types.add(UMLElementTypes.CommentAnnotatedElement_4010);
+			types.add(UMLElementTypes.CommentAnnotatedElement_8010);
 		}
 		if(targetEditPart instanceof org.eclipse.papyrus.diagram.communication.edit.parts.CommentEditPartCN) {
-			types.add(UMLElementTypes.CommentAnnotatedElement_4010);
+			types.add(UMLElementTypes.CommentAnnotatedElement_8010);
 		}
 		if(targetEditPart instanceof TimeObservationEditPartCN) {
-			types.add(UMLElementTypes.CommentAnnotatedElement_4010);
+			types.add(UMLElementTypes.CommentAnnotatedElement_8010);
 		}
 		if(targetEditPart instanceof DurationObservationEditPartCN) {
-			types.add(UMLElementTypes.CommentAnnotatedElement_4010);
+			types.add(UMLElementTypes.CommentAnnotatedElement_8010);
 		}
 		return types;
 	}
@@ -309,43 +332,22 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.Interaction_2001);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.Lifeline_3001);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.Constraint_3029);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.Comment_3097);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.TimeObservation_3004);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.DurationObservation_3005);
-		}
-		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4010) {
-			types.add(UMLElementTypes.Interaction_2001);
-		}
-		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4010) {
-			types.add(UMLElementTypes.Lifeline_3001);
-		}
-		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4010) {
-			types.add(UMLElementTypes.Constraint_3029);
-		}
-		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4010) {
-			types.add(UMLElementTypes.Comment_3097);
-		}
-		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4010) {
-			types.add(UMLElementTypes.TimeObservation_3004);
-		}
-		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4010) {
-			types.add(UMLElementTypes.DurationObservation_3005);
+	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if(relationshipType == UMLElementTypes.Message_8009) {
+			types.add(UMLElementTypes.Interaction_8002);
+			types.add(UMLElementTypes.Lifeline_8001);
+			types.add(UMLElementTypes.Constraint_8004);
+			types.add(UMLElementTypes.Comment_8005);
+			types.add(UMLElementTypes.TimeObservation_8006);
+			types.add(UMLElementTypes.DurationObservation_8007);
+		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_8010) {
+			types.add(UMLElementTypes.Interaction_8002);
+			types.add(UMLElementTypes.Lifeline_8001);
+			types.add(UMLElementTypes.Constraint_8004);
+			types.add(UMLElementTypes.Comment_8005);
+			types.add(UMLElementTypes.TimeObservation_8006);
+			types.add(UMLElementTypes.DurationObservation_8007);
 		}
 		return types;
 	}
@@ -353,42 +355,30 @@ ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		types.add(UMLElementTypes.Message_4006);
-		types.add(UMLElementTypes.CommentAnnotatedElement_4010);
-		types.add(UMLElementTypes.ConstraintConstrainedElement_4011);
+	public List<IElementType> getMARelTypesOnTarget() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(3);
+		types.add(UMLElementTypes.Message_8009);
+		types.add(UMLElementTypes.CommentAnnotatedElement_8010);
+		types.add(UMLElementTypes.ConstraintConstrainedElement_8011);
 		return types;
 	}
 
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.Interaction_2001);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.Lifeline_3001);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.Constraint_3029);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.Comment_3097);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.TimeObservation_3004);
-		}
-		if(relationshipType == UMLElementTypes.Message_4006) {
-			types.add(UMLElementTypes.DurationObservation_3005);
-		}
-		if(relationshipType == UMLElementTypes.CommentAnnotatedElement_4010) {
-			types.add(UMLElementTypes.Comment_3097);
-		}
-		if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_4011) {
-			types.add(UMLElementTypes.Constraint_3029);
+	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
+		if(relationshipType == UMLElementTypes.Message_8009) {
+			types.add(UMLElementTypes.Interaction_8002);
+			types.add(UMLElementTypes.Lifeline_8001);
+			types.add(UMLElementTypes.Constraint_8004);
+			types.add(UMLElementTypes.Comment_8005);
+			types.add(UMLElementTypes.TimeObservation_8006);
+			types.add(UMLElementTypes.DurationObservation_8007);
+		} else if(relationshipType == UMLElementTypes.CommentAnnotatedElement_8010) {
+			types.add(UMLElementTypes.Comment_8005);
+		} else if(relationshipType == UMLElementTypes.ConstraintConstrainedElement_8011) {
+			types.add(UMLElementTypes.Constraint_8004);
 		}
 		return types;
 	}

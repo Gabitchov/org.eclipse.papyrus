@@ -18,6 +18,7 @@ import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Polyline;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.ConnectionEditPart;
@@ -27,12 +28,11 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.papyrus.diagram.communication.custom.figures.CustomWrappingLabel;
 import org.eclipse.papyrus.diagram.communication.custom.util.RotationHelper;
-import org.eclipse.papyrus.diagram.communication.edit.parts.MessageNameEditPart;
 import org.eclipse.uml2.uml.Message;
 
 /**
- * This EditPartPolicy is used to refresh the position of the label's icon of a message, The icon
- * has to be parallel with the connection
+ * This EditPartPolicy is used to refresh the position of the label's icon of a
+ * message, The icon has to be parallel with the connection
  */
 public class MessageNameEditPolicy extends AbstractEditPolicy implements AnchorListener {
 
@@ -67,8 +67,6 @@ public class MessageNameEditPolicy extends AbstractEditPolicy implements AnchorL
 		super();
 	}
 
-
-
 	/**
 	 * 
 	 * {@inheritDoc}
@@ -80,20 +78,22 @@ public class MessageNameEditPolicy extends AbstractEditPolicy implements AnchorL
 		sourceConnectionAnchor = getSrcConnectionAnchor((ConnectionNodeEditPart)connEditPart);
 
 		if(sourceConnectionAnchor != null) {
-			System.out.println("MessageNameEditPolicy notifyChanged: Get source connection anchor succeed\n");
+			// System.out.println("MessageNameEditPolicy notifyChanged: Get source connection anchor succeed\n");
 			sourceConnectionAnchor.addAnchorListener(this);
-		} else {
-			System.out.println("MessageNameEditPolicy notifyChanged: Get source connection anchor failed \n");
 		}
+		// } else {
+		// System.out.println("MessageNameEditPolicy notifyChanged: Get source connection anchor failed \n");
+		// }
 
 		targetConnectionAnchor = getTargetConnectionAnchor((ConnectionNodeEditPart)connEditPart);
 
 		if(targetConnectionAnchor != null) {
-			System.out.println("MessageNameEditPolicy notifyChanged: Get target connection anchor succeed\n");
+			// System.out.println("MessageNameEditPolicy notifyChanged: Get target connection anchor succeed\n");
 			targetConnectionAnchor.addAnchorListener(this);
-		} else {
-			System.out.println("MessageNameEditPolicy notifyChanged: Get target connection anchor failed \n");
 		}
+		// } else {
+		// System.out.println("MessageNameEditPolicy notifyChanged: Get target connection anchor failed \n");
+		// }
 
 	}
 
@@ -103,16 +103,15 @@ public class MessageNameEditPolicy extends AbstractEditPolicy implements AnchorL
 	 */
 	@Override
 	public void deactivate() {
-		//ConnectionEditPart connEditPart = (ConnectionEditPart)getHost().getParent();
-		//sourceConnectionAnchor = getSrcConnectionAnchor((ConnectionNodeEditPart)connEditPart);
+
 		sourceConnectionAnchor.removeAnchorListener(this);
-		//targetConnectionAnchor = getTargetConnectionAnchor((ConnectionNodeEditPart)connEditPart);
+
 		targetConnectionAnchor.removeAnchorListener(this);
 	}
 
-
 	/**
-	 * This method rotates the message arrow icon to be parallel to the connection
+	 * This method rotates the message arrow icon to be parallel to the
+	 * connection
 	 * 
 	 * @param editPart
 	 *        MessageNameEditPart
@@ -123,26 +122,25 @@ public class MessageNameEditPolicy extends AbstractEditPolicy implements AnchorL
 	 */
 	public void refreshEditPartDisplay(GraphicalEditPart editPart, Point src, Point target) {
 
-		System.out.format("Wrappinglabeltext %s \n", ((MessageNameEditPart)editPart).getEditText());
+		// System.out.format("Wrappinglabeltext %s \n",
+		// ((MessageNameEditPart)editPart).getEditText());
 
 		IFigure figure = (editPart).getFigure();
 
+		// System.out.println("beforeIconSET \n");
 
-		System.out.println("beforeIconSET \n");
-		// Image iconImage = ((CustomWrappingLabel) figure).getIcon(0);
-		System.out.format("ref point SRC x %d , y %d \n", src.x, src.y);
-		System.out.format("loc point Target x %d , y %d \n", target.x, target.y);
-		System.out.format("Angle of rotation is %f \n", RotationHelper.calculateRotAngle(src, target));
+		// System.out.format("ref point SRC x %d , y %d \n", src.x, src.y);
+		// System.out.format("loc point Target x %d , y %d \n", target.x,
+		// target.y);
+		// System.out.format("Angle of rotation is %f \n",
+		// RotationHelper.calculateRotAngle(src, target));
 		((CustomWrappingLabel)figure).setRotation(Math.toRadians(RotationHelper.calculateRotAngle(src, target)));
+		((CustomWrappingLabel)figure).setTextAlignment(PositionConstants.CENTER);
+		((CustomWrappingLabel)figure).setTextStrikeThrough(false);
 
-
-		System.out.println("IconSET \n");
+		// System.out.println("IconSET \n");
 
 	}
-
-
-
-
 
 	/**
 	 * When the anchor is moved the label icon is rotated to be parallel to the
@@ -152,49 +150,25 @@ public class MessageNameEditPolicy extends AbstractEditPolicy implements AnchorL
 	public void anchorMoved(ConnectionAnchor anchor) {
 		// TODO Auto-generated method stub
 
-		//		ConnectionAnchor sc = getSrcConnectionAnchor((ConnectionNodeEditPart)getHost().getParent());
-		//		ConnectionAnchor tc = getTargetConnectionAnchor((ConnectionNodeEditPart)getHost().getParent());
-		//
-		//
-		//		EditPart scEditPart = ((ConnectionNodeEditPart)getHost().getParent()).getSource();
-		//		EditPart tcEditPart = ((ConnectionNodeEditPart)getHost().getParent()).getTarget();
+
 
 		Point sLoc = new Point();
 		Point tLoc = new Point();
 
-		//		Point sLoc = ((org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart)scEditPart).getFigure().getBounds().getCenter().getCopy();
-		//
-		//		Point tLoc = ((org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart)tcEditPart).getFigure().getBounds().getCenter().getCopy();;
-		//List bendpoints = (List)connection.getConnectionRouter().getConstraint(connection);
-		//		if (bendpoints != null && bendpoints.size() >= 2) {
-		//			sRefPoint = ((Bendpoint) bendpoints.get(0)).getLocation().getCopy();
-		//			connection.translateToAbsolute(sRefPoint);
-		//			tRefPoint = ((Bendpoint) bendpoints.get(bendpoints.size() - 1))
-		//					.getLocation().getCopy();
-		//			connection.translateToAbsolute(tRefPoint);
-		//		} else {
-		//			sRefPoint = tc.getReferencePoint();
-		//			tRefPoint = sc.getReferencePoint();
-		//		}
 
-		//Point sLoc = sc.getLocation(sRefPoint);
-		//Point tLoc = tc.getLocation(tRefPoint);
 		ConnectionEditPart connectionEditPart = (ConnectionEditPart)getHost().getParent();
 		if(connectionEditPart.getModel() instanceof Edge) {
 			Edge edge = (Edge)connectionEditPart.getModel();
 			if(edge.getElement() instanceof Message) {
 				if(connectionEditPart.getFigure() instanceof Polyline) {
 					Polyline polyline = (Polyline)connectionEditPart.getFigure();
-					//List bendpoints = (List)polyline.getPoints();
+					// List bendpoints = (List)polyline.getPoints();
 					sLoc = polyline.getPoints().getFirstPoint().getCopy();
 					tLoc = polyline.getPoints().getLastPoint().getCopy();
 				}
 			}
 		}
 
-
-		System.out.format("Anchor moved  SRC x %d , y %d \n", sLoc.x, sLoc.y);
-		System.out.format("Anchor moved Target x %d , y %d \n", tLoc.x, tLoc.y);
 
 		/*
 		 * refreshEditPartDisplay calculates the rotation angle and does the
@@ -213,7 +187,7 @@ public class MessageNameEditPolicy extends AbstractEditPolicy implements AnchorL
 
 	protected IFigure getSourceContainer(Connection conn) {
 		if(conn.getSourceAnchor() != null)
-			//return findContainerFigure(conn.getSourceAnchor().getOwner());
+			// return findContainerFigure(conn.getSourceAnchor().getOwner());
 			return findContainerFigure(conn.getTargetAnchor().getOwner());
 		return null;
 	}
@@ -227,7 +201,7 @@ public class MessageNameEditPolicy extends AbstractEditPolicy implements AnchorL
 
 	protected IFigure getTargetContainer(Connection conn) {
 		if(conn.getTargetAnchor() != null)
-			//return findContainerFigure(conn.getTargetAnchor().getOwner());
+			// return findContainerFigure(conn.getTargetAnchor().getOwner());
 			return findContainerFigure(conn.getSourceAnchor().getOwner());
 		return null;
 	}

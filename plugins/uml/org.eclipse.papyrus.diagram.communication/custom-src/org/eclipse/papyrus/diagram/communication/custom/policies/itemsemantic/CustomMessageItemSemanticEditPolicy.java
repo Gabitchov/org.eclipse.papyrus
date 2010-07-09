@@ -34,29 +34,30 @@ import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEnd;
 
 /**
- * this is a specialization to manage creation of Message, CommentAnnotatedElement,
- * ConstraintConstrainedElement, DurationObservationEvent and TimeObservationEvent
+ * this is a specialization to manage creation of Message,
+ * CommentAnnotatedElement, ConstraintConstrainedElement,
+ * DurationObservationEvent and TimeObservationEvent
  */
 public class CustomMessageItemSemanticEditPolicy extends org.eclipse.papyrus.diagram.communication.edit.policies.MessageItemSemanticEditPolicy {
 
 	@Override
 	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if(UMLElementTypes.Message_4006 == req.getElementType()) {
+		if(UMLElementTypes.Message_8009 == req.getElementType()) {
 			return getGEFWrapper(new CustomMessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 
-		if(UMLElementTypes.CommentAnnotatedElement_4010 == req.getElementType()) {
+		if(UMLElementTypes.CommentAnnotatedElement_8010 == req.getElementType()) {
 			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 
-		if(UMLElementTypes.ConstraintConstrainedElement_4011 == req.getElementType()) {
+		if(UMLElementTypes.ConstraintConstrainedElement_8011 == req.getElementType()) {
 			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 
-		if(UMLElementTypes.DurationObservationEvent_4012 == req.getElementType()) {
+		if(UMLElementTypes.DurationObservationEvent_8012 == req.getElementType()) {
 			return getGEFWrapper(new ConnectorDurationObservationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
-		if(UMLElementTypes.TimeObservationEvent_4013 == req.getElementType()) {
+		if(UMLElementTypes.TimeObservationEvent_8013 == req.getElementType()) {
 			return getGEFWrapper(new ConnectorTimeObservationCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getCompleteCreateRelationshipCommand(req);
@@ -74,7 +75,7 @@ public class CustomMessageItemSemanticEditPolicy extends org.eclipse.papyrus.dia
 
 	@Override
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if(UMLElementTypes.Message_4006 == req.getElementType()) {
+		if(UMLElementTypes.Message_8009 == req.getElementType()) {
 			return getGEFWrapper(new CustomMessageCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		return super.getStartCreateRelationshipCommand(req);

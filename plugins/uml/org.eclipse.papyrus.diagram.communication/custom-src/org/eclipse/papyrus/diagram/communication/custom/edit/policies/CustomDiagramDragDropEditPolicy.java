@@ -27,7 +27,12 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.communication.custom.util.CommunicationLinkMappingHelper;
+import org.eclipse.papyrus.diagram.communication.edit.parts.CommentEditPartCN;
+import org.eclipse.papyrus.diagram.communication.edit.parts.ConstraintEditPartCN;
+import org.eclipse.papyrus.diagram.communication.edit.parts.DurationObservationEditPartCN;
+import org.eclipse.papyrus.diagram.communication.edit.parts.LifelineEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.MessageEditPart;
+import org.eclipse.papyrus.diagram.communication.edit.parts.TimeObservationEditPartCN;
 import org.eclipse.papyrus.diagram.communication.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.communication.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Element;
@@ -39,7 +44,7 @@ import org.eclipse.uml2.uml.Element;
 public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPolicy {
 
 	/** The specific drop node. */
-	//	public int[] specificDropNode = { MessageEditPart.VISUAL_ID };
+	// public int[] specificDropNode = { MessageEditPart.VISUAL_ID };
 
 	public CustomDiagramDragDropEditPolicy() {
 		super(CommunicationLinkMappingHelper.getInstance());
@@ -102,6 +107,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		// TODO Auto-generated method stub
 		Set<Integer> elementsVisualId = new HashSet<Integer>();
 		elementsVisualId.add(MessageEditPart.VISUAL_ID);
+		elementsVisualId.add(CommentEditPartCN.VISUAL_ID);
+		elementsVisualId.add(ConstraintEditPartCN.VISUAL_ID);
+		elementsVisualId.add(LifelineEditPartCN.VISUAL_ID);
+		elementsVisualId.add(TimeObservationEditPartCN.VISUAL_ID);
+		elementsVisualId.add(DurationObservationEditPartCN.VISUAL_ID);
 		// handle nodes on messages (no visual ID detected for them)
 		elementsVisualId.add(-1);
 		return elementsVisualId;

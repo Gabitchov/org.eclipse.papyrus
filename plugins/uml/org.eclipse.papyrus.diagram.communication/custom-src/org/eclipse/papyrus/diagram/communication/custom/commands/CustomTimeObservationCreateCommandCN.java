@@ -19,7 +19,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.papyrus.diagram.communication.edit.commands.TimeObservationCreateCommandCN;
-import org.eclipse.papyrus.diagram.communication.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.communication.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.TimeObservation;
 import org.eclipse.uml2.uml.UMLFactory;
@@ -50,14 +50,12 @@ public class CustomTimeObservationCreateCommandCN extends TimeObservationCreateC
 		Interaction owner = (Interaction)getElementToEdit();
 		owner.getNearestPackage().getPackagedElements().add(newElement);
 
-		UMLElementTypes.init_TimeObservation_3004(newElement);
+		ElementInitializers.getInstance().init_TimeObservation_8006(newElement);
 
 		doConfigure(newElement, monitor, info);
 
 		((CreateElementRequest)getRequest()).setNewElement(newElement);
 		return CommandResult.newOKCommandResult(newElement);
 	}
-
-
 
 }

@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.edit.policies;
 
 import java.io.IOException;
@@ -73,13 +86,16 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 		 * @generated
 		 */
 		OpenDiagramCommand(HintedDiagramLinkStyle linkStyle) {
-			// editing domain is taken for original diagram, 
-			// if we open diagram from another file, we should use another editing domain
+			// editing domain is taken for original diagram,
+			// if we open diagram from another file, we should use another
+			// editing domain
 			super(TransactionUtil.getEditingDomain(linkStyle), Messages.CommandName_OpenDiagram, null);
 			diagramFacet = linkStyle;
 		}
 
-		// FIXME canExecute if  !(readOnly && getDiagramToOpen == null), i.e. open works on ro diagrams only when there's associated diagram already
+		// FIXME canExecute if !(readOnly && getDiagramToOpen == null), i.e.
+		// open works on ro diagrams only when there's associated diagram
+		// already
 
 		/**
 		 * @generated
@@ -91,7 +107,7 @@ public class OpenDiagramEditPolicy extends OpenEditPolicy {
 					diagram = intializeNewDiagram();
 				}
 				URI uri = EcoreUtil.getURI(diagram);
-				String editorName = uri.lastSegment() + "#" + diagram.eResource().getContents().indexOf(diagram); //$NON-NLS-1$
+				String editorName = uri.lastSegment() + '#' + diagram.eResource().getContents().indexOf(diagram);
 				IEditorInput editorInput = new URIEditorInput(uri, editorName);
 				IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 				page.openEditor(editorInput, getEditorID());

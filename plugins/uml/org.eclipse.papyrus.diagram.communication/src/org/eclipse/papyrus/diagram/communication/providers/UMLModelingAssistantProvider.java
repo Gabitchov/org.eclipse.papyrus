@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.diagram.communication.providers;
 
 import java.util.ArrayList;
@@ -41,18 +54,18 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart)host.getAdapter(IGraphicalEditPart.class);
-		if(editPart instanceof InteractionCompartmentEditPart) {
-			ArrayList types = new ArrayList(5);
-			types.add(UMLElementTypes.Lifeline_3001);
-			types.add(UMLElementTypes.Comment_3097);
-			types.add(UMLElementTypes.Constraint_3029);
-			types.add(UMLElementTypes.TimeObservation_3004);
-			types.add(UMLElementTypes.DurationObservation_3005);
+		if(editPart instanceof ModelEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(1);
+			types.add(UMLElementTypes.Interaction_8002);
 			return types;
 		}
-		if(editPart instanceof ModelEditPart) {
-			ArrayList types = new ArrayList(1);
-			types.add(UMLElementTypes.Interaction_2001);
+		if(editPart instanceof InteractionCompartmentEditPart) {
+			ArrayList<IElementType> types = new ArrayList<IElementType>(5);
+			types.add(UMLElementTypes.Lifeline_8001);
+			types.add(UMLElementTypes.Comment_8005);
+			types.add(UMLElementTypes.Constraint_8004);
+			types.add(UMLElementTypes.TimeObservation_8006);
+			types.add(UMLElementTypes.DurationObservation_8007);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -215,9 +228,9 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 			return null;
 		}
 		Diagram diagram = (Diagram)editPart.getRoot().getContents().getModel();
-		Collection elements = new HashSet();
-		for(Iterator it = diagram.getElement().eAllContents(); it.hasNext();) {
-			EObject element = (EObject)it.next();
+		HashSet<EObject> elements = new HashSet<EObject>();
+		for(Iterator<EObject> it = diagram.getElement().eAllContents(); it.hasNext();) {
+			EObject element = it.next();
 			if(isApplicableElement(element, types)) {
 				elements.add(element);
 			}
