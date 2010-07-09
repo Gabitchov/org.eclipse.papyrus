@@ -18,7 +18,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import javax.swing.border.LineBorder;
+
 import org.eclipse.draw2d.AbstractLayout;
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.FigureListener;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
@@ -30,6 +33,7 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.papyrus.diagram.common.figure.layout.PropertiesCompartmentLayoutManager;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.swt.graphics.Image;
 
@@ -370,7 +374,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		stereotypePropertiesContent = new StereotypePropertiesCompartment();
 		stereotypePropertiesContent.setFill(false);
 		stereotypePropertiesContent.setLineWidth(0);
-		stereotypePropertiesContent.setBorder(null);
+		stereotypePropertiesContent.setBorder( null);
 		stereotypePropertiesContent.setLayoutManager(getPropertiesCompartmentLayout());
 		getStereotypePropertiesCompartmentContainer().add(stereotypePropertiesContent, getStereotypePropertiesCompartmentConstraint(), getStereotypePropertiesCompartmentPosition());
 	}
@@ -382,7 +386,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * @return the layout
 	 */
 	protected LayoutManager getPropertiesCompartmentLayout() {
-		return new PropertiesCompatmentLayoutManager();
+		return new PropertiesCompartmentLayoutManager();
 	}
 
 	private void fillStereotypePropertiesInCompartment(String stereotypeProperties) {
@@ -879,7 +883,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 *        the string to be displayed.
 	 */
 	public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
-		if(stereotypeProperties == null) {
+		if(stereotypeProperties == null||stereotypeProperties.trim()=="") {
 			// remove figure of stereotype properties compartment
 			if(this.stereotypePropertiesContent != null) {
 				getStereotypePropertiesCompartmentContainer().remove(this.stereotypePropertiesContent);
@@ -957,53 +961,5 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 		this.iconLabel.setIcon(image);
 	}
 
-	/**
-	 * @deprecated use org.eclipse.papyrus.diagram.common.figure.layout.PropertiesCompartmentLayoutManager instead
-	 */
-	private class PropertiesCompatmentLayoutManager extends AbstractLayout {
-
-		/**
-		 * 
-		 * {@inheritDoc}
-		 */
-		@Override
-		protected Dimension calculatePreferredSize(IFigure container, int hint, int hint2) {
-
-			int minimumWith = 0;
-			int minimumHeight = 0;
-			// display name
-			for(int i = 0; i < container.getChildren().size(); i++) {
-				minimumHeight = minimumHeight + ((IFigure)container.getChildren().get(i)).getPreferredSize().height;
-			}
-
-			return new Dimension(minimumWith, minimumHeight);
-		}
-
-		/**
-		 * 
-		 * {@inheritDoc}
-		 */
-		public void layout(IFigure container) {
-			List childrenList = container.getChildren();
-			for(int i = 0; i < container.getChildren().size(); i++) {
-				Rectangle bound = new Rectangle(((IFigure)childrenList.get(i)).getBounds());
-				bound.setSize(((IFigure)childrenList.get(i)).getPreferredSize());
-				if(i > 0) {
-					bound.y = ((IFigure)childrenList.get(i - 1)).getBounds().getBottomLeft().y - 1;
-					bound.x = getBounds().x;
-					bound.y = ((IFigure)childrenList.get(i - 1)).getBounds().getBottomLeft().x - 1;
-					bound.width = container.getBounds().width;
-
-				} else {
-					bound.x = container.getBounds().x;
-					bound.y = container.getBounds().y;
-					bound.width = container.getBounds().width;
-
-				}
-				((IFigure)childrenList.get(i)).setBounds(bound);
-			}
-
-		}
-
-	}
+	
 }

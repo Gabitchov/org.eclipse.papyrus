@@ -13,6 +13,7 @@ package org.eclipse.papyrus.diagram.common.figure.node;
 import java.util.List;
 
 import org.eclipse.draw2d.AbstractLayout;
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
@@ -215,9 +216,12 @@ public class PackageFigure extends NodeNamedElementFigure {
 			graphics.fillGradient(getPackageableElementFigure().getBounds(), isVertical);
 		} else {
 			graphics.setBackgroundColor(getBackgroundColor());
-			graphics.setForegroundColor(getForegroundColor());
+			graphics.setForegroundColor(getBorderColor());
 			graphics.fillRectangle(getHeader());
 			graphics.fillRectangle(getPackageableElementFigure().getBounds());
 		}
+		graphics.setForegroundColor(getBorderColor());
+		graphics.setLineWidth(1);
+		graphics.drawRectangle(getHeader());
 	}
 }

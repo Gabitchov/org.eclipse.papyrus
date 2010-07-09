@@ -19,6 +19,8 @@ import org.eclipse.draw2d.geometry.Rectangle;
 
 
 public class PropertiesCompartmentLayoutManager extends AbstractLayout {
+	protected static int MARGIN_X=5;
+	protected static int MARGIN_Y=5;
 
 	/**
 	 * 
@@ -31,10 +33,11 @@ public class PropertiesCompartmentLayoutManager extends AbstractLayout {
 		int minimumHeight = 0;
 		// display name
 		for(int i = 0; i < container.getChildren().size(); i++) {
-			minimumHeight = minimumHeight + ((IFigure)container.getChildren().get(i)).getPreferredSize().height;
+			minimumHeight = minimumHeight + ((IFigure)container.getChildren().get(i)).getPreferredSize().height+MARGIN_Y;
+			minimumWith= Math.max(minimumWith, ((IFigure)container.getChildren().get(i)).getPreferredSize().width);
 		}
 
-		return new Dimension(minimumWith, minimumHeight);
+		return new Dimension(minimumWith+MARGIN_X, minimumHeight+MARGIN_Y);
 	}
 
 	/**
@@ -50,11 +53,12 @@ public class PropertiesCompartmentLayoutManager extends AbstractLayout {
 				bound.x = container.getBounds().x;
 				bound.y = ((IFigure)childrenList.get(i - 1)).getBounds().getBottomLeft().y - 1;
 				bound.width = container.getBounds().width;
-
+				bound.height=bound.height+MARGIN_Y;
 			} else {
 				bound.x = container.getBounds().x;
 				bound.y = container.getBounds().y;
 				bound.width = container.getBounds().width;
+				bound.height=bound.height+MARGIN_Y;
 
 			}
 			((IFigure)childrenList.get(i)).setBounds(bound);

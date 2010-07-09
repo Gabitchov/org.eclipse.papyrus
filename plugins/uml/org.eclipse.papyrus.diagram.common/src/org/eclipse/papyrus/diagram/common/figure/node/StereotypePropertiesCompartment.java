@@ -13,9 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.figure.node;
 
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
+import org.eclipse.draw2d.geometry.Point;
 
 /**
  * Figure for the display of the properties of stereotypes
@@ -29,10 +31,25 @@ public class StereotypePropertiesCompartment extends RectangleFigure {
 	 */
 	public void paint(Graphics graphics) {
 		paintChildren(graphics);
-		graphics.setForegroundColor(getForegroundColor());
+		IFigure parentFigure=getParent();
+		if(parentFigure instanceof PapyrusNodeFigure){
+			graphics.setForegroundColor(((PapyrusNodeFigure)parentFigure).getBorderColor());
+			graphics.setBackgroundColor(((PapyrusNodeFigure)parentFigure).getBorderColor());
+		}
 		if (upperLine){
 		for(int i = 0; i < getChildren().size(); i++) {
-			graphics.drawLine(((IFigure)getChildren().get(i)).getBounds().getTopLeft(), ((IFigure)getChildren().get(i)).getBounds().getTopRight());
+			Point source= new Point(parentFigure.getBounds().x, ((IFigure)getChildren().get(i)).getBounds().getTopLeft().y);
+			Point target=null;
+			if( parentFigure instanceof PackageFigure){
+				target=new Point(((PackageFigure)(parentFigure)).getHeader().x+((PackageFigure)(parentFigure)).getHeader().width, ((IFigure)getChildren().get(i)).getBounds().getTopRight().y);
+				
+			}
+			else{	
+				target=new Point(parentFigure.getBounds().x+parentFigure.getBounds().width, ((IFigure)getChildren().get(i)).getBounds().getTopRight().y);
+			}
+			//graphics.setForegroundColor(ColorConstants.black);
+			graphics.setLineWidth(1);
+				graphics.drawLine(source, target);
 		}
 		}
 	}
