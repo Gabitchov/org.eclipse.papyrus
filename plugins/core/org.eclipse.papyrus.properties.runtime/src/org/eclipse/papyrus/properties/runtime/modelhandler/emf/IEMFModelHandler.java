@@ -88,4 +88,13 @@ public interface IEMFModelHandler extends IConfigurableDescriptor {
 	 *        the adapter in charge of notification
 	 */
 	public void handleNotifyChange(Notification notification, List<EObject> objects, Adapter adapter);
+
+	/**
+	 * Returns available values for the feature managed by the model handler
+	 * 
+	 * @param object
+	 *        the list of available values
+	 * @return the list of available values
+	 */
+	public Object getAvailableValues(EObject object);
 }

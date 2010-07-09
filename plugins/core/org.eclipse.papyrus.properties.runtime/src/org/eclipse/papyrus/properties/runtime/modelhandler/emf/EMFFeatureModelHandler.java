@@ -14,9 +14,15 @@ package org.eclipse.papyrus.properties.runtime.modelhandler.emf;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 import org.eclipse.swt.graphics.Image;
@@ -29,6 +35,9 @@ public abstract class EMFFeatureModelHandler implements IEMFModelHandler {
 
 	/** name of the feature to edit */
 	private final String featureName;
+
+	/** factory used by EMF objects */
+	protected AdapterFactory factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
 	/**
 	 * Creates a new EMFFeatureModelHandler.
@@ -116,6 +125,34 @@ public abstract class EMFFeatureModelHandler implements IEMFModelHandler {
 	 */
 	public IEMFModelHandlerState createState(boolean readOnly) {
 		return new EMFFeatureModelHandlerState(this, readOnly);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Object getAvailableValues(EObject eObject) {
+		EClass eClass = eObject.eClass();
+		if(eClass == null) {
+			Activator.log.debug("problems during initialization, looking for availables values");
+			return null;
+		}
+		EStructuralFeature feature = getFeatureByName(eObject);
+		if(!(feature instanceof EReference)) {
+			Activator.log.debug("feature is not a reference, looking for availables values: " + feature);
+			return null;
+		}
+
+		IItemPropertySource itemPropertySource = (IItemPropertySource)factory.adapt(eObject, IItemPropertySource.class);
+		if(itemPropertySource == null) {
+			Activator.log.debug("impossible to find item Property source for " + eObject);
+			return null;
+		}
+		IItemPropertyDescriptor itemPropertyDescriptor = itemPropertySource.getPropertyDescriptor(eObject, feature);
+		if(itemPropertyDescriptor == null) {
+			Activator.log.debug("impossible to find item Property descriptor for " + eObject + " and " + feature);
+			return null;
+		}
+		return itemPropertyDescriptor.getChoiceOfValues(eObject);
 	}
 
 	/**

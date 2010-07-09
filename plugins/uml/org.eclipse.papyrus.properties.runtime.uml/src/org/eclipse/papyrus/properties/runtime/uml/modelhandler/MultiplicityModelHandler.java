@@ -88,7 +88,7 @@ public class MultiplicityModelHandler implements IEMFModelHandler {
 	 */
 	public void completeEditorDescriptor(IPropertyEditorDescriptor descriptor, List<EObject> objectToEdit) {
 		if(descriptor instanceof IBoundedValuesPropertyEditorDescriptor) {
-			((IBoundedValuesPropertyEditorDescriptor)descriptor).setAvailableValues(getAvailableValues());
+			((IBoundedValuesPropertyEditorDescriptor)descriptor).setAvailableValues(getAvailableValues(null));
 		} else {
 			Activator.log.warn(descriptor + "could not be completed.");
 		}
@@ -141,11 +141,9 @@ public class MultiplicityModelHandler implements IEMFModelHandler {
 	}
 
 	/**
-	 * Returns the availableValues for the multiplicity controller
-	 * 
-	 * @return the availableValues for the multiplicity controller
+	 * {@inheritDoc}
 	 */
-	public List<String> getAvailableValues() {
+	public List<String> getAvailableValues(EObject objects) {
 		return availableValues;
 	}
 

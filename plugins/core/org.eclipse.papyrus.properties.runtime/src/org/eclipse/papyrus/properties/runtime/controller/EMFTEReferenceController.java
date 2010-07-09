@@ -27,8 +27,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
-import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
@@ -69,27 +67,7 @@ public class EMFTEReferenceController extends EMFTStructuralFeatureController im
 	 * {@inheritDoc}
 	 */
 	public Object getAvailableValues() {
-		EClass eClass = retrieveEClass();
-		if(eClass == null || getObjectsToEdit() == null || getObjectsToEdit().size() == 0 || !(getModelHandler() instanceof EMFFeatureModelHandler)) {
-			Activator.log.debug("problems during initialization, looking for availables values");
-			return getEditingDomain().getResourceSet();
-		}
-		EObject eObject = getObjectsToEdit().get(0);
-		EStructuralFeature feature = ((EMFFeatureModelHandler)getModelHandler()).getFeatureByName(eObject);
-		if(!(feature instanceof EReference)) {
-			Activator.log.debug("feature is not a reference, looking for availables values: " + feature);
-			return getEditingDomain().getResourceSet();
-		}
-
-		IItemPropertySource itemPropertySource = (IItemPropertySource)factory.adapt(eObject, IItemPropertySource.class);
-		if(itemPropertySource == null) {
-			return getEditingDomain().getResourceSet();
-		}
-		IItemPropertyDescriptor itemPropertyDescriptor = itemPropertySource.getPropertyDescriptor(eObject, feature);
-		if(itemPropertyDescriptor == null) {
-			return getEditingDomain().getResourceSet();
-		}
-		return itemPropertyDescriptor.getChoiceOfValues(eObject);
+		return getModelHandler().getAvailableValues(getObjectsToEdit().get(0));
 	}
 
 	/**

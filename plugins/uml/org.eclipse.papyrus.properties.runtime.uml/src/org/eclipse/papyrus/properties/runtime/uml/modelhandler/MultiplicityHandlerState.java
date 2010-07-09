@@ -91,7 +91,7 @@ public class MultiplicityHandlerState extends AbstractState implements IEMFModel
 		Element node = document.createElement("feature");
 		node.setAttribute("handlerID", getDescriptor().getId());
 
-		for(String availableValue : getDescriptor().getAvailableValues()) {
+		for(String availableValue : getDescriptor().getAvailableValues(null)) { // no problem with null, as the method returns a constant value
 			node.appendChild(generateAvailableValue(availableValue, document));
 		}
 		return node;

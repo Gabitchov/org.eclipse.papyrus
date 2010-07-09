@@ -13,7 +13,12 @@ package org.eclipse.papyrus.properties.runtime.modelhandler.emf;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 import org.eclipse.uml2.uml.Element;
@@ -33,12 +38,57 @@ public abstract class EMFStereotypeFeatureModelHandler extends EMFFeatureModelHa
 	/**
 	 * Creates a new EMFStereotypeFeatureModelHandler.
 	 * 
+	 * @param stereotypeName
+	 *        name of the stereotype to which this feature belongs
+	 * 
 	 * @param featureName
 	 *        he name of the feature to edit
 	 */
 	public EMFStereotypeFeatureModelHandler(String stereotypeName, String featureName) {
 		super(featureName);
 		this.stereotypeName = stereotypeName;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public EStructuralFeature getFeatureByName(EObject objectToEdit) {
+		if(objectToEdit instanceof Element) {
+			return EMFUtils.getStereotypeFeatureByName((Element)objectToEdit, retrieveStereotype((Element)objectToEdit), getFeatureName());
+		}
+		Activator.log.error("Impossible to cast into UML element: " + objectToEdit, null);
+		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Object getAvailableValues(EObject eObject) {
+		EClass eClass = eObject.eClass();
+		if(eClass == null) {
+			Activator.log.debug("problems during initialization, looking for availables values");
+			return null;
+		}
+		EStructuralFeature feature = getFeatureByName(eObject);
+		if(!(feature instanceof EReference)) {
+			Activator.log.debug("feature is not a reference, looking for availables values: " + feature);
+			return null;
+		}
+
+		IItemPropertySource itemPropertySource = (IItemPropertySource)factory.adapt(retrieveStereotype((Element)eObject), IItemPropertySource.class);
+		if(itemPropertySource == null) {
+			Activator.log.debug("impossible to find item Property source for " + retrieveStereotype((Element)eObject));
+			return null;
+		}
+		// FIXME: problem here to find the right property descriptor
+		IItemPropertyDescriptor itemPropertyDescriptor = itemPropertySource.getPropertyDescriptor(retrieveStereotype((Element)eObject), feature);
+		if(itemPropertyDescriptor == null) {
+			Activator.log.debug("impossible to find item Property descriptor for " + retrieveStereotype((Element)eObject) + " and " + feature);
+			return null;
+		}
+		return itemPropertyDescriptor.getChoiceOfValues(eObject);
 	}
 
 	/**
