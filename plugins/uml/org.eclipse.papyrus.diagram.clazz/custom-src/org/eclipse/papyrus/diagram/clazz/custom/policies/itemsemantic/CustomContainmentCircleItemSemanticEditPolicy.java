@@ -248,13 +248,25 @@ public class CustomContainmentCircleItemSemanticEditPolicy extends ContainmentCi
 		@Override
 		public IStatus execute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 			String messageFormat = "You are about to delete a Containment Link - %s and its contained elements will be deleted as well. Do you really want to delete it?";
-			String message = String.format(messageFormat, myTargetNames.toString());
+			String message = String.format(messageFormat, getNamesString());
 			NotificationBuilder builder = NotificationBuilder.createYesNo(message);
 			int dialogResult = ((PopupNotification)builder.run()).getResult();
 			if(dialogResult == SWT.YES) {
 				return Status.OK_STATUS;
 			}
 			return Status.CANCEL_STATUS;
+		}
+		
+		private String getNamesString() {
+			String namesString = "";
+			Iterator<String> namesIterator = myTargetNames.iterator();
+			while (namesIterator.hasNext()) {
+				namesString+="'" + namesIterator.next() + "'";
+				if (namesIterator.hasNext()) {
+					namesString += ", ";
+				}
+			}
+			return namesString;
 		}
 
 		@Override
