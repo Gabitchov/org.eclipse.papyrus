@@ -538,6 +538,24 @@
 		<context enablesFor="1">
 			<elementClass name="org.eclipse.uml2.uml.Association"/>
 		</context>
+		<section adapterId="Semantic" id="section_Single_Association" tabId="basicTab">
+			<replacedSections>
+				<replacedSection id="section_Multiple_NamedElement"/>
+				<replacedSection id="section_Single_Element"/>
+			</replacedSections>
+			<fragment id="fragment_Single_NamedElement">
+				<context enablesFor="1">
+					<elementClass name="org.eclipse.uml2.uml.NamedElement"/>
+				</context>
+				<content>
+					<container label="">
+						<controller predefinedId="UML_NamedElement_name"/>
+						<controller predefinedId="UML_NamedElement_visibility"/>
+						<layout kind="Grid" numColumns="1" sameWidth="true"/>
+					</container>
+				</content>
+			</fragment>
+		</section>		
 		<subFeatureSection adapterId="Semantic" id="associationEndSection" maxColumn="2" tabId="basicTab">
 			<replacedSections>
 				<replacedSection id="section_Multiple_Association"/>
@@ -573,15 +591,7 @@
 							</editor>
 						</controller>
 						<controller predefinedId="UML_Property_aggregation"/>
-						<controller id="emftStructuralFeatureController">
-							<feature handlerID="Multiplicity">
-								<availableValue value="0..1"/>
-								<availableValue value="1..1"/>
-								<availableValue value="0..*"/>
-								<availableValue value="1..*"/>
-							</feature>
-							<editor id="org.eclipse.papyrus.properties.runtime.uml.multiplicityPropertyEditor" label="Multiplicity:" labelPosition="16384"/>
-						</controller>
+						<controller id="emftStructuralFeatureController"><feature handlerID="Multiplicity"><availableValue value="0..1"/><availableValue value="1..1"/><availableValue value="0..*"/><availableValue value="1..*"/></feature><editor id="org.eclipse.papyrus.properties.runtime.uml.multiplicityPropertyEditor" label="Multiplicity:" labelPosition="16384"/></controller>
 					</groupContainer>
 				</content>
 			</fragment>
@@ -1252,9 +1262,9 @@
 					</container>
 					<container label="">
 						<controller predefinedId="UML_Parameter_defaultValue"/>
-						<controller predefinedId="UML_MultiplicityElement_lowerValue"/>
+						<controller id="emftStructuralFeatureController"><feature handlerID="Multiplicity"><availableValue value="0..1"/><availableValue value="1..1"/><availableValue value="0..*"/><availableValue value="1..*"/></feature><editor id="org.eclipse.papyrus.properties.runtime.uml.multiplicityPropertyEditor" label="Multiplicity:" labelPosition="16384"/></controller>
 						<controller predefinedId="UML_TypedElement_type"/>
-						<controller predefinedId="UML_MultiplicityElement_upperValue"/>
+						
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -1316,8 +1326,8 @@
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 					<container label="">
-						<controller predefinedId="UML_MultiplicityElement_lowerValue"/>
-						<controller predefinedId="UML_MultiplicityElement_upperValue"/>
+						<controller id="emftStructuralFeatureController"><feature handlerID="Multiplicity"><availableValue value="0..1"/><availableValue value="1..1"/><availableValue value="0..*"/><availableValue value="1..*"/></feature><editor id="org.eclipse.papyrus.properties.runtime.uml.multiplicityPropertyEditor" label="Multiplicity:" labelPosition="16384"/></controller>
+						
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -1424,8 +1434,8 @@
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 					<container label="">
-						<controller predefinedId="UML_MultiplicityElement_lowerValue"/>
-						<controller predefinedId="UML_MultiplicityElement_upperValue"/>
+						<controller id="emftStructuralFeatureController"><feature handlerID="Multiplicity"><availableValue value="0..1"/><availableValue value="1..1"/><availableValue value="0..*"/><availableValue value="1..*"/></feature><editor id="org.eclipse.papyrus.properties.runtime.uml.multiplicityPropertyEditor" label="Multiplicity:" labelPosition="16384"/></controller>
+						
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -1499,9 +1509,9 @@
 					</container>
 					<container label="">
 						<controller predefinedId="UML_Property_defaultValue"/>
-						<controller predefinedId="UML_MultiplicityElement_lowerValue"/>
+						<controller id="emftStructuralFeatureController"><feature handlerID="Multiplicity"><availableValue value="0..1"/><availableValue value="1..1"/><availableValue value="0..*"/><availableValue value="1..*"/></feature><editor id="org.eclipse.papyrus.properties.runtime.uml.multiplicityPropertyEditor" label="Multiplicity:" labelPosition="16384"/></controller>
 						<controller predefinedId="UML_TypedElement_type"/>
-						<controller predefinedId="UML_MultiplicityElement_upperValue"/>
+						
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 					<container label="">
@@ -3193,9 +3203,9 @@
 					</container>
 					<container label="">
 						<controller predefinedId="UML_Property_defaultValue"/>
-						<controller predefinedId="UML_MultiplicityElement_lowerValue"/>
+						<controller id="emftStructuralFeatureController"><feature handlerID="Multiplicity"><availableValue value="0..1"/><availableValue value="1..1"/><availableValue value="0..*"/><availableValue value="1..*"/></feature><editor id="org.eclipse.papyrus.properties.runtime.uml.multiplicityPropertyEditor" label="Multiplicity:" labelPosition="16384"/></controller>
 						<controller predefinedId="UML_TypedElement_type"/>
-						<controller predefinedId="UML_MultiplicityElement_upperValue"/>
+						
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 					<container label="">
@@ -3784,9 +3794,9 @@
 					</container>
 					<container label="">
 						<controller predefinedId="UML_Property_defaultValue"/>
-						<controller predefinedId="UML_MultiplicityElement_lowerValue"/>
+						<controller id="emftStructuralFeatureController"><feature handlerID="Multiplicity"><availableValue value="0..1"/><availableValue value="1..1"/><availableValue value="0..*"/><availableValue value="1..*"/></feature><editor id="org.eclipse.papyrus.properties.runtime.uml.multiplicityPropertyEditor" label="Multiplicity:" labelPosition="16384"/></controller>
 						<controller predefinedId="UML_TypedElement_type"/>
-						<controller predefinedId="UML_MultiplicityElement_upperValue"/>
+						
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 					<container label="">
@@ -4270,9 +4280,9 @@
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
 					<container label="">
-						<controller predefinedId="UML_MultiplicityElement_lowerValue"/>
+						<controller id="emftStructuralFeatureController"><feature handlerID="Multiplicity"><availableValue value="0..1"/><availableValue value="1..1"/><availableValue value="0..*"/><availableValue value="1..*"/></feature><editor id="org.eclipse.papyrus.properties.runtime.uml.multiplicityPropertyEditor" label="Multiplicity:" labelPosition="16384"/></controller>
 						<controller predefinedId="UML_TypedElement_type"/>
-						<controller predefinedId="UML_MultiplicityElement_upperValue"/>
+						
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -6499,9 +6509,9 @@
 						<layout kind="Grid" numColumns="1" sameWidth="true"/>
 					</container>
 					<container label="">
-						<controller predefinedId="UML_MultiplicityElement_lowerValue"/>
+						<controller id="emftStructuralFeatureController"><feature handlerID="Multiplicity"><availableValue value="0..1"/><availableValue value="1..1"/><availableValue value="0..*"/><availableValue value="1..*"/></feature><editor id="org.eclipse.papyrus.properties.runtime.uml.multiplicityPropertyEditor" label="Multiplicity:" labelPosition="16384"/></controller>
 						<controller predefinedId="UML_TypedElement_type"/>
-						<controller predefinedId="UML_MultiplicityElement_upperValue"/>
+						
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 				</content>
@@ -6834,11 +6844,11 @@
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 					<container label="">
-						<controller predefinedId="UML_MultiplicityElement_lowerValue"/>
+						<controller id="emftStructuralFeatureController"><feature handlerID="Multiplicity"><availableValue value="0..1"/><availableValue value="1..1"/><availableValue value="0..*"/><availableValue value="1..*"/></feature><editor id="org.eclipse.papyrus.properties.runtime.uml.multiplicityPropertyEditor" label="Multiplicity:" labelPosition="16384"/></controller>
 						<controller predefinedId="UML_ObjectNode_selection"/>
 						<controller predefinedId="UML_TypedElement_type"/>
 						<controller predefinedId="UML_ObjectNode_upperBound"/>
-						<controller predefinedId="UML_MultiplicityElement_upperValue"/>
+						
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 					<container label="">
@@ -6924,11 +6934,11 @@
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 					<container label="">
-						<controller predefinedId="UML_MultiplicityElement_lowerValue"/>
+						<controller id="emftStructuralFeatureController"><feature handlerID="Multiplicity"><availableValue value="0..1"/><availableValue value="1..1"/><availableValue value="0..*"/><availableValue value="1..*"/></feature><editor id="org.eclipse.papyrus.properties.runtime.uml.multiplicityPropertyEditor" label="Multiplicity:" labelPosition="16384"/></controller>
 						<controller predefinedId="UML_ObjectNode_selection"/>
 						<controller predefinedId="UML_TypedElement_type"/>
 						<controller predefinedId="UML_ObjectNode_upperBound"/>
-						<controller predefinedId="UML_MultiplicityElement_upperValue"/>
+						
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 					<container label="">
@@ -7014,11 +7024,11 @@
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 					<container label="">
-						<controller predefinedId="UML_MultiplicityElement_lowerValue"/>
+						<controller id="emftStructuralFeatureController"><feature handlerID="Multiplicity"><availableValue value="0..1"/><availableValue value="1..1"/><availableValue value="0..*"/><availableValue value="1..*"/></feature><editor id="org.eclipse.papyrus.properties.runtime.uml.multiplicityPropertyEditor" label="Multiplicity:" labelPosition="16384"/></controller>
 						<controller predefinedId="UML_ObjectNode_selection"/>
 						<controller predefinedId="UML_TypedElement_type"/>
 						<controller predefinedId="UML_ObjectNode_upperBound"/>
-						<controller predefinedId="UML_MultiplicityElement_upperValue"/>
+						
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 					<container label="">
@@ -7856,11 +7866,11 @@
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 					<container label="">
-						<controller predefinedId="UML_MultiplicityElement_lowerValue"/>
+						<controller id="emftStructuralFeatureController"><feature handlerID="Multiplicity"><availableValue value="0..1"/><availableValue value="1..1"/><availableValue value="0..*"/><availableValue value="1..*"/></feature><editor id="org.eclipse.papyrus.properties.runtime.uml.multiplicityPropertyEditor" label="Multiplicity:" labelPosition="16384"/></controller>
 						<controller predefinedId="UML_ObjectNode_selection"/>
 						<controller predefinedId="UML_TypedElement_type"/>
 						<controller predefinedId="UML_ObjectNode_upperBound"/>
-						<controller predefinedId="UML_MultiplicityElement_upperValue"/>
+						
 						<controller predefinedId="UML_ValuePin_value"/>
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
@@ -14004,11 +14014,11 @@
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 					<container label="">
-						<controller predefinedId="UML_MultiplicityElement_lowerValue"/>
+						<controller id="emftStructuralFeatureController"><feature handlerID="Multiplicity"><availableValue value="0..1"/><availableValue value="1..1"/><availableValue value="0..*"/><availableValue value="1..*"/></feature><editor id="org.eclipse.papyrus.properties.runtime.uml.multiplicityPropertyEditor" label="Multiplicity:" labelPosition="16384"/></controller>
 						<controller predefinedId="UML_ObjectNode_selection"/>
 						<controller predefinedId="UML_TypedElement_type"/>
 						<controller predefinedId="UML_ObjectNode_upperBound"/>
-						<controller predefinedId="UML_MultiplicityElement_upperValue"/>
+						
 						<layout kind="Grid" numColumns="2" sameWidth="true"/>
 					</container>
 					<container label="">
