@@ -113,7 +113,7 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 		case Class5EditPart.VISUAL_ID:
 		case PackageEditPartCN.VISUAL_ID:
 		case ModelEditPartCN.VISUAL_ID:
-			return compartmentDropContainedClass(dropRequest, semanticLink, nodeVISUALID);
+			return dropElementWithContainmentLink(dropRequest, semanticLink, nodeVISUALID);
 		case ModelEditPartTN.VISUAL_ID:
 		case ClassEditPart.VISUAL_ID:
 		case PackageEditPart.VISUAL_ID:
@@ -139,7 +139,7 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 		req.setResizeDirection(request.getResizeDirection());
 		Command cmd = getHost().getCommand(req);
 
-		if(getHost() instanceof PackagePackageableElementCompartment2EditPart || getHost() instanceof PackagePackageableElementCompartmentEditPart || getHost() instanceof ModelEditPart || getHost() instanceof ModelPackageableElementCompartmentEditPart || getHost() instanceof ModelPackageableElementCompartment2EditPart) {
+		if(canHaveContainmentLink()) {
 			cmd = cmd.chain(getDropObjectsCommand(castToDropObjectsRequest(request)));
 		}
 		if(cmd == null || !cmd.canExecute()) {
@@ -147,13 +147,10 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 		}
 
 		return cmd;
+	}
 
-
-		//		Command result = super.getDropCommand(request);
-		//		if(getHost() instanceof PackagePackageableElementCompartment2EditPart || getHost() instanceof PackagePackageableElementCompartmentEditPart || getHost() instanceof ModelEditPart || getHost() instanceof ModelPackageableElementCompartmentEditPart || getHost() instanceof ModelPackageableElementCompartment2EditPart) {
-		//			result.chain(getDropObjectsCommand(castToDropObjectsRequest(request)));
-		//		}
-		//		return result;
+	private boolean canHaveContainmentLink() {
+		return getHost() instanceof PackagePackageableElementCompartment2EditPart || getHost() instanceof PackagePackageableElementCompartmentEditPart || getHost() instanceof ModelEditPart || getHost() instanceof ModelPackageableElementCompartmentEditPart || getHost() instanceof ModelPackageableElementCompartment2EditPart;
 	}
 
 	/**
@@ -299,7 +296,7 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 	 *        is the visual ID of the class
 	 * @return a command to execute
 	 */
-	protected Command compartmentDropContainedClass(DropObjectsRequest dropRequest, Element droppedElement, int nodeVISUALID) {
+	protected Command dropElementWithContainmentLink(DropObjectsRequest dropRequest, Element droppedElement, int nodeVISUALID) {
 		CompositeCommand cc = new CompositeCommand(CONTAINED_CLASS_DROP_TO_COMPARTMENT);
 		cc = getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), droppedElement);
 
