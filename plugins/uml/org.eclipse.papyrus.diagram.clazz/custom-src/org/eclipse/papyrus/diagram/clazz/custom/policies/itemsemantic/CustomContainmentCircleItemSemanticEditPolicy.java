@@ -52,10 +52,9 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.TemplateBindingEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.policies.ContainmentCircleItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
-import org.eclipse.papyrus.ui.toolbox.notification.NotificationRunnable;
-import org.eclipse.papyrus.ui.toolbox.notification.Type;
-import org.eclipse.papyrus.ui.toolbox.notification.builders.IContext;
 import org.eclipse.papyrus.ui.toolbox.notification.builders.NotificationBuilder;
+import org.eclipse.papyrus.ui.toolbox.notification.popups.PopupNotification;
+import org.eclipse.swt.SWT;
 import org.eclipse.uml2.uml.NamedElement;
 
 
@@ -246,38 +245,13 @@ public class CustomContainmentCircleItemSemanticEditPolicy extends ContainmentCi
 			myTargetNames = targetNames;
 		}
 
-		private class NotificationRunnableWithSelectionResult implements NotificationRunnable {
-
-			private final String myLabel;
-
-			private NotificationRunnableWithSelectionResult(String label) {
-				myLabel = label;
-			}
-
-			boolean wasSelected;
-
-			public void run(IContext context) {
-				wasSelected = true;
-			}
-
-			public String getLabel() {
-				return myLabel;
-			}
-
-			public boolean wasSelected() {
-				return wasSelected;
-			}
-		}
-
 		@Override
 		public IStatus execute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-			String messageFormat = "You are about to delete Containment Link, %s and its contained elements will be deleted as well. Do you really want to delete it?";
+			String messageFormat = "You are about to delete a Containment Link - %s and its contained elements will be deleted as well. Do you really want to delete it?";
 			String message = String.format(messageFormat, myTargetNames.toString());
-			NotificationRunnableWithSelectionResult yes = new NotificationRunnableWithSelectionResult("Yes");
-			NotificationRunnableWithSelectionResult no = new NotificationRunnableWithSelectionResult("No");
-			NotificationBuilder builder = new NotificationBuilder().setType(Type.QUESTION).setAsynchronous(true).setTemporary(false).setMessage(message).addAction(yes).addAction(no);
-			builder.run();
-			if(yes.wasSelected()) {
+			NotificationBuilder builder = NotificationBuilder.createYesNo(message);
+			int dialogResult = ((PopupNotification)builder.run()).getResult();
+			if(dialogResult == SWT.YES) {
 				return Status.OK_STATUS;
 			}
 			return Status.CANCEL_STATUS;
