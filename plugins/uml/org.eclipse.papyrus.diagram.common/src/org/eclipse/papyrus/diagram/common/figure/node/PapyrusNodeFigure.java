@@ -206,4 +206,12 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 		super.paintBorder(graphics);
 	}
 
+	@Override
+	public void setLineStyle(int s) {
+		if((getBorder() != null) && (getBorder() instanceof LineBorder)) {
+			((LineBorder)getBorder()).setStyle(s);
+		}
+		super.setLineStyle(s);
+	}
+
 }
