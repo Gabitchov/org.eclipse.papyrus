@@ -29,6 +29,8 @@ public class «editPartClassName» «EXPAND extendsList» «EXPAND implementsLis
 	
 	«EXPAND impl::diagram::editparts::DiagramEditPart::_constructor-»
 	
+	«EXPAND impl::diagram::editparts::DiagramEditPart::_applyClippingStrategy-»
+	
 	«EXPAND createDefaultEditPolicies-»
 	
 	«EXPAND impl::diagram::editparts::DiagramEditPart::createFigure-»

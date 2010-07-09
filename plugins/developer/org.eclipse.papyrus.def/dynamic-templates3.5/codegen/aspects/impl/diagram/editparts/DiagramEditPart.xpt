@@ -25,9 +25,57 @@
 	«EXPAND xpt::Common::generatedMemberComment»
 	public «editPartClassName»(org.eclipse.gmf.runtime.notation.View view) {
 		super(view);
+		
+		«REM» Add clipping strategy settings, see bug313985: https://bugs.eclipse.org/bugs/show_bug.cgi?id=313985«ENDREM»
+		getFigure ().setClippingStrategy (new org.eclipse.draw2d.IClippingStrategy () {
+
+			public org.eclipse.draw2d.geometry.Rectangle[] getClip(org.eclipse.draw2d.IFigure childFigure) {
+				// very inefficient, since it implies several tree traversals. Bit handles modifications of the tree structure
+				// It's a workaround instead of the better solution to fix BorderedNodeFigure (overload and let it return
+				// getExtendedBounds)
+				// See bug 313985 (https://bugs.eclipse.org/bugs/show_bug.cgi?id=313985) for more details
+				applyClippingStrategy (childFigure);
+				if (childFigure instanceof org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure) {
+					return new org.eclipse.draw2d.geometry.Rectangle [] { ((org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure) childFigure).getExtendedBounds () };
+				
+				} else {
+					return new org.eclipse.draw2d.geometry.Rectangle [] { childFigure.getBounds () };
+				}
+			}
+		});		
 	}
 «ENDDEFINE»
 
+«REM» Add clipping strategy settings, see bug313985: https://bugs.eclipse.org/bugs/show_bug.cgi?id=313985«ENDREM»
+«DEFINE _applyClippingStrategy FOR gmfgen::GenDiagram-»
+	«EXPAND xpt::Common::generatedMemberComment»
+	public void applyClippingStrategy (org.eclipse.draw2d.IFigure fig) {
+		boolean hasBorderedNodeChild = false;
+		for (Object child : fig.getChildren ()) {
+			if (child instanceof org.eclipse.draw2d.IFigure) {
+				applyClippingStrategy ((org.eclipse.draw2d.IFigure) child);
+				if (child instanceof org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure) {
+					hasBorderedNodeChild = true;
+				}
+			}
+		}
+		if (hasBorderedNodeChild && (fig.getClippingStrategy () == null)) { 
+			fig.setClippingStrategy (new org.eclipse.draw2d.IClippingStrategy () {
+
+				public org.eclipse.draw2d.geometry.Rectangle[] getClip(org.eclipse.draw2d.IFigure childFigure) {
+					if (childFigure instanceof org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure) {
+						return new org.eclipse.draw2d.geometry.Rectangle [] { ((org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure) childFigure).getExtendedBounds () };
+					}
+					else {
+						return new org.eclipse.draw2d.geometry.Rectangle [] { childFigure.getBounds () };
+					}
+				}
+			});
+		}
+
+	}
+«ENDDEFINE»
+	
 «DEFINE createDefaultEditPoliciesBody FOR gmfgen::GenDiagram-»
 	super.createDefaultEditPolicies();
 	installEditPolicy(org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy.PASTE_ROLE, new org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy());
