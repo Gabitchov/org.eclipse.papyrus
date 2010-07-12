@@ -62,7 +62,7 @@ public class UMLOCLFactory {
 			final String[] exprBodies = new String[]{ "\' \'", //$NON-NLS-1$
 			"self.messageSort=MessageSort::synchCall and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
 			"self.oclIsKindOf(uml::InteractionFragment)", //$NON-NLS-1$
-			"self.oclIsKindOf(uml::InteractionFragment)", //$NON-NLS-1$
+			"self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
 			"(self.messageSort=MessageSort::asynchCall or self.messageSort=MessageSort::asynchSignal) and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
 			"self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
 			"(self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)) and (self.owner = oppositeEnd.owner or self.owner = oppositeEnd or self = oppositeEnd.owner)", //$NON-NLS-1$
@@ -74,7 +74,7 @@ public class UMLOCLFactory {
 			"self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
 			"self.messageSort=MessageSort::deleteMessage and self.sendEvent<>null and self.receiveEvent<>null", //$NON-NLS-1$
 			"self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
-			"self.oclIsKindOf(uml::DestructionEvent)", //$NON-NLS-1$
+			"self.oclIsKindOf(uml::DestructionEvent) or self.oclIsKindOf(uml::Lifeline)", //$NON-NLS-1$
 			"self.receiveEvent=null", //$NON-NLS-1$
 			"self.oclIsKindOf(uml::Lifeline) or self.oclIsKindOf(uml::InteractionFragment)", //$NON-NLS-1$
 			"self.oclIsKindOf(uml::Interaction)", //$NON-NLS-1$

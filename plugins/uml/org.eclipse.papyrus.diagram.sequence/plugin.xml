@@ -790,6 +790,20 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.InteractionPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.InteractionPreferencePage"
+            name="Interaction Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.TimeConstraintPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.TimeConstraintPreferencePage"
+            name="TimeConstraint Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
 			class="org.eclipse.papyrus.diagram.sequence.preferences.TimeObservationPreferencePage"
             id="org.eclipse.papyrus.diagram.sequence.preferences.TimeObservationPreferencePage"
             name="TimeObservation Node" />
@@ -804,9 +818,23 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.StateInvariantPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.StateInvariantPreferencePage"
-            name="StateInvariant Node" />
+			class="org.eclipse.papyrus.diagram.sequence.preferences.ConstraintPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.ConstraintPreferencePage"
+            name="Constraint Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.LifelinePreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.LifelinePreferencePage"
+            name="Lifeline Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.InteractionUsePreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.InteractionUsePreferencePage"
+            name="InteractionUse Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -818,9 +846,30 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.ConstraintPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.ConstraintPreferencePage"
-            name="Constraint Node" />
+			class="org.eclipse.papyrus.diagram.sequence.preferences.DurationConstraintPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.DurationConstraintPreferencePage"
+            name="DurationConstraint Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.BehaviorExecutionSpecificationPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.BehaviorExecutionSpecificationPreferencePage"
+            name="BehaviorExecutionSpecification Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.DurationObservationPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.DurationObservationPreferencePage"
+            name="DurationObservation Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.DestructionEventPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.DestructionEventPreferencePage"
+            name="DestructionEvent Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -839,37 +888,16 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.DestructionEventPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.DestructionEventPreferencePage"
-            name="DestructionEvent Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.InteractionPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.InteractionPreferencePage"
-            name="Interaction Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.DurationConstraintPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.DurationConstraintPreferencePage"
-            name="DurationConstraint Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.InteractionUsePreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.InteractionUsePreferencePage"
-            name="InteractionUse Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
 			class="org.eclipse.papyrus.diagram.sequence.preferences.ContinuationPreferencePage"
             id="org.eclipse.papyrus.diagram.sequence.preferences.ContinuationPreferencePage"
             name="Continuation Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
+			class="org.eclipse.papyrus.diagram.sequence.preferences.StateInvariantPreferencePage"
+            id="org.eclipse.papyrus.diagram.sequence.preferences.StateInvariantPreferencePage"
+            name="StateInvariant Node" />
 	
 		
 	<?gmfgen generated="true"?>
@@ -878,38 +906,8 @@
             id="org.eclipse.papyrus.diagram.sequence.preferences.ConsiderIgnoreFragmentPreferencePage"
             name="ConsiderIgnoreFragment Node" />
 	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.DurationObservationPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.DurationObservationPreferencePage"
-            name="DurationObservation Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.TimeConstraintPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.TimeConstraintPreferencePage"
-            name="TimeConstraint Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.LifelinePreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.LifelinePreferencePage"
-            name="Lifeline Node" />
-	
-		
-	<?gmfgen generated="true"?>
-	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLSequenceDiagram"
-			class="org.eclipse.papyrus.diagram.sequence.preferences.BehaviorExecutionSpecificationPreferencePage"
-            id="org.eclipse.papyrus.diagram.sequence.preferences.BehaviorExecutionSpecificationPreferencePage"
-            name="BehaviorExecutionSpecification Node" />
-	
 
 
-		
-		
 		
 
 	<?gmfgen generated="true"?>
@@ -917,6 +915,8 @@
 			class="org.eclipse.papyrus.diagram.sequence.preferences.MessagePreferencePage"
             id="org.eclipse.papyrus.diagram.sequence.preferences.MessagePreferencePage"
             name="Message Link" />
+		
+		
 		
 
 </extension>

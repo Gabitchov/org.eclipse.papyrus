@@ -708,6 +708,7 @@ public class TimeObservationLabelEditPart extends CompartmentEditPart implements
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 

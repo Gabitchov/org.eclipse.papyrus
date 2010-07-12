@@ -717,6 +717,9 @@ public class MessageReplyAppliedStereotypeEditPart extends LabelEditPart impleme
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 

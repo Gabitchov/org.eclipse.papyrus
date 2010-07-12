@@ -29,7 +29,6 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.InteractionCompartmentXYLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.InteractionInteractionCompartmentItemSemanticEditPolicy;

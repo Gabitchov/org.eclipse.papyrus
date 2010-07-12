@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.sequence.edit.policies;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EAnnotation;
@@ -22,14 +21,10 @@ import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.gmf.runtime.notation.Edge;
-import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.CommentAnnotatedElementCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.CommentAnnotatedElementReorientCommand;
@@ -49,10 +44,8 @@ import org.eclipse.papyrus.diagram.sequence.edit.commands.Message7CreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.Message7ReorientCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.MessageCreateCommand;
 import org.eclipse.papyrus.diagram.sequence.edit.commands.MessageReorientCommand;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
-import org.eclipse.papyrus.diagram.sequence.edit.parts.InteractionOperandEditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message2EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message3EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message4EditPart;
@@ -60,7 +53,6 @@ import org.eclipse.papyrus.diagram.sequence.edit.parts.Message5EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message6EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.Message7EditPart;
 import org.eclipse.papyrus.diagram.sequence.edit.parts.MessageEditPart;
-import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceDeleteHelper;
 import org.eclipse.uml2.uml.CombinedFragment;

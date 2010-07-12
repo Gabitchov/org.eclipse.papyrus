@@ -28,7 +28,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.uml2.uml.BehaviorExecutionSpecification;
-import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.UMLFactory;
 
@@ -78,6 +77,7 @@ public class BehaviorExecutionSpecificationCreateCommand extends EditElementComm
 	@Override
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -94,7 +94,10 @@ public class BehaviorExecutionSpecificationCreateCommand extends EditElementComm
 	@Override
 	public boolean canExecute() {
 
+
 		return true;
+
+
 
 	}
 

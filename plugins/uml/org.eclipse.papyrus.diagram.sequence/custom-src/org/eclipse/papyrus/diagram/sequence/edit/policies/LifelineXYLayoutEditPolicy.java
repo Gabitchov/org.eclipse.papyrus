@@ -41,8 +41,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.XYLayoutEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest.ViewAndElementDescriptor;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.draw2d.LifelineDotLineFigure;
@@ -78,77 +78,79 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 */
 	@Override
 	protected Command getCreateCommand(CreateRequest request) {
-		if(request instanceof CreateViewAndElementRequest) {
-			CreateViewAndElementRequest cver = (CreateViewAndElementRequest)request;
-			ViewAndElementDescriptor viewAndElementDescriptor = cver.getViewAndElementDescriptor();
-			String semanticHint = viewAndElementDescriptor.getSemanticHint();
-			if(String.valueOf(ActionExecutionSpecificationEditPart.VISUAL_ID).equals(semanticHint) || String.valueOf(BehaviorExecutionSpecificationEditPart.VISUAL_ID).equals(semanticHint) || String.valueOf(StateInvariantEditPart.VISUAL_ID).equals(semanticHint) || String.valueOf(CombinedFragment2EditPart.VISUAL_ID).equals(semanticHint) || String.valueOf(DestructionEventEditPart.VISUAL_ID).equals(semanticHint)) {
+		if(request instanceof CreateViewRequest) {
+			CreateViewRequest cvr = (CreateViewRequest)request;
+			if(cvr.getViewDescriptors().size() > 0) {
+				ViewDescriptor viewDescriptor = cvr.getViewDescriptors().iterator().next();
+				String semanticHint = viewDescriptor.getSemanticHint();
+				if(String.valueOf(ActionExecutionSpecificationEditPart.VISUAL_ID).equals(semanticHint) || String.valueOf(BehaviorExecutionSpecificationEditPart.VISUAL_ID).equals(semanticHint) || String.valueOf(StateInvariantEditPart.VISUAL_ID).equals(semanticHint) || String.valueOf(CombinedFragment2EditPart.VISUAL_ID).equals(semanticHint) || String.valueOf(DestructionEventEditPart.VISUAL_ID).equals(semanticHint)) {
 
-				Point newLocation = cver.getLocation().getCopy();
+					Point newLocation = cvr.getLocation().getCopy();
 
-				if(newLocation.x < 0 || newLocation.y < 0) {
-					newLocation.x = newLocation.y = 0;
-				}
+					if(newLocation.x < 0 || newLocation.y < 0) {
+						newLocation.x = newLocation.y = 0;
+					}
 
-				if(getHost() instanceof LifelineEditPart) {
+					if(getHost() instanceof LifelineEditPart) {
 
-					LifelineEditPart editPart = (LifelineEditPart)getHost();
+						LifelineEditPart editPart = (LifelineEditPart)getHost();
 
-					// Get the dotline figure
-					LifelineDotLineFigure figureLifelineDotLineFigure = editPart.getPrimaryShape().getFigureLifelineDotLineFigure();
-					List<ShapeNodeEditPart> executionSpecificationList = editPart.getChildShapeNodeEditPart();
+						// Get the dotline figure
+						LifelineDotLineFigure figureLifelineDotLineFigure = editPart.getPrimaryShape().getFigureLifelineDotLineFigure();
+						List<ShapeNodeEditPart> executionSpecificationList = editPart.getChildShapeNodeEditPart();
 
-					// Translate the absolute location to relative
-					figureLifelineDotLineFigure.translateToRelative(newLocation);
+						// Translate the absolute location to relative
+						figureLifelineDotLineFigure.translateToRelative(newLocation);
 
-					Rectangle dotLineFigureBounds = figureLifelineDotLineFigure.getBounds();
-					// If we are creating an ES from the popup menu bar
-					// We need to get a valid location to be able to create the ES figure
-					if(newLocation.y < dotLineFigureBounds.y) {
-						int max = dotLineFigureBounds.y;
-						for(ShapeNodeEditPart sp : executionSpecificationList) {
-							int figureBottom = sp.getFigure().getBounds().y + sp.getFigure().getBounds().height;
-							if(figureBottom > max) {
-								max = figureBottom;
+						Rectangle dotLineFigureBounds = figureLifelineDotLineFigure.getBounds();
+						// If we are creating an ES from the popup menu bar
+						// We need to get a valid location to be able to create the ES figure
+						if(newLocation.y < dotLineFigureBounds.y) {
+							int max = dotLineFigureBounds.y;
+							for(ShapeNodeEditPart sp : executionSpecificationList) {
+								int figureBottom = sp.getFigure().getBounds().y + sp.getFigure().getBounds().height;
+								if(figureBottom > max) {
+									max = figureBottom;
+								}
 							}
+							// Vertically, the new ES is located after all existing ES on the lifeline
+							newLocation.y = max + SPACING_HEIGHT;
+							// Horizontally, the figure is placed at the center of the lifeline
+							newLocation.x = dotLineFigureBounds.x + dotLineFigureBounds.width / 2 - EXECUTION_INIT_WIDTH / 2;
 						}
-						// Vertically, the new ES is located after all existing ES on the lifeline
-						newLocation.y = max + SPACING_HEIGHT;
-						// Horizontally, the figure is placed at the center of the lifeline
-						newLocation.x = dotLineFigureBounds.x + dotLineFigureBounds.width / 2 - EXECUTION_INIT_WIDTH / 2;
+
+
+						// Get the height of the Execution specification
+						int newHeight = getFigureHeight(cvr);
+
+						// Define the bounds of the new Execution specification
+						Rectangle newBounds = new Rectangle(newLocation.x, newLocation.y, -1, newHeight);
+
+						newBounds = getExecutionSpecificationNewBoundsForMove(figureLifelineDotLineFigure, newBounds, executionSpecificationList, new ArrayList<ShapeNodeEditPart>(0));
+
+						if(newBounds == null) {
+							return UnexecutableCommand.INSTANCE;
+						}
+
+						return new ICommandProxy(new SetBoundsCommand(editPart.getEditingDomain(), "Creation of an ExecutionSpecification", viewDescriptor, newBounds));
 					}
 
-
-					// Get the height of the Execution specification
-					int newHeight = getFigureHeight(cver);
-
-					// Define the bounds of the new Execution specification
-					Rectangle newBounds = new Rectangle(newLocation.x, newLocation.y, -1, newHeight);
-
-					newBounds = getExecutionSpecificationNewBoundsForMove(figureLifelineDotLineFigure, newBounds, executionSpecificationList, new ArrayList<ShapeNodeEditPart>(0));
-
-					if(newBounds == null) {
-						return UnexecutableCommand.INSTANCE;
+				}
+				// force location of time/duration elements
+				String timeConstraintHint = ((IHintedType)UMLElementTypes.TimeConstraint_3019).getSemanticHint();
+				String timeObservationHint = ((IHintedType)UMLElementTypes.TimeObservation_3020).getSemanticHint();
+				String durationConstraintOnLifelineHint = ((IHintedType)UMLElementTypes.DurationConstraint_3021).getSemanticHint();
+				if(timeConstraintHint.equals(semanticHint) || timeObservationHint.equals(semanticHint)) {
+					Command cmd = getCommandForTimeObservationOrConstraint(cvr, viewDescriptor);
+					if(cmd != null) {
+						return cmd;
 					}
-
-					return new ICommandProxy(new SetBoundsCommand(editPart.getEditingDomain(), "Creation of an ExecutionSpecification", viewAndElementDescriptor, newBounds));
 				}
-
-			}
-			// force location of time/duration elements
-			String timeConstraintHint = ((IHintedType)UMLElementTypes.TimeConstraint_3019).getSemanticHint();
-			String timeObservationHint = ((IHintedType)UMLElementTypes.TimeObservation_3020).getSemanticHint();
-			String durationConstraintOnLifelineHint = ((IHintedType)UMLElementTypes.DurationConstraint_3021).getSemanticHint();
-			if(timeConstraintHint.equals(semanticHint) || timeObservationHint.equals(semanticHint)) {
-				Command cmd = getCommandForTimeObservationOrConstraint(cver);
-				if(cmd != null) {
-					return cmd;
-				}
-			}
-			if(durationConstraintOnLifelineHint.equals(semanticHint)) {
-				Command cmd = getCommandForDurationConstraint(cver);
-				if(cmd != null) {
-					return cmd;
+				if(durationConstraintOnLifelineHint.equals(semanticHint)) {
+					Command cmd = getCommandForDurationConstraint(cvr, viewDescriptor);
+					if(cmd != null) {
+						return cmd;
+					}
 				}
 			}
 		}
@@ -163,20 +165,19 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 *        the request
 	 * @return command or null if none is appropriate
 	 */
-	private Command getCommandForTimeObservationOrConstraint(CreateViewAndElementRequest cver) {
-		ViewAndElementDescriptor viewAndElementDescriptor = cver.getViewAndElementDescriptor();
-		Object loc = cver.getExtendedData().get(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION);
+	private Command getCommandForTimeObservationOrConstraint(CreateViewRequest cvr, ViewDescriptor viewDescriptor) {
+		Object loc = cvr.getExtendedData().get(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION);
 		if(loc instanceof Point) {
 			IFigure parentFigure = ((IGraphicalEditPart)getHost()).getFigure();
 			Point referencePoint = ((Point)loc).getCopy();
 			parentFigure.translateToRelative(referencePoint);
 			referencePoint.translate(parentFigure.getBounds().getLocation().getCopy().negate());
 			// Get the height of the element
-			int newHeight = getFigureHeight(cver);
+			int newHeight = getFigureHeight(cvr);
 			// Define the bounds of the new time element
 			Rectangle newBounds = new Rectangle(referencePoint.x, referencePoint.y + SPACING_HEIGHT - newHeight / 2, -1, newHeight);
 			TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
-			return new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewAndElementDescriptor, newBounds));
+			return new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, newBounds));
 		}
 		return null;
 	}
@@ -188,10 +189,9 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 *        the request
 	 * @return command or null if none is appropriate
 	 */
-	private Command getCommandForDurationConstraint(CreateViewAndElementRequest cver) {
-		ViewAndElementDescriptor viewAndElementDescriptor = cver.getViewAndElementDescriptor();
-		Object locTop = cver.getExtendedData().get(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION);
-		Object locBottom = cver.getExtendedData().get(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION_2);
+	private Command getCommandForDurationConstraint(CreateViewRequest cvr, ViewDescriptor viewDescriptor) {
+		Object locTop = cvr.getExtendedData().get(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION);
+		Object locBottom = cvr.getExtendedData().get(SequenceRequestConstant.OCCURRENCE_SPECIFICATION_LOCATION_2);
 		if(locTop instanceof Point && locBottom instanceof Point) {
 			IFigure parentFigure = ((IGraphicalEditPart)getHost()).getFigure();
 			Point referenceTop = ((Point)locTop).getCopy();
@@ -205,7 +205,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 				// Define the bounds of the new time element
 				Rectangle newBounds = new Rectangle(referenceTop.x, referenceTop.y, -1, newHeight);
 				TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
-				return new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewAndElementDescriptor, newBounds));
+				return new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, newBounds));
 			} else if(newHeight < 0) {
 				parentFigure.translateToRelative(referenceBottom);
 				Point parentFigDelta = parentFigure.getBounds().getLocation().getCopy().negate();
@@ -213,7 +213,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 				// Define the bounds of the new time element
 				Rectangle newBounds = new Rectangle(referenceBottom.x, referenceBottom.y, -1, -newHeight);
 				TransactionalEditingDomain editingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
-				return new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewAndElementDescriptor, newBounds));
+				return new ICommandProxy(new SetBoundsCommand(editingDomain, DiagramUIMessages.SetLocationCommand_Label_Resize, viewDescriptor, newBounds));
 			}
 		}
 		return null;

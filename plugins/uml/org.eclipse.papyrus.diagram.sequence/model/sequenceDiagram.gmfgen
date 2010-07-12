@@ -335,7 +335,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineChildGraphicalNodeEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.sequence.edit.policies.ElementCreationWithMessageEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
@@ -6521,7 +6521,7 @@
             body="self.oclIsKindOf(uml::InteractionFragment)"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="self.oclIsKindOf(uml::InteractionFragment)"/>
+            body="self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="(self.messageSort=MessageSort::asynchCall or self.messageSort=MessageSort::asynchSignal) and self.sendEvent&lt;>null and self.receiveEvent&lt;>null"/>
@@ -6557,7 +6557,7 @@
             body="self.oclIsKindOf(uml::InteractionFragment) or self.oclIsKindOf(uml::Lifeline)"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
-            body="self.oclIsKindOf(uml::DestructionEvent)"/>
+            body="self.oclIsKindOf(uml::DestructionEvent) or self.oclIsKindOf(uml::Lifeline)"/>
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="self.receiveEvent=null"/>
@@ -6595,7 +6595,7 @@
           qualifiedName=" org.eclipse.papyrus.diagram.sequence.parser.custom.InteractionUseCustomParsers"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet"
+          uses="/0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.6/@labels.0/@modelFacet /0/@diagram/@links.1/@labels.0/@modelFacet /0/@diagram/@links.0/@labels.0/@modelFacet /0/@diagram/@links.5/@labels.0/@modelFacet /0/@diagram/@links.4/@labels.0/@modelFacet"
           qualifiedName=" org.eclipse.papyrus.diagram.sequence.parser.custom.MessageCustomParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -6615,7 +6615,7 @@
           qualifiedName="org.eclipse.papyrus.diagram.sequence.parser.custom.TimeObservationParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@links.2/@labels.1/@modelFacet /0/@diagram/@links.0/@labels.1/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet /0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@links.1/@labels.1/@modelFacet /0/@diagram/@links.4/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet"
+          uses="/0/@diagram/@links.1/@labels.1/@modelFacet /0/@diagram/@links.2/@labels.1/@modelFacet /0/@diagram/@links.0/@labels.1/@modelFacet /0/@diagram/@links.4/@labels.1/@modelFacet /0/@diagram/@links.3/@labels.1/@modelFacet /0/@diagram/@links.6/@labels.1/@modelFacet /0/@diagram/@links.5/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"

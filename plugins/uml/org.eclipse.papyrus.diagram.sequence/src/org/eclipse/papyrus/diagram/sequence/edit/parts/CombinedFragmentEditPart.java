@@ -175,6 +175,7 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 
+
 		if(childEditPart instanceof CombinedFragmentCombinedFragmentCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 

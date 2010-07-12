@@ -255,7 +255,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
 
+
 		return getGEFWrapper(new MoveElementsCommand(req));
+
 
 	}
 

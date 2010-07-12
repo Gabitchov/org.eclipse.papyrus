@@ -30,7 +30,6 @@ import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
@@ -45,7 +44,6 @@ import org.eclipse.papyrus.diagram.common.editparts.AbstractConstraintEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.ConstraintFigure;
-import org.eclipse.papyrus.diagram.common.figure.node.HTMLCornerBentFigure;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.ConstraintItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
@@ -157,6 +155,7 @@ AbstractConstraintEditPart {
 			((Constraint2EditPart)childEditPart).setLabel(getPrimaryShape().getConstraintFigure());
 			return true;
 		}
+
 
 		return false;
 	}

@@ -708,6 +708,7 @@ public class DurationConstraintLabelEditPart extends CompartmentEditPart impleme
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 

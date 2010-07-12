@@ -395,7 +395,7 @@ public class ElementInitializers {
 
 	/**
 	 * @generated NOT
-	 * Initialize the name of a namedElement
+	 *            Initialize the name of a namedElement
 	 * 
 	 * @param namedElement
 	 *        the namedElement
@@ -405,8 +405,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	 *  @generated NOT
-	 * Initialize the name of a namedElement with a given prefix
+	 * @generated NOT
+	 *            Initialize the name of a namedElement with a given prefix
 	 * 
 	 * @param namedElement
 	 *        the namedElement
@@ -418,8 +418,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	 *  @generated NOT
-	 * Initialize the name of a namedElement with a given suffix
+	 * @generated NOT
+	 *            Initialize the name of a namedElement with a given suffix
 	 * 
 	 * @param namedElement
 	 *        the namedElement
@@ -433,8 +433,8 @@ public class ElementInitializers {
 	}
 
 	/**
-	 *  @generated NOT
-	 * Initialize the name of a namedElement with a given suffix
+	 * @generated NOT
+	 *            Initialize the name of a namedElement with a given suffix
 	 * 
 	 * @param namedElement
 	 *        the namedElement
@@ -452,10 +452,11 @@ public class ElementInitializers {
 			UMLDiagramEditorPlugin.getInstance().logError("Element initialization failed", e); //$NON-NLS-1$						
 		}
 	}
-/**
- *  @generated NOT
- * 
- */
+
+	/**
+	 * @generated NOT
+	 * 
+	 */
 	private static String getNamedElement(NamedElement namedElement, String prefix, String body, String suffix) {
 		StringBuffer sb = new StringBuffer();
 		sb.append("let base : String = \'"); //$NON-NLS-1$

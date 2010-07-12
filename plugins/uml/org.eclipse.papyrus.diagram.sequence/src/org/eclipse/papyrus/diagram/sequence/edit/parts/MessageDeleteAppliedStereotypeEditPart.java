@@ -717,6 +717,9 @@ public class MessageDeleteAppliedStereotypeEditPart extends LabelEditPart implem
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 

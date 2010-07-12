@@ -75,10 +75,9 @@ import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDis
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.NodeNamedElementFigure;
-import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.diagram.common.providers.UIAdapterImpl;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.CustomDiagramDragDropEditPolicy;
-import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineChildGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.diagram.sequence.edit.policies.ElementCreationWithMessageEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineCreationEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
@@ -86,7 +85,6 @@ import org.eclipse.papyrus.diagram.sequence.edit.policies.RemoveOrphanViewPolicy
 import org.eclipse.papyrus.diagram.sequence.figures.LifelineDotLineCustomFigure;
 import org.eclipse.papyrus.diagram.sequence.locator.CenterLocator;
 import org.eclipse.papyrus.diagram.sequence.locator.TimeMarkElementPositionLocator;
-import org.eclipse.papyrus.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.diagram.sequence.util.CommandHelper;
@@ -171,6 +169,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new LifelineItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
+
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.sequence.edit.policies.LifelineCanonicalEditPolicy());
 
@@ -178,7 +177,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new LifelineXYLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new LifelineCreationEditPolicy());
-		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new LifelineChildGraphicalNodeEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ElementCreationWithMessageEditPolicy());
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies

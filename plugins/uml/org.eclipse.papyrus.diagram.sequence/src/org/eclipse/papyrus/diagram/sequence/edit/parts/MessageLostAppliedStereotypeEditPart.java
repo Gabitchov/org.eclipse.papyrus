@@ -717,6 +717,9 @@ public class MessageLostAppliedStereotypeEditPart extends LabelEditPart implemen
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 
