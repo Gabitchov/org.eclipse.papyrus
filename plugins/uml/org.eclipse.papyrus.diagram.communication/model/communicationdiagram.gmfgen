@@ -70,6 +70,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.communication.custom.edit.policies.LifelineCreationEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Lifeline"/>
@@ -933,5 +937,11 @@
         genView="/0/@diagram/@childNodes.3/@labels.0 /0/@diagram/@childNodes.4/@labels.0"
         name="EP_Stereotypes_EXT_NODE"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.AbstractLabelEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="adding to manange otherNamedElement"
+        genView="/0/@diagram /0/@diagram/@childNodes.0"
+        name="OtherNamedElementEditPart"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

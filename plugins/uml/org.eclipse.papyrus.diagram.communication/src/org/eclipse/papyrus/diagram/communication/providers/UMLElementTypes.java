@@ -237,17 +237,24 @@ public class UMLElementTypes {
 
 			elements.put(Package_1000, UMLPackage.eINSTANCE.getPackage());
 
+
 			elements.put(Interaction_8002, UMLPackage.eINSTANCE.getInteraction());
+
 
 			elements.put(Lifeline_8001, UMLPackage.eINSTANCE.getLifeline());
 
+
 			elements.put(Constraint_8004, UMLPackage.eINSTANCE.getConstraint());
+
 
 			elements.put(Comment_8005, UMLPackage.eINSTANCE.getComment());
 
+
 			elements.put(TimeObservation_8006, UMLPackage.eINSTANCE.getTimeObservation());
 
+
 			elements.put(DurationObservation_8007, UMLPackage.eINSTANCE.getDurationObservation());
+
 
 			elements.put(Message_8009, UMLPackage.eINSTANCE.getMessage());
 

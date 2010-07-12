@@ -90,7 +90,7 @@ public class UMLDiagramUpdater {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public static List<UMLNodeDescriptor> getInteractionInteractionCompartment_7001SemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
@@ -475,6 +475,10 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
+
+
+
+
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -483,6 +487,7 @@ public class UMLDiagramUpdater {
 			Element dst = (Element)theTarget;
 			Element src = link.getOwner();
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_8009, MessageEditPart.VISUAL_ID));
+
 
 		}
 		return result;
@@ -591,6 +596,10 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 
+
+
+
+
 			List targets = link.getOwnedElements();
 			Object theTarget = targets.size() == 1 ? targets.get(0) : null;
 			if(false == theTarget instanceof Element) {
@@ -602,6 +611,7 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 			result.add(new UMLLinkDescriptor(src, dst, link, UMLElementTypes.Message_8009, MessageEditPart.VISUAL_ID));
+
 
 		}
 		return result;

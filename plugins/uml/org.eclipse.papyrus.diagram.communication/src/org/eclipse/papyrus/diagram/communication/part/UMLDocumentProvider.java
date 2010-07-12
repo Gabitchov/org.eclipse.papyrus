@@ -204,9 +204,8 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 				if(!resource.isLoaded()) {
 					try {
 						Map options = new HashMap(GMFResourceFactory.getDefaultLoadOptions());
-						// @see 171060
-						// options.put(org.eclipse.emf.ecore.xmi.XMLResource.OPTION_RECORD_UNKNOWN_FEATURE,
-						// Boolean.TRUE);
+						// @see 171060 
+						// options.put(org.eclipse.emf.ecore.xmi.XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
 						resource.load(options);
 					} catch (IOException e) {
 						resource.unload();
@@ -320,8 +319,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 					updateCache(element);
 				} catch (CoreException ex) {
 					UMLDiagramEditorPlugin.getInstance().logError(Messages.UMLDocumentProvider_isModifiable, ex);
-					// Error message to log was initially taken from
-					// org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
+					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
 			}
 			return info.isReadOnly();
@@ -345,8 +343,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 					updateCache(element);
 				} catch (CoreException ex) {
 					UMLDiagramEditorPlugin.getInstance().logError(Messages.UMLDocumentProvider_isModifiable, ex);
-					// Error message to log was initially taken from
-					// org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
+					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
 			}
 			return info.isModifiable();
@@ -522,7 +519,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 			info.stopResourceListening();
 			fireElementStateChanging(element);
 			try {
-				monitor.beginTask(Messages.UMLDocumentProvider_SaveDiagramTask, info.getResourceSet().getResources().size() + 1); // "Saving diagram"
+				monitor.beginTask(Messages.UMLDocumentProvider_SaveDiagramTask, info.getResourceSet().getResources().size() + 1); //"Saving diagram"
 				for(Iterator<Resource> it = info.getLoadedResourcesIterator(); it.hasNext();) {
 					Resource nextResource = it.next();
 					monitor.setTaskName(NLS.bind(Messages.UMLDocumentProvider_SaveNextResourceTask, nextResource.getURI()));
@@ -595,8 +592,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 				file.refreshLocal(IResource.DEPTH_INFINITE, monitor);
 			} catch (CoreException ex) {
 				UMLDiagramEditorPlugin.getInstance().logError(Messages.UMLDocumentProvider_handleElementContentChanged, ex);
-				// Error message to log was initially taken from
-				// org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.FileDocumentProvider_handleElementContentChanged
+				// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.FileDocumentProvider_handleElementContentChanged
 			}
 		}
 		changedResource.unload();
@@ -960,7 +956,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 					Resource resource = (Resource)notification.getNotifier();
 					if(resource.isLoaded()) {
 						boolean modified = false;
-						for(Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = myInfo.getLoadedResourcesIterator(); it.hasNext() && !modified;) {
+						for(Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = myInfo.getLoadedResourcesIterator(); it.hasNext() && !modified;) {
 							Resource nextResource = (Resource)it.next();
 							if(nextResource.isLoaded()) {
 								modified = nextResource.isModified();

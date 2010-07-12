@@ -99,14 +99,18 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case MessageNameEditPart.VISUAL_ID:
 				return new MessageNameEditPart(view);
 
+
 			case CommentAnnotatedElementEditPart.VISUAL_ID:
 				return new CommentAnnotatedElementEditPart(view);
+
 
 			case ConstraintConstrainedElementEditPart.VISUAL_ID:
 				return new ConstraintConstrainedElementEditPart(view);
 
+
 			case ConnectorDurationObservationEditPart.VISUAL_ID:
 				return new ConnectorDurationObservationEditPart(view);
+
 
 			case ConnectorTimeObservationEditPart.VISUAL_ID:
 				return new ConnectorTimeObservationEditPart(view);

@@ -338,36 +338,46 @@ public class UMLVisualIDRegistry {
 		viewInfo = new BaseViewInfo(8009, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		labelInfo = new BaseViewInfo(6001, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
+
 
 		viewInfo = new BaseViewInfo(8010, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(8011, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(8012, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(8013, ViewInfo.Edge, "");
 		root.addNode(1000, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(8001, ViewInfo.Node, "Lifeline");
 
 		root.addNode(7001, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(8004, ViewInfo.Node, "Constraint");
 
 		root.addNode(7001, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(8005, ViewInfo.Node, "Comment");
 
 		root.addNode(7001, viewInfo);
 
+
 		viewInfo = new BaseViewInfo(8006, ViewInfo.Node, "TimeObservation");
 
 		root.addNode(7001, viewInfo);
+
 
 		viewInfo = new BaseViewInfo(8007, ViewInfo.Node, "DurationObservation");
 

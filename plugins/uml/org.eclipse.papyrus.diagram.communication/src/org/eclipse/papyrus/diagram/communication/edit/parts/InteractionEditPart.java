@@ -90,8 +90,7 @@ ShapeNodeEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CommunicationGraphicalNodeEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that
-		// would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -143,10 +142,10 @@ ShapeNodeEditPart {
 			return true;
 		}
 
+
 		if(childEditPart instanceof InteractionCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his
-									// content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((InteractionCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}
@@ -163,8 +162,7 @@ ShapeNodeEditPart {
 		}
 		if(childEditPart instanceof InteractionCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his
-									// content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.remove(((InteractionCompartmentEditPart)childEditPart).getFigure());
 			return true;
 		}

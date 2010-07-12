@@ -75,6 +75,7 @@ public class LifelineCreateCommandCN extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -90,7 +91,10 @@ public class LifelineCreateCommandCN extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
+
 		return true;
+
+
 
 	}
 
@@ -99,10 +103,13 @@ public class LifelineCreateCommandCN extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		Lifeline newElement = UMLFactory.eINSTANCE.createLifeline();
 
 		Interaction owner = (Interaction)getElementToEdit();
 		owner.getLifelines().add(newElement);
+
 
 		ElementInitializers.getInstance().init_Lifeline_8001(newElement);
 

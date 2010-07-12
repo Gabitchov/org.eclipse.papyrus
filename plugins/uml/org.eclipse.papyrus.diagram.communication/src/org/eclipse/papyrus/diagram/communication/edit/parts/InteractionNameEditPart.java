@@ -720,6 +720,7 @@ public class InteractionNameEditPart extends CompartmentEditPart implements ITex
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 
