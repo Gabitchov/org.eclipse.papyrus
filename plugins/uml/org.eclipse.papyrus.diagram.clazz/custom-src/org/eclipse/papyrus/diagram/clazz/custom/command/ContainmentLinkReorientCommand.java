@@ -141,7 +141,7 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 		if (getNewTarget().equals(getOldTarget().getOwner())) {
 			return false;
 		}
-		if (EcoreUtil.isAncestor(getNewTarget(), getOldTarget().getOwner())) {
+		if (EcoreUtil.isAncestor(getNewTarget(), getOldTarget())) {
 			return false;
 		}
 		return newEnd != null;
@@ -241,7 +241,7 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 	private boolean moveClass(org.eclipse.uml2.uml.Class clazz, EObject to) {
 		Element from = clazz.getOwner();
 		if (from instanceof org.eclipse.uml2.uml.Class) {
-			org.eclipse.uml2.uml.Class fromClazz = (org.eclipse.uml2.uml.Class)to;
+			org.eclipse.uml2.uml.Class fromClazz = (org.eclipse.uml2.uml.Class)from;
 			if (to instanceof org.eclipse.uml2.uml.Class) {
 				doMoveClass(clazz, fromClazz, (org.eclipse.uml2.uml.Class)to);
 				return true;
@@ -251,7 +251,7 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 			}
 		}
 		if (from instanceof org.eclipse.uml2.uml.Package) {
-			org.eclipse.uml2.uml.Package fromPackage = (org.eclipse.uml2.uml.Package)to;
+			org.eclipse.uml2.uml.Package fromPackage = (org.eclipse.uml2.uml.Package)from;
 			if (to instanceof org.eclipse.uml2.uml.Class) {
 				doMoveClass(clazz, fromPackage, (org.eclipse.uml2.uml.Class)to);
 				return true;
