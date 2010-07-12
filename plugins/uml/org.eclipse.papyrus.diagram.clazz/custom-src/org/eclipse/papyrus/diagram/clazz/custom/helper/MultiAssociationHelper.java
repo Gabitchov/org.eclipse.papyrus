@@ -24,9 +24,11 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gef.requests.GroupRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
@@ -42,6 +44,7 @@ import org.eclipse.gmf.runtime.diagram.ui.internal.commands.SetConnectionBendpoi
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
+import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
@@ -275,6 +278,15 @@ public class MultiAssociationHelper extends ElementHelper {
 		Association association = null;
 		View parentView = null;
 
+
+		// ---------------------------------------------------------
+		// help to debug
+//		System.err.println("\n+ 0. creation of variables");
+//		System.err.println("+-> editting domain"+ getEditingDomain());
+//		System.err.println("+-> sourceEditpart:" + sourceEditPart);
+//		System.err.println("+-> targetEditPart:" + targetEditPart);
+		// ---------------------------------------------------------
+
 		// 1. initialization
 		ICommandProxy startcommand = ((ICommandProxy)createConnectionViewAndElementRequest.getStartCommand());
 		Iterator<?> ite = ((CompositeCommand)startcommand.getICommand()).iterator();
@@ -310,21 +322,45 @@ public class MultiAssociationHelper extends ElementHelper {
 				return null;
 			}
 			parentView = (View)associationView.eContainer();
+			// ---------------------------------------------------------
+			// help to debug
+//			System.err.println("+ 1. initialization");
+//			System.err.println("+-> sourceLocation:" + sourceLocation);
+//			System.err.println("+-> targetLocation:" + targetLocation);
+//			System.err.println("+-> AssociationView:" + associationView);
+//			System.err.println("+-> association:" + association);
+//			System.err.println("+-> nodeLocation:" + nodeLocation);
+//			System.err.println("+-> newSemanticElement:" + newSemanticElement);
+//			System.err.println("+-> feature:" + feature);
+//			System.err.println("+-> parentView:" + parentView);
+			// ---------------------------------------------------------
+			// 2. Remove the view of the association
+			EditPart associationestiPartToremove= sourceEditPart;
+			Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
+			Command removecommand = associationestiPartToremove.getCommand(deleteViewRequest);
+			//((CompoundCommand)command).add(removecommand);
 
-			// 8. set a new end association in the UML model
-			// 8.1 creation of the property
+			// ---------------------------------------------------------
+			// help to debug
+//			System.err.println("+ 2. Remove the view of the association");
+//			System.err.println("+-> command:" + command.canExecute());
+			// ---------------------------------------------------------
+
+
+
+			// 3. set a new end association in the UML model
+			// 3.1 creation of the property
 			CreateElementRequest request = new CreateElementRequest(getEditingDomain(), association, UMLElementTypes.Property_3005, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
 			request.setParameter("type", newSemanticElement);
 			EditElementCommand propertyCreateCommand = new PropertyCommandForAssociation(request);
 			((CompoundCommand)command).add(new ICommandProxy(propertyCreateCommand));
 
-			// 2. Remove the view of the association
-			View associationViewSource = ((Edge)associationView).getSource();
-			View associationViewTarget = ((Edge)associationView).getTarget();
 
-			((CompoundCommand)command).add(new ICommandProxy(new DeleteCommand(getEditingDomain(), associationView)));
+
 
 			// 3. Node creation at this position
+			View associationViewSource = ((Edge)associationView).getSource();
+			View associationViewTarget = ((Edge)associationView).getTarget();
 			AssociationDiamonViewCreateCommand nodeCreation = new AssociationDiamonViewCreateCommand(getEditingDomain(), parentView, (EditPartViewer)sourceEditPart.getViewer(), ((IGraphicalEditPart)sourceEditPart).getDiagramPreferencesHint(), nodeLocation, new SemanticAdapter(association, null));
 			((CompoundCommand)command).add(new ICommandProxy(nodeCreation));
 
@@ -354,8 +390,12 @@ public class MultiAssociationHelper extends ElementHelper {
 			((CustomDeferredCreateConnectionViewCommand)thirdBranchCommand).setElement(association);
 			((CompoundCommand)command).add(new ICommandProxy(thirdBranchCommand));
 
+			//to execute
+			((CompoundCommand)command).add(removecommand);
+
 		}
 		return command;
+		
 	}
 
 	/**
@@ -408,6 +448,7 @@ public class MultiAssociationHelper extends ElementHelper {
 			((CompoundCommand)command).add(new ICommandProxy(aBranchCommand));
 			//System.err.println("1. add the branch graphically, can execute?" + command.canExecute());
 			return command;
+			
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
