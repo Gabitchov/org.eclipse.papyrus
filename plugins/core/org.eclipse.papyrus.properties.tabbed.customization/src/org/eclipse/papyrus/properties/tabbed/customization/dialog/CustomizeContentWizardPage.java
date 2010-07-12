@@ -32,6 +32,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
@@ -39,7 +40,6 @@ import org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementI
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.InputDialog;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
@@ -54,6 +54,7 @@ import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.ControllerDescriptorState;
@@ -69,6 +70,7 @@ import org.eclipse.papyrus.properties.runtime.view.constraints.AppliedStereotype
 import org.eclipse.papyrus.properties.runtime.view.constraints.ConstraintDescriptorState;
 import org.eclipse.papyrus.properties.runtime.view.constraints.ObjectTypeConstraintDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.content.ContainerDescriptorState;
+import org.eclipse.papyrus.properties.tabbed.core.view.DynamicSectionDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.DynamicTabDescriptor;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState;
 import org.eclipse.papyrus.properties.tabbed.core.view.SectionDescriptorState.ReplacedSectionState;
@@ -108,9 +110,12 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Tree;
+import org.eclipse.ui.dialogs.FilteredTree;
+import org.eclipse.ui.dialogs.PatternFilter;
 import org.eclipse.ui.views.properties.tabbed.ITabDescriptor;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -131,7 +136,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 	protected static final String UML_METAMODEL = "UML"; //$NON-NLS-1$
 
 	/** Tree viewer on the metamodel and the set of available section sets descriptors */
-	protected TreeViewer metamodelViewer;
+	protected FilteredTree metamodelViewer;
 
 	/** current selection of section set */
 	protected SectionSetDescriptorState currentSectionSetDescriptorState;
@@ -182,6 +187,9 @@ public class CustomizeContentWizardPage extends WizardPage {
 		super(Messages.CustomizeContentWizardPage_Title, Messages.CustomizeContentWizardPage_Message, null);
 	}
 
+	/** filters for the metamodel tree viewer */
+	private List<ViewerFilter> metamodelViewerFilters;
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -223,18 +231,11 @@ public class CustomizeContentWizardPage extends WizardPage {
 			parser.parseXMLfile(document, PropertyViewService.getInstance().getAllFragmentDescriptors(), new HashMap<String, DialogDescriptor>());
 			StatesStore.setSectionSetDescriptorStates(parser.getSectionSetDescriptorStates());
 			StatesStore.setTabDescriptorStates(parser.getTabDescriptorStates());
-			//			List<List<ITabDescriptor>> tabs = PropertyServiceUtil.getTabDescriptors();
-			//			for(List<ITabDescriptor> list : tabs) {
-			//				for(ITabDescriptor tab : list) {
-			//					TabDescriptorState tabDescriptorState = new TabDescriptorState(tab, false);
-			//					StatesStore.getTabDescriptorStates().add(tabDescriptorState);
-			//				}
-			//			}
-			metamodelViewer.setContentProvider(new MetamodelContentProvider(StatesStore.getSectionSetDescriptorStates()));
-			metamodelViewer.setLabelProvider(new MetamodelLabelProvider());
+			metamodelViewer.getViewer().setContentProvider(new MetamodelContentProvider(StatesStore.getSectionSetDescriptorStates()));
+			metamodelViewer.getViewer().setLabelProvider(new MetamodelLabelProvider());
 
 			// load by default the metamodel
-			metamodelViewer.setInput(UMLPackage.eINSTANCE);
+			metamodelViewer.getViewer().setInput(UMLPackage.eINSTANCE);
 			metamodelSelectionCombo.select(0);
 			tabViewer.setInput(StatesStore.getTabDescriptorStates());
 		} catch (XMLParseException e) {
@@ -468,7 +469,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 		// true, false));
 
 		Composite titleArea = new Composite(previewAreaComposite, SWT.NONE);
-		GridLayout layout = new GridLayout(4, false);
+		GridLayout layout = new GridLayout(5, false);
 		layout.marginHeight = 0;
 		layout.marginWidth = 0;
 		titleArea.setLayout(layout);
@@ -525,6 +526,27 @@ public class CustomizeContentWizardPage extends WizardPage {
 			 */
 			public void widgetSelected(SelectionEvent e) {
 				updatePreview();
+			}
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void widgetDefaultSelected(SelectionEvent e) {
+				// nothing to do here
+			}
+		});
+
+		Button validateButton = new Button(titleArea, SWT.NONE);
+		validateButton.setImage(Activator.getImage("/icons/Validate.gif")); //$NON-NLS-1$
+		validateButton.setToolTipText("Validate configuration");
+		validateButton.addSelectionListener(new SelectionListener() {
+
+			/**
+			 * {@inheritDoc}
+			 */
+			public void widgetSelected(SelectionEvent e) {
+				ConfigurationValidator validator = new ConfigurationValidator(getShell());
+				validator.validateConfig(false, true);
 			}
 
 			/**
@@ -608,26 +630,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 			public void widgetSelected(SelectionEvent e) {
 				ISelection selection = tabViewer.getSelection();
 				if(selection instanceof IStructuredSelection) {
-					TabDescriptorState tabToRemove = (TabDescriptorState)((IStructuredSelection)selection).getFirstElement();
-
-					String dependencies = "The tab is required by: \n";
-					int found = 0;
-					for(SectionSetDescriptorState sectionSetDescriptorStates : StatesStore.getSectionSetDescriptorStates()) {
-						for(SectionDescriptorState sectionDescriptorState : sectionSetDescriptorStates.getSectionDescriptorStates()) {
-							if(sectionDescriptorState.getTargetTab().equalsIgnoreCase(tabToRemove.getId())) {
-								if(found != 0) {
-									dependencies += ",\n";
-								}
-								dependencies += " - " + sectionDescriptorState.getText();
-								found++;
-							}
-						}
-					}
-					if(found == 0) {
-						StatesStore.getTabDescriptorStates().remove(tabToRemove);
-					} else {
-						MessageDialog.openError(getShell(), "Cannot remove this tab", dependencies);
-					}
+					StatesStore.getTabDescriptorStates().remove((TabDescriptorState)((IStructuredSelection)selection).getFirstElement());
 					tabViewer.refresh();
 				}
 			}
@@ -639,7 +642,6 @@ public class CustomizeContentWizardPage extends WizardPage {
 				// nothing to do here
 			}
 		});
-
 
 		Button moveUpTabButton = new Button(tabArea, SWT.NONE);
 		moveUpTabButton.setImage(Activator.getImage("/icons/Up_12x12.gif")); //$NON-NLS-1$
@@ -908,12 +910,53 @@ public class CustomizeContentWizardPage extends WizardPage {
 			}
 
 			previewArea.setContent(content);
-			previewArea.setMinSize(content.computeSize(SWT.DEFAULT, SWT.DEFAULT, true));
-			// content.layout(true);
-			// previewArea.redraw();
 			previewArea.getParent().layout(true);
 		}
 	}
+
+	/**
+	 * Specialization that filters metamodel information
+	 */
+	private class TreeSelectionPatternFilter extends PatternFilter {
+
+		@Override
+		protected boolean isParentMatch(Viewer viewer, Object element) {
+			if(element instanceof DynamicSectionDescriptor) {
+				String labelText = ((DynamicSectionDescriptor)element).getId();
+				if(labelText != null) {
+					return wordMatches(labelText);
+				}
+			} else if(element instanceof SectionSetDescriptorState) {
+				return true;
+			} else if(element instanceof NamedElement) {
+				String labelText = ((NamedElement)element).getQualifiedName();
+				if(labelText != null) {
+					return wordMatches(labelText);
+				}
+			} else if(element instanceof ModelElementItem) {
+				String labelText;
+				EObject eObject = ((ModelElementItem)element).getEObject();
+				if(eObject instanceof ENamedElement) {
+					labelText = ((ENamedElement)((ModelElementItem)element).getEObject()).getName();
+				} else {
+					labelText = ((ModelElementItem)element).getText();
+				}
+
+				if(labelText != null) {
+					return wordMatches(labelText);
+				}
+
+			}
+
+			return false;
+		}
+
+		@Override
+		public boolean isElementVisible(Viewer viewer, Object element) {
+			return isParentMatch(viewer, element);
+		}
+	}
+
 
 	/**
 	 * Creates the area where the metamodel elements, the available views and
@@ -942,7 +985,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 			 */
 			public void widgetSelected(SelectionEvent e) {
 				// update the input of the content view
-				metamodelViewer.setInput(metamodels.get(metamodelSelectionCombo.getSelectionIndex()));
+				metamodelViewer.getViewer().setInput(metamodels.get(metamodelSelectionCombo.getSelectionIndex()));
 
 			}
 
@@ -954,10 +997,13 @@ public class CustomizeContentWizardPage extends WizardPage {
 			}
 		});
 
-		// content tree and viewer on this tree
-		Tree contentTree = new Tree(mainContentAreaComposite, SWT.BORDER);
-		contentTree.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		contentTree.addMenuDetectListener(new MenuDetectListener() {
+		// treeviewer for the metamodel
+		int flags = SWT.BORDER | SWT.SINGLE;
+
+		TreeSelectionPatternFilter patternfilter = new TreeSelectionPatternFilter();
+		patternfilter.setIncludeLeadingWildcard(true);
+		metamodelViewer = new FilteredTree(mainContentAreaComposite, flags, patternfilter, true);
+		metamodelViewer.getViewer().getControl().addMenuDetectListener(new MenuDetectListener() {
 
 			/**
 			 * {@inheritDoc}
@@ -965,7 +1011,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 			public void menuDetected(MenuDetectEvent e) {
 				// retrieve current selection, this should be an EObject or a
 				// SectionSetDescriptorState
-				ITreeSelection selection = (ITreeSelection)metamodelViewer.getSelection();
+				ITreeSelection selection = (ITreeSelection)metamodelViewer.getViewer().getSelection();
 				if(selection == null || selection.size() < 1) {
 					Activator.log.warn(Messages.CustomizeContentWizardPage_Error_NoSelectionForMenuCreation);
 					return;
@@ -976,14 +1022,14 @@ public class CustomizeContentWizardPage extends WizardPage {
 				// awful code, should delegate to each state which menu should
 				// be created
 				if(selectedObject instanceof SectionSetDescriptorState) {
-					menu = new SectionSetMenuCreator(StatesStore.getSectionSetDescriptorStates(), metamodelViewer, (SectionSetDescriptorState)selectedObject, getCurrentMetaClass(), getCurrentStereoype()).getMenu(metamodelViewer.getTree());
+					menu = new SectionSetMenuCreator(StatesStore.getSectionSetDescriptorStates(), metamodelViewer.getViewer(), (SectionSetDescriptorState)selectedObject, getCurrentMetaClass(), getCurrentStereoype()).getMenu(metamodelViewer.getViewer().getTree());
 				} else if(selectedObject instanceof ModelElementItem) {
 					ModelElementItem item = (ModelElementItem)selectedObject;
 					EObject selectedEObject = item.getEObject();
 					if(selectedEObject instanceof EClassifier) {
-						menu = new EClassifierMenuCreator((ModelElementItem)selectedObject, StatesStore.getSectionSetDescriptorStates(), metamodelViewer, getCurrentSectionSetDescriptorState(), getCurrentMetaClass(), getCurrentStereoype()).getMenu(metamodelViewer.getTree());
+						menu = new EClassifierMenuCreator((ModelElementItem)selectedObject, StatesStore.getSectionSetDescriptorStates(), metamodelViewer.getViewer(), getCurrentSectionSetDescriptorState(), getCurrentMetaClass(), getCurrentStereoype()).getMenu(metamodelViewer.getViewer().getTree());
 					} else if(selectedEObject instanceof Stereotype) {
-						menu = new StereotypeMenuCreator((ModelElementItem)selectedObject, StatesStore.getSectionSetDescriptorStates(), metamodelViewer, getCurrentSectionSetDescriptorState(), getCurrentMetaClass(), getCurrentStereoype()).getMenu(metamodelViewer.getTree());
+						menu = new StereotypeMenuCreator((ModelElementItem)selectedObject, StatesStore.getSectionSetDescriptorStates(), metamodelViewer.getViewer(), getCurrentSectionSetDescriptorState(), getCurrentMetaClass(), getCurrentStereoype()).getMenu(metamodelViewer.getViewer().getTree());
 					}
 				}
 
@@ -993,8 +1039,9 @@ public class CustomizeContentWizardPage extends WizardPage {
 				}
 			}
 		});
-		metamodelViewer = new TreeViewer(contentTree);
-		metamodelViewer.addPostSelectionChangedListener(new ISelectionChangedListener() {
+
+
+		metamodelViewer.getViewer().addPostSelectionChangedListener(new ISelectionChangedListener() {
 
 			/**
 			 * {@inheritDoc}
@@ -1044,7 +1091,7 @@ public class CustomizeContentWizardPage extends WizardPage {
 				updateConfigurationArea();
 			}
 		});
-		metamodelViewer.addDoubleClickListener(new IDoubleClickListener() {
+		metamodelViewer.getViewer().addDoubleClickListener(new IDoubleClickListener() {
 
 			/**
 			 * {@inheritDoc}
@@ -1242,45 +1289,50 @@ public class CustomizeContentWizardPage extends WizardPage {
 	 * @return <code>true</code> if serialization finished well
 	 */
 	public boolean serializeContent() {
-		Job job = new Job(Messages.CustomizeContentWizardPage_Job_SavingConfiguration) {
 
-			/**
-			 * {@inheritDoc}
-			 */
-			@Override
-			protected IStatus run(IProgressMonitor monitor) {
+		ConfigurationValidator configurationValidator = new ConfigurationValidator(getShell());
+		if(configurationValidator.validateConfig(true, false)) {
+			Job job = new Job(Messages.CustomizeContentWizardPage_Job_SavingConfiguration) {
 
-				try {
-					final Document document = getFinalContent();
-					final File file = getFile();
-					// final File file =
-					// ResourcesPlugin.getWorkspace().getRoot().getRawLocation().append("test/test.xml").toFile();
-					file.delete();
+				/**
+				 * {@inheritDoc}
+				 */
+				@Override
+				protected IStatus run(IProgressMonitor monitor) {
 
-					if(!file.exists()) {
-						file.createNewFile();
+					try {
+						final Document document = getFinalContent();
+						final File file = getFile();
+						// final File file =
+						// ResourcesPlugin.getWorkspace().getRoot().getRawLocation().append("test/test.xml").toFile();
+						file.delete();
+
+						if(!file.exists()) {
+							file.createNewFile();
+						}
+						TransformerFactory factory = TransformerFactory.newInstance();
+						Transformer transformer = factory.newTransformer();
+
+						Source source = new DOMSource(document);
+						Result result = new StreamResult(file);
+
+						transformer.transform(source, result);
+						return Status.OK_STATUS;
+					} catch (TransformerException e) {
+						Activator.log.error(e);
+						return new Status(Status.ERROR, Activator.ID, e.getLocalizedMessage());
+					} catch (IOException e) {
+						Activator.log.error(e);
+						return new Status(Status.ERROR, Activator.ID, e.getLocalizedMessage());
 					}
-					TransformerFactory factory = TransformerFactory.newInstance();
-					Transformer transformer = factory.newTransformer();
-
-					Source source = new DOMSource(document);
-					Result result = new StreamResult(file);
-
-					transformer.transform(source, result);
-					return Status.OK_STATUS;
-				} catch (TransformerException e) {
-					Activator.log.error(e);
-					return new Status(Status.ERROR, Activator.ID, e.getLocalizedMessage());
-				} catch (IOException e) {
-					Activator.log.error(e);
-					return new Status(Status.ERROR, Activator.ID, e.getLocalizedMessage());
 				}
+			};
+			job.schedule();
+			// there, the xml file should be serialized
+			return true;
+		} else {
+			return false;
+		}
 
-			}
-		};
-		job.schedule();
-
-		// there, the xml file should be serialized
-		return true;
 	}
 }
