@@ -42,6 +42,9 @@ public class EMFFeatureModelHandlerState extends AbstractState implements IEMFMo
 	/**
 	 * Creates a new EMFFeatureModelHandlerState.
 	 * 
+	 * @param modelHandler
+	 *        managed model handler
+	 * 
 	 * @param readOnly
 	 */
 	public EMFFeatureModelHandlerState(IEMFModelHandler modelHandler, boolean readOnly) {

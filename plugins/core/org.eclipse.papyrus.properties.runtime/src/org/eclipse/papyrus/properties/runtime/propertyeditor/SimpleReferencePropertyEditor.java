@@ -142,6 +142,7 @@ public class SimpleReferencePropertyEditor extends AbstractPropertyEditor {
 			public void mouseDoubleClick(MouseEvent e) {
 			}
 		});
+		addButton.setEnabled(!getIsReadOnly());
 
 		removeButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
 		removeButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Delete_12x12.gif")));
@@ -172,7 +173,7 @@ public class SimpleReferencePropertyEditor extends AbstractPropertyEditor {
 
 			}
 		});
-
+		removeButton.setEnabled(!getIsReadOnly());
 
 		if((getDescriptor().getLabelPosition() & (SWT.RIGHT | SWT.BOTTOM)) != 0) {
 			createLabel(composite);

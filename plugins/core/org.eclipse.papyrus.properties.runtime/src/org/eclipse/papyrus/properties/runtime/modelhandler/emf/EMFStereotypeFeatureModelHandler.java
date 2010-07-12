@@ -116,6 +116,7 @@ public abstract class EMFStereotypeFeatureModelHandler extends EMFFeatureModelHa
 	 *        the element being edited
 	 * @param stereotype
 	 *        the stereotype to edit
+	 * @return the value of the stereotype feature
 	 */
 	protected Object getValueForElement(Element elementToEdit, Stereotype stereotype) {
 		return elementToEdit.getValue(stereotype, getFeatureName());
@@ -229,6 +230,11 @@ public abstract class EMFStereotypeFeatureModelHandler extends EMFFeatureModelHa
 
 	/**
 	 * Retrieves the structural feature
+	 * 
+	 * @param elementToEdit
+	 *        the element for wich the structural feature should be retrieved
+	 * @param stereotype
+	 *        the stereotype for which the structural feature should be retrieved
 	 * 
 	 * @return the structural feature
 	 */

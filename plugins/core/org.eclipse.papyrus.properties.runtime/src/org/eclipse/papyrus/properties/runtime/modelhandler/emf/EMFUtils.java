@@ -31,6 +31,8 @@ public class EMFUtils {
 	 * 
 	 * @param objectToEdit
 	 *        the object being edited
+	 * @param featureName
+	 *        the name of the feature to retrieve
 	 * @return the feature found <code>null</code> if not found
 	 */
 	public static EStructuralFeature getFeatureByName(EObject objectToEdit, String featureName) {
@@ -66,18 +68,11 @@ public class EMFUtils {
 		for(int i = 0, length = segments.length; i < length; i++) {
 			String segment = segments[i];
 			EStructuralFeature eStructuralFeature = null;
-			int index = -1;
 
 			if(segment.indexOf('[') == -1) {
 				eStructuralFeature = eClass.getEStructuralFeature(UML2Util.getValidJavaIdentifier(segment));
 			} else {
 				eStructuralFeature = eClass.getEStructuralFeature(UML2Util.getValidJavaIdentifier(segment.substring(0, segment.indexOf('['))));
-
-				try {
-					index = Integer.parseInt(segment.substring(segment.indexOf('[') + 1, segment.indexOf(']')));
-				} catch (Exception e) {
-					throw new IllegalArgumentException(String.valueOf(featureName));
-				}
 			}
 
 			if(eStructuralFeature == null) {

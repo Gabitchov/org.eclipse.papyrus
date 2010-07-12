@@ -158,6 +158,7 @@ public abstract class EMFFeatureModelHandler implements IEMFModelHandler {
 	/**
 	 * {@inheritDoc}
 	 */
+	@SuppressWarnings("unchecked")
 	public void handleNotifyChange(Notification notification, List<EObject> objects, Adapter adapter) {
 		for(EObject eObject : objects) {
 			// if one element is added to the feature, should also add this as a listener

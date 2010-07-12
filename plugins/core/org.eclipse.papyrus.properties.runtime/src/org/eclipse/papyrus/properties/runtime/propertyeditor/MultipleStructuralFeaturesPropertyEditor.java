@@ -90,146 +90,54 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 		// creates label. No TOP/DOWN/etc. position, always on top
 		createLabel(composite);
 
-		// create Button area
-		addButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
-		addButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Add_12x12.gif")));
-		data = new GridData(SWT.FILL, SWT.CENTER, false, false);
-		addButton.setLayoutData(data);
-		addButton.addMouseListener(new MouseListener() {
+		if(!getIsReadOnly()) {
+			// create Button area
+			addButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
+			addButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Add_12x12.gif")));
+			data = new GridData(SWT.FILL, SWT.CENTER, false, false);
+			addButton.setLayoutData(data);
+			addButton.addMouseListener(new MouseListener() {
 
-			/**
-			 * {@inheritDoc}
-			 */
-			public void mouseUp(MouseEvent e) {
-				// 2 possibilities:
-				// we can create only one type of element, so the element is created, and then, a pop up dialog is displayed
-				// several elements can be created (ex: nestedClassifiers for a class, we can create a class or an interface or any implementation of classifier
-				if(getController() instanceof IWizardPropertyEditorController) {
-					List<IUndoableOperation> availableCommands = ((IWizardPropertyEditorController)getController()).getAvailableCreationOperations();
-					if(availableCommands.isEmpty()) {
-						Activator.log.warn("no command was available to create elements for this view");
-						return;
-					} else if(availableCommands.size() == 1) {
-						// only one command is available, create the element
-						try {
-							OperationHistoryFactory.getOperationHistory().execute(availableCommands.get(0), new NullProgressMonitor(), null);
-						} catch (ExecutionException e1) {
-							Activator.log.error(e1);
-						}
-					} else if(availableCommands.size() > 1) {
-						Menu menu = new Menu(addButton);
-						for(final IUndoableOperation operation : availableCommands) {
-							MenuItem item = new MenuItem(menu, SWT.NONE);
-							item.setText(operation.getLabel());
-							item.addSelectionListener(new SelectionListener() {
+				/**
+				 * {@inheritDoc}
+				 */
+				public void mouseUp(MouseEvent e) {
+					// 2 possibilities:
+					// we can create only one type of element, so the element is created, and then, a pop up dialog is displayed
+					// several elements can be created (ex: nestedClassifiers for a class, we can create a class or an interface or any implementation of classifier
+					if(getController() instanceof IWizardPropertyEditorController) {
+						List<IUndoableOperation> availableCommands = ((IWizardPropertyEditorController)getController()).getAvailableCreationOperations();
+						if(availableCommands.isEmpty()) {
+							Activator.log.warn("no command was available to create elements for this view");
+							return;
+						} else if(availableCommands.size() == 1) {
+							// only one command is available, create the element
+							try {
+								OperationHistoryFactory.getOperationHistory().execute(availableCommands.get(0), new NullProgressMonitor(), null);
+							} catch (ExecutionException e1) {
+								Activator.log.error(e1);
+							}
+						} else if(availableCommands.size() > 1) {
+							Menu menu = new Menu(addButton);
+							for(final IUndoableOperation operation : availableCommands) {
+								MenuItem item = new MenuItem(menu, SWT.NONE);
+								item.setText(operation.getLabel());
+								item.addSelectionListener(new SelectionListener() {
 
-								public void widgetSelected(SelectionEvent e) {
-									try {
-										OperationHistoryFactory.getOperationHistory().execute(operation, new NullProgressMonitor(), null);
-									} catch (ExecutionException e1) {
-										Activator.log.error(e1);
+									public void widgetSelected(SelectionEvent e) {
+										try {
+											OperationHistoryFactory.getOperationHistory().execute(operation, new NullProgressMonitor(), null);
+										} catch (ExecutionException e1) {
+											Activator.log.error(e1);
+										}
 									}
-								}
 
-								public void widgetDefaultSelected(SelectionEvent e) {
+									public void widgetDefaultSelected(SelectionEvent e) {
 
-								}
-							});
-						}
-						menu.setVisible(true);
-					}
-				}
-			}
-
-			/**
-			 * {@inheritDoc}
-			 */
-			public void mouseDown(MouseEvent e) {
-			}
-
-			/**
-			 * {@inheritDoc}
-			 */
-			public void mouseDoubleClick(MouseEvent e) {
-			}
-		});
-
-		removeButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
-		removeButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Delete_12x12.gif")));
-		data = new GridData(SWT.FILL, SWT.CENTER, false, false);
-		removeButton.setLayoutData(data);
-		removeButton.addMouseListener(new MouseListener() {
-
-			/**
-			 * {@inheritDoc}
-			 */
-			@SuppressWarnings("unchecked")
-			public void mouseUp(MouseEvent e) {
-				if(!(getController() instanceof IWizardPropertyEditorController)) {
-					return;
-				}
-				// use selection to remove element
-				// retrieve selected element(s)
-				IStructuredSelection selection = (IStructuredSelection)referencesViewer.getSelection();
-				if(selection == null || selection.isEmpty()) {
-					// nothing selected. 
-					return;
-				}
-				List<Object> selectedObjects = selection.toList();
-				IUndoableOperation deleteOperation = ((IWizardPropertyEditorController)getController()).getDeleteOperation(selectedObjects);
-				if(deleteOperation != null && deleteOperation.canExecute()) {
-					try {
-						OperationHistoryFactory.getOperationHistory().execute(deleteOperation, new NullProgressMonitor(), null);
-					} catch (ExecutionException e1) {
-						Activator.log.error(e1);
-					}
-				}
-			}
-
-			/**
-			 * {@inheritDoc}
-			 */
-			public void mouseDown(MouseEvent e) {
-
-			}
-
-			/**
-			 * {@inheritDoc}
-			 */
-			public void mouseDoubleClick(MouseEvent e) {
-
-			}
-		});
-
-		if(((IBoundedValuesController)getController()).canMoveValues()) {
-			Button upButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
-			upButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Up_12x12.gif")));
-			data = new GridData(SWT.FILL, SWT.CENTER, false, false);
-			upButton.setLayoutData(data);
-			upButton.addMouseListener(new MouseListener() {
-
-				/**
-				 * {@inheritDoc}
-				 */
-				@SuppressWarnings("unchecked")
-				public void mouseUp(MouseEvent e) {
-					// use selection to remove element
-					// retrieve selected element(s)
-					IStructuredSelection selection = (IStructuredSelection)referencesViewer.getSelection();
-					if(selection == null || selection.isEmpty()) {
-						// nothing selected. 
-						return;
-					}
-					List<Object> selectedObjects = selection.toList();
-					IUndoableOperation moveOperation = ((IBoundedValuesController)getController()).getMoveCurrentValuesOperation(selectedObjects, -1);
-					if(moveOperation != null && moveOperation.canExecute()) {
-						try {
-							OperationHistoryFactory.getOperationHistory().execute(moveOperation, new NullProgressMonitor(), null);
-						} catch (ExecutionException e1) {
-							Activator.log.error(e1);
-						} finally {
-							// try to restore selection in the view
-							referencesViewer.setSelection(selection, true);
+									}
+								});
+							}
+							menu.setVisible(true);
 						}
 					}
 				}
@@ -246,20 +154,21 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 				public void mouseDoubleClick(MouseEvent e) {
 				}
 			});
-		}
 
-		if(((IBoundedValuesController)getController()).canMoveValues()) {
-			Button downButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
-			downButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Down_12x12.gif")));
+			removeButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
+			removeButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Delete_12x12.gif")));
 			data = new GridData(SWT.FILL, SWT.CENTER, false, false);
-			downButton.setLayoutData(data);
-			downButton.addMouseListener(new MouseListener() {
+			removeButton.setLayoutData(data);
+			removeButton.addMouseListener(new MouseListener() {
 
 				/**
 				 * {@inheritDoc}
 				 */
 				@SuppressWarnings("unchecked")
 				public void mouseUp(MouseEvent e) {
+					if(!(getController() instanceof IWizardPropertyEditorController)) {
+						return;
+					}
 					// use selection to remove element
 					// retrieve selected element(s)
 					IStructuredSelection selection = (IStructuredSelection)referencesViewer.getSelection();
@@ -268,15 +177,12 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 						return;
 					}
 					List<Object> selectedObjects = selection.toList();
-					IUndoableOperation moveOperation = ((IBoundedValuesController)getController()).getMoveCurrentValuesOperation(selectedObjects, +1);
-					if(moveOperation != null && moveOperation.canExecute()) {
+					IUndoableOperation deleteOperation = ((IWizardPropertyEditorController)getController()).getDeleteOperation(selectedObjects);
+					if(deleteOperation != null && deleteOperation.canExecute()) {
 						try {
-							OperationHistoryFactory.getOperationHistory().execute(moveOperation, new NullProgressMonitor(), null);
+							OperationHistoryFactory.getOperationHistory().execute(deleteOperation, new NullProgressMonitor(), null);
 						} catch (ExecutionException e1) {
 							Activator.log.error(e1);
-						} finally {
-							// try to restore selection in the view
-							referencesViewer.setSelection(selection, true);
 						}
 					}
 				}
@@ -285,15 +191,112 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 				 * {@inheritDoc}
 				 */
 				public void mouseDown(MouseEvent e) {
+
 				}
 
 				/**
 				 * {@inheritDoc}
 				 */
 				public void mouseDoubleClick(MouseEvent e) {
+
 				}
 			});
+
+			if(((IBoundedValuesController)getController()).canMoveValues()) {
+				Button upButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
+				upButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Up_12x12.gif")));
+				data = new GridData(SWT.FILL, SWT.CENTER, false, false);
+				upButton.setLayoutData(data);
+				upButton.addMouseListener(new MouseListener() {
+
+					/**
+					 * {@inheritDoc}
+					 */
+					@SuppressWarnings("unchecked")
+					public void mouseUp(MouseEvent e) {
+						// use selection to remove element
+						// retrieve selected element(s)
+						IStructuredSelection selection = (IStructuredSelection)referencesViewer.getSelection();
+						if(selection == null || selection.isEmpty()) {
+							// nothing selected. 
+							return;
+						}
+						List<Object> selectedObjects = selection.toList();
+						IUndoableOperation moveOperation = ((IBoundedValuesController)getController()).getMoveCurrentValuesOperation(selectedObjects, -1);
+						if(moveOperation != null && moveOperation.canExecute()) {
+							try {
+								OperationHistoryFactory.getOperationHistory().execute(moveOperation, new NullProgressMonitor(), null);
+							} catch (ExecutionException e1) {
+								Activator.log.error(e1);
+							} finally {
+								// try to restore selection in the view
+								referencesViewer.setSelection(selection, true);
+							}
+						}
+					}
+
+					/**
+					 * {@inheritDoc}
+					 */
+					public void mouseDown(MouseEvent e) {
+					}
+
+					/**
+					 * {@inheritDoc}
+					 */
+					public void mouseDoubleClick(MouseEvent e) {
+					}
+				});
+			}
+
+			if(((IBoundedValuesController)getController()).canMoveValues()) {
+				Button downButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
+				downButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Down_12x12.gif")));
+				data = new GridData(SWT.FILL, SWT.CENTER, false, false);
+				downButton.setLayoutData(data);
+				downButton.addMouseListener(new MouseListener() {
+
+					/**
+					 * {@inheritDoc}
+					 */
+					@SuppressWarnings("unchecked")
+					public void mouseUp(MouseEvent e) {
+						// use selection to remove element
+						// retrieve selected element(s)
+						IStructuredSelection selection = (IStructuredSelection)referencesViewer.getSelection();
+						if(selection == null || selection.isEmpty()) {
+							// nothing selected. 
+							return;
+						}
+						List<Object> selectedObjects = selection.toList();
+						IUndoableOperation moveOperation = ((IBoundedValuesController)getController()).getMoveCurrentValuesOperation(selectedObjects, +1);
+						if(moveOperation != null && moveOperation.canExecute()) {
+							try {
+								OperationHistoryFactory.getOperationHistory().execute(moveOperation, new NullProgressMonitor(), null);
+							} catch (ExecutionException e1) {
+								Activator.log.error(e1);
+							} finally {
+								// try to restore selection in the view
+								referencesViewer.setSelection(selection, true);
+							}
+						}
+					}
+
+					/**
+					 * {@inheritDoc}
+					 */
+					public void mouseDown(MouseEvent e) {
+					}
+
+					/**
+					 * {@inheritDoc}
+					 */
+					public void mouseDoubleClick(MouseEvent e) {
+					}
+				});
+			}
 		}
+
 
 		// creates table for the display of references
 		referenceArea = new Table(composite, SWT.BORDER | SWT.MULTI);
@@ -347,6 +350,9 @@ public class MultipleStructuralFeaturesPropertyEditor extends AbstractPropertyEd
 	 * @return the number of column for the composite
 	 */
 	protected int getColumnNumber() {
+		if(getIsReadOnly()) {
+			return 1;
+		}
 		if(((IBoundedValuesController)getController()).canMoveValues()) {
 			return 5;
 		}

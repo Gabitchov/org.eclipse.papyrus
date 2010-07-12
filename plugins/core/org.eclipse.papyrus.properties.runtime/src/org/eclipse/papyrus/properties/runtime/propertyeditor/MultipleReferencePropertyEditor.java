@@ -95,195 +95,197 @@ public class MultipleReferencePropertyEditor extends AbstractPropertyEditor {
 		// creates label. No TOP/DOWN/etc. position, always on top
 		createLabel(composite);
 
-		// create Button area
-		addButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
-		addButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Add_12x12.gif")));
-		data = new GridData(SWT.FILL, SWT.CENTER, false, false);
-		addButton.setLayoutData(data);
-		addButton.addMouseListener(new MouseListener() {
+		if(!getIsReadOnly()) {
+			// create Button area
+			addButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
+			addButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Add_12x12.gif")));
+			data = new GridData(SWT.FILL, SWT.CENTER, false, false);
+			addButton.setLayoutData(data);
+			addButton.addMouseListener(new MouseListener() {
 
-			/**
-			 * {@inheritDoc}
-			 */
-			@SuppressWarnings("unchecked")
-			public void mouseUp(MouseEvent e) {
-				// pops up a window to ask for a new reference
-				Display display = Display.getCurrent();
-				if(display == null && PlatformUI.isWorkbenchRunning()) {
-					display = PlatformUI.getWorkbench().getDisplay();
-				}
-				display = (display != null) ? display : Display.getDefault();
+				/**
+				 * {@inheritDoc}
+				 */
+				@SuppressWarnings("unchecked")
+				public void mouseUp(MouseEvent e) {
+					// pops up a window to ask for a new reference
+					Display display = Display.getCurrent();
+					if(display == null && PlatformUI.isWorkbenchRunning()) {
+						display = PlatformUI.getWorkbench().getDisplay();
+					}
+					display = (display != null) ? display : Display.getDefault();
 
-				// FIXME: specific part to use with EMF properties... should be moved inside the controller ?!
-				EObject eObject = ((EMFTStructuralFeatureController)getController()).getObjectsToEdit().get(0);
-				EMFFeatureModelHandler handler = (EMFFeatureModelHandler)((EMFTStructuralFeatureController)getController()).getModelHandler();
-				EStructuralFeature feature = handler.getFeatureByName(eObject);
-				EClassifier eclassifier = feature.getEType();
-				Object availableValues = ((IBoundedValuesController)getController()).getAvailableValues();
-				List<?> values = new ArrayList<Object>();
-				if(availableValues instanceof List<?>) {
-					values = (List<?>)availableValues;
-				} else if(availableValues instanceof Object[]) {
-					values = Arrays.asList(availableValues);
-				} else {
-					values = Arrays.asList(availableValues);
+					// FIXME: specific part to use with EMF properties... should be moved inside the controller ?!
+					EObject eObject = ((EMFTStructuralFeatureController)getController()).getObjectsToEdit().get(0);
+					EMFFeatureModelHandler handler = (EMFFeatureModelHandler)((EMFTStructuralFeatureController)getController()).getModelHandler();
+					EStructuralFeature feature = handler.getFeatureByName(eObject);
+					EClassifier eclassifier = feature.getEType();
+					Object availableValues = ((IBoundedValuesController)getController()).getAvailableValues();
+					List<?> values = new ArrayList<Object>();
+					if(availableValues instanceof List<?>) {
+						values = (List<?>)availableValues;
+					} else if(availableValues instanceof Object[]) {
+						values = Arrays.asList(availableValues);
+					} else {
+						values = Arrays.asList(availableValues);
+					}
+					FeatureEditorDialog dialog = new FeatureEditorDialog(display.getActiveShell(), ((IBoundedValuesController)getController()).getBrowserLabelProvider(), eObject, eclassifier, getValue(), "Select " + getController().getPropertyEditor().getDescriptor().getLabel(), values, false, feature.isOrdered(), feature.isUnique());
+					// should select the current value by default
+					if(Dialog.OK == dialog.open()) {
+						currentValue = (List<EObject>)dialog.getResult();
+						// now, apply the new value
+						getController().updateModel();
+					}
 				}
-				FeatureEditorDialog dialog = new FeatureEditorDialog(display.getActiveShell(), ((IBoundedValuesController)getController()).getBrowserLabelProvider(), eObject, eclassifier, getValue(), "Select " + getController().getPropertyEditor().getDescriptor().getLabel(), values, false, feature.isOrdered(), feature.isUnique());
-				// should select the current value by default
-				if(Dialog.OK == dialog.open()) {
-					currentValue = (List<EObject>)dialog.getResult();
-					// now, apply the new value
+
+				/**
+				 * {@inheritDoc}
+				 */
+				public void mouseDown(MouseEvent e) {
+				}
+
+				/**
+				 * {@inheritDoc}
+				 */
+				public void mouseDoubleClick(MouseEvent e) {
+				}
+			});
+
+			removeButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
+			removeButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Delete_12x12.gif")));
+			data = new GridData(SWT.FILL, SWT.CENTER, false, false);
+			removeButton.setLayoutData(data);
+			removeButton.addMouseListener(new MouseListener() {
+
+				/**
+				 * {@inheritDoc}
+				 */
+				public void mouseUp(MouseEvent e) {
+					if(!(getController() instanceof IWizardPropertyEditorController)) {
+						return;
+					}
+					// use selection to remove element
+					// retrieve selected element(s)
+					IStructuredSelection selection = (IStructuredSelection)referencesViewer.getSelection();
+					if(selection == null || selection.isEmpty()) {
+						// nothing selected. 
+						return;
+					}
+
+					// copy current value
+					List<EObject> values = new ArrayList<EObject>(currentValue);
+					// remove selected elements from values
+					values.removeAll(selection.toList());
+
+					currentValue = values;
 					getController().updateModel();
-				}
-			}
 
-			/**
-			 * {@inheritDoc}
-			 */
-			public void mouseDown(MouseEvent e) {
-			}
-
-			/**
-			 * {@inheritDoc}
-			 */
-			public void mouseDoubleClick(MouseEvent e) {
-			}
-		});
-
-		removeButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
-		removeButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Delete_12x12.gif")));
-		data = new GridData(SWT.FILL, SWT.CENTER, false, false);
-		removeButton.setLayoutData(data);
-		removeButton.addMouseListener(new MouseListener() {
-
-			/**
-			 * {@inheritDoc}
-			 */
-			public void mouseUp(MouseEvent e) {
-				if(!(getController() instanceof IWizardPropertyEditorController)) {
-					return;
-				}
-				// use selection to remove element
-				// retrieve selected element(s)
-				IStructuredSelection selection = (IStructuredSelection)referencesViewer.getSelection();
-				if(selection == null || selection.isEmpty()) {
-					// nothing selected. 
-					return;
-				}
-
-				// copy current value
-				List<EObject> values = new ArrayList<EObject>(currentValue);
-				// remove selected elements from values
-				values.removeAll(selection.toList());
-
-				currentValue = values;
-				getController().updateModel();
-
-			}
-
-			/**
-			 * {@inheritDoc}
-			 */
-			public void mouseDown(MouseEvent e) {
-
-			}
-
-			/**
-			 * {@inheritDoc}
-			 */
-			public void mouseDoubleClick(MouseEvent e) {
-
-			}
-		});
-
-		if(((IBoundedValuesController)getController()).canMoveValues()) {
-			Button upButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
-			upButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Up_12x12.gif")));
-			data = new GridData(SWT.FILL, SWT.CENTER, false, false);
-			upButton.setLayoutData(data);
-			upButton.addMouseListener(new MouseListener() {
-
-				/**
-				 * {@inheritDoc}
-				 */
-				public void mouseUp(MouseEvent e) {
-					// use selection to remove element
-					// retrieve selected element(s)
-					IStructuredSelection selection = (IStructuredSelection)referencesViewer.getSelection();
-					if(selection == null || selection.isEmpty()) {
-						// nothing selected. 
-						return;
-					}
-					List<Object> selectedObjects = selection.toList();
-					IUndoableOperation moveOperation = ((IBoundedValuesController)getController()).getMoveCurrentValuesOperation(selectedObjects, -1);
-					if(moveOperation != null && moveOperation.canExecute()) {
-						try {
-							OperationHistoryFactory.getOperationHistory().execute(moveOperation, new NullProgressMonitor(), null);
-						} catch (ExecutionException e1) {
-							Activator.log.error(e1);
-						} finally {
-							// try to restore selection in the view
-							referencesViewer.setSelection(selection, true);
-						}
-					}
 				}
 
 				/**
 				 * {@inheritDoc}
 				 */
 				public void mouseDown(MouseEvent e) {
+
 				}
 
 				/**
 				 * {@inheritDoc}
 				 */
 				public void mouseDoubleClick(MouseEvent e) {
+
 				}
 			});
 
-			Button downButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
-			downButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Down_12x12.gif")));
-			data = new GridData(SWT.FILL, SWT.CENTER, false, false);
-			downButton.setLayoutData(data);
-			downButton.addMouseListener(new MouseListener() {
+			if(((IBoundedValuesController)getController()).canMoveValues()) {
+				Button upButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
+				upButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Up_12x12.gif")));
+				data = new GridData(SWT.FILL, SWT.CENTER, false, false);
+				upButton.setLayoutData(data);
+				upButton.addMouseListener(new MouseListener() {
 
-				/**
-				 * {@inheritDoc}
-				 */
-				public void mouseUp(MouseEvent e) {
-					// use selection to remove element
-					// retrieve selected element(s)
-					IStructuredSelection selection = (IStructuredSelection)referencesViewer.getSelection();
-					if(selection == null || selection.isEmpty()) {
-						// nothing selected. 
-						return;
-					}
-					List<Object> selectedObjects = selection.toList();
-					IUndoableOperation moveOperation = ((IBoundedValuesController)getController()).getMoveCurrentValuesOperation(selectedObjects, +1);
-					if(moveOperation != null && moveOperation.canExecute()) {
-						try {
-							OperationHistoryFactory.getOperationHistory().execute(moveOperation, new NullProgressMonitor(), null);
-						} catch (ExecutionException e1) {
-							Activator.log.error(e1);
-						} finally {
-							// try to restore selection in the view
-							referencesViewer.setSelection(selection, true);
+					/**
+					 * {@inheritDoc}
+					 */
+					public void mouseUp(MouseEvent e) {
+						// use selection to remove element
+						// retrieve selected element(s)
+						IStructuredSelection selection = (IStructuredSelection)referencesViewer.getSelection();
+						if(selection == null || selection.isEmpty()) {
+							// nothing selected. 
+							return;
+						}
+						List<Object> selectedObjects = selection.toList();
+						IUndoableOperation moveOperation = ((IBoundedValuesController)getController()).getMoveCurrentValuesOperation(selectedObjects, -1);
+						if(moveOperation != null && moveOperation.canExecute()) {
+							try {
+								OperationHistoryFactory.getOperationHistory().execute(moveOperation, new NullProgressMonitor(), null);
+							} catch (ExecutionException e1) {
+								Activator.log.error(e1);
+							} finally {
+								// try to restore selection in the view
+								referencesViewer.setSelection(selection, true);
+							}
 						}
 					}
-				}
 
-				/**
-				 * {@inheritDoc}
-				 */
-				public void mouseDown(MouseEvent e) {
-				}
+					/**
+					 * {@inheritDoc}
+					 */
+					public void mouseDown(MouseEvent e) {
+					}
 
-				/**
-				 * {@inheritDoc}
-				 */
-				public void mouseDoubleClick(MouseEvent e) {
-				}
-			});
+					/**
+					 * {@inheritDoc}
+					 */
+					public void mouseDoubleClick(MouseEvent e) {
+					}
+				});
+
+				Button downButton = getWidgetFactory().createButton(composite, "", SWT.NONE);
+				downButton.setImage(Activator.getImageFromDescriptor(Activator.imageDescriptorFromPlugin(Activator.ID, "icons/Down_12x12.gif")));
+				data = new GridData(SWT.FILL, SWT.CENTER, false, false);
+				downButton.setLayoutData(data);
+				downButton.addMouseListener(new MouseListener() {
+
+					/**
+					 * {@inheritDoc}
+					 */
+					public void mouseUp(MouseEvent e) {
+						// use selection to remove element
+						// retrieve selected element(s)
+						IStructuredSelection selection = (IStructuredSelection)referencesViewer.getSelection();
+						if(selection == null || selection.isEmpty()) {
+							// nothing selected. 
+							return;
+						}
+						List<Object> selectedObjects = selection.toList();
+						IUndoableOperation moveOperation = ((IBoundedValuesController)getController()).getMoveCurrentValuesOperation(selectedObjects, +1);
+						if(moveOperation != null && moveOperation.canExecute()) {
+							try {
+								OperationHistoryFactory.getOperationHistory().execute(moveOperation, new NullProgressMonitor(), null);
+							} catch (ExecutionException e1) {
+								Activator.log.error(e1);
+							} finally {
+								// try to restore selection in the view
+								referencesViewer.setSelection(selection, true);
+							}
+						}
+					}
+
+					/**
+					 * {@inheritDoc}
+					 */
+					public void mouseDown(MouseEvent e) {
+					}
+
+					/**
+					 * {@inheritDoc}
+					 */
+					public void mouseDoubleClick(MouseEvent e) {
+					}
+				});
+			}
 		}
 
 		// creates table for the display of references
@@ -340,6 +342,9 @@ public class MultipleReferencePropertyEditor extends AbstractPropertyEditor {
 	 * @return the number of column for the composite
 	 */
 	protected int getColumnNumber() {
+		if(getIsReadOnly()) {
+			return 1;
+		}
 		if(((IBoundedValuesController)getController()).canMoveValues()) {
 			return 5;
 		}

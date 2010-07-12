@@ -35,6 +35,9 @@ public class EMFStereotypeFeatureModelHandlerState extends EMFFeatureModelHandle
 	/**
 	 * Creates a new EMFFeatureModelHandlerState.
 	 * 
+	 * @param modelHandler
+	 *        the model handler to manage
+	 * 
 	 * @param readOnly
 	 */
 	public EMFStereotypeFeatureModelHandlerState(IEMFModelHandler modelHandler, boolean readOnly) {
