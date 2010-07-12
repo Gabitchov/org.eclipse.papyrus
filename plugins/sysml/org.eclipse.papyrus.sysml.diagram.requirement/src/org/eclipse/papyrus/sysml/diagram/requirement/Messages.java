@@ -60,7 +60,7 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	static {
-		NLS.initializeMessages("messages", Messages.class); //$NON-NLS-1$
+		NLS.initializeMessages("messages", Messages.class);
 	}
 
 	// TODO: put accessor fields manually

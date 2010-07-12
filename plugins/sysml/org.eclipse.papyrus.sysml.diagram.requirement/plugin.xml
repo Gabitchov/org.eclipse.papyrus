@@ -191,7 +191,7 @@
             </entry>
             <entry
                   defineOnly="true"
-                  description="Create a Link"
+                  description="Create a new Relation"
                   id="clazz.tool.abstraction"
                   kind="tool"
                   label="Abstraction"
@@ -200,7 +200,7 @@
             </entry>
             <entry
                   defineOnly="true"
-                  description="Create a Decomposition Link"
+                  description="Create a new Containment Link"
                   id="clazz.tool.containmentlink"
                   kind="tool"
                   label="ContainmentLink"

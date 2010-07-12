@@ -20,7 +20,7 @@ public class RequirementDiagramDragDropEditPolicy extends ClassDiagramDragDropEd
 		String semanticHint = "-1";
 
 		if(domainElement instanceof Abstraction) {
-			semanticHint = RequirementDiagramElementTypes.Abstraction_4006.getSemanticHint();
+			semanticHint = RequirementDiagramElementTypes.ABSTRACTION.getSemanticHint();
 		}
 
 		return new Integer(semanticHint);
@@ -34,12 +34,12 @@ public class RequirementDiagramDragDropEditPolicy extends ClassDiagramDragDropEd
 		// Fill the semantic hint during the drop when the top level is the Requirement Diagram
 		if(containerView instanceof Diagram) {
 			if(domainElement instanceof org.eclipse.uml2.uml.Package) {
-				semanticHint = RequirementDiagramElementTypes.PACKAGE_2007.getSemanticHint();
+				semanticHint = RequirementDiagramElementTypes.PACKAGE.getSemanticHint();
 			}
 			if((domainElement instanceof org.eclipse.uml2.uml.Class)) {
 				org.eclipse.uml2.uml.Class domainElementClass = (org.eclipse.uml2.uml.Class)domainElement;
 				if(domainElementClass.getAppliedStereotype(SysmlResource.REQUIREMENT_ID) != null) {
-					semanticHint = RequirementDiagramElementTypes.CLASS_2008.getSemanticHint();
+					semanticHint = RequirementDiagramElementTypes.CLASS_TOP_NODE.getSemanticHint();
 				}
 			}
 		}
@@ -48,12 +48,12 @@ public class RequirementDiagramDragDropEditPolicy extends ClassDiagramDragDropEd
 		else {
 			if(containerView instanceof View) {
 				if(domainElement instanceof org.eclipse.uml2.uml.Package) {
-					semanticHint = RequirementDiagramElementTypes.PACKAGE_2007.getSemanticHint();
+					semanticHint = RequirementDiagramElementTypes.PACKAGE.getSemanticHint();
 				}
 				if((domainElement instanceof org.eclipse.uml2.uml.Class)) {
 					org.eclipse.uml2.uml.Class domainElementClass = (org.eclipse.uml2.uml.Class)domainElement;
 					if(domainElementClass.getAppliedStereotype(SysmlResource.REQUIREMENT_ID) != null) {
-						semanticHint = RequirementDiagramElementTypes.CLASS_3010_CN.getSemanticHint();
+						semanticHint = RequirementDiagramElementTypes.CLASS_CHILD_NODE.getSemanticHint();
 					}
 				}
 			}
@@ -63,7 +63,7 @@ public class RequirementDiagramDragDropEditPolicy extends ClassDiagramDragDropEd
 		// we can fill the semanticHint with the NamedElement dedicated Value
 		if(semanticHint == "-1") {
 			if((domainElement instanceof org.eclipse.uml2.uml.NamedElement)) {
-				semanticHint = RequirementDiagramElementTypes.NamedElement_2097.getSemanticHint();
+				semanticHint = RequirementDiagramElementTypes.NAMED_ELEMENT.getSemanticHint();
 			}
 		}
 

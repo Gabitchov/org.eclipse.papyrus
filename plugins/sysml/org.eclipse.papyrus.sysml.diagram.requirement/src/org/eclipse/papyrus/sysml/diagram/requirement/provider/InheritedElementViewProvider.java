@@ -47,17 +47,17 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 
 		// This provider is registered for Requirement Diagram for Abstraction usage (Satisfy, Verify, Copy links)
 		IElementType elementType = (IElementType)op.getSemanticAdapter().getAdapter(IElementType.class);
-		if(elementType == RequirementDiagramElementTypes.Abstraction_4006) {
+		if(elementType == RequirementDiagramElementTypes.ABSTRACTION) {
 			return true;
 		}
 
 		// This provider is registered for Requirement Diagram for any Named Element usage in the diagram
-		if(elementType == RequirementDiagramElementTypes.NamedElement_2097) {
+		if(elementType == RequirementDiagramElementTypes.NAMED_ELEMENT) {
 			return true;
 		}
 
 		// This provider is registered for Requirement Diagram for Abstraction usage (Satisfy, Verify, Copy links)
-		if(elementType == RequirementDiagramElementTypes.Link_4023) {
+		if(elementType == RequirementDiagramElementTypes.CONTAINMENT_LINK) {
 			return true;
 		}
 
@@ -82,17 +82,17 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 		// This provider is registered for Imported Elements from Class Diagram only
 		IElementType elementType = (IElementType)op.getSemanticAdapter().getAdapter(IElementType.class);
 
-		if(elementType == RequirementDiagramElementTypes.PACKAGE_2007) {
+		if(elementType == RequirementDiagramElementTypes.PACKAGE) {
 			return true;
 		}
 
-		if(elementType == RequirementDiagramElementTypes.CLASS_2008) {
+		if(elementType == RequirementDiagramElementTypes.CLASS_TOP_NODE) {
 			return true;
 		}
-		if(elementType == RequirementDiagramElementTypes.CLASS_3010_CN) {
+		if(elementType == RequirementDiagramElementTypes.CLASS_CHILD_NODE) {
 			return true;
 		}
-		if(elementType == RequirementDiagramElementTypes.Port_3032) {
+		if(elementType == RequirementDiagramElementTypes.CONTAINMENT_CIRCLE) {
 			return true;
 		}
 
@@ -120,14 +120,13 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 		// DND from model explorer
 		EObject eobject = (EObject)semanticAdapter.getAdapter(EObject.class);
 		if(eobject instanceof org.eclipse.uml2.uml.Package) {
-			return super.createNode(semanticAdapter, containerView, RequirementDiagramElementTypes.PACKAGE_2007.getSemanticHint(), index, persisted, preferencesHint);
+			return super.createNode(semanticAdapter, containerView, RequirementDiagramElementTypes.PACKAGE.getSemanticHint(), index, persisted, preferencesHint);
 		} else if(eobject instanceof org.eclipse.uml2.uml.Class) {
-			return super.createNode(semanticAdapter, containerView, RequirementDiagramElementTypes.CLASS_2008.getSemanticHint(), index, persisted, preferencesHint);
+			return super.createNode(semanticAdapter, containerView, RequirementDiagramElementTypes.CLASS_TOP_NODE.getSemanticHint(), index, persisted, preferencesHint);
 		}
 
 
 		// Log a warning here
-		System.err.println(Messages.Unable_To_Create_View_For_Hint + semanticHint);
 		return null;
 
 	}
@@ -140,8 +139,8 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 	protected void stampShortcut(View containerView, Node target) {
 		if(!RequirementDiagramEditPart.DIAGRAM_ID.equals(UMLVisualIDRegistry.getModelID(containerView))) {
 			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
-			shortcutAnnotation.setSource(Messages.Short_Cut); //$NON-NLS-1$
-			shortcutAnnotation.getDetails().put(Messages.Model_ID, RequirementDiagramEditPart.DIAGRAM_ID); //$NON-NLS-1$
+			shortcutAnnotation.setSource(Messages.Short_Cut);
+			shortcutAnnotation.getDetails().put(Messages.Model_ID, RequirementDiagramEditPart.DIAGRAM_ID);
 			target.getEAnnotations().add(shortcutAnnotation);
 		}
 	}

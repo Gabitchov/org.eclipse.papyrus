@@ -26,38 +26,41 @@ public class RequirementDiagramElementTypes extends AbstractElementTypeEnumerato
 	/** Requirement Diagram - Class Diagram related elements */
 
 	/**
-	 * Package_2007 element
+	 * Package element: usage of the Package_2007 element from class diagram
 	 */
-	public static final IHintedType PACKAGE_2007 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Package_2007"); //$NON-NLS-1$
+	public static final IHintedType PACKAGE = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Package_2007"); //$NON-NLS-1$
 
 	/**
-	 * Class_2008 element
+	 * Requirement is build on the class element: usage of the Class_2008 element from class diagram
 	 */
-	public static final IHintedType CLASS_2008 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Class_2008"); //$NON-NLS-1$
+	public static final IHintedType CLASS_TOP_NODE = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Class_2008"); //$NON-NLS-1$
 
 	/**
-	 * Class_3010 element
+	 * Requirement is build on the class element: usage of the Class_3010 element from class diagram when the class is a child node (included in a
+	 * package for instance)
 	 */
-	public static final IHintedType CLASS_3010_CN = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Class_3010"); //$NON-NLS-1$
+	public static final IHintedType CLASS_CHILD_NODE = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Class_3010"); //$NON-NLS-1$
 
 	/**
-	 * Abstraction_4006 element
+	 * Relations are based on the Abstraction relation: Abstraction_4006 element
 	 */
-	public static final IHintedType Abstraction_4006 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Abstraction_4006"); //$NON-NLS-1$
+	public static final IHintedType ABSTRACTION = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Abstraction_4006"); //$NON-NLS-1$
 
 	/**
-	 * Port_3032 element (for Containment-Circle)
+	 * The containment relation is based on two elements: the circle and the relation itself. For the circle, usage of Port_3032 element from class
+	 * diagram
 	 */
-	public static final IHintedType Port_3032 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Port_3032"); //$NON-NLS-1$
+	public static final IHintedType CONTAINMENT_CIRCLE = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Port_3032"); //$NON-NLS-1$
 
 	/**
 	 * NamedElement_2097 element (for any Name Element that can be used in the diagram)
 	 */
-	public static final IHintedType NamedElement_2097 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.NamedElement_2097"); //$NON-NLS-1$
+	public static final IHintedType NAMED_ELEMENT = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.NamedElement_2097"); //$NON-NLS-1$
 
 	/**
-	 * Link_4023 element (for Containment-Link)
+	 * The containment relation is based on two elements: the circle and the relation itself. For the link, usage of Link_4023 element from class
+	 * diagram
 	 */
-	public static final IHintedType Link_4023 = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Link_4023"); //$NON-NLS-1$
+	public static final IHintedType CONTAINMENT_LINK = (IHintedType)getElementType("org.eclipse.papyrus.diagram.clazz.Link_4023"); //$NON-NLS-1$
 
 }

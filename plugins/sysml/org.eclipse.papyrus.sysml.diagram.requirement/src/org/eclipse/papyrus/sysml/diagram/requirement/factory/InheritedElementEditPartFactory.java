@@ -13,7 +13,6 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.factory.CustomUMLeditPartFactory;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
-import org.eclipse.papyrus.sysml.diagram.requirement.Messages;
 
 
 /**
@@ -31,7 +30,6 @@ public class InheritedElementEditPartFactory extends CustomUMLeditPartFactory {
 			return createEditPart(context, UMLVisualIDRegistry.getVisualID(viewType));
 		}
 
-		System.err.println(Messages.SysMLEditPartFactory_CreateEditPart_Null_Result);
 		return null;
 	}
 }
