@@ -36,6 +36,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.gef.ui.internal.figures.CircleFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
@@ -144,14 +145,18 @@ AbstractBorderItemEditPart {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected NodeFigure createNodePlate() {
 		String prefElementId = "Port";
 		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
+		// CircleFigure will allow connections to be attached directly to the circle, not to the surrounding rectangle
+//		CircleFigure result = new CircleFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
+		// there are no prefs for Requirements diagram, so default dimention(100x100) is returned
+		// we overide it here
+		CircleFigure result = new CircleFigure(20, 20);
 
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());
