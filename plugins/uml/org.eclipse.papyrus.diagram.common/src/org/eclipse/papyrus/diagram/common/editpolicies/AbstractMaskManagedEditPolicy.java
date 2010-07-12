@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.GraphicalEditPolicyEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.listenerservice.IPapyrusListener;
+import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
 import org.eclipse.papyrus.umlutils.ui.command.AddMaskManagedLabelDisplayCommand;
 import org.eclipse.papyrus.umlutils.ui.command.RemoveEAnnotationCommand;
@@ -30,8 +31,13 @@ import org.eclipse.uml2.uml.Element;
 /**
  * Default Abstract implementation of the {@link IMaskManagedLabelEditPolicy}.
  */
+@SuppressWarnings("restriction")
 public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyEx implements NotificationListener, IPapyrusListener, IMaskManagedLabelEditPolicy {
 
+	/**
+	 * Stores the semantic element related to the edit policy. If resolveSemanticElement is used, there are problems when the edit part is getting
+	 * destroyed, i.e. the link to the semantic element is removed, but the listeners should still be removed
+	 */
 	protected Element hostSemanticElement;
 
 	/**
@@ -44,7 +50,7 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 		if(view == null) {
 			return;
 		}
-		hostSemanticElement = getUMLElement();
+		hostSemanticElement = initSemanticElement();
 		if(hostSemanticElement != null) {
 
 			// adds a listener on the view and the element controlled by the editpart
@@ -54,7 +60,18 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 			addAdditionalListeners();
 
 			refreshDisplay();
+		} else {
+			Activator.log.error("No semantic element was found during activation of the mask managed label edit policy", null);
 		}
+	}
+
+	/**
+	 * Sets the semantic element which is linked to the edit policy
+	 * 
+	 * @return the element linked to the edit policy
+	 */
+	protected Element initSemanticElement() {
+		return (Element)getView().getElement();
 	}
 
 	/**
@@ -86,8 +103,8 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 		// remove notification on element and view
 		getDiagramEventBroker().removeNotificationListener(view, this);
 
-		if(hostSemanticElement != null) {
-			getDiagramEventBroker().removeNotificationListener(hostSemanticElement, this);
+		if(getUMLElement() != null) {
+			getDiagramEventBroker().removeNotificationListener(getUMLElement(), this);
 		}
 
 		removeAdditionalListeners();
@@ -97,7 +114,7 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	}
 
 	/**
-	 * 
+	 * Remove additional listeners that were added during activation of the edit policy
 	 */
 	protected void removeAdditionalListeners() {
 		// default implementation does nothing
@@ -119,10 +136,10 @@ public abstract class AbstractMaskManagedEditPolicy extends GraphicalEditPolicyE
 	/**
 	 * Returns the {@link Element} managed by this edit part.
 	 * 
-	 * @return
+	 * @return the {@link Element} managed by this edit part.
 	 */
 	public Element getUMLElement() {
-		return (Element)getView().getElement();
+		return hostSemanticElement;
 	}
 
 	/**
