@@ -826,13 +826,16 @@
             <param name="semanticHint" value="3088"/>
          </metamodelType>
       </metamodel>
-         <specializationType
+      <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
+         <metamodelType
                id="org.eclipse.papyrus.diagram.composite.Property_3070"
                name="%metatype.name.Property_3070"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Property"
+               edithelper="org.eclipse.papyrus.diagram.composite.edit.helpers.PropertyEditHelper">
             <param name="semanticHint" value="3070"/>
-         </specializationType>
+         </metamodelType>
+      </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
          <metamodelType
                id="org.eclipse.papyrus.diagram.composite.prototype.ConnectableElement_3115"
@@ -2147,6 +2150,7 @@
 
 
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.AbstractionPreferencePage"
@@ -2154,6 +2158,7 @@
             name="Abstraction Link" />
 		
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.InformationFlowPreferencePage"
@@ -2161,6 +2166,7 @@
             name="InformationFlow Link" />
 		
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.GeneralizationPreferencePage"
@@ -2168,6 +2174,7 @@
             name="Generalization Link" />
 		
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.ConnectorPreferencePage"
@@ -2175,6 +2182,7 @@
             name="Connector Link" />
 		
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.ManifestationPreferencePage"
@@ -2182,6 +2190,7 @@
             name="Manifestation Link" />
 		
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.DependencyPreferencePage"
@@ -2189,6 +2198,7 @@
             name="Dependency Link" />
 		
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.RealizationPreferencePage"
@@ -2196,6 +2206,7 @@
             name="Realization Link" />
 		
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.UsagePreferencePage"
@@ -2203,6 +2214,7 @@
             name="Usage Link" />
 		
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.InterfaceRealizationPreferencePage"
@@ -2210,6 +2222,7 @@
             name="InterfaceRealization Link" />
 		
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.ComponentRealizationPreferencePage"
@@ -2217,6 +2230,7 @@
             name="ComponentRealization Link" />
 		
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.SubstitutionPreferencePage"
@@ -2224,6 +2238,9 @@
             name="Substitution Link" />
 		
 		
+		
+		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.CompositeStructure"
 			class="org.eclipse.papyrus.diagram.composite.preferences.DeploymentPreferencePage"
@@ -2751,6 +2768,10 @@
             menubarPath="filtersMenu/expandFilterGroup">
       </action>
    </objectContribution>
-</extension>
+   </extension>
 
+
+   
+
+   
 </plugin>

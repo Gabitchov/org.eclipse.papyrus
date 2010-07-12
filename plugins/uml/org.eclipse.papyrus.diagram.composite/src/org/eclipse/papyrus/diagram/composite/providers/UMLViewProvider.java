@@ -186,6 +186,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case ConstraintEditPart.VISUAL_ID:
 				case PortEditPart.VISUAL_ID:
 				case ParameterEditPart.VISUAL_ID:
+				case PropertyPartEditPartCN.VISUAL_ID:
 				case CollaborationRoleEditPartCN.VISUAL_ID:
 				case CollaborationUseEditPartCN.VISUAL_ID:
 				case CollaborationCompositeEditPartCN.VISUAL_ID:
@@ -210,7 +211,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case UseCaseEditPart.VISUAL_ID:
 				case CommentEditPart.VISUAL_ID:
 				case DurationConstraintEditPart.VISUAL_ID:
-				case PropertyPartEditPartCN.VISUAL_ID:
 				case ActivityCompositeEditPartCN.VISUAL_ID:
 				case InteractionCompositeEditPartCN.VISUAL_ID:
 				case ProtocolStateMachineCompositeEditPartCN.VISUAL_ID:
