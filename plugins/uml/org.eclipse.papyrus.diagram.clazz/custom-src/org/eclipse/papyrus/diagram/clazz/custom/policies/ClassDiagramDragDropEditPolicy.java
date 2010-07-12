@@ -138,6 +138,9 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 		Command cmd = getHost().getCommand(req);
 
 		if(canHaveContainmentLink()) {
+			if (isCircularContainment(request)) {
+				return UnexecutableCommand.INSTANCE;
+			}
 			cmd = cmd.chain(getDropObjectsCommand(castToDropObjectsRequest(request)));
 		}
 		if(cmd == null || !cmd.canExecute()) {
@@ -149,6 +152,17 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 
 	private boolean canHaveContainmentLink() {
 		return getHost() instanceof PackagePackageableElementCompartment2EditPart || getHost() instanceof PackagePackageableElementCompartmentEditPart || getHost() instanceof ModelEditPart || getHost() instanceof ModelPackageableElementCompartmentEditPart || getHost() instanceof ModelPackageableElementCompartment2EditPart;
+	}
+	
+	private boolean isCircularContainment(ChangeBoundsRequest request) {
+		EObject hostElement = ((View)getHost().getModel()).getElement();
+		for (Object next: request.getEditParts()) {
+			EditPart ep = (EditPart)next;
+			if (ep.getModel() != null && ((View)ep.getModel()).getElement().equals(hostElement.eContainer())) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
