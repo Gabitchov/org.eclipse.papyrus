@@ -29,4 +29,4 @@ public class UmlMessageUiModule extends org.eclipse.papyrus.message.editor.xtext
 	public UmlMessageUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
 	}
-}
+} 

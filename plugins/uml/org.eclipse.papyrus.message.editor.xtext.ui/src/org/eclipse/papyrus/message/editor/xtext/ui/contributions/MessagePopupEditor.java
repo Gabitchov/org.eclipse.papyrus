@@ -114,18 +114,23 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 	
 	@Override
 	public IPopupEditorHelper createPopupEditorHelper(Object editPart) {
+		// resolves the edit part, and the associated semantic element
 		IGraphicalEditPart graphicalEditPart = null;
 		if(!(editPart instanceof IGraphicalEditPart))
 			return null;
 		graphicalEditPart = (IGraphicalEditPart)editPart;
 		if(!(graphicalEditPart.getTopGraphicEditPart().resolveSemanticElement() instanceof Message)) {
 			return null;
-		} //else System.out.print("semantic element message \n");
+		} 
 		message = (Message)graphicalEditPart.getTopGraphicEditPart().resolveSemanticElement();
+		// retrieves the XText injector
 		Injector injector = UmlMessageActivator.getInstance().getInjector("org.eclipse.papyrus.message.editor.xtext.UmlMessage");
+		
+		// builds the text content and extension for a temporary file, to be edited by the xtext editor
 		String textToEdit = "" + this.getTextToEdit(message);
 		String fileExtension = "" + ".umlmessage";
 
+		// builds a new IEobjectContextUpdater
 		IEObjectContextUpdater eobjectContextUpdater = new IEObjectContextUpdater() {
 
 			public void updateContext(EObject context) {
@@ -133,6 +138,7 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 			}
 		};
 
+		// builds a new IXTextEditorContextUpdater
 		IXTextEditorContextUpdater xtextEditorContextUpdater = new IXTextEditorContextUpdater() {
 
 			public void updateCurrentEditor(XtextEditor context) {
@@ -140,7 +146,10 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 			}
 		};
 
-		IXtextEMFReconciler eobjectUpdater = new IXtextEMFReconciler() {
+		// builds a new IXtextEMFReconciler.
+		// Its purpose is to extract any relevant information from the textual specification,
+		// and then merge it in the context UML model if necessary
+		IXtextEMFReconciler reconciler = new IXtextEMFReconciler() {
 
 			public void reconcile(EObject modelObject, EObject xtextObject) {
 				// first: retrieves / determines if the xtextObject is a MessageRule object
@@ -153,26 +162,14 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 				if(modifiedObject == null)
 					return;
 				MessageRule messageRuleObject = (MessageRule)xtextObject;
-
+				
+				// Retrieves the information to be populated in modelObject
 				newName = "" + messageRuleObject.getName();
 
-				//the following code is intended to remove the last characters in the new name, because the new name finishes by the first sequencenumber of the message!!!
-				int ocnumber;
-				ocnumber = messageRuleObject.getSequenceTerm().get(0).getSequencialOrder();
-				double base10 = Math.log(10);
-				int dignum = 1 + (int)(Math.log(ocnumber) / base10); //the number of digits in the first sequencenumber
-
-				StringBuffer buffer = new StringBuffer(newName);
-				buffer = buffer.reverse();
-				for(int j = 0; j < dignum; j++) {
-					buffer.deleteCharAt(0);
-				}
-				buffer.reverse();
-
-				newName = buffer.toString();
-
-
-				// 
+				
+				int ocnumber = messageRuleObject.getSequenceTerm().get(0).getSequencialOrder();
+				
+			
 				String ocname = "";
 
 				newSequenceTermList = "";
@@ -190,7 +187,7 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 						newSequenceTermList = newSequenceTermList + '.' + ocnumber + ocname;
 				}
 
-
+				// Creates and executes the update command
 				UpdateUMLMessageCommand updateCommand = new UpdateUMLMessageCommand(message);
 
 				try {
@@ -204,7 +201,7 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 
 
 		};
-		return super.createPopupEditorHelper(graphicalEditPart, injector, eobjectContextUpdater, xtextEditorContextUpdater, eobjectUpdater, textToEdit, fileExtension);
+		return super.createPopupEditorHelper(graphicalEditPart, injector, eobjectContextUpdater, xtextEditorContextUpdater, reconciler, textToEdit, fileExtension);
 	}
 
 	/**
