@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
+ *  Vinent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Add undo
  *****************************************************************************/
 package org.eclipse.papyrus.pastemanager.command;
 
@@ -97,5 +97,15 @@ public class GEFtoEMFCommandWrapper extends AbstractCommand {
 	public void redo() {
 
 		gefCommand.redo();
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.emf.common.command.AbstractCommand#undo()
+	 * 
+	 */
+	@Override
+	public void undo() {
+		gefCommand.undo();
 	}
 }
