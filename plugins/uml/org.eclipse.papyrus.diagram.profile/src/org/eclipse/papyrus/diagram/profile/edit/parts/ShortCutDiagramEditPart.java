@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.edit.parts;
 
 import java.util.Collections;
@@ -60,6 +47,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class ShortCutDiagramEditPart extends
 
+
 AbstractShortCutDiagramEditPart {
 
 	/**
@@ -97,15 +85,21 @@ AbstractShortCutDiagramEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
+
+
+
 	/**
-	 * Papyrus codeGen
-	 * 
-	 * @generated
+	 *Papyrus codeGen
+	 *@generated
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
 	}
+
+
+
+
 
 	/**
 	 * @generated
@@ -158,6 +152,7 @@ AbstractShortCutDiagramEditPart {
 		return (DiagramNodeFigure)primaryShape;
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -184,6 +179,7 @@ AbstractShortCutDiagramEditPart {
 		return result;
 	}
 
+
 	/**
 	 * Creates figure for this edit part.
 	 * 
@@ -204,9 +200,7 @@ AbstractShortCutDiagramEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
-	 * @param nodeShape
-	 *        instance of generated figure class
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -256,6 +250,10 @@ AbstractShortCutDiagramEditPart {
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(DiagramNameEditPart.VISUAL_ID));
 	}
+
+
+
+
 
 	/**
 	 * @generated

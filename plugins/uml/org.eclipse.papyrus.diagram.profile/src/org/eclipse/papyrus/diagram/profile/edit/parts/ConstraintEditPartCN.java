@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.edit.parts;
 
 import java.util.ArrayList;
@@ -45,7 +32,6 @@ import org.eclipse.papyrus.diagram.common.figure.node.ConstraintFigure;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.diagram.profile.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.profile.edit.policies.ConstraintItemSemanticEditPolicyCN;
-import org.eclipse.papyrus.diagram.profile.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.profile.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.profile.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes;
@@ -57,6 +43,7 @@ import org.eclipse.swt.graphics.Color;
  * @generated
  */
 public class ConstraintEditPartCN extends
+
 
 AbstractConstraintEditPart {
 
@@ -89,21 +76,26 @@ AbstractConstraintEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ConstraintItemSemanticEditPolicyCN());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
+
+
+
 	/**
-	 * Papyrus codeGen
-	 * 
-	 * @generated
+	 *Papyrus codeGen
+	 *@generated
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
 	}
+
+
+
+
 
 	/**
 	 * @generated
@@ -157,8 +149,10 @@ AbstractConstraintEditPart {
 			return true;
 		}
 
+
 		return false;
 	}
+
 
 	/**
 	 * @generated
@@ -200,6 +194,7 @@ AbstractConstraintEditPart {
 		return getContentPane();
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -212,6 +207,7 @@ AbstractConstraintEditPart {
 
 		return result;
 	}
+
 
 	/**
 	 * Creates figure for this edit part.
@@ -233,9 +229,7 @@ AbstractConstraintEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
-	 * @param nodeShape
-	 *        instance of generated figure class
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -627,6 +621,10 @@ AbstractConstraintEditPart {
 		}
 		return types;
 	}
+
+
+
+
 
 	/**
 	 * @generated

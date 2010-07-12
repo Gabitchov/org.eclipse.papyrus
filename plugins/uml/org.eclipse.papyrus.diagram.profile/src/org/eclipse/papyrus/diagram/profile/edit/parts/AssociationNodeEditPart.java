@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.edit.parts;
 
 import java.util.ArrayList;
@@ -48,7 +35,6 @@ import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElement
 import org.eclipse.papyrus.diagram.profile.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.profile.custom.policies.itemsemantic.CustomAssociationNodeItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.profile.edit.policies.AssociationNodeItemSemanticEditPolicy;
-import org.eclipse.papyrus.diagram.profile.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.diagram.profile.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
@@ -91,12 +77,15 @@ ShapeNodeEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new AssociationNodeItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomAssociationNodeItemSemanticEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
+
+
+
+
 
 	/**
 	 * @generated
@@ -137,6 +126,8 @@ ShapeNodeEditPart {
 		return (AssociationNodeDescriptor)primaryShape;
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -149,6 +140,7 @@ ShapeNodeEditPart {
 
 		return result;
 	}
+
 
 	/**
 	 * Creates figure for this edit part.
@@ -170,9 +162,7 @@ ShapeNodeEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
-	 * @param nodeShape
-	 *        instance of generated figure class
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -215,6 +205,7 @@ ShapeNodeEditPart {
 			((Shape)primaryShape).setLineStyle(style);
 		}
 	}
+
 
 	/**
 	 * @generated
@@ -718,10 +709,17 @@ ShapeNodeEditPart {
 		return types;
 	}
 
+
+
+
+
 	/**
 	 * @generated
 	 */
 	public class AssociationNodeDescriptor extends Shape {
+
+
+
 
 		/**
 		 * @generated
@@ -814,7 +812,14 @@ ShapeNodeEditPart {
 			return scaled;
 		}
 
+
+
+
+
 	}
+
+
+
 
 	/**
 	 * @generated

@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.edit.parts;
 
 import java.util.Collections;
@@ -55,11 +42,15 @@ public class ProfileDiagramEditPart extends DiagramEditPart {
 	 */
 	public static final int VISUAL_ID = 1000;
 
+
+
 	/**
 	 * @generated
 	 */
 	public ProfileDiagramEditPart(View view) {
 		super(view);
+
+
 		getFigure().setClippingStrategy(new IClippingStrategy() {
 
 			public Rectangle[] getClip(IFigure childFigure) {
@@ -121,10 +112,11 @@ public class ProfileDiagramEditPart extends DiagramEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 
+
 	/**
 	 * @generated
 	 */
-	/* package-local */static class NodeLabelDragPolicy extends NonResizableEditPolicy {
+	/*package-local*/static class NodeLabelDragPolicy extends NonResizableEditPolicy {
 
 		/**
 		 * @generated
@@ -151,10 +143,11 @@ public class ProfileDiagramEditPart extends DiagramEditPart {
 		}
 	}
 
+
 	/**
 	 * @generated
 	 */
-	/* package-local */static class LinkLabelDragPolicy extends NonResizableLabelEditPolicy {
+	/*package-local*/static class LinkLabelDragPolicy extends NonResizableLabelEditPolicy {
 
 		/**
 		 * @generated
@@ -166,6 +159,10 @@ public class ProfileDiagramEditPart extends DiagramEditPart {
 			return Collections.singletonList(mh);
 		}
 	}
+
+
+
+
 
 	/**
 	 * @generated
@@ -182,6 +179,7 @@ public class ProfileDiagramEditPart extends DiagramEditPart {
 		}
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -192,5 +190,7 @@ public class ProfileDiagramEditPart extends DiagramEditPart {
 		}
 		return super.getAdapter(adapter);
 	}
+
+
 
 }

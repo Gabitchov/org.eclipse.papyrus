@@ -90,19 +90,21 @@ public class ConstraintBondyEditPartCN extends CompartmentEditPart implements IT
 	 */
 	private String defaultText;
 
+
+
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
-	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
-	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
+
+
 
 	/**
 	 * @generated
@@ -555,6 +557,8 @@ public class ConstraintBondyEditPartCN extends CompartmentEditPart implements IT
 		return getPrimaryView();
 	}
 
+
+
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -599,7 +603,6 @@ public class ConstraintBondyEditPartCN extends CompartmentEditPart implements IT
 
 	/**
 	 * Initializes the extended editor configuration
-	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -615,7 +618,6 @@ public class ConstraintBondyEditPartCN extends CompartmentEditPart implements IT
 
 	/**
 	 * Updates the preference configuration
-	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -629,9 +631,7 @@ public class ConstraintBondyEditPartCN extends CompartmentEditPart implements IT
 
 	/**
 	 * Performs the direct edit usually used by GMF editors.
-	 * 
-	 * @param theRequest
-	 *        the direct edit request that starts the direct edit system
+	 * @param theRequest the direct edit request that starts the direct edit system
 	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
@@ -658,6 +658,8 @@ public class ConstraintBondyEditPartCN extends CompartmentEditPart implements IT
 		}
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -673,6 +675,7 @@ public class ConstraintBondyEditPartCN extends CompartmentEditPart implements IT
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
+
 
 	/**
 	 * @generated
@@ -705,6 +708,7 @@ public class ConstraintBondyEditPartCN extends CompartmentEditPart implements IT
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 
@@ -716,10 +720,13 @@ public class ConstraintBondyEditPartCN extends CompartmentEditPart implements IT
 		return null;
 	}
 
+
+
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
+
 
 	/**
 	 * @generated
@@ -746,6 +753,7 @@ public class ConstraintBondyEditPartCN extends CompartmentEditPart implements IT
 
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -753,5 +761,6 @@ public class ConstraintBondyEditPartCN extends CompartmentEditPart implements IT
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
+
 
 }

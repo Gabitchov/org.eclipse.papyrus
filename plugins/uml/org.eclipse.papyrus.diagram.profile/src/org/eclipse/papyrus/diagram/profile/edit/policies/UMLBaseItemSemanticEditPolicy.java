@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.edit.policies;
 
 import java.util.Iterator;
@@ -44,6 +31,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.helper.UMLBaseEditHelper;
 import org.eclipse.papyrus.diagram.profile.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.diagram.profile.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes;
@@ -74,7 +62,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Extended request data key to hold editpart visual id.
-	 * 
 	 * @generated
 	 */
 	public static final String VISUAL_ID_KEY = "visual_id"; //$NON-NLS-1$
@@ -100,7 +87,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * 
 	 * @generated
 	 */
-	@Override
 	public Command getCommand(Request request) {
 		if(request instanceof ReconnectRequest) {
 			Object view = ((ReconnectRequest)request).getConnectionEditPart().getModel();
@@ -114,7 +100,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Returns visual id from request parameters.
-	 * 
 	 * @generated
 	 */
 	protected int getVisualID(IEditCommandRequest request) {
@@ -125,7 +110,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected Command getSemanticCommand(IEditCommandRequest request) {
 		IEditCommandRequest completedRequest = completeRequest(request);
 		Command semanticCommand = getSemanticCommandSwitch(completedRequest);
@@ -151,13 +135,13 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	private Command getEditHelperCommand(IEditCommandRequest request, Command editPolicyCommand) {
 		if(editPolicyCommand != null) {
 			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy)editPolicyCommand).getICommand() : new CommandProxy(editPolicyCommand);
-			request.setParameter(org.eclipse.papyrus.diagram.common.helper.UMLBaseEditHelper.EDIT_POLICY_COMMAND, command);
+			request.setParameter(UMLBaseEditHelper.EDIT_POLICY_COMMAND, command);
 		}
 		IElementType requestContextElementType = getContextElementType(request);
-		request.setParameter(org.eclipse.papyrus.diagram.common.helper.UMLBaseEditHelper.CONTEXT_ELEMENT_TYPE, requestContextElementType);
+		request.setParameter(UMLBaseEditHelper.CONTEXT_ELEMENT_TYPE, requestContextElementType);
 		ICommand command = requestContextElementType.getEditCommand(request);
-		request.setParameter(org.eclipse.papyrus.diagram.common.helper.UMLBaseEditHelper.EDIT_POLICY_COMMAND, null);
-		request.setParameter(org.eclipse.papyrus.diagram.common.helper.UMLBaseEditHelper.CONTEXT_ELEMENT_TYPE, null);
+		request.setParameter(UMLBaseEditHelper.EDIT_POLICY_COMMAND, null);
+		request.setParameter(UMLBaseEditHelper.CONTEXT_ELEMENT_TYPE, null);
 		if(command != null) {
 			if(!(command instanceof CompositeTransactionalCommand)) {
 				command = new CompositeTransactionalCommand(getEditingDomain(), command.getLabel()).compose(command);
@@ -266,7 +250,9 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected Command getMoveCommand(MoveRequest req) {
 
+
 		return getGEFWrapper(new MoveElementsCommand(req));
+
 
 	}
 
@@ -293,7 +279,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Returns editing domain from the host edit part.
-	 * 
 	 * @generated
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
@@ -302,7 +287,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 
 	/**
 	 * Clean all shortcuts to the host element from the same diagram
-	 * 
 	 * @generated
 	 */
 	protected void addDestroyShortcutsCommand(ICompositeCommand cmd, View view) {
@@ -316,6 +300,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -326,6 +311,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 		return cached;
 	}
+
 
 	/**
 	 * @generated
@@ -339,12 +325,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			// use static method #getLinkConstraints() to access instance
 		}
 
+
 		/**
 		 * @generated
 		 */
 		public boolean canCreateExtension_1013(Package container, Property source, Class target) {
 			return canExistExtension_1013(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated
@@ -353,12 +341,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistAssociation_4001(container, null, source, target);
 		}
 
+
 		/**
 		 * @generated
 		 */
 		public boolean canCreateProfileApplication_1045(Package container, Package source, Profile target) {
 			return canExistProfileApplication_1045(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated
@@ -367,12 +357,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistAssociation_4019(container, null, source, target);
 		}
 
+
 		/**
 		 * @generated
 		 */
 		public boolean canCreateGeneralization_4002(Classifier source, Classifier target) {
 			return canExistGeneralization_4002(null, source, target);
 		}
+
 
 		/**
 		 * @generated
@@ -381,12 +373,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistDependency_4008(container, null, source, target);
 		}
 
+
 		/**
 		 * @generated
 		 */
 		public boolean canCreateDependency_4018(Package container, NamedElement source, NamedElement target) {
 			return canExistDependency_4018(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated
@@ -395,12 +389,14 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistElementImport_1064(container, null, source, target);
 		}
 
+
 		/**
 		 * @generated
 		 */
 		public boolean canCreatePackageImport_1065(Namespace container, Namespace source, Package target) {
 			return canExistPackageImport_1065(container, null, source, target);
 		}
+
 
 		/**
 		 * @generated
@@ -415,6 +411,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistCommentAnnotatedElement_1022(source, target);
 		}
 
+
 		/**
 		 * @generated
 		 */
@@ -428,21 +425,20 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			return canExistConstraintConstrainedElement_4014(source, target);
 		}
 
+
 		/**
 		 * @generated
 		 */
 		public boolean canExistExtension_1013(Package container, Extension linkInstance, Property source, Class target) {
 			try {
 				//ExtensionSource
-				/**
-				 * we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype
+				/**we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype
 				 * 
 				 * @see org.eclipse.papyrus.diagram.profile.custom.policies.CUMLBaseItemSemanticEditPolicy for the good test!
 				 */
 				//ExtensionTarget
 
-				/**
-				 * we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype
+				/**we can't make a test here, because, the source must be a Property (ExtensionEnd) and it's a Stereotype
 				 * 
 				 * @see org.eclipse.papyrus.diagram.profile.custom.policies.CUMLBaseItemSemanticEditPolicy for the good test!
 				 */

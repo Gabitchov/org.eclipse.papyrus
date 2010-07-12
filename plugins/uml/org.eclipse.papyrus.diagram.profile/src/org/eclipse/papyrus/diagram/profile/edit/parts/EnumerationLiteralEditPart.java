@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.edit.parts;
 
 import java.util.Collections;
@@ -112,19 +99,21 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 	 */
 	private String defaultText;
 
+
+
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
-	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
-	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
+
+
 
 	/**
 	 * @generated
@@ -588,6 +577,8 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 		return (View)getModel();
 	}
 
+
+
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -632,7 +623,6 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 
 	/**
 	 * Initializes the extended editor configuration
-	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -648,7 +638,6 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 
 	/**
 	 * Updates the preference configuration
-	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -662,9 +651,7 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 
 	/**
 	 * Performs the direct edit usually used by GMF editors.
-	 * 
-	 * @param theRequest
-	 *        the direct edit request that starts the direct edit system
+	 * @param theRequest the direct edit request that starts the direct edit system
 	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
@@ -691,6 +678,8 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 		}
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -706,6 +695,8 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
+
+
 
 	/**
 	 * @generated
@@ -755,10 +746,14 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 		return new LiteralEnumerationDescriptor();
 	}
 
+
 	/**
 	 * @generated
 	 */
 	public class LiteralEnumerationDescriptor extends WrappingLabel {
+
+
+
 
 		/**
 		 * @generated
@@ -768,7 +763,12 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 
 			this.setFont(THIS_FONT);
 
+
 		}
+
+
+
+
 
 	}
 
@@ -776,5 +776,7 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 	 * @generated
 	 */
 	static final Font THIS_FONT = new Font(Display.getCurrent(), "Arial", 10, SWT.NORMAL);
+
+
 
 }

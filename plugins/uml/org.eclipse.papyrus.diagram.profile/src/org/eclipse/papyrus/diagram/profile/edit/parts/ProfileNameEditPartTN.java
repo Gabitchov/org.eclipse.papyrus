@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.edit.parts;
 
 import java.util.Collections;
@@ -102,19 +89,21 @@ public class ProfileNameEditPartTN extends CompartmentEditPart implements ITextA
 	 */
 	private String defaultText;
 
+
+
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
-	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
-	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
+
+
 
 	/**
 	 * @generated
@@ -567,6 +556,8 @@ public class ProfileNameEditPartTN extends CompartmentEditPart implements ITextA
 		return (View)getModel();
 	}
 
+
+
 	/**
 	 * Returns the kind of associated editor for direct edition.
 	 * 
@@ -611,7 +602,6 @@ public class ProfileNameEditPartTN extends CompartmentEditPart implements ITextA
 
 	/**
 	 * Initializes the extended editor configuration
-	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -627,7 +617,6 @@ public class ProfileNameEditPartTN extends CompartmentEditPart implements ITextA
 
 	/**
 	 * Updates the preference configuration
-	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -641,9 +630,7 @@ public class ProfileNameEditPartTN extends CompartmentEditPart implements ITextA
 
 	/**
 	 * Performs the direct edit usually used by GMF editors.
-	 * 
-	 * @param theRequest
-	 *        the direct edit request that starts the direct edit system
+	 * @param theRequest the direct edit request that starts the direct edit system
 	 * @generated
 	 */
 	protected void performDefaultDirectEditorEdit(final Request theRequest) {
@@ -670,6 +657,8 @@ public class ProfileNameEditPartTN extends CompartmentEditPart implements ITextA
 		}
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -685,6 +674,7 @@ public class ProfileNameEditPartTN extends CompartmentEditPart implements ITextA
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
 	}
+
 
 	/**
 	 * @generated
@@ -717,6 +707,7 @@ public class ProfileNameEditPartTN extends CompartmentEditPart implements ITextA
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 
@@ -728,10 +719,13 @@ public class ProfileNameEditPartTN extends CompartmentEditPart implements ITextA
 		return null;
 	}
 
+
+
 	/**
 	 * @generated
 	 */
 	private static final String ADD_PARENT_MODEL = "AddParentModel";
+
 
 	/**
 	 * @generated
@@ -758,6 +752,7 @@ public class ProfileNameEditPartTN extends CompartmentEditPart implements ITextA
 
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -765,5 +760,6 @@ public class ProfileNameEditPartTN extends CompartmentEditPart implements ITextA
 		removeListenerFilter(ADD_PARENT_MODEL);
 
 	}
+
 
 }

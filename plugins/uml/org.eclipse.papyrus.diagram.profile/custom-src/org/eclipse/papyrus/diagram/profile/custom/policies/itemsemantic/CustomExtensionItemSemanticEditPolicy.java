@@ -37,7 +37,12 @@ public class CustomExtensionItemSemanticEditPolicy extends ExtensionItemSemantic
 		CompoundCommand cc = new CompoundCommand("Destroy Extension"); //$NON-NLS-1$
 		EObject elementToDestroy = req.getElementToDestroy();
 		if(elementToDestroy instanceof Extension) {
+
 			cc.add(StereotypeHelper.getRemovePropertyCommand((Extension)elementToDestroy));
+			if(cc.canExecute()) {
+				int dummy = 0;
+				dummy++;
+			}
 		}
 		return cc;
 	}

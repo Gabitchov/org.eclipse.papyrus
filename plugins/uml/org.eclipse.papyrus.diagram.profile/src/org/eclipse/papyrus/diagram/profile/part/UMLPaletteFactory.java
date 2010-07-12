@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.part;
 
 import java.util.ArrayList;
@@ -27,6 +14,10 @@ import org.eclipse.papyrus.diagram.profile.providers.UMLElementTypes;
  * @generated
  */
 public class UMLPaletteFactory extends PaletteFactory.Adapter {
+
+
+
+
 
 	/**
 	 * @generated
@@ -143,12 +134,16 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	private final static String CREATEENUMERATIONLITERAL3CREATIONTOOL = "createEnumerationLiteral3CreationTool"; //$NON-NLS-1$
 
+
+
 	/**
 	 * @generated
 	 */
 	public UMLPaletteFactory() {
 
 	}
+
+
 
 	/**
 	 * @generated
@@ -228,6 +223,9 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		return null;
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -236,6 +234,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		// default return: null
 		return null;
 	}
+
+
 
 	/**
 	 * @generated
@@ -500,5 +500,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
+
 
 }

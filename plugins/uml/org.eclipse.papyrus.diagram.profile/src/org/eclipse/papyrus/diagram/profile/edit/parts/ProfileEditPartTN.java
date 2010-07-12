@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.edit.parts;
 
 import java.util.ArrayList;
@@ -62,6 +49,7 @@ import org.eclipse.swt.graphics.Color;
  */
 public class ProfileEditPartTN extends
 
+
 NamedElementEditPart {
 
 	/**
@@ -102,15 +90,21 @@ NamedElementEditPart {
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
+
+
+
 	/**
-	 * Papyrus codeGen
-	 * 
-	 * @generated
+	 *Papyrus codeGen
+	 *@generated
 	 **/
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 
 	}
+
+
+
+
 
 	/**
 	 * @generated
@@ -160,6 +154,7 @@ NamedElementEditPart {
 			return true;
 		}
 
+
 		if(childEditPart instanceof ProfilePackageableElementCompartmentEditPartTN) {
 			IFigure pane = getPrimaryShape().getPackageableElementFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
@@ -169,6 +164,7 @@ NamedElementEditPart {
 
 		return false;
 	}
+
 
 	/**
 	 * @generated
@@ -216,6 +212,7 @@ NamedElementEditPart {
 		return getContentPane();
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -228,6 +225,7 @@ NamedElementEditPart {
 
 		return result;
 	}
+
 
 	/**
 	 * Creates figure for this edit part.
@@ -249,9 +247,7 @@ NamedElementEditPart {
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * 
-	 * @param nodeShape
-	 *        instance of generated figure class
+	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -696,6 +692,10 @@ NamedElementEditPart {
 		}
 		return types;
 	}
+
+
+
+
 
 	/**
 	 * @generated

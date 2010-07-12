@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.sheet;
 
 import java.util.ArrayList;
@@ -57,6 +44,8 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 		return null;
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -64,9 +53,9 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 		return this;
 	}
 
+
 	/**
 	 * Modify/unwrap selection.
-	 * 
 	 * @generated
 	 */
 	protected Object transformSelection(Object selected) {
@@ -87,6 +76,7 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 		return selected;
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -106,6 +96,7 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 		super.setInput(part, new StructuredSelection(transformedSelection));
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -119,5 +110,7 @@ public class UMLPropertySection extends AdvancedPropertySection implements IProp
 		}
 		return null;
 	}
+
+
 
 }

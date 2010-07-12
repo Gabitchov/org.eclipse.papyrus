@@ -1,16 +1,3 @@
-/*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
 package org.eclipse.papyrus.diagram.profile.part;
 
 import java.io.IOException;
@@ -134,6 +121,8 @@ public class UMLDiagramEditorUtil {
 		return filePath.lastSegment();
 	}
 
+
+
 	/**
 	 * Runs the wizard in a dialog.
 	 * 
@@ -154,7 +143,6 @@ public class UMLDiagramEditorUtil {
 
 	/**
 	 * This method should be called within a workspace modify operation since it creates resources.
-	 * 
 	 * @generated
 	 */
 	public static Resource createDiagram(URI diagramURI, URI modelURI, IProgressMonitor progressMonitor) {
@@ -196,27 +184,31 @@ public class UMLDiagramEditorUtil {
 		return diagramResource;
 	}
 
+
 	/**
 	 * Create a new instance of domain element associated with canvas.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static Profile createInitialModel() {
 		return UMLFactory.eINSTANCE.createProfile();
 	}
 
+
 	/**
 	 * Store model element in the resource.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static void attachModelToResource(Profile model, Resource resource) {
 		resource.getContents().add(model);
 	}
+
+
+
+
 
 	/**
 	 * @generated
@@ -236,6 +228,7 @@ public class UMLDiagramEditorUtil {
 			diagramPart.getDiagramGraphicalViewer().reveal(firstPrimary != null ? firstPrimary : (EditPart)editParts.get(0));
 		}
 	}
+
 
 	/**
 	 * @generated
@@ -278,6 +271,7 @@ public class UMLDiagramEditorUtil {
 		return editPartCollector.size() - intialNumOfEditParts;
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -301,7 +295,6 @@ public class UMLDiagramEditorUtil {
 
 	/**
 	 * XXX This is quite suspicious code (especially editPartTmpHolder) and likely to be removed soon
-	 * 
 	 * @generated
 	 */
 	public static class LazyElement2ViewMap {
@@ -377,5 +370,7 @@ public class UMLDiagramEditorUtil {
 			return complete;
 		}
 	} //LazyElement2ViewMap	
+
+
 
 }
