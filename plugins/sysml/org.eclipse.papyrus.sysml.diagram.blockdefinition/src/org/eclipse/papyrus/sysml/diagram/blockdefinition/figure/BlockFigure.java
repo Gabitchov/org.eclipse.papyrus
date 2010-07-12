@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.figure;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
@@ -30,10 +31,18 @@ public class BlockFigure extends ClassifierFigure {
 	}
 
 	protected void createContentPane(List<String> compartments) {
-		super.createContentPane(updateCompartment(compartments));
+		super.createContentPane(getUpdatedListOfCompartments(compartments));
 	}
 
-	private List<String> updateCompartment(List<String> compartments) {
+	/**
+	 * Get the list of compartments, updated with specific ones
+	 * 
+	 * @param compartments
+	 *        the original list of compartments (untouched)
+	 * @return the new completed list of compartments
+	 */
+	private List<String> getUpdatedListOfCompartments(List<String> compartments) {
+		compartments = new ArrayList<String>(compartments);
 		compartments.add(BlockConstraintCompartmentEditPart.COMPARTMENT_NAME);
 		compartments.add(BlockPartCompartmentEditPart.COMPARTMENT_NAME);
 		compartments.add(BlockReferenceCompartmentEditPart.COMPARTMENT_NAME);
