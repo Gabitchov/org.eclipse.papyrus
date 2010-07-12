@@ -41,6 +41,8 @@ public class AspectCreationEntry extends CombinedTemplateCreationEntry implement
 	/** saves the image descriptor used by this entry */
 	private ImageDescriptor descriptor;
 
+	private final static String URL_IMAGE_DESCRIPTOR_BEGIN = "URLImageDescriptor(";
+
 	/**
 	 * Creates a new AspectCreationEntry
 	 * 
@@ -54,9 +56,23 @@ public class AspectCreationEntry extends CombinedTemplateCreationEntry implement
 	public AspectCreationEntry(String name, String desc, String id, ImageDescriptor descriptor, CombinedTemplateCreationEntry entry, Map<?, ?> properties) {
 		super(name, desc, null, descriptor, descriptor);
 		setId(id);
+		// computes the icon path
+		// due to visibility problems on URL image descriptor, use the toString() method...
+		computeIconPathFromImageDescriptor(descriptor);
 		this.entry = entry;
 		this.properties = properties;
 		this.descriptor = descriptor;
+	}
+
+	/**
+	 * Computes the icon path for the URL image descriptor
+	 */
+	protected void computeIconPathFromImageDescriptor(ImageDescriptor desc) {
+		String value = desc.toString();
+		if(value.startsWith("URLImageDescriptor(")) {
+			String url = value.substring(URL_IMAGE_DESCRIPTOR_BEGIN.length(), value.length() - 1);
+			setIconPath(url);
+		}
 	}
 
 	/**
