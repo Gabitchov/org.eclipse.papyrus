@@ -1301,6 +1301,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 	 */
 	protected void populateAvailableToolsToolBar(ToolBar toolbar) {
 		toggleContentProvider = createCheckToolBarItem(toolbar, SWITCH_CONTENT_PROVIDER_ICON, Messages.Local_Palette_SwitchToolsContentProvider_Tooltip, createSwitchToolsContentProviderListener());
+		toggleContentProvider.setSelection(true);
 		toggleContentProvider.setEnabled(false);
 		createCheckToolBarItem(toolbar, SHOWN_TOOLS_ICON, Messages.Local_Palette_ShowTools_Tooltip, createsShowToolListener());
 	}
@@ -1327,10 +1328,11 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 				Profile profile = getAllAppliedProfiles().get(index);
 
 				if(item.getSelection()) {
-					availableToolsViewer.setContentProvider(new ProfileToolsMetaclassStereotypeTreeContentProvider(profile, standardEntries));
+					availableToolsViewer.setContentProvider(new ProfileToolsStereotypeMetaclassTreeContentProvider(profile, standardEntries));
 					item.setSelection(true);
 				} else {
-					availableToolsViewer.setContentProvider(new ProfileToolsStereotypeMetaclassTreeContentProvider(profile, standardEntries));
+
+					availableToolsViewer.setContentProvider(new ProfileToolsMetaclassStereotypeTreeContentProvider(profile, standardEntries));
 					item.setSelection(false);
 				}
 
@@ -2069,12 +2071,15 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 			} else {
 				if(toggleContentProvider != null && !toggleContentProvider.isDisposed()) {
 					toggleContentProvider.setEnabled(true);
-					toggleContentProvider.setSelection(true);
 				}
 				// switch content provider
 				// this is a profile in case of uml2 tools
 				Profile profile = getAllAppliedProfiles().get(index);
-				availableToolsViewer.setContentProvider(new ProfileToolsMetaclassStereotypeTreeContentProvider(profile, standardEntries));
+				if(toggleContentProvider.getSelection()) {
+					availableToolsViewer.setContentProvider(new ProfileToolsStereotypeMetaclassTreeContentProvider(profile, standardEntries));
+				} else {
+					availableToolsViewer.setContentProvider(new ProfileToolsMetaclassStereotypeTreeContentProvider(profile, standardEntries));
+				}
 
 				// generate tools for given profile
 				availableToolsViewer.setInput(profile);
@@ -2168,6 +2173,7 @@ public class LocalPaletteContentPage extends WizardPage implements Listener {
 				for(PaletteEntry entry : standardEntries) {
 					// retrieve the element type created by the tool.
 					if(entry instanceof CombinedTemplateCreationEntry) {
+
 						EClass toolMetaclass = PaletteUtil.getToolMetaclass((CombinedTemplateCreationEntry)entry);
 						if(toolMetaclass != null) {
 							List<Class> metaclasses = stereotype.getAllExtendedMetaclasses();
