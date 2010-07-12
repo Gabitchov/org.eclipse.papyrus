@@ -216,7 +216,7 @@ public class CustomContainmentCircleItemSemanticEditPolicy extends ContainmentCi
 				targetNames.add(((NamedElement)outgoingLink.getTarget().getElement()).getName());
 			}
 		}
-		cmd.add(new AskAndThenDelete(targetNames));
+		cmd.add(new AskToDeleteContainmentCommand(targetNames));
 
 		ICommandProxy command = (ICommandProxy)getDestroyElementCommandGen(req);
 		cmd.add(command.getICommand());
@@ -236,11 +236,37 @@ public class CustomContainmentCircleItemSemanticEditPolicy extends ContainmentCi
 		return getGEFWrapper(cmd.reduce());
 	}
 
-	private class AskAndThenDelete extends AbstractOperation {
+
+	/**
+	 * 
+	 * {@inheritDoc}
+	 */
+	public Command getCommand(Request request) {
+		if(request instanceof ReconnectRequest) {
+			if(((ReconnectRequest)request).getTarget() instanceof CContainmentCircleEditPart) {
+				return getCustomReconnectRequest((ReconnectRequest)request);
+			}
+		}
+		return super.getCommand(request);
+	}
+
+
+	/**
+	 * 
+	 * use the AbstractTransactionalCommand "CustomReorientLinkCommand" to change the owner of the target class
+	 */
+	public Command getCustomReconnectRequest(ReconnectRequest request) {
+		CompoundCommand cc = new CompoundCommand();
+		cc.add(new ICommandProxy(new CustomReorientContainmentLinkCommand(getEditingDomain(), request)));
+		return cc;
+
+	}
+	
+	public static class AskToDeleteContainmentCommand extends AbstractOperation {
 
 		private List<String> myTargetNames;
 
-		public AskAndThenDelete(List<String> targetNames) {
+		public AskToDeleteContainmentCommand(List<String> targetNames) {
 			super("Show Question Dialog");
 			myTargetNames = targetNames;
 		}
@@ -278,31 +304,6 @@ public class CustomContainmentCircleItemSemanticEditPolicy extends ContainmentCi
 		public IStatus undo(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 			return Status.OK_STATUS;
 		}
-
-	}
-
-	/**
-	 * 
-	 * {@inheritDoc}
-	 */
-	public Command getCommand(Request request) {
-		if(request instanceof ReconnectRequest) {
-			if(((ReconnectRequest)request).getTarget() instanceof CContainmentCircleEditPart) {
-				return getCustomReconnectRequest((ReconnectRequest)request);
-			}
-		}
-		return super.getCommand(request);
-	}
-
-
-	/**
-	 * 
-	 * use the AbstractTransactionalCommand "CustomReorientLinkCommand" to change the owner of the target class
-	 */
-	public Command getCustomReconnectRequest(ReconnectRequest request) {
-		CompoundCommand cc = new CompoundCommand();
-		cc.add(new ICommandProxy(new CustomReorientContainmentLinkCommand(getEditingDomain(), request)));
-		return cc;
 
 	}
 
