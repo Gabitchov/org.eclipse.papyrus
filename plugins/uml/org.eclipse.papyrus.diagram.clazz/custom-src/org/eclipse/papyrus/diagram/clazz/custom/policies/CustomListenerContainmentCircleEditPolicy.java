@@ -31,6 +31,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
+import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.editpolicies.AbstractEditPolicy;
@@ -98,7 +99,7 @@ public class CustomListenerContainmentCircleEditPolicy extends AbstractEditPolic
 
 	public void notifyChanged(Notification notification) {
 
-		CContainmentCircleEditPart ccp = (CContainmentCircleEditPart)getHost();
+		GraphicalEditPart ccp = (GraphicalEditPart)getHost();
 
 		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
 		if(notification.getEventType() == 4) {
