@@ -47,6 +47,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
@@ -239,7 +240,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 				cc.add(new CommandProxy(getSpecificDropCommand(dropRequest, (Element)droppedObject, nodeVISUALID, linkVISUALID)));
 				continue;
 			}
-
+ 
 			if(linkVISUALID == -1 && nodeVISUALID != -1) {
 				// The element to drop is a node
 				// Retrieve it's expected graphical parent
@@ -247,9 +248,8 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 
 				// Restrict the default node creation to the following cases:
 				// . Take the containment relationship into consideration
-				// . Release the constraint when GraphicalParent is a Package (Canvas for most
-				// diagrams)
-				if(graphicalParent instanceof Package) {
+				// . Release the constraint when GraphicalParent is a diagram
+				if(getHost().getModel() instanceof Diagram) {
 					cc.add(getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject));
 
 				} else if((graphicalParent instanceof Element) && ((Element)graphicalParent).getOwnedElements().contains(droppedObject)) {
