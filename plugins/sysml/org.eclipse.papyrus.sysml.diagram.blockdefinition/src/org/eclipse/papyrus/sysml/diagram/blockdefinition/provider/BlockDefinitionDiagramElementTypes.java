@@ -24,12 +24,20 @@ public class BlockDefinitionDiagramElementTypes extends InheritedElementTypes {
 	public static final IHintedType BLOCK = (IHintedType)getElementType("org.eclipse.papyrus.sysml.diagram.blockdefinition.Block"); //$NON-NLS-1$
 
 	public static final String BLOCK_NAME_LABEL_HINT = CLASS_NAME_LABEL_HINT;
+
 	public static final String BLOCK_PROPERTY_COMPARTMENT_HINT = CLASS_COMPARTMENT_PROP_HINT;
+
 	public static final String BLOCK_OPERATION_COMPARTMENT_HINT = CLASS_COMPARTMENT_OPER_HINT;
+
 	public static final String BLOCK_NESTEDCLASSIFIER_COMPARTMENT_HINT = CLASS_COMPARTMENT_NEST_HINT;
+
 	public static final String BLOCK_CONSTRAINT_COMPARTMENT_HINT = "Block_Constraint_Compartment";
+
 	public static final String BLOCK_PART_COMPARTMENT_HINT = "Block_Part_Compartment";
+
 	public static final String BLOCK_VALUE_COMPARTMENT_HINT = "Block_Value_Compartment";
+
 	public static final String BLOCK_REFERENCE_COMPARTMENT_HINT = "Block_Reference_Compartment";
+
 	public static final IHintedType BLOCK_CONSTRAINT_CLN = (IHintedType)getElementType("org.eclipse.papyrus.sysml.diagram.blockdefinition.Constraint"); //$NON-NLS-1$	
 }

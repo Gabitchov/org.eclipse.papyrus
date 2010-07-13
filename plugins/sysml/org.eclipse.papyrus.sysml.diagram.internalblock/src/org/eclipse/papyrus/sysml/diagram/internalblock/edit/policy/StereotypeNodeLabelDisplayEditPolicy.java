@@ -23,7 +23,7 @@ public class StereotypeNodeLabelDisplayEditPolicy extends AppliedStereotypeNodeL
 
 		// retrieve the first stereotype in the list of displayed stereotype
 		List<Stereotype> appliedSt = getUMLElement().getAppliedStereotypes();
-		if (!appliedSt.isEmpty()) {
+		if(!appliedSt.isEmpty()) {
 			return Activator.getIconElement(getUMLElement(), appliedSt.get(0), false);
 		}
 

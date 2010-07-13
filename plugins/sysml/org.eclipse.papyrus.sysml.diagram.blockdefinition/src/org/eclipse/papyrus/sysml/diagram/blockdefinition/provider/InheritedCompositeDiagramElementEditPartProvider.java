@@ -22,11 +22,11 @@ public class InheritedCompositeDiagramElementEditPartProvider extends UMLEditPar
 
 	@Override
 	public synchronized boolean provides(IOperation operation) {
-		if (operation instanceof CreateGraphicEditPartOperation) {
-			View view = ((IEditPartOperation) operation).getView();
+		if(operation instanceof CreateGraphicEditPartOperation) {
+			View view = ((IEditPartOperation)operation).getView();
 
 			// Ensure current diagram is BlockDefinitionDiagram
-			if (!BlockDefinitionDiagramEditPart.DIAGRAM_ID.equals(view.getDiagram().getType())) {
+			if(!BlockDefinitionDiagramEditPart.DIAGRAM_ID.equals(view.getDiagram().getType())) {
 				return false;
 			}
 
@@ -37,17 +37,14 @@ public class InheritedCompositeDiagramElementEditPartProvider extends UMLEditPar
 			/** Nodes *********** */
 
 			/** Port */
-			if (InheritedElementTypes.PORT_CN.getSemanticHint().equals(hint)
-					|| InheritedElementTypes.PORT_CN_NAME_LABEL_HINT.equals(hint)
-					|| InheritedElementTypes.PORT_CN_STEREOTYPE_LABEL_HINT.equals(hint)) {
+			if(InheritedElementTypes.PORT_CN.getSemanticHint().equals(hint) || InheritedElementTypes.PORT_CN_NAME_LABEL_HINT.equals(hint) || InheritedElementTypes.PORT_CN_STEREOTYPE_LABEL_HINT.equals(hint)) {
 				return true;
 			}
 
 			/** Edges *********** */
 
 			/** Connector */
-			if (((InheritedElementTypes.CONNECTOR.getSemanticHint().equals(hint)) && (element instanceof Connector))
-					|| InheritedElementTypes.CONNECTOR_STEREOTYPE_LABEL_HINT.equals(hint)) {
+			if(((InheritedElementTypes.CONNECTOR.getSemanticHint().equals(hint)) && (element instanceof Connector)) || InheritedElementTypes.CONNECTOR_STEREOTYPE_LABEL_HINT.equals(hint)) {
 				return true;
 			}
 

@@ -23,11 +23,11 @@ public class InheritedElementEditPartProvider extends UMLEditPartProvider {
 
 	@Override
 	public synchronized boolean provides(IOperation operation) {
-		if (operation instanceof CreateGraphicEditPartOperation) {
-			View view = ((IEditPartOperation) operation).getView();
+		if(operation instanceof CreateGraphicEditPartOperation) {
+			View view = ((IEditPartOperation)operation).getView();
 
 			// Ensure current diagram is an InternalBlock Diagram
-			if (!InternalBlockDiagramEditPart.DIAGRAM_ID.equals(view.getDiagram().getType())) {
+			if(!InternalBlockDiagramEditPart.DIAGRAM_ID.equals(view.getDiagram().getType())) {
 				return false;
 			}
 
@@ -35,12 +35,12 @@ public class InheritedElementEditPartProvider extends UMLEditPartProvider {
 			EObject eobject = view.getElement();
 
 			/** Nodes *********** */
-			if ((eobject instanceof org.eclipse.uml2.uml.Class) || (eobject instanceof Property)) {
+			if((eobject instanceof org.eclipse.uml2.uml.Class) || (eobject instanceof Property)) {
 				return true;
 			}
 
 			/** Edges *********** */
-			if (eobject instanceof Connector) {
+			if(eobject instanceof Connector) {
 				return true;
 			}
 

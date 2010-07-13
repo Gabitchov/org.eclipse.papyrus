@@ -18,6 +18,6 @@ public class InternalBlockDiagramElementTypes extends InheritedElementTypes {
 	/** ********************************************************* */
 
 	/** Internal Block Diagram :: Diagram */
-	public static final IHintedType INTERNAL_BLOCK_DIAGRAM = (IHintedType) getElementType("InternalBlock"); //$NON-NLS-1$
+	public static final IHintedType INTERNAL_BLOCK_DIAGRAM = (IHintedType)getElementType("InternalBlock"); //$NON-NLS-1$
 
 }

@@ -44,8 +44,7 @@ public class InternalBlockDiagramForMultiEditor extends InternalBlockDiagramEdit
 	/**
 	 * The image descriptor of the diagram icon
 	 */
-	private static final ImageDescriptor DIAG_IMG_DESC = Activator
-			.getBundledImageDescriptor(InternalBlockDiagramForMultiEditor.DIAG_IMG_PATH);
+	private static final ImageDescriptor DIAG_IMG_DESC = Activator.getBundledImageDescriptor(InternalBlockDiagramForMultiEditor.DIAG_IMG_PATH);
 
 	/** The editor splitter. */
 	private Composite splitter;
@@ -58,8 +57,7 @@ public class InternalBlockDiagramForMultiEditor extends InternalBlockDiagramEdit
 	 * @throws ServiceException
 	 * 
 	 */
-	public InternalBlockDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram)
-			throws BackboneException, ServiceException {
+	public InternalBlockDiagramForMultiEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws BackboneException, ServiceException {
 		super(servicesRegistry, diagram);
 	}
 

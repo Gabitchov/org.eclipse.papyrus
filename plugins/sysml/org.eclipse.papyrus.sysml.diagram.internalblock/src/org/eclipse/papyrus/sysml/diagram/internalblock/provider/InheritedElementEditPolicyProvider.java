@@ -32,20 +32,17 @@ public class InheritedElementEditPolicyProvider extends AbstractProvider impleme
 
 	public boolean provides(IOperation operation) {
 
-		CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation) operation;
-		if (!(epOperation.getEditPart() instanceof GraphicalEditPart)) {
+		CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation)operation;
+		if(!(epOperation.getEditPart() instanceof GraphicalEditPart)) {
 			return false;
 		}
-		GraphicalEditPart gep = (GraphicalEditPart) epOperation.getEditPart();
+		GraphicalEditPart gep = (GraphicalEditPart)epOperation.getEditPart();
 		String diagramType = gep.getNotationView().getDiagram().getType();
-		if (!InternalBlockDiagramEditPart.DIAGRAM_ID.equals(diagramType)) {
+		if(!InternalBlockDiagramEditPart.DIAGRAM_ID.equals(diagramType)) {
 			return false;
 		}
 
-		if ((gep instanceof ClassCompositeEditPart) || (gep instanceof ClassCompositeEditPartCN)
-				|| (gep instanceof ClassCompositeCompartmentEditPart)
-				|| (gep instanceof ClassCompositeCompartmentEditPartCN) || (gep instanceof PropertyPartEditPartCN)
-				|| (gep instanceof PropertyPartCompartmentEditPartCN) || (gep instanceof PortEditPart)) {
+		if((gep instanceof ClassCompositeEditPart) || (gep instanceof ClassCompositeEditPartCN) || (gep instanceof ClassCompositeCompartmentEditPart) || (gep instanceof ClassCompositeCompartmentEditPartCN) || (gep instanceof PropertyPartEditPartCN) || (gep instanceof PropertyPartCompartmentEditPartCN) || (gep instanceof PortEditPart)) {
 
 			return true;
 		}
@@ -54,8 +51,7 @@ public class InheritedElementEditPolicyProvider extends AbstractProvider impleme
 	}
 
 	public void createEditPolicies(EditPart editPart) {
-		editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-				new StereotypeNodeLabelDisplayEditPolicy());
+		editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new StereotypeNodeLabelDisplayEditPolicy());
 		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDragDropEditPolicy());
 	}
 
