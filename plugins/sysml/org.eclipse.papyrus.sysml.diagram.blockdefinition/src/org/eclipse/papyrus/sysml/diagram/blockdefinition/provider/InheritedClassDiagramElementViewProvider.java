@@ -9,6 +9,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.provider;
 
+import static org.eclipse.papyrus.core.Activator.log;
+
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EcoreFactory;
@@ -27,8 +29,13 @@ public class InheritedClassDiagramElementViewProvider extends UMLViewProvider {
 
 	@Override
 	public Edge createEdge(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
-		// No need to override here, assuming provides is correctly implemented.
-		return super.createEdge(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
+		Edge createdEdge = super.createEdge(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
+
+		if(createdEdge == null) {
+			log.error(new Exception("Could not create Edge."));
+		}
+
+		return createdEdge;
 	}
 
 	@Override
@@ -106,7 +113,7 @@ public class InheritedClassDiagramElementViewProvider extends UMLViewProvider {
 			return super.createNode(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
 		}
 
-		System.err.println("WAR : InheritedClassDiagramElementViewProvider::createNode - not view for type : " + semanticHint);
+		log.error(new Exception("Could not create Node."));
 		return null;
 	}
 

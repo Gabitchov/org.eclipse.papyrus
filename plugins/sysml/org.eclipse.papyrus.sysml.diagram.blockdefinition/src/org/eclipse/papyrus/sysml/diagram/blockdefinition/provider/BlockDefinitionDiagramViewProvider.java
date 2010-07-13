@@ -9,6 +9,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.provider;
 
+import static org.eclipse.papyrus.core.Activator.log;
+
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.gmf.runtime.diagram.core.providers.AbstractViewProvider;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateDiagramViewOperation;
@@ -33,6 +35,8 @@ public class BlockDefinitionDiagramViewProvider extends AbstractViewProvider {
 		if(BlockDefinitionDiagramEditPart.DIAGRAM_ID.equals(diagramKind)) {
 			return BlockDefinitionDiagramViewFactory.class;
 		}
+
+		log.error(new Exception("Could not retrieve view factory."));
 		return null;
 	}
 }

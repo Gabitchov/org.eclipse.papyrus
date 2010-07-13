@@ -9,6 +9,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.provider;
 
+import static org.eclipse.papyrus.core.Activator.log;
+
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.AbstractEditPartProvider;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.CreateGraphicEditPartOperation;
@@ -38,6 +40,8 @@ public class BlockDefinitionDiagramEditPartProvider extends AbstractEditPartProv
 		if(BlockDefinitionDiagramEditPart.DIAGRAM_ID.equals(view.getType())) {
 			return BlockDefinitionDiagramEditPart.class;
 		}
+
+		log.error(new Exception("Could not create EditPart."));
 		return null;
 	}
 

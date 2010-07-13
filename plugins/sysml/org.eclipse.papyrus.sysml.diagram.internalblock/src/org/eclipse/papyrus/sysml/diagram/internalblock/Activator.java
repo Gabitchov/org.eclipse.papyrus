@@ -1,29 +1,38 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock;
 
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.papyrus.log.LogHelper;
 import org.eclipse.papyrus.sysml.diagram.internalblock.preferences.DiagramPreferenceInitializer;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-/**
- * The activator class controls the plug-in life cycle
- */
+/** The activator class controls the plug-in life cycle */
 public class Activator extends AbstractUIPlugin {
 
-	// The plug-in ID
+	/** The plug-in ID */
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.sysml.diagram.internalblock";
 
-	// The shared instance
+	/** The plug-in shared instance */
 	private static Activator plugin;
 
 	/** The plug-in Preference store */
 	public static final PreferencesHint DIAGRAM_PREFERENCES_HINT = new PreferencesHint(PLUGIN_ID);
 
-	/**
-	 * The constructor
-	 */
+	/** The logging helper */
+	public static LogHelper log;
+
+	/** Default constructor */
 	public Activator() {
 	}
 
@@ -36,7 +45,12 @@ public class Activator extends AbstractUIPlugin {
 		super.start(context);
 		plugin = this;
 
+		// register the login helper
+		log = new LogHelper(plugin);
+
+		// register the preference store
 		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT, getPreferenceStore());
+
 		// Preferences initialization
 		DiagramPreferenceInitializer diagramPreferenceInitializer = new DiagramPreferenceInitializer();
 		diagramPreferenceInitializer.initializeDefaultPreferences();

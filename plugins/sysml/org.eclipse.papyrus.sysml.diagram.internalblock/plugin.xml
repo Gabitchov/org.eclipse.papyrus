@@ -172,7 +172,7 @@
 	
 </extension>
 
-<!-- Diagram edit policy provider (here for testing purpose only) -->	
+<!-- Diagram edit policy provider -->	
 <extension
 	point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
 	<editpolicyProvider

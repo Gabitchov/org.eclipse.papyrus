@@ -12,6 +12,7 @@ package org.eclipse.papyrus.sysml.diagram.blockdefinition;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.papyrus.log.LogHelper;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.DiagramPreferenceInitializer;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -28,6 +29,9 @@ public class Activator extends AbstractUIPlugin {
 	/** The plug-in shared instance */
 	private static Activator plugin;
 
+	/** The logging helper */
+	public static LogHelper log;
+
 	/** Default constructor */
 	public Activator() {
 	}
@@ -41,7 +45,12 @@ public class Activator extends AbstractUIPlugin {
 		super.start(context);
 		plugin = this;
 
+		// register the login helper
+		log = new LogHelper(plugin);
+
+		// register the preference store
 		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT, getPreferenceStore());
+
 		// Preferences initialization
 		DiagramPreferenceInitializer diagramPreferenceInitializer = new DiagramPreferenceInitializer();
 		diagramPreferenceInitializer.initializeDefaultPreferences();
