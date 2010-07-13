@@ -168,8 +168,10 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 		EObject moveOldTargetTo = getOldTargetOwner();
 		EObject moveNewTargetTo = source;
 		
-		move(getOldTarget(), moveOldTargetTo);
-		move(getNewTarget(), moveNewTargetTo);
+		ContainmentHelper helper = new ContainmentHelper(getEditingDomain());
+		
+		helper.move(getOldTarget(), moveOldTargetTo);
+		helper.move(getNewTarget(), moveNewTargetTo);
 		
 		deleteOldLinkEditPart();
 		return CommandResult.newOKCommandResult();
@@ -199,130 +201,6 @@ public class ContainmentLinkReorientCommand extends AbstractTransactionalCommand
 		return true;
 	}
 	
-	/**
-	 * Move.
-	 *
-	 * @param objectToMove the object to move
-	 * @param to the to
-	 * @return true, if successful
-	 */
-	private boolean move(EObject objectToMove, EObject to) {
-		if (objectToMove instanceof org.eclipse.uml2.uml.Package) {
-			return movePackage((org.eclipse.uml2.uml.Package)objectToMove,  to);
-		} else if (objectToMove instanceof org.eclipse.uml2.uml.Class) {
-			return moveClass((org.eclipse.uml2.uml.Class)objectToMove, to);
-		}
-		return false;
-	}
-	
-	/**
-	 * Move package.
-	 *
-	 * @param pakkage the pakkage
-	 * @param to the to
-	 * @return true, if successful
-	 */
-	private boolean movePackage(org.eclipse.uml2.uml.Package pakkage, EObject to) {
-		Element from = pakkage.getOwner();
-		if (to instanceof org.eclipse.uml2.uml.Package && from instanceof org.eclipse.uml2.uml.Package) {
-			doMovePackage(pakkage, (org.eclipse.uml2.uml.Package)from, (org.eclipse.uml2.uml.Package)to);
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Move class.
-	 *
-	 * @param clazz the clazz
-	 * @param to the to
-	 * @return true, if successful
-	 */
-	private boolean moveClass(org.eclipse.uml2.uml.Class clazz, EObject to) {
-		Element from = clazz.getOwner();
-		if (from instanceof org.eclipse.uml2.uml.Class) {
-			org.eclipse.uml2.uml.Class fromClazz = (org.eclipse.uml2.uml.Class)from;
-			if (to instanceof org.eclipse.uml2.uml.Class) {
-				doMoveClass(clazz, fromClazz, (org.eclipse.uml2.uml.Class)to);
-				return true;
-			} else if (to instanceof org.eclipse.uml2.uml.Package) {
-				doMoveClass(clazz, fromClazz, (org.eclipse.uml2.uml.Package)to);
-				return true;
-			}
-		}
-		if (from instanceof org.eclipse.uml2.uml.Package) {
-			org.eclipse.uml2.uml.Package fromPackage = (org.eclipse.uml2.uml.Package)from;
-			if (to instanceof org.eclipse.uml2.uml.Class) {
-				doMoveClass(clazz, fromPackage, (org.eclipse.uml2.uml.Class)to);
-				return true;
-			} else if (to instanceof org.eclipse.uml2.uml.Package) {
-				doMoveClass(clazz, fromPackage, (org.eclipse.uml2.uml.Package)to);
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	/**
-	 * Do move package.
-	 *
-	 * @param pakkage the pakkage
-	 * @param from the from
-	 * @param to the to
-	 */
-	private void doMovePackage(org.eclipse.uml2.uml.Package pakkage, org.eclipse.uml2.uml.Package from, org.eclipse.uml2.uml.Package to) {
-		from.getNestedPackages().remove(pakkage);
-		to.getNestedPackages().add(pakkage);
-	}
-	
-	/**
-	 * Do move class.
-	 *
-	 * @param clazz the clazz
-	 * @param from the from
-	 * @param to the to
-	 */
-	private void doMoveClass(org.eclipse.uml2.uml.Class clazz, org.eclipse.uml2.uml.Package from, org.eclipse.uml2.uml.Package to) {
-		from.getPackagedElements().remove(clazz);
-		to.getPackagedElements().add(clazz);
-	}
-
-	/**
-	 * Do move class.
-	 *
-	 * @param clazz the clazz
-	 * @param from the from
-	 * @param to the to
-	 */
-	private void doMoveClass(org.eclipse.uml2.uml.Class clazz, org.eclipse.uml2.uml.Package from, org.eclipse.uml2.uml.Class to) {
-		from.getPackagedElements().remove(clazz);
-		to.getNestedClassifiers().add(clazz);
-	}
-
-	/**
-	 * Do move class.
-	 *
-	 * @param clazz the clazz
-	 * @param from the from
-	 * @param to the to
-	 */
-	private void doMoveClass(org.eclipse.uml2.uml.Class clazz, org.eclipse.uml2.uml.Class from, org.eclipse.uml2.uml.Package to) {
-		from.getNestedClassifiers().remove(clazz);
-		to.getPackagedElements().add(clazz);
-	}
-
-	/**
-	 * Do move class.
-	 *
-	 * @param clazz the clazz
-	 * @param from the from
-	 * @param to the to
-	 */
-	private void doMoveClass(org.eclipse.uml2.uml.Class clazz, org.eclipse.uml2.uml.Class from, org.eclipse.uml2.uml.Class to) {
-		from.getNestedClassifiers().remove(clazz);
-		to.getNestedClassifiers().add(clazz);
-	}
 
 
 	/**

@@ -20,6 +20,7 @@ import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
@@ -233,14 +234,14 @@ public class ContainmentHelper extends ElementHelper {
 
 		addStereotypeLabelToDroppedElement(cc, droppedElement, (IAdaptable)containedNodeCreationCommand.getCommandResult().getReturnValue());
 
-//		createContainmentLink(cc, viewer, diagramPreferencesHint, location, droppedOwnerEditPart, droppedElementDescriptor, containedNodeCreationCommand);
+		//		createContainmentLink(cc, viewer, diagramPreferencesHint, location, droppedOwnerEditPart, droppedElementDescriptor, containedNodeCreationCommand);
 	}
 
 	private void createContainmentLink(CompositeCommand cc, EditPartViewer viewer, PreferencesHint diagramPreferencesHint, Point location, GraphicalEditPart droppedOwnerEditPart, ViewDescriptor droppedElementDescriptor, CreateCommand containedNodeCreationCommand) {
 		CContainmentCircleEditPart containmentCircleEditPart = findContainmentCircle(droppedOwnerEditPart);
 		IAdaptable circleAdapter = null;
 		if(containmentCircleEditPart != null) {
-			circleAdapter = new SemanticAdapter(null, (View)containmentCircleEditPart.getModel()); 
+			circleAdapter = new SemanticAdapter(null, (View)containmentCircleEditPart.getModel());
 		} else {
 			/* Creation of the containment circle node without semantic element */
 			ContainmentCircleViewCreateCommand circleCommand = new ContainmentCircleViewCreateCommand(null, getEditingDomain(), (View)droppedOwnerEditPart.getModel(), (EditPartViewer)droppedOwnerEditPart.getViewer(), droppedElementDescriptor.getPreferencesHint());
@@ -335,7 +336,7 @@ public class ContainmentHelper extends ElementHelper {
 	}
 
 	private static boolean circleHasOtherLinks(View containmentCircle) {
-		return containmentCircle.getSourceEdges().size() == 1;
+		return containmentCircle.getSourceEdges().size() > 1;
 	}
 
 	/**
@@ -351,11 +352,32 @@ public class ContainmentHelper extends ElementHelper {
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(editingDomain, "Delete Incoming Containment Link");
 		cmd.add(new DeleteCommand(editingDomain, incomingLink));
 		View containmentCircle = incomingLink.getSource();
-		if(circleHasOtherLinks(containmentCircle)) {
+		if(!circleHasOtherLinks(containmentCircle)) {
 			cmd.add(new DeleteCommand(editingDomain, (View)containmentCircle));
 		}
 		return cmd;
 	}
+
+	/**
+	 * Adds the delete incoming containment link view commands.
+	 *
+	 * @param editingDomain the editing domain
+	 * @param targetNode the target node
+	 * @param cmd the cmd
+	 */
+	public static void addDeleteIncomingContainmentLinkViewCommands(TransactionalEditingDomain editingDomain, View targetNode, ICompositeCommand cmd) {
+		for(Object next : targetNode.getTargetEdges()) {
+			Edge incomingLink = (Edge)next;
+			if(ContainmentHelper.isContainmentLink(incomingLink)) {
+				cmd.add(new DeleteCommand(editingDomain, incomingLink));
+				View containmentCircle = incomingLink.getSource();
+				if(!circleHasOtherLinks(containmentCircle)) {
+					cmd.add(new DeleteCommand(editingDomain, (View)containmentCircle));
+				}
+			}
+		}
+	}
+
 
 	/**
 	 * Adds the destroy outgoing containment links command.
@@ -403,5 +425,131 @@ public class ContainmentHelper extends ElementHelper {
 		return currentEditPart instanceof ClassEditPart || currentEditPart instanceof PackageEditPartCN || currentEditPart instanceof PackageEditPart || currentEditPart instanceof ModelEditPartTN || currentEditPart instanceof Class5EditPart || currentEditPart instanceof ModelEditPartCN;
 
 	}
+	
+	/**
+	 * Move.
+	 *
+	 * @param objectToMove the object to move
+	 * @param to the to
+	 * @return true, if successful
+	 */
+	public boolean move(EObject objectToMove, EObject to) {
+		if (objectToMove instanceof org.eclipse.uml2.uml.Package) {
+			return movePackage((org.eclipse.uml2.uml.Package)objectToMove,  to);
+		} else if (objectToMove instanceof org.eclipse.uml2.uml.Class) {
+			return moveClass((org.eclipse.uml2.uml.Class)objectToMove, to);
+		}
+		return false;
+	}
+	
+	/**
+	 * Move package.
+	 *
+	 * @param pakkage the pakkage
+	 * @param to the to
+	 * @return true, if successful
+	 */
+	private boolean movePackage(org.eclipse.uml2.uml.Package pakkage, EObject to) {
+		Element from = pakkage.getOwner();
+		if (to instanceof org.eclipse.uml2.uml.Package && from instanceof org.eclipse.uml2.uml.Package) {
+			doMovePackage(pakkage, (org.eclipse.uml2.uml.Package)from, (org.eclipse.uml2.uml.Package)to);
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Move class.
+	 *
+	 * @param clazz the clazz
+	 * @param to the to
+	 * @return true, if successful
+	 */
+	private boolean moveClass(org.eclipse.uml2.uml.Class clazz, EObject to) {
+		Element from = clazz.getOwner();
+		if (from instanceof org.eclipse.uml2.uml.Class) {
+			org.eclipse.uml2.uml.Class fromClazz = (org.eclipse.uml2.uml.Class)from;
+			if (to instanceof org.eclipse.uml2.uml.Class) {
+				doMoveClass(clazz, fromClazz, (org.eclipse.uml2.uml.Class)to);
+				return true;
+			} else if (to instanceof org.eclipse.uml2.uml.Package) {
+				doMoveClass(clazz, fromClazz, (org.eclipse.uml2.uml.Package)to);
+				return true;
+			}
+		}
+		if (from instanceof org.eclipse.uml2.uml.Package) {
+			org.eclipse.uml2.uml.Package fromPackage = (org.eclipse.uml2.uml.Package)from;
+			if (to instanceof org.eclipse.uml2.uml.Class) {
+				doMoveClass(clazz, fromPackage, (org.eclipse.uml2.uml.Class)to);
+				return true;
+			} else if (to instanceof org.eclipse.uml2.uml.Package) {
+				doMoveClass(clazz, fromPackage, (org.eclipse.uml2.uml.Package)to);
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Do move package.
+	 *
+	 * @param pakkage the pakkage
+	 * @param from the from
+	 * @param to the to
+	 */
+	private void doMovePackage(org.eclipse.uml2.uml.Package pakkage, org.eclipse.uml2.uml.Package from, org.eclipse.uml2.uml.Package to) {
+		from.getNestedPackages().remove(pakkage);
+		to.getNestedPackages().add(pakkage);
+	}
+	
+	/**
+	 * Do move class.
+	 *
+	 * @param clazz the clazz
+	 * @param from the from
+	 * @param to the to
+	 */
+	private void doMoveClass(org.eclipse.uml2.uml.Class clazz, org.eclipse.uml2.uml.Package from, org.eclipse.uml2.uml.Package to) {
+		from.getPackagedElements().remove(clazz);
+		to.getPackagedElements().add(clazz);
+	}
+
+	/**
+	 * Do move class.
+	 *
+	 * @param clazz the clazz
+	 * @param from the from
+	 * @param to the to
+	 */
+	private void doMoveClass(org.eclipse.uml2.uml.Class clazz, org.eclipse.uml2.uml.Package from, org.eclipse.uml2.uml.Class to) {
+		from.getPackagedElements().remove(clazz);
+		to.getNestedClassifiers().add(clazz);
+	}
+
+	/**
+	 * Do move class.
+	 *
+	 * @param clazz the clazz
+	 * @param from the from
+	 * @param to the to
+	 */
+	private void doMoveClass(org.eclipse.uml2.uml.Class clazz, org.eclipse.uml2.uml.Class from, org.eclipse.uml2.uml.Package to) {
+		from.getNestedClassifiers().remove(clazz);
+		to.getPackagedElements().add(clazz);
+	}
+
+	/**
+	 * Do move class.
+	 *
+	 * @param clazz the clazz
+	 * @param from the from
+	 * @param to the to
+	 */
+	private void doMoveClass(org.eclipse.uml2.uml.Class clazz, org.eclipse.uml2.uml.Class from, org.eclipse.uml2.uml.Class to) {
+		from.getNestedClassifiers().remove(clazz);
+		to.getNestedClassifiers().add(clazz);
+	}
+
 
 }
