@@ -25,6 +25,7 @@ import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.actions.AbstractDeleteFromAction;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
@@ -105,10 +106,15 @@ public class DeleteFromModelAction extends AbstractDeleteFromAction {
 		CompositeTransactionalCommand command = new CompositeTransactionalCommand(getEditingDomain(), getCommandLabel());
 		while(editParts.hasNext()) {
 			EditPart editPart = (EditPart)editParts.next();
+			//Delete From Model on a compartment, remove the editpart owning the parent.
+			if((editPart instanceof CompartmentEditPart)) {
+				editPart = editPart.getParent();
+			}
 			Command curCommand = editPart.getCommand(request);
 			if(curCommand != null) {
 				command.compose(new CommandProxy(curCommand));
 			}
+
 		}
 		if(command.isEmpty() || command.size() != operationSet.size()) {
 			return UnexecutableCommand.INSTANCE;
