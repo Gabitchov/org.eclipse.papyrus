@@ -378,7 +378,37 @@ public class ContainmentHelper extends ElementHelper {
 		}
 	}
 
+	/**
+	 * Checks for incoming containment link.
+	 *
+	 * @param targetNode the target node
+	 * @return true, if successful
+	 */
+	public static boolean hasIncomingContainmentLink(View targetNode) {
+		for(Object next : targetNode.getTargetEdges()) {
+			Edge incomingLink = (Edge)next;
+			if(ContainmentHelper.isContainmentLink(incomingLink)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
+	/**
+	 * Checks for outgoing containment link.
+	 *
+	 * @param targetNode the target node
+	 * @return true, if successful
+	 */
+	public static boolean hasOutgoingContainmentLink(View targetNode) {
+		for(Object next : targetNode.getSourceEdges()) {
+			Edge outgoingLink = (Edge)next;
+			if(ContainmentHelper.isContainmentLink(outgoingLink)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	/**
 	 * Adds the destroy outgoing containment links command.
 	 * 

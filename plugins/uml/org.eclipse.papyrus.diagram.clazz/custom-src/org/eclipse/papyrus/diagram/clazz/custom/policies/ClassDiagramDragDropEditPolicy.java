@@ -172,27 +172,43 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 				cmd.add(new ICommandProxy(getMoveCommand(getEditingDomain(), parent, child1, child2)));
 				cmd.add(getDropObjectsCommand(castToDropObjectsRequest(request)));
 				return cmd;
-			} else if (hasIncomingContainmentLinks(movedView)) {
-//				CompoundCommand cmd = new CompoundCommand();
-//				Element parent = (Element)ViewUtil.resolveSemanticElement((View)getHost().getParent().getParent().getModel());
-//				Element child1 = (Element)hostElement;
-//				cmd.add(new ICommandProxy(getMoveCommand(getEditingDomain(), parent, child1, child2)));
-//				cmd.add(getDropObjectsCommand(castToDropObjectsRequest(request)));
-//				return cmd;
+			} else if (ContainmentHelper.hasIncomingContainmentLink(movedView)) {
+				CompoundCommand cmd = new CompoundCommand();
+				Element parent = (Element)hostElement;
+				Element child1 = (Element)movedView.getElement();
+				cmd.add(new ICommandProxy(getMoveCommand(getEditingDomain(), parent, child1)));
+				cmd.add(getDropObjectsCommand(castToDropObjectsRequest(request)));
+				return cmd;
+			}else if (ContainmentHelper.hasOutgoingContainmentLink(movedView)) {
+				// move contained element into a correct place
+				return UnexecutableCommand.INSTANCE;
 			}
 		}
 		return null;
 	}
-	
+
 	private AbstractTransactionalCommand getMoveCommand(TransactionalEditingDomain domain, final Element parent, final Element child1, final Element child2) {
 		return new AbstractTransactionalCommand(domain, "Move Element", Collections.emptyList()) {
-			
+
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				ContainmentHelper helper = new ContainmentHelper(getEditingDomain());
-				
+
 				helper.move(child1, parent);
 				helper.move(child2, child1);
+				return CommandResult.newOKCommandResult();
+			}
+		};
+	}
+
+	private AbstractTransactionalCommand getMoveCommand(TransactionalEditingDomain domain, final Element parent, final Element child1) {
+		return new AbstractTransactionalCommand(domain, "Move Element", Collections.emptyList()) {
+
+			@Override
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				ContainmentHelper helper = new ContainmentHelper(getEditingDomain());
+
+				helper.move(child1, parent);
 				return CommandResult.newOKCommandResult();
 			}
 		};
@@ -204,11 +220,7 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 
 	private boolean isMoveToParent(View hostView, View movedElementView) {
 		return hostView.getElement().equals(movedElementView.getElement().eContainer());
-//		return EcoreUtil.isAncestor(hostView.getElement(), movedElementView.getElement());
-	}
-	
-	private boolean hasIncomingContainmentLinks(View view) {
-		return false;
+		//		return EcoreUtil.isAncestor(hostView.getElement(), movedElementView.getElement());
 	}
 
 	/**
