@@ -9,6 +9,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.pkg.provider;
 
+import static org.eclipse.papyrus.core.Activator.log;
+
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.gmf.runtime.diagram.core.providers.AbstractViewProvider;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateDiagramViewOperation;
@@ -32,6 +34,8 @@ public class PackageDiagramViewProvider extends AbstractViewProvider {
 		if(PackageDiagramEditPart.DIAGRAM_ID.equals(diagramKind)) {
 			return PackageDiagramViewFactory.class;
 		}
+
+		log.error(new Exception("Could not create View."));
 		return null;
 	}
 }

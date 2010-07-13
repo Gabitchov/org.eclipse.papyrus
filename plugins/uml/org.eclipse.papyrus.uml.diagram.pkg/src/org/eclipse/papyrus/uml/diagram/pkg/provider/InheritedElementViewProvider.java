@@ -9,6 +9,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.pkg.provider;
 
+import static org.eclipse.papyrus.core.Activator.log;
+
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
@@ -31,7 +33,13 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 	@Override
 	public Edge createEdge(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
 		// No need to override here, assuming provides is correctly implemented.
-		return super.createEdge(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
+		Edge createdEdge = super.createEdge(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
+
+		if(createdEdge == null) {
+			log.error(new Exception("Could not create Edge."));
+		}
+
+		return createdEdge;
 	}
 
 	@Override
@@ -109,6 +117,7 @@ public class InheritedElementViewProvider extends UMLViewProvider {
 			}
 		}
 
+		log.error(new Exception("Could not create Node."));
 		return null;
 	}
 
