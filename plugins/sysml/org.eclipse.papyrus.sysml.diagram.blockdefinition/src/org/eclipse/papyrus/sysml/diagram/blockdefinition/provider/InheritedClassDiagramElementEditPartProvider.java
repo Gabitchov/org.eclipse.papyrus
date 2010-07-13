@@ -175,7 +175,7 @@ public class InheritedClassDiagramElementEditPartProvider extends CUMLEditPartPr
 			}
 
 			/** CommentLink - ConstraintLink */
-			if((InheritedElementTypes.COMMENT_LINK.getSemanticHint().equals(hint)) && (view.getElement() == null)) {
+			if((InheritedElementTypes.COMMENT_LINK.getSemanticHint().equals(hint))) {
 				return true;
 			}
 

@@ -9,14 +9,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.provider;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.CreateGraphicEditPartOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.IEditPartOperation;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.composite.providers.UMLEditPartProvider;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockDefinitionDiagramEditPart;
-import org.eclipse.uml2.uml.Connector;
 
 public class InheritedCompositeDiagramElementEditPartProvider extends UMLEditPartProvider {
 
@@ -32,7 +30,6 @@ public class InheritedCompositeDiagramElementEditPartProvider extends UMLEditPar
 
 			// Test supported inherited types
 			String hint = view.getType();
-			EObject element = view.getElement();
 
 			/** Nodes *********** */
 
@@ -40,14 +37,6 @@ public class InheritedCompositeDiagramElementEditPartProvider extends UMLEditPar
 			if(InheritedElementTypes.PORT_CN.getSemanticHint().equals(hint) || InheritedElementTypes.PORT_CN_NAME_LABEL_HINT.equals(hint) || InheritedElementTypes.PORT_CN_STEREOTYPE_LABEL_HINT.equals(hint)) {
 				return true;
 			}
-
-			/** Edges *********** */
-
-			/** Connector */
-			if(((InheritedElementTypes.CONNECTOR.getSemanticHint().equals(hint)) && (element instanceof Connector)) || InheritedElementTypes.CONNECTOR_STEREOTYPE_LABEL_HINT.equals(hint)) {
-				return true;
-			}
-
 		}
 		return false;
 	}

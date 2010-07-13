@@ -284,10 +284,4 @@ public class InheritedElementTypes extends AbstractElementTypeEnumerator {
 	public static final String PORT_CN_NAME_LABEL_HINT = "5125";
 
 	public static final String PORT_CN_STEREOTYPE_LABEL_HINT = "6029";
-
-	/** Composite Structure Diagram :: Connector */
-	/** The semantic hint 4013 is used by Connector and CommentLink */
-	public static final IHintedType CONNECTOR = (IHintedType)getElementType("org.eclipse.papyrus.diagram.composite.Connector_4013"); //$NON-NLS-1$
-
-	public static final String CONNECTOR_STEREOTYPE_LABEL_HINT = "6025";
 }

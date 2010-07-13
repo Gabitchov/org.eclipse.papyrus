@@ -195,11 +195,6 @@
 		  -->		
 		<context viewClass="org.eclipse.gmf.runtime.notation.Node" 
 			semanticHints="3069"/>					
-		<!-- 
-			"4013" = Connector													
-		  -->
-		<context viewClass="org.eclipse.gmf.runtime.notation.Edge" 
-			semanticHints="4013"/>		
     </viewProvider>
 
 </extension>
@@ -453,20 +448,8 @@
 			class="org.eclipse.gmf.runtime.notation.Node">
 			<method name="getType()" value="3069, 5125, 6029"/>
 		</object>	
-			
-		<!-- 
-			"4013" = Connector
-			"6025" = Connector applied stereotype label																				
-		  -->
-		  	
-		<object
-			id="Connector"
-			class="org.eclipse.gmf.runtime.notation.Edge">
-			<method name="getType()" value="4013, 6025"/>
-		</object>
-				  							
+							  							
 		<context views="Port"/>
-		<context views="Connector"/>
 		
 	</editpartProvider>
 
@@ -656,12 +639,6 @@
 			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationClassEdgePreferencePage"
             id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.AssociationClassEdgePreferencePage"
             name="AssociationClass (Edge)">
-	</page>	
-
-	<page  	category="org.eclipse.papyrus.sysml.diagrams.blockdefinition.preferences"
-			class="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ConnectorPreferencePage"
-            id="org.eclipse.papyrus.sysml.diagram.blockdefinition.preferences.ConnectorPreferencePage"
-            name="Connector">
 	</page>	
 					
 </extension>

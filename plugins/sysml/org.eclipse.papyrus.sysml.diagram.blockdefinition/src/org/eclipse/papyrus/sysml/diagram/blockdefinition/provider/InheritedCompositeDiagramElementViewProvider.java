@@ -18,7 +18,6 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateEdgeViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperation;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.part.UMLVisualIDRegistry;
@@ -28,35 +27,7 @@ import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockDefiniti
 public class InheritedCompositeDiagramElementViewProvider extends UMLViewProvider {
 
 	@Override
-	public Edge createEdge(IAdaptable semanticAdapter, View containerView, String semanticHint, int index, boolean persisted, PreferencesHint preferencesHint) {
-		Edge createdEdge = super.createEdge(semanticAdapter, containerView, semanticHint, index, persisted, preferencesHint);
-
-		if(createdEdge == null) {
-			log.error(new Exception("Could not create Edge."));
-		}
-
-		return createdEdge;
-	}
-
-	@Override
 	protected boolean provides(CreateEdgeViewOperation op) {
-
-		// Must have a container
-		if(op.getContainerView() == null) {
-			return false;
-		}
-
-		// This provider is registered for Block Definition Diagram only
-		String diagramType = op.getContainerView().getDiagram().getType();
-		if(!BlockDefinitionDiagramEditPart.DIAGRAM_ID.equals(diagramType)) {
-			return false;
-		}
-
-		IElementType elementType = getSemanticElementType(op.getSemanticAdapter());
-		if(elementType == BlockDefinitionDiagramElementTypes.CONNECTOR) {
-			return true;
-		}
-
 		return false;
 	}
 
