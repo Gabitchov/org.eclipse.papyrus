@@ -14,20 +14,29 @@
 package org.eclipse.papyrus.diagram.clazz.custom.policies;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.custom.helper.AssociationClassHelper;
@@ -129,39 +138,76 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 	 * @return command
 	 */
 	protected Command getDropCommand(ChangeBoundsRequest request) {
-		ChangeBoundsRequest req = new ChangeBoundsRequest(REQ_ADD);
-		req.setEditParts(request.getEditParts());
-		req.setMoveDelta(request.getMoveDelta());
-		req.setSizeDelta(request.getSizeDelta());
-		req.setLocation(request.getLocation());
-		req.setResizeDirection(request.getResizeDirection());
-		Command cmd = getHost().getCommand(req);
-
-		if(canHaveContainmentLink()) {
-			if (isCircularContainment(request)) {
-				return UnexecutableCommand.INSTANCE;
-			}
-			cmd = cmd.chain(getDropObjectsCommand(castToDropObjectsRequest(request)));
+		Command cmd = getDropWithContainmentCommand(request);
+		if(cmd != null) {
+			return cmd;
 		}
-		if(cmd == null || !cmd.canExecute()) {
-			return getDropObjectsCommand(castToDropObjectsRequest(request));
-		}
-
-		return cmd;
+		return super.getDropCommand(request);
 	}
 
 	private boolean canHaveContainmentLink() {
 		return getHost() instanceof PackagePackageableElementCompartment2EditPart || getHost() instanceof PackagePackageableElementCompartmentEditPart || getHost() instanceof ModelEditPart || getHost() instanceof ModelPackageableElementCompartmentEditPart || getHost() instanceof ModelPackageableElementCompartment2EditPart;
 	}
-	
-	private boolean isCircularContainment(ChangeBoundsRequest request) {
-		EObject hostElement = ((View)getHost().getModel()).getElement();
-		for (Object next: request.getEditParts()) {
+
+	private Command getDropWithContainmentCommand(ChangeBoundsRequest request) {
+		if(!canHaveContainmentLink()) {
+			return null;
+		}
+		if (request.getEditParts().size() > 1) {
+			// process several edit parts
+			return null;
+		}
+		View hostView = (View)getHost().getModel();
+		EObject hostElement = hostView.getElement();
+		for(Object next : request.getEditParts()) {
 			EditPart ep = (EditPart)next;
-			if (ep.getModel() != null && ((View)ep.getModel()).getElement().equals(hostElement.eContainer())) {
-				return true;
+			View movedView = (View)ep.getModel();
+			if(isMoveToParent(hostView, movedView)) {
+				return getDropObjectsCommand(castToDropObjectsRequest(request));
+			} else if(isMoveToChild(hostView, movedView)) {
+				CompoundCommand cmd = new CompoundCommand();
+				Element parent = (Element)ViewUtil.resolveSemanticElement((View)getHost().getParent().getParent().getModel());
+				Element child1 = (Element)hostElement;
+				Element child2 = (Element)ViewUtil.resolveSemanticElement(movedView);
+				cmd.add(new ICommandProxy(getMoveCommand(getEditingDomain(), parent, child1, child2)));
+				cmd.add(getDropObjectsCommand(castToDropObjectsRequest(request)));
+				return cmd;
+			} else if (hasIncomingContainmentLinks(movedView)) {
+//				CompoundCommand cmd = new CompoundCommand();
+//				Element parent = (Element)ViewUtil.resolveSemanticElement((View)getHost().getParent().getParent().getModel());
+//				Element child1 = (Element)hostElement;
+//				cmd.add(new ICommandProxy(getMoveCommand(getEditingDomain(), parent, child1, child2)));
+//				cmd.add(getDropObjectsCommand(castToDropObjectsRequest(request)));
+//				return cmd;
 			}
 		}
+		return null;
+	}
+	
+	private AbstractTransactionalCommand getMoveCommand(TransactionalEditingDomain domain, final Element parent, final Element child1, final Element child2) {
+		return new AbstractTransactionalCommand(domain, "Move Element", Collections.emptyList()) {
+			
+			@Override
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				ContainmentHelper helper = new ContainmentHelper(getEditingDomain());
+				
+				helper.move(child1, parent);
+				helper.move(child2, child1);
+				return CommandResult.newOKCommandResult();
+			}
+		};
+	}
+
+	private boolean isMoveToChild(View hostView, View movedElementView) {
+		return EcoreUtil.isAncestor(movedElementView.getElement(), hostView.getElement());
+	}
+
+	private boolean isMoveToParent(View hostView, View movedElementView) {
+		return hostView.getElement().equals(movedElementView.getElement().eContainer());
+//		return EcoreUtil.isAncestor(hostView.getElement(), movedElementView.getElement());
+	}
+	
+	private boolean hasIncomingContainmentLinks(View view) {
 		return false;
 	}
 
@@ -310,7 +356,7 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 		cc.add(new DeleteCommand(getEditingDomain(), droppedView));
 		return new ICommandProxy(cc);
 	}
-	
+
 
 
 	/**
