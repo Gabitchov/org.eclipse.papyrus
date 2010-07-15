@@ -48,6 +48,7 @@ import org.eclipse.papyrus.diagram.communication.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.LifelineEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.ModelEditPart;
+import org.eclipse.papyrus.diagram.communication.edit.parts.ShortCutDiagramEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.TimeObservationEditPartCN;
 import org.eclipse.papyrus.diagram.communication.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.diagram.communication.part.UMLLinkDescriptor;
@@ -92,7 +93,8 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 	 * @generated
 	 */
 	private boolean isMyDiagramElement(View view) {
-		return InteractionEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(view);
+		int visualID = UMLVisualIDRegistry.getVisualID(view);
+		return visualID == InteractionEditPart.VISUAL_ID || visualID == ShortCutDiagramEditPart.VISUAL_ID;
 	}
 
 	/**
@@ -233,6 +235,16 @@ public class ModelCanonicalEditPolicy extends CanonicalEditPolicy {
 		{
 			if(!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.getInteraction_8002ContainedLinks(view));
+			}
+			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
+				domain2NotationMap.put(view.getElement(), view);
+			}
+			break;
+		}
+		case ShortCutDiagramEditPart.VISUAL_ID:
+		{
+			if(!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.getDiagram_8016ContainedLinks(view));
 			}
 			if(!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
 				domain2NotationMap.put(view.getElement(), view);

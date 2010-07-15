@@ -14,8 +14,6 @@
 package org.eclipse.papyrus.diagram.communication.custom.parser;
 
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
@@ -72,7 +70,7 @@ public class MessageParser implements IParser {
 				return "<UNDEFINED>";
 			}
 			if(message.getEAnnotations() != null) {
-				EList<EAnnotation> an = message.getEAnnotations();
+				//	EList<EAnnotation> an = message.getEAnnotations();
 				/*
 				 * if (an.isEmpty())
 				 * System.out.print("List is empty");

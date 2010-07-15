@@ -22,6 +22,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.communication.edit.parts.CommentAnnotatedElementEditPart;
@@ -36,6 +37,7 @@ import org.eclipse.papyrus.diagram.communication.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.LifelineEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.ModelEditPart;
+import org.eclipse.papyrus.diagram.communication.edit.parts.ShortCutDiagramEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.TimeObservationEditPartCN;
 import org.eclipse.papyrus.diagram.communication.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Comment;
@@ -69,6 +71,8 @@ public class UMLDiagramUpdater {
 		return Collections.emptyList();
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -86,11 +90,26 @@ public class UMLDiagramUpdater {
 				continue;
 			}
 		}
+		Resource resource = modelElement.eResource();
+		for(Iterator semanticIterator = getPhantomNodesIterator(resource); semanticIterator.hasNext();) {
+			EObject childElement = (EObject)semanticIterator.next();
+
+			if(childElement == modelElement) {
+				continue;
+			}
+			if(UMLVisualIDRegistry.getNodeVisualID(view, childElement) == ShortCutDiagramEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, ShortCutDiagramEditPart.VISUAL_ID));
+				continue;
+			}
+		}
 		return result;
 	}
 
+
+
+
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	public static List<UMLNodeDescriptor> getInteractionInteractionCompartment_7001SemanticChildren(View view) {
 		if(false == view.eContainer() instanceof View) {
@@ -141,6 +160,14 @@ public class UMLDiagramUpdater {
 		return result;
 	}
 
+
+	/**
+	 * @generated
+	 */
+	private static Iterator<EObject> getPhantomNodesIterator(Resource resource) {
+		return resource.getAllContents();
+	}
+
 	/**
 	 * @generated
 	 */
@@ -150,6 +177,8 @@ public class UMLDiagramUpdater {
 			return getPackage_1000ContainedLinks(view);
 		case InteractionEditPart.VISUAL_ID:
 			return getInteraction_8002ContainedLinks(view);
+		case ShortCutDiagramEditPart.VISUAL_ID:
+			return getDiagram_8016ContainedLinks(view);
 		case LifelineEditPartCN.VISUAL_ID:
 			return getLifeline_8001ContainedLinks(view);
 		case ConstraintEditPartCN.VISUAL_ID:
@@ -173,6 +202,8 @@ public class UMLDiagramUpdater {
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
 		case InteractionEditPart.VISUAL_ID:
 			return getInteraction_8002IncomingLinks(view);
+		case ShortCutDiagramEditPart.VISUAL_ID:
+			return getDiagram_8016IncomingLinks(view);
 		case LifelineEditPartCN.VISUAL_ID:
 			return getLifeline_8001IncomingLinks(view);
 		case ConstraintEditPartCN.VISUAL_ID:
@@ -196,6 +227,8 @@ public class UMLDiagramUpdater {
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
 		case InteractionEditPart.VISUAL_ID:
 			return getInteraction_8002OutgoingLinks(view);
+		case ShortCutDiagramEditPart.VISUAL_ID:
+			return getDiagram_8016OutgoingLinks(view);
 		case LifelineEditPartCN.VISUAL_ID:
 			return getLifeline_8001OutgoingLinks(view);
 		case ConstraintEditPartCN.VISUAL_ID:
@@ -227,6 +260,13 @@ public class UMLDiagramUpdater {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getContainedTypeModelFacetLinks_Message_8009(modelElement));
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getDiagram_8016ContainedLinks(View view) {
+		return Collections.emptyList();
 	}
 
 	/**
@@ -296,6 +336,13 @@ public class UMLDiagramUpdater {
 		result.addAll(getIncomingFeatureModelFacetLinks_DurationObservation_Event_8012(modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_TimeObservation_Event_8013(modelElement, crossReferences));
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getDiagram_8016IncomingLinks(View view) {
+		return Collections.emptyList();
 	}
 
 	/**
@@ -394,6 +441,13 @@ public class UMLDiagramUpdater {
 		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getOutgoingTypeModelFacetLinks_Message_8009(modelElement));
 		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getDiagram_8016OutgoingLinks(View view) {
+		return Collections.emptyList();
 	}
 
 	/**

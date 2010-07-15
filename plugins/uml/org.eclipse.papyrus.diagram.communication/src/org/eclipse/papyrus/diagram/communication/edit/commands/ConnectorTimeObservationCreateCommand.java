@@ -68,6 +68,7 @@ public class ConnectorTimeObservationCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateTimeObservationEvent_8013(getSource(), getTarget());
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -82,6 +83,8 @@ public class ConnectorTimeObservationCreateCommand extends EditElementCommand {
 		return CommandResult.newOKCommandResult();
 
 	}
+
+
 
 	/**
 	 * @generated

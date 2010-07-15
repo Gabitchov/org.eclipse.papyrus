@@ -11,30 +11,10 @@
  *  Saadia DHOUIB (CEA LIST) saadia.dhouib@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.diagram.communication.navigator;
-
-import org.eclipse.jface.viewers.ViewerSorter;
-import org.eclipse.papyrus.diagram.communication.part.UMLVisualIDRegistry;
+package org.eclipse.papyrus.diagram.communication.edit.helpers;
 
 /**
  * @generated
  */
-public class UMLNavigatorSorter extends ViewerSorter {
-
-	/**
-	 * @generated
-	 */
-	private static final int GROUP_CATEGORY = 8018;
-
-	/**
-	 * @generated
-	 */
-	public int category(Object element) {
-		if(element instanceof UMLNavigatorItem) {
-			UMLNavigatorItem item = (UMLNavigatorItem)element;
-			return UMLVisualIDRegistry.getVisualID(item.getView());
-		}
-		return GROUP_CATEGORY;
-	}
-
+public class ShortCutDiagramEditHelper extends UMLBaseEditHelper {
 }

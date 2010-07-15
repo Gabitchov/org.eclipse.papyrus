@@ -76,6 +76,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 */
 	private UMLBaseItemSemanticEditPolicy.LinkConstraints linkConstraints;
 
+
 	/**
 	 * @generated
 	 */
@@ -170,8 +171,8 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Returns an image descriptor for the image file at the given plug-in
-	 * relative path.
+	 * Returns an image descriptor for the image file at the given
+	 * plug-in relative path.
 	 * 
 	 * @generated
 	 * @param path
@@ -183,14 +184,13 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	 * Respects images residing in any plug-in. If path is relative, then this
-	 * bundle is looked up for the image, otherwise, for absolute path, first
-	 * segment is taken as id of plug-in with image
+	 * Respects images residing in any plug-in. If path is relative,
+	 * then this bundle is looked up for the image, otherwise, for absolute
+	 * path, first segment is taken as id of plug-in with image
 	 * 
 	 * @generated
 	 * @param path
-	 *        the path to image, either absolute (with plug-in id as first
-	 *        segment), or relative for bundled images
+	 *        the path to image, either absolute (with plug-in id as first segment), or relative for bundled images
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor findImageDescriptor(String path) {
@@ -204,8 +204,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 
 	/**
 	 * Returns an image for the image file at the given plug-in relative path.
-	 * Client do not need to dispose this image. Images will be disposed
-	 * automatically.
+	 * Client do not need to dispose this image. Images will be disposed automatically.
 	 * 
 	 * @generated
 	 * @param path
@@ -281,6 +280,7 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	public void setUMLOCLFactory(UMLOCLFactory f) {
 		this.oclFactory = f;
 	}
+
 
 	/**
 	 * @generated

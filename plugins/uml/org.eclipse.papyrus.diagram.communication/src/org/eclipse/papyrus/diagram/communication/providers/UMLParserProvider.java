@@ -27,11 +27,13 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.parser.CommentParser;
 import org.eclipse.papyrus.diagram.common.parser.ConstraintParser;
+import org.eclipse.papyrus.diagram.common.parser.ShortcutDiagramParser;
 import org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.papyrus.diagram.communication.custom.parser.LifelineCustomParsers;
 import org.eclipse.papyrus.diagram.communication.edit.parts.CommentBodyEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.ConstraintBodyEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.ConstraintNameEditPartCN;
+import org.eclipse.papyrus.diagram.communication.edit.parts.DiagramNameEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.DurationObservationLabelEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.DurationObservationStereotypeLabelEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.InteractionNameEditPart;
@@ -197,6 +199,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private ShortcutDiagramParser diagramName_0Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getDiagramName_0Parser() {
+		if(diagramName_0Parser == null) {
+			diagramName_0Parser = new ShortcutDiagramParser();
+		}
+		return diagramName_0Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser messageName_6001Parser;
 
 	/**
@@ -218,6 +235,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 		switch(visualID) {
 		case InteractionNameEditPart.VISUAL_ID:
 			return getInteractionName_5001Parser();
+		case DiagramNameEditPart.VISUAL_ID:
+			return getDiagramName_0Parser();
 		case LifelineNameEditPart.VISUAL_ID:
 			return getLifelineName_5002Parser();
 		case ConstraintNameEditPartCN.VISUAL_ID:

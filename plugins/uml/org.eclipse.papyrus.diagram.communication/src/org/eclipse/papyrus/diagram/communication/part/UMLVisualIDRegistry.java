@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.providers.BaseViewInfo;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
@@ -25,6 +26,7 @@ import org.eclipse.papyrus.diagram.communication.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.ConstraintBodyEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.ConstraintEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.ConstraintNameEditPartCN;
+import org.eclipse.papyrus.diagram.communication.edit.parts.DiagramNameEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.DurationObservationEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.DurationObservationLabelEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.DurationObservationStereotypeLabelEditPartCN;
@@ -36,6 +38,7 @@ import org.eclipse.papyrus.diagram.communication.edit.parts.LifelineNameEditPart
 import org.eclipse.papyrus.diagram.communication.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.MessageNameEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.ModelEditPart;
+import org.eclipse.papyrus.diagram.communication.edit.parts.ShortCutDiagramEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.TimeObservationEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.TimeObservationNameEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.TimeObservationStereotypeLabelEditPartCN;
@@ -46,8 +49,8 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * This registry is used to determine which type of visual object should be
- * created for the corresponding Diagram, Node, ChildNode or Link represented by
- * a domain model object.
+ * created for the corresponding Diagram, Node, ChildNode or Link represented
+ * by a domain model object.
  * 
  * @generated
  */
@@ -150,6 +153,11 @@ public class UMLVisualIDRegistry {
 			) {
 				return InteractionEditPart.VISUAL_ID;
 			}
+			if(NotationPackage.eINSTANCE.getDiagram().isSuperTypeOf(domainElement.eClass())
+
+			) {
+				return ShortCutDiagramEditPart.VISUAL_ID;
+			}
 			break;
 		case InteractionCompartmentEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getLifeline().isSuperTypeOf(domainElement.eClass())
@@ -205,12 +213,20 @@ public class UMLVisualIDRegistry {
 			if(InteractionEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(ShortCutDiagramEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case InteractionEditPart.VISUAL_ID:
 			if(InteractionNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			if(InteractionCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case ShortCutDiagramEditPart.VISUAL_ID:
+			if(DiagramNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -292,14 +308,15 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
-	 * "User can change implementation of this method to handle some specific\n"
-	 * "situations not covered by default logic.\n"
+	 * "User can change implementation of this method to handle some specific\n""situations not covered by default logic.\n"
 	 * 
 	 * @generated
 	 */
 	private static boolean isDiagram(Package element) {
 		return true;
 	}
+
+
 
 	/**
 	 * @generated
@@ -309,10 +326,15 @@ public class UMLVisualIDRegistry {
 		return result instanceof Boolean && ((Boolean)result).booleanValue();
 	}
 
+
+
+
+
 	/**
 	 * @generated
 	 */
 	private static ViewInfo diagramViewInfo = null;
+
 
 	/**
 	 * @generated
@@ -324,6 +346,8 @@ public class UMLVisualIDRegistry {
 		return diagramViewInfo;
 	}
 
+
+
 	/**
 	 * @generated
 	 */
@@ -333,6 +357,9 @@ public class UMLVisualIDRegistry {
 		ViewInfo labelInfo = null;
 
 		viewInfo = new BaseViewInfo(8002, ViewInfo.Node, "Interaction");
+		root.addNode(1000, viewInfo);
+
+		viewInfo = new BaseViewInfo(8016, ViewInfo.Node, "Diagram");
 		root.addNode(1000, viewInfo);
 
 		viewInfo = new BaseViewInfo(8009, ViewInfo.Edge, "");

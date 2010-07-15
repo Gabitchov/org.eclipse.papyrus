@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.diagram.common.commands.DuplicateNamedElementCommand;
 import org.eclipse.papyrus.diagram.communication.edit.commands.InteractionCreateCommand;
+import org.eclipse.papyrus.diagram.communication.edit.commands.ShortCutDiagramCreateCommand;
 import org.eclipse.papyrus.diagram.communication.providers.UMLElementTypes;
 
 /**
@@ -41,6 +42,9 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 	protected Command getCreateCommand(CreateElementRequest req) {
 		if(UMLElementTypes.Interaction_8002 == req.getElementType()) {
 			return getGEFWrapper(new InteractionCreateCommand(req));
+		}
+		if(UMLElementTypes.Diagram_8016 == req.getElementType()) {
+			return getGEFWrapper(new ShortCutDiagramCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

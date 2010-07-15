@@ -65,8 +65,8 @@ public class TimeObservationHelper extends ElementHelper {
 	/**
 	 * Drop TimeObservation.
 	 * 
-	 * @param durationobservation
-	 *        the association class the semantic element
+	 * @param timeObservation
+	 *        the semantic element
 	 * @param viewer
 	 *        the viewer
 	 * @param diagramPreferencesHint

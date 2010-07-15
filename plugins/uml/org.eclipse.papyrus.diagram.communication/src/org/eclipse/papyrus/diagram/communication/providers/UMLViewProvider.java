@@ -62,6 +62,7 @@ import org.eclipse.papyrus.diagram.communication.edit.parts.ConstraintBodyEditPa
 import org.eclipse.papyrus.diagram.communication.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.ConstraintEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.ConstraintNameEditPartCN;
+import org.eclipse.papyrus.diagram.communication.edit.parts.DiagramNameEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.DurationObservationEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.DurationObservationLabelEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.DurationObservationStereotypeLabelEditPartCN;
@@ -73,6 +74,7 @@ import org.eclipse.papyrus.diagram.communication.edit.parts.LifelineNameEditPart
 import org.eclipse.papyrus.diagram.communication.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.MessageNameEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.ModelEditPart;
+import org.eclipse.papyrus.diagram.communication.edit.parts.ShortCutDiagramEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.TimeObservationEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.TimeObservationNameEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.TimeObservationStereotypeLabelEditPartCN;
@@ -110,10 +112,10 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	 */
 	protected boolean provides(CreateViewForKindOperation op) {
 		/*
-		 if (op.getViewKind() == Node.class)
-		 return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
-		 if (op.getViewKind() == Edge.class)
-		 return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+		 * if (op.getViewKind() == Node.class)
+		 * return getNodeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
+		 * if (op.getViewKind() == Edge.class)
+		 * return getEdgeViewClass(op.getSemanticAdapter(), op.getContainerView(), op.getSemanticHint()) != null;
 		 */
 		return true;
 	}
@@ -162,6 +164,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 				switch(visualID) {
 				case InteractionEditPart.VISUAL_ID:
+				case ShortCutDiagramEditPart.VISUAL_ID:
 				case LifelineEditPartCN.VISUAL_ID:
 				case ConstraintEditPartCN.VISUAL_ID:
 				case CommentEditPartCN.VISUAL_ID:
@@ -176,7 +179,7 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				}
 			}
 		}
-		return InteractionEditPart.VISUAL_ID == visualID || LifelineEditPartCN.VISUAL_ID == visualID || ConstraintEditPartCN.VISUAL_ID == visualID || CommentEditPartCN.VISUAL_ID == visualID || TimeObservationEditPartCN.VISUAL_ID == visualID || DurationObservationEditPartCN.VISUAL_ID == visualID;
+		return InteractionEditPart.VISUAL_ID == visualID || ShortCutDiagramEditPart.VISUAL_ID == visualID || LifelineEditPartCN.VISUAL_ID == visualID || ConstraintEditPartCN.VISUAL_ID == visualID || CommentEditPartCN.VISUAL_ID == visualID || TimeObservationEditPartCN.VISUAL_ID == visualID || DurationObservationEditPartCN.VISUAL_ID == visualID;
 	}
 
 	/**
@@ -225,6 +228,8 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		switch(visualID) {
 		case InteractionEditPart.VISUAL_ID:
 			return createInteraction_8002(domainElement, containerView, index, persisted, preferencesHint);
+		case ShortCutDiagramEditPart.VISUAL_ID:
+			return createDiagram_8016(domainElement, containerView, index, persisted, preferencesHint);
 		case LifelineEditPartCN.VISUAL_ID:
 			return createLifeline_8001(domainElement, containerView, index, persisted, preferencesHint);
 		case ConstraintEditPartCN.VISUAL_ID:
@@ -441,6 +446,38 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5156 = (Location)label5156.getLayoutConstraint();
 		location5156.setX(25);
 		location5156.setY(-10);
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createDiagram_8016(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(ShortCutDiagramEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		stampShortcut(containerView, node);
+		// initializeFromPreferences 
+		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
+
+
+		PreferenceInitializerForElementHelper.initForegroundFromPrefs(node, prefStore, "ShortCutDiagram");
+
+
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ShortCutDiagram");
+
+
+
+		PreferenceInitializerForElementHelper.initBackgroundFromPrefs(node, prefStore, "ShortCutDiagram");
+
+		Node label0 = createLabel(node, UMLVisualIDRegistry.getType(DiagramNameEditPart.VISUAL_ID));
+		label0.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+
+		Location location0 = (Location)label0.getLayoutConstraint();
+		location0.setX(0);
+		location0.setY(5);
 		return node;
 	}
 

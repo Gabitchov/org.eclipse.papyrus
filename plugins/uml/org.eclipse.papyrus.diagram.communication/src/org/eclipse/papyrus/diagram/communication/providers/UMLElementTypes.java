@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.diagram.communication.edit.parts.CommentAnnotatedElementEditPart;
@@ -38,6 +39,7 @@ import org.eclipse.papyrus.diagram.communication.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.LifelineEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.MessageEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.ModelEditPart;
+import org.eclipse.papyrus.diagram.communication.edit.parts.ShortCutDiagramEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.TimeObservationEditPartCN;
 import org.eclipse.papyrus.diagram.communication.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.graphics.Image;
@@ -103,6 +105,11 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType DurationObservation_8007 = getElementType("org.eclipse.papyrus.diagram.communication.DurationObservation_8007"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Diagram_8016 = getElementType("org.eclipse.papyrus.diagram.communication.Diagram_8016"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -241,6 +248,9 @@ public class UMLElementTypes {
 			elements.put(Interaction_8002, UMLPackage.eINSTANCE.getInteraction());
 
 
+			elements.put(Diagram_8016, NotationPackage.eINSTANCE.getDiagram());
+
+
 			elements.put(Lifeline_8001, UMLPackage.eINSTANCE.getLifeline());
 
 
@@ -284,6 +294,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
 			KNOWN_ELEMENT_TYPES.add(Package_1000);
 			KNOWN_ELEMENT_TYPES.add(Interaction_8002);
+			KNOWN_ELEMENT_TYPES.add(Diagram_8016);
 			KNOWN_ELEMENT_TYPES.add(Lifeline_8001);
 			KNOWN_ELEMENT_TYPES.add(Constraint_8004);
 			KNOWN_ELEMENT_TYPES.add(Comment_8005);
@@ -307,6 +318,8 @@ public class UMLElementTypes {
 			return Package_1000;
 		case InteractionEditPart.VISUAL_ID:
 			return Interaction_8002;
+		case ShortCutDiagramEditPart.VISUAL_ID:
+			return Diagram_8016;
 		case LifelineEditPartCN.VISUAL_ID:
 			return Lifeline_8001;
 		case ConstraintEditPartCN.VISUAL_ID:

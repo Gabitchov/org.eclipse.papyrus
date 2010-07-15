@@ -119,6 +119,9 @@ public class LifelineCreateCommandCN extends EditElementCommand {
 		return CommandResult.newOKCommandResult(newElement);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */

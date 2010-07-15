@@ -34,6 +34,9 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 		TimeObservationPreferencePage.initDefaults(store);
 
 
+		ShortCutDiagramPreferencePage.initDefaults(store);
+
+
 		CommentPreferencePage.initDefaults(store);
 
 

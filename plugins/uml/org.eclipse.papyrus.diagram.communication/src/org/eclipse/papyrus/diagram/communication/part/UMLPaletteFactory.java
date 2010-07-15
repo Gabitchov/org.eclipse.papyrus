@@ -28,6 +28,10 @@ import org.eclipse.papyrus.diagram.communication.providers.UMLElementTypes;
  */
 public class UMLPaletteFactory extends PaletteFactory.Adapter {
 
+
+
+
+
 	/**
 	 * @generated
 	 */
@@ -63,12 +67,16 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	private final static String CREATELINK13CREATIONTOOL = "createLink13CreationTool"; //$NON-NLS-1$
 
+
+
 	/**
 	 * @generated
 	 */
 	public UMLPaletteFactory() {
 
 	}
+
+
 
 	/**
 	 * @generated
@@ -100,6 +108,9 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		return null;
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */
@@ -108,6 +119,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		// default return: null
 		return null;
 	}
+
+
 
 	/**
 	 * @generated
@@ -188,5 +201,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
 	}
+
 
 }

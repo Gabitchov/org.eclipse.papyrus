@@ -119,6 +119,9 @@ public class CommentCreateCommandCN extends EditElementCommand {
 		return CommandResult.newOKCommandResult(newElement);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */

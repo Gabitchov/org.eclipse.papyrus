@@ -499,6 +499,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.communication.custom.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Interaction"/>
@@ -532,6 +536,57 @@
               editPattern="{0}">
             <metaFeatures
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+      </topLevelNodes>
+      <topLevelNodes
+          visualID="8016"
+          editPartClassName="ShortCutDiagramEditPart"
+          itemSemanticEditPolicyClassName="ShortCutDiagramItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="ShortCutDiagramCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="ShortCutDiagramGraphicalNodeEditPolicy"
+          createCommandClassName="ShortCutDiagramCreateCommand">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:MetamodelType"
+            uniqueIdentifier="org.eclipse.papyrus.diagram.communication.Diagram_8016"
+            displayName="ShortCutDiagram"
+            editHelperClassName="ShortCutDiagramEditHelper"/>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.diagram.common.figure.node.DiagramNodeFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="20"
+              height="20"/>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="EditPolicyRoles.OPEN_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.common.editpolicies.ShortCutDiagramEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.diagram.communication.custom.policies.itemsemantic.CustomShortcutDiagramItemSemanticEditPolicy"/>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
+        </modelFacet>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            editPartClassName="DiagramNameEditPart"
+            itemSemanticEditPolicyClassName="DiagramNameItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.5">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram/name"/>
           </modelFacet>
         </labels>
       </topLevelNodes>
@@ -916,6 +971,10 @@
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@childNodes.0/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.diagram.communication.custom.parser.LifelineCustomParsers"/>
+      <implementations
+          xsi:type="gmfgen:CustomParser"
+          uses="/0/@diagram/@topLevelNodes.1/@labels.0/@modelFacet"
+          qualifiedName="org.eclipse.papyrus.diagram.common.parser.ShortcutDiagramParser"/>
     </labelParsers>
   </gmfgen:GenEditorGenerator>
   <papyrusgmfgenextension:PapyrusExtensionRootNode
@@ -940,8 +999,26 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="adding to manange otherNamedElement"
-        genView="/0/@diagram /0/@diagram/@childNodes.0"
+        genView="/0/@diagram /0/@diagram/@childNodes.0 /0/@diagram/@topLevelNodes.0"
         name="OtherNamedElementEditPart"
         superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="this is an extension to manage the comment"
+        genView="/0/@diagram/@childNodes.2"
+        name="comment extended node"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.AbstractCommentEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="this is an extension for constraint "
+        genView="/0/@diagram/@childNodes.1"
+        name="ConstraintEditPart extension"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.AbstractConstraintEditPart"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        comment="Name of the shorcut diagram"
+        genView="/0/@diagram/@topLevelNodes.1/@labels.0"
+        name="AbstractShortcutDiagramNameEditPart"
+        superOwnedEditPart="org.eclipse.papyrus.diagram.common.editparts.AbstractShortcutDiagramNameEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

@@ -323,6 +323,13 @@
 		
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLCommunicationDiagram"
+			class="org.eclipse.papyrus.diagram.communication.preferences.ShortCutDiagramPreferencePage"
+            id="org.eclipse.papyrus.diagram.communication.preferences.ShortCutDiagramPreferencePage"
+            name="ShortCutDiagram Node" />
+	
+		
+	<?gmfgen generated="true"?>
+	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLCommunicationDiagram"
 			class="org.eclipse.papyrus.diagram.communication.preferences.CommentPreferencePage"
             id="org.eclipse.papyrus.diagram.communication.preferences.CommentPreferencePage"
             name="Comment Node" />
@@ -373,7 +380,7 @@
       <viewProvider class="org.eclipse.papyrus.diagram.communication.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLCommunicationDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="8002,8001,8004,8005,8006,8007"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="8002,8016,8001,8004,8005,8006,8007"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="8009,8010,8011,8012,8013"/>
       </viewProvider>
    </extension>
@@ -386,13 +393,13 @@
             <method name="getType()" value="PapyrusUMLCommunicationDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="8002,8001,8004,8005,8006,8007"/>
+            <method name="getType()" value="8002,8016,8001,8004,8005,8006,8007"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="8009,8010,8011,8012,8013"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5001,5002,5064,5160,5150,5153,5154,5155,5156"/>
+            <method name="getType()" value="5001,0,5002,5064,5160,5150,5153,5154,5155,5156"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value="7001"/>
@@ -407,7 +414,8 @@
          <Priority name="Lowest"/>
          <object class="org.eclipse.papyrus.diagram.communication.edit.parts.ModelEditPart" id="Package_1000"/>
          <object class="org.eclipse.papyrus.diagram.communication.edit.parts.InteractionEditPart" id="Interaction_8002"/>
-         <context elements="Package_1000,Interaction_8002"/>
+         <object class="org.eclipse.papyrus.diagram.communication.edit.parts.ShortCutDiagramEditPart" id="Diagram_8016"/>
+         <context elements="Package_1000,Interaction_8002,Diagram_8016"/>
       </modelingAssistantProvider>
    </extension>
 
@@ -445,6 +453,16 @@
                eclass="Interaction"
                edithelper="org.eclipse.papyrus.diagram.communication.edit.helpers.InteractionEditHelper">
             <param name="semanticHint" value="8002"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://www.eclipse.org/gmf/runtime/1.0.2/notation">
+         <metamodelType
+               id="org.eclipse.papyrus.diagram.communication.Diagram_8016"
+               name="%metatype.name.Diagram_8016"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Diagram"
+               edithelper="org.eclipse.papyrus.diagram.communication.edit.helpers.ShortCutDiagramEditHelper">
+            <param name="semanticHint" value="8016"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
@@ -557,6 +575,7 @@
       <binding context="org.eclipse.papyrus.diagram.communication.TypeContext">
          <elementType ref="org.eclipse.papyrus.diagram.communication.Package_1000"/>
          <elementType ref="org.eclipse.papyrus.diagram.communication.Interaction_8002"/>
+         <elementType ref="org.eclipse.papyrus.diagram.communication.Diagram_8016"/>
          <elementType ref="org.eclipse.papyrus.diagram.communication.Lifeline_8001"/>
          <elementType ref="org.eclipse.papyrus.diagram.communication.Constraint_8004"/>
          <elementType ref="org.eclipse.papyrus.diagram.communication.Comment_8005"/>

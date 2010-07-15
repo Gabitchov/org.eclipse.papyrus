@@ -119,6 +119,9 @@ public class DurationObservationCreateCommandCN extends EditElementCommand {
 		return CommandResult.newOKCommandResult(newElement);
 	}
 
+
+
+
 	/**
 	 * @generated
 	 */

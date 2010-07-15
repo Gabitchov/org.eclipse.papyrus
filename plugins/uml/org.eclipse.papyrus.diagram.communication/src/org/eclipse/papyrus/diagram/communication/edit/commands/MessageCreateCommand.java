@@ -44,6 +44,7 @@ public class MessageCreateCommand extends EditElementCommand {
 	 */
 	private final EObject target;
 
+
 	/**
 	 * @generated
 	 */
@@ -82,6 +83,7 @@ public class MessageCreateCommand extends EditElementCommand {
 		return UMLBaseItemSemanticEditPolicy.getLinkConstraints().canCreateMessage_8009(getContainer(), getSource(), getTarget());
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -93,6 +95,7 @@ public class MessageCreateCommand extends EditElementCommand {
 		throw new UnsupportedOperationException();
 
 	}
+
 
 	/**
 	 * @generated
@@ -139,8 +142,8 @@ public class MessageCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * Default approach is to traverse ancestors of the source to find instance
-	 * of container. Modify with appropriate logic.
+	 * Default approach is to traverse ancestors of the source to find instance of container.
+	 * Modify with appropriate logic.
 	 * 
 	 * @generated
 	 */

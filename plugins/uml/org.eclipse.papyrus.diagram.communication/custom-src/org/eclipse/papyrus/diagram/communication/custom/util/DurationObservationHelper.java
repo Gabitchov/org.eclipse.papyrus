@@ -47,6 +47,7 @@ import org.eclipse.papyrus.diagram.communication.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.DurationObservation;
 import org.eclipse.uml2.uml.NamedElement;
 
+// TODO: Auto-generated Javadoc
 /**
  * This class handles {@link DurationObservation} drop in diagram.
  * Derived from {@link AssociationHelper}
@@ -66,8 +67,8 @@ public class DurationObservationHelper extends ElementHelper {
 	/**
 	 * Drop DurationObservation.
 	 * 
-	 * @param durationobservation
-	 *        the association class the semantic element
+	 * @param durationObservation
+	 *        the duration observation
 	 * @param viewer
 	 *        the viewer
 	 * @param diagramPreferencesHint
@@ -76,7 +77,6 @@ public class DurationObservationHelper extends ElementHelper {
 	 *        the location of the drop
 	 * @param containerView
 	 *        the container view that will contain the associationClass views
-	 * 
 	 * @return the command
 	 */
 	public Command dropDurationObservation(DurationObservation durationObservation, EditPartViewer viewer, PreferencesHint diagramPreferencesHint, Point location, View containerView) {

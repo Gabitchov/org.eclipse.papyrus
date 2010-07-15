@@ -18,23 +18,21 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.communication.providers.ElementInitializers;
-import org.eclipse.uml2.uml.Component;
-import org.eclipse.uml2.uml.Interaction;
-import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.UMLFactory;
 
 /**
  * @generated
  */
-public class InteractionCreateCommand extends EditElementCommand {
+public class ShortCutDiagramCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -49,7 +47,7 @@ public class InteractionCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public InteractionCreateCommand(CreateElementRequest req, EObject eObject) {
+	public ShortCutDiagramCreateCommand(CreateElementRequest req, EObject eObject) {
 		super(req.getLabel(), null, req);
 		this.eObject = eObject;
 		this.eClass = eObject != null ? eObject.eClass() : null;
@@ -58,14 +56,14 @@ public class InteractionCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public static InteractionCreateCommand create(CreateElementRequest req, EObject eObject) {
-		return new InteractionCreateCommand(req, eObject);
+	public static ShortCutDiagramCreateCommand create(CreateElementRequest req, EObject eObject) {
+		return new ShortCutDiagramCreateCommand(req, eObject);
 	}
 
 	/**
 	 * @generated
 	 */
-	public InteractionCreateCommand(CreateElementRequest req) {
+	public ShortCutDiagramCreateCommand(CreateElementRequest req) {
 		super(req.getLabel(), null, req);
 	}
 
@@ -91,12 +89,7 @@ public class InteractionCreateCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-
-
 		return true;
-
-
-
 	}
 
 	/**
@@ -106,15 +99,18 @@ public class InteractionCreateCommand extends EditElementCommand {
 
 
 
-		Interaction newElement = UMLFactory.eINSTANCE.createInteraction();
+		// Uncomment to put "phantom" objects into the diagram file.		
+		// org.eclipse.emf.ecore.resource.Resource resource = 
+		// 		((org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest) getRequest()).getContainer().eResource();
+		// if (resource == null) {
+		// 	return null;
+		// }
+		Resource resource = getElementToEdit().eResource();
+		Diagram newElement = NotationFactory.eINSTANCE.createDiagram();
 
-		Package owner = (Package)getElementToEdit();
-		owner.getPackagedElements().add(newElement);
-		Component childHolder = (Component)getElementToEdit();
-		childHolder.getPackagedElements().add(newElement);
+		resource.getContents().add(newElement);
 
 
-		ElementInitializers.getInstance().init_Interaction_8002(newElement);
 
 		doConfigure(newElement, monitor, info);
 
@@ -128,7 +124,7 @@ public class InteractionCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected void doConfigure(Interaction newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected void doConfigure(Diagram newElement, IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		IElementType elementType = ((CreateElementRequest)getRequest()).getElementType();
 		ConfigureRequest configureRequest = new ConfigureRequest(getEditingDomain(), newElement, elementType);
 		configureRequest.setClientContext(((CreateElementRequest)getRequest()).getClientContext());

@@ -134,6 +134,8 @@ public class UMLDiagramEditorUtil {
 		return filePath.lastSegment();
 	}
 
+
+
 	/**
 	 * Runs the wizard in a dialog.
 	 * 
@@ -153,8 +155,7 @@ public class UMLDiagramEditorUtil {
 	}
 
 	/**
-	 * This method should be called within a workspace modify operation since it
-	 * creates resources.
+	 * This method should be called within a workspace modify operation since it creates resources.
 	 * 
 	 * @generated
 	 */
@@ -197,9 +198,11 @@ public class UMLDiagramEditorUtil {
 		return diagramResource;
 	}
 
+
 	/**
-	 * Create a new instance of domain element associated with canvas. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Create a new instance of domain element associated with canvas.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -207,15 +210,21 @@ public class UMLDiagramEditorUtil {
 		return UMLFactory.eINSTANCE.createPackage();
 	}
 
+
 	/**
 	 * Store model element in the resource.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static void attachModelToResource(Package model, Resource resource) {
 		resource.getContents().add(model);
 	}
+
+
+
+
 
 	/**
 	 * @generated
@@ -235,6 +244,7 @@ public class UMLDiagramEditorUtil {
 			diagramPart.getDiagramGraphicalViewer().reveal(firstPrimary != null ? firstPrimary : (EditPart)editParts.get(0));
 		}
 	}
+
 
 	/**
 	 * @generated
@@ -277,6 +287,7 @@ public class UMLDiagramEditorUtil {
 		return editPartCollector.size() - intialNumOfEditParts;
 	}
 
+
 	/**
 	 * @generated
 	 */
@@ -299,8 +310,7 @@ public class UMLDiagramEditorUtil {
 	}
 
 	/**
-	 * XXX This is quite suspicious code (especially editPartTmpHolder) and
-	 * likely to be removed soon
+	 * XXX This is quite suspicious code (especially editPartTmpHolder) and likely to be removed soon
 	 * 
 	 * @generated
 	 */
@@ -376,6 +386,8 @@ public class UMLDiagramEditorUtil {
 			}
 			return complete;
 		}
-	} // LazyElement2ViewMap
+	} //LazyElement2ViewMap	
+
+
 
 }
