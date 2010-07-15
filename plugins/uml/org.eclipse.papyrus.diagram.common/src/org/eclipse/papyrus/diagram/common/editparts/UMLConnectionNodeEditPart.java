@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.common.editparts;
 
+import java.util.Iterator;
 import java.util.StringTokenizer;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -37,7 +38,7 @@ import org.eclipse.uml2.uml.Stereotype;
  * then defines basic behavior for Stereotype management. It has facilities to retrieve UML element
  * controlled by this edit part
  */
-public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart implements IUMLEditPart {
+public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart implements IUMLEditPart, IEditpartListenerAccess {
 
 	/**
 	 * Creates a new UMLConnectionNodeEditPart
@@ -71,6 +72,9 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionNodeEditPart i
 		}
 	}
 
+	public final Iterator getEventListenerIterator(Class clazz) {
+		return getEventListeners(clazz);
+	}
 	/**
 	 * {@inheritDoc}
 	 */

@@ -54,6 +54,7 @@ import org.eclipse.papyrus.diagram.clazz.custom.providers.CustomDeferredCreateCo
 import org.eclipse.papyrus.diagram.clazz.edit.parts.Dependency2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.commands.DeleteLinkDuringCreationCommand;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.helper.ElementHelper;
 import org.eclipse.uml2.uml.Dependency;
@@ -339,8 +340,7 @@ public class MultiDependencyHelper extends ElementHelper {
 			// 2. Remove the view of the dependency
 			View dependencyViewSource = ((Edge)dependencyView).getSource();
 			View dependencyViewTarget = ((Edge)dependencyView).getTarget();
-
-			((CompoundCommand)command).add(new ICommandProxy(new DeleteCommand(getEditingDomain(), dependencyView)));
+			((CompoundCommand)command).add(new ICommandProxy(new DeleteLinkDuringCreationCommand(getEditingDomain(), (Edge)dependencyView, sourceEditPart.getViewer())));
 
 			// ---------------------------------------------------------
 			// help to debug

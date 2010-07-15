@@ -22,6 +22,7 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.Request;
@@ -45,6 +46,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElemen
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
+import org.eclipse.gmf.runtime.diagram.ui.services.editpart.EditPartService;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
@@ -58,6 +60,7 @@ import org.eclipse.papyrus.diagram.clazz.custom.providers.CustomDeferredCreateCo
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationBranchEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationNodeEditPart;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.commands.DeleteLinkDuringCreationCommand;
 import org.eclipse.papyrus.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.diagram.common.helper.ElementHelper;
 import org.eclipse.uml2.uml.Association;
@@ -335,9 +338,12 @@ public class MultiAssociationHelper extends ElementHelper {
 //			System.err.println("+-> parentView:" + parentView);
 			// ---------------------------------------------------------
 			// 2. Remove the view of the association
-			EditPart associationestiPartToremove= sourceEditPart;
-			Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
-			Command removecommand = associationestiPartToremove.getCommand(deleteViewRequest);
+			DeleteCommand deleteCommand=new DeleteLinkDuringCreationCommand(getEditingDomain(), (Edge)associationView, sourceEditPart.getViewer());
+			deleteCommand.setReuseParentTransaction(true);
+			Command removecommand = new ICommandProxy(deleteCommand);
+			//to execute
+			((CompoundCommand)command).add(removecommand);
+			
 			//((CompoundCommand)command).add(removecommand);
 
 			// ---------------------------------------------------------
@@ -353,15 +359,15 @@ public class MultiAssociationHelper extends ElementHelper {
 			CreateElementRequest request = new CreateElementRequest(getEditingDomain(), association, UMLElementTypes.Property_3005, UMLPackage.eINSTANCE.getAssociation_OwnedEnd());
 			request.setParameter("type", newSemanticElement);
 			EditElementCommand propertyCreateCommand = new PropertyCommandForAssociation(request);
+			propertyCreateCommand.setReuseParentTransaction(true);
 			((CompoundCommand)command).add(new ICommandProxy(propertyCreateCommand));
-
-
 
 
 			// 3. Node creation at this position
 			View associationViewSource = ((Edge)associationView).getSource();
 			View associationViewTarget = ((Edge)associationView).getTarget();
 			AssociationDiamonViewCreateCommand nodeCreation = new AssociationDiamonViewCreateCommand(getEditingDomain(), parentView, (EditPartViewer)sourceEditPart.getViewer(), ((IGraphicalEditPart)sourceEditPart).getDiagramPreferencesHint(), nodeLocation, new SemanticAdapter(association, null));
+			nodeCreation.setReuseParentTransaction(true);
 			((CompoundCommand)command).add(new ICommandProxy(nodeCreation));
 
 			// 4. reconstruction of the old link by taking in account the old
@@ -390,8 +396,7 @@ public class MultiAssociationHelper extends ElementHelper {
 			((CustomDeferredCreateConnectionViewCommand)thirdBranchCommand).setElement(association);
 			((CompoundCommand)command).add(new ICommandProxy(thirdBranchCommand));
 
-			//to execute
-			((CompoundCommand)command).add(removecommand);
+			
 
 		}
 		return command;
