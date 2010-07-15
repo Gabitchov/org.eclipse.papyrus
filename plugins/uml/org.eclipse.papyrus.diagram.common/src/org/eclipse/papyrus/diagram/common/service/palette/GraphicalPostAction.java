@@ -40,6 +40,8 @@ import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.service.IPapyrusPaletteConstant;
 import org.eclipse.papyrus.diagram.common.wizards.PaletteEntryProxy;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -157,9 +159,16 @@ public class GraphicalPostAction extends ModelPostAction {
 	public Control createConfigurationComposite(Composite parent, PaletteEntryProxy entryProxy, List<Profile> appliedProfiles) {
 		this.appliedProfiles = appliedProfiles;
 		this.entryProxy = entryProxy;
-		Label label = new Label(parent, SWT.BORDER);
-		label.setText("configuration of graphical post action");
-		return label;
+
+		Composite composite = new Composite(parent, SWT.BORDER);
+		composite.setLayout(new GridLayout(1, false));
+
+		Label label = new Label(composite, SWT.None);
+		label.setText("Configuration of graphical post action : ");
+		GridData data = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		label.setLayoutData(data);
+
+		return composite;
 	}
 
 	/**

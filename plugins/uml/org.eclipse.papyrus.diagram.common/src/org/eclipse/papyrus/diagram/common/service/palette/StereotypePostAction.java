@@ -426,62 +426,6 @@ public class StereotypePostAction extends ModelPostAction {
 		GridData data = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
 		titleLabel.setLayoutData(data);
 
-		downButton = new Button(mainComposite, SWT.NONE);
-		downButton.setImage(Activator.getPluginIconImage(Activator.ID, ICONS_DOWN));
-		downButton.addMouseListener(new MouseListener() {
-
-			/**
-			 * @{inheritDoc
-			 */
-			public void mouseUp(MouseEvent e) {
-				moveElement(MOVE_DOWN, stereotypesViewer);
-				selectionHasChange();
-
-			}
-
-			/**
-			 * @{inheritDoc
-			 */
-			public void mouseDown(MouseEvent e) {
-
-			}
-
-			/**
-			 * @{inheritDoc
-			 */
-			public void mouseDoubleClick(MouseEvent e) {
-
-			}
-		});
-		downButton.setEnabled(false);
-		upButton = new Button(mainComposite, SWT.NONE);
-		upButton.setImage(Activator.getPluginIconImage(Activator.ID, ICONS_UP));
-		upButton.addMouseListener(new MouseListener() {
-
-			/**
-			 * @{inheritDoc
-			 */
-			public void mouseUp(MouseEvent e) {
-				moveElement(MOVE_UP, stereotypesViewer);
-				selectionHasChange();
-			}
-
-			/**
-			 * @{inheritDoc
-			 */
-			public void mouseDown(MouseEvent e) {
-
-			}
-
-			/**
-			 * @{inheritDoc
-			 */
-			public void mouseDoubleClick(MouseEvent e) {
-
-			}
-		});
-		upButton.setEnabled(false);
-
 		addButton = new Button(mainComposite, SWT.NONE);
 		addButton.setImage(Activator.getPluginIconImage(Activator.ID, ICONS_ADD));
 		addButton.addMouseListener(new MouseListener() {
@@ -536,10 +480,67 @@ public class StereotypePostAction extends ModelPostAction {
 		});
 		removeButton.setEnabled(false);
 
+		upButton = new Button(mainComposite, SWT.NONE);
+		upButton.setImage(Activator.getPluginIconImage(Activator.ID, ICONS_UP));
+		upButton.addMouseListener(new MouseListener() {
+
+			/**
+			 * @{inheritDoc
+			 */
+			public void mouseUp(MouseEvent e) {
+				moveElement(MOVE_UP, stereotypesViewer);
+				selectionHasChange();
+			}
+
+			/**
+			 * @{inheritDoc
+			 */
+			public void mouseDown(MouseEvent e) {
+
+			}
+
+			/**
+			 * @{inheritDoc
+			 */
+			public void mouseDoubleClick(MouseEvent e) {
+
+			}
+		});
+		upButton.setEnabled(false);
+
+		downButton = new Button(mainComposite, SWT.NONE);
+		downButton.setImage(Activator.getPluginIconImage(Activator.ID, ICONS_DOWN));
+		downButton.addMouseListener(new MouseListener() {
+
+			/**
+			 * @{inheritDoc
+			 */
+			public void mouseUp(MouseEvent e) {
+				moveElement(MOVE_DOWN, stereotypesViewer);
+				selectionHasChange();
+
+			}
+
+			/**
+			 * @{inheritDoc
+			 */
+			public void mouseDown(MouseEvent e) {
+
+			}
+
+			/**
+			 * @{inheritDoc
+			 */
+			public void mouseDoubleClick(MouseEvent e) {
+
+			}
+		});
+		downButton.setEnabled(false);
+
 		// stereotype viewer creation 
 		stereotypesViewer = new TreeViewer(mainComposite, SWT.BORDER | SWT.MULTI | SWT.FULL_SELECTION);
 		data = new GridData(SWT.FILL, SWT.FILL, true, true);
-		data.horizontalSpan = 3;
+		data.horizontalSpan = 5;
 
 		stereotypesViewer.getControl().setLayoutData(data);
 		stereotypesViewer.setContentProvider(stereotypeContentProvider);

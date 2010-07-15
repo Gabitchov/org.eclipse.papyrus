@@ -97,6 +97,7 @@ public class PaletteUtil {
 		}
 		if(types != null && types.size() > 0) {
 			IElementType type = types.get(0);
+
 			if(type instanceof SpecializationType) {
 				type = ((SpecializationType)type).getSpecializedTypes()[0];
 			}

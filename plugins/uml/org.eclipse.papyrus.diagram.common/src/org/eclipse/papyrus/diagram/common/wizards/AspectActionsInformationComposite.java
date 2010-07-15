@@ -289,6 +289,8 @@ public class AspectActionsInformationComposite {
 			}
 		});
 
+		updateButtons();
+
 		viewer = new TreeViewer(actionList, SWT.BORDER);
 		data = new GridData(SWT.FILL, SWT.FILL, true, true);
 		data.horizontalSpan = 5;
