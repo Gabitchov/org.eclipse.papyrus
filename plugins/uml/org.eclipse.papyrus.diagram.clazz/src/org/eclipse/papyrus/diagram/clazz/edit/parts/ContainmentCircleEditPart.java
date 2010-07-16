@@ -153,7 +153,7 @@ AbstractBorderItemEditPart {
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		// CircleFigure will allow connections to be attached directly to the circle, not to the surrounding rectangle
-//		CircleFigure result = new CircleFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
+		//		CircleFigure result = new CircleFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 		// there are no prefs for Requirements diagram, so default dimention(100x100) is returned
 		// we overide it here
 		CircleFigure result = new CircleFigure(20, 20);

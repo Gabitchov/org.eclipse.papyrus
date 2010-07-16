@@ -67,11 +67,19 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 			return true;
 		}
 		if(childEditPart instanceof AssociationName3EditPart) {
-			((AssociationName3EditPart)childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
+			((AssociationName3EditPart)childEditPart).setLabel(getPrimaryShape().getRoleTargetLabel());
 			return true;
 		}
 		if(childEditPart instanceof AssociationName5EditPart) {
-			((AssociationName5EditPart)childEditPart).setLabel(getPrimaryShape().getMultiplicityTargetLabel());
+			((AssociationName5EditPart)childEditPart).setLabel(getPrimaryShape().getRoleSourceLabel());
+			return true;
+		}
+		if(childEditPart instanceof AssociationMultiplictySourceEditPart) {
+			((AssociationMultiplictySourceEditPart)childEditPart).setLabel(getPrimaryShape().getMultiplicitySourceLabel());
+			return true;
+		}
+		if(childEditPart instanceof AssociationMultiplictyTargetEditPart) {
+			((AssociationMultiplictyTargetEditPart)childEditPart).setLabel(getPrimaryShape().getMultiplicityTargetLabel());
 			return true;
 		}
 		return false;
@@ -132,6 +140,12 @@ public class AssociationEditPart extends AbstractAssociationEditPart implements 
 			return true;
 		}
 		if(childEditPart instanceof AssociationName5EditPart) {
+			return true;
+		}
+		if(childEditPart instanceof AssociationMultiplictySourceEditPart) {
+			return true;
+		}
+		if(childEditPart instanceof AssociationMultiplictyTargetEditPart) {
 			return true;
 		}
 		return false;

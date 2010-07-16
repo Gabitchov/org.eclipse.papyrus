@@ -1657,6 +1657,7 @@
 
 
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.TemplateBindingPreferencePage"
@@ -1664,6 +1665,7 @@
             name="TemplateBinding Link" />
 		
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.PackageImportPreferencePage"
@@ -1671,6 +1673,7 @@
             name="PackageImport Link" />
 		
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.PackageMergePreferencePage"
@@ -1678,6 +1681,7 @@
             name="PackageMerge Link" />
 		
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.AbstractionPreferencePage"
@@ -1685,6 +1689,7 @@
             name="Abstraction Link" />
 		
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.ProfileApplicationPreferencePage"
@@ -1692,6 +1697,7 @@
             name="ProfileApplication Link" />
 		
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.RealizationPreferencePage"
@@ -1699,6 +1705,7 @@
             name="Realization Link" />
 		
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.DependencyPreferencePage"
@@ -1706,6 +1713,7 @@
             name="Dependency Link" />
 		
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.GeneralizationPreferencePage"
@@ -1713,6 +1721,7 @@
             name="Generalization Link" />
 		
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.AssociationClassPreferencePage"
@@ -1720,6 +1729,7 @@
             name="AssociationClass Link" />
 		
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.UsagePreferencePage"
@@ -1727,6 +1737,7 @@
             name="Usage Link" />
 		
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.AssociationPreferencePage"
@@ -1734,6 +1745,7 @@
             name="Association Link" />
 		
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.SubstitutionPreferencePage"
@@ -1741,6 +1753,7 @@
             name="Substitution Link" />
 		
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.ElementImportPreferencePage"
@@ -1748,6 +1761,7 @@
             name="ElementImport Link" />
 		
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.GeneralizationSetPreferencePage"
@@ -1757,6 +1771,7 @@
 		
 		
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLClassDiagram"
 			class="org.eclipse.papyrus.diagram.clazz.preferences.InterfaceRealizationPreferencePage"

@@ -176,6 +176,16 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6005 = (Location)label6005.getLayoutConstraint();
 		location6005.setX(0);
 		location6005.setY(20);
+		Node label6033 = createLabel(edge, UMLVisualIDRegistry.getType(AssociationMultiplictySourceEditPart.VISUAL_ID));
+		label6033.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6033 = (Location)label6033.getLayoutConstraint();
+		location6033.setX(0);
+		location6033.setY(20);
+		Node label6034 = createLabel(edge, UMLVisualIDRegistry.getType(AssociationMultiplictyTargetEditPart.VISUAL_ID));
+		label6034.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6034 = (Location)label6034.getLayoutConstraint();
+		location6034.setX(0);
+		location6034.setY(-20);
 		return edge;
 	}
 

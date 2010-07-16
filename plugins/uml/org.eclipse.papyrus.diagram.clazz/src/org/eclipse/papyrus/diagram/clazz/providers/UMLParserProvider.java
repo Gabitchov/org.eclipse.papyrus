@@ -44,6 +44,8 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.AppliedStereotyperGeneraliza
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleSourceEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClassRoleTargetEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationMultiplictySourceEditPart;
+import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationMultiplictyTargetEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName3EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationName5EditPart;
@@ -557,6 +559,46 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			associationName_6005Parser = parser;
 		}
 		return associationName_6005Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser associationName_6033Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getAssociationName_6033Parser() {
+		if(associationName_6033Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("srcMul{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("srcMul{0}"); //$NON-NLS-1$
+			parser.setEditPattern("srcMul{0}"); //$NON-NLS-1$
+			associationName_6033Parser = parser;
+		}
+		return associationName_6033Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser associationName_6034Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getAssociationName_6034Parser() {
+		if(associationName_6034Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			parser.setViewPattern("srcMul{0}"); //$NON-NLS-1$
+			parser.setEditorPattern("srcMul{0}"); //$NON-NLS-1$
+			parser.setEditPattern("srcMul{0}"); //$NON-NLS-1$
+			associationName_6034Parser = parser;
+		}
+		return associationName_6034Parser;
 	}
 
 	/**
@@ -1345,6 +1387,10 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getAssociationName_6003Parser();
 		case AssociationName5EditPart.VISUAL_ID:
 			return getAssociationName_6005Parser();
+		case AssociationMultiplictySourceEditPart.VISUAL_ID:
+			return getAssociationName_6033Parser();
+		case AssociationMultiplictyTargetEditPart.VISUAL_ID:
+			return getAssociationName_6034Parser();
 		case AppliedStereotyperGeneralizationEditPart.VISUAL_ID:
 			return getGeneralizationIsSubstitutable_6007Parser();
 		case AppliedStereotypeInterfaceRealizationEditPart.VISUAL_ID:

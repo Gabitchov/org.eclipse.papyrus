@@ -271,7 +271,7 @@ public class AssociationFigure extends UMLEdgeFigure {
 		decorationPointList.addPoint(-3, -2);
 		decoration.setTemplate(decorationPointList);
 		decoration.setBackgroundColor(org.eclipse.draw2d.ColorConstants.white);
-		decoration.setScale(3, 2);
+		decoration.setScale(1, 1);
 		return decoration;
 	}
 
@@ -292,7 +292,7 @@ public class AssociationFigure extends UMLEdgeFigure {
 		decorationPointList.addPoint(-6, 0);
 		decorationPointList.addPoint(-3, -2);
 		decoration.setTemplate(decorationPointList);
-		decoration.setScale(3, 2);
+		decoration.setScale(1, 1);
 		return decoration;
 	}
 
@@ -342,7 +342,7 @@ public class AssociationFigure extends UMLEdgeFigure {
 		decorationPointList.addPoint(-6, 1);
 		decorationPointList.addPoint(-6, -1);
 
-		decoration.setScale(1, 1);
+		decoration.setScale(3, 2);
 		decoration.setTemplate(decorationPointList);
 		decoration.setBackgroundColor(org.eclipse.draw2d.ColorConstants.white);
 		return decoration;
@@ -382,7 +382,7 @@ public class AssociationFigure extends UMLEdgeFigure {
 		// decorationPointList.addPoint(-6, 1);
 		// decorationPointList.addPoint(-6, -1);
 
-		decoration.setScale(1, 1);
+		decoration.setScale(3, 2);
 		decoration.setTemplate(decorationPointList);
 		return decoration;
 	}
@@ -449,7 +449,7 @@ public class AssociationFigure extends UMLEdgeFigure {
 		decorationPointList.addPoint(-6, 1);
 		decorationPointList.addPoint(-6, -1);
 
-		decoration.setScale(3, 2);
+		decoration.setScale(1, 0.75);
 		decoration.setTemplate(decorationPointList);
 		decoration.setBackgroundColor(org.eclipse.draw2d.ColorConstants.white);
 		return decoration;

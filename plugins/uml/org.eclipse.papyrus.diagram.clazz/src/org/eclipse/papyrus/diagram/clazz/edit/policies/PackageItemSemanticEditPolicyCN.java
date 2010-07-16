@@ -150,7 +150,7 @@ public class PackageItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPoli
 			case PackageImportEditPart.VISUAL_ID:
 			case PackageMergeEditPart.VISUAL_ID:
 			case TemplateBindingEditPart.VISUAL_ID:
-//			case AddedLinkEditPart.VISUAL_ID:
+			case AddedLinkEditPart.VISUAL_ID:
 				DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(destroyEltReq));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));

@@ -124,7 +124,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 
 	/**
 	 * @see org.eclipse.papyrus.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPolicy#getDestroyElementCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest)
-	 *
+	 * 
 	 * @param req
 	 * @return
 	 */
@@ -157,7 +157,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 			case PackageImportEditPart.VISUAL_ID:
 			case PackageMergeEditPart.VISUAL_ID:
 			case TemplateBindingEditPart.VISUAL_ID:
-//			case AddedLinkEditPart.VISUAL_ID:
+				//			case AddedLinkEditPart.VISUAL_ID:
 				DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(destroyEltReq));
 				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
@@ -178,7 +178,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 			case PackageMergeEditPart.VISUAL_ID:
 			case ProfileApplicationEditPart.VISUAL_ID:
 			case TemplateBindingEditPart.VISUAL_ID:
-//			case AddedLinkEditPart.VISUAL_ID:
+				//			case AddedLinkEditPart.VISUAL_ID:
 				DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
 				cmd.add(new DestroyElementCommand(destroyEltReq));
 				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -225,7 +225,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 					case DependencyEditPart.VISUAL_ID:
 					case DependencyBranchEditPart.VISUAL_ID:
 					case TemplateBindingEditPart.VISUAL_ID:
-//					case AddedLinkEditPart.VISUAL_ID:
+					case AddedLinkEditPart.VISUAL_ID:
 						DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
 						cmd.add(new DestroyElementCommand(destroyEltReq));
 						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
@@ -241,7 +241,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 					case UsageEditPart.VISUAL_ID:
 					case DependencyEditPart.VISUAL_ID:
 					case DependencyBranchEditPart.VISUAL_ID:
-//					case AddedLinkEditPart.VISUAL_ID:
+					case AddedLinkEditPart.VISUAL_ID:
 						DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
 						cmd.add(new DestroyElementCommand(destroyEltReq));
 						cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -276,7 +276,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 							case DependencyBranchEditPart.VISUAL_ID:
 							case ElementImportEditPart.VISUAL_ID:
 							case TemplateBindingEditPart.VISUAL_ID:
-//							case AddedLinkEditPart.VISUAL_ID:
+							case AddedLinkEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
@@ -292,7 +292,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 							case UsageEditPart.VISUAL_ID:
 							case DependencyEditPart.VISUAL_ID:
 							case DependencyBranchEditPart.VISUAL_ID:
-//							case AddedLinkEditPart.VISUAL_ID:
+							case AddedLinkEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -328,7 +328,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 							case DependencyBranchEditPart.VISUAL_ID:
 							case ElementImportEditPart.VISUAL_ID:
 							case TemplateBindingEditPart.VISUAL_ID:
-//							case AddedLinkEditPart.VISUAL_ID:
+							case AddedLinkEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
@@ -353,7 +353,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 							case ElementImportEditPart.VISUAL_ID:
 							case PackageImportEditPart.VISUAL_ID:
 							case TemplateBindingEditPart.VISUAL_ID:
-//							case AddedLinkEditPart.VISUAL_ID:
+							case AddedLinkEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -389,7 +389,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 							case DependencyBranchEditPart.VISUAL_ID:
 							case ElementImportEditPart.VISUAL_ID:
 							case TemplateBindingEditPart.VISUAL_ID:
-//							case AddedLinkEditPart.VISUAL_ID:
+							case AddedLinkEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
@@ -413,7 +413,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 							case ElementImportEditPart.VISUAL_ID:
 							case PackageImportEditPart.VISUAL_ID:
 							case TemplateBindingEditPart.VISUAL_ID:
-//							case AddedLinkEditPart.VISUAL_ID:
+							case AddedLinkEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -450,7 +450,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 							case DependencyBranchEditPart.VISUAL_ID:
 							case ElementImportEditPart.VISUAL_ID:
 							case TemplateBindingEditPart.VISUAL_ID:
-//							case AddedLinkEditPart.VISUAL_ID:
+							case AddedLinkEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
@@ -474,7 +474,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 							case ElementImportEditPart.VISUAL_ID:
 							case PackageImportEditPart.VISUAL_ID:
 							case TemplateBindingEditPart.VISUAL_ID:
-//							case AddedLinkEditPart.VISUAL_ID:
+							case AddedLinkEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -507,7 +507,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 							case PackageImportEditPart.VISUAL_ID:
 							case PackageMergeEditPart.VISUAL_ID:
 							case TemplateBindingEditPart.VISUAL_ID:
-//							case AddedLinkEditPart.VISUAL_ID:
+							case AddedLinkEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
@@ -528,7 +528,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 							case PackageMergeEditPart.VISUAL_ID:
 							case ProfileApplicationEditPart.VISUAL_ID:
 							case TemplateBindingEditPart.VISUAL_ID:
-//							case AddedLinkEditPart.VISUAL_ID:
+							case AddedLinkEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -564,7 +564,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 							case DependencyBranchEditPart.VISUAL_ID:
 							case ElementImportEditPart.VISUAL_ID:
 							case TemplateBindingEditPart.VISUAL_ID:
-//							case AddedLinkEditPart.VISUAL_ID:
+							case AddedLinkEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
@@ -588,7 +588,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 							case ElementImportEditPart.VISUAL_ID:
 							case PackageImportEditPart.VISUAL_ID:
 							case TemplateBindingEditPart.VISUAL_ID:
-//							case AddedLinkEditPart.VISUAL_ID:
+							case AddedLinkEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -621,7 +621,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 							case PackageImportEditPart.VISUAL_ID:
 							case PackageMergeEditPart.VISUAL_ID:
 							case TemplateBindingEditPart.VISUAL_ID:
-//							case AddedLinkEditPart.VISUAL_ID:
+							case AddedLinkEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
@@ -642,7 +642,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 							case PackageMergeEditPart.VISUAL_ID:
 							case ProfileApplicationEditPart.VISUAL_ID:
 							case TemplateBindingEditPart.VISUAL_ID:
-//							case AddedLinkEditPart.VISUAL_ID:
+							case AddedLinkEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -678,7 +678,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 							case DependencyBranchEditPart.VISUAL_ID:
 							case ElementImportEditPart.VISUAL_ID:
 							case TemplateBindingEditPart.VISUAL_ID:
-//							case AddedLinkEditPart.VISUAL_ID:
+							case AddedLinkEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
@@ -703,7 +703,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 							case ElementImportEditPart.VISUAL_ID:
 							case PackageImportEditPart.VISUAL_ID:
 							case TemplateBindingEditPart.VISUAL_ID:
-//							case AddedLinkEditPart.VISUAL_ID:
+							case AddedLinkEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -739,7 +739,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 							case DependencyBranchEditPart.VISUAL_ID:
 							case ElementImportEditPart.VISUAL_ID:
 							case TemplateBindingEditPart.VISUAL_ID:
-//							case AddedLinkEditPart.VISUAL_ID:
+							case AddedLinkEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
@@ -763,7 +763,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 							case ElementImportEditPart.VISUAL_ID:
 							case PackageImportEditPart.VISUAL_ID:
 							case TemplateBindingEditPart.VISUAL_ID:
-//							case AddedLinkEditPart.VISUAL_ID:
+							case AddedLinkEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -799,7 +799,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 							case DependencyBranchEditPart.VISUAL_ID:
 							case ElementImportEditPart.VISUAL_ID:
 							case TemplateBindingEditPart.VISUAL_ID:
-//							case AddedLinkEditPart.VISUAL_ID:
+							case AddedLinkEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
@@ -823,7 +823,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 							case ElementImportEditPart.VISUAL_ID:
 							case PackageImportEditPart.VISUAL_ID:
 							case TemplateBindingEditPart.VISUAL_ID:
-//							case AddedLinkEditPart.VISUAL_ID:
+							case AddedLinkEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
@@ -887,7 +887,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 							case DependencyBranchEditPart.VISUAL_ID:
 							case ElementImportEditPart.VISUAL_ID:
 							case TemplateBindingEditPart.VISUAL_ID:
-//							case AddedLinkEditPart.VISUAL_ID:
+							case AddedLinkEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
@@ -908,7 +908,7 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 							case UsageEditPart.VISUAL_ID:
 							case DependencyEditPart.VISUAL_ID:
 							case DependencyBranchEditPart.VISUAL_ID:
-//							case AddedLinkEditPart.VISUAL_ID:
+							case AddedLinkEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
 								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));

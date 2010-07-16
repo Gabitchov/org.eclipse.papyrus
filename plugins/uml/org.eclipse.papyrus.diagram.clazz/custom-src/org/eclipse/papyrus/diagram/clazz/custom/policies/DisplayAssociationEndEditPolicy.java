@@ -29,6 +29,7 @@ import org.eclipse.papyrus.diagram.common.editpolicies.AbstractMaskManagedEditPo
 import org.eclipse.papyrus.diagram.common.helper.PropertyLabelHelper;
 import org.eclipse.papyrus.umlutils.ICustomAppearence;
 import org.eclipse.papyrus.umlutils.ui.VisualInformationPapyrusConstant;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -48,10 +49,14 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 		super();
 	}
 
+	protected Element initSemanticElement() {
+	return (Property)propertyLabelHelper.getUMLElement(((GraphicalEditPart)getHost()));
+	}
 	/**
 	 * {@inheritDoc}
 	 */
 	public void addAdditionalListeners() {
+		
 		// adds a listener to the element itself, and to linked elements, like Type
 		if(getUMLElement().getType() != null) {
 			getDiagramEventBroker().addNotificationListener(getUMLElement().getType(), this);
@@ -84,7 +89,7 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 	 * {@inheritDoc}
 	 */
 	public int getDefaultDisplayValue() {
-		return ICustomAppearence.DEFAULT_UML_PROPERTY;
+		return ICustomAppearence.DEFAULT_UML_ROLE;
 	}
 
 	/**
@@ -124,7 +129,7 @@ public class DisplayAssociationEndEditPolicy extends AbstractMaskManagedEditPoli
 	 */
 	@Override
 	public Property getUMLElement() {
-		return (Property)propertyLabelHelper.getUMLElement(((GraphicalEditPart)getHost()));
+		return (Property) super.getUMLElement();
 	}
 
 	/**
