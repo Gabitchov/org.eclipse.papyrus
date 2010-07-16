@@ -43,6 +43,9 @@ public class PredefinedControllerDescriptor implements IPropertyEditorController
 	/**
 	 * Creates a new PredefinedControllerDescriptor.
 	 * 
+	 * @param predefinedId
+	 *        the id of the predefined descriptor
+	 * 
 	 * @param descriptor
 	 *        the predefined descriptor
 	 */

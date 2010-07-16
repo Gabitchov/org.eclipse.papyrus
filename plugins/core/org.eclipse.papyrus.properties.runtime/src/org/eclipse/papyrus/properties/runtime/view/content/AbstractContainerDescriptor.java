@@ -38,6 +38,8 @@ public abstract class AbstractContainerDescriptor implements IDisposable, IConfi
 	 * 
 	 * @param layoutDescriptor
 	 *        the layout of the composite described by this element
+	 * @param containerNode
+	 *        the configuration node for this descriptor
 	 */
 	public AbstractContainerDescriptor(LayoutDescriptor layoutDescriptor, Node containerNode) {
 		this.layoutDescriptor = layoutDescriptor;
@@ -51,6 +53,8 @@ public abstract class AbstractContainerDescriptor implements IDisposable, IConfi
 	 *        the composite parent of the created Composite
 	 * @param tabbedPropertySheetWidgetFactory
 	 *        the tabbed property sheet page in which element are created
+	 * @param objectsToEdit
+	 *        list of objects to edit
 	 * @return the list of created controllers for the content of this composite
 	 */
 	public abstract List<PropertyEditorController> createContent(Composite parent, TabbedPropertySheetWidgetFactory tabbedPropertySheetWidgetFactory, List<Object> objectsToEdit);

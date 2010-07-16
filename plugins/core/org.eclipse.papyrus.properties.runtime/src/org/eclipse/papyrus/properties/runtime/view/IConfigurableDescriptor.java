@@ -36,6 +36,10 @@ public interface IConfigurableDescriptor {
 
 	/**
 	 * Creates a state on this descriptor, in order to be able to customize it.
+	 * 
+	 * @param readOnly
+	 *        the read only mode of the state
+	 * @return the created state
 	 */
 	public IState createState(boolean readOnly);
 

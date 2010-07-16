@@ -49,6 +49,8 @@ public class BeanPropertyEditorControllerDescriptor implements IPropertyEditorCo
 	 *        the name of the property to edit
 	 * @param editorDescriptor
 	 *        the descriptor of the editor managed by this controller
+	 * @param constraints
+	 *        list of constraints that should be verified for this descriptor
 	 */
 	public BeanPropertyEditorControllerDescriptor(String controllerID, boolean multiSelection, String propertyName, IPropertyEditorDescriptor editorDescriptor, List<IConstraintDescriptor> constraints) {
 		this.controllerID = controllerID;

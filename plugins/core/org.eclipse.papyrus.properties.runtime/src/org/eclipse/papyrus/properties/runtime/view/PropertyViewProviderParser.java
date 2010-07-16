@@ -76,6 +76,7 @@ public class PropertyViewProviderParser {
 	 * 
 	 * @param fragmentNode
 	 *        the node corresponding to the fragment
+	 * @return the fragment result of the parsing
 	 * @throws XMLParseException
 	 *         parsing failed
 	 */
@@ -238,6 +239,8 @@ public class PropertyViewProviderParser {
 	 *        the document to parse
 	 * @param predefinedFragments
 	 *        the list of predefined views, which will be completed during this parsing
+	 * @param predefinedDialogs
+	 *        list of predefined dialogs
 	 * @throws XMLParseException
 	 *         parsing failed
 	 */
@@ -263,6 +266,8 @@ public class PropertyViewProviderParser {
 	 * 
 	 * @param dialogNode
 	 *        the node to parse
+	 * @throws XMLParseException
+	 *         exception thrown when the file could not be parsed correctly
 	 */
 	protected void parseDialogsNode(Node dialogNode) throws XMLParseException {
 		String pluginId = getPluginIdFromTopNode(dialogNode);
@@ -462,6 +467,8 @@ public class PropertyViewProviderParser {
 	 * @param topNode
 	 *        the node to parse
 	 * @return the id of the plugin from which class loader is used
+	 * @throws XMLParseException
+	 *         exception thrown when the content of the file could not be read correctly
 	 */
 	protected String getPluginIdFromTopNode(Node topNode) throws XMLParseException {
 		NamedNodeMap attributes = topNode.getAttributes();
@@ -480,6 +487,8 @@ public class PropertyViewProviderParser {
 	 * @param unparsedContentNode
 	 *        the node to parse
 	 * @return the new configuration for the section
+	 * @throws XMLParseException
+	 *         exception thrown when the content of the file could not be read correctly
 	 */
 	public List<ContainerDescriptor> parseFragmentContentNode(Node unparsedContentNode) throws XMLParseException {
 		ArrayList<ContainerDescriptor> containerDescriptors = new ArrayList<ContainerDescriptor>();
@@ -503,6 +512,9 @@ public class PropertyViewProviderParser {
 	 * 
 	 * @param containerNode
 	 *        the node to parse
+	 * @return the result of the parsing
+	 * @throws XMLParseException
+	 *         exception thrown when the content of the file could not be read correctly
 	 */
 	protected ContainerDescriptor parseContainerNode(Node containerNode) throws XMLParseException {
 		// retrieve layout node
@@ -535,6 +547,9 @@ public class PropertyViewProviderParser {
 	 * 
 	 * @param containerNode
 	 *        the node to parse
+	 * @return the result of the parsing
+	 * @throws XMLParseException
+	 *         exception thrown when the content of the file could not be read correctly
 	 */
 	protected ContainerDescriptor parseGroupNode(Node containerNode) throws XMLParseException {
 		// retrieve layout node
@@ -549,6 +564,9 @@ public class PropertyViewProviderParser {
 	 * 
 	 * @param containerNode
 	 *        the node to parse
+	 * @return the result of the parsing
+	 * @throws XMLParseException
+	 *         exception thrown when the content of the file could not be read correctly
 	 */
 	protected ContainerDescriptor parseExpandableContainerNode(Node containerNode) throws XMLParseException {
 		// retrieve layout node
@@ -586,9 +604,14 @@ public class PropertyViewProviderParser {
 	/**
 	 * Parses the layout for the container
 	 * 
+	 * @param layoutNode
+	 *        the node to parse
+	 * 
 	 * @param containerNode
 	 *        the container node which contains layout information
 	 * @return the layout for the container
+	 * @throws XMLParseException
+	 *         exception thrown when the content of the file could not be read correctly
 	 */
 	protected LayoutDescriptor parseLayoutNode(Node layoutNode) throws XMLParseException {
 		return LayoutParser.parseLayoutNode(layoutNode);
@@ -600,6 +623,8 @@ public class PropertyViewProviderParser {
 	 * @param contentNode
 	 *        the content node to parse
 	 * @return the list of identifier of fragment descriptors referenced by this content node
+	 * @throws XMLParseException
+	 *         exception thrown when the content of the file could not be read correctly
 	 */
 	public List<IFragmentDescriptor> parseDialogContentNode(Node contentNode) throws XMLParseException {
 		List<IFragmentDescriptor> fragmentDescriptors = new ArrayList<IFragmentDescriptor>();
@@ -623,6 +648,9 @@ public class PropertyViewProviderParser {
 	 * 
 	 * @param fragmentNode
 	 *        the node to parse
+	 * @return the parsed fragment
+	 * @throws XMLParseException
+	 *         exception thrown when the content of the file could not be read correctly
 	 */
 	protected IFragmentDescriptor parseFragmentOrPredefinedFragment(Node fragmentNode) throws XMLParseException {
 		NamedNodeMap attributes = fragmentNode.getAttributes();

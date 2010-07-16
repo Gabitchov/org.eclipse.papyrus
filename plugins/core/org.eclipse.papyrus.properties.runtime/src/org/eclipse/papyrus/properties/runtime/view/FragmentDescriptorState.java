@@ -186,7 +186,7 @@ public class FragmentDescriptorState extends AbstractState implements IFragmentD
 	/**
 	 * Adds the {@link ContainerDescriptorState} to the list of descriptor states belonging to this fragment
 	 * 
-	 * @param containerDescriptorState
+	 * @param constraintDescriptorState
 	 *        the state to add
 	 */
 	public void addConstraintDescriptorState(ConstraintDescriptorState constraintDescriptorState) {
@@ -198,7 +198,7 @@ public class FragmentDescriptorState extends AbstractState implements IFragmentD
 	/**
 	 * Removes the {@link ContainerDescriptorState} from the list of descriptor states belonging to this fragment
 	 * 
-	 * @param containerDescriptorState
+	 * @param constraintDescriptorState
 	 *        the state to remove
 	 */
 	public void removeContainerDescriptorState(ConstraintDescriptorState constraintDescriptorState) {

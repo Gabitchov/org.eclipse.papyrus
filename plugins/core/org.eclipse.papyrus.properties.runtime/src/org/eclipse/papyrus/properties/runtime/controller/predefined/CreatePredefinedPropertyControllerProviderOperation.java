@@ -26,6 +26,9 @@ public class CreatePredefinedPropertyControllerProviderOperation implements IOpe
 	/**
 	 * Creates a new CreatePredefinedPropertyControllerProviderOperation.
 	 * 
+	 * @param predefinedID
+	 *        id of the controller to retrieve
+	 * 
 	 */
 	public CreatePredefinedPropertyControllerProviderOperation(String predefinedID) {
 		this.predefinedID = predefinedID;

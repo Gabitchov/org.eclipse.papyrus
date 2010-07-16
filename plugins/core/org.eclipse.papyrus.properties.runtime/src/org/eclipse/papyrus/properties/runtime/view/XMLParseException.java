@@ -20,9 +20,11 @@ public class XMLParseException extends Exception {
 	/** serialVersionUID */
 	private static final long serialVersionUID = -8807648762667856170L;
 
-
 	/**
 	 * Creates a new XMLParseException.
+	 * 
+	 * @param message
+	 *        the message of the exception
 	 */
 	public XMLParseException(String message) {
 		super(message);

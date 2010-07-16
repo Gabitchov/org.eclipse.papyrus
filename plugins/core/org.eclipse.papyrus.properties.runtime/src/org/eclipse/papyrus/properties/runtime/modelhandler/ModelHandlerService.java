@@ -37,13 +37,18 @@ public class ModelHandlerService {
 	/**
 	 * Creates a new ModelHandlerService.
 	 * 
-	 * @param the
+	 * @param modelHandlerFactoryDescriptors
 	 *        list of model handler factory descriptors proposed by this service
 	 */
 	protected ModelHandlerService(List<ModelHandlerFactoryDescriptor> modelHandlerFactoryDescriptors) {
 		this.modelHandlerFactoryDescriptors = modelHandlerFactoryDescriptors;
 	}
 
+	/**
+	 * returns the singleton instance of this class
+	 * 
+	 * @return the singleton instance of this class
+	 */
 	public static synchronized ModelHandlerService getInstance() {
 		if(instance == null) {
 			instance = createService();
@@ -74,6 +79,8 @@ public class ModelHandlerService {
 	 * 
 	 * @param id
 	 *        the id of the handler to create
+	 * @param featureNode
+	 *        the node configuring the model handler
 	 * @return the create model handler
 	 */
 	public Object createModelHandler(String id, Node featureNode) {

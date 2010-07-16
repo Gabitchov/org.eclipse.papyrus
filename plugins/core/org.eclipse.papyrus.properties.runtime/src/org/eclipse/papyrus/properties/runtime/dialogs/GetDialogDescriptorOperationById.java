@@ -27,6 +27,9 @@ public class GetDialogDescriptorOperationById implements IPropertyViewOperation 
 
 	/**
 	 * Creates a new GetDialogDescriptorOperationById.
+	 * 
+	 * @param descriptorID
+	 *        id of the descriptor to retrieve
 	 */
 	public GetDialogDescriptorOperationById(String descriptorID) {
 		this.descriptorID = descriptorID;

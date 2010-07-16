@@ -39,6 +39,8 @@ public class PredefinedControllerState extends ControllerDescriptorState {
 	 * 
 	 * @param propertyEditorControllerDescriptor
 	 *        descriptor managed by this state
+	 * @param readOnly
+	 *        the read only mode of this state
 	 */
 	public PredefinedControllerState(PredefinedControllerDescriptor propertyEditorControllerDescriptor, boolean readOnly) {
 		super(propertyEditorControllerDescriptor, readOnly);

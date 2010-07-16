@@ -150,6 +150,7 @@ public class ReferenceExplorerDialog extends FilteredItemsSelectionDialog {
 	/**
 	 * Comparator for the content of the dialog
 	 */
+	@SuppressWarnings("rawtypes")
 	private static class ReferenceComparator implements Comparator {
 
 		/**

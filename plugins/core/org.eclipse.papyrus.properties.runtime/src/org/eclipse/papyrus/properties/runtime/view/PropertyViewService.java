@@ -225,8 +225,9 @@ public class PropertyViewService extends Service implements IPreferenceChangeLis
 		}
 
 		/**
-		 * @see org.eclipse.ogmf.runtime.common.core.service.Service.ProviderDescriptor#getProvider()
+		 * {@inheritDoc}
 		 */
+		@Override
 		public IProvider getProvider() {
 			if(provider == null) {
 				IProvider newProvider = super.getProvider();
@@ -245,12 +246,16 @@ public class PropertyViewService extends Service implements IPreferenceChangeLis
 	 * @return the list of available fragment descriptors
 	 */
 	public Map<String, FragmentDescriptor> getAllFragmentDescriptors() {
+		@SuppressWarnings("unchecked")
 		List<Map<String, FragmentDescriptor>> fragmentDescriptors = execute(ExecutionStrategy.FORWARD, new GetAllFragmentDescriptorsOperation());
 		return flattenMap(fragmentDescriptors);
 	}
 
 	/**
 	 * Flattens the list, i.e. creates a list from the list of list
+	 * 
+	 * @param <T>
+	 *        the type of elements in the list
 	 * 
 	 * @param descriptors
 	 *        the list of list to flatten
@@ -265,7 +270,12 @@ public class PropertyViewService extends Service implements IPreferenceChangeLis
 	}
 
 	/**
-	 * Flattens the list, i.e. creates a list from the list of list
+	 * Flattens the list, i.e. creates a map from the list of maps
+	 * 
+	 * @param <T>
+	 *        the type of the key for the map
+	 * @param <V>
+	 *        the type of the value in the map
 	 * 
 	 * @param descriptors
 	 *        the list of list to flatten

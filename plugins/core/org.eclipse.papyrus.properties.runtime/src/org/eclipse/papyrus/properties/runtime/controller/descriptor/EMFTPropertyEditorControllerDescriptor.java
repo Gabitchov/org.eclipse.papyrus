@@ -91,6 +91,8 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 	 *        the handler id for the controller
 	 * @param editorDescriptor
 	 *        descriptor of the editor managed by this controller
+	 * @param constraints
+	 *        list of constraints applying on this descriptor
 	 */
 	public EMFTPropertyEditorControllerDescriptor(String controllerID, boolean multiSelection, String featureNameToEdit, IEMFModelHandler handler, IPropertyEditorDescriptor editorDescriptor, List<IConstraintDescriptor> constraints) {
 		this.controllerID = controllerID;
@@ -167,6 +169,9 @@ public class EMFTPropertyEditorControllerDescriptor implements IPropertyEditorCo
 		 * Creates a new EMFTPropertyEditorControllerDescriptorState.
 		 * 
 		 * @param descriptor
+		 *        descriptor to manage
+		 * @param readOnly
+		 *        the read only mode of this state
 		 */
 		public EMFTPropertyEditorControllerDescriptorState(EMFTPropertyEditorControllerDescriptor descriptor, boolean readOnly) {
 			super(descriptor, readOnly);

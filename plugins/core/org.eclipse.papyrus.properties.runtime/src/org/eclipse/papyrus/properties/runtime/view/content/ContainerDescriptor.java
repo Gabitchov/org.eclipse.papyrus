@@ -69,6 +69,8 @@ public class ContainerDescriptor extends AbstractContainerDescriptor {
 	 * 
 	 * @param layoutDescriptor
 	 *        the layoutDescriptor of the composite described by this element
+	 * @param descriptors
+	 *        list of controller descriptors owned by this container
 	 */
 	public ContainerDescriptor(LayoutDescriptor layoutDescriptor, List<IPropertyEditorControllerDescriptor> descriptors) {
 		super(layoutDescriptor, null);
@@ -180,6 +182,9 @@ public class ContainerDescriptor extends AbstractContainerDescriptor {
 
 	/**
 	 * parses the controller node
+	 * 
+	 * @param controllerNode
+	 *        the node to parse
 	 * 
 	 * @param child
 	 *        the controller node

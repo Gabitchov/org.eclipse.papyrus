@@ -100,6 +100,8 @@ public class ObjectTypeConstraintDescriptor implements IConstraintDescriptor, IC
 		 * 
 		 * @param objectTypeConstraintDescriptor
 		 *        the descriptor to manage
+		 * @param readOnly
+		 *        the read only mode of this state
 		 */
 		public ObjectTypeConstraintDescriptorState(ObjectTypeConstraintDescriptor objectTypeConstraintDescriptor, boolean readOnly) {
 			super(objectTypeConstraintDescriptor, readOnly);

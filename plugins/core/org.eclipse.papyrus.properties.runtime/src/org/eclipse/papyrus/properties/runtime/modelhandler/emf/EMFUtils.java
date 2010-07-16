@@ -65,25 +65,20 @@ public class EMFUtils {
 		EClass eClass = eObject.eClass();
 		String[] segments = featureName.split(NamedElement.SEPARATOR);
 
-		for(int i = 0, length = segments.length; i < length; i++) {
-			String segment = segments[i];
-			EStructuralFeature eStructuralFeature = null;
+		String segment = segments[0];
+		EStructuralFeature eStructuralFeature = null;
 
-			if(segment.indexOf('[') == -1) {
-				eStructuralFeature = eClass.getEStructuralFeature(UML2Util.getValidJavaIdentifier(segment));
-			} else {
-				eStructuralFeature = eClass.getEStructuralFeature(UML2Util.getValidJavaIdentifier(segment.substring(0, segment.indexOf('['))));
-			}
-
-			if(eStructuralFeature == null) {
-				throw new IllegalArgumentException(String.valueOf(featureName));
-			}
-
-			return eStructuralFeature;
+		if(segment.indexOf('[') == -1) {
+			eStructuralFeature = eClass.getEStructuralFeature(UML2Util.getValidJavaIdentifier(segment));
+		} else {
+			eStructuralFeature = eClass.getEStructuralFeature(UML2Util.getValidJavaIdentifier(segment.substring(0, segment.indexOf('['))));
 		}
 
-		Activator.log.error("impossible to find feature " + featureName + " for object " + elementToEdit, null);
-		return null;
+		if(eStructuralFeature == null) {
+			throw new IllegalArgumentException(String.valueOf(featureName));
+		}
+
+		return eStructuralFeature;
 	}
 
 }

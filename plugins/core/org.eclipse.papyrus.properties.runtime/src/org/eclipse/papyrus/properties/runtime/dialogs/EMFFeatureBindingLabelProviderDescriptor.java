@@ -63,10 +63,8 @@ public class EMFFeatureBindingLabelProviderDescriptor implements IBindingLabelPr
 	/**
 	 * computes bindings from the given descriptor
 	 * 
-	 * @param objectsToEdit
-	 *        the list of objects to edit
-	 * @param descriptor
-	 *        the descriptor which contributes to bindings
+	 * @param objectToEdit
+	 *        the object to edit
 	 * @return the list of values to bind
 	 */
 	public String computeBindings(Object objectToEdit) {

@@ -32,6 +32,8 @@ public abstract class LayoutDescriptorState extends AbstractState {
 	 * 
 	 * @param layoutDescriptor
 	 *        managed descriptor
+	 * @param readOnly
+	 *        read only mode of this state
 	 */
 	public LayoutDescriptorState(LayoutDescriptor layoutDescriptor, boolean readOnly) {
 		super(readOnly);

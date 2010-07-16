@@ -24,6 +24,9 @@ public class GetFragmentDescriptorOperation implements IPropertyViewOperation {
 
 	/**
 	 * Creates a new GetFragmentDescriptorOperation.
+	 * 
+	 * @param descriptorID
+	 *        the identifier of the fragment descriptor to create
 	 */
 	public GetFragmentDescriptorOperation(String descriptorID) {
 		this.descriptorID = descriptorID;

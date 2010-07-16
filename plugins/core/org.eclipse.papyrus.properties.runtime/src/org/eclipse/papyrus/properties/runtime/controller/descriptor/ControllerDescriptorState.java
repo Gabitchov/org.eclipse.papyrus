@@ -44,6 +44,10 @@ public class ControllerDescriptorState extends AbstractState {
 	/**
 	 * Creates a new ControllerDescriptorState.
 	 * 
+	 * @param descriptor
+	 *        descriptor to manage
+	 * @param readOnly
+	 *        the read only mode of this state
 	 */
 	public ControllerDescriptorState(IPropertyEditorControllerDescriptor descriptor, boolean readOnly) {
 		super(readOnly);
@@ -136,15 +140,5 @@ public class ControllerDescriptorState extends AbstractState {
 	 */
 	public void createPreview(Composite composite) {
 		Activator.log.error("not implements...", null);
-	}
-
-	/**
-	 * Checks the multi selection state for the preview
-	 * 
-	 * @return
-	 */
-	private boolean checkMultiSelection() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 }

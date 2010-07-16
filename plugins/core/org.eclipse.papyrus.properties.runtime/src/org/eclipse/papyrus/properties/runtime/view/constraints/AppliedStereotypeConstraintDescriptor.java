@@ -106,6 +106,11 @@ public class AppliedStereotypeConstraintDescriptor implements IConstraintDescrip
 		/**
 		 * Creates a new AppliedStereotypeConstraintDescriptorState.
 		 * 
+		 * @param descriptor
+		 *        the descriptor to manage by this state
+		 * @param readOnly
+		 *        the read only mode of this state
+		 * 
 		 */
 		public AppliedStereotypeConstraintDescriptorState(AppliedStereotypeConstraintDescriptor descriptor, boolean readOnly) {
 			super(descriptor, readOnly);

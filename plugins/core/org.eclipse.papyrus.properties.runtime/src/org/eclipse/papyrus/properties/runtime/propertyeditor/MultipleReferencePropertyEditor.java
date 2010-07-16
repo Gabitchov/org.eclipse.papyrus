@@ -215,6 +215,7 @@ public class MultipleReferencePropertyEditor extends AbstractPropertyEditor {
 							// nothing selected. 
 							return;
 						}
+						@SuppressWarnings("unchecked")
 						List<Object> selectedObjects = selection.toList();
 						IUndoableOperation moveOperation = ((IBoundedValuesController)getController()).getMoveCurrentValuesOperation(selectedObjects, -1);
 						if(moveOperation != null && moveOperation.canExecute()) {
@@ -259,6 +260,7 @@ public class MultipleReferencePropertyEditor extends AbstractPropertyEditor {
 							// nothing selected. 
 							return;
 						}
+						@SuppressWarnings("unchecked")
 						List<Object> selectedObjects = selection.toList();
 						IUndoableOperation moveOperation = ((IBoundedValuesController)getController()).getMoveCurrentValuesOperation(selectedObjects, +1);
 						if(moveOperation != null && moveOperation.canExecute()) {

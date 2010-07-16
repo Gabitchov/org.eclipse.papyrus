@@ -90,6 +90,9 @@ public class PredefinedPropertyControllerProvider extends AbstractProvider {
 
 	/**
 	 * Reads the xml configuration file and constructs the descriptors
+	 * 
+	 * @param element
+	 *        the configuration element to read
 	 */
 	protected void readXMLConfiguration(IConfigurationElement element) {
 		DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -144,6 +147,14 @@ public class PredefinedPropertyControllerProvider extends AbstractProvider {
 
 	/**
 	 * Retrieves the xml file configuring the property view
+	 * 
+	 * @param element
+	 *        the configuration element to read
+	 * @param path
+	 *        the path for the file to retrieve
+	 * @return the file that configures the controllers
+	 * @throws IOException
+	 *         exception thrown when the file could not be read
 	 */
 	public File getXmlFile(IConfigurationElement element, String path) throws IOException {
 		// try to read it in a plugin...

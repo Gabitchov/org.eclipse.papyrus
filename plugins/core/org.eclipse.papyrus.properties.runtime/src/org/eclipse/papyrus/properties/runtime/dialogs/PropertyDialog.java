@@ -56,6 +56,12 @@ public class PropertyDialog extends StatusDialog {
 	 * 
 	 * @param parent
 	 *        the parent shell for this dialog
+	 * @param descriptor
+	 *        the dialog descriptor used to create this dialog
+	 * @param objectsToEdit
+	 *        the list of objects to edit
+	 * @param widgetFactory
+	 *        the factory used to create the content of the dialog
 	 */
 	public PropertyDialog(Shell parent, DialogDescriptor descriptor, List<Object> objectsToEdit, TabbedPropertySheetWidgetFactory widgetFactory) {
 		super(parent);

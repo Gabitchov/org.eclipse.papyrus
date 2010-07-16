@@ -29,6 +29,9 @@ public class GetDialogDescriptorOperation implements IPropertyViewOperation {
 
 	/**
 	 * Creates a new GetDialogDescriptorOperationById.
+	 * 
+	 * @param objectstoEdit
+	 *        list of objects to edit
 	 */
 	public GetDialogDescriptorOperation(List<Object> objectstoEdit) {
 		this.objectstoEdit = objectstoEdit;

@@ -31,6 +31,15 @@ public class FragmentDescriptor extends AbstractConstrainedDescriptor implements
 
 	/**
 	 * Creates a new FragmentDescriptor.
+	 * 
+	 * @param id
+	 *        the identifier of the fragment
+	 * @param constraints
+	 *        the list of constraints to be verified when the fragment is to be displayed
+	 * @param descriptors
+	 *        list of containers in this fragment
+	 * @param selectionSize
+	 *        the size of the selection for which this fragment is valid
 	 */
 	public FragmentDescriptor(String id, List<IConstraintDescriptor> constraints, List<ContainerDescriptor> descriptors, int selectionSize) {
 		super(id, constraints, selectionSize);
@@ -39,6 +48,17 @@ public class FragmentDescriptor extends AbstractConstrainedDescriptor implements
 
 	/**
 	 * Creates a new FragmentDescriptor.
+	 * 
+	 * @param id
+	 *        the identifier of the fragment
+	 * @param constraints
+	 *        the list of constraints to be verified when the fragment is to be displayed
+	 * @param contentNode
+	 *        the node configuring this fragment descriptor
+	 * @param selectionSize
+	 *        the size of the selection for which this fragment is valid
+	 * @param parser
+	 *        the parser used to parse the configuration node
 	 */
 	public FragmentDescriptor(String id, List<IConstraintDescriptor> constraints, Node contentNode, int selectionSize, PropertyViewProviderParser parser) {
 		super(id, constraints, contentNode, selectionSize, parser);

@@ -141,6 +141,8 @@ public class GroupContainerDescriptor extends ContainerDescriptor {
 		 * 
 		 * @param descriptor
 		 *        the descriptor managed by the state
+		 * @param readOnly
+		 *        read only mode of this state
 		 */
 		public GroupContainerDescriptorState(GroupContainerDescriptor descriptor, boolean readOnly) {
 			super(descriptor, readOnly);

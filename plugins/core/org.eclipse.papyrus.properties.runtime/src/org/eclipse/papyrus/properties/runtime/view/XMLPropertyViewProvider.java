@@ -237,6 +237,16 @@ public class XMLPropertyViewProvider extends AbstractProvider implements IProper
 
 	/**
 	 * Retrieves the xml file configuring the property view
+	 * 
+	 * @param element
+	 *        the configuration element which gives the path to the file
+	 * @param path
+	 *        the path for the file
+	 * @param bundle
+	 *        the bundle used to load classes or retrieve files
+	 * @return the input stream opened on the file
+	 * @throws IOException
+	 *         exception thrown when the file is not found or can not be read
 	 */
 	public InputStream getXmlFile(IConfigurationElement element, String path, Bundle bundle) throws IOException {
 		// try to read it in a plugin...

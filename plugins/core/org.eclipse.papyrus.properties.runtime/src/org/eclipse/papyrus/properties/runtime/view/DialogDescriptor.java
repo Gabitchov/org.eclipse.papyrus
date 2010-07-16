@@ -47,6 +47,8 @@ public class DialogDescriptor extends AbstractConstrainedDescriptor {
 	 *        the list of constraints for this dialog
 	 * @param contentNode
 	 *        the unparsed node describing the content of the dialog
+	 * @param selectionSize
+	 *        size of the selection for which this dialog is valid
 	 * @param replacedDialogIds
 	 *        the list of replaced ids for the dialog
 	 * @param title
