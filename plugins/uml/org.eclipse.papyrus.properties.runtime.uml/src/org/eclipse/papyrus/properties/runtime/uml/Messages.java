@@ -14,15 +14,18 @@ package org.eclipse.papyrus.properties.runtime.uml;
 import org.eclipse.osgi.util.NLS;
 
 /**
- *
+ * Internationalization class.
  */
 public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.properties.runtime.uml.messages"; //$NON-NLS-1$
 
+	/** feature of AssociationEndOwnerModelHandler_ComboValue_Association */
 	public static String AssociationEndOwnerModelHandler_ComboValue_Association;
 
+	/** feature of AssociationEndOwnerModelHandler_ComboValue_Class */
 	public static String AssociationEndOwnerModelHandler_ComboValue_Class;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

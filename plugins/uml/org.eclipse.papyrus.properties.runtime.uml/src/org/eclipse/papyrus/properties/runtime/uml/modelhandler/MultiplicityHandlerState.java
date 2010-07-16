@@ -34,7 +34,10 @@ public class MultiplicityHandlerState extends AbstractState implements IEMFModel
 	/**
 	 * Creates a new MultiplicityHandlerState.
 	 * 
+	 * @param modelHandler
+	 *        model handler managed by this state
 	 * @param readOnly
+	 *        read only mode of the state
 	 */
 	public MultiplicityHandlerState(MultiplicityModelHandler modelHandler, boolean readOnly) {
 		super(readOnly);

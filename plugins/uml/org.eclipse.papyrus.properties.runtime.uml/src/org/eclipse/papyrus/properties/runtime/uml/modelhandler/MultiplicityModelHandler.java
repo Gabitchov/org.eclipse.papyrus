@@ -151,6 +151,7 @@ public class MultiplicityModelHandler implements IEMFModelHandler {
 	/**
 	 * {@inheritDoc}
 	 */
+	@SuppressWarnings("unchecked")
 	public void handleNotifyChange(Notification notification, List<EObject> objects, Adapter adapter) {
 		// if one element is added to the feature, should also add this as a listener
 		// if one element is removed from the feature, should also remove this as a listener

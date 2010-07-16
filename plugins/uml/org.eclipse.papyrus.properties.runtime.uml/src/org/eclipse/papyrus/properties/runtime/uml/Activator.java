@@ -26,22 +26,20 @@ public class Activator extends AbstractUIPlugin {
 	public Activator() {
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
+	/**
+	 * {@inheritDoc}
 	 */
+	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
 		log = new LogHelper(plugin);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
+	/**
+	 * {@inheritDoc}
 	 */
+	@Override
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
 		log = null;
@@ -60,8 +58,8 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * Returns the image from the given image descriptor
 	 * 
-	 * @param descriptor
-	 *        the descriptor of the image to be displayed
+	 * @param path
+	 *        the path of the image to be displayed
 	 * @return the image found
 	 */
 	public static Image getImage(String path) {
