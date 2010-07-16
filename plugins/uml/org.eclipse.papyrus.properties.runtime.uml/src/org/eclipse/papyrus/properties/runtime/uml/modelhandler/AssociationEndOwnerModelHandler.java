@@ -187,7 +187,12 @@ public class AssociationEndOwnerModelHandler implements IEMFModelHandler {
 	 * {@inheritDoc}
 	 */
 	public void handleNotifyChange(Notification notification, List<EObject> objects, EMFPropertyEditorController adapter) {
-		// should perhaps filter a bit more here, but seems to be sufficient here.
+		Object notificationFeature = notification.getFeature();
+		if(!(UMLPackage.eINSTANCE.getProperty_OwningAssociation().equals(notificationFeature))) {
+			return;
+		}
+
+
 		switch(notification.getEventType()) {
 		case Notification.SET:
 		case Notification.UNSET:
