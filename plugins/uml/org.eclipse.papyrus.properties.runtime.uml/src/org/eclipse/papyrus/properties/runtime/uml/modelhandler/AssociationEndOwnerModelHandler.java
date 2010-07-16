@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -187,8 +186,14 @@ public class AssociationEndOwnerModelHandler implements IEMFModelHandler {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void handleNotifyChange(Notification notification, List<EObject> objects, Adapter adapter) {
-		// nothing specific here
+	public void handleNotifyChange(Notification notification, List<EObject> objects, EMFPropertyEditorController adapter) {
+		// should perhaps filter a bit more here, but seems to be sufficient here.
+		switch(notification.getEventType()) {
+		case Notification.SET:
+		case Notification.UNSET:
+			adapter.refreshDisplay();
+			break;
+		}
 	}
 
 	/**

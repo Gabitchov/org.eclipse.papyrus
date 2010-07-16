@@ -16,7 +16,6 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
@@ -35,7 +34,7 @@ import org.eclipse.swt.widgets.Composite;
 /**
  * Controller for {@link EStructuralFeature} property editor controller.
  */
-public class EMFTStructuralFeatureController extends EMFTPropertyEditorController implements Adapter {
+public class EMFTStructuralFeatureController extends EMFTPropertyEditorController {
 
 	/** descriptor that configures this controller */
 	private EMFTPropertyEditorControllerDescriptor descriptor;
@@ -208,8 +207,6 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 	 */
 	public void notifyChanged(Notification notification) {
 		getModelHandler().handleNotifyChange(notification, getObjectsToEdit(), this);
-		// refresh the editors
-		refreshDisplay();
 	}
 
 	/**

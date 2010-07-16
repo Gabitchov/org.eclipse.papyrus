@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -58,7 +57,6 @@ public class AssociationEndNavigationModelHandler implements IEMFModelHandler {
 			return;
 		}
 
-		System.err.println(newValue);
 		boolean isNavigable = Boolean.parseBoolean((String)newValue);
 
 		Property property = (Property)objectToEdit;
@@ -157,8 +155,24 @@ public class AssociationEndNavigationModelHandler implements IEMFModelHandler {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void handleNotifyChange(Notification notification, List<EObject> objects, Adapter adapter) {
+	public void handleNotifyChange(Notification notification, List<EObject> objects, EMFPropertyEditorController adapter) {
 		// nothing specific here
+		// should perhaps filter a bit more here, but seems to be sufficient here.
+		Object notificationFeature = notification.getFeature();
+		if(!(UMLPackage.eINSTANCE.getAssociation_NavigableOwnedEnd().equals(notificationFeature))) {
+			return;
+		}
+
+		switch(notification.getEventType()) {
+		case Notification.ADD:
+		case Notification.ADD_MANY:
+		case Notification.REMOVE:
+		case Notification.REMOVE_MANY:
+		case Notification.SET:
+		case Notification.UNSET:
+			adapter.refreshDisplay();
+			break;
+		}
 	}
 
 	/**

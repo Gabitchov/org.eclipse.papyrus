@@ -13,7 +13,6 @@ package org.eclipse.papyrus.properties.runtime.modelhandler.emf;
 
 import java.util.List;
 
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.properties.runtime.controller.EMFPropertyEditorController;
@@ -88,7 +87,7 @@ public interface IEMFModelHandler extends IConfigurableDescriptor {
 	 * @param adapter
 	 *        the adapter in charge of notification
 	 */
-	public void handleNotifyChange(Notification notification, List<EObject> objects, Adapter adapter);
+	public void handleNotifyChange(Notification notification, List<EObject> objects, EMFPropertyEditorController adapter);
 
 	/**
 	 * Returns available values for the feature managed by the model handler

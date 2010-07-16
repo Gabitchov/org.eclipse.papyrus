@@ -13,7 +13,6 @@ package org.eclipse.papyrus.properties.runtime.uml.modelhandler;
 
 import java.util.List;
 
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -152,7 +151,55 @@ public class MultiplicityModelHandler implements IEMFModelHandler {
 	 * {@inheritDoc}
 	 */
 	@SuppressWarnings("unchecked")
-	public void handleNotifyChange(Notification notification, List<EObject> objects, Adapter adapter) {
+	public void handleNotifyChange(Notification notification, List<EObject> objects, EMFPropertyEditorController adapter) {
+		// if one element is added to the feature, should also add this as a listener
+		// if one element is removed from the feature, should also remove this as a listener
+		// in other case, except removing adapters, should refresh
+		Object notificationFeature = notification.getFeature();
+		if(!(UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue().equals(notificationFeature) || UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue().equals(notificationFeature))) {
+			return;
+		}
+
+		switch(notification.getEventType()) {
+		case Notification.ADD:
+			// check which feature has been modified
+			((EObject)notification.getNewValue()).eAdapters().add(adapter);
+			// refresh the editors
+			adapter.refreshDisplay();
+			break;
+		case Notification.ADD_MANY:
+			// check which feature has been modified
+			for(EObject newValue : ((List<EObject>)notification.getNewValue())) {
+				newValue.eAdapters().add(adapter);
+			}
+			// refresh the editors
+			adapter.refreshDisplay();
+			break;
+
+		case Notification.REMOVE:
+			// check which feature has been modified
+			((EObject)notification.getOldValue()).eAdapters().remove(this);
+			// refresh the editors
+			adapter.refreshDisplay();
+			break;
+
+		case Notification.REMOVE_MANY:
+			for(EObject newValue : ((List<EObject>)notification.getOldValue())) {
+				newValue.eAdapters().remove(adapter);
+			}
+			// refresh the editors
+			adapter.refreshDisplay();
+			break;
+		case Notification.SET:
+		case Notification.UNSET:
+			adapter.refreshDisplay();
+			break;
+		}
+
+
+
+
+
 		// if one element is added to the feature, should also add this as a listener
 		// if one element is removed from the feature, should also remove this as a listener
 		// in other case, except removing adapters, should refresh
@@ -161,6 +208,8 @@ public class MultiplicityModelHandler implements IEMFModelHandler {
 			Object o = notification.getFeature();
 			if(o.equals(UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue()) || o.equals(UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue())) {
 				((EObject)notification.getNewValue()).eAdapters().add(adapter);
+				// refresh the editors
+				adapter.refreshDisplay();
 			}
 		} else if(Notification.ADD_MANY == notification.getEventType()) {
 			Object o = notification.getFeature();
@@ -168,12 +217,16 @@ public class MultiplicityModelHandler implements IEMFModelHandler {
 				for(EObject newValue : ((List<EObject>)notification.getNewValue())) {
 					newValue.eAdapters().add(adapter);
 				}
+				// refresh the editors
+				adapter.refreshDisplay();
 			}
 		} else if(Notification.REMOVE == notification.getEventType()) {
 			// check which feature has been modified
 			Object o = notification.getFeature();
 			if(o.equals(UMLPackage.eINSTANCE.getMultiplicityElement_UpperValue()) || o.equals(UMLPackage.eINSTANCE.getMultiplicityElement_LowerValue())) {
 				((EObject)notification.getOldValue()).eAdapters().remove(this);
+				// refresh the editors
+				adapter.refreshDisplay();
 			}
 		} else if(Notification.REMOVE_MANY == notification.getEventType()) {
 			Object o = notification.getFeature();
@@ -181,6 +234,8 @@ public class MultiplicityModelHandler implements IEMFModelHandler {
 				for(EObject newValue : ((List<EObject>)notification.getOldValue())) {
 					newValue.eAdapters().remove(adapter);
 				}
+				// refresh the editors
+				adapter.refreshDisplay();
 			}
 		}
 

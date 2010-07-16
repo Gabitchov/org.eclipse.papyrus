@@ -13,7 +13,6 @@ package org.eclipse.papyrus.properties.runtime.modelhandler.emf;
 
 import java.util.List;
 
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
@@ -160,42 +159,65 @@ public abstract class EMFFeatureModelHandler implements IEMFModelHandler {
 	 * {@inheritDoc}
 	 */
 	@SuppressWarnings("unchecked")
-	public void handleNotifyChange(Notification notification, List<EObject> objects, Adapter adapter) {
-		for(EObject eObject : objects) {
-			// if one element is added to the feature, should also add this as a listener
-			// if one element is removed from the feature, should also remove this as a listener
-			// in other case, except removing adapters, should refresh
-			if(Notification.ADD == notification.getEventType()) {
-				// check which feature has been modified
-				Object o = notification.getFeature();
+	public void handleNotifyChange(Notification notification, List<EObject> objects, EMFPropertyEditorController adapter) {
+		// if one element is added to the feature, should also add this as a listener
+		// if one element is removed from the feature, should also remove this as a listener
+		// in other case, except removing adapters, should refresh
+		Object notificationFeature = notification.getFeature();
+		switch(notification.getEventType()) {
+		case Notification.ADD:
+			// check which feature has been modified
+			for(EObject eObject : objects) {
 				EStructuralFeature feature = getFeatureByName(eObject);
-				if(o.equals(feature)) {
+				if(notificationFeature.equals(feature)) {
 					((EObject)notification.getNewValue()).eAdapters().add(adapter);
+					// refresh the editors
+					adapter.refreshDisplay();
 				}
-			} else if(Notification.ADD_MANY == notification.getEventType()) {
-				Object o = notification.getFeature();
+			}
+			break;
+		case Notification.ADD_MANY:
+			// check which feature has been modified
+			for(EObject eObject : objects) {
 				EStructuralFeature feature = getFeatureByName(eObject);
-				if(o.equals(feature)) {
+				if(notificationFeature.equals(feature)) {
 					for(EObject newValue : ((List<EObject>)notification.getNewValue())) {
 						newValue.eAdapters().add(adapter);
 					}
+					// refresh the editors
+					adapter.refreshDisplay();
 				}
-			} else if(Notification.REMOVE == notification.getEventType()) {
-				// check which feature has been modified
-				Object o = notification.getFeature();
+			}
+			break;
+
+		case Notification.REMOVE:
+			// check which feature has been modified
+			for(EObject eObject : objects) {
 				EStructuralFeature feature = getFeatureByName(eObject);
-				if(o.equals(feature)) {
+				if(notificationFeature.equals(feature)) {
 					((EObject)notification.getOldValue()).eAdapters().remove(this);
+					// refresh the editors
+					adapter.refreshDisplay();
 				}
-			} else if(Notification.REMOVE_MANY == notification.getEventType()) {
-				Object o = notification.getFeature();
+			}
+			break;
+
+		case Notification.REMOVE_MANY:
+			for(EObject eObject : objects) {
 				EStructuralFeature feature = getFeatureByName(eObject);
-				if(o.equals(feature)) {
+				if(notificationFeature.equals(feature)) {
 					for(EObject newValue : ((List<EObject>)notification.getOldValue())) {
 						newValue.eAdapters().remove(adapter);
 					}
+					// refresh the editors
+					adapter.refreshDisplay();
 				}
 			}
+			break;
+		case Notification.SET:
+		case Notification.UNSET:
+			adapter.refreshDisplay();
+			break;
 		}
 	}
 
