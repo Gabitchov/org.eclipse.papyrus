@@ -70,7 +70,6 @@ public class SectionDispatcher {
 	 * Returns the set of available sections for a given selection. Used to make perfomance improvement
 	 * 
 	 * @param part
-	 * @param part
 	 *        the current workbench part.
 	 * @param selection
 	 *        the selection

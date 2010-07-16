@@ -198,12 +198,8 @@ public class XMLPropertyTabViewProvider extends XMLPropertyViewProvider implemen
 	/**
 	 * Returns the file, in the preference area
 	 * 
-	 * @param child
-	 *        the configuration element
 	 * @param path
 	 *        the path to the file, from the plugin preference place in .metadata place.
-	 * @param bundle
-	 *        the bundle which defines the extension
 	 * @return the file in the preference area
 	 */
 	public File getLocalXmlfile(String path) {
@@ -263,6 +259,10 @@ public class XMLPropertyTabViewProvider extends XMLPropertyViewProvider implemen
 
 	/**
 	 * Returns the customization for the specified provider, find using its identifier
+	 * 
+	 * @param providerId
+	 *        id of the provider
+	 * @return the path of the file
 	 */
 	public String getCustomization(String providerId) {
 		XMLMemento root = getExistingCustomizations();
@@ -304,7 +304,7 @@ public class XMLPropertyTabViewProvider extends XMLPropertyViewProvider implemen
 	 * 
 	 * @param memento
 	 *        the memento to update
-	 * @param file
+	 * @param filePath
 	 *        the path to the new file
 	 */
 	protected void updateMemento(IMemento memento, String filePath) {

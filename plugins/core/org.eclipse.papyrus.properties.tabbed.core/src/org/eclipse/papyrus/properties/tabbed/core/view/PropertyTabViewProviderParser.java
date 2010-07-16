@@ -156,6 +156,7 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 	 * 
 	 * @param node
 	 *        the configuration node for the tab
+	 * @return descriptor created by the parser
 	 */
 	protected DynamicTabDescriptor parseTab(Node node) {
 		NamedNodeMap attributes = node.getAttributes();
@@ -194,6 +195,7 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 	 * 
 	 * @param sectionSetNode
 	 *        the section set node to parse
+	 * @return section set descriptor returned by the parser
 	 */
 	protected SectionSetDescriptor parseSectionSetNode(Node sectionSetNode) {
 
@@ -254,6 +256,11 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 	 * 
 	 * @param sectionNode
 	 *        the section to parse
+	 * @param constraints
+	 *        the list of constraints applied to the descriptor
+	 * @param selectionSize
+	 *        size of the selection
+	 * @return the created descriptor
 	 */
 	@SuppressWarnings("unchecked")
 	protected DynamicSectionDescriptor parseSectionNode(Node sectionNode, List<IConstraintDescriptor> constraints, int selectionSize) {
@@ -374,7 +381,7 @@ public class PropertyTabViewProviderParser extends PropertyViewProviderParser {
 	/**
 	 * Parses the sub feature container descriptor node
 	 * 
-	 * @param childNode
+	 * @param descriptorNode
 	 *        the node to parse
 	 * @return the descriptor
 	 */

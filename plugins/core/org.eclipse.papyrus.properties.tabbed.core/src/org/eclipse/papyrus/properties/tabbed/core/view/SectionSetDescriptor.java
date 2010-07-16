@@ -41,6 +41,15 @@ public class SectionSetDescriptor implements IConfigurableDescriptor {
 	/**
 	 * Creates a new SectionSetDescriptor.
 	 * 
+	 * @param name
+	 *        name of the section state
+	 * @param sectionDescriptors
+	 *        list of contained section descriptors
+	 * @param constraintDescriptors
+	 *        list of constraints on the section descriptor
+	 * @param selectionSize
+	 *        size of the selection
+	 * 
 	 */
 	public SectionSetDescriptor(String name, List<DynamicSectionDescriptor> sectionDescriptors, List<IConstraintDescriptor> constraintDescriptors, int selectionSize) {
 		this.name = name;

@@ -32,6 +32,8 @@ public class StatesStore {
 
 	/**
 	 * Get the tab descriptor states.
+	 * 
+	 * @return the list of descriptor states
 	 */
 	public static List<TabDescriptorState> getTabDescriptorStates() {
 		return tabDescriptorStates;
@@ -39,6 +41,9 @@ public class StatesStore {
 
 	/**
 	 * Set the tab descriptor states.
+	 * 
+	 * @param tabDescriptorStates2
+	 *        the list to set
 	 */
 	public static void setTabDescriptorStates(List<TabDescriptorState> tabDescriptorStates2) {
 		tabDescriptorStates = new Vector<TabDescriptorState>(tabDescriptorStates2);
@@ -46,6 +51,8 @@ public class StatesStore {
 
 	/**
 	 * Get the sectionSet descriptor states.
+	 * 
+	 * @return the list of section descriptor states
 	 */
 	public static List<SectionSetDescriptorState> getSectionSetDescriptorStates() {
 		return sectionSetDescriptorStates;
@@ -53,6 +60,9 @@ public class StatesStore {
 
 	/**
 	 * Set the tab sectionSet states.
+	 * 
+	 * @param sectionSeDescriptorStates2
+	 *        the list to set
 	 */
 	public static void setSectionSetDescriptorStates(List<SectionSetDescriptorState> sectionSeDescriptorStates2) {
 		sectionSetDescriptorStates = new Vector<SectionSetDescriptorState>(sectionSeDescriptorStates2);

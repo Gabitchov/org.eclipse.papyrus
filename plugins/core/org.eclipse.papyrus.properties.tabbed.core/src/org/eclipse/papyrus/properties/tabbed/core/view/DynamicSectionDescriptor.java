@@ -74,9 +74,22 @@ public class DynamicSectionDescriptor extends AbstractSectionDescriptor implemen
 	/**
 	 * Creates a new DynamicSectionDescriptor.
 	 * 
+	 * @param id
+	 *        unique identifier of this section descriptor
+	 * @param tabId
+	 *        id of the tab where this section should be added
+	 * @param constraints
+	 *        the constraints placed on this section, so it should be displayed or not
+	 * @param selectionSize
+	 *        size of the selection
+	 * @param adapterID
+	 *        name of the adapter
+	 * @param replacedSectionIds
+	 *        id of the section replaced by this one
+	 * @param afterSectionId
+	 *        identifier of the section which should be placed before this one
 	 * @param fragmentDescriptors
 	 *        fragments to display in the section
-	 * 
 	 */
 	public DynamicSectionDescriptor(String id, String tabId, List<IConstraintDescriptor> constraints, int selectionSize, String adapterID, List<String> replacedSectionIds, String afterSectionId, List<IFragmentDescriptor> fragmentDescriptors) {
 		this.id = id;

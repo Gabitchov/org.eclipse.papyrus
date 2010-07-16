@@ -51,9 +51,8 @@ public class DynamicSection extends AbstractPropertySection {
 	/**
 	 * Creates a new DynamicSection.
 	 * 
-	 * @param configuration
-	 *        the graphical configuration of the section
-	 * 
+	 * @param fragmentDescriptors
+	 *        list of fragments contained by this section
 	 */
 	public DynamicSection(List<IFragmentDescriptor> fragmentDescriptors) {
 		this.fragmentDescriptors = fragmentDescriptors;

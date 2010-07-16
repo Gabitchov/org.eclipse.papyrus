@@ -54,6 +54,8 @@ public class TabDescriptorState extends AbstractState {
 	 * 
 	 * @param tabDescriptor
 	 *        tab descriptor managed by this state
+	 * @param readOnly
+	 *        read only mode of the descriptor
 	 */
 	public TabDescriptorState(ITabDescriptor tabDescriptor, boolean readOnly) {
 		super(readOnly);
@@ -121,6 +123,12 @@ public class TabDescriptorState extends AbstractState {
 		return category;
 	}
 
+	/**
+	 * Sets the id of this tab
+	 * 
+	 * @param id
+	 *        the identifier to set
+	 */
 	public void setId(String id) {
 		this.id = id;
 	}
@@ -138,7 +146,7 @@ public class TabDescriptorState extends AbstractState {
 	/**
 	 * Sets the new after tab info for this state
 	 * 
-	 * @param label
+	 * @param afterTab
 	 *        the new after tab to set
 	 */
 	public void setAfterTab(String afterTab) {
@@ -148,7 +156,7 @@ public class TabDescriptorState extends AbstractState {
 	/**
 	 * Sets the new category for this state
 	 * 
-	 * @param label
+	 * @param category
 	 *        the new category to set
 	 */
 	public void setCategory(String category) {

@@ -30,6 +30,13 @@ public class DynamicTabDescriptor extends AbstractTabDescriptor {
 
 	/**
 	 * Creates a new DynamicTabDescriptor.
+	 * 
+	 * @param category
+	 *        the category of the tab
+	 * @param id
+	 *        the unique identifier for the tab
+	 * @param label
+	 *        the label of the tab
 	 */
 	public DynamicTabDescriptor(String category, String id, String label) {
 		this.category = category;

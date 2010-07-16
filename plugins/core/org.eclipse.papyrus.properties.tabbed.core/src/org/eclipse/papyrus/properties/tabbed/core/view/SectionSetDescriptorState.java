@@ -41,9 +41,6 @@ public class SectionSetDescriptorState extends AbstractState {
 	/** descriptor for section sets */
 	protected final SectionSetDescriptor sectionSetDescriptor;
 
-	/** label displayed by this section set descriptor */
-	private String label;
-
 	/** name of the section set descriptor */
 	private String name;
 
@@ -67,6 +64,8 @@ public class SectionSetDescriptorState extends AbstractState {
 	 * 
 	 * @param sectionSetDescriptor
 	 *        descriptor for section sets
+	 * @param readOnly
+	 *        read only mode of the state
 	 */
 	public SectionSetDescriptorState(SectionSetDescriptor sectionSetDescriptor, boolean readOnly) {
 		super(readOnly);

@@ -66,6 +66,8 @@ public class SectionDescriptorState extends AbstractState {
 	 * 
 	 * @param sectionDescriptor
 	 *        the section descriptor managed by this state
+	 * @param readOnly
+	 *        read only mode of the state
 	 */
 	public SectionDescriptorState(DynamicSectionDescriptor sectionDescriptor, boolean readOnly) {
 		super(readOnly);
@@ -408,6 +410,9 @@ public class SectionDescriptorState extends AbstractState {
 	}
 
 
+	/**
+	 * State for the replaced section
+	 */
 	public class ReplacedSectionState implements IState, ITraversableModelElement {
 
 		/** id of the replaced section */
@@ -418,6 +423,9 @@ public class SectionDescriptorState extends AbstractState {
 
 		/**
 		 * Creates a new SectionDescriptorState.ReplacedSectionState.
+		 * 
+		 * @param id
+		 *        identifier of the section to replace
 		 * 
 		 */
 		public ReplacedSectionState(String id) {
