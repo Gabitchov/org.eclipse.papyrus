@@ -123,6 +123,11 @@ public interface ICustomAppearence {
 	 * default uml property display in classes edit part.
 	 */
 	public final static int DEFAULT_UML_PROPERTY = DISP_VISIBILITY | DISP_DERIVE | DISP_NAME | DISP_TYPE | DISP_MULTIPLICITY;
+	
+	/**
+	 * default uml property display in classes edit part.
+	 */
+	public final static int DEFAULT_UML_ROLE = DISP_VISIBILITY | DISP_DERIVE | DISP_NAME | DISP_TYPE;
 
 	/**
 	 * default uml operation display.
