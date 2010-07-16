@@ -48,8 +48,12 @@ public class DynamicSubFeatureSection extends DynamicSection {
 	 * 
 	 * @param viewDescriptors
 	 *        the list of fragment descriptors contained by this section
-	 * @param fragmentDescriptors
-	 *        the list of view descriptors used by this section
+	 * @param subFeatureDescriptor
+	 *        the descriptor for the sub feature
+	 * @param maxColumn
+	 *        the number of columns max
+	 * @param subFeatureContainerDescriptor
+	 *        descriptor of the container
 	 */
 	public DynamicSubFeatureSection(List<IFragmentDescriptor> viewDescriptors, SubFeatureDescriptor subFeatureDescriptor, int maxColumn, SubFeatureContainerDescriptor subFeatureContainerDescriptor) {
 		super(viewDescriptors);

@@ -46,9 +46,28 @@ public class DynamicSubFeatureSectionDescriptor extends DynamicSectionDescriptor
 	/**
 	 * Creates a new DynamicSectionDescriptor.
 	 * 
-	 * @param fragmentsId
-	 *        id of the views to display in the section
-	 * 
+	 * @param id
+	 *        identifier of the section descriptor
+	 * @param tabId
+	 *        identifier of the tab where the section will be displayed
+	 * @param constraints
+	 *        list of constraints used to see if the section should be displayed or not
+	 * @param selectionSize
+	 *        size of the selection
+	 * @param adapterID
+	 *        identifier of the adapter
+	 * @param replacedSectionIds
+	 *        list of replaced sections by this one
+	 * @param afterSectionId
+	 *        identifier of the section this one should be placed after
+	 * @param fragmentDescriptors
+	 *        list of fragments descriptors inside this section
+	 * @param subFeatureDescriptor
+	 *        descriptor of the sub-feature
+	 * @param maxColumn
+	 *        number max of columns for the layout
+	 * @param containerDescriptor
+	 *        descriptor of the container
 	 */
 	public DynamicSubFeatureSectionDescriptor(String id, String tabId, List<IConstraintDescriptor> constraints, int selectionSize, String adapterID, List<String> replacedSectionIds, String afterSectionId, List<IFragmentDescriptor> fragmentDescriptors, SubFeatureDescriptor subFeatureDescriptor, int maxColumn, SubFeatureContainerDescriptor containerDescriptor) {
 		super(id, tabId, constraints, selectionSize, adapterID, replacedSectionIds, afterSectionId, fragmentDescriptors);
@@ -121,6 +140,9 @@ public class DynamicSubFeatureSectionDescriptor extends DynamicSectionDescriptor
 		 * Creates a new SubFeatureSectionDescriptorState.
 		 * 
 		 * @param sectionDescriptor
+		 *        descriptor managed by this state
+		 * @param readOnly
+		 *        read only mode of this state
 		 */
 		public SubFeatureSectionDescriptorState(DynamicSubFeatureSectionDescriptor sectionDescriptor, boolean readOnly) {
 			super(sectionDescriptor, readOnly);

@@ -157,7 +157,7 @@ public class XMLBasedTabDescriptorProvider implements ITabDescriptorProvider, IP
 			/**
 			 * Returns the list of sections which are before section0
 			 * 
-			 * @param section0
+			 * @param section
 			 *        the section to test
 			 * @return the list of sections which are before section0
 			 */

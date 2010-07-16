@@ -42,6 +42,8 @@ public class ExpandableContainerDescriptor extends SubFeatureContainerDescriptor
 	/**
 	 * Creates a new ExpandableContainerDescriptor.
 	 * 
+	 * @param label
+	 *        label of the expandable composite
 	 */
 	public ExpandableContainerDescriptor(String label) {
 		this.label = label;

@@ -114,6 +114,8 @@ public class EMFSimpleSubFeatureDescriptor extends SubFeatureDescriptor {
 		 * 
 		 * @param emfSimpleSubFeatureDescriptor
 		 *        the descriptor to customize
+		 * @param readOnly
+		 *        read only mode of this state
 		 */
 		public EMFSimpleSubFeatureDescriptorState(EMFSimpleSubFeatureDescriptor emfSimpleSubFeatureDescriptor, boolean readOnly) {
 			super(emfSimpleSubFeatureDescriptor, readOnly);

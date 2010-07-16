@@ -51,6 +51,8 @@ public abstract class SubFeatureDescriptor implements IConfigurableDescriptor {
 		 * 
 		 * @param descriptor
 		 *        the descriptor to manage
+		 * @param readOnly
+		 *        read only mode of this state
 		 */
 		public SubFeatureDescriptorState(SubFeatureDescriptor descriptor, boolean readOnly) {
 			super(readOnly);
