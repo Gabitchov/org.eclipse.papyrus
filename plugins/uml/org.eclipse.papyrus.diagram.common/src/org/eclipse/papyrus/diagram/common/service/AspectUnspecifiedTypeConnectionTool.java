@@ -16,14 +16,18 @@ package org.eclipse.papyrus.diagram.common.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramCommandStack;
+import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeConnectionTool;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Connector;
@@ -58,6 +62,91 @@ public class AspectUnspecifiedTypeConnectionTool extends UnspecifiedTypeConnecti
 		super(elementTypes);
 		this.elementTypes = elementTypes;
 
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void createConnection() {
+		List<?> selectedEditParts = getCurrentViewer().getSelectedEditParts();
+
+		// only attempt to create connection if there are two shapes selected
+		if(!selectedEditParts.isEmpty()) {
+
+			IGraphicalEditPart sourceEditPart = (IGraphicalEditPart)selectedEditParts.get(0);
+
+			IGraphicalEditPart targetEditPart = selectedEditParts.size() == 2 ? (IGraphicalEditPart)selectedEditParts.get(1) : sourceEditPart;
+
+			CreateConnectionRequest connectionRequest = (CreateConnectionRequest)createTargetRequest();
+
+			connectionRequest.setTargetEditPart(sourceEditPart);
+			connectionRequest.setType(RequestConstants.REQ_CONNECTION_START);
+			connectionRequest.setLocation(new Point(0, 0));
+
+			// only if the connection is supported will we get a non null
+			// command from the sourceEditPart
+			if(sourceEditPart.getCommand(connectionRequest) != null) {
+
+				connectionRequest.setSourceEditPart(sourceEditPart);
+				connectionRequest.setTargetEditPart(targetEditPart);
+				connectionRequest.setType(RequestConstants.REQ_CONNECTION_END);
+				connectionRequest.setLocation(new Point(0, 0));
+
+				// inits the listener
+				View eObject = (View)targetEditPart.getAdapter(View.class);
+				DiagramEventBroker eventBroker = null;
+				NotificationListener listener = null;
+				boolean requiresPostAction = requiresPostAction();
+
+				// adds the listener
+				if(requiresPostAction) {
+					// register a listener to have information about element creation
+					// retrieves editing domain
+					TransactionalEditingDomain domain;
+					try {
+						domain = EditorUtils.getServiceRegistry().getService(TransactionalEditingDomain.class);
+						eventBroker = DiagramEventBroker.getInstance(domain);
+
+						if(eventBroker == null) {
+							return;
+						}
+						listener = new NotificationListener() {
+
+							public void notifyChanged(Notification notification) {
+								Connector newValue = (Connector)notification.getNewValue();
+								EditPart editPart = (EditPart)getCurrentViewer().getEditPartRegistry().get(newValue);
+								for(IAspectAction action : postActions) {
+									action.run(editPart);
+								}
+							}
+						};
+
+						eventBroker.addNotificationListener(eObject, listener);
+					} catch (ServiceException e) {
+						Activator.log.error(e);
+					}
+				}
+
+				EditPartViewer viewer = getCurrentViewer();
+				Command command = targetEditPart.getCommand(connectionRequest);
+				setCurrentCommand(command);
+
+				executeCurrentCommand();
+
+				if(requiresPostAction) {
+					if(eventBroker != null) {
+						eventBroker.removeNotificationListener(eObject, listener);
+					}
+				}
+
+				selectAddedObject(viewer, DiagramCommandStack.getReturnValues(command));
+
+				setAvoidDeactivation(false);
+				eraseSourceFeedback();
+				deactivate();
+			}
+		}
 	}
 
 	/**
