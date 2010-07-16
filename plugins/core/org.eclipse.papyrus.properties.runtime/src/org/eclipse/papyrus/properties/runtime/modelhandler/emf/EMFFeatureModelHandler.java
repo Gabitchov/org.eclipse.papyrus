@@ -24,6 +24,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.papyrus.properties.runtime.Activator;
+import org.eclipse.papyrus.properties.runtime.controller.EMFPropertyEditorController;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 import org.eclipse.swt.graphics.Image;
 
@@ -195,6 +196,24 @@ public abstract class EMFFeatureModelHandler implements IEMFModelHandler {
 					}
 				}
 			}
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void addListenersToModel(List<EObject> objectsToEdit, EMFPropertyEditorController controller) {
+		for(EObject object : objectsToEdit) {
+			object.eAdapters().add(controller);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void removeListenersFromModel(List<EObject> objectsToEdit, EMFPropertyEditorController controller) {
+		for(EObject object : objectsToEdit) {
+			object.eAdapters().remove(controller);
 		}
 	}
 }

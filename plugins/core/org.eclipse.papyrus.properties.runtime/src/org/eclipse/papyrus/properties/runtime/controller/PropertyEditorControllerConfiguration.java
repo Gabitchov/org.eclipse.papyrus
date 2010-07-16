@@ -160,6 +160,8 @@ public class PropertyEditorControllerConfiguration {
 	 * Instantiates the controller.
 	 * 
 	 * @return the controller instantiated
+	 * @throws CoreException
+	 *         exception thrown when something went wrong during creation of the controller
 	 */
 	public PropertyEditorController instanciateController() throws CoreException {
 		return (PropertyEditorController)getElement().createExecutableExtension("class");
@@ -170,6 +172,8 @@ public class PropertyEditorControllerConfiguration {
 	 * 
 	 * @param controllerNode
 	 *        the configuration node of the controller
+	 * @param bundle
+	 *        the bundle used to load classes
 	 * @return the configured descriptor
 	 */
 	public IPropertyEditorControllerDescriptor createControllerDescriptor(Node controllerNode, Bundle bundle) {

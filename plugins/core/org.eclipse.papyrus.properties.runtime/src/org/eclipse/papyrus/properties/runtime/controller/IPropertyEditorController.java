@@ -72,6 +72,7 @@ public interface IPropertyEditorController {
 	 *        the list of objects to edit
 	 * @param descriptor
 	 *        the descriptor that realize specific configuration for this controller
+	 * @return the status of the initialization
 	 */
 	public IStatus initController(Composite parent, List<Object> objectsToEdit, IPropertyEditorControllerDescriptor descriptor);
 

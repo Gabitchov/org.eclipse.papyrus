@@ -39,6 +39,8 @@ public class CreatePropertyEditorControllerDescriptorOperation implements IOpera
 	 *        the id of the configured controller
 	 * @param controllerNode
 	 *        the node that configures the controller
+	 * @param bundle
+	 *        bundle used to load classes
 	 */
 	public CreatePropertyEditorControllerDescriptorOperation(String controllerId, Node controllerNode, Bundle bundle) {
 		this.controllerID = controllerId;

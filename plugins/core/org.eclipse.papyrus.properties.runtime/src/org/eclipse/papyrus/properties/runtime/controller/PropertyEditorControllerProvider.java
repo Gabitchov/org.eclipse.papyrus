@@ -37,6 +37,9 @@ public class PropertyEditorControllerProvider extends AbstractProvider {
 	/**
 	 * Creates the property editor managed by this provider
 	 * 
+	 * @param controllerIdentifier
+	 *        identifier of the controller
+	 * 
 	 * @return the property editor managed by this provider
 	 */
 	public IPropertyEditorController createPropertyEditorController(String controllerIdentifier) {
@@ -56,6 +59,12 @@ public class PropertyEditorControllerProvider extends AbstractProvider {
 		return null;
 	}
 
+	/**
+	 * Configures the provider, given the {@link IConfigurationElement}
+	 * 
+	 * @param providerConfiguration
+	 *        the configuration element from the xml plugin file
+	 */
 	public void configure(IConfigurationElement providerConfiguration) {
 		try {
 			bundle = Platform.getBundle(providerConfiguration.getContributor().getName());

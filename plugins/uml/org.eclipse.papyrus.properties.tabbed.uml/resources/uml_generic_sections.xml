@@ -590,7 +590,16 @@
 								<icon pluginID="org.eclipse.papyrus.properties.tabbed.uml" path="/icons/type.gif"/>
 							</editor>
 						</controller>
+						 <controller id="emftStructuralFeatureController">
+							<feature name="type" handlerID="AssociationEndOwner"/>
+							<editor id="org.eclipse.papyrus.properties.runtime.comboPropertyEditor" label="Owner:" labelPosition="16384"/>
+						</controller>
+						 <controller id="emftStructuralFeatureController">
+							<feature name="type" handlerID="AssociationEndNavigation"/>
+							<editor id="org.eclipse.papyrus.properties.runtime.radioBoxPropertyEditor" label="Navigable:" labelPosition="16384"/>
+						</controller>
 						<controller predefinedId="UML_Property_aggregation"/>
+						<controller predefinedId="UML_Property_owner"/>
 						<controller id="emftStructuralFeatureController"><feature handlerID="Multiplicity"><availableValue value="0..1"/><availableValue value="1..1"/><availableValue value="0..*"/><availableValue value="1..*"/></feature><editor id="org.eclipse.papyrus.properties.runtime.uml.multiplicityPropertyEditor" label="Multiplicity:" labelPosition="16384"/></controller>
 					</groupContainer>
 				</content>

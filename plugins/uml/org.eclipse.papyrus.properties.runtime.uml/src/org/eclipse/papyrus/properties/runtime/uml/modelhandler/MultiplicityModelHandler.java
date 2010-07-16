@@ -17,6 +17,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.papyrus.properties.runtime.controller.EMFPropertyEditorController;
 import org.eclipse.papyrus.properties.runtime.modelhandler.emf.EMFUtils;
 import org.eclipse.papyrus.properties.runtime.modelhandler.emf.IEMFModelHandler;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IBoundedValuesPropertyEditorDescriptor;
@@ -182,5 +183,23 @@ public class MultiplicityModelHandler implements IEMFModelHandler {
 			}
 		}
 
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void addListenersToModel(List<EObject> objectsToEdit, EMFPropertyEditorController controller) {
+		for(EObject object : objectsToEdit) {
+			object.eAdapters().add(controller);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void removeListenersFromModel(List<EObject> objectsToEdit, EMFPropertyEditorController controller) {
+		for(EObject object : objectsToEdit) {
+			object.eAdapters().remove(controller);
+		}
 	}
 }

@@ -74,6 +74,7 @@ public class PropertyEditorControllerService extends Service {
 	 *        the content node
 	 * @param bundle
 	 *        the bundle used to load classes for the controller
+	 * @return the created descriptor
 	 */
 	public IPropertyEditorControllerDescriptor createPropertyEditorControllerDescriptor(String controllerId, Node controllerNode, Bundle bundle) {
 		return (IPropertyEditorControllerDescriptor)executeUnique(ExecutionStrategy.REVERSE, new CreatePropertyEditorControllerDescriptorOperation(controllerId, controllerNode, bundle));
@@ -84,6 +85,7 @@ public class PropertyEditorControllerService extends Service {
 	 * 
 	 * @param predefinedID
 	 *        the id of the predefined controller
+	 * @return the created descriptor
 	 */
 	public IPropertyEditorControllerDescriptor createPredefinedControllerDescriptor(String predefinedID) {
 		return (IPropertyEditorControllerDescriptor)executeUnique(ExecutionStrategy.REVERSE, new CreatePredefinedPropertyControllerProviderOperation(predefinedID));
@@ -111,6 +113,8 @@ public class PropertyEditorControllerService extends Service {
 	 *        list of objects to edit
 	 * @param parent
 	 *        parent of all controls created by the editor
+	 * @param descriptor
+	 *        the controller descriptor that manages the editor
 	 * @return the created property editor controller
 	 */
 	public PropertyEditorController createPropertyEditorController(List<Object> objectsToEdit, Composite parent, IPropertyEditorControllerDescriptor descriptor) {
@@ -170,8 +174,9 @@ public class PropertyEditorControllerService extends Service {
 		}
 
 		/**
-		 * @see org.eclipse.ogmf.runtime.common.core.service.Service.ProviderDescriptor#getProvider()
+		 * {@inheritDoc}
 		 */
+		@Override
 		public IProvider getProvider() {
 			if(provider == null) {
 				IProvider newProvider = super.getProvider();

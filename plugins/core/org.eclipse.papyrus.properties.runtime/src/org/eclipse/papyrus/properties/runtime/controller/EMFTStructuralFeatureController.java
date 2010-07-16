@@ -40,6 +40,7 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 	/** descriptor that configures this controller */
 	private EMFTPropertyEditorControllerDescriptor descriptor;
 
+	/** identifier of the controller */
 	public final static String ID = "emftStructuralFeatureController";
 
 	/** model handler to interact with the model for this controller */
@@ -64,6 +65,20 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 	 */
 	public IStatus initController(Composite parent, List<Object> objectsToEdit, IPropertyEditorControllerDescriptor descriptor) {
 		setParent(parent);
+		IPropertyEditorControllerDescriptor realDescriptor = descriptor;
+		if(descriptor instanceof PredefinedControllerDescriptor) {
+			IPropertyEditorControllerDescriptor predefinedDescriptor = ((PredefinedControllerDescriptor)descriptor).getDescriptor();
+			if(predefinedDescriptor instanceof EMFTPropertyEditorControllerDescriptor) {
+				realDescriptor = predefinedDescriptor;
+			}
+		}
+		if(realDescriptor instanceof EMFTPropertyEditorControllerDescriptor) {
+			this.descriptor = (EMFTPropertyEditorControllerDescriptor)realDescriptor;
+		} else {
+			return new Status(IStatus.ERROR, Activator.ID, "impossible to adapt descriptor to an EMFTPropertyEditorControllerDescriptor");
+		}
+
+		this.modelHandler = this.descriptor.getHandler();
 		setObjectsToEdit(objectsToEdit);
 
 		TransactionalEditingDomain editingDomain = null;
@@ -75,22 +90,6 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 			return new Status(IStatus.ERROR, Activator.ID, "impossible to find an editing domain for the controller.");
 		}
 		setEditingDomain(editingDomain);
-
-		IPropertyEditorControllerDescriptor realDescriptor = descriptor;
-		if(descriptor instanceof PredefinedControllerDescriptor) {
-			IPropertyEditorControllerDescriptor predefinedDescriptor = ((PredefinedControllerDescriptor)descriptor).getDescriptor();
-			if(predefinedDescriptor instanceof EMFTPropertyEditorControllerDescriptor) {
-				realDescriptor = predefinedDescriptor;
-			}
-		}
-
-		if(realDescriptor instanceof EMFTPropertyEditorControllerDescriptor) {
-			this.descriptor = (EMFTPropertyEditorControllerDescriptor)realDescriptor;
-		} else {
-			return new Status(IStatus.ERROR, Activator.ID, "impossible to adapt descriptor to an EMFTPropertyEditorControllerDescriptor");
-		}
-
-		this.modelHandler = this.descriptor.getHandler();
 		return Status.OK_STATUS;
 	}
 
@@ -126,9 +125,8 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 	 */
 	@Override
 	protected void addListenersToModel() {
-		for(EObject object : getObjectsToEdit()) {
-			object.eAdapters().add(this);
-		}
+		modelHandler.addListenersToModel(getObjectsToEdit(), this);
+
 	}
 
 	/**
@@ -181,9 +179,7 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 	 */
 	@Override
 	protected void removeListenersFromModel() {
-		for(EObject object : getObjectsToEdit()) {
-			object.eAdapters().remove(this);
-		}
+		getModelHandler().removeListenersFromModel(getObjectsToEdit(), this);
 	}
 
 	/**

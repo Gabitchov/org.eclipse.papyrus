@@ -32,7 +32,6 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.core.utils.DisplayUtils;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.modelhandler.emf.EMFFeatureModelHandler;
-import org.eclipse.swt.widgets.Shell;
 
 
 /**
@@ -87,7 +86,9 @@ public class EMFTLabelProviderStructuralFeatureController extends EMFTStructural
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Returns the list of all available creation operation for this controller
+	 * 
+	 * @return the list of available operations
 	 */
 	public List<IUndoableOperation> getAvailableCreationOperations() {
 		// retrieve the Eclass of the elements to edit
@@ -135,13 +136,6 @@ public class EMFTLabelProviderStructuralFeatureController extends EMFTStructural
 			return eObjects.get(0).eClass();
 		}
 		return null;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public int openPostCreationDialog(Shell shell) {
-		return 0;
 	}
 
 }

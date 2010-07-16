@@ -9,32 +9,23 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.properties.runtime.controller;
+package org.eclipse.papyrus.properties.runtime.uml.modelhandler;
 
-import java.util.List;
-
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.properties.runtime.modelhandler.emf.EMFModelHandlerFactory;
+import org.w3c.dom.Node;
 
 
 /**
- * Property editor controller for EMF-based models
+ * factory for Association end navigation model handlers
  */
-public abstract class EMFPropertyEditorController extends PropertyEditorController implements Adapter {
-
-	/**
-	 * Creates a new EMFPropertyEditorController.
-	 */
-	public EMFPropertyEditorController() {
-	}
+public class AssociationEndNavigationModelHandlerFactory extends EMFModelHandlerFactory {
 
 	/**
 	 * {@inheritDoc}
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
-	public List<EObject> getObjectsToEdit() {
-		return (List<EObject>)super.getObjectsToEdit();
+	public AssociationEndNavigationModelHandler createModelHandler(Node modelHandlerNode) {
+		return new AssociationEndNavigationModelHandler();
 	}
 
 }

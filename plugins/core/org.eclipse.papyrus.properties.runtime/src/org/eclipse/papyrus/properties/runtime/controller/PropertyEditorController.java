@@ -137,6 +137,10 @@ public abstract class PropertyEditorController implements IDisposable, IProperty
 
 	/**
 	 * Initializes the content of the property editor, in case the property editor contains enumeration or references for example
+	 * 
+	 * @param descriptor
+	 *        the descriptor of the editor
+	 * @return the status of the initialization
 	 */
 	protected abstract IStatus initPropertyEditor(IPropertyEditorDescriptor descriptor);
 

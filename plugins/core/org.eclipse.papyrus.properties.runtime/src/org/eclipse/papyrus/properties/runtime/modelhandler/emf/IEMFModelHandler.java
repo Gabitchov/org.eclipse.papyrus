@@ -16,6 +16,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.properties.runtime.controller.EMFPropertyEditorController;
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
 
@@ -97,4 +98,24 @@ public interface IEMFModelHandler extends IConfigurableDescriptor {
 	 * @return the list of available values
 	 */
 	public Object getAvailableValues(EObject object);
+
+	/**
+	 * Adds the listeners to the model
+	 * 
+	 * @param objectsToEdit
+	 *        the list of object to edit
+	 * @param controller
+	 *        the controller which uses this model handler
+	 */
+	public void addListenersToModel(List<EObject> objectsToEdit, EMFPropertyEditorController controller);
+
+	/**
+	 * Removes the listeners from the model
+	 * 
+	 * @param objectsToEdit
+	 *        the list of object to edit
+	 * @param controller
+	 *        the controller which was using this model handler
+	 */
+	public void removeListenersFromModel(List<EObject> objectsToEdit, EMFPropertyEditorController controller);
 }
