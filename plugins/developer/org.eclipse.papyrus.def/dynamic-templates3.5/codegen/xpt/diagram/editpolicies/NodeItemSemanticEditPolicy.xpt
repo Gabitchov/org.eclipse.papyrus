@@ -57,7 +57,10 @@ protected org.eclipse.gef.commands.Command getDestroyElementCommand(org.eclipse.
 «ENDIF-»
 		addDestroyShortcutsCommand(cmd, view);
 		// delete host element
-		cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
+		java.util.ArrayList todestroy=new java.util.ArrayList();
+		todestroy.add(req.getElementToDestroy());
+		//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
+		cmd.add(new org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper(new org.eclipse.emf.edit.command.DeleteCommand(getEditingDomain(),todestroy )));
 	} else {«REM»Here, we may play smart and don't generate else for non-toplevel nodes(which can't be shortcuts). Is it worth doing?«ENDREM»
 		cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), view));
 	}
