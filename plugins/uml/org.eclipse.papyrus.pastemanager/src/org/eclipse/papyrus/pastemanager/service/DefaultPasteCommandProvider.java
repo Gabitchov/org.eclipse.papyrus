@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.gef.RootEditPart;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
@@ -40,13 +39,12 @@ import org.eclipse.papyrus.pastemanager.request.PasteRequest;
  * when the System clipboard contains a string the papyrus clipboard has no information
  * (a copy has be done on the system). In this case, a comment is created and displayed in the diagram
  * the body contains the string from the clipboard.
- * In other case, a paste request {@link org.org.eclipse.papyrus.pastemanager.request.PasteRequest} in send to the target editpart in order to obtain
+ * In other case, a paste request {@link org.eclipse.papyrus.pastemanager.request.PasteRequest} in send to the target editpart in order to obtain
  * the paste command ( graphically or the paste with model command
  * 
  */
 
 public class DefaultPasteCommandProvider implements IPasteCommandProvider {
-
 
 	/**
 	 * this method provides a command to paste by taking information from the clipboard of the system or gmf clipbaord
@@ -60,28 +58,31 @@ public class DefaultPasteCommandProvider implements IPasteCommandProvider {
 	 * @return
 	 */
 
-	public ICommand getPasteViewCommand(GraphicalEditPart targetEditPart, Clipboard systemClipboard, Collection<Object> papyrusCliboard) {
+	public ICommand getPasteViewCommand(GraphicalEditPart targetEditPart, Clipboard systemClipboard, Collection<Object> papyrusClipboard) {
 
-		//look in the clipboard of the system
-		String bufferSystem = null;
-		DataFlavor[] dataFlavors = Toolkit.getDefaultToolkit().getSystemClipboard().getAvailableDataFlavors();
-		for(int i = 0; i < dataFlavors.length; i++) {
-			try {
-				if(dataFlavors[i].isFlavorTextType() && dataFlavors[i].isMimeTypeEqual(DataFlavor.stringFlavor)) {
-
-					bufferSystem = Toolkit.getDefaultToolkit().getSystemClipboard().getData(dataFlavors[i]).toString();
+		if(!System.getProperty("os.name").equals("Linux")) {
+			// examine system clipboard
+			String bufferSystem = null;
+			// long millisBefore = System.currentTimeMillis ();
+			DataFlavor[] dataFlavors = Toolkit.getDefaultToolkit().getSystemClipboard().getAvailableDataFlavors();
+			// System.out.println (">>> TEST: time spend in getAvailableDataFlavorsCall: " + (System.currentTimeMillis () - millisBefore));
+			for(int i = 0; i < dataFlavors.length; i++) {
+				try {
+					if(dataFlavors[i].isFlavorTextType() && dataFlavors[i].isMimeTypeEqual(DataFlavor.stringFlavor)) {
+						bufferSystem = Toolkit.getDefaultToolkit().getSystemClipboard().getData(dataFlavors[i]).toString();
+					}
+				} catch (Exception e) {
+					System.err.println(e);
 				}
-			} catch (Exception e) {
-				System.err.println(e);
 			}
+			// detection of a paste command from the system
+			if(bufferSystem != null) {
+				// here, the choice is to create a comment from a string
+				// if the you want to modify it overload the method paste from System
+				return pasteFromSystem(targetEditPart, bufferSystem);
+			}
+			//else
 		}
-		//detection of a paste command from the system
-		if(bufferSystem != null) {
-			// here, the choice is to create a comment from a string
-			// if the you want to modify it overload the method paste from System
-			return pasteFromSystem(targetEditPart, bufferSystem);
-		}
-		//else
 
 		/* Send the request to the target edit part of the paste command for the currently selected part */
 		PasteRequest pasteRequest = new PasteRequest(targetEditPart.getEditingDomain().getClipboard());
@@ -93,8 +94,8 @@ public class DefaultPasteCommandProvider implements IPasteCommandProvider {
 	}
 
 	/**
-	 * this method has in charge to paste from the system a string.
-	 * if you want to add a new behavior, overload this method
+	 * This method is in charge of pasting a string from the system.
+	 * If you want to add a new behavior, overload this method
 	 * 
 	 * @param targetEditPart
 	 * @param comment
@@ -112,47 +113,48 @@ public class DefaultPasteCommandProvider implements IPasteCommandProvider {
 	public ICommand getPasteWithModelCommand(GraphicalEditPart targetEditPart, Clipboard systemClipboard, Collection<Object> papyrusCliboard) {
 		//look in the clipboard of the system
 		String bufferSystem = null;
-		DataFlavor[] dataFlavors = Toolkit.getDefaultToolkit().getSystemClipboard().getAvailableDataFlavors();
-		for(int i = 0; i < dataFlavors.length; i++) {
-			try {
-				if(dataFlavors[i].isFlavorTextType() && dataFlavors[i].isMimeTypeEqual(DataFlavor.stringFlavor)) {
+		if(!System.getProperty("os.name").equals("Linux")) {
+			DataFlavor[] dataFlavors = Toolkit.getDefaultToolkit().getSystemClipboard().getAvailableDataFlavors();
+			for(int i = 0; i < dataFlavors.length; i++) {
+				try {
+					if(dataFlavors[i].isFlavorTextType() && dataFlavors[i].isMimeTypeEqual(DataFlavor.stringFlavor)) {
 
-					bufferSystem = Toolkit.getDefaultToolkit().getSystemClipboard().getData(dataFlavors[i]).toString();
+						bufferSystem = Toolkit.getDefaultToolkit().getSystemClipboard().getData(dataFlavors[i]).toString();
+					}
+				} catch (Exception e) {
+					System.err.println(e);
 				}
-			} catch (Exception e) {
-				System.err.println(e);
 			}
+			//detection of a paste command from the system
+			if(bufferSystem != null) {
+				// here, the choice is to create a comment from a string
+				// if the you want to modify it overload the method paste from System
+				return pasteFromSystem(targetEditPart, bufferSystem);
+			}
+			//else
 		}
-		//detection of a paste command from the system
-		if(bufferSystem != null) {
-			// here, the choice is to create a comment from a string
-			// if the you want to modify it overload the method paste from System
-			return pasteFromSystem(targetEditPart, bufferSystem);
-		}
-		//else
-
 		/* Send the request to the target edit part of the paste command for the currently selected part */
-		ArrayList objectToPaste=new ArrayList();
-		if(papyrusCliboard!=null&& papyrusCliboard.size() >=1){
+		ArrayList objectToPaste = new ArrayList();
+		if(papyrusCliboard != null && papyrusCliboard.size() >= 1) {
 			objectToPaste.addAll(papyrusCliboard);
-			Iterator iterator=papyrusCliboard.iterator();
+			Iterator iterator = papyrusCliboard.iterator();
 			//in order to paste with model, semantic element has to be put in the list
 			while(iterator.hasNext()) {
 				Object object = (Object)iterator.next();
-				if( object instanceof View){
+				if(object instanceof View) {
 					objectToPaste.add(((View)object).getElement());
 				}
 
 			}
 			//creation of duplicate request to obtain the functionnality of GMF
-			DuplicateElementsRequest duplicateElementRequest = new DuplicateElementsRequest( targetEditPart.getEditingDomain(),objectToPaste);
+			DuplicateElementsRequest duplicateElementRequest = new DuplicateElementsRequest(targetEditPart.getEditingDomain(), objectToPaste);
 
 			//add the wrapper
-			RootEditPart topEditPart=targetEditPart.getRoot();
-			if(topEditPart.getChildren().get(0) instanceof DiagramEditPart){
+			RootEditPart topEditPart = targetEditPart.getRoot();
+			if(topEditPart.getChildren().get(0) instanceof DiagramEditPart) {
 
-				org.eclipse.gef.commands.Command gefCommand=((DiagramEditPart)topEditPart.getChildren().get(0)).getCommand( new EditCommandRequestWrapper(duplicateElementRequest));
-				ICommand command=new PapyrusDuplicateWrapperCommand(targetEditPart.getEditingDomain(),"",objectToPaste,(ICommandProxy)gefCommand,(View)targetEditPart.getModel());
+				org.eclipse.gef.commands.Command gefCommand = ((DiagramEditPart)topEditPart.getChildren().get(0)).getCommand(new EditCommandRequestWrapper(duplicateElementRequest));
+				ICommand command = new PapyrusDuplicateWrapperCommand(targetEditPart.getEditingDomain(), "", objectToPaste, (ICommandProxy)gefCommand, (View)targetEditPart.getModel());
 				return command;
 			}
 		}
