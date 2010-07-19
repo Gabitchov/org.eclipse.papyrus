@@ -230,7 +230,7 @@
          name="Load Resource">
    </command>
    <command
-         category="Papyrus "
+         category="Papyrus"
          categoryId="org.eclipse.papyrus.core.papyrusEditor"
          defaultHandler="org.eclipse.papyrus.diagram.common.handlers.PasteWithModelHandler"
          description="Paste content in a diagram (graphic+ semantic)"
@@ -238,8 +238,7 @@
          name="PasteWithModel">
    </command>
    <command
-         category="Papyrus "
-         categoryId="org.eclipse.papyrus.core.papyrusEditor"
+         category="Papyrus"
          defaultHandler="org.eclipse.papyrus.diagram.common.handlers.AlignementHandler"
          description="Call the alignment action"
          id="org.eclipse.papyrus.diagram.common.commands.AlignmentCommand"
@@ -251,8 +250,7 @@
       </commandParameter>
    </command>
    <command
-         category="Papyrus "
-         categoryId="org.eclipse.papyrus.core.papyrusEditor"
+         category="Papyrus"
          defaultHandler="org.eclipse.papyrus.diagram.common.handlers.RoutingHandler"
          description="Call the routing action"
          id="org.eclipse.papyrus.diagram.common.commands.RoutingCommand"
@@ -269,7 +267,21 @@
          defaultHandler="org.eclipse.papyrus.diagram.common.handlers.DeleteFromModelHandler"
          description="Call the delete from model action"
          id="org.eclipse.papyrus.diagram.common.commands.DeleteFromModelCommand"
-         name="DeleteFromModelCommand">
+         name="Delete From Model Command">
+   </command>
+   <command
+         category="Papyrus"
+         categoryId="org.eclipse.papyrus.core.papyrusEditor"
+         description="Call the delete from diagram action"
+         id="org.eclipse.papyrus.diagram.common.commands.DeleteFromDiagramCommand"
+         name="Delete From Diagram Command">
+   </command>
+   <command
+         category="Papyrus"
+         categoryId="org.eclipse.papyrus.core.papyrusEditor"
+         description="Call the Show/Hide Compartment Action"
+         id="org.eclipse.papyrus.diagram.common.commands.ShowHideCompartmentCommand"
+         name="Show/Hide Compartment Command">
    </command>
 </extension>
 <extension
@@ -310,7 +322,20 @@
             definitionId="org.eclipse.papyrus.diagram.common.commands.DeleteFromModelCommand"
             icon="icons/delete.gif"
             id="org.eclipse.papyrus.diagram.common.objectContribution.deletefrommodelaction"
-            label="Delete From Model"
+            label="Delete Selected Element"
+            menubarPath="editMenu">
+      </action>
+   </objectContribution>
+   <objectContribution
+         adaptable="false"
+         id="org.eclipse.papyrus.diagram.common.deletefromdiagramaction"
+         objectClass="org.eclipse.gmf.runtime.diagram.ui.internal.editparts.IContainedEditPart">
+      <action
+            class="org.eclipse.papyrus.diagram.common.handlers.DeleteFromDiagramHandler"
+            definitionId="org.eclipse.papyrus.diagram.common.commands.DeleteFromDiagramCommand"
+            icon="icons/obj16/eraser.gif"
+            id="org.eclipse.papyrus.diagram.common.objectContribution.deletefromdiagramaction"
+            label="Hide Selected Element"
             menubarPath="editMenu">
       </action>
    </objectContribution>
@@ -858,7 +883,7 @@
          point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
       <contributionItemProvider
             checkPluginLoaded="true"
-            class="org.eclipse.papyrus.diagram.common.actions.RoutingContributionItemProvider">
+            class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider">
          <Priority
                name="High">
          </Priority>
@@ -894,17 +919,82 @@
                   path="/filtersMenu/additions"
                   remove="true">
             </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="deleteFromDiagramAction"
+                  path="/editGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="allCompartmentsAction"
+                  path="/filtersMenu/compartmentMenu/allCompartmentsGroup"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupPredefinedItem
+                  id="noCompartmentsAction"
+                  path="/filtersMenu/compartmentMenu/allCompartmentsGroup"
+                  remove="true">
+            </popupPredefinedItem>
          </popupContribution>
          <partContribution
                class="org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart">
+            <partPredefinedItem
+                  id="noCompartmentsAction"
+                  menubarPath="/diagramMenu/filtersMenu/compartmentMenu/allCompartmentsGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="true"
+                  toolbarPath="/compartmentMenu/allCompartmentsGroup">
+            </partPredefinedItem>
             <partPredefinedItem
                   id="diagramFilterActionMenu"
                   removeFromMenubar="true"
                   removeFromToolbar="true"
                   toolbarPath="/toolbarFilterGroup">
             </partPredefinedItem>
+            <partPredefinedItem
+                  id="allCompartmentsAction"
+                  menubarPath="/diagramMenu/filtersMenu/compartmentMenu/allCompartmentsGroup"
+                  removeFromMenubar="true"
+                  removeFromToolbar="true"
+                  toolbarPath="/compartmentMenu/allCompartmentsGroup">
+            </partPredefinedItem>
          </partContribution>
       </contributionItemProvider>
+   </extension>
+   <extension
+         id="org.eclipse.papyrus.diagram.composite.compartmentviewer"
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="false"
+            id="org.eclipse.papyrus.diagram.composite.compartmentviewer"
+            objectClass="org.eclipse.papyrus.diagram.common.editparts.NamedElementEditPart">
+         <action
+               class="org.eclipse.papyrus.diagram.common.actions.ShowHideCompartmentAction"
+               enablesFor="+1"
+               icon="icons/fantom.gif"
+               id="org.eclipse.papyrus.diagram.composite.ShowHideCompartmentAction"
+               label="Show/Hide Compartments"
+               menubarPath="filtersMenu/expandFilterGroup">
+         </action>
+      </objectContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            id="org.eclipse.papyrus.diagram.common.ShowHideCompartmentActionSet"
+            label="Show/Hide Compartments"
+            visible="true">
+         <action
+               class="org.eclipse.papyrus.diagram.common.actions.ShowHideCompartmentAction"
+               definitionId="org.eclipse.papyrus.diagram.common.commands.ShowHideCompartmentCommand"
+               icon="icons/fantom.gif"
+               id="org.eclipse.papyrus.diagram.common.myShowHideCompartmentAction"
+               label="Show/Hide &amp;Compartments"
+               menubarPath="diagramMenu/filtersMenu/compartmentMenu"
+               style="push"
+               toolbarPath="compartmentMenu/allCompartmentsGroup"
+               tooltip="Show/Hide Compartments">
+         </action>
+      </actionSet>
    </extension>
 
 

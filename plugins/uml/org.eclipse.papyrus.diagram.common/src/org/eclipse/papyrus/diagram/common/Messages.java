@@ -130,6 +130,8 @@ public class Messages extends NLS {
 	/** tooltip for the provider priority in the palette wizard */
 	public static String Local_Palette_Priority_Tooltip;
 
+
+
 	/** label for the advanced button, when advanced are not shown */
 	public static String Dialog_Advanced_Button_Closed;
 
@@ -369,12 +371,32 @@ public class Messages extends NLS {
 
 	/** Message for horizontal routing by top */
 	public static String RoutingConstants_VerticalByTop;
-	
+
 	/** Message for Diagram Not Found */
 	public static String DiagramNotFound;
+
 	/** Message Set Name Diagram */
 	public static String SetNameDiagram;
 
+	/** Message for the ShowHideCompartment Action */
+	public static String ShowHideCompartmentAction_Message;
 
+	/** The string No Name for the ShowHideCompartment Action */
+	public static String ShowHideCompartmentAction_No_Name;
+
+	/** %Title for the ShowHideCompartment Action */
+	public static String ShowHideCompartmentAction_Title;
+
+	/** Label for Hide Selected Element Action (when many elements are selected) */
+	public static String DeleteFromDiagramHandler_HideTextPlural;
+
+	/** Tooltip for Hide Selected Element Action (when many elements are selected) */
+	public static String DeleteFromDiagramHandler_HideToolTipPlural;
+
+	/** Label for Hide Selected Element Action (when only 1 element is selected) */
+	public static String DeleteFromDiagramHandler_HideTextSingular;
+
+	/** Tooltip for Hide Selected Element Action (when only 1 element is selected) */
+	public static String DeleteFromDiagramHandler_HideToolTipSingular;
 
 }
