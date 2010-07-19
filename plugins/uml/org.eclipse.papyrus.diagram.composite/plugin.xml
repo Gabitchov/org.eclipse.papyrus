@@ -2753,6 +2753,13 @@
             label="Show/Hide &amp;Related Properties/Ports"
             menubarPath="filtersMenu/expandFilterGroup">
       </action>
+      <visibility>
+         <or>
+            <objectClass
+                  name="org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN">
+            </objectClass>
+         </or>
+      </visibility>
    </objectContribution>
    <objectContribution
          adaptable="false"
@@ -2767,6 +2774,21 @@
             label="Show/Hide &amp;Inherited Properties/Ports"
             menubarPath="filtersMenu/expandFilterGroup">
       </action>
+      <visibility>
+         <or>
+            <objectClass
+                  name="org.eclipse.papyrus.diagram.composite.edit.parts.ClassCompositeEditPart">
+            </objectClass>
+            <objectClass
+                  name="org.eclipse.papyrus.diagram.composite.edit.parts.ClassCompositeEditPartCN">
+            </objectClass>
+            <objectClass
+                  name="org.eclipse.papyrus.diagram.composite.edit.parts.DataTypeEditPart">
+            </objectClass>
+            <objectClass
+                  name="org.eclipse.papyrus.diagram.composite.edit.parts.DataTypeEditPartCN">
+            </objectClass>
+         </or></visibility>
    </objectContribution>
    </extension>
 
