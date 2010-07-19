@@ -26,6 +26,28 @@ import org.eclipse.uml2.uml.Stereotype;
 
 public class ElementUtil {
 
+
+	/**
+	 * Return the stereotype application by passing an element of the static profile
+	 * 
+	 * @param element
+	 *        an UML model element
+	 * @param clazz
+	 *        the class of an element of a static profile. Compatible sub-types will be returned as well
+	 * @return the stereotype application or null
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T extends EObject> T getStereotypeApplication(Element element, Class<T> clazz) {
+		for(EObject stereoApplication : element.getStereotypeApplications()) {
+			// check whether the stereotype is an instance of the passed parameter clazz
+			if(clazz.isInstance(stereoApplication)) {
+				return (T)stereoApplication;
+			}
+		}
+		return null;
+	}
+
+
 	/**
 	 * Check if the StereotypedElement has the given stereotype.
 	 * 
@@ -41,8 +63,7 @@ public class ElementUtil {
 		Iterator<EObject> stAppIt = elt.getStereotypeApplications().iterator();
 		while(stAppIt.hasNext() && (stereotypeApplication == null)) {
 			EObject stApp = stAppIt.next();
-			if(stApp.eClass().getEAllSuperTypes().contains(stereotypeClass)
-					|| (stApp.eClass().equals(stereotypeClass))) {
+			if(stApp.eClass().getEAllSuperTypes().contains(stereotypeClass) || (stApp.eClass().equals(stereotypeClass))) {
 				stereotypeApplication = stApp;
 			}
 		}
