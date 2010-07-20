@@ -87,16 +87,18 @@ public class UMLElementTypes {
 	 */
 	public static ENamedElement getElement(IAdaptable hint) {
 		Object type = hint.getAdapter(IElementType.class);
-		if(elements == null) {
+		if (elements == null) {
 			elements = new IdentityHashMap<IElementType, ENamedElement>();
 
 			elements.put(Package_1000, UMLPackage.eINSTANCE.getPackage());
 
-			elements.put(StateMachine_2000, UMLPackage.eINSTANCE.getStateMachine());
+			elements.put(StateMachine_2000,
+					UMLPackage.eINSTANCE.getStateMachine());
 
 			elements.put(Region_3000, UMLPackage.eINSTANCE.getRegion());
 
-			elements.put(Pseudostate_4000, UMLPackage.eINSTANCE.getPseudostate());
+			elements.put(Pseudostate_4000,
+					UMLPackage.eINSTANCE.getPseudostate());
 
 			elements.put(FinalState_5000, UMLPackage.eINSTANCE.getFinalState());
 
@@ -104,14 +106,14 @@ public class UMLElementTypes {
 
 			elements.put(Transition_7000, UMLPackage.eINSTANCE.getTransition());
 		}
-		return (ENamedElement)elements.get(type);
+		return (ENamedElement) elements.get(type);
 	}
 
 	/**
 	 * @generated
 	 */
 	public static IElementType getElementType(int visualID) {
-		switch(visualID) {
+		switch (visualID) {
 		case PackageEditPart.VISUAL_ID:
 			return Package_1000;
 		case StateMachineEditPart.VISUAL_ID:
@@ -143,9 +145,9 @@ public class UMLElementTypes {
 	public static Image getImage(ENamedElement element) {
 		String key = getImageRegistryKey(element);
 		Image image = getImageRegistry().get(key);
-		if(image == null) {
+		if (image == null) {
 			ImageDescriptor imageDescriptor = getProvidedImageDescriptor(element);
-			if(imageDescriptor == null) {
+			if (imageDescriptor == null) {
 				imageDescriptor = ImageDescriptor.getMissingImageDescriptor();
 			}
 			getImageRegistry().put(key, imageDescriptor);
@@ -159,7 +161,7 @@ public class UMLElementTypes {
 	 */
 	public static Image getImage(IAdaptable hint) {
 		ENamedElement element = getElement(hint);
-		if(element == null) {
+		if (element == null) {
 			return null;
 		}
 		return getImage(element);
@@ -171,9 +173,9 @@ public class UMLElementTypes {
 	public static ImageDescriptor getImageDescriptor(ENamedElement element) {
 		String key = getImageRegistryKey(element);
 		ImageDescriptor imageDescriptor = getImageRegistry().getDescriptor(key);
-		if(imageDescriptor == null) {
+		if (imageDescriptor == null) {
 			imageDescriptor = getProvidedImageDescriptor(element);
-			if(imageDescriptor == null) {
+			if (imageDescriptor == null) {
 				imageDescriptor = ImageDescriptor.getMissingImageDescriptor();
 			}
 			getImageRegistry().put(key, imageDescriptor);
@@ -186,7 +188,7 @@ public class UMLElementTypes {
 	 */
 	public static ImageDescriptor getImageDescriptor(IAdaptable hint) {
 		ENamedElement element = getElement(hint);
-		if(element == null) {
+		if (element == null) {
 			return null;
 		}
 		return getImageDescriptor(element);
@@ -196,7 +198,7 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	private static ImageRegistry getImageRegistry() {
-		if(imageRegistry == null) {
+		if (imageRegistry == null) {
 			imageRegistry = new ImageRegistry();
 		}
 		return imageRegistry;
@@ -212,21 +214,26 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
-	private static ImageDescriptor getProvidedImageDescriptor(ENamedElement element) {
-		if(element instanceof EStructuralFeature) {
-			EStructuralFeature feature = ((EStructuralFeature)element);
+	private static ImageDescriptor getProvidedImageDescriptor(
+			ENamedElement element) {
+		if (element instanceof EStructuralFeature) {
+			EStructuralFeature feature = ((EStructuralFeature) element);
 			EClass eContainingClass = feature.getEContainingClass();
 			EClassifier eType = feature.getEType();
-			if(eContainingClass != null && !eContainingClass.isAbstract()) {
+			if (eContainingClass != null && !eContainingClass.isAbstract()) {
 				element = eContainingClass;
-			} else if(eType instanceof EClass && !((EClass)eType).isAbstract()) {
+			} else if (eType instanceof EClass
+					&& !((EClass) eType).isAbstract()) {
 				element = eType;
 			}
 		}
-		if(element instanceof EClass) {
-			EClass eClass = (EClass)element;
-			if(!eClass.isAbstract()) {
-				return UMLDiagramEditorPlugin.getInstance().getItemImageDescriptor(eClass.getEPackage().getEFactoryInstance().create(eClass));
+		if (element instanceof EClass) {
+			EClass eClass = (EClass) element;
+			if (!eClass.isAbstract()) {
+				return UMLDiagramEditorPlugin.getInstance()
+						.getItemImageDescriptor(
+								eClass.getEPackage().getEFactoryInstance()
+										.create(eClass));
 			}
 		}
 		// TODO : support structural features
@@ -237,7 +244,7 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static boolean isKnownElementType(IElementType elementType) {
-		if(KNOWN_ELEMENT_TYPES == null) {
+		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
 			KNOWN_ELEMENT_TYPES.add(Package_1000);
 			KNOWN_ELEMENT_TYPES.add(StateMachine_2000);

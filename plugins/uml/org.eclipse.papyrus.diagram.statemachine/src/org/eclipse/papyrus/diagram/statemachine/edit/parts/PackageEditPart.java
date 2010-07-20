@@ -37,14 +37,15 @@ public class PackageEditPart extends DiagramEditPart {
 	/**
 	 * @generated
 	 */
-	/* package-local */static class LinkLabelDragPolicy extends NonResizableLabelEditPolicy {
+	/* package-local */static class LinkLabelDragPolicy extends
+			NonResizableLabelEditPolicy {
 
 		/**
 		 * @generated
 		 */
 		@SuppressWarnings("rawtypes")
 		protected List createSelectionHandles() {
-			MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+			MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
 			mh.setBorder(null);
 			return Collections.singletonList(mh);
 		}
@@ -53,14 +54,15 @@ public class PackageEditPart extends DiagramEditPart {
 	/**
 	 * @generated
 	 */
-	/* package-local */static class NodeLabelDragPolicy extends NonResizableEditPolicy {
+	/* package-local */static class NodeLabelDragPolicy extends
+			NonResizableEditPolicy {
 
 		/**
 		 * @generated
 		 */
 		@SuppressWarnings("rawtypes")
 		protected List createSelectionHandles() {
-			MoveHandle h = new MoveHandle((GraphicalEditPart)getHost());
+			MoveHandle h = new MoveHandle((GraphicalEditPart) getHost());
 			h.setBorder(null);
 			return Collections.singletonList(h);
 		}
@@ -95,6 +97,7 @@ public class PackageEditPart extends DiagramEditPart {
 	 */
 	public PackageEditPart(View view) {
 		super(view);
+
 		getFigure().setClippingStrategy(new IClippingStrategy() {
 
 			public Rectangle[] getClip(IFigure childFigure) {
@@ -103,11 +106,12 @@ public class PackageEditPart extends DiagramEditPart {
 				// getExtendedBounds)
 				// See bug 313985 (https://bugs.eclipse.org/bugs/show_bug.cgi?id=313985) for more details
 				applyClippingStrategy(childFigure);
-				if(childFigure instanceof BorderedNodeFigure) {
-					return new Rectangle[]{ ((BorderedNodeFigure)childFigure).getExtendedBounds() };
+				if (childFigure instanceof BorderedNodeFigure) {
+					return new Rectangle[] { ((BorderedNodeFigure) childFigure)
+							.getExtendedBounds() };
 
 				} else {
-					return new Rectangle[]{ childFigure.getBounds() };
+					return new Rectangle[] { childFigure.getBounds() };
 				}
 			}
 		});
@@ -118,22 +122,23 @@ public class PackageEditPart extends DiagramEditPart {
 	 */
 	public void applyClippingStrategy(IFigure fig) {
 		boolean hasBorderedNodeChild = false;
-		for(Object child : fig.getChildren()) {
-			if(child instanceof IFigure) {
-				applyClippingStrategy((IFigure)child);
-				if(child instanceof BorderedNodeFigure) {
+		for (Object child : fig.getChildren()) {
+			if (child instanceof IFigure) {
+				applyClippingStrategy((IFigure) child);
+				if (child instanceof BorderedNodeFigure) {
 					hasBorderedNodeChild = true;
 				}
 			}
 		}
-		if(hasBorderedNodeChild && (fig.getClippingStrategy() == null)) {
+		if (hasBorderedNodeChild && (fig.getClippingStrategy() == null)) {
 			fig.setClippingStrategy(new IClippingStrategy() {
 
 				public Rectangle[] getClip(IFigure childFigure) {
-					if(childFigure instanceof BorderedNodeFigure) {
-						return new Rectangle[]{ ((BorderedNodeFigure)childFigure).getExtendedBounds() };
+					if (childFigure instanceof BorderedNodeFigure) {
+						return new Rectangle[] { ((BorderedNodeFigure) childFigure)
+								.getExtendedBounds() };
 					} else {
-						return new Rectangle[]{ childFigure.getBounds() };
+						return new Rectangle[] { childFigure.getBounds() };
 					}
 				}
 			});
@@ -146,17 +151,22 @@ public class PackageEditPart extends DiagramEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
+		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE,
+				new DuplicatePasteEditPolicy());
 
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackageItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+				new PackageItemSemanticEditPolicy());
 
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.statemachine.edit.policies.PackageCanonicalEditPolicy());
 
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CustomPackageCreationEditPolicy());
-		installEditPolicy(EditPolicy.LAYOUT_ROLE, new CustomPackageXYLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomStateMachineDiagramDragDropEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
+				new CustomPackageCreationEditPolicy());
+		installEditPolicy(EditPolicy.LAYOUT_ROLE,
+				new CustomPackageXYLayoutEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE,
+				new CustomStateMachineDiagramDragDropEditPolicy());
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 
@@ -165,7 +175,7 @@ public class PackageEditPart extends DiagramEditPart {
 	 */
 	public Object getAdapter(Class adapter) {
 
-		if(adapter != null && adapter.equals(ViewInfo.class)) {
+		if (adapter != null && adapter.equals(ViewInfo.class)) {
 			return UMLVisualIDRegistry.getDiagramViewInfo();
 		}
 		return super.getAdapter(adapter);
@@ -177,9 +187,11 @@ public class PackageEditPart extends DiagramEditPart {
 	protected void handleNotificationEvent(Notification event) {
 
 		super.handleNotificationEvent(event);
-		if(event.getNotifier() instanceof EAnnotation) {
-			EAnnotation eAnnotation = (EAnnotation)event.getNotifier();
-			if(eAnnotation.getSource() != null && eAnnotation.getSource().equals(MDTUtil.FilterViewAndLabelsSource)) {
+		if (event.getNotifier() instanceof EAnnotation) {
+			EAnnotation eAnnotation = (EAnnotation) event.getNotifier();
+			if (eAnnotation.getSource() != null
+					&& eAnnotation.getSource().equals(
+							MDTUtil.FilterViewAndLabelsSource)) {
 				//modification form MOSKitt approach, canonical policies are not called
 				MDTUtil.filterDiagramViews(this.getDiagramView());
 			}

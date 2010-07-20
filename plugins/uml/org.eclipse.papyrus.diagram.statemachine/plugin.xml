@@ -657,6 +657,7 @@
 
 
 		
+
 	<?gmfgen generated="true"?>
 	<page  	category="org.eclipse.papyrus.preferences.diagrams.PapyrusUMLStateMachineDiagram"
 			class="org.eclipse.papyrus.diagram.statemachine.preferences.TransitionPreferencePage"

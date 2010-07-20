@@ -24,7 +24,7 @@ public class CustomRegionItemSemanticEditPolicy extends RegionItemSemanticEditPo
 		return mainCommand == null ? deleteViewCommand : mainCommand.chain(deleteViewCommand);
 	}
 
-	private void addDestroyChildNodesCommand(ICompositeCommand cmd) {
+	protected void addDestroyChildNodesCommand(ICompositeCommand cmd) {
 		View view = (View)getHost().getModel();
 		for(Iterator nit = view.getChildren().iterator(); nit.hasNext();) {
 			Node node = (Node)nit.next();
