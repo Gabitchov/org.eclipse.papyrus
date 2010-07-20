@@ -70,7 +70,6 @@ public class PackagePackageableElementCompartmentEditPart extends ShapeCompartme
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ClassDiagramDragDropEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomContainerEditPolicy());
-		
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CustomContainmentCreationEditPolicy());
 	}
 

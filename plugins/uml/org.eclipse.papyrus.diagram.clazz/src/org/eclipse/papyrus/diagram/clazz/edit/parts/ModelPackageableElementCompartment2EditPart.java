@@ -71,7 +71,6 @@ public class ModelPackageableElementCompartment2EditPart extends ShapeCompartmen
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ClassDiagramDragDropEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomContainerEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CustomContainmentCreationEditPolicy());
-		
 	}
 
 	/**
