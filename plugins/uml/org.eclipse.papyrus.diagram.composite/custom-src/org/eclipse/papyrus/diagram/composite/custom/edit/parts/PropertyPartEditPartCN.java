@@ -71,7 +71,7 @@ public abstract class PropertyPartEditPartCN extends NamedElementEditPart {
 		super.refreshVisuals();
 		if((resolveSemanticElement() != null) && (resolveSemanticElement() instanceof Property)) {
 			if(((Property)resolveSemanticElement()).getAggregation().equals(AggregationKind.SHARED_LITERAL)) {
-				getPrimaryShape().setLineStyle(Graphics.LINE_DASH);
+				getPrimaryShape().setLineStyle(Graphics.LINE_CUSTOM);
 			} else {
 				getPrimaryShape().setLineStyle(Graphics.LINE_SOLID);
 			}

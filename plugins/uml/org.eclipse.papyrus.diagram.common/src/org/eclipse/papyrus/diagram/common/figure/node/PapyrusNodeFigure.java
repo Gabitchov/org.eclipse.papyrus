@@ -40,21 +40,31 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 	 */
 	private boolean shadow = true;
 
-	/**
-	 * Table used to draw figure border as dashed line.
-	 */
-	protected int[] dash = new int[10];
+	/** Default custom dash values */
+	public static final int[] DEFAULT_CUSTOM_DASH = { 5, 5 };
+
+	/** Table used to draw figure border as dashed line. */
+	protected int[] customDash = null;
+
+	/** Get custom dash values */
+	public int[] getCustomDash() {
+		if(customDash == null) {
+			// Initialize dash property for dashed border representation.
+			customDash = DEFAULT_CUSTOM_DASH;
+		}
+		return customDash;
+	}
+
+	/** Set custom dash values */
+	public void setCustomDash(int[] dash) {
+		this.customDash = dash;
+	}
 
 	protected RectangularShadowBorder shadowborder;
 
 	public PapyrusNodeFigure() {
 		super();
 		createCompositeFigureStructure();
-
-		// Initialize dash property for dashed border representation.
-		for(int i = 0; i < 10; i++) {
-			dash[i] = 5;
-		}
 
 		shadowborder = new RectangularShadowBorder(3, getForegroundColor());
 		setBorder(getBorderedFigure(), shadowborder);
@@ -132,12 +142,19 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 	 * @return a non shadow border
 	 */
 	protected Border getDefaultBorder(Color borderColor) {
-		// default border is line border
+
+		// Default border is line border
+		LineBorder lineBorder = null;
 		if(borderColor != null) {
-			return new LineBorder(borderColor);
+			lineBorder = new LineBorder(borderColor);
 		} else {
-			return new LineBorder();
+			lineBorder = new LineBorder();
 		}
+
+		// Set border style
+		lineBorder.setStyle(getLineStyle());
+
+		return lineBorder;
 	}
 
 	/**
@@ -190,27 +207,36 @@ public class PapyrusNodeFigure extends NodeFigure implements IPapyrusNodeFigure 
 
 	/**
 	 * <pre>
-	 * This figure manages the border representation with dashes Graphics.LINE_DASH is the only
-	 * value managed in this implementation (except the default LINE.SOLID of course).
-	 * 
-	 * Without this {@link NodeFigure} does not manages dashes even if LineStyle is correctly set.
+	 * This figure manages the border representation with custom dashes.
 	 * 
 	 * {@inheritDoc}
 	 * </pre>
 	 */
 	@Override
 	protected void paintBorder(Graphics graphics) {
-		if(getLineStyle() == Graphics.LINE_DASH) {
-			graphics.setLineDash(dash);
+
+		if(getLineStyle() == Graphics.LINE_CUSTOM) {
+			graphics.setLineDash(getCustomDash());
 		}
 		super.paintBorder(graphics);
 	}
 
+	/**
+	 * <pre>
+	 * This method propagates the new line style to the border
+	 * 
+	 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#setLineStyle(int)
+	 * </pre>
+	 * 
+	 * @param s
+	 *        the new line style value
+	 */
 	@Override
 	public void setLineStyle(int s) {
 		if((getBorder() != null) && (getBorder() instanceof LineBorder)) {
 			((LineBorder)getBorder()).setStyle(s);
 		}
+
 		super.setLineStyle(s);
 	}
 

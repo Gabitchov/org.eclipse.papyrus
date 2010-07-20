@@ -28,8 +28,9 @@ public class CollaborationUseFigure extends NodeNamedElementFigure {
 	public CollaborationUseFigure() {
 		super();
 
-		// Use dashed line border.
-		setLineStyle(Graphics.LINE_DASH);
+		// Use custom dashed line border.
+		setCustomDash(DEFAULT_CUSTOM_DASH);
+		setLineStyle(Graphics.LINE_CUSTOM);
 
 		// Set layout (Vertical ToolbarLayout)
 		ToolbarLayout layout = new ToolbarLayout();

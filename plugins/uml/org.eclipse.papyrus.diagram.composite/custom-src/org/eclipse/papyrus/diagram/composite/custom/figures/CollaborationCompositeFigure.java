@@ -31,7 +31,8 @@ public class CollaborationCompositeFigure extends CompositeFigure {
 	public CollaborationCompositeFigure() {
 		super(TAG_LABEL);
 
-		// Use dashed borders for Collaboration
-		setLineStyle(Graphics.LINE_DASH);
+		// Use custom dashed borders for Collaboration
+		setCustomDash(DEFAULT_CUSTOM_DASH);
+		setLineStyle(Graphics.LINE_CUSTOM);
 	}
 }
