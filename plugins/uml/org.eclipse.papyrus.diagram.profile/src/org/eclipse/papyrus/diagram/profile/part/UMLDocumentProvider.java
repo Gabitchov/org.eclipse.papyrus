@@ -95,8 +95,10 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 	 * content of the document is not changed. This default implementation is empty.
 	 * Subclasses may reimplement.
 	 * 
-	 * @param element the blue-print element
-	 * @param document the document to set up
+	 * @param element
+	 *        the blue-print element
+	 * @param document
+	 *        the document to set up
 	 * @generated
 	 */
 	protected void setupDocument(Object element, IDocument document) {
@@ -941,7 +943,7 @@ public class UMLDocumentProvider extends AbstractDocumentProvider implements IDi
 					Resource resource = (Resource)notification.getNotifier();
 					if(resource.isLoaded()) {
 						boolean modified = false;
-						for(Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = myInfo.getLoadedResourcesIterator(); it.hasNext() && !modified;) {
+						for(Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = myInfo.getLoadedResourcesIterator(); it.hasNext() && !modified;) {
 							Resource nextResource = (Resource)it.next();
 							if(nextResource.isLoaded()) {
 								modified = nextResource.isModified();

@@ -116,7 +116,7 @@ public class ProfileDiagramEditPart extends DiagramEditPart {
 	/**
 	 * @generated
 	 */
-	/*package-local*/static class NodeLabelDragPolicy extends NonResizableEditPolicy {
+	/* package-local */static class NodeLabelDragPolicy extends NonResizableEditPolicy {
 
 		/**
 		 * @generated
@@ -147,7 +147,7 @@ public class ProfileDiagramEditPart extends DiagramEditPart {
 	/**
 	 * @generated
 	 */
-	/*package-local*/static class LinkLabelDragPolicy extends NonResizableLabelEditPolicy {
+	/* package-local */static class LinkLabelDragPolicy extends NonResizableLabelEditPolicy {
 
 		/**
 		 * @generated

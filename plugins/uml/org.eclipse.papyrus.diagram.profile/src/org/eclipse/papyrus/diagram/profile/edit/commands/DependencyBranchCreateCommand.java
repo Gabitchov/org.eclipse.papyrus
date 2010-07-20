@@ -140,6 +140,7 @@ public class DependencyBranchCreateCommand extends EditElementCommand {
 	/**
 	 * Default approach is to traverse ancestors of the source to find instance of container.
 	 * Modify with appropriate logic.
+	 * 
 	 * @generated
 	 */
 	private static Package deduceContainer(EObject source, EObject target) {
