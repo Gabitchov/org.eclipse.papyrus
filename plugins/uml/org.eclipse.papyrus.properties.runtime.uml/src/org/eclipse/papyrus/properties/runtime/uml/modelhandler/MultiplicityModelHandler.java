@@ -86,7 +86,7 @@ public class MultiplicityModelHandler implements IEMFModelHandler {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void completeEditorDescriptor(IPropertyEditorDescriptor descriptor, List<EObject> objectToEdit) {
+	public void completeEditorDescriptor(IPropertyEditorDescriptor descriptor, List<? extends EObject> objectToEdit) {
 		if(descriptor instanceof IBoundedValuesPropertyEditorDescriptor) {
 			((IBoundedValuesPropertyEditorDescriptor)descriptor).setAvailableValues(getAvailableValues(null));
 		} else {
@@ -107,7 +107,7 @@ public class MultiplicityModelHandler implements IEMFModelHandler {
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean isChangeable(List<EObject> objectsToEdit) {
+	public boolean isChangeable(List<? extends EObject> objectsToEdit) {
 		// always true for this implementation
 		return true;
 	}
@@ -151,7 +151,7 @@ public class MultiplicityModelHandler implements IEMFModelHandler {
 	 * {@inheritDoc}
 	 */
 	@SuppressWarnings("unchecked")
-	public void handleNotifyChange(Notification notification, List<EObject> objects, EMFPropertyEditorController adapter) {
+	public void handleNotifyChange(Notification notification, List<? extends EObject> objects, EMFPropertyEditorController adapter) {
 		// if one element is added to the feature, should also add this as a listener
 		// if one element is removed from the feature, should also remove this as a listener
 		// in other case, except removing adapters, should refresh
@@ -244,7 +244,7 @@ public class MultiplicityModelHandler implements IEMFModelHandler {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void addListenersToModel(List<EObject> objectsToEdit, EMFPropertyEditorController controller) {
+	public void addListenersToModel(List<? extends EObject> objectsToEdit, EMFPropertyEditorController controller) {
 		for(EObject object : objectsToEdit) {
 			object.eAdapters().add(controller);
 		}
@@ -253,7 +253,7 @@ public class MultiplicityModelHandler implements IEMFModelHandler {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void removeListenersFromModel(List<EObject> objectsToEdit, EMFPropertyEditorController controller) {
+	public void removeListenersFromModel(List<? extends EObject> objectsToEdit, EMFPropertyEditorController controller) {
 		for(EObject object : objectsToEdit) {
 			object.eAdapters().remove(controller);
 		}
