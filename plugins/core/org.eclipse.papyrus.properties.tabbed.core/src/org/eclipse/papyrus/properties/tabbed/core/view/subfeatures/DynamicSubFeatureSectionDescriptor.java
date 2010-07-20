@@ -99,7 +99,7 @@ public class DynamicSubFeatureSectionDescriptor extends DynamicSectionDescriptor
 	 */
 	@Override
 	public ISection getSectionClass() {
-		return new DynamicSubFeatureSection(fragmentDescriptors, subFeatureDescriptor, maxColumn, subFeatureContainerDescriptor);
+		return new DynamicSubFeatureSection(fragmentDescriptors, subFeatureDescriptor, maxColumn, subFeatureContainerDescriptor, adapterId);
 	}
 
 	/**

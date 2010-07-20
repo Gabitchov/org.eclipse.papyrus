@@ -76,7 +76,7 @@ public class BooleanEMFModelHandler extends EnumerationEMFModelHandler {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void completeEditorDescriptor(IPropertyEditorDescriptor descriptor, List<EObject> objectToEdit) {
+	public void completeEditorDescriptor(IPropertyEditorDescriptor descriptor, List<? extends EObject> objectToEdit) {
 		if(objectToEdit.size() < 1) {
 			return;
 		}

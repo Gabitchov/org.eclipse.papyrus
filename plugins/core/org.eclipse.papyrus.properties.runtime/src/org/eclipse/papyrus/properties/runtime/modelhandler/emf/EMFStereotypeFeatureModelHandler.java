@@ -169,7 +169,7 @@ public abstract class EMFStereotypeFeatureModelHandler extends EMFFeatureModelHa
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void completeEditorDescriptor(IPropertyEditorDescriptor descriptor, List<EObject> objectToEdit) {
+	public void completeEditorDescriptor(IPropertyEditorDescriptor descriptor, List<? extends EObject> objectToEdit) {
 
 	}
 
@@ -186,7 +186,7 @@ public abstract class EMFStereotypeFeatureModelHandler extends EMFFeatureModelHa
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean isChangeable(List<EObject> objectsToEdit) {
+	public boolean isChangeable(List<? extends EObject> objectsToEdit) {
 		if(objectsToEdit.size() < 1) {
 			return false;
 		}
@@ -213,7 +213,7 @@ public abstract class EMFStereotypeFeatureModelHandler extends EMFFeatureModelHa
 	 *        the list of objects selected
 	 * @return the element or null
 	 */
-	protected Element retrieveElement(List<EObject> objectToEdit) {
+	protected Element retrieveElement(List<? extends EObject> objectToEdit) {
 		if(objectToEdit.size() < 1) {
 			return null;
 		}

@@ -17,6 +17,8 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.properties.runtime.view.IFragmentDescriptor;
@@ -33,6 +35,15 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
  */
 public class DynamicSection extends AbstractPropertySection {
 
+	/** semantic resolver */
+	public static final String SEMANTIC_RESOLVER = "Semantic";
+
+	/** id of the graphic resolver */
+	public static final String GRAPHIC_RESOLVER = "Graphic";
+
+	/** id of the edit part resolver */
+	public static final String EDIT_PART_RESOLVER = "EditPart";
+
 	/** the parent for the created composites in this section */
 	protected Composite parent;
 
@@ -48,15 +59,21 @@ public class DynamicSection extends AbstractPropertySection {
 	/** list of fragment descriptors that compose the section */
 	protected List<IFragmentDescriptor> fragmentDescriptors;
 
+	/** adapter id used to resolve elements */
+	protected final String adapterId;
+
 	/**
 	 * Creates a new DynamicSection.
 	 * 
 	 * @param fragmentDescriptors
 	 *        list of fragments contained by this section
+	 * @param adapterId
+	 *        id of the adapter to use to resolvbe objects
 	 */
-	public DynamicSection(List<IFragmentDescriptor> fragmentDescriptors) {
+	public DynamicSection(List<IFragmentDescriptor> fragmentDescriptors, String adapterId) {
 		this.fragmentDescriptors = fragmentDescriptors;
 		this.containers = new ArrayList<AbstractContainerDescriptor>();
+		this.adapterId = adapterId;
 	}
 
 	/**
@@ -97,9 +114,9 @@ public class DynamicSection extends AbstractPropertySection {
 		List<Object> newObjects = new ArrayList<Object>();
 		Iterator<?> it = ((IStructuredSelection)selection).iterator();
 		while(it.hasNext()) {
-			EObject newEObject = resolveSemanticObject(it.next());
-			if(newEObject != null) {
-				newObjects.add(newEObject);
+			Object newObject = getAdaptedObject(it.next());
+			if(newObject != null) {
+				newObjects.add(newObject);
 			}
 		}
 
@@ -108,6 +125,84 @@ public class DynamicSection extends AbstractPropertySection {
 		// force the parent to layout
 		parent.layout(true, true);
 	}
+
+	/**
+	 * Returns the object adapated to the property view (ex: edit part into the underlying model element
+	 * 
+	 * @param objectToAdapt
+	 *        the object to adapt
+	 * @return the object adapted to the property view
+	 */
+	public Object getAdaptedObject(Object objectToAdapt) {
+		if(SEMANTIC_RESOLVER.equals(adapterId)) {
+			return resolveSemanticElement(objectToAdapt);
+		}
+		if(GRAPHIC_RESOLVER.equals(adapterId)) {
+			return resolveGraphicElement(objectToAdapt);
+		}
+		if(EDIT_PART_RESOLVER.equals(adapterId)) {
+			return resolveEditPart(objectToAdapt);
+		}
+		return objectToAdapt;
+	}
+
+	/**
+	 * Resolves the semantic element for the specified object
+	 * 
+	 * @param objectToAdapt
+	 *        the object to retrieve
+	 * @return the semantic element for the specified object
+	 */
+	protected EObject resolveSemanticElement(Object objectToAdapt) {
+		if(objectToAdapt instanceof EObject) {
+			return (EObject)objectToAdapt;
+		} else if(objectToAdapt instanceof IAdaptable) {
+			IAdaptable adaptable = (IAdaptable)objectToAdapt;
+			if(adaptable.getAdapter(EObject.class) != null) {
+				return (EObject)adaptable.getAdapter(EObject.class);
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Resolves the edit part for the specified object
+	 * 
+	 * @param objectToAdapt
+	 *        the object to retrieve
+	 * @return the edit part for the specified object
+	 */
+	protected EditPart resolveEditPart(Object objectToAdapt) {
+		if(objectToAdapt instanceof EditPart) {
+			return (EditPart)objectToAdapt;
+		} else if(objectToAdapt instanceof IAdaptable) {
+			IAdaptable adaptable = (IAdaptable)objectToAdapt;
+			if(adaptable.getAdapter(EditPart.class) != null) {
+				return (EditPart)adaptable.getAdapter(EditPart.class);
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Resolves the semantic element for the specified object
+	 * 
+	 * @param objectToAdapt
+	 *        the object to retrieve
+	 * @return the semantic element for the specified object
+	 */
+	protected View resolveGraphicElement(Object objectToAdapt) {
+		if(objectToAdapt instanceof View) {
+			return (View)objectToAdapt;
+		} else if(objectToAdapt instanceof IAdaptable) {
+			IAdaptable adaptable = (IAdaptable)objectToAdapt;
+			if(adaptable.getAdapter(View.class) != null) {
+				return (View)adaptable.getAdapter(View.class);
+			}
+		}
+		return null;
+	}
+
 
 	/**
 	 * Refreshes the display (if necessary) for the given set of objects
@@ -136,23 +231,23 @@ public class DynamicSection extends AbstractPropertySection {
 		}
 	}
 
-	/**
-	 * Resolve semantic element from a given object. The object tries to be adapted into a {@link EObject}, if possible.
-	 * 
-	 * @param object
-	 *        the object to resolve
-	 * @return <code>null</code> or the semantic element associated to the specified object
-	 */
-	protected EObject resolveSemanticObject(Object object) {
-		if(object instanceof EObject) {
-			return (EObject)object;
-		} else if(object instanceof IAdaptable) {
-			IAdaptable adaptable = (IAdaptable)object;
-			if(adaptable.getAdapter(EObject.class) != null) {
-				return (EObject)adaptable.getAdapter(EObject.class);
-			}
-		}
-		return null;
-	}
+	//	/**
+	//	 * Resolve semantic element from a given object. The object tries to be adapted into a {@link EObject}, if possible.
+	//	 * 
+	//	 * @param object
+	//	 *        the object to resolve
+	//	 * @return <code>null</code> or the semantic element associated to the specified object
+	//	 */
+	//	protected EObject resolveSemanticObject(Object object) {
+	//		if(object instanceof EObject) {
+	//			return (EObject)object;
+	//		} else if(object instanceof IAdaptable) {
+	//			IAdaptable adaptable = (IAdaptable)object;
+	//			if(adaptable.getAdapter(EObject.class) != null) {
+	//				return (EObject)adaptable.getAdapter(EObject.class);
+	//			}
+	//		}
+	//		return null;
+	//	}
 
 }

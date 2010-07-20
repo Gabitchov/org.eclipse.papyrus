@@ -94,7 +94,7 @@ public class BooleanStereotypeModelHandler extends EnumerationStereotypeModelHan
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void completeEditorDescriptor(IPropertyEditorDescriptor descriptor, List<EObject> objectToEdit) {
+	public void completeEditorDescriptor(IPropertyEditorDescriptor descriptor, List<? extends EObject> objectToEdit) {
 		Element elementToEdit = retrieveElement(objectToEdit);
 		if(elementToEdit == null) {
 			return;

@@ -50,7 +50,7 @@ public class StringEMFModelHandler extends EMFFeatureModelHandler {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void completeEditorDescriptor(IPropertyEditorDescriptor descriptor, List<EObject> objectToEdit) {
+	public void completeEditorDescriptor(IPropertyEditorDescriptor descriptor, List<? extends EObject> objectToEdit) {
 		// nothing to do here
 	}
 

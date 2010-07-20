@@ -79,8 +79,13 @@ public class CreatePropertyEditorControllerOperation implements IOperation {
 				IStatus status = controller.initController(parent, objectsToEdit, descriptor);
 				if(status.getSeverity() != Status.ERROR) {
 					return controller;
+				} else {
+					Activator.log.error("(" + status.getSeverity() + ") Error during creation of Property Editor Controller: " + status.getMessage(), null);
+					return null;
 				}
+
 			}
+
 			return null;
 		} else {
 			Activator.log.error("CreatePropertyEditorControllerOperation should execute on a PropertyEditorControllerProvider", null);

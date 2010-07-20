@@ -261,7 +261,8 @@ public class EMFTEReferenceController extends EMFTStructuralFeatureController im
 	 * 
 	 */
 	protected EClass retrieveEClass() {
-		List<EObject> eObjects = getObjectsToEdit();
+		@SuppressWarnings("unchecked")
+		List<EObject> eObjects = (List<EObject>)getObjectsToEdit();
 		if(eObjects == null) {
 			return null;
 		} else if(eObjects.size() > 0) {

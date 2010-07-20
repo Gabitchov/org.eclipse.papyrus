@@ -55,8 +55,8 @@ public class DynamicSubFeatureSection extends DynamicSection {
 	 * @param subFeatureContainerDescriptor
 	 *        descriptor of the container
 	 */
-	public DynamicSubFeatureSection(List<IFragmentDescriptor> viewDescriptors, SubFeatureDescriptor subFeatureDescriptor, int maxColumn, SubFeatureContainerDescriptor subFeatureContainerDescriptor) {
-		super(viewDescriptors);
+	public DynamicSubFeatureSection(List<IFragmentDescriptor> viewDescriptors, SubFeatureDescriptor subFeatureDescriptor, int maxColumn, SubFeatureContainerDescriptor subFeatureContainerDescriptor, String adapterId) {
+		super(viewDescriptors, adapterId);
 		this.subFeatureDescriptor = subFeatureDescriptor;
 		this.maxColumn = maxColumn;
 		this.subFeatureContainerDescriptor = subFeatureContainerDescriptor;

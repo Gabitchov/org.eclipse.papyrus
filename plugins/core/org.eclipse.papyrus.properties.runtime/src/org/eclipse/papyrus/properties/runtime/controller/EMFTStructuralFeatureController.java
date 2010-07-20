@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.EMFTPropertyEditorControllerDescriptor;
 import org.eclipse.papyrus.properties.runtime.controller.descriptor.IPropertyEditorControllerDescriptor;
@@ -80,11 +81,19 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 		this.modelHandler = this.descriptor.getHandler();
 		setObjectsToEdit(objectsToEdit);
 
+
+
 		TransactionalEditingDomain editingDomain = null;
 		Iterator<Object> it2 = objectsToEdit.iterator();
 		while(it2.hasNext() && editingDomain == null) {
 			editingDomain = TransactionUtil.getEditingDomain(it2.next());
 		}
+
+		// if impossible to find editing domain this way: Tries the Papyrus service
+		if(editingDomain == null) {
+			editingDomain = EditorUtils.getTransactionalEditingDomain();
+		}
+
 		if(editingDomain == null && !objectsToEdit.isEmpty()) {
 			return new Status(IStatus.ERROR, Activator.ID, "impossible to find an editing domain for the controller.");
 		}
@@ -125,7 +134,6 @@ public class EMFTStructuralFeatureController extends EMFTPropertyEditorControlle
 	@Override
 	protected void addListenersToModel() {
 		modelHandler.addListenersToModel(getObjectsToEdit(), this);
-
 	}
 
 	/**

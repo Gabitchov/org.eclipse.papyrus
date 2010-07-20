@@ -53,7 +53,7 @@ public interface IEMFModelHandler extends IConfigurableDescriptor {
 	 * @param objectToEdit
 	 *        list of objects to edit
 	 */
-	public void completeEditorDescriptor(IPropertyEditorDescriptor descriptor, List<EObject> objectToEdit);
+	public void completeEditorDescriptor(IPropertyEditorDescriptor descriptor, List<? extends EObject> objectToEdit);
 
 	/**
 	 * checks if the feature is changeable
@@ -62,7 +62,7 @@ public interface IEMFModelHandler extends IConfigurableDescriptor {
 	 *        the list of objects to edit
 	 * @return <code>true</code> if the feature is changeable
 	 */
-	public boolean isChangeable(List<EObject> objectsToEdit);
+	public boolean isChangeable(List<? extends EObject> objectsToEdit);
 
 	/**
 	 * Returns the identifier of this model handler
@@ -87,7 +87,7 @@ public interface IEMFModelHandler extends IConfigurableDescriptor {
 	 * @param adapter
 	 *        the adapter in charge of notification
 	 */
-	public void handleNotifyChange(Notification notification, List<EObject> objects, EMFPropertyEditorController adapter);
+	public void handleNotifyChange(Notification notification, List<? extends EObject> objects, EMFPropertyEditorController adapter);
 
 	/**
 	 * Returns available values for the feature managed by the model handler
@@ -106,7 +106,7 @@ public interface IEMFModelHandler extends IConfigurableDescriptor {
 	 * @param controller
 	 *        the controller which uses this model handler
 	 */
-	public void addListenersToModel(List<EObject> objectsToEdit, EMFPropertyEditorController controller);
+	public void addListenersToModel(List<? extends EObject> objectsToEdit, EMFPropertyEditorController controller);
 
 	/**
 	 * Removes the listeners from the model
@@ -116,5 +116,5 @@ public interface IEMFModelHandler extends IConfigurableDescriptor {
 	 * @param controller
 	 *        the controller which was using this model handler
 	 */
-	public void removeListenersFromModel(List<EObject> objectsToEdit, EMFPropertyEditorController controller);
+	public void removeListenersFromModel(List<? extends EObject> objectsToEdit, EMFPropertyEditorController controller);
 }

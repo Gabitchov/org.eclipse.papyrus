@@ -15,6 +15,8 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.papyrus.properties.runtime.view.IConfigurableDescriptor;
@@ -34,6 +36,12 @@ public class DynamicSectionDescriptor extends AbstractSectionDescriptor implemen
 
 	/** semantic resolver */
 	public static final String SEMANTIC_RESOLVER = "Semantic";
+
+	/** id of the graphic resolver */
+	public static final String GRAPHIC_RESOLVER = "Graphic";
+
+	/** id of the edit part resolver */
+	public static final String EDIT_PART_RESOLVER = "EditPart";
 
 	/** section class managing the content */
 	protected ISection section;
@@ -70,6 +78,8 @@ public class DynamicSectionDescriptor extends AbstractSectionDescriptor implemen
 
 	/** list of fragments to display in the section */
 	protected final List<IFragmentDescriptor> fragmentDescriptors;
+
+
 
 	/**
 	 * Creates a new DynamicSectionDescriptor.
@@ -141,7 +151,7 @@ public class DynamicSectionDescriptor extends AbstractSectionDescriptor implemen
 	 * {@inheritDoc}
 	 */
 	public ISection getSectionClass() {
-		return new DynamicSection(fragmentDescriptors);
+		return new DynamicSection(fragmentDescriptors, getAdapterId());
 	}
 
 
@@ -224,6 +234,12 @@ public class DynamicSectionDescriptor extends AbstractSectionDescriptor implemen
 		if(SEMANTIC_RESOLVER.equals(adapterId)) {
 			return resolveSemanticElement(objectToAdapt);
 		}
+		if(GRAPHIC_RESOLVER.equals(adapterId)) {
+			return resolveGraphicElement(objectToAdapt);
+		}
+		if(EDIT_PART_RESOLVER.equals(adapterId)) {
+			return resolveEditPart(objectToAdapt);
+		}
 		return objectToAdapt;
 	}
 
@@ -241,6 +257,44 @@ public class DynamicSectionDescriptor extends AbstractSectionDescriptor implemen
 			IAdaptable adaptable = (IAdaptable)objectToAdapt;
 			if(adaptable.getAdapter(EObject.class) != null) {
 				return (EObject)adaptable.getAdapter(EObject.class);
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Resolves the edit part for the specified object
+	 * 
+	 * @param objectToAdapt
+	 *        the object to retrieve
+	 * @return the edit part for the specified object
+	 */
+	protected EditPart resolveEditPart(Object objectToAdapt) {
+		if(objectToAdapt instanceof EditPart) {
+			return (EditPart)objectToAdapt;
+		} else if(objectToAdapt instanceof IAdaptable) {
+			IAdaptable adaptable = (IAdaptable)objectToAdapt;
+			if(adaptable.getAdapter(EditPart.class) != null) {
+				return (EditPart)adaptable.getAdapter(EditPart.class);
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Resolves the semantic element for the specified object
+	 * 
+	 * @param objectToAdapt
+	 *        the object to retrieve
+	 * @return the semantic element for the specified object
+	 */
+	protected View resolveGraphicElement(Object objectToAdapt) {
+		if(objectToAdapt instanceof View) {
+			return (View)objectToAdapt;
+		} else if(objectToAdapt instanceof IAdaptable) {
+			IAdaptable adaptable = (IAdaptable)objectToAdapt;
+			if(adaptable.getAdapter(View.class) != null) {
+				return (View)adaptable.getAdapter(View.class);
 			}
 		}
 		return null;
