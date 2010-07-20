@@ -15,6 +15,7 @@ package org.eclipse.papyrus.diagram.composite.custom.edit.policies;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -35,9 +36,7 @@ import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.editpolicies.AbstractEditPolicy;
-import org.eclipse.gmf.runtime.common.core.util.Log;
 import org.eclipse.gmf.runtime.common.core.util.StringStatics;
-import org.eclipse.gmf.runtime.common.core.util.Trace;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
@@ -45,9 +44,6 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIDebugOptions;
-import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIPlugin;
-import org.eclipse.gmf.runtime.diagram.ui.internal.DiagramUIStatusCodes;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.util.EditPartUtil;
 import org.eclipse.gmf.runtime.notation.View;
@@ -56,6 +52,7 @@ import org.eclipse.papyrus.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.diagram.common.command.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.diagram.composite.custom.edit.parts.PropertyPartEditPartCN;
+import org.eclipse.papyrus.diagram.composite.custom.log.Log;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PortEditPart;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
@@ -69,8 +66,8 @@ import org.eclipse.uml2.uml.Type;
 
 
 /**
- * This EditPolicy listens to changes int the type of property. If the type change or if the inherited chain of the type changes,
- * it removes the element owned by the type which are drawed on the property.
+ * This EditPolicy listens to changes in the type of property. If the type change or if the inherited chain of the type changes,
+ * it removes the element owned by the type which are drawn on the property.
  * Currently the type which can show properties in a part are :
  * <ul>
  * <li> {@link Class}</li>
@@ -82,7 +79,7 @@ import org.eclipse.uml2.uml.Type;
  */
 public class PartEditPolicy extends AbstractEditPolicy implements NotificationListener, IPapyrusListener {
 
-	/** Identifier for this editpolicy */
+	/** Identifier for this EditPolicy */
 	public static Object CLEAN_PART_ROLE = "Part Role Edit Policy"; //$NON-NLS-1$
 
 	/** stores the host associated semantic element */
@@ -97,7 +94,7 @@ public class PartEditPolicy extends AbstractEditPolicy implements NotificationLi
 	/** if the type is a {@link Class}, contains all its superclass */
 	protected List<Classifier> superClasses = new ArrayList<Classifier>();
 
-	/** contains all the editparts representing the property {@link Property} */
+	/** contains all the EditParts representing the property {@link Property} */
 	protected List<EditPart> propertyEditParts = new ArrayList<EditPart>();
 
 	/**
@@ -250,7 +247,7 @@ public class PartEditPolicy extends AbstractEditPolicy implements NotificationLi
 	protected void updateView() {
 		final CompoundCommand command = getUpdateCommand();
 		if(command.canExecute()) {
-			//with the Undo, the editpart are not redrawn
+			//with the Undo, the EditPart are not redrawn
 			executeCommand(command);
 
 			//2 Undo actions are required to have a correct model
@@ -271,7 +268,7 @@ public class PartEditPolicy extends AbstractEditPolicy implements NotificationLi
 		updateSuperClass();
 		CompoundCommand cc = new CompoundCommand("Delete View Command"); //$NON-NLS-1$
 		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart)getHost()).getEditingDomain();
-		//the children editpart for the hostSemanticElement
+		//the children EditPart for the hostSemanticElement
 		List<EditPart> children = getChildrenEditPartForHostEditPart();
 		List<Classifier> allClassesToTest = new ArrayList<Classifier>();
 		allClassesToTest.addAll(superClasses);
@@ -339,8 +336,7 @@ public class PartEditPolicy extends AbstractEditPolicy implements NotificationLi
 		try {
 			operation.execute(new NullProgressMonitor(), null);
 		} catch (ExecutionException e) {
-			Trace.catching(DiagramUIPlugin.getInstance(), DiagramUIDebugOptions.EXCEPTIONS_CATCHING, getClass(), "executeCommand", e); //$NON-NLS-1$
-			Log.warning(DiagramUIPlugin.getInstance(), DiagramUIStatusCodes.IGNORED_EXCEPTION_WARNING, "executeCommand", e); //$NON-NLS-1$
+			Log.getInstance().warn("Ignored exception : " + e);
 		}
 	}
 
@@ -369,40 +365,47 @@ public class PartEditPolicy extends AbstractEditPolicy implements NotificationLi
 						});
 					}
 				});
-			} catch (InterruptedException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
+			} catch (InterruptedException e) {
+				Log.getInstance().error(e);
 			}
 		}
 	}
 
 	/**
-	 * Returns the editparts owned by the representations of {@link #property}, more the contents of the CompatementEditPart for each representation
+	 * Returns the EditPart owned by the representations of {@link #property}, more the contents of the CompartmentEditPart for each representation
 	 * 
 	 * @return
-	 *         the editparts owned by the representations of {@link #property}, more the contents of the CompatementEditPart for each representation
+	 *         the EditPart owned by the representations of {@link #property}, more the contents of the CompartmentEditPart for each representation
 	 */
 	protected List<EditPart> getChildrenEditPartForHostEditPart() {
 		List<EditPart> children = new ArrayList<EditPart>();
 		//the list of the views for the property
-		List view = DiagramEditPartsUtil.getEObjectViews(this.prop);
+		List<?> views = DiagramEditPartsUtil.getEObjectViews(this.prop);
 
-		if(!view.isEmpty()) {
+		if(!views.isEmpty()) {
 			CoreMultiDiagramEditor editor = (CoreMultiDiagramEditor)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 			DiagramEditPart rootEP = editor.getDiagramEditPart();
 
-			//we search all the children for this editpart!
-			for(Object object : view) {
-				if(object instanceof View) {
-					EditPart propEP = DiagramEditPartsUtil.getEditPartFromView((View)object, rootEP);
-					List childrenEP = propEP.getChildren();
-					for(Object object2 : childrenEP) {
-						//if the editpart is a compartment, we add its children too
-						if(object2 instanceof CompartmentEditPart) {
-							children.addAll(((CompartmentEditPart)object2).getChildren());
+			//we search all the children for this EditPart !
+			for(Object currentView : views) {
+				if(currentView instanceof View) {
+					EditPart propEP = DiagramEditPartsUtil.getEditPartFromView((View)currentView, rootEP);
+					List<?> childrenEPs = propEP.getChildren();
+					for(Object child : childrenEPs) {
+
+						// Add current child to the list
+						children.add((EditPart)child);
+
+						// If current child is a compartment, we add its own children to the list too
+						if(child instanceof CompartmentEditPart) {
+							Iterator<?> it = ((CompartmentEditPart)child).getChildren().iterator();
+							while(it.hasNext()) {
+								children.add((EditPart)it.next());
+							}
 						}
+
+
 					}
-					children.addAll(childrenEP);
 				}
 			}
 		}
