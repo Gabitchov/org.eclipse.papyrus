@@ -112,10 +112,10 @@ public abstract class ParentTreeObject extends TreeObject {
 	 * @return the children
 	 */
 	public TreeObject[] getChildren() {
-		// if (children == null) {
-		children = new ArrayList();
-		createChildren();
-		// }
+		if (children == null) {
+			children = new ArrayList();
+			createChildren();
+		}
 		return (TreeObject[])children.toArray(new TreeObject[children.size()]);
 	}
 

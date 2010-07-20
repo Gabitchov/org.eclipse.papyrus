@@ -23,11 +23,9 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.profile.Activator;
 import org.eclipse.papyrus.profile.preference.ProfilePreferenceConstants;
@@ -268,7 +266,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	 * Checks if is in stereotype display.
 	 * 
 	 * @param st
-	 *        the sterotype
+	 *        the stereotype
 	 * 
 	 * @return true, if checks if is in stereotype display
 	 */
@@ -277,22 +275,15 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	}
 
 	/**
-	 * Redraw only the selected elements
+	 * Redraw the treeViewer while preserving selections and non-collapsed tree elements
+	 * It is not sufficient to redraw only selected elements as an optimization, since
+	 * derived stereotype attributes (that are not selected) might change in response to
+	 * changing other attributes.
 	 * 
 	 * @param propertyView
 	 */
-	public void refreshSelection () {
-		if (treeViewer.getTree() != null && !(treeViewer.getTree().isDisposed())) {
-			if(element != null) {
-				ISelection s = treeViewer.getSelection ();
-				if (s instanceof StructuredSelection) {
-					StructuredSelection ss = (StructuredSelection) s;
-					for (Object sElement : ss.toArray()) {
-						treeViewer.refresh (sElement);
-					}
-				}
-			}
-		}
+	public void refreshTreeViewer () {
+		treeViewer.refresh ();
 	}
 	
 	/**
@@ -329,7 +320,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 	}
 
 	/**
-	 * Button action : unaply the stereotypes selected by the user in the stereotype tree.
+	 * Button action : unapply the stereotypes selected by the user in the stereotype tree.
 	 */
 	@Override
 	public void removeButtonPressed() {

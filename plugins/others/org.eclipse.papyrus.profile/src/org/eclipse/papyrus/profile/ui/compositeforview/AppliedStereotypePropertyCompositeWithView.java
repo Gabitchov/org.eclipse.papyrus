@@ -103,7 +103,7 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 		// stereotypeComposite.refresh();
 		touchModel();
 
-		stereotypeComposite.refreshSelection ();
+		stereotypeComposite.refreshTreeViewer ();
 		}
 
 	/**
@@ -113,7 +113,7 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 	public void removeButtonPressed() {
 		super.removeButtonPressed();
 		touchModel();
-		stereotypeComposite.refreshSelection ();
+		stereotypeComposite.refreshTreeViewer ();
 	}
 
 	/**
@@ -122,7 +122,7 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 	@Override
 	public void upButtonPressed() {
 		super.upButtonPressed();
-		stereotypeComposite.refreshSelection ();
+		stereotypeComposite.refreshTreeViewer ();
 		// touchModel();
 	}
 
@@ -132,7 +132,7 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 	@Override
 	public void downButtonPressed() {
 		super.downButtonPressed();
-		stereotypeComposite.refreshSelection ();
+		stereotypeComposite.refreshTreeViewer ();
 		// touchModel();
 	}
 

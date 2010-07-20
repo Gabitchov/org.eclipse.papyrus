@@ -77,7 +77,7 @@ public class StereotypePropertiesDoubleClickListener extends DoubleClickListener
 		// so, in state, it should be better to keep this order.
 		// propertyComposite.touchModel();
 		propertyComposite.refresh();
-		stereotypeComposite.refreshSelection ();
+		stereotypeComposite.refreshTreeViewer ();
 	}
 
 }

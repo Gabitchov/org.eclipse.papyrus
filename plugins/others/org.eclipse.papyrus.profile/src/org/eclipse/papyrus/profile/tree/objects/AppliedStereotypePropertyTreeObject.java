@@ -35,6 +35,8 @@ public class AppliedStereotypePropertyTreeObject extends ParentTreeObject {
 
 	/**
 	 * The property.
+	 * Caveat: two attributes of same value: property and element (within inherited TreeObject)
+	 * Better solution: make TreeObject a generic type
 	 */
 	private Property property;
 
