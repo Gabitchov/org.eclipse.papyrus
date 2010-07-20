@@ -18,7 +18,6 @@ import java.util.Collections;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.Command;
@@ -31,12 +30,16 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.diagram.common.helper.ElementHelper;
 import org.eclipse.uml2.uml.Element;
 
 
 public class ContainmentDragDropHelper extends ContainmentHelper {
 
+	/**
+	 * Instantiates a new containment drag drop helper.
+	 *
+	 * @param editDomain the edit domain
+	 */
 	public ContainmentDragDropHelper(TransactionalEditingDomain editDomain) {
 		super(editDomain);
 	}
@@ -53,35 +56,50 @@ public class ContainmentDragDropHelper extends ContainmentHelper {
 	 * @return the drop with containment command
 	 */
 	public Command getDropWithContainmentCommand(View hostView, View movedView) {
-		EObject hostElement = hostView.getElement();
 		if(isMoveToParent(hostView, movedView)) {
-			CompositeCommand cmd = new CompositeCommand("Move Element");
-			cmd.add(new AddCommand(getEditingDomain(), new EObjectAdapter(hostView), new EObjectAdapter(movedView)));
-			deleteIncomingContainmentLinksFor(cmd, movedView);
-			return new ICommandProxy(cmd);
+			return moveToParent(hostView, movedView);
 		} else if(isMoveToChild(hostView, movedView)) {
-			CompositeCommand cmd = new CompositeCommand("Move Element");
-			Element parent = (Element)ViewUtil.resolveSemanticElement((View)hostView.eContainer().eContainer());
-			Element child1 = (Element)hostElement;
-			Element child2 = (Element)ViewUtil.resolveSemanticElement(movedView);
-			cmd.add(new MoveElementCommand(parent, child1));
-			cmd.add(new MoveElementCommand(child1, child2));
-			cmd.add(new AddCommand(getEditingDomain(), new EObjectAdapter(hostView), new EObjectAdapter(movedView)));
-			deleteOutgoingContainmentLinksFor(cmd, movedView);
-			return new ICommandProxy(cmd);
-		} else if(ContainmentHelper.hasIncomingContainmentLink(movedView)) {
-			CompositeCommand cmd = new CompositeCommand("Move Element");
-			Element parent = (Element)hostElement;
-			Element child = (Element)movedView.getElement();
-			cmd.add(new MoveElementCommand(parent, child));
-			cmd.add(new AddCommand(getEditingDomain(), new EObjectAdapter(hostView), new EObjectAdapter(movedView)));
-			deleteIncomingContainmentLinksFor(cmd, movedView);
-			return new ICommandProxy(cmd);
+			return moveToChild(hostView, movedView);
+		} else if(hasIncomingContainmentLink(movedView)) {
+			return moveWithIncomingContainmentLink(hostView, movedView);
 		} else if(ContainmentHelper.hasOutgoingContainmentLink(movedView)) {
-			// move contained element into a correct place
-			return UnexecutableCommand.INSTANCE;
+			return moveWithOutgoingContainmentLink();
 		}
 		return null;
+	}
+
+	private Command moveWithOutgoingContainmentLink() {
+		// move contained element into a correct place
+		return UnexecutableCommand.INSTANCE;
+	}
+
+	private Command moveWithIncomingContainmentLink(View hostView, View movedView) {
+		CompositeCommand cmd = new CompositeCommand("Move Element");
+		Element parent = (Element)hostView.getElement();
+		Element child = (Element)movedView.getElement();
+		cmd.add(new MoveElementCommand(parent, child));
+		cmd.add(new AddCommand(getEditingDomain(), new EObjectAdapter(hostView), new EObjectAdapter(movedView)));
+		deleteIncomingContainmentLinksFor(cmd, movedView);
+		return new ICommandProxy(cmd);
+	}
+
+	private Command moveToChild(View hostView, View movedView) {
+		CompositeCommand cmd = new CompositeCommand("Move Element");
+		Element parent = (Element)ViewUtil.resolveSemanticElement((View)hostView.eContainer().eContainer());
+		Element child1 = (Element)hostView.getElement();
+		Element child2 = (Element)ViewUtil.resolveSemanticElement(movedView);
+		cmd.add(new MoveElementCommand(parent, child1));
+		cmd.add(new MoveElementCommand(child1, child2));
+		cmd.add(new AddCommand(getEditingDomain(), new EObjectAdapter(hostView), new EObjectAdapter(movedView)));
+		deleteOutgoingContainmentLinksFor(cmd, movedView);
+		return new ICommandProxy(cmd);
+	}
+
+	private Command moveToParent(View hostView, View movedView) {
+		CompositeCommand cmd = new CompositeCommand("Move Element");
+		cmd.add(new AddCommand(getEditingDomain(), new EObjectAdapter(hostView), new EObjectAdapter(movedView)));
+		deleteIncomingContainmentLinksFor(cmd, movedView);
+		return new ICommandProxy(cmd);
 	}
 
 	private boolean isMoveToChild(View hostView, View movedElementView) {
