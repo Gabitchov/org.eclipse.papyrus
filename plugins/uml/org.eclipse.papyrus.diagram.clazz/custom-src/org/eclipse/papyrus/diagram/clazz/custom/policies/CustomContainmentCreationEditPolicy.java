@@ -109,32 +109,36 @@ public class CustomContainmentCreationEditPolicy extends CreationEditPolicy {
 
 	private Command getDropWithContainmentCommand(IGraphicalEditPart ep) {
 		View hostView = (View)getHost().getModel();
-		EObject hostElement = hostView.getElement();
 		View movedView = (View)ep.getModel();
+		return getDropWithContainmentCommand(ep.getEditingDomain(), hostView, movedView);
+	}
+
+	private Command getDropWithContainmentCommand(TransactionalEditingDomain domain, View hostView, View movedView) {
+		EObject hostElement = hostView.getElement();
 		if(isMoveToParent(hostView, movedView)) {
-			ContainmentHelper containmentHelper = new ContainmentHelper(ep.getEditingDomain());
+			ContainmentHelper containmentHelper = new ContainmentHelper(domain);
 			CompositeCommand cmd = new CompositeCommand("Move Element");
-			cmd.add(new AddCommand(ep.getEditingDomain(), new EObjectAdapter(hostView), new EObjectAdapter(movedView)));
+			cmd.add(new AddCommand(domain, new EObjectAdapter(hostView), new EObjectAdapter(movedView)));
 			containmentHelper.deleteIncomingContainmentLinksFor(cmd, movedView);
 			return new ICommandProxy(cmd);
 		} else if(isMoveToChild(hostView, movedView)) {
-			ContainmentHelper containmentHelper = new ContainmentHelper(ep.getEditingDomain());
+			ContainmentHelper containmentHelper = new ContainmentHelper(domain);
 			CompositeCommand cmd = new CompositeCommand("Move Element");
 			Element parent = (Element)ViewUtil.resolveSemanticElement((View)getHost().getParent().getParent().getModel());
 			Element child1 = (Element)hostElement;
 			Element child2 = (Element)ViewUtil.resolveSemanticElement(movedView);
-			cmd.add(getMoveCommand(ep.getEditingDomain(), parent, child1));
-			cmd.add(getMoveCommand(ep.getEditingDomain(), child1, child2));
-			cmd.add(new AddCommand(ep.getEditingDomain(), new EObjectAdapter(hostView), new EObjectAdapter(movedView)));
+			cmd.add(new MoveElementCommand(domain, containmentHelper, parent, child1));
+			cmd.add(new MoveElementCommand(domain, containmentHelper, child1, child2));
+			cmd.add(new AddCommand(domain, new EObjectAdapter(hostView), new EObjectAdapter(movedView)));
 			containmentHelper.deleteOutgoingContainmentLinksFor(cmd, movedView);
 			return new ICommandProxy(cmd);
 		} else if(ContainmentHelper.hasIncomingContainmentLink(movedView)) {
-			ContainmentHelper containmentHelper = new ContainmentHelper(ep.getEditingDomain());
+			ContainmentHelper containmentHelper = new ContainmentHelper(domain);
 			CompositeCommand cmd = new CompositeCommand("Move Element");
 			Element parent = (Element)hostElement;
-			Element child1 = (Element)movedView.getElement();
-			cmd.add(getMoveCommand(ep.getEditingDomain(), parent, child1));
-			cmd.add(new AddCommand(ep.getEditingDomain(), new EObjectAdapter(hostView), new EObjectAdapter(movedView)));
+			Element child = (Element)movedView.getElement();
+			cmd.add(new MoveElementCommand(domain, containmentHelper, parent, child));
+			cmd.add(new AddCommand(domain, new EObjectAdapter(hostView), new EObjectAdapter(movedView)));
 			containmentHelper.deleteIncomingContainmentLinksFor(cmd, movedView);
 			return new ICommandProxy(cmd);
 		} else if(ContainmentHelper.hasOutgoingContainmentLink(movedView)) {
@@ -144,19 +148,6 @@ public class CustomContainmentCreationEditPolicy extends CreationEditPolicy {
 		return null;
 	}
 
-	private AbstractTransactionalCommand getMoveCommand(TransactionalEditingDomain domain, final Element parent, final Element child1) {
-		return new AbstractTransactionalCommand(domain, "Move Element", Collections.emptyList()) {
-
-			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				ContainmentHelper helper = new ContainmentHelper(getEditingDomain());
-
-				helper.move(child1, parent);
-				return CommandResult.newOKCommandResult();
-			}
-		};
-	}
-
 	private boolean isMoveToChild(View hostView, View movedElementView) {
 		return EcoreUtil.isAncestor(movedElementView.getElement(), hostView.getElement());
 	}
@@ -164,6 +155,28 @@ public class CustomContainmentCreationEditPolicy extends CreationEditPolicy {
 	private boolean isMoveToParent(View hostView, View movedElementView) {
 		return hostView.getElement().equals(movedElementView.getElement().eContainer());
 		//		return EcoreUtil.isAncestor(hostView.getElement(), movedElementView.getElement());
+	}
+	
+	private static class MoveElementCommand extends AbstractTransactionalCommand {
+
+		private final ContainmentHelper myHelper;
+
+		private final Element myTarget;
+
+		private final Element myMoved;
+
+		public MoveElementCommand(TransactionalEditingDomain domain, ContainmentHelper helper, Element target, Element moved) {
+			super(domain, "Move Element", Collections.emptyList());
+			myHelper = helper;
+			myMoved = moved;
+			myTarget = target;
+		}
+
+		@Override
+		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+			myHelper.move(myMoved, myTarget);
+			return CommandResult.newOKCommandResult();
+		}
 	}
 
 }
