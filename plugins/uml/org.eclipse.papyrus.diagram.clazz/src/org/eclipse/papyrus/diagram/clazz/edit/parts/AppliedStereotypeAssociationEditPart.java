@@ -705,6 +705,9 @@ public class AppliedStereotypeAssociationEditPart extends LabelEditPart implemen
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 

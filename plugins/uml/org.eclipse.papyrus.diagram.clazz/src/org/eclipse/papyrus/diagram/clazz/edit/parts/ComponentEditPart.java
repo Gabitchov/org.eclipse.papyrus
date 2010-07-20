@@ -62,6 +62,7 @@ import org.eclipse.papyrus.diagram.common.editpolicies.ChangeStereotypedShapeEdi
 import org.eclipse.papyrus.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.diagram.common.figure.node.ComponentFigure;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.diagram.common.locator.TemplateClassifierBorderItemLocator;
@@ -107,6 +108,7 @@ ClassifierEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ComponentItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 
+
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.diagram.clazz.edit.policies.ComponentCanonicalEditPolicy());
 
@@ -118,6 +120,7 @@ ClassifierEditPart {
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ClazzDiagramChangeStereotypedShapeEditpolicy());
+		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -187,6 +190,7 @@ ClassifierEditPart {
 			return true;
 		}
 
+
 		if(childEditPart instanceof ComponentAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
 			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
@@ -208,12 +212,19 @@ ClassifierEditPart {
 			return true;
 		}
 
+
+
+
+
 		//Papyrus Gencode :precise the locator for a template signature
 		if(childEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			IBorderItemLocator locator = new TemplateClassifierBorderItemLocator(getMainFigure(), PositionConstants.NORTH);
 			getBorderedFigure().getBorderItemContainer().add(((RedefinableTemplateSignatureEditPart)childEditPart).getFigure(), locator);
 			return true;
 		}
+
+
+
 
 		return false;
 	}

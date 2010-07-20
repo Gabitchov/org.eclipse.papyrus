@@ -708,6 +708,7 @@ public class ConstraintBodyEditPart extends CompartmentEditPart implements IText
 			}
 		}
 
+
 		super.handleNotificationEvent(event);
 	}
 

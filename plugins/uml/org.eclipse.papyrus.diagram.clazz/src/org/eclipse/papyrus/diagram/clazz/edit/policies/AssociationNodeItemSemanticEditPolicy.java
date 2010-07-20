@@ -107,6 +107,7 @@ public class AssociationNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
 
+
 		for(Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge)it.next();
 			switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {

@@ -763,6 +763,7 @@ public class Operation4EditPart extends CompartmentEditPart implements ITextAwar
 
 			this.setFont(THIS_FONT);
 
+
 		}
 
 	}

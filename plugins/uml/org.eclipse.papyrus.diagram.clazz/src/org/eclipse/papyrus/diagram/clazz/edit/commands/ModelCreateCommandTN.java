@@ -75,6 +75,7 @@ public class ModelCreateCommandTN extends EditElementCommand {
 	 */
 	protected EObject getElementToEdit() {
 
+
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
 			container = ((View)container).getElement();
@@ -90,7 +91,10 @@ public class ModelCreateCommandTN extends EditElementCommand {
 	 */
 	public boolean canExecute() {
 
+
 		return true;
+
+
 
 	}
 
@@ -99,10 +103,13 @@ public class ModelCreateCommandTN extends EditElementCommand {
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
+
+
 		Model newElement = UMLFactory.eINSTANCE.createModel();
 
 		Package owner = (Package)getElementToEdit();
 		owner.getPackagedElements().add(newElement);
+
 
 		ElementInitializers.getInstance().init_Model_2005(newElement);
 

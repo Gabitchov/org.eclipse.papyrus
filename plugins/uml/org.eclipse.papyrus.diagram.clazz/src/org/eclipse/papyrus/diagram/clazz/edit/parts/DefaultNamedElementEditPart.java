@@ -159,6 +159,7 @@ public class DefaultNamedElementEditPart extends NamedElementEditPart {
 			return true;
 		}
 
+
 		return false;
 	}
 

@@ -705,6 +705,9 @@ public class AppliedStereotypeDependencyEditPart extends LabelEditPart implement
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 

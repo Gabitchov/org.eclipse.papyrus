@@ -124,6 +124,7 @@ public class SignalItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolic
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
 
+
 		for(Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge)it.next();
 			switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -204,6 +205,7 @@ public class SignalItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolic
 			switch(UMLVisualIDRegistry.getVisualID(node)) {
 			case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 
+
 				for(Iterator<?> it = node.getTargetEdges().iterator(); it.hasNext();) {
 					Edge incomingLink = (Edge)it.next();
 					switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -253,6 +255,8 @@ public class SignalItemSemanticEditPolicyCN extends UMLBaseItemSemanticEditPolic
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case Property2EditPart.VISUAL_ID:
+
+
 
 						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 

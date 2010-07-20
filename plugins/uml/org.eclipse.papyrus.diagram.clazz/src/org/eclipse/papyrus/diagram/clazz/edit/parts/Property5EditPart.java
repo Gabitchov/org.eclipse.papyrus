@@ -763,6 +763,7 @@ public class Property5EditPart extends CompartmentEditPart implements ITextAware
 
 			this.setFont(THIS_FONT);
 
+
 		}
 
 	}

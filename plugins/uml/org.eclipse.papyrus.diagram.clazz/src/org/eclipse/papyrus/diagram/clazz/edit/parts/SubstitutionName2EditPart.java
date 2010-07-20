@@ -705,6 +705,9 @@ public class SubstitutionName2EditPart extends LabelEditPart implements ITextAwa
 			}
 		}
 
+
+
+
 		super.handleNotificationEvent(event);
 	}
 

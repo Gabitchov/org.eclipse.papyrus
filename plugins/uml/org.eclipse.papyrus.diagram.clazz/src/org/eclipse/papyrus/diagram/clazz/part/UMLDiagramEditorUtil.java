@@ -211,7 +211,6 @@ public class UMLDiagramEditorUtil {
 	 * Store model element in the resource.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static void attachModelToResource(Package model, Resource resource) {

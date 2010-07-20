@@ -90,10 +90,12 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 		 */
 		private void createContents() {
 
+
 			fTemplateParameterRectangle = new RectangleFigure();
 
 			this.add(fTemplateParameterRectangle);
 			fTemplateParameterRectangle.setLayoutManager(new StackLayout());
+
 
 		}
 
@@ -156,6 +158,7 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
+
 
 		if(childEditPart instanceof RedefinableTemplateSignatureTemplateParameterCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getTemplateParameterRectangle();
@@ -232,6 +235,7 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferenceConstantHelper.HEIGHT);
 		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
+
 
 		//FIXME: workaround for #154536
 		result.getBounds().setSize(result.getPreferredSize());

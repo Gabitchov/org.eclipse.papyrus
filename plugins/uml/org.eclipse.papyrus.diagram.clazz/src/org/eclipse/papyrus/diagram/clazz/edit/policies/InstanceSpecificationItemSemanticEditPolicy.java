@@ -93,6 +93,7 @@ public class InstanceSpecificationItemSemanticEditPolicy extends UMLBaseItemSema
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
 
+
 		for(Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge)it.next();
 			switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
@@ -163,6 +164,8 @@ public class InstanceSpecificationItemSemanticEditPolicy extends UMLBaseItemSema
 					Node cnode = (Node)cit.next();
 					switch(UMLVisualIDRegistry.getVisualID(cnode)) {
 					case SlotEditPart.VISUAL_ID:
+
+
 
 						cmd.add(new DestroyElementCommand(new DestroyElementRequest(getEditingDomain(), cnode.getElement(), false))); // directlyOwned: true
 						// don't need explicit deletion of cnode as parent's view deletion would clean child views as well 
