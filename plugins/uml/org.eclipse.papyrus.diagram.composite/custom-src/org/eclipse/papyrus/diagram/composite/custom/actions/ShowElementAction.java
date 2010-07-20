@@ -224,13 +224,13 @@ public class ShowElementAction implements IActionDelegate {
 			if(object instanceof NamedElementEditPart) {
 				this.selectedEditPart = (EditPart)object;
 				EObject selectedObject = ((View)selectedEditPart.getModel()).getElement();
-				if(definitionID.equals(this.view_part_ID)) {
+				if(definitionID.equals(ShowElementAction.view_part_ID)) {
 					if(selectedObject instanceof Property) {
 						if(((Property)selectedObject).getType() instanceof Classifier) {
 							enable = true;
 						}
 					}
-				} else if(definitionID.equals(this.view_inherited_element_ID)) {
+				} else if(definitionID.equals(ShowElementAction.view_inherited_element_ID)) {
 					if(selectedObject instanceof Classifier) {
 						enable = true;
 					}
@@ -258,12 +258,12 @@ public class ShowElementAction implements IActionDelegate {
 			this.childrenEP = getDependentEditPart(this.selectedEditPart);
 			this.domain = ((IGraphicalEditPart)selectedEditPart).getEditingDomain();
 			EObject selectedObject = ((View)selectedEditPart.getModel()).getElement();
-			if(definitionID.equals(this.view_part_ID)) {
+			if(definitionID.equals(ShowElementAction.view_part_ID)) {
 				if(selectedObject instanceof Property && ((Property)selectedObject).getType() instanceof Classifier) {
 					((Property)selectedObject).getType();
 					firstClass = (Classifier)((Property)selectedObject).getType();
 				}
-			} else if(definitionID.equals(this.view_inherited_element_ID)) {
+			} else if(definitionID.equals(ShowElementAction.view_inherited_element_ID)) {
 				if(selectedObject instanceof Classifier) {
 					firstClass = (Classifier)selectedObject;
 				}
@@ -292,7 +292,7 @@ public class ShowElementAction implements IActionDelegate {
 	 */
 	protected List<EditPart> getDependentEditPart(EditPart ep) {
 		List<EditPart> list = new ArrayList<EditPart>();
-		List children = ep.getChildren();
+		List<?> children = ep.getChildren();
 		for(Object object : children) {
 			if(object instanceof CompartmentEditPart && !(object instanceof ITextAwareEditPart)) {
 				list.addAll(getDependentEditPart((EditPart)object));
@@ -395,7 +395,7 @@ public class ShowElementAction implements IActionDelegate {
 	 */
 	protected List<Object> getInitialSelection(EditPart editpart) {
 		List<Object> initialSelection = new ArrayList<Object>();
-		List<Object> childrenEP = editpart.getChildren();
+		List<?> childrenEP = editpart.getChildren();
 		for(Object object : childrenEP) {
 			if(object instanceof CompartmentEditPart) {//the compartment and the PropertyPartNameEditPart
 				initialSelection.addAll(getInitialSelection((EditPart)object));
@@ -565,7 +565,7 @@ public class ShowElementAction implements IActionDelegate {
 		 */
 		public Object[] getElements(Object inputElement) {
 			if(inputElement instanceof List) {
-				return ((List)inputElement).toArray();
+				return ((List<?>)inputElement).toArray();
 			}
 			return new Object[0];
 		}
