@@ -13,14 +13,23 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.policies.itemsemantic;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationClassCreateCommand;
 import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationReorientCommand;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClass2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
+import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGEFCommandWrapper;
+import org.eclipse.uml2.uml.Association;
+import org.eclipse.uml2.uml.Property;
 
 /**
  * this a specialization to manage creation of association and associationClass
@@ -49,6 +58,29 @@ public class CustomAssociationItemSemanticEditPolicy extends org.eclipse.papyrus
 			return getGEFWrapper(new CAssociationReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Command getDestroyElementCommand(DestroyElementRequest req) {
+		List<EObject> todestroy = new ArrayList<EObject>();
+		EObject mainObjectToDelete = req.getElementToDestroy();
+		todestroy.add(mainObjectToDelete);
+
+		if(mainObjectToDelete instanceof Association) {
+			// check end properties. If they do not belong to the association, they should be deleted also
+			Association association = (Association)mainObjectToDelete;
+			for(Property end : association.getMemberEnds()) {
+				if(end.getOwner() != association) {
+					todestroy.add(end);
+				}
+			}
+		}
+
+		return new EMFtoGEFCommandWrapper(new DeleteCommand(getEditingDomain(), todestroy));
+		//return getGEFWrapper(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
 	}
 
 	/**
