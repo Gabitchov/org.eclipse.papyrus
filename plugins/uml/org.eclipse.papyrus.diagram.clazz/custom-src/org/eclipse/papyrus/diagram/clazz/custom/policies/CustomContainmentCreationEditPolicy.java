@@ -123,7 +123,8 @@ public class CustomContainmentCreationEditPolicy extends CreationEditPolicy {
 			Element parent = (Element)ViewUtil.resolveSemanticElement((View)getHost().getParent().getParent().getModel());
 			Element child1 = (Element)hostElement;
 			Element child2 = (Element)ViewUtil.resolveSemanticElement(movedView);
-			cmd.add(getMoveCommand(ep.getEditingDomain(), parent, child1, child2));
+			cmd.add(getMoveCommand(ep.getEditingDomain(), parent, child1));
+			cmd.add(getMoveCommand(ep.getEditingDomain(), child1, child2));
 			cmd.add(new AddCommand(ep.getEditingDomain(), new EObjectAdapter(hostView), new EObjectAdapter(movedView)));
 			containmentHelper.deleteOutgoingContainmentLinksFor(cmd, movedView);
 			return new ICommandProxy(cmd);
@@ -141,20 +142,6 @@ public class CustomContainmentCreationEditPolicy extends CreationEditPolicy {
 			return UnexecutableCommand.INSTANCE;
 		}
 		return null;
-	}
-
-	private AbstractTransactionalCommand getMoveCommand(TransactionalEditingDomain domain, final Element parent, final Element child1, final Element child2) {
-		return new AbstractTransactionalCommand(domain, "Move Element", Collections.emptyList()) {
-
-			@Override
-			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				ContainmentHelper helper = new ContainmentHelper(getEditingDomain());
-
-				helper.move(child1, parent);
-				helper.move(child2, child1);
-				return CommandResult.newOKCommandResult();
-			}
-		};
 	}
 
 	private AbstractTransactionalCommand getMoveCommand(TransactionalEditingDomain domain, final Element parent, final Element child1) {
