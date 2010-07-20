@@ -149,7 +149,6 @@ public class Class2EditPart extends CompartmentEditPart implements ITextAwareEdi
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new UMLTextNonResizableEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ListItemComponentEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomAssociationClass2ItemSemanticEditPolicy());
 	}
 
 	/**
