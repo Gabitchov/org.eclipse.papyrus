@@ -79,8 +79,12 @@ public class CustomContainmentCreationEditPolicy extends CreationEditPolicy {
 			} else if(context != null && hasContainmentLink(view)) {
 				View hostView = (View)getHost().getModel();
 				View movedView = (View)ep.getModel();
-				return new ContainmentDragDropHelper(((IGraphicalEditPart)ep).getEditingDomain()).getDropWithContainmentCommand(hostView, movedView);
-			} else if(context != null && shouldReparent(semantic, context)) {
+				Command customCommand = new ContainmentDragDropHelper(((IGraphicalEditPart)ep).getEditingDomain()).getDropWithContainmentCommand(hostView, movedView);
+				if (customCommand != null) {
+					return customCommand;
+				}
+			} 
+			if(semantic != null && context != null && shouldReparent(semantic, context)) {
 				cc.compose(getReparentCommand((IGraphicalEditPart)ep));
 			}
 		}
