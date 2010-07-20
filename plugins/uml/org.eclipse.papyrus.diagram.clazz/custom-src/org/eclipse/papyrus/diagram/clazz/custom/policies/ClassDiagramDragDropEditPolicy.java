@@ -110,11 +110,11 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 		case ClassEditPartCN.VISUAL_ID:
 		case PackageEditPartCN.VISUAL_ID:
 		case ModelEditPartCN.VISUAL_ID:
-			return dropElementWithContainmentLinkIntoContainer(dropRequest, semanticLink, nodeVISUALID);
+			return dropChildNodeWithContainmentLink(dropRequest, semanticLink, nodeVISUALID);
 		case ModelEditPartTN.VISUAL_ID:
 		case ClassEditPart.VISUAL_ID:
 		case PackageEditPart.VISUAL_ID:
-			return dropElementWithContainedElementIntoDiagram(dropRequest, semanticLink, nodeVISUALID);
+			return dropTopLevelNodeWithContainmentLink(dropRequest, semanticLink, nodeVISUALID);
 		default:
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -229,7 +229,7 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 	 * @return a command to execute
 	 */
 
-	protected Command dropElementWithContainedElementIntoDiagram(DropObjectsRequest dropRequest, Element semanticObject, int nodeVISUALID) {
+	protected Command dropTopLevelNodeWithContainmentLink(DropObjectsRequest dropRequest, Element semanticObject, int nodeVISUALID) {
 		ContainmentHelper containmentHelper = new ContainmentHelper(getEditingDomain());
 		Element owner = (Element)semanticObject.getOwner();
 		EditPart ownerEditPart = containmentHelper.findEditPartFor(getViewer().getEditPartRegistry(), owner);
@@ -252,7 +252,7 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 	 *        is the visual ID of the class
 	 * @return a command to execute
 	 */
-	protected Command dropElementWithContainmentLinkIntoContainer(DropObjectsRequest dropRequest, Element droppedElement, int nodeVISUALID) {
+	protected Command dropChildNodeWithContainmentLink(DropObjectsRequest dropRequest, Element droppedElement, int nodeVISUALID) {
 		ContainmentHelper containmentHelper = new ContainmentHelper(getEditingDomain());
 		CompositeCommand cc = new CompositeCommand(CONTAINED_CLASS_DROP_TO_COMPARTMENT);
 		cc = getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), droppedElement);
