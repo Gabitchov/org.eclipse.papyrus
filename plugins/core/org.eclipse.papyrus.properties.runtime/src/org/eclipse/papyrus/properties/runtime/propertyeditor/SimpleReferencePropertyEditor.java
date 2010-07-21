@@ -202,7 +202,10 @@ public class SimpleReferencePropertyEditor extends AbstractPropertyEditor {
 	@Override
 	protected Control createLabel(Composite parent) {
 		GridData data = new GridData(SWT.LEFT, SWT.CENTER, false, false, (getColumnNumber() == 3) ? 3 : 1, 1);
-		data.widthHint = 80;
+		String text = getDescriptor().getLabel();
+		int size = computeLabelSize(parent, text);
+		data.minimumWidth = Math.max(LABEL_MAX_WIDTH, size);
+		data.widthHint = data.minimumWidth;
 		return createLabel(parent, data);
 	}
 

@@ -17,6 +17,8 @@ import org.eclipse.papyrus.properties.runtime.controller.PropertyEditorControlle
 import org.eclipse.papyrus.properties.runtime.propertyeditor.descriptor.IPropertyEditorDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
+import org.eclipse.swt.graphics.FontMetrics;
+import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -29,6 +31,12 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
  * Abstract class for all proprty editors
  */
 public abstract class AbstractPropertyEditor implements IDisposable {
+
+	/** margin added to the computed text */
+	protected static final int TEXT_MARGIN = 5;
+	
+	/** margin added to the computed text */
+	protected static final int LABEL_MAX_WIDTH= 100;
 
 	/** controller that manages this editor */
 	private PropertyEditorController controller;
@@ -232,9 +240,24 @@ public abstract class AbstractPropertyEditor implements IDisposable {
 	 */
 	protected Control createLabel(Composite parent) {
 		GridData data = new GridData(SWT.FILL, SWT.CENTER, false, false);
-		data.minimumWidth = 80;
-		data.widthHint = 80;
+		String text = getDescriptor().getLabel();
+		int size = computeLabelSize(parent, text);
+		data.minimumWidth = Math.max(LABEL_MAX_WIDTH, size);
+		data.widthHint = data.minimumWidth;
 		return createLabel(parent, data);
+	}
+
+	/**
+	 * Computes the size of the given label
+	 * @param text the text to compute
+	 * @return the approximate size of the text
+	 */
+	protected int computeLabelSize(Composite parent, String text) {
+		GC gc = new GC (parent);
+        FontMetrics fm = gc.getFontMetrics ();
+        int width = text.length() * fm.getAverageCharWidth ();
+        gc.dispose ();
+        return width;
 	}
 
 	/**
