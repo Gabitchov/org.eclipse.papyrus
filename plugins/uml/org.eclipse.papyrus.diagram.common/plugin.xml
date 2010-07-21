@@ -224,21 +224,20 @@
 <extension
       point="org.eclipse.ui.commands">
    <command
-         categoryId="org.eclipse.papyrus.core.papyrusEditor"
+         categoryId="org.eclipse.papyrus.editor.category"
          defaultHandler="org.eclipse.papyrus.diagram.common.actions.LoadResourceAction"
          id="org.eclipse.papyrus.diagram.commands.LoadResourceAction"
          name="Load Resource">
    </command>
    <command
-         category="Papyrus"
-         categoryId="org.eclipse.papyrus.core.papyrusEditor"
+         categoryId="org.eclipse.papyrus.editor.category"
          defaultHandler="org.eclipse.papyrus.diagram.common.handlers.PasteWithModelHandler"
          description="Paste content in a diagram (graphic+ semantic)"
          id="org.eclipse.papyrus.diagram.common.commands.PasteWithModelCommand"
          name="PasteWithModel">
    </command>
    <command
-         category="Papyrus"
+         categoryId="org.eclipse.papyrus.editor.category"
          defaultHandler="org.eclipse.papyrus.diagram.common.handlers.AlignementHandler"
          description="Call the alignment action"
          id="org.eclipse.papyrus.diagram.common.commands.AlignmentCommand"
@@ -250,7 +249,7 @@
       </commandParameter>
    </command>
    <command
-         category="Papyrus"
+         categoryId="org.eclipse.papyrus.editor.category"
          defaultHandler="org.eclipse.papyrus.diagram.common.handlers.RoutingHandler"
          description="Call the routing action"
          id="org.eclipse.papyrus.diagram.common.commands.RoutingCommand"
@@ -262,23 +261,20 @@
       </commandParameter>
    </command>
    <command
-         category="Papyrus"
-         categoryId="org.eclipse.papyrus.core.papyrusEditor"
+         categoryId="org.eclipse.papyrus.editor.category"
          defaultHandler="org.eclipse.papyrus.diagram.common.handlers.DeleteFromModelHandler"
          description="Call the delete from model action"
          id="org.eclipse.papyrus.diagram.common.commands.DeleteFromModelCommand"
          name="Delete From Model Command">
    </command>
    <command
-         category="Papyrus"
-         categoryId="org.eclipse.papyrus.core.papyrusEditor"
+         categoryId="org.eclipse.papyrus.editor.category"
          description="Call the delete from diagram action"
          id="org.eclipse.papyrus.diagram.common.commands.DeleteFromDiagramCommand"
          name="Delete From Diagram Command">
    </command>
    <command
-         category="Papyrus"
-         categoryId="org.eclipse.papyrus.core.papyrusEditor"
+         categoryId="org.eclipse.papyrus.editor.category"
          description="Call the Show/Hide Compartment Action"
          id="org.eclipse.papyrus.diagram.common.commands.ShowHideCompartmentCommand"
          name="Show/Hide Compartment Command">

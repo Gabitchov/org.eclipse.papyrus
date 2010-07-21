@@ -107,7 +107,7 @@
             <annotation>
                <documentation>
                   The priority of the provider. It can be one of the following values:
-&lt;Lowest, Low, Medium, High, Highest&gt;. Consideration of dependencies has to be done when choosing the priority. A provider that adds contributions to paths (menus | groups) contributed by other providers has to have a higher priority than them. Similarly, a provider that contributes palette entries that have been predefined by other providers has to have a higher priority than them.
+[Lowest, Low, Medium, High, Highest]. Consideration of dependencies has to be done when choosing the priority. A provider that adds contributions to paths (menus | groups) contributed by other providers has to have a higher priority than them. Similarly, a provider that contributes palette entries that have been predefined by other providers has to have a higher priority than them.
                </documentation>
             </annotation>
             <simpleType>
