@@ -19,6 +19,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
@@ -27,7 +28,7 @@ import org.eclipse.papyrus.diagram.clazz.custom.command.CAssociationReorientComm
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationClass2EditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.diagram.clazz.providers.UMLElementTypes;
-import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGEFCommandWrapper;
+import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
 
@@ -65,10 +66,11 @@ public class CustomAssociationItemSemanticEditPolicy extends org.eclipse.papyrus
 	 */
 	@Override
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
+		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
+		cmd.setTransactionNestingEnabled(true);
 		List<EObject> todestroy = new ArrayList<EObject>();
 		EObject mainObjectToDelete = req.getElementToDestroy();
 		todestroy.add(mainObjectToDelete);
-
 		if(mainObjectToDelete instanceof Association) {
 			// check end properties. If they do not belong to the association, they should be deleted also
 			Association association = (Association)mainObjectToDelete;
@@ -78,9 +80,8 @@ public class CustomAssociationItemSemanticEditPolicy extends org.eclipse.papyrus
 				}
 			}
 		}
-
-		return new EMFtoGEFCommandWrapper(new DeleteCommand(getEditingDomain(), todestroy));
-		//return getGEFWrapper(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
+		cmd.add(new EMFtoGMFCommandWrapper(new DeleteCommand(getEditingDomain(), todestroy)));
+		return getGEFWrapper(cmd.reduce());
 	}
 
 	/**
