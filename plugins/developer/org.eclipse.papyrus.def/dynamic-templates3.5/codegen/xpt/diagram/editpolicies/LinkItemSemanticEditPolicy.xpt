@@ -48,9 +48,13 @@ public class «itemSemanticEditPolicyClassName» extends «diagram.getBaseItemSe
 «DEFINE getDestroySemanticCommand(gmfgen::GenLink genLink) FOR gmfgen::TypeLinkModelFacet-»
 	«EXPAND xpt::Common::generatedMemberComment»
 	protected org.eclipse.gef.commands.Command getDestroyElementCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest req) {
-		java.util.ArrayList todestroy=new java.util.ArrayList();
+		org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand cmd = new org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand(getEditingDomain(), null);
+		cmd.setTransactionNestingEnabled(true);
+		java.util.List<org.eclipse.emf.ecore.EObject> todestroy=new java.util.ArrayList<org.eclipse.emf.ecore.EObject>();
 		todestroy.add(req.getElementToDestroy());
-		return new org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGEFCommandWrapper(new org.eclipse.emf.edit.command.DeleteCommand(getEditingDomain(),todestroy ));
+		//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
+		cmd.add(new org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper(new org.eclipse.emf.edit.command.DeleteCommand(getEditingDomain(),todestroy )));
+		return getGEFWrapper(cmd.reduce());
 		//return getGEFWrapper(«EXPAND impl::diagram::commands::DeleteLinkCommand::newDeleteLinkWithClassCommand(genLink, 'req')»);
 	}
 «ENDDEFINE»

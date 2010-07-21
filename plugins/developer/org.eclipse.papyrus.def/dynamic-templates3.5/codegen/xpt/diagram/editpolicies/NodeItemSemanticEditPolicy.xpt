@@ -45,10 +45,10 @@ public class «itemSemanticEditPolicyClassName» extends «getDiagram().getBaseI
 «DEFINE getDestroyElementCommand FOR gmfgen::GenNode-»
 «EXPAND xpt::Common::generatedMemberComment»
 protected org.eclipse.gef.commands.Command getDestroyElementCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest req) {
-	org.eclipse.gmf.runtime.notation.View view = (org.eclipse.gmf.runtime.notation.View) getHost().getModel();
+ 	org.eclipse.gmf.runtime.notation.View view = (org.eclipse.gmf.runtime.notation.View) getHost().getModel();
 	org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand cmd = new org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand(getEditingDomain(), null);
-	cmd.setTransactionNestingEnabled(false);
-	«EXPAND destroyEdges('view')-»
+	cmd.setTransactionNestingEnabled(true);
+	«REM»«EXPAND destroyEdges('view')-»«ENDREM»
 	org.eclipse.emf.ecore.EAnnotation annotation = view.getEAnnotation("Shortcut");«EXPAND xpt::Common::nonNLS»
 	if (annotation == null) {
 		// there are indirectly referenced children, need extra commands: «childNodes->union(compartments.childNodes->asBag())->exists(not isDirectlyOwned(self))»
@@ -57,7 +57,7 @@ protected org.eclipse.gef.commands.Command getDestroyElementCommand(org.eclipse.
 «ENDIF-»
 		addDestroyShortcutsCommand(cmd, view);
 		// delete host element
-		java.util.ArrayList todestroy=new java.util.ArrayList();
+		java.util.List<org.eclipse.emf.ecore.EObject> todestroy=new java.util.ArrayList<org.eclipse.emf.ecore.EObject>();
 		todestroy.add(req.getElementToDestroy());
 		//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
 		cmd.add(new org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper(new org.eclipse.emf.edit.command.DeleteCommand(getEditingDomain(),todestroy )));
