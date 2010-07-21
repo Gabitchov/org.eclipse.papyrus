@@ -33,8 +33,6 @@ import org.eclipse.papyrus.profile.tree.objects.AppliedStereotypePropertyTreeObj
 import org.eclipse.papyrus.profile.tree.objects.AppliedStereotypeTreeObject;
 import org.eclipse.papyrus.profile.tree.objects.StereotypedElementTreeObject;
 import org.eclipse.papyrus.profile.tree.objects.ValueTreeObject;
-import org.eclipse.papyrus.profile.ui.listeners.DoubleClickListener;
-import org.eclipse.papyrus.profile.ui.panels.AppliedStereotypePanel;
 import org.eclipse.papyrus.profile.ui.section.AppliedStereotypePropertyEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
@@ -62,23 +60,6 @@ public class PropertyComposite extends DecoratedTreeComposite {
 	protected TransactionalEditingDomain domain;
 
 	/**
-	 * The parent panel.
-	 */
-	protected AppliedStereotypePanel parentPanel;
-
-	/**
-	 * Creates a new PropertyComposite.
-	 * 
-	 * @param parent
-	 *        the parent StereotypePanel
-	 */
-	public PropertyComposite(AppliedStereotypePanel parent) {
-		super(parent, SWT.NONE, "Property values", false);
-
-		parentPanel = parent;
-	}
-
-	/**
 	 * Creates a new PropertyComposite.
 	 * 
 	 * @param parent
@@ -88,10 +69,7 @@ public class PropertyComposite extends DecoratedTreeComposite {
 		super(parent, SWT.NONE, "Property values", false);
 	}
 
-	protected AppliedStereotypePanel getParentPanel() {
-		return parentPanel;
-	}
-
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -114,9 +92,6 @@ public class PropertyComposite extends DecoratedTreeComposite {
 		// List of applied profiles
 		treeViewer.setContentProvider(new ProfileElementContentProvider());
 		treeViewer.setLabelProvider(new ProfileElementLabelProvider());
-
-		if(parentPanel != null)
-			getTree().addListener(SWT.MouseDoubleClick, new DoubleClickListener(parentPanel, treeViewer));
 	}
 
 	/**
@@ -229,32 +204,27 @@ public class PropertyComposite extends DecoratedTreeComposite {
 			newValue = AppliedStereotypePropertyEditor.getNewValueForProperty(this.getShell(), property, selectedElt, type, currentPropertyValues);
 			// new value entered ?
 			if(newValue == null) {
-				// Refresh && quit
-				if(parentPanel != null)
-					parentPanel.refresh();
+				// quit
 				return;
 			}
 
 			// Update property value(s)
 			if(property.isMultivalued()) {
-				// If newValue was enter, add to tempValues (future values list)
-				currentPropertyValues.add(newValue);
+				// If newValue was entered, add to tempValues (future values list)
+				if (!currentPropertyValues.contains(newValue)) {
+					currentPropertyValues.add(newValue);
+					// Update tree && Refresh
+					pTO.addChild(ValueTreeObject.createInstance(pTO, newValue, getDomain()));
+				}
 				setPropertiesValue(selectedElt, selectedSt, property, currentPropertyValues);
-				// otherwise
-			} else {
+			}
+			else {
+				// otherwise ([0..1] case)
 				setPropertiesValue(selectedElt, selectedSt, property, newValue);
+				pTO.addChild(ValueTreeObject.createInstance(pTO, newValue, getDomain()));
 			}
-
-			// Update tree && Refresh
-			pTO.addChild(ValueTreeObject.createInstance(pTO, newValue, getDomain()));
-			if(parentPanel != null)
-				parentPanel.refresh();
-			// Force model change
-			if(parentPanel != null) {
-				// Util.touchModel(selectedElt);
-			}
-
-		} else {
+		}
+		else {
 			Message.warning("Upper multiplicity of " + property.getName() + " is " + property.getUpper());
 		}
 	}
@@ -318,10 +288,8 @@ public class PropertyComposite extends DecoratedTreeComposite {
 			} else {
 				Message.warning("Lower multiplicity of " + property.getName() + " is " + lower);
 			}
-
+			pTO.removeChild(vTO);
 		}
-		if(parentPanel != null)
-			parentPanel.refresh();
 	}
 
 	/**
@@ -346,8 +314,6 @@ public class PropertyComposite extends DecoratedTreeComposite {
 			int index = getTree().indexOf(items[i]);
 			vTO.moveMeUp(index);
 		}
-		if(parentPanel != null)
-			parentPanel.refresh();
 	}
 
 	/**
@@ -379,9 +345,6 @@ public class PropertyComposite extends DecoratedTreeComposite {
 			int index = getTree().indexOf(items[nbrOfSelection - 1 - i]);
 			vTO.moveMeDown(index);
 		}
-
-		if(parentPanel != null)
-			parentPanel.refresh();
 	}
 
 	/**

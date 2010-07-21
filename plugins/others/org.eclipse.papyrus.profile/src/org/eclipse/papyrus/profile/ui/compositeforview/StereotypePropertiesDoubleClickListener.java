@@ -16,7 +16,6 @@ package org.eclipse.papyrus.profile.ui.compositeforview;
 
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.profile.ui.listeners.DoubleClickListener;
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TreeItem;
 
 // TODO: Auto-generated Javadoc
@@ -24,11 +23,6 @@ import org.eclipse.swt.widgets.TreeItem;
  * The Class StereotypePropertiesDoubleClickListener.
  */
 public class StereotypePropertiesDoubleClickListener extends DoubleClickListener {
-
-	/**
-	 * The parent.
-	 */
-	protected Composite parent;
 
 	/**
 	 * The stereotype composite.
@@ -52,11 +46,10 @@ public class StereotypePropertiesDoubleClickListener extends DoubleClickListener
 	 * @param parent
 	 *        the parent
 	 */
-	public StereotypePropertiesDoubleClickListener(Composite parent, TreeViewer treeViewer, AppliedStereotypeCompositeWithView stereotypeComposite,
+	public StereotypePropertiesDoubleClickListener(TreeViewer treeViewer, AppliedStereotypeCompositeWithView stereotypeComposite,
 			AppliedStereotypePropertyCompositeWithView propertyComposite) {
 		super();
 		this.treeViewer = treeViewer;
-		this.parent = parent;
 		this.stereotypeComposite = stereotypeComposite;
 		this.propertyComposite = propertyComposite;
 	}

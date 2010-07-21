@@ -17,12 +17,10 @@ package org.eclipse.papyrus.profile.ui.compositeforview;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.resource.JFaceColors;
-import org.eclipse.papyrus.profile.tree.objects.AppliedStereotypePropertyTreeObject;
 import org.eclipse.papyrus.umlutils.ui.helper.AppliedStereotypeHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.uml2.uml.Element;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -61,8 +59,7 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 	 * 
 	 */
 	protected void touchModel() {
-		final AppliedStereotypePropertyTreeObject pTO = (AppliedStereotypePropertyTreeObject)treeViewer.getInput();
-		final Element stereotypedElement = pTO.getParent().getParent().getElement();
+
 		// CommandSupport.exec ("update stereotype", /* command)
 		if (currentView == null) {
 			return;
@@ -102,7 +99,6 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 		super.addButtonPressed();
 		// stereotypeComposite.refresh();
 		touchModel();
-
 		stereotypeComposite.refreshTreeViewer ();
 		}
 
@@ -122,8 +118,8 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 	@Override
 	public void upButtonPressed() {
 		super.upButtonPressed();
+		touchModel();
 		stereotypeComposite.refreshTreeViewer ();
-		// touchModel();
 	}
 
 	/**
@@ -142,7 +138,7 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 	@Override
 	protected void createPropTree() {
 		super.createPropTree();
-		getTree().addListener(SWT.MouseDoubleClick, new StereotypePropertiesDoubleClickListener(getParent(), treeViewer, stereotypeComposite, this));
+		getTree().addListener(SWT.MouseDoubleClick, new StereotypePropertiesDoubleClickListener (treeViewer, stereotypeComposite, this));
 	}
 
 	/**

@@ -63,6 +63,7 @@ public class ProfileElementContentProvider implements IStructuredContentProvider
 	public TreeObject[] getElements(Object parent) {
 		if((root == null) && (parent instanceof StereotypedElementTreeObject)) {
 			root = (StereotypedElementTreeObject)parent;
+			// root.recreateChildren ();
 			return getChildren(root);
 		}
 		return getChildren(parent);

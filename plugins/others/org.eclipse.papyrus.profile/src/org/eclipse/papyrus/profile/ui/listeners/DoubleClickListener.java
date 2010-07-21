@@ -17,7 +17,6 @@ package org.eclipse.papyrus.profile.ui.listeners;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.profile.tree.objects.AppliedStereotypePropertyTreeObject;
 import org.eclipse.papyrus.profile.tree.objects.ValueTreeObject;
-import org.eclipse.papyrus.profile.ui.panels.AbstractPanel;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.TreeItem;
@@ -33,24 +32,6 @@ public class DoubleClickListener implements Listener {
 	 * The tree viewer.
 	 */
 	protected TreeViewer treeViewer;
-
-	/**
-	 * The parent.
-	 */
-	private AbstractPanel parent;
-
-	/**
-	 * The Constructor.
-	 * 
-	 * @param treeViewer
-	 *        the tree viewer
-	 * @param parent
-	 *        the parent
-	 */
-	public DoubleClickListener(AbstractPanel parent, TreeViewer treeViewer) {
-		this.treeViewer = treeViewer;
-		this.parent = parent;
-	}
 
 	/**
 	 * 
@@ -105,9 +86,6 @@ public class DoubleClickListener implements Listener {
 		if(object instanceof ValueTreeObject) {
 			((ValueTreeObject)object).editMe();
 		}
-
-		if(parent != null)
-			parent.refresh();
 	}
 
 	/**
