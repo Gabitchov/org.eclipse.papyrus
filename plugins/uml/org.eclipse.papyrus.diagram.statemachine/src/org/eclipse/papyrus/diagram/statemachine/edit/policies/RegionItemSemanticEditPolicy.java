@@ -1,5 +1,6 @@
 package org.eclipse.papyrus.diagram.statemachine.edit.policies;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EAnnotation;
@@ -12,6 +13,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.RegionCompartmentEditPart;
@@ -178,7 +180,12 @@ public class RegionItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy 
 			addDestroyChildNodesCommand(cmd);
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
-			cmd.add(new DestroyElementCommand(req));
+			ArrayList todestroy = new ArrayList();
+			todestroy.add(req.getElementToDestroy());
+			//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
+			cmd.add(new EMFtoGMFCommandWrapper(
+					new org.eclipse.emf.edit.command.DeleteCommand(
+							getEditingDomain(), todestroy)));
 		} else {
 			cmd.add(new DeleteCommand(getEditingDomain(), view));
 		}

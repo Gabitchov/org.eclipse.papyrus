@@ -21,10 +21,10 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineCompartme
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateNameEditPart;
-import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionGuardEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionNameEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionStereotypeEditPart;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -106,9 +106,6 @@ public class UMLVisualIDRegistry {
 			if (StateNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if (StateStereotypeEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
 			break;
 		case RegionCompartmentEditPart.VISUAL_ID:
 			if (PseudostateEditPart.VISUAL_ID == nodeVisualID) {
@@ -131,6 +128,9 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if (TransitionGuardEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (TransitionStereotypeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -277,6 +277,9 @@ public class UMLVisualIDRegistry {
 		viewInfo.getChildren().add(labelInfo);
 
 		labelInfo = new BaseViewInfo(7002, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+		labelInfo = new BaseViewInfo(7003, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
 		viewInfo = new BaseViewInfo(3000, ViewInfo.Node, "Region");

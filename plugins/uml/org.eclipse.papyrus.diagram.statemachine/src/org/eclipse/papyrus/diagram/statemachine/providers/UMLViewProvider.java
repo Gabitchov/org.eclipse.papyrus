@@ -54,10 +54,10 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineCompartme
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateNameEditPart;
-import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionGuardEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionNameEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
@@ -321,14 +321,6 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 
 		Node label6001 = createLabel(node,
 				UMLVisualIDRegistry.getType(StateNameEditPart.VISUAL_ID));
-		Node label6002 = createLabel(node,
-				UMLVisualIDRegistry.getType(StateStereotypeEditPart.VISUAL_ID));
-		label6002.setLayoutConstraint(NotationFactory.eINSTANCE
-				.createLocation());
-
-		Location location6002 = (Location) label6002.getLayoutConstraint();
-		location6002.setX(0);
-		location6002.setY(5);
 		return node;
 	}
 
@@ -412,6 +404,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				UMLVisualIDRegistry.getType(TransitionGuardEditPart.VISUAL_ID));
 		label7002.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
+		Node label7003 = createLabel(edge,
+				UMLVisualIDRegistry
+						.getType(TransitionStereotypeEditPart.VISUAL_ID));
+		label7003.setLayoutConstraint(NotationFactory.eINSTANCE
+				.createLocation());
+		Location location7003 = (Location) label7003.getLayoutConstraint();
+		location7003.setX(0);
+		location7003.setY(60);
 		return edge;
 	}
 

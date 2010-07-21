@@ -41,6 +41,7 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.diagram.common.directedit.MultilineLabelDirectEditManager;
+import org.eclipse.papyrus.diagram.common.editparts.AbstractLabelEditPart;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.IDirectEdition;
@@ -72,7 +73,7 @@ import org.eclipse.ui.PlatformUI;
  */
 public class FinalStateStereotypeEditPart
 
-extends LabelEditPart
+extends AbstractLabelEditPart
 
 implements ITextAwareEditPart, IBorderItemEditPart {
 

@@ -216,9 +216,6 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case StateNameEditPart.VISUAL_ID:
 				return new StateNameEditPart(view);
 
-			case StateStereotypeEditPart.VISUAL_ID:
-				return new StateStereotypeEditPart(view);
-
 			case RegionCompartmentEditPart.VISUAL_ID:
 				return new RegionCompartmentEditPart(view);
 
@@ -233,6 +230,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 
 			case TransitionGuardEditPart.VISUAL_ID:
 				return new TransitionGuardEditPart(view);
+
+			case TransitionStereotypeEditPart.VISUAL_ID:
+				return new TransitionStereotypeEditPart(view);
 
 			}
 		}

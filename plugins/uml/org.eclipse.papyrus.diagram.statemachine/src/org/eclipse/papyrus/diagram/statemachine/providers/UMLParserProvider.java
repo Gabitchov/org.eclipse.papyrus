@@ -20,9 +20,9 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateNameEditPa
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateNameEditPart;
-import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionGuardEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionNameEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.TransitionStereotypeEditPart;
 import org.eclipse.papyrus.diagram.statemachine.parsers.MessageFormatParser;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -107,11 +107,6 @@ public class UMLParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private AppliedStereotypeParser stateName_6002Parser;
-
-	/**
-	 * @generated
-	 */
 	private IParser transitionName_7001Parser;
 
 	/**
@@ -174,12 +169,12 @@ public class UMLParserProvider extends AbstractProvider implements
 			return getFinalStateName_5002Parser();
 		case StateNameEditPart.VISUAL_ID:
 			return getStateName_6001Parser();
-		case StateStereotypeEditPart.VISUAL_ID:
-			return getStateName_6002Parser();
 		case TransitionNameEditPart.VISUAL_ID:
 			return getTransitionName_7001Parser();
 		case TransitionGuardEditPart.VISUAL_ID:
 			return getTransitionGuard_7002Parser();
+		case TransitionStereotypeEditPart.VISUAL_ID:
+			return getTransitionName_7003Parser();
 		}
 		return null;
 	}
@@ -236,21 +231,26 @@ public class UMLParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
-	private IParser getStateName_6002Parser() {
-		if (stateName_6002Parser == null) {
-			stateName_6002Parser = new AppliedStereotypeParser();
-		}
-		return stateName_6002Parser;
-	}
-
-	/**
-	 * @generated
-	 */
 	private IParser getTransitionGuard_7002Parser() {
 		if (transitionGuard_7002Parser == null) {
 			transitionGuard_7002Parser = new TransitionPropertiesParser();
 		}
 		return transitionGuard_7002Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private AppliedStereotypeParser transitionName_7003Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getTransitionName_7003Parser() {
+		if (transitionName_7003Parser == null) {
+			transitionName_7003Parser = new AppliedStereotypeParser();
+		}
+		return transitionName_7003Parser;
 	}
 
 	/**
