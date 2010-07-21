@@ -1296,7 +1296,7 @@ public class UMLElementTypes {
 	 */
 	public static IElementType getElementType(int visualID) {
 		switch(visualID) {
-		case PackageEditPart.VISUAL_ID:
+		case CompositeStructureDiagramEditPart.VISUAL_ID:
 			return Package_1000;
 		case ActivityCompositeEditPart.VISUAL_ID:
 			return Activity_2060;

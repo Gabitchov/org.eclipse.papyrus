@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.diagram.composite.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.diagram.composite.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.CompositeStructureDiagramEditPart;
 import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
@@ -29,7 +29,7 @@ public class ConstraintPreferencePage extends AbstractPapyrusNodePreferencePage 
 	 */
 	public ConstraintPreferencePage() {
 		super();
-		setPreferenceKey(PackageEditPart.MODEL_ID + "_Constraint");
+		setPreferenceKey(CompositeStructureDiagramEditPart.MODEL_ID + "_Constraint");
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class ConstraintPreferencePage extends AbstractPapyrusNodePreferencePage 
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 
-		String key = PackageEditPart.MODEL_ID + "_Constraint";
+		String key = CompositeStructureDiagramEditPart.MODEL_ID + "_Constraint";
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 40);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 40);
 

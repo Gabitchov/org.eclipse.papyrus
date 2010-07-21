@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.diagram.composite.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.diagram.composite.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.CompositeStructureDiagramEditPart;
 import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
@@ -29,7 +29,7 @@ public class InformationItemPreferencePage extends AbstractPapyrusNodePreference
 	 */
 	public InformationItemPreferencePage() {
 		super();
-		setPreferenceKey(PackageEditPart.MODEL_ID + "_InformationItem");
+		setPreferenceKey(CompositeStructureDiagramEditPart.MODEL_ID + "_InformationItem");
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class InformationItemPreferencePage extends AbstractPapyrusNodePreference
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 
-		String key = PackageEditPart.MODEL_ID + "_InformationItem";
+		String key = CompositeStructureDiagramEditPart.MODEL_ID + "_InformationItem";
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 80);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 40);
 

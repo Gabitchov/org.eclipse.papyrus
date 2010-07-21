@@ -183,7 +183,7 @@
       <?gmfgen generated="true"?>
       <modelingAssistantProvider class="org.eclipse.papyrus.diagram.composite.providers.UMLModelingAssistantProvider">
          <Priority name="Lowest"/>
-         <object class="org.eclipse.papyrus.diagram.composite.edit.parts.PackageEditPart" id="Package_1000"/>
+         <object class="org.eclipse.papyrus.diagram.composite.edit.parts.CompositeStructureDiagramEditPart" id="Package_1000"/>
          <object class="org.eclipse.papyrus.diagram.composite.edit.parts.ActivityCompositeEditPart" id="Activity_2060"/>
          <object class="org.eclipse.papyrus.diagram.composite.edit.parts.InteractionCompositeEditPart" id="Interaction_2061"/>
          <object class="org.eclipse.papyrus.diagram.composite.edit.parts.ProtocolStateMachineCompositeEditPart" id="ProtocolStateMachine_2062"/>
@@ -1690,7 +1690,7 @@
                <and>
                   <with variable="activePartId"><equals value="org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorID"/></with>
                   <with variable="selection"><iterate ifEmpty="false"> 
-                     <instanceof value="org.eclipse.papyrus.diagram.composite.edit.parts.PackageEditPart"/>
+                     <instanceof value="org.eclipse.papyrus.diagram.composite.edit.parts.CompositeStructureDiagramEditPart"/>
                   </iterate></with>
                </and>
             </visibleWhen>

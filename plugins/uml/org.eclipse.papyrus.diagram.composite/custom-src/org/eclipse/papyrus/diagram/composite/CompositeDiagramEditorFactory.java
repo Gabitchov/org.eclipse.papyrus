@@ -14,11 +14,11 @@
 package org.eclipse.papyrus.diagram.composite;
 
 import org.eclipse.papyrus.core.adaptor.gmf.GmfEditorFactory;
-import org.eclipse.papyrus.diagram.composite.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.CompositeStructureDiagramEditPart;
 
 public class CompositeDiagramEditorFactory extends GmfEditorFactory {
 
 	public CompositeDiagramEditorFactory() {
-		super(UmlCompositeDiagramForMultiEditor.class, PackageEditPart.MODEL_ID);
+		super(UmlCompositeDiagramForMultiEditor.class, CompositeStructureDiagramEditPart.MODEL_ID);
 	}
 }

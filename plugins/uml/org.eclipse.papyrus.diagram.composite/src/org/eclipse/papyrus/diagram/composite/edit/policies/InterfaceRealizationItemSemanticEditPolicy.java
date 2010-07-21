@@ -13,12 +13,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.composite.edit.policies;
 
+import java.util.ArrayList;
+
+import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.papyrus.diagram.common.command.wrappers.EMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.diagram.composite.edit.commands.AbstractionCreateCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.AbstractionReorientCommand;
 import org.eclipse.papyrus.diagram.composite.edit.commands.CommentAnnotatedElementCreateCommand;
@@ -82,7 +85,10 @@ public class InterfaceRealizationItemSemanticEditPolicy extends UMLBaseItemSeman
 	 * @generated
 	 */
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
-		return getGEFWrapper(new DestroyElementCommand(req));
+		ArrayList todestroy = new ArrayList();
+		todestroy.add(req.getElementToDestroy());
+		return new EMFtoGEFCommandWrapper(new DeleteCommand(getEditingDomain(), todestroy));
+		//return getGEFWrapper(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
 	}
 
 	/**

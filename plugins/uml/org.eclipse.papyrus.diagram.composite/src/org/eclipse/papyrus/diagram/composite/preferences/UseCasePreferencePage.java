@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.diagram.composite.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.diagram.composite.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.CompositeStructureDiagramEditPart;
 import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
@@ -29,7 +29,7 @@ public class UseCasePreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	public UseCasePreferencePage() {
 		super();
-		setPreferenceKey(PackageEditPart.MODEL_ID + "_UseCase");
+		setPreferenceKey(CompositeStructureDiagramEditPart.MODEL_ID + "_UseCase");
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class UseCasePreferencePage extends AbstractPapyrusNodePreferencePage {
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 
-		String key = PackageEditPart.MODEL_ID + "_UseCase";
+		String key = CompositeStructureDiagramEditPart.MODEL_ID + "_UseCase";
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 40);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 40);
 

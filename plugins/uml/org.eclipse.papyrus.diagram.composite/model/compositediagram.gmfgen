@@ -14,9 +14,9 @@
       copyrightText="">
     <diagram
         visualID="1000"
-        editPartClassName="PackageEditPart"
-        itemSemanticEditPolicyClassName="PackageItemSemanticEditPolicy"
-        canonicalEditPolicyClassName="PackageCanonicalEditPolicy"
+        editPartClassName="CompositeStructureDiagramEditPart"
+        itemSemanticEditPolicyClassName="CompositeStructureDiagramItemSemanticEditPolicy"
+        canonicalEditPolicyClassName="CompositeStructureDiagramCanonicalEditPolicy"
         iconProviderPriority="Low"
         baseEditHelperClassName="UMLBaseEditHelper"
         creationWizardIconPath="icons/obj16/Diagram_CompositeStructure.gif"

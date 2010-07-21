@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.diagram.composite.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.diagram.composite.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.CompositeStructureDiagramEditPart;
 import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
@@ -29,7 +29,7 @@ public class EnumerationLiteralPreferencePage extends AbstractPapyrusNodePrefere
 	 */
 	public EnumerationLiteralPreferencePage() {
 		super();
-		setPreferenceKey(PackageEditPart.MODEL_ID + "_EnumerationLiteral");
+		setPreferenceKey(CompositeStructureDiagramEditPart.MODEL_ID + "_EnumerationLiteral");
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class EnumerationLiteralPreferencePage extends AbstractPapyrusNodePrefere
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 
-		String key = PackageEditPart.MODEL_ID + "_EnumerationLiteral";
+		String key = CompositeStructureDiagramEditPart.MODEL_ID + "_EnumerationLiteral";
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 40);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 40);
 

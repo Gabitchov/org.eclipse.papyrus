@@ -144,7 +144,7 @@ public class RoleBindingAppliedStereotypeEditPart extends LabelEditPart implemen
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new PackageEditPart.LinkLabelDragPolicy());
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new CompositeStructureDiagramEditPart.LinkLabelDragPolicy());
 	}
 
 	/**

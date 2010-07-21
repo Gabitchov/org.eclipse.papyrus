@@ -121,7 +121,7 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLNodeDescriptor> getSemanticChildren(View view) {
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
-		case PackageEditPart.VISUAL_ID:
+		case CompositeStructureDiagramEditPart.VISUAL_ID:
 			return getPackage_1000SemanticChildren(view);
 		case ActivityCompositeEditPart.VISUAL_ID:
 			return getActivity_2060SemanticChildren(view);
@@ -5290,7 +5290,7 @@ public class UMLDiagramUpdater {
 	 */
 	public static List<UMLLinkDescriptor> getContainedLinks(View view) {
 		switch(UMLVisualIDRegistry.getVisualID(view)) {
-		case PackageEditPart.VISUAL_ID:
+		case CompositeStructureDiagramEditPart.VISUAL_ID:
 			return getPackage_1000ContainedLinks(view);
 		case ActivityCompositeEditPart.VISUAL_ID:
 			return getActivity_2060ContainedLinks(view);

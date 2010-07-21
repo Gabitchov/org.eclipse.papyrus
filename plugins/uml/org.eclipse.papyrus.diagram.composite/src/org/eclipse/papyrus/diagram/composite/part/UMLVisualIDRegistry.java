@@ -47,8 +47,8 @@ public class UMLVisualIDRegistry {
 	 */
 	public static int getVisualID(View view) {
 		if(view instanceof Diagram) {
-			if(PackageEditPart.MODEL_ID.equals(view.getType())) {
-				return PackageEditPart.VISUAL_ID;
+			if(CompositeStructureDiagramEditPart.MODEL_ID.equals(view.getType())) {
+				return CompositeStructureDiagramEditPart.VISUAL_ID;
 			} else {
 				return -1;
 			}
@@ -100,7 +100,7 @@ public class UMLVisualIDRegistry {
 			return -1;
 		}
 		if(UMLPackage.eINSTANCE.getPackage().isSuperTypeOf(domainElement.eClass()) && isDiagram((Package)domainElement)) {
-			return PackageEditPart.VISUAL_ID;
+			return CompositeStructureDiagramEditPart.VISUAL_ID;
 		}
 
 		return -1;
@@ -114,21 +114,21 @@ public class UMLVisualIDRegistry {
 			return -1;
 		}
 		String containerModelID = org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry.getModelID(containerView);
-		if(!PackageEditPart.MODEL_ID.equals(containerModelID)) {
+		if(!CompositeStructureDiagramEditPart.MODEL_ID.equals(containerModelID)) {
 			return -1;
 		}
 		int containerVisualID;
-		if(PackageEditPart.MODEL_ID.equals(containerModelID)) {
+		if(CompositeStructureDiagramEditPart.MODEL_ID.equals(containerModelID)) {
 			containerVisualID = org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry.getVisualID(containerView);
 		} else {
 			if(containerView instanceof Diagram) {
-				containerVisualID = PackageEditPart.VISUAL_ID;
+				containerVisualID = CompositeStructureDiagramEditPart.VISUAL_ID;
 			} else {
 				return -1;
 			}
 		}
 		switch(containerVisualID) {
-		case PackageEditPart.VISUAL_ID:
+		case CompositeStructureDiagramEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getActivity().isSuperTypeOf(domainElement.eClass())
 
 			) {
@@ -4347,21 +4347,21 @@ public class UMLVisualIDRegistry {
 	 */
 	public static boolean canCreateNode(View containerView, int nodeVisualID) {
 		String containerModelID = org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry.getModelID(containerView);
-		if(!PackageEditPart.MODEL_ID.equals(containerModelID)) {
+		if(!CompositeStructureDiagramEditPart.MODEL_ID.equals(containerModelID)) {
 			return false;
 		}
 		int containerVisualID;
-		if(PackageEditPart.MODEL_ID.equals(containerModelID)) {
+		if(CompositeStructureDiagramEditPart.MODEL_ID.equals(containerModelID)) {
 			containerVisualID = org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry.getVisualID(containerView);
 		} else {
 			if(containerView instanceof Diagram) {
-				containerVisualID = PackageEditPart.VISUAL_ID;
+				containerVisualID = CompositeStructureDiagramEditPart.VISUAL_ID;
 			} else {
 				return false;
 			}
 		}
 		switch(containerVisualID) {
-		case PackageEditPart.VISUAL_ID:
+		case CompositeStructureDiagramEditPart.VISUAL_ID:
 			if(ActivityCompositeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}

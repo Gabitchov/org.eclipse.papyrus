@@ -47,7 +47,7 @@ public class UMLModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart)host.getAdapter(IGraphicalEditPart.class);
-		if(editPart instanceof PackageEditPart) {
+		if(editPart instanceof CompositeStructureDiagramEditPart) {
 			ArrayList<IElementType> types = new ArrayList<IElementType>(55);
 			types.add(UMLElementTypes.Activity_2060);
 			types.add(UMLElementTypes.Interaction_2061);

@@ -28,12 +28,12 @@ public class CustomDragDropEditPolicy extends CustomDiagramDragDropEditPolicy {
 		containerView.eClass();
 
 		// Fill the semantic hint during the drop
-		if(containerView instanceof Diagram) {
+		if(containerView instanceof Diagram) { // Top Nodes
 			if(domainElement instanceof org.eclipse.uml2.uml.Class) {
 				semanticHint = InternalBlockDiagramElementTypes.CLASS.getSemanticHint();
 			}
 
-		} else if(containerView instanceof View) {
+		} else { // Child Nodes
 			if(domainElement instanceof Port) {
 				semanticHint = InternalBlockDiagramElementTypes.PORT_CN.getSemanticHint();
 			} else if(domainElement instanceof Property) {

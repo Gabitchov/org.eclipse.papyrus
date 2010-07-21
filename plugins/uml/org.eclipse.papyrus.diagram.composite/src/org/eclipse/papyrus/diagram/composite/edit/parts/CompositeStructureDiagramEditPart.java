@@ -36,13 +36,13 @@ import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
 import org.eclipse.papyrus.diagram.common.util.MDTUtil;
 import org.eclipse.papyrus.diagram.composite.custom.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.composite.custom.edit.policies.RemoveOrphanViewPolicy;
-import org.eclipse.papyrus.diagram.composite.edit.policies.PackageItemSemanticEditPolicy;
+import org.eclipse.papyrus.diagram.composite.edit.policies.CompositeStructureDiagramItemSemanticEditPolicy;
 import org.eclipse.papyrus.diagram.composite.part.UMLVisualIDRegistry;
 
 /**
  * @generated
  */
-public class PackageEditPart extends DiagramEditPart {
+public class CompositeStructureDiagramEditPart extends DiagramEditPart {
 
 	/**
 	 * @generated
@@ -59,7 +59,7 @@ public class PackageEditPart extends DiagramEditPart {
 	/**
 	 * @generated
 	 */
-	public PackageEditPart(View view) {
+	public CompositeStructureDiagramEditPart(View view) {
 		super(view);
 
 
@@ -116,7 +116,7 @@ public class PackageEditPart extends DiagramEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
 
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackageItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CompositeStructureDiagramItemSemanticEditPolicy());
 
 		installEditPolicy("REMOVE_ORPHAN_VIEW", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());

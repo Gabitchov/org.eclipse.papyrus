@@ -80,12 +80,12 @@ import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
 /**
  * @generated
  */
-public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class CompositeStructureDiagramItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public PackageItemSemanticEditPolicy() {
+	public CompositeStructureDiagramItemSemanticEditPolicy() {
 		super(UMLElementTypes.Package_1000);
 	}
 

@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.diagram.composite.preferences;
 
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.diagram.composite.edit.parts.PackageEditPart;
+import org.eclipse.papyrus.diagram.composite.edit.parts.CompositeStructureDiagramEditPart;
 import org.eclipse.papyrus.diagram.composite.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.preferences.pages.AbstractPapyrusNodePreferencePage;
 import org.eclipse.papyrus.preferences.utils.PreferenceConstantHelper;
@@ -29,7 +29,7 @@ public class TimeIntervalPreferencePage extends AbstractPapyrusNodePreferencePag
 	 */
 	public TimeIntervalPreferencePage() {
 		super();
-		setPreferenceKey(PackageEditPart.MODEL_ID + "_TimeInterval");
+		setPreferenceKey(CompositeStructureDiagramEditPart.MODEL_ID + "_TimeInterval");
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class TimeIntervalPreferencePage extends AbstractPapyrusNodePreferencePag
 	 */
 	public static void initDefaults(IPreferenceStore store) {
 
-		String key = PackageEditPart.MODEL_ID + "_TimeInterval";
+		String key = CompositeStructureDiagramEditPart.MODEL_ID + "_TimeInterval";
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.WIDTH), 40);
 		store.setDefault(PreferenceConstantHelper.getElementConstant(key, PreferenceConstantHelper.HEIGHT), 40);
 

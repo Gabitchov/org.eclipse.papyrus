@@ -42,8 +42,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 			View view = (View)model;
 			switch(UMLVisualIDRegistry.getVisualID(view)) {
 
-			case PackageEditPart.VISUAL_ID:
-				return new PackageEditPart(view);
+			case CompositeStructureDiagramEditPart.VISUAL_ID:
+				return new CompositeStructureDiagramEditPart(view);
 
 			case ActivityCompositeEditPart.VISUAL_ID:
 				return new ActivityCompositeEditPart(view);
