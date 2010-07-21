@@ -14,12 +14,14 @@
 
 package org.eclipse.papyrus.core.utils;
 
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
 
 
 /**
- * This class allows to retrieve the bussiness object from an object representing a graphical artefact in a diagram. Each diagram can register its
+ * This class allows to retrieve the business object from an object representing a graphical artifact in a diagram. Each diagram can register its
  * resolver which will be added to the list of
  * resolvers. Some common resolvers are already registered : gef.EditPart TODO Use extensions to register additional resolvers.
  */
@@ -35,8 +37,8 @@ public class BusinessModelResolver {
 	}
 
 	/**
-	 * Get the bussiness object associated to this object, if any. This method navigate throw the object if the object is an graphical artefact or a
-	 * diagram artefact.
+	 * Get the business object associated to this object, if any. This method navigate throw the object if the object is an graphical artefact or a
+	 * diagram artifact.
 	 * 
 	 * @param object
 	 * @return Object
@@ -47,15 +49,21 @@ public class BusinessModelResolver {
 			Object model = ((EditPart)object).getModel();
 			if(model instanceof View) { // Notation / GMF
 				return getBusinessElement((View)((EditPart)object).getModel());
-			} else
+			} else {
 				return model;
+			}
+
 		} else if(object instanceof View) {
 			return ((View)object).getElement();
-		}
 
-		else
+		} else if(object instanceof IAdaptable) {
+			// Among others this is useful to retrieve the selected object from 
+			// an explorer item.
+			return ((IAdaptable)object).getAdapter(EObject.class);
+
+		} else {
 			return object;
-
+		}
 	}
 
 
@@ -69,7 +77,7 @@ public class BusinessModelResolver {
 		try {
 			return object.getElement();
 		} catch (NullPointerException e) {
-			// no bussiness element
+			// no business element
 			return null;
 		}
 	}
