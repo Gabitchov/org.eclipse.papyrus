@@ -592,7 +592,7 @@ public class AppliedProfileCompositeOnModel extends Composite {
 				}
 			});
 		} catch (Exception e) {
-			System.err.println(e);
+			Activator.logException(e);
 		}
 
 	}

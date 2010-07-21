@@ -19,21 +19,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmt.modisco.infra.browser.uicore.CustomizableModelContentProvider;
 import org.eclipse.gmt.modisco.infra.browser.uicore.internal.model.ModelElementItem;
-import org.eclipse.papyrus.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.core.services.ServicesRegistry;
 import org.eclipse.papyrus.core.utils.DiResourceSet;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.resource.ModelSet;
 import org.eclipse.papyrus.resource.ModelUtils;
-import org.eclipse.papyrus.resource.sasheditor.SashModel;
-import org.eclipse.papyrus.resource.sasheditor.SashModelUtils;
 import org.eclipse.papyrus.resource.uml.UmlModel;
 import org.eclipse.papyrus.resource.uml.UmlUtils;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageMngr;
 import org.eclipse.papyrus.sasheditor.contentprovider.di.DiSashModelMngr;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * the content provider that inherits of modisco properties

@@ -30,6 +30,7 @@ import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.papyrus.log.LogHelper;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -64,6 +65,9 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public Activator() {
 	}
+	
+	 /** Logging helper */
+    public static LogHelper log;
 
 	/**
 	 * @generated
@@ -71,6 +75,8 @@ public class Activator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		instance = this;
+		// register the login helper
+        log = new LogHelper(this);
 		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT, getPreferenceStore());
 		adapterFactory = createAdapterFactory();
 	}
@@ -81,6 +87,7 @@ public class Activator extends AbstractUIPlugin {
 	public void stop(BundleContext context) throws Exception {
 		adapterFactory.dispose();
 		adapterFactory = null;
+		log = null;
 		instance = null;
 		super.stop(context);
 	}

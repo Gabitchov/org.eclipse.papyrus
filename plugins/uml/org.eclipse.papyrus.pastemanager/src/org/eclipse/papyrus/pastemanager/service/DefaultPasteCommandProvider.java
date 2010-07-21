@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.pastemanager.Activator;
 import org.eclipse.papyrus.pastemanager.command.CommentDropCreation;
 import org.eclipse.papyrus.pastemanager.command.PapyrusDuplicateWrapperCommand;
 import org.eclipse.papyrus.pastemanager.request.PasteRequest;
@@ -72,7 +73,7 @@ public class DefaultPasteCommandProvider implements IPasteCommandProvider {
 						bufferSystem = Toolkit.getDefaultToolkit().getSystemClipboard().getData(dataFlavors[i]).toString();
 					}
 				} catch (Exception e) {
-					System.err.println(e);
+					//System.err.println(e);
 				}
 			}
 			// detection of a paste command from the system
@@ -122,7 +123,7 @@ public class DefaultPasteCommandProvider implements IPasteCommandProvider {
 						bufferSystem = Toolkit.getDefaultToolkit().getSystemClipboard().getData(dataFlavors[i]).toString();
 					}
 				} catch (Exception e) {
-					System.err.println(e);
+					Activator.log.error(e);
 				}
 			}
 			//detection of a paste command from the system

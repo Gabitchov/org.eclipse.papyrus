@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.sasheditor.internal;
 
+import static org.eclipse.papyrus.sasheditor.Activator.log;
+
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.eclipse.jface.action.MenuManager;
@@ -36,7 +38,6 @@ import org.eclipse.ui.internal.DragCursors;
 import org.eclipse.ui.internal.dnd.DragUtil;
 import org.eclipse.ui.internal.dnd.IDragOverListener;
 import org.eclipse.ui.internal.dnd.IDropTarget;
-import static org.eclipse.papyrus.sasheditor.Activator.log;
 
 
 /**

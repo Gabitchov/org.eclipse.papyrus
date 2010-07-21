@@ -23,6 +23,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.papyrus.pastemanager.Activator;
 import org.osgi.framework.Bundle;
 
 /**
@@ -98,7 +99,7 @@ public class PasteCommandService {
 			pasteCommandProviderMap.put(priority, pasteCommandProvider);
 
 		} catch (Exception e) {
-			System.err.println("- " + pasteCommandProvider + " can not be loaded: " + e);
+			Activator.log.error("- " + pasteCommandProvider + " can not be loaded: " + e.getLocalizedMessage(), e);
 		}
 	}
 

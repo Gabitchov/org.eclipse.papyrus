@@ -1082,7 +1082,7 @@ public class ParameterLabelParser extends Parser {
             	    // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:418:4: WS
             	    {
             	    match(input,WS,FOLLOW_WS_in_type521); 
-            	    System.err.println("space added"); buffer.append(" ");
+            	    // System.err.println("space added"); buffer.append(" ");
 
             	    }
             	    break;
@@ -1126,7 +1126,7 @@ public class ParameterLabelParser extends Parser {
             	    	    // D:\\Workspaces\\Ganymede\\p2_dev_ws\\org.eclipse.papyrus.parsers\\resources\\grammars\\ParameterLabel.g:421:6: WS
             	    	    {
             	    	    match(input,WS,FOLLOW_WS_in_type547); 
-            	    	    System.err.println("space added"); buffer.append(" ");
+            	    	    //System.err.println("space added"); buffer.append(" ");
 
             	    	    }
             	    	    break;
@@ -1147,7 +1147,7 @@ public class ParameterLabelParser extends Parser {
 
             
                 String typeName = buffer.toString().trim() ;
-                System.err.println("typeName: "+typeName); 
+                //System.err.println("typeName: "+typeName); 
                 Type utilType = PackageUtil.findTypeByName(nearestPackage, typeName);
                 // type = findTypeByName(typeName, parameter);
                 // The type has not been found, but it may have been declared in the context of a template.

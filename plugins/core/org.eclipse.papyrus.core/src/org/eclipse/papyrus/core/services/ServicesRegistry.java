@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.eclipse.papyrus.core.Activator;
 import org.eclipse.papyrus.core.services.ServiceDescriptor.ServiceTypeKind;
 import org.eclipse.papyrus.core.services.internal.LazyStartupEntry;
 import org.eclipse.papyrus.core.services.internal.PojoServiceEntry;
@@ -394,7 +395,7 @@ public class ServicesRegistry {
 		// 
 		List<ServiceStartupEntry> toStart = buildTopologicalListOfServicesToStart(roots, map);
 
-		if(log.isLoggable(Level.FINE)) {
+		if(Activator.log.isDebugEnabled()) {
 			showServices(" Services to start:", toStart);
 		}
 
@@ -494,7 +495,9 @@ public class ServicesRegistry {
 
 		// Get all roots : LAZY and START
 		Collection<ServiceStartupEntry> roots = getServiceRoots(services, map);
-		showServices(" Roots:", roots);
+		if(Activator.log.isDebugEnabled()) {
+			showServices(" Roots:", roots);
+		}
 		// Detect cycles
 		checkCycle(roots, map);
 		// Retain only services with startupkind == START and state == REGISTERED
@@ -569,16 +572,17 @@ public class ServicesRegistry {
 	 * @param roots
 	 */
 	private void showServices(String message, Collection<ServiceStartupEntry> roots) {
-
-		System.out.println("--------------------------");
-		System.out.println(message);
-
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("--------------------------\n");
+		buffer.append(message);
+		buffer.append("\n");
 		for(ServiceStartupEntry service : roots) {
-			System.out.println(service.getDescriptor().toString());
+			buffer.append("  ");
+			buffer.append(service.getDescriptor().toString());
+			buffer.append("\n");
 		}
-		System.out.println("--------- done -----------");
-
-
+		buffer.append("--------- done -----------\n");
+		Activator.log.debug(buffer.toString());
 	}
 
 	/**

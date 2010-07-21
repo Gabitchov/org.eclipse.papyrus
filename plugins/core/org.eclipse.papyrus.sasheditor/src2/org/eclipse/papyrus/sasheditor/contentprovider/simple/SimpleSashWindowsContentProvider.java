@@ -18,11 +18,11 @@ import java.util.List;
 
 import org.eclipse.papyrus.sasheditor.contentprovider.IAbstractPanelModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener;
+import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener.ContentEvent;
 import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
-import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener.ContentEvent;
 import org.eclipse.papyrus.sasheditor.internal.SashWindowsContainer;
 import org.eclipse.swt.SWT;
 
@@ -121,7 +121,7 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 * Move a Page inside the folder. {@inheritDoc}
 	 */
 	public void movePage(ITabFolderModel folderModel, int oldIndex, int newIndex) {
-		System.out.println("movePage()");
+		org.eclipse.papyrus.sasheditor.Activator.log.debug("movePage()");
 		((TabFolderModel)folderModel).moveTab(oldIndex, newIndex);
 
 	}
@@ -132,7 +132,7 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 */
 	public void movePage(ITabFolderModel srcFolderModel, int sourceIndex, ITabFolderModel targetFolderModel, int targetIndex) {
 		// This implementation use (TabFolderModel), so we can cast safely
-		System.out.println("movePage()");
+		org.eclipse.papyrus.sasheditor.Activator.log.debug("movePage()");
 		if(sourceIndex == -1) {
 			moveAllPages(srcFolderModel, targetFolderModel);
 			return;
@@ -177,7 +177,7 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 * @param side The side to which the created folder is inserted. Can be SWT.TOP, DOWN, LEFT, RIGHT.
 	 */
 	public void createFolder(ITabFolderModel sourceFolder, int tabIndex, ITabFolderModel referenceFolder, int side) {
-		System.out.println("createFolder()");
+		org.eclipse.papyrus.sasheditor.Activator.log.debug("createFolder()");
 
 		ITabFolderModel newFolder = doCreateFolder((TabFolderModel)sourceFolder, tabIndex, (TabFolderModel)referenceFolder, side);
 		contentChangedListenerManager.fireContentChanged(new ContentEvent(ContentEvent.CHANGED, this, sourceFolder));
@@ -194,7 +194,7 @@ public class SimpleSashWindowsContentProvider implements ISashWindowsContentProv
 	 * @param side The side to which the created folder is inserted. Can be SWT.TOP, DOWN, LEFT, RIGHT.
 	 */
 	public ITabFolderModel createFolder(ITabFolderModel referenceFolder, int side) {
-		System.out.println("createFolder()");
+		org.eclipse.papyrus.sasheditor.Activator.log.debug("createFolder()");
 
 		ITabFolderModel newFolder = doCreateFolder((TabFolderModel)referenceFolder, side);
 		contentChangedListenerManager.fireContentChanged(new ContentEvent(ContentEvent.CHANGED, this, referenceFolder));

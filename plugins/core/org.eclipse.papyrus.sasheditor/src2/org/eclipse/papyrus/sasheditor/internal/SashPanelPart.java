@@ -464,7 +464,7 @@ public class SashPanelPart extends AbstractPanelPart implements IPanelParent {
 	 * Used for debug purpose
 	 */
 	protected void showStatus() {
-		System.out.println("sash[" + currentChildParts.length + "]:"
+		org.eclipse.papyrus.sasheditor.Activator.log.debug("sash[" + currentChildParts.length + "]:"
 				+ ", disposed=" + container.isDisposed()
 				+ ", visible=" + container.isVisible()
 				+ ", garbState=" + garbageState

@@ -170,7 +170,7 @@ public class ModelExplorer extends CommonNavigator /* implements IEditingDomainP
 	 */
 	private void activate(IMultiDiagramEditor part) {
 
-		System.out.println("activate " + part.getTitle());
+		Activator.log.debug("activate " + part.getTitle());
 		// Skip if there is no change.
 		if(part == editorPart)
 			return;
@@ -213,7 +213,7 @@ public class ModelExplorer extends CommonNavigator /* implements IEditingDomainP
 
 		// deactivate global handler
 		if(editorPart != null) {
-			System.out.println("deactivate " + editorPart.getTitle());
+			Activator.log.debug("deactivate " + editorPart.getTitle());
 			// unhook 
 			//			IUndoContext undoContext = getUndoContext(editorPart);
 			//			undoHandler.setContext(undoContext);

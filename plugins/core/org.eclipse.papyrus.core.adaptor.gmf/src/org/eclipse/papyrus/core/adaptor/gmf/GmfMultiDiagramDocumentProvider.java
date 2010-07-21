@@ -209,8 +209,8 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 		if(editingDomain != null) {
 			// got it
 			sharedEditingDomain = editingDomain;
-			System.out.println(this.getClass().getSimpleName()
-					+ ".createEditingDomain() - got EditingDomain from REGISTRY (" + editingDomain + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+			Activator.log.debug((this.getClass().getSimpleName()
+					+ ".createEditingDomain() - got EditingDomain from REGISTRY (" + editingDomain + ")")); //$NON-NLS-1$ //$NON-NLS-2$
 			return editingDomain;
 		}
 
@@ -222,7 +222,7 @@ public class GmfMultiDiagramDocumentProvider extends AbstractDocumentProvider im
 		}
 		sharedEditingDomain = editingDomain;
 		editingDomain.setID(EditingDomainID); //$NON-NLS-1$
-		System.out.println(this.getClass().getSimpleName()
+		Activator.log.debug(this.getClass().getSimpleName()
 				+ ".createEditingDomain() - create a new EditingDomain (" + editingDomain + ")"); //$NON-NLS-1$ //$NON-NLS-2$
 
 		configureEditingDomain(editingDomain);

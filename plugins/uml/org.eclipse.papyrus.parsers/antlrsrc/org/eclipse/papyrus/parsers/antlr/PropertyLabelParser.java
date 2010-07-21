@@ -1111,7 +1111,7 @@ public class PropertyLabelParser extends Parser {
             	    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:535:4: WS
             	    {
             	    match(input,WS,FOLLOW_WS_in_type458); 
-            	    System.err.println("space added"); buffer.append(" ");
+            	    //System.err.println("space added"); buffer.append(" ");
 
             	    }
             	    break;
@@ -1155,7 +1155,7 @@ public class PropertyLabelParser extends Parser {
             	    	    // D:\\Workspaces\\Papyrus2_Head\\org.eclipse.papyrus.parsers\\resources\\grammars\\PropertyLabel.g:538:6: WS
             	    	    {
             	    	    match(input,WS,FOLLOW_WS_in_type484); 
-            	    	    System.err.println("space added"); buffer.append(" ");
+            	    	    //System.err.println("space added"); buffer.append(" ");
 
             	    	    }
             	    	    break;
@@ -1176,7 +1176,7 @@ public class PropertyLabelParser extends Parser {
 
             
                 String typeName = buffer.toString().trim() ;
-                System.err.println("typeName: "+typeName); 
+                //System.err.println("typeName: "+typeName); 
                 Type utilType = PackageUtil.findTypeByName(nearestPackage, typeName);
                 // type = findTypeByName(typeName, property);
                 // The type has not been found, but it may have been declared in the context of a template.

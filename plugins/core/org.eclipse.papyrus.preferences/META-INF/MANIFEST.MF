@@ -5,7 +5,8 @@ Bundle-SymbolicName: org.eclipse.papyrus.preferences;singleton:=true
 Bundle-Version: 0.7.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.preferences.Activator
 Bundle-Vendor: %providerName
-Require-Bundle: org.eclipse.gmf.runtime.diagram.ui.properties
+Require-Bundle: org.eclipse.gmf.runtime.diagram.ui.properties,
+ org.eclipse.papyrus.log;bundle-version="0.7.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-Localization: plugin

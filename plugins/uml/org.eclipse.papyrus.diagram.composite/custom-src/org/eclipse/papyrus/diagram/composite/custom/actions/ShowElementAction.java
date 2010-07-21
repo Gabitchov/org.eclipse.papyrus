@@ -580,7 +580,7 @@ public class ShowElementAction implements IActionDelegate {
 		public Object[] getChildren(Object parentElement) {
 			if(parentElement instanceof Classifier) {
 				EList<Property> properties = ((Classifier)parentElement).getAttributes();
-				System.out.println(properties);
+				Activator.log.debug(properties.toString());
 				return properties.toArray();
 			}
 			return null;

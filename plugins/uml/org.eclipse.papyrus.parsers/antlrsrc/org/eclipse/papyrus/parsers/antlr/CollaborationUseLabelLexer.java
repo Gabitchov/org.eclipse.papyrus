@@ -8,6 +8,8 @@ import java.util.Iterator;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Vector;
+
+import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.parsers.util.TypeRecognitionException;
 import org.eclipse.papyrus.parsers.util.UnboundTemplateRecognitionException;
 
@@ -1703,7 +1705,7 @@ public class CollaborationUseLabelLexer extends Lexer {
         try {
             synpred2_fragment(); // can never throw exception
         } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
+           // Activator.log.error("impossible: "+re.getLocalizedMessage(),re);
         }
         boolean success = !failed;
         input.rewind(start);
@@ -1717,7 +1719,7 @@ public class CollaborationUseLabelLexer extends Lexer {
         try {
             synpred3_fragment(); // can never throw exception
         } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
+            // System.err.println("impossible: "+re);
         }
         boolean success = !failed;
         input.rewind(start);
@@ -1731,7 +1733,7 @@ public class CollaborationUseLabelLexer extends Lexer {
         try {
             synpred1_fragment(); // can never throw exception
         } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
+            // System.err.println("impossible: "+re);
         }
         boolean success = !failed;
         input.rewind(start);

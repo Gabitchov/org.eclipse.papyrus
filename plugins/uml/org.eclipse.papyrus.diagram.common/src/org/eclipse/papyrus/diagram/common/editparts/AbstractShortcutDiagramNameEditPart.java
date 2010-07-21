@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.core.Activator;
 
 /**
  * this edit part has in charge to display the name of a diagram for a short cut 
@@ -96,7 +97,7 @@ public abstract class AbstractShortcutDiagramNameEditPart extends LabelEditPart 
 	  *
 	  */
 	  public boolean isAdapterForType(Object type) { 
-		  System.err.println(type);
+		  Activator.log.debug(type.toString());
 		  return (getModel().getClass() == type); 
 	  } 
 	

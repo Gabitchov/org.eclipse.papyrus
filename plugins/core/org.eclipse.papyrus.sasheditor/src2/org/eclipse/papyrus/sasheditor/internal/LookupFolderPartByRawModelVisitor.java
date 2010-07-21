@@ -3,7 +3,6 @@
  */
 package org.eclipse.papyrus.sasheditor.internal;
 
-import org.eclipse.papyrus.sasheditor.editor.IPage;
 
 
 /**

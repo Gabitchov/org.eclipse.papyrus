@@ -131,7 +131,7 @@ public class ModelManagerEditor {
 			} else if(eventType == Notification.REMOVE) {
 				Object newValue = notification.getNewValue();
 				if(newValue == null)
-					System.out.println(getClass().getName() + "- Warning: can't get removed object."); //$NON-NLS-1$
+					Activator.log.debug(getClass().getName() + "- Warning: can't get removed object."); //$NON-NLS-1$
 
 				if(newValue instanceof Diagram)
 					diagramListListener.firePropertyChange(DIAGRAM_REMOVED, null, newValue);
@@ -172,7 +172,7 @@ public class ModelManagerEditor {
 	 * @cdm
 	 */
 	public void setInput(IEditorInput input) {
-		System.out.println(this + ".setInput(IEditorInput input)"); //$NON-NLS-1$
+		Activator.log.debug(this + ".setInput(IEditorInput input)"); //$NON-NLS-1$
 	}
 
 	/**

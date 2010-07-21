@@ -205,7 +205,7 @@ public class DirectEditorExtensionPoint {
 		try {
 			for(IConfigurationElement childConfigElement : configElement.getChildren(IDirectEditorConfigurationIds.TAG_ADVANCED_EDITOR)) {
 				for(String attname : childConfigElement.getAttributeNames()) {
-					System.err.println(attname);
+					Activator.log.debug(attname);
 				}
 
 				Object config = childConfigElement.createExecutableExtension(IDirectEditorConfigurationIds.ATT_EDITOR_CONFIGURATION);
@@ -215,7 +215,7 @@ public class DirectEditorExtensionPoint {
 			}
 
 		} catch (CoreException e) {
-			Activator.log(e);
+			Activator.log.error(e);
 			configuration = null;
 		}
 		return configuration;
@@ -227,7 +227,7 @@ public class DirectEditorExtensionPoint {
 		try {
 			for(IConfigurationElement childConfigElement : configElement.getChildren(IDirectEditorConfigurationIds.TAG_POPUP_EDITOR)) {
 				for(String attname : childConfigElement.getAttributeNames()) {
-					System.err.println(attname);
+					Activator.log.debug(attname);
 				}
 
 				Object config = childConfigElement.createExecutableExtension(IDirectEditorConfigurationIds.ATT_EDITOR_CONFIGURATION);

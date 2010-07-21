@@ -58,7 +58,7 @@ public class PapyrusPreferenceStore extends PapyrusScopedPreferenceStore {
 
 		}
 		catch (Exception e) {
-			System.err.println(e);
+			Activator.log.error(e);
 		}
 		if(elementKey.size()>0){
 			String[] keyRoconsult= new String[elementKey.size()];

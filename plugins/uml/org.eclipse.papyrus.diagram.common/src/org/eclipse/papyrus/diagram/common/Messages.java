@@ -46,8 +46,6 @@ public class Messages extends NLS {
 
 	public static String UMLNewDiagramFileWizard_RootSelectionPageDescription;
 
-	public static String UMLNewDiagramFileWizard_InitDiagramCommand;
-
 	public static String UMLDiagramEditorUtil_CreateDiagramProgressTask;
 
 	public static String UMLDiagramEditorUtil_CreateDiagramCommandLabel;

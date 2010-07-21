@@ -16,6 +16,7 @@ package org.eclipse.papyrus.modelexplorer.handler;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.expressions.EvaluationContext;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.papyrus.core.ui.pagebookview.MultiViewPageBookView;
 import org.eclipse.papyrus.modelexplorer.ModelExplorerView;
@@ -25,7 +26,6 @@ import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.navigator.CommonNavigator;
-import org.eclipse.core.expressions.EvaluationContext;
 /**
  * this handler is used to look for element
  * 

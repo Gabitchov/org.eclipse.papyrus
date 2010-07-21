@@ -49,6 +49,7 @@ import org.eclipse.papyrus.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.core.services.ServiceException;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.common.helper.HyperlinkHelper;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkDiagram;
 import org.eclipse.papyrus.diagram.common.ui.hyperlinkshell.HyperLinkManagerShell;
@@ -350,7 +351,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 							IWorkbenchPage page = window.getActivePage();
 							page.openEditor(editorInput, eDesc.getId());
 						} catch (Exception e) {
-							System.err.println(e);
+							Activator.log.error(e);
 						}
 					}
 					if((((PopupBarLabelHandle)me.getSource()).getReferencedObject()) instanceof HyperLinkWeb) {
@@ -359,7 +360,7 @@ public class HyperLinkPopupBarEditPolicy extends DiagramAssistantEditPolicy {
 							// this is an url
 							PlatformUI.getWorkbench().getBrowserSupport().createBrowser(IWorkbenchBrowserSupport.AS_EXTERNAL, "aCustomId", "url", "url").openURL(new URL(hyperLinkWeb.getHyperLinkWeb()));
 						} catch (Exception e) {
-							System.err.println(e);
+							Activator.log.error(e);
 						}
 					}
 

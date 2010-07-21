@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.util.EContentAdapter;
+import org.eclipse.papyrus.core.Activator;
 import org.osgi.framework.Bundle;
 
 /**
@@ -70,7 +71,7 @@ public class ModelListenerManager extends EContentAdapter {
 			IPapyrusListener listener = (IPapyrusListener)createExtension(element, element.getAttribute(REALIZATION_ID));
 			listenerRegistry.put(listenerName, listener);
 		} catch (Exception e) {
-			System.err.println("- " + listenerName + " can not be loaded: " + e);
+			Activator.log.error("- " + listenerName + " can not be loaded: "+e.getLocalizedMessage(), e);
 		}
 
 	}

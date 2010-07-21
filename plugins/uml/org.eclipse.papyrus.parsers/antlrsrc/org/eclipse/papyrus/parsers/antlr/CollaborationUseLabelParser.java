@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Vector;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.parsers.texteditor.collaborationuselabel.IContext;
 import org.eclipse.papyrus.parsers.util.IErrorReporter;
 import org.eclipse.papyrus.parsers.util.NameException;
@@ -144,7 +145,7 @@ public class CollaborationUseLabelParser extends Parser {
       }
           
          /** debug mode */
-        protected final boolean debugMode = false;    
+        protected final boolean debugMode = Platform.inDebugMode();    
           
         /**
          * Debug method (~System.out.println)

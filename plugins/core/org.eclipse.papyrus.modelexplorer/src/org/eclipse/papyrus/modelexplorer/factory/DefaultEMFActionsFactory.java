@@ -24,8 +24,6 @@ import org.eclipse.emf.edit.ui.action.CutAction;
 import org.eclipse.emf.edit.ui.action.DeleteAction;
 import org.eclipse.emf.edit.ui.action.LoadResourceAction;
 import org.eclipse.emf.edit.ui.action.PasteAction;
-import org.eclipse.emf.edit.ui.action.RedoAction;
-import org.eclipse.emf.edit.ui.action.UndoAction;
 import org.eclipse.emf.workspace.ui.actions.RedoActionWrapper;
 import org.eclipse.emf.workspace.ui.actions.UndoActionWrapper;
 import org.eclipse.jface.action.Action;

@@ -122,7 +122,7 @@ public  abstract class AbstractShapeEditPart extends AbstractBorderedShapeEditPa
 				try {
 					getPrimaryShape().setIcon(icon.getLocation());
 				} catch (MalformedURLException e) {
-					System.err.println(icon.getLocation()+" "+e);
+					Activator.log.error(icon.getLocation()+" "+e.getLocalizedMessage(), e);
 				}
 			}
 			else{

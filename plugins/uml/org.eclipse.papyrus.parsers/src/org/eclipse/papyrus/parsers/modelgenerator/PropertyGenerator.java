@@ -95,7 +95,7 @@ public class PropertyGenerator {
 		try {
 			parser.label();
 		} catch (MismatchedTokenException e) {
-			System.err.println("context:" + parser.getContext());
+			//System.err.println("context:" + parser.getContext());
 		} catch (RecognitionException e) {
 			reporter.setMessage(e.getLocalizedMessage());
 		} catch (RuntimeException e) {

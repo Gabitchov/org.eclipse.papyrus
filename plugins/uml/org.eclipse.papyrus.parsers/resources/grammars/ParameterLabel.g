@@ -415,14 +415,16 @@ type
    }
   :
   id=IDENTIFIER {buffer.append(id.getText());}
-  (WS {System.err.println("space added"); buffer.append(" ");})*
+  (WS {//System.err.println("space added"); 
+  		buffer.append(" ");})*
   ( 
     id1=IDENTIFIER {buffer.append(id1.getText());}
-    (WS {System.err.println("space added"); buffer.append(" ");})*
+    (WS {//System.err.println("space added"); 
+    buffer.append(" ");})*
    )*
   {
     String typeName = buffer.toString().trim() ;
-    System.err.println("typeName: "+typeName); 
+    //System.err.println("typeName: "+typeName); 
     Type utilType = PackageUtil.findTypeByName(nearestPackage, typeName);
     // type = findTypeByName(typeName, parameter);
     // The type has not been found, but it may have been declared in the context of a template.

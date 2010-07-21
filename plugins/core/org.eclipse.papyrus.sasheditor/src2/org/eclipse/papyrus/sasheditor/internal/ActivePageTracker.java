@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.eclipse.papyrus.sasheditor.editor.IPageChangedListener;
+import org.eclipse.papyrus.sasheditor.internal.ActivePageTracker.IActiveEditorChangedListener;
 
 
 /**

@@ -3,8 +3,6 @@
  */
 package org.eclipse.papyrus.sasheditor.contentprovider;
 
-import org.eclipse.papyrus.sasheditor.editor.ISashWindowsContainer;
-
 import junit.framework.TestCase;
 
 

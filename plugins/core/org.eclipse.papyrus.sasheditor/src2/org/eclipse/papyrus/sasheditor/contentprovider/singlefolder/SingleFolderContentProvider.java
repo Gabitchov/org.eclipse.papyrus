@@ -18,11 +18,11 @@ import java.util.List;
 
 import org.eclipse.papyrus.sasheditor.contentprovider.IAbstractPanelModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener;
+import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener.ContentEvent;
 import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ISashWindowsContentProvider;
 import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
-import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener.ContentEvent;
 
 /**
  * A simple implementation of providers allowing only one single folder containing tabs.

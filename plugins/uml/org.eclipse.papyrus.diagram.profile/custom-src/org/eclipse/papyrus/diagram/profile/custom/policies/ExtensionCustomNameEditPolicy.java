@@ -28,6 +28,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.papyrus.diagram.profile.custom.helper.ExtensionHelper;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Extension;
@@ -153,7 +154,7 @@ public class ExtensionCustomNameEditPolicy extends AbstractEditPolicy implements
 						});
 
 					} catch (Exception e) {
-						System.err.println(e);
+						Activator.log.error(e);
 					}
 
 				}

@@ -39,6 +39,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.GeneralizationEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.GeneralizationSetEditPart;
+import org.eclipse.papyrus.diagram.common.Activator;
 import org.eclipse.swt.widgets.Display;
 
 /**
@@ -147,7 +148,7 @@ public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy 
 						});
 
 					} catch (Exception e) {
-						System.err.println(e);
+						Activator.log.error(e);
 					}
 				}
 			}
@@ -185,7 +186,7 @@ public class GeneralizationSetLabelDisplayEditPolicy extends AbstractEditPolicy 
 				});
 
 			} catch (Exception e) {
-				System.err.println(e);
+				Activator.log.error(e);
 			}
 
 		}

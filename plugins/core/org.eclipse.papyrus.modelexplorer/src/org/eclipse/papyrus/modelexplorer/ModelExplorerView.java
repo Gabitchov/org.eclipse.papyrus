@@ -230,7 +230,7 @@ public class ModelExplorerView extends CommonNavigator {
 
 		// deactivate global handler
 		if(editorPart != null) {
-			System.out.println("deactivate " + editorPart.getTitle());
+			Activator.log.debug("deactivate " + editorPart.getTitle());
 			// unhook 
 			//			IUndoContext undoContext = getUndoContext(editorPart);
 			//			undoHandler.setContext(undoContext);

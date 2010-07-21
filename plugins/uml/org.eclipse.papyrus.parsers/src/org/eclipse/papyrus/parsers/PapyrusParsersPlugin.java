@@ -49,6 +49,7 @@ public class PapyrusParsersPlugin extends AbstractUIPlugin {
 	 */
 	public PapyrusParsersPlugin() {
 		plugin = this;
+		
 	}
 
 	/*

@@ -16,9 +16,9 @@ package org.eclipse.papyrus.sasheditor.contentprovider.singlefolder;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener.ContentEvent;
 import org.eclipse.papyrus.sasheditor.contentprovider.IPageModel;
 import org.eclipse.papyrus.sasheditor.contentprovider.ITabFolderModel;
-import org.eclipse.papyrus.sasheditor.contentprovider.IContentChangedListener.ContentEvent;
 
 /**
  * Basic implementation allowing to add item to be shown.

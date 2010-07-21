@@ -308,7 +308,7 @@ public class RootPart extends AbstractPart implements IPanelParent {
 	 * Show tile status.
 	 */
 	protected void showStatus() {
-		System.out.println("rootPart (1)"
+		org.eclipse.papyrus.sasheditor.Activator.log.debug("rootPart (1)"
 				+ ", disposed=" + container.isDisposed()
 				+ ", visible=" + container.isVisible()
 				+ ", " + this);
