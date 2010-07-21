@@ -15,9 +15,12 @@ package org.eclipse.papyrus.diagram.communication.custom.figures;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
+import org.eclipse.papyrus.diagram.common.figure.node.IPapyrusUMLElementFigure;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 
 /**
@@ -25,13 +28,17 @@ import org.eclipse.swt.widgets.Display;
  * This is used to create the message figure which is a PolylineConnection that
  * has a CustomWrappingLabel
  */
-public class MessageFigure extends PolylineConnectionEx {
+public class MessageFigure extends PolylineConnectionEx implements IPapyrusUMLElementFigure {
+
+
+
 
 	private CustomWrappingLabel fFigureMessageCreateLabelFigure;
 
-	static final Font FFIGUREMESSAGECREATELABELFIGURE_FONT = new Font(Display.getCurrent(), "SANS", 9, SWT.NORMAL); //$NON-NLS-1$
+	private CustomWrappingLabel appliedStereotypeLabelFigure;
 
-	static final String PATH = "/icons/arrow.gif"; //$NON-NLS-1$
+	static final Font FFIGUREMESSAGECREATELABELFIGURE_FONT = new Font(Display.getCurrent(), "Arial", 8, SWT.NORMAL); //$NON-NLS-1$
+
 
 	/**
 	 * 
@@ -50,12 +57,25 @@ public class MessageFigure extends PolylineConnectionEx {
 	private void createContents() {
 
 		fFigureMessageCreateLabelFigure = new CustomWrappingLabel();
-		fFigureMessageCreateLabelFigure.setText("blabla"); //$NON-NLS-1$
+		fFigureMessageCreateLabelFigure.setText("Message"); //$NON-NLS-1$
 
-		fFigureMessageCreateLabelFigure.setFont(FFIGUREMESSAGECREATELABELFIGURE_FONT);
+		//fFigureMessageCreateLabelFigure.setFont(FFIGUREMESSAGECREATELABELFIGURE_FONT);
 		fFigureMessageCreateLabelFigure.setOpaque(false);
-		this.add(fFigureMessageCreateLabelFigure);
+		// fFigureMessageCreateLabelFigure.setTextAlignment(PositionConstants.CENTER);
+		//fFigureMessageCreateLabelFigure.setTextPlacement(PositionConstants.NORTH);
+		fFigureMessageCreateLabelFigure.setTextJustification(PositionConstants.CENTER);
 
+		this.add(fFigureMessageCreateLabelFigure);
+		appliedStereotypeLabelFigure = new CustomWrappingLabel();
+		appliedStereotypeLabelFigure.setText(""); //$NON-NLS-1$
+
+		//appliedStereotypeLabelFigure.setFont(FFIGUREMESSAGECREATELABELFIGURE_FONT);
+		appliedStereotypeLabelFigure.setTextWrap(true);
+		appliedStereotypeLabelFigure.setTextJustification(PositionConstants.CENTER);
+
+		appliedStereotypeLabelFigure.setText(""); //$NON-NLS-1$
+
+		this.add(appliedStereotypeLabelFigure);
 	}
 
 	/**
@@ -65,5 +85,44 @@ public class MessageFigure extends PolylineConnectionEx {
 	public CustomWrappingLabel getFigureMessageCreateLabelFigure() {
 		return fFigureMessageCreateLabelFigure;
 	}
+
+	/**
+	 * Sets the stereotypes for this figure.
+	 * <p>
+	 * This implementation checks if the specified string is null or not.
+	 * <ul>
+	 * <li>if the string is <code>null</code>, it removes the label representing the stereotypes.</li>
+	 * <li>if this is not <code>null</code>, it creates the stereotype label if needed and displays the specified string.</li>
+	 * </ul>
+	 * </p>
+	 * 
+	 * @param stereotypes
+	 *        the string representing the stereotypes to be displayed
+	 * @param image
+	 *        the image representing the stereotypes to be displayed
+	 * @see org.eclipse.papyrus.diagram.common.figure.node.IPapyrusUMLElementFigure#setStereotypeDisplay(java.lang.String,
+	 *      org.eclipse.swt.graphics.Image)
+	 */
+	public void setStereotypeDisplay(String stereotypes, Image image) {
+		// Set stereotype text on figure
+		if(!"".equals(stereotypes)) { //$NON-NLS-1$
+			appliedStereotypeLabelFigure.setText(stereotypes);
+		} else {
+			appliedStereotypeLabelFigure.setText(""); //$NON-NLS-1$
+		}
+
+		appliedStereotypeLabelFigure.setIcon(image);
+
+	}
+
+	/**
+	 * get the applied stereotype label
+	 * 
+	 * @return applied stereotype label
+	 */
+	public CustomWrappingLabel getAppliedStereotypeLabel() {
+		return appliedStereotypeLabelFigure;
+	}
+
 
 }

@@ -93,7 +93,7 @@ public class CustomWrappingLabel extends WrappingLabel
 
 	}
 
-	static final String PATH = "/icons/arrow.gif";
+	static final String PATH = "/icons/arrow.gif"; //$NON-NLS-1$
 
 	/**
 	 * Paints the custom icon that has been rotated

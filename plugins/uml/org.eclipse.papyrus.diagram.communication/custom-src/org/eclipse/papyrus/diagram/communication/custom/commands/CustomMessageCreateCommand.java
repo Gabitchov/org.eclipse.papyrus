@@ -25,12 +25,10 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.papyrus.diagram.communication.custom.util.CommandHelper;
-import org.eclipse.papyrus.diagram.communication.custom.util.CommunicationRequestConstant;
 import org.eclipse.papyrus.diagram.communication.edit.commands.MessageCreateCommand;
 import org.eclipse.papyrus.diagram.communication.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interaction;
-import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageSort;
 
@@ -55,6 +53,8 @@ public class CustomMessageCreateCommand extends MessageCreateCommand {
 	 * container of message
 	 */
 	private final Interaction container;
+
+
 
 	/**
 	 * 
@@ -110,11 +110,12 @@ public class CustomMessageCreateCommand extends MessageCreateCommand {
 		if(!canExecute()) {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-		InteractionFragment sourceContainer = (InteractionFragment)getRequest().getParameters().get(CommunicationRequestConstant.SOURCE_MODEL_CONTAINER);
-		//InteractionFragment targetContainer = (InteractionFragment)getRequest().getParameters().get(CommunicationRequestConstant.TARGET_MODEL_CONTAINER);
-		InteractionFragment targetContainer = (InteractionFragment)getRequest().getParameters().get(CommunicationRequestConstant.SOURCE_MODEL_CONTAINER);
 
-		Message message = CommandHelper.doCreateMessage(container, MessageSort.CREATE_MESSAGE_LITERAL, getSource(), getTarget(), sourceContainer, targetContainer);
+		//InteractionFragment container = (InteractionFragment)getRequest().getParameters().get(CommunicationRequestConstant.SOURCE_MODEL_CONTAINER);
+		//InteractionFragment targetContainer = (InteractionFragment)getRequest().getParameters().get(CommunicationRequestConstant.TARGET_MODEL_CONTAINER);
+		//InteractionFragment targetContainer = (InteractionFragment)getRequest().getParameters().get(CommunicationRequestConstant.SOURCE_MODEL_CONTAINER);
+
+		Message message = CommandHelper.doCreateMessage(container, MessageSort.CREATE_MESSAGE_LITERAL, getSource(), getTarget());
 		if(message != null) {
 			doConfigure(message, monitor, info);
 			((CreateElementRequest)getRequest()).setNewElement(message);

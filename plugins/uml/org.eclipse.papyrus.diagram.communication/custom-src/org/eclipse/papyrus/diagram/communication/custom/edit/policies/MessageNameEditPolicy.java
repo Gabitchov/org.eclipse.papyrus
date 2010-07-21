@@ -78,22 +78,17 @@ public class MessageNameEditPolicy extends AbstractEditPolicy implements AnchorL
 		sourceConnectionAnchor = getSrcConnectionAnchor((ConnectionNodeEditPart)connEditPart);
 
 		if(sourceConnectionAnchor != null) {
-			// System.out.println("MessageNameEditPolicy notifyChanged: Get source connection anchor succeed\n");
+
 			sourceConnectionAnchor.addAnchorListener(this);
 		}
-		// } else {
-		// System.out.println("MessageNameEditPolicy notifyChanged: Get source connection anchor failed \n");
-		// }
+
 
 		targetConnectionAnchor = getTargetConnectionAnchor((ConnectionNodeEditPart)connEditPart);
 
 		if(targetConnectionAnchor != null) {
-			// System.out.println("MessageNameEditPolicy notifyChanged: Get target connection anchor succeed\n");
+
 			targetConnectionAnchor.addAnchorListener(this);
 		}
-		// } else {
-		// System.out.println("MessageNameEditPolicy notifyChanged: Get target connection anchor failed \n");
-		// }
 
 	}
 
@@ -122,23 +117,15 @@ public class MessageNameEditPolicy extends AbstractEditPolicy implements AnchorL
 	 */
 	public void refreshEditPartDisplay(GraphicalEditPart editPart, Point src, Point target) {
 
-		// System.out.format("Wrappinglabeltext %s \n",
-		// ((MessageNameEditPart)editPart).getEditText());
 
 		IFigure figure = (editPart).getFigure();
 
-		// System.out.println("beforeIconSET \n");
 
-		// System.out.format("ref point SRC x %d , y %d \n", src.x, src.y);
-		// System.out.format("loc point Target x %d , y %d \n", target.x,
-		// target.y);
-		// System.out.format("Angle of rotation is %f \n",
-		// RotationHelper.calculateRotAngle(src, target));
 		((CustomWrappingLabel)figure).setRotation(Math.toRadians(RotationHelper.calculateRotAngle(src, target)));
 		((CustomWrappingLabel)figure).setTextAlignment(PositionConstants.CENTER);
 		((CustomWrappingLabel)figure).setTextStrikeThrough(false);
 
-		// System.out.println("IconSET \n");
+
 
 	}
 
@@ -157,12 +144,13 @@ public class MessageNameEditPolicy extends AbstractEditPolicy implements AnchorL
 
 
 		ConnectionEditPart connectionEditPart = (ConnectionEditPart)getHost().getParent();
+
 		if(connectionEditPart.getModel() instanceof Edge) {
 			Edge edge = (Edge)connectionEditPart.getModel();
 			if(edge.getElement() instanceof Message) {
 				if(connectionEditPart.getFigure() instanceof Polyline) {
 					Polyline polyline = (Polyline)connectionEditPart.getFigure();
-					// List bendpoints = (List)polyline.getPoints();
+
 					sLoc = polyline.getPoints().getFirstPoint().getCopy();
 					tLoc = polyline.getPoints().getLastPoint().getCopy();
 				}

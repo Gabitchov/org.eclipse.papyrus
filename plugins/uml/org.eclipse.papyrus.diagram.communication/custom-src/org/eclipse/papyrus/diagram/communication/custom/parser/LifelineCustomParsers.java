@@ -113,13 +113,13 @@ public class LifelineCustomParsers extends org.eclipse.papyrus.diagram.communica
 
 				// Add the selector if it is a LiteralSpecification
 				if(selector instanceof LiteralSpecification) {
-					sb.append("[").append(ValueSpecificationUtil.getSpecificationValue(selector)).append("]");
+					sb.append("[").append(ValueSpecificationUtil.getSpecificationValue(selector)).append("]"); //$NON-NLS-1$ //$NON-NLS-2$
 				}
 
 				// Add the type name
 				Type type = connectableElement.getType();
 				if(type != null && type.getName() != null && type.getName().length() > 0) {
-					sb.append(" : ").append(type.getName());
+					sb.append(" : ").append(type.getName()); //$NON-NLS-1$
 				}
 			}
 
@@ -127,7 +127,7 @@ public class LifelineCustomParsers extends org.eclipse.papyrus.diagram.communica
 			if(selector instanceof Expression || selector instanceof OpaqueExpression || selector instanceof TimeExpression) {
 				String specificationValue = ValueSpecificationUtil.getSpecificationValue(selector);
 				if(specificationValue != null && specificationValue.length() > 0) {
-					sb.append("\n").append(specificationValue);
+					sb.append("\n").append(specificationValue); //$NON-NLS-1$
 				}
 			}
 
@@ -136,7 +136,7 @@ public class LifelineCustomParsers extends org.eclipse.papyrus.diagram.communica
 			if(partDecomposition != null) {
 				Interaction refersTo = partDecomposition.getRefersTo();
 				if(refersTo != null) {
-					sb.append("\nref ").append(refersTo.getName());
+					sb.append("\nref ").append(refersTo.getName()); //$NON-NLS-1$
 				}
 			}
 

@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.providers.BaseViewInfo;
 import org.eclipse.papyrus.diagram.common.providers.ViewInfo;
+import org.eclipse.papyrus.diagram.communication.edit.parts.AppliedStereotypeMessageEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.CommentBodyEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.ConstraintBodyEditPartCN;
@@ -285,6 +286,9 @@ public class UMLVisualIDRegistry {
 			if(MessageNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(AppliedStereotypeMessageEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		}
 		return false;
@@ -367,6 +371,10 @@ public class UMLVisualIDRegistry {
 
 
 		labelInfo = new BaseViewInfo(6001, ViewInfo.Label, "", null, viewInfo);
+		viewInfo.getChildren().add(labelInfo);
+
+
+		labelInfo = new BaseViewInfo(6012, ViewInfo.Label, "", null, viewInfo);
 		viewInfo.getChildren().add(labelInfo);
 
 

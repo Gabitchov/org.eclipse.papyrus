@@ -80,7 +80,7 @@ public class DurationObservationHelper extends ElementHelper {
 	 * @return the command
 	 */
 	public Command dropDurationObservation(DurationObservation durationObservation, EditPartViewer viewer, PreferencesHint diagramPreferencesHint, Point location, View containerView) {
-		CompositeCommand cc = new CompositeCommand("dropDurationObservation");
+		CompositeCommand cc = new CompositeCommand("dropDurationObservation"); //$NON-NLS-1$
 		int nbEvents = durationObservation.getEvents().size();
 
 		// 0. Obtain list of the events
@@ -122,7 +122,7 @@ public class DurationObservationHelper extends ElementHelper {
 		CreateCommand nodeCreationCommand = new CreateCommand(getEditingDomain(), descriptor, ((View)containerView));
 		cc.compose(nodeCreationCommand);
 
-		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), location);
+		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), location); //$NON-NLS-1$
 		cc.compose(setBoundsCommand);
 
 		if(nbEvents != 0) {

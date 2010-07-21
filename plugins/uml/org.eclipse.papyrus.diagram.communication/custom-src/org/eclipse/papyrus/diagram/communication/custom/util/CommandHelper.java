@@ -525,11 +525,10 @@ public class CommandHelper {
 	 *        the source of the message, it can be null
 	 * @param target
 	 *        the target of the message, it can be null
-	 * @param sourceContainer
-	 * @param targetContainer
+	 * 
 	 * @return the created message
 	 */
-	public static Message doCreateMessage(Interaction container, MessageSort messageSort, Element source, Element target, InteractionFragment sourceContainer, InteractionFragment targetContainer) {
+	public static Message doCreateMessage(Interaction container, MessageSort messageSort, Element source, Element target) {
 
 		List<NamedElement> signatures = getSignature(container.getModel(), messageSort);
 
@@ -555,10 +554,10 @@ public class CommandHelper {
 
 		// Create the two message ends
 		if(source != null) {
-			sendMessageEnd = createMessageEnd(sourceContainer, EventHelper.doCreateSendEvent(messageSort, container, signature), source, MessageDirection.OUT);
+			sendMessageEnd = createMessageEnd(container, EventHelper.doCreateSendEvent(messageSort, container, signature), source, MessageDirection.OUT);
 		}
 		if(target != null) {
-			receiveMessageEnd = createMessageEnd(targetContainer, EventHelper.doCreateReceiveEvent(messageSort, container, signature), target, MessageDirection.IN);
+			receiveMessageEnd = createMessageEnd(container, EventHelper.doCreateReceiveEvent(messageSort, container, signature), target, MessageDirection.IN);
 		}
 
 		// Update the messages end with the message

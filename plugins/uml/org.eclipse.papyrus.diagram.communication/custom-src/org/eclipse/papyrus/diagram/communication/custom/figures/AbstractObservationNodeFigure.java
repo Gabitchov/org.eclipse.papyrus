@@ -106,7 +106,7 @@ public class AbstractObservationNodeFigure extends NodeNamedElementFigure {
 
 		super();
 
-		this.iconLabel = new WrappingLabel("");
+		this.iconLabel = new WrappingLabel(""); //$NON-NLS-1$
 		this.add(this.iconLabel);
 		ToolbarLayout toolbarLayout = new ToolbarLayout();
 		toolbarLayout.setSpacing(5);

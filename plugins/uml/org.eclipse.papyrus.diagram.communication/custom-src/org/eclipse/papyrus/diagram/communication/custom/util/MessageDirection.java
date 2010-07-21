@@ -21,6 +21,7 @@ public enum MessageDirection {
 	 * in direction
 	 */
 	IN("in"), /**
+	 * //$NON-NLS-1$ //$NON-NLS-1$
 	 * out direction
 	 */
 	OUT("out"); //$NON-NLS-1$ //$NON-NLS-2$

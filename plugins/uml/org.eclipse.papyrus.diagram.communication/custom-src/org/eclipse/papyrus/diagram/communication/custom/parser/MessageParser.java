@@ -19,6 +19,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
+import org.eclipse.papyrus.diagram.communication.custom.messages.Messages;
 import org.eclipse.uml2.uml.Message;
 
 // TODO: Auto-generated Javadoc
@@ -64,10 +65,10 @@ public class MessageParser implements IParser {
 	 */
 	public String getPrintString(IAdaptable element, int flags) {
 		if(element instanceof EObjectAdapter) {
-			String result = "";
+			String result = ""; //$NON-NLS-1$
 			final Message message = ((Message)((EObjectAdapter)element).getRealObject());
 			if(message == null) {
-				return "<UNDEFINED>";
+				return Messages.MessageParser_undefined;
 			}
 			if(message.getEAnnotations() != null) {
 				//	EList<EAnnotation> an = message.getEAnnotations();
@@ -88,7 +89,7 @@ public class MessageParser implements IParser {
 
 			return result;
 		}
-		return "<UNDEFINED>";
+		return Messages.MessageParser_undefined;
 	}
 
 	/*

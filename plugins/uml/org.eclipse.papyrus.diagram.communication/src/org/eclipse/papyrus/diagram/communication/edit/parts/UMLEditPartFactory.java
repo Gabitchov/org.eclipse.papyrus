@@ -105,6 +105,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 			case MessageNameEditPart.VISUAL_ID:
 				return new MessageNameEditPart(view);
 
+			case AppliedStereotypeMessageEditPart.VISUAL_ID:
+				return new AppliedStereotypeMessageEditPart(view);
+
 
 			case CommentAnnotatedElementEditPart.VISUAL_ID:
 				return new CommentAnnotatedElementEditPart(view);

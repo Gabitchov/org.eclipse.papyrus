@@ -79,7 +79,7 @@ public class TimeObservationHelper extends ElementHelper {
 	 * @return the command
 	 */
 	public Command dropTimeObservation(TimeObservation timeObservation, EditPartViewer viewer, PreferencesHint diagramPreferencesHint, Point location, View containerView) {
-		CompositeCommand cc = new CompositeCommand("dropTimeObservation");
+		CompositeCommand cc = new CompositeCommand("dropTimeObservation"); //$NON-NLS-1$
 
 		// 0. Obtain the events
 		NamedElement endToConnect = timeObservation.getEvent();
@@ -111,7 +111,7 @@ public class TimeObservationHelper extends ElementHelper {
 		CreateCommand nodeCreationCommand = new CreateCommand(getEditingDomain(), descriptor, ((View)containerView));
 		cc.compose(nodeCreationCommand);
 
-		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), location);
+		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "move", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), location); //$NON-NLS-1$
 		cc.compose(setBoundsCommand);
 
 		if(endEditPart != null) {

@@ -19,6 +19,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.diagram.communication.custom.figures.MessageFigure;
 import org.eclipse.papyrus.diagram.communication.edit.policies.MessageItemSemanticEditPolicy;
 
@@ -47,6 +49,7 @@ implements ITreeBranchEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new MessageItemSemanticEditPolicy());
+		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLinkLabelDisplayEditPolicy());
 	}
 
 	/**
@@ -55,6 +58,10 @@ implements ITreeBranchEditPart {
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof MessageNameEditPart) {
 			((MessageNameEditPart)childEditPart).setLabel(getPrimaryShape().getFigureMessageCreateLabelFigure());
+			return true;
+		}
+		if(childEditPart instanceof AppliedStereotypeMessageEditPart) {
+			((AppliedStereotypeMessageEditPart)childEditPart).setLabel(getPrimaryShape().getAppliedStereotypeLabel());
 			return true;
 		}
 		return false;
@@ -75,6 +82,9 @@ implements ITreeBranchEditPart {
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof MessageNameEditPart) {
+			return true;
+		}
+		if(childEditPart instanceof AppliedStereotypeMessageEditPart) {
 			return true;
 		}
 		return false;

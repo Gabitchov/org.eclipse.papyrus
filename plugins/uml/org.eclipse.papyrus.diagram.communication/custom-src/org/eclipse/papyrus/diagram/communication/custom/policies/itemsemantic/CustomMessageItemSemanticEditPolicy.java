@@ -108,7 +108,12 @@ public class CustomMessageItemSemanticEditPolicy extends org.eclipse.papyrus.dia
 				cmd.add(new DestroyElementCommand(req));
 			}
 		}
-
 		return getGEFWrapper(cmd);
+
+		//		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
+		//		cmd.setTransactionNestingEnabled(false);
+		//		cmd.add(new DestroyElementCommand(req));
+		//		CommunicationDeleteHelper.completeDestroyMessageCommand(cmd, getHost());
+		//		return getGEFWrapper(cmd.reduce());
 	}
 }

@@ -71,7 +71,7 @@ public class DiagramShortCutHelper extends ElementHelper {
 	 * @return the command
 	 */
 	public Command dropDiagramShortCut(Diagram diagram, EditPartViewer viewer, PreferencesHint diagramPreferencesHint, Point location, View containerView) {
-		CompositeCommand cc = new CompositeCommand("dropDiagramShortCut");
+		CompositeCommand cc = new CompositeCommand("dropDiagramShortCut"); //$NON-NLS-1$
 
 
 
@@ -82,7 +82,7 @@ public class DiagramShortCutHelper extends ElementHelper {
 		DiagramShortCutCreationViewCommand nodeCreationCommand = new DiagramShortCutCreationViewCommand(getEditingDomain(), descriptor, ((View)containerView));
 		cc.compose(nodeCreationCommand);
 
-		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "drop", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), location);
+		SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), "drop", (IAdaptable)nodeCreationCommand.getCommandResult().getReturnValue(), location); //$NON-NLS-1$
 		cc.compose(setBoundsCommand);
 
 

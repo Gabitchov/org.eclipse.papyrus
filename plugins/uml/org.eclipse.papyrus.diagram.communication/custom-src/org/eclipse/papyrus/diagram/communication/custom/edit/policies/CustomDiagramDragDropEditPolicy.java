@@ -192,7 +192,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		if(!(graphicalParentObject instanceof org.eclipse.uml2.uml.Interaction)) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		System.out.println("hello ");
+
 		DiagramShortCutHelper diagramShortCutHelper = new DiagramShortCutHelper(getEditingDomain());
 
 		return diagramShortCutHelper.dropDiagramShortCut(droppedElement, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart)getHost()).getNotationView());
@@ -337,10 +337,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			if(getDroppableElementVisualId().contains(nodeVISUALID) || getDroppableElementVisualId().contains(linkVISUALID)) {
 				dropRequest.setLocation(location);
 				// TODO: add to composite command ?
-				if(nodeVISUALID != -1)//if the dropped element is not the diagram short cut
-					cc.add(new CommandProxy(getSpecificDropCommand(dropRequest, (Element)droppedObject, nodeVISUALID, linkVISUALID)));
-				else
+				if(nodeVISUALID == -1 && linkVISUALID == -1) {//if the dropped element is the diagram short cut
 					cc.add(new CommandProxy(dropShortCutDiagram(dropRequest, (Diagram)droppedObject, nodeVISUALID)));
+				} else {
+					cc.add(new CommandProxy(getSpecificDropCommand(dropRequest, (Element)droppedObject, nodeVISUALID, linkVISUALID)));
+				}
 				continue;
 			}
 
@@ -356,23 +357,27 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 				if(graphicalParent instanceof Package) {
 					cc.add(getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject));
 
-				} else if((graphicalParent instanceof Element) && ((Element)graphicalParent).getOwnedElements().contains(droppedObject)) {
-					cc.add(getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject));
-
 				} else {
-					return UnexecutableCommand.INSTANCE;
+					if((graphicalParent instanceof Element) && ((Element)graphicalParent).getOwnedElements().contains(droppedObject)) {
+						cc.add(getDefaultDropNodeCommand(nodeVISUALID, location, droppedObject));
+
+					} else {
+						return UnexecutableCommand.INSTANCE;
+					}
 				}
 
-			} else if(linkVISUALID != -1) {
-				Collection<?> sources = linkmappingHelper.getSource((Element)droppedObject);
-				Collection<?> targets = linkmappingHelper.getTarget((Element)droppedObject);
-				if(sources.size() == 0 || targets.size() == 0) {
-					return UnexecutableCommand.INSTANCE;
+			} else {
+				if(linkVISUALID != -1) {
+					Collection<?> sources = linkmappingHelper.getSource((Element)droppedObject);
+					Collection<?> targets = linkmappingHelper.getTarget((Element)droppedObject);
+					if(sources.size() == 0 || targets.size() == 0) {
+						return UnexecutableCommand.INSTANCE;
+					}
+					// binary association
+					Element source = (Element)sources.toArray()[0];
+					Element target = (Element)targets.toArray()[0];
+					dropBinaryLink(cc, source, target, linkVISUALID, dropRequest.getLocation(), (Element)droppedObject);
 				}
-				// binary association
-				Element source = (Element)sources.toArray()[0];
-				Element target = (Element)targets.toArray()[0];
-				dropBinaryLink(cc, source, target, linkVISUALID, dropRequest.getLocation(), (Element)droppedObject);
 			}
 		}
 

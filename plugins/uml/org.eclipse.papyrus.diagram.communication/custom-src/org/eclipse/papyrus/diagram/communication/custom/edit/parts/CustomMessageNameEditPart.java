@@ -42,7 +42,7 @@ public class CustomMessageNameEditPart extends MessageNameEditPart {
 		super(view);
 	}
 
-	static final String PATH = "/icons/arrow.gif";
+	static final String PATH = "/icons/arrow.gif"; //$NON-NLS-1$
 
 	/**
 	 * 

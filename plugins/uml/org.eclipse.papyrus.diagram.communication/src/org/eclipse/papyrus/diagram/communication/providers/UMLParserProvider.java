@@ -30,6 +30,7 @@ import org.eclipse.papyrus.diagram.common.parser.ConstraintParser;
 import org.eclipse.papyrus.diagram.common.parser.ShortcutDiagramParser;
 import org.eclipse.papyrus.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.papyrus.diagram.communication.custom.parser.LifelineCustomParsers;
+import org.eclipse.papyrus.diagram.communication.edit.parts.AppliedStereotypeMessageEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.CommentBodyEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.ConstraintBodyEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.ConstraintNameEditPartCN;
@@ -231,6 +232,21 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
+	private AppliedStereotypeParser messageName_6012Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMessageName_6012Parser() {
+		if(messageName_6012Parser == null) {
+			messageName_6012Parser = new AppliedStereotypeParser();
+		}
+		return messageName_6012Parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch(visualID) {
 		case InteractionNameEditPart.VISUAL_ID:
@@ -255,6 +271,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getDurationObservationName_5156Parser();
 		case MessageNameEditPart.VISUAL_ID:
 			return getMessageName_6001Parser();
+		case AppliedStereotypeMessageEditPart.VISUAL_ID:
+			return getMessageName_6012Parser();
 		}
 		return null;
 	}

@@ -53,6 +53,7 @@ import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.diagram.common.helper.PreferenceInitializerForElementHelper;
+import org.eclipse.papyrus.diagram.communication.edit.parts.AppliedStereotypeMessageEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.diagram.communication.edit.parts.CommentBodyEditPartCN;
 import org.eclipse.papyrus.diagram.communication.edit.parts.CommentEditPartCN;
@@ -518,6 +519,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6001 = (Location)label6001.getLayoutConstraint();
 		location6001.setX(1);
 		location6001.setY(-23);
+		Node label6012 = createLabel(edge, UMLVisualIDRegistry.getType(AppliedStereotypeMessageEditPart.VISUAL_ID));
+		label6012.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6012 = (Location)label6012.getLayoutConstraint();
+		location6012.setX(1);
+		location6012.setY(-53);
 		return edge;
 	}
 
