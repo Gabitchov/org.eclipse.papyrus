@@ -15,11 +15,13 @@ package org.eclipse.papyrus.diagram.composite.edit.policies;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
-import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
@@ -115,70 +117,20 @@ public class PropertyPartItemSemanticEditPolicyCN extends UMLBaseItemSemanticEdi
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		View view = (View)getHost().getModel();
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(getEditingDomain(), null);
-		cmd.setTransactionNestingEnabled(false);
+		cmd.setTransactionNestingEnabled(true);
 
-
-		for(Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
-			Edge incomingLink = (Edge)it.next();
-			switch(UMLVisualIDRegistry.getVisualID(incomingLink)) {
-			case CommentAnnotatedElementEditPart.VISUAL_ID:
-			case ConstraintConstrainedElementEditPart.VISUAL_ID:
-			case ConnectorTimeObservationEditPart.VISUAL_ID:
-			case ConnectorDurationObservationEditPart.VISUAL_ID:
-				DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
-				cmd.add(new DestroyReferenceCommand(destroyRefReq));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				break;
-			case ComponentRealizationEditPart.VISUAL_ID:
-			case InterfaceRealizationEditPart.VISUAL_ID:
-			case SubstitutionEditPart.VISUAL_ID:
-			case RealizationEditPart.VISUAL_ID:
-			case ManifestationEditPart.VISUAL_ID:
-			case AbstractionEditPart.VISUAL_ID:
-			case UsageEditPart.VISUAL_ID:
-			case DeploymentEditPart.VISUAL_ID:
-			case RoleBindingEditPart.VISUAL_ID:
-			case DependencyEditPart.VISUAL_ID:
-			case InformationFlowEditPart.VISUAL_ID:
-				DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(destroyEltReq));
-				cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
-				break;
-			}
-		}
-
-		for(Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
-			Edge outgoingLink = (Edge)it.next();
-			switch(UMLVisualIDRegistry.getVisualID(outgoingLink)) {
-			case ComponentRealizationEditPart.VISUAL_ID:
-			case InterfaceRealizationEditPart.VISUAL_ID:
-			case SubstitutionEditPart.VISUAL_ID:
-			case RealizationEditPart.VISUAL_ID:
-			case ManifestationEditPart.VISUAL_ID:
-			case AbstractionEditPart.VISUAL_ID:
-			case UsageEditPart.VISUAL_ID:
-			case DeploymentEditPart.VISUAL_ID:
-			case RoleBindingEditPart.VISUAL_ID:
-			case DependencyEditPart.VISUAL_ID:
-			case InformationFlowEditPart.VISUAL_ID:
-				DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
-				cmd.add(new DestroyElementCommand(destroyEltReq));
-				cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
-				break;
-			}
-		}
 		EAnnotation annotation = view.getEAnnotation("Shortcut"); //$NON-NLS-1$
 		if(annotation == null) {
 			// there are indirectly referenced children, need extra commands: true
 			addDestroyChildNodesCommand(cmd);
 			addDestroyShortcutsCommand(cmd, view);
 			// delete host element
-			ArrayList todestroy = new ArrayList();
+			List<EObject> todestroy = new ArrayList<EObject>();
 			todestroy.add(req.getElementToDestroy());
 			//cmd.add(new org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand(req));
-			cmd.add(new EMFtoGMFCommandWrapper(new org.eclipse.emf.edit.command.DeleteCommand(getEditingDomain(), todestroy)));
+			cmd.add(new EMFtoGMFCommandWrapper(new DeleteCommand(getEditingDomain(), todestroy)));
 		} else {
-			cmd.add(new DeleteCommand(getEditingDomain(), view));
+			cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), view));
 		}
 		return getGEFWrapper(cmd.reduce());
 	}
@@ -203,7 +155,7 @@ public class PropertyPartItemSemanticEditPolicyCN extends UMLBaseItemSemanticEdi
 					case ConnectorDurationObservationEditPart.VISUAL_ID:
 						DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
 						cmd.add(new DestroyReferenceCommand(destroyRefReq));
-						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+						cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
 						break;
 					case ComponentRealizationEditPart.VISUAL_ID:
 					case InterfaceRealizationEditPart.VISUAL_ID:
@@ -218,7 +170,7 @@ public class PropertyPartItemSemanticEditPolicyCN extends UMLBaseItemSemanticEdi
 					case InformationFlowEditPart.VISUAL_ID:
 						DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
 						cmd.add(new DestroyElementCommand(destroyEltReq));
-						cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+						cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
 						break;
 					}
 				}
@@ -239,7 +191,7 @@ public class PropertyPartItemSemanticEditPolicyCN extends UMLBaseItemSemanticEdi
 					case InformationFlowEditPart.VISUAL_ID:
 						DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
 						cmd.add(new DestroyElementCommand(destroyEltReq));
-						cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+						cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), outgoingLink));
 						break;
 					}
 				}
@@ -263,7 +215,7 @@ public class PropertyPartItemSemanticEditPolicyCN extends UMLBaseItemSemanticEdi
 							case ConnectorDurationObservationEditPart.VISUAL_ID:
 								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
 								cmd.add(new DestroyReferenceCommand(destroyRefReq));
-								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
 								break;
 							case ComponentRealizationEditPart.VISUAL_ID:
 							case InterfaceRealizationEditPart.VISUAL_ID:
@@ -278,7 +230,7 @@ public class PropertyPartItemSemanticEditPolicyCN extends UMLBaseItemSemanticEdi
 							case InformationFlowEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
-								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
 								break;
 							}
 						}
@@ -299,7 +251,7 @@ public class PropertyPartItemSemanticEditPolicyCN extends UMLBaseItemSemanticEdi
 							case InformationFlowEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
-								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), outgoingLink));
 								break;
 							}
 						}
@@ -319,7 +271,7 @@ public class PropertyPartItemSemanticEditPolicyCN extends UMLBaseItemSemanticEdi
 							case ConnectorDurationObservationEditPart.VISUAL_ID:
 								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
 								cmd.add(new DestroyReferenceCommand(destroyRefReq));
-								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
 								break;
 							case ComponentRealizationEditPart.VISUAL_ID:
 							case InterfaceRealizationEditPart.VISUAL_ID:
@@ -334,7 +286,7 @@ public class PropertyPartItemSemanticEditPolicyCN extends UMLBaseItemSemanticEdi
 							case InformationFlowEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(incomingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
-								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
 								break;
 							}
 						}
@@ -355,7 +307,7 @@ public class PropertyPartItemSemanticEditPolicyCN extends UMLBaseItemSemanticEdi
 							case InformationFlowEditPart.VISUAL_ID:
 								DestroyElementRequest destroyEltReq = new DestroyElementRequest(outgoingLink.getElement(), false);
 								cmd.add(new DestroyElementCommand(destroyEltReq));
-								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), outgoingLink));
 								break;
 							}
 						}
@@ -373,7 +325,7 @@ public class PropertyPartItemSemanticEditPolicyCN extends UMLBaseItemSemanticEdi
 							case ConstraintConstrainedElementEditPart.VISUAL_ID:
 								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(incomingLink.getSource().getElement(), null, incomingLink.getTarget().getElement(), false);
 								cmd.add(new DestroyReferenceCommand(destroyRefReq));
-								cmd.add(new DeleteCommand(getEditingDomain(), incomingLink));
+								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), incomingLink));
 								break;
 							}
 						}
@@ -384,7 +336,7 @@ public class PropertyPartItemSemanticEditPolicyCN extends UMLBaseItemSemanticEdi
 							case CommentAnnotatedElementEditPart.VISUAL_ID:
 								DestroyReferenceRequest destroyRefReq = new DestroyReferenceRequest(outgoingLink.getSource().getElement(), null, outgoingLink.getTarget().getElement(), false);
 								cmd.add(new DestroyReferenceCommand(destroyRefReq));
-								cmd.add(new DeleteCommand(getEditingDomain(), outgoingLink));
+								cmd.add(new org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand(getEditingDomain(), outgoingLink));
 								break;
 							}
 						}
