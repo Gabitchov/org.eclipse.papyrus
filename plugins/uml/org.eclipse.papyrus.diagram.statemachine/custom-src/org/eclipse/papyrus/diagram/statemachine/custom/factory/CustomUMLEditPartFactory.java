@@ -11,6 +11,7 @@ import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomStateEdit
 import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomStateMachineCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomStateMachineEditPart;
 import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomStateMachineNameEditPart;
+import org.eclipse.papyrus.diagram.statemachine.custom.edit.part.CustomStateNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.PseudostateEditPart;
@@ -20,6 +21,7 @@ import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineCompartmentEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateMachineNameEditPart;
+import org.eclipse.papyrus.diagram.statemachine.edit.parts.StateNameEditPart;
 import org.eclipse.papyrus.diagram.statemachine.edit.parts.UMLEditPartFactory;
 import org.eclipse.papyrus.diagram.statemachine.part.UMLVisualIDRegistry;
 
@@ -48,6 +50,8 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 				return new CustomFinalStateEditPart(view);
 			case StateEditPart.VISUAL_ID:
 				return new CustomStateEditPart(view);
+			case StateNameEditPart.VISUAL_ID:
+				return new CustomStateNameEditPart(view);
 			}
 
 		}
