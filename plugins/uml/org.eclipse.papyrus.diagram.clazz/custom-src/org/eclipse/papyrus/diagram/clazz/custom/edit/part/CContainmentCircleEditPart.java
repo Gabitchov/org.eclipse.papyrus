@@ -13,10 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.edit.part;
 
-import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.ContainmentCircleEditPart;
 
@@ -36,23 +32,6 @@ public class CContainmentCircleEditPart extends ContainmentCircleEditPart {
 		super.handleNotificationEvent(event);
 		// set the good ends for the association figure
 		refreshVisuals();
-	}
-
-	/**
-	 * Limit the size of the containment circle node size
-	 * 
-	 **/
-	protected void refreshBounds() {
-		if(getBorderItemLocator() != null) {
-			int x = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
-			int y = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
-			Point loc = new Point(x, y);
-			Dimension size = new Dimension(20, 20);
-			getBorderItemLocator().setConstraint(new Rectangle(loc, size));
-
-		} else {
-			super.refreshBounds();
-		}
 	}
 
 	/**
