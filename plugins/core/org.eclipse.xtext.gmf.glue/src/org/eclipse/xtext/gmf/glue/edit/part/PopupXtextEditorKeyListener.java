@@ -51,6 +51,10 @@ public class PopupXtextEditorKeyListener extends KeyAdapter implements VerifyKey
 				this.popupXtextEditorHelper.closeEditor(false);
 			}
 		}
+		if ((e.stateMask & SWT.CTRL) != 0 && (keyCode == ' ')) {
+			this.contentAssistant.showPossibleCompletions() ;
+			this.isIgnoreNextESC = true ;
+		}
 	}
 
 	public void verifyKey(VerifyEvent e) {
@@ -65,4 +69,5 @@ public class PopupXtextEditorKeyListener extends KeyAdapter implements VerifyKey
 	private boolean isContentAssistActive() {
 		return contentAssistant != null && contentAssistant.hasProposalPopupFocus();
 	}
+	
 }

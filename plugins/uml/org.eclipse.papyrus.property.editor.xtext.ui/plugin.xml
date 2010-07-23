@@ -34,10 +34,6 @@
               </reference>
            </activeWhen>
       </handler>
-        <handler
-              class="org.eclipse.papyrus.property.editor.xtext.ui.contentassist.UmlPropertyContentAssistHandler"
-              commandId="org.eclipse.ui.edit.text.contentAssist.proposals">
-        </handler>
     </extension>
     <extension point="org.eclipse.core.expressions.definitions">
         <definition id="org.eclipse.papyrus.property.editor.xtext.UmlProperty.Editor.opened">

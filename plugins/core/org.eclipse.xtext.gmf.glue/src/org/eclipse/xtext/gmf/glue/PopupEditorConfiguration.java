@@ -21,10 +21,8 @@ import org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorCon
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.xtext.gmf.glue.edit.part.IEObjectContextUpdater;
 import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
 import org.eclipse.xtext.gmf.glue.edit.part.PopupXtextEditorHelper;
-import org.eclipse.xtext.gmf.glue.edit.part.IXTextEditorContextUpdater;
 
 import com.google.inject.Injector;
 
@@ -69,17 +67,13 @@ public abstract class PopupEditorConfiguration implements IPopupEditorConfigurat
 	 * @return IPopupEditorHelper
 	 */
 	public IPopupEditorHelper createPopupEditorHelper(IGraphicalEditPart editPart, 
-					Injector xtextInjector, 
-					IEObjectContextUpdater eobjectContextUpdater, 
-					IXTextEditorContextUpdater xtextEditorContextUpdater,
+					Injector xtextInjector,
 					IXtextEMFReconciler modelReconciler,
 					String textToEdit, 
 					String fileExtension) {
 
 		return new PopupXtextEditorHelper(editPart, 
 						xtextInjector, 
-						eobjectContextUpdater, 
-						xtextEditorContextUpdater,
 						modelReconciler,
 						textToEdit, 
 						fileExtension);
@@ -130,6 +124,7 @@ public abstract class PopupEditorConfiguration implements IPopupEditorConfigurat
 		this.language = "" + language ;
 	}
 
+	
 	public IInputValidator getInputValidator() {
 		// Auto-generated method stub
 		return null;

@@ -24,8 +24,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
-import org.eclipse.papyrus.property.editor.xtext.scoping.UmlPropertyScopeProvider;
-import org.eclipse.papyrus.property.editor.xtext.ui.editor.ContextEditorUtil;
 import org.eclipse.papyrus.property.editor.xtext.ui.internal.UmlPropertyActivator;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.ModifierSpecification;
 import org.eclipse.papyrus.property.editor.xtext.umlProperty.PropertyRule;
@@ -33,10 +31,7 @@ import org.eclipse.papyrus.umlutils.PropertyUtil;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.xtext.gmf.glue.PopupEditorConfiguration;
-import org.eclipse.xtext.gmf.glue.edit.part.IEObjectContextUpdater;
-import org.eclipse.xtext.gmf.glue.edit.part.IXTextEditorContextUpdater;
 import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
-import org.eclipse.xtext.ui.editor.XtextEditor;
 
 import com.google.inject.Injector;
 
@@ -103,22 +98,6 @@ public class PropertyPopupEditorConfigurationContribution extends PopupEditorCon
 		// builds the text content and extension for a temporary file, to be edited by the xtext editor
 		String textToEdit = "" + this.getTextToEdit(graphicalEditPart.resolveSemanticElement());
 		String fileExtension = "" + ".umlproperty";
-
-		// builds a new IEobjectContextUpdater
-		IEObjectContextUpdater eobjectContextUpdater = new IEObjectContextUpdater() {
-
-			public void updateContext(EObject context) {
-				UmlPropertyScopeProvider.context = context;
-			}
-		};
-
-		// builds a new IXTextEditorContextUpdater
-		IXTextEditorContextUpdater xtextEditorContextUpdater = new IXTextEditorContextUpdater() {
-
-			public void updateCurrentEditor(XtextEditor context) {
-				ContextEditorUtil.currentEditor = context;
-			}
-		};
 
 		// builds a new IXtextEMFReconciler.
 		// Its purpose is to extract any relevant information from the textual specification,
@@ -219,7 +198,7 @@ public class PropertyPopupEditorConfigurationContribution extends PopupEditorCon
 				}
 			}
 		};
-		return super.createPopupEditorHelper(graphicalEditPart, injector, eobjectContextUpdater, xtextEditorContextUpdater, reconciler, textToEdit, fileExtension);
+		return super.createPopupEditorHelper(graphicalEditPart, injector, reconciler, textToEdit, fileExtension);
 	}
 
 	/*

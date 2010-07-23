@@ -24,8 +24,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
-import org.eclipse.papyrus.state.editor.xtext.scoping.UmlStateScopeProvider;
-import org.eclipse.papyrus.state.editor.xtext.ui.editor.ContextEditorUtil;
 import org.eclipse.papyrus.state.editor.xtext.ui.internal.UmlStateActivator;
 import org.eclipse.papyrus.state.editor.xtext.umlState.BehaviorKind;
 import org.eclipse.papyrus.state.editor.xtext.umlState.StateRule;
@@ -36,10 +34,7 @@ import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.xtext.gmf.glue.PopupEditorConfiguration;
-import org.eclipse.xtext.gmf.glue.edit.part.IEObjectContextUpdater;
-import org.eclipse.xtext.gmf.glue.edit.part.IXTextEditorContextUpdater;
 import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
-import org.eclipse.xtext.ui.editor.XtextEditor;
 
 import com.google.inject.Injector;
 
@@ -98,22 +93,6 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 		String textToEdit = "" + this.getTextToEdit(graphicalEditPart.resolveSemanticElement());
 		String fileExtension = "" + ".umlstate";
 
-		// builds a new IEobjectContextUpdater
-		IEObjectContextUpdater eobjectContextUpdater = new IEObjectContextUpdater() {
-
-			public void updateContext(EObject context) {
-				UmlStateScopeProvider.context = context;
-			}
-		};
-
-		// builds a new IXTextEditorContextUpdater
-		IXTextEditorContextUpdater xtextEditorContextUpdater = new IXTextEditorContextUpdater() {
-
-			public void updateCurrentEditor(XtextEditor context) {
-				ContextEditorUtil.currentEditor = context;
-			}
-		};
-
 		// builds a new IXtextEMFReconciler.
 		// Its purpose is to extract any relevant information from the textual specification,
 		// and then merge it in the context UML model if necessary
@@ -169,7 +148,7 @@ public class StatePopupEditorConfigurationContribution extends PopupEditorConfig
 				}
 			}
 		};
-		return super.createPopupEditorHelper(graphicalEditPart, injector, eobjectContextUpdater, xtextEditorContextUpdater, reconciler, textToEdit, fileExtension);
+		return super.createPopupEditorHelper(graphicalEditPart, injector, reconciler, textToEdit, fileExtension);
 	}
 
 	/*

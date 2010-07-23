@@ -27,18 +27,13 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.core.utils.EditorUtils;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.log.LogHelper;
-import org.eclipse.papyrus.message.editor.xtext.scoping.UmlMessageScopeProvider;
-import org.eclipse.papyrus.message.editor.xtext.ui.editor.ContextEditorUtil;
 import org.eclipse.papyrus.message.editor.xtext.ui.internal.UmlMessageActivator;
 import org.eclipse.papyrus.message.editor.xtext.umlMessage.MessageRule;
 import org.eclipse.papyrus.properties.runtime.Activator;
 import org.eclipse.uml2.uml.Interaction;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.xtext.gmf.glue.PopupEditorConfiguration;
-import org.eclipse.xtext.gmf.glue.edit.part.IEObjectContextUpdater;
-import org.eclipse.xtext.gmf.glue.edit.part.IXTextEditorContextUpdater;
 import org.eclipse.xtext.gmf.glue.edit.part.IXtextEMFReconciler;
-import org.eclipse.xtext.ui.editor.XtextEditor;
 
 import com.google.inject.Injector;
 
@@ -130,22 +125,6 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 		String textToEdit = "" + this.getTextToEdit(message);
 		String fileExtension = "" + ".umlmessage";
 
-		// builds a new IEobjectContextUpdater
-		IEObjectContextUpdater eobjectContextUpdater = new IEObjectContextUpdater() {
-
-			public void updateContext(EObject context) {
-				UmlMessageScopeProvider.context = context;
-			}
-		};
-
-		// builds a new IXTextEditorContextUpdater
-		IXTextEditorContextUpdater xtextEditorContextUpdater = new IXTextEditorContextUpdater() {
-
-			public void updateCurrentEditor(XtextEditor context) {
-				ContextEditorUtil.currentEditor = context;
-			}
-		};
-
 		// builds a new IXtextEMFReconciler.
 		// Its purpose is to extract any relevant information from the textual specification,
 		// and then merge it in the context UML model if necessary
@@ -201,7 +180,7 @@ public class MessagePopupEditor extends PopupEditorConfiguration {
 
 
 		};
-		return super.createPopupEditorHelper(graphicalEditPart, injector, eobjectContextUpdater, xtextEditorContextUpdater, reconciler, textToEdit, fileExtension);
+		return super.createPopupEditorHelper(graphicalEditPart, injector, reconciler, textToEdit, fileExtension);
 	}
 
 	/**

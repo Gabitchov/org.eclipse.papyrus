@@ -17,32 +17,25 @@ public class StringUtil {
 	 * @param s 
 	 * @return int
 	 */
-	public static int getNumLines(String s) {
+	public static int[] getNumLinesNumColumns(String s) {
 		int numLines = 1;
+		int numColumns = 0;
+		int[] dimensions = new int[2] ;
+		dimensions[0] = numLines ;
+		dimensions[1] = 0 ;
 		for (char c : s.toCharArray()) {
 			if (c == '\n') {
 				++numLines;
+				dimensions[1] = Math.max(dimensions[1], numColumns) ;
+				numColumns = 0 ;
+			}
+			else {
+				++numColumns;
 			}
 		}
-		return numLines;
+		dimensions[0] = numLines ;
+		dimensions[1] = Math.max(dimensions[1], numColumns) ;
+		return dimensions;
 	}
 
-	/**
-	 * This element comes from the XText/GMF integration example, and was not originally documented.
-	 * @param s 
-	 * @return int
-	 */
-	public static int getMaxColumns(String s) {
-		int maxColumns = 0;
-		int currentColumns = 0;
-		for (char c : s.toCharArray()) {
-			if (c == '\n') {
-				maxColumns = Math.max(maxColumns, currentColumns);
-				currentColumns = 0;
-			} else {
-				++currentColumns;
-			}
-		}
-		return Math.max(currentColumns, maxColumns);
-	}
 }

@@ -35,13 +35,5 @@ import org.eclipse.xtext.scoping.impl.SimpleScope;
  *
  */
 public class UmlStateScopeProvider extends AbstractDeclarativeScopeProvider {
-
-	/**
-	 * The EObject context represents the context UML model element for the active xtext editor.
-	 * This variable is public static, and updated when a given xtext editor gets the focus.
-	 * @see IEObjectContextUpdater from org.eclipse.xtext.gmf.glue.edit.part
-	 * @see IXTextEditorContextUpdater from org.eclipse.xtext.gmf.glue.edit.part
-	 */
-	public static EObject context = null ;
 	
 }

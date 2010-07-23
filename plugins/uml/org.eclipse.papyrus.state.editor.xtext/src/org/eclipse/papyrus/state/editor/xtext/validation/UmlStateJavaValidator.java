@@ -16,7 +16,6 @@ package org.eclipse.papyrus.state.editor.xtext.validation;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.papyrus.state.editor.xtext.scoping.UmlStateScopeProvider;
 import org.eclipse.papyrus.state.editor.xtext.umlState.BehaviorKind;
 import org.eclipse.papyrus.state.editor.xtext.umlState.DoRule;
 import org.eclipse.papyrus.state.editor.xtext.umlState.EntryRule;
@@ -28,6 +27,7 @@ import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.OpaqueBehavior;
 import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.Vertex;
+import org.eclipse.xtext.gmf.glue.edit.part.PopupXtextEditorHelper;
 import org.eclipse.xtext.validation.Check;
  
 
@@ -50,7 +50,7 @@ public class UmlStateJavaValidator extends AbstractUmlStateJavaValidator {
 	 */
 	@Check
 	public void checkStateName (StateRule stateRule) {
-		if (UmlStateScopeProvider.context == null)
+		if (PopupXtextEditorHelper.context == null)
 			return ;
 		
 		if (stateRule.getName() == null || stateRule.getName().equals(""))
@@ -59,7 +59,7 @@ public class UmlStateJavaValidator extends AbstractUmlStateJavaValidator {
 		//
 		// first, checks if the new name of the State is already used by another state in the region
 		//
-		org.eclipse.uml2.uml.State editedState = (org.eclipse.uml2.uml.State) UmlStateScopeProvider.context ;
+		org.eclipse.uml2.uml.State editedState = (org.eclipse.uml2.uml.State) PopupXtextEditorHelper.context ;
 		List<String> alreadyUsedNames = new ArrayList<String>() ;
 		
 		for (Vertex v : editedState.getContainer().getSubvertices()) {
@@ -121,14 +121,14 @@ public class UmlStateJavaValidator extends AbstractUmlStateJavaValidator {
 	 */
 	@Check
 	public void checkDoRule (DoRule doRule) {
-		if (UmlStateScopeProvider.context == null)
+		if (PopupXtextEditorHelper.context == null)
 			return ;
 		if (doRule.getKind() == null)
 			return ;
 		if (doRule.getBehaviorName() == null || doRule.getBehaviorName().equals(""))
 			return ;
 		
-		org.eclipse.uml2.uml.State editedState = (org.eclipse.uml2.uml.State) UmlStateScopeProvider.context ;
+		org.eclipse.uml2.uml.State editedState = (org.eclipse.uml2.uml.State) PopupXtextEditorHelper.context ;
 		BehaviorKind oldDoKind = getBehaviorKind(editedState.getDoActivity()) ;
 		BehaviorKind newDoKind = doRule.getKind() ;
 		if (oldDoKind != null) {
@@ -160,14 +160,14 @@ public class UmlStateJavaValidator extends AbstractUmlStateJavaValidator {
 	 */
 	@Check
 	public void checkEntryRule (EntryRule entryRule) {
-		if (UmlStateScopeProvider.context == null)
+		if (PopupXtextEditorHelper.context == null)
 			return ;
 		if (entryRule.getKind() == null)
 			return ;
 		if (entryRule.getBehaviorName() == null || entryRule.getBehaviorName().equals(""))
 			return ;
 		
-		org.eclipse.uml2.uml.State editedState = (org.eclipse.uml2.uml.State) UmlStateScopeProvider.context ;
+		org.eclipse.uml2.uml.State editedState = (org.eclipse.uml2.uml.State) PopupXtextEditorHelper.context ;
 		BehaviorKind oldDoKind = getBehaviorKind(editedState.getEntry()) ;
 		BehaviorKind newDoKind = entryRule.getKind() ;
 		if (oldDoKind != null) {
@@ -199,14 +199,14 @@ public class UmlStateJavaValidator extends AbstractUmlStateJavaValidator {
 	 */
 	@Check
 	public void checkExitRule (ExitRule exitRule) {
-		if (UmlStateScopeProvider.context == null)
+		if (PopupXtextEditorHelper.context == null)
 			return ;
 		if (exitRule.getKind() == null)
 			return ;
 		if (exitRule.getBehaviorName() == null || exitRule.getBehaviorName().equals(""))
 			return ;
 		
-		org.eclipse.uml2.uml.State editedState = (org.eclipse.uml2.uml.State) UmlStateScopeProvider.context ;
+		org.eclipse.uml2.uml.State editedState = (org.eclipse.uml2.uml.State) PopupXtextEditorHelper.context ;
 		BehaviorKind oldDoKind = getBehaviorKind(editedState.getExit()) ;
 		BehaviorKind newDoKind = exitRule.getKind() ;
 		if (oldDoKind != null) {

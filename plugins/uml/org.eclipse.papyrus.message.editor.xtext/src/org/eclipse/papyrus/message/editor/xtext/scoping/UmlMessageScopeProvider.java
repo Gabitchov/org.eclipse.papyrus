@@ -13,12 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.message.editor.xtext.scoping;
 
-import java.util.Iterator;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.papyrus.message.editor.xtext.umlMessage.MessageRule;
-import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 
 // TODO: Auto-generated Javadoc
@@ -30,9 +25,6 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
  *
  */
 public class UmlMessageScopeProvider extends AbstractDeclarativeScopeProvider {
-
-/** The context. */
-public static EObject context = null ;
 	
 	/*public IScope scope_MessageRule_type(MessageRule ctx, EReference ref) {
 		return create___MessageRule_type___Scope(ctx) ;

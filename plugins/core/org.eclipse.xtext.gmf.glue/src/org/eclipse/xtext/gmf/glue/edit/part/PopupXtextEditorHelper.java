@@ -7,83 +7,70 @@
  *******************************************************************************/
 package org.eclipse.xtext.gmf.glue.edit.part;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
-import java.lang.reflect.Field;
 
-import javax.swing.text.JTextComponent.KeyBinding;
+import java.util.List;
+import java.util.Map;
 
-
-import org.eclipse.core.commands.IHandler;
-import org.eclipse.core.resources.IFile;
+import org.eclipse.core.commands.operations.IOperationHistory;
+import org.eclipse.core.commands.operations.IUndoContext;
+import org.eclipse.core.commands.operations.OperationHistoryFactory;
+import org.eclipse.core.expressions.Expression;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.gef.EditPartViewer;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramRootEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramEditDomain;
-import org.eclipse.jface.bindings.Binding;
+import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.commands.ActionHandler;
-import org.eclipse.jface.text.BadLocationException;
-import org.eclipse.jface.viewers.ISelectionProvider;
-import org.eclipse.papyrus.core.utils.EditorUtils;
+import org.eclipse.jface.text.ITextOperationTarget;
+import org.eclipse.jface.text.source.ISourceViewer;
+import org.eclipse.jface.text.source.SourceViewer;
+import org.eclipse.jface.text.templates.TemplateException;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
-//import org.eclipse.papyrus.sasheditor.internal.eclipsecopy.MultiPageEditorSite;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Decorations;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.text.undo.DocumentUndoManagerRegistry;
+import org.eclipse.text.undo.IDocumentUndoManager;
+import org.eclipse.ui.ActiveShellExpression;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IEditorSite;
-import org.eclipse.ui.IKeyBindingService;
-import org.eclipse.ui.INestableKeyBindingService;
-import org.eclipse.ui.IPartListener;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.IWorkbenchPartSite;
+import org.eclipse.ui.IWorkbenchCommandConstants;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.console.actions.TextViewerAction;
+import org.eclipse.ui.handlers.IHandlerActivation;
 import org.eclipse.ui.handlers.IHandlerService;
-import org.eclipse.ui.internal.KeyBindingService;
-import org.eclipse.ui.internal.PartSite;
-import org.eclipse.ui.internal.Workbench;
-import org.eclipse.ui.internal.WorkbenchPlugin;
-import org.eclipse.ui.internal.services.INestable;
-import org.eclipse.ui.keys.IBindingService;
-import org.eclipse.ui.part.FileEditorInputFactory;
-import org.eclipse.ui.services.IServiceLocator;
+import org.eclipse.ui.texteditor.ITextEditorActionConstants;
+import org.eclipse.ui.texteditor.ITextEditorActionDefinitionIds;
+import org.eclipse.ui.texteditor.IUpdate;
 import org.eclipse.xtext.gmf.glue.Activator;
-import org.eclipse.xtext.gmf.glue.editingdomain.ChangeAggregatorAdapter;
-import org.eclipse.xtext.gmf.glue.editingdomain.UpdateXtextResourceTextCommand;
+import org.eclipse.xtext.gmf.glue.partialEditing.ISyntheticResourceProvider;
+import org.eclipse.xtext.gmf.glue.partialEditing.PartialModelEditor;
+import org.eclipse.xtext.gmf.glue.partialEditing.SourceViewerHandle;
+import org.eclipse.xtext.gmf.glue.partialEditing.SourceViewerHandleFactory;
+import org.eclipse.xtext.gmf.glue.partialEditing.OperationHistoryListener;
 import org.eclipse.xtext.parser.IParseResult;
-import org.eclipse.xtext.parsetree.CompositeNode;
-import org.eclipse.xtext.parsetree.NodeAdapter;
-import org.eclipse.xtext.parsetree.NodeUtil;
 import org.eclipse.xtext.resource.XtextResource;
-import org.eclipse.xtext.ui.editor.CompoundXtextEditorCallback;
-import org.eclipse.xtext.ui.editor.XtextEditor;
-import org.eclipse.xtext.ui.editor.XtextSourceViewer;
-import org.eclipse.xtext.ui.editor.info.ResourceWorkingCopyFileEditorInput;
+
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 
-import com.google.inject.Binder;
-import com.google.inject.Guice;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.google.inject.Injector;
-import com.google.inject.Module;
 
 /**
  * Base class to handle a small in-diagram XtextEditor.
@@ -111,48 +98,31 @@ import com.google.inject.Module;
 
 public class PopupXtextEditorHelper implements IPopupEditorHelper {
 
-	private static int MIN_EDITOR_WIDTH = 100;
-
-	private static int MIN_EDITOR_HEIGHT = 20;
-
 	private IGraphicalEditPart hostEditPart;
-
 	private IEditorPart diagramEditor;
-
-	private XtextEditor xtextEditor;
-
 	private int editorOffset;
-
 	private int initialEditorSize;
-
 	private int initialDocumentSize;
-
 	private Composite xtextEditorComposite;
 	private final Injector xtextInjector;
-
 	private XtextResource xtextResource;
-
 	private String semanticElementFragment;
-
-	private IEObjectContextUpdater eobjectContextUpdater ;
-	
-	private IXTextEditorContextUpdater xtextEditorContextUpdater ;
-	
 	private EObject semanticElement ;
-	
 	private String textToEdit ;
-	
-	private String fileExtension ;
-	
-	private static int uniqueID = 0 ;
-	
-	private String temporaryFilePath = "" ;
-
+	/**
+	 * The file extension used to dynamically select the appropriate xtext editor
+	 */
+	public static String fileExtension ;
 	private IXtextEMFReconciler modelReconciler;
-	
-	
-	private IPartListener addedPartListener ;
-
+	private ISyntheticResourceProvider resourceProvider ;
+	private SourceViewerHandle sourceViewerHandle ;
+	private PartialModelEditor partialEditor ;
+	private Shell diagramShell ;
+	private OperationHistoryListener operationHistoryListener;
+	/**
+	 * The context EObject for this editor. It can be used for content assist, verification, etc.
+	 */
+	public static EObject context ;
 	
 	/**
 	 * This element was originally undocumented in the XText/GMF integration example
@@ -169,19 +139,15 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 	 * 
 	 */
 	public PopupXtextEditorHelper(IGraphicalEditPart editPart, 
-							Injector xtextInjector, 
-							IEObjectContextUpdater eobjectContextUpdater, 
-							IXTextEditorContextUpdater xtextEditorContextUpdater,
+							Injector xtextInjector,
 							IXtextEMFReconciler modelReconciler,
 							String textToEdit, 
 							String fileExtension) {
 		this.hostEditPart = editPart;
 		this.xtextInjector = xtextInjector ;
 		this.textToEdit = "" + textToEdit ;
-		this.fileExtension = "" + fileExtension ;
-		this.eobjectContextUpdater = eobjectContextUpdater ;
-		this.xtextEditorContextUpdater = xtextEditorContextUpdater ;
 		this.modelReconciler = modelReconciler ;
+		this.fileExtension = "" + fileExtension ;
 	}
 
 	/**
@@ -196,7 +162,7 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 			if (semanticElement == null) {
 				return;
 			}
-			this.eobjectContextUpdater.updateContext(semanticElement) ;
+			this.context = semanticElement ;
 			Resource semanticResource = semanticElement.eResource();
 
 			semanticElementFragment = semanticResource.getURIFragment(semanticElement);
@@ -207,36 +173,13 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 			
 			diagramEditor = ((DiagramEditDomain) diagramEditDomain).getEditorPart();
 			
+			createXtextEditor(null) ;
 			
-			try {
-				IFile file2 = (IFile) Workbench.getInstance().getActiveWorkbenchWindow().getActivePage().getActiveEditor().getEditorInput().
-			    getAdapter(IFile.class);
-				
-				String portablePath = file2.getRawLocation().toPortableString() ;
-				portablePath = new String(portablePath.substring(0, portablePath.lastIndexOf("/")+1)) + "tmpXtextFile" + uniqueID++ + fileExtension ;
-					
-				temporaryFilePath = "" + portablePath ;
-				File file = new File(temporaryFilePath);
-				FileOutputStream outputStream = null ;
-				PrintStream data = null ;
-				file.createNewFile();
-				outputStream = new FileOutputStream(file) ;
-				data = new PrintStream(outputStream) ; 
-				data.print(textToEdit) ;
-				xtextResource = (XtextResource)semanticResource.getResourceSet().createResource(URI.createFileURI(file.getAbsolutePath())) ;
-				xtextResource.load(null) ;
-				
-				createXtextEditor(new ResourceWorkingCopyFileEditorInput(xtextResource));
-				
-			} 
-			catch (IOException e) {
-				Activator.logError(e);
-			}
 		} catch (Exception e) {
 			Activator.logError(e);
 		}
 	}
-
+	
 	/**
 	 * This element was originally not documented in the XText/GMF integration example.
 	 * 
@@ -247,20 +190,14 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 	 * @param isReconcile Determines whether a reconciliation must be performed or not
 	 */
 	public void closeEditor(boolean isReconcile) {
-		if (xtextEditor != null) {
+		if (sourceViewerHandle != null) {
 			if (isReconcile) {
 				try {
-					final IXtextDocument xtextDocument = xtextEditor.getDocument();
+					final IXtextDocument xtextDocument = sourceViewerHandle.getDocument();
 					if (!isDocumentHasErrors(xtextDocument)) {
 						int documentGrowth = xtextDocument.getLength() - initialDocumentSize ;
 						String newText = xtextDocument.get(editorOffset , initialEditorSize + documentGrowth) ;
-						//UpdateXtextResourceTextCommand.createUpdateCommand(xtextResource, editorOffset,
-						//		initialEditorSize, newText).execute(null, null);
-						
-						//TODO: test
-						UpdateXtextResourceTextCommand.createUpdateCommand(xtextResource, editorOffset,
-								textToEdit.length(), newText).execute(null, null);
-
+						xtextResource = partialEditor.createResource(newText) ;						
 						if (xtextResource.getAllContents().hasNext())
 							modelReconciler.reconcile(semanticElement, xtextResource.getAllContents().next()) ;
 					}
@@ -269,27 +206,13 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 				}
 			}
 			xtextEditorComposite.setVisible(false);
-			deactivateServices(false) ;
-			xtextEditor.dispose() ;
-			
-			MultiPageEditorSite site = (MultiPageEditorSite)xtextEditor.getSite() ;
-			site.dispose() ;
-			
-			diagramEditor.getSite().getPage().removePartListener(this.addedPartListener) ;
-			
-			////////////////////////////////////////////
-			// TODO: Deletion of the temp file does not always work...
-			// TODO: When it works, how to update the content of the outline?
-			try {
-				xtextResource.unload() ;
-				xtextResource.delete(null) ;
-			}
-			catch (Exception e) {
-				e.printStackTrace() ;
-			}
+			xtextEditorComposite.dispose() ;
+
 		}
 	}
 
+
+	
 	/**
 	 * This element was originally not documented in the XText/GMF integration example
 	 * 
@@ -300,114 +223,91 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 	 * @param editorInput
 	 */
 	private void createXtextEditor(IEditorInput editorInput) throws Exception {
-		Shell diagramShell = diagramEditor.getSite().getShell();
-		xtextEditorComposite = new Decorations(diagramShell, SWT.RESIZE | SWT.ON_TOP | SWT.BORDER);
+		diagramShell = diagramEditor.getSite().getShell();
+		xtextEditorComposite = new Shell(SWT.RESIZE) ;
 		xtextEditorComposite.setLayout(new FillLayout());
 		
-		IEditorSite editorSite = (IEditorSite)EditorUtils.getMultiDiagramEditor().getSite() ;
-		xtextEditor = xtextInjector.getInstance(XtextEditor.class);
-		// remove dirty state editor callback
-		xtextEditor.setXtextEditorCallback(new CompoundXtextEditorCallback(Guice.createInjector(new Module() {
-			public void configure(Binder binder) {
-			}
-		})));
-		
-		editorSite = new MultiPageEditorSite((IEditorSite)EditorUtils.getMultiDiagramEditor().getSite(), xtextEditor, null) ;
-		
-		xtextEditor.init(editorSite, editorInput);
-		xtextEditor.createPartControl(xtextEditorComposite);
-		
-		this.activateServices() ;
-		
+		resourceProvider = xtextInjector.getInstance(ISyntheticResourceProvider.class) ;
+		SourceViewerHandleFactory factory = xtextInjector.getInstance(SourceViewerHandleFactory.class) ;
+		sourceViewerHandle = factory.create(xtextEditorComposite, resourceProvider) ;
+		partialEditor = sourceViewerHandle.createPartialEditor("", textToEdit, "") ;		
 		registerKeyListener();
-		setEditorRegion();
 		setEditorBounds();
 		
-		xtextEditorComposite.addFocusListener(new FocusListener() {
+		initializeActions();
+		installUndoRedoSupport(sourceViewerHandle.getViewer());
+		
+		sourceViewerHandle.getViewer().getTextWidget().addFocusListener(new FocusListener() {
 			
 			public void focusLost(FocusEvent e) {
-				eobjectContextUpdater.updateContext(semanticElement) ;
-				xtextEditorContextUpdater.updateCurrentEditor(xtextEditor) ;
+				// TODO Auto-generated method stub
+				context = semanticElement ;
+				closeEditor(true) ;
 			}
 			
 			public void focusGained(FocusEvent e) {
-				eobjectContextUpdater.updateContext(semanticElement) ;
-				xtextEditorContextUpdater.updateCurrentEditor(xtextEditor) ;
+				// TODO Auto-generated method stub
+				
+				context = semanticElement ;
 			}
 		}) ;
 		
 		xtextEditorComposite.setVisible(true);
-		xtextEditorComposite.forceFocus();
-		xtextEditor.setFocus();
-				
-		IWorkbenchPage page = diagramEditor.getSite().getPage();
-		addedPartListener = new IPartListener() {
-			public void partActivated(IWorkbenchPart part) {
-				closeEditor(false);
-			}
-			public void partBroughtToTop(IWorkbenchPart part) {
-				System.out.println("part brought to top") ;
-			}
-			public void partClosed(IWorkbenchPart part) {
-				closeEditor(false);
-			}
-			public void partDeactivated(IWorkbenchPart part) {
-				closeEditor(false);
-			}
-			public void partOpened(IWorkbenchPart part) {
-				closeEditor(false);
-			}
-		} ; 
-		page.addPartListener(this.addedPartListener);
-		
-		setEditorRegion() ;
-	}
+		sourceViewerHandle.getViewer().showAnnotationsOverview(true) ;
+		sourceViewerHandle.getViewer().getTextWidget().setFocus() ;
 
+	}
+	
+	private PopupXtextEditorKeyListener keyListener ;
+	
 	private void registerKeyListener() {
-		XtextSourceViewer sourceViewer = (XtextSourceViewer) xtextEditor.getInternalSourceViewer();
-		final StyledText xtextTextWidget = sourceViewer.getTextWidget();
-		PopupXtextEditorKeyListener keyListener = new PopupXtextEditorKeyListener(this, sourceViewer
-				.getContentAssistant());
+		//XtextSourceViewer sourceViewer = (XtextSourceViewer) xtextEditor.getInternalSourceViewer();
+		final StyledText xtextTextWidget = sourceViewerHandle.getViewer().getTextWidget();
+		keyListener = 
+			new PopupXtextEditorKeyListener
+						(this, sourceViewerHandle.getViewer().getContentAssistant());
+		//keyListener.installUndoRedoSupport(sourceViewerHandle.getViewer()) ;
 		xtextTextWidget.addVerifyKeyListener(keyListener);
 		xtextTextWidget.addKeyListener(keyListener);
 	}
 
-	/**
-	 * This element was originally not documented in the XText/GMF integration example
-	 */
-	private void setEditorRegion() throws BadLocationException {
-		final IXtextDocument xtextDocument = xtextEditor.getDocument();
-		boolean success = xtextEditor.getDocument().modify(new IUnitOfWork<Boolean, XtextResource>() {
-
-			public Boolean exec(XtextResource state) throws Exception {
-				EObject semanticElementInDocument = state.getEObject(semanticElementFragment);
-				
-				if (semanticElementInDocument == null) {
-					return false;
-				}
-				
-				CompositeNode xtextNode = getCompositeNode(semanticElementInDocument);
-				if (xtextNode == null) {
-					return false;
-				}
-				
-				editorOffset = xtextNode.getOffset();
-				initialEditorSize = xtextNode.getLength() ;
-				initialDocumentSize = xtextDocument.getLength();
-				
-				xtextDocument.replace(editorOffset + 1 + initialEditorSize, 0, "\n");
-				
-				return true;
-			}
-
-		});
-
-		if (success) {
-			xtextEditor.showHighlightRangeOnly(true);
-			xtextEditor.setHighlightRange(editorOffset + 1, initialEditorSize, true);
-			xtextEditor.setFocus();
-		}
-	}
+//	/**
+//	 * This element was originally not documented in the XText/GMF integration example
+//	 */
+//	private void setEditorRegion() throws BadLocationException {
+//		final IXtextDocument xtextDocument = sourceViewer.getDocument();
+//		boolean success = sourceViewer.getDocument().modify(new IUnitOfWork<Boolean, XtextResource>() {
+//
+//			public Boolean exec(XtextResource state) throws Exception {
+//				EObject semanticElementInDocument = state.getEObject(semanticElementFragment);
+//				
+//				if (semanticElementInDocument == null) {
+//					return false;
+//				}
+//				
+//				CompositeNode xtextNode = getCompositeNode(semanticElementInDocument);
+//				if (xtextNode == null) {
+//					return false;
+//				}
+//				
+//				editorOffset = xtextNode.getOffset();
+//				initialEditorSize = xtextNode.getLength() ;
+//				initialDocumentSize = xtextDocument.getLength();
+//				
+//				//xtextDocument.replace(editorOffset + 1 + initialEditorSize, 0, "\n");
+//				xtextDocument.replace(editorOffset + initialEditorSize, 0, "\n");
+//				
+//				return true;
+//			}
+//
+//		});
+//
+////		if (success) {
+////			xtextEditor.showHighlightRangeOnly(true);
+////			xtextEditor.setHighlightRange(editorOffset + 1, initialEditorSize, true);
+////			xtextEditor.setFocus();
+////		}
+//	}
 
 	/**
 	 * This element was originally not documented in the XText/GMF integration example
@@ -417,54 +317,31 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 	 * 			This still needs some work...
 	 */
 	private void setEditorBounds() {
-		final IXtextDocument xtextDocument = xtextEditor.getDocument();
-		// mind the added newlines
-		String editString = "";
-		try {
-			editString = xtextDocument.get(editorOffset + 1, initialEditorSize);
-		} catch (BadLocationException exc) {
-			Activator.logError(exc);
-		}
-		//int numLines = StringUtil.getNumLines(editString);
-		int numLines = StringUtil.getNumLines(textToEdit);
-		int numColumns = 0;
-		for (int i = 0 ; i<xtextDocument.getNumberOfLines();i++) {
-			try {
-				numColumns = Math.max(xtextDocument.getLineLength(i), numColumns) ;
-			} catch (Exception e) {}
-		}
-
-		IFigure figure = hostEditPart.getFigure();
+		
+		String editString = "" + textToEdit ;
+		int[] numLinesNumColums = StringUtil.getNumLinesNumColumns(editString) ;
+		int numLines = numLinesNumColums[0] ;
+		int numColumns = numLinesNumColums[1];
+		
+		IFigure figure = hostEditPart.getFigure() ;
 		Rectangle bounds = figure.getBounds().getCopy();
-		DiagramRootEditPart diagramEditPart = (DiagramRootEditPart) hostEditPart.getRoot();
-		IFigure contentPane = diagramEditPart.getContentPane();
-		contentPane.translateToAbsolute(bounds);
-		EditPartViewer viewer = hostEditPart.getViewer();
-		Control control = viewer.getControl();
-		while (control != null && false == control instanceof Shell) {
-			bounds.translate(control.getBounds().x, control.getBounds().y);
-			control = control.getParent();
-		}
-
+		figure.translateToAbsolute(bounds) ;
+		Point newCoord = diagramShell.getDisplay().map(hostEditPart.getViewer().getControl(), null, new Point(bounds.x, bounds.y)) ;
+		bounds.x = newCoord.x ;
+		bounds.y = newCoord.y ;
+	
 		Font font = figure.getFont();
 		FontData fontData = font.getFontData()[0];
 		int fontHeightInPixel = fontData.getHeight();
-
-		// TODO: this needs some work...
-		int width = Math.max(fontHeightInPixel * (numColumns + 6), hostEditPart.getContentPane().getBounds().width);
-		int height = Math.max(fontHeightInPixel * (numLines + 6), MIN_EDITOR_HEIGHT);
 		
+		// TODO: this needs some work...
+		int width = hostEditPart.getContentPane().getBounds().width ;
+		int height = fontHeightInPixel * (numLines+4) ;
+				
 		xtextEditorComposite.setBounds(bounds.x, bounds.y, width, height);
 	}
 
-	private CompositeNode getCompositeNode(EObject semanticElement) {
-		NodeAdapter nodeAdapter = NodeUtil.getNodeAdapter(semanticElement);
-		if (nodeAdapter != null) {
-			final CompositeNode parserNode = nodeAdapter.getParserNode();
-			return parserNode;
-		}
-		return null;
-	}
+
 
 	private boolean isDocumentHasErrors(final IXtextDocument xtextDocument) {
 		return (xtextDocument.readOnly(new IUnitOfWork<Boolean, XtextResource>() {
@@ -474,58 +351,98 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 			}
 		}));
 	}
-
 	
-	
-
-	/**
-	 * @author CEA LIST
-	 * This method is used for explicitly re-activating the key binding of the context diagram editor
-	 */
-	@SuppressWarnings({ "restriction", "deprecation" })
-	private void activateServices() {
+	protected Status createErrorStatus(String message, TemplateException e) {
+		return new Status(IStatus.ERROR, 
+			"org.eclipse.papyrus.property.editor.xtext",message, e);
 		
-		// Get the service
-		final IKeyBindingService service = EditorUtils.getMultiDiagramEditor().getEditorSite().getKeyBindingService();
-
-
-		final IEditorPart editor = xtextEditor ;
-
-		if(editor != null) {
-			// active the service for this inner editor
-			if(service instanceof INestableKeyBindingService) {
-				final INestableKeyBindingService nestableService = (INestableKeyBindingService)service;
-				nestableService.activateKeyBindingService(editor.getEditorSite());
-
-			} else {
-				WorkbenchPlugin.log("MultiPageEditorPart.activateSite()   Parent key binding service was not an instance of INestableKeyBindingService.  It was an instance of " + service.getClass().getName() + " instead."); //$NON-NLS-1$ //$NON-NLS-2$
-			}
-		}
-	}
-
-	/**
-	 * @author CEA LIST
-	 * 
-	 * Deactivate services: old nested site if any and keybinding service if there is no active editor.
-	 * Deactivate the key binding service.
-	 * Deactivate it only if there is no editor selected.
-	 * 
-	 * This method is used for explicitly re-activating the key binding of the context diagram editor
-	 */
-	@SuppressWarnings({ "restriction", "deprecation" })
-	private void deactivateServices(boolean immediate) {
-
-		final IEditorPart editor = xtextEditor;
-		final IKeyBindingService service = EditorUtils.getMultiDiagramEditor().getEditorSite().getKeyBindingService();
-		if(editor != null || immediate) {
-			// There is no selected page, so deactivate the active service.
-			if(service instanceof INestableKeyBindingService) {
-				final INestableKeyBindingService nestableService = (INestableKeyBindingService)service;
-				nestableService.activateKeyBindingService(null);
-			} else {
-				WorkbenchPlugin.log("MultiPageEditorPart.deactivateSite()   Parent key binding service was not an instance of INestableKeyBindingService.  It was an instance of " + service.getClass().getName() + " instead."); //$NON-NLS-1$ //$NON-NLS-2$
-			}
-		}
 	}
 	
+	
+	protected void installUndoRedoSupport(SourceViewer viewer) {
+		IDocumentUndoManager undoManager = DocumentUndoManagerRegistry.getDocumentUndoManager(viewer.getDocument());
+		final IUndoContext context = undoManager.getUndoContext();
+		IOperationHistory operationHistory = OperationHistoryFactory.getOperationHistory() ;
+		operationHistoryListener = new OperationHistoryListener(context, new IUpdate() {
+			public void update() {
+				updateAction(ITextEditorActionConstants.REDO);
+				updateAction(ITextEditorActionConstants.UNDO);
+			}
+		});
+		operationHistory.addOperationHistoryListener(operationHistoryListener);
+	}
+	
+	private Map<String, org.eclipse.ui.console.actions.TextViewerAction> fGlobalActions= Maps.newHashMapWithExpectedSize(10);
+	private List<String> fSelectionActions = Lists.newArrayListWithExpectedSize(3);
+	
+	protected void updateAction(String actionId) {
+		IAction action= fGlobalActions.get(actionId);
+		if (action instanceof IUpdate)
+			((IUpdate) action).update();
+	}
+	
+	protected void uninstallUndoRedoSupport() {
+		IOperationHistory operationHistory = PlatformUI.getWorkbench().getOperationSupport().getOperationHistory();
+		operationHistory.removeOperationHistoryListener(operationHistoryListener);
+		operationHistoryListener = null;
+	}
+	
+	private void initializeActions() {
+		final List<IHandlerActivation> handlerActivations= Lists.newArrayListWithExpectedSize(3);
+		final IHandlerService handlerService= (IHandlerService) PlatformUI.getWorkbench().getAdapter(IHandlerService.class);
+		final Expression expression= new ActiveShellExpression(sourceViewerHandle.getViewer().getControl().getShell());
+
+		diagramShell.addDisposeListener(new DisposeListener() {
+			public void widgetDisposed(DisposeEvent e) {
+				handlerService.deactivateHandlers(handlerActivations);
+				}
+		});
+
+		TextViewerAction action= new TextViewerAction(sourceViewerHandle.getViewer(), ITextOperationTarget.UNDO);
+		action.setText("UNDO");
+		fGlobalActions.put(ITextEditorActionConstants.UNDO, action);
+
+		action= new TextViewerAction(sourceViewerHandle.getViewer(), ITextOperationTarget.REDO);
+		action.setText("REDO");
+		fGlobalActions.put(ITextEditorActionConstants.REDO, action);
+
+		action= new TextViewerAction(sourceViewerHandle.getViewer(), ITextOperationTarget.CUT);
+		action.setText("CUT");
+		fGlobalActions.put(ITextEditorActionConstants.CUT, action);
+
+		action= new TextViewerAction(sourceViewerHandle.getViewer(), ITextOperationTarget.COPY);
+		action.setText("COPY");
+		fGlobalActions.put(ITextEditorActionConstants.COPY, action);
+
+		action= new TextViewerAction(sourceViewerHandle.getViewer(), ITextOperationTarget.PASTE);
+		action.setText("PASTE");
+		fGlobalActions.put(ITextEditorActionConstants.PASTE, action);
+
+		action= new TextViewerAction(sourceViewerHandle.getViewer(), ITextOperationTarget.SELECT_ALL);
+		action.setText("SELECT_ALL");
+		fGlobalActions.put(ITextEditorActionConstants.SELECT_ALL, action);
+
+		action= new TextViewerAction(sourceViewerHandle.getViewer(), ISourceViewer.CONTENTASSIST_PROPOSALS);
+		action.setText("CONTENTASSIST_PROPOSALS");
+		fGlobalActions.put(ITextEditorActionConstants.CONTENT_ASSIST, action);
+
+		fSelectionActions.add(ITextEditorActionConstants.CUT);
+		fSelectionActions.add(ITextEditorActionConstants.COPY);
+		fSelectionActions.add(ITextEditorActionConstants.PASTE);
+		
+		sourceViewerHandle.getViewer().getTextWidget().addFocusListener(new FocusListener() {
+			public void focusLost(FocusEvent e) {
+				handlerService.deactivateHandlers(handlerActivations);
+			}
+			public void focusGained(FocusEvent e) {
+				IAction action= fGlobalActions.get(ITextEditorActionConstants.REDO);
+				handlerActivations.add(handlerService.activateHandler(IWorkbenchCommandConstants.EDIT_REDO, new ActionHandler(action), expression));
+				action= fGlobalActions.get(ITextEditorActionConstants.UNDO);
+				handlerActivations.add(handlerService.activateHandler(IWorkbenchCommandConstants.EDIT_UNDO, new ActionHandler(action), expression));
+				action= fGlobalActions.get(ITextEditorActionConstants.CONTENT_ASSIST);
+				handlerActivations.add(handlerService.activateHandler(ITextEditorActionDefinitionIds.CONTENT_ASSIST_PROPOSALS, new ActionHandler(action), expression));
+			}
+		});
+
+	}
 }
