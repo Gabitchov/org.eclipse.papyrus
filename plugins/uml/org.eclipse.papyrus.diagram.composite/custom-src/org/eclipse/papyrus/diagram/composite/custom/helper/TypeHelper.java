@@ -13,8 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.composite.custom.helper;
 
-import java.util.Iterator;
-
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
@@ -35,7 +33,6 @@ import org.eclipse.papyrus.diagram.common.helper.ElementHelper;
 import org.eclipse.papyrus.diagram.composite.custom.edit.command.CreateViewCommand;
 import org.eclipse.papyrus.diagram.composite.custom.edit.command.PropertyPartFromTypeCreateCommand;
 import org.eclipse.papyrus.diagram.composite.custom.edit.command.SetTypeWithDialogCommand;
-import org.eclipse.papyrus.diagram.composite.edit.parts.PortEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.PropertyPartEditPartCN;
 import org.eclipse.papyrus.diagram.composite.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.StructuredClassifier;
@@ -87,17 +84,6 @@ public class TypeHelper extends ElementHelper {
 			SetRequest req = new SetRequest(graphicalParentObject, UMLPackage.eINSTANCE.getTypedElement_Type(), semanticElement);
 			SetTypeWithDialogCommand setTypeCommand = new SetTypeWithDialogCommand(req);
 			cc.add(new ICommandProxy(setTypeCommand));
-
-			// If the parent is a Part, its shown Port should be removed from diagram
-			if(graphicalTarget instanceof PropertyPartEditPartCN) {
-				Iterator<?> it = graphicalTarget.getChildren().iterator();
-				while(it.hasNext()) {
-					Object current = it.next();
-					if(current instanceof PortEditPart) {
-
-					}
-				}
-			}
 		}
 
 		return cc;

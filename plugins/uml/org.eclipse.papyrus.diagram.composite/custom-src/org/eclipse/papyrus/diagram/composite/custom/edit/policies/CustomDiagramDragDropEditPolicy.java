@@ -45,6 +45,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.diagram.composite.custom.edit.command.CreateViewCommand;
 import org.eclipse.papyrus.diagram.composite.custom.helper.CollaborationHelper;
+import org.eclipse.papyrus.diagram.composite.custom.helper.CollaborationUseHelper;
 import org.eclipse.papyrus.diagram.composite.custom.helper.CompositeLinkMappingHelper;
 import org.eclipse.papyrus.diagram.composite.custom.helper.ConnectorHelper;
 import org.eclipse.papyrus.diagram.composite.custom.helper.DurationObservationHelper;
@@ -127,6 +128,7 @@ import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Collaboration;
+import org.eclipse.uml2.uml.CollaborationUse;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.DurationObservation;
@@ -750,6 +752,14 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 					TypeHelper helper = new TypeHelper(getEditingDomain());
 					cc.add(helper.dropTypeOnTypedElement((GraphicalEditPart)getHost(), (Type)droppedObject, location));
 				}
+
+			} else if(graphicalParentObject instanceof CollaborationUse) {
+
+				if(droppedObject instanceof Collaboration) {
+
+					CollaborationUseHelper helper = new CollaborationUseHelper(getEditingDomain());
+					cc.add(helper.dropCollaborationOnCollaborationUse((GraphicalEditPart)getHost(), (Collaboration)droppedObject, location));
+				}
 			}
 		}
 
@@ -759,6 +769,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 		return super.getDropObjectsCommand(dropRequest);
 	}
-
-
+	
+	
 }
