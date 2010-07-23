@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Bundle-Name: Papyrus : UML extensions (library and profile)
+Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.extensionpoints.uml2;singleton:=true
 Bundle-Version: 0.7.0.qualifier
@@ -17,3 +17,4 @@ Export-Package: org.eclipse.papyrus.extensionpoints.uml2,
  org.eclipse.papyrus.extensionpoints.uml2.standard,
  org.eclipse.papyrus.extensionpoints.uml2.utils
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %providerName
