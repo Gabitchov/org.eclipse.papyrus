@@ -39,6 +39,8 @@ import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
+import org.eclipse.swt.graphics.FontMetrics;
+import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -211,7 +213,18 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 		}
 	}
 
-
+	/**
+	 * Computes the size of the given label
+	 * @param text the text to compute
+	 * @return the approximate size of the text
+	 */
+	protected int computeLabelSize(Composite parent, String text) {
+		GC gc = new GC (parent);
+        FontMetrics fm = gc.getFontMetrics ();
+        int width = text.length() * fm.getAverageCharWidth ();
+        gc.dispose ();
+        return width;
+	}
 	
 	/**
 	 * This element was originally not documented in the XText/GMF integration example
@@ -335,7 +348,9 @@ public class PopupXtextEditorHelper implements IPopupEditorHelper {
 		int fontHeightInPixel = fontData.getHeight();
 		
 		// TODO: this needs some work...
-		int width = hostEditPart.getContentPane().getBounds().width ;
+		int width = computeLabelSize(xtextEditorComposite, editString);
+		width += 60;
+		// int width = hostEditPart.getContentPane().getBounds().width ;
 		int height = fontHeightInPixel * (numLines+4) ;
 				
 		xtextEditorComposite.setBounds(bounds.x, bounds.y, width, height);
